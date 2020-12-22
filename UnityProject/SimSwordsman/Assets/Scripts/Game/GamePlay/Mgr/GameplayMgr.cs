@@ -33,7 +33,7 @@ namespace GameWish.Game
             // Init Managers
             GameDataMgr.S.Init();
 
-            AssetPreloaderMgr.S.Init();
+            //AssetPreloaderMgr.S.Init();
 
             InputMgr.S.Init();
 
@@ -115,7 +115,7 @@ namespace GameWish.Game
 
             if (m_IsGameStart == false)
             {
-                if (AssetPreloaderMgr.S.IsPreloaderDone())
+                //if (AssetPreloaderMgr.S.IsPreloaderDone())
                 {
                     m_IsGameStart = true;
                     //Timer.S.OnSingletonInit();

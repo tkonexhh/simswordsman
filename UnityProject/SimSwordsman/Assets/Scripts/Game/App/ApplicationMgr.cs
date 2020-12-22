@@ -24,7 +24,7 @@ namespace GameWish.Game
         {
             //FacebookSocialAdapter.S.Init();
             DataAnalysisMgr.S.Init();
-            BuglyMgr.S.Init();
+            //BuglyMgr.S.Init();
             AdsMgr.S.Init();
             //SocialMgr.S.Init();
         }
