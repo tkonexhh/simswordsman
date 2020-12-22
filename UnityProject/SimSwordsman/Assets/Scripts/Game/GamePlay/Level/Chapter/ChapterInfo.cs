@@ -1,0 +1,102 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+namespace GameWish.Game
+{
+
+    public class ChapterConfigInfo
+    {
+        public int chapterId;
+        public string desc;
+        public string battleName;
+        public ChapterUnlockPrecondition unlockPrecondition;
+        public ClanType clanType;
+        public int chapterCount;
+    }
+
+    public class ChapterUnlockPrecondition
+    {
+        public int chapter;
+        public int level;
+
+        public ChapterUnlockPrecondition()
+        {
+            chapter = -1;
+            level = -1;
+        }
+
+        public ChapterUnlockPrecondition(int chapter, int level)
+        {
+            this.chapter = chapter;
+            this.level = level;
+        }
+    }
+
+    public class LevelConfigInfo
+    {
+        public int chapterId;
+        public int level;
+        public string desc;
+        public string battleName;
+        public int recommendAtkValue;
+        public List<LevelReward> levelRewardList = new List<LevelReward>();
+        public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
+        public LevelConfigInfo(int chapterId, int level, string desc, int recommendAtk)
+        {
+            this.chapterId = chapterId;
+            this.level = level;
+            this.desc = desc;
+            this.recommendAtkValue = recommendAtk;
+        }
+
+        public LevelConfigInfo(TDLevelConfig tDLevelConfig)
+        {
+            this.chapterId = tDLevelConfig.chapter;
+            this.level = tDLevelConfig.level;
+            this.desc = tDLevelConfig.desc;
+            this.battleName = tDLevelConfig.battleName;
+            this.recommendAtkValue = tDLevelConfig.recommendAtkValue;
+            AnalysisRewards(tDLevelConfig.reward);
+            AnalysisEnemies(tDLevelConfig.enemies);
+        }
+        /// <summary>
+        /// ½âÎö½±Àø
+        /// </summary>
+        /// <param name="reward"></param>
+        private void AnalysisRewards(string rewardStr)
+        {
+            try
+            {
+                string[] rewards = rewardStr.Split(';');
+                for (int i = 0; i < rewards.Length; i++)
+                {
+                    string[] reward = rewards[i].Split('|');
+                    LevelRewardType rewardType = EnumUtil.ConvertStringToEnum<LevelRewardType>(reward[0]);
+                    LevelReward levelReward = LevelRewardFactory.SpawnLevelReward(rewardType, reward);
+                    levelRewardList.Add(levelReward);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("AnalysisRewards error: " + e.Message);
+            }
+        }
+        /// <summary>
+        /// ½âÎöµÐÈË
+        /// </summary>
+        /// <param name="enemisStr"></param>
+        private void AnalysisEnemies(string enemisStr)
+        {
+            string[] enemies = enemisStr.Split(';');
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                string[] enemie = enemies[i].Split('|');
+                enemiesList.Add(new EnemyConfig(enemie));
+            }
+        }
+    }
+
+}
