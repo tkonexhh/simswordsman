@@ -16,7 +16,7 @@ namespace GameWish.Game
         private EInt m_HouseId = 0;   
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
-        private string m_UpgradePreconditions;   
+        private EInt m_UpgradePreconditions = 0;   
         private EInt m_Capability = 0;   
         private EInt m_LevelUpSpeed = 0;  
         
@@ -45,7 +45,7 @@ namespace GameWish.Game
         /// <summary>
         /// 升级条件
         /// </summary>
-        public  string  upgradePreconditions {get { return m_UpgradePreconditions; } }
+        public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
         /// 练功位数量
@@ -85,7 +85,7 @@ namespace GameWish.Game
                     m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UpgradePreconditions = dataR.ReadString();
+                    m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 5:
                     m_Capability = dataR.ReadInt();

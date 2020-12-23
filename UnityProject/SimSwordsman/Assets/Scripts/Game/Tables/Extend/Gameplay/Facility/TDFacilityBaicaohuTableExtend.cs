@@ -17,7 +17,7 @@ namespace GameWish.Game
             BaicaohuInfo baicaohuLevelInfo = new BaicaohuInfo();
             baicaohuLevelInfo.Warp(levelInfo);
 
-            string[] equipStrs = tdData.unlockMedicinalPowder.Split('|');
+            string[] equipStrs = tdData.unlockMedicine.Split('|');
             List<MedicinalPowderType> medicinalPowderTypeList = new List<MedicinalPowderType>();
             foreach (string item in equipStrs)
             {
@@ -50,7 +50,7 @@ namespace GameWish.Game
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {
-                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeReward);
+                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeRes);
             }
 
             return levelInfo;

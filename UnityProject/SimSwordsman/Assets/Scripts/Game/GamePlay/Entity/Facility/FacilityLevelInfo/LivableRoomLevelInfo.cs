@@ -24,7 +24,7 @@ namespace GameWish.Game
 
         public int GetUpgradeCondition()
         {
-            return preconditions.GetFacilityUpgradePreconditionItem().value;
+            return upgradeNeedLobbyLevel;
         }
 
         public int GetNextCapacity()

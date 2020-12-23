@@ -25,7 +25,7 @@ namespace GameWish.Game
         public  int  id {get { return m_Id; } }
        
         /// <summary>
-        /// Value
+        /// 名称
         /// </summary>
         public  string  name {get { return m_Name; } }
        

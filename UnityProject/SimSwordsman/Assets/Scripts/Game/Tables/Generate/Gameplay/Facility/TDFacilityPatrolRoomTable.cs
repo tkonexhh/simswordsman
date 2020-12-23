@@ -8,16 +8,16 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public static partial class TDFacilityLivableRoomTable
+    public static partial class TDFacilityPatrolRoomTable
     {
-        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDFacilityLivableRoomTable.Parse, "FacilityLivableRoom");
+        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDFacilityPatrolRoomTable.Parse, "FacilityPatrolRoom");
         public static TDTableMetaData metaData
         {
             get { return m_MetaData; }
         }
         
-        private static Dictionary<int, TDFacilityLivableRoom> m_DataCache = new Dictionary<int, TDFacilityLivableRoom>();
-        private static List<TDFacilityLivableRoom> m_DataList = new List<TDFacilityLivableRoom >();
+        private static Dictionary<int, TDFacilityPatrolRoom> m_DataCache = new Dictionary<int, TDFacilityPatrolRoom>();
+        private static List<TDFacilityPatrolRoom> m_DataList = new List<TDFacilityPatrolRoom >();
         
         public static void Parse(byte[] fileData)
         {
@@ -25,27 +25,27 @@ namespace GameWish.Game
             m_DataList.Clear();
             DataStreamReader dataR = new DataStreamReader(fileData);
             int rowCount = dataR.GetRowCount();
-            int[] fieldIndex = dataR.GetFieldIndex(TDFacilityLivableRoom.GetFieldHeadIndex());
+            int[] fieldIndex = dataR.GetFieldIndex(TDFacilityPatrolRoom.GetFieldHeadIndex());
     #if (UNITY_STANDALONE_WIN) || UNITY_EDITOR || UNITY_STANDALONE_OSX
-            dataR.CheckFieldMatch(TDFacilityLivableRoom.GetFieldHeadIndex(), "FacilityLivableRoomTable");
+            dataR.CheckFieldMatch(TDFacilityPatrolRoom.GetFieldHeadIndex(), "FacilityPatrolRoomTable");
     #endif
             for (int i = 0; i < rowCount; ++i)
             {
-                TDFacilityLivableRoom memberInstance = new TDFacilityLivableRoom();
+                TDFacilityPatrolRoom memberInstance = new TDFacilityPatrolRoom();
                 memberInstance.ReadRow(dataR, fieldIndex);
                 OnAddRow(memberInstance);
                 memberInstance.Reset();
                 CompleteRowAdd(memberInstance);
             }
-            Log.i(string.Format("Parse Success TDFacilityLivableRoom"));
+            Log.i(string.Format("Parse Success TDFacilityPatrolRoom"));
         }
 
-        private static void OnAddRow(TDFacilityLivableRoom memberInstance)
+        private static void OnAddRow(TDFacilityPatrolRoom memberInstance)
         {
             int key = memberInstance.level;
             if (m_DataCache.ContainsKey(key))
             {
-                Log.e(string.Format("Invaild,  TDFacilityLivableRoomTable Id already exists {0}", key));
+                Log.e(string.Format("Invaild,  TDFacilityPatrolRoomTable Id already exists {0}", key));
             }
             else
             {
@@ -67,7 +67,7 @@ namespace GameWish.Game
             }
         }
 
-        public static List<TDFacilityLivableRoom> dataList
+        public static List<TDFacilityPatrolRoom> dataList
         {
             get 
             {
@@ -75,7 +75,7 @@ namespace GameWish.Game
             }    
         }
 
-        public static TDFacilityLivableRoom GetData(int key)
+        public static TDFacilityPatrolRoom GetData(int key)
         {
             if (m_DataCache.ContainsKey(key))
             {
@@ -83,7 +83,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w(string.Format("Can't find key {0} in TDFacilityLivableRoom", key));
+                Log.w(string.Format("Can't find key {0} in TDFacilityPatrolRoom", key));
                 return null;
             }
         }

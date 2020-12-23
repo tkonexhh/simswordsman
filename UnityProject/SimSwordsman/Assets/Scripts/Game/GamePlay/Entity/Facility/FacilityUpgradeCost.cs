@@ -34,12 +34,12 @@ namespace GameWish.Game
 
     public class FacilityUpgradeCostItem
     {
-        public FacilityCostType rewardType;
+        public int itemId;
         public int value;
 
-        public FacilityUpgradeCostItem(FacilityCostType costType, int value)
+        public FacilityUpgradeCostItem(int id, int value)
         {
-            this.rewardType = costType;
+            this.itemId = id;
             this.value = value;
         }
     }

@@ -7,32 +7,23 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDFacilityForgeHouseTable
+    public partial class TDFacilityPatrolRoomTable
     {
-        public static Dictionary<int, ForgeHouseInfo> levelInfoDic = new Dictionary<int, ForgeHouseInfo>();
+        public static Dictionary<int, PatrolRoomInfo> levelInfoDic = new Dictionary<int, PatrolRoomInfo>();
 
-        static void CompleteRowAdd(TDFacilityForgeHouse tdData)
+        static void CompleteRowAdd(TDFacilityPatrolRoom tdData)
         {
             FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
-            ForgeHouseInfo forgeHouseLevelInfo = new ForgeHouseInfo();
-            forgeHouseLevelInfo.Warp(levelInfo);
-
-            string[] equipStrs = tdData.unlockEquip.Split('|');
-            List<EquipmentType> equipTypeList = new List<EquipmentType>();
-            foreach (string item in equipStrs)
-            {
-                EquipmentType equip = EnumUtil.ConvertStringToEnum<EquipmentType>(item);
-                equipTypeList.Add(equip);
-            }
-            forgeHouseLevelInfo.SetCurEquipmentType(equipTypeList);
+            PatrolRoomInfo patrolLevelInfo = new PatrolRoomInfo();
+            patrolLevelInfo.Warp(levelInfo);
 
             if (!levelInfoDic.ContainsKey(tdData.level))
             {
-                levelInfoDic.Add(tdData.level, forgeHouseLevelInfo);
+                levelInfoDic.Add(tdData.level, patrolLevelInfo);
             }
         }
 
-        public static ForgeHouseInfo GetLevelInfo(int level)
+        public static PatrolRoomInfo GetLevelInfo(int level)
         {
             if (levelInfoDic.ContainsKey(level))
             {
@@ -46,7 +37,7 @@ namespace GameWish.Game
         {
             FacilityLevelInfo levelInfo = null;
 
-            TDFacilityForgeHouse item = null;
+            TDFacilityPatrolRoom item = null;
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {

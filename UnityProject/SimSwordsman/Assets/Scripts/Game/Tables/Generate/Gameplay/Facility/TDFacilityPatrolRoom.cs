@@ -8,7 +8,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDFacilityForgeHouse
+    public partial class TDFacilityPatrolRoom
     {
         
        

@@ -83,14 +83,14 @@ namespace GameWish.Game
 
             m_NextReservesValue.text = m_WarehouseNextLevelInfo.reserves.ToString();
 
-            foreach (var item in m_WarehouseNextLevelInfo.preconditions.facilityConditions)
+            //foreach (var item in m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel.facilityConditions)
             {
-                m_UpgradeConditionsValue.text += item.facilityType.ToString();
+                m_UpgradeConditionsValue.text += m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel.ToString();
                 //m_UpgradeConditionsValue.text += "_";
                 //m_UpgradeConditionsValue.text += item.preditionType.ToString();
-                m_UpgradeConditionsValue.text += "_";
-                m_UpgradeConditionsValue.text += item.value.ToString();
-                m_UpgradeConditionsValue.text += ";";
+                //m_UpgradeConditionsValue.text += "_";
+                //m_UpgradeConditionsValue.text += item.value.ToString();
+                //m_UpgradeConditionsValue.text += ";";
             }
         }
 

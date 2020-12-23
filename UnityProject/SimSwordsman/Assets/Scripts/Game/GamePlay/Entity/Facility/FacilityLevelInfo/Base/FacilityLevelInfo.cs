@@ -9,7 +9,7 @@ namespace GameWish.Game
 	{
         public int level;
         public int upgradeCoinCost;
-        public FacilityUpgradePreconditions preconditions;
+        public int upgradeNeedLobbyLevel;
         public FacilityUpgradeCost upgradeResCosts;
 
         public FacilityLevelInfo()
@@ -17,31 +17,24 @@ namespace GameWish.Game
 
         }
 
-        public FacilityLevelInfo(int level, int coinCost, FacilityUpgradePreconditions preconditions, FacilityUpgradeCost rewards)
+        public FacilityLevelInfo(int level, int coinCost, int needLobbyLevel, FacilityUpgradeCost rewards)
         {
             this.level = level;
             this.upgradeCoinCost = coinCost;
-            this.preconditions = preconditions;
+            this.upgradeNeedLobbyLevel = needLobbyLevel;
             this.upgradeResCosts = rewards;
         }
     
         public void Warp(FacilityLevelInfo levelInfo)
         {
             this.level = levelInfo.level;
-            this.preconditions = levelInfo.preconditions;
+            this.upgradeNeedLobbyLevel = levelInfo.upgradeNeedLobbyLevel;
             this.upgradeResCosts = levelInfo.upgradeResCosts;
         }
 
         public int GetNeedLobbyLevel()
         {
-            int level = -1;
-            FacilityUpgradePreconditionItem item = preconditions.facilityConditions.FirstOrDefault(i => i.facilityType == FacilityType.Lobby);
-            if (item != null)
-            {
-                level = item.value;
-            }
-
-            return level;
+            return upgradeNeedLobbyLevel;
         }
     }
 }

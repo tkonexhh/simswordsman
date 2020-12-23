@@ -127,6 +127,13 @@ namespace GameWish.Game
                 case FacilityType.Baicaohu:
                     facilityLevelInfo = TDFacilityBaicaohuTable.GetLevelInfo(level);
                     break;
+                case FacilityType.PatrolRoom:
+                    facilityLevelInfo = TDFacilityPatrolRoomTable.GetLevelInfo(level);
+                    break;
+                case FacilityType.BartizanEast:
+                case FacilityType.BartizanWest:
+                    facilityLevelInfo = TDFacilityBartizanTable.GetLevelInfo(level);
+                    break;
             }
 
             return facilityLevelInfo;
@@ -235,7 +242,7 @@ namespace GameWish.Game
             List<FacilityItemDbData> allFacilityDataList = GameDataMgr.S.GetClanData().GetAllFacility();
             allFacilityDataList.ForEach(i =>
             {
-                if (i.facilityState == FacilityState.Locked)
+                if (i.facilityState == FacilityState.Locked && i.id != (int)FacilityType.BulletinBoard)
                 {
                     FacilityConfigInfo configInfo = GetFacilityConfigInfo((FacilityType)(i.id));
                     bool isSatisfied = IsUnlockPreconditionSatisfied(configInfo);
