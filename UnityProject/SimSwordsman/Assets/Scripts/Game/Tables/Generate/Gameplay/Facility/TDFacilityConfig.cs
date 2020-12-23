@@ -15,9 +15,7 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private string m_Desc;   
-        private string m_PreFacility;   
-        private EInt m_LobbyLevelRequire = 0;   
-        private EInt m_UnlockCost = 0;  
+        private string m_PreFacility;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -40,16 +38,6 @@ namespace GameWish.Game
         /// 开荒前置建筑
         /// </summary>
         public  string  preFacility {get { return m_PreFacility; } }
-       
-        /// <summary>
-        /// 建造条件-大厅等级
-        /// </summary>
-        public  int  lobbyLevelRequire {get { return m_LobbyLevelRequire; } }
-       
-        /// <summary>
-        /// 建造/升级消耗
-        /// </summary>
-        public  int  unlockCost {get { return m_UnlockCost; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -78,12 +66,6 @@ namespace GameWish.Game
                 case 3:
                     m_PreFacility = dataR.ReadString();
                     break;
-                case 4:
-                    m_LobbyLevelRequire = dataR.ReadInt();
-                    break;
-                case 5:
-                    m_UnlockCost = dataR.ReadInt();
-                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -94,14 +76,12 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(4);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("Desc", 2);
           ret.Add("PreFacility", 3);
-          ret.Add("LobbyLevelRequire", 4);
-          ret.Add("UnlockCost", 5);
           return ret;
         }
     } 

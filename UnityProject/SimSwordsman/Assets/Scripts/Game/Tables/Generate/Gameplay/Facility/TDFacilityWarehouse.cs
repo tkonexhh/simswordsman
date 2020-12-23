@@ -36,7 +36,7 @@ namespace GameWish.Game
         public  string  upgradeReward {get { return m_UpgradeReward; } }
        
         /// <summary>
-        /// Value
+        /// 升级条件
         /// </summary>
         public  string  upgradePreconditions {get { return m_UpgradePreconditions; } }
        

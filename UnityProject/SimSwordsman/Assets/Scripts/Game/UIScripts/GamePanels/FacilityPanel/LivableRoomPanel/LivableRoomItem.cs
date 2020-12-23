@@ -168,7 +168,7 @@ namespace GameWish.Game
                     m_NextHabitablePopulationValue.text = m_LivableRoomLevelInfo.GetNextCapacity() + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE);
                     m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADEINFODESC) + m_LivableRoomLevelInfo.GetUpgradeCondition() + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE);
                     m_UpgradeResourcesTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADERESOURCES);
-                    m_UpgradeResourcesValue.text = m_LivableRoomLevelInfo.upgradeCost.ToString();
+                    m_UpgradeResourcesValue.text = m_LivableRoomLevelInfo.upgradeCosts.ToString();
                     m_UpgradeBtnText.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
                     break;
                 case LivableRoomState.FullLevel:

@@ -15,7 +15,7 @@ namespace GameWish.Game
         {
             FacilityType prefacilityType = EnumUtil.ConvertStringToEnum<FacilityType>(tdData.preFacility);
             FacilityConfigInfo configInfo = new FacilityConfigInfo((FacilityType)tdData.id, 
-                tdData.name, tdData.desc, prefacilityType, tdData.lobbyLevelRequire, tdData.unlockCost);
+                tdData.name, tdData.desc, prefacilityType);
 
             if (!facilityConfigInfoDic.ContainsKey(tdData.id))
             {
@@ -46,14 +46,14 @@ namespace GameWish.Game
         public int unlockCost;
 
         public FacilityConfigInfo(FacilityType facilityType, string name, string desc, 
-            FacilityType prefacilityType, int needLobbyLevel, int unlockCost)
+            FacilityType prefacilityType/*, int needLobbyLevel, int unlockCost*/)
         {
             this.facilityType = facilityType;
             this.name = name;
             this.desc = desc;
             this.prefacilityType = prefacilityType;
-            this.needLobbyLevel = needLobbyLevel;
-            this.unlockCost = unlockCost;
+            //this.needLobbyLevel = needLobbyLevel;
+            //this.unlockCost = unlockCost;
         }
     }
 

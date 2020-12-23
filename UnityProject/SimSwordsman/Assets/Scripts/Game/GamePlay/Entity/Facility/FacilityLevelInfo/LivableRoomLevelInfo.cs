@@ -30,7 +30,7 @@ namespace GameWish.Game
         public int GetNextCapacity()
         {
             int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
-            int capacity = TDFacilityLivableRoomTable.GetLevelInfo(realLevel).GetCurCapacity();
+            int capacity = TDFacilityLivableRoomTable.GetLevelInfo(roomId, realLevel).GetCurCapacity();
             return capacity;
         }
 	}

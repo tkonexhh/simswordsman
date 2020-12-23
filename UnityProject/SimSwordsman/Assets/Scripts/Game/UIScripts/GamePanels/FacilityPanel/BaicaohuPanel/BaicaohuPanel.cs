@@ -95,7 +95,7 @@ namespace GameWish.Game
                 m_NextLimitTxt.text += m_MedicinalPowderTypes[i].ToString();
             }
 
-            m_UpgradeRequiredCoinTxt.text = m_CurBaicaohuInfo.upgradeCost.ToString();
+            m_UpgradeRequiredCoinTxt.text = m_CurBaicaohuInfo.upgradeCosts.ToString();
             m_CurLevelTxt.text = m_CurLevel.ToString();
         }
 

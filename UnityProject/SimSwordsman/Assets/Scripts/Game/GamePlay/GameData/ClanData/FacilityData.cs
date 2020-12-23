@@ -23,21 +23,21 @@ namespace GameWish.Game
             for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.TotalCount; i++)
             {
                 FacilityType facilityType = (FacilityType)i;
-                if (facilityType == FacilityType.LivableRoomEast)
-                {
-                    AddFacility(FacilityType.LivableRoomEast, 1, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomEast, 2, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomEast, 3, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomEast, 4, FacilityState.Locked);
-                }
-                else if (facilityType == FacilityType.LivableRoomWest)
-                {
-                    AddFacility(FacilityType.LivableRoomWest, 1, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomWest, 2, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomWest, 3, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomWest, 4, FacilityState.Locked);
-                }
-                else
+                //if (facilityType == FacilityType.LivableRoomEast)
+                //{
+                //    AddFacility(FacilityType.LivableRoomEast, 1, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomEast, 2, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomEast, 3, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomEast, 4, FacilityState.Locked);
+                //}
+                //else if (facilityType == FacilityType.LivableRoomWest)
+                //{
+                //    AddFacility(FacilityType.LivableRoomWest, 1, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomWest, 2, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomWest, 3, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomWest, 4, FacilityState.Locked);
+                //}
+                //else
                 {
                     AddFacility(facilityType, 1, FacilityState.Locked);
                 }

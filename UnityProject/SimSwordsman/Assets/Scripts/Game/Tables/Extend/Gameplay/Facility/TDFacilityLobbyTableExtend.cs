@@ -39,13 +39,13 @@ namespace GameWish.Game
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {
-                levelInfo = PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeReward);
+                levelInfo = PassLevelInfo(level, item.upgradePreconditions, item.upgradeReward);
             }
 
             return levelInfo;
         }
 
-        public static FacilityLevelInfo PassLevelInfo(int level, int upgradeCost, string upgradePrecondition, string upgradeReward)
+        public static FacilityLevelInfo PassLevelInfo(int level, string upgradePrecondition, string upgradeCostsStr)
         {
             FacilityLevelInfo levelInfo = null;
 
@@ -66,24 +66,23 @@ namespace GameWish.Game
                 preConditions.AddCondition(conditionItem);
             }
 
-            //Parse rewards
-            string[] rewards = upgradeReward?.Split(';');
-            FacilityUpgradeRewards upgradeRewards = new FacilityUpgradeRewards();
-            for (int i = 0; i < rewards.Length; i++)
+            //Parse costs
+            string[] costs = upgradeCostsStr?.Split(';');
+            FacilityUpgradeCost upgradeCosts = new FacilityUpgradeCost();
+            for (int i = 0; i < costs.Length; i++)
             {
-                string[] str = rewards[i].Split('_');
+                string[] str = costs[i].Split('_');
 
-                Debug.Assert(str.Length == 3, "Reward pattern error");
+                Debug.Assert(str.Length == 3, "Cost pattern error");
 
-                FacilityRewardType rewardType = EnumUtil.ConvertStringToEnum<FacilityRewardType>(str[0]);
-                FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(str[1]);
-                int value = int.Parse(str[2]);
+                FacilityCostType costType = EnumUtil.ConvertStringToEnum<FacilityCostType>(str[0]);
+                int value = int.Parse(str[1]);
 
-                FacilityUpgradeRewardItem rewardItem = new FacilityUpgradeRewardItem(rewardType, facilityType, value);
-                upgradeRewards.AddRewardItem(rewardItem);
+                FacilityUpgradeCostItem rewardItem = new FacilityUpgradeCostItem(costType, value);
+                upgradeCosts.AddRewardItem(rewardItem);
             }
 
-            levelInfo = new FacilityLevelInfo(level, upgradeCost, preConditions, upgradeRewards);
+            levelInfo = new FacilityLevelInfo(level, preConditions, upgradeCosts);
             
 
             return levelInfo;

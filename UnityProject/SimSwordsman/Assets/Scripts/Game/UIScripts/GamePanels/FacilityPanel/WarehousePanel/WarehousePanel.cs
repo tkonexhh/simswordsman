@@ -75,7 +75,7 @@ namespace GameWish.Game
         {
             m_WarehouseName.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_WAREHOUSE_NAME);
             m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_WAREHOUSE_DESCRIBE);
-            m_UpgradeCostCoinValueText.text = m_WarehouseCurLevelInfo.upgradeCost.ToString();
+            //m_UpgradeCostCoinValueText.text = m_WarehouseCurLevelInfo.upgradeCost.ToString();
 
             m_CurLevelValue.text = m_CurLevel.ToString();
             //m_UpgradeCostCoinValueText.text = m_WarehouseLevelInfo.rewards.facilityRewards
