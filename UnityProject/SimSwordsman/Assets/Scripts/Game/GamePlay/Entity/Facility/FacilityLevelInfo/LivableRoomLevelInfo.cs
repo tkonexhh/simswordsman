@@ -7,6 +7,8 @@ namespace GameWish.Game
 {
 	public class LivableRoomLevelInfo : FacilityLevelInfo
 	{
+        public int roomId;
+
         private int m_CurCapacity;
         private int m_NextCapacity;
 

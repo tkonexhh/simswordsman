@@ -98,9 +98,15 @@ namespace GameWish.Game
                 case FacilityType.Lobby:
                     facilityLevelInfo = TDFacilityLobbyTable.GetLevelInfo(level);
                     break;
-                case FacilityType.LivableRoomEast:
-                case FacilityType.LivableRoomWest:
-                    facilityLevelInfo = TDFacilityLivableRoomTable.GetLevelInfo(level);
+                case FacilityType.LivableRoomEast1:
+                case FacilityType.LivableRoomEast2:
+                case FacilityType.LivableRoomEast3:
+                case FacilityType.LivableRoomEast4:
+                case FacilityType.LivableRoomWest1:
+                case FacilityType.LivableRoomWest2:
+                case FacilityType.LivableRoomWest3:
+                case FacilityType.LivableRoomWest4:
+                    facilityLevelInfo = TDFacilityLivableRoomTable.GetLevelInfo((int)facilityType - 1, level);
                     break;
                 case FacilityType.Warehouse:
                     facilityLevelInfo = TDFacilityWarehouseTable.GetLevelInfo(level);

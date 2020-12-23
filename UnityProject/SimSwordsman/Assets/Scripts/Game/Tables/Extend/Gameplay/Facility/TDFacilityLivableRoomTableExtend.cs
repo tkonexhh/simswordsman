@@ -4,12 +4,13 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Qarth;
+using System.Linq;
 
 namespace GameWish.Game
 {
     public partial class TDFacilityLivableRoomTable
     {
-        public static Dictionary<int, LivableRoomLevelInfo> levelInfoDic = new Dictionary<int, LivableRoomLevelInfo>();
+        public static List<LivableRoomLevelInfo> levelInfoDic = new List<LivableRoomLevelInfo>();
 
         static void CompleteRowAdd(TDFacilityLivableRoom tdData)
         {
@@ -18,14 +19,15 @@ namespace GameWish.Game
             roomLevelInfo.Warp(levelInfo);
             roomLevelInfo.SetCurCapatity( tdData.capability);
 
-            if (!levelInfoDic.ContainsKey(tdData.level))
+            //if (!levelInfoDic.ContainsKey(tdData.level))
             {
-                levelInfoDic.Add(tdData.level, roomLevelInfo);
+                levelInfoDic.Add(roomLevelInfo);
             }
         }
 
-        public static LivableRoomLevelInfo GetLevelInfo(int level)
+        public static LivableRoomLevelInfo GetLevelInfo(int roomId, int level)
         {
+            LivableRoomLevelInfo info = levelInfoDic.FirstOrDefault(i => i.r)
             if (levelInfoDic.ContainsKey(level))
             {
                 return levelInfoDic[level];
