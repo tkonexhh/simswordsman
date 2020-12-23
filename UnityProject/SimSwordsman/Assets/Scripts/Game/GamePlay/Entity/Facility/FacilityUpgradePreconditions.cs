@@ -29,16 +29,16 @@ namespace GameWish.Game
 
     public class FacilityUpgradePreconditionItem
     {
-        public FacilityUpgradePreconditionType preditionType;
+        //public FacilityUpgradePreconditionType preditionType;
         public FacilityType facilityType;
         public int value;
 
-        public FacilityUpgradePreconditionItem(FacilityUpgradePreconditionType preditionType, FacilityType facilityType, int value)
-        {
-            this.preditionType = preditionType;
-            this.facilityType = facilityType;
-            this.value = value;
-        }
+        //public FacilityUpgradePreconditionItem(FacilityUpgradePreconditionType preditionType, FacilityType facilityType, int value)
+        //{
+        //    this.preditionType = preditionType;
+        //    this.facilityType = facilityType;
+        //    this.value = value;
+        //}
         public FacilityUpgradePreconditionItem( FacilityType facilityType, int value)
         {
             this.facilityType = facilityType;

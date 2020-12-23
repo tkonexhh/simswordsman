@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public override FacilityController GenerateContoller()
         {
-            return new BartizanController(facilityType, 1, this);
+            return new BartizanController(facilityType, this);
         }
 
         public override void OnClicked()

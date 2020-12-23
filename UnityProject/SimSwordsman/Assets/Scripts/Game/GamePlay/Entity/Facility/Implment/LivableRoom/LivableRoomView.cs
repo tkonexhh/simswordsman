@@ -7,10 +7,9 @@ namespace GameWish.Game
 {
     public class LivableRoomView : FacilityView
     {
-        public int subId;
         public override FacilityController GenerateContoller()
         {
-            return new LivableRoomController(facilityType, subId, this);
+            return new LivableRoomController(facilityType, this);
         }
 
         public override void OnClicked()
@@ -24,7 +23,7 @@ namespace GameWish.Game
         protected override void OpenUIElement()
         {
             base.OpenUIElement();
-            UIMgr.S.OpenPanel(UIID.LivableRoomPanel, facilityType, subId);
+            UIMgr.S.OpenPanel(UIID.LivableRoomPanel, facilityType);
         }
     }
 

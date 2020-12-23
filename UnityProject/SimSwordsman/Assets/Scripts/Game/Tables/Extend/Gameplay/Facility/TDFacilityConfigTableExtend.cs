@@ -42,8 +42,8 @@ namespace GameWish.Game
         public string name;
         public string desc;
         public FacilityType prefacilityType;
-        public int needLobbyLevel;
-        public int unlockCost;
+        //public int needLobbyLevel;
+        //public int unlockCost;
 
         public FacilityConfigInfo(FacilityType facilityType, string name, string desc, 
             FacilityType prefacilityType/*, int needLobbyLevel, int unlockCost*/)
@@ -54,6 +54,18 @@ namespace GameWish.Game
             this.prefacilityType = prefacilityType;
             //this.needLobbyLevel = needLobbyLevel;
             //this.unlockCost = unlockCost;
+        }
+
+        public int GetNeedLobbyLevel()
+        {
+            int needLevel =MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, 1).GetNeedLobbyLevel();
+            return needLevel;
+        }
+
+        public int GetUnlockCoinCost()
+        {
+            int coin = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, 1).upgradeCoinCost;
+            return coin;
         }
     }
 

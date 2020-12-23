@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public override FacilityController GenerateContoller()
         {
-            return new ForgeHouseController( FacilityType.ForgeHouse, 1, this);
+            return new ForgeHouseController( FacilityType.ForgeHouse, this);
         }
 
         public override void OnClicked()

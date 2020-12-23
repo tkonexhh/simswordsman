@@ -60,14 +60,14 @@ namespace GameWish.Game
             return ownedFacilityData.facilityList;
         }
 
-        public FacilityItemDbData GetFacilityItem(FacilityType facilityType, int subId)
+        public FacilityItemDbData GetFacilityItem(FacilityType facilityType/*, int subId*/)
         {
-            return ownedFacilityData.GetFacilityData(facilityType, subId);
+            return ownedFacilityData.GetFacilityData(facilityType/*, subId*/);
         }
 
-        public int GetFacilityLevel(FacilityType facilityType, int subId)
+        public int GetFacilityLevel(FacilityType facilityType/*, int subId*/)
         {
-            int level = ownedFacilityData.GetFacilityLevel(facilityType, subId);
+            int level = ownedFacilityData.GetFacilityLevel(facilityType/*, subId*/);
 
             return level;
         }
@@ -79,16 +79,16 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetFacilityState(FacilityType facilityType, FacilityState facilityState, int subId)
+        public void SetFacilityState(FacilityType facilityType, FacilityState facilityState/*, int subId*/)
         {
-            ownedFacilityData.SetFacilityState(facilityType, facilityState, subId);
+            ownedFacilityData.SetFacilityState(facilityType, facilityState/*, subId*/);
 
             SetDataDirty();
         }
 
-        public FacilityItemDbData GetFacilityData(FacilityType facilityType, int subId)
+        public FacilityItemDbData GetFacilityData(FacilityType facilityType/*, int subId*/)
         {
-            FacilityItemDbData facilityItemDbData = ownedFacilityData.GetFacilityData(facilityType, subId);
+            FacilityItemDbData facilityItemDbData = ownedFacilityData.GetFacilityData(facilityType/*, subId*/);
 
             return facilityItemDbData;
         }
@@ -100,9 +100,9 @@ namespace GameWish.Game
         //    SetDataDirty();
         //}
 
-        public void UpgradeFacility(FacilityType facilityType, int deltaLevel, int subId = 1)
+        public void UpgradeFacility(FacilityType facilityType, int deltaLevel/*, int subId = 1*/)
         {
-            ownedFacilityData.UpgradeFacility(facilityType, deltaLevel, subId);
+            ownedFacilityData.UpgradeFacility(facilityType, deltaLevel/*, subId*/);
 
             SetDataDirty();
         }

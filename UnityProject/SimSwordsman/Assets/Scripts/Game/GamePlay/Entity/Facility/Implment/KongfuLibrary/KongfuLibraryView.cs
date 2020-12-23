@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public override FacilityController GenerateContoller()
         {
-            return new KongfuLibraryController( FacilityType.KongfuLibrary, 1, this);
+            return new KongfuLibraryController( FacilityType.KongfuLibrary, this);
         }
 
         public override void OnClicked()

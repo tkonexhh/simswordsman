@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class KongfuLibraryController : FacilityController
     {
-        public KongfuLibraryController(FacilityType facilityType, int subId, FacilityView view) : base(facilityType, subId, view)
+        public KongfuLibraryController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
 
         }

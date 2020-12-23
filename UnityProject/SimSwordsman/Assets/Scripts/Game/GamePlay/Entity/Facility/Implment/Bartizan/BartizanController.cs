@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class BartizanController : FacilityController
     {
-        public BartizanController(FacilityType facilityType, int subId, FacilityView view) : base(facilityType, subId, view)
+        public BartizanController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
 
         }

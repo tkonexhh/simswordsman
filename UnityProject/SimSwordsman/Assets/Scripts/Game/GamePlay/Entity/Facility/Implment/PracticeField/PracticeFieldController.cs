@@ -11,7 +11,7 @@ namespace GameWish.Game
 
         private int m_MaxSlotCount = 6;
 
-        public PracticeFieldController(FacilityType facilityType, int subId, FacilityView view) : base(facilityType, subId, view)
+        public PracticeFieldController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
             InitPracticeSlotList();
         }

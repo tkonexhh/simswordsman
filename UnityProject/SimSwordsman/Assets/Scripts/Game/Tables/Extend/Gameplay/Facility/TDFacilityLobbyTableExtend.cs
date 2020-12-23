@@ -39,13 +39,13 @@ namespace GameWish.Game
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {
-                levelInfo = PassLevelInfo(level, item.upgradePreconditions, item.upgradeReward);
+                levelInfo = PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeReward);
             }
 
             return levelInfo;
         }
 
-        public static FacilityLevelInfo PassLevelInfo(int level, string upgradePrecondition, string upgradeCostsStr)
+        public static FacilityLevelInfo PassLevelInfo(int level, int coin, string upgradePrecondition, string upgradeCostsStr)
         {
             FacilityLevelInfo levelInfo = null;
 
@@ -82,7 +82,7 @@ namespace GameWish.Game
                 upgradeCosts.AddRewardItem(rewardItem);
             }
 
-            levelInfo = new FacilityLevelInfo(level, preConditions, upgradeCosts);
+            levelInfo = new FacilityLevelInfo(level, coin, preConditions, upgradeCosts);
             
 
             return levelInfo;

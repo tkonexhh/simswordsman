@@ -12,7 +12,7 @@ namespace GameWish.Game
 
         public override FacilityController GenerateContoller()
         {
-            return new PracticeFieldController(facilityType, 1, this);
+            return new PracticeFieldController(facilityType, this);
         }
 
         public override void OnClicked()

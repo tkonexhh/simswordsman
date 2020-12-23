@@ -65,7 +65,7 @@ namespace GameWish.Game
                 m_NextLimitTxt.text += m_UnlockEquipmentTypeList[i].ToString();
             }
             m_CurLevelTxt.text = m_CurLevel.ToString();
-            m_UpgradeRequiredCoinTxt.text = m_CurForgeHouseInfo.upgradeCosts.ToString();
+            m_UpgradeRequiredCoinTxt.text = m_CurForgeHouseInfo.upgradeResCosts.ToString();
           
         }
 

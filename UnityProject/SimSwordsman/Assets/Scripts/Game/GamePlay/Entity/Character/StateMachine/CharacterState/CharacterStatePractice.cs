@@ -23,7 +23,7 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            PracticeFieldController practiceFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.PracticeFieldEast, 1);
+            PracticeFieldController practiceFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.PracticeFieldEast);
             Vector3 practicePos = practiceFieldController.GetIdlePracticeSlot().GetPosition();
             m_Controller.MoveTo(practicePos, OnReachDestination);
         }

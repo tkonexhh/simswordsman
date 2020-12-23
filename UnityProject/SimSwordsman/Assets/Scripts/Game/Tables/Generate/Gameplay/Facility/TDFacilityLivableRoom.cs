@@ -12,14 +12,21 @@ namespace GameWish.Game
     {
         
        
+        private EInt m_Id = 0;   
         private EInt m_Level = 0;   
         private EInt m_HouseId = 0;   
-        private string m_UpgradeCost;   
+        private string m_UpgradeRes;   
+        private EInt m_UpgradeCost = 0;   
         private string m_UpgradePreconditions;   
         private EInt m_Capability = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public  int  id {get { return m_Id; } }
+       
         /// <summary>
         /// 等级
         /// </summary>
@@ -31,9 +38,14 @@ namespace GameWish.Game
         public  int  houseId {get { return m_HouseId; } }
        
         /// <summary>
+        /// 升级资源
+        /// </summary>
+        public  string  upgradeRes {get { return m_UpgradeRes; } }
+       
+        /// <summary>
         /// 升级花费
         /// </summary>
-        public  string  upgradeCost {get { return m_UpgradeCost; } }
+        public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
         /// 升级条件
@@ -61,18 +73,24 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Level = dataR.ReadInt();
+                    m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_HouseId = dataR.ReadInt();
+                    m_Level = dataR.ReadInt();
                     break;
                 case 2:
-                    m_UpgradeCost = dataR.ReadString();
+                    m_HouseId = dataR.ReadInt();
                     break;
                 case 3:
-                    m_UpgradePreconditions = dataR.ReadString();
+                    m_UpgradeRes = dataR.ReadString();
                     break;
                 case 4:
+                    m_UpgradeCost = dataR.ReadInt();
+                    break;
+                case 5:
+                    m_UpgradePreconditions = dataR.ReadString();
+                    break;
+                case 6:
                     m_Capability = dataR.ReadInt();
                     break;
                 default:
@@ -85,13 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
-          ret.Add("Level", 0);
-          ret.Add("HouseId", 1);
-          ret.Add("UpgradeCost", 2);
-          ret.Add("UpgradePreconditions", 3);
-          ret.Add("Capability", 4);
+          ret.Add("Id", 0);
+          ret.Add("Level", 1);
+          ret.Add("HouseId", 2);
+          ret.Add("UpgradeRes", 3);
+          ret.Add("UpgradeCost", 4);
+          ret.Add("UpgradePreconditions", 5);
+          ret.Add("Capability", 6);
           return ret;
         }
     } 

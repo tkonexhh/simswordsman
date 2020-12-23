@@ -80,9 +80,9 @@ namespace GameWish.Game
         /// <summary>
         /// Get facility current level
         /// </summary>
-        public int GetFacilityCurLevel(FacilityType facilityType, int subId = 1)
+        public int GetFacilityCurLevel(FacilityType facilityType/*, int subId = 1*/)
         {
-            int level = GameDataMgr.S.GetClanData().GetFacilityLevel(facilityType, subId);
+            int level = GameDataMgr.S.GetClanData().GetFacilityLevel(facilityType/*, subId*/);
             return Mathf.Min(level,Define.FACILITY_MAX_LEVEL) ;
         }
 
@@ -147,14 +147,14 @@ namespace GameWish.Game
             return facilityConfigInfo;
         }
 
-        public FacilityController GetFacilityController(FacilityType facilityType, int subId)
+        public FacilityController GetFacilityController(FacilityType facilityType/*, int subId*/)
         {
-            return m_FacilityList.FirstOrDefault(i => i.GetFacilityType() == facilityType && i.GetSubId() == subId);
+            return m_FacilityList.FirstOrDefault(i => i.GetFacilityType() == facilityType /*&& i.GetSubId() == subId*/);
         }
 
-        public Vector3 GetDoorPos(FacilityType facilityType, int subId = 1)
+        public Vector3 GetDoorPos(FacilityType facilityType/*, int subId = 1*/)
         {
-            FacilityController controller = GetFacilityController(facilityType, subId);
+            FacilityController controller = GetFacilityController(facilityType/*, subId*/);
             if (controller != null)
             {
                 return controller.GetDoorPos();
@@ -164,11 +164,11 @@ namespace GameWish.Game
 
             return Vector3.zero;
         }
-        public void SetFacilityState(FacilityType type, FacilityState state, int subId = 1)
+        public void SetFacilityState(FacilityType type, FacilityState state/*, int subId = 1*/)
         {
-            GameDataMgr.S.GetClanData().SetFacilityState(type, state, subId);
+            GameDataMgr.S.GetClanData().SetFacilityState(type, state/*, subId*/);
 
-            FacilityController controller = GetFacilityController(type, subId);
+            FacilityController controller = GetFacilityController(type/*, subId*/);
             controller?.SetState(state);
 
             if (state == FacilityState.State1) // Some facility unlocked
@@ -204,8 +204,8 @@ namespace GameWish.Game
                     break;
                 case (int)EventID.OnStartUnlockFacility:
                     FacilityType facilityType2 = (FacilityType)param[0];
-                    int subId2 = (int)param[1];
-                    SetFacilityState(facilityType2, FacilityState.State1, subId2);
+                    //int subId2 = (int)param[1];
+                    SetFacilityState(facilityType2, FacilityState.State1/*, subId2*/);
                     break;
             }
         }
@@ -225,7 +225,7 @@ namespace GameWish.Game
 
         private void UpgradeFacility(FacilityType type, int subId, int deltaLevel)
         {
-            GameDataMgr.S.GetClanData().UpgradeFacility(type, deltaLevel, subId);
+            GameDataMgr.S.GetClanData().UpgradeFacility(type, deltaLevel/*, subId*/);
 
             RefreshFacilityUnlockState();
         }
@@ -241,7 +241,7 @@ namespace GameWish.Game
                     bool isSatisfied = IsUnlockPreconditionSatisfied(configInfo);
                     if (isSatisfied)
                     {
-                        SetFacilityState((FacilityType)(i.id), FacilityState.ReadyToUnlock, i.subId);
+                        SetFacilityState((FacilityType)(i.id), FacilityState.ReadyToUnlock/*, i.subId*/);
                     }
                 }
             });
@@ -250,13 +250,13 @@ namespace GameWish.Game
         private bool IsUnlockPreconditionSatisfied(FacilityConfigInfo configInfo)
         {
             bool isPrefacilityUnlocked = configInfo.prefacilityType == FacilityType.None ? true : IsFacilityUnlocked(configInfo.prefacilityType, 1);
-            bool isSatisfied = GetFacilityCurLevel(FacilityType.Lobby, 1) >= configInfo.needLobbyLevel && isPrefacilityUnlocked;
+            bool isSatisfied = GetFacilityCurLevel(FacilityType.Lobby) >= configInfo.GetNeedLobbyLevel() && isPrefacilityUnlocked;
             return isSatisfied;
         }
 
         private bool IsFacilityUnlocked(FacilityType facilityType, int subId)
         {
-            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(facilityType, subId);
+            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(facilityType/*, subId*/);
             if (dbItem != null)
             {
                 FacilityState facilityState = dbItem.facilityState;
