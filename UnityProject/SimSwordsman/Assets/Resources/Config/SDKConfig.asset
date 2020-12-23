@@ -13,76 +13,80 @@ MonoBehaviour:
   m_Name: SDKConfig
   m_EditorClassIdentifier: 
   bundleIDIos: 
-  bundleIDAndroid: happy.match.game
+  bundleIDAndroid: sim.swordsman.game
   signatures: -1
   iosAppID: 
   channelID: 
-  udeskConfig:
-    domain: udesk-rd-bj-10.udesk.cn
-    appid: cc57963d6284bfe7
-    appkey: 8bcc3f04490559068bd4a894272dc588
-  buglyConfig:
+  firebaseConfig:
     isEnable: 1
-    isDebugMode: 0
-    priority: 1
-    buglyID_Android: 8b4ef9b541
-    buglyID_iOS: 
+    remoteConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+    storageConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      bucketUrl: 
+    messageConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
   dataAnalysisConfig:
     isEnable: 0
-    remoteConfUrl: 
-    remoteConfAppName: 
     appsflyerConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
       appKey: DdWbxT9VRELdEsZiAcnGea
-    umengConfig:
+    dataeyeConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
-      iosAppKey: 5dd3900b4ca357c5250002b1
-      androidAppKey: 5dd3900b4ca357c5250002b1
-      appChannelId: 
-    gasdkConfig:
+      appID: 
+    gameAnalysisConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
-    tdConfig:
+    facebookConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+    firebaseConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+    talkingDataConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
       appId: 
-    trafficConfig:
+    tenjinConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
-      secure_key: 
-      user_id: 0
-      appid_Android: 0
-      appid_IOS: 0
-    embedsdkConfig:
+      isCustomEvent: 0
+      apiKey: VGZALVOWFWMNCBMRD41FKEABVLVFXKZP
+      deeplink: 
+    ttEvtConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
-      enableAF: 1
-      afAppKey: DdWbxT9VRELdEsZiAcnGea
+    rangersConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      appId: 
+      channel: 
   adsConfig:
     isEnable: 1
     interstitialAdCoolingTime: 30
     rewardedVideoAdCoolingTime: 30
-    dspmobAdsConfig:
+    taurusXAdAdsConfig:
       isEnable: 1
       isDebugMode: 0
       priority: 1
-      appid: f5228cf8-e7f8-484a-b03a-4aac7c86d411
-      token: d4cc8ab8305380d3a9149cacdfdfcac0
-      pubName: wesdk
-      domian: https://onlineapi.rtb.rtblab.net/
-    taurusXAdsConfig:
-      isEnable: 1
-      isDebugMode: 0
-      priority: 1
-      appIDAndroid: dfb67438-beb2-49e5-b4fb-ae11119a4255
+      appIDAndroid: 
       appIDIos: 
   socialConfig:
     isEnable: 0
@@ -92,8 +96,3 @@ MonoBehaviour:
       previewImageAndroid: 
       previewImageiOS: 
       shareLink: 
-  jpushConfig:
-    isEnable: 1
-    isDebugMode: 0
-    priority: 1
-    JPushAppKey: 
