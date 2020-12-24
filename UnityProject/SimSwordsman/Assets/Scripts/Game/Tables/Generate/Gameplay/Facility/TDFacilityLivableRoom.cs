@@ -12,6 +12,7 @@ namespace GameWish.Game
     {
         
        
+        private EInt m_Id = 0;   
         private EInt m_Level = 0;   
         private EInt m_HouseId = 0;   
         private string m_UpgradeRes;   
@@ -21,6 +22,11 @@ namespace GameWish.Game
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public  int  id {get { return m_Id; } }
+       
         /// <summary>
         /// 等级
         /// </summary>
@@ -67,21 +73,24 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Level = dataR.ReadInt();
+                    m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_HouseId = dataR.ReadInt();
+                    m_Level = dataR.ReadInt();
                     break;
                 case 2:
-                    m_UpgradeRes = dataR.ReadString();
+                    m_HouseId = dataR.ReadInt();
                     break;
                 case 3:
-                    m_UpgradeCost = dataR.ReadInt();
+                    m_UpgradeRes = dataR.ReadString();
                     break;
                 case 4:
-                    m_UpgradePreconditions = dataR.ReadInt();
+                    m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 5:
+                    m_UpgradePreconditions = dataR.ReadInt();
+                    break;
+                case 6:
                     m_Capability = dataR.ReadInt();
                     break;
                 default:
@@ -94,14 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
-          ret.Add("Level", 0);
-          ret.Add("HouseId", 1);
-          ret.Add("UpgradeRes", 2);
-          ret.Add("UpgradeCost", 3);
-          ret.Add("UpgradePreconditions", 4);
-          ret.Add("Capability", 5);
+          ret.Add("Id", 0);
+          ret.Add("Level", 1);
+          ret.Add("HouseId", 2);
+          ret.Add("UpgradeRes", 3);
+          ret.Add("UpgradeCost", 4);
+          ret.Add("UpgradePreconditions", 5);
+          ret.Add("Capability", 6);
           return ret;
         }
     } 

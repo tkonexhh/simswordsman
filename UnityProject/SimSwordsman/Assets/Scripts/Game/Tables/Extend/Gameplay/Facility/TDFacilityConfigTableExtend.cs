@@ -58,7 +58,16 @@ namespace GameWish.Game
 
         public int GetNeedLobbyLevel()
         {
-            int needLevel =MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, 1).GetNeedLobbyLevel();
+            int needLevel = -1;
+
+            try
+            {
+                needLevel = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, 1).GetNeedLobbyLevel();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error: " + e.Message.ToString() + " facilityType is: " + facilityType.ToString());
+            }
             return needLevel;
         }
 

@@ -35,7 +35,7 @@ namespace GameWish.Game
                 TDPurchaseTable.metaData,
 
                 // Game play table        
-                //TDLevelConfigTable.metaData,
+                TDLevelConfigTable.metaData,
                 TDCharacterConfigTable.metaData,
                 TDCharacterNameTable.metaData,
                 TDArmsConfigTable.metaData,

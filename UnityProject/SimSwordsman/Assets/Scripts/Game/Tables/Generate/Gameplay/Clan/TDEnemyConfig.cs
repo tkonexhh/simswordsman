@@ -16,7 +16,7 @@ namespace GameWish.Game
         private string m_Name;   
         private string m_Clan;   
         private string m_Kongfu;   
-        private string m_Res;  
+        private string m_AnimationName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -41,9 +41,9 @@ namespace GameWish.Game
         public  string  kongfu {get { return m_Kongfu; } }
        
         /// <summary>
-        /// 美术资源
+        /// 动画名称
         /// </summary>
-        public  string  res {get { return m_Res; } }
+        public  string  animationName {get { return m_AnimationName; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -73,7 +73,7 @@ namespace GameWish.Game
                     m_Kongfu = dataR.ReadString();
                     break;
                 case 4:
-                    m_Res = dataR.ReadString();
+                    m_AnimationName = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -91,7 +91,7 @@ namespace GameWish.Game
           ret.Add("Name", 1);
           ret.Add("Clan", 2);
           ret.Add("Kongfu", 3);
-          ret.Add("Res", 4);
+          ret.Add("AnimationName", 4);
           return ret;
         }
     } 

@@ -14,7 +14,8 @@ namespace GameWish.Game
 
         static void CompleteRowAdd(TDFacilityLivableRoom tdData)
         {
-            FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
+            FacilityLevelInfo levelInfo = PassLevelInfo(tdData.id);
+            levelInfo.level = tdData.level;
             LivableRoomLevelInfo roomLevelInfo = new LivableRoomLevelInfo();
             roomLevelInfo.Warp(levelInfo);
             roomLevelInfo.SetCurCapatity( tdData.capability);
@@ -33,15 +34,15 @@ namespace GameWish.Game
             return info;
         }
 
-        private static FacilityLevelInfo PassLevelInfo(int level)
+        private static FacilityLevelInfo PassLevelInfo(int id)
         {
             FacilityLevelInfo levelInfo = null;
 
             TDFacilityLivableRoom item = null;
-            bool haveData = m_DataCache.TryGetValue(level, out item);
+            bool haveData = m_DataCache.TryGetValue(id, out item);
             if (haveData)
             {
-                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeRes);
+                levelInfo = TDFacilityLobbyTable.PassLevelInfo(id, item.upgradeCost, item.upgradePreconditions, item.upgradeRes);
             }
 
             return levelInfo;

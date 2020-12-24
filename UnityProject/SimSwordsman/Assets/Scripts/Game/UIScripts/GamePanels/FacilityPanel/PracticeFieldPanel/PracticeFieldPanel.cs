@@ -108,7 +108,7 @@ namespace GameWish.Game
         private void RefreshPanelText()
         {
 			
-			m_UpgradeCostCoinValueTxt.text = m_CurPracticeFieldLevelInfo.upgradeResCosts.ToString();
+			m_UpgradeCostCoinValueTxt.text = m_CurPracticeFieldLevelInfo.upgradeCoinCost.ToString();
 			m_CurLevelTxt.text = m_CurLevel.ToString();
 			m_CurTrainingPositionTxt.text = m_CurPracticeFieldLevelInfo.GetCurCapacity().ToString();
 			m_NextTrainingPositionTxt.text = m_CurPracticeFieldLevelInfo.GetNextCapacity().ToString();
