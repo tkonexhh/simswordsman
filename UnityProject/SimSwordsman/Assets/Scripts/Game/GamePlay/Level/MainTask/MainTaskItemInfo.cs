@@ -6,6 +6,22 @@ using System.Linq;
 
 namespace GameWish.Game
 {
+    public enum TaskState
+    {
+        /// <summary>
+        /// 未开始
+        /// </summary>
+        NotStart,
+        /// <summary>
+        /// 待领取
+        /// </summary>
+        Unclaimed,
+        /// <summary>
+        /// 已结束
+        /// </summary>
+        Finished,            
+    }
+
     public class MainTaskItemInfo
     {
         public int id;
@@ -14,17 +30,18 @@ namespace GameWish.Game
         public int time;
         public string title;
         public string desc;
+        public TaskState taskState;
         public List<TaskReward> rewards = new List<TaskReward>();
 
-        public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType)
+        public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType, TaskState _taskState)
         {
             this.id = id;
             this.taskType = taskType;
             this.subType = subType;
+            taskState = _taskState;
             this.time = TDMainTaskTable.GetData(id).time;
             this.title = TDMainTaskTable.GetData(id).taskTitle;
             this.desc = TDMainTaskTable.GetData(id).taskDescription;
-
             ParseReward(TDMainTaskTable.GetData(id).reward);
         }
 

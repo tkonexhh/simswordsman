@@ -134,5 +134,11 @@ namespace GameWish.Game
         //ForgeHouse
         public const string FACILITY_FORGEHOUSE_NAME = "Facility_ForgeHouse_Name";
         public const string FACILITY_FORGEHOUSE_DESCRIBLE = "Facility_ForgeHouse_Describe";
+
+        //BulletinBoard
+        public const string BULLETINBOARD_VIEWDETAILS = "BulletinBoard_ViewDetails";
+        public const string BULLETINBOARD_RECEIVEREWARDS = "BulletinBoard_ReceiveRewards";
+
+
     }
 }

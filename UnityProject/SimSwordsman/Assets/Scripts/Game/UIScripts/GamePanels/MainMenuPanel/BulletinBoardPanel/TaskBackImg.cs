@@ -13,7 +13,9 @@ namespace GameWish.Game
 		[SerializeField]
 		private Text m_TaskName;
 		[SerializeField]
-		private Text m_TaskIntrodution;
+		private Text m_TaskIntrodution;		
+		[SerializeField]
+		private Text m_BtnText;
 
 		[SerializeField]
 		private Button FuncBtn;
@@ -51,7 +53,22 @@ namespace GameWish.Game
 			m_TaskName.text = m_CurTaskInfo.MainTaskItemInfo.title;
 			m_TaskIntrodution.text = m_CurTaskInfo.MainTaskItemInfo.id.ToString();
 			BindAddListenerEvevnt();
+
+			RefreshPanelInfo();
 		}
+
+        private void RefreshPanelInfo()
+        {
+            switch (m_CurTaskInfo.GetCurTaskState())
+            {
+				case TaskState.NotStart:
+					m_BtnText.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_VIEWDETAILS);
+					break;
+                case TaskState.Unclaimed:
+					m_BtnText.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RECEIVEREWARDS);
+					break;
+            }
+        }
 
         public void SetButtonEvent(Action<object> action)
         {

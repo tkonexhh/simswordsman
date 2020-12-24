@@ -23,6 +23,7 @@ namespace GameWish.Game
 
         private List<SimGameTask> m_MainTaskList = null;
 
+        private Dictionary<int, GameObject> m_TaskObjDic = new Dictionary<int, GameObject>();
 
         protected override void OnUIInit()
         {
@@ -47,35 +48,67 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             base.OnOpen();
-            if (m_MainTaskList!=null)
+            EventSystem.S.Register(EventID.OnTaskFinished, HandleAddListenerEvent);
+            if (m_MainTaskList != null)
             {
                 for (int i = 0; i < m_MainTaskList.Count; i++)
                 {
-                    CreateTask(m_MainTaskList[i]);
+                    if (m_MainTaskList[i].GetCurTaskState() != TaskState.Finished)
+                        CreateTask(m_MainTaskList[i]);
                 }
+            }
+        }
+
+        private void HandleAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnTaskFinished:
+
+                    break;
+                default:
+                    break;
             }
         }
 
         private void TaskCallback(object obj)
         {
             SimGameTask simGameTask = obj as SimGameTask;
-            UIMgr.S.OpenPanel(UIID.TaskDetailsPanel, simGameTask);
+
+            switch (simGameTask.GetCurTaskState())
+            {
+                case TaskState.NotStart:
+                    UIMgr.S.OpenPanel(UIID.TaskDetailsPanel, simGameTask);
+                    break;
+                case TaskState.Unclaimed:
+                    MainGameMgr.S.MainTaskMgr.ClaimReward(simGameTask.GetId());
+                    if (m_TaskObjDic.ContainsKey(simGameTask.GetId()))
+                    {
+                        DestroyImmediate(m_TaskObjDic[simGameTask.GetId()]);
+                        m_TaskObjDic[simGameTask.GetId()] = null;
+                    }
+                    break;
+            }
+
+
         }
 
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            EventSystem.S.UnRegister(EventID.OnTaskFinished, HandleAddListenerEvent);
             CloseSelfPanel();
-
         }
 
         public void CreateTask(SimGameTask simGameTask)
         {
             if (m_TaskItem != null)
             {
-                ItemICom taskItem = Instantiate(m_TaskItem, m_TaskContParent).GetComponent<ItemICom>();
+                GameObject obj = Instantiate(m_TaskItem, m_TaskContParent);
+                ItemICom taskItem = obj.GetComponent<ItemICom>();
                 taskItem.OnInit(simGameTask);
                 taskItem.SetButtonEvent(TaskCallback);
+                m_TaskObjDic.Add(simGameTask.GetId(), obj);
             }
         }
     }

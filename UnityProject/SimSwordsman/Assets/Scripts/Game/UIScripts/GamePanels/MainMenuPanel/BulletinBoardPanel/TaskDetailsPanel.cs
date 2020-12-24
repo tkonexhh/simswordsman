@@ -45,6 +45,22 @@ namespace GameWish.Game
             m_TaskCont.text = m_CurTaskInfo.MainTaskItemInfo.desc;
         }
 
+        private void RefeshPanelInfo()
+        {
+            switch (m_CurTaskInfo.MainTaskItemInfo.taskState)
+            {
+                case TaskState.NotStart:
+
+                    break;
+                case TaskState.Unclaimed:
+                    break;
+                case TaskState.Finished:
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void BindAddListenerEvent()
         {
             m_RefuseBtn.onClick.AddListener(HideSelfWithAnim);
@@ -63,9 +79,7 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseSelfPanel();
             CloseDependPanel(EngineUI.MaskPanel);
-
         }
-
     }
 	
 }
