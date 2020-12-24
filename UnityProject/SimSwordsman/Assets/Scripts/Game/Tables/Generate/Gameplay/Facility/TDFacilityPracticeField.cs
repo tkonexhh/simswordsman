@@ -13,18 +13,29 @@ namespace GameWish.Game
         
        
         private EInt m_Level = 0;   
+        private EInt m_HouseId = 0;   
+        private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
-        private string m_UpgradeReward;   
-        private string m_UpgradePreconditions;   
+        private EInt m_UpgradePreconditions = 0;   
         private EInt m_Capability = 0;   
         private EInt m_LevelUpSpeed = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// ID
+        /// 等级
         /// </summary>
         public  int  level {get { return m_Level; } }
+       
+        /// <summary>
+        /// 练功场ID
+        /// </summary>
+        public  int  houseId {get { return m_HouseId; } }
+       
+        /// <summary>
+        /// 升级资源
+        /// </summary>
+        public  string  upgradeRes {get { return m_UpgradeRes; } }
        
         /// <summary>
         /// 升级花费
@@ -32,22 +43,17 @@ namespace GameWish.Game
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// 升级奖励
-        /// </summary>
-        public  string  upgradeReward {get { return m_UpgradeReward; } }
-       
-        /// <summary>
         /// 升级条件
         /// </summary>
-        public  string  upgradePreconditions {get { return m_UpgradePreconditions; } }
+        public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 住宿人数
+        /// 练功位数量
         /// </summary>
         public  int  capability {get { return m_Capability; } }
        
         /// <summary>
-        /// Value
+        /// 经验获取速度
         /// </summary>
         public  int  levelUpSpeed {get { return m_LevelUpSpeed; } }
        
@@ -70,18 +76,21 @@ namespace GameWish.Game
                     m_Level = dataR.ReadInt();
                     break;
                 case 1:
-                    m_UpgradeCost = dataR.ReadInt();
+                    m_HouseId = dataR.ReadInt();
                     break;
                 case 2:
-                    m_UpgradeReward = dataR.ReadString();
+                    m_UpgradeRes = dataR.ReadString();
                     break;
                 case 3:
-                    m_UpgradePreconditions = dataR.ReadString();
+                    m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 4:
-                    m_Capability = dataR.ReadInt();
+                    m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 5:
+                    m_Capability = dataR.ReadInt();
+                    break;
+                case 6:
                     m_LevelUpSpeed = dataR.ReadInt();
                     break;
                 default:
@@ -94,14 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Level", 0);
-          ret.Add("UpgradeCost", 1);
-          ret.Add("UpgradeReward", 2);
-          ret.Add("UpgradePreconditions", 3);
-          ret.Add("Capability", 4);
-          ret.Add("LevelUpSpeed", 5);
+          ret.Add("HouseId", 1);
+          ret.Add("UpgradeRes", 2);
+          ret.Add("UpgradeCost", 3);
+          ret.Add("UpgradePreconditions", 4);
+          ret.Add("Capability", 5);
+          ret.Add("LevelUpSpeed", 6);
           return ret;
         }
     } 

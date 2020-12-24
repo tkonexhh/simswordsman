@@ -7,6 +7,8 @@ namespace GameWish.Game
 {
 	public class LivableRoomLevelInfo : FacilityLevelInfo
 	{
+        public int roomId;
+
         private int m_CurCapacity;
         private int m_NextCapacity;
 
@@ -22,13 +24,13 @@ namespace GameWish.Game
 
         public int GetUpgradeCondition()
         {
-            return preconditions.GetFacilityUpgradePreconditionItem().value;
+            return upgradeNeedLobbyLevel;
         }
 
         public int GetNextCapacity()
         {
             int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
-            int capacity = TDFacilityLivableRoomTable.GetLevelInfo(realLevel).GetCurCapacity();
+            int capacity = TDFacilityLivableRoomTable.GetLevelInfo(roomId, realLevel).GetCurCapacity();
             return capacity;
         }
 	}

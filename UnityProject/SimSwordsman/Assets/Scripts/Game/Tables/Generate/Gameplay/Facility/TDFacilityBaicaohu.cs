@@ -13,10 +13,10 @@ namespace GameWish.Game
         
        
         private EInt m_Level = 0;   
+        private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
-        private string m_UpgradeReward;   
-        private string m_UpgradePreconditions;   
-        private string m_UnlockMedicinalPowder;  
+        private EInt m_UpgradePreconditions = 0;   
+        private string m_UnlockMedicine;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -26,24 +26,24 @@ namespace GameWish.Game
         public  int  level {get { return m_Level; } }
        
         /// <summary>
-        /// Key
+        /// 升级资源
+        /// </summary>
+        public  string  upgradeRes {get { return m_UpgradeRes; } }
+       
+        /// <summary>
+        /// 升级花费
         /// </summary>
         public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
-        /// Value
+        /// 升级条件
         /// </summary>
-        public  string  upgradeReward {get { return m_UpgradeReward; } }
+        public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// Value
+        /// 解锁药物
         /// </summary>
-        public  string  upgradePreconditions {get { return m_UpgradePreconditions; } }
-       
-        /// <summary>
-        /// Value
-        /// </summary>
-        public  string  unlockMedicinalPowder {get { return m_UnlockMedicinalPowder; } }
+        public  string  unlockMedicine {get { return m_UnlockMedicine; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -64,16 +64,16 @@ namespace GameWish.Game
                     m_Level = dataR.ReadInt();
                     break;
                 case 1:
-                    m_UpgradeCost = dataR.ReadInt();
+                    m_UpgradeRes = dataR.ReadString();
                     break;
                 case 2:
-                    m_UpgradeReward = dataR.ReadString();
+                    m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 3:
-                    m_UpgradePreconditions = dataR.ReadString();
+                    m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UnlockMedicinalPowder = dataR.ReadString();
+                    m_UnlockMedicine = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -88,10 +88,10 @@ namespace GameWish.Game
           Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("Level", 0);
-          ret.Add("UpgradeCost", 1);
-          ret.Add("UpgradeReward", 2);
+          ret.Add("UpgradeRes", 1);
+          ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
-          ret.Add("UnlockMedicinalPowder", 4);
+          ret.Add("UnlockMedicine", 4);
           return ret;
         }
     } 

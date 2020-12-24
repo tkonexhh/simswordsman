@@ -39,10 +39,16 @@ namespace GameWish.Game
         {
             switch (m_CurFacilityType)
             {
-                case FacilityType.LivableRoomEast:
+                case FacilityType.LivableRoomEast1:
+                case FacilityType.LivableRoomEast2:
+                case FacilityType.LivableRoomEast3:
+                case FacilityType.LivableRoomEast4:
                     m_LivableRoomName.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOMEAST_NAME);
                     break;
-                case FacilityType.LivableRoomWest:
+                case FacilityType.LivableRoomWest1:
+                case FacilityType.LivableRoomWest2:
+                case FacilityType.LivableRoomWest3:
+                case FacilityType.LivableRoomWest4:
                     m_LivableRoomName.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOMWEST_NAME);
                     break;
             }

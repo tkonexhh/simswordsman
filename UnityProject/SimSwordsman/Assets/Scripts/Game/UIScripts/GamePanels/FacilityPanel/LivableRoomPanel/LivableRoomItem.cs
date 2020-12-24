@@ -68,7 +68,7 @@ namespace GameWish.Game
                 {
                     case LivableRoomState.NotBuilt:
                         m_LivableRoomState = LivableRoomState.Built;
-                        MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.State1, m_SubID);
+                        MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.State1/*, m_SubID*/);
                         break;
                     case LivableRoomState.Built:
                         int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
@@ -96,7 +96,7 @@ namespace GameWish.Game
         {
 
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
-            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType, m_SubID);
+            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
             m_LivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_CurLivableRoomName = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType).name;
 
@@ -106,7 +106,7 @@ namespace GameWish.Game
                 return;
             }
 
-            FacilityState facilityState = GameDataMgr.S.GetClanData().GetFacilityData(m_CurFacilityType, m_SubID).facilityState;
+            FacilityState facilityState = GameDataMgr.S.GetClanData().GetFacilityData(m_CurFacilityType/*, m_SubID*/).facilityState;
 
             if (facilityState == FacilityState.ReadyToUnlock)
             {
@@ -155,9 +155,9 @@ namespace GameWish.Game
                     m_HabitablePopulationValue.text = Define.COMMON_DEFAULT_STR;
                     m_NextHabitablePopulationValue.text = Define.COMMON_DEFAULT_STR;
                     m_NextHabitablePopulation.text = Define.COMMON_DEFAULT_STR;
-                    m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + m_FacilityConfigInfo.needLobbyLevel + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE);
+                    m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + m_FacilityConfigInfo.GetNeedLobbyLevel() + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE);
                     m_UpgradeResourcesTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDRESOURCES);
-                    m_UpgradeResourcesValue.text = m_FacilityConfigInfo.unlockCost.ToString();
+                    m_UpgradeResourcesValue.text = m_FacilityConfigInfo.GetUnlockCoinCost().ToString();
                     m_UpgradeBtnText.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
                     break;
                 case LivableRoomState.Built:
@@ -168,7 +168,7 @@ namespace GameWish.Game
                     m_NextHabitablePopulationValue.text = m_LivableRoomLevelInfo.GetNextCapacity() + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE);
                     m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADEINFODESC) + m_LivableRoomLevelInfo.GetUpgradeCondition() + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE);
                     m_UpgradeResourcesTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADERESOURCES);
-                    m_UpgradeResourcesValue.text = m_LivableRoomLevelInfo.upgradeCost.ToString();
+                    m_UpgradeResourcesValue.text = m_LivableRoomLevelInfo.upgradeResCosts.ToString();
                     m_UpgradeBtnText.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
                     break;
                 case LivableRoomState.FullLevel:

@@ -39,52 +39,37 @@ namespace GameWish.Game
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {
-                levelInfo = PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeReward);
+                levelInfo = PassLevelInfo(level, item.upgradeCost, 0, item.upgradeRes);
             }
 
             return levelInfo;
         }
 
-        public static FacilityLevelInfo PassLevelInfo(int level, int upgradeCost, string upgradePrecondition, string upgradeReward)
+        public static FacilityLevelInfo PassLevelInfo(int level, int coin, int upgradeNeedLobbyLevel, string upgradeCostsStr)
         {
             FacilityLevelInfo levelInfo = null;
-
-            //Parse conditions
-            string[] conditions = upgradePrecondition?.Split(';');
-            FacilityUpgradePreconditions preConditions = new FacilityUpgradePreconditions();
-            for (int i = 0; i < conditions.Length; i++)
-            {
-                string[] str = conditions[i].Split('_');
-
-                //Debug.Assert(str.Length == 3, "Condition pattern error");
-
-                //FacilityUpgradePreconditionType preconditionType = EnumUtil.ConvertStringToEnum<FacilityUpgradePreconditionType>(str[0]);
-                FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(str[0]);
-                int value = int.Parse(str[1]);
-
-                FacilityUpgradePreconditionItem conditionItem = new FacilityUpgradePreconditionItem(facilityType, value);
-                preConditions.AddCondition(conditionItem);
-            }
-
-            //Parse rewards
-            string[] rewards = upgradeReward?.Split(';');
-            FacilityUpgradeRewards upgradeRewards = new FacilityUpgradeRewards();
-            for (int i = 0; i < rewards.Length; i++)
-            {
-                string[] str = rewards[i].Split('_');
-
-                Debug.Assert(str.Length == 3, "Reward pattern error");
-
-                FacilityRewardType rewardType = EnumUtil.ConvertStringToEnum<FacilityRewardType>(str[0]);
-                FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(str[1]);
-                int value = int.Parse(str[2]);
-
-                FacilityUpgradeRewardItem rewardItem = new FacilityUpgradeRewardItem(rewardType, facilityType, value);
-                upgradeRewards.AddRewardItem(rewardItem);
-            }
-
-            levelInfo = new FacilityLevelInfo(level, upgradeCost, preConditions, upgradeRewards);
             
+            //Parse costs
+            FacilityUpgradeCost upgradeCosts = new FacilityUpgradeCost();
+            if (!string.IsNullOrEmpty(upgradeCostsStr))
+            {
+                string[] costs = upgradeCostsStr?.Split(';');
+                
+                for (int i = 0; i < costs.Length; i++)
+                {
+                    string[] str = costs[i].Split('|');
+
+                    Debug.Assert(str.Length == 2, "Cost pattern error");
+
+                    int id = int.Parse(str[0]);
+                    int value = int.Parse(str[1]);
+
+                    FacilityUpgradeCostItem rewardItem = new FacilityUpgradeCostItem(id, value);
+                    upgradeCosts.AddRewardItem(rewardItem);
+                }
+            }
+
+            levelInfo = new FacilityLevelInfo(level, coin, upgradeNeedLobbyLevel, upgradeCosts);
 
             return levelInfo;
         }

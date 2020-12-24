@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public override FacilityController GenerateContoller()
         {
-            return new BaicaohuController(FacilityType.Baicaohu, 1, this);
+            return new BaicaohuController(FacilityType.Baicaohu, this);
         }
 
         public override void OnClicked()

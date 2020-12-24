@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public override FacilityController GenerateContoller()
         {
-            return new WarehouseController( FacilityType.Warehouse, 1, this);
+            return new WarehouseController( FacilityType.Warehouse, this);
         }
 
         public override void OnClicked()

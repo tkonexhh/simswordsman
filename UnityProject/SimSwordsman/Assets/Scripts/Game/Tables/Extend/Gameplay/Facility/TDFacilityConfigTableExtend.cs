@@ -15,7 +15,7 @@ namespace GameWish.Game
         {
             FacilityType prefacilityType = EnumUtil.ConvertStringToEnum<FacilityType>(tdData.preFacility);
             FacilityConfigInfo configInfo = new FacilityConfigInfo((FacilityType)tdData.id, 
-                tdData.name, tdData.desc, prefacilityType, tdData.lobbyLevelRequire, tdData.unlockCost);
+                tdData.name, tdData.desc, prefacilityType);
 
             if (!facilityConfigInfoDic.ContainsKey(tdData.id))
             {
@@ -42,18 +42,30 @@ namespace GameWish.Game
         public string name;
         public string desc;
         public FacilityType prefacilityType;
-        public int needLobbyLevel;
-        public int unlockCost;
+        //public int needLobbyLevel;
+        //public int unlockCost;
 
         public FacilityConfigInfo(FacilityType facilityType, string name, string desc, 
-            FacilityType prefacilityType, int needLobbyLevel, int unlockCost)
+            FacilityType prefacilityType/*, int needLobbyLevel, int unlockCost*/)
         {
             this.facilityType = facilityType;
             this.name = name;
             this.desc = desc;
             this.prefacilityType = prefacilityType;
-            this.needLobbyLevel = needLobbyLevel;
-            this.unlockCost = unlockCost;
+            //this.needLobbyLevel = needLobbyLevel;
+            //this.unlockCost = unlockCost;
+        }
+
+        public int GetNeedLobbyLevel()
+        {
+            int needLevel =MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, 1).GetNeedLobbyLevel();
+            return needLevel;
+        }
+
+        public int GetUnlockCoinCost()
+        {
+            int coin = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, 1).upgradeCoinCost;
+            return coin;
         }
     }
 

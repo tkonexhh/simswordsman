@@ -12,7 +12,7 @@ namespace GameWish.Game
 
         protected FacilityType m_FacilityType;
         protected FacilityState m_FacilityState;
-        protected int m_SubId;
+        protected int m_SubId; // TODO: delete
 
         #region IEntityController
         public virtual void Init()
@@ -33,15 +33,15 @@ namespace GameWish.Game
         }
         #endregion
 
-        public FacilityController(FacilityType facilityType, int subId, FacilityView view)
+        public FacilityController(FacilityType facilityType/*, int subId*/, FacilityView view)
         {
             m_FacilityType = facilityType;
-            m_SubId = subId;
+            //m_SubId = subId;
 
             m_View = view;
             m_View.SetController(this);
 
-            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(m_FacilityType, subId);
+            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(m_FacilityType/*, subId*/);
             m_Model = new FacilityModel(this, dbItem);
 
             SetState(dbItem.facilityState);

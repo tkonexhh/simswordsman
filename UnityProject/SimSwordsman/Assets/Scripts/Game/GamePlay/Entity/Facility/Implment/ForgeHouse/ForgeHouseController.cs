@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class ForgeHouseController : FacilityController
     {
-        public ForgeHouseController(FacilityType facilityType, int subId, FacilityView view) : base(facilityType, subId, view)
+        public ForgeHouseController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
 
         }

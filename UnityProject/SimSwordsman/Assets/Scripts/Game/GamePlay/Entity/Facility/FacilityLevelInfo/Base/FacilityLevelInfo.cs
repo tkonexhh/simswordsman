@@ -1,36 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 
 namespace GameWish.Game
 {
 	public class FacilityLevelInfo
 	{
         public int level;
-        public int upgradeCost;
-        public FacilityUpgradePreconditions preconditions;
-        public FacilityUpgradeRewards rewards;
+        public int upgradeCoinCost;
+        public int upgradeNeedLobbyLevel;
+        public FacilityUpgradeCost upgradeResCosts;
 
         public FacilityLevelInfo()
         {
 
         }
 
-        public FacilityLevelInfo(int level, int upgradeCost, FacilityUpgradePreconditions preconditions, FacilityUpgradeRewards rewards)
+        public FacilityLevelInfo(int level, int coinCost, int needLobbyLevel, FacilityUpgradeCost rewards)
         {
             this.level = level;
-            this.upgradeCost = upgradeCost;
-            this.preconditions = preconditions;
-            this.rewards = rewards;
+            this.upgradeCoinCost = coinCost;
+            this.upgradeNeedLobbyLevel = needLobbyLevel;
+            this.upgradeResCosts = rewards;
         }
     
         public void Warp(FacilityLevelInfo levelInfo)
         {
             this.level = levelInfo.level;
-            this.upgradeCost = levelInfo.upgradeCost;
-            this.preconditions = levelInfo.preconditions;
-            this.rewards = levelInfo.rewards;
+            this.upgradeNeedLobbyLevel = levelInfo.upgradeNeedLobbyLevel;
+            this.upgradeResCosts = levelInfo.upgradeResCosts;
+        }
+
+        public int GetNeedLobbyLevel()
+        {
+            return upgradeNeedLobbyLevel;
         }
     }
 }

@@ -9,8 +9,10 @@ namespace GameWish.Game
     public enum MedicinalPowderType
 	{
         None,
-        Type1,
-        Type2,
-	}
+        Med1,
+        Med2,
+        Med3,
+        Med4,
+    }
 	
 }

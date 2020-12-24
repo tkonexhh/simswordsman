@@ -4,12 +4,13 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Qarth;
+using System.Linq;
 
 namespace GameWish.Game
 {
     public partial class TDFacilityLivableRoomTable
     {
-        public static Dictionary<int, LivableRoomLevelInfo> levelInfoDic = new Dictionary<int, LivableRoomLevelInfo>();
+        public static List<LivableRoomLevelInfo> levelInfoDic = new List<LivableRoomLevelInfo>();
 
         static void CompleteRowAdd(TDFacilityLivableRoom tdData)
         {
@@ -17,21 +18,19 @@ namespace GameWish.Game
             LivableRoomLevelInfo roomLevelInfo = new LivableRoomLevelInfo();
             roomLevelInfo.Warp(levelInfo);
             roomLevelInfo.SetCurCapatity( tdData.capability);
+            roomLevelInfo.roomId = tdData.houseId;
 
-            if (!levelInfoDic.ContainsKey(tdData.level))
+            //if (!levelInfoDic.ContainsKey(tdData.level))
             {
-                levelInfoDic.Add(tdData.level, roomLevelInfo);
+                levelInfoDic.Add(roomLevelInfo);
             }
         }
 
-        public static LivableRoomLevelInfo GetLevelInfo(int level)
+        public static LivableRoomLevelInfo GetLevelInfo(int roomId, int level)
         {
-            if (levelInfoDic.ContainsKey(level))
-            {
-                return levelInfoDic[level];
-            }
-
-            return null;
+            LivableRoomLevelInfo info = levelInfoDic.FirstOrDefault(i => i.roomId == roomId && i.level == level);
+            
+            return info;
         }
 
         private static FacilityLevelInfo PassLevelInfo(int level)
@@ -42,7 +41,7 @@ namespace GameWish.Game
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {
-                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeReward);
+                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeRes);
             }
 
             return levelInfo;

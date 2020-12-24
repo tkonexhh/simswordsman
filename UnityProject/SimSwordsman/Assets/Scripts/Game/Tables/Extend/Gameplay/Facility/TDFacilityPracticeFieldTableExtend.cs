@@ -43,7 +43,7 @@ namespace GameWish.Game
             bool haveData = m_DataCache.TryGetValue(level, out item);
             if (haveData)
             {
-                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeReward);
+                levelInfo = TDFacilityLobbyTable.PassLevelInfo(level, item.upgradeCost, item.upgradePreconditions, item.upgradeRes);
             }
 
             return levelInfo;

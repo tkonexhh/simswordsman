@@ -23,21 +23,21 @@ namespace GameWish.Game
             for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.TotalCount; i++)
             {
                 FacilityType facilityType = (FacilityType)i;
-                if (facilityType == FacilityType.LivableRoomEast)
-                {
-                    AddFacility(FacilityType.LivableRoomEast, 1, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomEast, 2, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomEast, 3, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomEast, 4, FacilityState.Locked);
-                }
-                else if (facilityType == FacilityType.LivableRoomWest)
-                {
-                    AddFacility(FacilityType.LivableRoomWest, 1, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomWest, 2, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomWest, 3, FacilityState.Locked);
-                    AddFacility(FacilityType.LivableRoomWest, 4, FacilityState.Locked);
-                }
-                else
+                //if (facilityType == FacilityType.LivableRoomEast)
+                //{
+                //    AddFacility(FacilityType.LivableRoomEast, 1, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomEast, 2, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomEast, 3, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomEast, 4, FacilityState.Locked);
+                //}
+                //else if (facilityType == FacilityType.LivableRoomWest)
+                //{
+                //    AddFacility(FacilityType.LivableRoomWest, 1, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomWest, 2, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomWest, 3, FacilityState.Locked);
+                //    AddFacility(FacilityType.LivableRoomWest, 4, FacilityState.Locked);
+                //}
+                //else
                 {
                     AddFacility(facilityType, 1, FacilityState.Locked);
                 }
@@ -45,19 +45,19 @@ namespace GameWish.Game
             }
         }
 
-        public void UpgradeFacility(FacilityType facilityType, int deltaLevel, int subId)
+        public void UpgradeFacility(FacilityType facilityType, int deltaLevel/*, int subId*/)
         {
-            FacilityItemDbData facilityDbData = GetFacilityData(facilityType, subId);
+            FacilityItemDbData facilityDbData = GetFacilityData(facilityType/*, subId*/);
             if (facilityDbData != null)
             {
                 facilityDbData.AddLevel(deltaLevel);
             }
         }
 
-        public int GetFacilityLevel(FacilityType facilityType, int subId)
+        public int GetFacilityLevel(FacilityType facilityType/*, int subId*/)
         {
             int level = -1;
-            FacilityItemDbData facilityDbData = GetFacilityData(facilityType, subId);
+            FacilityItemDbData facilityDbData = GetFacilityData(facilityType/*, subId*/);
             if (facilityDbData != null)
             {
                 level = facilityDbData.level;
@@ -77,9 +77,9 @@ namespace GameWish.Game
             }
         }
 
-        public void SetFacilityState(FacilityType facilityType, FacilityState state, int subId)
+        public void SetFacilityState(FacilityType facilityType, FacilityState state/*, int subId*/)
         {
-            FacilityItemDbData facility = GetFacilityData(facilityType, subId);
+            FacilityItemDbData facility = GetFacilityData(facilityType/*, subId*/);
             if (facility != null)
             {
                 facility.facilityState = state;
@@ -93,9 +93,9 @@ namespace GameWish.Game
         //    facilityList = facilityList.Except(facilityList.Where(i => i.id == id)).ToList();
         //}
 
-        public FacilityItemDbData GetFacilityData(FacilityType facilityType, int subId)
+        public FacilityItemDbData GetFacilityData(FacilityType facilityType/*, int subId*/)
         {
-            FacilityItemDbData facilityDbData = facilityList.Where(i => i.id == (int)facilityType && i.subId == subId).FirstOrDefault();
+            FacilityItemDbData facilityDbData = facilityList.Where(i => i.id == (int)facilityType/* && i.subId == subId*/).FirstOrDefault();
             return facilityDbData;
         }
     }
