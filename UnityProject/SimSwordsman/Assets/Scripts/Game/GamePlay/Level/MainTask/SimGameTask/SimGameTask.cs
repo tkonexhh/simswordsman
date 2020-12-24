@@ -11,9 +11,19 @@ namespace GameWish.Game
 
         public MainTaskItemInfo MainTaskItemInfo { get { return m_TaskDetailInfo; } }
 
-        public SimGameTask(int taskId, SimGameTaskType taskType, int subTaskType, string tableName, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
+        public SimGameTask(int taskId, SimGameTaskType taskType, int subTaskType, string tableName,TaskState taskState, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
         {
-            m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType);
+            m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType, taskState);
+        }
+
+        public TaskState GetCurTaskState()
+        {
+            return m_TaskDetailInfo.taskState;
+        }
+
+        public void SetCurTaskFinished()
+        {
+             m_TaskDetailInfo.taskState = TaskState.Finished;
         }
 
         public abstract void ExecuteTask(List<CharacterController> selectedCharacters);

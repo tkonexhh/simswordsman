@@ -7,8 +7,8 @@ using System;
 
 namespace GameWish.Game
 {
-	public class TaskItem
-	{
+    public class TaskItem
+    {
         private int m_TaskId;
         //private int m_TaskSubId;
         private Type m_ClassType = null;
@@ -177,7 +177,7 @@ namespace GameWish.Game
                 string conditionValueStr = GetTableValue(TaskDefine.GET_CONDITION_VALUE);
                 string[] values = conditionValueStr.Split('|');
 
-                for (int i =0; i < conditionTypes.Length; i++)
+                for (int i = 0; i < conditionTypes.Length; i++)
                 {
                     string checkerClassName = Define.NAME_SPACE_PREFIX + conditionTypes[i] + "Checker";
                     string valueStr = values[i];
@@ -193,7 +193,7 @@ namespace GameWish.Game
                     MethodInfo methodInfo = type.GetMethod("Init");
                     object[] param = BuildParams(m_TaskId, valueStr);
                     methodInfo.Invoke(obj, param);
-                    m_ConditionCheckerList.Add((IConditionChecker)obj);  
+                    m_ConditionCheckerList.Add((IConditionChecker)obj);
                 }
             }
             catch (Exception e)
@@ -217,7 +217,7 @@ namespace GameWish.Game
             }
             catch (Exception e)
             {
-               Log.e(e);
+                Log.e(e);
             }
         }
 

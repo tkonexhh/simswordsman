@@ -24,13 +24,12 @@ namespace GameWish.Game
             MainTaskItemData item = GetMainTaskItemData(taskId);
             if (item != null)
             {
-                item.isFinished = true;
-
+                item.taskState = TaskState.Unclaimed;
                 SetDataDirty();
             }
         }
 
-        public void AddTask(int taskId, SimGameTaskType taskType, int subType)
+        public void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
         {
             MainTaskItemData mainTaskItem = GetMainTaskItemData(taskId);
             if (mainTaskItem != null)
@@ -39,15 +38,14 @@ namespace GameWish.Game
                 return;
             }
 
-            MainTaskItemData item = new MainTaskItemData(taskId, taskType, subType);
+            MainTaskItemData item = new MainTaskItemData(taskId, taskType, subType, taskState);
             taskList.Add(item);
         }
 
         public void OnTaskFinished(int taskId)
         {
             MainTaskItemData mainTaskItem = GetMainTaskItemData(taskId);
-            mainTaskItem.isFinished = true;
-
+            mainTaskItem.taskState = TaskState.Unclaimed;
             SetDataDirty();
         }
 
@@ -56,7 +54,8 @@ namespace GameWish.Game
             MainTaskItemData mainTaskItem = GetMainTaskItemData(taskId);
             if (mainTaskItem != null)
             {
-                mainTaskItem.isRewardClaimed = true;
+                taskList.Remove(mainTaskItem);
+                // mainTaskItem.isRewardClaimed = true;
             }
             else
             {
@@ -86,18 +85,18 @@ namespace GameWish.Game
         public int taskId = 1;
         public SimGameTaskType taskType;
         public int taskSubType = 1;
-        public bool isFinished = false;
-        public bool isRewardClaimed = false;
+        public TaskState taskState;
 
         public MainTaskItemData()
         {
         }
 
-        public MainTaskItemData(int taskId, SimGameTaskType taskType, int subType)
+        public MainTaskItemData(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
         {
             this.taskId = taskId;
             this.taskType = taskType;
             this.taskSubType = subType;
+            this.taskState = taskState;
         }
     }
 

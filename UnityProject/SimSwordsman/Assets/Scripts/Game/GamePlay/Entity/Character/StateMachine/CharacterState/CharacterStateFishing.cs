@@ -53,7 +53,7 @@ namespace GameWish.Game
                 m_Time = 0f;
                 m_IsTaskEnd = true;
 
-                GameDataMgr.S.GetMainTaskData().SetTaskFinished(m_Controller.CurTask.TaskId);
+                MainGameMgr.S.MainTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
                 EventSystem.S.Send(EventID.OnTaskManualFinished);
                 EventSystem.S.Send(EventID.OnTaskFinished);
 

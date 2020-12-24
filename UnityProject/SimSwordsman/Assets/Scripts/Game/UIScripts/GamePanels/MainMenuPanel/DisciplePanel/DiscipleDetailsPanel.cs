@@ -9,37 +9,93 @@ namespace GameWish.Game
 {
     public class DiscipleDetailsPanel : AbstractAnimPanel
     {
-        [Header("µÜ×ÓÊôÐÔ")]
+        [Header("Top")]
         [SerializeField]
-        private Text m_DiscipleName;
+        private Text m_DiscipleNameValue;
+        [SerializeField]
+        private Text m_LevelTitle;
         [SerializeField]
         private Text m_LevelValue;
         [SerializeField]
-        private Text m_QualityValue;
+        private Text m_SkillTitle;
         [SerializeField]
         private Text m_SkillValue;
-        [Header("µÜ×Óîø¼×")]
         [SerializeField]
-        private Button m_ArmorBtn;
+        private Text m_EntryTimeTitle;
+        [SerializeField]
+        private Text m_EntryTimeValue;
+        [SerializeField]
+        private Text m_StateValue;
+        [SerializeField]
+        private Text m_RankTitle;
+        [SerializeField]
+        private Text m_RankValue;
+        [SerializeField]
+        private Image m_DiscipleImg;
+
+        [Header("UpperMiddle")]
+        [SerializeField]
+        private Text m_DiscipleName;
+        [SerializeField]
+        private Text m_KungfuTitle;
+        [SerializeField]
+        private Text m_KungfuTra;
+        [SerializeField]
+        private Text m_KungfuItem;
+
+        [Header("LeftLowerMiddle")]
+        [SerializeField]
+        private Text m_ArmorTitle;
+        [SerializeField]
+        private Text m_ArmorNameValue;
+        [SerializeField]
+        private Text m_ArmorClassValue;
+        [SerializeField]
+        private Text m_ArmorSkillTitle;
+        [SerializeField]
+        private Text m_ArmorSkillValue;
         [SerializeField]
         private Image m_ArmorImg;
         [SerializeField]
-        private Text m_ArmorValue;
+        private Image m_IntensifyArmorImg;
         [SerializeField]
-        private Text m_ArmorClass;
+        private Button m_IntensifyArmorBtn;
         [SerializeField]
-        private Text m_ArmorAddition;
-        [Header("µÜ×ÓÎäÆ÷")]
+        private Text m_IntensifyArmorValue;
+
+        [Header("RightLowerMiddle")]
         [SerializeField]
-        private Button m_ArmsBtn;
+        private Text m_ArmsTitle;
+        [SerializeField]
+        private Text m_ArmsNameValue;
+        [SerializeField]
+        private Text m_ArmsClassValue;
+        [SerializeField]
+        private Text m_ArmsSkillTitle;
+        [SerializeField]
+        private Text m_ArmsSkillValue;
         [SerializeField]
         private Image m_ArmsImg;
         [SerializeField]
-        private Text m_ArmsValue;
+        private Image m_IntensifyArmsImg;
         [SerializeField]
-        private Text m_ArmsClass;
+        private Button m_IntensifyArmsBtn;
         [SerializeField]
-        private Text m_ArmsAddition;
+        private Text m_IntensifyArmsValue;
+
+        [Header("Bottom")]
+        [SerializeField]
+        private Button m_PracticeValueBtn;
+        [SerializeField]
+        private Text m_PracticeValue;
+        [SerializeField]
+        private Button m_WorkValueBtn;
+        [SerializeField]
+        private Text m_WorkValue;
+        [SerializeField]
+        private Button m_EjectValueBtn;
+        [SerializeField]
+        private Text m_EjectValue;
 
 
 
@@ -62,7 +118,7 @@ namespace GameWish.Game
         {
             m_DiscipleName.text = m_CurDisciple.name;
             m_LevelValue.text = m_CurDisciple.level.ToString();
-            m_QualityValue.text = CommonUIMethod.GetStrQualityForChaQua(m_CurDisciple.quality);
+            //m_QualityValue.text = CommonUIMethod.GetStrQualityForChaQua(m_CurDisciple.quality);
             m_SkillValue.text = m_CurDisciple.startTime;
 
             //foreach (var item in m_CurDisciple.characterEquipment)
@@ -94,14 +150,14 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_ArmorBtn.onClick.AddListener(()=> {
-                UIMgr.S.OpenPanel(UIID.WearableLearningPanel,PropType.Armor, m_CurDisciple);
-                OnPanelHideComplete();
-            });
-            m_ArmsBtn.onClick.AddListener(()=> {
-                UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
-                OnPanelHideComplete();
-            });
+            //m_ArmorBtn.onClick.AddListener(()=> {
+            //    UIMgr.S.OpenPanel(UIID.WearableLearningPanel,PropType.Armor, m_CurDisciple);
+            //    OnPanelHideComplete();
+            //});
+            //m_ArmsBtn.onClick.AddListener(()=> {
+            //    UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
+            //    OnPanelHideComplete();
+            //});
 
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 

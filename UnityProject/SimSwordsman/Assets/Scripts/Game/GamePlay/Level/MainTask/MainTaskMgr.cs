@@ -41,22 +41,24 @@ namespace GameWish.Game
         #endregion
 
         #region Public 
-
-        public List<MainTaskItemInfo> GetCurTaskItemInfoList()
+        public void SetTaskFinished(int taskId)
         {
-            List<MainTaskItemInfo> list = new List<MainTaskItemInfo>();
-            m_CurTaskList.ForEach( i => list.Add(i.MainTaskItemInfo));
-
-            return list;
+            SimGameTask item = GetMainTaskItemData(taskId);
+            if (item != null)
+            {
+                item.MainTaskItemInfo.taskState = TaskState.Unclaimed;
+                GameDataMgr.S.GetMainTaskData().SetTaskFinished(taskId);
+            }
         }
+
         /// <summary>
         /// 完成任务后领取奖励
         /// </summary>
-        public void ClaimReward(MainTaskItemData item)
+        public void ClaimReward(int taskId)
         {
-            GameDataMgr.S.GetMainTaskData().OnTaskRewardClaimed(item.taskId);
+            GameDataMgr.S.GetMainTaskData().OnTaskRewardClaimed(taskId);
 
-            SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.GetId() == item.taskId );
+            SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.GetId() == taskId );
             if (taskItem != null)
             {
                 taskItem.ClaimReward();
@@ -119,7 +121,7 @@ namespace GameWish.Game
             {
                 m_MainTaskData.taskList.ForEach(i => 
                 {
-                    AddTask(i.taskId, i.taskType, i.taskSubType);
+                    AddTask(i.taskId, i.taskType, i.taskSubType,i.taskState);
                 });
 
             }
@@ -140,7 +142,19 @@ namespace GameWish.Game
 
             AddTask(taskId, taskType, subType);
 
-            m_MainTaskData.AddTask(taskId, taskType, subType);
+            m_MainTaskData.AddTask(taskId, taskType, subType,TaskState.NotStart);
+        }
+        public SimGameTask GetMainTaskItemData(int taskId)
+        {
+            foreach (SimGameTask item in m_CurTaskList)
+            {
+                if (item.MainTaskItemInfo.id == taskId)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
 
         private void NotifyObserver(TaskItem task)
@@ -151,12 +165,11 @@ namespace GameWish.Game
             }
         }
 
-        private void AddTask(int taskId, SimGameTaskType taskType, int subType)
+        private void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState = TaskState.NotStart)
         {
             //TaskItem task = new TaskItem(id, subId, m_MainTaskTableName, OnTaskStateChanged);
-            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, subType);
+            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, subType, taskState);
             m_CurTaskList.Add(simGameTask);
-
             //MainTaskItemInfo itemInfo = new MainTaskItemInfo(task.GetId(), task.GetSubId());
             //m_CurTaskInfoList.Add(itemInfo);
         }
