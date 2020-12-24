@@ -146,6 +146,16 @@ namespace GameWish.Game
         {
             return m_Body.transform.localScale.x < 0 ? 1 : -1;
         }
+
+        public void HideBody()
+        {
+            m_Body.SetActive(false);
+        }
+
+        public void ShowBody()
+        {
+            m_Body.SetActive(true);
+        }
         #endregion
 
         #region Private

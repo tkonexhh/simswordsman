@@ -8,7 +8,7 @@ using DG.Tweening;
 
 namespace GameWish.Game
 {
-    public class CharacterStateHunting : CharacterState
+    public class CharacterStateCollectRes : CharacterState
     {
         private CharacterController m_Controller = null;
 
@@ -17,14 +17,14 @@ namespace GameWish.Game
         private float m_Time = 0f;
         private bool m_IsTaskEnd = false;
 
-        public CharacterStateHunting(CharacterStateID stateEnum) : base(stateEnum)
+        public CharacterStateCollectRes(CharacterStateID stateEnum) : base(stateEnum)
         {
 
         }
 
         public override void Enter(ICharacterStateHander handler)
         {
-            if (m_Controller == null)
+            if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             if (m_TaskPos == null)
@@ -32,7 +32,8 @@ namespace GameWish.Game
                 m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
             }
 
-            Vector3 pos = m_TaskPos.GetTaskPos(SimGameTaskType.Fish);
+            CollectedObjType collectedObjType = (CollectedObjType)m_Controller.CurTask.MainTaskItemInfo.subType;
+            Vector3 pos = m_TaskPos.GetTaskPos(collectedObjType);
             m_Controller.MoveTo(pos, OnReachDestination);
 
             m_IsTaskEnd = false;
@@ -67,7 +68,7 @@ namespace GameWish.Game
             if (m_IsTaskEnd)
                 return;
 
-            m_Controller.CharacterView.PlayAnim("hunting", true, null);
+            m_Controller.CharacterView.PlayAnim("mining", true, null);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace GameWish.Game
 
         public override void ExecuteTask(List<CharacterController> selectedCharacters)
         {
-            selectedCharacters.ForEach(i => i.SetState(CharacterStateID.Fighting));
+            selectedCharacters.ForEach(i => i.SetState(CharacterStateID.GoOutside));
         }
     }
 	

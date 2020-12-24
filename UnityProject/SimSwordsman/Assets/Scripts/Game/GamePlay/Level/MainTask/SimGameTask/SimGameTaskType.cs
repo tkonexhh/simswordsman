@@ -8,14 +8,24 @@ namespace GameWish.Game
 	public enum SimGameTaskType
 	{
         None,
-	    Fish,
-        Hunt,
+	    Collect,
         Battle
 	}
 
-    public enum HuntTaskSubType
+    public enum CollectedObjType
     {
+        Fish,
+        Chicken,
         Bear,
-        Wolf
+        Boar,
+        Snake,
+        Deer,
+        WuWood,
+        SilverWood,
+        QingRock,
+        CloudRock,
+        Vine,
+        Iron,
+        Ganoderma,
     }
 }

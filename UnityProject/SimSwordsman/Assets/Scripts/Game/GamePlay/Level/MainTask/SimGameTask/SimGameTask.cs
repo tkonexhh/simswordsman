@@ -14,6 +14,7 @@ namespace GameWish.Game
         public SimGameTask(int taskId, SimGameTaskType taskType, int subTaskType, string tableName,TaskState taskState, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
         {
             m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType, taskState);
+
         }
 
         public TaskState GetCurTaskState()

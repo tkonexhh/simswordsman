@@ -211,6 +211,16 @@ namespace GameWish.Game
             SetState(CharacterStateID.Wander);
         }
 
+        public void HideBody()
+        {
+            m_CharacterView.HideBody();
+        }
+
+        public void ShowBody()
+        {
+            m_CharacterView.ShowBody();
+        }
+
         #endregion
     }
 
