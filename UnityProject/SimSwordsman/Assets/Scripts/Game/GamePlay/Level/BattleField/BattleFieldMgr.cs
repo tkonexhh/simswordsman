@@ -154,9 +154,9 @@ namespace GameWish.Game
             switch (key)
             {
                 case (int)EventID.OnEnterBattle:
-                    LevelConfigInfo levelConfig = (LevelConfigInfo)param[0];
+                    List<EnemyConfig> enemies = (List<EnemyConfig>)param[0];
                     List<CharacterController> ourSelectedCharacters = (List<CharacterController>)param[1];
-                    OnEnterBattle(levelConfig, ourSelectedCharacters);
+                    OnEnterBattle(enemies, ourSelectedCharacters);
                     break;
                 case (int)EventID.OnExitBattle:
                     OnExitBattle();
@@ -164,14 +164,14 @@ namespace GameWish.Game
             }
         }
 
-        private void OnEnterBattle(LevelConfigInfo levelConfig, List<CharacterController> ourSelectedCharacters)
+        private void OnEnterBattle(List<EnemyConfig> enemies, List<CharacterController> ourSelectedCharacters)
         {
             m_IsBattleBegin = true;
             m_IsBattleEnd = false;
 
             SpawnOurCharacter(ourSelectedCharacters);
 
-            levelConfig.enemiesList.ForEach(i =>
+            enemies.ForEach(i =>
             {
                 SpawnEnemyCharacter(i.ID, i.Skill);
             });
