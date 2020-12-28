@@ -7,8 +7,8 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class CharacterDataWrapper
-	{
+    public class CharacterDataWrapper
+    {
         public List<CharacterItem> characterList = new List<CharacterItem>();
 
         private CharacterDbData m_DbData = null;
@@ -17,7 +17,7 @@ namespace GameWish.Game
         {
             m_DbData = dbData;
 
-            dbData.characterList.ForEach(i => 
+            dbData.characterList.ForEach(i =>
             {
                 CharacterItem item = new CharacterItem();
                 item.Wrap(i);
@@ -81,6 +81,11 @@ namespace GameWish.Game
             m_DbData.AddCharacter(itemDbData);
         }
 
+        public void LearnKungfu()
+        {
+          
+        }
+
         public void RemoveCharacter(int id)
         {
             CharacterItem item = characterList.FirstOrDefault(i => i.id == id);
@@ -97,8 +102,22 @@ namespace GameWish.Game
             CharacterItem item = characterList.FirstOrDefault(i => i.id == id);
             return item;
         }
+
+        public void AddKungfu(int id, KungfuItem kungfuItem)
+        {
+            CharacterItem characterItem = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItem!=null)
+                characterItem.LearnKungfu(kungfuItem);
+
+        }
+        public void AddCharacterLevel(int id, int level)
+        {
+            CharacterItem characterItem = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItem != null)
+                 characterItem.UpgradeLevels(level);
+        }
     }
-   
+
     public class CharacterItem : IComparable
     {
         public int id; // ID
@@ -106,6 +125,7 @@ namespace GameWish.Game
         public int stage = 1; // 段位
         public int curExp = 0; // 当前经验
         public CharacterQuality quality; // 品质
+        public CharacterBehavior behavior; // 品质
         public float atkValue; // 武力值
         public string startTime; // 入门时间
         public string name; // 名字
@@ -119,7 +139,7 @@ namespace GameWish.Game
 
         private CharacterItemDbData m_ItemDbData = null;
 
-        public CharacterItem(CharacterQuality quality,string decs,string name)
+        public CharacterItem(CharacterQuality quality, string decs, string name)
         {
             this.quality = quality;
             this.name = name;
@@ -128,10 +148,16 @@ namespace GameWish.Game
 
         public CharacterItem() { }
 
-        public CharacterItem(int id) {
+        public CharacterItem(int id)
+        {
             this.id = id;
             level = 1;
             stage = 1;
+        }
+
+        public CharacterQualityConfigInfo GetCharacterQualityConfigInfo()
+        {
+            return qualityInfo;
         }
 
         public void Wrap(CharacterItemDbData itemDbData)
@@ -182,6 +208,52 @@ namespace GameWish.Game
             }
         }
 
+        public void UpgradeLevels(int delta)
+        {
+            int maxLevel = CharacterMgr.GetMaxLevel(quality);
+            if (level < maxLevel)
+            {
+                level += delta;
+                GameDataMgr.S.GetClanData().SetCharacterLevel(m_ItemDbData, level);
+
+                int stage = TDCharacterStageConfigTable.GetStage(level);
+                if (stage != this.stage)
+                {
+                    GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
+                }
+            }
+        }
+
+        public void LearnKungfu(KungfuItem kungfuItem)
+        {
+            for (int i = 0; i < qualityInfo.learnKonfuNeedLevelList.Count; i++)
+            {
+                if (level >= qualityInfo.learnKonfuNeedLevelList[i])
+                {
+                    if (kongfus.Count > i && !string.IsNullOrEmpty(kongfus[i].name))
+                        continue;
+                    else
+                    {
+                        if (CheackLeardKungfu(kungfuItem))
+                            return;
+                        kongfus.Add(new CharacterKongfu(kungfuItem));
+                        GameDataMgr.S.GetClanData().AddKungfu(id, kongfus[i].dbData);
+                    }
+                }
+            }
+        }
+
+        private bool CheackLeardKungfu(KungfuItem kungfuItem)
+        {
+            foreach (var item in kongfus)
+            {
+                if (item.dbData.kongfuType == kungfuItem.KungfuType)
+                    return true;
+                continue;
+            }
+            return false;
+        }
+
         public void AddExp(int deltaExp)
         {
             curExp += deltaExp;
@@ -189,7 +261,7 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 
-        public void AddKongfuExp(KongfuType kongfuType, int deltaExp)
+        public void AddKongfuExp(KungfuType kongfuType, int deltaExp)
         {
             GameDataMgr.S.GetClanData().AddCharacterKongfuExp(m_ItemDbData, kongfuType, deltaExp);
         }
@@ -221,7 +293,7 @@ namespace GameWish.Game
         //        return equipment;
         //    }
         //    return null;
-                
+
         //}
 
         /// <summary>
@@ -248,7 +320,7 @@ namespace GameWish.Game
                 CharacterItem info = obj as CharacterItem;
                 if (id > info.id)
                     result = 1;
-                else if(id == info.id)
+                else if (id == info.id)
                     result = 0;
                 else
                     result = -1;
@@ -256,32 +328,6 @@ namespace GameWish.Game
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-    }
-
-    public class CharacterEquipment
-    {
-        //public EquipmentData dbData;
-        //public string name;
-        //public string desc;
-        //public float atkScale = 1f;
-
-        //public void Wrap(EquipmentData dbData)
-        //{
-        //    this.dbData = dbData;
-        //}
-    }
-
-    public class CharacterWeapon
-    {
-        //public EquipmentData dbData;
-        //public string name;
-        //public string desc;
-        //public float atkScale = 1f;
-
-        //public void Wrap(EquipmentData dbData)
-        //{
-        //    this.dbData = dbData;
-        //}
     }
 
     public class CharacterKongfu
@@ -294,6 +340,29 @@ namespace GameWish.Game
         public void Wrap(CharacterKongfuData dbData)
         {
             this.dbData = dbData;
+            RefeshKungfuInfo();
+        }
+        public CharacterKongfu()
+        {
+
+        }
+        public CharacterKongfu(KungfuItem kungfuItem)
+        {
+            dbData = new CharacterKongfuData();
+            dbData.kongfuType = kungfuItem.KungfuType;
+            dbData.level = 1;
+            dbData.curExp = 1;
+            name = kungfuItem.Name;
+            desc = kungfuItem.Desc;
+            atkScale = TDKongfuConfigTable.GetAddition(dbData.kongfuType, dbData.level);
+        }
+
+        private void RefeshKungfuInfo()
+        {
+            KungfuConfigInfo kungfuConfig = TDKongfuConfigTable.GetKungfuConfigInfo(dbData.kongfuType);
+            name = kungfuConfig.Name;
+            desc = kungfuConfig.Desc;
+            atkScale = TDKongfuConfigTable.GetAddition(dbData.kongfuType, dbData.level);
         }
     }
 

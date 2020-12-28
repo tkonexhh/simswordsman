@@ -16,7 +16,7 @@ namespace GameWish.Game
         private string m_Name;   
         private string m_Quality;   
         private string m_Desc;   
-        private string m_AtkRange;   
+        private string m_Addition;   
         private string m_UpgradeExp;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -44,7 +44,7 @@ namespace GameWish.Game
         /// <summary>
         /// 加成比例
         /// </summary>
-        public  string  atkRange {get { return m_AtkRange; } }
+        public  string  addition {get { return m_Addition; } }
        
         /// <summary>
         /// 升级经验
@@ -79,7 +79,7 @@ namespace GameWish.Game
                     m_Desc = dataR.ReadString();
                     break;
                 case 4:
-                    m_AtkRange = dataR.ReadString();
+                    m_Addition = dataR.ReadString();
                     break;
                 case 5:
                     m_UpgradeExp = dataR.ReadString();
@@ -100,7 +100,7 @@ namespace GameWish.Game
           ret.Add("Name", 1);
           ret.Add("Quality", 2);
           ret.Add("Desc", 3);
-          ret.Add("AtkRange", 4);
+          ret.Add("Addition", 4);
           ret.Add("UpgradeExp", 5);
           return ret;
         }

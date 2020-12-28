@@ -88,7 +88,11 @@ namespace GameWish.Game
                     break;
             }
         }
-
+        /// <summary>
+        /// 往仓库中添加装备
+        /// </summary>
+        /// <param name="itemBase"></param>
+        /// <param name="delta"></param>
         public void AddItem(ItemBase itemBase, int delta = 1)
         {
             switch (itemBase.PropType)
@@ -103,6 +107,9 @@ namespace GameWish.Game
                     break;
                 case PropType.Arms:
                     m_InventoryDataWrapper.AddArms((ArmsItem)itemBase, delta);
+                    break;
+                case PropType.Kungfu:
+                    m_InventoryDataWrapper.AddKungfu((KungfuItem)itemBase, delta);
                     break;
                 default:
                     break;

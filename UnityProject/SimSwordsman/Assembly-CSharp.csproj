@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_14;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;dUI_DoozyUI;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_14;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_INCLUDE_TESTS;UNITY_PURCHASING;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;dUI_DoozyUI;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -939,6 +939,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\Base\FacilityView.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\Base\Interface\IFacilityClickedHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityLevelInfo\BaicaohuInfo.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityLevelInfo\BartizanInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityLevelInfo\Base\FacilityLevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityLevelInfo\ForgeHouseInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityLevelInfo\KitchLevelInfo.cs" />
@@ -950,8 +951,8 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityState.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityType.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityUpgradeCost.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityUpgradePreconditions.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\FacilityUpgradeRewards.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\Implment\Baicaohu\BaicaohuController.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\Implment\Baicaohu\BaicaohuModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Facility\Implment\Baicaohu\BaicaohuView.cs" />
@@ -1024,7 +1025,6 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Inventory\InventoryMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Inventory\PropType.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Kongfu\KongfuLibraryMgr.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Kongfu\KongfuType.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Kongfu\MusicMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\ConditionChecker\ManualFinishChecker.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\IMainTaskObserver.cs" />
@@ -1127,6 +1127,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmsConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBaicaohuExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBaicaohuTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBartizanExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBartizanTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityForgeHouseExtend.cs" />
@@ -1139,6 +1141,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityLivableRoomTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityLobbyExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityLobbyTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityPatrolRoomExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityPatrolRoomTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityPracticeFieldExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityPracticeFieldTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityWarehouseExtend.cs" />
@@ -1201,6 +1205,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmsConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBaicaohu.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBaicaohuTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBartizan.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBartizanTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityForgeHouse.cs" />
@@ -1213,6 +1219,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityLivableRoomTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityLobby.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityLobbyTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityPatrolRoom.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityPatrolRoomTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityPracticeField.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityPracticeFieldTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityWarehouse.cs" />
@@ -1331,6 +1339,7 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\DiscipleDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\DiscipleItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\DisciplePanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\KungfuPanelItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\WearableLearningItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\WearableLearningPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\MainMenuPanel.cs" />
@@ -1399,6 +1408,7 @@
     <None Include="Assets\Resources\Spines\Character\Character4\pupil_4.atlas.txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DemiLib\Core\DemiLib.xml" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+    <None Include="Assets\StreamingAssets\config\FacilityBartizan.txt" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />
     <None Include="Assets\StreamingAssets\config\ArmorConfig.txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\readme_DOTweenPro.txt" />
@@ -1440,6 +1450,7 @@
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\iOS\LICENSE_MOAT.txt" />
     <None Include="Assets\Res\FolderMode\Shader\Custom\UIBlinkImage.shader" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouch\RealseNotes.txt" />
+    <None Include="Assets\StreamingAssets\config\FacilityPatrolRoom.txt" />
     <None Include="Assets\SDKAdapter\Firebase\Plugins\Crashlytics\link.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

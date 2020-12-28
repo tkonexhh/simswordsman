@@ -26,4 +26,9 @@ namespace GameWish.Game
         OurCamp,
         EnemyCamp,
     }
+    public enum CharacterBehavior
+    {
+        Free,
+        Working,
+    }
 }

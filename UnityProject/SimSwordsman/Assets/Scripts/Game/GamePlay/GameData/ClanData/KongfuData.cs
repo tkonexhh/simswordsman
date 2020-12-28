@@ -11,14 +11,14 @@ namespace GameWish.Game
     public class KongfuData
     {
         public int kongfuLibraryLevel = 1;
-        public List<KongfuType> unlockedKongfuTypeList = new List<KongfuType>();
+        public List<KungfuType> unlockedKongfuTypeList = new List<KungfuType>();
 
         public KongfuData()
         {
 
         }
 
-        public void UnlockKongfu(KongfuType kongfuType)
+        public void UnlockKongfu(KungfuType kongfuType)
         {
             if (!unlockedKongfuTypeList.Contains(kongfuType))
             {

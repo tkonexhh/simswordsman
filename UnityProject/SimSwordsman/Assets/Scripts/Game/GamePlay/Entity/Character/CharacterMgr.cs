@@ -124,6 +124,25 @@ namespace GameWish.Game
             return character;
         }
 
+        /// <summary>
+        /// 弟子增加功夫
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="kungfuItem"></param>
+        public void AddKungfu(int id, KungfuItem kungfuItem)
+        {
+            m_CharacterDataWrapper.AddKungfu(id, kungfuItem);
+        }
+        /// <summary>
+        /// 弟子升级
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="level"></param>
+        public void AddCharacterLevel(int id, int level)
+        {
+            m_CharacterDataWrapper.AddCharacterLevel(id, level);
+        }
+
 
         #endregion
 
@@ -136,6 +155,7 @@ namespace GameWish.Game
         {
             m_CharacterDataWrapper.AddCharacter(id, quality);
         }
+
 
         /// <summary>
         /// Remove a character and save db data
@@ -229,8 +249,6 @@ namespace GameWish.Game
         }
 
         #endregion
+
     }
-
-    
-
 }

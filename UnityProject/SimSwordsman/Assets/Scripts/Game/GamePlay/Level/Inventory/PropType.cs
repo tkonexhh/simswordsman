@@ -12,8 +12,18 @@ namespace GameWish.Game
         Arms                             = 1,        //武器
         Armor                            = 2,        //铠甲
         RawMaterial                      = 3,        //原材料
+        Kungfu                           = 4,        //原材料
     }
 
+    public enum KungfuType
+    {
+        None,
+        XiangLong18Zhang                 = 1,        //降龙十八掌
+        XiangLong19Zhang                 = 2,
+        WuLinMiJi                        = 3,        //武林秘籍
+        LingBoWeiBu                      = 4,        //凌波微步
+        JiBenQuanJiao                    = 5,        //基本拳脚
+    }
 
     public enum RawMaterial
     { 
