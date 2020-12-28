@@ -50,15 +50,19 @@ namespace GameWish.Game
             m_BulletinBorardBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.BulletinBoardPanel); });
             m_SignInBtn.onClick.AddListener(() => {
                 //UIMgr.S.OpenPanel(UIID.SignInPanel); 
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(Armor.BrightLightArmor, Step.Eight),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.Eight),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.Four),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.HeavenReliantSword, Step.Eight),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.One),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Charoite),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Malachite),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.RedAgate),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(Armor.BrightLightArmor, Step.Eight),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.Eight),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.Four),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.HeavenReliantSword, Step.Eight),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.One),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Charoite),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Malachite),3);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.RedAgate),3);
                 //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 3, 4));
+
+                MainGameMgr.S.CharacterMgr.AddKungfu(2, new KungfuItem(KungfuType.LingBoWeiBu ));
+                MainGameMgr.S.CharacterMgr.AddKungfu(2, new KungfuItem(KungfuType.WuLinMiJi ));
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(2,200);
             });
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });

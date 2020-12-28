@@ -18,10 +18,10 @@ namespace GameWish.Game
             kongfuLibLevelInfo.Warp(levelInfo);
 
             string[] kongfuStrs = tdData.unlockKongfu.Split('|');
-            List<KongfuType> kongfuTypeList = new List<KongfuType>();
+            List<KungfuType> kongfuTypeList = new List<KungfuType>();
             foreach (string item in kongfuStrs)
             {
-                KongfuType kongfuType = EnumUtil.ConvertStringToEnum<KongfuType>(item);
+                KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(item);
                 kongfuTypeList.Add(kongfuType);
             }
             kongfuLibLevelInfo.SetCurLevelUnlockedKongfuList(kongfuTypeList);

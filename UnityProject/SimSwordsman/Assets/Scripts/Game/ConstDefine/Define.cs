@@ -14,6 +14,7 @@ namespace GameWish.Game
         public const int DEFAULT_TIP_NUM = 5;
 
         public const string DEFAULT_SOUND = "";
+        public const string DEFAULT_NUMBER_ZERO = "0";
         public const string SOUND_DEFAULT_SOUND = "Sound_ButtonClick";
         public const string SOUND_BUTTON_CLICK = "Sound_ButtonClick";
         public const string SOUND_BLOCK_UPGRADE = "Sound_LevelUp"; 
@@ -49,11 +50,34 @@ namespace GameWish.Game
         public const string COMMON_UPGRADEINFODESC = "Common_UpgradeInfoDesc";
         public const string COMMON_BUILDINFODESC = "Common_BuildInfoDesc";
         public const string COMMON_UPGRADE = "Common_Upgrade";
-        public const string COMMON_UNIT_GRADE = "Common_Unit_Grade";
-        public const string COMMON_UNIT_PEOPLE = "Common_Unit_People";
         public const string COMMON_BUILD = "Common_Build";
         public const string COMMON_NOTBUILD = "Common_NotBuild";
+        public const string COMMON_NOTUNLOCKED = "Common_NotUnlocked";
+        public const string COMMON_UNLOCKED = "Common_Unlocked";
         public const string COMMON_FULLLEVEL = "Common_FullLevel";
+
+        public const string COMMON_UNIT_GRADE = "Common_Unit_Grade";
+        public const string COMMON_UNIT_PEOPLE = "Common_Unit_People";
+        public const string COMMON_UNIT_DAY = "Common_Unit_Day";
+        public const string COMMON_UNIT_PAET = "Common_Unit_Part";
+        public const string COMMON_UNIT_CLASS = "Common_Unit_Class";
+        public const string COMMON_UNIT_INDIVIDUAL = "Common_Unit_Individual";
+        public const string COMMON_UNIT_ONLY = "Common_Unit_Only";
+        public const string COMMON_UNIT_LAYER = "Common_Unit_Layer";
+
+        //公用数字
+        public const string COMMON_NUMBER_ZERO = "Common_Number_Zero";
+        public const string COMMON_NUMBER_ONE = "Common_Number_One";
+        public const string COMMON_NUMBER_TWO = "Common_Number_Two";
+        public const string COMMON_NUMBER_THREE = "Common_Number_Three";
+        public const string COMMON_NUMBER_FOUR = "Common_Number_Four";
+        public const string COMMON_NUMBER_FIVE = "Common_Number_Five";
+        public const string COMMON_NUMBER_SIX = "Common_Number_Six";
+        public const string COMMON_NUMBER_SEVENT = "Common_Number_Seven";
+        public const string COMMON_NUMBER_EIGHT = "Common_Number_Eight";
+        public const string COMMON_NUMBER_NINE = "Common_Number_Nine";
+        public const string COMMON_NUMBER_TEN = "Common_Number_Ten";
+
         public const string COMMON_DEFAULT_STR = "";
 
         // Character
@@ -105,7 +129,6 @@ namespace GameWish.Game
         public const string FACILITY_WAREHOUSE_NAME = "Facility_Warehouse_Name";
         public const string FACILITY_WAREHOUSE_DESCRIBE = "Facility_Warehouse_Describe";
         public const string FACILITY_WAREHOUSE_INDIVIDUAL = "Facility_Warehouse_Individual";
-        public const string FACILITY_WAREHOUSE_CLASS = "Facility_Warehouse_Class";
 
         //Disciple
         public const string DISCIPLE_NAME = "Disciple_Name";
@@ -113,6 +136,15 @@ namespace GameWish.Game
         public const string DISCIPLE_QUALITY_NORMAL = "Disciple_Quality_Normal";
         public const string DISCIPLE_NAME_GOOD = "Disciple_Quality_Good";
         public const string DISCIPLE_NAME_PREFECT = "Disciple_Quality_Perfect";
+        public const string DISCIPLE_TITLE_LEVEL= "Disciple_Title_Level";
+        public const string DISCIPLE_TITLE_SKILL = "Disciple_Title_Skill";
+        public const string DISCIPLE_TITLE_ENTRYTIME = "Disciple_Title_EntryTime";
+        public const string DISCIPLE_TITLE_RANK = "Disciple_Title_Rank";
+        public const string DISCIPLE_STATE_WORKING= "Disciple_State_Working";
+        public const string DISCIPLE_STATE_FREE= "Disciple_State_Free";
+        public const string DISCIPLE_PRACTICE = "Disciple_Practice";
+        public const string DISCIPLE_WORK = "Disciple_Work";
+        public const string DISCIPLE_EJECT = "Disciple_Eject";
 
         //LivableRoom
         public const string FACILITY_LIVABLEROOMEAST_NAME = "Facility_LivableRoomEast_Name";
@@ -147,6 +179,23 @@ namespace GameWish.Game
         //BulletinBoard
         public const string BULLETINBOARD_VIEWDETAILS = "BulletinBoard_ViewDetails";
         public const string BULLETINBOARD_RECEIVEREWARDS = "BulletinBoard_ReceiveRewards";
+
+        //Kungfo
+        public const string KUNGFU_TITLE = "Kungfu_Title";
+        public const string KUNGFU_STATE_NOTLEARNED = "kungfu_State_NotLearned";
+        public const string KUNGFU_STATE_LEARNABLE = "kungfu_State_Learnable";
+        public const string KUNGFU_NAME_BASICBOXING = "Kungfu_Name_BasicBoxing";
+        public const string KUNGFU_NAME_XLSBZ = "Kungfu_Name_XLSBZ";
+
+        //Equipment
+        public const string EQUIP_TITLE_SKILL = "Equip_Title_Skill";
+        public const string EQUIP_INTENSIFY = "Equip_Intensify";
+        //ARMPR
+        public const string ARMOR_TITLE = "Armor_title";
+        public const string ARMOR_NAME_MKJ = "Armor_Name_MKJ";
+        //ARMS
+        public const string ARMS_TITLE = "Arms_title";
+
 
 
     }

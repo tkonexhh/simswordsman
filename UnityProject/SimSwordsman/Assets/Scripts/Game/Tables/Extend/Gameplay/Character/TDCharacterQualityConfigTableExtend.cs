@@ -16,6 +16,7 @@ namespace GameWish.Game
             CharacterQualityConfigInfo info = new CharacterQualityConfigInfo();
             info.quality = EnumUtil.ConvertStringToEnum<CharacterQuality>(tdData.quality);
             info.maxLevel = tdData.maxLevel;
+            info.kongfuSlot = tdData.kongfuSlot;
 
             string[] levelStrs = tdData.kongfuNeedLevel.Split('|');
             for (int i = 0; i < levelStrs.Length; i++)
