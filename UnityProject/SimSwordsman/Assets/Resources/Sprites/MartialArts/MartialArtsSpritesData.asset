@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+  m_Name: MartialArtsSpritesData
+  m_EditorClassIdentifier: 
+  m_AtlasName: Assets/Resources/Sprites/MartialArts
+  m_SpriteList:
+  - {fileID: 21300000, guid: b1d2b0881bfd7a140831eabb61989191, type: 3}
+  - {fileID: 21300000, guid: e8d575b0dc9f7554c9ee563089656d58, type: 3}
+  - {fileID: 21300000, guid: d0bcd709ad591ac448df5c79c8fad0dc, type: 3}
+  - {fileID: 21300000, guid: d5c7e2a7d60dc9241a74d982a9f67591, type: 3}

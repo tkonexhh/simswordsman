@@ -10,6 +10,7 @@ namespace GameWish.Game
     public class InventoryDbData
     {
         public List<PropItemDbData> propList = new List<PropItemDbData>();
+        public List<KungfuItemDbData> kungfuList = new List<KungfuItemDbData>();
         public List<ArmsDBData> armsDBDataList = new List<ArmsDBData>();
         public List<ArmorDBData> armorDBDataList = new List<ArmorDBData>();
 
@@ -30,7 +31,6 @@ namespace GameWish.Game
                 ArmsDBData newArmsDBData = new ArmsDBData(_armsItem);
                 armsDBDataList.Add(newArmsDBData);
             }
-
         }
 
         public void AddArmor(ArmorItem _armorDBData, int delta = 1)
@@ -62,6 +62,25 @@ namespace GameWish.Game
         public PropItemDbData GetItem(RawMaterial propSubType)
         {
             return propList.FirstOrDefault(i => i.PropSubType == propSubType);
+        }
+        public void AddKungfuItem(KungfuItem _kungfuItem, int delta)
+        {
+            PropItemDbData propItemDbData = propList.FirstOrDefault(i => i.IsHaveItem(_kungfuItem));
+
+            if (propItemDbData != null)
+                propItemDbData.AddEquipNumber(delta);
+            else
+            {
+                KungfuItemDbData newKungfuItemDbData = new KungfuItemDbData(_kungfuItem);
+                kungfuList.Add(newKungfuItemDbData);
+            }
+        }
+
+        public void RemoveKungfuItem(KungfuItem _kungfuItem, int delta)
+        {
+            KungfuItemDbData kungfutemDbData = kungfuList.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
+            if (kungfutemDbData != null && kungfutemDbData.ReduceItemNumber(delta))
+                kungfuList.Remove(kungfutemDbData);
         }
 
         public void AddPropItem(PropItem _propItem, int delta)
@@ -166,6 +185,40 @@ namespace GameWish.Game
             PropType = _propItem.PropType;
             PropSubType = _propItem.PropSubType;
             Number = _propItem.Number;
+        }
+
+        public void AddCount(int delta)
+        {
+            Number += delta;
+
+            Number = Mathf.Clamp(Number, 0, Define.MAX_PROP_COUNT);
+        }
+
+        public void RemoveCount(int delta)
+        {
+            Number -= delta;
+
+            Number = Mathf.Clamp(Number, 0, Define.MAX_PROP_COUNT);
+        }
+
+        public override bool IsHaveItem(ItemBase _itemBase)
+        {
+            return true;
+        }
+    }
+
+    [Serializable]
+    public class KungfuItemDbData : ItemDBData
+    {
+        public KungfuItemDbData() { }
+        public KungfuType KungfuType { set; get; }
+
+
+        public KungfuItemDbData(KungfuItem _kungfuItem)
+        {
+            PropType = _kungfuItem.PropType;
+            KungfuType = _kungfuItem.KungfuType;
+            Number = _kungfuItem.Number;
         }
 
         public void AddCount(int delta)

@@ -25,23 +25,25 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_EntryTimeValue;
         [SerializeField]
+        private Image m_StateBg;
+        [SerializeField]
         private Text m_StateValue;
         [SerializeField]
         private Text m_RankTitle;
         [SerializeField]
         private Text m_RankValue;
         [SerializeField]
+        private Text m_GradeValue;
+        [SerializeField]
         private Image m_DiscipleImg;
 
         [Header("UpperMiddle")]
         [SerializeField]
-        private Text m_DiscipleName;
-        [SerializeField]
         private Text m_KungfuTitle;
         [SerializeField]
-        private Text m_KungfuTra;
+        private Transform m_KungfuTra;
         [SerializeField]
-        private Text m_KungfuItem;
+        private GameObject m_KungfuItem;
 
         [Header("LeftLowerMiddle")]
         [SerializeField]
@@ -101,51 +103,96 @@ namespace GameWish.Game
 
         [SerializeField]
         private Button m_CloseBtn;
-        [SerializeField]
-        private Button m_ExpulsionBtn;
 
         private CharacterItem m_CurDisciple = null;
+        private CharacterQualityConfigInfo m_QualityInfo = null;
+
         //private EquipmentItem m_CurArmor = null;
         //private EquipmentItem m_CurArms = null;
         protected override void OnUIInit()
         {
             base.OnUIInit();
 
+            InitPanelTitleInfo();
+
             BindAddListenerEvent();
+        }
+
+        /// <summary>
+        /// 初始化面板的固定信息
+        /// </summary>
+        private void InitPanelTitleInfo()
+        {
+            m_LevelTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_LEVEL);
+            m_SkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL);
+            m_EntryTimeTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_ENTRYTIME);
+            m_RankTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_RANK);
+            m_KungfuTitle.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_TITLE);
+            m_ArmorTitle.text = CommonUIMethod.GetStringForTableKey(Define.ARMOR_TITLE);
+            m_ArmsTitle.text = CommonUIMethod.GetStringForTableKey(Define.ARMS_TITLE);
+            m_PracticeValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_PRACTICE);
+            m_WorkValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_WORK);
+            m_EjectValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_EJECT);
+            m_IntensifyArmorValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
+            m_IntensifyArmsValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
         }
 
         private void RefreshPanelInfo()
         {
-            m_DiscipleName.text = m_CurDisciple.name;
-            m_LevelValue.text = m_CurDisciple.level.ToString();
-            //m_QualityValue.text = CommonUIMethod.GetStrQualityForChaQua(m_CurDisciple.quality);
-            m_SkillValue.text = m_CurDisciple.startTime;
+            m_DiscipleNameValue.text = m_CurDisciple.name;
+            m_LevelValue.text = CommonUIMethod.GetGrade(m_CurDisciple.level);
+            m_SkillValue.text = m_CurDisciple.atkValue.ToString();
+            m_EntryTimeValue.text = GetEntryTime(m_CurDisciple.startTime);
+            m_RankValue.text  = CommonUIMethod.GetPart(m_CurDisciple.stage);
+            m_GradeValue.text  = CommonUIMethod.GetStrQualityForChaQua(m_CurDisciple.quality);
+            SetCharacterBehavior(m_CurDisciple.behavior);
 
-            //foreach (var item in m_CurDisciple.characterEquipment)
-            //{
-            //    switch (item.PropType)
-            //    {
-            //        case PropType.Armor:
-            //            m_ArmorValue.text = item.Name;
-            //            m_ArmorClass.text = CommonUIMethod.GetItemClass(item.ClassID);
-            //            m_ArmorAddition.text = CommonUIMethod.GetBonus(MainGameMgr.S.CharacterMgr.GetDiscipleEquipBonus(item));
-            //            break;
-            //        case PropType.Arms:
-            //            m_ArmsValue.text = item.Name;
-            //            m_ArmsClass.text = CommonUIMethod.GetItemClass(item.ClassID);
-            //            m_ArmsAddition.text = CommonUIMethod.GetBonus(MainGameMgr.S.CharacterMgr.GetDiscipleEquipBonus(item));
-            //            break;
-            //        default:
-            //            break;
-            //    }
-                
-            //}
+            for (int i = 0; i < m_QualityInfo.kongfuSlot; i++)
+            {
+                if (m_CurDisciple.level> m_QualityInfo.learnKonfuNeedLevelList[i])
+                {
+                    if (m_CurDisciple.kongfus.Count > i && m_CurDisciple.kongfus[i] != null)
+                        CreateKungfu(KungfuLockState.Learned, GetKungfuSprite(m_CurDisciple.kongfus[i]), -1, m_CurDisciple.kongfus[i]);
+                    else
+                        CreateKungfu(KungfuLockState.NotLearning, FindSprite(KungfuType.WuLinMiJi.ToString())); ;
+                    continue;
+                }
+                CreateKungfu(KungfuLockState.NotUnlocked, FindSprite(KungfuType.WuLinMiJi.ToString()), m_QualityInfo.learnKonfuNeedLevelList[i]);
+            }
+        }
 
-    
+        //素材名称 和 KongfuType名称保持一致
+        private Sprite GetKungfuSprite(CharacterKongfu characterKongfu)
+        {
+            return FindSprite(characterKongfu.dbData.kongfuType.ToString());
+        }
 
-            //m_ArmsValue.text = m_CurDisciple.weapon.name;
-            //m_ArmsClass.text = m_CurDisciple.weapon.dbData.level.ToString();
-            //m_ArmsAddition.text = m_CurDisciple.weapon.atkScale.ToString();
+        private void CreateKungfu(KungfuLockState kungfuLockState,Sprite sprite,int UnLockLevel = -1, CharacterKongfu characterKongfu = null)
+        {
+            ItemICom itemICom = Instantiate(m_KungfuItem, m_KungfuTra).GetComponent<ItemICom>();
+            itemICom.OnInit(characterKongfu,null,kungfuLockState, sprite, UnLockLevel);
+        }
+
+        private string GetEntryTime(string str)
+        {
+            if (str != null)
+                return CommonUIMethod.GetStrForColor("#86570C", str) + CommonUIMethod.GetStrForColor("#382E2E", CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_DAY));
+            return "";
+        }
+
+        private void SetCharacterBehavior(CharacterBehavior behavior)
+        {
+            switch (behavior)
+            {
+                case CharacterBehavior.Working:
+                    m_StateBg.sprite = FindSprite("BgFont3");
+                    m_StateValue.text = CommonUIMethod.GetStrForColor("#31691A", CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_WORKING));
+                    break;
+                case CharacterBehavior.Free:
+                    m_StateBg.sprite = FindSprite("BgFont8");
+                    m_StateValue.text = CommonUIMethod.GetStrForColor("#426E7B", CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_FREE));
+                    break;
+            }
         }
 
         private void BindAddListenerEvent()
@@ -161,11 +208,11 @@ namespace GameWish.Game
 
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
-            m_ExpulsionBtn.onClick.AddListener(() =>
-            {
-                MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
-                CloseSelfPanel();
-            });
+            //m_ExpulsionBtn.onClick.AddListener(() =>
+            //{
+            //    MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
+            //    CloseSelfPanel();
+            //});
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -174,6 +221,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnSelectedEquipSuccess,HandleAddListenerEvevt);
 
             m_CurDisciple = (CharacterItem)args[0];
+            m_QualityInfo = m_CurDisciple.GetCharacterQualityConfigInfo();
             RefreshPanelInfo();
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
@@ -203,7 +251,6 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseSelfPanel();
             CloseDependPanel(EngineUI.MaskPanel);
-
         }
     }
 

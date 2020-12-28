@@ -88,6 +88,18 @@ namespace GameWish.Game
             }
             m_ClanData.AddArmor(ItemBase.CopySelf(_armorItem), delta);
         }
+        public void AddKungfu(KungfuItem _kungfuItem, int delta = 1)
+        {
+            KungfuItem armsItem = (KungfuItem)m_WarehouseItems.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
+            if (armsItem != null)
+                armsItem.AddEquipNumber(delta);
+            else
+            {
+                _kungfuItem.Number += delta;
+                m_WarehouseItems.Add(_kungfuItem);
+            }
+            m_ClanData.AddKungfu(ItemBase.CopySelf(_kungfuItem), delta);
+        }
 
         public void AddArms(ArmsItem _armsItem, int delta = 1)
         {
@@ -211,6 +223,43 @@ namespace GameWish.Game
         }
     }
 
+    public class KungfuItem : ItemBase
+    {
+        public KungfuType KungfuType { set; get; }
+        public float AtkScale { set; get; }
+        public override int GetSortId()
+        {
+            throw new NotImplementedException();
+        }
+        public KungfuItem(KungfuType kungfuType)
+        {
+            PropType = PropType.Kungfu;
+            KungfuType = kungfuType;
+            Number = 0;
+            RefreshItemInfo();
+        }
+
+        public override bool IsHaveItem(ItemBase _itemBase)
+        {
+            KungfuItem propItem = _itemBase as KungfuItem;
+            if (propItem != null && KungfuType == propItem.KungfuType)
+                return true;
+            return false;
+        }
+
+        public override void RefreshItemInfo()
+        {
+            KungfuConfigInfo configInfo = TDKongfuConfigTable.GetKungfuConfigInfo(KungfuType);
+            Desc = configInfo.Desc;
+            Name = configInfo.Name;
+        }
+
+        public override void Wrap<T>(T t)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ArmorItem : ItemBase
     {
         public Armor ArmorID { set; get; }
@@ -271,7 +320,6 @@ namespace GameWish.Game
         {
       
         }
-
 
         public ArmsItem(ArmsItem armsItem) : base(armsItem)
         {
@@ -364,7 +412,7 @@ namespace GameWish.Game
         }
 
     
-        public static T CopySelf<T>(T obj)
+        public static T CopySelf<T>(T obj) where T:ItemBase
         {
             object retval = Activator.CreateInstance(typeof(T));
             PropertyInfo[] pis = typeof(T).GetProperties();

@@ -7,19 +7,19 @@ namespace GameWish.Game
 {
     public class KongfuLibraryLevelInfo : FacilityLevelInfo
     {
-        private List<KongfuType> m_UnlockedKongfuType = new List<KongfuType>();
+        private List<KungfuType> m_UnlockedKongfuType = new List<KungfuType>();
 
-        public List<KongfuType> GetCurLevelUnlockedKongfuList()
+        public List<KungfuType> GetCurLevelUnlockedKongfuList()
         {
             return m_UnlockedKongfuType;
         }
 
-        public void SetCurLevelUnlockedKongfuList(List<KongfuType> list)
+        public void SetCurLevelUnlockedKongfuList(List<KungfuType> list)
         {
             m_UnlockedKongfuType = list;
         }
 
-        public List<KongfuType> GetNextLevelUnlockedKongfuList()
+        public List<KungfuType> GetNextLevelUnlockedKongfuList()
         {
             int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
             return ((KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.KongfuLibrary, realLevel)).GetCurLevelUnlockedKongfuList();

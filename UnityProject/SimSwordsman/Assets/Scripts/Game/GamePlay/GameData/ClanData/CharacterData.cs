@@ -61,13 +61,20 @@ namespace GameWish.Game
             item.AddExp(deltaExp);
         }
 
-        public void AddKonfuExp(CharacterItemDbData item, KongfuType kongfuType, int deltaExp)
+        public void AddKonfuExp(CharacterItemDbData item, KungfuType kongfuType, int deltaExp)
         {
             CharacterKongfuData data = item.kongfuDatas.FirstOrDefault(i => i.kongfuType == kongfuType);
             if (data != null)
             {
                 data.AddExp(deltaExp);
             }
+        }
+
+        public void AddKungfu(int id, CharacterKongfuData characterKongfu)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb!=null)
+                characterItemDb.LearnKungfu(characterKongfu);
         }
     }
 
@@ -107,6 +114,11 @@ namespace GameWish.Game
             this.stage = 1;
         }
 
+        public void LearnKungfu(CharacterKongfuData characterKongfu)
+        {
+            kongfuDatas.Add(characterKongfu);
+        }
+
         //public void AddEquipmentItem(EquipmentItem equipmentItem)
         //{
         //     ReturnEquipment(equipmentItem.PropType);
@@ -144,7 +156,7 @@ namespace GameWish.Game
     [Serializable]
     public class CharacterKongfuData
     {
-        public KongfuType kongfuType;
+        public KungfuType kongfuType;
         public int level;
         public int curExp;
 
@@ -152,6 +164,8 @@ namespace GameWish.Game
         {
 
         }
+
+      
 
         public void AddExp(int deltaExp)
         {
