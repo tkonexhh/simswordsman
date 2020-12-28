@@ -13,6 +13,7 @@ namespace GameWish.Game
         
        
         private EInt m_Stage = 0;   
+        private string m_Quality;   
         private EInt m_FromLevel = 0;   
         private EInt m_ToLevel = 0;   
         private string m_BaseAtk;   
@@ -27,6 +28,11 @@ namespace GameWish.Game
         /// ID
         /// </summary>
         public  int  stage {get { return m_Stage; } }
+       
+        /// <summary>
+        /// 品质
+        /// </summary>
+        public  string  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 起始等级
@@ -82,24 +88,27 @@ namespace GameWish.Game
                     m_Stage = dataR.ReadInt();
                     break;
                 case 1:
-                    m_FromLevel = dataR.ReadInt();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 2:
-                    m_ToLevel = dataR.ReadInt();
+                    m_FromLevel = dataR.ReadInt();
                     break;
                 case 3:
-                    m_BaseAtk = dataR.ReadString();
+                    m_ToLevel = dataR.ReadInt();
                     break;
                 case 4:
-                    m_GrowAtk = dataR.ReadInt();
+                    m_BaseAtk = dataR.ReadString();
                     break;
                 case 5:
-                    m_UnlockContent = dataR.ReadString();
+                    m_GrowAtk = dataR.ReadInt();
                     break;
                 case 6:
-                    m_StartExp = dataR.ReadInt();
+                    m_UnlockContent = dataR.ReadString();
                     break;
                 case 7:
+                    m_StartExp = dataR.ReadInt();
+                    break;
+                case 8:
                     m_GrowExp = dataR.ReadInt();
                     break;
                 default:
@@ -112,16 +121,17 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Stage", 0);
-          ret.Add("FromLevel", 1);
-          ret.Add("ToLevel", 2);
-          ret.Add("BaseAtk", 3);
-          ret.Add("GrowAtk", 4);
-          ret.Add("UnlockContent", 5);
-          ret.Add("StartExp", 6);
-          ret.Add("GrowExp", 7);
+          ret.Add("Quality", 1);
+          ret.Add("FromLevel", 2);
+          ret.Add("ToLevel", 3);
+          ret.Add("BaseAtk", 4);
+          ret.Add("GrowAtk", 5);
+          ret.Add("UnlockContent", 6);
+          ret.Add("StartExp", 7);
+          ret.Add("GrowExp", 8);
           return ret;
         }
     } 

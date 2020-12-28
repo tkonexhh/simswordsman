@@ -1130,6 +1130,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Clan\TDEnemyConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Clan\TDSectNameExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Clan\TDSectNameTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\DailySignin\TDDailySigninExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\DailySignin\TDDailySigninTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmorConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmorConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmsConfigExtend.cs" />
@@ -1164,6 +1166,10 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Level\TDChapterConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Level\TDLevelConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Level\TDLevelConfigTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDCommonTaskExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDCommonTaskTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDDailyTaskExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDDailyTaskTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDMainTaskExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDMainTaskTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MedicinalPowder\TDHerbConfigExtend.cs" />
@@ -1208,6 +1214,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Clan\TDEnemyConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Clan\TDSectName.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Clan\TDSectNameTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\DailySignin\TDDailySignin.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\DailySignin\TDDailySigninTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmorConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmorConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmsConfig.cs" />
@@ -1242,6 +1250,10 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Level\TDChapterConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Level\TDLevelConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Level\TDLevelConfigTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDCommonTask.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDCommonTaskTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDDailyTask.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDDailyTaskTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDMainTask.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDMainTaskTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MedicinalPowder\TDHerbConfig.cs" />
@@ -1352,6 +1364,7 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\WearableLearningItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\WearableLearningPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\MainMenuPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\SectNamePanel\SectNamePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\SignInPanel\SignInItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\SignInPanel\SignInPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\RatePanel.cs" />
@@ -1392,6 +1405,7 @@
     <None Include="Assets\Resources\Spines\Character\Character1\pupil_1.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\remote_config.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityBartizan.txt" />
+    <None Include="Assets\StreamingAssets\config\CommonTask.txt" />
     <None Include="Assets\StreamingAssets\config\language_zh.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityLobby.txt" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\Issues in button behavior (MAC).txt" />
@@ -1448,6 +1462,7 @@
     <None Include="Assets\StreamingAssets\config\FacilityLivableRoom.txt" />
     <None Include="Assets\SDKAdapter\DataAnalysis\Tenjin\Plugins\Android\Tenjin\AndroidManifest.xml" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTweenPro\readme.txt" />
+    <None Include="Assets\StreamingAssets\config\DailyTask.txt" />
     <None Include="Assets\StreamingAssets\config\MainTask.txt" />
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\iOS\VERSION_MOAT.txt" />
     <None Include="Assets\SDKAdapter\DataAnalysis\TalkingData\Plugins\Android\AndroidManifest.xml" />
@@ -1463,6 +1478,7 @@
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-crashlytics-unity\maven-metadata.xml" />
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\iOS\LICENSE_MOAT.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityConfig.txt" />
+    <None Include="Assets\StreamingAssets\config\DailySignin.txt" />
     <None Include="Assets\Res\FolderMode\Shader\Custom\UIBlinkImage.shader" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouch\RealseNotes.txt" />
     <None Include="Assets\SDKAdapter\Firebase\Plugins\Crashlytics\link.xml" />
