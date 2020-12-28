@@ -53,6 +53,6 @@ namespace GameWish.Game
         PracticeFieldPanel,
         ConstructionFacilitiesPanel,
         
-
+        SectNamePanel,
     }
 }

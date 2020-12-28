@@ -41,6 +41,10 @@ namespace GameWish.Game
 
         #region Public Get      
 
+        public int GetCharacterCount()
+        {
+            return m_CharacterDataWrapper.characterList.Count;
+        }
         /// <summary>
         /// 获取装备的加成
         /// </summary>
