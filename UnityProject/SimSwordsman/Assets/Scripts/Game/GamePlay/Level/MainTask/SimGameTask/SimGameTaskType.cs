@@ -27,5 +27,6 @@ namespace GameWish.Game
         Vine,
         Iron,
         Ganoderma,
+        Well,
     }
 }
