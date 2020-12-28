@@ -63,7 +63,7 @@ namespace GameWish.Game
 		{
 			m_CurLevelValueTxt.text = m_CurLevel.ToString();
 
-			m_UpgradeCostCoinValueTxt.text = m_CurKongfuLibraryLevelInfo.upgradeResCosts.ToString();
+			m_UpgradeCostCoinValueTxt.text = m_CurKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
 
 			List<KungfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
 

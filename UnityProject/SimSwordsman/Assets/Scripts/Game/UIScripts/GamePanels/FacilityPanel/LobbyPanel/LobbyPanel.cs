@@ -272,7 +272,7 @@ namespace GameWish.Game
             m_CurLevelValueText.text = m_CurLevel.ToString();
             m_NextLevelValueText.text = (m_CurLevel + 1).ToString();
             m_UpgradeRewardValueText.text = m_CurFacilityLevelInfo.upgradeResCosts.GetContent();
-            m_UpgradeNeedCoinValueText.text = m_CurFacilityLevelInfo.upgradeResCosts.ToString();
+            m_UpgradeNeedCoinValueText.text = m_CurFacilityLevelInfo.upgradeCoinCost.ToString();
 
             m_SilverRecruitmentTimes.text = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.SilverMedal).ToString() + "/3";
 

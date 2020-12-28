@@ -77,7 +77,7 @@ namespace GameWish.Game
             m_NextFoodLimitTxt.text = m_CurKitchLevelInfo.GetNextFoodLimit().ToString();
             m_NextRecoverySpeedTxt.text = m_CurKitchLevelInfo.GetNextFoodAddSpeed().ToString();
 
-            m_UpgradeRequiredCoinTxt.text = m_CurKitchLevelInfo.upgradeResCosts.ToString();
+            m_UpgradeRequiredCoinTxt.text = m_CurKitchLevelInfo.upgradeCoinCost.ToString();
         }
 
         protected override void OnPanelOpen(params object[] args)

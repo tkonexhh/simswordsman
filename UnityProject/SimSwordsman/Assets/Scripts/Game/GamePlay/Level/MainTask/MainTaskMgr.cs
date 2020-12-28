@@ -121,7 +121,7 @@ namespace GameWish.Game
             {
                 m_MainTaskData.taskList.ForEach(i => 
                 {
-                    AddTask(i.taskId, i.taskType, i.taskSubType,i.taskState);
+                    AddTask(i.taskId, i.taskType, i.taskSubType, i.taskState);
                 });
 
             }
@@ -134,10 +134,10 @@ namespace GameWish.Game
 
             SimGameTaskType taskType = EnumUtil.ConvertStringToEnum<SimGameTaskType>(strs[0]);
             int subType = 1;
-            if (taskType == SimGameTaskType.Hunt)
+            if (taskType == SimGameTaskType.Collect)
             {
-                HuntTaskSubType huntTaskSubType = EnumUtil.ConvertStringToEnum<HuntTaskSubType>(strs[1]);
-                subType = (int)huntTaskSubType;
+                CollectedObjType collectedObjType = EnumUtil.ConvertStringToEnum<CollectedObjType>(strs[1]);
+                subType = (int)collectedObjType;
             }
 
             AddTask(taskId, taskType, subType);

@@ -28,6 +28,7 @@ namespace GameWish.Game
         public void Warp(FacilityLevelInfo levelInfo)
         {
             this.level = levelInfo.level;
+            this.upgradeCoinCost = levelInfo.upgradeCoinCost;
             this.upgradeNeedLobbyLevel = levelInfo.upgradeNeedLobbyLevel;
             this.upgradeResCosts = levelInfo.upgradeResCosts;
         }

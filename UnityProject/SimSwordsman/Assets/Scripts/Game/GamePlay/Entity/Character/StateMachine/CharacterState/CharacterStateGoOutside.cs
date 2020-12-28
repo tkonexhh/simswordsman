@@ -8,12 +8,13 @@ using DG.Tweening;
 
 namespace GameWish.Game
 {
-    public class CharacterStateFighting : CharacterState
+    public class CharacterStateGoOutside : CharacterState
     {
         private CharacterController m_Controller = null;
 
+        private TaskPos m_TaskPos = null;
 
-        public CharacterStateFighting(CharacterStateID stateEnum) : base(stateEnum)
+        public CharacterStateGoOutside(CharacterStateID stateEnum) : base(stateEnum)
         {
 
         }
@@ -22,6 +23,14 @@ namespace GameWish.Game
         {
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
+
+            if (m_TaskPos == null)
+            {
+                m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
+            }
+
+            Vector3 pos = m_TaskPos.GetDoorPos();
+            m_Controller.MoveTo(pos, OnReachDestination);
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -35,7 +44,7 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
-            m_Controller.CharacterView.PlayAnim("practice", true, null);
+            m_Controller.HideBody();
         }
     }
 }

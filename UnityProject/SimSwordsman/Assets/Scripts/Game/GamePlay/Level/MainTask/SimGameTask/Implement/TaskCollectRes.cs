@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class TaskFishing : SimGameTask
+	public class TaskCollectRes : SimGameTask
 	{
-        public TaskFishing(int taskId, SimGameTaskType taskType, int subType, string tableName, TaskState taskState, Action<TaskItem> stateChangedCallback) : base(taskId, taskType, subType, tableName, taskState, stateChangedCallback)
+        public TaskCollectRes(int taskId, SimGameTaskType taskType, int subType, string tableName, TaskState taskState, Action<TaskItem> stateChangedCallback) : base(taskId, taskType, subType, tableName, taskState, stateChangedCallback)
         {
         }
 
@@ -17,7 +17,7 @@ namespace GameWish.Game
             selectedCharacters.ForEach(i => 
             {
                 i.CurTask = this;
-                i.SetState(CharacterStateID.Fishing);
+                i.SetState(CharacterStateID.CollectRes);
             });
         }
     }

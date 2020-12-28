@@ -86,7 +86,6 @@ namespace GameWish.Game
                     break;
             }
 
-
         }
 
         private void GetInformationForNeed()
@@ -124,7 +123,7 @@ namespace GameWish.Game
                         CloseSelfPanel();
                         break;
                     case PanelType.Challenge:
-                        EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo, m_SelectedList, m_PlayerDataHerb);
+                        EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
                         UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
                         break;
                     default:

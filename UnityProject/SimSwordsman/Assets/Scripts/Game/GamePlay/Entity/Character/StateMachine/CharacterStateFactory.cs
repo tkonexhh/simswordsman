@@ -20,9 +20,8 @@ namespace GameWish.Game
             RegisterPlayerState(CharacterStateID.EnterClan, new CharacterStateEnterClan(CharacterStateID.EnterClan));
             RegisterPlayerState(CharacterStateID.Battle, new CharacterStateBattle(CharacterStateID.Battle));
             RegisterPlayerState(CharacterStateID.Practice, new CharacterStatePractice(CharacterStateID.Practice));
-            RegisterPlayerState(CharacterStateID.Fishing, new CharacterStateFishing(CharacterStateID.Fishing));
-            RegisterPlayerState(CharacterStateID.Hunting, new CharacterStateHunting(CharacterStateID.Hunting));
-            RegisterPlayerState(CharacterStateID.Fighting, new CharacterStateFighting(CharacterStateID.Fighting));
+            RegisterPlayerState(CharacterStateID.CollectRes, new CharacterStateCollectRes(CharacterStateID.CollectRes));
+            RegisterPlayerState(CharacterStateID.GoOutside, new CharacterStateGoOutside(CharacterStateID.GoOutside));
         }
 
         private void RegisterPlayerState(CharacterStateID id, CharacterState state)

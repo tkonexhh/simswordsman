@@ -14,9 +14,8 @@ namespace GameWish.Game
         Wander,
         Battle,
         Practice,
-        Fishing,
-        Hunting,
-        Fighting,
+        CollectRes,
+        GoOutside,
     }
 
     public class CharacterState : FSMState<ICharacterStateHander>
