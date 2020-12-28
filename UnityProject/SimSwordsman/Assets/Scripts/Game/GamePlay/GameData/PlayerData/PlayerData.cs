@@ -13,6 +13,7 @@ namespace GameWish.Game
         public int coinNum;
         public int foodNum;
 
+        public string firstPlayTime;
         public string lastPlayTime;
 
         public List<HerbModel> herbModels = new List<HerbModel>();
@@ -20,7 +21,8 @@ namespace GameWish.Game
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         private double m_CoinNum = 0;
-        
+        public int signInCount;
+
         public void SetDefaultValue()
         {
             m_CoinNum = Define.DEFAULT_COIN_NUM;
@@ -30,6 +32,7 @@ namespace GameWish.Game
             foodNum = Define.DEFAULT_FOOD_NUM;
 
             lastPlayTime = "0";
+            firstPlayTime = string.Empty;
 
             InitChapterDataList();
 
@@ -196,6 +199,17 @@ namespace GameWish.Game
                 SetDataDirty();
             }
         }
+
+        public DateTime GetFirstLoginTime()
+        {
+            return DateTime.Parse(firstPlayTime);
+        }
+        public void AddSignInCount(int delta)
+        {
+            signInCount++;
+            SetDataDirty();
+        }
+
 
         #region Chapter
 

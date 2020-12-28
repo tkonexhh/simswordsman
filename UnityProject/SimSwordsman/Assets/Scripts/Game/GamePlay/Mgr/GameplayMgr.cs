@@ -72,6 +72,11 @@ namespace GameWish.Game
 
             //TimeUpdateMgr.S.Start();
 
+            if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
+            {
+                GameDataMgr.S.GetPlayerData().firstPlayTime = DateTime.Now.ToString();
+            }
+
             RemoteConfigMgr.S.StartChecker(null);
 
             m_IsLoadingBarFinished = true;
