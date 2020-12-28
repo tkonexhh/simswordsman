@@ -16,12 +16,12 @@ namespace GameWish.Game
         {
 
         }
-        //public void AddEquipment(CharacterItem _character, EquipmentItem _equipmentItem, int delta = 1)
-        //{
-        //    CharacterItemDbData character = characterList.Where(i => i.id == _character.id).FirstOrDefault();
-        //    if (character != null)
-        //        character.AddEquipmentItem(_equipmentItem);
-        //}
+        public void AddEquipment(int characterID, CharaceterEquipment characeterEquipment)
+        {
+            CharacterItemDbData character = characterList.Where(i => i.id == characterID).FirstOrDefault();
+            if (character != null)
+                character.AddEquipmentItem(characeterEquipment);
+        }
 
         public void AddCharacter(int id, CharacterQuality quality)
         {
@@ -63,17 +63,17 @@ namespace GameWish.Game
 
         public void AddKonfuExp(CharacterItemDbData item, KungfuType kongfuType, int deltaExp)
         {
-            CharacterKongfuData data = item.kongfuDatas.FirstOrDefault(i => i.kongfuType == kongfuType);
+            CharacterKongfuDBData data = item.kongfuDatas.FirstOrDefault(i => i.kongfuType == kongfuType);
             if (data != null)
             {
                 data.AddExp(deltaExp);
             }
         }
 
-        public void AddKungfu(int id, CharacterKongfuData characterKongfu)
+        public void AddKungfu(int id, CharacterKongfuDBData characterKongfu)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
-            if (characterItemDb!=null)
+            if (characterItemDb != null)
                 characterItemDb.LearnKungfu(characterKongfu);
         }
     }
@@ -88,8 +88,8 @@ namespace GameWish.Game
         public int atkValue;
         public string startTime;
         public string name;
-        //public List<EquipmentData> characterEquipmentDatas = new List<EquipmentData>();
-        public List<CharacterKongfuData> kongfuDatas = new List<CharacterKongfuData>();
+        public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
+        public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
         public int curExp;
 
         public CharacterItemDbData()
@@ -114,22 +114,15 @@ namespace GameWish.Game
             this.stage = 1;
         }
 
-        public void LearnKungfu(CharacterKongfuData characterKongfu)
+        public void LearnKungfu(CharacterKongfuDBData characterKongfu)
         {
             kongfuDatas.Add(characterKongfu);
         }
 
-        //public void AddEquipmentItem(EquipmentItem equipmentItem)
-        //{
-        //     ReturnEquipment(equipmentItem.PropType);
-
-        //    if (!characterEquipmentDatas.Any(i => i.PropType == equipmentItem.PropType
-        //    && i.EquipID == equipmentItem.EquipID && i.ClassID == equipmentItem.ClassID))
-        //    {
-        //        characterEquipmentDatas.Add(new EquipmentData(equipmentItem));
-
-        //    }
-        //}
+        public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
+        {
+            characeterDBEquipmentData.AddEquipment(characeterEquipment);
+        }
 
         /// <summary>
         /// ¹é»¹×°±¸
@@ -154,24 +147,73 @@ namespace GameWish.Game
     }
 
     [Serializable]
-    public class CharacterKongfuData
+    public class CharacterKongfuDBData
     {
         public KungfuType kongfuType;
         public int level;
         public int curExp;
 
-        public CharacterKongfuData()
+        public CharacterKongfuDBData()
         {
 
         }
-
-      
-
         public void AddExp(int deltaExp)
         {
             curExp += deltaExp;
         }
     }
+    [Serializable]
+    public class CharaceterDBEquipmentData
+    {
+        public CharacterDBArms CharacterDBArms { set; get; } = new CharacterDBArms();
+        public CharacterDBArmor CharacterDBArmor { set; get; } = new CharacterDBArmor();
 
+        public CharaceterDBEquipmentData() { }
 
+        public void AddEquipment(CharaceterEquipment characeterEquipment)
+        {
+            switch (characeterEquipment.PropType)
+            {
+                case PropType.Arms:
+                    CharacterDBArms.AddArms((CharacterArms)characeterEquipment);
+                    break;
+                case PropType.Armor:
+                    CharacterDBArmor.AddArmor((CharacterArmor)characeterEquipment);
+                    break;
+            }
+        }
+    }
+
+    public class CharaceterDBEquipment
+    {
+        public PropType PropType { set; get; }
+        public int Class { set; get; }
+        public CharaceterDBEquipment() { }
+
+    }
+
+    public class CharacterDBArms : CharaceterDBEquipment
+    {
+        public Arms ArmsID { set; get; }
+        public CharacterDBArms() { }
+
+        public void AddArms(CharacterArms arms)
+        {
+            PropType = arms.PropType;
+            Class = arms.Class;
+            ArmsID = arms.ArmsID; ;
+        }
+    }
+    public class CharacterDBArmor : CharaceterDBEquipment
+    {
+        public Armor ArmorID { set; get; }
+        public CharacterDBArmor() { }
+
+        public void AddArmor(CharacterArmor armor)
+        {
+            PropType = armor.PropType;
+            Class = armor.Class;
+            ArmorID = armor.ArmorID; ;
+        }
+    }
 }

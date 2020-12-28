@@ -30,17 +30,18 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="_character"></param>
         /// <param name="_equipmentItem"></param>
-        //public void AddEquipment(CharacterItem _character , EquipmentItem _equipmentItem,int delta = 1)
-        //{
-        //    MainGameMgr.S.InventoryMgr.RemoveItem(_equipmentItem, delta);
-        //    GameDataMgr.S.GetClanData().ownedCharacterData.AddEquipment(_character,_equipmentItem);
-        //    CharacterItem character =characterList.Where(i => i.id == _character.id).FirstOrDefault();
-        //    if (character != null)
-        //    {
-        //        character.AddEquipmentItem(_equipmentItem);
-        //        EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
-        //    }
-        //}
+        public void AddEquipment(int chracterID , CharaceterEquipment characeterEquipment)
+        {
+            //MainGameMgr.S.InventoryMgr.RemoveItem(_equipmentItem, delta);
+            //GameDataMgr.S.GetClanData().ownedCharacterData.AddEquipment(_character,_equipmentItem);
+            CharacterItem character =characterList.Where(i => i.id == chracterID).FirstOrDefault();
+            if (character != null)
+            {
+                character.AddEquipmentItem(characeterEquipment);
+                GameDataMgr.S.GetClanData().AddEquipment(chracterID,characeterEquipment);
+                EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
+            }
+        }
         /// <summary>
         /// 获取装备的加成
         /// </summary>
@@ -130,8 +131,7 @@ namespace GameWish.Game
         public string startTime; // 入门时间
         public string name; // 名字
         public string desc; // 详细信息
-        public List<ArmsItem> armsItem = new List<ArmsItem>();
-        public List<ArmorItem> armorItem = new List<ArmorItem>();
+        public CharaceterEquipmentData characeterEquipmentData = new CharaceterEquipmentData();
         public List<CharacterKongfu> kongfus = new List<CharacterKongfu>();
 
         private CharacterStageInfo stageInfo;
@@ -180,13 +180,7 @@ namespace GameWish.Game
                 kongfus.Add(kongfu);
             });
 
-            //itemDbData.characterEquipmentDatas.ForEach(i =>
-            //{
-            //    EquipmentItem equipmentItem = new EquipmentItem();
-            //    equipmentItem.Wrap(i);
-
-            //    characterEquipment.Add(equipmentItem);
-            //});
+            characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
             stageInfo = TDCharacterStageConfigTable.GetStageInfo(stage);
             qualityInfo = TDCharacterQualityConfigTable.GetQualityConfigInfo(quality);
@@ -269,16 +263,10 @@ namespace GameWish.Game
         /// 获取装备
         /// </summary>
         /// <param name="equipmentItem"></param>
-        //public void AddEquipmentItem(EquipmentItem equipmentItem)
-        //{
-        //    EquipmentItem equipment = ReturnEquipment(equipmentItem.PropType);
-        //    if (equipment!=null)
-        //        MainGameMgr.S.InventoryMgr.AddEquipment(equipment);
-
-        //    if (!characterEquipment.Any(i => i.PropType == equipmentItem.PropType
-        //    && i.EquipID == equipmentItem.EquipID && i.ClassID == equipmentItem.ClassID))
-        //        characterEquipment.Add(equipmentItem.GetEquipmentItemForOne());
-        //}
+        public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
+        {
+            characeterEquipmentData.AddEquipment(characeterEquipment);
+        }
 
         /// <summary>
         /// 归还装备
@@ -330,14 +318,140 @@ namespace GameWish.Game
         }
     }
 
+    public class CharaceterEquipmentData
+    {
+        public CharacterArms CharacterArms { set; get; } = new CharacterArms();
+        public CharacterArmor CharacterArmor { set; get; } = new CharacterArmor();
+
+        public void AddEquipment(CharaceterEquipment characeterEquipment)
+        {
+            switch (characeterEquipment.PropType)
+            {
+                case PropType.Arms:
+                    CharacterArms.AddArms((CharacterArms)characeterEquipment);
+                    break;
+                case PropType.Armor:
+                    CharacterArmor.AddArmor((CharacterArmor)characeterEquipment);
+                    break;
+            }
+        }
+
+        public void Wrap(CharaceterDBEquipmentData characeterDBEquipmentData)
+        {
+            CharacterArms.Wrap(characeterDBEquipmentData.CharacterDBArms);
+            CharacterArmor.Wrap(characeterDBEquipmentData.CharacterDBArmor);
+        }
+    }
+
+    public abstract class CharaceterEquipment
+    {
+        public PropType PropType { set; get; }
+        public string Name { set; get; }
+        public string Desc { set; get; }
+        public int Class { set; get; }
+        public float Addition { set; get; }
+        public EquipQuailty EquipQuality { set; get; }
+
+        public abstract void Wrap(CharaceterDBEquipment characeterDBEquipment);
+        public abstract void RefreshInfo();
+    }
+
+    public class CharacterArms : CharaceterEquipment
+    {
+        public Arms ArmsID {set;get;}
+        public CharacterArms() {}
+        public CharacterArms(Arms arms)
+        {
+            ArmsID = arms;
+            Class = 1;
+            RefreshInfo();
+        }
+
+
+        public void AddArms(CharacterArms characterArms)
+        {
+            if (ArmsID == characterArms.ArmsID)
+                return;
+
+            Class = characterArms.Class;
+            ArmsID = characterArms.ArmsID;
+            RefreshInfo();
+        }
+
+        public override void RefreshInfo()
+        {
+            Equipment equip = TDArmsConfigTable.GetEquipmentInfo(ArmsID);
+            PropType = PropType.Armor;
+            Name = equip.Name;
+            Desc = equip.Desc;
+            Addition = equip.GetBonusForClassID(Class);
+            EquipQuality = equip.Quality;
+        }
+
+        public override void Wrap(CharaceterDBEquipment characeterDBEquipment)
+        {
+            CharacterDBArms characterDBArms = (CharacterDBArms)characeterDBEquipment;
+            if (characterDBArms.ArmsID!= Arms.None)
+            {
+                ArmsID = characterDBArms.ArmsID;
+                Class = characterDBArms.Class;
+                PropType = characterDBArms.PropType;
+                RefreshInfo();
+            }
+        
+        }
+    }
+    public class CharacterArmor : CharaceterEquipment
+    {
+        public Armor ArmorID { set; get; }
+
+        public CharacterArmor() { }
+        public CharacterArmor(Armor armor)
+        {
+            ArmorID = armor;
+            Class = 1;
+            RefreshInfo();
+        }
+        public void AddArmor(CharacterArmor characterArmor)
+        {
+            if (ArmorID == characterArmor.ArmorID)
+                return;
+            ArmorID = characterArmor.ArmorID;
+            RefreshInfo();
+        }
+
+        public override void RefreshInfo()
+        {
+            Equipment equip = TDArmorConfigTable.GetEquipmentInfo(ArmorID);
+            PropType = PropType.Armor;
+            Name = equip.Name;
+            Desc = equip.Desc;
+            Addition = equip.GetBonusForClassID(Class);
+            EquipQuality = equip.Quality;
+        }
+
+        public override void Wrap(CharaceterDBEquipment characeterDBEquipment)
+        {
+            CharacterDBArmor characterDBArmor = (CharacterDBArmor)characeterDBEquipment;
+            if (characterDBArmor.ArmorID!= Armor.None)
+            {
+                ArmorID = characterDBArmor.ArmorID;
+                Class = characterDBArmor.Class;
+                PropType = characterDBArmor.PropType;
+                RefreshInfo();
+            }
+        }
+    }
+
+
     public class CharacterKongfu
     {
-        public CharacterKongfuData dbData;
+        public CharacterKongfuDBData dbData;
         public string name;
         public string desc;
         public float atkScale = 1f;
 
-        public void Wrap(CharacterKongfuData dbData)
+        public void Wrap(CharacterKongfuDBData dbData)
         {
             this.dbData = dbData;
             RefeshKungfuInfo();
@@ -348,7 +462,7 @@ namespace GameWish.Game
         }
         public CharacterKongfu(KungfuItem kungfuItem)
         {
-            dbData = new CharacterKongfuData();
+            dbData = new CharacterKongfuDBData();
             dbData.kongfuType = kungfuItem.KungfuType;
             dbData.level = 1;
             dbData.curExp = 1;

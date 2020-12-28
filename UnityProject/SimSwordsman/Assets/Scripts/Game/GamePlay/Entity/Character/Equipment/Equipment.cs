@@ -55,7 +55,7 @@ namespace GameWish.Game
         /// <summary>
         /// 装备品质
         /// </summary>
-        public EquipQuailty Addition { set; get; }
+        public EquipQuailty Quality { set; get; }
         private Dictionary<int, float> m_BonusDic = new Dictionary<int, float>();
         private Dictionary<int, int> m_SellingPrice = new Dictionary<int, int>();
         private Dictionary<int, UpgradeCondition> m_UpgradeConditionDic = new Dictionary<int, UpgradeCondition>();
@@ -65,7 +65,7 @@ namespace GameWish.Game
             ID = tdData.id;
             Name = tdData.name;
             Desc = tdData.desc;
-            Addition = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.addition);
+            Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.quality);
 
             AnalysisBonus(tdData.bonus);
             AnalysisSellingPrice(tdData.sellingPrice);
@@ -77,7 +77,7 @@ namespace GameWish.Game
             ID = tdData.id;
             Name = tdData.name;
             Desc = tdData.desc;
-            Addition = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.addition);
+            Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.addition);
 
             AnalysisBonus(tdData.bonus);
             AnalysisSellingPrice(tdData.sellingPrice);

@@ -915,10 +915,9 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\Recruit\RecruitModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateBattle.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateCollectRes.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateEnterClan.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateFighting.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateFishing.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateHunting.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateGoOutside.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStatePractice.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\CharacterStateWander.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Entity\Character\StateMachine\CharacterState\StateBattle\BattleState.cs" />
@@ -1033,8 +1032,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\MainTaskMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\RewardHandler\CoinRewardHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\Implement\TaskBattle.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\Implement\TaskFishing.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\Implement\TaskHunting.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\Implement\TaskCollectRes.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\SimGameTask.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\SimGameTaskFactory.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\SimGameTaskType.cs" />

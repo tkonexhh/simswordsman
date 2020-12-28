@@ -31,4 +31,6 @@ namespace GameWish.Game
         Free,
         Working,
     }
+ 
+
 }

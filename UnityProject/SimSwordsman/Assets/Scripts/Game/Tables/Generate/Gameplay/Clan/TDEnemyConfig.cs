@@ -15,7 +15,7 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private string m_Clan;   
-        private string m_Kongfu;   
+        private string m_KongfuName;   
         private string m_AnimationName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -36,9 +36,9 @@ namespace GameWish.Game
         public  string  clan {get { return m_Clan; } }
        
         /// <summary>
-        /// 功夫
+        /// 功夫名称
         /// </summary>
-        public  string  kongfu {get { return m_Kongfu; } }
+        public  string  kongfuName {get { return m_KongfuName; } }
        
         /// <summary>
         /// 动画名称
@@ -70,7 +70,7 @@ namespace GameWish.Game
                     m_Clan = dataR.ReadString();
                     break;
                 case 3:
-                    m_Kongfu = dataR.ReadString();
+                    m_KongfuName = dataR.ReadString();
                     break;
                 case 4:
                     m_AnimationName = dataR.ReadString();
@@ -90,7 +90,7 @@ namespace GameWish.Game
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("Clan", 2);
-          ret.Add("Kongfu", 3);
+          ret.Add("KongfuName", 3);
           ret.Add("AnimationName", 4);
           return ret;
         }

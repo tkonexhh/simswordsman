@@ -15,7 +15,7 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private string m_Desc;   
-        private string m_Addition;   
+        private string m_Quality;   
         private string m_UpgradeCondition;   
         private string m_Bonus;   
         private string m_BuildCondition;   
@@ -41,7 +41,7 @@ namespace GameWish.Game
         /// <summary>
         /// 品质
         /// </summary>
-        public  string  addition {get { return m_Addition; } }
+        public  string  quality {get { return m_Quality; } }
        
         /// <summary>
         /// 升级消耗,id|数量
@@ -88,7 +88,7 @@ namespace GameWish.Game
                     m_Desc = dataR.ReadString();
                     break;
                 case 3:
-                    m_Addition = dataR.ReadString();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 4:
                     m_UpgradeCondition = dataR.ReadString();
@@ -117,7 +117,7 @@ namespace GameWish.Game
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("Desc", 2);
-          ret.Add("Addition", 3);
+          ret.Add("Quality", 3);
           ret.Add("UpgradeCondition", 4);
           ret.Add("Bonus", 5);
           ret.Add("BuildCondition", 6);

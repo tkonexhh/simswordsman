@@ -21,7 +21,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="armor"></param>
         /// <returns></returns>
-        public static Equipment GetEquipmentInfo( Armor armor)
+        public static Equipment GetEquipmentInfo(Armor armor)
         {
             if (m_ArmorDic.ContainsKey((int)armor))
                 return m_ArmorDic[(int)armor];

@@ -53,13 +53,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ArmorClassValue;
         [SerializeField]
-        private Text m_ArmorSkillTitle;
-        [SerializeField]
         private Text m_ArmorSkillValue;
         [SerializeField]
         private Image m_ArmorImg;
-        [SerializeField]
-        private Image m_IntensifyArmorImg;
         [SerializeField]
         private Button m_IntensifyArmorBtn;
         [SerializeField]
@@ -73,13 +69,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ArmsClassValue;
         [SerializeField]
-        private Text m_ArmsSkillTitle;
-        [SerializeField]
         private Text m_ArmsSkillValue;
         [SerializeField]
         private Image m_ArmsImg;
-        [SerializeField]
-        private Image m_IntensifyArmsImg;
         [SerializeField]
         private Button m_IntensifyArmsBtn;
         [SerializeField]
@@ -159,6 +151,24 @@ namespace GameWish.Game
                 }
                 CreateKungfu(KungfuLockState.NotUnlocked, FindSprite(KungfuType.WuLinMiJi.ToString()), m_QualityInfo.learnKonfuNeedLevelList[i]);
             }
+
+
+            RefreshArmsInfo();
+            RefreshArmorInfo();
+        }
+        private void RefreshArmsInfo()
+        {
+            CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
+            m_ArmsNameValue.text = characterArms.Name;
+            m_ArmsClassValue.text = CommonUIMethod.GetClass(characterArms.Class);
+            m_ArmsSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL)+
+                CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.Plus)+CommonUIMethod.GetBonus(characterArms.Addition));
+           // m_ArmsImg.sprite = FindSprite();
+
+    }
+    private void RefreshArmorInfo()
+        {
+            throw new NotImplementedException();
         }
 
         //素材名称 和 KongfuType名称保持一致

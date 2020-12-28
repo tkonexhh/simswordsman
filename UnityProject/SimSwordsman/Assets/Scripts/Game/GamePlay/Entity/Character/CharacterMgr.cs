@@ -56,10 +56,10 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="_character"></param>
         /// <param name="_equipmentItem"></param>
-        //public void AddEquipment(CharacterItem _character, EquipmentItem _equipmentItem)
-        //{
-        //    m_CharacterDataWrapper.AddEquipment(_character, _equipmentItem);
-        //}
+        public void AddEquipment(int chracterID, CharaceterEquipment characeterEquipment, int delta = 1)
+        {
+            m_CharacterDataWrapper.AddEquipment(chracterID, characeterEquipment);
+        }
         /// <summary>
         /// 检查是否有重复的名字
         /// </summary>

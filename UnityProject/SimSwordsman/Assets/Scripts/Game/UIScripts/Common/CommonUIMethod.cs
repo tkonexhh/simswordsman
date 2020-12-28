@@ -139,6 +139,15 @@ namespace GameWish.Game
         {
             return GetTextNumber(number) + TDLanguageTable.Get(Define.COMMON_UNIT_PAET);
         }
+        /// <summary>
+        /// »ñµÃ½×
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string GetClass(int number)
+        {
+            return GetTextNumber(number) + TDLanguageTable.Get(Define.COMMON_UNIT_CLASS);
+        }
         public static string GetTextNumber(int number)
         {
             switch (number)

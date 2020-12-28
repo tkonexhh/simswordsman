@@ -41,6 +41,7 @@ namespace GameWish.Game
 
         public const string AD_PLACEMENT_INTER = "";
         public const string Slash = "/";
+        public const string Plus = "+";
 
         public const int AD_MAX_TIME = 120;
 

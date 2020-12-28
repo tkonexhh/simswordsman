@@ -65,17 +65,17 @@ namespace GameWish.Game
         public KungfuConfigInfo(TDKongfuConfig tdData)
         {
             KungfuType = (KungfuType)tdData.id;
-            Name = tdData.name;
+            Name = tdData.kongfuName;
             Desc = tdData.desc;
             KungfuQuality = EnumUtil.ConvertStringToEnum<KungfuQuality>(tdData.quality);
 
-            string[] additionStr = tdData.addition.Split('|');
+            string[] additionStr = tdData.quality.Split('|');
             for (int i = 0; i < additionStr.Length; i++)
             {
                 AdditionRatioDic.Add(i+1,float.Parse(additionStr[i]));
             }
 
-            string[] UpgradeStr = tdData.addition.Split('|');
+            string[] UpgradeStr = tdData.upgradeExp.Split('|');
             for (int i = 0; i < UpgradeStr.Length; i++)
             {
                 UpgradeExperienceDic.Add(i+1, float.Parse(additionStr[i]));

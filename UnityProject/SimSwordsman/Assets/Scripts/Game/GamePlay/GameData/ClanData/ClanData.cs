@@ -107,9 +107,20 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+
+
         #endregion
 
         #region Character
+
+        public void AddEquipment(int characterID,CharaceterEquipment characeterEquipment)
+        {
+            ownedCharacterData.AddEquipment(characterID, characeterEquipment);
+
+            SetDataDirty();
+        }
+
+
         public void AddCharacter(int id, CharacterQuality quality)
         {
             ownedCharacterData.AddCharacter(id, quality);
@@ -144,7 +155,7 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
-        public void AddKungfu(int id, CharacterKongfuData characterKongfu)
+        public void AddKungfu(int id, CharacterKongfuDBData characterKongfu)
         {
             ownedCharacterData.AddKungfu(id, characterKongfu);
 
