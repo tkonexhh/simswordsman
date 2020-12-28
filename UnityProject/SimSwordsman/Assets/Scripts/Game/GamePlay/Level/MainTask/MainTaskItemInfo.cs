@@ -8,6 +8,7 @@ namespace GameWish.Game
 {
     public enum TaskState
     {
+        None,
         /// <summary>
         /// Î´¿ªÊ¼
         /// </summary>
@@ -25,6 +26,9 @@ namespace GameWish.Game
     public class MainTaskItemInfo
     {
         public int id;
+        public SimGameTaskTriggerType triggerType;
+        public List<int> nextTaskIdList = new List<int>();
+        public int needHomeLevel = -1;
         public SimGameTaskType taskType;
         public int subType;
         public int time;
@@ -33,17 +37,35 @@ namespace GameWish.Game
         public TaskState taskState;
         public List<TaskReward> rewards = new List<TaskReward>();
 
-        public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType, TaskState _taskState)
+        public MainTaskItemInfo(TDMainTask tDMainTask)
         {
-            this.id = id;
-            this.taskType = taskType;
-            this.subType = subType;
-            taskState = _taskState;
-            this.time = TDMainTaskTable.GetData(id).time;
-            this.title = TDMainTaskTable.GetData(id).taskTitle;
-            this.desc = TDMainTaskTable.GetData(id).taskDescription;
-            ParseReward(TDMainTaskTable.GetData(id).reward);
+            this.id = tDMainTask.taskID;
+            this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tDMainTask.triggerType);
+
+            taskState = TaskState.None;
+
+            this.time = tDMainTask.time;
+            this.title = tDMainTask.taskTitle;
+            this.desc = tDMainTask.taskDescription;
+            ParseReward(tDMainTask.reward);
+            ParseNextLevel(tDMainTask.nextTask);
+            ParseReward(tDMainTask.type);
         }
+
+        //public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType, TaskState _taskState)
+        //{
+        //    this.id = id;
+        //    this.taskType = taskType;
+        //    this.subType = subType;
+        //    taskState = _taskState;
+
+        //    TDMainTask tDMain = TDMainTaskTable.GetData(id);
+        //    this.time = tDMain.time;
+        //    this.title = tDMain.taskTitle;
+        //    this.desc = tDMain.taskDescription;
+        //    ParseReward(tDMain.reward);
+        //    ParseNextLevel(tDMain.nextTask);
+        //}
 
         private void ParseReward(string reward)
         {
@@ -54,6 +76,37 @@ namespace GameWish.Game
                 {
                     TaskReward taskReward = new TaskReward(item);
                     this.rewards.Add(taskReward);
+                }
+            }
+        }
+
+        private void ParseNextLevel(string nextTask)
+        {
+            if (!string.IsNullOrEmpty(nextTask))
+            {
+                string[] strs = nextTask.Split(';');
+                foreach (string str in strs)
+                {
+                    int nextTaskId = int.Parse(str);
+                    nextTaskIdList.Add(nextTaskId);
+                }
+            }
+        }
+
+        private void ParseTaskType(string taskTypeStr)
+        {
+            if (!string.IsNullOrEmpty(taskTypeStr))
+            {
+                string type = taskTypeStr;
+                string[] strs = type.Split('_');
+
+                SimGameTaskType taskType = EnumUtil.ConvertStringToEnum<SimGameTaskType>(strs[0]);
+                this.taskType = taskType;
+
+                if (taskType == SimGameTaskType.Collect)
+                {
+                    CollectedObjType collectedObjType = EnumUtil.ConvertStringToEnum<CollectedObjType>(strs[1]);
+                    this.subType = (int)collectedObjType;
                 }
             }
         }

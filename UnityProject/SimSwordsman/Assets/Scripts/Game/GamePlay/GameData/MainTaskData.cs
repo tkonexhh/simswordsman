@@ -11,7 +11,7 @@ namespace GameWish.Game
 
         public void SetDefaultValue()
         {
-
+            taskList.Add(new MainTaskItemData(10010, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart));
         }
 
         public void Init()
@@ -76,6 +76,27 @@ namespace GameWish.Game
             }
 
             return null;
+        }
+
+        public bool IsTaskExist(int taskId)
+        {
+            MainTaskItemData task = GetMainTaskItemData(taskId);
+            return task != null;
+        }
+
+        public void RemoveDailyTaskByLobbyLevel(int lobbyLevel)
+        {
+            for (int i = taskList.Count - 1; i >= 0; i--)
+            {
+                MainTaskItemInfo itemInfo = TDMainTaskTable.GetMainTaskItemInfo(taskList[i].taskId);
+
+                if (itemInfo != null && itemInfo.triggerType == SimGameTaskTriggerType.Daily && itemInfo.needHomeLevel != lobbyLevel)
+                {
+                    taskList.RemoveAt(i);
+                }
+            }
+
+            SetDataDirty();
         }
     }
 

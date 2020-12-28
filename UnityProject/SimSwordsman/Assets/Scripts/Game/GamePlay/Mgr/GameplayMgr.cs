@@ -100,6 +100,8 @@ namespace GameWish.Game
                 return;
             }
 
+            GameDataMgr.S.GetPlayerData().SetLastPlayTime(GameExtensions.GetTimeStamp());
+
             GameDataMgr.S.Save();
         }
 

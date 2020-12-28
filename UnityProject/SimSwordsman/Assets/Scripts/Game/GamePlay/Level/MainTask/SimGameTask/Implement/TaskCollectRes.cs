@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
 	public class TaskCollectRes : SimGameTask
 	{
-        public TaskCollectRes(int taskId, SimGameTaskType taskType, int subType, string tableName, TaskState taskState, Action<TaskItem> stateChangedCallback) : base(taskId, taskType, subType, tableName, taskState, stateChangedCallback)
+        public TaskCollectRes(int taskId, string tableName, TaskState taskState, Action<TaskItem> stateChangedCallback) : base(taskId, tableName, taskState, stateChangedCallback)
         {
         }
 

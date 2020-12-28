@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System.Linq;
+using System;
 
 namespace GameWish.Game
 {
@@ -17,6 +18,8 @@ namespace GameWish.Game
         //private List<MainTaskItemInfo> m_CurTaskInfoList = new List<MainTaskItemInfo>();
 
         private List<IMainTaskObserver> m_MainTaskObserverList = new List<IMainTaskObserver>();
+
+        private int m_DailyTaskCount = 2;
 
         public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
 
@@ -41,6 +44,15 @@ namespace GameWish.Game
         #endregion
 
         #region Public 
+
+        /// <summary>
+        /// 打开UI界面时调用
+        /// </summary>
+        public void RefreshTask()
+        {
+            RefreshDailyTask();
+        }
+
         public void SetTaskFinished(int taskId)
         {
             SimGameTask item = GetMainTaskItemData(taskId);
@@ -104,46 +116,65 @@ namespace GameWish.Game
 
         #region Private
 
+        private void RegisterEvents()
+        {
+            //EventSystem.S.Register(EngineEventID.OnDateUpdate, HandleEvent);
+        }
+
+        private void UnregisterEvents()
+        {
+            //EventSystem.S.UnRegister(EventID.OnStartUnlockFacility, HandleEvent);
+        }
+
+        private void HandleEvent(int key, params object[] param)
+        {
+            switch (key)
+            {
+                case (int)EventID.OnStartUpgradeFacility:
+
+                    break;
+
+            }
+        }
+
+
         private void InitTaskList()
         {
-            if (m_MainTaskData.taskList.Count == 0)
+            m_MainTaskData.taskList.ForEach(i => 
+            {
+                AddTask(i.taskId, i.taskType, i.taskState);
+            });
+
+            RefreshDailyTask();
+        }
+
+        private void RefreshDailyTask()
+        {
+            DateTime lasPlayTime = OfflineRewardMgr.GetLastPlayDate(GameDataMgr.S.GetPlayerData().lastPlayTime);
+            if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
             {
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                List<TDMainTask> allTask = TDMainTaskTable.GetAllTaskByLobbyLevel(lobbyLevel);
-                for (int i = 0; i < allTask.Count; i++)
-                {
-                    int taskId = allTask[i].taskID;
 
-                    GenerateTask(taskId);
+                m_MainTaskData.RemoveDailyTaskByLobbyLevel(lobbyLevel);
+
+                List<MainTaskItemInfo> allDailyTask = TDMainTaskTable.GetAllDailyTaskByLobbyLevel(lobbyLevel);
+                foreach (MainTaskItemInfo item in allDailyTask)
+                {
+                    if (!m_MainTaskData.IsTaskExist(item.id))
+                    {
+                        GenerateTask(item.id, item.taskType, item.subType);
+                    }
                 }
             }
-            else
-            {
-                m_MainTaskData.taskList.ForEach(i => 
-                {
-                    AddTask(i.taskId, i.taskType, i.taskSubType, i.taskState);
-                });
-
-            }
         }
 
-        private void GenerateTask(int taskId)
+        private void GenerateTask(int taskId, SimGameTaskType taskType, int subType)
         {
-            string type = TDMainTaskTable.GetData(taskId).type;
-            string[] strs = type.Split('_');
+            AddTask(taskId, taskType);
 
-            SimGameTaskType taskType = EnumUtil.ConvertStringToEnum<SimGameTaskType>(strs[0]);
-            int subType = 1;
-            if (taskType == SimGameTaskType.Collect)
-            {
-                CollectedObjType collectedObjType = EnumUtil.ConvertStringToEnum<CollectedObjType>(strs[1]);
-                subType = (int)collectedObjType;
-            }
-
-            AddTask(taskId, taskType, subType);
-
-            m_MainTaskData.AddTask(taskId, taskType, subType,TaskState.NotStart);
+            m_MainTaskData.AddTask(taskId, taskType, subType, TaskState.NotStart);
         }
+
         public SimGameTask GetMainTaskItemData(int taskId)
         {
             foreach (SimGameTask item in m_CurTaskList)
@@ -165,13 +196,10 @@ namespace GameWish.Game
             }
         }
 
-        private void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState = TaskState.NotStart)
+        private void AddTask(int taskId, SimGameTaskType taskType, TaskState taskState = TaskState.NotStart)
         {
-            //TaskItem task = new TaskItem(id, subId, m_MainTaskTableName, OnTaskStateChanged);
-            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, subType, taskState);
+            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState);
             m_CurTaskList.Add(simGameTask);
-            //MainTaskItemInfo itemInfo = new MainTaskItemInfo(task.GetId(), task.GetSubId());
-            //m_CurTaskInfoList.Add(itemInfo);
         }
 
         #endregion
