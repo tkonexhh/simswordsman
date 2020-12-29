@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum SignPanel_SignStatus
+    public enum SignInStatus
     {
         None,
         SignEnable,//可签到
@@ -29,19 +29,18 @@ namespace GameWish.Game
         private Button m_Button;//点击按钮
 
         private int m_ID;
+        public RewardBase RewardCfg;
 
-        private RewardBase m_SignConfig;
-
-        public RewardBase RewardCfg { get => m_SignConfig; }
+        public SignInStatus Status;
 
         public SignInItem(int id, Transform trans, RewardBase signConfig)
         {
             FindChildObject(trans);
 
             m_ID = id;
-            m_SignConfig = signConfig;
-
-            //m_DayText.text = (id + 1).ToString() + TDLanguageTable.Get("SignPanel_1");
+            m_DayText.text = string.Format("第{0}天", id);
+            RewardCfg = signConfig;
+            
             SetCount(signConfig.m_Count);
 
             m_Button.onClick.AddListener(() =>
@@ -49,6 +48,32 @@ namespace GameWish.Game
                 SignItemCallBack?.Invoke(m_ID);
             });
 
+        }
+        //string GetWordByNum(int num)
+        //{
+        //    switch (num)
+        //    {
+        //        case 2:
+        //            return "二";
+        //        case 3:
+        //            return "三";
+        //        case 4:
+        //            return "四";
+        //        case 5:
+        //            return "五";
+        //        case 6:
+        //            return "六";
+        //        case 7:
+        //            return "七";
+        //        case 1:
+        //        default:
+        //            return "一";
+        //    }
+        //}
+
+        public void ClickSignBtn()
+        {
+            SignItemCallBack?.Invoke(m_ID);
         }
 
         /// <summary>
@@ -84,40 +109,41 @@ namespace GameWish.Game
         /// <param name="count"></param>
         public void SetCount(int count)
         {
-            m_CountText.text = count.ToString();
+            m_CountText.text = "×" + count.ToString();
         }
 
         /// <summary>
         /// 改变SignItem的显示状态
         /// </summary>
         /// <param name="status"></param>
-        public void SetSignItemStatus(SignPanel_SignStatus status)
+        public void SetSignItemStatus(SignInStatus status)
         {
             switch (status)
             {
-                case SignPanel_SignStatus.None:
-                    break;
-                case SignPanel_SignStatus.SignEnable:
+                case SignInStatus.SignEnable:
                     m_NormalImage.gameObject.SetActive(true);
                     m_GlowImage.gameObject.SetActive(true);
                     m_AlreadyImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
                     break;
-                case SignPanel_SignStatus.SignDisable:
+                case SignInStatus.SignDisable:
                     m_NormalImage.gameObject.SetActive(true);
                     m_GlowImage.gameObject.SetActive(false);
                     m_AlreadyImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
                     break;
-                case SignPanel_SignStatus.SignAlready:
+                case SignInStatus.SignAlready:
                     m_NormalImage.gameObject.SetActive(true);
                     m_GlowImage.gameObject.SetActive(false);
                     m_AlreadyImage.gameObject.SetActive(true);
                     m_DayText.gameObject.SetActive(true);
                     break;
+                case SignInStatus.None:
+                    break;
                 default:
                     break;
             }
+            Status = status;
         }
 
 

@@ -9,27 +9,19 @@ namespace GameWish.Game
 {
 	public class ArmsReward : RewardBase
 	{
-		private Equipment m_Equip;
-
 		public ArmsReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
-            m_Equip = TDArmorConfigTable.m_ArmorDic[id];
+
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
-
+            MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((Arms)m_KeyID, Step.One), m_Count);
+        }
+        
 		public override string RewardName()
 		{
-			return m_Equip.Name;
+			return ((Arms)m_KeyID).ToString();
 		}
 
 		public override Sprite GetSprite()
