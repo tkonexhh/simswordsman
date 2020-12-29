@@ -90,7 +90,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 增加
+        /// 增加弟子
         /// </summary>
         /// <param name="item"></param>
         public void AddCharacter(CharacterItem item)
@@ -145,6 +145,16 @@ namespace GameWish.Game
         public void AddCharacterLevel(int id, int level)
         {
             m_CharacterDataWrapper.AddCharacterLevel(id, level);
+        }
+        /// <summary>
+        /// 获取解锁等级(弟子)
+        /// </summary>
+        /// <param name="unlockContent"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public int GetUnlockConfigInfo(UnlockContent unlockContent, int index = 0)
+        {
+            return TDCharacterStageConfigTable.GetUnlockConfigInfo(unlockContent, index);
         }
 
 

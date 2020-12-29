@@ -8,8 +8,8 @@ namespace GameWish.Game
 	public class TaskPos : MonoBehaviour
 	{
         [SerializeField] private Transform m_ClanDoorPos;
-        [SerializeField] private Transform m_HuntingPos;
         [SerializeField] private Transform m_FishingPos;
+        [SerializeField] private List<Transform> m_PosList = new List<Transform>();
 
         public Vector2 GetTaskPos(CollectedObjType objType)
         {
@@ -21,7 +21,20 @@ namespace GameWish.Game
                     pos = m_FishingPos.position;
                     break;
                 case CollectedObjType.Bear:
-                    pos = m_HuntingPos.position;
+                case CollectedObjType.Boar:
+                case CollectedObjType.Chicken:
+                case CollectedObjType.CloudRock:
+                case CollectedObjType.Deer:
+                case CollectedObjType.Ganoderma:
+                case CollectedObjType.Iron:
+                case CollectedObjType.QingRock:
+                case CollectedObjType.SilverWood:
+                case CollectedObjType.Snake:
+                case CollectedObjType.Vine:
+                case CollectedObjType.Well:
+                case CollectedObjType.WuWood:
+                    int index = Random.Range(0, m_PosList.Count);
+                    pos = m_PosList[index].position;
                     break;
             }
 

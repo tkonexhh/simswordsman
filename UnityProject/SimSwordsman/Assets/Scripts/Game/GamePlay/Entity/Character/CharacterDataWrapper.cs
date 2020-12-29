@@ -30,15 +30,15 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="_character"></param>
         /// <param name="_equipmentItem"></param>
-        public void AddEquipment(int chracterID , CharaceterEquipment characeterEquipment)
+        public void AddEquipment(int chracterID, CharaceterEquipment characeterEquipment)
         {
             //MainGameMgr.S.InventoryMgr.RemoveItem(_equipmentItem, delta);
             //GameDataMgr.S.GetClanData().ownedCharacterData.AddEquipment(_character,_equipmentItem);
-            CharacterItem character =characterList.Where(i => i.id == chracterID).FirstOrDefault();
+            CharacterItem character = characterList.Where(i => i.id == chracterID).FirstOrDefault();
             if (character != null)
             {
                 character.AddEquipmentItem(characeterEquipment);
-                GameDataMgr.S.GetClanData().AddEquipment(chracterID,characeterEquipment);
+                GameDataMgr.S.GetClanData().AddEquipment(chracterID, characeterEquipment);
                 EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
             }
         }
@@ -84,7 +84,7 @@ namespace GameWish.Game
 
         public void LearnKungfu()
         {
-          
+
         }
 
         public void RemoveCharacter(int id)
@@ -93,6 +93,7 @@ namespace GameWish.Game
             if (item != null)
             {
                 characterList.Remove(item);
+                EventSystem.S.Send(EventID.OnDiscipleReduce, id);
             }
 
             m_DbData.RemoveCharacter(id);
@@ -107,7 +108,7 @@ namespace GameWish.Game
         public void AddKungfu(int id, KungfuItem kungfuItem)
         {
             CharacterItem characterItem = characterList.Where(i => i.id == id).FirstOrDefault();
-            if (characterItem!=null)
+            if (characterItem != null)
                 characterItem.LearnKungfu(kungfuItem);
 
         }
@@ -115,27 +116,54 @@ namespace GameWish.Game
         {
             CharacterItem characterItem = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItem != null)
-                 characterItem.UpgradeLevels(level);
+                characterItem.UpgradeLevels(level);
+        }
+    }
+
+    public class CharacterKongfuData
+    {
+        public int Index { set; get; }
+        public KungfuLockState KungfuLockState { set; get; } = KungfuLockState.NotUnlocked;
+        public CharacterKongfu CharacterKongfu { set; get; } 
+
+        public CharacterKongfuData(int index)
+        {
+            Index = index;
+        }
+
+        public CharacterKongfuData(){}
+
+        internal void Wrap(CharacterKongfuDBData i)
+        {
+            Index = i.index;
+            KungfuLockState = i.kungfuLockState;
+            if (KungfuLockState== KungfuLockState.Learned&&CharacterKongfu == null)
+            {
+                 CharacterKongfu = new CharacterKongfu();
+                CharacterKongfu.Wrap(i);
+            }
         }
     }
 
     public class CharacterItem : IComparable
     {
+        public const int MaxKungfuNumber = 4;
+
         public int id; // ID
         public int level = 1; // 等级
         public int stage = 1; // 段位
         public int curExp = 0; // 当前经验
-        public CharacterQuality quality; // 品质
-        public CharacterBehavior behavior; // 品质
-        public float atkValue; // 武力值
         public string startTime; // 入门时间
+        public CharacterQuality quality; // 品质
+        public CharacterBehavior behavior; // 行为
+        public float atkValue; // 武力值
         public string name; // 名字
         public string desc; // 详细信息
         public CharaceterEquipmentData characeterEquipmentData = new CharaceterEquipmentData();
-        public List<CharacterKongfu> kongfus = new List<CharacterKongfu>();
+        public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
 
-        private CharacterStageInfo stageInfo;
-        private CharacterQualityConfigInfo qualityInfo;
+        private CharacterStageInfoItem stageInfo;
+
 
         private CharacterItemDbData m_ItemDbData = null;
 
@@ -146,7 +174,11 @@ namespace GameWish.Game
             this.desc = decs;
         }
 
-        public CharacterItem() { }
+        public CharacterItem()
+        {
+            for (int i = 0; i < MaxKungfuNumber; i++)
+                kongfus.Add(i+1, new CharacterKongfuData(i+1));
+        }
 
         public CharacterItem(int id)
         {
@@ -155,97 +187,100 @@ namespace GameWish.Game
             stage = 1;
         }
 
-        public CharacterQualityConfigInfo GetCharacterQualityConfigInfo()
-        {
-            return qualityInfo;
-        }
-
         public void Wrap(CharacterItemDbData itemDbData)
         {
             m_ItemDbData = itemDbData;
-
+            startTime = itemDbData.startTime;
             id = itemDbData.id;
             name = itemDbData.name;
             level = itemDbData.level;
             stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
-            atkValue = TDCharacterStageConfigTable.GetAtk(stage, level);
+            atkValue = TDCharacterStageConfigTable.GetAtk(quality, stage, level);
 
             itemDbData.kongfuDatas.ForEach(i =>
             {
-                CharacterKongfu kongfu = new CharacterKongfu();
+                CharacterKongfuData kongfu = new CharacterKongfuData();
                 kongfu.Wrap(i);
-
-                kongfus.Add(kongfu);
+                kongfus[i.index] = kongfu;
             });
 
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
-            stageInfo = TDCharacterStageConfigTable.GetStageInfo(stage);
-            qualityInfo = TDCharacterQualityConfigTable.GetQualityConfigInfo(quality);
-        }
-
-        public void UpgradeLevel()
-        {
-            int maxLevel = CharacterMgr.GetMaxLevel(quality);
-            if (level < maxLevel)
-            {
-                level += 1;
-                GameDataMgr.S.GetClanData().SetCharacterLevel(m_ItemDbData, level);
-
-                int stage = TDCharacterStageConfigTable.GetStage(level);
-                if (stage != this.stage)
-                {
-                    GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
-                }
-            }
+            stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
         }
 
         public void UpgradeLevels(int delta)
         {
-            int maxLevel = CharacterMgr.GetMaxLevel(quality);
-            if (level < maxLevel)
+            if (level < Define.CHARACTER_MAX_LEVEL)
             {
                 level += delta;
                 GameDataMgr.S.GetClanData().SetCharacterLevel(m_ItemDbData, level);
 
-                int stage = TDCharacterStageConfigTable.GetStage(level);
-                if (stage != this.stage)
+                int priviewStage = stage;
+                this.stage = TDCharacterStageConfigTable.GetStage(quality, level);
+                if (priviewStage != this.stage)
                 {
                     GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
-                }
-            }
-        }
+                    int delte = stage - priviewStage;
 
-        public void LearnKungfu(KungfuItem kungfuItem)
-        {
-            for (int i = 0; i < qualityInfo.learnKonfuNeedLevelList.Count; i++)
-            {
-                if (level >= qualityInfo.learnKonfuNeedLevelList[i])
-                {
-                    if (kongfus.Count > i && !string.IsNullOrEmpty(kongfus[i].name))
-                        continue;
-                    else
+                    for (int i = 1; i <= delte; i++)
                     {
-                        if (CheackLeardKungfu(kungfuItem))
-                            return;
-                        kongfus.Add(new CharacterKongfu(kungfuItem));
-                        GameDataMgr.S.GetClanData().AddKungfu(id, kongfus[i].dbData);
+                        UnlockContentConfigInfo unlockContentConfigInfo = TDCharacterStageConfigTable.GetUnlockForStage(quality, priviewStage + i);
+                        switch (unlockContentConfigInfo.UnlockContent)
+                        {
+                            case UnlockContent.None:
+                                break;
+                            case UnlockContent.LearnKongfu:
+                                kongfus[unlockContentConfigInfo.Count].KungfuLockState = KungfuLockState.NotLearning;
+                                GameDataMgr.S.GetClanData().AddKungfu(id, kongfus[unlockContentConfigInfo.Count]);
+                                break;
+                            case UnlockContent.EquipArmor:
+                                characeterEquipmentData.IsArmorUnlock = true;
+                                GameDataMgr.S.GetClanData().UnlockEquip(id, UnlockContent.EquipArmor);
+                                break;
+                            case UnlockContent.EquipWeapon:
+                                characeterEquipmentData.IsArmsUnlock = true;
+                                GameDataMgr.S.GetClanData().UnlockEquip(id, UnlockContent.EquipWeapon);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
         }
-
-        private bool CheackLeardKungfu(KungfuItem kungfuItem)
+        public int GetEntryTime()
         {
-            foreach (var item in kongfus)
+            //startTime = "2020/12/27 16:22:50";
+            DateTime dateTime ;
+            DateTime.TryParse(startTime, out dateTime);
+            if (dateTime!=null)
             {
-                if (item.dbData.kongfuType == kungfuItem.KungfuType)
-                    return true;
-                continue;
+                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
+                return (int)timeSpan.TotalDays;
             }
-            return false;
+            return 1;
+        }
+
+        public void LearnKungfu(KungfuItem kungfuItem)
+        {
+            foreach (var item in kongfus.Values)
+            {
+                if(item.KungfuLockState == KungfuLockState.Learned)
+                {
+                    if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
+                        break;
+                }
+                if (item.KungfuLockState == KungfuLockState.NotLearning)
+                {
+                    item.CharacterKongfu = new CharacterKongfu(kungfuItem);
+                    item.KungfuLockState = KungfuLockState.Learned;
+                    GameDataMgr.S.GetClanData().AddKungfu(id, item);
+                    break;
+                }
+            }
         }
 
         public void AddExp(int deltaExp)
@@ -321,7 +356,9 @@ namespace GameWish.Game
     public class CharaceterEquipmentData
     {
         public CharacterArms CharacterArms { set; get; } = new CharacterArms();
+        public bool IsArmsUnlock { set; get; } = false;
         public CharacterArmor CharacterArmor { set; get; } = new CharacterArmor();
+        public bool IsArmorUnlock { set; get; } = false;
 
         public void AddEquipment(CharaceterEquipment characeterEquipment)
         {
@@ -338,6 +375,8 @@ namespace GameWish.Game
 
         public void Wrap(CharaceterDBEquipmentData characeterDBEquipmentData)
         {
+            IsArmsUnlock = characeterDBEquipmentData.IsDBArmsUnlock;
+            IsArmorUnlock = characeterDBEquipmentData.IsDBArmorUnlock;
             CharacterArms.Wrap(characeterDBEquipmentData.CharacterDBArms);
             CharacterArmor.Wrap(characeterDBEquipmentData.CharacterDBArmor);
         }
@@ -354,12 +393,13 @@ namespace GameWish.Game
 
         public abstract void Wrap(CharaceterDBEquipment characeterDBEquipment);
         public abstract void RefreshInfo();
+        public abstract bool IsHaveEquip();
     }
 
     public class CharacterArms : CharaceterEquipment
     {
-        public Arms ArmsID {set;get;}
-        public CharacterArms() {}
+        public Arms ArmsID { set; get; }
+        public CharacterArms() { }
         public CharacterArms(Arms arms)
         {
             ArmsID = arms;
@@ -381,7 +421,7 @@ namespace GameWish.Game
         public override void RefreshInfo()
         {
             Equipment equip = TDArmsConfigTable.GetEquipmentInfo(ArmsID);
-            PropType = PropType.Armor;
+            PropType = PropType.Arms;
             Name = equip.Name;
             Desc = equip.Desc;
             Addition = equip.GetBonusForClassID(Class);
@@ -391,14 +431,21 @@ namespace GameWish.Game
         public override void Wrap(CharaceterDBEquipment characeterDBEquipment)
         {
             CharacterDBArms characterDBArms = (CharacterDBArms)characeterDBEquipment;
-            if (characterDBArms.ArmsID!= Arms.None)
+            if (characterDBArms.ArmsID != Arms.None)
             {
                 ArmsID = characterDBArms.ArmsID;
                 Class = characterDBArms.Class;
                 PropType = characterDBArms.PropType;
                 RefreshInfo();
             }
-        
+
+        }
+
+        public override bool IsHaveEquip()
+        {
+            if (ArmsID == Arms.None)
+                return false;
+            return true;
         }
     }
     public class CharacterArmor : CharaceterEquipment
@@ -433,13 +480,20 @@ namespace GameWish.Game
         public override void Wrap(CharaceterDBEquipment characeterDBEquipment)
         {
             CharacterDBArmor characterDBArmor = (CharacterDBArmor)characeterDBEquipment;
-            if (characterDBArmor.ArmorID!= Armor.None)
+            if (characterDBArmor.ArmorID != Armor.None)
             {
                 ArmorID = characterDBArmor.ArmorID;
                 Class = characterDBArmor.Class;
                 PropType = characterDBArmor.PropType;
                 RefreshInfo();
             }
+        }
+
+        public override bool IsHaveEquip()
+        {
+            if (ArmorID == Armor.None)
+                return false;
+            return true;
         }
     }
 
@@ -450,7 +504,6 @@ namespace GameWish.Game
         public string name;
         public string desc;
         public float atkScale = 1f;
-
         public void Wrap(CharacterKongfuDBData dbData)
         {
             this.dbData = dbData;
@@ -461,6 +514,11 @@ namespace GameWish.Game
 
         }
         public CharacterKongfu(KungfuItem kungfuItem)
+        {
+            AddCharacterKongfu(kungfuItem);
+        }
+
+        public void AddCharacterKongfu(KungfuItem kungfuItem)
         {
             dbData = new CharacterKongfuDBData();
             dbData.kongfuType = kungfuItem.KungfuType;
@@ -477,6 +535,13 @@ namespace GameWish.Game
             name = kungfuConfig.Name;
             desc = kungfuConfig.Desc;
             atkScale = TDKongfuConfigTable.GetAddition(dbData.kongfuType, dbData.level);
+        }
+
+        public bool IsHaveKungfu(KungfuItem kungfuItem)
+        {
+            if (dbData.kongfuType == kungfuItem.KungfuType)
+                return true;
+            return false;
         }
     }
 

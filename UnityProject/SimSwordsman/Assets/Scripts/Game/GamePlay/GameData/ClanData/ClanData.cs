@@ -120,6 +120,12 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        public void UnlockEquip(int characterID, UnlockContent unlockContent)
+        {
+            ownedCharacterData.UnlockEquip(characterID, unlockContent);
+
+            SetDataDirty();
+        }
 
         public void AddCharacter(int id, CharacterQuality quality)
         {
@@ -155,7 +161,7 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
-        public void AddKungfu(int id, CharacterKongfuDBData characterKongfu)
+        public void AddKungfu(int id, CharacterKongfuData characterKongfu)
         {
             ownedCharacterData.AddKungfu(id, characterKongfu);
 

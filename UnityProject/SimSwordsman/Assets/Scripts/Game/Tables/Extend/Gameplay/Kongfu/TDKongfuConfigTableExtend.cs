@@ -69,7 +69,7 @@ namespace GameWish.Game
             Desc = tdData.desc;
             KungfuQuality = EnumUtil.ConvertStringToEnum<KungfuQuality>(tdData.quality);
 
-            string[] additionStr = tdData.quality.Split('|');
+            string[] additionStr = tdData.atkRange.Split('|');
             for (int i = 0; i < additionStr.Length; i++)
             {
                 AdditionRatioDic.Add(i+1,float.Parse(additionStr[i]));

@@ -7,7 +7,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDCharacterQualityConfig
+    public partial class TDVisitorRewardConfig
     {
         public void Reset()
         {

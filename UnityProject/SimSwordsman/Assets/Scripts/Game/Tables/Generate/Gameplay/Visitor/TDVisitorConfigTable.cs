@@ -8,16 +8,16 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public static partial class TDCharacterQualityConfigTable
+    public static partial class TDVisitorConfigTable
     {
-        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDCharacterQualityConfigTable.Parse, "CharacterQualityConfig");
+        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDVisitorConfigTable.Parse, "VisitorConfig");
         public static TDTableMetaData metaData
         {
             get { return m_MetaData; }
         }
         
-        private static Dictionary<string, TDCharacterQualityConfig> m_DataCache = new Dictionary<string, TDCharacterQualityConfig>();
-        private static List<TDCharacterQualityConfig> m_DataList = new List<TDCharacterQualityConfig >();
+        private static Dictionary<int, TDVisitorConfig> m_DataCache = new Dictionary<int, TDVisitorConfig>();
+        private static List<TDVisitorConfig> m_DataList = new List<TDVisitorConfig >();
         
         public static void Parse(byte[] fileData)
         {
@@ -25,27 +25,27 @@ namespace GameWish.Game
             m_DataList.Clear();
             DataStreamReader dataR = new DataStreamReader(fileData);
             int rowCount = dataR.GetRowCount();
-            int[] fieldIndex = dataR.GetFieldIndex(TDCharacterQualityConfig.GetFieldHeadIndex());
+            int[] fieldIndex = dataR.GetFieldIndex(TDVisitorConfig.GetFieldHeadIndex());
     #if (UNITY_STANDALONE_WIN) || UNITY_EDITOR || UNITY_STANDALONE_OSX
-            dataR.CheckFieldMatch(TDCharacterQualityConfig.GetFieldHeadIndex(), "CharacterQualityConfigTable");
+            dataR.CheckFieldMatch(TDVisitorConfig.GetFieldHeadIndex(), "VisitorConfigTable");
     #endif
             for (int i = 0; i < rowCount; ++i)
             {
-                TDCharacterQualityConfig memberInstance = new TDCharacterQualityConfig();
+                TDVisitorConfig memberInstance = new TDVisitorConfig();
                 memberInstance.ReadRow(dataR, fieldIndex);
                 OnAddRow(memberInstance);
                 memberInstance.Reset();
                 CompleteRowAdd(memberInstance);
             }
-            Log.i(string.Format("Parse Success TDCharacterQualityConfig"));
+            Log.i(string.Format("Parse Success TDVisitorConfig"));
         }
 
-        private static void OnAddRow(TDCharacterQualityConfig memberInstance)
+        private static void OnAddRow(TDVisitorConfig memberInstance)
         {
-            string key = memberInstance.quality;
+            int key = memberInstance.id;
             if (m_DataCache.ContainsKey(key))
             {
-                Log.e(string.Format("Invaild,  TDCharacterQualityConfigTable Id already exists {0}", key));
+                Log.e(string.Format("Invaild,  TDVisitorConfigTable Id already exists {0}", key));
             }
             else
             {
@@ -67,7 +67,7 @@ namespace GameWish.Game
             }
         }
 
-        public static List<TDCharacterQualityConfig> dataList
+        public static List<TDVisitorConfig> dataList
         {
             get 
             {
@@ -75,7 +75,7 @@ namespace GameWish.Game
             }    
         }
 
-        public static TDCharacterQualityConfig GetData(string key)
+        public static TDVisitorConfig GetData(int key)
         {
             if (m_DataCache.ContainsKey(key))
             {
@@ -83,7 +83,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w(string.Format("Can't find key {0} in TDCharacterQualityConfig", key));
+                Log.w(string.Format("Can't find key {0} in TDVisitorConfig", key));
                 return null;
             }
         }

@@ -8,36 +8,30 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDCharacterQualityConfig
+    public partial class TDVisitorConfig
     {
         
        
-        private string m_Quality;   
-        private EInt m_MaxLevel = 0;   
-        private EInt m_KongfuSlot = 0;   
-        private string m_KongfuNeedLevel;  
+        private EInt m_Id = 0;   
+        private string m_Name;   
+        private string m_AnimationName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// 品质
+        /// ID
         /// </summary>
-        public  string  quality {get { return m_Quality; } }
+        public  int  id {get { return m_Id; } }
        
         /// <summary>
-        /// 最大等级
+        /// 访客名
         /// </summary>
-        public  int  maxLevel {get { return m_MaxLevel; } }
+        public  string  name {get { return m_Name; } }
        
         /// <summary>
-        /// 功夫数
+        /// 访客文本
         /// </summary>
-        public  int  kongfuSlot {get { return m_KongfuSlot; } }
-       
-        /// <summary>
-        /// 功夫解锁等级
-        /// </summary>
-        public  string  kongfuNeedLevel {get { return m_KongfuNeedLevel; } }
+        public  string  animationName {get { return m_AnimationName; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -55,16 +49,13 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Quality = dataR.ReadString();
+                    m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_MaxLevel = dataR.ReadInt();
+                    m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_KongfuSlot = dataR.ReadInt();
-                    break;
-                case 3:
-                    m_KongfuNeedLevel = dataR.ReadString();
+                    m_AnimationName = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -76,12 +67,11 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(4);
+          Dictionary<string, int> ret = new Dictionary<string, int>(3);
           
-          ret.Add("Quality", 0);
-          ret.Add("MaxLevel", 1);
-          ret.Add("KongfuSlot", 2);
-          ret.Add("KongfuNeedLevel", 3);
+          ret.Add("Id", 0);
+          ret.Add("Name", 1);
+          ret.Add("AnimationName", 2);
           return ret;
         }
     } 

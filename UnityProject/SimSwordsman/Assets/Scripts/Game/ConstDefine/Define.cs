@@ -85,6 +85,7 @@ namespace GameWish.Game
         public const int CHARACTER_NORAML_MAX_LEVEL = 250;
         public const int CHARACTER_GOOD_MAX_LEVEL = 350;
         public const int CHARACTER_EXCELLENT_MAX_LEVEL = 450;
+        public const int CHARACTER_MAX_LEVEL = 1000;
 
         // Animation
         public const string ANIM_MOVE = "move";
