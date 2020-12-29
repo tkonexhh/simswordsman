@@ -103,7 +103,7 @@ namespace GameWish.Game
         public int stage;
         public CharacterQuality quality;
         public int atkValue;
-        public int startTime;
+        public string startTime;
         public string name;
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
@@ -116,6 +116,7 @@ namespace GameWish.Game
 
         public CharacterItemDbData(CharacterItem item)
         {
+            this.startTime = DateTime.Now.ToString();
             id = item.id;
             name = item.name;
             level = item.level;
@@ -125,7 +126,6 @@ namespace GameWish.Game
 
         public CharacterItemDbData(int id, CharacterQuality quality)
         {
-            this.startTime = 1;
             this.id = id;
             this.level = 1;
             this.quality = quality;

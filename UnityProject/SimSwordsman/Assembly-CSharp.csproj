@@ -1186,6 +1186,10 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MainTask\TDMainTaskTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MedicinalPowder\TDHerbConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\MedicinalPowder\TDHerbConfigTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Visitor\TDVisitorConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Visitor\TDVisitorConfigTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Visitor\TDVisitorRewardConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Visitor\TDVisitorRewardConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Weapon\TDWeaponConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Weapon\TDWeaponConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Guide\TDGuideAExtend.cs" />
@@ -1268,6 +1272,10 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MainTask\TDMainTaskTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MedicinalPowder\TDHerbConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\MedicinalPowder\TDHerbConfigTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Visitor\TDVisitorConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Visitor\TDVisitorConfigTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Visitor\TDVisitorRewardConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Visitor\TDVisitorRewardConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Weapon\TDWeaponConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Weapon\TDWeaponConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Guide\TDGuideA.cs" />
@@ -1412,6 +1420,7 @@
     <None Include="Assets\SDKAdapter\DataAnalysis\Facebook\FacebookSDK\link.xml" />
     <None Include="Assets\Resources\Spines\Character\Character1\pupil_1.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityBaicaohu.txt" />
+    <None Include="Assets\StreamingAssets\config\VisitorConfig.txt" />
     <None Include="Assets\StreamingAssets\config\language_tw.txt" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\Issues in button behavior (MAC).txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\DOTween43.xml" />
@@ -1423,6 +1432,7 @@
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\DOTween46.xml" />
     <None Include="Assets\SDKAdapter\DataAnalysis\Appsflyer\Plugins\Appsflyer\link.xml" />
     <None Include="Assets\StreamingAssets\config\ChapterConfig.txt" />
+    <None Include="Assets\StreamingAssets\config\VisitorRewardConfig.txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityLivableRoom.txt" />
     <None Include="Assets\StreamingAssets\config\PurchaseContent.txt" />

@@ -93,6 +93,7 @@ namespace GameWish.Game
             if (item != null)
             {
                 characterList.Remove(item);
+                EventSystem.S.Send(EventID.OnDiscipleReduce, id);
             }
 
             m_DbData.RemoveCharacter(id);
@@ -152,7 +153,7 @@ namespace GameWish.Game
         public int level = 1; // 等级
         public int stage = 1; // 段位
         public int curExp = 0; // 当前经验
-        public int startTime; // 入门时间
+        public string startTime; // 入门时间
         public CharacterQuality quality; // 品质
         public CharacterBehavior behavior; // 行为
         public float atkValue; // 武力值
@@ -249,6 +250,18 @@ namespace GameWish.Game
                     }
                 }
             }
+        }
+        public int GetEntryTime()
+        {
+            //startTime = "2020/12/27 16:22:50";
+            DateTime dateTime ;
+            DateTime.TryParse(startTime, out dateTime);
+            if (dateTime!=null)
+            {
+                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
+                return (int)timeSpan.TotalDays;
+            }
+            return 1;
         }
 
         public void LearnKungfu(KungfuItem kungfuItem)

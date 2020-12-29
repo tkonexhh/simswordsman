@@ -90,7 +90,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 增加
+        /// 增加弟子
         /// </summary>
         /// <param name="item"></param>
         public void AddCharacter(CharacterItem item)

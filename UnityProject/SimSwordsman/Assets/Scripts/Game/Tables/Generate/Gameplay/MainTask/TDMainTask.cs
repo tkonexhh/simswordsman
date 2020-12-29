@@ -25,7 +25,9 @@ namespace GameWish.Game
         private string m_SpecialReward;   
         private string m_TaskEvent;   
         private string m_ConditionType;   
-        private string m_ConditionValue;  
+        private string m_ConditionValue;   
+        private EInt m_RoleAmount = 0;   
+        private EInt m_RoleLevelRequired = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -99,6 +101,16 @@ namespace GameWish.Game
         /// </summary>
         public  string  conditionValue {get { return m_ConditionValue; } }
        
+        /// <summary>
+        /// 可派弟子数量
+        /// </summary>
+        public  int  roleAmount {get { return m_RoleAmount; } }
+       
+        /// <summary>
+        /// 弟子等级要求
+        /// </summary>
+        public  int  roleLevelRequired {get { return m_RoleLevelRequired; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -156,6 +168,12 @@ namespace GameWish.Game
                 case 13:
                     m_ConditionValue = dataR.ReadString();
                     break;
+                case 14:
+                    m_RoleAmount = dataR.ReadInt();
+                    break;
+                case 15:
+                    m_RoleLevelRequired = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -166,7 +184,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(14);
+          Dictionary<string, int> ret = new Dictionary<string, int>(16);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
@@ -182,6 +200,8 @@ namespace GameWish.Game
           ret.Add("TaskEvent", 11);
           ret.Add("ConditionType", 12);
           ret.Add("ConditionValue", 13);
+          ret.Add("RoleAmount", 14);
+          ret.Add("RoleLevelRequired", 15);
           return ret;
         }
     } 
