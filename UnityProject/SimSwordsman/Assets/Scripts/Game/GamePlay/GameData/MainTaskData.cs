@@ -84,16 +84,13 @@ namespace GameWish.Game
             return task != null;
         }
 
-        public void RemoveDailyTaskByLobbyLevel(int lobbyLevel)
+        public void RemoveTask(int taskId)
         {
-            for (int i = taskList.Count - 1; i >= 0; i--)
-            {
-                MainTaskItemInfo itemInfo = TDMainTaskTable.GetMainTaskItemInfo(taskList[i].taskId);
+            MainTaskItemData item = GetMainTaskItemData(taskId);
 
-                if (itemInfo != null && itemInfo.triggerType == SimGameTaskTriggerType.Daily && itemInfo.needHomeLevel != lobbyLevel)
-                {
-                    taskList.RemoveAt(i);
-                }
+            if (item != null )
+            {
+                taskList.Remove(item);
             }
 
             SetDataDirty();

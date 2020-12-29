@@ -20,6 +20,10 @@ namespace GameWish.Game
         private List<IMainTaskObserver> m_MainTaskObserverList = new List<IMainTaskObserver>();
 
         private int m_DailyTaskCount = 2;
+        private int m_CommonTaskRefreshInterval = 5; // 5分钟刷新一次
+        private int m_CommonTaskCount = 3;
+
+        private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
 
         public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
 
@@ -51,6 +55,7 @@ namespace GameWish.Game
         public void RefreshTask()
         {
             RefreshDailyTask();
+            RefreshCommonTask();
         }
 
         public void SetTaskFinished(int taskId)
@@ -145,17 +150,17 @@ namespace GameWish.Game
                 AddTask(i.taskId, i.taskType, i.taskState);
             });
 
-            RefreshDailyTask();
+            RefreshTask();
         }
 
         private void RefreshDailyTask()
         {
             DateTime lasPlayTime = OfflineRewardMgr.GetLastPlayDate(GameDataMgr.S.GetPlayerData().lastPlayTime);
-            if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
+            //if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
             {
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
 
-                m_MainTaskData.RemoveDailyTaskByLobbyLevel(lobbyLevel);
+                RemoveDailyTaskByLobbyLevel(lobbyLevel);
 
                 List<MainTaskItemInfo> allDailyTask = TDMainTaskTable.GetAllDailyTaskByLobbyLevel(lobbyLevel);
                 foreach (MainTaskItemInfo item in allDailyTask)
@@ -163,6 +168,45 @@ namespace GameWish.Game
                     if (!m_MainTaskData.IsTaskExist(item.id))
                     {
                         GenerateTask(item.id, item.taskType, item.subType);
+                    }
+                }
+            }
+        }
+
+        private void RemoveDailyTaskByLobbyLevel(int lobbyLevel)
+        {
+            for (int i = m_CurTaskList.Count - 1; i >= 0; i--)
+            {
+                if (m_CurTaskList[i].MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Daily && m_CurTaskList[i].MainTaskItemInfo.needHomeLevel != lobbyLevel)
+                {
+                    m_MainTaskData.RemoveTask(m_CurTaskList[i].TaskId);
+
+                    m_CurTaskList.RemoveAt(i);
+                }
+            }
+        }
+
+        private void RefreshCommonTask()
+        {
+            TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
+
+            //if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            {
+                m_LastRefreshCommonTaskTime = DateTime.Now;
+
+                int curCommonTaskCount = m_CurTaskList.Where(i => i.MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Common).ToList().Count;
+                if (curCommonTaskCount < m_CommonTaskCount)
+                {
+                    int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+                    List<MainTaskItemInfo> allCommonTask = TDMainTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
+
+                    for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
+                    {
+                        int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
+                        MainTaskItemInfo task = allCommonTask[randomIndex];
+                        GenerateTask(task.id, task.taskType, task.subType);
+
+                        allCommonTask.Remove(task);
                     }
                 }
             }

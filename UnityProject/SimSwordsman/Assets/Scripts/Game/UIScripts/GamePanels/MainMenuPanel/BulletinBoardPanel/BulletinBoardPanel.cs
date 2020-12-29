@@ -57,6 +57,8 @@ namespace GameWish.Game
                         CreateTask(m_MainTaskList[i]);
                 }
             }
+
+            MainGameMgr.S.MainTaskMgr.RefreshTask();
         }
 
         private void HandleAddListenerEvent(int key, object[] param)

@@ -47,9 +47,10 @@ namespace GameWish.Game
             this.time = tDMainTask.time;
             this.title = tDMainTask.taskTitle;
             this.desc = tDMainTask.taskDescription;
+            this.needHomeLevel = tDMainTask.homeLevel;
             ParseReward(tDMainTask.reward);
             ParseNextLevel(tDMainTask.nextTask);
-            ParseReward(tDMainTask.type);
+            ParseTaskType(tDMainTask.type);
         }
 
         //public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType, TaskState _taskState)

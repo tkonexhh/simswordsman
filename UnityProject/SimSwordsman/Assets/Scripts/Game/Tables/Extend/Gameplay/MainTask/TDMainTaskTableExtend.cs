@@ -37,11 +37,11 @@ namespace GameWish.Game
             return list;
         }
 
-        public static List<MainTaskItemInfo> GetAllCommonTask()
+        public static List<MainTaskItemInfo> GetAllCommonTaskByLobbyLevel(int lobbyLevel)
         {
             List<MainTaskItemInfo> list = new List<MainTaskItemInfo>();
 
-            list = taskInfoDic.Values.Where(i => i.triggerType == SimGameTaskTriggerType.Common).ToList();
+            list = taskInfoDic.Values.Where(i => i.triggerType == SimGameTaskTriggerType.Common && i.needHomeLevel == lobbyLevel).ToList();
             return list;
         }
 
