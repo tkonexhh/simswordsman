@@ -60,12 +60,12 @@ namespace GameWish.Game
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.RedAgate),3);
                 //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 3, 4));
 
-                MainGameMgr.S.CharacterMgr.AddEquipment(0,new CharacterArms(Arms.DragonCarvingKnife));
-                MainGameMgr.S.CharacterMgr.AddEquipment(0,new CharacterArmor(Armor.BrightLightArmor));
+                MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArms(Arms.DragonCarvingKnife));
+                MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArmor(Armor.BrightLightArmor));
 
-                //MainGameMgr.S.CharacterMgr.AddKungfu(2, new KungfuItem(KungfuType.LingBoWeiBu ));
-                // MainGameMgr.S.CharacterMgr.AddKungfu(2, new KungfuItem(KungfuType.WuLinMiJi ));
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(2,200);
+                //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.RuLaiShenZhang));
+                //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.WuLinMiJi));
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
             });
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });

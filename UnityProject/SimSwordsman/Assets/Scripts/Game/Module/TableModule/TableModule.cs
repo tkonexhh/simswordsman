@@ -40,7 +40,6 @@ namespace GameWish.Game
                 TDCharacterNameTable.metaData,
                 TDArmsConfigTable.metaData,
                 TDArmorConfigTable.metaData,
-                TDCharacterQualityConfigTable.metaData,
                 TDCharacterStageConfigTable.metaData,
 
                 //Facility

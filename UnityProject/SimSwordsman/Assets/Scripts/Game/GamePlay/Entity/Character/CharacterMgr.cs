@@ -146,6 +146,16 @@ namespace GameWish.Game
         {
             m_CharacterDataWrapper.AddCharacterLevel(id, level);
         }
+        /// <summary>
+        /// 获取解锁等级(弟子)
+        /// </summary>
+        /// <param name="unlockContent"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public int GetUnlockConfigInfo(UnlockContent unlockContent, int index = 0)
+        {
+            return TDCharacterStageConfigTable.GetUnlockConfigInfo(unlockContent, index);
+        }
 
 
         #endregion
