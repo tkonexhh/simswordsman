@@ -1,7 +1,4 @@
-using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,27 +6,20 @@ namespace GameWish.Game
 {
 	public class MedicineReward : RewardBase
 	{
-		private Herb m_Info;
-
 		public MedicineReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
-            m_Info = TDHerbConfigTable.GetHerbForId(id);
+            //m_isInitSuccess = false;
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
+            //Log.e("»ñµÃ" + m_Info.Name + m_Count);
+            MainGameMgr.S.MedicinalPowderMgr.AddHerb(m_KeyID, m_Count);
+        }
 
 		public override string RewardName()
 		{
-			return m_Info.Name;
+			return null;
 		}
 
 		public override Sprite GetSprite()

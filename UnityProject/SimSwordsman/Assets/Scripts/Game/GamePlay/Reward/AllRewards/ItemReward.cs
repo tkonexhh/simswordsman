@@ -9,27 +9,20 @@ namespace GameWish.Game
 {
 	public class ItemReward : RewardBase
 	{
-		private PropConfigInfo m_TDItem;
-
 		public ItemReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
-            m_TDItem = TDItemConfigTable.GetPropConfigInfo(id);
+
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
+            //Log.e("»ñµÃ" + m_TDItem.name + m_Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID), m_Count);
+        }
 
 		public override string RewardName()
 		{
-			return m_TDItem.name;
+			return ((RawMaterial)m_KeyID).ToString();
 		}
 
 		public override Sprite GetSprite()

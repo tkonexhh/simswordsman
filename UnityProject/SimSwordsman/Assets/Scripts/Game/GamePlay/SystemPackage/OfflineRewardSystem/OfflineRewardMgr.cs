@@ -125,7 +125,7 @@ namespace GameWish.Game
             return (DateTime.Now - GetLastPlayDate(lastPlayTime)).TotalSeconds;
         }
 
-        private DateTime GetLastPlayDate(string lastPlayTime)
+        public static DateTime GetLastPlayDate(string lastPlayTime)
         {
             string lastTimeStr = lastPlayTime;
 

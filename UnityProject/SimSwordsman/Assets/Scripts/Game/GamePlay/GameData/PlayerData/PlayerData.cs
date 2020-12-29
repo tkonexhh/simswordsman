@@ -128,6 +128,12 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
+        public void AddCoin(int num)
+        {
+            m_CoinNum += num;
+            EventSystem.S.Send(EventID.OnAddCoinNum);
+            SetDataDirty();
+        }
 
         public double GetCoinNum()
         {
