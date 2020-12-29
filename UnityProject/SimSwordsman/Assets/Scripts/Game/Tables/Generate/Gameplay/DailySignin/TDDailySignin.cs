@@ -13,7 +13,9 @@ namespace GameWish.Game
         
        
         private EInt m_Id = 0;   
-        private string m_Reward;  
+        private string m_RewardType;   
+        private EInt m_RewardID = 0;   
+        private EInt m_RewardCount = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -23,9 +25,19 @@ namespace GameWish.Game
         public  int  id {get { return m_Id; } }
        
         /// <summary>
-        /// 签到奖励内容
+        /// 签到奖励类型
         /// </summary>
-        public  string  reward {get { return m_Reward; } }
+        public  string  rewardType {get { return m_RewardType; } }
+       
+        /// <summary>
+        /// 奖励ID
+        /// </summary>
+        public  int  rewardID {get { return m_RewardID; } }
+       
+        /// <summary>
+        /// 奖励数量
+        /// </summary>
+        public  int  rewardCount {get { return m_RewardCount; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -46,7 +58,13 @@ namespace GameWish.Game
                     m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_Reward = dataR.ReadString();
+                    m_RewardType = dataR.ReadString();
+                    break;
+                case 2:
+                    m_RewardID = dataR.ReadInt();
+                    break;
+                case 3:
+                    m_RewardCount = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -58,10 +76,12 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(2);
+          Dictionary<string, int> ret = new Dictionary<string, int>(4);
           
           ret.Add("Id", 0);
-          ret.Add("Reward", 1);
+          ret.Add("RewardType", 1);
+          ret.Add("RewardID", 2);
+          ret.Add("RewardCount", 3);
           return ret;
         }
     } 

@@ -17,6 +17,7 @@ namespace GameWish.Game
         OnTimeRefresh,
         OnGuidePanelOpen,
         GuideEventTrigger,
+        OnSignSuccess,
 
         //UI
         OnCloseParentPanel,
