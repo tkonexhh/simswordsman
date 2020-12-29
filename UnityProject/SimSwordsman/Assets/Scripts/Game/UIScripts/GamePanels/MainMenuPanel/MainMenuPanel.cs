@@ -36,6 +36,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_VoldemortTowerBtn;
 
+        [SerializeField]
+        private Button m_VisitorBtn1;
+        [SerializeField]
+        private Button m_VisitorBtn2;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -60,17 +65,26 @@ namespace GameWish.Game
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.RedAgate),3);
                 //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 3, 4));
 
-                MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArms(Arms.DragonCarvingKnife));
-                MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArmor(Armor.BrightLightArmor));
+                //MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArms(Arms.DragonCarvingKnife));
+                //MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArmor(Armor.BrightLightArmor));
 
                 //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.RuLaiShenZhang));
                 //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.WuLinMiJi));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
+
+                UIMgr.S.OpenPanel(UIID.SignInPanel);
             });
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });
             m_CreateCoinBtn.onClick.AddListener(()=> {
                 GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
+            });
+
+            m_VisitorBtn1.onClick.AddListener(() => {
+                UIMgr.S.OpenPanel(UIID.VisitorPanel, 0);
+            });
+            m_VisitorBtn2.onClick.AddListener(() => {
+                UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
         }
 
@@ -101,6 +115,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
             EventSystem.S.Register(EventID.OnReduceCoinNum, HandleEvent);
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandleEvent);
+            EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
         }
 
         private void UnregisterEvents()
@@ -108,6 +123,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnAddCoinNum, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnReduceCoinNum, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -124,6 +140,27 @@ namespace GameWish.Game
                     CloseSelfPanel();
                     break;
 
+            }
+        }
+
+        private void CheckVisitorBtn(int key, params object[] param)
+        {
+            switch ((int)param[0])
+            {
+                case 0:
+                    m_VisitorBtn1.transform.parent.gameObject.SetActive(false);
+                    m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
+                    break;
+                case 1:
+                    m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
+                    m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
+                    break;
+                case 2:
+                    m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
+                    m_VisitorBtn2.transform.parent.gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
             }
         }
     }

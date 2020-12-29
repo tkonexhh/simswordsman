@@ -16,12 +16,12 @@ namespace GameWish.Game
 
 		public override void AcceptReward()
 		{
-			GameDataMgr.S.GetPlayerData().AddCoin(m_Count);
+			GameDataMgr.S.GetPlayerData().AddCoin(Count);
 		}
 
 		public override string RewardName()
 		{
-			return "Coin";
+			return "ͭǮ";
 		}
 
 		public override Sprite GetSprite()

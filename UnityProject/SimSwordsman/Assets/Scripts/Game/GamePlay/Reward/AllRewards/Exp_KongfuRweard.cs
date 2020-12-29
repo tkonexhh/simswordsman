@@ -15,7 +15,7 @@ namespace GameWish.Game
 
 		public override void AcceptReward()
 		{
-            Log.e("获得功夫经验：" + m_Count);
+            Log.e("获得功夫经验：" + Count);
             //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
         }
         

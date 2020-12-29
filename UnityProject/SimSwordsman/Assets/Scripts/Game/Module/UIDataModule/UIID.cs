@@ -54,5 +54,6 @@ namespace GameWish.Game
         ConstructionFacilitiesPanel,
         
         SectNamePanel,
+        VisitorPanel,
     }
 }

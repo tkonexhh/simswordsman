@@ -1,4 +1,4 @@
-using System.Collections;
+using Qarth;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -124,6 +124,7 @@ namespace GameWish.Game
         public void AddLevel(int deltaLevel)
         {
             level += deltaLevel;
+            EventSystem.S.Send(EventID.OnEndUpgradeFacility, id);
         }
     }
 
