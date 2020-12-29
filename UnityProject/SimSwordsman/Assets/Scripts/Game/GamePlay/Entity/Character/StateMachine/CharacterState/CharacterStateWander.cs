@@ -52,7 +52,7 @@ namespace GameWish.Game
 
         private IEnumerator IdleCor(float idleTime)
         {
-            m_Controller.CharacterView.PlayIdleAnim();
+            m_Controller.CharacterView.PlayDeadAnim();
             yield return new WaitForSeconds(idleTime);
 
             if (m_IsExit == false)
