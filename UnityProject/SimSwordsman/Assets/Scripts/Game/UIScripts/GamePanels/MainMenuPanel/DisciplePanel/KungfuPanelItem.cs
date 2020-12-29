@@ -13,7 +13,13 @@ namespace GameWish.Game
         /// 已学习
         /// </summary>
         Learned,
+        /// <summary>
+        /// 未学习
+        /// </summary>
         NotLearning,
+        /// <summary>
+        /// 未解锁
+        /// </summary>
         NotUnlocked,
     }
     public class KungfuPanelItem : MonoBehaviour, ItemICom

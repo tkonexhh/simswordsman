@@ -21,7 +21,11 @@ namespace GameWish.Game
         XiangLong18Zhang                 = 1,        //降龙十八掌
         XiangLong19Zhang                 = 2,
         WuLinMiJi                        = 3,        //武林秘籍
-        LingBoWeiBu                      = 4,        //凌波微步
+        LingBoWeiBu                      = 1024,        //凌波微步
+        /// <summary>
+        /// 如来神掌
+        /// </summary>
+        RuLaiShenZhang                      = 1020,
         JiBenQuanJiao                    = 5,        //基本拳脚
     }
 

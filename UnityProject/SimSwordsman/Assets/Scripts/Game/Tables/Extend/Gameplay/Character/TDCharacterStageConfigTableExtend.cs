@@ -9,82 +9,95 @@ namespace GameWish.Game
 {
     public partial class TDCharacterStageConfigTable
     {
-        public static Dictionary<int, CharacterStageInfo> stageInfoDic = new Dictionary<int, CharacterStageInfo>();
+        public static Dictionary<CharacterQuality, CharacterStageInfo> stageInfoDic = new Dictionary<CharacterQuality, CharacterStageInfo>();
 
         static void CompleteRowAdd(TDCharacterStageConfig tdData)
         {
-            CharacterStageInfo stageInfo = new CharacterStageInfo();
-            stageInfo.stage = tdData.stage;
-            stageInfo.fromLevel = tdData.fromLevel;
-            stageInfo.toLevel = tdData.toLevel;
-            stageInfo.baseAtk = float.Parse(tdData.baseAtk);
-            stageInfo.growAtk = tdData.growAtk;
-            stageInfo.startExp = tdData.startExp;
-            stageInfo.growExp = tdData.growExp;
-            //TODO:
-            //CharacterStageReward reward = EnumUtil.ConvertStringToEnum<CharacterStageReward>(tdData.unlockContent);
-            //stageInfo.stageRewards.Add(reward);
-
-            //int stage = stageInfo.stage - 1;
-            //if (stage >= 1 && stageInfoDic.ContainsKey(stage))
-            //{
-            //    stageInfo.stageRewards.AddRange(stageInfoDic[stage].stageRewards);
-            //}
-
-            if (!stageInfoDic.ContainsKey(stageInfo.stage))
-            {
-                stageInfoDic.Add(stageInfo.stage, stageInfo);
-            }
+            CharacterQuality quality = EnumUtil.ConvertStringToEnum<CharacterQuality>(tdData.quality);
+            if (!stageInfoDic.ContainsKey(quality))
+                stageInfoDic.Add(quality, new CharacterStageInfo(tdData));
+            else
+                stageInfoDic[quality].AddCharacterStageInfo(tdData);
         }
 
-        public static CharacterStageInfo GetStageInfo(int stage)
+        public static CharacterStageInfoItem GetStageInfo(CharacterQuality quality, int stage)
         {
-            if (stageInfoDic.ContainsKey(stage))
-            {
-                return stageInfoDic[stage];
-            }
-
+            if (stageInfoDic.ContainsKey(quality))
+                return stageInfoDic[quality].GetCharacterStageInfoItem(stage);
             return null;
         }
 
-        public static int GetStage(int level)
+        public static int GetStage(CharacterQuality quality, int level)
         {
-            foreach (var item in stageInfoDic.Values)
+            if (stageInfoDic.ContainsKey(quality))
             {
-                if(level >= item.fromLevel && level <= item.toLevel)
+                foreach (var item in stageInfoDic[quality].GetCharacterStageInfoItems().Values)
                 {
-                    return item.stage;
+                    if (level >= item.FromLevel && level <= item.ToLevel)
+                    {
+                        return item.Stage;
+                    }
                 }
             }
-
             return -1;
         }
 
-        public static float GetAtk(int stage, int level)
+        public static float GetAtk(CharacterQuality quality, int stage, int level)
         {
-            if (stageInfoDic.ContainsKey(stage))
+            if (stageInfoDic.ContainsKey(quality))
             {
-                float atk = stageInfoDic[stage].baseAtk + (level - stageInfoDic[stage].fromLevel) * stageInfoDic[stage].growAtk;
-                return atk;
+                CharacterStageInfoItem characterStageInfoItem = stageInfoDic[quality].GetCharacterStageInfoItem(stage);
+                if (characterStageInfoItem != null)
+                {
+                    float atk = characterStageInfoItem.BaseAtk + (level - characterStageInfoItem.FromLevel) * characterStageInfoItem.GrowAtk;
+                    return atk;
+                }
             }
-            else
-            {
-                return -1;
-            }
+            return -1;
         }
 
-        public static int GetExpLevelUpNeed(int stage, int level)
+        public static int GetExpLevelUpNeed(CharacterItem character)
         {
-            if (stageInfoDic.ContainsKey(stage))
+            if (stageInfoDic.ContainsKey(character.quality))
             {
-                int exp = stageInfoDic[stage].startExp + (level - stageInfoDic[stage].fromLevel) * stageInfoDic[stage].growExp;
-                return exp;
+                CharacterStageInfoItem characterStageInfoItem = stageInfoDic[character.quality].GetCharacterStageInfoItem(character.stage);
+                if (characterStageInfoItem != null)
+                {
+                    int exp = characterStageInfoItem.StartExp + (character.level - characterStageInfoItem.FromLevel) * characterStageInfoItem.GrowExp;
+                    return exp;
+                }
             }
             else
             {
                 return -1;
             }
+            return -1;
+        }
+
+        public static UnlockContentConfigInfo GetUnlockForStage(CharacterQuality characterQuality, int stage)
+        {
+            if (stageInfoDic.ContainsKey(characterQuality))
+            {
+                foreach (var item in stageInfoDic[characterQuality].GetCharacterStageInfoItems().Values)
+                    if (item.Stage == stage)
+                        return item.UnlockContentInfo;
+            }
+            return null;
+        }
+
+        public static CharacterStageInfoItem GetUnlockContent(CharacterQuality characterQuality, int level)
+        {
+            if (stageInfoDic.ContainsKey(characterQuality))
+                return stageInfoDic[characterQuality].GetUnlockContent(level);
+            return null;
+        }
+
+        public static int GetUnlockConfigInfo(UnlockContent unlockContent, int index = 0)
+        {
+            foreach (var item in stageInfoDic[CharacterQuality.Good].GetCharacterStageInfoItems().Values)
+                if (item.IsHaveUnlockContentInfo(unlockContent, index))
+                    return item.FromLevel;
+            return -1;
         }
     }
-
 }

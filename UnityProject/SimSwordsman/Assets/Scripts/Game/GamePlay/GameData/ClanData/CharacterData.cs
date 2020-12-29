@@ -70,11 +70,28 @@ namespace GameWish.Game
             }
         }
 
-        public void AddKungfu(int id, CharacterKongfuDBData characterKongfu)
+        public void AddKungfu(int id, CharacterKongfuData characterKongfu)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
                 characterItemDb.LearnKungfu(characterKongfu);
+        }
+
+        public void UnlockEquip(int id, UnlockContent unlockContent)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                switch (unlockContent)
+                {
+                    case UnlockContent.EquipWeapon:
+                        characterItemDb.characeterDBEquipmentData.IsDBArmsUnlock = true;
+                        break;
+                    case UnlockContent.EquipArmor:
+                        characterItemDb.characeterDBEquipmentData.IsDBArmorUnlock = true;
+                        break;
+                }
+            }
         }
     }
 
@@ -86,7 +103,7 @@ namespace GameWish.Game
         public int stage;
         public CharacterQuality quality;
         public int atkValue;
-        public string startTime;
+        public int startTime;
         public string name;
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
@@ -108,15 +125,16 @@ namespace GameWish.Game
 
         public CharacterItemDbData(int id, CharacterQuality quality)
         {
+            this.startTime = 1;
             this.id = id;
             this.level = 1;
             this.quality = quality;
             this.stage = 1;
         }
 
-        public void LearnKungfu(CharacterKongfuDBData characterKongfu)
+        public void LearnKungfu(CharacterKongfuData characterKongfu)
         {
-            kongfuDatas.Add(characterKongfu);
+            kongfuDatas.Add(new CharacterKongfuDBData(characterKongfu));
         }
 
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
@@ -149,13 +167,25 @@ namespace GameWish.Game
     [Serializable]
     public class CharacterKongfuDBData
     {
+        public int index;
+        public KungfuLockState kungfuLockState;
         public KungfuType kongfuType;
         public int level;
         public int curExp;
-
         public CharacterKongfuDBData()
         {
-
+         
+        }
+        public CharacterKongfuDBData(CharacterKongfuData characterKongfu)
+        {
+            index = characterKongfu.Index;
+            kungfuLockState = characterKongfu.KungfuLockState;
+            if (characterKongfu.KungfuLockState== KungfuLockState.Learned)
+            {
+                kongfuType = characterKongfu.CharacterKongfu.dbData.kongfuType;
+                level = characterKongfu.CharacterKongfu.dbData.level;
+                curExp = characterKongfu.CharacterKongfu.dbData.curExp;
+            }
         }
         public void AddExp(int deltaExp)
         {
@@ -166,7 +196,10 @@ namespace GameWish.Game
     public class CharaceterDBEquipmentData
     {
         public CharacterDBArms CharacterDBArms { set; get; } = new CharacterDBArms();
+
+        public bool IsDBArmsUnlock { set; get; } = false;
         public CharacterDBArmor CharacterDBArmor { set; get; } = new CharacterDBArmor();
+        public bool IsDBArmorUnlock { set; get; } = false;
 
         public CharaceterDBEquipmentData() { }
 
@@ -183,7 +216,6 @@ namespace GameWish.Game
             }
         }
     }
-
     public class CharaceterDBEquipment
     {
         public PropType PropType { set; get; }

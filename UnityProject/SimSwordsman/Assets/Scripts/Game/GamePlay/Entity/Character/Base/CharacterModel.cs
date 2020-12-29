@@ -64,15 +64,15 @@ namespace GameWish.Game
 
         public int GetExpLevelUpNeed()
         {
-            return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem.stage, m_CharacterItem.level);
+            return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem);
         }
 
         public void AddKongfuExp(int deltaExp)
         {
-            m_CharacterItem.kongfus.ForEach(i => 
-            {
-                m_CharacterItem.AddKongfuExp(i.dbData.kongfuType, deltaExp);
-            });
+            //m_CharacterItem.kongfus.ForEach(i => 
+            //{
+            //    m_CharacterItem.AddKongfuExp(i.dbData.kongfuType, deltaExp);
+            //});
         }
 
         public int GetKongfuCount()

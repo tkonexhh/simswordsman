@@ -13,7 +13,7 @@ namespace GameWish.Game
         //Excellent = 4,
 	}
 
-    public enum CharacterStageReward
+    public enum UnlockContent
     {
         None = 0,
         LearnKongfu,
@@ -31,6 +31,4 @@ namespace GameWish.Game
         Free,
         Working,
     }
- 
-
 }
