@@ -5,11 +5,19 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
+    public enum SimGameTaskTriggerType
+    {
+        Main,
+        Common,
+        Daily
+    }
+
 	public enum SimGameTaskType
 	{
         None,
 	    Collect,
-        Battle
+        Battle,
+        Progress,
 	}
 
     public enum CollectedObjType

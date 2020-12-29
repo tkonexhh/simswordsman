@@ -11,22 +11,18 @@ namespace GameWish.Game
 	{
 		public FoodsReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
+
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
-
+            Log.e("获得食物 -- 待完善");
+            //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
+        }
+        
 		public override string RewardName()
 		{
-            return null;
+            return "食物";
             //return m_Info.Name;
 		}
 

@@ -11,7 +11,7 @@ namespace GameWish.Game
 
         public void SetDefaultValue()
         {
-
+            taskList.Add(new MainTaskItemData(10010, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart));
         }
 
         public void Init()
@@ -76,6 +76,24 @@ namespace GameWish.Game
             }
 
             return null;
+        }
+
+        public bool IsTaskExist(int taskId)
+        {
+            MainTaskItemData task = GetMainTaskItemData(taskId);
+            return task != null;
+        }
+
+        public void RemoveTask(int taskId)
+        {
+            MainTaskItemData item = GetMainTaskItemData(taskId);
+
+            if (item != null )
+            {
+                taskList.Remove(item);
+            }
+
+            SetDataDirty();
         }
     }
 

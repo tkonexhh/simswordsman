@@ -1,7 +1,5 @@
 using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -11,19 +9,15 @@ namespace GameWish.Game
 	{
 		public Exp_RoleReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
+
         }
 
 		public override void AcceptReward()
 		{
+            Log.e("获得弟子经验：" + m_Count);
 			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
 		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
-
+        
 		public override string RewardName()
 		{
 			return "弟子经验";

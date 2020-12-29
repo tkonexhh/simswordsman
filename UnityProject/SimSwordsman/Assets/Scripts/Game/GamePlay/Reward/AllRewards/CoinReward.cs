@@ -11,17 +11,12 @@ namespace GameWish.Game
 	{
 		public CoinReward(RewardItemType type, int id, int count) : base(type, id, count)
 		{
-            m_isInitSuccess = false;
+
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
+			GameDataMgr.S.GetPlayerData().AddCoin(m_Count);
 		}
 
 		public override string RewardName()
@@ -31,7 +26,7 @@ namespace GameWish.Game
 
 		public override Sprite GetSprite()
 		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
+            Sprite sprite = Resources.Load("Sprites/MainMenu/Coin", typeof(Sprite)) as Sprite;
             return sprite;
         }
 
