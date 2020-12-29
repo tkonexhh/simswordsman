@@ -1,7 +1,5 @@
 using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,19 +10,15 @@ namespace GameWish.Game
 
 		public Exp_KongfuRweard(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
+
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
-
+            Log.e("获得功夫经验：" + m_Count);
+            //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
+        }
+        
 		public override string RewardName()
 		{
 			return "功夫经验";

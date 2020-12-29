@@ -1,7 +1,5 @@
 using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,27 +7,20 @@ namespace GameWish.Game
 {
 	public class ArmorReward : RewardBase
 	{
-		private Equipment m_Equip;
-
 		public ArmorReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
-            m_Equip = TDArmorConfigTable.m_ArmorDic[id];
+
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
-
+            //Log.e("»ñµÃ" + m_Equip.Name + m_Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((Armor)m_KeyID, Step.One), m_Count);
+        }
+        
 		public override string RewardName()
 		{
-			return m_Equip.Name;
+			return ((Armor)m_KeyID).ToString();
 		}
 
 		public override Sprite GetSprite()

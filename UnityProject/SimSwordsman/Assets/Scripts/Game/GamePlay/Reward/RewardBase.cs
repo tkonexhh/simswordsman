@@ -1,27 +1,22 @@
-using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace GameWish.Game
 {
     public delegate void GetSpriteCallBack(Sprite go);
     public abstract class RewardBase
     {
-        private RewardItemType m_Type;
-        public int m_KeyID;
-        public int m_Count;
+        protected int m_KeyID;
+        public int m_Count { get; protected set; }
 
-        protected bool m_isInitSuccess = true;
+        //protected bool m_isInitSuccess = true;
         protected Action m_CallBackAction;
 
-        public RewardItemType Type { get => m_Type; }
+        public RewardItemType Type;
 
         public RewardBase(RewardItemType type, int id, int count)
         {
-            m_Type = type;
+            Type = type;
             m_KeyID = id;
             m_Count = count;
         }
@@ -35,9 +30,6 @@ namespace GameWish.Game
 
         public abstract string RewardName();
 
-        public abstract string RewardCount();
-
         public abstract void SetCallBackAction(Action action);
     }
-
 }

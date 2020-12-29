@@ -156,7 +156,7 @@ namespace GameWish.Game
         private void RefreshDailyTask()
         {
             DateTime lasPlayTime = OfflineRewardMgr.GetLastPlayDate(GameDataMgr.S.GetPlayerData().lastPlayTime);
-            //if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
+            if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
             {
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
 
@@ -190,7 +190,7 @@ namespace GameWish.Game
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
 
-            //if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 

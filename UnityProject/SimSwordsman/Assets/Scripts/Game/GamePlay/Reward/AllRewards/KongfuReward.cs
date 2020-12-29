@@ -9,28 +9,20 @@ namespace GameWish.Game
 {
 	public class KongfuReward : RewardBase
 	{
-		private KungfuConfigInfo m_Info;
-
 		public KongfuReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
-            m_isInitSuccess = false;
-            m_Info = TDKongfuConfigTable.GetKungfuConfigInfo((KungfuType)id);
 
         }
 
 		public override void AcceptReward()
 		{
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-
-		public override string RewardCount()
-		{
-			return m_Count.ToString();
-		}
-
+            //Log.e("»ñµÃ" + m_Info.Name + m_Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), m_Count);
+        }
+        
 		public override string RewardName()
 		{
-			return m_Info.Name;
+			return ((KungfuType)m_KeyID).ToString();
 		}
 
 		public override Sprite GetSprite()

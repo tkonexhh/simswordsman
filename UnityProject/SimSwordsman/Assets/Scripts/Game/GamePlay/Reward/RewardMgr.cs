@@ -48,12 +48,33 @@ namespace GameWish.Game
             }
         }
 
-        RewardBase CreateReward(string param)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param">RewardItemType,id,count</param>
+        /// <returns></returns>
+        public RewardBase GetRewardBase(string param)
         {
             RewardItemType rewardItemType;
-            string[] sp = param.Split(',');
+            string[] sp = param.Split('|');
             if (!Enum.TryParse(sp[0], out rewardItemType)) return null;
-            return CreateReward(rewardItemType, int.Parse(sp[1]), int.Parse(sp[2]));
+            switch (rewardItemType)
+            {
+                case RewardItemType.Item:
+                case RewardItemType.Armor:
+                case RewardItemType.Arms:
+                case RewardItemType.Kongfu:
+                case RewardItemType.Medicine:
+                case RewardItemType.Food:
+                    return CreateReward(rewardItemType, int.Parse(sp[1]), int.Parse(sp[2]));
+                case RewardItemType.Coin:
+                case RewardItemType.Exp_Role:
+                case RewardItemType.Exp_Kongfu:
+                    return CreateReward(rewardItemType, 0, int.Parse(sp[1]));
+                default:
+                    break;
+            }
+            return null;
         }
 
 
@@ -64,6 +85,7 @@ namespace GameWish.Game
                 return null;
             return CreateReward(rewardItemType, id, count);
         }
+
 
         //public RewardBase AcceptRewardByConfig(string type, int id, int count)
         //{

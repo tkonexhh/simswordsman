@@ -1058,6 +1058,17 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Mgr\Interface\IMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Mgr\Interface\IResetHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Mgr\MainGameMgr.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\ArmorReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\ArmsReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\CoinReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\Exp_KongfuRweard.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\Exp_RoleReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\FoodsReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\ItemReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\KongfuReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\MedicineReward.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\RewardBase.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Reward\RewardMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdEffectHandleMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdEffectHandler\IAdEffectHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdEffectHandler\InstantlyEffect\InstantMethodAdHandler.cs" />
@@ -1074,6 +1085,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\OfflineRewardSystem\OfflineRewardMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\PopAdSystem\PopAdItemBase.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\PopAdSystem\PopAdMgr.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\SignInSystem\SignInSystem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\ConditionChecker\Base\ConditionCheckerBase.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\ConditionChecker\Base\IConditionChecker.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\ConditionChecker\DefaultConditionChecker.cs" />

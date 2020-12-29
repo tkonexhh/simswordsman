@@ -18,8 +18,10 @@ namespace GameWish.Game
 
         //[Header("Image")]
         //[SerializeField] private Image m_DaysShowNum;//显示签到天数
-        [SerializeField] private Image m_Title;
-        [SerializeField] private Image m_DayHint;
+        //[SerializeField] private Image m_Title;
+        //[SerializeField] private Image m_DayHint;
+
+        [SerializeField] private Button m_AcceptBtn;//返回按钮
 
         //protected override void OnUIInit()
         //{
@@ -41,7 +43,6 @@ namespace GameWish.Game
             //UIMgr.S.OpenPanel(UIID.BlurMaskPanel);
 
             m_GetRewardPanelCallBack += GetRewardCallBack;
-
             //m_Title.sprite = UIMgrExtend.FindLanguageSprite(TDLanguageTable.Get("SignPanel_Title"));
             //m_DayHint.sprite = UIMgrExtend.FindLanguageSprite(TDLanguageTable.Get("SignPanel_DayItem"));
 
@@ -51,6 +52,7 @@ namespace GameWish.Game
             }
 
             m_BackBtn.onClick.AddListener(OnBackBtCallBack);
+            m_AcceptBtn.onClick.AddListener(OnClickAccept);
 
             UpdateSignItemStatus();
 
@@ -76,6 +78,7 @@ namespace GameWish.Game
             base.OnClose();
 
             m_BackBtn.onClick.RemoveListener(OnBackBtCallBack);
+            m_AcceptBtn.onClick.RemoveListener(OnClickAccept);
 
             foreach (var item in m_SignItemDic)
             {
@@ -85,15 +88,21 @@ namespace GameWish.Game
             m_GetRewardPanelCallBack -= GetRewardCallBack;
         }
 
-        protected void Update()
+        void OnClickAccept()
         {
-
+            foreach (var item in m_SignItemDic.Values)
+            {
+                if (item.Status == SignInStatus.SignEnable)
+                {
+                    item.ClickSignBtn();
+                    return;
+                }
+            }
         }
 
         private void OnBackBtCallBack()
         {
             HideSelfWithAnim();
-
             //UIMgrExtend.S.TryCloesPanelWithAnimation(UIID.BlurMaskPanel);
         }
 
@@ -119,16 +128,14 @@ namespace GameWish.Game
             {
                 int id = i;
                 TDDailySignin config = TDDailySigninTable.dataList[i];
-                RewardBase reward = RewardMgr.S.GetRewardBase(config.rewardType, config.rewardID, config.rewardCount);
+                RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
                 SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
                 //Debug.LogError(config.rewardParam);
                 //string spriteName = "SignPanel_" + item.SignConfig.RewardParameter;
                 item.SetIconSprite(reward.GetSprite());
                 m_SignItemDic.Add(id, item);
             }
-
             //SetSignDayNum(0);
-
             EventSystem.S.Register(EngineEventID.OnSignStateChange, OnSignStateChange);
             UpdateSignItemStatus();
         }
@@ -138,16 +145,13 @@ namespace GameWish.Game
             if (SignInSystem.S.weekSignState.isSignAble)
             {
                 SignSuccess(id);
-
                 //GameplayMgr.S.CheckIsFirstSign();
-
                 //Custom event
                 GameDataMgr.S.GetPlayerData().AddSignInCount(1);
                 DateTime now = DateTime.Now;
                 DateTime firstPlayTime = DateTime.Parse(GameDataMgr.S.GetPlayerData().firstPlayTime);
                 TimeSpan timeSpan = now - firstPlayTime;
             }
-
             UpdateSignItemStatus();
         }
 
@@ -204,15 +208,15 @@ namespace GameWish.Game
                 {
                     if (item.Key == ableSignIndex)
                     {
-                        item.Value.SetSignItemStatus(SignPanel_SignStatus.SignEnable);
+                        item.Value.SetSignItemStatus(SignInStatus.SignEnable);
                     }
                     else if (item.Key <= lastSignIndex)
                     {
-                        item.Value.SetSignItemStatus(SignPanel_SignStatus.SignAlready);
+                        item.Value.SetSignItemStatus(SignInStatus.SignAlready);
                     }
                     else
                     {
-                        item.Value.SetSignItemStatus(SignPanel_SignStatus.SignDisable);
+                        item.Value.SetSignItemStatus(SignInStatus.SignDisable);
                     }
                 }
             }
@@ -223,11 +227,11 @@ namespace GameWish.Game
                 {
                     if (item.Key <= lastSignIndex)
                     {
-                        item.Value.SetSignItemStatus(SignPanel_SignStatus.SignAlready);
+                        item.Value.SetSignItemStatus(SignInStatus.SignAlready);
                     }
                     else
                     {
-                        item.Value.SetSignItemStatus(SignPanel_SignStatus.SignDisable);
+                        item.Value.SetSignItemStatus(SignInStatus.SignDisable);
                     }
                 }
             }
