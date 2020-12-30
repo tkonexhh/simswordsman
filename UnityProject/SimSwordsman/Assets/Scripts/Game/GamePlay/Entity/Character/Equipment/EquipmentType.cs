@@ -9,8 +9,8 @@ namespace GameWish.Game
 	public enum EquipmentType
 	{
         None,
-        Equip1,
-        Equip2,
+        Arm,
+        Armor,
 	}
 	
 }

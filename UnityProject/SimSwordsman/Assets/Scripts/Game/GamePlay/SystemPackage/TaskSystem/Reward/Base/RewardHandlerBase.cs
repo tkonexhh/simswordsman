@@ -5,18 +5,13 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class RewardHandlerBase<T> : IRewardHandler
+	public class RewardHandlerBase : IRewardHandler
 	{
         protected int m_TaskId;
-        protected string m_Target;
-        protected T m_Value;
 
-        public virtual void Init(int id, string target, T value)
+        public virtual void Init(int id)
         {
             m_TaskId = id;
-            m_Target = target;
-
-            m_Value = value;
         }
 
         public virtual void OnRewardClaimed()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class DefaultRewardHandler : RewardHandlerBase<int>
+	public class DefaultRewardHandler : RewardHandlerBase
 	{
 	    
 	}

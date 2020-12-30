@@ -79,15 +79,15 @@ namespace GameWish.Game
             return m_IsFinished;
         }
 
-        public List<string> GetRewardTypeList()
-        {
-            return m_RewardTypeList;
-        }
+        //public List<string> GetRewardTypeList()
+        //{
+        //    return m_RewardTypeList;
+        //}
 
-        public List<string> GetRewardValueList()
-        {
-            return m_RewardValueList;
-        }
+        //public List<string> GetRewardValueList()
+        //{
+        //    return m_RewardValueList;
+        //}
 
         public string GetCurValue()
         {
@@ -252,7 +252,7 @@ namespace GameWish.Game
 
                     object obj = Activator.CreateInstance(type, true);
                     MethodInfo methodInfo = type.GetMethod("Init");
-                    object[] param = BuildParams(m_TaskId, valueStr);
+                    object[] param = new object[] { m_TaskId };//BuildParams(m_TaskId, valueStr);
                     methodInfo.Invoke(obj, param);
                     m_RewardHandlerList.Add((IRewardHandler)obj);
                 }
@@ -276,23 +276,29 @@ namespace GameWish.Game
         {
             object[] objs;
 
-            if (value.Contains("_"))
+            if (string.IsNullOrEmpty(value))
             {
                 objs = new object[] { id, value };
             }
-            else if (value.Contains("E+"))
-            {
-                objs = new object[] { id, double.Parse(value) };
-            }
-            else if (value.Contains("."))
-            {
-                objs = new object[] { id, float.Parse(value) };
-            }
             else
             {
-                objs = new object[] { id, int.Parse(value) };
+                if (value.Contains("_"))
+                {
+                    objs = new object[] { id, value };
+                }
+                else if (value.Contains("E+"))
+                {
+                    objs = new object[] { id, double.Parse(value) };
+                }
+                else if (value.Contains("."))
+                {
+                    objs = new object[] { id, float.Parse(value) };
+                }
+                else
+                {
+                    objs = new object[] { id, int.Parse(value) };
+                }
             }
-
             return objs;
         }
 

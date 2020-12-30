@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -13,8 +14,17 @@ namespace GameWish.Game
 
         public static T ConvertStringToEnum<T>(string value)
         {
-            T result = (T)Enum.Parse(typeof(T), value);
-            return result;
+            T result = default;
+            try
+            {
+                result = (T)Enum.Parse(typeof(T), value);
+                return result;
+            }
+            catch (Exception e)
+            {
+                Log.e("Convert string to enum error: " + value);
+                return result;
+            }
         }
     }
 }

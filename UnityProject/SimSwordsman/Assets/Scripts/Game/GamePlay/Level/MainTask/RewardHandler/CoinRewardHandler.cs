@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class CoinRewardHandler : RewardHandlerBase<double>
+	public class CoinRewardHandler : RewardHandlerBase
 	{
         public override void OnRewardClaimed()
         {
             base.OnRewardClaimed();
 
-            GameDataMgr.S.GetPlayerData().AddCoinNum(m_Value);
+            MainTaskItemInfo item = TDMainTaskTable.GetMainTaskItemInfo(m_TaskId);
+            GameDataMgr.S.GetPlayerData().AddCoinNum(item.GetRewardValue(0));
         }
     }
 	
