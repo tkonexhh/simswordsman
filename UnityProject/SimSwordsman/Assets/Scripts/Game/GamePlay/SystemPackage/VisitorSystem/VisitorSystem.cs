@@ -70,7 +70,7 @@ namespace GameWish.Game
         {
             if (CurrentVisitor.Count < m_MaxVisitorCount)
             {
-                Log.e("创建客人");
+                Debug.LogError("创建客人");
 
                 Visitor visitor = new Visitor();
                 visitor.VisitorCfgID = RandomHelper.Range(0, TDVisitorConfigTable.dataList.Count);
@@ -90,14 +90,17 @@ namespace GameWish.Game
 
         public void CheckVisitorList()
         {
+            bool isChange = false;
             for (int i = CurrentVisitor.Count - 1; i >= 0; i--)
             {
                 if (!CurrentVisitor[i].IsShow)
                 {
                     CurrentVisitor.RemoveAt(i);
-                    CheckMainPanelBtn();
+                    isChange = true;
                 }
             }
+            if (isChange)
+                CheckMainPanelBtn();
         }
 
         public void CheckMainPanelBtn()
