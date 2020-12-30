@@ -124,6 +124,9 @@ namespace GameWish.Game
                 m_WarehouseItems.Add(propItem);
             }
             m_ClanData.AddPropItem(propItem, delta);
+
+            if (propItem.PropSubType == RawMaterial.SilverToken|| propItem.PropSubType == RawMaterial.GoldenToken)
+                EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, RawMaterial.SilverToken, delta);
         }
         //TODO
         public void RemoveArmor(ArmorItem _armorItem, int delta = 1)
@@ -135,6 +138,33 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnReduceItems, _armorItem, delta);
             m_ClanData.RemoveArmor(_armorItem, delta);
 
+        }
+        /// <summary>
+        /// 获取招募令数量
+        /// </summary>
+        /// <param name="recruitType"></param>
+        public int GetRecruitmentOrderCount(RecruitType recruitType)
+        {
+            int count = 0;
+            foreach (var item in m_WarehouseItems)
+            {
+                if (item.PropType== PropType.RawMaterial)
+                {
+                    PropItem prop = (PropItem)item;
+                    switch (recruitType)
+                    {
+                        case RecruitType.GoldMedal:
+                            if (prop.PropSubType == RawMaterial.GoldenToken)
+                                count++;
+                            continue;
+                        case RecruitType.SilverMedal:
+                            if (prop.PropSubType == RawMaterial.SilverToken)
+                                count++;
+                            continue;
+                    }
+                }
+            }
+            return count;
         }
         public void RemoveArms(ArmsItem _armsItem, int delta = 1)
         {

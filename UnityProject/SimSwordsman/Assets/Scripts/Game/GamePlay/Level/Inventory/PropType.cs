@@ -25,7 +25,7 @@ namespace GameWish.Game
         /// <summary>
         /// ÈçÀ´ÉñÕÆ
         /// </summary>
-        RuLaiShenZhang                      = 1020,
+        RuLaiShenZhang                   = 1020,
         JiBenQuanJiao                    = 5,        //»ù±¾È­½Å
     }
 
@@ -53,9 +53,15 @@ namespace GameWish.Game
         DeerHorn = 1019,         //Â¹È×    
         Ganoderma = 1020,        //ÁéÖ¥    
         BeeThorn = 1021,         //·äÕë    
-        SnakeTeeth = 1022,       //¶¾ÑÀ    
-
-
+        SnakeTeeth = 1022,       //¶¾ÑÀ       
+        /// <summary>
+        /// ÒøÅÆÕÐÄ¼Áî
+        /// </summary>
+        SilverToken = 2001,
+        /// <summary>
+        /// ½ðÅÆÕÐÄ¼Áî
+        /// </summary>
+        GoldenToken = 2002,
     }
 
     public enum Armor

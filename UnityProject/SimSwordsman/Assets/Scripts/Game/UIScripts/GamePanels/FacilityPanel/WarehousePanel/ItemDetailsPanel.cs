@@ -167,7 +167,7 @@ namespace GameWish.Game
         private void ContinuousCounting(BtnState btnState)
         {
             string[] strs = m_CountCont.text.Split('/');
-            m_CountCont.text = (int.Parse(strs[0]) + 1).ToString() + Define.Slash + m_CurInventoryItem.Number.ToString();
+            m_CountCont.text = (int.Parse(strs[0]) + 1).ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
             OnCountBtnEvent(m_BtnState);
         }
 
@@ -188,7 +188,7 @@ namespace GameWish.Game
             {
                 m_ItemDetailsTitle.text = m_CurInventoryItem.Name.ToString();
                 m_NumberValue.text = m_CurInventoryItem.Number.ToString();
-                m_CountCont.text = m_SelectedNumber.ToString()+ Define.Slash + m_CurInventoryItem.Number.ToString();
+                m_CountCont.text = m_SelectedNumber.ToString()+ Define.SLASH + m_CurInventoryItem.Number.ToString();
                 m_ItemDescribe.text = m_CurInventoryItem.Desc.ToString();
                 m_UnitPriceValue.text = m_CurInventoryItem.Price.ToString();
             }

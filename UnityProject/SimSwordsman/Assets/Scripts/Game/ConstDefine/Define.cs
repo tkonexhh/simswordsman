@@ -40,8 +40,10 @@ namespace GameWish.Game
        
 
         public const string AD_PLACEMENT_INTER = "";
-        public const string Slash = "/";
-        public const string Plus = "+";
+        public const string SLASH = "/";
+        public const string PLUS = "+";
+        public const string RIDE = "x";
+        public const string COMMA = ",";
 
         public const int AD_MAX_TIME = 120;
 
@@ -49,6 +51,7 @@ namespace GameWish.Game
         public const string COMMON_UPGRADERESOURCES = "Common_UpgradeResources";
         public const string COMMON_BUILDRESOURCES = "Common_BuildResources";
         public const string COMMON_UPGRADEINFODESC = "Common_UpgradeInfoDesc";
+        public const string COMMON_UPGRADENEEDS = "Common_UpgradeNeeds";
         public const string COMMON_BUILDINFODESC = "Common_BuildInfoDesc";
         public const string COMMON_UPGRADE = "Common_Upgrade";
         public const string COMMON_BUILD = "Common_Build";
@@ -106,16 +109,20 @@ namespace GameWish.Game
         public const int LEVEL_COUNT_PER_CHAPTER = 25;
 
         // Inventory
-        public const int MAX_PROP_COUNT = 99;
-  
+        public const int MAX_PROP_COUNT = 999;
+
         //LobbyPanel
-        public const string LEVEL = "级";
-        public const string LECTURE_HALL = "讲武堂升至";
-        public const string RECRUIT_FREE = "免费";
-        public const string SILVER_ORDER = "银牌招募令";
-        public const string GOLD_MEDAL_RECRUITt_ORDER = "金牌招募令";
-        public const string LOOKING_AT_SILVER_ADVERTISEMENT  = "看银牌广告";
-        public const string WATCH_GOLD_MEDALS = "看金牌广告";
+        public const string FACILITY_LOBBY_GOLDRECRUITMENT = "Facility_Lobby_GoldRecruitment";
+        public const string FACILITY_LOBBY_SILVERRECRUITMENT = "Facility_Lobby_SilverRecruitment";
+        public const string FACILITY_LOBBY_POSSIBLERECRUITMENT = "Facility_Lobby_PossibleRecruitment";
+        public const string FACILITY_LOBBY_APPRENTICE = "Facility_Lobby_Apprentice";
+        public const string FACILITY_LOBBY_ELITE = "Facility_Lobby_Elite";
+        public const string FACILITY_LOBBY_GENEIUS = "Facility_Lobby_Genius";
+        public const string FACILITY_LOBBY_TIMESTODAY = "Facility_Lobby_TimesToday";
+        public const string FACILITY_LOBBY_FREE = "Facility_Lobby_Free";
+        public const string FACILITY_LOBBY_RECRUIT = "Facility_Lobby_Recruit";
+
+
 
         //ChallengePanel
         public const string CHALLENGE_NAME = "ChallengeName";

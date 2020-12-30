@@ -83,9 +83,9 @@ namespace GameWish.Game
                 MainGameMgr.S.RecruitDisciplerMgr.RemoveCharacterList(m_RecruitType,m_CharacterItem);
                 MainGameMgr.S.CharacterMgr.AddCharacter(m_CharacterItem);
                 MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem.id, CharacterStateID.EnterClan);
-                EventSystem.S.Send(EventID.OnRefreshPanelInfo); 
-                
-                HideSelfWithAnim();
+                EventSystem.S.Send(EventID.OnRefreshPanelInfo);
+
+                OnPanelHideComplete();
             });
             m_RefuseBtn.onClick.AddListener(HideSelfWithAnim);
 
