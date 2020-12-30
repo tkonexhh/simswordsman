@@ -132,8 +132,6 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-        
-
         }
 
 
@@ -205,7 +203,7 @@ namespace GameWish.Game
         /// </summary>
         private void OnClickUpgradeBtn()
         {
-            bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(double.Parse(m_CoinValue.text));
+            bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_CurFacilityLevelInfo.upgradeCoinCost);
 
             if (isReduceSuccess)
             {
@@ -248,8 +246,6 @@ namespace GameWish.Game
             m_CurFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel);
             m_CurFacilityConfigInfo = m_FacilityMgr.GetFacilityConfigInfo(FacilityType.Lobby);
         }
-
-       
     }
 }
 
