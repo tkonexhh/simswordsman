@@ -7,7 +7,7 @@ namespace GameWish.Game
     public abstract class RewardBase
     {
         protected int m_KeyID;
-        public int m_Count { get; protected set; }
+        public int Count { get; protected set; }
 
         //protected bool m_isInitSuccess = true;
         protected Action m_CallBackAction;
@@ -18,7 +18,7 @@ namespace GameWish.Game
         {
             Type = type;
             m_KeyID = id;
-            m_Count = count;
+            Count = count;
         }
 
 

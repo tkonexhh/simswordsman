@@ -17,7 +17,7 @@ namespace GameWish.Game
             {
                 Log.e("Manual task is finished");
 
-                return item.taskState==TaskState.Unclaimed;
+                return item.taskState == TaskState.Unclaimed;
             }
 
             return false;

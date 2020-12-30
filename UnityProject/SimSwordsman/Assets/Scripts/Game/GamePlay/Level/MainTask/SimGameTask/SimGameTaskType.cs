@@ -22,19 +22,19 @@ namespace GameWish.Game
 
     public enum CollectedObjType
     {
-        Fish,
-        Chicken,
-        Bear,
-        Boar,
-        Snake,
-        Deer,
-        WuWood,
-        SilverWood,
-        QingRock,
-        CloudRock,
-        Vine,
-        Iron,
-        Ganoderma,
-        Well,
+        Fish, // Óã
+        Chicken, // ¼¦
+        Bear, // ÐÜ
+        Boar, // Ò°Öí
+        Snake, // Éß
+        Deer, // Â¹
+        WuWood, // ÎÚÄ¾
+        SilverWood, // ÒøÄ¾
+        QingRock, // ÇàÑÒ
+        CloudRock, // ÔÆÑÒ
+        Vine, // ×ÏÌÙ
+        Iron, // ºÚÌú
+        Ganoderma, // ÁéÖ¥
+        Well, // ¾®Ë®
     }
 }

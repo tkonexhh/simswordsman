@@ -14,6 +14,7 @@ namespace GameWish.Game
        
         private EInt m_TaskID = 0;   
         private string m_TriggerType;   
+        private string m_TriggerParam;   
         private string m_NextTask;   
         private EInt m_HomeLevel = 0;   
         private string m_TaskTitle;   
@@ -40,6 +41,11 @@ namespace GameWish.Game
         /// 触发类型
         /// </summary>
         public  string  triggerType {get { return m_TriggerType; } }
+       
+        /// <summary>
+        /// 触发参数
+        /// </summary>
+        public  string  triggerParam {get { return m_TriggerParam; } }
        
         /// <summary>
         /// 后置任务
@@ -133,45 +139,48 @@ namespace GameWish.Game
                     m_TriggerType = dataR.ReadString();
                     break;
                 case 2:
-                    m_NextTask = dataR.ReadString();
+                    m_TriggerParam = dataR.ReadString();
                     break;
                 case 3:
-                    m_HomeLevel = dataR.ReadInt();
+                    m_NextTask = dataR.ReadString();
                     break;
                 case 4:
-                    m_TaskTitle = dataR.ReadString();
+                    m_HomeLevel = dataR.ReadInt();
                     break;
                 case 5:
-                    m_TaskDescription = dataR.ReadString();
+                    m_TaskTitle = dataR.ReadString();
                     break;
                 case 6:
-                    m_Type = dataR.ReadString();
+                    m_TaskDescription = dataR.ReadString();
                     break;
                 case 7:
-                    m_Time = dataR.ReadInt();
+                    m_Type = dataR.ReadString();
                     break;
                 case 8:
-                    m_Reward = dataR.ReadString();
+                    m_Time = dataR.ReadInt();
                     break;
                 case 9:
-                    m_SpecialRewardRate = dataR.ReadInt();
+                    m_Reward = dataR.ReadString();
                     break;
                 case 10:
-                    m_SpecialReward = dataR.ReadString();
+                    m_SpecialRewardRate = dataR.ReadInt();
                     break;
                 case 11:
-                    m_TaskEvent = dataR.ReadString();
+                    m_SpecialReward = dataR.ReadString();
                     break;
                 case 12:
-                    m_ConditionType = dataR.ReadString();
+                    m_TaskEvent = dataR.ReadString();
                     break;
                 case 13:
-                    m_ConditionValue = dataR.ReadString();
+                    m_ConditionType = dataR.ReadString();
                     break;
                 case 14:
-                    m_RoleAmount = dataR.ReadInt();
+                    m_ConditionValue = dataR.ReadString();
                     break;
                 case 15:
+                    m_RoleAmount = dataR.ReadInt();
+                    break;
+                case 16:
                     m_RoleLevelRequired = dataR.ReadInt();
                     break;
                 default:
@@ -184,24 +193,25 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(16);
+          Dictionary<string, int> ret = new Dictionary<string, int>(17);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
-          ret.Add("NextTask", 2);
-          ret.Add("HomeLevel", 3);
-          ret.Add("TaskTitle", 4);
-          ret.Add("TaskDescription", 5);
-          ret.Add("Type", 6);
-          ret.Add("Time", 7);
-          ret.Add("Reward", 8);
-          ret.Add("SpecialRewardRate", 9);
-          ret.Add("SpecialReward", 10);
-          ret.Add("TaskEvent", 11);
-          ret.Add("ConditionType", 12);
-          ret.Add("ConditionValue", 13);
-          ret.Add("RoleAmount", 14);
-          ret.Add("RoleLevelRequired", 15);
+          ret.Add("TriggerParam", 2);
+          ret.Add("NextTask", 3);
+          ret.Add("HomeLevel", 4);
+          ret.Add("TaskTitle", 5);
+          ret.Add("TaskDescription", 6);
+          ret.Add("Type", 7);
+          ret.Add("Time", 8);
+          ret.Add("Reward", 9);
+          ret.Add("SpecialRewardRate", 10);
+          ret.Add("SpecialReward", 11);
+          ret.Add("TaskEvent", 12);
+          ret.Add("ConditionType", 13);
+          ret.Add("ConditionValue", 14);
+          ret.Add("RoleAmount", 15);
+          ret.Add("RoleLevelRequired", 16);
           return ret;
         }
     } 

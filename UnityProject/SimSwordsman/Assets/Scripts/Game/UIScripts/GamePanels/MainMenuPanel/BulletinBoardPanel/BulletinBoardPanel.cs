@@ -89,6 +89,16 @@ namespace GameWish.Game
                         DestroyImmediate(m_TaskObjDic[simGameTask.GetId()]);
                         m_TaskObjDic[simGameTask.GetId()] = null;
                     }
+
+                    if (simGameTask.MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Main)
+                    {
+                        List<int> nextTasks = simGameTask.MainTaskItemInfo.nextTaskIdList;
+                        foreach (int taskId in nextTasks)
+                        {
+                            MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
+                            MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType);
+                        }
+                    }
                     break;
             }
 

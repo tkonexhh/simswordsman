@@ -17,12 +17,12 @@ namespace GameWish.Game
 		public override void AcceptReward()
 		{
             //Log.e("»ñµÃ" + m_TDItem.name + m_Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID), m_Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID), Count);
         }
 
 		public override string RewardName()
 		{
-			return ((RawMaterial)m_KeyID).ToString();
+            return TDItemConfigTable.GetData(m_KeyID).name;
 		}
 
 		public override Sprite GetSprite()

@@ -1,7 +1,5 @@
 using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -16,12 +14,12 @@ namespace GameWish.Game
 
 		public override void AcceptReward()
 		{
-			GameDataMgr.S.GetPlayerData().AddCoin(m_Count);
+			GameDataMgr.S.GetPlayerData().AddCoin(Count);
 		}
 
 		public override string RewardName()
 		{
-			return "Coin";
+			return "铜钱";
 		}
 
 		public override Sprite GetSprite()

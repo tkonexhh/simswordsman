@@ -15,6 +15,7 @@ namespace GameWish.Game
         {
             ///m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType, taskState);
             m_TaskDetailInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
+            m_TaskDetailInfo.taskState = taskState;
         }
 
         public TaskState GetCurTaskState()
