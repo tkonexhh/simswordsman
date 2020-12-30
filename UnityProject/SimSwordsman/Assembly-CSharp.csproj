@@ -1042,6 +1042,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\MainTaskItemInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\MainTaskMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\RewardHandler\CoinRewardHandler.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\RewardHandler\ItemRewardHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\Implement\TaskBattle.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\Implement\TaskCollectRes.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\SimGameTask.cs" />
@@ -1085,7 +1086,6 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\OfflineRewardSystem\OfflineRewardMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\PopAdSystem\PopAdItemBase.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\PopAdSystem\PopAdMgr.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\SignInSystem\SignInSystem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\ConditionChecker\Base\ConditionCheckerBase.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\ConditionChecker\Base\IConditionChecker.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\ConditionChecker\DefaultConditionChecker.cs" />
@@ -1096,6 +1096,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TaskSystem\TaskItem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TimeUpdateSystem\ITimeObserver.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\TimeUpdateSystem\TimeUpdateMgr.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\VisitorSystem\VisitorSystem.cs" />
     <Compile Include="Assets\Scripts\Game\Module\ABTestModule\ABRemoteKeyValueConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Module\ABTestModule\ABTestModule.cs" />
     <Compile Include="Assets\Scripts\Game\Module\ABTestModule\AbTestActor.cs" />
@@ -1383,6 +1384,7 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\SectNamePanel\SectNamePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\SignInPanel\SignInItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\SignInPanel\SignInPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\VisitorPanel\VisitorPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\RatePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\SettingPanel\SettingPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\ToastPanel.cs" />
