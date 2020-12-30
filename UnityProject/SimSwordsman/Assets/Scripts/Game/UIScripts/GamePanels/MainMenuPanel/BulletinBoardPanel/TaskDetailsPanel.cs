@@ -40,7 +40,7 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_CurTaskInfo.MainTaskItemInfo.rewards.Count; i++)
             {
-                m_RewardValueOne.text += m_CurTaskInfo.MainTaskItemInfo.rewards[0].count.ToString();
+                m_RewardValueOne.text += m_CurTaskInfo.MainTaskItemInfo.GetRewardValue(0).ToString();
             }
             m_TaskCont.text = m_CurTaskInfo.MainTaskItemInfo.desc;
         }
