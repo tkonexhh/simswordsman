@@ -14,7 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Name;   
-        private string m_AnimationName;  
+        private string m_Desc;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -31,7 +31,7 @@ namespace GameWish.Game
         /// <summary>
         /// 访客文本
         /// </summary>
-        public  string  animationName {get { return m_AnimationName; } }
+        public  string  desc {get { return m_Desc; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -55,7 +55,7 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_AnimationName = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -71,7 +71,7 @@ namespace GameWish.Game
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
-          ret.Add("AnimationName", 2);
+          ret.Add("Desc", 2);
           return ret;
         }
     } 
