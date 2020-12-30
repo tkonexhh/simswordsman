@@ -1,7 +1,5 @@
 using Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -21,7 +19,7 @@ namespace GameWish.Game
 
 		public override string RewardName()
 		{
-			return "ͭǮ";
+			return "铜钱";
 		}
 
 		public override Sprite GetSprite()

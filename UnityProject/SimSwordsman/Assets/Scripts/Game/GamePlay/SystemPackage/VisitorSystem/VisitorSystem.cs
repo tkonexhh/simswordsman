@@ -73,7 +73,7 @@ namespace GameWish.Game
                 Debug.LogError("创建客人");
 
                 Visitor visitor = new Visitor();
-                visitor.VisitorCfgID = RandomHelper.Range(0, TDVisitorConfigTable.dataList.Count);
+                visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);
                 visitor.Reward = GetRandomReward(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
                 visitor.CountDown(m_DisAppearVisitorCountdown, ()=> 
                 {
@@ -82,30 +82,27 @@ namespace GameWish.Game
                 });
 
                 CurrentVisitor.Add(visitor);
-                //在主页面显示按钮
-                CheckMainPanelBtn();
+                CheckVisitorList();
             }
         }
 
 
         public void CheckVisitorList()
         {
-            bool isChange = false;
+            int count = 0;
             for (int i = CurrentVisitor.Count - 1; i >= 0; i--)
             {
-                if (!CurrentVisitor[i].IsShow)
-                {
+                if (CurrentVisitor[i].state == 0)
+                    count++;
+                else if (CurrentVisitor[i].state == 2)
                     CurrentVisitor.RemoveAt(i);
-                    isChange = true;
-                }
             }
-            if (isChange)
-                CheckMainPanelBtn();
+            CheckMainPanelBtn(count);
         }
 
-        public void CheckMainPanelBtn()
+        public void CheckMainPanelBtn(int count)
         {
-            EventSystem.S.Send(EventID.OnCheckVisitorBtn, CurrentVisitor.Count);
+            EventSystem.S.Send(EventID.OnCheckVisitorBtn, count);
         }
 
         /// <summary>
@@ -118,16 +115,42 @@ namespace GameWish.Game
             return RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[2].reward);
         }
 
+        public void ShowInPanel(Visitor visitor)
+        {
+            visitor.ShowInPanel();
+            CheckVisitorList();
+        }
+
+        public void Disappear(Visitor visitor)
+        {
+            visitor.Disappear();
+            CheckVisitorList();
+            StartAppearVisitorCountdown();
+        }
+
 	}
     public class Visitor
     {
         public int VisitorCfgID;
         public RewardBase Reward;
 
-        public bool IsShow = true;
+        public Visitor()
+        {
+            state = 0;
+        }
+
+        /// <summary>
+        /// 状态 0：未点击 1：正在领取界面 2：关闭消失
+        /// </summary>
+        public int state { get; private set; }
         public void Disappear()
         {
-            IsShow = false;
+            state = 2;
+            Timer.S.Cancel(m_CountdownID);
+        }
+        public void ShowInPanel()
+        {
+            state = 1;
             Timer.S.Cancel(m_CountdownID);
         }
 

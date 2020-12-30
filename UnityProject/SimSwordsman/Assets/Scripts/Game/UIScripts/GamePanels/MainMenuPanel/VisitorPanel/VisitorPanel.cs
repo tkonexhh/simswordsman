@@ -38,8 +38,7 @@ namespace GameWish.Game
             if (args != null)
             {
                 m_visitor = VisitorSystem.S.CurrentVisitor[(int)args[0]];
-                m_visitor.Disappear();
-                VisitorSystem.S.CheckVisitorList();
+                VisitorSystem.S.ShowInPanel(m_visitor);
 
                 TDVisitorConfig tb = TDVisitorConfigTable.GetData(m_visitor.VisitorCfgID);
                 m_Title.text = tb.name;
@@ -59,16 +58,15 @@ namespace GameWish.Game
                 FloatMessage.S.ShowMsg("应当看广告");
 
                 m_visitor.Reward.AcceptReward();
-                VisitorSystem.S.StartAppearVisitorCountdown();
+                VisitorSystem.S.Disappear(m_visitor);
 
                 HideSelfWithAnim();
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
             {
-                VisitorSystem.S.StartAppearVisitorCountdown();
+                VisitorSystem.S.Disappear(m_visitor);
                 HideSelfWithAnim();
             });
-
         }
 
 
