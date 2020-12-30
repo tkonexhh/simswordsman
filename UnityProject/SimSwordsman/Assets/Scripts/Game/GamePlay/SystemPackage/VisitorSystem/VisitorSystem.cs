@@ -15,7 +15,7 @@ namespace GameWish.Game
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
-        int m_AppearVisitorCountdown = 90;
+        int m_AppearVisitorCountdown = 5;
         /// <summary>
         /// 客人消失倒计时
         /// </summary>
@@ -112,7 +112,25 @@ namespace GameWish.Game
         /// <returns></returns>
         RewardBase GetRandomReward(int level)
         {
-            return RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[2].reward);
+            List<int> idList = TDVisitorRewardConfigTable.rewardIDByMainLevelDic[level];
+            //加权平均
+            int all = 0;
+            foreach (var item in idList)
+                all += TDVisitorRewardConfigTable.dataList[item].weight;
+            int value = RandomHelper.Range(0, all + 1);
+            int resultindex = 1;
+            int temp = 0;
+            for (int i = 0; i < idList.Count; i++)
+            {
+                temp += TDVisitorRewardConfigTable.dataList[idList[i]].weight;
+                if (value <= temp)
+                {
+                    resultindex = i;
+                    break;
+                }
+            }
+            //Debug.LogError(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
+            return RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
         }
 
         public void ShowInPanel(Visitor visitor)
