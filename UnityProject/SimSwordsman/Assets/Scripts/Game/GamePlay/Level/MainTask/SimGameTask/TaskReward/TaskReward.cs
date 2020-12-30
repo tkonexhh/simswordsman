@@ -9,7 +9,8 @@ namespace GameWish.Game
 	{
         public TaskRewardType rewardType;
         public int id;
-        public int count;
+        public int count1 = -1;
+        public int count2 = -1;
 
         public TaskReward(string reward)
         {
@@ -19,22 +20,31 @@ namespace GameWish.Game
         private void Parse(string reward)
         {
             string[] strs = reward.Split('|');
-            if (strs.Length != 2)
+
+            rewardType = EnumUtil.ConvertStringToEnum<TaskRewardType>(strs[0]);
+
+            if (strs.Length == 2) // Coin
             {
-                Debug.LogError("Task reward pattern wrong");
+                //id = int.Parse(strs[0]);
+                count1 = int.Parse(strs[1]);
                 return;
             }
-            rewardType = EnumUtil.ConvertStringToEnum<TaskRewardType>(strs[0]);
-            string[] str2 = strs[1].Split('_');
-            if (str2.Length == 2)
+            if (strs.Length == 3) // Item
             {
-                id = int.Parse(str2[0]);
-                count = int.Parse(str2[1]);
+                id = int.Parse(strs[1]);
+                string[] countStrs = strs[2].Split('_');
+                if (countStrs.Length == 1)
+                {
+                    count1 = int.Parse(countStrs[0]);
+                }
+                else if (countStrs.Length == 2)
+                {
+                    count1 = int.Parse(countStrs[0]);
+                    count2 = int.Parse(countStrs[0]);
+                }
+                return;
             }
-            else
-            {
-                count = int.Parse(strs[1]);
-            }
+
         }
 	}
 	

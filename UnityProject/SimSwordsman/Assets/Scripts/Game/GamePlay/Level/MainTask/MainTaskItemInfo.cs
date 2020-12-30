@@ -53,6 +53,22 @@ namespace GameWish.Game
             ParseTaskType(tDMainTask.type);
         }
 
+        public int GetRewardValue(int index)
+        {
+            if (index < 0 || index > rewards.Count - 1)
+            {
+                Log.e("Reward index out of range");
+                return 0;
+            }
+
+            TaskReward reward = rewards[index];
+            if (reward.count2 != -1)
+            {
+                return Random.Range(reward.count1, reward.count2);
+            }
+
+            return reward.count1;
+        }
         //public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType, TaskState _taskState)
         //{
         //    this.id = id;

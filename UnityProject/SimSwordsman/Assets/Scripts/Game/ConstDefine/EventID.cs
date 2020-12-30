@@ -21,12 +21,13 @@ namespace GameWish.Game
 
         //UI
         OnCloseParentPanel,
+        OnCheckVisitorBtn,
 
         // Facility
         OnStartUnlockFacility,
         OnStartUpgradeFacility,
+        OnEndUpgradeFacility,
 
-        
         OnReduceItems,
 
 

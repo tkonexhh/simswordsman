@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace GameWish.Game
 {
 	public abstract class SimGameTask : TaskItem
@@ -15,6 +14,11 @@ namespace GameWish.Game
         {
             ///m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType, taskState);
             m_TaskDetailInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
+            if (m_TaskDetailInfo == null)
+            {
+                Debug.LogError("Task info not found, id: " + taskId);
+            }
+            m_TaskDetailInfo.taskState = taskState;
         }
 
         public TaskState GetCurTaskState()

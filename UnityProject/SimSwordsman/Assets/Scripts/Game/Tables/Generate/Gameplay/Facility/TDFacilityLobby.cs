@@ -15,7 +15,8 @@ namespace GameWish.Game
         private EInt m_Level = 0;   
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
-        private string m_UpgradePreconditions;  
+        private string m_UpgradePreconditions;   
+        private string m_UnlockContent;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -38,6 +39,11 @@ namespace GameWish.Game
         /// 升级条件，拥有n名m级弟子
         /// </summary>
         public  string  upgradePreconditions {get { return m_UpgradePreconditions; } }
+       
+        /// <summary>
+        /// 解锁内容
+        /// </summary>
+        public  string  unlockContent {get { return m_UnlockContent; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -66,6 +72,9 @@ namespace GameWish.Game
                 case 3:
                     m_UpgradePreconditions = dataR.ReadString();
                     break;
+                case 4:
+                    m_UnlockContent = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -76,12 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(4);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
+          ret.Add("UnlockContent", 4);
           return ret;
         }
     } 

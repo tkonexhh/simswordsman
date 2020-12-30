@@ -17,12 +17,12 @@ namespace GameWish.Game
 		public override void AcceptReward()
 		{
             //Log.e("»ñµÃ" + m_Info.Name + m_Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), m_Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
         }
         
 		public override string RewardName()
 		{
-			return ((KungfuType)m_KeyID).ToString();
+            return TDKongfuConfigTable.GetData(m_KeyID).kongfuName;
 		}
 
 		public override Sprite GetSprite()

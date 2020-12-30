@@ -72,8 +72,11 @@ namespace GameWish.Game
  
                 // Clan
                 TDClanConfigTable.metaData,
+
                 TDSectNameTable.metaData,
                 TDDailySigninTable.metaData,
+                TDVisitorConfigTable.metaData,
+                TDVisitorRewardConfigTable.metaData,
 
             };
         }

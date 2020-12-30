@@ -14,12 +14,12 @@ namespace GameWish.Game
 		public override void AcceptReward()
 		{
             //Log.e("»ñµÃ" + m_Info.Name + m_Count);
-            MainGameMgr.S.MedicinalPowderMgr.AddHerb(m_KeyID, m_Count);
+            MainGameMgr.S.MedicinalPowderMgr.AddHerb(m_KeyID, Count);
         }
 
 		public override string RewardName()
 		{
-			return null;
+			return TDHerbConfigTable.GetData(m_KeyID).name;
 		}
 
 		public override Sprite GetSprite()

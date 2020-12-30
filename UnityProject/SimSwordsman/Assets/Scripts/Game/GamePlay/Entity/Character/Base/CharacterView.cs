@@ -67,11 +67,13 @@ namespace GameWish.Game
 
         public void PlayIdleAnim()
         {
+            m_SpineAnim.skeleton.SetToSetupPose();
             SpineHelper.PlayAnim(m_SpineAnim, "idle", true, null);
         }
 
         public void PlayWalkAnim()
         {
+            m_SpineAnim.skeleton.SetToSetupPose();
             SpineHelper.PlayAnim(m_SpineAnim, "move", true, null);
         }
 

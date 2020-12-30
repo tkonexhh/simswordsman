@@ -20,7 +20,7 @@ namespace GameWish.Game
         private List<IMainTaskObserver> m_MainTaskObserverList = new List<IMainTaskObserver>();
 
         private int m_DailyTaskCount = 2;
-        private int m_CommonTaskRefreshInterval = 5; // 5分钟刷新一次
+        private float m_CommonTaskRefreshInterval = 0.1f; // 5分钟刷新一次
         private int m_CommonTaskCount = 3;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
@@ -33,6 +33,8 @@ namespace GameWish.Game
             m_MainTaskData = GameDataMgr.S.GetMainTaskData();
 
             InitTaskList();
+
+            m_LastRefreshCommonTaskTime = DateTime.Now;
         }
 
         public void OnUpdate()
@@ -212,7 +214,7 @@ namespace GameWish.Game
             }
         }
 
-        private void GenerateTask(int taskId, SimGameTaskType taskType, int subType)
+        public void GenerateTask(int taskId, SimGameTaskType taskType, int subType)
         {
             AddTask(taskId, taskType);
 
