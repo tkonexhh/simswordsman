@@ -21,12 +21,13 @@ namespace GameWish.Game
 
         //UI
         OnCloseParentPanel,
+        OnCheckVisitorBtn,
 
         // Facility
         OnStartUnlockFacility,
         OnStartUpgradeFacility,
+        OnEndUpgradeFacility,
 
-        
         OnReduceItems,
 
 
@@ -56,6 +57,10 @@ namespace GameWish.Game
         OnSelectedEquipSuccess,     //挑战成功事件
 
         //Disciple
+        /// <summary>
+        /// 弟子减少事件
+        /// </summary>
+        OnDiscipleReduce,
         OnCharacterUpgrade,
         OnKongfuLibraryUpgrade,
 

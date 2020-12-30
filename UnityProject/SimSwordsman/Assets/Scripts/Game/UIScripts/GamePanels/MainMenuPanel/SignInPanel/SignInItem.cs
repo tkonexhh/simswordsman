@@ -41,7 +41,7 @@ namespace GameWish.Game
             m_DayText.text = string.Format("µÚ{0}Ìì", id);
             RewardCfg = signConfig;
             
-            SetCount(signConfig.m_Count);
+            SetCount(signConfig.Count);
 
             m_Button.onClick.AddListener(() =>
             {

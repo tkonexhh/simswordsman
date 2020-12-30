@@ -24,7 +24,7 @@ namespace GameWish.Game
 
         private List<CharacterItem> m_CharacterList = null;
 
-
+        private Dictionary<CharacterItem, GameObject> m_DiscipleDic = new Dictionary<CharacterItem, GameObject>();
 
         protected override void OnUIInit()
         {
@@ -63,8 +63,10 @@ namespace GameWish.Game
         {
             if (m_DiscipleItem == null)
                 return;
+            GameObject disciple =  Instantiate(m_DiscipleItem, parent);
+            ItemICom discipleItem = disciple.GetComponent<ItemICom>();
 
-            ItemICom discipleItem = Instantiate(m_DiscipleItem, parent).GetComponent<ItemICom>();
+            m_DiscipleDic.Add(characterItem, disciple);
             discipleItem.OnInit(characterItem);
             discipleItem.SetButtonEvent(AddListenerBtn);
         }
@@ -102,11 +104,13 @@ namespace GameWish.Game
         private void RegisterEvents()
         {
             EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
+            EventSystem.S.Register(EventID.OnDiscipleReduce, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
             EventSystem.S.UnRegister(EventID.OnAddCoinNum, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnDiscipleReduce, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -115,6 +119,18 @@ namespace GameWish.Game
             {
                 case (int)EventID.OnAddCoinNum:
                     //RefreshPanelInfo();
+                    break;
+                case (int)EventID.OnDiscipleReduce:
+                    int id = (int)param[0];
+                    foreach (var item in m_DiscipleDic.Keys)
+                    {
+                        if (item.id==id)
+                        {
+                            GameObject obj = m_DiscipleDic[item];
+                            m_DiscipleDic.Remove(item);
+                            DestroyImmediate(obj);
+                        }
+                    }
                     break;
             }
         }

@@ -23,6 +23,8 @@ namespace GameWish.Game
         private double m_CoinNum = 0;
         public int signInCount;
 
+        public bool UnlockVisitor;
+
         public void SetDefaultValue()
         {
             m_CoinNum = Define.DEFAULT_COIN_NUM;
@@ -33,6 +35,8 @@ namespace GameWish.Game
 
             lastPlayTime = "0";
             firstPlayTime = string.Empty;
+
+            UnlockVisitor = false;
 
             InitChapterDataList();
 

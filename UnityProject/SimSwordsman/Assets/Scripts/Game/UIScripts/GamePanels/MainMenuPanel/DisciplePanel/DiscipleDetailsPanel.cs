@@ -97,6 +97,7 @@ namespace GameWish.Game
         private Button m_CloseBtn;
 
         private CharacterItem m_CurDisciple = null;
+        private CharacterController m_CurCharacterController = null;
         private Dictionary<int, CharacterKongfuData> m_Kongfus = null;
 
         //private EquipmentItem m_CurArmor = null;
@@ -134,7 +135,7 @@ namespace GameWish.Game
             m_DiscipleNameValue.text = m_CurDisciple.name;
             m_LevelValue.text = CommonUIMethod.GetGrade(m_CurDisciple.level);
             m_SkillValue.text = m_CurDisciple.atkValue.ToString();
-            m_EntryTimeValue.text = GetEntryTime(m_CurDisciple.startTime);
+            m_EntryTimeValue.text = GetEntryTime(m_CurDisciple.GetEntryTime());
             m_RankValue.text = CommonUIMethod.GetPart(m_CurDisciple.stage);
             m_GradeValue.text = CommonUIMethod.GetStrQualityForChaQua(m_CurDisciple.quality);
             SetCharacterBehavior(m_CurDisciple.behavior);
@@ -162,28 +163,36 @@ namespace GameWish.Game
         }
         private void RefreshArmsInfo()
         {
+            
             if (m_CurDisciple.characeterEquipmentData.IsArmorUnlock)
             {
+                //解锁
                 CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
                 if (characterArms.IsHaveEquip())
                 {
+                    //当前有装备
                     m_ArmsNameValue.text = characterArms.Name;
                     m_ArmsClassValue.text = CommonUIMethod.GetClass(characterArms.Class);
                     m_ArmsSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
                         CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.Plus) + CommonUIMethod.GetBonus(characterArms.Addition));
+                    m_IntensifyArmsBtn.gameObject.SetActive(true);
                 }
                 else
                 {
+                    //当前没有装备
                     m_ArmsNameValue.text = Define.COMMON_DEFAULT_STR;
                     m_ArmsClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_ArmsSkillValue.text = Define.COMMON_DEFAULT_STR;
+                    m_IntensifyArmsBtn.gameObject.SetActive(false);
                 }
             }
             else
             {
+                //未解锁
                 m_ArmsNameValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED);
                 int unlockLevel = MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.EquipWeapon);
                 m_ArmsClassValue.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
+                m_IntensifyArmsBtn.gameObject.SetActive(false);
             }
 
             // m_ArmsImg.sprite = FindSprite();
@@ -200,12 +209,14 @@ namespace GameWish.Game
                     m_ArmorClassValue.text = CommonUIMethod.GetClass(characterArmor.Class);
                     m_ArmorSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
                         CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.Plus) + CommonUIMethod.GetBonus(characterArmor.Addition));
+                    m_IntensifyArmorBtn.gameObject.SetActive(true);
                 }
                 else
                 {
                     m_ArmorNameValue.text = Define.COMMON_DEFAULT_STR;
                     m_ArmorClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_ArmorSkillValue.text = Define.COMMON_DEFAULT_STR;
+                    m_IntensifyArmorBtn.gameObject.SetActive(false);
                 }
             }
             else
@@ -213,6 +224,7 @@ namespace GameWish.Game
                 m_ArmorNameValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED);
                 int unlockLevel = MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.EquipWeapon);
                 m_ArmorClassValue.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
+                m_IntensifyArmorBtn.gameObject.SetActive(false);
             }
         }
 
@@ -228,11 +240,9 @@ namespace GameWish.Game
             itemICom.OnInit(characterKongfu, null, kungfuLockState, sprite, UnLockLevel);
         }
 
-        private string GetEntryTime(int time)
+        private string GetEntryTime(int day)
         {
-            if (time != 0)
-                return CommonUIMethod.GetStrForColor("#86570C", time.ToString()) + CommonUIMethod.GetStrForColor("#382E2E", CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_DAY));
-            return "";
+            return CommonUIMethod.GetStrForColor("#86570C", day.ToString()) + CommonUIMethod.GetStrForColor("#382E2E", CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_DAY));
         }
 
         private void SetCharacterBehavior(CharacterBehavior behavior)
@@ -260,7 +270,14 @@ namespace GameWish.Game
             //    UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
             //    OnPanelHideComplete();
             //});
-
+            m_PracticeValueBtn.onClick.AddListener(()=> {
+                m_CurCharacterController.SetState(CharacterStateID.Practice);
+                OnPanelHideComplete();
+            });
+            m_EjectValueBtn.onClick.AddListener(()=> {
+                MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
+                OnPanelHideComplete();
+            });
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
             //m_ExpulsionBtn.onClick.AddListener(() =>
@@ -275,8 +292,8 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
-
             m_CurDisciple = (CharacterItem)args[0];
+            m_CurCharacterController = MainGameMgr.S.CharacterMgr.GetCharacterController(m_CurDisciple.id);
             m_Kongfus = m_CurDisciple.kongfus;
             RefreshPanelInfo();
 

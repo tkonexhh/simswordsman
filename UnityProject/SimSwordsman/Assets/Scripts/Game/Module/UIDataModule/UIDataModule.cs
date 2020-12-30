@@ -108,6 +108,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.BaicaohuPanel, null, "GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel");
 
             UIDataTable.AddPanelData(UIID.SectNamePanel, null, "GamePanels/SectNamePanel/SectNamePanel");
+
+            UIDataTable.AddPanelData(UIID.VisitorPanel, null, "GamePanels/VisitorPanel/VisitorPanel");
         }
     }
 }
