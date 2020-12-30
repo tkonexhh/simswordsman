@@ -49,6 +49,7 @@ namespace GameWish.Game
         OnSilverMedalRefresh,       //银牌招募刷新事件
         OnRefreshPanelInfo,         //刷新招募面板信息
         OnRefreshRecruitmentOrder,  //刷新广告招募次数事件
+        OnRecruitmentOrderIncrease,  //刷新广告招募次数事件
 
         //ChallengePanel
         OnChanllengeSuccess,        //挑战成功事件

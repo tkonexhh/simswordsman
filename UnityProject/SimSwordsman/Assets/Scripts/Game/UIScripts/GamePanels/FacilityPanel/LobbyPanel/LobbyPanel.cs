@@ -10,54 +10,55 @@ namespace GameWish.Game
     public enum ClickType
     {
         None,
+        /// <summary>
+        /// 第一次招募
+        /// </summary>
         First,
+        /// <summary>
+        /// 招募令招募
+        /// </summary>
         RecruitmentOrder,
+        /// <summary>
+        /// 看广告招募
+        /// </summary>
         LookAdvertisement,
         Over,
     }
 
     public class LobbyPanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Text m_FacilitiesName;
-        [SerializeField]
-        private Text m_BriefIntroduction;
 
-        [SerializeField]
-        private Text m_CurLevelValueText;
-        [SerializeField]
-        private Text m_NextLevelValueText;
-        [SerializeField]
-        private Text m_UpgradeRewardValueText;
-        [SerializeField]
-        private Text m_UpgradeNeedCoinValueText;
-        [SerializeField]
-        private Text m_RecruitmentGoldTxt;
-        [SerializeField]
-        private Text m_RecruitmentSilverTxt;
-
-        [SerializeField]
-        private Button m_UpgradeBtn;
+        [Header("Top")]
         [SerializeField]
         private Button m_CloseBtn;
-        [Header("银牌招募令")]
-        [SerializeField]
-        private Button m_SilverRecruitBtn;
-        [SerializeField]
-        private Text m_SilverRecruitmentTimes;
-        [SerializeField]
-        private Transform m_SilverRecruitmentTimesTra;
 
-        [Header("金牌招募令")]
+        [Header("Middle")]
         [SerializeField]
-        private Button m_GoldRecruitBtn;
+        private Text m_BriefIntroduction;
         [SerializeField]
-        private Text m_GoldRecruitmentTimes;
+        private Image m_LobbyImg;
         [SerializeField]
-        private Transform m_GoldRecruitmentTimesTra;
+        private Text m_LvellValue;
+        [SerializeField]
+        private Transform m_FacilityTra;
+        [SerializeField]
+        private GameObject m_FacilityInfoItem;
+        [SerializeField]
+        private Text m_UpgradeTitle;
+        [SerializeField]
+        private Text m_CoinValue;
+        [SerializeField]
+        private Text m_BaoziValue;
+        [SerializeField]
+        private Button m_UpgradeBtn; 
+        [SerializeField]
+        private Text m_UpgradeBtnValue;
 
-
-
+        [Header("Buttom")]
+        [SerializeField]
+        private Transform m_Bottom;
+        [SerializeField]
+        private GameObject m_RecruitmentOrderItem;
 
         private int m_CurLevel = 1;
         private FacilityLevelInfo m_CurFacilityLevelInfo = null;
@@ -74,6 +75,12 @@ namespace GameWish.Game
         private ClickType m_CurrentSilverClickType = ClickType.First;
 
         private Dictionary<RecruitType, ClickType> m_RecruitDic = new Dictionary<RecruitType, ClickType>();
+        private void InitFixedInfo()
+        {
+            m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
+            m_UpgradeTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADENEEDS);
+            m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
+        }
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -96,119 +103,94 @@ namespace GameWish.Game
 
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
-            m_SilverRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.SilverMedal); });
-            m_GoldRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.GoldMedal); });
+            //m_SilverRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.SilverMedal); });
+            //m_GoldRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.GoldMedal); });
         }
 
         protected override void OnOpen()
         {
             base.OnOpen();
-            EventSystem.S.Register(EventID.OnRefreshPanelInfo, HandlingListeningEvents);
-            EventSystem.S.Register(EventID.OnRefreshRecruitmentOrder, HandlingListeningEvents);
 
 
-            //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             RefreshLevelInfo();
 
-            RefreshPanelInfo();
-            RefreshText();
+            //OpenDependPanel(EngineUI.MaskPanel, -1, null);
+            InitFixedInfo();
 
+            RefreshPanelInfo();
+
+            CreateRecruitmentOrder(RecruitType.SilverMedal, FindSprite("SilverOlder"));
+            CreateRecruitmentOrder(RecruitType.GoldMedal, FindSprite("GoldOlder"));
+        }
+
+        private void CreateRecruitmentOrder(RecruitType Medal,Sprite sprite)
+        {
+            ItemICom itemICom = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<ItemICom>();
+            itemICom.OnInit(this,null, Medal, sprite);
         }
 
         protected override void OnClose()
         {
             base.OnClose();
-            EventSystem.S.UnRegister(EventID.OnRefreshPanelInfo, HandlingListeningEvents);
-            EventSystem.S.UnRegister(EventID.OnRefreshRecruitmentOrder, HandlingListeningEvents);
+        
 
         }
-        /// <summary>
-        /// 事件监听回调
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="param"></param>
-        private void HandlingListeningEvents(int key, object[] param)
-        {
-            switch ((EventID)key)
-            {
-                case EventID.OnRefreshPanelInfo:
-                    RefreshPanelInfo();
-                    break;
-                case EventID.OnRefreshRecruitmentOrder:
-                    RefreshRecruitmentOrder((RecruitType)param[0]);
-                    break;
-                default:
-                    break;
-            }
-        }
-        /// <summary>
-        /// 刷新招募令数量
-        /// </summary>
-        /// <param name="recruitType"></param>
-        private void RefreshRecruitmentOrder(RecruitType recruitType)
-        {
-            switch (recruitType)
-            {
-                case RecruitType.GoldMedal:
-                    RecruitmentGoldCrder--;
-                    break;
-                case RecruitType.SilverMedal:
-                    RecruitmentSilverCrder--;
-                    break;
-                default:
-                    break;
-            }
-        }
+
+
         /// <summary>
         /// 刷新按钮文本信息
         /// </summary>
         public void RefreshPanelInfo()
         {
-            m_FacilitiesName.text = m_CurFacilityConfigInfo.name;
-            m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
-            bool goldMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.GoldMedal);
-            bool silverMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.SilverMedal);
-            m_GoldRecruitmentTimesTra.gameObject.SetActive(false);
-            m_SilverRecruitmentTimesTra.gameObject.SetActive(false);
-            if (silverMedalFirst)
-                m_RecruitmentSilverTxt.text = Define.RECRUIT_FREE;
-            else
-            {
-                if (RecruitmentSilverCrder > 0)
-                    m_RecruitmentSilverTxt.text = Define.SILVER_ORDER;
-                else
-                {
-                    int silverMedalCount = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.SilverMedal);
-                    m_SilverRecruitmentTimes.text = silverMedalCount.ToString()
-                       + "/3";
-                    m_RecruitDic[RecruitType.SilverMedal] = ClickType.LookAdvertisement;
-                    m_RecruitmentSilverTxt.text = Define.LOOKING_AT_SILVER_ADVERTISEMENT;
+            m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
+            m_CoinValue.text = Define.RIDE + m_CurFacilityLevelInfo.upgradeCoinCost;
 
-                    m_SilverRecruitmentTimesTra.gameObject.SetActive(true);
-                    if (silverMedalCount == 0)
-                        m_RecruitDic[RecruitType.SilverMedal] = ClickType.Over;
-                }
-            }
 
-            if (goldMedalFirst)
-                m_RecruitmentGoldTxt.text = Define.RECRUIT_FREE;
-            else
-            {
-                if (RecruitmentGoldCrder > 0)
-                    m_RecruitmentGoldTxt.text = Define.GOLD_MEDAL_RECRUITt_ORDER;
-                else
-                {
-                    int goldMedalCount = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.GoldMedal);
-                    m_GoldRecruitmentTimes.text = goldMedalCount.ToString()
-                       + "/3";
-                    m_RecruitDic[RecruitType.GoldMedal] = ClickType.LookAdvertisement;
-                    m_RecruitmentGoldTxt.text = Define.WATCH_GOLD_MEDALS;
+            //m_FacilitiesName.text = m_CurFacilityConfigInfo.name;
+            //m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
+            //bool goldMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.GoldMedal);
+            //bool silverMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.SilverMedal);
+            //m_GoldRecruitmentTimesTra.gameObject.SetActive(false);
+            //m_SilverRecruitmentTimesTra.gameObject.SetActive(false);
+            //if (silverMedalFirst)
+            //    m_RecruitmentSilverTxt.text = Define.RECRUIT_FREE;
+            //else
+            //{
+            //    if (RecruitmentSilverCrder > 0)
+            //        m_RecruitmentSilverTxt.text = Define.SILVER_ORDER;
+            //    else
+            //    {
+            //        int silverMedalCount = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.SilverMedal);
+            //        m_SilverRecruitmentTimes.text = silverMedalCount.ToString()
+            //           + "/3";
+            //        m_RecruitDic[RecruitType.SilverMedal] = ClickType.LookAdvertisement;
+            //        m_RecruitmentSilverTxt.text = Define.LOOKING_AT_SILVER_ADVERTISEMENT;
 
-                    m_GoldRecruitmentTimesTra.gameObject.SetActive(true);
-                    if (goldMedalCount == 0)
-                        m_RecruitDic[RecruitType.GoldMedal] = ClickType.Over;
-                }
-            }
+            //        m_SilverRecruitmentTimesTra.gameObject.SetActive(true);
+            //        if (silverMedalCount == 0)
+            //            m_RecruitDic[RecruitType.SilverMedal] = ClickType.Over;
+            //    }
+            //}
+
+            //if (goldMedalFirst)
+            //    m_RecruitmentGoldTxt.text = Define.RECRUIT_FREE;
+            //else
+            //{
+            //    if (RecruitmentGoldCrder > 0)
+            //        m_RecruitmentGoldTxt.text = Define.GOLD_MEDAL_RECRUITt_ORDER;
+            //    else
+            //    {
+            //        int goldMedalCount = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.GoldMedal);
+            //        m_GoldRecruitmentTimes.text = goldMedalCount.ToString()
+            //           + "/3";
+            //        m_RecruitDic[RecruitType.GoldMedal] = ClickType.LookAdvertisement;
+            //        m_RecruitmentGoldTxt.text = Define.WATCH_GOLD_MEDALS;
+
+            //        m_GoldRecruitmentTimesTra.gameObject.SetActive(true);
+            //        if (goldMedalCount == 0)
+            //            m_RecruitDic[RecruitType.GoldMedal] = ClickType.Over;
+            //    }
+            //}
         }
 
         protected override void OnPanelHideComplete()
@@ -223,13 +205,13 @@ namespace GameWish.Game
         /// </summary>
         private void OnClickUpgradeBtn()
         {
-            bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(double.Parse(m_UpgradeNeedCoinValueText.text));
+            bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(double.Parse(m_CoinValue.text));
 
             if (isReduceSuccess)
             {
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
                 RefreshLevelInfo();
-                RefreshText();
+                RefreshPanelInfo();
             }
         }
         /// <summary>
@@ -267,18 +249,7 @@ namespace GameWish.Game
             m_CurFacilityConfigInfo = m_FacilityMgr.GetFacilityConfigInfo(FacilityType.Lobby);
         }
 
-        private void RefreshText()
-        {
-            m_CurLevelValueText.text = m_CurLevel.ToString();
-            m_NextLevelValueText.text = (m_CurLevel + 1).ToString();
-            m_UpgradeRewardValueText.text = m_CurFacilityLevelInfo.upgradeResCosts.GetContent();
-            m_UpgradeNeedCoinValueText.text = m_CurFacilityLevelInfo.upgradeCoinCost.ToString();
-
-            m_SilverRecruitmentTimes.text = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.SilverMedal).ToString() + "/3";
-
-            m_GoldRecruitmentTimes.text = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.GoldMedal).ToString() + "/3";
-
-        }
+       
     }
 }
 

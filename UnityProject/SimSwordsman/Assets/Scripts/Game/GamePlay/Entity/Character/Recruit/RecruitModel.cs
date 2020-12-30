@@ -21,7 +21,7 @@ namespace GameWish.Game
     {
         private RecruitType m_RecruitType;
         public bool m_isFirstRecruit = true;
-        private int m_RecruitCount = 3;
+        private int m_RecruitCount = 0;
         public List<CharacterItem> m_CharacterModels = new List<CharacterItem>();
 
         public int GoldMedalGood = 7;
@@ -115,6 +115,11 @@ namespace GameWish.Game
             }
 
             MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
+        }
+
+        public void IncreaseCurRecruitCount(int delta)
+        {
+            m_RecruitCount = Mathf.Min(m_RecruitCount + delta, Define.MAX_PROP_COUNT);
         }
         /// <summary>
         /// 重置当前招募次数

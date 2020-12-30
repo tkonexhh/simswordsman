@@ -72,7 +72,7 @@ namespace GameWish.Game
 
         public static string GetStrForColor(string color, string cont)
         {
-            return "<color=" + color + ">" + cont + "</color>";
+            return "<color=" + color + ">" + GetStringForTableKey(cont) + "</color>";
         }
 
         /// <summary>

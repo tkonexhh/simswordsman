@@ -73,7 +73,7 @@ namespace GameWish.Game
             m_TitleTxt.text = m_CurFacilityConfigInfo.name;
             m_FacilityDescribe.text = m_CurFacilityConfigInfo.desc;
 
-            m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
+           // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
             m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
 
         }

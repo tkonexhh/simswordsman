@@ -117,6 +117,15 @@ namespace GameWish.Game
             
         }
 
+        /// <summary>
+        /// 获取招募令数量
+        /// </summary>
+        /// <param name="recruitType"></param>
+        public int GetRecruitmentOrderCount(RecruitType recruitType)
+        {
+            return m_InventoryDataWrapper.GetRecruitmentOrderCount(recruitType);
+        }
+
         #endregion
 
         #region Private Methods

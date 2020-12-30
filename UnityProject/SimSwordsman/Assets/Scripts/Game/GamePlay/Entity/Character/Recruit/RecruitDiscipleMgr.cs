@@ -1,4 +1,5 @@
 using Qarth;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace GameWish.Game
     public class RecruitDiscipleMgr : MonoBehaviour, IMgr
     {
 
-        private List<RecruitModel> m_recruitModel = new List<RecruitModel>();
+        private List<RecruitModel> m_RecruitModel = new List<RecruitModel>();
 
         private RecruitData m_RecruitData = null;
         public void OnDestroyed()
@@ -20,9 +21,38 @@ namespace GameWish.Game
 
         public void OnInit()
         {
+            EventSystem.S.Register(EventID.OnRecruitmentOrderIncrease,HandleAddListenerEvent);
             m_RecruitData = GameDataMgr.S.GetPlayerData().GetRecruitData();
-            m_recruitModel.Add(new RecruitModel(RecruitType.GoldMedal, m_RecruitData));
-            m_recruitModel.Add(new RecruitModel(RecruitType.SilverMedal, m_RecruitData));
+            m_RecruitModel.Add(new RecruitModel(RecruitType.GoldMedal, m_RecruitData));
+            m_RecruitModel.Add(new RecruitModel(RecruitType.SilverMedal, m_RecruitData));
+
+        }
+
+        private void HandleAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnRecruitmentOrderIncrease:
+                    if ((RawMaterial)param[0] == RawMaterial.GoldenToken)
+                        SetRecruitCount(RecruitType.GoldMedal, (int)param[1]);
+                    else if ((RawMaterial)param[0] == RawMaterial.SilverToken)
+                        SetRecruitCount(RecruitType.SilverMedal, (int)param[1]);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// …Ë÷√’–ƒº¡Ó ˝¡ø
+        /// </summary>
+        /// <param name="recruitType"></param>
+        /// <param name="delta"></param>
+        private void SetRecruitCount(RecruitType recruitType,int delta)
+        {
+            RecruitModel recruitModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            if (recruitModel != null)
+                recruitModel.IncreaseCurRecruitCount(delta);
         }
 
         public void OnUpdate()
@@ -38,7 +68,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public CharacterItem GetRecruitForRecruitType(RecruitType recruitType)
         {
-            RecruitModel reModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel reModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (reModel != null)
                 return reModel.GetCurContCharacter();
             else
@@ -55,7 +85,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool GetIsFirstMedal(RecruitType recruitType)
         {
-            RecruitModel ReModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel ReModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (ReModel != null)
                 return ReModel.GetmIsFirstRecruit();
             else
@@ -70,7 +100,7 @@ namespace GameWish.Game
         /// <param name="recruitType"></param>
         public void SetCurRecruitCount(RecruitType recruitType)
         {
-            RecruitModel ReModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel ReModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (ReModel != null)
                 ReModel.SetCurRecruitCount();
             else
@@ -84,7 +114,7 @@ namespace GameWish.Game
         /// <param name="recruitType"></param>
         public void ResetCurRecruitCount(RecruitType recruitType)
         {
-            RecruitModel ReModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel ReModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (ReModel != null)
                 ReModel.ResetCurRecruitCount();
             else
@@ -99,7 +129,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public int GetCurRecruitCount(RecruitType recruitType)
         {
-            RecruitModel ReModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel ReModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (ReModel != null)
                 return ReModel.GetCurRecruitCount();
             else
@@ -111,7 +141,7 @@ namespace GameWish.Game
 
         public void SetIsFirstRecruit(RecruitType recruitType)
         {
-            RecruitModel reModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel reModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (reModel != null)
                 reModel.SetIsFirstRecruit();
         }
@@ -122,7 +152,7 @@ namespace GameWish.Game
         /// <param name="item"></param>
         public void RemoveCharacterList(RecruitType recruitType, CharacterItem item)
         {
-            RecruitModel reModel = m_recruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            RecruitModel reModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (reModel != null)
             {
                 reModel.RemoveCharacterList(item);
@@ -134,7 +164,7 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshRecruitData()
         {
-            foreach (var item in m_recruitModel)
+            foreach (var item in m_RecruitModel)
             {
                 switch (item.GetCurRecruitType())
                 {
@@ -153,6 +183,11 @@ namespace GameWish.Game
         }
         #endregion
 
+
+        private void OnDisable()
+        {
+            EventSystem.S.Register(EventID.OnRecruitmentOrderIncrease,HandleAddListenerEvent);
+        }
     }
 
 }

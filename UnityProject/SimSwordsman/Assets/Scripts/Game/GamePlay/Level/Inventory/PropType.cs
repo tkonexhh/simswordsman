@@ -25,7 +25,7 @@ namespace GameWish.Game
         /// <summary>
         /// ÈçÀ´ÉñÕÆ
         /// </summary>
-        RuLaiShenZhang                      = 1020,
+        RuLaiShenZhang                   = 1020,
         JiBenQuanJiao                    = 5,        //»ù±¾È­½Å
     }
 
@@ -34,7 +34,15 @@ namespace GameWish.Game
         None                             = 0,
         Malachite                        = 1,        //¿×È¸Ê¯             
         RedAgate                         = 2,        //ºìÂêè§             
-        Charoite                         = 3,        //×ÏÁú¾§             
+        Charoite                         = 3,        //×ÏÁú¾§       
+        /// <summary>
+        /// ÒøÅÆÕÐÄ¼Áî
+        /// </summary>
+        SilverToken = 2001,
+        /// <summary>
+        /// ½ðÅÆÕÐÄ¼Áî
+        /// </summary>
+        GoldenToken = 2002,
     }
 
     public enum Armor
