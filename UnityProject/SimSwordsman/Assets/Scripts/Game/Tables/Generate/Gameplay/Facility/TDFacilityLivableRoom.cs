@@ -23,7 +23,7 @@ namespace GameWish.Game
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// 等级
+        /// 序号
         /// </summary>
         public  int  id {get { return m_Id; } }
        

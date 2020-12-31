@@ -73,7 +73,7 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             m_CurFacilityType = (FacilityType)args[0];
-            m_SubID = (int)args[1];
+            //m_SubID = (int)args[1];
             RefreshPanelInfo();
 
         }
