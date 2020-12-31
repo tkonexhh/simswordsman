@@ -14,7 +14,7 @@ namespace GameWish.Game
 
 		public override void AcceptReward()
 		{
-			GameDataMgr.S.GetPlayerData().AddCoin(Count);
+			GameDataMgr.S.GetPlayerData().AddCoinNum(Count);
 		}
 
 		public override string RewardName()

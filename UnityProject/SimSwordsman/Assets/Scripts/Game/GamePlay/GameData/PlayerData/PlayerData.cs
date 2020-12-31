@@ -20,6 +20,9 @@ namespace GameWish.Game
         public RecruitData recruitData = new RecruitData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
+        public List<int> unlockFoodItemIDs = new List<int>();
+        public List<FoodBuff> foodBuffData = new List<FoodBuff>();
+
         private double m_CoinNum = 0;
         public int signInCount;
 
@@ -36,6 +39,7 @@ namespace GameWish.Game
             lastPlayTime = "0";
             firstPlayTime = string.Empty;
 
+            unlockFoodItemIDs.Add(1);
             UnlockVisitor = false;
 
             InitChapterDataList();
@@ -132,13 +136,6 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
-        public void AddCoin(int num)
-        {
-            m_CoinNum += num;
-            EventSystem.S.Send(EventID.OnAddCoinNum);
-            SetDataDirty();
-        }
-
         /// <summary>
         /// 设置讲武堂建造时间
         /// </summary>
@@ -212,6 +209,8 @@ namespace GameWish.Game
             //{
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
+            if (delta> 0)
+                delta *= BuffSystem.S.Coin(delta);
 
             m_CoinNum = m_CoinNum + delta;
 

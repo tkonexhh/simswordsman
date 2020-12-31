@@ -74,6 +74,7 @@ namespace GameWish.Game
 
             //客人来访系统
             VisitorSystem.S.Init();
+            //BuffSystem.S.Init();
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
