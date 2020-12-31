@@ -53,6 +53,18 @@ namespace GameWish.Game
             ParseTaskType(tDMainTask.type);
         }
 
+        public int GetRewardId(int index)
+        {
+            if (index < 0 || index > rewards.Count - 1)
+            {
+                Log.e("Reward index out of range");
+                return 0;
+            }
+
+            TaskReward reward = rewards[index];
+            return reward.id;
+        }
+
         public int GetRewardValue(int index)
         {
             if (index < 0 || index > rewards.Count - 1)

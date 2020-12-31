@@ -97,6 +97,9 @@ namespace GameWish.Game
                         {
                             MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
                             MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType);
+
+                            //TODO:Refresh panel
+
                         }
                     }
                     break;

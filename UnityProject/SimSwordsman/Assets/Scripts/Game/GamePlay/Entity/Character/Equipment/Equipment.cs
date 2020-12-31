@@ -77,7 +77,7 @@ namespace GameWish.Game
             ID = tdData.id;
             Name = tdData.name;
             Desc = tdData.desc;
-            Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.addition);
+            Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.quality);
 
             AnalysisBonus(tdData.bonus);
             AnalysisSellingPrice(tdData.sellingPrice);

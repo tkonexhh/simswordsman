@@ -54,12 +54,6 @@ namespace GameWish.Game
         private List<HerbType> m_PlayerDataHerb = new List<HerbType>();
         protected override void OnUIInit()
         {
-            //≤‚ ‘¥˙¬Î
-            MainGameMgr.S.MedicinalPowderMgr.AddHerb(1, 1);
-            MainGameMgr.S.MedicinalPowderMgr.AddHerb(2, 1);
-            MainGameMgr.S.MedicinalPowderMgr.AddHerb(3, 1);
-            MainGameMgr.S.MedicinalPowderMgr.AddHerb(4, 1);
-
             base.OnUIInit();
 
             GetInformationForNeed();
