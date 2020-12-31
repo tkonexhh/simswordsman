@@ -54,10 +54,6 @@ namespace GameWish.Game
             }
             m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_DESCRIBLE);
 
-
-
-
-
             for (int i = 1; i <= m_LivableRoomCount; i++)
             {
                 m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(i));
@@ -73,7 +69,6 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             m_CurFacilityType = (FacilityType)args[0];
-            m_SubID = (int)args[1];
             RefreshPanelInfo();
 
         }

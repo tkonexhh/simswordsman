@@ -68,22 +68,23 @@ namespace GameWish.Game
             {
                 switch (m_CurrentClickType)
                 {
-                    case ClickType.First:
-                        MainGameMgr.S.RecruitDisciplerMgr.SetIsFirstRecruit(m_RecruitType);
+                    case ClickType.Free:
                         break;
                     case ClickType.RecruitmentOrder:
-                        EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
+                        MainGameMgr.S.RecruitDisciplerMgr.SetCurRecruitCount(m_RecruitType);
                         break;
                     case ClickType.LookAdvertisement:
-                        MainGameMgr.S.RecruitDisciplerMgr.SetCurRecruitCount(m_RecruitType);
+                        MainGameMgr.S.RecruitDisciplerMgr.SetAdvertisementCount(m_RecruitType);
                         break;
                     default:
                         break;
                 }
+                EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
+
                 MainGameMgr.S.RecruitDisciplerMgr.RemoveCharacterList(m_RecruitType,m_CharacterItem);
                 MainGameMgr.S.CharacterMgr.AddCharacter(m_CharacterItem);
                 MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem.id, CharacterStateID.EnterClan);
-                EventSystem.S.Send(EventID.OnRefreshPanelInfo);
+                EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
 
                 OnPanelHideComplete();
             });

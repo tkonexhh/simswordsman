@@ -139,6 +139,63 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        /// <summary>
+        /// 设置讲武堂建造时间
+        /// </summary>
+        public void SetLobbyBuildeTime()
+        {
+            recruitData.SetLobbyBuildTime();
+        }
+        /// <summary>
+        /// 获取讲武堂建造时间
+        /// </summary>
+        /// <returns></returns>
+        public string GetLobbyBuildTime()
+        {
+            return recruitData.GetLobbyBuildTime();
+        }
+
+        /// <summary>
+        /// 设置招募时间次数
+        /// </summary>
+        /// <param name="recruitTimeType"></param>
+        /// <param name="delta"></param>
+        public void SetRecruitTimeType(RecruitType recruitType, RecruitTimeType recruitTimeType, int value)
+        {
+            switch (recruitType)
+            {
+                case RecruitType.GoldMedal:
+                    recruitData.SetGoldRecruitTimeType(recruitTimeType, value);
+                    break;
+                case RecruitType.SilverMedal:
+                    recruitData.SetSilverRecruitTimeType(recruitTimeType, value);
+                    break;
+            }
+            
+        }
+        /// <summary>
+        /// 设置招募次数
+        /// </summary>
+        /// <param name="recruitType"></param>
+        /// <param name="delta"></param>
+        public void IncreaseCurRecruitCount(RecruitType recruitType, int delta)
+        {
+            recruitData.IncreaseCurRecruitCount(recruitType, delta);
+        }
+        public int GetRecruitTimeType(RecruitType m_CurRecruitType, RecruitTimeType recruitTimeType)
+        {
+            switch (m_CurRecruitType)
+            {
+                case RecruitType.GoldMedal:
+                    return recruitData.GetGoldRecruitTimeType(recruitTimeType);
+                case RecruitType.SilverMedal:
+                    return recruitData.GetSilverRecruitTimeType(recruitTimeType);
+                default:
+                    break;
+            }
+            return 0;
+        }
+
         public double GetCoinNum()
         {
             return m_CoinNum;
@@ -237,12 +294,37 @@ namespace GameWish.Game
             SetDataDirty();
         }
     }
-  
+
+    /// <summary>
+    /// 招募时间的类型
+    /// </summary>
+    public enum RecruitTimeType
+    {
+        /// <summary>
+        /// 免费招募
+        /// </summary>
+        Free,
+        /// <summary>
+        /// 广告招募
+        /// </summary>
+        Advertisement,
+    
+    }
 
     public class RecruitData
     {
-        public int goldRecruitCount = 3;
-        public int silverRecruitCount = 3;
+        public string lobbyBuildTime = string.Empty;
+
+        public int silverFree = -1;
+        public int silverAdvertisement = 0;
+        public int goldFree = -1;
+        public int goldAdvertisement = 0;
+
+        public int goldAdvertisementCount = 1;
+        public int silverAdvertisementCount = 3;
+
+        public int goldRecruitCount = 0;
+        public int silverRecruitCount = 0;
 
         public bool goldIsFirst = true;
         public bool silverIsFirst = true;
@@ -256,15 +338,93 @@ namespace GameWish.Game
 
         public RecruitData() { }
 
-        public RecruitData(int _goldMedalGood, int _goldMedalPerfect,
-            int _silverMedalNormal, int _silverMedalGood, int _silverMedalPerfect)
-        {
-            goldMedalGood = _goldMedalGood;
-            goldMedalPerfect = _goldMedalPerfect;
 
-            silverMedalNormal = _silverMedalNormal;
-            silverMedalGood = _silverMedalGood;
-            silverMedalPerfect = _silverMedalPerfect;
+        public void IncreaseCurRecruitCount(RecruitType recruitType, int delta)
+        {
+            switch (recruitType)
+            {
+                case RecruitType.GoldMedal:
+                    goldRecruitCount += delta;
+                    break;
+                case RecruitType.SilverMedal:
+                    silverRecruitCount += delta;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 设置招募/时间次数
+        /// </summary>
+        /// <param name="recruitTimeType"></param>
+        /// <param name="delta"></param>
+        public void SetGoldRecruitTimeType(RecruitTimeType recruitTimeType, int value)
+        {
+            switch (recruitTimeType)
+            {
+                case RecruitTimeType.Free:
+                    goldFree = value;
+                    break;
+                case RecruitTimeType.Advertisement:
+                    goldAdvertisement = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void SetSilverRecruitTimeType(RecruitTimeType recruitTimeType, int value)
+        {
+            switch (recruitTimeType)
+            {
+                case RecruitTimeType.Free:
+                    silverFree = value;
+                    break;
+                case RecruitTimeType.Advertisement:
+                    silverAdvertisement = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 获取招募/时间次数
+        /// </summary>
+        /// <param name="recruitTimeType"></param>
+        /// <returns></returns>
+        public int GetSilverRecruitTimeType(RecruitTimeType recruitTimeType)
+        {
+            switch (recruitTimeType)
+            {
+                case RecruitTimeType.Free:
+                    return silverFree;
+                case RecruitTimeType.Advertisement:
+                    return silverAdvertisement;
+            }
+            return 0;
+
+        }
+
+        public int GetGoldRecruitTimeType(RecruitTimeType recruitTimeType)
+        {
+            switch (recruitTimeType)
+            {
+                case RecruitTimeType.Free:
+                    return goldFree;
+                case RecruitTimeType.Advertisement:
+                    return goldAdvertisement;
+            }
+            return 0;
+        }
+
+        public void SetLobbyBuildTime()
+        {
+            lobbyBuildTime = DateTime.Now.ToString();
+        }
+
+        public string GetLobbyBuildTime()
+        {
+            return lobbyBuildTime;
         }
 
         public void SetIsFirstValue(RecruitType recruitType)
@@ -289,16 +449,19 @@ namespace GameWish.Game
         public void SetRecruitGoldData(RecruitModel recruitModel)
         {
             goldRecruitCount = recruitModel.GetCurRecruitCount();
-            goldMedalGood = recruitModel.GoldMedalGood;
-            goldMedalPerfect = recruitModel.GoldMedalPerfect;
+            goldAdvertisementCount = recruitModel.GetAdvertisementCount();
+            goldMedalGood = recruitModel.goldMedalGood;
+            goldMedalPerfect = recruitModel.goldMedalPerfect;
         }
 
         public void SetRecruitSilverData(RecruitModel recruitModel)
         {
             silverRecruitCount = recruitModel.GetCurRecruitCount();
-            silverMedalNormal = recruitModel.SilverMedalNormal;
-            silverMedalGood = recruitModel.SilverMedalGood;
-            silverMedalPerfect = recruitModel.SilverMedalPerfect;
+            silverAdvertisementCount = recruitModel.GetAdvertisementCount();
+            silverRecruitCount = recruitModel.GetCurRecruitCount();
+            silverMedalNormal = recruitModel.silverMedalNormal;
+            silverMedalGood = recruitModel.silverMedalGood;
+            silverMedalPerfect = recruitModel.silverMedalPerfect;
         }
         public void SetFirstValue(RecruitType recruitType)
         {

@@ -77,6 +77,36 @@ namespace GameWish.Game
                 return null;
             }
         }
+        /// <summary>
+        /// 设置当天看广告的招募次数
+        /// </summary>
+        /// <param name="recruitType"></param>
+        /// <param name="delta"></param>
+        public void SetAdvertisementCount(RecruitType recruitType, int delta = 1)
+        {
+            RecruitModel reModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            if (reModel != null)
+                reModel.SetAdvertisementCount(delta);
+        }
+        /// <summary>
+        /// 获得当前广告的次数
+        /// </summary>
+        /// <param name="recruitType"></param>
+        /// <returns></returns>
+        public int GetAdvertisementCount(RecruitType recruitType)
+        {
+            RecruitModel reModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            if (reModel != null)
+                return reModel.GetAdvertisementCount();
+            return 0;
+        }
+
+        public void ResetAdvertisementCount(RecruitType recruitType)
+        {
+            RecruitModel reModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            if (reModel != null)
+                reModel.ResetAdvertisementCount(recruitType);
+        }
 
         /// <summary>
         /// 获取是否第一次招募
@@ -95,7 +125,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// 根据类型设减少招募次数
+        /// 根据类型设减少招募次数E
         /// </summary>
         /// <param name="recruitType"></param>
         public void SetCurRecruitCount(RecruitType recruitType)
