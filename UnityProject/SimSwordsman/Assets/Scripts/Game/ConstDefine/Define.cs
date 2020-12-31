@@ -121,6 +121,7 @@ namespace GameWish.Game
         public const string FACILITY_LOBBY_TIMESTODAY = "Facility_Lobby_TimesToday";
         public const string FACILITY_LOBBY_FREE = "Facility_Lobby_Free";
         public const string FACILITY_LOBBY_RECRUIT = "Facility_Lobby_Recruit";
+        public const string FACILITY_LOBBY_CURCOUNT = "Facility_Lobby_CurCount";
 
 
 

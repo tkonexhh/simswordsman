@@ -27,6 +27,8 @@ namespace GameWish.Game
 		private const int _12Hours = 12;
 		private const int _24Hours = 24;
 		private const int _48Hours = 48;
+		private const string SilverAdvertiseCount = "3";
+		private const string GoldAdvertiseCount = "1";
 
 		private RecruitType m_CurRecruitType;
 		private Sprite m_CurSprite;
@@ -82,11 +84,11 @@ namespace GameWish.Game
 					m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_FREE);
 					break;
                 case ClickType.RecruitmentOrder:
-					m_RecruitValue.text = MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType).ToString();
+					m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT)+ MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType).ToString();
 					m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
 					break;
                 case ClickType.LookAdvertisement:
-					m_RecruitValue.text = "广告"+m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType).ToString();
+					RefreshAdvertiseInfo();
 					m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
 					break;
                 default:
@@ -94,7 +96,25 @@ namespace GameWish.Game
             }
 		}
 
-		//1：第一次打开是免费的
+		private void RefreshAdvertiseInfo()
+		{
+            switch (m_CurRecruitType)
+            {
+                case RecruitType.GoldMedal:
+					m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_TIMESTODAY)
+					+ m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType).ToString() + Define.SLASH
+					+ GoldAdvertiseCount;
+					break;
+                case RecruitType.SilverMedal:
+					m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_TIMESTODAY)
+					+ m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType).ToString() + Define.SLASH
+					+ SilverAdvertiseCount;
+					break;
+                default:
+                    break;
+            }
+        }
+
 
 		/// <summary>
 		/// 检测招募数据
