@@ -38,6 +38,21 @@ namespace GameWish.Game
             BindAddListenerEvent();
             Init((int)obj[0]);
         }
+        
+        public void StartEffect(string dur)
+        {
+            SetState(true);
+            m_DurationTxt.text = dur;
+        }
+        public void StopEffect()
+        {
+            SetState(false);
+        }
+        public void Countdown(string dur)
+        {
+            m_DurationTxt.text = dur;
+        }
+
 
         void Init(int id)
         {
@@ -47,6 +62,8 @@ namespace GameWish.Game
             m_FoodNameTxt.text = tb.name;
             m_FoodContTxt.text = tb.desc;
             m_FoodEffecTxt.text = BuffSystem.S.GetEffectDesc(tb);
+            m_EffectiveTimeTxt.text = GetTimeDesc(tb.buffTime) + "有效";
+            m_ADEffectiveTimeTxt.text = GetTimeDesc(tb.buffTimeAD) + "有效";
 
             if (BuffSystem.S.IsActive(ID))
             {
@@ -63,18 +80,12 @@ namespace GameWish.Game
             }
         }
 
-        public void StartEffect(string dur)
+        string GetTimeDesc(int minute)
         {
-            SetState(true);
-            m_DurationTxt.text = dur;
-        }
-        public void StopEffect()
-        {
-            SetState(false);
-        }
-        public void Countdown(string dur)
-        {
-            m_DurationTxt.text = dur;
+            if (minute >= 60)
+                return minute / 60.0f + "小时";
+            else
+                return minute + "分钟";
         }
 
         public void SetButtonEvent(Action<object> action)
@@ -85,10 +96,16 @@ namespace GameWish.Game
         {
             m_MakeBtn.onClick.AddListener(() => 
             {
+                //判断材料
+
+                
                 BuffSystem.S.StartBuff(ID);
             });
             m_MakeADBtn.onClick.AddListener(() => 
             {
+                //判断材料
+
+
                 FloatMessage.S.ShowMsg("这里应该显示广告");
                 BuffSystem.S.StartBuff(ID, true);
             });
@@ -99,12 +116,14 @@ namespace GameWish.Game
             if (active)
             {
                 m_DurationTxt.gameObject.SetActive(true);
+                m_DurationTra.gameObject.SetActive(true);
                 m_MakeBtn.gameObject.SetActive(false);
                 m_MakeADBtn.gameObject.SetActive(false);
             }
             else
             {
                 m_DurationTxt.gameObject.SetActive(false);
+                m_DurationTra.gameObject.SetActive(false);
                 m_MakeBtn.gameObject.SetActive(true);
                 m_MakeADBtn.gameObject.SetActive(true);
             }
