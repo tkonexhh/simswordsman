@@ -228,8 +228,6 @@ namespace GameWish.Game
 
             if (m_CharacterModels.Count > 0)
             {
-                //m_CharacterModels.OrderBy(u => Guid.NewGuid()).First();
-                //int r = new System.Random().Next(m_CharacterModels.Count);
                 int pos = UnityEngine.Random.Range(0, m_CharacterModels.Count);
                 return SetCurReturnCharacterId(m_CharacterModels[pos]);
             }
