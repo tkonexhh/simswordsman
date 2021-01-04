@@ -1081,6 +1081,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdEffectParams.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdTimeControl.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdType.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\BuffSystem\BuffSystem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\InputSystem\IInputObserver.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\InputSystem\InputMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\OfflineRewardSystem\IOfflineRewardStrategy.cs" />
@@ -1171,6 +1172,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityPracticeFieldTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityWarehouseExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityWarehouseTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Food\TDFoodConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Food\TDFoodConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Item\TDItemConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Item\TDItemConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Kongfu\TDKongfuConfigExtend.cs" />
@@ -1257,6 +1260,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityPracticeFieldTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityWarehouse.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityWarehouseTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Food\TDFoodConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Food\TDFoodConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Item\TDItemConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Item\TDItemConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Kongfu\TDKongfuConfig.cs" />
@@ -1484,6 +1489,7 @@
     <None Include="Assets\SDKAdapter\DataAnalysis\TalkingData\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\StreamingAssets\config\social_adapter.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityLobby.txt" />
+    <None Include="Assets\StreamingAssets\config\FoodConfig.txt" />
     <None Include="Assets\Resources\Spines\Character\Character3\pupil_3.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\CharacterStageConfig.txt" />
     <None Include="Assets\StreamingAssets\config\CharacterConfig.txt" />
