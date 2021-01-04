@@ -60,6 +60,14 @@ namespace GameWish.Game
             RefreshCommonTask();
         }
 
+        public SimGameTask GetSimGameTask(int taskID)
+        {
+            SimGameTask simGameTask = m_CurTaskList.Where(i => i.GetId() == taskID).FirstOrDefault();
+            if (simGameTask != null)
+                return simGameTask;
+            return null;
+        }
+
         public void SetTaskFinished(int taskId)
         {
             SimGameTask item = GetMainTaskItemData(taskId);

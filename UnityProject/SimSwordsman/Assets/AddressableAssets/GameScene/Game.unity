@@ -1026,7 +1026,7 @@ PrefabInstance:
     - target: {fileID: 1799694371366912269, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
       propertyPath: facilityType
-      value: 5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2476930430629197249, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
@@ -9131,6 +9131,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
+    - target: {fileID: 3771620760044204719, guid: a8909fad82bd2cf459967571259ddbbc,
+        type: 3}
+      propertyPath: facilityType
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7851205280659916878, guid: a8909fad82bd2cf459967571259ddbbc,
         type: 3}
       propertyPath: m_Name
@@ -9352,6 +9357,11 @@ PrefabInstance:
       propertyPath: roadObj
       value: 
       objectReference: {fileID: 175192548}
+    - target: {fileID: 4822655848610896069, guid: 99d8c5441546c27459193605b0c8492e,
+        type: 3}
+      propertyPath: facilityType
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d8c5441546c27459193605b0c8492e, type: 3}
 --- !u!1001 &1351891704744963818
@@ -9450,6 +9460,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
+    - target: {fileID: 1618287414398073770, guid: 9da3bd911027f0f458b87433cb64736c,
+        type: 3}
+      propertyPath: facilityType
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2147355788826913850, guid: 9da3bd911027f0f458b87433cb64736c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9524,6 +9539,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
+    - target: {fileID: 1799694371366912269, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
+        type: 3}
+      propertyPath: facilityType
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2476930430629197249, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9593,6 +9613,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
+    - target: {fileID: 485315161, guid: 371df6c134549794f8f83f090715456e, type: 3}
+      propertyPath: facilityType
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3280147034588986658, guid: 371df6c134549794f8f83f090715456e,
         type: 3}
       propertyPath: m_Name
@@ -9815,6 +9839,11 @@ PrefabInstance:
       propertyPath: roadObj
       value: 
       objectReference: {fileID: 489401188}
+    - target: {fileID: 8559257442322169977, guid: cedc6e1995c3ec145bc818667aeeb05b,
+        type: 3}
+      propertyPath: facilityType
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedc6e1995c3ec145bc818667aeeb05b, type: 3}
 --- !u!1001 &5037991344351351226
@@ -9824,6 +9853,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
+    - target: {fileID: 5037991343180545760, guid: f6e98f198ca06c04f988cc04e40c441f,
+        type: 3}
+      propertyPath: facilityType
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5037991343180545762, guid: f6e98f198ca06c04f988cc04e40c441f,
         type: 3}
       propertyPath: m_Name
@@ -10077,6 +10111,11 @@ PrefabInstance:
       propertyPath: roadObj
       value: 
       objectReference: {fileID: 1718234981}
+    - target: {fileID: 5593280619801713580, guid: 5b1de0bd037dd5845ad42a7599bb7c63,
+        type: 3}
+      propertyPath: facilityType
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b1de0bd037dd5845ad42a7599bb7c63, type: 3}
 --- !u!1001 &5823733531476051068
@@ -10242,7 +10281,7 @@ PrefabInstance:
     - target: {fileID: 3771620760044204719, guid: a8909fad82bd2cf459967571259ddbbc,
         type: 3}
       propertyPath: facilityType
-      value: 13
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 7851205280659916878, guid: a8909fad82bd2cf459967571259ddbbc,
         type: 3}
@@ -10323,6 +10362,11 @@ PrefabInstance:
       propertyPath: roadObj
       value: 
       objectReference: {fileID: 1244624088}
+    - target: {fileID: 7689756509357646776, guid: a1cbca04014007040833d347e97e08a5,
+        type: 3}
+      propertyPath: facilityType
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 8178777523560862228, guid: a1cbca04014007040833d347e97e08a5,
         type: 3}
       propertyPath: m_LocalPosition.x

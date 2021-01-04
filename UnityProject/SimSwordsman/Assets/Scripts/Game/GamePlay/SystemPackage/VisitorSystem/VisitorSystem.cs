@@ -15,7 +15,7 @@ namespace GameWish.Game
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
-        int m_AppearVisitorCountdown = 5;
+        int m_AppearVisitorCountdown = 90;
         /// <summary>
         /// 客人消失倒计时
         /// </summary>
@@ -112,7 +112,10 @@ namespace GameWish.Game
         /// <returns></returns>
         RewardBase GetRandomReward(int level)
         {
-            List<int> idList = TDVisitorRewardConfigTable.rewardIDByMainLevelDic[level];
+            List<int> idList = null;
+            if (!TDVisitorRewardConfigTable.rewardIDByMainLevelDic.TryGetValue(level, out idList))
+                idList = TDVisitorRewardConfigTable.rewardIDByMainLevelDic[1];
+
             //加权平均
             int all = 0;
             foreach (var item in idList)

@@ -126,7 +126,7 @@ namespace GameWish.Game
             m_ClanData.AddPropItem(propItem, delta);
 
             if (propItem.PropSubType == RawMaterial.SilverToken|| propItem.PropSubType == RawMaterial.GoldenToken)
-                EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, RawMaterial.SilverToken, delta);
+                EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
         }
         //TODO
         public void RemoveArmor(ArmorItem _armorItem, int delta = 1)

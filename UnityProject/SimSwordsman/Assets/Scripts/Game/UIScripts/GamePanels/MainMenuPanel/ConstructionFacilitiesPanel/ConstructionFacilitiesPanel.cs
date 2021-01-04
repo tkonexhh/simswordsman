@@ -78,7 +78,6 @@ namespace GameWish.Game
 
         }
        
-
         private void BindAddListenerEvent()
         {
 
@@ -88,9 +87,12 @@ namespace GameWish.Game
             {
                 if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(double.Parse(m_CoinValue.text)))
                 {
+                    if (m_FacilityType == FacilityType.Lobby)
+                        GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
+
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
 
-                    HideSelfWithAnim();
+                    OnPanelHideComplete();
                 }
             });
 		}

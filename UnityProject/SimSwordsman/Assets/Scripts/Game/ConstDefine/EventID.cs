@@ -22,6 +22,9 @@ namespace GameWish.Game
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,
+        OnFoodBuffInterval,//伙房食物增益消失倒计时
+        OnFoodBuffEnd,//伙房食物增益结束
+        OnFoodBuffStart,//伙房食物增益开始
 
         // Facility
         OnStartUnlockFacility,

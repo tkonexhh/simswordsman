@@ -42,7 +42,6 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_CloaseBtn.onClick.AddListener(HideSelfWithAnim);
-
         }
 
         protected override void OnOpen()
@@ -97,15 +96,13 @@ namespace GameWish.Game
                         {
                             MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
                             MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType);
-
-                            //TODO:Refresh panel
-
+                            SimGameTask nextTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(taskId);
+                            if (nextTask!=null)
+                                CreateTask(nextTask);
                         }
                     }
                     break;
             }
-
-
         }
 
         protected override void OnPanelHideComplete()

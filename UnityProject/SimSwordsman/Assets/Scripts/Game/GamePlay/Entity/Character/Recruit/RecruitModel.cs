@@ -20,16 +20,18 @@ namespace GameWish.Game
     public class RecruitModel
     {
         private RecruitType m_RecruitType;
-        public bool m_isFirstRecruit = true;
+        private bool m_isFirstRecruit = true;
         private int m_RecruitCount = 0;
-        public List<CharacterItem> m_CharacterModels = new List<CharacterItem>();
+        private List<CharacterItem> m_CharacterModels = new List<CharacterItem>();
 
-        public int GoldMedalGood = 7;
-        public int GoldMedalPerfect = 3;
+        public int advertisementCount = 0;
 
-        public int SilverMedalNormal = 13;
-        public int SilverMedalGood = 6;
-        public int SilverMedalPerfect = 1;
+        public int goldMedalGood = 7;
+        public int goldMedalPerfect = 3;
+
+        public int silverMedalNormal = 13;
+        public int silverMedalGood = 6;
+        public int silverMedalPerfect = 1;
 
         public RecruitModel(RecruitType recruitType, RecruitData recruitData)
         {
@@ -38,33 +40,65 @@ namespace GameWish.Game
             {
                 case RecruitType.GoldMedal:
                     m_isFirstRecruit = recruitData.goldIsFirst;
+                    m_RecruitCount = recruitData.goldRecruitCount;
+                    advertisementCount = recruitData.goldAdvertisementCount;
                     break;
                 case RecruitType.SilverMedal:
                     m_isFirstRecruit = recruitData.silverIsFirst;
+                    m_RecruitCount = recruitData.silverRecruitCount;
+                    advertisementCount = recruitData.silverAdvertisementCount;
                     break;
                 default:
                     break;
             }
-            GoldMedalGood = recruitData.goldMedalGood;
-            GoldMedalPerfect = recruitData.goldMedalPerfect;
-            SilverMedalNormal = recruitData.silverMedalNormal;
-            SilverMedalGood = recruitData.silverMedalGood;
-            SilverMedalPerfect = recruitData.silverMedalPerfect;
+            goldMedalGood = recruitData.goldMedalGood;
+            goldMedalPerfect = recruitData.goldMedalPerfect;
+            silverMedalNormal = recruitData.silverMedalNormal;
+            silverMedalGood = recruitData.silverMedalGood;
+            silverMedalPerfect = recruitData.silverMedalPerfect;
             ResetDefault();
-
         }
         /// <summary>
         /// 设置默认值
         /// </summary>
         private void SetDefaultValue()
         {
-            GoldMedalGood = 7;
-            GoldMedalPerfect = 3;
+            goldMedalGood = 7;
+            goldMedalPerfect = 3;
 
-            SilverMedalNormal = 13;
-            SilverMedalGood = 6;
-            SilverMedalPerfect = 1;
+            silverMedalNormal = 13;
+            silverMedalGood = 6;
+            silverMedalPerfect = 1;
 
+            MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
+        }
+
+        public void SetAdvertisementCount(int delta = 1)
+        {
+            advertisementCount -= delta;
+            if (advertisementCount < 0)
+                advertisementCount = 0;
+
+            MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
+        }
+        public int GetAdvertisementCount()
+        {
+            return advertisementCount;
+        }
+
+        public void ResetAdvertisementCount(RecruitType recruitType)
+        {
+            switch (recruitType)
+            {
+                case RecruitType.GoldMedal:
+                    advertisementCount = 1;
+                    break;
+                case RecruitType.SilverMedal:
+                    advertisementCount = 3;
+                    break;
+                default:
+                    break;
+            }
             MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
         }
 
@@ -117,9 +151,14 @@ namespace GameWish.Game
             MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
         }
 
+        /// <summary>
+        /// 增加招募次数
+        /// </summary>
+        /// <param name="delta"></param>
         public void IncreaseCurRecruitCount(int delta)
         {
             m_RecruitCount = Mathf.Min(m_RecruitCount + delta, Define.MAX_PROP_COUNT);
+            GameDataMgr.S.GetPlayerData().IncreaseCurRecruitCount(m_RecruitType,delta);
         }
         /// <summary>
         /// 重置当前招募次数
@@ -144,10 +183,10 @@ namespace GameWish.Game
                     switch (item.quality)
                     {
                         case CharacterQuality.Good:
-                            GoldMedalGood--;
+                            goldMedalGood--;
                             break;
                         case CharacterQuality.Perfect:
-                            GoldMedalPerfect--;
+                            goldMedalPerfect--;
                             break;
                     }
                 }
@@ -156,13 +195,13 @@ namespace GameWish.Game
                     switch (item.quality)
                     {
                         case CharacterQuality.Normal:
-                            SilverMedalNormal--;
+                            silverMedalNormal--;
                             break;
                         case CharacterQuality.Good:
-                            SilverMedalGood--;
+                            silverMedalGood--;
                             break;
                         case CharacterQuality.Perfect:
-                            SilverMedalPerfect--;
+                            silverMedalPerfect--;
                             break;
                     }
                 }
@@ -177,6 +216,7 @@ namespace GameWish.Game
         {
             if (m_isFirstRecruit)
             {
+                SetIsFirstRecruit();
                 switch (m_RecruitType)
                 {
                     case RecruitType.GoldMedal:
@@ -188,8 +228,6 @@ namespace GameWish.Game
 
             if (m_CharacterModels.Count > 0)
             {
-                //m_CharacterModels.OrderBy(u => Guid.NewGuid()).First();
-                //int r = new System.Random().Next(m_CharacterModels.Count);
                 int pos = UnityEngine.Random.Range(0, m_CharacterModels.Count);
                 return SetCurReturnCharacterId(m_CharacterModels[pos]);
             }
@@ -215,17 +253,17 @@ namespace GameWish.Game
             switch (m_RecruitType)
             {
                 case RecruitType.GoldMedal:
-                    for (int i = 0; i < GoldMedalGood; i++)
+                    for (int i = 0; i < goldMedalGood; i++)
                         m_CharacterModels.Add(GetMoreCharacterInfo(CharacterQuality.Good));
-                    for (int i = 0; i < GoldMedalPerfect; i++)
+                    for (int i = 0; i < goldMedalPerfect; i++)
                         m_CharacterModels.Add(GetMoreCharacterInfo(CharacterQuality.Perfect));
                     break;
                 case RecruitType.SilverMedal:
-                    for (int i = 0; i < SilverMedalNormal; i++)
+                    for (int i = 0; i < silverMedalNormal; i++)
                         m_CharacterModels.Add(GetMoreCharacterInfo(CharacterQuality.Normal));
-                    for (int i = 0; i < SilverMedalGood; i++)
+                    for (int i = 0; i < silverMedalGood; i++)
                         m_CharacterModels.Add(GetMoreCharacterInfo(CharacterQuality.Good));
-                    for (int i = 0; i < SilverMedalPerfect; i++)
+                    for (int i = 0; i < silverMedalPerfect; i++)
                         m_CharacterModels.Add(GetMoreCharacterInfo(CharacterQuality.Perfect));
                     break;
                 default:

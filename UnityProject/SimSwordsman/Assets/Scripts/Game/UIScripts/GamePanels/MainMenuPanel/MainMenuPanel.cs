@@ -63,6 +63,8 @@ namespace GameWish.Game
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Charoite),3);
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Malachite),3);
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.RedAgate),3);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.SilverToken), 20);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.GoldenToken), 20);
                 //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 3, 4));
 
                 //MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArms(Arms.DragonCarvingKnife));
@@ -72,7 +74,7 @@ namespace GameWish.Game
                 //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.WuLinMiJi));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
 
-                UIMgr.S.OpenPanel(UIID.SignInPanel);
+                //UIMgr.S.OpenPanel(UIID.SignInPanel);
             });
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });

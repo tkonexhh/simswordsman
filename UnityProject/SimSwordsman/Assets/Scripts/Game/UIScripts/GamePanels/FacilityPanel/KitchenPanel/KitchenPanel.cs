@@ -36,20 +36,23 @@ namespace GameWish.Game
         private Transform m_KitchenContTra;
 
         [SerializeField]
-        private GameObject m_FoodItem;
+        private GameObject m_FoodItemPrefab;
 
         private FacilityType m_CurFacilityType = FacilityType.None;
 
         private int m_CurLevel;
         private KitchLevelInfo m_CurKitchLevelInfo = null;
 
-        protected override void OnUIInit()
+
+        private List<FoodItem> m_FoodItems = new List<FoodItem>();
+
+        protected override void OnUIInit() 
         {
             base.OnUIInit();
 
             BindAddListenerEvent();
         }
-
+        
         private void GetInformationForNeed()
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
@@ -63,10 +66,7 @@ namespace GameWish.Game
             m_KitchenContTxt.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_KITCHEN_DESCRIBLE);
 
             RefreshPanelText();
-            for (int i = 0; i < 5; i++)
-            {
-                CreateFood();
-            }
+            UpdateFoodItems();
         }
         private void RefreshPanelText()
         {
@@ -87,6 +87,48 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
 
+            EventSystem.S.Register(EventID.OnFoodBuffInterval, OnFoodBuffInterval);
+            EventSystem.S.Register(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
+            EventSystem.S.Register(EventID.OnFoodBuffStart, OnFoodBuffStart);
+        }
+        // 开始buff
+        private void OnFoodBuffStart(int key, object[] param)
+        {
+            int id = (int)param[0];
+            foreach (var item in m_FoodItems)
+            {
+                if (item.ID == id)
+                {
+                    item.StartEffect((string)param[1]);
+                    break;
+                }
+            }
+        }
+        // 结束buff
+        private void OnFoodBuffEnd(int key, object[] param)
+        {
+            int id = (int)param[0];
+            foreach (var item in m_FoodItems)
+            {
+                if (item.ID == id)
+                {
+                    item.StopEffect();
+                    break;
+                }
+            }
+        }
+        // buff倒计时
+        private void OnFoodBuffInterval(int key, object[] param)
+        {
+            int id = (int)param[0];
+            foreach (var item in m_FoodItems)
+            {
+                if (item.ID == id)
+                {
+                    item.Countdown((string)param[1]);
+                    break;
+                }
+            }
         }
 
         private void BindAddListenerEvent()
@@ -94,9 +136,7 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-
                 bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(double.Parse(m_UpgradeRequiredCoinTxt.text));
-
                 if (isReduceSuccess)
                 {
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
@@ -110,12 +150,53 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
+
+            EventSystem.S.UnRegister(EventID.OnFoodBuffInterval, OnFoodBuffInterval);
+            EventSystem.S.UnRegister(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
+            EventSystem.S.UnRegister(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }
 
-        public void CreateFood()
+        public void UpdateFoodItems()
         {
-            ItemICom itemICom = Instantiate(m_FoodItem, m_KitchenContTra).GetComponent<ItemICom>();
-            itemICom.OnInit(this);
+            if (GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Count == m_FoodItems.Count)
+            {
+                for (int i = 0; i < GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Count; i++)
+                {
+                    ItemICom itemICom = m_FoodItems[i].GetComponent<ItemICom>();
+                    itemICom.OnInit(this, null, GameDataMgr.S.GetPlayerData().unlockFoodItemIDs[i]);
+                    m_FoodItems[i].gameObject.SetActive(true);
+                }
+            }
+            else if(GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Count > m_FoodItems.Count)
+            {
+                for (int i = 0; i < GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Count; i++)
+                {
+                    if (i >= m_FoodItems.Count)
+                    {
+                        GameObject obj = Instantiate(m_FoodItemPrefab, m_KitchenContTra);
+                        FoodItem item = obj.GetComponent<FoodItem>();
+                        m_FoodItems.Add(item);
+                    }
+                    else
+                        m_FoodItems[i].gameObject.SetActive(true);
+                    ItemICom itemICom = m_FoodItems[i].GetComponent<ItemICom>();
+                    itemICom.OnInit(this, null, GameDataMgr.S.GetPlayerData().unlockFoodItemIDs[i]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < m_FoodItems.Count; i++)
+                {
+                    if (i >= GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Count)
+                        m_FoodItems[i].gameObject.SetActive(false);
+                    else
+                    {
+                        ItemICom itemICom = m_FoodItems[i].GetComponent<ItemICom>();
+                        itemICom.OnInit(this, null, GameDataMgr.S.GetPlayerData().unlockFoodItemIDs[i]);
+                    }
+                }
+            }
+           
         }
     }
 

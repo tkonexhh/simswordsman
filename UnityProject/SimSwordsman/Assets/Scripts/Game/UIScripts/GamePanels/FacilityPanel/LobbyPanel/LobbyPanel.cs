@@ -11,9 +11,9 @@ namespace GameWish.Game
     {
         None,
         /// <summary>
-        /// 第一次招募
+        /// 免费招募
         /// </summary>
-        First,
+        Free,
         /// <summary>
         /// 招募令招募
         /// </summary>
@@ -22,7 +22,6 @@ namespace GameWish.Game
         /// 看广告招募
         /// </summary>
         LookAdvertisement,
-        Over,
     }
 
     public class LobbyPanel : AbstractAnimPanel
@@ -71,10 +70,7 @@ namespace GameWish.Game
         private RecruitDiscipleMgr m_RecruitDiscipleMgr = null;
         private FacilityMgr m_FacilityMgr = null;
 
-        private ClickType m_CurrentGoldClickType = ClickType.First;
-        private ClickType m_CurrentSilverClickType = ClickType.First;
 
-        private Dictionary<RecruitType, ClickType> m_RecruitDic = new Dictionary<RecruitType, ClickType>();
         private void InitFixedInfo()
         {
             m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
@@ -86,9 +82,6 @@ namespace GameWish.Game
             base.OnUIInit();
             m_RecruitDiscipleMgr = MainGameMgr.S.RecruitDisciplerMgr;
             m_FacilityMgr = MainGameMgr.S.FacilityMgr;
-
-            m_RecruitDic.Add(RecruitType.SilverMedal, ClickType.First);
-            m_RecruitDic.Add(RecruitType.GoldMedal, ClickType.First);
 
             BindAddListenerEvent();
 
@@ -111,7 +104,6 @@ namespace GameWish.Game
         {
             base.OnOpen();
 
-
             RefreshLevelInfo();
 
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
@@ -133,6 +125,7 @@ namespace GameWish.Game
         {
             base.OnClose();
         }
+      
 
 
         /// <summary>
@@ -142,6 +135,11 @@ namespace GameWish.Game
         {
             m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_CoinValue.text = Define.RIDE + m_CurFacilityLevelInfo.upgradeCoinCost;
+            
+
+
+            
+           
 
 
             //m_FacilitiesName.text = m_CurFacilityConfigInfo.name;
@@ -191,6 +189,8 @@ namespace GameWish.Game
             //}
         }
 
+     
+
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
@@ -210,30 +210,6 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
                 RefreshLevelInfo();
                 RefreshPanelInfo();
-            }
-        }
-        /// <summary>
-        /// 招募点击事件
-        /// </summary>
-        private void OnClickRecruitBtn(RecruitType type)
-        {
-            switch (m_RecruitDic[type])
-            {
-                case ClickType.First:
-                    UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.First);
-                    m_RecruitDic[type] = ClickType.RecruitmentOrder;
-                    break;
-                case ClickType.RecruitmentOrder:
-                    UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.RecruitmentOrder);
-                    break;
-                case ClickType.LookAdvertisement:
-                    UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.LookAdvertisement);
-                    break;
-                case ClickType.Over:
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "招募标题", "招募次数用尽");
-                    break;
-                default:
-                    break;
             }
         }
 
