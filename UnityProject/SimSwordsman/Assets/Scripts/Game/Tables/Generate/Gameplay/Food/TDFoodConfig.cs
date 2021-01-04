@@ -16,10 +16,12 @@ namespace GameWish.Game
         private string m_Name;   
         private string m_SpriteName;   
         private string m_Desc;   
+        private string m_MakeRes;   
         private string m_BuffType;   
         private EInt m_BuffRate = 0;   
         private EInt m_BuffTime = 0;   
-        private EInt m_BuffTimeAD = 0;  
+        private EInt m_BuffTimeAD = 0;   
+        private EInt m_UnlockLevel = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -44,6 +46,11 @@ namespace GameWish.Game
         public  string  desc {get { return m_Desc; } }
        
         /// <summary>
+        /// 制作需要材料
+        /// </summary>
+        public  string  makeRes {get { return m_MakeRes; } }
+       
+        /// <summary>
         /// 增益效果
         /// </summary>
         public  string  buffType {get { return m_BuffType; } }
@@ -62,6 +69,11 @@ namespace GameWish.Game
         /// 看广告维持时长
         /// </summary>
         public  int  buffTimeAD {get { return m_BuffTimeAD; } }
+       
+        /// <summary>
+        /// 解锁等级（主城）
+        /// </summary>
+        public  int  unlockLevel {get { return m_UnlockLevel; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -91,16 +103,22 @@ namespace GameWish.Game
                     m_Desc = dataR.ReadString();
                     break;
                 case 4:
-                    m_BuffType = dataR.ReadString();
+                    m_MakeRes = dataR.ReadString();
                     break;
                 case 5:
-                    m_BuffRate = dataR.ReadInt();
+                    m_BuffType = dataR.ReadString();
                     break;
                 case 6:
-                    m_BuffTime = dataR.ReadInt();
+                    m_BuffRate = dataR.ReadInt();
                     break;
                 case 7:
+                    m_BuffTime = dataR.ReadInt();
+                    break;
+                case 8:
                     m_BuffTimeAD = dataR.ReadInt();
+                    break;
+                case 9:
+                    m_UnlockLevel = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -112,16 +130,18 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("SpriteName", 2);
           ret.Add("Desc", 3);
-          ret.Add("BuffType", 4);
-          ret.Add("BuffRate", 5);
-          ret.Add("BuffTime", 6);
-          ret.Add("BuffTimeAD", 7);
+          ret.Add("MakeRes", 4);
+          ret.Add("BuffType", 5);
+          ret.Add("BuffRate", 6);
+          ret.Add("BuffTime", 7);
+          ret.Add("BuffTimeAD", 8);
+          ret.Add("UnlockLevel", 9);
           return ret;
         }
     } 

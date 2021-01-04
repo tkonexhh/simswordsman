@@ -22,12 +22,12 @@ namespace GameWish.Game
 
         public void SetCurAddSpeed(int addSpeed)
         {
-            m_CurFoodLimit = addSpeed;
+            m_CurFoodAddSpeed = addSpeed;
         }
 
         public int GetCurFoodAddSpeed()
         {
-            return m_CurFoodLimit;
+            return m_CurFoodAddSpeed;
         }
 
         public int GetNextFoodLimit()
