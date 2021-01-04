@@ -40,6 +40,7 @@ namespace GameWish.Game
         public List<TaskReward> specialRewards = new List<TaskReward>();
         public int characterAmount = 1;
         public int characterLevelRequired = 1;
+        public List<TaskEnemy> taskEnemies = new List<TaskEnemy>();
 
         public MainTaskItemInfo(TDMainTask tDMainTask)
         {
@@ -60,6 +61,8 @@ namespace GameWish.Game
             ParseNextLevel(tDMainTask.nextTask);
             ParseTaskType(tDMainTask.type);
             ParseSpecialReward(tDMainTask.specialReward);
+            ParseSpecialReward(tDMainTask.specialReward);
+            ParseTaskEnemy(tDMainTask.enemy);
         }
 
         public int GetRewardId(int index)
@@ -134,6 +137,22 @@ namespace GameWish.Game
             }
         }
 
+        private void ParseTaskEnemy(string enemyStr)
+        {
+            if (string.IsNullOrEmpty(enemyStr))
+                return;
+
+            string[] enemyStrs = enemyStr.Split(';');
+            foreach (string item in enemyStrs)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    string[] strs = item.Split('|');
+                    this.taskEnemies.Add(new TaskEnemy(int.Parse(strs[0]), int.Parse(strs[1])));
+                }
+            }
+        }
+
         private void ParseNextLevel(string nextTask)
         {
             if (!string.IsNullOrEmpty(nextTask))
@@ -166,4 +185,15 @@ namespace GameWish.Game
         }
     }
 
+    public class TaskEnemy
+    {
+        public int enemyId;
+        public int enemyAtk;
+
+        public TaskEnemy(int id, int atk)
+        {
+            enemyId = id;
+            enemyAtk = atk;
+        }
+    }
 }
