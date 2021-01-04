@@ -14,16 +14,24 @@ namespace GameWish.Game
         public void Init()
         {
             //¼ì²é´æµµ
+            bool isChange = false;
             TimeSpan offset;
-            foreach (var item in GameDataMgr.S.GetPlayerData().foodBuffData)
+            for (int i = GameDataMgr.S.GetPlayerData().foodBuffData.Count - 1; i >= 0; i--)
             {
-                offset = DateTime.Parse(item.endTime) - DateTime.Now;
+                offset = DateTime.Parse(GameDataMgr.S.GetPlayerData().foodBuffData[i].endTime) - DateTime.Now;
                 if (offset.TotalSeconds > 0)
                 {
-                    m_AllBuffs.Add(item);
-                    StartCountdown(item);
+                    m_AllBuffs.Add(GameDataMgr.S.GetPlayerData().foodBuffData[i]);
+                    StartCountdown(GameDataMgr.S.GetPlayerData().foodBuffData[i]);
+                }
+                else
+                {
+                    isChange = true;
+                    GameDataMgr.S.GetPlayerData().foodBuffData.RemoveAt(i);
                 }
             }
+            if (isChange)
+                GameDataMgr.S.GetPlayerData().SetDataDirty();
         }
 
         public void StartBuff(int id, bool ad = false)
@@ -70,7 +78,8 @@ namespace GameWish.Game
                 if (m_AllBuffs[i].foodID == id)
                 {
                     Timer.S.Cancel(m_AllBuffs[i].TimerID);
-                    EventSystem.S.Send(EventID.OnFoodBuffEnd, m_AllBuffs[i]);
+                    EventSystem.S.Send(EventID.OnFoodBuffEnd, m_AllBuffs[i].foodID);
+                    GameDataMgr.S.GetPlayerData().foodBuffData.Remove(m_AllBuffs[i]);
                     m_AllBuffs.RemoveAt(i);
                     return;
                 }
