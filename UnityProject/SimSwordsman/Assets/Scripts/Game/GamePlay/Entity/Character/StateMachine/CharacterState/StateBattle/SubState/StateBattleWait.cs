@@ -30,7 +30,8 @@ namespace GameWish.Game
 
             if(m_Controller.CharacterCamp == CharacterCamp.OurCamp)
                 m_Controller.CharacterView.PlayAnim("practice", true, null);
-
+            if (m_Controller.CharacterCamp == CharacterCamp.EnemyCamp)
+                m_Controller.CharacterView.PlayAnim("idle", true, null);
         }
 
         public override void Exit(IBattleStateHander handler)

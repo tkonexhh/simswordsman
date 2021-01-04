@@ -26,7 +26,7 @@ namespace GameWish.Game
             if (m_BattleState == null)
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
-            string atkName = "attack";
+            string atkName = "01_taizuchangquan";//"attack";
             if (m_Controller.CharacterCamp == CharacterCamp.EnemyCamp)
             {
                 atkName = "attack1";

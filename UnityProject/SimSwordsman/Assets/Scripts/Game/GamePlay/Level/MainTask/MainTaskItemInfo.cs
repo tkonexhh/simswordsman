@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System.Linq;
+using System;
 
 namespace GameWish.Game
 {
@@ -44,25 +45,32 @@ namespace GameWish.Game
 
         public MainTaskItemInfo(TDMainTask tDMainTask)
         {
-            this.id = tDMainTask.taskID;
-            this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tDMainTask.triggerType);
+            try
+            {
+                this.id = tDMainTask.taskID;
+                this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tDMainTask.triggerType);
 
-            taskState = TaskState.None;
+                taskState = TaskState.None;
 
-            this.time = tDMainTask.time;
-            this.title = tDMainTask.taskTitle;
-            this.desc = tDMainTask.taskDescription;
-            this.needHomeLevel = tDMainTask.homeLevel;
-            this.specialRewardRate = tDMainTask.specialRewardRate;
-            this.characterAmount = tDMainTask.roleAmount;
-            this.characterLevelRequired = tDMainTask.roleLevelRequired;
+                this.time = tDMainTask.time;
+                this.title = tDMainTask.taskTitle;
+                this.desc = tDMainTask.taskDescription;
+                this.needHomeLevel = tDMainTask.homeLevel;
+                this.specialRewardRate = tDMainTask.specialRewardRate;
+                this.characterAmount = tDMainTask.roleAmount;
+                this.characterLevelRequired = tDMainTask.roleLevelRequired;
 
-            ParseReward(tDMainTask.reward);
-            ParseNextLevel(tDMainTask.nextTask);
-            ParseTaskType(tDMainTask.type);
-            ParseSpecialReward(tDMainTask.specialReward);
-            ParseSpecialReward(tDMainTask.specialReward);
-            ParseTaskEnemy(tDMainTask.enemy);
+                ParseReward(tDMainTask.reward);
+                ParseNextLevel(tDMainTask.nextTask);
+                ParseTaskType(tDMainTask.type);
+                ParseSpecialReward(tDMainTask.specialReward);
+                ParseSpecialReward(tDMainTask.specialReward);
+                ParseTaskEnemy(tDMainTask.enemy);
+            }
+            catch (Exception e)
+            {
+                Log.e("Parse task error: " + e.Message);
+            }
         }
 
         public int GetRewardId(int index)
@@ -88,7 +96,7 @@ namespace GameWish.Game
             TaskReward reward = rewards[index];
             if (reward.count2 != -1)
             {
-                return Random.Range(reward.count1, reward.count2);
+                return UnityEngine.Random.Range(reward.count1, reward.count2);
             }
 
             return reward.count1;

@@ -141,6 +141,14 @@ namespace GameWish.Game
 
         #region Public Set
 
+        public void RefreshBattleState()
+        {
+            if (m_CurState == CharacterStateID.Battle)
+            {
+                m_StateMachine.UpdateState(Time.deltaTime);
+            }
+        }
+
         public void MoveTo(Vector2 pos, System.Action callback)
         {
             m_CharacterView.MoveTo(pos, callback);

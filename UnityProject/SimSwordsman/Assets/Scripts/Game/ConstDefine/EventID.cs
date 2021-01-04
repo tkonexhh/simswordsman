@@ -36,8 +36,7 @@ namespace GameWish.Game
 
         // MainTask
         OnTaskManualFinished,
-        OnTaskFinished,
-
+        //OnTaskFinished,
 
         //Battle
         OnEnterBattle,
