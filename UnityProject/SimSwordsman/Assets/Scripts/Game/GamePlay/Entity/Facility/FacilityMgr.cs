@@ -113,7 +113,7 @@ namespace GameWish.Game
                     break;
                 case FacilityType.PracticeFieldEast:
                 case FacilityType.PracticeFieldWest:
-                    facilityLevelInfo = TDFacilityPracticeFieldTable.GetLevelInfo(level);
+                    facilityLevelInfo = TDFacilityPracticeFieldTable.GetLevelInfo(facilityType,level);
                     break;
                 case FacilityType.Kitchen:
                     facilityLevelInfo = TDFacilityKitchenTable.GetLevelInfo(level);

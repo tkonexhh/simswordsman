@@ -17,7 +17,7 @@ namespace GameWish.Game
             selectedCharacters.ForEach(i =>
             {
                 i.SetState(CharacterStateID.GoOutside);
-                i.SetDataState(CharacterStateID.GoOutside, (RawMaterial)GetCurSubType());
+                i.SetDataState(CharacterStateID.GoOutside, (CollectedObjType)GetCurSubType());
             });
         }
     }

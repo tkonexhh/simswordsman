@@ -18,7 +18,7 @@ namespace GameWish.Game
             {
                 i.CurTask = this;
                 i.SetState(CharacterStateID.CollectRes);
-                i.SetDataState(CharacterStateID.CollectRes, (RawMaterial)GetCurSubType());
+                i.SetDataState(CharacterStateID.CollectRes, (CollectedObjType)GetCurSubType());
             });
         }
     }

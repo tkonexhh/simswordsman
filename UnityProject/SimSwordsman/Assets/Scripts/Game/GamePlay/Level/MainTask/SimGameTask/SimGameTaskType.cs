@@ -22,6 +22,7 @@ namespace GameWish.Game
 
     public enum CollectedObjType
     {
+        None,
         Fish, // гу
         Chicken, // МІ
         Bear, // ам

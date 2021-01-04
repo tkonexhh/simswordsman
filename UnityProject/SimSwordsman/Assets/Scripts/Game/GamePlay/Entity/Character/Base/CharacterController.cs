@@ -163,7 +163,7 @@ namespace GameWish.Game
             }
         }
 
-        public void SetDataState(CharacterStateID characterStateID, RawMaterial _subState = RawMaterial.None)
+        public void SetDataState(CharacterStateID characterStateID, CollectedObjType _subState = CollectedObjType.None)
         {
             m_CharacterModel.SetDataState(new CharacterStateData(CharacterStateID.CollectRes, _subState));
         }

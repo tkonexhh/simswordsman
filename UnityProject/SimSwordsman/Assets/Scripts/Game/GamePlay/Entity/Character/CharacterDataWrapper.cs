@@ -148,10 +148,10 @@ namespace GameWish.Game
     public class CharacterStateData
     {
         public CharacterStateID parentState; // µÜ×ÓÐÐÎª
-        public RawMaterial subState;
+        public CollectedObjType subState;
 
         public CharacterStateData() { }
-        public CharacterStateData(CharacterStateID _parentState, RawMaterial _subState =  RawMaterial.None)
+        public CharacterStateData(CharacterStateID _parentState, CollectedObjType _subState = CollectedObjType.None)
         {
             parentState = _parentState;
             subState = _subState;
