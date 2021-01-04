@@ -49,6 +49,13 @@ namespace GameWish.Game
         public int Number { set; get; }
         public int Skill { set; get; }
 
+        public EnemyConfig(int id,int number,int skill)
+        {
+            ID = id;
+            Number = number;
+            Skill = skill;
+        }
+
         public EnemyConfig(string enemisStr)
         {
             string[] enemies = enemisStr.Split(';');

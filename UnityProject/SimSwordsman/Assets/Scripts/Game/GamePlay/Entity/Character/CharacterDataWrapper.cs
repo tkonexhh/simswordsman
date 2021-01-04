@@ -145,6 +145,19 @@ namespace GameWish.Game
         }
     }
 
+    public class CharacterStateData
+    {
+        public CharacterStateID parentState; // 弟子行为
+        public RawMaterial subState;
+
+        public CharacterStateData() { }
+        public CharacterStateData(CharacterStateID _parentState, RawMaterial _subState =  RawMaterial.None)
+        {
+            parentState = _parentState;
+            subState = _subState;
+        }
+    }
+
     public class CharacterItem : IComparable
     {
         public const int MaxKungfuNumber = 4;
@@ -156,6 +169,7 @@ namespace GameWish.Game
         public string startTime; // 入门时间
         public CharacterQuality quality; // 品质
         public CharacterBehavior behavior; // 行为
+        public CharacterStateData characterStateData = new CharacterStateData(); // 行为
         public float atkValue; // 武力值
         public string name; // 名字
         public string desc; // 详细信息
@@ -187,6 +201,16 @@ namespace GameWish.Game
             stage = 1;
         }
 
+        /// <summary>
+        /// 设置人物的状态
+        /// </summary>
+        /// <param name="characterStateData"></param>
+        public void SetCharacterStateData(CharacterStateData characterStateData)
+        {
+            this.characterStateData = characterStateData;
+            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, characterStateData);
+        }
+
         public void Wrap(CharacterItemDbData itemDbData)
         {
             m_ItemDbData = itemDbData;
@@ -197,6 +221,9 @@ namespace GameWish.Game
             stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
+
+            this.characterStateData = itemDbData.characterStateDBData;
+
             atkValue = TDCharacterStageConfigTable.GetAtk(quality, stage, level);
 
             itemDbData.kongfuDatas.ForEach(i =>

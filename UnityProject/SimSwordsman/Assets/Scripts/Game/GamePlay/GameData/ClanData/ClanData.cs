@@ -148,6 +148,13 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        public void SetCharacterStateDBData(int id, CharacterStateData characterStateData)
+        {
+            ownedCharacterData.SetCharacterStateDBData(id, characterStateData);
+
+            SetDataDirty();
+        }
+
         public void SetCharacterStage(CharacterItemDbData item, int stage)
         {
             ownedCharacterData.SetStage(item, stage);
