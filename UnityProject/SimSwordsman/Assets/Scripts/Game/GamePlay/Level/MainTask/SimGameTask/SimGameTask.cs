@@ -31,6 +31,15 @@ namespace GameWish.Game
              m_TaskDetailInfo.taskState = TaskState.Finished;
         }
 
+        public int GetCurSubType()
+        {
+           return MainTaskItemInfo.subType;
+        }
+        public SimGameTaskType GetCurTaskType()
+        {
+            return MainTaskItemInfo.taskType;
+        }
+
         public abstract void ExecuteTask(List<CharacterController> selectedCharacters);
 
     }

@@ -52,6 +52,11 @@ namespace GameWish.Game
             m_Hp = m_Atk;
         }
 
+        public void SetDataState(CharacterStateData characterStateData)
+        {
+            m_CharacterItem.SetCharacterStateData(characterStateData);
+        }
+
         public int GetExp()
         {
             return m_CharacterItem.curExp;

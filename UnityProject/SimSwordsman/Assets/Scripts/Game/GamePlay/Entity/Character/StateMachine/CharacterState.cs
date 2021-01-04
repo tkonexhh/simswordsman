@@ -10,13 +10,32 @@ namespace GameWish.Game
     public enum CharacterStateID
     {
         None,
+        /// <summary>
+        /// 进入设施
+        /// </summary>
         EnterClan,
+        /// <summary>
+        /// 漫游
+        /// </summary>
         Wander,
+        /// <summary>
+        /// 战斗
+        /// </summary>
         Battle,
+        /// <summary>
+        /// 训练
+        /// </summary>
         Practice,
+        /// <summary>
+        /// 收集资源
+        /// </summary>
         CollectRes,
+        /// <summary>
+        /// 外出
+        /// </summary>
         GoOutside,
     }
+
 
     public class CharacterState : FSMState<ICharacterStateHander>
     {

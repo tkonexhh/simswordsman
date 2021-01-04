@@ -99,7 +99,7 @@ namespace GameWish.Game
 
 			RefreshPanelText();
 			
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < m_CurPracticeFieldLevelInfo.GetCurCapacity(); i++)
             {
 				CreatePracticeDisciple();
 			}

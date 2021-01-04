@@ -50,7 +50,6 @@ namespace GameWish.Game
             switch (m_CurTaskInfo.MainTaskItemInfo.taskState)
             {
                 case TaskState.NotStart:
-
                     break;
                 case TaskState.Unclaimed:
                     break;
