@@ -36,6 +36,10 @@ namespace GameWish.Game
         public string desc;
         public TaskState taskState;
         public List<TaskReward> rewards = new List<TaskReward>();
+        public int specialRewardRate = 0;
+        public List<TaskReward> specialRewards = new List<TaskReward>();
+        public int characterAmount = 1;
+        public int characterLevelRequired = 1;
 
         public MainTaskItemInfo(TDMainTask tDMainTask)
         {
@@ -48,9 +52,14 @@ namespace GameWish.Game
             this.title = tDMainTask.taskTitle;
             this.desc = tDMainTask.taskDescription;
             this.needHomeLevel = tDMainTask.homeLevel;
+            this.specialRewardRate = tDMainTask.specialRewardRate;
+            this.characterAmount = tDMainTask.roleAmount;
+            this.characterLevelRequired = tDMainTask.roleLevelRequired;
+
             ParseReward(tDMainTask.reward);
             ParseNextLevel(tDMainTask.nextTask);
             ParseTaskType(tDMainTask.type);
+            ParseSpecialReward(tDMainTask.specialReward);
         }
 
         public int GetRewardId(int index)
@@ -98,6 +107,22 @@ namespace GameWish.Game
 
         private void ParseReward(string reward)
         {
+            string[] rewardStrs = reward.Split(';');
+            foreach (string item in rewardStrs)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    TaskReward taskReward = new TaskReward(item);
+                    this.rewards.Add(taskReward);
+                }
+            }
+        }
+
+        private void ParseSpecialReward(string reward)
+        {
+            if (string.IsNullOrEmpty(reward))
+                return;
+
             string[] rewardStrs = reward.Split(';');
             foreach (string item in rewardStrs)
             {
