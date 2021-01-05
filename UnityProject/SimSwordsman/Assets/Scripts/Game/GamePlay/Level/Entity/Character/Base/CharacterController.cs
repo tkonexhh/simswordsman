@@ -25,7 +25,7 @@ namespace GameWish.Game
         public CharacterController FightTarget { get => m_FightTarget;}
         public CharacterStateID CurState { get => m_CurState;}
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
-        public SimGameTask CurTask { get => m_CurTask; set => m_CurTask = value; }
+        public SimGameTask CurTask { get => m_CurTask;}
 
         private CharacterStateID m_CurState = CharacterStateID.None;
         private CharacterStateBattle m_StateBattle = null;
@@ -41,6 +41,8 @@ namespace GameWish.Game
             m_CharacterCamp = camp;
 
             m_CharacterModel = new CharacterModel(id, this);
+
+            SpawnTaskIfNeed(initState);
 
             m_StateMachine = new CharacterStateMachine(this);
             SetState(initState);
@@ -237,14 +239,25 @@ namespace GameWish.Game
             m_CharacterView.ShowBody();
         }
 
+        public void SetCurTask(SimGameTask task)
+        {
+            m_CurTask = task;
+        }
         #endregion
 
         #region Private
-        private void SetStateToDB(CharacterStateID characterStateID, CollectedObjType _subState = CollectedObjType.None)
+        private void SetStateToDB(CharacterStateID characterStateID, CollectedObjType collectObjType = CollectedObjType.None)
         {
-            m_CharacterModel.SetDataState(new CharacterStateData(CharacterStateID.CollectRes, _subState));
+            m_CharacterModel.SetDataState(new CharacterStateData(CharacterStateID.CollectRes, collectObjType));
         }
 
+        private void SpawnTaskIfNeed(CharacterStateID initState)
+        {
+            if (initState == CharacterStateID.CollectRes)
+            {
+
+            }
+        }
         #endregion
     }
 

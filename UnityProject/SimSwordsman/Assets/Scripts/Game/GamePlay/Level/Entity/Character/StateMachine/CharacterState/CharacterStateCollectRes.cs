@@ -64,7 +64,7 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnTaskManualFinished);
                     //EventSystem.S.Send(EventID.OnTaskFinished);
 
-                    m_Controller.CurTask = null;
+                    m_Controller.SetCurTask(null);
                     m_Controller.SetState(CharacterStateID.Wander);
                 }
             }

@@ -16,7 +16,7 @@ namespace GameWish.Game
         {
             selectedCharacters.ForEach(i => 
             {
-                i.CurTask = this;
+                i.SetCurTask(this);
                 i.SetState(CharacterStateID.CollectRes);
             });
         }

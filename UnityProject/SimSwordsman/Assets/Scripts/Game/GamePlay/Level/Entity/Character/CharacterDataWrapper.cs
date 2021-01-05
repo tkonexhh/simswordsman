@@ -147,16 +147,14 @@ namespace GameWish.Game
 
     public class CharacterStateData
     {
-        public CharacterStateID parentState = CharacterStateID.Wander; // 弟子行为
-        public CollectedObjType subState;
-
-
+        public CharacterStateID characterState = CharacterStateID.Wander; // 弟子行为
+        public CollectedObjType collectObjType;
 
         public CharacterStateData() { }
-        public CharacterStateData(CharacterStateID _parentState, CollectedObjType _subState = CollectedObjType.None)
+        public CharacterStateData(CharacterStateID stateId, CollectedObjType collectObjType = CollectedObjType.None)
         {
-            parentState = _parentState;
-            subState = _subState;
+            this.characterState = stateId;
+            this.collectObjType = collectObjType;
         }
     }
 
