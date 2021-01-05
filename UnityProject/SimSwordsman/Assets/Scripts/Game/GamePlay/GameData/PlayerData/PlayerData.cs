@@ -210,7 +210,7 @@ namespace GameWish.Game
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
             if (delta> 0)
-                delta *= BuffSystem.S.Coin(delta);
+                delta = BuffSystem.S.Coin(delta);
 
             m_CoinNum = m_CoinNum + delta;
 
