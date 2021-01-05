@@ -16,11 +16,13 @@ MonoBehaviour:
     categories:
     - categoryName: Uncategorized
       itemNames:
+      - 
       - ~Element Name~
       - BaicaohuPanel
       - BulletinBoardPanel
       - ChallengeBattlePanel
       - ChallengePanel
+      - ChooseDisciplePanel
       - CombatInterfacePanel
       - CombatSettlementPanel
       - ConstructionFacilitiesPanel
@@ -41,7 +43,6 @@ MonoBehaviour:
       - RecruitmentPanel
       - SectNamePanel
       - SendDisciplesPanel
-      - SettingPanel
       - ShopPanel
       - SignInPanel
       - TaskDetailsPanel
@@ -49,6 +50,7 @@ MonoBehaviour:
       - VisitorPanel
       - WarehousePanel
       - WearableLearningPanel
+      - 
       isExpanded:
         m_Target: 1
         speed: 2

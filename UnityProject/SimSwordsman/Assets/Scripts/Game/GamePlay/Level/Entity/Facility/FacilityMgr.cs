@@ -4,12 +4,14 @@ using HedgehogTeam.EasyTouch;
 using UnityEngine;
 using Qarth;
 using System.Linq;
+using System;
 
 namespace GameWish.Game
 {
     public class FacilityMgr : MonoBehaviour, IMgr, IInputObserver
     {
         private List<FacilityController> m_FacilityList = new List<FacilityController>();
+        private List<PracticeField> m_PracticeField = new List<PracticeField>();
 
         #region IMgr
         public void OnInit()
@@ -18,8 +20,12 @@ namespace GameWish.Game
 
             InitFacilityList();
 
+            InitPracticeField();
+
             InputMgr.S.AddTouchObserver(this);
         }
+
+
 
         public void OnUpdate()
         {
@@ -58,7 +64,7 @@ namespace GameWish.Game
                 return;
 
 
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero,1000, 1 << 11);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << 11);
             if (hit.collider != null)
             {
                 IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
@@ -83,7 +89,7 @@ namespace GameWish.Game
         public int GetFacilityCurLevel(FacilityType facilityType/*, int subId = 1*/)
         {
             int level = GameDataMgr.S.GetClanData().GetFacilityLevel(facilityType/*, subId*/);
-            return Mathf.Min(level,Define.FACILITY_MAX_LEVEL) ;
+            return Mathf.Min(level, Define.FACILITY_MAX_LEVEL);
         }
 
         /// <summary>
@@ -113,7 +119,7 @@ namespace GameWish.Game
                     break;
                 case FacilityType.PracticeFieldEast:
                 case FacilityType.PracticeFieldWest:
-                    facilityLevelInfo = TDFacilityPracticeFieldTable.GetLevelInfo(facilityType,level);
+                    facilityLevelInfo = TDFacilityPracticeFieldTable.GetLevelInfo(facilityType, level);
                     break;
                 case FacilityType.Kitchen:
                     facilityLevelInfo = TDFacilityKitchenTable.GetLevelInfo(level);
@@ -138,6 +144,54 @@ namespace GameWish.Game
 
             return facilityLevelInfo;
         }
+
+        #region PracticeField
+        /// <summary>
+        /// 根据类型获取所有的练功房信息
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <returns></returns>
+        public List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
+        {
+            return TDFacilityPracticeFieldTable.GetPracticeFieldLevelInfoList(facilityType);
+        }
+        /// <summary>
+        /// 获取配置文件中所有的练兵场信息
+        /// </summary>
+        /// <returns></returns>
+        public List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList()
+        {
+            return TDFacilityPracticeFieldTable.GetPracticeFieldLevelInfoList();
+        }
+
+        /// <summary>
+        /// 获取应用层练兵场信息
+        /// </summary>
+        /// <returns></returns>
+        public List<PracticeField> GetPracticeField()
+        {
+            return m_PracticeField;
+        }
+
+        /// <summary>
+        /// 升级刷新坑位状态
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="facilityLevel"></param>
+        public void RefreshPracticeUnlockInfo(FacilityType facilityType, int facilityLevel)
+        {
+            m_PracticeField.ForEach(i =>
+            {
+                if (i.FacilityType == facilityType && i.UnlockLevel == facilityLevel)
+                {
+                    i.PracticeFieldState = PracticeFieldState.Free;
+                    GameDataMgr.S.GetClanData().RefresDBData(i);
+                    EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, i);
+                }
+            });
+        }
+
+        #endregion
 
         /// <summary>
         /// Get facility config info
@@ -217,6 +271,39 @@ namespace GameWish.Game
             }
         }
 
+        private void InitPracticeField()
+        {
+            List<PracticeFieldDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
+
+            if (practiceFieldDBDatas.Count == 0)
+            {
+                LoopInit(FacilityType.PracticeFieldEast);
+                LoopInit(FacilityType.PracticeFieldWest);
+                return;
+            }
+
+            foreach (var item in practiceFieldDBDatas)
+                m_PracticeField.Add(new PracticeField(item));
+
+        }
+
+        private void LoopInit(FacilityType facilityType)
+        {
+            List<PracticeFieldLevelInfo> eastInfos = GetPracticeFieldLevelInfoList(facilityType);
+            for (int i = 0; i < eastInfos.Count; i++)
+            {
+                if (i - 1 >= 0)
+                {
+                    int lastPracticePosCount = eastInfos[i - 1].GetCurCapacity();
+                    int curPracticePosCount = eastInfos[i].GetCurCapacity();
+                    for (int j = 0; j < curPracticePosCount - lastPracticePosCount; j++)
+                        m_PracticeField.Add(new PracticeField(eastInfos[i], i + 1));
+                }
+                else
+                    m_PracticeField.Add(new PracticeField(eastInfos[i], i + 1));
+            }
+        }
+
         private void InitFacilityList()
         {
             FacilityView[] allFacilityViewList = FindObjectsOfType<FacilityView>();
@@ -280,4 +367,64 @@ namespace GameWish.Game
         #endregion
     }
 
+
+    public class PracticeField
+    {
+        private PracticeFieldLevelInfo practiceFieldLevelInfo;
+
+        public FacilityType FacilityType { set; get; }
+        public int Index { set; get; }
+        public int UnlockLevel { set; get; }
+        public PracticeFieldState PracticeFieldState { set; get; }
+
+        public CharacterItem CharacterItem { set; get; }
+        public string PracticeTime { set; get; }
+
+        public PracticeField(PracticeFieldLevelInfo item, int index)
+        {
+            FacilityType = item.GetHouseID();
+            Index = index;
+            UnlockLevel = index;
+            int practiceFieldLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+            if (practiceFieldLevel >= item.level)
+                PracticeFieldState = PracticeFieldState.Free;
+            else
+                PracticeFieldState = PracticeFieldState.NotUnlocked;
+            CharacterItem = null;
+            PracticeTime = string.Empty;
+
+            GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
+        }
+        public PracticeField(PracticeFieldDBData item)
+        {
+            FacilityType = item.facilityType;
+            Index = item.pitPositionID;
+            UnlockLevel = item.unlockLevel;
+            PracticeFieldState = item.practiceFieldState;
+            if (item.characterID != -1)
+                CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(item.characterID);
+            PracticeTime = item.practiceTime;
+        }
+
+        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState)
+        {
+
+            PracticeTime = "2";
+
+            CharacterItem = characterItem;
+            CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(CharacterItem.id);
+            switch (practiceFieldState)
+            {
+                case PracticeFieldState.CopyScriptures:
+                    break;
+                case PracticeFieldState.Practice:
+                    characterController.SetState(CharacterStateID.Practice);
+                    break;
+                default:
+                    break;
+            }
+            PracticeFieldState = practiceFieldState;
+            GameDataMgr.S.GetClanData().RefresDBData(this);
+        }
+    }
 }

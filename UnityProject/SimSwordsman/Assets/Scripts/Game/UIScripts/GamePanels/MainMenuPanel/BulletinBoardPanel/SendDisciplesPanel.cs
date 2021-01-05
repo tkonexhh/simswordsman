@@ -114,7 +114,6 @@ namespace GameWish.Game
                 {
                     case PanelType.Task:
                         m_CurTaskInfo.ExecuteTask(m_SelectedList);
-
                         if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
                         {
                             List<EnemyConfig> enemiesList = new List<EnemyConfig>();

@@ -38,6 +38,16 @@ namespace GameWish.Game
         OnTaskManualFinished,
         //OnTaskFinished,
 
+        //PracticeField
+        /// <summary>
+        /// 选择弟子
+        /// </summary>
+        OnSelectDisciple,
+        /// <summary>
+        /// 刷新坑位解锁信息
+        /// </summary>
+        OnRefreshPracticeUnlock,
+
         //Battle
         OnEnterBattle,
         OnExitBattle,

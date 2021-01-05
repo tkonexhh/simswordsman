@@ -100,6 +100,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.ConstructionFacilitiesPanel, null, "GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel");
 
             UIDataTable.AddPanelData(UIID.PracticeFieldPanel, null, "GamePanels/FacilityPanel/PracticeFieldPanel/PracticeFieldPanel");
+            UIDataTable.AddPanelData(UIID.ChooseDisciplePanel, null, "GamePanels/FacilityPanel/PracticeFieldPanel/ChooseDisciplePanel");
 
             UIDataTable.AddPanelData(UIID.LivableRoomPanel, null, "GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel");
 

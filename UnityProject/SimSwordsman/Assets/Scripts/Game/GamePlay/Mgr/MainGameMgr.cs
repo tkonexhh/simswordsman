@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         private FacilityMgr m_FacilityMgr = null;
         private InventoryMgr m_InventoryMgr = null;
-        private CharacterMgr m_RecruitDiscipleMgr = null;     
+        private CharacterMgr m_CharacterMgr = null;     
         private KongfuLibraryMgr m_KongfuLibraryMgr = null;
         private MainTaskMgr m_MainTaskMgr = null;
         private ChapterMgr m_ChapterMgr = null;
@@ -19,7 +19,7 @@ namespace GameWish.Game
         private MedicinalPowderMgr m_MedicinalPowderMgr = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
-        public CharacterMgr CharacterMgr { get => m_RecruitDiscipleMgr; }
+        public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
         public InventoryMgr InventoryMgr { get => m_InventoryMgr; }
         public KongfuLibraryMgr KongfuLibraryMgr { get => m_KongfuLibraryMgr; }
         public MainTaskMgr MainTaskMgr { get => m_MainTaskMgr; }
@@ -34,14 +34,14 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
+            m_CharacterMgr = gameObject.AddComponent<CharacterMgr>();
+            m_CharacterMgr.OnInit();
+
             m_FacilityMgr = gameObject.AddComponent<FacilityMgr>();
             m_FacilityMgr.OnInit();
 
             m_InventoryMgr = gameObject.AddComponent<InventoryMgr>();
             m_InventoryMgr.OnInit();
-
-            m_RecruitDiscipleMgr = gameObject.AddComponent<CharacterMgr>();
-            m_RecruitDiscipleMgr.OnInit();
 
             m_KongfuLibraryMgr = gameObject.AddComponent<KongfuLibraryMgr>();
             m_KongfuLibraryMgr.OnInit();

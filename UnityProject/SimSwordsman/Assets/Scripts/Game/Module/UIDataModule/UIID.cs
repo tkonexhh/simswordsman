@@ -51,6 +51,7 @@ namespace GameWish.Game
         LivableRoomPanel,
         PatrolRoomPanel,
         PracticeFieldPanel,
+        ChooseDisciplePanel,
         ConstructionFacilitiesPanel,
         
         SectNamePanel,
