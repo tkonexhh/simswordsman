@@ -256,6 +256,19 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
+        public void ReduceFoodNum(int delta)
+        {
+            if (delta == 0)
+                return;
+
+            foodNum -= delta;
+            if (foodNum < 0)
+            {
+                foodNum = 0;
+            }
+            EventSystem.S.Send(EventID.OnReduceDiamondNum);
+            SetDataDirty();
+        }
 
         public void SetLastPlayTime(string time)
         {

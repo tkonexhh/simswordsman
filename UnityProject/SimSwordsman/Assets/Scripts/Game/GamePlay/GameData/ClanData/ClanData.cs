@@ -88,6 +88,10 @@ namespace GameWish.Game
 
             return level;
         }
+        public bool IsLocked(FacilityType facilityType)
+        {
+            return ownedFacilityData.IsLocked(facilityType);
+        }
 
         public void AddFacility(FacilityType facilityType, int subId, FacilityState facilityState)
         {
