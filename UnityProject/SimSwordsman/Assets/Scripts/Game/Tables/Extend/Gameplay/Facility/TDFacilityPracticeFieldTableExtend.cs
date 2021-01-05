@@ -23,8 +23,19 @@ namespace GameWish.Game
             levelInfoList.Add(practiceFieldLevelInfo);
 
         }
-
-
+        public static List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList()
+        {
+            return levelInfoList;
+        }
+        public static List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
+        {
+            List<PracticeFieldLevelInfo> levelInfo = new List<PracticeFieldLevelInfo>();
+            levelInfoList.ForEach(i=> {
+                if (i.GetHouseID() == facilityType)
+                    levelInfo.Add(i);
+            });
+            return levelInfo;
+        }
 
         public static PracticeFieldLevelInfo GetLevelInfo(FacilityType facilityType, int level)
         {

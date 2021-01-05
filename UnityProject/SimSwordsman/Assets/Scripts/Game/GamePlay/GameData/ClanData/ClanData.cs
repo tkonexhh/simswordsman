@@ -11,10 +11,12 @@ namespace GameWish.Game
         public string clanName = string.Empty;
 
         public FacilityDbData ownedFacilityData = new FacilityDbData();
+        public PracticeFieldData ownedPracticeFieldData = new PracticeFieldData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
         public KongfuData kongfuData = new KongfuData();
         
+
 
         public void SetDefaultValue()
         {
@@ -54,6 +56,21 @@ namespace GameWish.Game
         #endregion
 
         #region Facility
+
+        public List<PracticeFieldDBData> GetPracticeFieldData()
+        {
+            return ownedPracticeFieldData.GetPracticeFieldData();
+        }
+
+        public void AddPracticeFieldData(PracticeField practiceField)
+        {
+            ownedPracticeFieldData.AddPracticeFieldData(practiceField);
+        }
+
+        public void RefresDBData(PracticeField practiceField)
+        {
+            ownedPracticeFieldData.RefresDBData(practiceField);
+        }
 
         public List<FacilityItemDbData> GetAllFacility()
         {

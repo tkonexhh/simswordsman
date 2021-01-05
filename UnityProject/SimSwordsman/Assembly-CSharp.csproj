@@ -991,6 +991,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\FacilityData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\InventoryData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\KongfuData.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\PracticeFieldData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\GameData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\GameDataHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\GameDataMgr.cs" />
@@ -1363,6 +1364,7 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LobbyPanel\LobbyPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LobbyPanel\RecruitmentOrderItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LobbyPanel\RecruitmentPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PracticeFieldPanel\ChooseDisciplePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PracticeFieldPanel\PracticeDisciple.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PracticeFieldPanel\PracticeFieldPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\WarehousePanel\ItemDetailsPanel.cs" />

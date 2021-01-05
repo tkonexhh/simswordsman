@@ -18,7 +18,7 @@ namespace GameWish.Game
         private Vector3 m_CharacterSpawnPos = new Vector3(-5.5f, -4.2f, 0);
 
         public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList;}
-
+            
         #region IMgr
         public void OnInit()
         {
