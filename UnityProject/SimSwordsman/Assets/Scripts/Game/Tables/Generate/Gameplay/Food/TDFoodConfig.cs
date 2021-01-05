@@ -46,7 +46,7 @@ namespace GameWish.Game
         public  string  desc {get { return m_Desc; } }
        
         /// <summary>
-        /// 制作需要材料
+        /// 制作材料
         /// </summary>
         public  string  makeRes {get { return m_MakeRes; } }
        
@@ -71,7 +71,7 @@ namespace GameWish.Game
         public  int  buffTimeAD {get { return m_BuffTimeAD; } }
        
         /// <summary>
-        /// 解锁等级（主城）
+        /// 解锁等级
         /// </summary>
         public  int  unlockLevel {get { return m_UnlockLevel; } }
        
