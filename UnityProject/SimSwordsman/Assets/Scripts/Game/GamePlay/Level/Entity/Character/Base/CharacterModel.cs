@@ -52,9 +52,14 @@ namespace GameWish.Game
             m_Hp = m_Atk;
         }
 
-        public void SetDataState(CharacterStateData characterStateData)
+        public void SetDataState(CharacterStateID stateId)
         {
-            m_CharacterItem.SetCharacterStateData(characterStateData);
+            m_CharacterItem.SetCharacterStateData(stateId);
+        }
+
+        public void SetCurTask(SimGameTask simGameTask)
+        {
+            m_CharacterItem.SetCurTask(simGameTask);
         }
 
         public int GetExp()

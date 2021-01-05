@@ -7,8 +7,11 @@ namespace GameWish.Game
 	public abstract class SimGameTask : TaskItem
 	{
         protected MainTaskItemInfo m_TaskDetailInfo = null;
+        protected string m_TaskStartTime = string.Empty;
 
         public MainTaskItemInfo MainTaskItemInfo { get { return m_TaskDetailInfo; } }
+
+        public string TaskStartTime { get => m_TaskStartTime;}
 
         public SimGameTask(int taskId, string tableName,TaskState taskState, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
         {
@@ -35,6 +38,7 @@ namespace GameWish.Game
         {
            return MainTaskItemInfo.subType;
         }
+
         public SimGameTaskType GetCurTaskType()
         {
             return MainTaskItemInfo.taskType;

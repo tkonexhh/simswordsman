@@ -16,6 +16,7 @@ namespace GameWish.Game
         {
 
         }
+
         public void AddEquipment(int characterID, CharaceterEquipment characeterEquipment)
         {
             CharacterItemDbData character = characterList.Where(i => i.id == characterID).FirstOrDefault();
@@ -94,11 +95,18 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateData characterStateData)
+        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
                 characterItemDb.SetCharacterStateDBData(characterStateData);
+        }
+
+        public void SetCharacterTaskDBData(int id, SimGameTask task)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+                characterItemDb.SetTask(task);
         }
     }
 
@@ -112,7 +120,8 @@ namespace GameWish.Game
         public int atkValue;
         public string startTime;
         public string name;
-        public CharacterStateData characterStateDBData = new CharacterStateData(); // 行为
+        public CharacterTaskDBData characterTaskDBData = new CharacterTaskDBData(); // 行为
+        public CharacterStateID characterStateId = CharacterStateID.Wander;
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
         public int curExp;
@@ -122,9 +131,9 @@ namespace GameWish.Game
 
         }
 
-        public void SetCharacterStateDBData(CharacterStateData characterStateData)
+        public void SetCharacterStateDBData(CharacterStateID stateId)
         {
-            characterStateDBData = characterStateData;
+            characterStateId = stateId;
         }
 
         public CharacterItemDbData(CharacterItem item)
@@ -153,6 +162,13 @@ namespace GameWish.Game
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
         {
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
+        }
+
+        public void SetTask(SimGameTask simGameTask)
+        {
+            characterTaskDBData.taskType = simGameTask.GetCurTaskType();
+            characterTaskDBData.subId = simGameTask.GetCurSubType();
+            characterTaskDBData.startTime = simGameTask.TaskStartTime;
         }
 
         /// <summary>
@@ -205,6 +221,7 @@ namespace GameWish.Game
             curExp += deltaExp;
         }
     }
+
     [Serializable]
     public class CharaceterDBEquipmentData
     {
@@ -229,6 +246,8 @@ namespace GameWish.Game
             }
         }
     }
+
+    [Serializable]
     public class CharaceterDBEquipment
     {
         public PropType PropType { set; get; }
@@ -237,6 +256,7 @@ namespace GameWish.Game
 
     }
 
+    [Serializable]
     public class CharacterDBArms : CharaceterDBEquipment
     {
         public Arms ArmsID { set; get; }
@@ -249,6 +269,8 @@ namespace GameWish.Game
             ArmsID = arms.ArmsID; ;
         }
     }
+
+    [Serializable]
     public class CharacterDBArmor : CharaceterDBEquipment
     {
         public Armor ArmorID { set; get; }
@@ -259,6 +281,23 @@ namespace GameWish.Game
             PropType = armor.PropType;
             Class = armor.Class;
             ArmorID = armor.ArmorID; ;
+        }
+    }
+
+    [Serializable]
+    public class CharacterTaskDBData
+    {
+        public SimGameTaskType taskType = SimGameTaskType.None;
+        public int subId = -1;
+        public string startTime;
+
+        public CharacterTaskDBData() { }
+
+        public CharacterTaskDBData(SimGameTaskType taskType, int subId, string startTime)
+        {
+            this.taskType = taskType;
+            this.subId = subId;
+            this.startTime = startTime;
         }
     }
 }

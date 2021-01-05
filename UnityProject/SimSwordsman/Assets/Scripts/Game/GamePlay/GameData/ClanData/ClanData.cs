@@ -165,9 +165,16 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateData characterStateData)
+        public void SetCharacterStateDBData(int id, CharacterStateID stateId)
         {
-            ownedCharacterData.SetCharacterStateDBData(id, characterStateData);
+            ownedCharacterData.SetCharacterStateDBData(id, stateId);
+
+            SetDataDirty();
+        }
+
+        public void SetCharacterTaskDBData(int id, SimGameTask simGameTask)
+        {
+            ownedCharacterData.SetCharacterTaskDBData(id, simGameTask);
 
             SetDataDirty();
         }

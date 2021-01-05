@@ -182,7 +182,7 @@ namespace GameWish.Game
         public void SpawnCharacterController(CharacterItem characterItem)
         {
             int id = characterItem.id;
-            CharacterStateID initState = characterItem.characterStateData.characterState;
+            CharacterStateID initState = characterItem.characterStateId;
 
             bool isSpawned = m_CharacterControllerList.Any(i => i.CharacterId == id);
             if (isSpawned)

@@ -186,7 +186,7 @@ namespace GameWish.Game
                     collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
                 }
 
-                SetStateToDB(m_CurState, collectedObjType);
+                SetStateToDB(m_CurState);
             }
         }
 
@@ -242,13 +242,15 @@ namespace GameWish.Game
         public void SetCurTask(SimGameTask task)
         {
             m_CurTask = task;
+            m_CharacterModel.SetCurTask(task);
         }
+
         #endregion
 
         #region Private
-        private void SetStateToDB(CharacterStateID characterStateID, CollectedObjType collectObjType = CollectedObjType.None)
+        private void SetStateToDB(CharacterStateID characterStateID)
         {
-            m_CharacterModel.SetDataState(new CharacterStateData(CharacterStateID.CollectRes, collectObjType));
+            m_CharacterModel.SetDataState(characterStateID);
         }
 
         private void SpawnTaskIfNeed(CharacterStateID initState)
