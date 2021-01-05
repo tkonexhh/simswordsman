@@ -47,7 +47,7 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             base.OnOpen();
-            EventSystem.S.Register(EventID.OnTaskFinished, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnTaskManualFinished, HandleAddListenerEvent);
             if (m_MainTaskList != null)
             {
                 for (int i = 0; i < m_MainTaskList.Count; i++)
@@ -64,7 +64,7 @@ namespace GameWish.Game
         {
             switch ((EventID)key)
             {
-                case EventID.OnTaskFinished:
+                case EventID.OnTaskManualFinished:
 
                     break;
                 default:
@@ -108,7 +108,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            EventSystem.S.UnRegister(EventID.OnTaskFinished, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnTaskManualFinished, HandleAddListenerEvent);
             CloseSelfPanel();
         }
 

@@ -36,7 +36,7 @@ namespace GameWish.Game
 
         // MainTask
         OnTaskManualFinished,
-        OnTaskFinished,
+        //OnTaskFinished,
 
         //PracticeField
         /// <summary>

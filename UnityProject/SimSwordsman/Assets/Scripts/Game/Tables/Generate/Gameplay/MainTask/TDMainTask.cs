@@ -27,6 +27,7 @@ namespace GameWish.Game
         private string m_TaskEvent;   
         private string m_ConditionType;   
         private string m_ConditionValue;   
+        private string m_Enemy;   
         private EInt m_RoleAmount = 0;   
         private EInt m_RoleLevelRequired = 0;  
         
@@ -108,6 +109,11 @@ namespace GameWish.Game
         public  string  conditionValue {get { return m_ConditionValue; } }
        
         /// <summary>
+        /// 敌人配置
+        /// </summary>
+        public  string  enemy {get { return m_Enemy; } }
+       
+        /// <summary>
         /// 可派弟子数量
         /// </summary>
         public  int  roleAmount {get { return m_RoleAmount; } }
@@ -178,9 +184,12 @@ namespace GameWish.Game
                     m_ConditionValue = dataR.ReadString();
                     break;
                 case 15:
-                    m_RoleAmount = dataR.ReadInt();
+                    m_Enemy = dataR.ReadString();
                     break;
                 case 16:
+                    m_RoleAmount = dataR.ReadInt();
+                    break;
+                case 17:
                     m_RoleLevelRequired = dataR.ReadInt();
                     break;
                 default:
@@ -193,7 +202,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(17);
+          Dictionary<string, int> ret = new Dictionary<string, int>(18);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
@@ -210,8 +219,9 @@ namespace GameWish.Game
           ret.Add("TaskEvent", 12);
           ret.Add("ConditionType", 13);
           ret.Add("ConditionValue", 14);
-          ret.Add("RoleAmount", 15);
-          ret.Add("RoleLevelRequired", 16);
+          ret.Add("Enemy", 15);
+          ret.Add("RoleAmount", 16);
+          ret.Add("RoleLevelRequired", 17);
           return ret;
         }
     } 

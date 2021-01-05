@@ -16,7 +16,8 @@ namespace GameWish.Game
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
-        private string m_UnlockEquip;  
+        private EInt m_UnlockDefendant = 0;   
+        private string m_UnlockTower;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -41,9 +42,14 @@ namespace GameWish.Game
         public  int  upgradePreconditions {get { return m_UpgradePreconditions; } }
        
         /// <summary>
-        /// 解锁武器
+        /// 解锁巡逻位
         /// </summary>
-        public  string  unlockEquip {get { return m_UnlockEquip; } }
+        public  int  unlockDefendant {get { return m_UnlockDefendant; } }
+       
+        /// <summary>
+        /// 解锁箭塔
+        /// </summary>
+        public  string  unlockTower {get { return m_UnlockTower; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -73,7 +79,10 @@ namespace GameWish.Game
                     m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UnlockEquip = dataR.ReadString();
+                    m_UnlockDefendant = dataR.ReadInt();
+                    break;
+                case 5:
+                    m_UnlockTower = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -85,13 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
-          ret.Add("UnlockEquip", 4);
+          ret.Add("UnlockDefendant", 4);
+          ret.Add("UnlockTower", 5);
           return ret;
         }
     } 

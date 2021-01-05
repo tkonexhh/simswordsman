@@ -16,7 +16,8 @@ namespace GameWish.Game
         private string m_Name;   
         private string m_Clan;   
         private string m_KongfuName;   
-        private string m_AnimationName;  
+        private string m_AnimationName;   
+        private string m_PrefabName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -44,6 +45,11 @@ namespace GameWish.Game
         /// 动画名称
         /// </summary>
         public  string  animationName {get { return m_AnimationName; } }
+       
+        /// <summary>
+        /// Prefab名称
+        /// </summary>
+        public  string  prefabName {get { return m_PrefabName; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -75,6 +81,9 @@ namespace GameWish.Game
                 case 4:
                     m_AnimationName = dataR.ReadString();
                     break;
+                case 5:
+                    m_PrefabName = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -85,13 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("Clan", 2);
           ret.Add("KongfuName", 3);
           ret.Add("AnimationName", 4);
+          ret.Add("PrefabName", 5);
           return ret;
         }
     } 

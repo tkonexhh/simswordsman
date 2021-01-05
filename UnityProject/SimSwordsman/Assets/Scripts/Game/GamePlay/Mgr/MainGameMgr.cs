@@ -77,11 +77,11 @@ namespace GameWish.Game
             m_BattleFieldMgr?.OnUpdate();
             CharacterMgr?.OnUpdate();
 
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);
-                EventSystem.S.Send(EventID.OnTaskManualFinished);
-            }
+            //if (Input.GetKeyDown(KeyCode.T))
+            //{
+            //    GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);
+            //    EventSystem.S.Send(EventID.OnTaskManualFinished);
+            //}
 
             if (Input.GetKeyDown(KeyCode.B))
             {

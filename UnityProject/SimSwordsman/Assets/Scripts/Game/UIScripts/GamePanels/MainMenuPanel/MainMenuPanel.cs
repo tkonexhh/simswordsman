@@ -94,7 +94,7 @@ namespace GameWish.Game
         {
             base.OnOpen();
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
+            //GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
             RefreshPanelInfo();
 
             RegisterEvents();
@@ -110,6 +110,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_CoinValue.text = GameDataMgr.S.GetPlayerData().GetCoinNum().ToString();
+            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum().ToString();
         }
 
         private void RegisterEvents()

@@ -117,12 +117,14 @@ namespace GameWish.Game
                         if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
                         {
                             List<EnemyConfig> enemiesList = new List<EnemyConfig>();
-                            for (int i = 0; i < 3; i++)
-                                 enemiesList.Add(new EnemyConfig(i,i,i));
+                            List<TaskEnemy> taskEnemies = m_CurTaskInfo.MainTaskItemInfo.taskEnemies;
+                            for (int i = 0; i < taskEnemies.Count; i++)
+                            {
+                                enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
+                            }
                             EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, enemiesList);
                             UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
                         }
-                        CloseSelfPanel();
                         break;
                     case PanelType.Challenge:
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
@@ -131,6 +133,8 @@ namespace GameWish.Game
                     default:
                         break;
                 }
+
+                CloseSelfPanel();
             });
         }
 

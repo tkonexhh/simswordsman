@@ -8,7 +8,7 @@ namespace GameWish.Game
     /// <summary>
     /// 需要手动设置数据库中的数据finished的状态
     /// </summary>
-	public class ManualFinishChecker : ConditionCheckerBase<int>
+	public class ManualFinishChecker : ConditionCheckerBase<string>
 	{
         public override bool IsFinished()
         {

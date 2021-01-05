@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System.Linq;
+using System;
 
 namespace GameWish.Game
 {
@@ -36,21 +37,40 @@ namespace GameWish.Game
         public string desc;
         public TaskState taskState;
         public List<TaskReward> rewards = new List<TaskReward>();
+        public int specialRewardRate = 0;
+        public List<TaskReward> specialRewards = new List<TaskReward>();
+        public int characterAmount = 1;
+        public int characterLevelRequired = 1;
+        public List<TaskEnemy> taskEnemies = new List<TaskEnemy>();
 
         public MainTaskItemInfo(TDMainTask tDMainTask)
         {
-            this.id = tDMainTask.taskID;
-            this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tDMainTask.triggerType);
+            try
+            {
+                this.id = tDMainTask.taskID;
+                this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tDMainTask.triggerType);
 
-            taskState = TaskState.None;
+                taskState = TaskState.None;
 
-            this.time = tDMainTask.time;
-            this.title = tDMainTask.taskTitle;
-            this.desc = tDMainTask.taskDescription;
-            this.needHomeLevel = tDMainTask.homeLevel;
-            ParseReward(tDMainTask.reward);
-            ParseNextLevel(tDMainTask.nextTask);
-            ParseTaskType(tDMainTask.type);
+                this.time = tDMainTask.time;
+                this.title = tDMainTask.taskTitle;
+                this.desc = tDMainTask.taskDescription;
+                this.needHomeLevel = tDMainTask.homeLevel;
+                this.specialRewardRate = tDMainTask.specialRewardRate;
+                this.characterAmount = tDMainTask.roleAmount;
+                this.characterLevelRequired = tDMainTask.roleLevelRequired;
+
+                ParseReward(tDMainTask.reward);
+                ParseNextLevel(tDMainTask.nextTask);
+                ParseTaskType(tDMainTask.type);
+                ParseSpecialReward(tDMainTask.specialReward);
+                ParseSpecialReward(tDMainTask.specialReward);
+                ParseTaskEnemy(tDMainTask.enemy);
+            }
+            catch (Exception e)
+            {
+                Log.e("Parse task error: " + e.Message);
+            }
         }
 
         public int GetRewardId(int index)
@@ -76,7 +96,7 @@ namespace GameWish.Game
             TaskReward reward = rewards[index];
             if (reward.count2 != -1)
             {
-                return Random.Range(reward.count1, reward.count2);
+                return UnityEngine.Random.Range(reward.count1, reward.count2);
             }
 
             return reward.count1;
@@ -105,6 +125,38 @@ namespace GameWish.Game
                 {
                     TaskReward taskReward = new TaskReward(item);
                     this.rewards.Add(taskReward);
+                }
+            }
+        }
+
+        private void ParseSpecialReward(string reward)
+        {
+            if (string.IsNullOrEmpty(reward))
+                return;
+
+            string[] rewardStrs = reward.Split(';');
+            foreach (string item in rewardStrs)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    TaskReward taskReward = new TaskReward(item);
+                    this.rewards.Add(taskReward);
+                }
+            }
+        }
+
+        private void ParseTaskEnemy(string enemyStr)
+        {
+            if (string.IsNullOrEmpty(enemyStr))
+                return;
+
+            string[] enemyStrs = enemyStr.Split(';');
+            foreach (string item in enemyStrs)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    string[] strs = item.Split('|');
+                    this.taskEnemies.Add(new TaskEnemy(int.Parse(strs[0]), int.Parse(strs[1])));
                 }
             }
         }
@@ -141,4 +193,15 @@ namespace GameWish.Game
         }
     }
 
+    public class TaskEnemy
+    {
+        public int enemyId;
+        public int enemyAtk;
+
+        public TaskEnemy(int id, int atk)
+        {
+            enemyId = id;
+            enemyAtk = atk;
+        }
+    }
 }

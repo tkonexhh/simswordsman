@@ -46,6 +46,44 @@ namespace GameWish.Game
         {
             return m_InventoryDataWrapper.WarehouseItems;
         }
+
+        /// <summary>
+        /// 得到某个item的当前持有数量
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public int GetCurrentCountByItemType(RawMaterial type)
+        {
+            ItemBase item = GetItemBaseByItemType(type);
+            if (item != null)
+            {
+                return item.Number;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        /// <summary>
+        /// 通过item类型得到itembase
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public ItemBase GetItemBaseByItemType(RawMaterial type)
+        {
+            foreach (var item in m_InventoryDataWrapper.WarehouseItems)
+            {
+                if (item.PropType == PropType.RawMaterial)
+                {
+                    if ((item as PropItem).PropSubType == type)
+                    {
+                        return item;
+                    }
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// 获取所有仓库中装备信息
         /// </summary>

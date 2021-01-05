@@ -47,13 +47,13 @@ namespace GameWish.Game
     {
         public int ID { set; get; }
         public int Number { set; get; }
-        public int Skill { set; get; }
+        public int Atk { set; get; }
 
         public EnemyConfig(int id,int number,int skill)
         {
             ID = id;
             Number = number;
-            Skill = skill;
+            Atk = skill;
         }
 
         public EnemyConfig(string enemisStr)
@@ -64,14 +64,14 @@ namespace GameWish.Game
                 string[] enemie = enemies[i].Split('|');
                 ID = int.Parse(enemie[0]);
                 Number = int.Parse(enemie[1]);
-                Skill = int.Parse(enemie[2]);
+                Atk = int.Parse(enemie[2]);
             }
         }
         public EnemyConfig(string[] enemyStr)
         {
             ID = int.Parse(enemyStr[0]);
             Number = int.Parse(enemyStr[1]);
-            Skill = int.Parse(enemyStr[2]);
+            Atk = int.Parse(enemyStr[2]);
         }
     }
 

@@ -62,8 +62,8 @@ namespace GameWish.Game
             if (m_IsBattleEnd)
                 return;
 
-            m_OurCharacterList.ForEach(i => i.Update());
-            m_EnemyCharacterList.ForEach(i => i.Update());
+            m_OurCharacterList.ForEach(i => i.RefreshBattleState());
+            m_EnemyCharacterList.ForEach(i => i.RefreshBattleState());
 
             m_ApplyDamageTime += Time.deltaTime;
             if (m_ApplyDamageTime >= m_ApplyDamageInterval)
@@ -173,7 +173,7 @@ namespace GameWish.Game
 
             enemies.ForEach(i =>
             {
-                SpawnEnemyCharacter(i.ID, i.Skill);
+                SpawnEnemyCharacter(i.ID, i.Atk);
             });
 
             SpawnFightGroup(m_OurCharacterList, m_EnemyCharacterList);
@@ -270,7 +270,7 @@ namespace GameWish.Game
 
         private CharacterController SpawnCharacterController(int id, Vector3 pos, CharacterCamp camp)
         {
-            GameObject prefab = Resources.Load("Prefabs/Character/Character2") as GameObject;
+            GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
             GameObject obj = GameObject.Instantiate(prefab);
             obj.name = "Character_" + camp;
             obj.transform.parent = m_BattleField.transform;

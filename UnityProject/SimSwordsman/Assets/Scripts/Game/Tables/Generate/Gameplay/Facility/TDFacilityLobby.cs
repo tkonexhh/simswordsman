@@ -16,7 +16,9 @@ namespace GameWish.Game
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
         private string m_UpgradePreconditions;   
-        private string m_UnlockContent;  
+        private string m_UnlockContent;   
+        private EInt m_WorkPay = 0;   
+        private EInt m_DefExp = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -44,6 +46,16 @@ namespace GameWish.Game
         /// 解锁内容
         /// </summary>
         public  string  unlockContent {get { return m_UnlockContent; } }
+       
+        /// <summary>
+        /// 工作报酬
+        /// </summary>
+        public  int  workPay {get { return m_WorkPay; } }
+       
+        /// <summary>
+        /// 防守经验
+        /// </summary>
+        public  int  defExp {get { return m_DefExp; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -75,6 +87,12 @@ namespace GameWish.Game
                 case 4:
                     m_UnlockContent = dataR.ReadString();
                     break;
+                case 5:
+                    m_WorkPay = dataR.ReadInt();
+                    break;
+                case 6:
+                    m_DefExp = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -85,13 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
           ret.Add("UnlockContent", 4);
+          ret.Add("WorkPay", 5);
+          ret.Add("DefExp", 6);
           return ret;
         }
     } 
