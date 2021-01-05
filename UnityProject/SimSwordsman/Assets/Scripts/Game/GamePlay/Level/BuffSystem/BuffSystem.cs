@@ -94,11 +94,11 @@ namespace GameWish.Game
                 switch (type)
                 {
                     case BuffType.AddATK:
-                        return string.Format("弟子战力+{0}%", tb.buffRate);
+                        return string.Format("弟子战力+<color=#8C343C>{0}%</color>", tb.buffRate);
                     case BuffType.AddRoleExp:
-                        return string.Format("获得弟子经验+{0}%", tb.buffRate);
+                        return string.Format("获得弟子经验+<color=#8C343C>{0}%</color>", tb.buffRate);
                     case BuffType.AddCoin:
-                        return string.Format("获得铜钱+{0}%", tb.buffRate);
+                        return string.Format("获得铜钱+<color=#8C343C>{0}%</color>", tb.buffRate);
                     default:
                         break;
                 }

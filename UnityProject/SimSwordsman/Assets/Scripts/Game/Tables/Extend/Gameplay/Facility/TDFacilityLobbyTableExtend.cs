@@ -64,7 +64,7 @@ namespace GameWish.Game
                     int id = int.Parse(str[0]);
                     int value = int.Parse(str[1]);
 
-                    FacilityUpgradeCostItem rewardItem = new FacilityUpgradeCostItem(id, value);
+                    CostItem rewardItem = new CostItem(id, value);
                     upgradeCosts.AddRewardItem(rewardItem);
                 }
             }

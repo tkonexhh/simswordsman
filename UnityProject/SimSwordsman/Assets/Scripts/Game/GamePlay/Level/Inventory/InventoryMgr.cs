@@ -164,6 +164,34 @@ namespace GameWish.Game
             return m_InventoryDataWrapper.GetRecruitmentOrderCount(recruitType);
         }
 
+        /// <summary>
+        /// ≈–∂œ≤ƒ¡œ «∑Ò◊„πª
+        /// </summary>
+        /// <returns></returns>
+        public bool HaveEnoughItem(List<CostItem> items)
+        {
+            foreach (var item in items)
+            {
+                if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
+                {
+                    FloatMessage.S.ShowMsg("≤ƒ¡œ≤ª◊„£°");
+                    return false;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// ºı…Ÿ≤÷ø‚≤ƒ¡œ
+        /// </summary>
+        /// <param name="id"></param>
+        public void ReduceItems(List<CostItem> items)
+        {
+            foreach (var item in items)
+            {
+                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)item.itemId), item.value);
+            }
+        }
+
         #endregion
 
         #region Private Methods
