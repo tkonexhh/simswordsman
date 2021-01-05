@@ -10,6 +10,7 @@ namespace GameWish.Game
         OnAddCoinNum,
         OnReduceCoinNum,
         OnAddDiamondNum,
+        OnReduceDiamondNum,
         OnUpdateLoadProgress,
         OnShowPopAdUI,
         OnStartAdEffect,
