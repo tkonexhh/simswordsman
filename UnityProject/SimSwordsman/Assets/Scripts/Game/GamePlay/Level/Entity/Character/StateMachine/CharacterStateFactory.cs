@@ -22,6 +22,7 @@ namespace GameWish.Game
             RegisterPlayerState(CharacterStateID.Practice, new CharacterStatePractice(CharacterStateID.Practice));
             RegisterPlayerState(CharacterStateID.CollectRes, new CharacterStateCollectRes(CharacterStateID.CollectRes));
             RegisterPlayerState(CharacterStateID.GoOutside, new CharacterStateGoOutside(CharacterStateID.GoOutside));
+            RegisterPlayerState(CharacterStateID.Reading, new CharacterStateReading(CharacterStateID.Reading));
         }
 
         private void RegisterPlayerState(CharacterStateID id, CharacterState state)

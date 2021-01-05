@@ -171,14 +171,20 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state, CollectedObjType _subState = CollectedObjType.None)
+        public void SetState(CharacterStateID state)
         {
-            m_CharacterModel.SetDataState(new CharacterStateData(state, _subState));
-
             if (state != m_CurState)
             {
                 m_CurState = state;
                 m_StateMachine.SetCurrentStateByID(state);
+
+                CollectedObjType collectedObjType = CollectedObjType.None;
+                if (m_CurState == CharacterStateID.CollectRes)
+                {
+                    collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
+                }
+
+                SetStateToDB(m_CurState, collectedObjType);
             }
         }
 
@@ -229,6 +235,14 @@ namespace GameWish.Game
         public void ShowBody()
         {
             m_CharacterView.ShowBody();
+        }
+
+        #endregion
+
+        #region Private
+        private void SetStateToDB(CharacterStateID characterStateID, CollectedObjType _subState = CollectedObjType.None)
+        {
+            m_CharacterModel.SetDataState(new CharacterStateData(CharacterStateID.CollectRes, _subState));
         }
 
         #endregion

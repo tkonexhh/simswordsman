@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class PracticeFieldController : FacilityController
     {
-        public List<PracticeSlot> m_PracticeSlotList = new List<PracticeSlot>();
+        public List<FacilitySlot> m_PracticeSlotList = new List<FacilitySlot>();
 
         private int m_MaxSlotCount = 6;
 
@@ -16,7 +16,7 @@ namespace GameWish.Game
             InitPracticeSlotList();
         }
 
-        public PracticeSlot GetIdlePracticeSlot()
+        public FacilitySlot GetIdlePracticeSlot()
         {
             return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty());
         }
@@ -26,7 +26,7 @@ namespace GameWish.Game
             PracticeFieldView view = (PracticeFieldView)m_View;
             for (int i = 0; i < m_MaxSlotCount; i++)
             {
-                PracticeSlot slot = new PracticeSlot(view.GetSlotPos(i));
+                FacilitySlot slot = new FacilitySlot(view.GetSlotPos(i));
                 m_PracticeSlotList.Add(slot);
             }
         }

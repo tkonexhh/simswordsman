@@ -96,7 +96,7 @@ namespace GameWish.Game
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                CharacterMgr.CharacterControllerList[0].SetState(CharacterStateID.Practice);
+                CharacterMgr.CharacterControllerList[0].SetState(CharacterStateID.Reading);
             }
         }
 
