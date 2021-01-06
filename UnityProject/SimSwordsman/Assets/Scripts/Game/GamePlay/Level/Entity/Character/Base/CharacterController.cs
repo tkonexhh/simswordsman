@@ -180,11 +180,11 @@ namespace GameWish.Game
                 m_CurState = state;
                 m_StateMachine.SetCurrentStateByID(state);
 
-                CollectedObjType collectedObjType = CollectedObjType.None;
-                if (m_CurState == CharacterStateID.CollectRes)
-                {
-                    collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
-                }
+                //CollectedObjType collectedObjType = CollectedObjType.None;
+                //if (m_CurState == CharacterStateID.CollectRes)
+                //{
+                //    collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
+                //}
 
                 SetStateToDB(m_CurState);
             }

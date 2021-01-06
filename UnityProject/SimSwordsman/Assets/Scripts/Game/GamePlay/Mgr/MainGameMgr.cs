@@ -67,7 +67,7 @@ namespace GameWish.Game
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();
 
-            m_CharacterMgr.ExrInitData();
+            m_CharacterMgr.InitData();
 
             m_FacilityMgr.ExrInitData();
 

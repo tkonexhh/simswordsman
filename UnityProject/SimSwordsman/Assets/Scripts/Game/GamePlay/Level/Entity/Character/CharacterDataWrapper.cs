@@ -226,8 +226,7 @@ namespace GameWish.Game
             stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
-
-            this.characterStateId = itemDbData.characterStateId;
+            characterStateId = itemDbData.characterStateId;
 
             atkValue = TDCharacterStageConfigTable.GetAtk(quality, stage, level);
 
