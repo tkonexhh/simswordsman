@@ -72,6 +72,8 @@ namespace GameWish.Game
 
             //TimeUpdateMgr.S.Start();
 
+            //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Clear();
+            //GameDataMgr.S.GetPlayerData().SetDataDirty();
             //客人来访系统
             VisitorSystem.S.Init();
 
@@ -131,13 +133,14 @@ namespace GameWish.Game
                 {
                     m_IsGameStart = true;
                     //Timer.S.OnSingletonInit();
-                    
+
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 
                     MusicMgr.S.PlayBgMusic();
                     MainGameMgr.S.OnInit();
+                    FoodRecoverySystem.S.Init();
                 }
             }
             else

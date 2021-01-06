@@ -18,7 +18,8 @@ namespace GameWish.Game
         private string m_UpgradePreconditions;   
         private string m_UnlockContent;   
         private EInt m_WorkPay = 0;   
-        private EInt m_DefExp = 0;  
+        private EInt m_DefExp = 0;   
+        private EInt m_CommonTaskAmount = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -57,6 +58,11 @@ namespace GameWish.Game
         /// </summary>
         public  int  defExp {get { return m_DefExp; } }
        
+        /// <summary>
+        /// 日常任务数
+        /// </summary>
+        public  int  commonTaskAmount {get { return m_CommonTaskAmount; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -93,6 +99,9 @@ namespace GameWish.Game
                 case 6:
                     m_DefExp = dataR.ReadInt();
                     break;
+                case 7:
+                    m_CommonTaskAmount = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -103,7 +112,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
@@ -112,6 +121,7 @@ namespace GameWish.Game
           ret.Add("UnlockContent", 4);
           ret.Add("WorkPay", 5);
           ret.Add("DefExp", 6);
+          ret.Add("CommonTaskAmount", 7);
           return ret;
         }
     } 

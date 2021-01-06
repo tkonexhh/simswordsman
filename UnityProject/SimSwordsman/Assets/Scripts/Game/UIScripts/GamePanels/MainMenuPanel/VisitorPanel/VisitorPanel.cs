@@ -55,7 +55,7 @@ namespace GameWish.Game
         {
             m_AcceptBtn.onClick.AddListener(()=> 
             {
-                FloatMessage.S.ShowMsg("应当看广告");
+                Debug.LogError("应当看一个广告");
 
                 m_visitor.Reward.AcceptReward();
                 VisitorSystem.S.Disappear(m_visitor);

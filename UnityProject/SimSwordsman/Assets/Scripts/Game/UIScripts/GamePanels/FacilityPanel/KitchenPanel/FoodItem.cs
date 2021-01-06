@@ -146,7 +146,7 @@ namespace GameWish.Game
             {
                 //判断材料
                 MainGameMgr.S.InventoryMgr.ReduceItems(TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID]);
-                FloatMessage.S.ShowMsg("这里应该显示广告");
+                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
                 BuffSystem.S.StartBuff(ID, true);
             });
         }
