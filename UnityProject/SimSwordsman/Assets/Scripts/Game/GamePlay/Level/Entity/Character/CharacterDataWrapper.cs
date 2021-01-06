@@ -245,7 +245,7 @@ namespace GameWish.Game
 
         public bool IsFreeState()
         {
-            if (characterStateData.parentState == CharacterStateID.Wander || characterStateData.parentState == CharacterStateID.EnterClan)
+            if (characterStateId == CharacterStateID.Wander || characterStateId == CharacterStateID.EnterClan)
                 return true;
             return false;
         }
@@ -322,10 +322,7 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterStateData(CharacterStateID characterStateID)
-        {
-            characterStateData.parentState = characterStateID;
-        }
+   
 
         /// <summary>
         /// 增加经验
