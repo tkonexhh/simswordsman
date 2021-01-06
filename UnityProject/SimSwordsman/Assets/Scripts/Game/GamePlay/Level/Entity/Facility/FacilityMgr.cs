@@ -20,7 +20,6 @@ namespace GameWish.Game
 
             InitFacilityList();
 
-            InitPracticeField();
 
             InputMgr.S.AddTouchObserver(this);
         }
@@ -36,6 +35,13 @@ namespace GameWish.Game
             UnregisterEvents();
 
             InputMgr.S.RemoveTouchObserver(this);
+        }
+        #endregion
+
+        #region Public Set
+        public void ExrInitData()
+        {
+            InitPracticeField();
         }
         #endregion
 

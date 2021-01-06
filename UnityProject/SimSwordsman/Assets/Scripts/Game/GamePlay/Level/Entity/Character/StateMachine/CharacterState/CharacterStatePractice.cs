@@ -28,7 +28,7 @@ namespace GameWish.Game
             m_Controller.MoveTo(practicePos, OnReachDestination);
         }
 
-        public override void Exit(ICharacterStateHander handler)
+        public override void Exit(ICharacterStateHander handler)    
         {
         }
 
