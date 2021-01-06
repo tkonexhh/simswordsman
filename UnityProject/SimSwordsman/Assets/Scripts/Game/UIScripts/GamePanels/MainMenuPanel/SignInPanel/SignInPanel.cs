@@ -126,14 +126,13 @@ namespace GameWish.Game
 
             for (int i = 0; i < TDDailySigninTable.dataList.Count; i++)
             {
-                int id = i;
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
-                SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
+                SignInItem item = new SignInItem(config.id, m_SignItemTrans[i], reward);
                 //Debug.LogError(config.rewardParam);
                 //string spriteName = "SignPanel_" + item.SignConfig.RewardParameter;
                 item.SetIconSprite(reward.GetSprite());
-                m_SignItemDic.Add(id, item);
+                m_SignItemDic.Add(config.id, item);
             }
 
             EventSystem.S.Register(EngineEventID.OnSignStateChange, OnSignStateChange);
