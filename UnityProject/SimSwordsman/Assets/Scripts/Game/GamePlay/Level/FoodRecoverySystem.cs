@@ -10,22 +10,24 @@ namespace GameWish.Game
     {
         const string lastKeepTimeKey = "FoodLastKeepTimeKey";
         string lastKeepTime;
-
-        int secondCount = 0;
+        
+        int interval = 60;
 
         int limit;
-
+        int secondCount = 0;
         int timerID = 0;
+
         public void Init()
         {
             EventSystem.S.Register(EventID.OnEndUpgradeFacility, OnUpgradeKitchen);
-            EventSystem.S.Register(EventID.OnReduceDiamondNum, OnReduceFood);
+            EventSystem.S.Register(EventID.OnReduceFoodNum, OnReduceFood);
             if (GameDataMgr.S.GetClanData().IsLocked(FacilityType.Kitchen))
             {
                 EventSystem.S.Register(EventID.OnStartUnlockFacility, OnUnlockKitchen);
             }
             else
             {
+                limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
                 string value = PlayerPrefs.GetString(lastKeepTimeKey, "");
                 if (string.IsNullOrEmpty(value))
                 {
@@ -44,8 +46,7 @@ namespace GameWish.Game
         {
             DateTime lasttime = DateTime.Parse(lastKeepTime);
             TimeSpan offset = DateTime.Now - lasttime;
-            int count = (int)offset.TotalMinutes;
-            limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+            int count = (int)(offset.TotalSeconds/interval);
             if (GameDataMgr.S.GetPlayerData().foodNum + count >= limit)
             {
                 GameDataMgr.S.GetPlayerData().AddFoodNum(limit - GameDataMgr.S.GetPlayerData().foodNum);
@@ -54,7 +55,7 @@ namespace GameWish.Game
             else
             {
                 GameDataMgr.S.GetPlayerData().AddFoodNum(count);
-                secondCount = (int)(offset.TotalSeconds % 60);
+                secondCount = (int)(offset.TotalSeconds % interval);
             }
         }
         void StartCountdown()
@@ -62,7 +63,7 @@ namespace GameWish.Game
             timerID = Timer.S.Post2Really(count =>
             {
                 secondCount++;
-                if (secondCount % 60 == 0)
+                if (secondCount % interval == 0)
                 {
                     secondCount = 0;
                     if (GameDataMgr.S.GetPlayerData().foodNum + 1 <= limit)
@@ -83,24 +84,32 @@ namespace GameWish.Game
 
         private void OnUnlockKitchen(int key, object[] param)
         {
-            limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-            secondCount = 0;
-            StartCountdown();
-        }
-
-        private void OnUpgradeKitchen(int key, object[] param)
-        {
-            limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-            if (timerID == -1)
+            FacilityType facilityType = (FacilityType)param[0];
+            if (facilityType == FacilityType.Kitchen)
             {
+                limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
                 secondCount = 0;
                 StartCountdown();
             }
         }
 
+        private void OnUpgradeKitchen(int key, object[] param)
+        {
+            FacilityType facilityType = (FacilityType)param[0];
+            if (facilityType == FacilityType.Kitchen)
+            {
+                limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+                if (timerID == -1)
+                {
+                    secondCount = 0;
+                    StartCountdown();
+                }
+            }
+        }
+
         private void OnReduceFood(int key, object[] param)
         {
-            if (timerID == -1)
+            if (timerID == -1 && GameDataMgr.S.GetPlayerData().foodNum < limit)
             {
                 secondCount = 0;
                 StartCountdown();

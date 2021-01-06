@@ -163,21 +163,21 @@ namespace GameWish.Game
                 //检查等级要求
                 if (MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() < TDFacilityKitchenTable.GetLevelInfo(m_CurLevel).upgradeNeedLobbyLevel)
                 {
-                    FloatMessage.S.ShowMsg("主城层级不足！");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "主城层级不足！");
                     return;
                 }
                 //判断材料
                 var costsList = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Kitchen, m_CurLevel).upgradeResCosts.facilityCosts;
                 if (!MainGameMgr.S.InventoryMgr.HaveEnoughItem(costsList))
                 {
-                    FloatMessage.S.ShowMsg("需要材料不足！");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
                     return;
                 }
                 //判断铜钱
                 double coins = double.Parse(m_UpgradeRequiredCoinTxt.text);
                 if (GameDataMgr.S.GetPlayerData().GetCoinNum() < coins)
                 {
-                    FloatMessage.S.ShowMsg("铜钱不足！");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "铜钱不足！");
                     return;
                 }
 

@@ -174,7 +174,7 @@ namespace GameWish.Game
             {
                 if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
                 {
-                    FloatMessage.S.ShowMsg("材料不足！");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
                     return false;
                 }
             }

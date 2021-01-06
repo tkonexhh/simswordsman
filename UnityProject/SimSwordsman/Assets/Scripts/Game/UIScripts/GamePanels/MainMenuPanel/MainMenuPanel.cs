@@ -74,7 +74,7 @@ namespace GameWish.Game
                 //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.WuLinMiJi));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
 
-                //UIMgr.S.OpenPanel(UIID.SignInPanel);
+                UIMgr.S.OpenPanel(UIID.SignInPanel);
             });
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });
@@ -117,6 +117,8 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
             EventSystem.S.Register(EventID.OnReduceCoinNum, HandleEvent);
+            EventSystem.S.Register(EventID.OnAddFoodNum, FoodNumChange);
+            EventSystem.S.Register(EventID.OnReduceFoodNum, FoodNumChange);
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
         }
@@ -125,6 +127,8 @@ namespace GameWish.Game
         {
             EventSystem.S.UnRegister(EventID.OnAddCoinNum, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnReduceCoinNum, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnAddFoodNum, FoodNumChange);
+            EventSystem.S.UnRegister(EventID.OnReduceFoodNum, FoodNumChange);
             EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
         }
@@ -145,6 +149,12 @@ namespace GameWish.Game
 
             }
         }
+
+        private void FoodNumChange(int key, object[] param)
+        {
+            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().foodNum.ToString();
+        }
+
 
         private void CheckVisitorBtn(int key, params object[] param)
         {
