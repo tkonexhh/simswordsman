@@ -20,7 +20,7 @@ namespace GameWish.Game
 
             InitFacilityList();
 
-            InitPracticeField();
+            //InitPracticeField();
 
             InputMgr.S.AddTouchObserver(this);
         }
@@ -77,6 +77,26 @@ namespace GameWish.Game
 
         public void On_TouchUp(Gesture gesture)
         {
+        }
+
+        #endregion
+
+        #region Public Set
+
+        public void InitPracticeField()
+        {
+            List<PracticeFieldDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
+
+            if (practiceFieldDBDatas.Count == 0)
+            {
+                LoopInit(FacilityType.PracticeFieldEast);
+                LoopInit(FacilityType.PracticeFieldWest);
+                return;
+            }
+
+            foreach (var item in practiceFieldDBDatas)
+                m_PracticeField.Add(new PracticeField(item));
+
         }
 
         #endregion
@@ -280,22 +300,6 @@ namespace GameWish.Game
             }
         }
 
-        private void InitPracticeField()
-        {
-            List<PracticeFieldDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
-
-            if (practiceFieldDBDatas.Count == 0)
-            {
-                LoopInit(FacilityType.PracticeFieldEast);
-                LoopInit(FacilityType.PracticeFieldWest);
-                return;
-            }
-
-            foreach (var item in practiceFieldDBDatas)
-                m_PracticeField.Add(new PracticeField(item));
-
-        }
-
         private void LoopInit(FacilityType facilityType)
         {
             List<PracticeFieldLevelInfo> eastInfos = GetPracticeFieldLevelInfoList(facilityType);
@@ -433,7 +437,7 @@ namespace GameWish.Game
                     break;
             }
             PracticeFieldState = practiceFieldState;
-            GameDataMgr.S.GetClanData().RefresDBData(this);
-        }
+            GameDataMgr.S.GetClanData().RefresDBData(this); 
+        } 
     }
 }

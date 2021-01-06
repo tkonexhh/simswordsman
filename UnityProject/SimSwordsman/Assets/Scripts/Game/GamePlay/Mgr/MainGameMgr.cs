@@ -66,7 +66,7 @@ namespace GameWish.Game
 
             m_CharacterMgr.InitData();
 
-            m_FacilityMgr.ExrInitData();
+            m_FacilityMgr.InitPracticeField();
          
             m_IsInited = true;
         }
