@@ -210,7 +210,7 @@ namespace GameWish.Game
             m_ClsoeBtn.onClick.AddListener(HideSelfWithAnim);
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-                bool isReducceSuccess = GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(double.Parse(m_UpgradeCostCoinValueText.text));
+                bool isReducceSuccess = GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(long.Parse(m_UpgradeCostCoinValueText.text));
                 if (isReducceSuccess)
                 {
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Warehouse, 1, 1);

@@ -73,11 +73,13 @@ namespace GameWish.Game
             //TimeUpdateMgr.S.Start();
 
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Clear();
+            //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(2);
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
             //客人来访系统
             VisitorSystem.S.Init();
 
-            BuffSystem.S.Init();
+            CountdownSystem.S.Init();
+            FoodBuffSystem.S.Init();
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
