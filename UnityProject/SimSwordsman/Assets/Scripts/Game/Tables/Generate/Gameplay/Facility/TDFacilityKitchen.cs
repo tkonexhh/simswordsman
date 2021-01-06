@@ -18,7 +18,7 @@ namespace GameWish.Game
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_FoodLimit = 0;   
         private EInt m_FoodAddSpeed = 0;   
-        private string m_UnlockRecipe;  
+        private EInt m_UnlockRecipe = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -55,7 +55,7 @@ namespace GameWish.Game
         /// <summary>
         /// 解锁菜品
         /// </summary>
-        public  string  unlockRecipe {get { return m_UnlockRecipe; } }
+        public  int  unlockRecipe {get { return m_UnlockRecipe; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -91,7 +91,7 @@ namespace GameWish.Game
                     m_FoodAddSpeed = dataR.ReadInt();
                     break;
                 case 6:
-                    m_UnlockRecipe = dataR.ReadString();
+                    m_UnlockRecipe = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);

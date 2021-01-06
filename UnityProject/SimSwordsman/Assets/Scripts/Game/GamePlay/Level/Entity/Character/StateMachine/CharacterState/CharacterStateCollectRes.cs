@@ -55,7 +55,7 @@ namespace GameWish.Game
             if (m_ReachTargetPos)
             {
                 m_Time += Time.deltaTime;
-                if (m_Time > m_Controller.CurTask.MainTaskItemInfo.time)
+                if (m_Time > m_Controller.CurTask.MainTaskItemInfo.taskTime)
                 {
                     m_Time = 0f;
                     m_IsTaskEnd = true;
@@ -64,7 +64,7 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnTaskManualFinished);
                     //EventSystem.S.Send(EventID.OnTaskFinished);
 
-                    m_Controller.CurTask = null;
+                    m_Controller.SetCurTask(null);
                     m_Controller.SetState(CharacterStateID.Wander);
                 }
             }

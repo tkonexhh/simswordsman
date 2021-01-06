@@ -54,7 +54,9 @@ namespace GameWish.Game
         private Text m_DurationTxt;
 
         [SerializeField]
-        private Transform m_DurationTra;
+        private Transform m_DontMakeTra;
+        [SerializeField]
+        private Transform m_MakingTra;
         [SerializeField]
         private Image[] Progress;
 
@@ -109,10 +111,10 @@ namespace GameWish.Game
                         m_DurationTxt.text = dur;
                     }
                     else
-                    {
                         SetState(2);
-                    }
                 }
+                else
+                    SetState(2);
             }
         }
 
@@ -133,17 +135,18 @@ namespace GameWish.Game
             m_MakeBtn.onClick.AddListener(() => 
             {
                 //判断材料
-                if (HaveEnoughItem())
+                var list = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
+                if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
-                    ReduceItem();
+                    MainGameMgr.S.InventoryMgr.ReduceItems(list);
                     BuffSystem.S.StartBuff(ID);
                 }
             });
             m_MakeADBtn.onClick.AddListener(() => 
             {
                 //判断材料
-                ReduceItem();
-                FloatMessage.S.ShowMsg("这里应该显示广告");
+                MainGameMgr.S.InventoryMgr.ReduceItems(TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID]);
+                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
                 BuffSystem.S.StartBuff(ID, true);
             });
         }
@@ -159,25 +162,22 @@ namespace GameWish.Game
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
                     //解锁条件
-                    m_LockConditionTxt.text = string.Format("主城等级达到<color = #384B76>{0}</color>级", TDFoodConfigTable.GetData(ID).unlockLevel);
+                    m_LockConditionTxt.text = string.Format("主城等级达到<color=#384B76>{0}</color>级", TDFoodConfigTable.GetData(ID).unlockLevel);
+                    m_FoodNameTxt.text = "未解锁";
                     break;
                 case 1:
                     UnLock.SetActive(true);
                     Lock.SetActive(false);
 
-                    m_DurationTra.gameObject.SetActive(true);
-                    //m_DurationTxt.gameObject.SetActive(true);
-                    m_MakeBtn.gameObject.SetActive(false);
-                    m_MakeADBtn.gameObject.SetActive(false);
+                    m_MakingTra.gameObject.SetActive(true);
+                    m_DontMakeTra.gameObject.SetActive(false);
                     break;
                 case 2:
                     UnLock.SetActive(true);
                     Lock.SetActive(false);
 
-                    m_DurationTra.gameObject.SetActive(false);
-                    //m_DurationTxt.gameObject.SetActive(false);
-                    m_MakeBtn.gameObject.SetActive(true);
-                    m_MakeADBtn.gameObject.SetActive(true);
+                    m_MakingTra.gameObject.SetActive(false);
+                    m_DontMakeTra.gameObject.SetActive(true);
                     //设置材料
                     SetMakeNeedRes();
                     break;
@@ -187,44 +187,22 @@ namespace GameWish.Game
         }
         void SetMakeNeedRes()
         {
-            List<FoodItemMakeNeedResInfo> infos = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
-            if (infos.Count == 1)
-            {
-                m_NeedItem2.gameObject.SetActive(false);
-                m_NeedItemCount2Txt.gameObject.SetActive(false);
-                m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].ItemId).iconName);
-                m_NeedItemCount1Txt.text = string.Format("×{0}", infos[0].Count);
-            }
-            else
+            var infos = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
+            if (infos.Count == 2)
             {
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
-                m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].ItemId).iconName);
-                m_NeedItemCount1Txt.text = string.Format("×{0}", infos[1].Count);
+
+                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+                m_NeedItemCount2Txt.text = infos[0].value.ToString();
             }
-        }
-        /// <summary>
-        /// 判断材料是否足够
-        /// </summary>
-        /// <returns></returns>
-        bool HaveEnoughItem()
-        {
-            foreach (var item in TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID])
+            else
             {
-                if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.ItemId) < item.Count)
-                {
-                    FloatMessage.S.ShowMsg("材料不足！");
-                    return false;
-                }
+                m_NeedItem1.gameObject.SetActive(false);
+                m_NeedItemCount1Txt.gameObject.SetActive(false);
             }
-            return true;
-        }
-        void ReduceItem()
-        {
-            foreach (var item in TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID])
-            {
-                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)item.ItemId), item.Count);
-            }
+            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+            m_NeedItemCount1Txt.text = infos[1].value.ToString();
         }
     }
 

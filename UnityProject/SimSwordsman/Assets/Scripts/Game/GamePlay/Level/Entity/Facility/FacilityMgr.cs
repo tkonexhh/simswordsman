@@ -91,6 +91,15 @@ namespace GameWish.Game
             int level = GameDataMgr.S.GetClanData().GetFacilityLevel(facilityType/*, subId*/);
             return Mathf.Min(level, Define.FACILITY_MAX_LEVEL);
         }
+        /// <summary>
+        /// 获得主城等级
+        /// </summary>
+        /// <returns></returns>
+        public int GetLobbyCurLevel()
+        {
+            return GetFacilityCurLevel(FacilityType.Lobby);
+        }
+
 
         /// <summary>
         /// Get facility info by level

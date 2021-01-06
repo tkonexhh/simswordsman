@@ -145,20 +145,18 @@ namespace GameWish.Game
         }
     }
 
-    public class CharacterStateData
-    {
-        public CharacterStateID parentState = CharacterStateID.Wander; // 弟子行为
-        public CollectedObjType subState;
+    //public class CharacterStateData
+    //{
+    //    public CharacterStateID characterState = CharacterStateID.Wander; // 弟子行为
+    //    public CollectedObjType collectObjType;
 
-
-
-        public CharacterStateData() { }
-        public CharacterStateData(CharacterStateID _parentState, CollectedObjType _subState = CollectedObjType.None)
-        {
-            parentState = _parentState;
-            subState = _subState;
-        }
-    }
+    //    public CharacterStateData() { }
+    //    public CharacterStateData(CharacterStateID stateId, CollectedObjType collectObjType = CollectedObjType.None)
+    //    {
+    //        this.characterState = stateId;
+    //        this.collectObjType = collectObjType;
+    //    }
+    //}
 
     public class CharacterItem : IComparable
     {
@@ -171,7 +169,7 @@ namespace GameWish.Game
         public string startTime; // 入门时间
         public CharacterQuality quality; // 品质
         public CharacterBehavior behavior; // 行为
-        public CharacterStateData characterStateData = new CharacterStateData(); // 行为
+        public CharacterStateID characterStateId = CharacterStateID.None; // 行为
         public float atkValue; // 武力值
         public string name; // 名字
         public string desc; // 详细信息
@@ -206,11 +204,16 @@ namespace GameWish.Game
         /// <summary>
         /// 设置人物的状态
         /// </summary>
-        /// <param name="characterStateData"></param>
-        public void SetCharacterStateData(CharacterStateData characterStateData)
+        /// <param name="stateId"></param>
+        public void SetCharacterStateData(CharacterStateID stateId)
         {
-            this.characterStateData = characterStateData;
-            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, characterStateData);
+            this.characterStateId = stateId;
+            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId);
+        }
+
+        public void SetCurTask(SimGameTask task)
+        {
+            GameDataMgr.S.GetClanData().SetCharacterTaskDBData(id, task);
         }
 
         public void Wrap(CharacterItemDbData itemDbData)
@@ -224,7 +227,7 @@ namespace GameWish.Game
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
 
-            this.characterStateData = itemDbData.characterStateDBData;
+            this.characterStateId = itemDbData.characterStateId;
 
             atkValue = TDCharacterStageConfigTable.GetAtk(quality, stage, level);
 
@@ -389,6 +392,11 @@ namespace GameWish.Game
             //}
 
             return ratio;
+        }
+
+        public int GetCurTaskId()
+        {
+            return m_ItemDbData.taskId;
         }
 
         public int CompareTo(object obj)

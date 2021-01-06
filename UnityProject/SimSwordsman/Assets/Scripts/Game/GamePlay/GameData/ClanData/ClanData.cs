@@ -93,6 +93,10 @@ namespace GameWish.Game
 
             return level;
         }
+        public bool IsLocked(FacilityType facilityType)
+        {
+            return ownedFacilityData.IsLocked(facilityType);
+        }
 
         public void AddFacility(FacilityType facilityType, int subId, FacilityState facilityState)
         {
@@ -170,9 +174,16 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateData characterStateData)
+        public void SetCharacterStateDBData(int id, CharacterStateID stateId)
         {
-            ownedCharacterData.SetCharacterStateDBData(id, characterStateData);
+            ownedCharacterData.SetCharacterStateDBData(id, stateId);
+
+            SetDataDirty();
+        }
+
+        public void SetCharacterTaskDBData(int id, SimGameTask simGameTask)
+        {
+            ownedCharacterData.SetCharacterTaskDBData(id, simGameTask);
 
             SetDataDirty();
         }
@@ -204,8 +215,6 @@ namespace GameWish.Game
         #endregion
 
         #region Inventory
-
-
 
         public List<ArmsDBData> GetArmsDBDataList()
         {

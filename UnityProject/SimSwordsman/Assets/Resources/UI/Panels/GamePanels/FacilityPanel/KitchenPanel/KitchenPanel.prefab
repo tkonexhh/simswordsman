@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1136.8087}
+  m_AnchoredPosition: {x: 0, y: 1136.8168}
   m_SizeDelta: {x: 1178.8778, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &373239949933952555
@@ -2250,7 +2250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5706830615437121820}
   m_Layer: 5
-  m_Name: info (3)
+  m_Name: info2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2658,18 +2658,18 @@ MonoBehaviour:
   m_KitchenContTxt: {fileID: 1346275755595135401}
   m_CurLevelTxt: {fileID: 9203710810381727642}
   m_CurFoodLimitTxt: {fileID: 7052073462911239912}
-  m_NextFoodLimitTxt: {fileID: 0}
+  m_NextFoodLimitTxt: {fileID: 8774578655893119921}
   m_CurRecoverySpeedTxt: {fileID: 7860006507908038649}
-  m_NextRecoverySpeedTxt: {fileID: 0}
+  m_NextRecoverySpeedTxt: {fileID: 6444788771863555719}
   m_CloseBtn: {fileID: 4534840603811551206}
   m_UpgradeBtn: {fileID: 6687809483060549238}
-  m_UpgradeRequiredCoinTxt: {fileID: 0}
-  m_UpgradeRequiredImg1: {fileID: 0}
-  m_UpgradeRequiredImg2: {fileID: 0}
-  m_UpgradeRequiredTxt1: {fileID: 0}
-  m_UpgradeRequiredTxt2: {fileID: 0}
+  m_UpgradeRequiredCoinTxt: {fileID: 1195248290865391464}
+  m_UpgradeRequiredImg1: {fileID: 2876033130617532504}
+  m_UpgradeRequiredImg2: {fileID: 664528758637683378}
+  m_UpgradeRequiredTxt1: {fileID: 262340616957222843}
+  m_UpgradeRequiredTxt2: {fileID: 5512014106190308344}
   m_KitchenContTra: {fileID: 373239949933952553}
-  m_FoodItemPrefab: {fileID: 3505661758715895144, guid: e314648d18c35f248bbe4a9bc23371b9,
+  m_FoodItemPrefab: {fileID: 5069110039294414433, guid: e314648d18c35f248bbe4a9bc23371b9,
     type: 3}
 --- !u!223 &4210047009214139164
 Canvas:

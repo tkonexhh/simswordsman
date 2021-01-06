@@ -7,6 +7,9 @@ namespace GameWish.Game
 {
     public class KongfuLibraryView : FacilityView
     {
+        [SerializeField]
+        private List<Transform> m_KongfuSlots = new List<Transform>();
+
         public override FacilityController GenerateContoller()
         {
             return new KongfuLibraryController( FacilityType.KongfuLibrary, this);
@@ -24,6 +27,12 @@ namespace GameWish.Game
         {
             base.OpenUIElement();
             UIMgr.S.OpenPanel(UIID.KongfuLibraryPanel,facilityType);
+        }
+
+        public Vector3 GetSlotPos(int index)
+        {
+            index = Mathf.Clamp(index, 0, m_KongfuSlots.Count - 1);
+            return m_KongfuSlots[index].position;
         }
     }
 

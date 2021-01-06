@@ -27,7 +27,7 @@ namespace GameWish.Game
 
 		public override Sprite GetSprite()
 		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
+            Sprite sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(m_KeyID).iconName);
             return sprite;
         }
 

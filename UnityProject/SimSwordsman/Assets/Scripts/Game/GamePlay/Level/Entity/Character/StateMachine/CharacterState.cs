@@ -34,6 +34,10 @@ namespace GameWish.Game
         /// 外出
         /// </summary>
         GoOutside,
+        /// <summary>
+        /// 读经书
+        /// </summary>
+        Reading,
     }
 
 

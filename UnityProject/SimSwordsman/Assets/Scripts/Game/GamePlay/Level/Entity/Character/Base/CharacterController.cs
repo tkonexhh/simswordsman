@@ -25,7 +25,7 @@ namespace GameWish.Game
         public CharacterController FightTarget { get => m_FightTarget;}
         public CharacterStateID CurState { get => m_CurState;}
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
-        public SimGameTask CurTask { get => m_CurTask; set => m_CurTask = value; }
+        public SimGameTask CurTask { get => m_CurTask;}
 
         private CharacterStateID m_CurState = CharacterStateID.None;
         private CharacterStateBattle m_StateBattle = null;
@@ -41,6 +41,8 @@ namespace GameWish.Game
             m_CharacterCamp = camp;
 
             m_CharacterModel = new CharacterModel(id, this);
+
+            SpawnTaskIfNeed(initState);
 
             m_StateMachine = new CharacterStateMachine(this);
             SetState(initState);
@@ -171,14 +173,20 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state, CollectedObjType _subState = CollectedObjType.None)
+        public void SetState(CharacterStateID state)
         {
-            m_CharacterModel.SetDataState(new CharacterStateData(state, _subState));
-
             if (state != m_CurState)
             {
                 m_CurState = state;
                 m_StateMachine.SetCurrentStateByID(state);
+
+                CollectedObjType collectedObjType = CollectedObjType.None;
+                if (m_CurState == CharacterStateID.CollectRes)
+                {
+                    collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
+                }
+
+                SetStateToDB(m_CurState);
             }
         }
 
@@ -231,6 +239,44 @@ namespace GameWish.Game
             m_CharacterView.ShowBody();
         }
 
+        public void SetCurTask(SimGameTask task)
+        {
+            m_CurTask = task;
+            m_CharacterModel.SetCurTask(task);
+        }
+
+        #endregion
+
+        #region Private
+        private void SetStateToDB(CharacterStateID characterStateID)
+        {
+            m_CharacterModel.SetDataState(characterStateID);
+        }
+
+        private void SpawnTaskIfNeed(CharacterStateID initState)
+        {
+            if (initState == CharacterStateID.CollectRes)
+            {
+                int curTaskId = m_CharacterModel.GetCurTaskId();
+                if (curTaskId != -1)
+                {
+                    MainTaskItemData taskData = GameDataMgr.S.GetMainTaskData().GetMainTaskItemData(curTaskId);
+                    if (taskData != null)
+                    {
+                        SimGameTask task = SimGameTaskFactory.SpawnTask(taskData.taskId, taskData.taskType, taskData.taskState, taskData.taskTime);
+                        SetCurTask(task);
+                    }
+                    else
+                    {
+                        Qarth.Log.e("SpawnTaskIfNeed, MainTaskItemData not found");
+                    }
+                }
+                else
+                {
+                    Qarth.Log.e("SpawnTaskIfNeed, Cur task id is -1");
+                }
+            }
+        }
         #endregion
     }
 

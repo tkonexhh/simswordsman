@@ -164,6 +164,34 @@ namespace GameWish.Game
             return m_InventoryDataWrapper.GetRecruitmentOrderCount(recruitType);
         }
 
+        /// <summary>
+        /// 判断材料是否足够
+        /// </summary>
+        /// <returns></returns>
+        public bool HaveEnoughItem(List<CostItem> items)
+        {
+            foreach (var item in items)
+            {
+                if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
+                {
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                    return false;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// 减少仓库材料
+        /// </summary>
+        /// <param name="id"></param>
+        public void ReduceItems(List<CostItem> items)
+        {
+            foreach (var item in items)
+            {
+                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)item.itemId), item.value);
+            }
+        }
+
         #endregion
 
         #region Private Methods

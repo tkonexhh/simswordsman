@@ -11,7 +11,9 @@ namespace GameWish.Game
 
         public void SetDefaultValue()
         {
-            taskList.Add(new MainTaskItemData(10010, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart));
+            int id = 10010;
+            int time = TDMainTaskTable.GetMainTaskItemInfo(id).taskTime;
+            taskList.Add(new MainTaskItemData(id, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart, time));
         }
 
         public void Init()
@@ -38,7 +40,8 @@ namespace GameWish.Game
                 return;
             }
 
-            MainTaskItemData item = new MainTaskItemData(taskId, taskType, subType, taskState);
+            int time = TDMainTaskTable.GetMainTaskItemInfo(taskId).taskTime;
+            MainTaskItemData item = new MainTaskItemData(taskId, taskType, subType, taskState, time);
             taskList.Add(item);
         }
 
@@ -104,17 +107,19 @@ namespace GameWish.Game
         public SimGameTaskType taskType;
         public int taskSubType = 1;
         public TaskState taskState;
+        public int taskTime;
 
         public MainTaskItemData()
         {
         }
 
-        public MainTaskItemData(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
+        public MainTaskItemData(int taskId, SimGameTaskType taskType, int subType, TaskState taskState, int taskTime)
         {
             this.taskId = taskId;
             this.taskType = taskType;
             this.taskSubType = subType;
             this.taskState = taskState;
+            this.taskTime = taskTime;
         }
     }
 

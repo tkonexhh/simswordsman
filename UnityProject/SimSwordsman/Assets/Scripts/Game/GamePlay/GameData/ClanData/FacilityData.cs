@@ -65,6 +65,18 @@ namespace GameWish.Game
 
             return level;
         }
+        public bool IsLocked(FacilityType facilityType)
+        {
+            FacilityItemDbData facilityDbData = GetFacilityData(facilityType);
+            if (facilityDbData != null)
+            {
+                if (facilityDbData.facilityState == FacilityState.Locked || facilityDbData.facilityState == FacilityState.ReadyToUnlock)
+                    return true;
+                else
+                    return false;
+            }
+            return true;
+        }
 
         public void AddFacility(FacilityType facilityType, int subId, FacilityState state)
         {

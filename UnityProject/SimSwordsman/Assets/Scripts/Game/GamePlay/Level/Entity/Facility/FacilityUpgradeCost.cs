@@ -13,9 +13,9 @@ namespace GameWish.Game
 
     public class FacilityUpgradeCost
 	{
-        public List<FacilityUpgradeCostItem> facilityCosts = new List<FacilityUpgradeCostItem>();
+        public List<CostItem> facilityCosts = new List<CostItem>();
 
-        public void AddRewardItem(FacilityUpgradeCostItem item)
+        public void AddRewardItem(CostItem item)
         {
             facilityCosts.Add(item);
         }
@@ -23,7 +23,7 @@ namespace GameWish.Game
         public string GetContent()
         {
             string str = string.Empty;
-            foreach (FacilityUpgradeCostItem item in facilityCosts)
+            foreach (CostItem item in facilityCosts)
             {
                 //str += item.facilityType.ToString() + item.rewardType.ToString() + item.value;
             }
@@ -32,12 +32,12 @@ namespace GameWish.Game
         }
 	}
 
-    public class FacilityUpgradeCostItem
+    public struct CostItem
     {
         public int itemId;
         public int value;
 
-        public FacilityUpgradeCostItem(int id, int value)
+        public CostItem(int id, int value)
         {
             this.itemId = id;
             this.value = value;

@@ -188,23 +188,19 @@ namespace GameWish.Game
             m_CharacterDataWrapper.RemoveCharacter(id);
         }
 
-        public void SpawnCharacterController(int id, CharacterStateID initState)
+        public void SpawnCharacterController(CharacterItem characterItem)
         {
+            int id = characterItem.id;
+            CharacterStateID initState = characterItem.characterStateId;
+
             bool isSpawned = m_CharacterControllerList.Any(i => i.CharacterId == id);
             if (isSpawned)
                 return;
 
-            GameObject prefab = Resources.Load("Prefabs/Character/Character1") as GameObject;
+            string prefabName = GetPrefabName(id);
+            GameObject prefab = Resources.Load(prefabName) as GameObject;
             GameObject obj = GameObject.Instantiate(prefab);
-            Vector3 spawnPos;
-            if (initState == CharacterStateID.EnterClan)
-            {
-                spawnPos = m_CharacterSpawnPos;
-            }
-            else
-            {
-                spawnPos = GameObject.FindObjectOfType<RandomWayPoints>().GetRandomWayPointPos(Vector3.zero);
-            }
+            Vector3 spawnPos = GetSpawnPos(initState);
             obj.transform.position = spawnPos;
 
             CharacterView characterView = obj.GetComponent<CharacterView>();
@@ -238,13 +234,15 @@ namespace GameWish.Game
         {
             m_CharacterDataWrapper.Wrap(GameDataMgr.S.GetClanData().ownedCharacterData);
 
-            InitPrefabsDisciple();
+            InitCharacters();
         }
 
-        private void InitPrefabsDisciple()
+        private void InitCharacters()
         {
             foreach (var item in m_CharacterDataWrapper.characterList)
-                SpawnCharacterController(item.id, CharacterStateID.Wander);
+            {
+                SpawnCharacterController(item);
+            }
         }
 
         private void RegisterEvents()
@@ -271,6 +269,25 @@ namespace GameWish.Game
             return isOwned;
         }
 
+        private string GetPrefabName(int id)
+        {
+            return "Prefabs/Character/Character1";
+        }
+
+        private Vector3 GetSpawnPos(CharacterStateID initState)
+        {
+            Vector3 spawnPos;
+            if (initState == CharacterStateID.EnterClan)
+            {
+                spawnPos = m_CharacterSpawnPos;
+            }
+            else
+            {
+                spawnPos = GameObject.FindObjectOfType<RandomWayPoints>().GetRandomWayPointPos(Vector3.zero);
+            }
+
+            return spawnPos;
+        }
         #endregion
 
     }

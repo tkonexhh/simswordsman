@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class PracticeSlot
+    public class FacilitySlot
     {
         private Vector3 m_SlotPos;
         private CharacterController m_Character;
 
-        public PracticeSlot(Vector3 pos)
+        public FacilitySlot(Vector3 pos)
         {
             m_SlotPos = pos;
         }

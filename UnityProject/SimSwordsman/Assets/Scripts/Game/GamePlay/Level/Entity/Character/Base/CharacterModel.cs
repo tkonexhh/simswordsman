@@ -52,9 +52,14 @@ namespace GameWish.Game
             m_Hp = m_Atk;
         }
 
-        public void SetDataState(CharacterStateData characterStateData)
+        public void SetDataState(CharacterStateID stateId)
         {
-            m_CharacterItem.SetCharacterStateData(characterStateData);
+            m_CharacterItem.SetCharacterStateData(stateId);
+        }
+
+        public void SetCurTask(SimGameTask simGameTask)
+        {
+            m_CharacterItem.SetCurTask(simGameTask);
         }
 
         public int GetExp()
@@ -67,10 +72,11 @@ namespace GameWish.Game
             m_CharacterItem.AddExp(deltaExp);
         }
 
-        /// <summary>
-        /// 获取升级的需要的经验
-        /// </summary>
-        /// <returns></returns>
+        public int GetCurTaskId()
+        {
+            return m_CharacterItem.GetCurTaskId();
+        }
+
         public int GetExpLevelUpNeed()
         {
             return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem);

@@ -38,8 +38,7 @@ namespace GameWish.Game
 
             lastPlayTime = "0";
             firstPlayTime = string.Empty;
-
-            unlockFoodItemIDs.Add(1);
+            
             UnlockVisitor = false;
 
             InitChapterDataList();
@@ -252,8 +251,21 @@ namespace GameWish.Game
                 foodNum = 0;
             }
 
-            EventSystem.S.Send(EventID.OnAddDiamondNum);
+            EventSystem.S.Send(EventID.OnAddFoodNum);
 
+            SetDataDirty();
+        }
+        public void ReduceFoodNum(int delta)
+        {
+            if (delta == 0)
+                return;
+
+            foodNum -= delta;
+            if (foodNum < 0)
+            {
+                foodNum = 0;
+            }
+            EventSystem.S.Send(EventID.OnReduceFoodNum);
             SetDataDirty();
         }
 
