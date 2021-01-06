@@ -191,7 +191,7 @@ namespace GameWish.Game
         public CharacterItem()
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
-                kongfus.Add(i+1, new CharacterKongfuData(i+1));
+                kongfus.Add(i + 1, new CharacterKongfuData(i + 1));
         }
 
         public CharacterItem(int id)
@@ -241,6 +241,13 @@ namespace GameWish.Game
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
             stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
+        }
+
+        public bool IsFreeState()
+        {
+            if (characterStateData.parentState == CharacterStateID.Wander || characterStateData.parentState == CharacterStateID.EnterClan)
+                return true;
+            return false;
         }
 
         public void UpgradeLevels(int delta)
@@ -315,10 +322,30 @@ namespace GameWish.Game
             }
         }
 
+        public void SetCharacterStateData(CharacterStateID characterStateID)
+        {
+            characterStateData.parentState = characterStateID;
+        }
+
+        /// <summary>
+        /// 增加经验
+        /// </summary>
+        /// <param name="deltaExp"></param>
         public void AddExp(int deltaExp)
         {
             curExp += deltaExp;
 
+            while (true)
+            {
+                int upExp = MainGameMgr.S.CharacterMgr.GetExpLevelUpNeed(this);
+                if (curExp > upExp)
+                {
+                    UpgradeLevels(1);
+                    curExp -= upExp;
+                }
+                else
+                    break;
+            }
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 

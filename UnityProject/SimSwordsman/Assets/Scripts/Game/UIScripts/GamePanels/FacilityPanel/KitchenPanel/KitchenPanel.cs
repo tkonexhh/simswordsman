@@ -111,7 +111,7 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
 
-            EventSystem.S.Register(EventID.OnFoodBuffInterval, OnFoodBuffInterval);
+            EventSystem.S.Register(EventID.OnFoodBuffTick, OnFoodBuffInterval);
             EventSystem.S.Register(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
             EventSystem.S.Register(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }
@@ -174,7 +174,7 @@ namespace GameWish.Game
                     return;
                 }
                 //ÅÐ¶ÏÍ­Ç®
-                double coins = double.Parse(m_UpgradeRequiredCoinTxt.text);
+                long coins = m_CurKitchLevelInfo.upgradeCoinCost;
                 if (GameDataMgr.S.GetPlayerData().GetCoinNum() < coins)
                 {
                     UIMgr.S.OpenPanel(UIID.LogPanel, "ÌáÊ¾", "Í­Ç®²»×ã£¡");
@@ -199,7 +199,7 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseSelfPanel();
 
-            EventSystem.S.UnRegister(EventID.OnFoodBuffInterval, OnFoodBuffInterval);
+            EventSystem.S.UnRegister(EventID.OnFoodBuffTick, OnFoodBuffInterval);
             EventSystem.S.UnRegister(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
             EventSystem.S.UnRegister(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }

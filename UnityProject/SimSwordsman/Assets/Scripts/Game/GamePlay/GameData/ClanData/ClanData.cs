@@ -72,6 +72,11 @@ namespace GameWish.Game
             ownedPracticeFieldData.RefresDBData(practiceField);
         }
 
+        public void TrainingIsOver(PracticeField practiceField)
+        {
+            ownedPracticeFieldData.TrainingIsOver(practiceField);
+        }
+
         public List<FacilityItemDbData> GetAllFacility()
         {
             return ownedFacilityData.facilityList;

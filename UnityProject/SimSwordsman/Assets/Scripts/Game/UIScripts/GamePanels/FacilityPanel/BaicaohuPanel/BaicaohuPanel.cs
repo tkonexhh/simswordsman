@@ -48,7 +48,7 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
 
-                bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(double.Parse(m_UpgradeRequiredCoinTxt.text));
+                bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(long.Parse(m_UpgradeRequiredCoinTxt.text));
 
                 if (isReduceSuccess)
                 {

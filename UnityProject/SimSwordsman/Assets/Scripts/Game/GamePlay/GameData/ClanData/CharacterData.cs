@@ -66,9 +66,7 @@ namespace GameWish.Game
         {
             CharacterKongfuDBData data = item.kongfuDatas.FirstOrDefault(i => i.kongfuType == kongfuType);
             if (data != null)
-            {
                 data.AddExp(deltaExp);
-            }
         }
 
         public void AddKungfu(int id, CharacterKongfuData characterKongfu)
@@ -189,8 +187,8 @@ namespace GameWish.Game
 
         public void AddExp(int delta)
         {
-            curExp += delta;
-            curExp = Math.Max(0, curExp);
+            curExp = delta;
+            //curExp = Math.Max(0, curExp);
         }
     }
 
