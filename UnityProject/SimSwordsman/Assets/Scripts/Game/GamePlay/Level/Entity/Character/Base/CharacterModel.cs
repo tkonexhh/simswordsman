@@ -67,6 +67,10 @@ namespace GameWish.Game
             m_CharacterItem.AddExp(deltaExp);
         }
 
+        /// <summary>
+        /// 获取升级的需要的经验
+        /// </summary>
+        /// <returns></returns>
         public int GetExpLevelUpNeed()
         {
             return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem);

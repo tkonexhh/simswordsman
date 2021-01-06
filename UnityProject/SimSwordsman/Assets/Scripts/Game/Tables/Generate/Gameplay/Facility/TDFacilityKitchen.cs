@@ -48,7 +48,7 @@ namespace GameWish.Game
         public  int  foodLimit {get { return m_FoodLimit; } }
        
         /// <summary>
-        /// 食物恢复速度
+        /// 每分钟食物恢复
         /// </summary>
         public  int  foodAddSpeed {get { return m_FoodAddSpeed; } }
        

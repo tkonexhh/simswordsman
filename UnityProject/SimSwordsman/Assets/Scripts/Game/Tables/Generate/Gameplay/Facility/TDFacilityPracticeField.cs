@@ -18,7 +18,8 @@ namespace GameWish.Game
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_Capability = 0;   
-        private EInt m_LevelUpSpeed = 0;  
+        private EInt m_LevelUpSpeed = 0;   
+        private EInt m_Duration = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -57,6 +58,11 @@ namespace GameWish.Game
         /// </summary>
         public  int  levelUpSpeed {get { return m_LevelUpSpeed; } }
        
+        /// <summary>
+        /// 练功时长，秒
+        /// </summary>
+        public  int  duration {get { return m_Duration; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -93,6 +99,9 @@ namespace GameWish.Game
                 case 6:
                     m_LevelUpSpeed = dataR.ReadInt();
                     break;
+                case 7:
+                    m_Duration = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -103,7 +112,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Level", 0);
           ret.Add("HouseId", 1);
@@ -112,6 +121,7 @@ namespace GameWish.Game
           ret.Add("UpgradePreconditions", 4);
           ret.Add("Capability", 5);
           ret.Add("LevelUpSpeed", 6);
+          ret.Add("Duration", 7);
           return ret;
         }
     } 
