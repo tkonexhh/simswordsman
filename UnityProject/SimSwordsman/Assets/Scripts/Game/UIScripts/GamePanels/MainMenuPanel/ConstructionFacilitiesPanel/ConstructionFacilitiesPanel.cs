@@ -85,7 +85,7 @@ namespace GameWish.Game
 
             m_AcceptBtn.onClick.AddListener(()=> 
             {
-                if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(double.Parse(m_CoinValue.text)))
+                if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(long.Parse(m_CoinValue.text)))
                 {
                     if (m_FacilityType == FacilityType.Lobby)
                         GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
