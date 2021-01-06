@@ -34,9 +34,6 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
-            m_CharacterMgr = gameObject.AddComponent<CharacterMgr>();
-            m_CharacterMgr.OnInit();
-
             m_FacilityMgr = gameObject.AddComponent<FacilityMgr>();
             m_FacilityMgr.OnInit();
 
@@ -48,6 +45,9 @@ namespace GameWish.Game
 
             m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>();
             m_MainTaskMgr.OnInit();
+
+            m_CharacterMgr = gameObject.AddComponent<CharacterMgr>();
+            m_CharacterMgr.OnInit();
 
             m_ChapterMgr = gameObject.AddComponent<ChapterMgr>();
             m_ChapterMgr.OnInit();

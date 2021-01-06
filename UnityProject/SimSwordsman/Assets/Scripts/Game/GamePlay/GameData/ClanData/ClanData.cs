@@ -211,8 +211,6 @@ namespace GameWish.Game
 
         #region Inventory
 
-
-
         public List<ArmsDBData> GetArmsDBDataList()
         {
             return inventoryData.armsDBDataList;

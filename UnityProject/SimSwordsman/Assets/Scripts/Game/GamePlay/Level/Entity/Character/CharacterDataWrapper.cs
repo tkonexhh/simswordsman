@@ -367,6 +367,11 @@ namespace GameWish.Game
             return ratio;
         }
 
+        public int GetCurTaskId()
+        {
+            return m_ItemDbData.taskId;
+        }
+
         public int CompareTo(object obj)
         {
             int result;

@@ -257,7 +257,24 @@ namespace GameWish.Game
         {
             if (initState == CharacterStateID.CollectRes)
             {
-
+                int curTaskId = m_CharacterModel.GetCurTaskId();
+                if (curTaskId != -1)
+                {
+                    MainTaskItemData taskData = GameDataMgr.S.GetMainTaskData().GetMainTaskItemData(curTaskId);
+                    if (taskData != null)
+                    {
+                        SimGameTask task = SimGameTaskFactory.SpawnTask(taskData.taskId, taskData.taskType, taskData.taskState, taskData.taskTime);
+                        SetCurTask(task);
+                    }
+                    else
+                    {
+                        Qarth.Log.e("SpawnTaskIfNeed, MainTaskItemData not found");
+                    }
+                }
+                else
+                {
+                    Qarth.Log.e("SpawnTaskIfNeed, Cur task id is -1");
+                }
             }
         }
         #endregion
