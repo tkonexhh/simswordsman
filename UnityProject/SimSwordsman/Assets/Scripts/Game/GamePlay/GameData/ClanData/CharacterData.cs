@@ -66,7 +66,9 @@ namespace GameWish.Game
         {
             CharacterKongfuDBData data = item.kongfuDatas.FirstOrDefault(i => i.kongfuType == kongfuType);
             if (data != null)
+            {
                 data.AddExp(deltaExp);
+            }
         }
 
         public void AddKungfu(int id, CharacterKongfuData characterKongfu)
@@ -104,10 +106,7 @@ namespace GameWish.Game
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
-            {
-                int taskId = task == null ? -1 : task.TaskId;
-                characterItemDb.SetTask(taskId);
-            }
+                characterItemDb.SetTask(task);
         }
     }
 
@@ -121,7 +120,7 @@ namespace GameWish.Game
         public int atkValue;
         public string startTime;
         public string name;
-        public int taskId = -1;
+        public CharacterTaskDBData characterTaskDBData = new CharacterTaskDBData(); // ÐÐÎª
         public CharacterStateID characterStateId = CharacterStateID.Wander;
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
@@ -165,9 +164,11 @@ namespace GameWish.Game
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
         }
 
-        public void SetTask(int taskId)
+        public void SetTask(SimGameTask simGameTask)
         {
-            this.taskId = taskId;
+            characterTaskDBData.taskType = simGameTask.GetCurTaskType();
+            characterTaskDBData.subId = simGameTask.GetCurSubType();
+            characterTaskDBData.startTime = simGameTask.TaskStartTime;
         }
 
         /// <summary>
@@ -187,8 +188,8 @@ namespace GameWish.Game
 
         public void AddExp(int delta)
         {
-            curExp = delta;
-            //curExp = Math.Max(0, curExp);
+            curExp += delta;
+            curExp = Math.Max(0, curExp);
         }
     }
 
@@ -283,22 +284,20 @@ namespace GameWish.Game
         }
     }
 
-    //[Serializable]
-    //public class CharacterTaskDBData
-    //{
-    //    public int taskId;
-    //    public SimGameTaskType taskType = SimGameTaskType.None;
-    //    public int subType = -1;
-    //    public string startTime;
+    [Serializable]
+    public class CharacterTaskDBData
+    {
+        public SimGameTaskType taskType = SimGameTaskType.None;
+        public int subId = -1;
+        public string startTime;
 
-    //    public CharacterTaskDBData() { }
+        public CharacterTaskDBData() { }
 
-    //    public CharacterTaskDBData(int taskId, SimGameTaskType taskType, int subType, string startTime)
-    //    {
-    //        this.taskId = taskId;
-    //        this.taskType = taskType;
-    //        this.subType = subType;
-    //        this.startTime = startTime;
-    //    }
-    //}
+        public CharacterTaskDBData(SimGameTaskType taskType, int subId, string startTime)
+        {
+            this.taskType = taskType;
+            this.subId = subId;
+            this.startTime = startTime;
+        }
+    }
 }

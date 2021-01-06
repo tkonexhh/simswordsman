@@ -95,7 +95,7 @@ namespace GameWish.Game
                         foreach (int taskId in nextTasks)
                         {
                             MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
-                            MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType, taskInfo.taskTime);
+                            MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType);
                             SimGameTask nextTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(taskId);
                             if (nextTask!=null)
                                 CreateTask(nextTask);

@@ -9,7 +9,7 @@ namespace GameWish.Game
 	{
         private static string m_MainTaskTableName = "TDMainTaskTable";
 
-        public static SimGameTask SpawnTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
+        public static SimGameTask SpawnTask(int taskId, SimGameTaskType taskType, TaskState taskState)
         {
             SimGameTask task = null;
 
@@ -17,10 +17,10 @@ namespace GameWish.Game
             {
                 case SimGameTaskType.Collect:
                     //CollectedObjType collectedObjType = (CollectedObjType)subType;
-                    task = new TaskCollectRes(taskId, m_MainTaskTableName, taskState, taskTime, MainGameMgr.S.MainTaskMgr.OnTaskStateChanged);
+                    task = new TaskCollectRes(taskId, m_MainTaskTableName, taskState, MainGameMgr.S.MainTaskMgr.OnTaskStateChanged);
                     break;
                 case SimGameTaskType.Battle:
-                    task = new TaskBattle(taskId, m_MainTaskTableName, taskState, taskTime, MainGameMgr.S.MainTaskMgr.OnTaskStateChanged);
+                    task = new TaskBattle(taskId, m_MainTaskTableName, taskState, MainGameMgr.S.MainTaskMgr.OnTaskStateChanged);
                     break;
             }
 

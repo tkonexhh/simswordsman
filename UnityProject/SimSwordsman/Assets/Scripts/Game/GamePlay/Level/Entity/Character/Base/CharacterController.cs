@@ -42,7 +42,7 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
-            SetTaskIfNeed(initState);
+            SpawnTaskIfNeed(initState);
 
             m_StateMachine = new CharacterStateMachine(this);
             SetState(initState);
@@ -253,27 +253,11 @@ namespace GameWish.Game
             m_CharacterModel.SetDataState(characterStateID);
         }
 
-        private void SetTaskIfNeed(CharacterStateID initState)
+        private void SpawnTaskIfNeed(CharacterStateID initState)
         {
             if (initState == CharacterStateID.CollectRes)
             {
-                int curTaskId = m_CharacterModel.GetCurTaskId();
-                if (curTaskId != -1)
-                {
-                    SimGameTask simGameTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(curTaskId);
-                    if (simGameTask != null)
-                    {
-                        SetCurTask(simGameTask);
-                    }
-                    else
-                    {
-                        Qarth.Log.e("SpawnTaskIfNeed, MainTaskItemData not found");
-                    }
-                }
-                else
-                {
-                    Qarth.Log.e("SpawnTaskIfNeed, Cur task id is -1");
-                }
+
             }
         }
         #endregion

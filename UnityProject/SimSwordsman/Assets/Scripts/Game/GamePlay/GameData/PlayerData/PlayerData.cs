@@ -21,11 +21,9 @@ namespace GameWish.Game
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();
-        //public List<FoodBuff> foodBuffData = new List<FoodBuff>();
+        public List<FoodBuff> foodBuffData = new List<FoodBuff>();
 
-        public List<Countdowner> countdownerData = new List<Countdowner>();
-
-        private long m_CoinNum = 0;
+        private double m_CoinNum = 0;
         public int signInCount;
 
         public bool UnlockVisitor;
@@ -50,7 +48,7 @@ namespace GameWish.Game
 
         public void Init()
         {
-            m_CoinNum = long.Parse(coinNumStr);
+            m_CoinNum = double.Parse(coinNumStr);
         }
         public RecruitData GetRecruitData()
         {
@@ -129,7 +127,7 @@ namespace GameWish.Game
         }
         #endregion
 
-        public void SetCoinNum(long num)
+        public void SetCoinNum(double num)
         {
             m_CoinNum = num;
 
@@ -194,7 +192,7 @@ namespace GameWish.Game
             return 0;
         }
 
-        public long GetCoinNum()
+        public double GetCoinNum()
         {
             return m_CoinNum;
         }
@@ -204,18 +202,21 @@ namespace GameWish.Game
             return foodNum;
         }
 
-        public void AddCoinNum(long delta)
+        public void AddCoinNum(double delta)
         {
             //if (m_CoinNum < -delta)
             //{
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
             if (delta> 0)
-                m_CoinNum = FoodBuffSystem.S.Coin(delta);
+                delta = BuffSystem.S.Coin(delta);
+
+            m_CoinNum = m_CoinNum + delta;
 
             if (m_CoinNum < 0)
             {
                 m_CoinNum = 0;
+
             }
 
             coinNumStr = m_CoinNum.ToString();
@@ -225,7 +226,7 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public bool ReduceCoinNum(long delta)
+        public bool ReduceCoinNum(double delta)
         {
             m_CoinNum = m_CoinNum - delta;
             if (m_CoinNum < 0)

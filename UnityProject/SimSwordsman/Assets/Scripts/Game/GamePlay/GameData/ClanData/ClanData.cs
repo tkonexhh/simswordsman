@@ -72,11 +72,6 @@ namespace GameWish.Game
             ownedPracticeFieldData.RefresDBData(practiceField);
         }
 
-        public void TrainingIsOver(PracticeField practiceField)
-        {
-            ownedPracticeFieldData.TrainingIsOver(practiceField);
-        }
-
         public List<FacilityItemDbData> GetAllFacility()
         {
             return ownedFacilityData.facilityList;
@@ -215,6 +210,8 @@ namespace GameWish.Game
         #endregion
 
         #region Inventory
+
+
 
         public List<ArmsDBData> GetArmsDBDataList()
         {

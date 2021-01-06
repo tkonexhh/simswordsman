@@ -98,13 +98,13 @@ namespace GameWish.Game
                 m_FoodImg.sprite = Resources.Load<Sprite>("Sprites/Facility/Kitchen/" + tb.spriteName);
                 m_FoodNameTxt.text = tb.name;
                 m_FoodContTxt.text = tb.desc;
-                m_FoodEffecTxt.text = FoodBuffSystem.S.GetEffectDesc(tb);
+                m_FoodEffecTxt.text = BuffSystem.S.GetEffectDesc(tb);
                 m_EffectiveTimeTxt.text = GetTimeDesc(tb.buffTime) + "有效";
                 m_ADEffectiveTimeTxt.text = GetTimeDesc(tb.buffTimeAD) + "有效";
 
-                if (FoodBuffSystem.S.IsActive(ID))
+                if (BuffSystem.S.IsActive(ID))
                 {
-                    string dur = FoodBuffSystem.S.GetCurrentCountdown(ID);
+                    string dur = BuffSystem.S.GetCurrentCountdown(ID);
                     if (dur != null)
                     {
                         SetState(1);
@@ -139,23 +139,15 @@ namespace GameWish.Game
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    FoodBuffSystem.S.StartBuff(ID);
+                    BuffSystem.S.StartBuff(ID);
                 }
-                else
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
             });
             m_MakeADBtn.onClick.AddListener(() => 
             {
                 //判断材料
-                var list = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
-                if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
-                {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
-                    MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    FoodBuffSystem.S.StartBuff(ID, true);
-                }
-                else
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                MainGameMgr.S.InventoryMgr.ReduceItems(TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID]);
+                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
+                BuffSystem.S.StartBuff(ID, true);
             });
         }
         /// <summary>

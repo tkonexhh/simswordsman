@@ -55,7 +55,7 @@ namespace GameWish.Game
             if (m_ReachTargetPos)
             {
                 m_Time += Time.deltaTime;
-                if (m_Time > m_Controller.CurTask.MainTaskItemInfo.taskTime)
+                if (m_Time > m_Controller.CurTask.MainTaskItemInfo.time)
                 {
                     m_Time = 0f;
                     m_IsTaskEnd = true;

@@ -30,7 +30,7 @@ namespace GameWish.Game
 
 
     public class PracticeDisciple : MonoBehaviour,ItemICom
-    {
+	{
         [SerializeField]
         private Text m_PracticePos;
         [SerializeField]
@@ -41,48 +41,33 @@ namespace GameWish.Game
         private Image m_PracticeImg;
         [SerializeField]
         private Button m_PracticeBtn;
-        private FacilityType m_CurFacilityType;
+
         private int m_CurLevel;
         private PracticeField m_PracticeFieldInfo = null;
-        private int m_CountDown = 0;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
 
             m_PracticeFieldInfo = t as PracticeField;
-            m_CurFacilityType = (FacilityType)obj[0];
+            m_CurLevel = (int)obj[0];
+
             BindAddListenEvent();
-            RefreshFixedInfo();
+
             m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
             RefreshPracticeFieldState();
         }
 
-      
+     
 
         private void BindAddListenEvent()
         {
             m_PracticeBtn.onClick.AddListener(()=> {
-                UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo, m_CurFacilityType, m_CurLevel);
+                UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo);
             });
         }
 
-        public PracticeFieldState GetPracticeFieldState()
+        private void Callback(AbstractPanel obj)
         {
-            return m_PracticeFieldInfo.PracticeFieldState;
-        }
-
-        public void IncreaseCountDown(int time)
-        {
-            CountDownMgr countDownMgr = null;
-            countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
-            if (countDownMgr != null)
-            {
-                countDownMgr.IncreasTickTime(time);
-            }
-        }
-
-        private void RefreshFixedInfo()
-        {
-            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
+            throw new NotImplementedException();
         }
 
         public void RefreshPracticeFieldState()
@@ -105,99 +90,48 @@ namespace GameWish.Game
                 case PracticeFieldState.CopyScriptures:
                     break;
                 case PracticeFieldState.Practice:
-                    RefreshFixedInfo();
                     m_CurPractice.text = "当前训练:" + m_PracticeFieldInfo.CharacterItem.name;
-                    m_Time.text = SplicingTime(GetDuration()+1);
-                    CreateCountDown();
-                    //TimeRemaining(m_PracticeFieldInfo.StartTime);
+                    //StartCoroutine(BattleCountdown(m_PracticeFieldInfo.PracticeTime));
                     m_PracticeBtn.enabled = true;
                     break;
                 default:
                     break;
             }
         }
-        public string SplicingTime(int seconds)
+
+        public IEnumerator BattleCountdown(int second)
         {
-            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
-            string str = "";
-
-            if (ts.Hours > 0)
+            while (second >= 0)
             {
-                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes > 0)
-            {
-                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes == 0)
-            {
-                str = "00:" + ts.Seconds.ToString("00");
-            }
-
-            return str;
-        }
-
-        private void CreateCountDown()
-        {
-            CountDownMgr countDownMgr = null;
-            countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
-            if (countDownMgr == null)
-            {
-                m_CountDown = GetDuration();
-                countDownMgr = new CountDownMgr(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index, m_CountDown);
-
-            }
-            TimeUpdateMgr.S.AddObserver(countDownMgr);
-            countDownMgr.OnSecondRefreshEvent = refresAction;
-            if (countDownMgr.OnCountDownOverEvent == null)
-                countDownMgr.OnCountDownOverEvent = m_PracticeFieldInfo.overAction;
-        }
-
-        private int GetDuration()
-        {
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(m_CurFacilityType, m_CurLevel);
-            int takeTime = ComputingTime(m_PracticeFieldInfo.StartTime);
-            return  duration - takeTime;
-        }
-
-        public void refresAction(string obj)
-        {
-            if (m_Time != null)
-                m_Time.text = obj;
-        }
-
-        private int ComputingTime(string  time)
-        {
-            DateTime dateTime;
-            DateTime.TryParse(time,out dateTime);
-            if (dateTime!=null)
-            {
-                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
-                return (int)timeSpan.TotalSeconds;
-            }
-            return 0;
-        }
-
-        public IEnumerator BattleCountdown()
-        {
-            while (m_CountDown >= 0)
-            {
-                if (m_CountDown == 0)
+                if (second <= 5)
                 {
-                  //  AddExperience(m_PracticeFieldInfo.CharacterItem);
-                    m_PracticeFieldInfo.TrainingIsOver();
-                    StopCoroutine("BattleCountdown");
-                    break;
+                    //m_CombatTime.color = Color.red;
+                    //m_CombatTime.Alpha
                 }
-               // m_Time.text = SplicingTime(m_CountDown);
+
+                m_Time.text = SplicingTime(second);
                 yield return new WaitForSeconds(1);
-                m_CountDown--;
+                second--;
             }
         }
+        /// <summary>
+        /// 拼接时间
+        /// </summary>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public string SplicingTime(int second)
+        {
+            if (second.ToString().Length > 1)
+                return "00:" + second;
+            else
+                return "00:0" + second;
+        }
+
 
         public void SetButtonEvent(Action<object> action)
         {
             throw new NotImplementedException();
         }
-    }
+	}
+	
 }

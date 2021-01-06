@@ -8,10 +8,8 @@ namespace GameWish.Game
 	public class PracticeFieldLevelInfo : FacilityLevelInfo
 	{
         private int m_CurCapacity;
-        private int m_Duration;
         //private int m_NextCapacity;
         private int m_CurLevelUpSpeed;
-        private int m_LevelUpSpeed;
         //private int m_NextLevelUpSpeed;
         private FacilityType m_HouseID;
 
@@ -20,28 +18,9 @@ namespace GameWish.Game
             m_CurCapacity = capacity;
         }
 
-        public void SetCurData(TDFacilityPracticeField tdData)
-        {
-            m_CurCapacity = tdData.capability;
-            m_Duration = tdData.duration;
-            m_CurLevelUpSpeed = tdData.levelUpSpeed;
-            m_HouseID = (FacilityType)tdData.houseId;
-            m_LevelUpSpeed = tdData.levelUpSpeed;
-        }
-
         public int GetCurCapacity()
         {
             return m_CurCapacity;
-        }
-
-        public int GetCurLevelUpSpeed()
-        {
-            return m_LevelUpSpeed;
-        }
-
-        public int GetDuration()
-        {
-            return m_Duration;
         }
 
         public int GetNextCapacity()
@@ -64,6 +43,11 @@ namespace GameWish.Game
         public FacilityType GetHouseID()
         {
             return m_HouseID;
+        }
+
+        public int GetCurLevelUpSpeed()
+        {
+            return m_CurLevelUpSpeed;
         }
 
         public int GetNextLevelUpSpeed()

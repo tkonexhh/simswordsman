@@ -157,7 +157,7 @@ namespace GameWish.Game
         {
             m_MainTaskData.taskList.ForEach(i => 
             {
-                AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+                AddTask(i.taskId, i.taskType, i.taskState);
             });
 
             RefreshTask();
@@ -177,7 +177,7 @@ namespace GameWish.Game
                 {
                     if (!m_MainTaskData.IsTaskExist(item.id))
                     {
-                        GenerateTask(item.id, item.taskType, item.subType, item.taskTime);
+                        GenerateTask(item.id, item.taskType, item.subType);
                     }
                 }
             }
@@ -214,7 +214,7 @@ namespace GameWish.Game
                     {
                         int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
                         MainTaskItemInfo task = allCommonTask[randomIndex];
-                        GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+                        GenerateTask(task.id, task.taskType, task.subType);
 
                         allCommonTask.Remove(task);
                     }
@@ -222,9 +222,9 @@ namespace GameWish.Game
             }
         }
 
-        public void GenerateTask(int taskId, SimGameTaskType taskType, int subType, int taskTime)
+        public void GenerateTask(int taskId, SimGameTaskType taskType, int subType)
         {
-            AddTask(taskId, taskType, TaskState.NotStart, taskTime);
+            AddTask(taskId, taskType);
 
             m_MainTaskData.AddTask(taskId, taskType, subType, TaskState.NotStart);
         }
@@ -250,9 +250,9 @@ namespace GameWish.Game
             }
         }
 
-        private void AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
+        private void AddTask(int taskId, SimGameTaskType taskType, TaskState taskState = TaskState.NotStart)
         {
-            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime);
+            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState);
             m_CurTaskList.Add(simGameTask);
         }
 

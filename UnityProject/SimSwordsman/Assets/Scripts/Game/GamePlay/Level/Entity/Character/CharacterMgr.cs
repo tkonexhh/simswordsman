@@ -17,12 +17,14 @@ namespace GameWish.Game
 
         private Vector3 m_CharacterSpawnPos = new Vector3(-5.5f, -4.2f, 0);
 
-        public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
-
+        public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList;}
+            
         #region IMgr
         public void OnInit()
         {
             RegisterEvents();
+
+            InitData();
         }
 
         public void OnUpdate()
@@ -69,7 +71,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool CheckForDuplicateNames(string name)
         {
-            return m_CharacterDataWrapper.characterList.Any(i => i.name.Equals(name));
+            return m_CharacterDataWrapper.characterList.Any(i=>i.name.Equals(name));
         }
         /// <summary>
         /// 获取当前最大id
@@ -83,18 +85,9 @@ namespace GameWish.Game
             {
                 int curId = item.id;
                 return ++curId;
-            }
+            }   
             return 0;
         }
-        /// <summary>
-        /// 获取当前角色升级经验
-        /// </summary>
-        /// <param name="character"></param>
-        public int GetExpLevelUpNeed(CharacterItem character)
-        {
-            return TDCharacterStageConfigTable.GetExpLevelUpNeed(character);
-        }
-
 
         /// <summary>
         /// 增加弟子

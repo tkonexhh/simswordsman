@@ -37,13 +37,6 @@ namespace GameWish.Game
 			if (practiceFieldDB != null)
 				practiceFieldDB.RefresDBData(practiceField);
 		}
-
-		public void TrainingIsOver(PracticeField practiceField)
-		{
-			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
-			if (practiceFieldDB != null)
-				practiceFieldDB.TrainingIsOver();
-		}
 	}
 
 
@@ -54,7 +47,7 @@ namespace GameWish.Game
 		public int pitPositionID;
 		public int characterID = -1;
 		public int unlockLevel = -1;
-		public string startTime;
+		public string practiceTime;
 
 		public PracticeFieldDBData() { }
 		public PracticeFieldDBData(PracticeField practiceField) 
@@ -70,14 +63,7 @@ namespace GameWish.Game
 			pitPositionID = practiceField.Index;
 			if (practiceField.CharacterItem != null)
 				characterID = practiceField.CharacterItem.id;
-			startTime = practiceField.StartTime;
-		}
-
-		public void TrainingIsOver()
-		{
-			startTime = string.Empty;
-			characterID = -1;
-			practiceFieldState = PracticeFieldState.Free;
+			practiceTime = practiceField.PracticeTime;
 		}
 	}
 }

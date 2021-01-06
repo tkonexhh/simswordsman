@@ -32,7 +32,6 @@ namespace GameWish.Game
                 if (string.IsNullOrEmpty(value))
                 {
                     lastKeepTime = DateTime.Now.ToString();
-                    PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
                 }
                 else
                 {
@@ -90,8 +89,6 @@ namespace GameWish.Game
             {
                 limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
                 secondCount = 0;
-                lastKeepTime = DateTime.Now.ToString();
-                PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
                 StartCountdown();
             }
         }
@@ -115,8 +112,6 @@ namespace GameWish.Game
             if (timerID == -1 && GameDataMgr.S.GetPlayerData().foodNum < limit)
             {
                 secondCount = 0;
-                lastKeepTime = DateTime.Now.ToString();
-                PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
                 StartCountdown();
             }
         }

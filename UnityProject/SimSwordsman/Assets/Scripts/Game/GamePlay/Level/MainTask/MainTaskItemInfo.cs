@@ -15,11 +15,7 @@ namespace GameWish.Game
         /// </summary>
         NotStart,
         /// <summary>
-        /// 正在执行
-        /// </summary>
-        Running,
-        /// <summary>
-        /// 已完成，待领取
+        /// 待领取
         /// </summary>
         Unclaimed,
         /// <summary>
@@ -36,7 +32,7 @@ namespace GameWish.Game
         public int needHomeLevel = -1;
         public SimGameTaskType taskType;
         public int subType;
-        public int taskTime;
+        public int time;
         public string title;
         public string desc;
         public TaskState taskState;
@@ -56,7 +52,7 @@ namespace GameWish.Game
 
                 taskState = TaskState.None;
 
-                this.taskTime = tDMainTask.time;
+                this.time = tDMainTask.time;
                 this.title = tDMainTask.taskTitle;
                 this.desc = tDMainTask.taskDescription;
                 this.needHomeLevel = tDMainTask.homeLevel;
@@ -105,6 +101,20 @@ namespace GameWish.Game
 
             return reward.count1;
         }
+        //public MainTaskItemInfo(int id, SimGameTaskType taskType, int subType, TaskState _taskState)
+        //{
+        //    this.id = id;
+        //    this.taskType = taskType;
+        //    this.subType = subType;
+        //    taskState = _taskState;
+
+        //    TDMainTask tDMain = TDMainTaskTable.GetData(id);
+        //    this.time = tDMain.time;
+        //    this.title = tDMain.taskTitle;
+        //    this.desc = tDMain.taskDescription;
+        //    ParseReward(tDMain.reward);
+        //    ParseNextLevel(tDMain.nextTask);
+        //}
 
         private void ParseReward(string reward)
         {
