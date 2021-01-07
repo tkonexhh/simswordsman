@@ -7,6 +7,7 @@ namespace GameWish.Game
 {
 	public enum LevelRewardType
 	{
+        Coin,
         PropItem,
         Equip,
         Food,

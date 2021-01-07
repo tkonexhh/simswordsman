@@ -20,13 +20,15 @@ namespace GameWish.Game
         private string m_TaskTitle;   
         private string m_TaskDescription;   
         private string m_Type;   
+        private string m_ConditionValue;   
         private EInt m_Time = 0;   
         private string m_Reward;   
         private EInt m_SpecialRewardRate = 0;   
         private string m_SpecialReward;   
+        private EInt m_ExpReward = 0;   
+        private EInt m_KongfuExpReward = 0;   
         private string m_TaskEvent;   
         private string m_ConditionType;   
-        private string m_ConditionValue;   
         private string m_Enemy;   
         private EInt m_RoleAmount = 0;   
         private EInt m_RoleLevelRequired = 0;  
@@ -74,6 +76,11 @@ namespace GameWish.Game
         public  string  type {get { return m_Type; } }
        
         /// <summary>
+        /// 任务参数
+        /// </summary>
+        public  string  conditionValue {get { return m_ConditionValue; } }
+       
+        /// <summary>
         /// 任务时长（秒）
         /// </summary>
         public  int  time {get { return m_Time; } }
@@ -94,6 +101,16 @@ namespace GameWish.Game
         public  string  specialReward {get { return m_SpecialReward; } }
        
         /// <summary>
+        /// 经验奖励
+        /// </summary>
+        public  int  expReward {get { return m_ExpReward; } }
+       
+        /// <summary>
+        /// 功夫经验奖励
+        /// </summary>
+        public  int  kongfuExpReward {get { return m_KongfuExpReward; } }
+       
+        /// <summary>
         /// 事件(刷新任务状态)
         /// </summary>
         public  string  taskEvent {get { return m_TaskEvent; } }
@@ -102,11 +119,6 @@ namespace GameWish.Game
         /// 完成条件类型
         /// </summary>
         public  string  conditionType {get { return m_ConditionType; } }
-       
-        /// <summary>
-        /// 任务参数
-        /// </summary>
-        public  string  conditionValue {get { return m_ConditionValue; } }
        
         /// <summary>
         /// 敌人配置
@@ -163,33 +175,39 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 8:
-                    m_Time = dataR.ReadInt();
-                    break;
-                case 9:
-                    m_Reward = dataR.ReadString();
-                    break;
-                case 10:
-                    m_SpecialRewardRate = dataR.ReadInt();
-                    break;
-                case 11:
-                    m_SpecialReward = dataR.ReadString();
-                    break;
-                case 12:
-                    m_TaskEvent = dataR.ReadString();
-                    break;
-                case 13:
-                    m_ConditionType = dataR.ReadString();
-                    break;
-                case 14:
                     m_ConditionValue = dataR.ReadString();
                     break;
+                case 9:
+                    m_Time = dataR.ReadInt();
+                    break;
+                case 10:
+                    m_Reward = dataR.ReadString();
+                    break;
+                case 11:
+                    m_SpecialRewardRate = dataR.ReadInt();
+                    break;
+                case 12:
+                    m_SpecialReward = dataR.ReadString();
+                    break;
+                case 13:
+                    m_ExpReward = dataR.ReadInt();
+                    break;
+                case 14:
+                    m_KongfuExpReward = dataR.ReadInt();
+                    break;
                 case 15:
-                    m_Enemy = dataR.ReadString();
+                    m_TaskEvent = dataR.ReadString();
                     break;
                 case 16:
-                    m_RoleAmount = dataR.ReadInt();
+                    m_ConditionType = dataR.ReadString();
                     break;
                 case 17:
+                    m_Enemy = dataR.ReadString();
+                    break;
+                case 18:
+                    m_RoleAmount = dataR.ReadInt();
+                    break;
+                case 19:
                     m_RoleLevelRequired = dataR.ReadInt();
                     break;
                 default:
@@ -202,7 +220,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(18);
+          Dictionary<string, int> ret = new Dictionary<string, int>(20);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
@@ -212,16 +230,18 @@ namespace GameWish.Game
           ret.Add("TaskTitle", 5);
           ret.Add("TaskDescription", 6);
           ret.Add("Type", 7);
-          ret.Add("Time", 8);
-          ret.Add("Reward", 9);
-          ret.Add("SpecialRewardRate", 10);
-          ret.Add("SpecialReward", 11);
-          ret.Add("TaskEvent", 12);
-          ret.Add("ConditionType", 13);
-          ret.Add("ConditionValue", 14);
-          ret.Add("Enemy", 15);
-          ret.Add("RoleAmount", 16);
-          ret.Add("RoleLevelRequired", 17);
+          ret.Add("ConditionValue", 8);
+          ret.Add("Time", 9);
+          ret.Add("Reward", 10);
+          ret.Add("SpecialRewardRate", 11);
+          ret.Add("SpecialReward", 12);
+          ret.Add("ExpReward", 13);
+          ret.Add("KongfuExpReward", 14);
+          ret.Add("TaskEvent", 15);
+          ret.Add("ConditionType", 16);
+          ret.Add("Enemy", 17);
+          ret.Add("RoleAmount", 18);
+          ret.Add("RoleLevelRequired", 19);
           return ret;
         }
     } 

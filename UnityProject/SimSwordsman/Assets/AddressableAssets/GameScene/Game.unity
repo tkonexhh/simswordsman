@@ -1575,7 +1575,7 @@ SpriteRenderer:
   m_Size: {x: 26.480001, y: 28.572731}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &877241306
@@ -9847,19 +9847,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
-    - target: {fileID: 1803091630, guid: 2cc1584384435c54084b3407590f940f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3532048380828307249, guid: 2cc1584384435c54084b3407590f940f,
         type: 3}
       propertyPath: m_Name
       value: LobbyView
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532048380828307249, guid: 2cc1584384435c54084b3407590f940f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3532048380828307250, guid: 2cc1584384435c54084b3407590f940f,
         type: 3}
@@ -9914,11 +9905,6 @@ PrefabInstance:
     - target: {fileID: 3532048380828307250, guid: 2cc1584384435c54084b3407590f940f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532048380901659061, guid: 2cc1584384435c54084b3407590f940f,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
