@@ -20,7 +20,6 @@ namespace GameWish.Game
 
             InitFacilityList();
 
-            InitPracticeField();
 
             InputMgr.S.AddTouchObserver(this);
         }
@@ -36,6 +35,13 @@ namespace GameWish.Game
             UnregisterEvents();
 
             InputMgr.S.RemoveTouchObserver(this);
+        }
+        #endregion
+
+        #region Public Set
+        public void ExrInitData()
+        {
+            InitPracticeField();
         }
         #endregion
 
@@ -121,7 +127,7 @@ namespace GameWish.Game
                 case FacilityType.LivableRoomWest2:
                 case FacilityType.LivableRoomWest3:
                 case FacilityType.LivableRoomWest4:
-                    facilityLevelInfo = TDFacilityLivableRoomTable.GetLevelInfo((int)facilityType - 1, level);
+                    facilityLevelInfo = TDFacilityLivableRoomTable.GetLevelInfo((int)facilityType, level);
                     break;
                 case FacilityType.Warehouse:
                     facilityLevelInfo = TDFacilityWarehouseTable.GetLevelInfo(level);
@@ -198,6 +204,37 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, i);
                 }
             });
+        }
+
+        /// <summary>
+        /// 获取训练时间
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public int GetDurationForLevel(FacilityType facilityType, int level)
+        {
+            return TDFacilityPracticeFieldTable.GetDurationForLevel(facilityType, level);
+        }
+
+        /// <summary>
+        /// 根据等级获取练功经验
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public int GetExpValue(FacilityType facilityType, int level)
+        {
+            return TDFacilityPracticeFieldTable.GetExpValue(facilityType, level);
+        }
+
+        public void StartCountDown(int second, Action<string> refresAction, Action overAction)
+        {
+            CountDownMgr countDownMgr = new CountDownMgr("PracticeField", second);
+            TimeUpdateMgr.S.AddObserver(countDownMgr);
+            TimeUpdateMgr.S.Start();
+            countDownMgr.OnSecondRefreshEvent = refresAction;
+            countDownMgr.OnCountDownOverEvent = overAction;
         }
 
         #endregion
@@ -387,7 +424,7 @@ namespace GameWish.Game
         public PracticeFieldState PracticeFieldState { set; get; }
 
         public CharacterItem CharacterItem { set; get; }
-        public string PracticeTime { set; get; }
+        public string StartTime { set; get; }
 
         public PracticeField(PracticeFieldLevelInfo item, int index)
         {
@@ -400,7 +437,7 @@ namespace GameWish.Game
             else
                 PracticeFieldState = PracticeFieldState.NotUnlocked;
             CharacterItem = null;
-            PracticeTime = string.Empty;
+            StartTime = string.Empty;
 
             GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
         }
@@ -412,13 +449,67 @@ namespace GameWish.Game
             PracticeFieldState = item.practiceFieldState;
             if (item.characterID != -1)
                 CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(item.characterID);
-            PracticeTime = item.practiceTime;
+            StartTime = item.startTime;
+            if (PracticeFieldState == PracticeFieldState.Practice)
+                InitTimerUpdate();
         }
 
-        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState)
+        private void InitTimerUpdate()
+        {
+            CountDownMgr countDownMgr = new CountDownMgr(FacilityType.ToString() + Index, GetDurationTime());
+            countDownMgr.OnCountDownOverEvent = overAction;
+
+            TimeUpdateMgr.S.AddObserver(countDownMgr);
+        }
+
+        public void overAction()
+        {
+            if (CharacterItem!=null)
+            {
+                AddExperience(CharacterItem);
+                TrainingIsOver();
+                EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
+            }
+        }
+        private void AddExperience(CharacterItem characterItem)
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+            int exp = MainGameMgr.S.FacilityMgr.GetExpValue(FacilityType, level);
+            characterItem.AddExp(exp);
+        }
+        public int GetDurationTime()
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
+            int takeTime = ComputingTime(StartTime);
+            return duration - takeTime;
+        }
+        private int ComputingTime(string time)
+        {
+            DateTime dateTime;
+            DateTime.TryParse(time, out dateTime);
+            if (dateTime != null)
+            {
+                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
+                return (int)timeSpan.TotalSeconds;
+            }
+            return 0;
+        }
+        public void TrainingIsOver()
+        {
+            CharacterItem.SetCharacterStateData(CharacterStateID.Wander);
+            CharacterItem = null;
+            StartTime = string.Empty;
+            PracticeFieldState = PracticeFieldState.Free;
+            GameDataMgr.S.GetClanData().TrainingIsOver(this);
+            EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
+        }
+
+        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState, FacilityType curFacilityType, int curLevel)
         {
 
-            PracticeTime = "2";
+            //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
+            StartTime = DateTime.Now.ToString();
 
             CharacterItem = characterItem;
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(CharacterItem.id);

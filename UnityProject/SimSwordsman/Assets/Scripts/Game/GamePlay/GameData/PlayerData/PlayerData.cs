@@ -21,9 +21,10 @@ namespace GameWish.Game
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();
-        public List<FoodBuff> foodBuffData = new List<FoodBuff>();
 
-        private double m_CoinNum = 0;
+        public List<Countdowner> countdownerData = new List<Countdowner>();
+
+        private long m_CoinNum = 0;
         public int signInCount;
 
         public bool UnlockVisitor;
@@ -48,7 +49,7 @@ namespace GameWish.Game
 
         public void Init()
         {
-            m_CoinNum = double.Parse(coinNumStr);
+            m_CoinNum = long.Parse(coinNumStr);
         }
         public RecruitData GetRecruitData()
         {
@@ -127,7 +128,7 @@ namespace GameWish.Game
         }
         #endregion
 
-        public void SetCoinNum(double num)
+        public void SetCoinNum(long num)
         {
             m_CoinNum = num;
 
@@ -192,7 +193,7 @@ namespace GameWish.Game
             return 0;
         }
 
-        public double GetCoinNum()
+        public long GetCoinNum()
         {
             return m_CoinNum;
         }
@@ -202,21 +203,18 @@ namespace GameWish.Game
             return foodNum;
         }
 
-        public void AddCoinNum(double delta)
+        public void AddCoinNum(long delta)
         {
             //if (m_CoinNum < -delta)
             //{
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
             if (delta> 0)
-                delta = BuffSystem.S.Coin(delta);
-
-            m_CoinNum = m_CoinNum + delta;
+                m_CoinNum = FoodBuffSystem.S.Coin(delta);
 
             if (m_CoinNum < 0)
             {
                 m_CoinNum = 0;
-
             }
 
             coinNumStr = m_CoinNum.ToString();
@@ -226,7 +224,7 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public bool ReduceCoinNum(double delta)
+        public bool ReduceCoinNum(long delta)
         {
             m_CoinNum = m_CoinNum - delta;
             if (m_CoinNum < 0)

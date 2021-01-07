@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
+using System;
 
 namespace GameWish.Game
 {
@@ -30,10 +31,12 @@ namespace GameWish.Game
         public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
 
         private bool m_IsInited = false;
-        
+
         #region IMgr
         public void OnInit()
         {
+         
+
             m_CharacterMgr = gameObject.AddComponent<CharacterMgr>();
             m_CharacterMgr.OnInit();
 
@@ -64,10 +67,16 @@ namespace GameWish.Game
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();
 
+            m_CharacterMgr.ExrInitData();
+
+            m_FacilityMgr.ExrInitData();
+
            
+
 
             m_IsInited = true;
         }
+
 
         public void OnUpdate()
         {
@@ -96,7 +105,7 @@ namespace GameWish.Game
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                CharacterMgr.CharacterControllerList[0].SetState(CharacterStateID.Reading);
+                CharacterMgr.CharacterControllerList[0].SetState(CharacterStateID.Practice);
             }
         }
 

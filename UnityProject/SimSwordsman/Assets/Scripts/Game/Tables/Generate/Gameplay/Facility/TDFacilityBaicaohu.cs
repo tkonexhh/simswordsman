@@ -16,7 +16,7 @@ namespace GameWish.Game
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
-        private string m_UnlockMedicine;  
+        private string m_UnlockHerbID;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -43,7 +43,7 @@ namespace GameWish.Game
         /// <summary>
         /// 解锁药物
         /// </summary>
-        public  string  unlockMedicine {get { return m_UnlockMedicine; } }
+        public  string  unlockHerbID {get { return m_UnlockHerbID; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -73,7 +73,7 @@ namespace GameWish.Game
                     m_UpgradePreconditions = dataR.ReadInt();
                     break;
                 case 4:
-                    m_UnlockMedicine = dataR.ReadString();
+                    m_UnlockHerbID = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -91,7 +91,7 @@ namespace GameWish.Game
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
-          ret.Add("UnlockMedicine", 4);
+          ret.Add("UnlockHerbID", 4);
           return ret;
         }
     } 

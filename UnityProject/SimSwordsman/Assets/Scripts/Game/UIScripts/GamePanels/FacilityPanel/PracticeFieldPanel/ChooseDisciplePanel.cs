@@ -16,6 +16,8 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_Disciple;
 
+        private FacilityType m_CurFacilityType;
+        private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
         private PracticeField m_PracticeFieldInfo = null;
         protected override void OnUIInit()
@@ -29,14 +31,15 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_PracticeFieldInfo = (PracticeField)args[0];
+            m_CurFacilityType = (FacilityType)args[1];
+            m_CurLevel = (int)args[2];
             GetInformationForNeed();
 
             BindAddListenerEvent();
 
             for (int i = 0; i < m_CharacterItem.Count; i++)
             {
-                if (m_CharacterItem[i].characterStateId == CharacterStateID.Wander 
-                    && m_CharacterItem[i].level<Define.CHARACTER_MAX_LEVEL)
+                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level<Define.CHARACTER_MAX_LEVEL)
                     CreateDisciple(m_CharacterItem[i]);
             }
         }
@@ -70,7 +73,7 @@ namespace GameWish.Game
         private void AddListenerBtn(object obj)
         {
             CharacterItem characterItem = obj as CharacterItem;
-            m_PracticeFieldInfo.SetCharacterItem(characterItem, PracticeFieldState.Practice);
+            m_PracticeFieldInfo.SetCharacterItem(characterItem, PracticeFieldState.Practice, m_CurFacilityType, m_CurLevel);
             EventSystem.S.Send(EventID.OnSelectDisciple, m_PracticeFieldInfo);
             OnPanelHideComplete();
         }
