@@ -17,14 +17,12 @@ namespace GameWish.Game
 
         private Vector3 m_CharacterSpawnPos = new Vector3(-5.5f, -4.2f, 0);
 
-        public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList;}
-            
+        public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
+
         #region IMgr
         public void OnInit()
         {
             RegisterEvents();
-
-            InitData();
         }
 
         public void OnUpdate()
@@ -71,7 +69,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool CheckForDuplicateNames(string name)
         {
-            return m_CharacterDataWrapper.characterList.Any(i=>i.name.Equals(name));
+            return m_CharacterDataWrapper.characterList.Any(i => i.name.Equals(name));
         }
         /// <summary>
         /// 获取当前最大id
@@ -85,9 +83,18 @@ namespace GameWish.Game
             {
                 int curId = item.id;
                 return ++curId;
-            }   
+            }
             return 0;
         }
+        /// <summary>
+        /// 获取当前角色升级经验
+        /// </summary>
+        /// <param name="character"></param>
+        public int GetExpLevelUpNeed(CharacterItem character)
+        {
+            return TDCharacterStageConfigTable.GetExpLevelUpNeed(character);
+        }
+
 
         /// <summary>
         /// 增加弟子
@@ -170,11 +177,9 @@ namespace GameWish.Game
             m_CharacterDataWrapper.AddCharacter(id, quality);
         }
 
-        public void InitData()
+        public void ExrInitData()
         {
-            m_CharacterDataWrapper.Wrap(GameDataMgr.S.GetClanData().ownedCharacterData);
-
-            InitCharacters();
+            InitData();
         }
 
         /// <summary>
@@ -197,18 +202,12 @@ namespace GameWish.Game
             string prefabName = GetPrefabName(id);
             GameObject prefab = Resources.Load(prefabName) as GameObject;
             GameObject obj = GameObject.Instantiate(prefab);
+            Vector3 spawnPos = GetSpawnPos(initState);
+            obj.transform.position = spawnPos;
 
             CharacterView characterView = obj.GetComponent<CharacterView>();
             CharacterController controller = new CharacterController(id, characterView, initState);
             m_CharacterControllerList.Add(controller);
-
-            if (initState == CharacterStateID.None)
-            {
-                controller.SetState(CharacterStateID.EnterClan);
-            }
-
-            Vector3 spawnPos = GetSpawnPos(controller.CurState);
-            obj.transform.position = spawnPos;
         }
 
         /// <summary>
@@ -232,6 +231,13 @@ namespace GameWish.Game
         #endregion
 
         #region Private Methods
+
+        public void InitData()
+        {
+            m_CharacterDataWrapper.Wrap(GameDataMgr.S.GetClanData().ownedCharacterData);
+
+            InitCharacters();
+        }
 
         private void InitCharacters()
         {

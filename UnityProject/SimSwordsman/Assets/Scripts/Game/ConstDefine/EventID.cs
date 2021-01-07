@@ -23,9 +23,15 @@ namespace GameWish.Game
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,
-        OnFoodBuffInterval,//伙房食物增益消失倒计时
+
+        OnFoodBuffTick,//伙房食物增益消失倒计时
         OnFoodBuffEnd,//伙房食物增益结束
         OnFoodBuffStart,//伙房食物增益开始
+        OnFoodBuffInterval,//伙房食物增益开始
+
+        OnCountdownerStart,
+        OnCountdownerTick,
+        OnCountdownerEnd,
 
         // Facility
         OnStartUnlockFacility,
@@ -44,10 +50,16 @@ namespace GameWish.Game
         /// 选择弟子
         /// </summary>
         OnSelectDisciple,
+        OnDisciplePracticeOver,
         /// <summary>
         /// 刷新坑位解锁信息
         /// </summary>
         OnRefreshPracticeUnlock,
+        /// <summary>
+        /// 练功场倒计时刷新
+        /// </summary>
+        OnPracticeFieldTimeRefresh,
+
 
         //Battle
         OnEnterBattle,

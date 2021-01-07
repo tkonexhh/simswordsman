@@ -17,11 +17,8 @@ namespace GameWish.Game
             FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
             PracticeFieldLevelInfo practiceFieldLevelInfo = new PracticeFieldLevelInfo();
             practiceFieldLevelInfo.Warp(levelInfo);
-            practiceFieldLevelInfo.SetCurCapatity(tdData.capability);
-            practiceFieldLevelInfo.SetCurLevelUpSpeed(tdData.levelUpSpeed);
-            practiceFieldLevelInfo.SetHouseID((FacilityType)tdData.houseId);
+            practiceFieldLevelInfo.SetCurData(tdData);
             levelInfoList.Add(practiceFieldLevelInfo);
-
         }
         public static List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList()
         {
@@ -30,7 +27,7 @@ namespace GameWish.Game
         public static List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
         {
             List<PracticeFieldLevelInfo> levelInfo = new List<PracticeFieldLevelInfo>();
-            levelInfoList.ForEach(i=> {
+            levelInfoList.ForEach(i => {
                 if (i.GetHouseID() == facilityType)
                     levelInfo.Add(i);
             });
@@ -45,6 +42,11 @@ namespace GameWish.Game
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
         private static FacilityLevelInfo PassLevelInfo(int level)
         {
             FacilityLevelInfo levelInfo = null;
@@ -57,6 +59,34 @@ namespace GameWish.Game
             }
 
             return levelInfo;
+        }
+
+        /// <summary>
+        /// 根据等级获取练功时间
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static int GetDurationForLevel(FacilityType facilityType, int level)
+        {
+            PracticeFieldLevelInfo levelInfo = levelInfoList.Where(i => i.GetHouseID() == facilityType && i.level == level).FirstOrDefault();
+            if (levelInfo != null)
+                return levelInfo.GetDuration();
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据等级获取练功经验
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static int GetExpValue(FacilityType facilityType, int level)
+        {
+            PracticeFieldLevelInfo levelInfo = levelInfoList.Where(i => i.GetHouseID() == facilityType && i.level == level).FirstOrDefault();
+            if (levelInfo != null)
+                return levelInfo.GetCurLevelUpSpeed();
+            return 0;
         }
     }
 }

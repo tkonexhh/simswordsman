@@ -12,7 +12,7 @@ namespace GameWish.Game
     {
         [SerializeField]
         private Text m_KitchenContTxt;
-       
+
         [SerializeField]
         private Text m_CurLevelTxt;
         [SerializeField]
@@ -54,13 +54,13 @@ namespace GameWish.Game
 
         private List<FoodItem> m_FoodItems = new List<FoodItem>();
 
-        protected override void OnUIInit() 
+        protected override void OnUIInit()
         {
             base.OnUIInit();
 
             BindAddListenerEvent();
         }
-        
+
         private void GetInformationForNeed()
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
@@ -111,7 +111,7 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
 
-            EventSystem.S.Register(EventID.OnFoodBuffInterval, OnFoodBuffInterval);
+            EventSystem.S.Register(EventID.OnFoodBuffTick, OnFoodBuffInterval);
             EventSystem.S.Register(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
             EventSystem.S.Register(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }
@@ -174,7 +174,7 @@ namespace GameWish.Game
                     return;
                 }
                 //ÅÐ¶ÏÍ­Ç®
-                double coins = double.Parse(m_UpgradeRequiredCoinTxt.text);
+                long coins = m_CurKitchLevelInfo.upgradeCoinCost;
                 if (GameDataMgr.S.GetPlayerData().GetCoinNum() < coins)
                 {
                     UIMgr.S.OpenPanel(UIID.LogPanel, "ÌáÊ¾", "Í­Ç®²»×ã£¡");
@@ -189,7 +189,7 @@ namespace GameWish.Game
                 int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
                 if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                     GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
-               
+
                 RefreshPanelText();
             });
         }
@@ -199,7 +199,7 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseSelfPanel();
 
-            EventSystem.S.UnRegister(EventID.OnFoodBuffInterval, OnFoodBuffInterval);
+            EventSystem.S.UnRegister(EventID.OnFoodBuffTick, OnFoodBuffInterval);
             EventSystem.S.UnRegister(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
             EventSystem.S.UnRegister(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }

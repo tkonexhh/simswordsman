@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class PracticeFieldData 
+	public class PracticeFieldData
 	{
 
 		public List<PracticeFieldDBData> practiceFieldDBDatas = new List<PracticeFieldDBData>();
@@ -20,7 +20,7 @@ namespace GameWish.Game
 		public void AddPracticeFieldData(PracticeField practiceField)
 		{
 			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
-            if (practiceFieldDB==null)
+			if (practiceFieldDB == null)
 				practiceFieldDBDatas.Add(new PracticeFieldDBData(practiceField));
 		}
 
@@ -37,6 +37,13 @@ namespace GameWish.Game
 			if (practiceFieldDB != null)
 				practiceFieldDB.RefresDBData(practiceField);
 		}
+
+		public void TrainingIsOver(PracticeField practiceField)
+		{
+			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
+			if (practiceFieldDB != null)
+				practiceFieldDB.TrainingIsOver();
+		}
 	}
 
 
@@ -47,10 +54,10 @@ namespace GameWish.Game
 		public int pitPositionID;
 		public int characterID = -1;
 		public int unlockLevel = -1;
-		public string practiceTime;
+		public string startTime;
 
 		public PracticeFieldDBData() { }
-		public PracticeFieldDBData(PracticeField practiceField) 
+		public PracticeFieldDBData(PracticeField practiceField)
 		{
 			RefresDBData(practiceField);
 		}
@@ -63,7 +70,14 @@ namespace GameWish.Game
 			pitPositionID = practiceField.Index;
 			if (practiceField.CharacterItem != null)
 				characterID = practiceField.CharacterItem.id;
-			practiceTime = practiceField.PracticeTime;
+			startTime = practiceField.StartTime;
+		}
+
+		public void TrainingIsOver()
+		{
+			startTime = string.Empty;
+			characterID = -1;
+			practiceFieldState = PracticeFieldState.Free;
 		}
 	}
 }

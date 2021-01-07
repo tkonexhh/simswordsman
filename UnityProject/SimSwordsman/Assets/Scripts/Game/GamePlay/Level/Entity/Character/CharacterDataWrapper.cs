@@ -124,22 +124,22 @@ namespace GameWish.Game
     {
         public int Index { set; get; }
         public KungfuLockState KungfuLockState { set; get; } = KungfuLockState.NotUnlocked;
-        public CharacterKongfu CharacterKongfu { set; get; } 
+        public CharacterKongfu CharacterKongfu { set; get; }
 
         public CharacterKongfuData(int index)
         {
             Index = index;
         }
 
-        public CharacterKongfuData(){}
+        public CharacterKongfuData() { }
 
         internal void Wrap(CharacterKongfuDBData i)
         {
             Index = i.index;
             KungfuLockState = i.kungfuLockState;
-            if (KungfuLockState== KungfuLockState.Learned&&CharacterKongfu == null)
+            if (KungfuLockState == KungfuLockState.Learned && CharacterKongfu == null)
             {
-                 CharacterKongfu = new CharacterKongfu();
+                CharacterKongfu = new CharacterKongfu();
                 CharacterKongfu.Wrap(i);
             }
         }
@@ -191,7 +191,7 @@ namespace GameWish.Game
         public CharacterItem()
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
-                kongfus.Add(i+1, new CharacterKongfuData(i+1));
+                kongfus.Add(i + 1, new CharacterKongfuData(i + 1));
         }
 
         public CharacterItem(int id)
@@ -226,7 +226,8 @@ namespace GameWish.Game
             stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
-            characterStateId = itemDbData.characterStateId;
+
+            this.characterStateId = itemDbData.characterStateId;
 
             atkValue = TDCharacterStageConfigTable.GetAtk(quality, stage, level);
 
@@ -240,6 +241,13 @@ namespace GameWish.Game
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
             stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
+        }
+
+        public bool IsFreeState()
+        {
+            if (characterStateId == CharacterStateID.Wander || characterStateId == CharacterStateID.EnterClan)
+                return true;
+            return false;
         }
 
         public void UpgradeLevels(int delta)
@@ -285,9 +293,9 @@ namespace GameWish.Game
         public int GetEntryTime()
         {
             //startTime = "2020/12/27 16:22:50";
-            DateTime dateTime ;
+            DateTime dateTime;
             DateTime.TryParse(startTime, out dateTime);
-            if (dateTime!=null)
+            if (dateTime != null)
             {
                 TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
                 return (int)timeSpan.TotalDays;
@@ -299,7 +307,7 @@ namespace GameWish.Game
         {
             foreach (var item in kongfus.Values)
             {
-                if(item.KungfuLockState == KungfuLockState.Learned)
+                if (item.KungfuLockState == KungfuLockState.Learned)
                 {
                     if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
                         break;
@@ -314,10 +322,27 @@ namespace GameWish.Game
             }
         }
 
+
+
+        /// <summary>
+        /// 增加经验
+        /// </summary>
+        /// <param name="deltaExp"></param>
         public void AddExp(int deltaExp)
         {
             curExp += deltaExp;
 
+            while (true)
+            {
+                int upExp = MainGameMgr.S.CharacterMgr.GetExpLevelUpNeed(this);
+                if (curExp > upExp)
+                {
+                    UpgradeLevels(1);
+                    curExp -= upExp;
+                }
+                else
+                    break;
+            }
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 
@@ -364,6 +389,11 @@ namespace GameWish.Game
             //}
 
             return ratio;
+        }
+
+        public int GetCurTaskId()
+        {
+            return m_ItemDbData.taskId;
         }
 
         public int CompareTo(object obj)
