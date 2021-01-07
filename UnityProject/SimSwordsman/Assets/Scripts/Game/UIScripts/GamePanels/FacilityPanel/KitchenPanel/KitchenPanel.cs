@@ -12,7 +12,7 @@ namespace GameWish.Game
     {
         [SerializeField]
         private Text m_KitchenContTxt;
-
+       
         [SerializeField]
         private Text m_CurLevelTxt;
         [SerializeField]
@@ -54,13 +54,13 @@ namespace GameWish.Game
 
         private List<FoodItem> m_FoodItems = new List<FoodItem>();
 
-        protected override void OnUIInit()
+        protected override void OnUIInit() 
         {
             base.OnUIInit();
 
             BindAddListenerEvent();
         }
-
+        
         private void GetInformationForNeed()
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
@@ -189,7 +189,7 @@ namespace GameWish.Game
                 int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
                 if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                     GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
-
+               
                 RefreshPanelText();
             });
         }

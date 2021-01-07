@@ -72,6 +72,11 @@ namespace GameWish.Game
             m_CharacterItem.AddExp(deltaExp);
         }
 
+        public int GetCurTaskId()
+        {
+            return m_CharacterItem.GetCurTaskId();
+        }
+
         public int GetExpLevelUpNeed()
         {
             return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem);

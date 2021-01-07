@@ -124,22 +124,22 @@ namespace GameWish.Game
     {
         public int Index { set; get; }
         public KungfuLockState KungfuLockState { set; get; } = KungfuLockState.NotUnlocked;
-        public CharacterKongfu CharacterKongfu { set; get; }
+        public CharacterKongfu CharacterKongfu { set; get; } 
 
         public CharacterKongfuData(int index)
         {
             Index = index;
         }
 
-        public CharacterKongfuData() { }
+        public CharacterKongfuData(){}
 
         internal void Wrap(CharacterKongfuDBData i)
         {
             Index = i.index;
             KungfuLockState = i.kungfuLockState;
-            if (KungfuLockState == KungfuLockState.Learned && CharacterKongfu == null)
+            if (KungfuLockState== KungfuLockState.Learned&&CharacterKongfu == null)
             {
-                CharacterKongfu = new CharacterKongfu();
+                 CharacterKongfu = new CharacterKongfu();
                 CharacterKongfu.Wrap(i);
             }
         }
@@ -293,9 +293,9 @@ namespace GameWish.Game
         public int GetEntryTime()
         {
             //startTime = "2020/12/27 16:22:50";
-            DateTime dateTime;
+            DateTime dateTime ;
             DateTime.TryParse(startTime, out dateTime);
-            if (dateTime != null)
+            if (dateTime!=null)
             {
                 TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
                 return (int)timeSpan.TotalDays;
@@ -307,7 +307,7 @@ namespace GameWish.Game
         {
             foreach (var item in kongfus.Values)
             {
-                if (item.KungfuLockState == KungfuLockState.Learned)
+                if(item.KungfuLockState == KungfuLockState.Learned)
                 {
                     if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
                         break;
@@ -322,7 +322,7 @@ namespace GameWish.Game
             }
         }
 
-
+   
 
         /// <summary>
         /// 增加经验

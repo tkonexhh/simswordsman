@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public class ChooseDisciplePanel : AbstractAnimPanel
-    {
+	public class ChooseDisciplePanel : AbstractAnimPanel
+	{
         [SerializeField]
         private Button m_CloseBtn;
         [SerializeField]
@@ -23,7 +23,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
+           
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -39,7 +39,7 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_CharacterItem.Count; i++)
             {
-                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level < Define.CHARACTER_MAX_LEVEL)
+                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level<Define.CHARACTER_MAX_LEVEL)
                     CreateDisciple(m_CharacterItem[i]);
             }
         }

@@ -27,7 +27,7 @@ namespace GameWish.Game
         public static List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
         {
             List<PracticeFieldLevelInfo> levelInfo = new List<PracticeFieldLevelInfo>();
-            levelInfoList.ForEach(i => {
+            levelInfoList.ForEach(i=> {
                 if (i.GetHouseID() == facilityType)
                     levelInfo.Add(i);
             });
@@ -67,10 +67,10 @@ namespace GameWish.Game
         /// <param name="facilityType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static int GetDurationForLevel(FacilityType facilityType, int level)
+        public static int GetDurationForLevel(FacilityType facilityType,int level)
         {
             PracticeFieldLevelInfo levelInfo = levelInfoList.Where(i => i.GetHouseID() == facilityType && i.level == level).FirstOrDefault();
-            if (levelInfo != null)
+            if (levelInfo!=null)
                 return levelInfo.GetDuration();
             return 0;
         }

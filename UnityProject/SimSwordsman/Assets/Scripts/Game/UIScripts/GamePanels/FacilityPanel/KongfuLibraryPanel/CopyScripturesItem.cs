@@ -11,12 +11,13 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CopyScripturesPos;
         [SerializeField]
-        private Text m_CopyScripturesDesc;
+        private Text m_Time;
         [SerializeField]
-        private Text m_CopyScripturesTime;
+        private Text m_CurCopyScriptures;
         [SerializeField]
         private Image m_DiscipleImg;
-
+        [SerializeField]
+        private Button m_CopyScripturesBtn;
 
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)

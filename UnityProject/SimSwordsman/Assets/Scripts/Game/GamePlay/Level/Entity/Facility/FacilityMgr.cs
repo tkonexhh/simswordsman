@@ -464,7 +464,7 @@ namespace GameWish.Game
 
         public void overAction()
         {
-            if (CharacterItem != null)
+            if (CharacterItem!=null)
             {
                 AddExperience(CharacterItem);
                 TrainingIsOver();

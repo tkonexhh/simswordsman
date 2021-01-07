@@ -13,7 +13,7 @@ namespace GameWish.Game
 
         public string TaskStartTime { get => m_TaskStartTime;}
 
-        public SimGameTask(int taskId, string tableName,TaskState taskState, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
+        public SimGameTask(int taskId, string tableName,TaskState taskState, int taskTime, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
         {
             ///m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType, taskState);
             m_TaskDetailInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
@@ -21,7 +21,9 @@ namespace GameWish.Game
             {
                 Debug.LogError("Task info not found, id: " + taskId);
             }
+
             m_TaskDetailInfo.taskState = taskState;
+            m_TaskDetailInfo.taskTime = taskTime;
         }
 
         public TaskState GetCurTaskState()

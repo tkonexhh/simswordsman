@@ -75,7 +75,7 @@ namespace GameWish.Game
                         if (m_LivableRoomLevelInfo.GetUpgradeCondition() > lobbyLevel)
                             return;
 
-                        bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(double.Parse(m_UpgradeResourcesValue.text));
+                        bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(long.Parse(m_UpgradeResourcesValue.text));
 
                         if (isReduceSuccess)
                         {

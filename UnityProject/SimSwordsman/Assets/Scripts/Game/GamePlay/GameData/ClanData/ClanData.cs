@@ -15,7 +15,7 @@ namespace GameWish.Game
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
         public KongfuData kongfuData = new KongfuData();
-
+        
 
 
         public void SetDefaultValue()
@@ -27,7 +27,7 @@ namespace GameWish.Game
 
         public void Init()
         {
-
+           
         }
 
 
@@ -139,7 +139,7 @@ namespace GameWish.Game
 
         #region Character
 
-        public void AddEquipment(int characterID, CharaceterEquipment characeterEquipment)
+        public void AddEquipment(int characterID,CharaceterEquipment characeterEquipment)
         {
             ownedCharacterData.AddEquipment(characterID, characeterEquipment);
 

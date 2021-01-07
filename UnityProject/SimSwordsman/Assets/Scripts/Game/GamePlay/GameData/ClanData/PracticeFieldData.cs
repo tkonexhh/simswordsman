@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class PracticeFieldData
+	public class PracticeFieldData 
 	{
 
 		public List<PracticeFieldDBData> practiceFieldDBDatas = new List<PracticeFieldDBData>();
@@ -20,7 +20,7 @@ namespace GameWish.Game
 		public void AddPracticeFieldData(PracticeField practiceField)
 		{
 			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
-			if (practiceFieldDB == null)
+            if (practiceFieldDB==null)
 				practiceFieldDBDatas.Add(new PracticeFieldDBData(practiceField));
 		}
 
@@ -57,7 +57,7 @@ namespace GameWish.Game
 		public string startTime;
 
 		public PracticeFieldDBData() { }
-		public PracticeFieldDBData(PracticeField practiceField)
+		public PracticeFieldDBData(PracticeField practiceField) 
 		{
 			RefresDBData(practiceField);
 		}

@@ -26,7 +26,7 @@ namespace GameWish.Game
             {
                 Log.w("This time observer has been added before");
             }
-            if (!m_IsStart && m_Observers.Count > 0)
+            if (!m_IsStart && m_Observers.Count>0)
                 Start();
         }
 
@@ -38,7 +38,7 @@ namespace GameWish.Game
         public CountDownMgr IsHavaITimeObserver(string ob)
         {
             CountDownMgr countDownMgr = null;
-            m_Observers.ForEach(i => {
+            m_Observers.ForEach(i=> {
                 CountDownMgr temp = (CountDownMgr)i;
                 if (temp != null && temp.GetID() == ob)
                     countDownMgr = temp;

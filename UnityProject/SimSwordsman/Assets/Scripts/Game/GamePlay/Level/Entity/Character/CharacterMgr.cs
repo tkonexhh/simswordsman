@@ -232,7 +232,7 @@ namespace GameWish.Game
 
         #region Private Methods
 
-        public void InitData()
+        private void InitData()
         {
             m_CharacterDataWrapper.Wrap(GameDataMgr.S.GetClanData().ownedCharacterData);
 

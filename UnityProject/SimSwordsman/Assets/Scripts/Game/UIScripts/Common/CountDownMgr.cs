@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class CountDownMgr : ITimeObserver
-    {
+	public class CountDownMgr : ITimeObserver
+	{
         private string m_CountDownID;
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace GameWish.Game
         public Action OnCountDownOverEvent;
 
         public CountDownMgr() { }
-        public CountDownMgr(string _name, int tickCount, int interval = 1)
+        public CountDownMgr(string _name,int tickCount,int interval = 1)
         {
             m_CountDownID = _name;
             m_TickCount = tickCount;
@@ -38,7 +38,7 @@ namespace GameWish.Game
 
         private void RefresCountDown(int m_TickCount)
         {
-            if (m_TickCount <= 0)
+            if (m_TickCount<=0)
             {
                 OnCountDownOverEvent?.Invoke();
                 TimeUpdateMgr.S.AddFinishedObservers(this);
@@ -58,7 +58,7 @@ namespace GameWish.Game
         {
             return m_CountDownID;
         }
-
+    
         /// <summary>
         /// 拼接00：00：00格式
         /// </summary>
@@ -121,10 +121,10 @@ namespace GameWish.Game
 
         public void OnStart()
         {
-            Debug.Log(m_CountDownID + "倒计时开始了");
+            Debug.Log(m_CountDownID+"倒计时开始了");
         }
 
-
+       
 
         public bool ShouldRemoveWhenMapChanged()
         {
