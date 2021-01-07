@@ -14,7 +14,10 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Name;   
+        private string m_IconName;   
         private string m_Desc;   
+        private string m_MakeRes;   
+        private EInt m_MakeTime = 0;   
         private string m_EffectDesc;   
         private EInt m_EffectParam = 0;  
         
@@ -31,9 +34,24 @@ namespace GameWish.Game
         public  string  name {get { return m_Name; } }
        
         /// <summary>
+        /// icon名
+        /// </summary>
+        public  string  iconName {get { return m_IconName; } }
+       
+        /// <summary>
         /// 药物描述
         /// </summary>
         public  string  desc {get { return m_Desc; } }
+       
+        /// <summary>
+        /// 制作材料
+        /// </summary>
+        public  string  makeRes {get { return m_MakeRes; } }
+       
+        /// <summary>
+        /// 制作时长(分钟)
+        /// </summary>
+        public  int  makeTime {get { return m_MakeTime; } }
        
         /// <summary>
         /// 效果描述
@@ -67,12 +85,21 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_Desc = dataR.ReadString();
+                    m_IconName = dataR.ReadString();
                     break;
                 case 3:
-                    m_EffectDesc = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 4:
+                    m_MakeRes = dataR.ReadString();
+                    break;
+                case 5:
+                    m_MakeTime = dataR.ReadInt();
+                    break;
+                case 6:
+                    m_EffectDesc = dataR.ReadString();
+                    break;
+                case 7:
                     m_EffectParam = dataR.ReadInt();
                     break;
                 default:
@@ -85,13 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
-          ret.Add("Desc", 2);
-          ret.Add("EffectDesc", 3);
-          ret.Add("EffectParam", 4);
+          ret.Add("IconName", 2);
+          ret.Add("Desc", 3);
+          ret.Add("MakeRes", 4);
+          ret.Add("MakeTime", 5);
+          ret.Add("EffectDesc", 6);
+          ret.Add("EffectParam", 7);
           return ret;
         }
     } 
