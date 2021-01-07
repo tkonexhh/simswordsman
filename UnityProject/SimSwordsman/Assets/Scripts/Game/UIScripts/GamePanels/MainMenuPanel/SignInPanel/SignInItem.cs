@@ -38,7 +38,7 @@ namespace GameWish.Game
             FindChildObject(trans);
 
             m_ID = id;
-            m_DayText.text = string.Format("第{0}天", id);
+            m_DayText.text = string.Format("第{0}天", id + 1);
             RewardCfg = signConfig;
             
             SetCount(signConfig.Count);
