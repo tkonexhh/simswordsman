@@ -202,12 +202,20 @@ namespace GameWish.Game
             string prefabName = GetPrefabName(id);
             GameObject prefab = Resources.Load(prefabName) as GameObject;
             GameObject obj = GameObject.Instantiate(prefab);
-            Vector3 spawnPos = GetSpawnPos(initState);
-            obj.transform.position = spawnPos;
+            //Vector3 spawnPos = GetSpawnPos(initState); 
+            //obj.transform.position = spawnPos;
 
             CharacterView characterView = obj.GetComponent<CharacterView>();
             CharacterController controller = new CharacterController(id, characterView, initState);
             m_CharacterControllerList.Add(controller);
+
+            if (initState == CharacterStateID.None)
+            {
+                controller.SetState(CharacterStateID.EnterClan);
+            }
+
+            Vector3 spawnPos = GetSpawnPos(controller.CurState);
+            obj.transform.position = spawnPos;
         }
 
         /// <summary>
