@@ -9,10 +9,10 @@ namespace GameWish.Game
     public enum MedicinalPowderType
 	{
         None,
-        Med1,
-        Med2,
-        Med3,
-        Med4,
+        ChiDanZhuangQiWan = 101,
+        LianHuaQingShenLu,
+        HuanHunDan,
+        JingZhenQingSheSan,
     }
 	
 }

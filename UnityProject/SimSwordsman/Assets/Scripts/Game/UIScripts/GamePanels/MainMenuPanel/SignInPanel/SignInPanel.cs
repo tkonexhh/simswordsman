@@ -9,7 +9,7 @@ namespace GameWish.Game
 	public class SignInPanel : AbstractAnimPanel
 	{
         private Dictionary<int, SignInItem> m_SignItemDic = new Dictionary<int, SignInItem>();
-        private Sprite[] m_NumberSprite = null;
+        //private Sprite[] m_NumberSprite = null;
         private Action m_GetRewardPanelCallBack;
 
         [SerializeField] private Color m_BlurMaskColor;
@@ -38,7 +38,7 @@ namespace GameWish.Game
             base.OnPanelOpen();
 
             InitSignItem();
-            SignSystem.S.weekSignState.Check();
+            SignSystemMgr.S.weekSignState.Check();
 
             //UIMgr.S.OpenPanel(UIID.BlurMaskPanel);
 
@@ -126,22 +126,19 @@ namespace GameWish.Game
 
             for (int i = 0; i < TDDailySigninTable.dataList.Count; i++)
             {
+                int id = i;
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
-                SignInItem item = new SignInItem(config.id, m_SignItemTrans[i], reward);
-                //Debug.LogError(config.rewardParam);
-                //string spriteName = "SignPanel_" + item.SignConfig.RewardParameter;
+                SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
                 item.SetIconSprite(reward.GetSprite());
-                m_SignItemDic.Add(config.id, item);
+                m_SignItemDic.Add(id, item);
             }
-
             EventSystem.S.Register(EngineEventID.OnSignStateChange, OnSignStateChange);
-            UpdateSignItemStatus();
         }
 
         private void SignItemCallBack(int id)
         {
-            if (SignSystem.S.weekSignState.isSignAble)
+            if (SignSystemMgr.S.weekSignState.isSignAble)
             {
                 SignSuccess(id);
                 //GameplayMgr.S.CheckIsFirstSign();
@@ -162,7 +159,7 @@ namespace GameWish.Game
         {
             EventSystem.S.Send(EventID.OnSignSuccess);
 
-            SignSystem.S.weekSignState.Sign();
+            SignSystemMgr.S.weekSignState.Sign();
             SignInItem item = m_SignItemDic[id];
 
             item.RewardCfg.AcceptReward();
@@ -196,11 +193,11 @@ namespace GameWish.Game
         /// </summary>
         private void UpdateSignItemStatus()
         {
-            int lastSignIndex = SignSystem.S.weekSignState.lastSignIndex;
-            int ableSignIndex = SignSystem.S.weekSignState.signAbleIndex;
+            int lastSignIndex = SignSystemMgr.S.weekSignState.lastSignIndex;
+            int ableSignIndex = SignSystemMgr.S.weekSignState.signAbleIndex;
 
 
-            if (SignSystem.S.weekSignState.isSignAble)
+            if (SignSystemMgr.S.weekSignState.isSignAble)
             {
                 //SetSignDayNum(ableSignIndex);
                 foreach (var item in m_SignItemDic)

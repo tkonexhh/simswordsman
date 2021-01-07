@@ -21,7 +21,6 @@ namespace GameWish.Game
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();
-        public List<FoodBuff> foodBuffData = new List<FoodBuff>();
 
         public List<Countdowner> countdownerData = new List<Countdowner>();
 
