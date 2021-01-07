@@ -12,6 +12,7 @@ namespace GameWish.Game
     {
         private List<FacilityController> m_FacilityList = new List<FacilityController>();
         private List<PracticeField> m_PracticeField = new List<PracticeField>();
+        private IFacilityClickedHandler m_ClickHandler = null;
 
         #region IMgr
         public void OnInit()
@@ -69,20 +70,27 @@ namespace GameWish.Game
             if (gesture.IsOverUIElement())
                 return;
 
-
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << 11);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
-                if (handler != null)
-                {
-                    handler.OnClicked();
-                }
+                m_ClickHandler = hit.collider.GetComponent<IFacilityClickedHandler>();                
             }
         }
 
         public void On_TouchUp(Gesture gesture)
         {
+            if (gesture.IsOverUIElement())
+                return;
+
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
+            if (hit.collider != null)
+            {
+                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                if (handler != null && m_ClickHandler == handler)
+                {
+                    handler.OnClicked();
+                }
+            }
         }
 
         #endregion
