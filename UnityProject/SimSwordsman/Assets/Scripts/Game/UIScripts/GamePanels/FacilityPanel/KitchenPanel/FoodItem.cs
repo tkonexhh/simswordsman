@@ -97,6 +97,8 @@ namespace GameWish.Game
             }
             else
             {
+                transform.SetAsFirstSibling();
+
                 TDFoodConfig tb = TDFoodConfigTable.GetData(id);
                 m_FoodImg.sprite = Resources.Load<Sprite>("Sprites/Facility/Kitchen/" + tb.spriteName);
                 m_FoodNameTxt.text = tb.name;

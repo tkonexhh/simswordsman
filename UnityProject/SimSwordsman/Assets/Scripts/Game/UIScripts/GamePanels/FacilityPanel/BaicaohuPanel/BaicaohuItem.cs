@@ -88,6 +88,8 @@ namespace GameWish.Game
             }
             else
             {
+                transform.SetAsFirstSibling();
+
                 var tb = TDHerbConfigTable.GetData(id);
                 m_ItemIcon.sprite = Resources.Load<Sprite>("Sprites/HerbIcon/" + tb.iconName);
                 m_NameTxt.text = tb.name;
