@@ -292,7 +292,7 @@ namespace GameWish.Game
 
     public class ArmorItem : ItemBase
     {
-        public Armor ArmorID { set; get; }
+        public ArmorType ArmorID { set; get; }
         public Step ClassID { set; get; }
         public ArmorItem()
         {
@@ -303,7 +303,7 @@ namespace GameWish.Game
             ArmorID = armorItem.ArmorID;
             ClassID = armorItem.ClassID;
         }
-        public ArmorItem(Armor armor, Step step) 
+        public ArmorItem(ArmorType armor, Step step) 
         {
             PropType = PropType.Armor;
             Number = 0;
@@ -313,10 +313,10 @@ namespace GameWish.Game
         }
         public override void RefreshItemInfo()
         {
-            Equipment equipment = TDArmorConfigTable.GetEquipmentInfo(ArmorID);
+            Equipment equipment = TDEquipmentConfigTable.GetEquipmentInfo(ArmorID);
             Name = equipment.Name;
             Desc = equipment.Desc;
-            Price = TDArmorConfigTable.GetSellingPrice(ArmorID, ClassID);
+            Price = TDEquipmentConfigTable.GetSellingPrice(ArmorID, ClassID);
         }
 
         public override bool IsHaveItem(ItemBase _itemBase)
@@ -344,7 +344,7 @@ namespace GameWish.Game
     }
     public class ArmsItem : ItemBase
     {
-        public Arms ArmsID { set; get; }
+        public ArmsType ArmsID { set; get; }
         public Step ClassID { set; get; }
         public ArmsItem() 
         {
@@ -357,7 +357,7 @@ namespace GameWish.Game
             ClassID = armsItem.ClassID;
         }
 
-        public ArmsItem(Arms arms, Step step)
+        public ArmsItem(ArmsType arms, Step step)
         {
             ArmsID = arms;
             ClassID = step;
@@ -387,10 +387,10 @@ namespace GameWish.Game
         public override void RefreshItemInfo()
         {
             
-            Equipment equipment = TDArmsConfigTable.GetEquipmentInfo(ArmsID);
+            Equipment equipment = TDEquipmentConfigTable.GetEquipmentInfo(ArmsID);
             Name = equipment.Name;
             Desc = equipment.Desc;
-            Price = TDArmsConfigTable.GetSellingPrice(ArmsID, ClassID);
+            Price = TDEquipmentConfigTable.GetSellingPrice(ArmsID, ClassID);
         }
 
         public override int GetSortId()

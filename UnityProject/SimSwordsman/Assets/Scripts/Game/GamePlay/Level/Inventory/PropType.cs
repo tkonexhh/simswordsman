@@ -70,18 +70,21 @@ namespace GameWish.Game
 
     }
 
-    public enum Armor
+    public enum ArmorType
     {
         None = 0,
-        BrightLightArmor                 = 1,         //Ã÷¹âîø      
-        SteelArmour                      = 2,         //¸ÖÌúÕ½¼×      
+        ZiTenJia = 501,  //×ÏÌÙ¼×
+        YinYeJia,        //ÒøÒ¶¼×
+        RuanWeiJia,      //Èíâ¬¼×
     }
 
-    public enum Arms
+    public enum ArmsType
     {
-        None                             = 0,
-        DragonCarvingKnife               = 1,         //ÍÀÁúµ¶      
-        HeavenReliantSword               = 2,         //ÒĞÌì½£      
+        None = 0,
+        ShaZhuDao = 101,//É±Öíµ¶
+        DaHuanDao,      //´ó»·µ¶
+        TuLongDao,      //ÍÀÁúµ¶
+        YanYueDao,      //ÙÈÔÂµ¶
     }
     public enum Step
     {

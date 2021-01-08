@@ -112,7 +112,7 @@ namespace GameWish.Game
                     return;
                 }
                 //判断材料
-                var costsList = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Baicaohu, m_CurLevel).upgradeResCosts.facilityCosts;
+                var costsList = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel).upgradeResCosts.facilityCosts;
                 if (!MainGameMgr.S.InventoryMgr.HaveEnoughItem(costsList))
                 {
                     UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
@@ -129,7 +129,7 @@ namespace GameWish.Game
                 GameDataMgr.S.GetPlayerData().ReduceCoinNum(info.upgradeCoinCost);
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                 GetInformationForNeed();
-                //解锁食物
+                //解锁药
                 //int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
                 //if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                 //    GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
@@ -149,7 +149,6 @@ namespace GameWish.Game
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_CurBaicaohuInfo = (BaicaohuInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-            //m_MedicinalPowderTypes = m_CurBaicaohuInfo.GetNextUnlockMedicinalPowderType();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -160,9 +159,7 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnCountdownerTick, OnTick);
 
             m_CurFacilityType = (FacilityType)args[0];
-
             GetInformationForNeed();
-
             RefreshPanelInfo();
         }
 

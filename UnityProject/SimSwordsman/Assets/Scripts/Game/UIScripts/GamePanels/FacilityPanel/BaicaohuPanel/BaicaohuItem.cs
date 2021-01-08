@@ -7,7 +7,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class BaicaohuItem : MonoBehaviour,ItemICom
+	public class BaicaohuItem : MonoBehaviour, ItemICom
 	{
         [SerializeField]
         private GameObject Lock;
@@ -157,7 +157,7 @@ namespace GameWish.Game
                     m_MakingTra.gameObject.SetActive(true);
                     m_DontMakeTra.gameObject.SetActive(false);
                     //设置材料
-                    SetMakeNeedRes();
+                    SetMakeNeedRes(TDHerbConfigTable.MakeNeedItemIDsDic[ID]);
                     break;
                 case 2:
                     UnLock.SetActive(true);
@@ -166,15 +166,14 @@ namespace GameWish.Game
                     m_MakingTra.gameObject.SetActive(false);
                     m_DontMakeTra.gameObject.SetActive(true);
                     //设置材料
-                    SetMakeNeedRes();
+                    SetMakeNeedRes(TDHerbConfigTable.MakeNeedItemIDsDic[ID]);
                     break;
                 default:
                     break;
             }
         }
-        void SetMakeNeedRes()
+        void SetMakeNeedRes(List<CostItem> infos)
         {
-            var infos = TDHerbConfigTable.MakeNeedItemIDsDic[ID];
             if (infos.Count == 2)
             {
                 m_NeedItem2.gameObject.SetActive(true);

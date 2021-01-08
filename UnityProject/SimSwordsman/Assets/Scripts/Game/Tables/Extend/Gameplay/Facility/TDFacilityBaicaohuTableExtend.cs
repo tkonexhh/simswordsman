@@ -21,7 +21,7 @@ namespace GameWish.Game
             List<MedicinalPowderType> medicinalPowderTypeList = new List<MedicinalPowderType>();
             foreach (string item in equipStrs)
             {
-                MedicinalPowderType equip = (MedicinalPowderType)(int.Parse(item));
+                MedicinalPowderType equip = (MedicinalPowderType)int.Parse(item);
                 medicinalPowderTypeList.Add(equip);
             }
             baicaohuLevelInfo.SetCurMedicinalPowderType(medicinalPowderTypeList);

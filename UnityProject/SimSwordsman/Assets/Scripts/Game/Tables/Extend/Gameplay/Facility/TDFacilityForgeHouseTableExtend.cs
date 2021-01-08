@@ -21,7 +21,7 @@ namespace GameWish.Game
             List<EquipmentType> equipTypeList = new List<EquipmentType>();
             foreach (string item in equipStrs)
             {
-                EquipmentType equip = EnumUtil.ConvertStringToEnum<EquipmentType>(item);
+                EquipmentType equip = (EquipmentType)int.Parse(item);
                 equipTypeList.Add(equip);
             }
             forgeHouseLevelInfo.SetCurEquipmentType(equipTypeList);

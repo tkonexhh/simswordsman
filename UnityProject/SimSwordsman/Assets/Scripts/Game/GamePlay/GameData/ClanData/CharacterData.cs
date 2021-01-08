@@ -258,7 +258,7 @@ namespace GameWish.Game
     [Serializable]
     public class CharacterDBArms : CharaceterDBEquipment
     {
-        public Arms ArmsID { set; get; }
+        public ArmsType ArmsID { set; get; }
         public CharacterDBArms() { }
 
         public void AddArms(CharacterArms arms)
@@ -272,7 +272,7 @@ namespace GameWish.Game
     [Serializable]
     public class CharacterDBArmor : CharaceterDBEquipment
     {
-        public Armor ArmorID { set; get; }
+        public ArmorType ArmorID { set; get; }
         public CharacterDBArmor() { }
 
         public void AddArmor(CharacterArmor armor)
