@@ -30,13 +30,13 @@ namespace GameWish.Game
         }
 
 
-        //public static List<CommonTaskItemInfo> GetAllCommonTaskByLobbyLevel(int lobbyLevel)
-        //{
-        //    List<CommonTaskItemInfo> list = new List<CommonTaskItemInfo>();
+        public static List<CommonTaskItemInfo> GetAllCommonTaskByLobbyLevel(int lobbyLevel)
+        {
+            List<CommonTaskItemInfo> list = new List<CommonTaskItemInfo>();
 
-        //    list = taskInfoDic.Values.Where(i => i.triggerType == SimGameTaskTriggerType.Common && i.needHomeLevel == lobbyLevel).ToList();
-        //    return list;
-        //}
+            list = taskInfoDic.Values.Where(i => i.triggerType == SimGameTaskTriggerType.Common && i.needHomeLevel == lobbyLevel).ToList();
+            return list;
+        }
 
         //// ·´Éäµ÷ÓÃ
         //public static string GetConditionType(int taskId)

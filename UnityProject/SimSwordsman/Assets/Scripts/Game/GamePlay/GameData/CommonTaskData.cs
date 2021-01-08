@@ -8,9 +8,11 @@ namespace GameWish.Game
     public class CommonTaskData : DataDirtyHandler
     {
         public List<CommonTaskItemData> taskList = new List<CommonTaskItemData>();
+        public string lastRefreshTime;
 
         public void SetDefaultValue()
         {
+            lastRefreshTime = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Local).ToLongDateString();
             //int id = 10010;
             //int time = TDMainTaskTable.GetMainTaskItemInfo(id).taskTime;
             //taskList.Add(new CommonTaskItemData(id, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart, time));

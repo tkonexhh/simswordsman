@@ -16,7 +16,7 @@ namespace GameWish.Game
         private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
 
         private float m_CommonTaskRefreshInterval = 0.1f; // 5分钟刷新一次
-        private int m_CommonTaskCount = 3;
+        private int m_CommonTaskCount = 2;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
 
@@ -27,9 +27,10 @@ namespace GameWish.Game
         {
             m_CommonTaskData = GameDataMgr.S.GetCommonTaskData();
 
+            m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(1).commonTaskCount;
             InitTaskList();
 
-            m_LastRefreshCommonTaskTime = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Local);
+            m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
         }
 
         public void OnUpdate()
@@ -68,7 +69,7 @@ namespace GameWish.Game
             if (item != null)
             {
                 item.CommonTaskItemInfo.taskState = TaskState.Unclaimed;
-                GameDataMgr.S.GetMainTaskData().SetTaskFinished(taskId);
+                GameDataMgr.S.GetCommonTaskData().SetTaskFinished(taskId);
             }
         }
 
@@ -77,7 +78,7 @@ namespace GameWish.Game
         /// </summary>
         public void ClaimReward(int taskId)
         {
-            GameDataMgr.S.GetMainTaskData().OnTaskRewardClaimed(taskId);
+            GameDataMgr.S.GetCommonTaskData().OnTaskRewardClaimed(taskId);
 
             SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.TaskId == taskId );
             if (taskItem != null)
@@ -136,15 +137,18 @@ namespace GameWish.Game
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                    List<MainTaskItemInfo> allCommonTask = TDMainTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
+                    List<CommonTaskItemInfo> allCommonTask = TDCommonTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
 
                     for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
                     {
                         int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
-                        MainTaskItemInfo task = allCommonTask[randomIndex];
-                        GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+                        CommonTaskItemInfo task = allCommonTask[randomIndex];
 
-                        allCommonTask.Remove(task);
+                        if (!IsTaskExist(task.id))
+                        {
+                            GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+                            allCommonTask.Remove(task);
+                        }
                     }
                 }
             }
@@ -176,6 +180,10 @@ namespace GameWish.Game
             m_CurTaskList.Add(simGameTask);
         }
 
+        private bool IsTaskExist(int taskId)
+        {
+            return m_CurTaskList.Any(i => i.TaskId == taskId);
+        }
         #endregion
 
     }
