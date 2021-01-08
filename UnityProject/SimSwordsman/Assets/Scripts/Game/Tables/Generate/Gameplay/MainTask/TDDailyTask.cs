@@ -17,12 +17,7 @@ namespace GameWish.Game
         private string m_TaskTitle;   
         private string m_TaskDescription;   
         private string m_Type;   
-        private string m_Reward;   
-        private string m_TaskEvent;   
-        private string m_ConditionType;   
-        private string m_Enemy;   
-        private EInt m_RoleAmount = 0;   
-        private EInt m_RoleLevelRequired = 0;  
+        private string m_Reward;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -55,31 +50,6 @@ namespace GameWish.Game
         /// 奖励
         /// </summary>
         public  string  reward {get { return m_Reward; } }
-       
-        /// <summary>
-        /// 事件(刷新任务状态)
-        /// </summary>
-        public  string  taskEvent {get { return m_TaskEvent; } }
-       
-        /// <summary>
-        /// 完成条件类型
-        /// </summary>
-        public  string  conditionType {get { return m_ConditionType; } }
-       
-        /// <summary>
-        /// 敌人配置
-        /// </summary>
-        public  string  enemy {get { return m_Enemy; } }
-       
-        /// <summary>
-        /// 可派弟子数量
-        /// </summary>
-        public  int  roleAmount {get { return m_RoleAmount; } }
-       
-        /// <summary>
-        /// 弟子等级要求
-        /// </summary>
-        public  int  roleLevelRequired {get { return m_RoleLevelRequired; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -114,21 +84,6 @@ namespace GameWish.Game
                 case 5:
                     m_Reward = dataR.ReadString();
                     break;
-                case 6:
-                    m_TaskEvent = dataR.ReadString();
-                    break;
-                case 7:
-                    m_ConditionType = dataR.ReadString();
-                    break;
-                case 8:
-                    m_Enemy = dataR.ReadString();
-                    break;
-                case 9:
-                    m_RoleAmount = dataR.ReadInt();
-                    break;
-                case 10:
-                    m_RoleLevelRequired = dataR.ReadInt();
-                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -139,7 +94,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(11);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("TaskID", 0);
           ret.Add("HomeLevel", 1);
@@ -147,11 +102,6 @@ namespace GameWish.Game
           ret.Add("TaskDescription", 3);
           ret.Add("Type", 4);
           ret.Add("Reward", 5);
-          ret.Add("TaskEvent", 6);
-          ret.Add("ConditionType", 7);
-          ret.Add("Enemy", 8);
-          ret.Add("RoleAmount", 9);
-          ret.Add("RoleLevelRequired", 10);
           return ret;
         }
     } 
