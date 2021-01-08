@@ -11,6 +11,9 @@ namespace GameWish.Game
 
         public void Init()
         {
+            //先Init
+            FoodBuffSystem.S.Init();
+
             //检查存档
             bool isChange = false;
             TimeSpan offset;
@@ -26,6 +29,7 @@ namespace GameWish.Game
                 else
                 {
                     isChange = true;
+                    EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
                     GameDataMgr.S.GetPlayerData().countdownerData.RemoveAt(i);
                 }
             }
@@ -58,7 +62,7 @@ namespace GameWish.Game
                     //重新计时
                     item.startTime = DateTime.Now.ToString();
                     item.EndTime = (DateTime.Now + TimeSpan.FromSeconds(totalSeconds)).ToString();
-                    item.Progress = 0;
+                    item.SetProgress(0);
                     CountdownStart(item);
                     return;
                 }
@@ -67,7 +71,7 @@ namespace GameWish.Game
             cd.ID = id;
             cd.stringID = stringid;
             cd.startTime = DateTime.Now.ToString();
-            cd.Progress = 0;
+            cd.SetProgress(0);
             cd.EndTime = (DateTime.Now + TimeSpan.FromSeconds(totalSeconds)).ToString();
             m_AllCDs.Add(cd);
             //开始计时
@@ -87,7 +91,7 @@ namespace GameWish.Game
             DateTime endtime = DateTime.Parse(cd.EndTime);
             DateTime starttime = DateTime.Parse(cd.startTime);
             TimeSpan total = endtime - starttime;
-            cd.Progress = (float)(1f - (offset.TotalSeconds / total.TotalSeconds));
+            cd.SetProgress((float)(1f - (offset.TotalSeconds / total.TotalSeconds)));
             if (offset.TotalSeconds >= 0)
             {
                 EventSystem.S.Send(EventID.OnCountdownerStart, cd, offset.ToString(@"hh\:mm\:ss"));
@@ -96,7 +100,7 @@ namespace GameWish.Game
                     offset -= TimeSpan.FromSeconds(1);
                     if (offset.TotalSeconds > 0)
                     {
-                        cd.Progress = (float)(1f - (offset.TotalSeconds / total.TotalSeconds));
+                        cd.SetProgress((float)(1f - (offset.TotalSeconds / total.TotalSeconds)));
                         EventSystem.S.Send(EventID.OnCountdownerTick, cd, offset.ToString(@"hh\:mm\:ss"));
                     }
                     else
@@ -115,7 +119,7 @@ namespace GameWish.Game
             m_AllCDs.Remove(cd);
         }
         
-        Countdowner GetCountdowner(string stringid, int id)
+        public Countdowner GetCountdowner(string stringid, int id)
         {
             foreach (var item in m_AllCDs)
             {
@@ -184,10 +188,18 @@ namespace GameWish.Game
         public string startTime;
         public string EndTime;//DateTime.Parse
 
-        public float Progress;
-
         public int TimerID;
 
         public int Interval;
+
+        private float Progress;
+        public float GetProgress()
+        {
+            return Progress;
+        }
+        public void SetProgress(float value)
+        {
+            Progress = value;
+        }
     }
 }

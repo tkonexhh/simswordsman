@@ -101,6 +101,7 @@ namespace GameWish.Game
                     {
                         SetState(1);
                         m_DurationTxt.text = dur;
+                        m_Progress.fillAmount = CountdownSystem.S.GetCountdowner(m_StringID, ID).GetProgress();
                     }
                     else
                         SetState(2);

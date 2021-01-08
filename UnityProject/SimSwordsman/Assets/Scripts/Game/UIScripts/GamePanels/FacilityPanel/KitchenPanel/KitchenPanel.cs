@@ -122,7 +122,7 @@ namespace GameWish.Game
             {
                 if (item.ID == cd.ID)
                 {
-                    item.StartEffect(cd.Progress, (string)param[1]);
+                    item.StartEffect(cd.GetProgress(), (string)param[1]);
                     break;
                 }
             }
@@ -148,7 +148,7 @@ namespace GameWish.Game
             {
                 if (item.ID == cd.ID)
                 {
-                    item.Countdown(cd.Progress, (string)param[1]);
+                    item.Countdown(cd.GetProgress(), (string)param[1]);
                     break;
                 }
             }

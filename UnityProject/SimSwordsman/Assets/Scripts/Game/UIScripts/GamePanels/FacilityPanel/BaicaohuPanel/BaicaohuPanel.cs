@@ -42,7 +42,6 @@ namespace GameWish.Game
 
         private int m_CurLevel;
         private BaicaohuInfo m_CurBaicaohuInfo = null;
-        //private List<MedicinalPowderType> m_MedicinalPowderTypes = null;
 
         private List<BaicaohuItem> m_Items = new List<BaicaohuItem>();
 
@@ -61,7 +60,7 @@ namespace GameWish.Game
                 {
                     if (item.ID == cd.ID)
                     {
-                        item.Countdown(cd.Progress, (string)param[1]);
+                        item.Countdown(cd.GetProgress(), (string)param[1]);
                         break;
                     }
                 }
@@ -93,7 +92,7 @@ namespace GameWish.Game
                 {
                     if (item.ID == cd.ID)
                     {
-                        item.StartEffect(cd.Progress, (string)param[1]);
+                        item.StartEffect(cd.GetProgress(), (string)param[1]);
                         break;
                     }
                 }
