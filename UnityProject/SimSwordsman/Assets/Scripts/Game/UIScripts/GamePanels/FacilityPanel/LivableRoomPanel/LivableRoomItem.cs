@@ -68,7 +68,7 @@ namespace GameWish.Game
                 {
                     case LivableRoomState.NotBuilt:
                         m_LivableRoomState = LivableRoomState.Built;
-                        MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.State1/*, m_SubID*/);
+                        MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
                         break;
                     case LivableRoomState.Built:
                         int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);

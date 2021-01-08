@@ -65,6 +65,7 @@ namespace GameWish.Game
 
             return level;
         }
+
         public bool IsLocked(FacilityType facilityType)
         {
             FacilityItemDbData facilityDbData = GetFacilityData(facilityType);

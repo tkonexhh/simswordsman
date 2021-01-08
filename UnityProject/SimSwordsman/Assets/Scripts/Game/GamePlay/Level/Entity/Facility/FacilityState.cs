@@ -9,9 +9,7 @@ namespace GameWish.Game
     {
         Locked = 1,
         ReadyToUnlock,
-        State1,
-        State2,
-        State3,
+        Unlocked,
     }
 	
 }

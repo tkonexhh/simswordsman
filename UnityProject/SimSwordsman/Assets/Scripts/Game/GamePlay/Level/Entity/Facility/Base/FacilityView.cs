@@ -10,9 +10,10 @@ namespace GameWish.Game
     {
         public GameObject stateLockedObj;
         public GameObject stateReadyToUnlockObj;
-        public GameObject state1Obj;
-        public GameObject state2Obj;
-        public GameObject state3Obj;
+        //public GameObject state1Obj;
+        //public GameObject state2Obj;
+        //public GameObject state3Obj;
+        public List<GameObject> stateObjList = new List<GameObject>();
         public GameObject navObstacleObj = null;
         public GameObject roadObj = null;
         public GameObject door = null;
@@ -34,9 +35,7 @@ namespace GameWish.Game
                 case FacilityState.ReadyToUnlock:
                     UIMgr.S.OpenPanel(UIID.ConstructionFacilitiesPanel, m_Controller.GetFacilityType(), m_Controller.GetSubId());
                     break;
-                case FacilityState.State1:
-                case FacilityState.State2:
-                case FacilityState.State3:
+                case FacilityState.Unlocked:
                     OpenUIElement();
                     break;
                 default:
@@ -58,9 +57,10 @@ namespace GameWish.Game
         {
             stateLockedObj.SetActive(false);
             stateReadyToUnlockObj.SetActive(false);
-            state1Obj.SetActive(false);
-            state2Obj.SetActive(false);
-            state3Obj.SetActive(false);
+            stateObjList.ForEach(i => i.SetActive(false));
+            //state1Obj.SetActive(false);
+            //state2Obj.SetActive(false);
+            //state3Obj.SetActive(false);
             navObstacleObj?.SetActive(false);
             ShowRoad(false);
 
@@ -72,21 +72,30 @@ namespace GameWish.Game
                 case FacilityState.ReadyToUnlock:
                     stateReadyToUnlockObj.SetActive(true);
                     break;
-                case FacilityState.State1:
-                    state1Obj.SetActive(true);
+                case FacilityState.Unlocked:
+                    int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_Controller.GetFacilityType());
+                    if (level < 1 || level > stateObjList.Count)
+                    {
+                        Log.e("Level is out of range");
+                    }
+                    else
+                    {
+                        stateObjList[level - 1].SetActive(true);
+                    }
+
                     navObstacleObj?.SetActive(true);
                     ShowRoad(true);
                     break;
-                case FacilityState.State2:
-                    state2Obj.SetActive(true);
-                    navObstacleObj?.SetActive(true);
-                    ShowRoad(true);
-                    break;
-                case FacilityState.State3:
-                    state3Obj.SetActive(true);
-                    navObstacleObj?.SetActive(true);
-                    ShowRoad(true);
-                    break;
+                //case FacilityState.State2:
+                //    state2Obj.SetActive(true);
+                //    navObstacleObj?.SetActive(true);
+                //    ShowRoad(true);
+                //    break;
+                //case FacilityState.State3:
+                //    state3Obj.SetActive(true);
+                //    navObstacleObj?.SetActive(true);
+                //    ShowRoad(true);
+                //    break;
             }
         }
 

@@ -105,6 +105,7 @@ namespace GameWish.Game
             int level = GameDataMgr.S.GetClanData().GetFacilityLevel(facilityType/*, subId*/);
             return Mathf.Min(level, Define.FACILITY_MAX_LEVEL);
         }
+
         /// <summary>
         /// 获得主城等级
         /// </summary>
@@ -286,7 +287,7 @@ namespace GameWish.Game
             FacilityController controller = GetFacilityController(type/*, subId*/);
             controller?.SetState(state);
 
-            if (state == FacilityState.State1) // Some facility unlocked
+            if (state == FacilityState.Unlocked) // Some facility unlocked
             {
                 RefreshFacilityUnlockState();
             }
@@ -320,7 +321,7 @@ namespace GameWish.Game
                 case (int)EventID.OnStartUnlockFacility:
                     FacilityType facilityType2 = (FacilityType)param[0];
                     //int subId2 = (int)param[1];
-                    SetFacilityState(facilityType2, FacilityState.State1/*, subId2*/);
+                    SetFacilityState(facilityType2, FacilityState.Unlocked/*, subId2*/);
                     break;
             }
         }
