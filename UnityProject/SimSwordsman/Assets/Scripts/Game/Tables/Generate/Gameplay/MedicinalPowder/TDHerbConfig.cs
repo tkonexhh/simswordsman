@@ -19,7 +19,8 @@ namespace GameWish.Game
         private string m_MakeRes;   
         private EInt m_MakeTime = 0;   
         private string m_EffectDesc;   
-        private EInt m_EffectParam = 0;  
+        private EInt m_EffectParam = 0;   
+        private EInt m_UnlockLevel = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -63,6 +64,11 @@ namespace GameWish.Game
         /// </summary>
         public  int  effectParam {get { return m_EffectParam; } }
        
+        /// <summary>
+        /// 解锁等级
+        /// </summary>
+        public  int  unlockLevel {get { return m_UnlockLevel; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -102,6 +108,9 @@ namespace GameWish.Game
                 case 7:
                     m_EffectParam = dataR.ReadInt();
                     break;
+                case 8:
+                    m_UnlockLevel = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -112,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -122,6 +131,7 @@ namespace GameWish.Game
           ret.Add("MakeTime", 5);
           ret.Add("EffectDesc", 6);
           ret.Add("EffectParam", 7);
+          ret.Add("UnlockLevel", 8);
           return ret;
         }
     } 

@@ -7,10 +7,13 @@ namespace GameWish.Game
 {
 	public class CountdownSystem : TSingleton<CountdownSystem>
 	{
-        List<Countdowner> m_AllBuffs = new List<Countdowner>();
+        List<Countdowner> m_AllCDs = new List<Countdowner>();
 
         public void Init()
         {
+            //先Init
+            FoodBuffSystem.S.Init();
+
             //检查存档
             bool isChange = false;
             TimeSpan offset;
@@ -20,12 +23,13 @@ namespace GameWish.Game
                 offset = DateTime.Parse(cd.EndTime) - DateTime.Now;
                 if (offset.TotalSeconds > 0)
                 {
-                    m_AllBuffs.Add(cd);
-                    StartCountdown(cd);
+                    m_AllCDs.Add(cd);
+                    CountdownStart(cd);
                 }
                 else
                 {
                     isChange = true;
+                    EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
                     GameDataMgr.S.GetPlayerData().countdownerData.RemoveAt(i);
                 }
             }
@@ -51,35 +55,43 @@ namespace GameWish.Game
         /// <param name="interval">每次tick的时间 单位：秒</param>
         public void StartCountdownerWithSec(string stringid, int id, int totalSeconds, int interval = 1)
         {
-            foreach (var item in m_AllBuffs)
+            foreach (var item in m_AllCDs)
             {
                 if (item.stringID.Equals(id) && item.ID == id)
                 {
                     //重新计时
+                    item.startTime = DateTime.Now.ToString();
                     item.EndTime = (DateTime.Now + TimeSpan.FromSeconds(totalSeconds)).ToString();
-                    StartCountdown(item);
+                    item.SetProgress(0);
+                    CountdownStart(item);
                     return;
                 }
             }
             Countdowner cd = new Countdowner();
             cd.ID = id;
             cd.stringID = stringid;
+            cd.startTime = DateTime.Now.ToString();
+            cd.SetProgress(0);
             cd.EndTime = (DateTime.Now + TimeSpan.FromSeconds(totalSeconds)).ToString();
-            m_AllBuffs.Add(cd);
+            m_AllCDs.Add(cd);
             //开始计时
-            StartCountdown(cd);
+            CountdownStart(cd);
 
             //存档
             GameDataMgr.S.GetPlayerData().countdownerData.Add(cd);
             GameDataMgr.S.GetPlayerData().SetDataDirty();
         }
 
-        void StartCountdown(Countdowner cd)
+        void CountdownStart(Countdowner cd)
         {
             //结束之前的计时（如果有）
             Timer.S.Cancel(cd.TimerID);
 
             TimeSpan offset = DateTime.Parse(cd.EndTime) - DateTime.Now;
+            DateTime endtime = DateTime.Parse(cd.EndTime);
+            DateTime starttime = DateTime.Parse(cd.startTime);
+            TimeSpan total = endtime - starttime;
+            cd.SetProgress((float)(1f - (offset.TotalSeconds / total.TotalSeconds)));
             if (offset.TotalSeconds >= 0)
             {
                 EventSystem.S.Send(EventID.OnCountdownerStart, cd, offset.ToString(@"hh\:mm\:ss"));
@@ -87,31 +99,49 @@ namespace GameWish.Game
                 {
                     offset -= TimeSpan.FromSeconds(1);
                     if (offset.TotalSeconds > 0)
+                    {
+                        cd.SetProgress((float)(1f - (offset.TotalSeconds / total.TotalSeconds)));
                         EventSystem.S.Send(EventID.OnCountdownerTick, cd, offset.ToString(@"hh\:mm\:ss"));
+                    }
                     else
-                        StopCountdown(cd);//结束
+                        CountdownEnd(cd);//结束
                 }, 1, -1);
             }
         }
         
-        void StopCountdown(Countdowner cd)
+        void CountdownEnd(Countdowner cd)
         {
             Timer.S.Cancel(cd.TimerID);
             cd.TimerID = -1;
             EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
             GameDataMgr.S.GetPlayerData().countdownerData.Remove(cd);
             GameDataMgr.S.GetPlayerData().SetDataDirty();
-            m_AllBuffs.Remove(cd);
+            m_AllCDs.Remove(cd);
         }
         
-        Countdowner GetCountdowner(string stringid, int id)
+        public Countdowner GetCountdowner(string stringid, int id)
         {
-            foreach (var item in m_AllBuffs)
+            foreach (var item in m_AllCDs)
             {
                 if (id == item.ID && item.stringID.Equals(stringid))
                     return item;
             }
             return null;
+        }
+
+        /// <summary>
+        /// 关闭一个倒计时
+        /// </summary>
+        public void Cancel(string stringid, int id)
+        {
+            var cd = GetCountdowner(stringid, id);
+            if (cd != null)
+            {
+                Timer.S.Cancel(cd.TimerID);
+                GameDataMgr.S.GetPlayerData().countdownerData.Remove(cd);
+                GameDataMgr.S.GetPlayerData().SetDataDirty();
+                m_AllCDs.Remove(cd);
+            }
         }
 
         /// <summary>
@@ -121,7 +151,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool IsActive(string stringid, int id)
         {
-            foreach (var item in m_AllBuffs)
+            foreach (var item in m_AllCDs)
             {
                 if (id == item.ID && item.stringID.Equals(stringid))
                     return true;
@@ -136,13 +166,17 @@ namespace GameWish.Game
         /// <returns></returns>
         public string GetCurrentCountdownTime(string stringid, int id)
         {
-            Countdowner buff = GetCountdowner(stringid, id);
-            if (buff != null)
+            Countdowner cd = GetCountdowner(stringid, id);
+            if (cd != null)
             {
-                TimeSpan offset = DateTime.Parse(buff.EndTime) - DateTime.Now;
+                TimeSpan offset = GetCurrentCountdownTimeSpan(cd);
                 return offset.ToString(@"hh\:mm\:ss");
             }
             return null;
+        }
+        TimeSpan GetCurrentCountdownTimeSpan(Countdowner cd)
+        {
+            return DateTime.Parse(cd.EndTime) - DateTime.Now;
         }
     }
     public class Countdowner
@@ -151,10 +185,21 @@ namespace GameWish.Game
 
         public int ID;
 
+        public string startTime;
         public string EndTime;//DateTime.Parse
 
         public int TimerID;
 
         public int Interval;
+
+        private float Progress;
+        public float GetProgress()
+        {
+            return Progress;
+        }
+        public void SetProgress(float value)
+        {
+            Progress = value;
+        }
     }
 }
