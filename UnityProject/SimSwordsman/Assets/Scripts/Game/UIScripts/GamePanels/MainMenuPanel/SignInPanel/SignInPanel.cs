@@ -36,6 +36,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen();
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
             InitSignItem();
             SignSystemMgr.S.weekSignState.Check();
@@ -71,6 +72,7 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
+            CloseDependPanel(EngineUI.MaskPanel);
         }
 
         protected override void OnClose()
