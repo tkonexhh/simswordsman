@@ -52,6 +52,9 @@ namespace GameWish.Game
         private Text m_DurationTxt;
 
         [SerializeField]
+        private Text m_MakeTypeTxt;
+
+        [SerializeField]
         private Transform m_DontMakeTra;
         [SerializeField]
         private Transform m_MakingTra;
@@ -109,6 +112,7 @@ namespace GameWish.Game
                     {
                         SetState(1);
                         m_DurationTxt.text = dur;
+                        m_Progress.fillAmount = FoodBuffSystem.S.GetCountdowner(ID).GetProgress();
                     }
                     else
                         SetState(2);

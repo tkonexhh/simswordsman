@@ -19,9 +19,15 @@ namespace GameWish.Game
         private void OnEnd(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
+            //处理食物buff
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
                 EventSystem.S.Send(EventID.OnFoodBuffEnd, cd, param[1]);
+            }
+            //处理计时结束的药品，锻造物品增加
+            else if(cd.stringID.Equals("BaicaohuPanel"))
+            {
+                MainGameMgr.S.MedicinalPowderMgr.AddHerb(cd.ID, 1);
             }
         }
 
@@ -82,6 +88,10 @@ namespace GameWish.Game
         public string GetCurrentCountdown(int id)
         {
             return CountdownSystem.S.GetCurrentCountdownTime(TDFoodConfigTable.GetData(id).buffType, id);
+        }
+        public Countdowner GetCountdowner(int id)
+        {
+            return CountdownSystem.S.GetCountdowner(TDFoodConfigTable.GetData(id).buffType, id);
         }
 
         public long Coin(long originalCoin)

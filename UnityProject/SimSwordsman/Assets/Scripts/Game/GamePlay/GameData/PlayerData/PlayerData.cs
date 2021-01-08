@@ -210,7 +210,7 @@ namespace GameWish.Game
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
             if (delta> 0)
-                m_CoinNum = FoodBuffSystem.S.Coin(delta);
+                m_CoinNum += FoodBuffSystem.S.Coin(delta);
 
             if (m_CoinNum < 0)
             {

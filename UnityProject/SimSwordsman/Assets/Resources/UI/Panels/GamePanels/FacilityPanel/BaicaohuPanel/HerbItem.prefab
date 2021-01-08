@@ -1279,8 +1279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 347, y: -0.0049838}
-  m_SizeDelta: {x: 447.703, y: 77}
+  m_AnchoredPosition: {x: 217.1, y: -0.0049838}
+  m_SizeDelta: {x: 187.80756, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1101876614125170466
 CanvasRenderer:
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.60784316, g: 0.25882354, b: 0.22745098, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1391,9 +1391,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: fe76861e389468a47bb203433a4ce302, type: 3}
     m_FontSize: 43
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 4
-    m_MaxSize: 50
+    m_MaxSize: 43
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.60784316, g: 0.25882354, b: 0.22745098, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2201,7 +2201,7 @@ MonoBehaviour:
   m_DurationTxt: {fileID: 1936459215956094584}
   m_DontMakeTra: {fileID: 897451173349671788}
   m_MakingTra: {fileID: 2406226222130156777}
-  m_Progress: {fileID: 0}
+  m_Progress: {fileID: 6597570767989013359}
   ID: 0
 --- !u!1 &8288288571437910851
 GameObject:
