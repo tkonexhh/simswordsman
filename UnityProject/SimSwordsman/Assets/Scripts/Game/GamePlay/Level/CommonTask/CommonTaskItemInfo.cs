@@ -7,28 +7,7 @@ using System;
 
 namespace GameWish.Game
 {
-    public enum TaskState
-    {
-        None,
-        /// <summary>
-        /// 未开始
-        /// </summary>
-        NotStart,
-        /// <summary>
-        /// 正在执行
-        /// </summary>
-        Running,
-        /// <summary>
-        /// 已完成，待领取
-        /// </summary>
-        Unclaimed,
-        /// <summary>
-        /// 已结束
-        /// </summary>
-        Finished,            
-    }
-
-    public class MainTaskItemInfo
+    public class CommonTaskItemInfo
     {
         public int id;
         public SimGameTaskTriggerType triggerType;
@@ -40,36 +19,40 @@ namespace GameWish.Game
         public string title;
         public string desc;
         public TaskState taskState;
-        public List<TaskReward> rewards = new List<TaskReward>();
+        public List<TaskReward> itemRewards = new List<TaskReward>();
+        public int expReward;
+        public int kongfuReward;
         public int specialRewardRate = 0;
         public List<TaskReward> specialRewards = new List<TaskReward>();
         public int characterAmount = 1;
         public int characterLevelRequired = 1;
         public List<TaskEnemy> taskEnemies = new List<TaskEnemy>();
 
-        public MainTaskItemInfo(TDMainTask tDMainTask)
+        public CommonTaskItemInfo(TDCommonTask tdCommonTask)
         {
             try
             {
-                this.id = tDMainTask.taskID;
-                this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tDMainTask.triggerType);
+                this.id = tdCommonTask.taskID;
+                this.triggerType = EnumUtil.ConvertStringToEnum<SimGameTaskTriggerType>(tdCommonTask.triggerType);
 
                 taskState = TaskState.None;
 
-                this.taskTime = tDMainTask.time;
-                this.title = tDMainTask.taskTitle;
-                this.desc = tDMainTask.taskDescription;
-                this.needHomeLevel = tDMainTask.homeLevel;
-                this.specialRewardRate = tDMainTask.specialRewardRate;
-                this.characterAmount = tDMainTask.roleAmount;
-                this.characterLevelRequired = tDMainTask.roleLevelRequired;
+                this.taskTime = tdCommonTask.time;
+                this.title = tdCommonTask.taskTitle;
+                this.desc = tdCommonTask.taskDescription;
+                this.needHomeLevel = tdCommonTask.homeLevel;
+                this.specialRewardRate = tdCommonTask.specialRewardRate;
+                this.characterAmount = tdCommonTask.roleAmount;
+                this.characterLevelRequired = tdCommonTask.roleLevelRequired;
+                this.expReward = tdCommonTask.expReward;
+                this.kongfuReward = tdCommonTask.kongfuExpReward;
 
-                ParseReward(tDMainTask.reward);
-                ParseNextLevel(tDMainTask.nextTask);
-                ParseTaskType(tDMainTask.type);
-                ParseSpecialReward(tDMainTask.specialReward);
-                ParseSpecialReward(tDMainTask.specialReward);
-                ParseTaskEnemy(tDMainTask.enemy);
+                ParseReward(tdCommonTask.reward);
+                ParseNextLevel(tdCommonTask.nextTask);
+                ParseTaskType(tdCommonTask.type);
+                ParseSpecialReward(tdCommonTask.specialReward);
+                ParseSpecialReward(tdCommonTask.specialReward);
+                ParseTaskEnemy(tdCommonTask.enemy);
             }
             catch (Exception e)
             {
@@ -79,25 +62,25 @@ namespace GameWish.Game
 
         public int GetRewardId(int index)
         {
-            if (index < 0 || index > rewards.Count - 1)
+            if (index < 0 || index > itemRewards.Count - 1)
             {
                 Log.e("Reward index out of range");
                 return 0;
             }
 
-            TaskReward reward = rewards[index];
+            TaskReward reward = itemRewards[index];
             return reward.id;
         }
 
         public int GetRewardValue(int index)
         {
-            if (index < 0 || index > rewards.Count - 1)
+            if (index < 0 || index > itemRewards.Count - 1)
             {
                 Log.e("Reward index out of range");
                 return 0;
             }
 
-            TaskReward reward = rewards[index];
+            TaskReward reward = itemRewards[index];
             if (reward.count2 != -1)
             {
                 return UnityEngine.Random.Range(reward.count1, reward.count2);
@@ -114,7 +97,7 @@ namespace GameWish.Game
                 if (!string.IsNullOrEmpty(item))
                 {
                     TaskReward taskReward = new TaskReward(item);
-                    this.rewards.Add(taskReward);
+                    this.itemRewards.Add(taskReward);
                 }
             }
         }
@@ -130,7 +113,7 @@ namespace GameWish.Game
                 if (!string.IsNullOrEmpty(item))
                 {
                     TaskReward taskReward = new TaskReward(item);
-                    this.rewards.Add(taskReward);
+                    this.itemRewards.Add(taskReward);
                 }
             }
         }
@@ -183,15 +166,15 @@ namespace GameWish.Game
         }
     }
 
-    //public class TaskEnemy
-    //{
-    //    public int enemyId;
-    //    public int enemyAtk;
+    public class TaskEnemy
+    {
+        public int enemyId;
+        public int enemyAtk;
 
-    //    public TaskEnemy(int id, int atk)
-    //    {
-    //        enemyId = id;
-    //        enemyAtk = atk;
-    //    }
-    //}
+        public TaskEnemy(int id, int atk)
+        {
+            enemyId = id;
+            enemyAtk = atk;
+        }
+    }
 }

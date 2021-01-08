@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
     public class TaskBattle : SimGameTask
     {
-        public TaskBattle(int taskId, string tableName, TaskState taskState, int taskTime, Action<TaskItem> stateChangedCallback) : base(taskId, tableName, taskState, taskTime, stateChangedCallback)
+        public TaskBattle(int taskId, string tableName, TaskState taskState, int taskTime) : base(taskId, tableName, taskState, taskTime)
         {
         }
 

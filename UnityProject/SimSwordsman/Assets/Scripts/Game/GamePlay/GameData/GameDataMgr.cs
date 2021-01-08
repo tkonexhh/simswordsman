@@ -83,6 +83,11 @@ namespace GameWish.Game
             return m_GameDataHandler.GetMainTaskData();
         }
 
+        public CommonTaskData GetCommonTaskData()
+        {
+            return m_GameDataHandler.GetCommonTaskData();
+        }
+
         public void OnReset()
         {
             GetPlayerData().OnReset();

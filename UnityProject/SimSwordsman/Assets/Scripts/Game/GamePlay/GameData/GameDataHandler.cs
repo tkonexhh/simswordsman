@@ -46,5 +46,10 @@ namespace GameWish.Game
         {
             return m_Data.mainTaskData;
         }
+
+        public CommonTaskData GetCommonTaskData()
+        {
+            return m_Data.commonTaskData;
+        }
     }
 }

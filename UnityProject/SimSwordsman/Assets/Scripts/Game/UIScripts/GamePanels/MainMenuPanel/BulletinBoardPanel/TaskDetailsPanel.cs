@@ -38,16 +38,16 @@ namespace GameWish.Game
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CurTaskInfo = args[0] as SimGameTask;
 
-            for (int i = 0; i < m_CurTaskInfo.MainTaskItemInfo.rewards.Count; i++)
+            for (int i = 0; i < m_CurTaskInfo.CommonTaskItemInfo.itemRewards.Count; i++)
             {
-                m_RewardValueOne.text += m_CurTaskInfo.MainTaskItemInfo.GetRewardValue(0).ToString();
+                m_RewardValueOne.text += m_CurTaskInfo.CommonTaskItemInfo.GetRewardValue(0).ToString();
             }
-            m_TaskCont.text = m_CurTaskInfo.MainTaskItemInfo.desc;
+            m_TaskCont.text = m_CurTaskInfo.CommonTaskItemInfo.desc;
         }
 
         private void RefeshPanelInfo()
         {
-            switch (m_CurTaskInfo.MainTaskItemInfo.taskState)
+            switch (m_CurTaskInfo.CommonTaskItemInfo.taskState)
             {
                 case TaskState.NotStart:
                     break;

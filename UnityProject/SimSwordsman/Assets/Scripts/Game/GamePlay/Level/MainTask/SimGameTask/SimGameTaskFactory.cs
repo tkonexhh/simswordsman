@@ -17,10 +17,10 @@ namespace GameWish.Game
             {
                 case SimGameTaskType.Collect:
                     //CollectedObjType collectedObjType = (CollectedObjType)subType;
-                    task = new TaskCollectRes(taskId, m_MainTaskTableName, taskState, taskTime, MainGameMgr.S.MainTaskMgr.OnTaskStateChanged);
+                    task = new TaskCollectRes(taskId, m_MainTaskTableName, taskState, taskTime);
                     break;
                 case SimGameTaskType.Battle:
-                    task = new TaskBattle(taskId, m_MainTaskTableName, taskState, taskTime, MainGameMgr.S.MainTaskMgr.OnTaskStateChanged);
+                    task = new TaskBattle(taskId, m_MainTaskTableName, taskState, taskTime);
                     break;
             }
 

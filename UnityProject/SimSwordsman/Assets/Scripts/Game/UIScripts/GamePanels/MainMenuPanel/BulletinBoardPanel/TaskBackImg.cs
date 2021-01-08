@@ -50,8 +50,8 @@ namespace GameWish.Game
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
 			m_CurTaskInfo = t as SimGameTask;
-			m_TaskName.text = m_CurTaskInfo.MainTaskItemInfo.title;
-			m_TaskIntrodution.text = m_CurTaskInfo.MainTaskItemInfo.id.ToString();
+			m_TaskName.text = m_CurTaskInfo.CommonTaskItemInfo.title;
+			m_TaskIntrodution.text = m_CurTaskInfo.CommonTaskItemInfo.id.ToString();
 			BindAddListenerEvevnt();
 
 			RefreshPanelInfo();

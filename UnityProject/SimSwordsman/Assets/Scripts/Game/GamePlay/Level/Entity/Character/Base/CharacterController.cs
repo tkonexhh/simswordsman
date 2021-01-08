@@ -260,7 +260,7 @@ namespace GameWish.Game
                 int curTaskId = m_CharacterModel.GetCurTaskId();
                 if (curTaskId != -1)
                 {
-                    SimGameTask simGameTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(curTaskId);
+                    SimGameTask simGameTask = MainGameMgr.S.CommonTaskMgr.GetSimGameTask(curTaskId);
                     if (simGameTask != null)
                     {
                         SetCurTask(simGameTask);

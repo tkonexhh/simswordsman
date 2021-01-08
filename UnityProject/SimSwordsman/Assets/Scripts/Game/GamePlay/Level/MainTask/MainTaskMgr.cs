@@ -13,7 +13,7 @@ namespace GameWish.Game
 
         private MainTaskData m_MainTaskData;
 
-        private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
+        private List<TaskItem> m_CurTaskList = new List<TaskItem>();
 
         //private List<MainTaskItemInfo> m_CurTaskInfoList = new List<MainTaskItemInfo>();
 
@@ -25,7 +25,7 @@ namespace GameWish.Game
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
 
-        public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
+        public List<TaskItem> CurTaskList { get => m_CurTaskList; }
 
         #region IMgr
         public void OnInit()
@@ -56,48 +56,40 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshTask()
         {
-            RefreshDailyTask();
-            RefreshCommonTask();
         }
 
-        public SimGameTask GetSimGameTask(int taskID)
-        {
-            SimGameTask simGameTask = m_CurTaskList.Where(i => i.GetId() == taskID).FirstOrDefault();
-            if (simGameTask != null)
-                return simGameTask;
-            return null;
-        }
+        //public SimGameTask GetSimGameTask(int taskID)
+        //{
+        //    SimGameTask simGameTask = m_CurTaskList.Where(i => i.GetId() == taskID).FirstOrDefault();
+        //    if (simGameTask != null)
+        //        return simGameTask;
+        //    return null;
+        //}
 
-        public void SetTaskFinished(int taskId)
-        {
-            SimGameTask item = GetMainTaskItemData(taskId);
-            if (item != null)
-            {
-                item.MainTaskItemInfo.taskState = TaskState.Unclaimed;
-                GameDataMgr.S.GetMainTaskData().SetTaskFinished(taskId);
-            }
-        }
+        //public void SetTaskFinished(int taskId)
+        //{
+        //    SimGameTask item = GetMainTaskItemData(taskId);
+        //    if (item != null)
+        //    {
+        //        item.MainTaskItemInfo.taskState = TaskState.Unclaimed;
+        //        GameDataMgr.S.GetMainTaskData().SetTaskFinished(taskId);
+        //    }
+        //}
 
         /// <summary>
         /// 完成任务后领取奖励
         /// </summary>
-        public void ClaimReward(int taskId)
-        {
-            GameDataMgr.S.GetMainTaskData().OnTaskRewardClaimed(taskId);
+        //public void ClaimReward(int taskId)
+        //{
+        //    GameDataMgr.S.GetMainTaskData().OnTaskRewardClaimed(taskId);
 
-            SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.GetId() == taskId );
-            if (taskItem != null)
-            {
-                taskItem.ClaimReward();
-                m_CurTaskList.Remove(taskItem);
-
-                //MainTaskItemInfo itemInfo = m_CurTaskInfoList.FirstOrDefault(i => i.id == taskItem.GetId() && i.subId == taskItem.GetSubId());
-                //if (itemInfo != null)
-                //{
-                //    m_CurTaskInfoList.Remove(itemInfo);
-                //}
-            }
-        }
+        //    SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.GetId() == taskId );
+        //    if (taskItem != null)
+        //    {
+        //        taskItem.ClaimReward();
+        //        m_CurTaskList.Remove(taskItem);
+        //    }
+        //}
 
         public void AddMainTaskObserver(IMainTaskObserver ob)
         {
@@ -155,92 +147,92 @@ namespace GameWish.Game
 
         private void InitTaskList()
         {
-            m_MainTaskData.taskList.ForEach(i => 
-            {
-                AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
-            });
+            //m_MainTaskData.taskList.ForEach(i => 
+            //{
+            //    AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+            //});
 
-            RefreshTask();
+            //RefreshTask();
         }
 
-        private void RefreshDailyTask()
-        {
-            DateTime lasPlayTime = OfflineRewardMgr.GetLastPlayDate(GameDataMgr.S.GetPlayerData().lastPlayTime);
-            if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
-            {
-                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+        //private void RefreshDailyTask()
+        //{
+        //    DateTime lasPlayTime = OfflineRewardMgr.GetLastPlayDate(GameDataMgr.S.GetPlayerData().lastPlayTime);
+        //    if (DateTime.Now.Day != lasPlayTime.Day && DateTime.Now.Hour >= 6) // 6点刷新
+        //    {
+        //        int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
 
-                RemoveDailyTaskByLobbyLevel(lobbyLevel);
+        //        RemoveDailyTaskByLobbyLevel(lobbyLevel);
 
-                List<MainTaskItemInfo> allDailyTask = TDMainTaskTable.GetAllDailyTaskByLobbyLevel(lobbyLevel);
-                foreach (MainTaskItemInfo item in allDailyTask)
-                {
-                    if (!m_MainTaskData.IsTaskExist(item.id))
-                    {
-                        GenerateTask(item.id, item.taskType, item.subType, item.taskTime);
-                    }
-                }
-            }
-        }
+        //        List<MainTaskItemInfo> allDailyTask = TDMainTaskTable.GetAllDailyTaskByLobbyLevel(lobbyLevel);
+        //        foreach (MainTaskItemInfo item in allDailyTask)
+        //        {
+        //            if (!m_MainTaskData.IsTaskExist(item.id))
+        //            {
+        //                GenerateTask(item.id, item.taskType, item.subType, item.taskTime);
+        //            }
+        //        }
+        //    }
+        //}
 
-        private void RemoveDailyTaskByLobbyLevel(int lobbyLevel)
-        {
-            for (int i = m_CurTaskList.Count - 1; i >= 0; i--)
-            {
-                if (m_CurTaskList[i].MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Daily && m_CurTaskList[i].MainTaskItemInfo.needHomeLevel != lobbyLevel)
-                {
-                    m_MainTaskData.RemoveTask(m_CurTaskList[i].TaskId);
+        //private void RemoveDailyTaskByLobbyLevel(int lobbyLevel)
+        //{
+        //    for (int i = m_CurTaskList.Count - 1; i >= 0; i--)
+        //    {
+        //        if (m_CurTaskList[i].MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Daily && m_CurTaskList[i].MainTaskItemInfo.needHomeLevel != lobbyLevel)
+        //        {
+        //            m_MainTaskData.RemoveTask(m_CurTaskList[i].TaskId);
 
-                    m_CurTaskList.RemoveAt(i);
-                }
-            }
-        }
+        //            m_CurTaskList.RemoveAt(i);
+        //        }
+        //    }
+        //}
 
-        private void RefreshCommonTask()
-        {
-            TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
+        //private void RefreshCommonTask()
+        //{
+        //    TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
 
-            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
-            {
-                m_LastRefreshCommonTaskTime = DateTime.Now;
+        //    if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+        //    {
+        //        m_LastRefreshCommonTaskTime = DateTime.Now;
 
-                int curCommonTaskCount = m_CurTaskList.Where(i => i.MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Common).ToList().Count;
-                if (curCommonTaskCount < m_CommonTaskCount)
-                {
-                    int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                    List<MainTaskItemInfo> allCommonTask = TDMainTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
+        //        int curCommonTaskCount = m_CurTaskList.Where(i => i.MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Common).ToList().Count;
+        //        if (curCommonTaskCount < m_CommonTaskCount)
+        //        {
+        //            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+        //            List<MainTaskItemInfo> allCommonTask = TDMainTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
 
-                    for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
-                    {
-                        int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
-                        MainTaskItemInfo task = allCommonTask[randomIndex];
-                        GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+        //            for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
+        //            {
+        //                int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
+        //                MainTaskItemInfo task = allCommonTask[randomIndex];
+        //                GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
 
-                        allCommonTask.Remove(task);
-                    }
-                }
-            }
-        }
+        //                allCommonTask.Remove(task);
+        //            }
+        //        }
+        //    }
+        //}
 
-        public void GenerateTask(int taskId, SimGameTaskType taskType, int subType, int taskTime)
-        {
-            AddTask(taskId, taskType, TaskState.NotStart, taskTime);
+        //public void GenerateTask(int taskId, SimGameTaskType taskType, int subType, int taskTime)
+        //{
+        //    AddTask(taskId, taskType, TaskState.NotStart, taskTime);
 
-            m_MainTaskData.AddTask(taskId, taskType, subType, TaskState.NotStart);
-        }
+        //    m_MainTaskData.AddTask(taskId, taskType, subType, TaskState.NotStart);
+        //}
 
-        public SimGameTask GetMainTaskItemData(int taskId)
-        {
-            foreach (SimGameTask item in m_CurTaskList)
-            {
-                if (item.MainTaskItemInfo.id == taskId)
-                {
-                    return item;
-                }
-            }
+        //public SimGameTask GetMainTaskItemData(int taskId)
+        //{
+        //    foreach (SimGameTask item in m_CurTaskList)
+        //    {
+        //        if (item.MainTaskItemInfo.id == taskId)
+        //        {
+        //            return item;
+        //        }
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         private void NotifyObserver(TaskItem task)
         {
@@ -250,11 +242,11 @@ namespace GameWish.Game
             }
         }
 
-        private void AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
-        {
-            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime);
-            m_CurTaskList.Add(simGameTask);
-        }
+        //private void AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
+        //{
+        //    SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime);
+        //    m_CurTaskList.Add(simGameTask);
+        //}
 
         #endregion
 

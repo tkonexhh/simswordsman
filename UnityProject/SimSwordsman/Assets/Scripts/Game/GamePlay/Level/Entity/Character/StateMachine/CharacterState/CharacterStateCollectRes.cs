@@ -35,7 +35,7 @@ namespace GameWish.Game
                 m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
             }
 
-            m_CollectedObjType = (CollectedObjType)m_Controller.CurTask.MainTaskItemInfo.subType;
+            m_CollectedObjType = (CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             Vector3 pos = m_TaskPos.GetTaskPos(m_CollectedObjType);
             m_Controller.MoveTo(pos, OnReachDestination);
 
@@ -55,13 +55,13 @@ namespace GameWish.Game
             if (m_ReachTargetPos)
             {
                 m_Time += Time.deltaTime;
-                if (m_Time > m_Controller.CurTask.MainTaskItemInfo.taskTime)
+                if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
                 {
                     m_Time = 0f;
                     m_IsTaskEnd = true;
 
-                    MainGameMgr.S.MainTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
-                    EventSystem.S.Send(EventID.OnTaskManualFinished);
+                    MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+                    //EventSystem.S.Send(EventID.OnTaskManualFinished);
                     //EventSystem.S.Send(EventID.OnTaskFinished);
 
                     m_Controller.SetCurTask(null);
