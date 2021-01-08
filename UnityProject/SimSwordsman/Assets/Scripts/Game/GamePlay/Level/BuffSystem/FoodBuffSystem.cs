@@ -21,7 +21,7 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd.ID, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd, param[1]);
             }
         }
 
@@ -30,7 +30,7 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffTick, cd.ID, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffTick, cd, param[1]);
             }
         }
 
@@ -39,7 +39,7 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffStart, cd.ID, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffStart, cd, param[1]);
             }
         }
 
