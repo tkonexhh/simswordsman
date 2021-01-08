@@ -8,7 +8,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDArmorConfig
+    public partial class TDEquipmentConfig
     {
         
        
@@ -19,7 +19,8 @@ namespace GameWish.Game
         private string m_UpgradeCondition;   
         private string m_Bonus;   
         private string m_BuildCondition;   
-        private string m_SellingPrice;  
+        private string m_SellingPrice;   
+        private EInt m_UnlockLevel = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -63,6 +64,11 @@ namespace GameWish.Game
         /// </summary>
         public  string  sellingPrice {get { return m_SellingPrice; } }
        
+        /// <summary>
+        /// 解锁等级
+        /// </summary>
+        public  int  unlockLevel {get { return m_UnlockLevel; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -102,6 +108,9 @@ namespace GameWish.Game
                 case 7:
                     m_SellingPrice = dataR.ReadString();
                     break;
+                case 8:
+                    m_UnlockLevel = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -112,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -122,6 +131,7 @@ namespace GameWish.Game
           ret.Add("Bonus", 5);
           ret.Add("BuildCondition", 6);
           ret.Add("SellingPrice", 7);
+          ret.Add("UnlockLevel", 8);
           return ret;
         }
     } 

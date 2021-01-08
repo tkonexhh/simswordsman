@@ -8,16 +8,16 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public static partial class TDArmsConfigTable
+    public static partial class TDEquipmentConfigTable
     {
-        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDArmsConfigTable.Parse, "ArmsConfig");
+        private static TDTableMetaData m_MetaData = new TDTableMetaData(TDEquipmentConfigTable.Parse, "EquipmentConfig");
         public static TDTableMetaData metaData
         {
             get { return m_MetaData; }
         }
         
-        private static Dictionary<int, TDArmsConfig> m_DataCache = new Dictionary<int, TDArmsConfig>();
-        private static List<TDArmsConfig> m_DataList = new List<TDArmsConfig >();
+        private static Dictionary<int, TDEquipmentConfig> m_DataCache = new Dictionary<int, TDEquipmentConfig>();
+        private static List<TDEquipmentConfig> m_DataList = new List<TDEquipmentConfig >();
         
         public static void Parse(byte[] fileData)
         {
@@ -25,27 +25,27 @@ namespace GameWish.Game
             m_DataList.Clear();
             DataStreamReader dataR = new DataStreamReader(fileData);
             int rowCount = dataR.GetRowCount();
-            int[] fieldIndex = dataR.GetFieldIndex(TDArmsConfig.GetFieldHeadIndex());
+            int[] fieldIndex = dataR.GetFieldIndex(TDEquipmentConfig.GetFieldHeadIndex());
     #if (UNITY_STANDALONE_WIN) || UNITY_EDITOR || UNITY_STANDALONE_OSX
-            dataR.CheckFieldMatch(TDArmsConfig.GetFieldHeadIndex(), "ArmsConfigTable");
+            dataR.CheckFieldMatch(TDEquipmentConfig.GetFieldHeadIndex(), "EquipmentConfigTable");
     #endif
             for (int i = 0; i < rowCount; ++i)
             {
-                TDArmsConfig memberInstance = new TDArmsConfig();
+                TDEquipmentConfig memberInstance = new TDEquipmentConfig();
                 memberInstance.ReadRow(dataR, fieldIndex);
                 OnAddRow(memberInstance);
                 memberInstance.Reset();
                 CompleteRowAdd(memberInstance);
             }
-            Log.i(string.Format("Parse Success TDArmsConfig"));
+            Log.i(string.Format("Parse Success TDEquipmentConfig"));
         }
 
-        private static void OnAddRow(TDArmsConfig memberInstance)
+        private static void OnAddRow(TDEquipmentConfig memberInstance)
         {
             int key = memberInstance.id;
             if (m_DataCache.ContainsKey(key))
             {
-                Log.e(string.Format("Invaild,  TDArmsConfigTable Id already exists {0}", key));
+                Log.e(string.Format("Invaild,  TDEquipmentConfigTable Id already exists {0}", key));
             }
             else
             {
@@ -67,7 +67,7 @@ namespace GameWish.Game
             }
         }
 
-        public static List<TDArmsConfig> dataList
+        public static List<TDEquipmentConfig> dataList
         {
             get 
             {
@@ -75,7 +75,7 @@ namespace GameWish.Game
             }    
         }
 
-        public static TDArmsConfig GetData(int key)
+        public static TDEquipmentConfig GetData(int key)
         {
             if (m_DataCache.ContainsKey(key))
             {
@@ -83,7 +83,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w(string.Format("Can't find key {0} in TDArmsConfig", key));
+                Log.w(string.Format("Can't find key {0} in TDEquipmentConfig", key));
                 return null;
             }
         }

@@ -459,9 +459,9 @@ namespace GameWish.Game
 
     public class CharacterArms : CharaceterEquipment
     {
-        public Arms ArmsID { set; get; }
+        public ArmsType ArmsID { set; get; }
         public CharacterArms() { }
-        public CharacterArms(Arms arms)
+        public CharacterArms(ArmsType arms)
         {
             ArmsID = arms;
             Class = 1;
@@ -481,7 +481,7 @@ namespace GameWish.Game
 
         public override void RefreshInfo()
         {
-            Equipment equip = TDArmsConfigTable.GetEquipmentInfo(ArmsID);
+            Equipment equip = TDEquipmentConfigTable.GetEquipmentInfo(ArmsID);
             PropType = PropType.Arms;
             Name = equip.Name;
             Desc = equip.Desc;
@@ -492,7 +492,7 @@ namespace GameWish.Game
         public override void Wrap(CharaceterDBEquipment characeterDBEquipment)
         {
             CharacterDBArms characterDBArms = (CharacterDBArms)characeterDBEquipment;
-            if (characterDBArms.ArmsID != Arms.None)
+            if (characterDBArms.ArmsID != ArmsType.None)
             {
                 ArmsID = characterDBArms.ArmsID;
                 Class = characterDBArms.Class;
@@ -504,17 +504,17 @@ namespace GameWish.Game
 
         public override bool IsHaveEquip()
         {
-            if (ArmsID == Arms.None)
+            if (ArmsID == ArmsType.None)
                 return false;
             return true;
         }
     }
     public class CharacterArmor : CharaceterEquipment
     {
-        public Armor ArmorID { set; get; }
+        public ArmorType ArmorID { set; get; }
 
         public CharacterArmor() { }
-        public CharacterArmor(Armor armor)
+        public CharacterArmor(ArmorType armor)
         {
             ArmorID = armor;
             Class = 1;
@@ -530,7 +530,7 @@ namespace GameWish.Game
 
         public override void RefreshInfo()
         {
-            Equipment equip = TDArmorConfigTable.GetEquipmentInfo(ArmorID);
+            Equipment equip = TDEquipmentConfigTable.GetEquipmentInfo(ArmorID);
             PropType = PropType.Armor;
             Name = equip.Name;
             Desc = equip.Desc;
@@ -541,7 +541,7 @@ namespace GameWish.Game
         public override void Wrap(CharaceterDBEquipment characeterDBEquipment)
         {
             CharacterDBArmor characterDBArmor = (CharacterDBArmor)characeterDBEquipment;
-            if (characterDBArmor.ArmorID != Armor.None)
+            if (characterDBArmor.ArmorID != ArmorType.None)
             {
                 ArmorID = characterDBArmor.ArmorID;
                 Class = characterDBArmor.Class;
@@ -552,7 +552,7 @@ namespace GameWish.Game
 
         public override bool IsHaveEquip()
         {
-            if (ArmorID == Armor.None)
+            if (ArmorID == ArmorType.None)
                 return false;
             return true;
         }

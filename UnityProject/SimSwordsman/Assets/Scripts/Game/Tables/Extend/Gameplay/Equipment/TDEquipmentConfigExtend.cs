@@ -7,7 +7,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDArmsConfig
+    public partial class TDEquipmentConfig
     {
         public void Reset()
         {

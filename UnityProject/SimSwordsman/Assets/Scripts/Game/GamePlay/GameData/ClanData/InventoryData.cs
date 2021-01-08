@@ -134,7 +134,7 @@ namespace GameWish.Game
     [Serializable]
     public class ArmsDBData : ItemDBData
     {
-        public Arms ArmsID { set; get; }
+        public ArmsType ArmsID { set; get; }
         public Step ClassID { set; get; }
         public ArmsDBData() { }
 
@@ -154,7 +154,7 @@ namespace GameWish.Game
     [Serializable]
     public class ArmorDBData : ItemDBData
     {
-        public Armor ArmorID { set; get; }
+        public ArmorType ArmorID { set; get; }
         public Step ClassID { set; get; }
         public ArmorDBData() { }
 

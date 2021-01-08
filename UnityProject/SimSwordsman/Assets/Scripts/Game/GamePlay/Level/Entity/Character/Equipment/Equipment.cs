@@ -60,7 +60,8 @@ namespace GameWish.Game
         private Dictionary<int, int> m_SellingPrice = new Dictionary<int, int>();
         private Dictionary<int, UpgradeCondition> m_UpgradeConditionDic = new Dictionary<int, UpgradeCondition>();
         private List<BuildCondition> m_BuildConditionList = new List<BuildCondition>();
-        public Equipment(TDArmorConfig tdData)
+      
+        public Equipment(TDEquipmentConfig tdData)
         {
             ID = tdData.id;
             Name = tdData.name;
@@ -72,18 +73,7 @@ namespace GameWish.Game
             AnalysisUpgradeCondition(tdData.upgradeCondition);
             AnalysisBuildCondition(tdData.buildCondition);
         }
-        public Equipment(TDArmsConfig tdData)
-        {
-            ID = tdData.id;
-            Name = tdData.name;
-            Desc = tdData.desc;
-            Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.quality);
 
-            AnalysisBonus(tdData.bonus);
-            AnalysisSellingPrice(tdData.sellingPrice);
-            AnalysisUpgradeCondition(tdData.upgradeCondition);
-            AnalysisBuildCondition(tdData.buildCondition);
-        }
         #region Private 
         /// <summary>
         /// 解析售卖价格
