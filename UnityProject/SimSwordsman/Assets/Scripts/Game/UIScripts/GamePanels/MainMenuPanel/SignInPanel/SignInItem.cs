@@ -38,7 +38,7 @@ namespace GameWish.Game
             FindChildObject(trans);
 
             m_ID = id;
-            m_DayText.text = string.Format("第{0}天", id + 1);
+            m_DayText.text = GetWordByNum(id + 1);
             RewardCfg = signConfig;
             
             SetCount(signConfig.Count);
@@ -49,27 +49,27 @@ namespace GameWish.Game
             });
 
         }
-        //string GetWordByNum(int num)
-        //{
-        //    switch (num)
-        //    {
-        //        case 2:
-        //            return "二";
-        //        case 3:
-        //            return "三";
-        //        case 4:
-        //            return "四";
-        //        case 5:
-        //            return "五";
-        //        case 6:
-        //            return "六";
-        //        case 7:
-        //            return "七";
-        //        case 1:
-        //        default:
-        //            return "一";
-        //    }
-        //}
+        string GetWordByNum(int num)
+        {
+            switch (num)
+            {
+                case 2:
+                    return "第二天";
+                case 3:
+                    return "第三天";
+                case 4:
+                    return "第四天";
+                case 5:
+                    return "第五天";
+                case 6:
+                    return "第六天";
+                case 7:
+                    return "第七天";
+                case 1:
+                default:
+                    return "第一天";
+            }
+        }
 
         public void ClickSignBtn()
         {
