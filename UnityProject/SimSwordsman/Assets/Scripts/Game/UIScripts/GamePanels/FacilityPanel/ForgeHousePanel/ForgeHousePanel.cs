@@ -212,6 +212,7 @@ namespace GameWish.Game
             }
             for (int i = 0; i < m_Items.Count; i++)
             {
+                Debug.LogError(123);
                 ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
                 itemICom.OnInit(this, null, TDEquipmentConfigTable.dataList[i].id);
             }

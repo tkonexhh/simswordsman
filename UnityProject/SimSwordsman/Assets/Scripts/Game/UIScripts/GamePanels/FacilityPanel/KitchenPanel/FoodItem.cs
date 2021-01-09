@@ -8,11 +8,6 @@ namespace GameWish.Game
 {
     public class FoodItem : MonoBehaviour, ItemICom
     {
-        //[SerializeField]
-        //private Sprite Progress_Over;
-        //[SerializeField]
-        //private Sprite Progress_Not_Over;
-
         [SerializeField]
         private GameObject Lock;
         [SerializeField]
@@ -206,16 +201,16 @@ namespace GameWish.Game
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
-                m_NeedItemCount2Txt.text = infos[0].value.ToString();
+                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+                m_NeedItemCount2Txt.text = infos[1].value.ToString();
             }
             else
             {
                 m_NeedItem1.gameObject.SetActive(false);
                 m_NeedItemCount1Txt.gameObject.SetActive(false);
             }
-            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
-            m_NeedItemCount1Txt.text = infos[1].value.ToString();
+            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }
 
