@@ -11,7 +11,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-
+            //MainGameMgr.S.InventoryMgr.AddItem()
         }
 	}
 	
