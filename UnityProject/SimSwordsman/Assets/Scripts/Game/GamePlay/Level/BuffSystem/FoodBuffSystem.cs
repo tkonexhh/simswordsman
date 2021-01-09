@@ -108,7 +108,7 @@ namespace GameWish.Game
             return originalCoin + add;
         }
 
-        public long RoleExp(long originalExp)
+        public long KongFuExp(long originalExp)
         {
             int add = 0;
             foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
@@ -144,7 +144,7 @@ namespace GameWish.Game
         /// </summary>
         Food_AddATK = 0,
         /// <summary>
-        /// 增加获得的弟子经验
+        /// 增加弟子获得的功夫经验
         /// </summary>
         Food_AddRoleExp,
         /// <summary>
