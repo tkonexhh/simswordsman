@@ -19,6 +19,7 @@ namespace GameWish.Game
         private MainCamera m_MainCamera = null;
         private BattleFieldMgr m_BattleFieldMgr = null;
         private MedicinalPowderMgr m_MedicinalPowderMgr = null;
+        private CollectSystemMgr m_CollectSystemMgr = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
@@ -31,6 +32,7 @@ namespace GameWish.Game
         public MainCamera MainCamera { get => m_MainCamera; }
         public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr;}
         public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
+        public CollectSystemMgr CollectSystemMgr { get => m_CollectSystemMgr; }
 
         private bool m_IsInited = false;
 

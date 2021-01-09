@@ -78,7 +78,7 @@ namespace GameWish.Game
                 TDVisitorConfigTable.metaData,
                 TDVisitorRewardConfigTable.metaData,
                 TDFoodConfigTable.metaData,
-
+                TDCollectConfigTable.metaData,
             };
         }
     }
