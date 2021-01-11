@@ -48,7 +48,7 @@ namespace GameWish.Game
                 this.kongfuReward = tdCommonTask.kongfuExpReward;
 
                 ParseReward(tdCommonTask.reward);
-                ParseNextLevel(tdCommonTask.nextTask);
+                //ParseNextLevel(tdCommonTask.nextTask);
                 ParseTaskType(tdCommonTask.type);
                 ParseSpecialReward(tdCommonTask.specialReward);
                 ParseSpecialReward(tdCommonTask.specialReward);

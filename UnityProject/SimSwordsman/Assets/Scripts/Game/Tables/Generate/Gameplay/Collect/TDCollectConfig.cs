@@ -14,8 +14,10 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Type;   
-        private EInt m_LobbyLevelRequired = 0;   
+        private string m_LobbyLevelRequired;   
         private EInt m_ItemId = 0;   
+        private EInt m_SpecialRate = 0;   
+        private EInt m_SpecialItemId = 0;   
         private EInt m_ProductTime = 0;   
         private EInt m_MaxStore = 0;   
         private EInt m_CollectMin = 0;  
@@ -35,12 +37,22 @@ namespace GameWish.Game
         /// <summary>
         /// 解锁等级
         /// </summary>
-        public  int  lobbyLevelRequired {get { return m_LobbyLevelRequired; } }
+        public  string  lobbyLevelRequired {get { return m_LobbyLevelRequired; } }
        
         /// <summary>
         /// 获取物品id
         /// </summary>
         public  int  itemId {get { return m_ItemId; } }
+       
+        /// <summary>
+        /// 稀有物品概率
+        /// </summary>
+        public  int  specialRate {get { return m_SpecialRate; } }
+       
+        /// <summary>
+        /// 稀有物品Id
+        /// </summary>
+        public  int  specialItemId {get { return m_SpecialItemId; } }
        
         /// <summary>
         /// 生产时间，分钟
@@ -79,18 +91,24 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 2:
-                    m_LobbyLevelRequired = dataR.ReadInt();
+                    m_LobbyLevelRequired = dataR.ReadString();
                     break;
                 case 3:
                     m_ItemId = dataR.ReadInt();
                     break;
                 case 4:
-                    m_ProductTime = dataR.ReadInt();
+                    m_SpecialRate = dataR.ReadInt();
                     break;
                 case 5:
-                    m_MaxStore = dataR.ReadInt();
+                    m_SpecialItemId = dataR.ReadInt();
                     break;
                 case 6:
+                    m_ProductTime = dataR.ReadInt();
+                    break;
+                case 7:
+                    m_MaxStore = dataR.ReadInt();
+                    break;
+                case 8:
                     m_CollectMin = dataR.ReadInt();
                     break;
                 default:
@@ -103,15 +121,17 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Id", 0);
           ret.Add("Type", 1);
           ret.Add("LobbyLevelRequired", 2);
           ret.Add("ItemId", 3);
-          ret.Add("ProductTime", 4);
-          ret.Add("MaxStore", 5);
-          ret.Add("CollectMin", 6);
+          ret.Add("SpecialRate", 4);
+          ret.Add("SpecialItemId", 5);
+          ret.Add("ProductTime", 6);
+          ret.Add("MaxStore", 7);
+          ret.Add("CollectMin", 8);
           return ret;
         }
     } 
