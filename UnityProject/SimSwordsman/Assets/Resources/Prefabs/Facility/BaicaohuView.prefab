@@ -473,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3611664955250896470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6069774271589714118}
@@ -716,9 +716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateLockedObj: {fileID: 3611664955652040474}
   stateReadyToUnlockObj: {fileID: 3611664955250896470}
-  state1Obj: {fileID: 3611664955600410872}
-  state2Obj: {fileID: 3611664954532625237}
-  state3Obj: {fileID: 3611664954660471991}
   stateObjList:
   - {fileID: 3611664955600410872}
   - {fileID: 3611664954532625237}
