@@ -90,7 +90,13 @@ namespace GameWish.Game
         /// 弟子减少事件
         /// </summary>
         OnDiscipleReduce,
+        /// <summary>
+        /// 弟子升段事件
+        /// </summary>
         OnCharacterUpgrade,
+        /// <summary>
+        /// 功夫升级事件
+        /// </summary>
         OnKongfuLibraryUpgrade,
 
     }

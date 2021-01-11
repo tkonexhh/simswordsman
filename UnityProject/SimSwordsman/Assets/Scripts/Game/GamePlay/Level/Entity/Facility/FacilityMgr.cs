@@ -483,7 +483,7 @@ namespace GameWish.Game
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
             int exp = MainGameMgr.S.FacilityMgr.GetExpValue(FacilityType, level);
-            characterItem.AddExp(exp);
+            characterItem.AddCharacterExp(exp);
         }
         public int GetDurationTime()
         {

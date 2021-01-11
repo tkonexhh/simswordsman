@@ -69,7 +69,7 @@ namespace GameWish.Game
 
         public void AddExp(int deltaExp)
         {
-            m_CharacterItem?.AddExp(deltaExp);
+            m_CharacterItem?.AddCharacterExp(deltaExp);
         }
 
         public int GetCurTaskId()
@@ -93,6 +93,31 @@ namespace GameWish.Game
         public int GetKongfuCount()
         {
             return m_CharacterItem.kongfus.Count;
+        }
+        /// <summary>
+        /// 某一功夫功夫的权重比例增加经验
+        /// </summary>
+        /// <returns></returns>
+        public void DistributionKungfuExp(int expValue)
+        {
+            int allWeight = 0;
+            foreach (var item in m_CharacterItem.kongfus.Values)
+            {
+                KungfuWeightConfig kungfuWeight = TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
+                if (kungfuWeight!=null)
+                    allWeight += kungfuWeight.Weight;
+            }
+
+            foreach (var item in m_CharacterItem.kongfus.Values)
+            {
+                int kungfuWeight = 0;
+                KungfuWeightConfig config= TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
+                if (config != null)
+                {
+                    int ratio = kungfuWeight / allWeight;
+                    m_CharacterItem.AddKongfuExp(item,ratio * expValue);
+                }
+            }
         }
     }
 

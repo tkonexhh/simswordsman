@@ -8,15 +8,15 @@ namespace GameWish.Game
 {
     public abstract class LevelReward
     {
-        public LevelRewardType rewardType;
+        public RewardItemType rewardType;
         public string[] paramStrs;
 
-        public LevelReward(LevelRewardType rewardType, string[] paramStrs)
+        public LevelReward(RewardItemType rewardType, string[] paramStrs)
         {
             this.rewardType = rewardType;
             this.paramStrs = paramStrs;
         }
 
-        public abstract void ApplyReward();
+        public abstract void ApplyReward(int pas);
     }
 }

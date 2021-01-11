@@ -209,9 +209,20 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void AddCharacterKongfuExp(CharacterItemDbData item, KungfuType kongfuType, int deltaExp)
+        public void AddCharacterKongfuExp(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
-            ownedCharacterData.AddKonfuExp(item, kongfuType, deltaExp);
+            ownedCharacterData.AddKonfuExp(id, kongfuType, deltaExp);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="kongfuType"></param>
+        /// <param name="deltaExp"></param>
+        public void AddCharacterKongfuLevel(int id, CharacterKongfuData kongfuType, int deltaLevel)
+        {
+            ownedCharacterData.AddCharacterKongfuLevel(id, kongfuType, deltaLevel);
         }
         #endregion
 

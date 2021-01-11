@@ -10,12 +10,12 @@ namespace GameWish.Game
     {
         private int m_MoneyValue;
 
-        public MoneyReward(LevelRewardType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
+        public MoneyReward(RewardItemType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
         {
             m_MoneyValue = int.Parse(paramStrs[1]);
         }
 
-        public override void ApplyReward()
+        public override void ApplyReward(int par)
         {
             GameDataMgr.S.GetPlayerData().AddCoinNum(m_MoneyValue);
         }

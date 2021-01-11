@@ -140,6 +140,17 @@ namespace GameWish.Game
             m_failPanel.OnRefuseBtnEvent -= BattleFailCancle;
             CloseSelfPanel();
         }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                EventSystem.S.Send(EventID.OnBattleSuccessed);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EventSystem.S.Send(EventID.OnBattleFailed);
+            }
+        }
 
         private void HandleAddListenerEvent(int key, object[] param)
         {
@@ -195,17 +206,5 @@ namespace GameWish.Game
 
         }
 
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                EventSystem.S.Send(EventID.OnBattleSuccessed);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                EventSystem.S.Send(EventID.OnBattleFailed);
-            }
-        }
     }
 }

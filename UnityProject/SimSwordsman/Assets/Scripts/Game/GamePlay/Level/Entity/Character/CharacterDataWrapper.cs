@@ -124,14 +124,49 @@ namespace GameWish.Game
     {
         public int Index { set; get; }
         public KungfuLockState KungfuLockState { set; get; } = KungfuLockState.NotUnlocked;
-        public CharacterKongfu CharacterKongfu { set; get; } 
+        public CharacterKongfu CharacterKongfu { set; get; }
 
+        private const int m_KungfuMaxLevel = 9;
         public CharacterKongfuData(int index)
         {
             Index = index;
         }
 
         public CharacterKongfuData(){}
+
+        public int GetKungfuLevel()
+        {
+            return CharacterKongfu.dbData.level;
+        }
+        public void AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
+        {
+            CharacterKongfu.dbData.curExp += deltaExp;
+
+            while (true)
+            {
+                int upExp = TDKongfuConfigTable.GetKungfuUpgradeInfo(CharacterKongfu.dbData);
+                if (CharacterKongfu.dbData.curExp > upExp)
+                {
+                    UpgradeLevels(id, kongfuType);
+                    CharacterKongfu.dbData.curExp -= upExp;
+                }
+                else
+                    break;
+            }
+            GameDataMgr.S.GetClanData().AddCharacterKongfuExp(id, kongfuType, deltaExp);
+        }
+
+        private void UpgradeLevels(int id, CharacterKongfuData kongfuType)
+        {
+            CharacterKongfu.dbData.level = Mathf.Min(CharacterKongfu.dbData.level+1, m_KungfuMaxLevel);
+            GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, 1);
+            EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade, CharacterKongfu.dbData);
+        }
+
+        public KungfuType GetKungfuType()
+        {
+            return CharacterKongfu.dbData.kongfuType;
+        }
 
         internal void Wrap(CharacterKongfuDBData i)
         {
@@ -262,6 +297,7 @@ namespace GameWish.Game
                 if (priviewStage != this.stage)
                 {
                     GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
+                    EventSystem.S.Send(EventID.OnCharacterUpgrade, this.stage);
                     int delte = stage - priviewStage;
 
                     for (int i = 1; i <= delte; i++)
@@ -322,13 +358,11 @@ namespace GameWish.Game
             }
         }
 
-   
-
         /// <summary>
         /// 增加经验
         /// </summary>
         /// <param name="deltaExp"></param>
-        public void AddExp(int deltaExp)
+        public void AddCharacterExp(int deltaExp)
         {
             curExp += deltaExp;
 
@@ -346,9 +380,9 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 
-        public void AddKongfuExp(KungfuType kongfuType, int deltaExp)
+        public void AddKongfuExp(CharacterKongfuData kongfuType, int deltaExp)
         {
-            GameDataMgr.S.GetClanData().AddCharacterKongfuExp(m_ItemDbData, kongfuType, deltaExp);
+            kongfuType.AddExpForKungfuType(id, kongfuType, deltaExp);
         }
         /// <summary>
         /// 获取装备

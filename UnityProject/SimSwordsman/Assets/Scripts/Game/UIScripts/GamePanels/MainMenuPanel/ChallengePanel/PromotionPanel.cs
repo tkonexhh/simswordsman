@@ -16,7 +16,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ExitBtn;
 
-        private CharacterController m_CharacterController = null;
+        private CharacterItem m_CharacterItem = null;
+        private int stage = 0;
+        private CharacterKongfuDBData kungfu = null;
 
         protected override void OnUIInit()
         {
@@ -30,11 +32,16 @@ namespace GameWish.Game
             switch ((EventID)args[0])
             {
                 case EventID.OnCharacterUpgrade:
-                    m_CharacterController = (CharacterController)args[1];
+                    m_CharacterItem = (CharacterItem)args[1];
+                    stage = (int)args[2];
                     m_PromotionTitle.text = "µÜ×ÓÉý¶Î";
-                    //m_PromotionInfo.text = m_CharacterController.CharacterModel.c
+                    m_PromotionInfo.text = m_CharacterItem.name + "ÉýÖÁ" + CommonUIMethod.GetTextNumber(stage) + "¶ÎµÜ×Ó";
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
+                    m_CharacterItem = (CharacterItem)args[1];
+                    kungfu = (CharacterKongfuDBData)args[2];
+                    m_PromotionTitle.text = "Îä¹¦Í»ÆÆ";
+                    m_PromotionInfo.text = m_CharacterItem.name + "µÄ"+ kungfu.kongfuType.ToString()+"ÉýÖÁ" + CommonUIMethod.GetTextNumber(kungfu.level) + "²ã";
                     break;
                 default:
                     break;
