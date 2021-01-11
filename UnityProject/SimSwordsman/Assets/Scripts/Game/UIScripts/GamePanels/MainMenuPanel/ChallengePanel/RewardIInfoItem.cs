@@ -52,9 +52,6 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-          
-
-
 
             m_DiscipleName.text = m_CurCharacterItem.name;
 

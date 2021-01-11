@@ -27,7 +27,6 @@ namespace GameWish.Game
                 return KungfuWeight[level];
             return null;
         }
-
     }
 
 
