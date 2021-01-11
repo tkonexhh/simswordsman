@@ -72,8 +72,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 275.4}
-  m_SizeDelta: {x: 74.9, y: 39.9}
+  m_AnchoredPosition: {x: 0.000011444, y: 873.0001}
+  m_SizeDelta: {x: 354.9, y: 69.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4255695638857723748
 MonoBehaviour:
@@ -105,31 +105,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 4224110477979680618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8051acdbc4dfbbf48889931cebac113f, type: 3}
-    m_FontSize: 27
+    m_Font: {fileID: 12800000, guid: fe76861e389468a47bb203433a4ce302, type: 3}
+    m_FontSize: 56
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 50
+    m_MaxSize: 62
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u5347\u7EA7"
 --- !u!114 &4255791874523094656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4224110477979680618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.14120944, g: 0.24528301, b: 0, a: 0.5}
@@ -155,9 +154,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4144067970964622944}
   - component: {fileID: 4143936684537348212}
-  - component: {fileID: 5741281195247523497}
+  - component: {fileID: 5545058379548021170}
   m_Layer: 5
-  m_Name: FloatMessagePanel1
+  m_Name: FloatMessagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +203,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &5741281195247523497
+--- !u!114 &5545058379548021170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4224191802201425252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77183f3e6695dd547a375b5bcab6035a, type: 3}
+  m_Script: {fileID: 11500000, guid: cc9560c722538f444923db9e5ab86f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ParentPage: {fileID: 0}
@@ -224,7 +223,7 @@ MonoBehaviour:
   m_SortingOrder: -1
   m_Prefab: {fileID: 4224110477979680618}
   m_Root: {fileID: 4145116035856387790}
-  m_StartPos: {x: 0, y: 0, z: 0}
-  m_EndPos: {x: 0, y: 0, z: 0}
+  m_StartPos: {x: 0, y: -54.4, z: 0}
+  m_EndPos: {x: 0, y: 39.34, z: 0}
   m_AnimTime: 1
   m_SendOffsetTime: 0.1

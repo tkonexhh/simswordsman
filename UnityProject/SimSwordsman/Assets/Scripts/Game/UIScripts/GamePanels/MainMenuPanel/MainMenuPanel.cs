@@ -48,32 +48,16 @@ namespace GameWish.Game
             m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
 
             m_VillaBtn.onClick.AddListener(() => {
-                GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
-                m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
+
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.QingRock), 200);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 200);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.SilverWood), 200);
+                //GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
+                //m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
             });
             m_DiscipleBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.DisciplePanel); });
             m_BulletinBorardBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.BulletinBoardPanel); });
             m_SignInBtn.onClick.AddListener(() => {
-                //UIMgr.S.OpenPanel(UIID.SignInPanel); 
-                //MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(Armor.BrightLightArmor, Step.Eight),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.Eight),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.Four),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.HeavenReliantSword, Step.Eight),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(Arms.DragonCarvingKnife, Step.One),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Charoite),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.Malachite),3);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.RedAgate),3);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.SilverToken), 20);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.GoldenToken), 20);
-                //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 3, 4));
-
-                //MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArms(Arms.DragonCarvingKnife));
-                //MainGameMgr.S.CharacterMgr.AddEquipment(0, new CharacterArmor(Armor.BrightLightArmor));
-
-                //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.RuLaiShenZhang));
-                //MainGameMgr.S.CharacterMgr.AddKungfu(0, new KungfuItem(KungfuType.WuLinMiJi));
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
-
                 UIMgr.S.OpenPanel(UIID.SignInPanel);
             });
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });

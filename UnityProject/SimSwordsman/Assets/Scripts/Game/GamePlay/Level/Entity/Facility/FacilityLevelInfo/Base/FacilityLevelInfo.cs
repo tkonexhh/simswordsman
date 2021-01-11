@@ -17,7 +17,10 @@ namespace GameWish.Game
         {
 
         }
-
+        public int GetUpgradeCondition()
+        {
+            return upgradeNeedLobbyLevel;
+        }
         public FacilityLevelInfo(int level, int coinCost, int needLobbyLevel, FacilityUpgradeCost rewards)
         {
             this.level = level;
