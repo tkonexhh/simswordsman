@@ -1076,7 +1076,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 551244824}
-  - component: {fileID: 551244825}
   m_Layer: 0
   m_Name: WastLivableRoom
   m_TagString: Untagged
@@ -1102,17 +1101,6 @@ Transform:
   m_Father: {fileID: 1321125369}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &551244825
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551244823}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
 --- !u!4 &553229765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8178777523560862228, guid: a1cbca04014007040833d347e97e08a5,
@@ -3826,7 +3814,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1932203952}
-  - component: {fileID: 1932203953}
   m_Layer: 0
   m_Name: EastLivableRoom
   m_TagString: Untagged
@@ -3852,17 +3839,6 @@ Transform:
   m_Father: {fileID: 1321125369}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &1932203953
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932203951}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
 --- !u!1 &1950002117
 GameObject:
   m_ObjectHideFlags: 0
@@ -9571,21 +9547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1321125369}
     m_Modifications:
-    - target: {fileID: 3532048380072397617, guid: 2cc1584384435c54084b3407590f940f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532048380072397618, guid: 2cc1584384435c54084b3407590f940f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532048380698372768, guid: 2cc1584384435c54084b3407590f940f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3532048380828307249, guid: 2cc1584384435c54084b3407590f940f,
         type: 3}
       propertyPath: m_Name
@@ -9644,11 +9605,6 @@ PrefabInstance:
     - target: {fileID: 3532048380828307250, guid: 2cc1584384435c54084b3407590f940f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532048380937625711, guid: 2cc1584384435c54084b3407590f940f,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -102,10 +102,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.4410515, y: -0.8436663}
-      - {x: 0.49648786, y: -1.9226305}
-      - {x: -2.069404, y: -0.43050492}
-      - {x: -0.14717573, y: 0.62396264}
+    - - {x: 2.0455513, y: -0.79422903}
+      - {x: 0.10098815, y: -1.8237557}
+      - {x: -2.1188405, y: -0.67769206}
+      - {x: -0.2954883, y: 0.3767755}
 --- !u!1 &408857075
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5810605509867091217
 Transform:
   m_ObjectHideFlags: 0
@@ -674,7 +674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5037991344174763591
 Transform:
   m_ObjectHideFlags: 0
