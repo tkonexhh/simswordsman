@@ -60,6 +60,38 @@ namespace GameWish.Game
             //EventSystem.S.Register(EventID.OnCountdownerTick, OnTick);
             EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
         }
+        /// <summary>
+        /// 刷新可以工作的建筑
+        /// </summary>
+        /// <returns></returns>
+        public void UpdateCanWorkFacilitys()
+        {
+            List<FacilityType> list = new List<FacilityType>();
+            foreach (var item in m_UnlockFacilitys)
+            {
+                if (CanWork(item))
+                    list.Add(item);
+            }
+            for (int i = 0; i < m_MaxCanWorkFacilityLimit; i++)
+            {
+                if (list.Count > 0)
+                {
+                    int index = RandomHelper.Range(0, list.Count);
+                    AddCanWorkFacility(list[index]);
+                    list.RemoveAt(index);
+                }
+                else
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 通过存档事件触发修改表格后，再次检查可以工作的建筑列表
+        /// </summary>
+        //public void CheckCanWorkFacilitys()
+        //{
+
+        //}
 
         void CheckData()
         {
@@ -121,8 +153,8 @@ namespace GameWish.Game
                 var type = (FacilityType)cd.ID;
                 if (m_CDFacilitys.Contains(type))
                 {
-                    m_CDFacilitys.Remove((FacilityType)cd.ID);
-                    UpdateCanWorkFacilitys();
+                    m_CDFacilitys.Remove(type);
+                    AfterFacilityCD(type);
                 }
             }
             else if (cd.stringID.Contains("FacilityWorking"))
@@ -196,29 +228,11 @@ namespace GameWish.Game
             return true;
         }
 
-        /// <summary>
-        /// 刷新可以工作的建筑
-        /// </summary>
-        /// <returns></returns>
-        void UpdateCanWorkFacilitys()
+      
+        void AfterFacilityCD(FacilityType type)
         {
-            List<FacilityType> list = new List<FacilityType>();
-            foreach (var item in m_UnlockFacilitys)
-            {
-                if (CanWork(item))
-                    list.Add(item);
-            }
-            for (int i = 0; i < m_MaxCanWorkFacilityLimit; i++)
-            {
-                if (list.Count > 0)
-                {
-                    int index = RandomHelper.Range(0, list.Count);
-                    AddCanWorkFacility(list[index]);
-                    list.RemoveAt(index);
-                }
-                else
-                    break;
-            }
+            if (m_CanWorkFacilitys.Count < m_MaxCanWorkFacilityLimit)
+                AddCanWorkFacility(type);
         }
 
         void AddCanWorkFacility(FacilityType type)
@@ -227,7 +241,7 @@ namespace GameWish.Game
             {
                 m_CanWorkFacilitys.Add(type);
                 //发送消息
-
+                EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
             }
         }
         void AddRewardFacility(FacilityType type, int characterid)
@@ -250,7 +264,7 @@ namespace GameWish.Game
 
                 GameDataMgr.S.GetPlayerData().SetDataDirty();
                 //发送消息
-
+                EventSystem.S.Send(EventID.OnAddRewardFacility, type);
             }
         }
 
