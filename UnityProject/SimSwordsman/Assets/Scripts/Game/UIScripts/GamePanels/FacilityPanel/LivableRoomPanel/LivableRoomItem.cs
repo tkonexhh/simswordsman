@@ -110,7 +110,7 @@ namespace GameWish.Game
                 {
                     case LivableRoomState.ReadyBuilt:
                         m_LivableRoomState = LivableRoomState.Upgrade;
-                        MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.State1/*, m_SubID*/);
+                        MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
                         break;
                     case LivableRoomState.Upgrade:
                         bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(long.Parse(m_Res3Consume.text));
