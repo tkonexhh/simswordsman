@@ -33,7 +33,7 @@ namespace GameWish.Game
         /// <summary>
         /// 外出
         /// </summary>
-        GoOutside,
+        GoOutsideForBattle,
         /// <summary>
         /// 读经书
         /// </summary>

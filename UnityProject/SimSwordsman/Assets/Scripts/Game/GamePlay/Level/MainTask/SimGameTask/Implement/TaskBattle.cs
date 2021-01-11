@@ -17,7 +17,7 @@ namespace GameWish.Game
             selectedCharacters.ForEach(i =>
             {
                 i.SetCurTask(this);
-                i.SetState(CharacterStateID.GoOutside);
+                i.SetState(CharacterStateID.GoOutsideForBattle);
             });
         }
     }
