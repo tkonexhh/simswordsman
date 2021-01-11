@@ -84,6 +84,7 @@ namespace GameWish.Game
             m_TitleTxt.text = m_CurFacilityConfigInfo.name;
             m_FacilityDescribe.text = m_CurFacilityConfigInfo.desc;
             m_CostItems = m_FacilityLevelInfo.GetUpgradeResCosts();
+            m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel);
             // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
             //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
             RefreshResInfo();
@@ -91,13 +92,20 @@ namespace GameWish.Game
 
         private void RefreshResInfo()
         {
-
-            if (m_CostItems.Count == 1)
+            if (m_CostItems.Count==0)
+            {
+                m_Res1.gameObject.SetActive(false);
+                m_Res2.gameObject.SetActive(false);
+                m_Res3.gameObject.SetActive(false);
+            }
+            else if (m_CostItems.Count == 1)
             {
                 m_Res1Value.text = m_CostItems[0].value.ToString();
                 m_Res1.sprite = FindSprite("QingRock");
                 m_Res2Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
                 m_Res2.sprite = FindSprite("Coin");
+                m_Res1.gameObject.SetActive(true);
+                m_Res2.gameObject.SetActive(true);
                 m_Res3.gameObject.SetActive(false);
             }
             else if (m_CostItems.Count == 2)
@@ -109,6 +117,8 @@ namespace GameWish.Game
                 m_Res2.sprite = FindSprite("silverWood");
                 m_Res3Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
                 m_Res3.sprite = FindSprite("Coin");
+                m_Res1.gameObject.SetActive(true);
+                m_Res2.gameObject.SetActive(true);
                 m_Res3.gameObject.SetActive(true);
             }
         }
@@ -140,7 +150,7 @@ namespace GameWish.Game
         private bool CheackIsBuild()
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_FacilityLevelInfo.GetUpgradeCondition() < lobbyLevel && CheckPropIsEnough())
+            if (m_FacilityLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
                 return true;
             return false;
         }

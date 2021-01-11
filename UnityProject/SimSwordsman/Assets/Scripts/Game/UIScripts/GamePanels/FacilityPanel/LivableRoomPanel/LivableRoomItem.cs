@@ -131,7 +131,7 @@ namespace GameWish.Game
         private bool CheackIsBuild()
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_LivableRoomLevelInfo.GetUpgradeCondition() < lobbyLevel && CheckPropIsEnough())
+            if (m_LivableRoomLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
                 return true;
             return false;
         }
