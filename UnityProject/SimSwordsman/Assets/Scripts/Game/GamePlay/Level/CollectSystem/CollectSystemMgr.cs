@@ -59,7 +59,7 @@ namespace GameWish.Game
             {
                 var tb = TDCollectConfigTable.dataList[cd.ID];
                 SetDic(cd.ID, tb.maxStore);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)tb.itemId), tb.maxStore);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem(   (RawMaterial)tb.itemId), tb.maxStore);
             }
         }
 
@@ -83,7 +83,7 @@ namespace GameWish.Game
             }
         }
 
-        void CheckUnlockItem(int lobbylevel)
+        void CheckUnlockItem(int lobbylevel)  
         {
             TDCollectConfig temp;
             for (int i = 0; i < TDCollectConfigTable.dataList.Count; i++)

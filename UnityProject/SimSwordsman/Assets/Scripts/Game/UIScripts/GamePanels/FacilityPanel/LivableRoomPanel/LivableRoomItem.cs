@@ -103,7 +103,6 @@ namespace GameWish.Game
                 {
                     FloatMessage.S.ShowMsg("未达到升级条件");
                     return;
-
                 }
 
                 switch (m_LivableRoomState)
@@ -113,7 +112,7 @@ namespace GameWish.Game
                         MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
                         break;
                     case LivableRoomState.Upgrade:
-                        bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(long.Parse(m_Res3Consume.text));
+                        bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_LivableRoomLevelInfo.upgradeCoinCost);
                         if (isReduceSuccess)
                         {
                             EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
@@ -141,7 +140,7 @@ namespace GameWish.Game
         {
             for (int i = 0; i < m_CostItems.Count; i++)
             {
-              bool isHave =   MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
+              bool isHave =  MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
                     return false;
             }

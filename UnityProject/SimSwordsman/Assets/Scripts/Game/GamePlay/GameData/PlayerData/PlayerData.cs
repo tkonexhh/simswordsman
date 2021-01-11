@@ -143,7 +143,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool CheckHaveCoin(int coinNumber)
         {
-            if (coinNum>= coinNumber)
+            if (m_CoinNum >= coinNumber)
                 return true;
             return false;
         }

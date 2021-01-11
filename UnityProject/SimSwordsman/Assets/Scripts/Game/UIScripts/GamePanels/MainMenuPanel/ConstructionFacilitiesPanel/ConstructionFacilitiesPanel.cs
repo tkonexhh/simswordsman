@@ -19,9 +19,17 @@ namespace GameWish.Game
 		[SerializeField]
 		private Text m_ConstructionConditionValue;
         [SerializeField]
-        private Text m_BaoziValue;
+        private Image m_Res1;
         [SerializeField]
-        private Text m_CoinValue;
+        private Text m_Res1Value;
+        [SerializeField]
+        private Image m_Res2;
+        [SerializeField]
+        private Text m_Res2Value;
+        [SerializeField]
+        private Image m_Res3;
+        [SerializeField]
+        private Text m_Res3Value;
 
 
         [SerializeField]
@@ -35,7 +43,9 @@ namespace GameWish.Game
         private FacilityType m_FacilityType;
         private int m_SubId;
 
+        private List<CostItem> m_CostItems;
         private FacilityConfigInfo m_CurFacilityConfigInfo = null;
+        private FacilityLevelInfo m_FacilityLevelInfo = null;
 
         protected override void OnUIInit()
 	    {
@@ -70,14 +80,39 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_CurFacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_FacilityType);
+            m_FacilityLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_FacilityType, 1);
             m_TitleTxt.text = m_CurFacilityConfigInfo.name;
             m_FacilityDescribe.text = m_CurFacilityConfigInfo.desc;
-
-           // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
-            m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
-
+            m_CostItems = m_FacilityLevelInfo.GetUpgradeResCosts();
+            // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
+            //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
+            RefreshResInfo();
         }
-       
+
+        private void RefreshResInfo()
+        {
+
+            if (m_CostItems.Count == 1)
+            {
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1.sprite = FindSprite("QingRock");
+                m_Res2Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
+                m_Res2.sprite = FindSprite("Coin");
+                m_Res3.gameObject.SetActive(false);
+            }
+            else if (m_CostItems.Count == 2)
+            {
+
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1.sprite = FindSprite("QingRock");
+                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2.sprite = FindSprite("silverWood");
+                m_Res3Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
+                m_Res3.sprite = FindSprite("Coin");
+                m_Res3.gameObject.SetActive(true);
+            }
+        }
+
         private void BindAddListenerEvent()
         {
 
@@ -85,7 +120,13 @@ namespace GameWish.Game
 
             m_AcceptBtn.onClick.AddListener(()=> 
             {
-                if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(long.Parse(m_CoinValue.text)))
+                if (!CheackIsBuild())
+                {
+                    FloatMessage.S.ShowMsg("未达到升级条件");
+                    return;
+                }
+
+                if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_CurFacilityConfigInfo.GetUnlockCoinCost()))
                 {
                     if (m_FacilityType == FacilityType.Lobby)
                         GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
@@ -96,7 +137,25 @@ namespace GameWish.Game
                 }
             });
 		}
+        private bool CheackIsBuild()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (m_FacilityLevelInfo.GetUpgradeCondition() < lobbyLevel && CheckPropIsEnough())
+                return true;
+            return false;
+        }
 
+        private bool CheckPropIsEnough()
+        {
+            for (int i = 0; i < m_CostItems.Count; i++)
+            {
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
+                if (!isHave)
+                    return false;
+            }
+
+            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_FacilityLevelInfo.upgradeCoinCost);
+        }
 
         protected override void OnPanelHideComplete()
         {

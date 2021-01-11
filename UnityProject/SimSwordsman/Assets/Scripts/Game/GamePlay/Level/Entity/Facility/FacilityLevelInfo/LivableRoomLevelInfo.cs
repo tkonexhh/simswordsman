@@ -22,11 +22,6 @@ namespace GameWish.Game
             return m_CurCapacity;
         }
 
-        public int GetUpgradeCondition()
-        {
-            return upgradeNeedLobbyLevel;
-        }
-
         public int GetNextCapacity()
         {
             int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
