@@ -44,7 +44,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            MainGameMgr.S.CollectSystemMgr.Collect(id);
+            CollectSystem.S.Collect(id);
             CollectView.gameObject.SetActive(false);
         }
 	}

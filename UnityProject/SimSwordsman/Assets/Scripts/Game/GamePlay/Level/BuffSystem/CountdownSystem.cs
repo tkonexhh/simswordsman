@@ -43,7 +43,7 @@ namespace GameWish.Game
         /// <param name="id"></param>
         /// <param name="totalMinutes">倒计时时长 单位：分钟</param>
         /// <param name="interval">每次tick的时间 单位：秒</param>
-        public void StartCountdownerWithMin(string stringid, int id, int totalMinutes, int interval = 1)
+        public void StartCountdownerWithMin(string stringid, int id, float totalMinutes, int interval = 1)
         {
             StartCountdownerWithSec(stringid, id, totalMinutes * 60, interval);
         }
@@ -53,7 +53,7 @@ namespace GameWish.Game
         /// <param name="id"></param>
         /// <param name="totalMinutes">倒计时时长 单位：秒</param>
         /// <param name="interval">每次tick的时间 单位：秒</param>
-        public void StartCountdownerWithSec(string stringid, int id, int totalSeconds, int interval = 1)
+        public void StartCountdownerWithSec(string stringid, int id, float totalSeconds, int interval = 1)
         {
             foreach (var item in m_AllCDs)
             {

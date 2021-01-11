@@ -38,6 +38,10 @@ namespace GameWish.Game
         /// 读经书
         /// </summary>
         Reading,
+        /// <summary>
+        /// 干活
+        /// </summary>
+        Working,
     }
 
 
