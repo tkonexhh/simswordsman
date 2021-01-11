@@ -10,9 +10,6 @@ namespace GameWish.Game
     {
         public GameObject stateLockedObj;
         public GameObject stateReadyToUnlockObj;
-        //public GameObject state1Obj;
-        //public GameObject state2Obj;
-        //public GameObject state3Obj;
         public List<GameObject> stateObjList = new List<GameObject>();
         public GameObject navObstacleObj = null;
         public GameObject roadObj = null;

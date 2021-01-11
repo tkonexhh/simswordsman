@@ -160,10 +160,6 @@ namespace GameWish.Game
                 case FacilityType.PatrolRoom:
                     facilityLevelInfo = TDFacilityPatrolRoomTable.GetLevelInfo(level);
                     break;
-                case FacilityType.BartizanEast:
-                case FacilityType.BartizanWest:
-                    facilityLevelInfo = TDFacilityBartizanTable.GetLevelInfo(level);
-                    break;
             }
 
             return facilityLevelInfo;
