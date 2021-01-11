@@ -41,6 +41,12 @@ namespace GameWish.Game
             return null;
         }
 
+        public static int GetLevelId(int chapter, int index)
+        {
+            if (m_AllChapter.ContainsKey(chapter))
+                return m_AllChapter[chapter].GetLevelId(index);
+            return -1;
+        }
     }
 
     public class EnemyConfig
@@ -112,6 +118,20 @@ namespace GameWish.Game
             if (m_AllCheckpoint.ContainsKey(levelId))
                 return m_AllCheckpoint[levelId].enemiesList;
             return null;
+        }
+
+        public int GetLevelId(int index)
+        {
+            if (index < 0 || index >= m_AllCheckpoint.Values.Count)
+            {
+                Log.e("GetLevelId index out of range: " + index);
+                return -1;
+            }
+
+            LevelConfigInfo[] configInfoArray = new LevelConfigInfo[m_AllCheckpoint.Values.Count];
+            m_AllCheckpoint.Values.CopyTo(configInfoArray, 0);
+
+            return configInfoArray[index].level;
         }
     }
 }

@@ -45,6 +45,11 @@ namespace GameWish.Game
             SetTaskIfNeed(initState);
 
             m_StateMachine = new CharacterStateMachine(this);
+
+            if (initState == CharacterStateID.Battle)
+            {
+                initState = CharacterStateID.Wander;
+            }
             SetState(initState);
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
@@ -186,7 +191,8 @@ namespace GameWish.Game
                     collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
                 }
 
-                SetStateToDB(m_CurState);
+                if(m_CharacterCamp == CharacterCamp.OurCamp)
+                    SetStateToDB(m_CurState);
             }
         }
 

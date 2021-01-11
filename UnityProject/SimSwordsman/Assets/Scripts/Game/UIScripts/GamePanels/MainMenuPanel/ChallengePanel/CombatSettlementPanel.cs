@@ -33,7 +33,13 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_ExitBtn.onClick.AddListener(HideSelfWithAnim);
+            m_ExitBtn.onClick.AddListener(()=> 
+            {
+                EventSystem.S.Send(EventID.OnExitBattle);
+                HideSelfWithAnim();
+                UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+            });
         }
 
         protected override void OnPanelOpen(params object[] args)

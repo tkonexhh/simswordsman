@@ -81,7 +81,7 @@ namespace GameWish.Game
                     continue;
 
                 Transform chapterItem = Instantiate(m_CheckpointItem, m_CheckpointTrans).transform;
-                chapterItem.GetComponentInChildren<Text>().text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, i);
+                chapterItem.GetComponentInChildren<Text>().text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, TDLevelConfigTable.GetLevelId(m_CurChapterConfigInfo.chapterId, i));
                 Button challengeBtn =  chapterItem.GetComponent<Button>();
                 if (!m_LevelBtnDic.ContainsKey(i))
                     m_LevelBtnDic.Add(i, challengeBtn);
