@@ -201,20 +201,26 @@ namespace GameWish.Game
 
         private void UpdateItems()
         {
+            string[] temp = null;
             if (m_Items.Count == 0)
             {
-                for (int i = 0; i < TDEquipmentConfigTable.dataList.Count; i++)
+                for (int i = 0; i < TDFacilityForgeHouseTable.dataList.Count; i++)
                 {
-                    GameObject obj = Instantiate(m_ItemPrefab, m_ItemTra);
-                    ForgeHouseItem item = obj.GetComponent<ForgeHouseItem>();
-                    m_Items.Add(item);
+                    temp = TDFacilityForgeHouseTable.dataList[i].unlockEquip.Split(';');
+                    foreach (var id in temp)
+                    {
+                        GameObject obj = Instantiate(m_ItemPrefab, m_ItemTra);
+                        ForgeHouseItem item = obj.GetComponent<ForgeHouseItem>();
+                        item.ID = int.Parse(id);
+                        item.UnlockLevel = TDFacilityForgeHouseTable.dataList[i].level;
+                        m_Items.Add(item);
+                    }
                 }
             }
             for (int i = 0; i < m_Items.Count; i++)
             {
-                Debug.LogError(123);
                 ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
-                itemICom.OnInit(this, null, TDEquipmentConfigTable.dataList[i].id);
+                itemICom.OnInit(this, null);
             }
         }
     }

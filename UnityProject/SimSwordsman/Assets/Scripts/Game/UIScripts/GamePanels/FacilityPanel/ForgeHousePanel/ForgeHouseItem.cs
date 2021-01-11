@@ -50,13 +50,15 @@ namespace GameWish.Game
 
         [HideInInspector]
         public int ID;
+        [HideInInspector]
+        public int UnlockLevel;//解锁等级
 
         string m_StringID = "ForgeHousePanel";
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             BindAddListenerEvent();
-            Init((int)obj[0]);
+            Init();
         }
 
         public void SetButtonEvent(Action<object> action)
@@ -77,11 +79,10 @@ namespace GameWish.Game
             m_DurationTxt.text = dur;
             m_Progress.fillAmount = progress;
         }
-        void Init(int id)
+        void Init()
         {
-            ID = id;
             var list = TDFacilityForgeHouseTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse)).GetCurEquipmentType();
-            if (!list.Contains((EquipmentType)id))//未解锁
+            if (!list.Contains((EquipmentType)ID))//未解锁
             {
                 SetState(0);
             }
@@ -89,7 +90,7 @@ namespace GameWish.Game
             {
                 transform.SetAsFirstSibling();
 
-                var tb = TDEquipmentConfigTable.GetData(id);
+                var tb = TDEquipmentConfigTable.GetData(ID);
                // m_ItemIcon.sprite = Resources.Load<Sprite>("Sprites/HerbIcon/" + tb.iconName);
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
@@ -152,7 +153,7 @@ namespace GameWish.Game
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
                     //解锁条件
-                    m_LockConditionTxt.text = string.Format("锻造房升至 <color=#9C4B45>{0}</color>级 后解锁", TDEquipmentConfigTable.GetData(ID).unlockLevel);
+                    m_LockConditionTxt.text = string.Format("锻造房升至 <color=#9C4B45>{0}</color>级 后解锁", UnlockLevel);
                     break;
                 case 1:
                     UnLock.SetActive(true);

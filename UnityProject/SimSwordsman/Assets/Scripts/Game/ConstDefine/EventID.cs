@@ -34,6 +34,8 @@ namespace GameWish.Game
         OnCountdownerEnd,
 
         OnCollectCountChange,//收集物
+        OnAddCanWorkFacility,//可以干活的建筑
+        OnAddRewardFacility,//可以获得干活奖励的建筑
 
         // Facility
         OnStartUnlockFacility,

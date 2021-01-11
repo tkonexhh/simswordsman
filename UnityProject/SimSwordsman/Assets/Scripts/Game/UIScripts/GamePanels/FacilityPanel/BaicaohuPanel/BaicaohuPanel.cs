@@ -200,19 +200,26 @@ namespace GameWish.Game
 
         private void UpdateItems()
         {
+            string[] temp = null;
             if (m_Items.Count == 0)
             {
-                for (int i = 0; i < TDHerbConfigTable.dataList.Count; i++)
+                for (int i = 0; i < TDFacilityBaicaohuTable.dataList.Count; i++)
                 {
-                    GameObject obj = Instantiate(m_ItemPrefab, m_ItemTra);
-                    BaicaohuItem item = obj.GetComponent<BaicaohuItem>();
-                    m_Items.Add(item);
+                    temp = TDFacilityBaicaohuTable.dataList[i].unlockHerbID.Split(';');
+                    foreach (var id in temp)
+                    {
+                        GameObject obj = Instantiate(m_ItemPrefab, m_ItemTra);
+                        BaicaohuItem item = obj.GetComponent<BaicaohuItem>();
+                        item.ID = int.Parse(id);
+                        item.UnlockLevel = TDFacilityForgeHouseTable.dataList[i].level;
+                        m_Items.Add(item);
+                    }
                 }
             }
             for (int i = 0; i < m_Items.Count; i++)
             {
                 ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
-                itemICom.OnInit(this, null, TDHerbConfigTable.dataList[i].id);
+                itemICom.OnInit(this, null);
             }
         }
     }

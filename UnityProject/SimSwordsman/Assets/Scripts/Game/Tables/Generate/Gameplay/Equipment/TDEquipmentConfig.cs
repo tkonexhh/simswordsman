@@ -14,13 +14,13 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Name;   
+        private string m_EquipType;   
         private string m_Desc;   
         private string m_Quality;   
         private string m_UpgradeCondition;   
         private string m_Bonus;   
         private string m_BuildCondition;   
-        private string m_SellingPrice;   
-        private EInt m_UnlockLevel = 0;  
+        private string m_SellingPrice;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -33,6 +33,11 @@ namespace GameWish.Game
         /// 名称
         /// </summary>
         public  string  name {get { return m_Name; } }
+       
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public  string  equipType {get { return m_EquipType; } }
        
         /// <summary>
         /// 描述
@@ -64,11 +69,6 @@ namespace GameWish.Game
         /// </summary>
         public  string  sellingPrice {get { return m_SellingPrice; } }
        
-        /// <summary>
-        /// 解锁等级
-        /// </summary>
-        public  int  unlockLevel {get { return m_UnlockLevel; } }
-       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -91,25 +91,25 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_Desc = dataR.ReadString();
+                    m_EquipType = dataR.ReadString();
                     break;
                 case 3:
-                    m_Quality = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 4:
-                    m_UpgradeCondition = dataR.ReadString();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 5:
-                    m_Bonus = dataR.ReadString();
+                    m_UpgradeCondition = dataR.ReadString();
                     break;
                 case 6:
-                    m_BuildCondition = dataR.ReadString();
+                    m_Bonus = dataR.ReadString();
                     break;
                 case 7:
-                    m_SellingPrice = dataR.ReadString();
+                    m_BuildCondition = dataR.ReadString();
                     break;
                 case 8:
-                    m_UnlockLevel = dataR.ReadInt();
+                    m_SellingPrice = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -125,13 +125,13 @@ namespace GameWish.Game
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
-          ret.Add("Desc", 2);
-          ret.Add("Quality", 3);
-          ret.Add("UpgradeCondition", 4);
-          ret.Add("Bonus", 5);
-          ret.Add("BuildCondition", 6);
-          ret.Add("SellingPrice", 7);
-          ret.Add("UnlockLevel", 8);
+          ret.Add("EquipType", 2);
+          ret.Add("Desc", 3);
+          ret.Add("Quality", 4);
+          ret.Add("UpgradeCondition", 5);
+          ret.Add("Bonus", 6);
+          ret.Add("BuildCondition", 7);
+          ret.Add("SellingPrice", 8);
           return ret;
         }
     } 
