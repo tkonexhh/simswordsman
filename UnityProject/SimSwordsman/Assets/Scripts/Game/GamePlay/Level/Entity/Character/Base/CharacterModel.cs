@@ -54,12 +54,12 @@ namespace GameWish.Game
 
         public void SetDataState(CharacterStateID stateId)
         {
-            m_CharacterItem.SetCharacterStateData(stateId);
+            m_CharacterItem?.SetCharacterStateData(stateId);
         }
 
         public void SetCurTask(SimGameTask simGameTask)
         {
-            m_CharacterItem.SetCurTask(simGameTask);
+            m_CharacterItem?.SetCurTask(simGameTask);
         }
 
         public int GetExp()
@@ -69,7 +69,7 @@ namespace GameWish.Game
 
         public void AddExp(int deltaExp)
         {
-            m_CharacterItem.AddExp(deltaExp);
+            m_CharacterItem?.AddExp(deltaExp);
         }
 
         public int GetCurTaskId()
