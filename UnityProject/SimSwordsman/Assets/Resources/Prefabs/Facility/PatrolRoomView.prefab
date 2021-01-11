@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 42919698}
   - component: {fileID: 42919699}
+  - component: {fileID: 8167045480553476464}
   m_Layer: 0
   m_Name: building_jt_4
   m_TagString: Untagged
@@ -81,6 +82,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &8167045480553476464
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42919697}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &338915468
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338915469}
   - component: {fileID: 338915470}
+  - component: {fileID: 3223795806270246982}
   m_Layer: 0
   m_Name: building_jt_1
   m_TagString: Untagged
@@ -162,6 +175,93 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &3223795806270246982
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338915468}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
+--- !u!1 &479383562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479383563}
+  - component: {fileID: 479383565}
+  - component: {fileID: 479383564}
+  m_Layer: 0
+  m_Name: NavObstacle (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &479383563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479383562}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8178777523560862228}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &479383565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479383562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 0
+  extraOffset: 0
+  invertPolygon: 0
+--- !u!60 &479383564
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479383562}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.3761283, y: -0.6535173}
+      - {x: -0.30236867, y: -1.7039906}
+      - {x: -1.8411989, y: -0.7061587}
+      - {x: -0.18899024, y: 0.15345395}
 --- !u!1 &820391424
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 820391425}
   - component: {fileID: 820391426}
+  - component: {fileID: 3595927829083746717}
   m_Layer: 0
   m_Name: building_jt_5 (1)
   m_TagString: Untagged
@@ -243,6 +344,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &3595927829083746717
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820391424}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &825970715
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825970716}
   - component: {fileID: 825970717}
+  - component: {fileID: 7919828124040417019}
   m_Layer: 0
   m_Name: building_jt_5_2 (1)
   m_TagString: Untagged
@@ -324,6 +437,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &7919828124040417019
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825970715}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &879265806
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 879265807}
   - component: {fileID: 879265808}
+  - component: {fileID: 5094004679465742581}
   m_Layer: 0
   m_Name: building_jt_1
   m_TagString: Untagged
@@ -405,6 +530,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &5094004679465742581
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879265806}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1051831795
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051831796}
   - component: {fileID: 1051831797}
+  - component: {fileID: 5005519981676099854}
   m_Layer: 0
   m_Name: building_jt_4_2
   m_TagString: Untagged
@@ -486,6 +623,93 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &5005519981676099854
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051831795}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
+--- !u!1 &1064244241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064244242}
+  - component: {fileID: 1064244244}
+  - component: {fileID: 1064244243}
+  m_Layer: 0
+  m_Name: NavObstacle (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064244242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064244241}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8178777523560862228}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1064244244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064244241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeType: 0
+  extraOffset: 0
+  invertPolygon: 0
+--- !u!60 &1064244243
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064244241}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.4692383, y: 0.3147406}
+      - {x: -3.611971, y: -0.6007906}
+      - {x: -5.1609406, y: 0.15144104}
+      - {x: -3.757712, y: 0.95572484}
 --- !u!1 &1191673880
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191673881}
   - component: {fileID: 1191673882}
+  - component: {fileID: 1564319554871932386}
   m_Layer: 0
   m_Name: building_jt_3
   m_TagString: Untagged
@@ -567,6 +792,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &1564319554871932386
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191673880}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1244624088
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384837611}
   - component: {fileID: 1384837612}
+  - component: {fileID: 1569078113311369229}
   m_Layer: 0
   m_Name: building_jt_3
   m_TagString: Untagged
@@ -729,6 +966,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &1569078113311369229
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384837610}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1398560231
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,10 +1049,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.3761283, y: -0.6535173}
-      - {x: -0.30236867, y: -1.7039906}
-      - {x: -1.8411989, y: -0.7061587}
-      - {x: -0.18899024, y: 0.15345395}
+    - - {x: -4.9781337, y: 1.6182139}
+      - {x: -6.5249367, y: 0.7323588}
+      - {x: -8.063766, y: 1.2034123}
+      - {x: -6.279863, y: 2.0959485}
 --- !u!1 &1419650939
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1419650940}
   - component: {fileID: 1419650941}
+  - component: {fileID: 8041136385512600707}
   m_Layer: 0
   m_Name: building_jt_5
   m_TagString: Untagged
@@ -886,6 +1135,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &8041136385512600707
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419650939}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1647113863
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,6 +1156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1647113864}
   - component: {fileID: 1647113865}
+  - component: {fileID: 2600391659685825514}
   m_Layer: 0
   m_Name: building_jt_5_2
   m_TagString: Untagged
@@ -967,6 +1228,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &2600391659685825514
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647113863}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1901588524
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +1249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901588525}
   - component: {fileID: 1901588526}
+  - component: {fileID: 1047742426668734040}
   m_Layer: 0
   m_Name: building_jt_2
   m_TagString: Untagged
@@ -1048,6 +1321,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &1047742426668734040
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901588524}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1975118739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975118740}
   - component: {fileID: 1975118741}
+  - component: {fileID: 6853155921606046222}
   m_Layer: 0
   m_Name: building_jt_2
   m_TagString: Untagged
@@ -1129,6 +1414,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &6853155921606046222
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975118739}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 5
 --- !u!1 &1856919895834579301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +2117,8 @@ Transform:
   - {fileID: 6757355704171955695}
   - {fileID: 1398560232}
   - {fileID: 1244624089}
+  - {fileID: 1064244242}
+  - {fileID: 479383563}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
