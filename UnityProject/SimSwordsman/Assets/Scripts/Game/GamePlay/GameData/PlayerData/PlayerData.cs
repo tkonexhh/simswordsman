@@ -22,8 +22,7 @@ namespace GameWish.Game
 
         public List<int> unlockFoodItemIDs = new List<int>();
 
-        public List<Countdowner> countdownerData = new List<Countdowner>();
-
+      
         private long m_CoinNum = 0;
         public int signInCount;
 

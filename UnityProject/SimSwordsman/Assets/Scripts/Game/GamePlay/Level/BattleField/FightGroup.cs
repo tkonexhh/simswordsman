@@ -127,13 +127,13 @@ namespace GameWish.Game
         {
             if (m_EnemyAttack)
             {
-                Debug.LogError("Enemy play attack animation");
+                //Debug.LogError("Enemy play attack animation");
                 //m_EnemyCharacter.CharacterView.PlayAtkAnim("attack1", OnAtkAnimEnd);
                 m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attack);
             }
             else
             {
-                Debug.LogError("Our play attack animation");
+                //Debug.LogError("Our play attack animation");
                 //m_OurCharacter.CharacterView.PlayAtkAnim("attack", OnAtkAnimEnd);
                 m_OurCharacter.GetBattleState().SetState(BattleStateID.Attack);
             }
@@ -141,12 +141,12 @@ namespace GameWish.Game
 
         private void OnArriveDestination()
         {
-            Debug.LogError("OnArriveDestination");
+            //Debug.LogError("OnArriveDestination");
             m_ArriveCount++;
 
             if (m_ArriveCount >= 2)
             {
-                Debug.LogError("Face to target pos");
+                //Debug.LogError("Face to target pos");
                 m_EnemyCharacter.FaceTo(m_OurCharacter.GetPosition().x);
                 m_OurCharacter.FaceTo(m_EnemyCharacter.GetPosition().x);
 

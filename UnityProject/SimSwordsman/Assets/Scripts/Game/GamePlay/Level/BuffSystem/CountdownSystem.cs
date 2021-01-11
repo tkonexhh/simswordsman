@@ -17,9 +17,9 @@ namespace GameWish.Game
             //检查存档
             bool isChange = false;
             TimeSpan offset;
-            for (int i = GameDataMgr.S.GetPlayerData().countdownerData.Count - 1; i >= 0; i--)
+            for (int i = GameDataMgr.S.GetCountdownData().countdownerData.Count - 1; i >= 0; i--)
             {
-                Countdowner cd = GameDataMgr.S.GetPlayerData().countdownerData[i];
+                Countdowner cd = GameDataMgr.S.GetCountdownData().countdownerData[i];
                 offset = DateTime.Parse(cd.EndTime) - DateTime.Now;
                 if (offset.TotalSeconds > 0)
                 {
@@ -30,11 +30,11 @@ namespace GameWish.Game
                 {
                     isChange = true;
                     EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
-                    GameDataMgr.S.GetPlayerData().countdownerData.RemoveAt(i);
+                    GameDataMgr.S.GetCountdownData().countdownerData.RemoveAt(i);
                 }
             }
             if (isChange)
-                GameDataMgr.S.GetPlayerData().SetDataDirty();
+                GameDataMgr.S.GetCountdownData().SetDataDirty();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace GameWish.Game
         /// <param name="id"></param>
         /// <param name="totalMinutes">倒计时时长 单位：分钟</param>
         /// <param name="interval">每次tick的时间 单位：秒</param>
-        public void StartCountdownerWithMin(string stringid, int id, int totalMinutes, int interval = 1)
+        public void StartCountdownerWithMin(string stringid, int id, float totalMinutes, int interval = 1)
         {
             StartCountdownerWithSec(stringid, id, totalMinutes * 60, interval);
         }
@@ -53,7 +53,7 @@ namespace GameWish.Game
         /// <param name="id"></param>
         /// <param name="totalMinutes">倒计时时长 单位：秒</param>
         /// <param name="interval">每次tick的时间 单位：秒</param>
-        public void StartCountdownerWithSec(string stringid, int id, int totalSeconds, int interval = 1)
+        public void StartCountdownerWithSec(string stringid, int id, float totalSeconds, int interval = 1)
         {
             foreach (var item in m_AllCDs)
             {
@@ -78,8 +78,8 @@ namespace GameWish.Game
             CountdownStart(cd);
 
             //存档
-            GameDataMgr.S.GetPlayerData().countdownerData.Add(cd);
-            GameDataMgr.S.GetPlayerData().SetDataDirty();
+            GameDataMgr.S.GetCountdownData().countdownerData.Add(cd);
+            GameDataMgr.S.GetCountdownData().SetDataDirty();
         }
 
         void CountdownStart(Countdowner cd)
@@ -114,8 +114,8 @@ namespace GameWish.Game
             Timer.S.Cancel(cd.TimerID);
             cd.TimerID = -1;
             EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
-            GameDataMgr.S.GetPlayerData().countdownerData.Remove(cd);
-            GameDataMgr.S.GetPlayerData().SetDataDirty();
+            GameDataMgr.S.GetCountdownData().countdownerData.Remove(cd);
+            GameDataMgr.S.GetCountdownData().SetDataDirty();
             m_AllCDs.Remove(cd);
         }
         
@@ -138,8 +138,8 @@ namespace GameWish.Game
             if (cd != null)
             {
                 Timer.S.Cancel(cd.TimerID);
-                GameDataMgr.S.GetPlayerData().countdownerData.Remove(cd);
-                GameDataMgr.S.GetPlayerData().SetDataDirty();
+                GameDataMgr.S.GetCountdownData().countdownerData.Remove(cd);
+                GameDataMgr.S.GetCountdownData().SetDataDirty();
                 m_AllCDs.Remove(cd);
             }
         }
