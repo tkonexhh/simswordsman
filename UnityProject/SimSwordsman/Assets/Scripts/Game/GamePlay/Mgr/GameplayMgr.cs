@@ -79,7 +79,6 @@ namespace GameWish.Game
             VisitorSystem.S.Init();
 
             CountdownSystem.S.Init();
-            FoodBuffSystem.S.Init();
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {

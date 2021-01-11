@@ -93,6 +93,7 @@ namespace GameWish.Game
 
             return level;
         }
+
         public bool IsLocked(FacilityType facilityType)
         {
             return ownedFacilityData.IsLocked(facilityType);

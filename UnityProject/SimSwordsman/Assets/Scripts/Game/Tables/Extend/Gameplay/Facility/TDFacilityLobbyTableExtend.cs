@@ -14,6 +14,7 @@ namespace GameWish.Game
         static void CompleteRowAdd(TDFacilityLobby tdData)
         {
             FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
+            levelInfo.commonTaskCount = tdData.commonTaskAmount;
 
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))
             {
@@ -72,6 +73,19 @@ namespace GameWish.Game
             levelInfo = new FacilityLevelInfo(level, coin, upgradeNeedLobbyLevel, upgradeCosts);
 
             return levelInfo;
+        }
+
+        public static int GetCommonTaskCount(int lobbyLevel)
+        {
+            FacilityLevelInfo levelInfo = GetLevelInfo(lobbyLevel);
+            if (levelInfo != null)
+            {
+                return levelInfo.commonTaskCount;
+            }
+
+            Log.e("Facility level info not found");
+
+            return -1;
         }
     }
 }

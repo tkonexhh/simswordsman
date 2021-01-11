@@ -38,8 +38,7 @@ namespace GameWish.Game
                 TDLevelConfigTable.metaData,
                 TDCharacterConfigTable.metaData,
                 TDCharacterNameTable.metaData,
-                TDArmsConfigTable.metaData,
-                TDArmorConfigTable.metaData,
+                TDEquipmentConfigTable.metaData,
                 TDCharacterStageConfigTable.metaData,
 
                 //Facility
@@ -63,6 +62,7 @@ namespace GameWish.Game
                 TDChapterConfigTable.metaData,
 
                 TDMainTaskTable.metaData,
+                TDCommonTaskTable.metaData,
 
                 TDItemConfigTable.metaData,
                 TDWeaponConfigTable.metaData,
@@ -78,7 +78,7 @@ namespace GameWish.Game
                 TDVisitorConfigTable.metaData,
                 TDVisitorRewardConfigTable.metaData,
                 TDFoodConfigTable.metaData,
-
+                TDCollectConfigTable.metaData,
             };
         }
     }

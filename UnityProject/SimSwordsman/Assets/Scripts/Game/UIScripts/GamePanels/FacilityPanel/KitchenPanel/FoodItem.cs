@@ -9,19 +9,12 @@ namespace GameWish.Game
     public class FoodItem : MonoBehaviour, ItemICom
     {
         [SerializeField]
-        private Sprite Progress_Over;
-        [SerializeField]
-        private Sprite Progress_Not_Over;
-
-        [SerializeField]
         private GameObject Lock;
         [SerializeField]
         private GameObject UnLock;
 
         [SerializeField]
         private Image m_FoodImg;
-        //[SerializeField]
-        //private Image m_LockFoodImg;
         [SerializeField]
         private Text m_FoodNameTxt;
         [SerializeField]
@@ -54,11 +47,14 @@ namespace GameWish.Game
         private Text m_DurationTxt;
 
         [SerializeField]
+        private Text m_MakeTypeTxt;
+
+        [SerializeField]
         private Transform m_DontMakeTra;
         [SerializeField]
         private Transform m_MakingTra;
         [SerializeField]
-        private Image[] Progress;
+        private Image m_Progress;
 
         [HideInInspector]
         public int ID;
@@ -70,18 +66,20 @@ namespace GameWish.Game
             Init((int)obj[0]);
         }
         
-        public void StartEffect(string dur)
+        public void StartEffect(float progress, string dur)
         {
             SetState(1);
             m_DurationTxt.text = dur;
+            m_Progress.fillAmount = progress;
         }
         public void StopEffect()
         {
             SetState(2);
         }
-        public void Countdown(string dur)
+        public void Countdown(float progress, string dur)
         {
             m_DurationTxt.text = dur;
+            m_Progress.fillAmount = progress;
         }
 
 
@@ -94,6 +92,8 @@ namespace GameWish.Game
             }
             else
             {
+                transform.SetAsFirstSibling();
+
                 TDFoodConfig tb = TDFoodConfigTable.GetData(id);
                 m_FoodImg.sprite = Resources.Load<Sprite>("Sprites/Facility/Kitchen/" + tb.spriteName);
                 m_FoodNameTxt.text = tb.name;
@@ -109,6 +109,7 @@ namespace GameWish.Game
                     {
                         SetState(1);
                         m_DurationTxt.text = dur;
+                        m_Progress.fillAmount = FoodBuffSystem.S.GetCountdowner(ID).GetProgress();
                     }
                     else
                         SetState(2);
@@ -135,7 +136,7 @@ namespace GameWish.Game
             m_MakeBtn.onClick.AddListener(() => 
             {
                 //判断材料
-                var list = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
+                var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
@@ -147,7 +148,7 @@ namespace GameWish.Game
             m_MakeADBtn.onClick.AddListener(() => 
             {
                 //判断材料
-                var list = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
+                var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
                     UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
@@ -170,13 +171,12 @@ namespace GameWish.Game
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
                     //解锁条件
-                    m_LockConditionTxt.text = string.Format("主城等级达到<color=#384B76>{0}</color>级", TDFoodConfigTable.GetData(ID).unlockLevel);
+                    m_LockConditionTxt.text = string.Format("伙房等级达到<color=#384B76>{0}</color>级", TDFoodConfigTable.GetData(ID).unlockLevel);
                     m_FoodNameTxt.text = "未解锁";
                     break;
                 case 1:
                     UnLock.SetActive(true);
                     Lock.SetActive(false);
-
                     m_MakingTra.gameObject.SetActive(true);
                     m_DontMakeTra.gameObject.SetActive(false);
                     break;
@@ -195,22 +195,22 @@ namespace GameWish.Game
         }
         void SetMakeNeedRes()
         {
-            var infos = TDFoodConfigTable.FoodItemMakeNeedResInfoDis[ID];
+            var infos = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
             if (infos.Count == 2)
             {
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
-                m_NeedItemCount2Txt.text = infos[0].value.ToString();
+                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+                m_NeedItemCount2Txt.text = infos[1].value.ToString();
             }
             else
             {
                 m_NeedItem1.gameObject.SetActive(false);
                 m_NeedItemCount1Txt.gameObject.SetActive(false);
             }
-            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
-            m_NeedItemCount1Txt.text = infos[1].value.ToString();
+            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }
 

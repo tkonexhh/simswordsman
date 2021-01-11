@@ -183,15 +183,15 @@ namespace GameWish.Game
         }
     }
 
-    public class TaskEnemy
-    {
-        public int enemyId;
-        public int enemyAtk;
+    //public class TaskEnemy
+    //{
+    //    public int enemyId;
+    //    public int enemyAtk;
 
-        public TaskEnemy(int id, int atk)
-        {
-            enemyId = id;
-            enemyAtk = atk;
-        }
-    }
+    //    public TaskEnemy(int id, int atk)
+    //    {
+    //        enemyId = id;
+    //        enemyAtk = atk;
+    //    }
+    //}
 }

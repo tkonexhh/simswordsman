@@ -117,7 +117,7 @@ namespace GameWish.Game
                         if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
                         {
                             List<EnemyConfig> enemiesList = new List<EnemyConfig>();
-                            List<TaskEnemy> taskEnemies = m_CurTaskInfo.MainTaskItemInfo.taskEnemies;
+                            List<TaskEnemy> taskEnemies = m_CurTaskInfo.CommonTaskItemInfo.taskEnemies;
                             for (int i = 0; i < taskEnemies.Count; i++)
                             {
                                 enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));

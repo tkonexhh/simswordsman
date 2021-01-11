@@ -17,11 +17,7 @@ namespace GameWish.Game
         private string m_TaskTitle;   
         private string m_TaskDescription;   
         private string m_Type;   
-        private EInt m_Time = 0;   
-        private string m_Reward;   
-        private string m_TaskEvent;   
-        private string m_ConditionType;   
-        private string m_ConditionValue;  
+        private string m_Reward;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -51,29 +47,9 @@ namespace GameWish.Game
         public  string  type {get { return m_Type; } }
        
         /// <summary>
-        /// 任务时长（秒）
-        /// </summary>
-        public  int  time {get { return m_Time; } }
-       
-        /// <summary>
         /// 奖励
         /// </summary>
         public  string  reward {get { return m_Reward; } }
-       
-        /// <summary>
-        /// 事件(刷新任务状态)
-        /// </summary>
-        public  string  taskEvent {get { return m_TaskEvent; } }
-       
-        /// <summary>
-        /// 完成条件类型
-        /// </summary>
-        public  string  conditionType {get { return m_ConditionType; } }
-       
-        /// <summary>
-        /// 任务参数
-        /// </summary>
-        public  string  conditionValue {get { return m_ConditionValue; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -106,19 +82,7 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 5:
-                    m_Time = dataR.ReadInt();
-                    break;
-                case 6:
                     m_Reward = dataR.ReadString();
-                    break;
-                case 7:
-                    m_TaskEvent = dataR.ReadString();
-                    break;
-                case 8:
-                    m_ConditionType = dataR.ReadString();
-                    break;
-                case 9:
-                    m_ConditionValue = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -130,18 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("TaskID", 0);
           ret.Add("HomeLevel", 1);
           ret.Add("TaskTitle", 2);
           ret.Add("TaskDescription", 3);
           ret.Add("Type", 4);
-          ret.Add("Time", 5);
-          ret.Add("Reward", 6);
-          ret.Add("TaskEvent", 7);
-          ret.Add("ConditionType", 8);
-          ret.Add("ConditionValue", 9);
+          ret.Add("Reward", 5);
           return ret;
         }
     } 

@@ -16,12 +16,12 @@ namespace GameWish.Game
 
 		public override void AcceptReward()
 		{
-            MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((Arms)m_KeyID, Step.One), Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID, Step.One), Count);
         }
         
 		public override string RewardName()
 		{
-			return TDArmsConfigTable.GetData(m_KeyID).name;
+			return TDEquipmentConfigTable.GetData(m_KeyID).name;
 		}
 
 		public override Sprite GetSprite()

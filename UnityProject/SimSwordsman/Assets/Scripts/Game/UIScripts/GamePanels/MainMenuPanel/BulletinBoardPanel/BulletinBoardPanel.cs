@@ -21,7 +21,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_TaskItem;
 
-        private List<SimGameTask> m_MainTaskList = null;
+        private List<SimGameTask> m_CommonTaskList = null;
 
         private Dictionary<int, GameObject> m_TaskObjDic = new Dictionary<int, GameObject>();
 
@@ -36,7 +36,7 @@ namespace GameWish.Game
 
         private void GetInformationForNeed()
         {
-            m_MainTaskList = MainGameMgr.S.MainTaskMgr.CurTaskList;
+            m_CommonTaskList = MainGameMgr.S.CommonTaskMgr.CurTaskList;
         }
 
         private void BindAddListenerEvent()
@@ -48,16 +48,16 @@ namespace GameWish.Game
         {
             base.OnOpen();
             EventSystem.S.Register(EventID.OnTaskManualFinished, HandleAddListenerEvent);
-            if (m_MainTaskList != null)
+            if (m_CommonTaskList != null)
             {
-                for (int i = 0; i < m_MainTaskList.Count; i++)
+                for (int i = 0; i < m_CommonTaskList.Count; i++)
                 {
-                    if (m_MainTaskList[i].GetCurTaskState() != TaskState.Finished)
-                        CreateTask(m_MainTaskList[i]);
+                    if (m_CommonTaskList[i].GetCurTaskState() != TaskState.Finished)
+                        CreateTask(m_CommonTaskList[i]);
                 }
             }
 
-            MainGameMgr.S.MainTaskMgr.RefreshTask();
+            MainGameMgr.S.CommonTaskMgr.RefreshTask();
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
@@ -82,25 +82,25 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.TaskDetailsPanel, simGameTask);
                     break;
                 case TaskState.Unclaimed:
-                    MainGameMgr.S.MainTaskMgr.ClaimReward(simGameTask.GetId());
-                    if (m_TaskObjDic.ContainsKey(simGameTask.GetId()))
+                    MainGameMgr.S.CommonTaskMgr.ClaimReward(simGameTask.TaskId);
+                    if (m_TaskObjDic.ContainsKey(simGameTask.TaskId))
                     {
-                        DestroyImmediate(m_TaskObjDic[simGameTask.GetId()]);
-                        m_TaskObjDic[simGameTask.GetId()] = null;
+                        DestroyImmediate(m_TaskObjDic[simGameTask.TaskId]);
+                        m_TaskObjDic[simGameTask.TaskId] = null;
                     }
 
-                    if (simGameTask.MainTaskItemInfo.triggerType == SimGameTaskTriggerType.Main)
-                    {
-                        List<int> nextTasks = simGameTask.MainTaskItemInfo.nextTaskIdList;
-                        foreach (int taskId in nextTasks)
-                        {
-                            MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
-                            MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType, taskInfo.taskTime);
-                            SimGameTask nextTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(taskId);
-                            if (nextTask!=null)
-                                CreateTask(nextTask);
-                        }
-                    }
+                    //if (simGameTask.CommonTaskItemInfo.triggerType == SimGameTaskTriggerType.Main)
+                    //{
+                    //    List<int> nextTasks = simGameTask.CommonTaskItemInfo.nextTaskIdList;
+                    //    foreach (int taskId in nextTasks)
+                    //    {
+                    //        MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
+                    //        MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType, taskInfo.taskTime);
+                    //        SimGameTask nextTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(taskId);
+                    //        if (nextTask!=null)
+                    //            CreateTask(nextTask);
+                    //    }
+                    //}
                     break;
             }
         }
@@ -120,7 +120,7 @@ namespace GameWish.Game
                 ItemICom taskItem = obj.GetComponent<ItemICom>();
                 taskItem.OnInit(simGameTask);
                 taskItem.SetButtonEvent(TaskCallback);
-                m_TaskObjDic.Add(simGameTask.GetId(), obj);
+                m_TaskObjDic.Add(simGameTask.TaskId, obj);
             }
         }
     }

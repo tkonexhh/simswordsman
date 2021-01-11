@@ -21,7 +21,6 @@ namespace GameWish.Game
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();
-        public List<FoodBuff> foodBuffData = new List<FoodBuff>();
 
         public List<Countdowner> countdownerData = new List<Countdowner>();
 
@@ -223,7 +222,7 @@ namespace GameWish.Game
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
             if (delta> 0)
-                m_CoinNum = FoodBuffSystem.S.Coin(delta);
+                m_CoinNum += FoodBuffSystem.S.Coin(delta);
 
             if (m_CoinNum < 0)
             {

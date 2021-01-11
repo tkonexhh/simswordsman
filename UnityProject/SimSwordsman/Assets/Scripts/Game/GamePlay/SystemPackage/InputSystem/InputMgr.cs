@@ -43,7 +43,7 @@ namespace GameWish.Game
         {
             EasyTouch.On_TouchStart += On_TouchStart;
             EasyTouch.On_TouchDown += On_TouchDown;
-            //EasyTouch.On_TouchUp += On_TouchUp;
+            EasyTouch.On_TouchUp += On_TouchUp;
             EasyTouch.On_Drag += On_Drag;
             //EasyTouch.On_LongTap += On_LongTap;
             EasyTouch.On_Swipe += On_Swipe;

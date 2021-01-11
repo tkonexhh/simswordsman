@@ -19,9 +19,22 @@ namespace GameWish.Game
         private void OnEnd(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
+            //食物buff
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd.ID, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd, param[1]);
+            }
+            //药品，锻造物品增加
+            else if(cd.stringID.Equals("BaicaohuPanel"))
+            {
+                MainGameMgr.S.MedicinalPowderMgr.AddHerb(cd.ID, 1);
+            }
+            else if (cd.stringID.Equals("ForgeHousePanel"))
+            {
+                if (cd.ID > 500)
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)cd.ID, Step.One), 1);
+                else
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)cd.ID, Step.One), 1);
             }
         }
 
@@ -30,7 +43,7 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffTick, cd.ID, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffTick, cd, param[1]);
             }
         }
 
@@ -39,7 +52,7 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffStart, cd.ID, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffStart, cd, param[1]);
             }
         }
 
@@ -83,6 +96,10 @@ namespace GameWish.Game
         {
             return CountdownSystem.S.GetCurrentCountdownTime(TDFoodConfigTable.GetData(id).buffType, id);
         }
+        public Countdowner GetCountdowner(int id)
+        {
+            return CountdownSystem.S.GetCountdowner(TDFoodConfigTable.GetData(id).buffType, id);
+        }
 
         public long Coin(long originalCoin)
         {
@@ -98,7 +115,7 @@ namespace GameWish.Game
             return originalCoin + add;
         }
 
-        public long RoleExp(long originalExp)
+        public long KongFuExp(long originalExp)
         {
             int add = 0;
             foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
@@ -134,7 +151,7 @@ namespace GameWish.Game
         /// </summary>
         Food_AddATK = 0,
         /// <summary>
-        /// 增加获得的弟子经验
+        /// 增加弟子获得的功夫经验
         /// </summary>
         Food_AddRoleExp,
         /// <summary>

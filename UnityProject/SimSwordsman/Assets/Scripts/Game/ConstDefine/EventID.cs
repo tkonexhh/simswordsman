@@ -33,6 +33,8 @@ namespace GameWish.Game
         OnCountdownerTick,
         OnCountdownerEnd,
 
+        OnCollectCountChange,//收集物
+
         // Facility
         OnStartUnlockFacility,
         OnStartUpgradeFacility,

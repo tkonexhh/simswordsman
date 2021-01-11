@@ -9,8 +9,18 @@ namespace GameWish.Game
 	public enum EquipmentType
 	{
         None,
-        Arm,
-        Armor,
+        //Arm ÎäÆ÷
+        ShaZhuDao = 101,
+        DaHuanDao,
+        TuLongDao,
+        YanYueDao,
+
+
+
+        //Armor ¿ø¼×
+        ZiTenJia = 501,
+        YinYeJia,
+        RuanWeiJia,
 	}
 	
 }

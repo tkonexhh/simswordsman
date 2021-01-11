@@ -12,6 +12,7 @@ namespace GameWish.Game
     {
         private List<FacilityController> m_FacilityList = new List<FacilityController>();
         private List<PracticeField> m_PracticeField = new List<PracticeField>();
+        private IFacilityClickedHandler m_ClickHandler = null;
 
         #region IMgr
         public void OnInit()
@@ -69,20 +70,27 @@ namespace GameWish.Game
             if (gesture.IsOverUIElement())
                 return;
 
-
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << 11);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
-                if (handler != null)
-                {
-                    handler.OnClicked();
-                }
+                m_ClickHandler = hit.collider.GetComponent<IFacilityClickedHandler>();                
             }
         }
 
         public void On_TouchUp(Gesture gesture)
         {
+            if (gesture.IsOverUIElement())
+                return;
+
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
+            if (hit.collider != null)
+            {
+                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                if (handler != null && m_ClickHandler == handler)
+                {
+                    handler.OnClicked();
+                }
+            }
         }
 
         #endregion
@@ -97,6 +105,7 @@ namespace GameWish.Game
             int level = GameDataMgr.S.GetClanData().GetFacilityLevel(facilityType/*, subId*/);
             return Mathf.Min(level, Define.FACILITY_MAX_LEVEL);
         }
+
         /// <summary>
         /// 获得主城等级
         /// </summary>
@@ -278,7 +287,7 @@ namespace GameWish.Game
             FacilityController controller = GetFacilityController(type/*, subId*/);
             controller?.SetState(state);
 
-            if (state == FacilityState.State1) // Some facility unlocked
+            if (state == FacilityState.Unlocked) // Some facility unlocked
             {
                 RefreshFacilityUnlockState();
             }
@@ -312,7 +321,7 @@ namespace GameWish.Game
                 case (int)EventID.OnStartUnlockFacility:
                     FacilityType facilityType2 = (FacilityType)param[0];
                     //int subId2 = (int)param[1];
-                    SetFacilityState(facilityType2, FacilityState.State1/*, subId2*/);
+                    SetFacilityState(facilityType2, FacilityState.Unlocked/*, subId2*/);
                     break;
             }
         }

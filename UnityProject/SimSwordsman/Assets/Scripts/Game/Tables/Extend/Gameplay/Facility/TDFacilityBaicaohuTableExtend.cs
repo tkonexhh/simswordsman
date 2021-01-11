@@ -17,11 +17,11 @@ namespace GameWish.Game
             BaicaohuInfo baicaohuLevelInfo = new BaicaohuInfo();
             baicaohuLevelInfo.Warp(levelInfo);
 
-            string[] equipStrs = tdData.unlockMedicine.Split('|');
+            string[] equipStrs = tdData.unlockHerbID.Split('|');
             List<MedicinalPowderType> medicinalPowderTypeList = new List<MedicinalPowderType>();
             foreach (string item in equipStrs)
             {
-                MedicinalPowderType equip = EnumUtil.ConvertStringToEnum<MedicinalPowderType>(item);
+                MedicinalPowderType equip = (MedicinalPowderType)int.Parse(item);
                 medicinalPowderTypeList.Add(equip);
             }
             baicaohuLevelInfo.SetCurMedicinalPowderType(medicinalPowderTypeList);

@@ -11,6 +11,7 @@ namespace GameWish.Game
         public int upgradeCoinCost;
         public int upgradeNeedLobbyLevel;
         public FacilityUpgradeCost upgradeResCosts;
+        public int commonTaskCount;
 
         public FacilityLevelInfo()
         {

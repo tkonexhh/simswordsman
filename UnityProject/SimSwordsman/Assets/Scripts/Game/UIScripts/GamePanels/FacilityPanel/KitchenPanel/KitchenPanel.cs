@@ -52,12 +52,11 @@ namespace GameWish.Game
         private KitchLevelInfo m_CurKitchLevelInfo = null;
 
 
-        private List<FoodItem> m_FoodItems = new List<FoodItem>();
+        private List<FoodItem> m_Items = new List<FoodItem>();
 
         protected override void OnUIInit() 
         {
             base.OnUIInit();
-
             BindAddListenerEvent();
         }
         
@@ -69,7 +68,7 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_KitchenContTxt.text = TDFacilityConfigTable.GetFacilityConfigInfo(FacilityType.Kitchen).desc;
+            m_KitchenContTxt.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
             //CommonUIMethod.GetStringForTableKey(Define.FACILITY_KITCHEN_DESCRIBLE);
 
             RefreshPanelText();
@@ -111,19 +110,19 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
 
-            EventSystem.S.Register(EventID.OnFoodBuffTick, OnFoodBuffInterval);
+            EventSystem.S.Register(EventID.OnFoodBuffTick, OnFoodBuffTick);
             EventSystem.S.Register(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
             EventSystem.S.Register(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }
         // 开始buff
         private void OnFoodBuffStart(int key, object[] param)
         {
-            int id = (int)param[0];
-            foreach (var item in m_FoodItems)
+            Countdowner cd = (Countdowner)param[0];
+            foreach (var item in m_Items)
             {
-                if (item.ID == id)
+                if (item.ID == cd.ID)
                 {
-                    item.StartEffect((string)param[1]);
+                    item.StartEffect(cd.GetProgress(), (string)param[1]);
                     break;
                 }
             }
@@ -131,10 +130,10 @@ namespace GameWish.Game
         // 结束buff
         private void OnFoodBuffEnd(int key, object[] param)
         {
-            int id = (int)param[0];
-            foreach (var item in m_FoodItems)
+            Countdowner cd = (Countdowner)param[0];
+            foreach (var item in m_Items)
             {
-                if (item.ID == id)
+                if (item.ID == cd.ID)
                 {
                     item.StopEffect();
                     break;
@@ -142,14 +141,14 @@ namespace GameWish.Game
             }
         }
         // buff倒计时
-        private void OnFoodBuffInterval(int key, object[] param)
+        private void OnFoodBuffTick(int key, object[] param)
         {
-            int id = (int)param[0];
-            foreach (var item in m_FoodItems)
+            Countdowner cd = (Countdowner)param[0];
+            foreach (var item in m_Items)
             {
-                if (item.ID == id)
+                if (item.ID == cd.ID)
                 {
-                    item.Countdown((string)param[1]);
+                    item.Countdown(cd.GetProgress(), (string)param[1]);
                     break;
                 }
             }
@@ -199,25 +198,25 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseSelfPanel();
 
-            EventSystem.S.UnRegister(EventID.OnFoodBuffTick, OnFoodBuffInterval);
+            EventSystem.S.UnRegister(EventID.OnFoodBuffTick, OnFoodBuffTick);
             EventSystem.S.UnRegister(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
             EventSystem.S.UnRegister(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }
 
-        public void UpdateFoodItems()
+        void UpdateFoodItems()
         {
-            if (m_FoodItems.Count == 0)
+            if (m_Items.Count == 0)
             {
                 for (int i = 0; i < TDFoodConfigTable.dataList.Count; i++)
                 {
                     GameObject obj = Instantiate(m_FoodItemPrefab, m_KitchenContTra);
                     FoodItem item = obj.GetComponent<FoodItem>();
-                    m_FoodItems.Add(item);
+                    m_Items.Add(item);
                 }
             }
-            for (int i = 0; i < m_FoodItems.Count; i++)
+            for (int i = 0; i < m_Items.Count; i++)
             {
-                ItemICom itemICom = m_FoodItems[i].GetComponent<ItemICom>();
+                ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
                 itemICom.OnInit(this, null, TDFoodConfigTable.dataList[i].id);
             }
         }

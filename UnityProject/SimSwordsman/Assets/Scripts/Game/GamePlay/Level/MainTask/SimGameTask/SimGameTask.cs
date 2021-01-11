@@ -4,19 +4,22 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public abstract class SimGameTask : TaskItem
+	public abstract class SimGameTask
 	{
-        protected MainTaskItemInfo m_TaskDetailInfo = null;
+        protected int m_TaskId;
+        protected CommonTaskItemInfo m_TaskDetailInfo = null;
         protected string m_TaskStartTime = string.Empty;
 
-        public MainTaskItemInfo MainTaskItemInfo { get { return m_TaskDetailInfo; } }
+        public CommonTaskItemInfo CommonTaskItemInfo { get { return m_TaskDetailInfo; } }
 
         public string TaskStartTime { get => m_TaskStartTime;}
+        public int TaskId { get => m_TaskId; }
 
-        public SimGameTask(int taskId, string tableName,TaskState taskState, int taskTime, System.Action<TaskItem> stateChangedCallback) : base(taskId, tableName, stateChangedCallback)
+        public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime)
         {
-            ///m_TaskDetailInfo = new MainTaskItemInfo(taskId, taskType, subTaskType, taskState);
-            m_TaskDetailInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
+            m_TaskId = taskId;
+
+            m_TaskDetailInfo = TDCommonTaskTable.GetMainTaskItemInfo(taskId);
             if (m_TaskDetailInfo == null)
             {
                 Debug.LogError("Task info not found, id: " + taskId);
@@ -38,16 +41,30 @@ namespace GameWish.Game
 
         public int GetCurSubType()
         {
-           return MainTaskItemInfo.subType;
+           return CommonTaskItemInfo.subType;
         }
 
         public SimGameTaskType GetCurTaskType()
         {
-            return MainTaskItemInfo.taskType;
+            return CommonTaskItemInfo.taskType;
         }
 
         public abstract void ExecuteTask(List<CharacterController> selectedCharacters);
 
+        public void ClaimReward()
+        {
+            // Item reward
+            for (int i = 0; i < m_TaskDetailInfo.itemRewards.Count; i++)
+            {
+                int itemId = m_TaskDetailInfo.GetRewardId(i);
+                int count = m_TaskDetailInfo.GetRewardValue(i);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            }
+
+            // TODO:Exp reward
+
+            // TODO:Kongfu reward
+        }
     }
 	
 }
