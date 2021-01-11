@@ -17,10 +17,12 @@ namespace GameWish.Game
         private EInt m_UpgradeCost = 0;   
         private string m_UpgradePreconditions;   
         private string m_UnlockContent;   
+        private EInt m_WorkInterval = 0;   
+        private EInt m_WorkMaxAmount = 0;   
+        private EInt m_WorkTime = 0;   
         private EInt m_WorkPay = 0;   
         private EInt m_DefExp = 0;   
-        private EInt m_DefKongfuExp = 0;   
-        private EInt m_CommonTaskMax = 0;  
+        private EInt m_CommonTaskAmount = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -50,6 +52,21 @@ namespace GameWish.Game
         public  string  unlockContent {get { return m_UnlockContent; } }
        
         /// <summary>
+        /// 生成工作间隔，分钟
+        /// </summary>
+        public  int  workInterval {get { return m_WorkInterval; } }
+       
+        /// <summary>
+        /// 最大同保留工作数
+        /// </summary>
+        public  int  workMaxAmount {get { return m_WorkMaxAmount; } }
+       
+        /// <summary>
+        /// 工作时长
+        /// </summary>
+        public  int  workTime {get { return m_WorkTime; } }
+       
+        /// <summary>
         /// 工作报酬
         /// </summary>
         public  int  workPay {get { return m_WorkPay; } }
@@ -60,14 +77,9 @@ namespace GameWish.Game
         public  int  defExp {get { return m_DefExp; } }
        
         /// <summary>
-        /// 防守功夫经验
+        /// 日常任务数
         /// </summary>
-        public  int  defKongfuExp {get { return m_DefKongfuExp; } }
-       
-        /// <summary>
-        /// 日常任务最大数
-        /// </summary>
-        public  int  commonTaskMax {get { return m_CommonTaskMax; } }
+        public  int  commonTaskAmount {get { return m_CommonTaskAmount; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -100,16 +112,22 @@ namespace GameWish.Game
                     m_UnlockContent = dataR.ReadString();
                     break;
                 case 5:
-                    m_WorkPay = dataR.ReadInt();
+                    m_WorkInterval = dataR.ReadInt();
                     break;
                 case 6:
-                    m_DefExp = dataR.ReadInt();
+                    m_WorkMaxAmount = dataR.ReadInt();
                     break;
                 case 7:
-                    m_DefKongfuExp = dataR.ReadInt();
+                    m_WorkTime = dataR.ReadInt();
                     break;
                 case 8:
-                    m_CommonTaskMax = dataR.ReadInt();
+                    m_WorkPay = dataR.ReadInt();
+                    break;
+                case 9:
+                    m_DefExp = dataR.ReadInt();
+                    break;
+                case 10:
+                    m_CommonTaskAmount = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -121,17 +139,19 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
           ret.Add("UpgradeCost", 2);
           ret.Add("UpgradePreconditions", 3);
           ret.Add("UnlockContent", 4);
-          ret.Add("WorkPay", 5);
-          ret.Add("DefExp", 6);
-          ret.Add("DefKongfuExp", 7);
-          ret.Add("CommonTaskMax", 8);
+          ret.Add("WorkInterval", 5);
+          ret.Add("WorkMaxAmount", 6);
+          ret.Add("WorkTime", 7);
+          ret.Add("WorkPay", 8);
+          ret.Add("DefExp", 9);
+          ret.Add("CommonTaskAmount", 10);
           return ret;
         }
     } 

@@ -14,21 +14,16 @@ namespace GameWish.Game
        
         private EInt m_TaskID = 0;   
         private string m_TriggerType;   
-        private string m_TriggerParam;   
-        private string m_NextTask;   
         private EInt m_HomeLevel = 0;   
         private string m_TaskTitle;   
         private string m_TaskDescription;   
         private string m_Type;   
-        private string m_ConditionValue;   
         private EInt m_Time = 0;   
         private string m_Reward;   
         private EInt m_SpecialRewardRate = 0;   
         private string m_SpecialReward;   
         private EInt m_ExpReward = 0;   
         private EInt m_KongfuExpReward = 0;   
-        private string m_TaskEvent;   
-        private string m_ConditionType;   
         private string m_Enemy;   
         private EInt m_RoleAmount = 0;   
         private EInt m_RoleLevelRequired = 0;  
@@ -44,16 +39,6 @@ namespace GameWish.Game
         /// 触发类型
         /// </summary>
         public  string  triggerType {get { return m_TriggerType; } }
-       
-        /// <summary>
-        /// 触发参数
-        /// </summary>
-        public  string  triggerParam {get { return m_TriggerParam; } }
-       
-        /// <summary>
-        /// 后置任务
-        /// </summary>
-        public  string  nextTask {get { return m_NextTask; } }
        
         /// <summary>
         /// 讲武堂等级
@@ -76,11 +61,6 @@ namespace GameWish.Game
         public  string  type {get { return m_Type; } }
        
         /// <summary>
-        /// 任务参数
-        /// </summary>
-        public  string  conditionValue {get { return m_ConditionValue; } }
-       
-        /// <summary>
         /// 任务时长（秒）
         /// </summary>
         public  int  time {get { return m_Time; } }
@@ -96,7 +76,7 @@ namespace GameWish.Game
         public  int  specialRewardRate {get { return m_SpecialRewardRate; } }
        
         /// <summary>
-        /// 特殊奖励
+        /// 特殊奖励，多个只获取一个
         /// </summary>
         public  string  specialReward {get { return m_SpecialReward; } }
        
@@ -109,16 +89,6 @@ namespace GameWish.Game
         /// 功夫经验奖励
         /// </summary>
         public  int  kongfuExpReward {get { return m_KongfuExpReward; } }
-       
-        /// <summary>
-        /// 事件(刷新任务状态)
-        /// </summary>
-        public  string  taskEvent {get { return m_TaskEvent; } }
-       
-        /// <summary>
-        /// 完成条件类型
-        /// </summary>
-        public  string  conditionType {get { return m_ConditionType; } }
        
         /// <summary>
         /// 敌人配置
@@ -157,57 +127,42 @@ namespace GameWish.Game
                     m_TriggerType = dataR.ReadString();
                     break;
                 case 2:
-                    m_TriggerParam = dataR.ReadString();
-                    break;
-                case 3:
-                    m_NextTask = dataR.ReadString();
-                    break;
-                case 4:
                     m_HomeLevel = dataR.ReadInt();
                     break;
-                case 5:
+                case 3:
                     m_TaskTitle = dataR.ReadString();
                     break;
-                case 6:
+                case 4:
                     m_TaskDescription = dataR.ReadString();
                     break;
-                case 7:
+                case 5:
                     m_Type = dataR.ReadString();
                     break;
-                case 8:
-                    m_ConditionValue = dataR.ReadString();
-                    break;
-                case 9:
+                case 6:
                     m_Time = dataR.ReadInt();
                     break;
-                case 10:
+                case 7:
                     m_Reward = dataR.ReadString();
                     break;
-                case 11:
+                case 8:
                     m_SpecialRewardRate = dataR.ReadInt();
                     break;
-                case 12:
+                case 9:
                     m_SpecialReward = dataR.ReadString();
                     break;
-                case 13:
+                case 10:
                     m_ExpReward = dataR.ReadInt();
                     break;
-                case 14:
+                case 11:
                     m_KongfuExpReward = dataR.ReadInt();
                     break;
-                case 15:
-                    m_TaskEvent = dataR.ReadString();
-                    break;
-                case 16:
-                    m_ConditionType = dataR.ReadString();
-                    break;
-                case 17:
+                case 12:
                     m_Enemy = dataR.ReadString();
                     break;
-                case 18:
+                case 13:
                     m_RoleAmount = dataR.ReadInt();
                     break;
-                case 19:
+                case 14:
                     m_RoleLevelRequired = dataR.ReadInt();
                     break;
                 default:
@@ -220,28 +175,23 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(20);
+          Dictionary<string, int> ret = new Dictionary<string, int>(15);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
-          ret.Add("TriggerParam", 2);
-          ret.Add("NextTask", 3);
-          ret.Add("HomeLevel", 4);
-          ret.Add("TaskTitle", 5);
-          ret.Add("TaskDescription", 6);
-          ret.Add("Type", 7);
-          ret.Add("ConditionValue", 8);
-          ret.Add("Time", 9);
-          ret.Add("Reward", 10);
-          ret.Add("SpecialRewardRate", 11);
-          ret.Add("SpecialReward", 12);
-          ret.Add("ExpReward", 13);
-          ret.Add("KongfuExpReward", 14);
-          ret.Add("TaskEvent", 15);
-          ret.Add("ConditionType", 16);
-          ret.Add("Enemy", 17);
-          ret.Add("RoleAmount", 18);
-          ret.Add("RoleLevelRequired", 19);
+          ret.Add("HomeLevel", 2);
+          ret.Add("TaskTitle", 3);
+          ret.Add("TaskDescription", 4);
+          ret.Add("Type", 5);
+          ret.Add("Time", 6);
+          ret.Add("Reward", 7);
+          ret.Add("SpecialRewardRate", 8);
+          ret.Add("SpecialReward", 9);
+          ret.Add("ExpReward", 10);
+          ret.Add("KongfuExpReward", 11);
+          ret.Add("Enemy", 12);
+          ret.Add("RoleAmount", 13);
+          ret.Add("RoleLevelRequired", 14);
           return ret;
         }
     } 

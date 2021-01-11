@@ -15,7 +15,8 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_Name;   
         private string m_Desc;   
-        private string m_PreFacility;  
+        private string m_PreFacility;   
+        private string m_WorkType;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -38,6 +39,11 @@ namespace GameWish.Game
         /// 开荒前置建筑
         /// </summary>
         public  string  preFacility {get { return m_PreFacility; } }
+       
+        /// <summary>
+        /// 工作类型
+        /// </summary>
+        public  string  workType {get { return m_WorkType; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -66,6 +72,9 @@ namespace GameWish.Game
                 case 3:
                     m_PreFacility = dataR.ReadString();
                     break;
+                case 4:
+                    m_WorkType = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -76,12 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(4);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
           ret.Add("Desc", 2);
           ret.Add("PreFacility", 3);
+          ret.Add("WorkType", 4);
           return ret;
         }
     } 
