@@ -230,7 +230,7 @@ namespace GameWish.Game
 
         public void StartCountDown(int second, Action<string> refresAction, Action overAction)
         {
-            CountDownMgr countDownMgr = new CountDownMgr("PracticeField", second);
+            CountDownItem countDownMgr = new CountDownItem("PracticeField", second);
             TimeUpdateMgr.S.AddObserver(countDownMgr);
             TimeUpdateMgr.S.Start();
             countDownMgr.OnSecondRefreshEvent = refresAction;
@@ -456,7 +456,7 @@ namespace GameWish.Game
 
         private void InitTimerUpdate()
         {
-            CountDownMgr countDownMgr = new CountDownMgr(FacilityType.ToString() + Index, GetDurationTime());
+            CountDownItem countDownMgr = new CountDownItem(FacilityType.ToString() + Index, GetDurationTime());
             countDownMgr.OnCountDownOverEvent = overAction;
 
             TimeUpdateMgr.S.AddObserver(countDownMgr);
@@ -468,7 +468,6 @@ namespace GameWish.Game
             {
                 AddExperience(CharacterItem);
                 TrainingIsOver();
-                EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
             }
         }
         private void AddExperience(CharacterItem characterItem)
@@ -497,27 +496,29 @@ namespace GameWish.Game
         }
         public void TrainingIsOver()
         {
-            CharacterItem.SetCharacterStateData(CharacterStateID.Wander);
+            SetCharacterItem(CharacterItem, PracticeFieldState.Free);
             CharacterItem = null;
             StartTime = string.Empty;
-            PracticeFieldState = PracticeFieldState.Free;
             GameDataMgr.S.GetClanData().TrainingIsOver(this);
             EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
         }
 
-        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState, FacilityType curFacilityType, int curLevel)
+        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState)
         {
 
             //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
-            StartTime = DateTime.Now.ToString();
-
-            CharacterItem = characterItem;
-            CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(CharacterItem.id);
+           
+            CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
             switch (practiceFieldState)
             {
+                case PracticeFieldState.Free:
+                    characterController.SetState(CharacterStateID.Wander);
+                    break;
                 case PracticeFieldState.CopyScriptures:
                     break;
                 case PracticeFieldState.Practice:
+                    StartTime = DateTime.Now.ToString();
+                    CharacterItem = characterItem;
                     characterController.SetState(CharacterStateID.Practice);
                     break;
                 default:

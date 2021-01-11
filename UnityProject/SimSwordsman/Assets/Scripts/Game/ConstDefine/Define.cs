@@ -43,6 +43,7 @@ namespace GameWish.Game
         public const string SLASH = "/";
         public const string PLUS = "+";
         public const string RIDE = "x";
+        public const string SPACE = " ";
         public const string COMMA = ",";
 
         public const int AD_MAX_TIME = 120;
@@ -53,11 +54,13 @@ namespace GameWish.Game
         public const string COMMON_UPGRADEINFODESC = "Common_UpgradeInfoDesc";
         public const string COMMON_UPGRADENEEDS = "Common_UpgradeNeeds";
         public const string COMMON_BUILDINFODESC = "Common_BuildInfoDesc";
+        public const string COMMON_INFODESC = "Common_InfoDesc";
         public const string COMMON_UPGRADE = "Common_Upgrade";
         public const string COMMON_BUILD = "Common_Build";
         public const string COMMON_NOTBUILD = "Common_NotBuild";
         public const string COMMON_NOTUNLOCKED = "Common_NotUnlocked";
         public const string COMMON_UNLOCKED = "Common_Unlocked";
+        public const string COMMON_FULLEDLEVEL = "Common_FulledLevel";
         public const string COMMON_FULLLEVEL = "Common_FullLevel";
 
         public const string COMMON_UNIT_GRADE = "Common_Unit_Grade";
@@ -102,7 +105,7 @@ namespace GameWish.Game
         public const string ANIM_TUMBLE_GETUP = "tumble_get_up";
 
         // Facility
-        public const int FACILITY_MAX_LEVEL = 20;
+        public const int FACILITY_MAX_LEVEL = 6;
 
         // Chapter
         public const int MAX_CHAPTER_COUNT = 5;

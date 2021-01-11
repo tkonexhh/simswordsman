@@ -64,6 +64,11 @@ namespace GameWish.Game
                 return 0;
             }
         }
+
+        public bool CheckItemInInventory(RawMaterial rawMaterial, int number)
+        {
+           return m_InventoryDataWrapper.CheckItemInInventory(rawMaterial, number);
+        }
         /// <summary>
         /// 通过item类型得到itembase
         /// </summary>

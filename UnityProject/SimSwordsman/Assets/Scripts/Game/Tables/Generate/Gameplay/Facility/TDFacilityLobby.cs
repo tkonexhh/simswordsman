@@ -19,7 +19,8 @@ namespace GameWish.Game
         private string m_UnlockContent;   
         private EInt m_WorkPay = 0;   
         private EInt m_DefExp = 0;   
-        private EInt m_CommonTaskAmount = 0;  
+        private EInt m_DefKongfuExp = 0;   
+        private EInt m_CommonTaskMax = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -59,9 +60,14 @@ namespace GameWish.Game
         public  int  defExp {get { return m_DefExp; } }
        
         /// <summary>
-        /// 日常任务数
+        /// 防守功夫经验
         /// </summary>
-        public  int  commonTaskAmount {get { return m_CommonTaskAmount; } }
+        public  int  defKongfuExp {get { return m_DefKongfuExp; } }
+       
+        /// <summary>
+        /// 日常任务最大数
+        /// </summary>
+        public  int  commonTaskMax {get { return m_CommonTaskMax; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -100,7 +106,10 @@ namespace GameWish.Game
                     m_DefExp = dataR.ReadInt();
                     break;
                 case 7:
-                    m_CommonTaskAmount = dataR.ReadInt();
+                    m_DefKongfuExp = dataR.ReadInt();
+                    break;
+                case 8:
+                    m_CommonTaskMax = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -112,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
@@ -121,7 +130,8 @@ namespace GameWish.Game
           ret.Add("UnlockContent", 4);
           ret.Add("WorkPay", 5);
           ret.Add("DefExp", 6);
-          ret.Add("CommonTaskAmount", 7);
+          ret.Add("DefKongfuExp", 7);
+          ret.Add("CommonTaskMax", 8);
           return ret;
         }
     } 

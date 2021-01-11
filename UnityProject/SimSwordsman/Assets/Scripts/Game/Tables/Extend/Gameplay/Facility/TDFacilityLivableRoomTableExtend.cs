@@ -21,16 +21,13 @@ namespace GameWish.Game
             roomLevelInfo.SetCurCapatity( tdData.capability);
             roomLevelInfo.roomId = tdData.houseId;
 
-            //if (!levelInfoDic.ContainsKey(tdData.level))
-            {
-                levelInfoDic.Add(roomLevelInfo);
-            }
+            levelInfoDic.Add(roomLevelInfo);
+
         }
 
         public static LivableRoomLevelInfo GetLevelInfo(int roomId, int level)
         {
-            LivableRoomLevelInfo info = levelInfoDic.FirstOrDefault(i => i.roomId == roomId && i.level == level);
-            
+            LivableRoomLevelInfo info = levelInfoDic.Where(i => i.roomId == roomId && i.level == level).FirstOrDefault();
             return info;
         }
 

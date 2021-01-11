@@ -79,7 +79,7 @@ namespace GameWish.Game
             m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });
             m_CreateCoinBtn.onClick.AddListener(()=> {
-                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
+                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             });
 
             m_VisitorBtn1.onClick.AddListener(() => {

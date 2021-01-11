@@ -73,7 +73,7 @@ namespace GameWish.Game
         private void AddListenerBtn(object obj)
         {
             CharacterItem characterItem = obj as CharacterItem;
-            m_PracticeFieldInfo.SetCharacterItem(characterItem, PracticeFieldState.Practice, m_CurFacilityType, m_CurLevel);
+            m_PracticeFieldInfo.SetCharacterItem(characterItem, PracticeFieldState.Practice);
             EventSystem.S.Send(EventID.OnSelectDisciple, m_PracticeFieldInfo);
             OnPanelHideComplete();
         }

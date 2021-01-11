@@ -96,7 +96,7 @@ namespace GameWish.Game
 
         private void CreateCountDown(PracticeField prac)
         {
-            CountDownMgr countDownMgr = new CountDownMgr(prac.FacilityType.ToString() + prac.Index, 100);
+            CountDownItem countDownMgr = new CountDownItem(prac.FacilityType.ToString() + prac.Index, 100);
             TimeUpdateMgr.S.AddObserver(countDownMgr);
             PracticeDisciple practice = GetPracticeDiscipleForID(prac);
             practice.RefreshPracticeFieldState();

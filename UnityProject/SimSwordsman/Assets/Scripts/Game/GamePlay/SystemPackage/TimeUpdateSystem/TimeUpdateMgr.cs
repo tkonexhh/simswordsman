@@ -35,11 +35,11 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="ob"></param>
         /// <returns></returns>
-        public CountDownMgr IsHavaITimeObserver(string ob)
+        public CountDownItem IsHavaITimeObserver(string ob)
         {
-            CountDownMgr countDownMgr = null;
+            CountDownItem countDownMgr = null;
             m_Observers.ForEach(i=> {
-                CountDownMgr temp = (CountDownMgr)i;
+                CountDownItem temp = (CountDownItem)i;
                 if (temp != null && temp.GetID() == ob)
                     countDownMgr = temp;
             });

@@ -10,7 +10,7 @@ namespace GameWish.Game
     public class LivableRoomPanel : AbstractAnimPanel
     {
         [SerializeField]
-        private Text m_LivableRoomName;
+        private Image m_LivableRoomName;
         [SerializeField]
         private Text m_BriefIntroduction;
 
@@ -24,14 +24,15 @@ namespace GameWish.Game
         private GameObject m_LivableItem;
 
         private FacilityType m_CurFacilityType;
-        private int m_SubID;
 
-        private int m_LivableRoomCount = 4;
+        private const int LivableRoomCount = 4;
         protected override void OnUIInit()
         {
             base.OnUIInit();
             BindAddListenerEvent();
         }
+        private bool m_IsLivableRoomEast;
+        private List<FacilityType> m_LivableRoomList = new List<FacilityType>();
 
         private Dictionary<int, ItemICom> m_LivableRoomLevelInfoDic = new Dictionary<int, ItemICom>();
 
@@ -43,23 +44,41 @@ namespace GameWish.Game
                 case FacilityType.LivableRoomEast2:
                 case FacilityType.LivableRoomEast3:
                 case FacilityType.LivableRoomEast4:
-                    m_LivableRoomName.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOMEAST_NAME);
+                    m_LivableRoomName.sprite = FindSprite("EastName");
+                    m_IsLivableRoomEast = true;
                     break;
                 case FacilityType.LivableRoomWest1:
                 case FacilityType.LivableRoomWest2:
                 case FacilityType.LivableRoomWest3:
                 case FacilityType.LivableRoomWest4:
-                    m_LivableRoomName.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOMWEST_NAME);
+                    m_LivableRoomName.sprite = FindSprite("WeatName");
+                    m_IsLivableRoomEast = false;
                     break;
             }
-            m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_DESCRIBLE);
-
-            for (int i = 1; i <= m_LivableRoomCount; i++)
+            if (m_IsLivableRoomEast)
             {
-                m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(i));
+                m_LivableRoomList.Add(FacilityType.LivableRoomEast1);
+                m_LivableRoomList.Add(FacilityType.LivableRoomEast2);
+                m_LivableRoomList.Add(FacilityType.LivableRoomEast3);
+                m_LivableRoomList.Add(FacilityType.LivableRoomEast4);
+            }
+            else
+            {
+                m_LivableRoomList.Add(FacilityType.LivableRoomWest1);
+                m_LivableRoomList.Add(FacilityType.LivableRoomWest2);
+                m_LivableRoomList.Add(FacilityType.LivableRoomWest3);
+                m_LivableRoomList.Add(FacilityType.LivableRoomWest4);
+            }
+            FacilityConfigInfo facilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
+            //m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_DESCRIBLE);
+            m_BriefIntroduction.text = facilityConfigInfo.desc;
+
+            for (int i = 0; i < m_LivableRoomList.Count; i++)
+            {
+                m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(m_LivableRoomList[i]));
             }
         }
-
+            
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
@@ -70,13 +89,21 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             m_CurFacilityType = (FacilityType)args[0];
             RefreshPanelInfo();
-
+     
         }
 
-        private ItemICom CreateLivableItem(int subID)
+        private ItemICom CreateLivableItem(FacilityType facilityType)
         {
+            List<Sprite> sprites = new List<Sprite>();
+            sprites.Add(FindSprite("BgBtn1"));
+            sprites.Add(FindSprite("BgBtn2"));
+            sprites.Add(FindSprite("BgBtn3"));
+            sprites.Add(FindSprite("QingRock"));
+            sprites.Add(FindSprite("silverWood"));
+            sprites.Add(FindSprite("Coin"));
+
             ItemICom itemICom = Instantiate(m_LivableItem, m_LivableRoomTra).GetComponent<ItemICom>();
-            itemICom.OnInit(this,null, m_CurFacilityType, subID);
+            itemICom.OnInit(this,null, facilityType, sprites);
             return itemICom;
         }
 

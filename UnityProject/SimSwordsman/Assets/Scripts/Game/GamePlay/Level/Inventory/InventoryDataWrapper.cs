@@ -44,6 +44,26 @@ namespace GameWish.Game
                 m_WarehouseItems.Add(item);
             });
         }
+        /// <summary>
+        /// 检查RawMaterial类型
+        /// </summary>
+        /// <param name="rawMaterial"></param>
+        /// <returns></returns>
+        public bool CheckItemInInventory(RawMaterial rawMaterial,int number)
+        {
+            bool isGet = false;
+            m_WarehouseItems.ForEach(i =>
+            {
+                if (i.PropType == PropType.RawMaterial)
+                {
+                    //TODO当某一个物品999的时候
+                    PropItem propItem = (PropItem)i;
+                    if (propItem.PropSubType == rawMaterial && propItem.Number >= number)
+                        isGet =  true;
+                }
+            });
+            return isGet;
+        }
 
         /// <summary>
         /// 根据类型返回所以装备

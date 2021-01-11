@@ -131,6 +131,15 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_DAY);
         }
         /// <summary>
+        /// 获得人
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string GetPeople(int number)
+        {
+            return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_PEOPLE);
+        }
+        /// <summary>
         /// 获得段
         /// </summary>
         /// <param name="number"></param>

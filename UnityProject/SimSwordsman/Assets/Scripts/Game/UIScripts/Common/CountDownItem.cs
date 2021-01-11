@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class CountDownMgr : ITimeObserver
-	{
+	public class CountDownItem : ITimeObserver
+    {
         private string m_CountDownID;
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace GameWish.Game
         /// </summary>
         public Action OnCountDownOverEvent;
 
-        public CountDownMgr() { }
-        public CountDownMgr(string _name,int tickCount,int interval = 1)
+        public CountDownItem() { }
+        public CountDownItem(string _name,int tickCount,int interval = 1)
         {
             m_CountDownID = _name;
             m_TickCount = tickCount;

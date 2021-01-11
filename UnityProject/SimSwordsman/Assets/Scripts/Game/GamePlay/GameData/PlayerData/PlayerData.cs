@@ -138,6 +138,18 @@ namespace GameWish.Game
             SetDataDirty();
         }
         /// <summary>
+        /// 检查钱是否足够
+        /// </summary>
+        /// <param name="coinNumber"></param>
+        /// <returns></returns>
+        public bool CheckHaveCoin(int coinNumber)
+        {
+            if (coinNum>= coinNumber)
+                return true;
+            return false;
+        }
+
+        /// <summary>
         /// 设置讲武堂建造时间
         /// </summary>
         public void SetLobbyBuildeTime()

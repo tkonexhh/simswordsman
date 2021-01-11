@@ -67,7 +67,7 @@ namespace GameWish.Game
             {
                 //切换到后台时执行
 
-                RefreshPracticeFieldState();
+               // RefreshPracticeFieldState();
 
             }
         }
@@ -86,7 +86,7 @@ namespace GameWish.Game
 
         public void IncreaseCountDown(int time)
         {
-            CountDownMgr countDownMgr = null;
+            CountDownItem countDownMgr = null;
             countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
             if (countDownMgr != null)
             {
@@ -153,13 +153,12 @@ namespace GameWish.Game
 
         private void CreateCountDown()
         {
-            CountDownMgr countDownMgr = null;
+            CountDownItem countDownMgr = null;
             countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
             if (countDownMgr == null)
             {
                 m_CountDown = GetDuration();
-                countDownMgr = new CountDownMgr(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index, m_CountDown);
-
+                countDownMgr = new CountDownItem(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index, m_CountDown);
             }
             TimeUpdateMgr.S.AddObserver(countDownMgr);
             countDownMgr.OnSecondRefreshEvent = refresAction;

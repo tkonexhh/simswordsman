@@ -33,6 +33,11 @@ namespace GameWish.Game
             this.upgradeResCosts = levelInfo.upgradeResCosts;
         }
 
+        public List<CostItem> GetUpgradeResCosts()
+        {
+            return upgradeResCosts.facilityCosts;
+        }
+
         public int GetNeedLobbyLevel()
         {
             return upgradeNeedLobbyLevel;

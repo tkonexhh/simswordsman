@@ -12,6 +12,7 @@ namespace GameWish.Game
     {
         private CharacterController m_Controller = null;
 
+        private bool m_IsExit = false;
 
         public CharacterStatePractice(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -23,6 +24,8 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
+            m_IsExit = false;
+
             PracticeFieldController practiceFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.PracticeFieldEast);
             Vector3 practicePos = practiceFieldController.GetIdlePracticeSlot().GetPosition();
             m_Controller.MoveTo(practicePos, OnReachDestination);
@@ -30,6 +33,7 @@ namespace GameWish.Game
 
         public override void Exit(ICharacterStateHander handler)    
         {
+            m_IsExit = true;
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
@@ -39,7 +43,8 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
-            m_Controller.CharacterView.PlayAnim("practice", true, null);
+            if(!m_IsExit)
+                m_Controller.CharacterView.PlayAnim("practice", true, null);
         }
     }
 }
