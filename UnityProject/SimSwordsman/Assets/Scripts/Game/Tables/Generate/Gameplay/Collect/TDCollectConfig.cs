@@ -14,7 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Type;   
-        private string m_LobbyLevelRequired;   
+        private EInt m_LobbyLevelRequired = 0;   
         private EInt m_ItemId = 0;   
         private EInt m_SpecialRate = 0;   
         private EInt m_SpecialItemId = 0;   
@@ -37,7 +37,7 @@ namespace GameWish.Game
         /// <summary>
         /// 解锁等级
         /// </summary>
-        public  string  lobbyLevelRequired {get { return m_LobbyLevelRequired; } }
+        public  int  lobbyLevelRequired {get { return m_LobbyLevelRequired; } }
        
         /// <summary>
         /// 获取物品id
@@ -91,7 +91,7 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 2:
-                    m_LobbyLevelRequired = dataR.ReadString();
+                    m_LobbyLevelRequired = dataR.ReadInt();
                     break;
                 case 3:
                     m_ItemId = dataR.ReadInt();
