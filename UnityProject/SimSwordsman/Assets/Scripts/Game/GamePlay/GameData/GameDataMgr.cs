@@ -88,6 +88,10 @@ namespace GameWish.Game
             return m_GameDataHandler.GetCommonTaskData();
         }
 
+        public CountdownData GetCountdownData()
+        {
+            return m_GameDataHandler.GetCountdownData();
+        }
         public void OnReset()
         {
             GetPlayerData().OnReset();

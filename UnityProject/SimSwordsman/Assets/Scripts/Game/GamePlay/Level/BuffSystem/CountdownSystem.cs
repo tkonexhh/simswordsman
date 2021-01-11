@@ -17,9 +17,9 @@ namespace GameWish.Game
             //¼ì²é´æµµ
             bool isChange = false;
             TimeSpan offset;
-            for (int i = GameDataMgr.S.GetPlayerData().countdownerData.Count - 1; i >= 0; i--)
+            for (int i = GameDataMgr.S.GetCountdownData().countdownerData.Count - 1; i >= 0; i--)
             {
-                Countdowner cd = GameDataMgr.S.GetPlayerData().countdownerData[i];
+                Countdowner cd = GameDataMgr.S.GetCountdownData().countdownerData[i];
                 offset = DateTime.Parse(cd.EndTime) - DateTime.Now;
                 if (offset.TotalSeconds > 0)
                 {
@@ -30,11 +30,11 @@ namespace GameWish.Game
                 {
                     isChange = true;
                     EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
-                    GameDataMgr.S.GetPlayerData().countdownerData.RemoveAt(i);
+                    GameDataMgr.S.GetCountdownData().countdownerData.RemoveAt(i);
                 }
             }
             if (isChange)
-                GameDataMgr.S.GetPlayerData().SetDataDirty();
+                GameDataMgr.S.GetCountdownData().SetDataDirty();
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace GameWish.Game
             CountdownStart(cd);
 
             //´æµµ
-            GameDataMgr.S.GetPlayerData().countdownerData.Add(cd);
-            GameDataMgr.S.GetPlayerData().SetDataDirty();
+            GameDataMgr.S.GetCountdownData().countdownerData.Add(cd);
+            GameDataMgr.S.GetCountdownData().SetDataDirty();
         }
 
         void CountdownStart(Countdowner cd)
@@ -114,8 +114,8 @@ namespace GameWish.Game
             Timer.S.Cancel(cd.TimerID);
             cd.TimerID = -1;
             EventSystem.S.Send(EventID.OnCountdownerEnd, cd);
-            GameDataMgr.S.GetPlayerData().countdownerData.Remove(cd);
-            GameDataMgr.S.GetPlayerData().SetDataDirty();
+            GameDataMgr.S.GetCountdownData().countdownerData.Remove(cd);
+            GameDataMgr.S.GetCountdownData().SetDataDirty();
             m_AllCDs.Remove(cd);
         }
         
@@ -138,8 +138,8 @@ namespace GameWish.Game
             if (cd != null)
             {
                 Timer.S.Cancel(cd.TimerID);
-                GameDataMgr.S.GetPlayerData().countdownerData.Remove(cd);
-                GameDataMgr.S.GetPlayerData().SetDataDirty();
+                GameDataMgr.S.GetCountdownData().countdownerData.Remove(cd);
+                GameDataMgr.S.GetCountdownData().SetDataDirty();
                 m_AllCDs.Remove(cd);
             }
         }
