@@ -35,6 +35,11 @@ namespace GameWish.Game
         {
             m_ExitBtn.onClick.AddListener(()=> 
             {
+                if (m_IsSuccess)
+                    m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
+                else
+                    m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
+
                 EventSystem.S.Send(EventID.OnExitBattle);
                 HideSelfWithAnim();
                 UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
@@ -47,6 +52,11 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             m_LevelConfigInfo = (LevelConfigInfo)args[0];
             m_IsSuccess = (bool)args[1];
+
+            if (m_IsSuccess)
+                m_CombatSettlementCont.text = "Ê¤Àû";
+            else
+                m_CombatSettlementCont.text = "Ê§°Ü";
 
             foreach (var item in m_SelectedDiscipleList)
             {

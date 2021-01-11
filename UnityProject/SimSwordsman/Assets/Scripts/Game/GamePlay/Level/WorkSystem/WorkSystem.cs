@@ -5,12 +5,32 @@ using System;
 
 namespace GameWish.Game
 {
+    public class WorkCharacter
+    {
+        public int CharacterID;
+        public int FaciityTypeID;
+
+        private FacilityType facilityType;
+        public FacilityType GetFacilityType()
+        {
+            if (facilityType == 0)
+            {
+                facilityType = (FacilityType)FaciityTypeID;
+            }
+            return facilityType;
+        }
+
+    }
     public class WorkSystem : MonoBehaviour
     {
         /// <summary>
         /// 可以工作的建筑
         /// </summary>
         List<FacilityType> m_CanWorkFacilitys = new List<FacilityType>();
+        /// <summary>
+        /// 已经工作完成，可以领取奖励的建筑
+        /// </summary>
+        List<WorkCharacter> m_RewardFacilitys { get { return GameDataMgr.S.GetCountdownData().workCharacters; } }
         /// <summary>
         /// 已解锁的建筑
         /// </summary>
@@ -53,6 +73,16 @@ namespace GameWish.Game
                 }
             }
             m_MaxCanWorkFacilityLimit = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()).workMaxAmount;
+
+            foreach (var item in m_RewardFacilitys)
+            {
+                var type = (FacilityType)item.FaciityTypeID;
+                if (!m_CurrentWorkItem.ContainsKey(type))
+                {
+                    Mgr.GetCharacterController(item.CharacterID).SetState(CharacterStateID.Working);
+                    m_CurrentWorkItem.Add(type, Mgr.GetCharacterItem(item.CharacterID));
+                }
+            }
         }
 
         private void OnStart(int key, object[] param)
@@ -99,22 +129,8 @@ namespace GameWish.Game
             {
                 tempArray = cd.stringID.Split(',');
                 FacilityType type = (FacilityType)Enum.Parse(typeof(FacilityType), tempArray[1]);
-
-                //弟子恢复到待机状态
-                Mgr.GetCharacterController(cd.ID).SetState(CharacterStateID.Wander);
-                m_CurrentWorkItem.Remove(type);
-
-                //检查建筑cd状态是否还在
-                DateTime endtime = DateTime.Parse(cd.EndTime);
-                var offset = DateTime.Now - endtime;
-                int cdtime = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()).workInterval;
-                if (offset.TotalMinutes < cdtime)
-                    CountdownSystem.S.StartCountdownerWithMin("WorkFacilityCD", (int)type, (int)offset.TotalMinutes);
-                else if (m_CDFacilitys.Contains(type))
-                {
-                    m_CDFacilitys.Remove(type);
-                    UpdateCanWorkFacilitys();
-                }
+                //添加至可领取奖励列表
+                AddRewardFacility(type, cd.ID);
             }
         }
 
@@ -172,6 +188,11 @@ namespace GameWish.Game
                 return false;
             if (m_CDFacilitys.Contains(type))
                 return false;
+            //foreach (var item in m_RewardFacilitys)
+            //{
+            //    if (item.GetFacilityType() == type)
+            //        return false;
+            //}
             return true;
         }
 
@@ -179,7 +200,7 @@ namespace GameWish.Game
         /// 刷新可以工作的建筑
         /// </summary>
         /// <returns></returns>
-        public void UpdateCanWorkFacilitys()
+        void UpdateCanWorkFacilitys()
         {
             List<FacilityType> list = new List<FacilityType>();
             foreach (var item in m_UnlockFacilitys)
@@ -209,7 +230,54 @@ namespace GameWish.Game
 
             }
         }
-        
+        void AddRewardFacility(FacilityType type, int characterid)
+        {
+            WorkCharacter temp = null;
+            foreach (var item in m_RewardFacilitys)
+            {
+                if (item.GetFacilityType() == type)
+                {
+                    temp = item;
+                    break;
+                }
+            }
+            if (temp == null)
+            {
+                temp = new WorkCharacter();
+                temp.FaciityTypeID = (int)type;
+                temp.CharacterID = characterid;
+                m_RewardFacilitys.Add(temp);
+
+                GameDataMgr.S.GetPlayerData().SetDataDirty();
+                //发送消息
+
+            }
+        }
+
+        /// <summary>
+        /// 得到奖励
+        /// </summary>
+        /// <param name="type"></param>
+        public void GetReward(FacilityType type)
+        {
+            var tb = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+            GameDataMgr.S.GetPlayerData().AddCoinNum(tb.workPay);
+            //弟子恢复到待机状态
+            Mgr.GetCharacterController(m_CurrentWorkItem[type].id).SetState(CharacterStateID.Wander);
+            m_CurrentWorkItem.Remove(type);
+            //从奖励列表里移除
+            for (int i = m_RewardFacilitys.Count - 1; i >= 0; i--)
+            {
+                if (m_RewardFacilitys[i].GetFacilityType() == type)
+                {
+                    m_RewardFacilitys.RemoveAt(i);
+                    break;
+                }
+            }
+            //建筑cd
+            CountdownSystem.S.StartCountdownerWithMin("WorkFacilityCD", (int)type, tb.workInterval);
+        }
+
         public bool StartWork(FacilityType type)
         {
             //派遣弟子
@@ -220,7 +288,7 @@ namespace GameWish.Game
             }
 
 
-            CountdownSystem.S.StartCountdownerWithMin(string.Format("WorkFacility,{0}", type.ToString()), character.id, TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()).workTime);
+            CountdownSystem.S.StartCountdownerWithMin(string.Format("FacilityWorking,{0}", type.ToString()), character.id, TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()).workTime);
             return true;
         }
 

@@ -51,5 +51,10 @@ namespace GameWish.Game
         {
             return m_Data.commonTaskData;
         }
+
+        public CountdownData GetCountdownData()
+        {
+            return m_Data.countdownData;
+        }
     }
 }

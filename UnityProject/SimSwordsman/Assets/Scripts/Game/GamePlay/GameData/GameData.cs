@@ -14,6 +14,8 @@ namespace GameWish.Game
         public MainTaskData mainTaskData = null;
         public CommonTaskData commonTaskData = null;
 
+        public CountdownData countdownData = null;
+
         public GameData()
         {
             SetDirtyRecorder(GameDataHandler.s_DataDirtyRecorder);
@@ -34,6 +36,9 @@ namespace GameWish.Game
 
             commonTaskData = new CommonTaskData();
             commonTaskData.SetDefaultValue();
+
+            countdownData = new CountdownData();
+            countdownData.SetDefaultValue();
         }
 
         public override void OnDataLoadFinish()
@@ -42,6 +47,7 @@ namespace GameWish.Game
             clanData.SetDirtyRecorder(m_Recorder);
             mainTaskData.SetDirtyRecorder(m_Recorder);
             commonTaskData.SetDirtyRecorder(m_Recorder);
+            countdownData.SetDirtyRecorder(m_Recorder);
         }       
     }
 }

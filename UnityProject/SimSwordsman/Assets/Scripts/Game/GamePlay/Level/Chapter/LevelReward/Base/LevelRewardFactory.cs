@@ -7,28 +7,28 @@ namespace GameWish.Game
 {
 	public class LevelRewardFactory
 	{
-        public static LevelReward SpawnLevelReward(LevelRewardType rewardType, string[] paramStrs)
+        public static LevelReward SpawnLevelReward(RewardItemType rewardType, string[] paramStrs)
         {
             LevelReward levelReward = null;
 
             switch (rewardType)
             {
-                case LevelRewardType.ExpCharacter:
+                case RewardItemType.Exp_Role:
                     levelReward = new ExpCharacterReward(rewardType, paramStrs);
                     break;
-                case LevelRewardType.ExpKongfu:
+                case RewardItemType.Exp_Kongfu:
                     levelReward = new ExpKongfuReward(rewardType, paramStrs);
                     break;
-                case LevelRewardType.Money:
+                case RewardItemType.Coin:
                     levelReward = new MoneyReward(rewardType, paramStrs);
                     break;
-                case LevelRewardType.PropItem:
+                case RewardItemType.Item:
                     levelReward = new PropItemReward(rewardType, paramStrs);
                     break;
-                case LevelRewardType.Equip:
+                case RewardItemType.Armor:
                     levelReward = new EquipReward(rewardType, paramStrs);
                     break;
-                case LevelRewardType.Food:
+                case RewardItemType.Food:
                     levelReward = new FoodReward(rewardType, paramStrs);
                     break;
             }

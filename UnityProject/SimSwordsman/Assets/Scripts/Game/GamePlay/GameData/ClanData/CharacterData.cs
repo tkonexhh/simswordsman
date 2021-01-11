@@ -61,13 +61,37 @@ namespace GameWish.Game
         {
             item.AddExp(deltaExp);
         }
-
-        public void AddKonfuExp(CharacterItemDbData item, KungfuType kongfuType, int deltaExp)
+        /// <summary>
+        /// 增加功夫经验
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="kongfuType"></param>
+        /// <param name="deltaExp"></param>
+        public void AddKonfuExp(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
-            CharacterKongfuDBData data = item.kongfuDatas.FirstOrDefault(i => i.kongfuType == kongfuType);
-            if (data != null)
-                data.AddExp(deltaExp);
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb!=null)
+            {
+                CharacterKongfuDBData characterKongfuDBData = characterItemDb.kongfuDatas.Where(i => i.kongfuType == kongfuType.GetKungfuType()).FirstOrDefault();
+                characterKongfuDBData.AddExp(deltaExp);
+            }
         }
+        /// <summary>
+        ///  增加功夫等级
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="kongfuType"></param>
+        /// <param name="deltaLevel"></param>
+        public void AddCharacterKongfuLevel(int id, CharacterKongfuData kongfuType, int deltaLevel)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                CharacterKongfuDBData characterKongfuDBData = characterItemDb.kongfuDatas.Where(i => i.kongfuType == kongfuType.GetKungfuType()).FirstOrDefault();
+                characterKongfuDBData.AddLevel(deltaLevel);
+            }
+        }
+
 
         public void AddKungfu(int id, CharacterKongfuData characterKongfu)
         {
@@ -218,6 +242,10 @@ namespace GameWish.Game
         public void AddExp(int deltaExp)
         {
             curExp += deltaExp;
+        }
+        public void AddLevel(int deltaLevel)
+        {
+            level += deltaLevel;
         }
     }
 

@@ -42,23 +42,16 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnCharacterUpgrade:
-                    UIMgr.S.OpenPanel(UIID.PromotionPanel, key, param[0]);
+                    UIMgr.S.OpenPanel(UIID.PromotionPanel, key, m_CurCharacterItem, param[0]);
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
-                    UIMgr.S.OpenPanel(UIID.PromotionPanel, key, param[0]);
+                    UIMgr.S.OpenPanel(UIID.PromotionPanel, key, m_CurCharacterItem, param[0]);
                     break;
             }
         }
 
         private void RefreshPanelInfo()
         {
-            if (m_IsSuccess)
-            {
-
-            }
-
-
-            m_LevelConfigInfo.levelRewardList.ForEach(i=>i.ApplyReward());
 
             m_DiscipleName.text = m_CurCharacterItem.name;
 

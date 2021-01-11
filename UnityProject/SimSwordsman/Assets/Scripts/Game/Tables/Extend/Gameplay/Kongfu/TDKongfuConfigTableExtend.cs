@@ -41,6 +41,17 @@ namespace GameWish.Game
                 return m_KungfuConfigDic[kungfuType];
             return null;
         }
+        /// <summary>
+        /// 获取功夫升级经验
+        /// </summary>
+        /// <param name="characterKongfu"></param>
+        /// <returns></returns>
+        public static int GetKungfuUpgradeInfo(CharacterKongfuDBData characterKongfu)
+        {
+            if (m_KungfuConfigDic.ContainsKey(characterKongfu.kongfuType))
+                return m_KungfuConfigDic[characterKongfu.kongfuType].GetKungfuUpgradeInfo(characterKongfu);
+            return 0;
+        }
     }
 
     public enum KungfuQuality
@@ -60,7 +71,7 @@ namespace GameWish.Game
         public KungfuQuality KungfuQuality { set; get; }
         public string Desc { set; get; }
         public Dictionary<int, float> AdditionRatioDic = new Dictionary<int, float>();
-        public Dictionary<int, float> UpgradeExperienceDic = new Dictionary<int, float>();
+        public Dictionary<int, int> UpgradeExperienceDic = new Dictionary<int, int>();
 
         public KungfuConfigInfo(TDKongfuConfig tdData)
         {
@@ -78,8 +89,15 @@ namespace GameWish.Game
             string[] UpgradeStr = tdData.upgradeExp.Split('|');
             for (int i = 0; i < UpgradeStr.Length; i++)
             {
-                UpgradeExperienceDic.Add(i+1, float.Parse(additionStr[i]));
+                UpgradeExperienceDic.Add(i+1, int.Parse(additionStr[i]));
             }
+        }
+
+        public  int GetKungfuUpgradeInfo(CharacterKongfuDBData characterKongfu)
+        {
+            if (UpgradeExperienceDic.ContainsKey(characterKongfu.level))
+                return UpgradeExperienceDic[characterKongfu.level];
+            return 0;
         }
 
         public float GetAddition(int levle)

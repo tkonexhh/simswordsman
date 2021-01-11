@@ -9,17 +9,16 @@ namespace GameWish.Game
     {
         private int m_ExpValue;
 
-        public ExpKongfuReward(LevelRewardType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
+        public ExpKongfuReward(RewardItemType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
         {
             m_ExpValue = int.Parse(paramStrs[1]);
         }
 
-        public override void ApplyReward()
+        public override void ApplyReward(int par)
         {
             MainGameMgr.S.BattleFieldMgr.OurCharacterList.ForEach(i => 
             {
-                int kongfuCount = Mathf.Max( i.GetKongfuCount(), 1);
-                i.AddKongfuExp(m_ExpValue/kongfuCount);
+                i.CharacterModel.DistributionKungfuExp(m_ExpValue/ par);
             });
         }
     }

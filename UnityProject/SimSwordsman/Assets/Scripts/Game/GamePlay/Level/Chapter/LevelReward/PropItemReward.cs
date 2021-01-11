@@ -10,13 +10,13 @@ namespace GameWish.Game
         private int m_ItemId;
         private int m_Number;
 
-        public PropItemReward(LevelRewardType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
+        public PropItemReward(RewardItemType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
         {
             m_ItemId = int.Parse(paramStrs[1]);
             m_Number = int.Parse(paramStrs[2]);
         }
 
-        public override void ApplyReward()
+        public override void ApplyReward(int par)
         {
             //MainGameMgr.S.InventoryMgr.p
         }
