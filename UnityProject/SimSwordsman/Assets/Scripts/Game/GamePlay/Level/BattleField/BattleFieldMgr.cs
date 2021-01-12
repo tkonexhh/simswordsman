@@ -159,7 +159,7 @@ namespace GameWish.Game
                     OnEnterBattle(enemies, ourSelectedCharacters);
                     break;
                 case (int)EventID.OnExitBattle:
-                    OnExitBattle();
+                    OnExitBattle((LevelConfigInfo)param[0], (bool)param[1]);
                     break;
             }
         }
@@ -196,11 +196,16 @@ namespace GameWish.Game
 
         }
 
-        private void OnExitBattle()
+        private void OnExitBattle(LevelConfigInfo levelConfigInfo, bool battleResult)
         {
+            if (battleResult)
+                levelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
+            else
+                levelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
+
             m_IsBattleBegin = false;
             m_OurCharacterList.ForEach(i => i.OnExitBattleField());
-            m_OurCharacterList.Clear();
+            //m_OurCharacterList.Clear();
             m_EnemyCharacterList.Clear();
 
             m_FightGroupList.ForEach(i => i.Release());

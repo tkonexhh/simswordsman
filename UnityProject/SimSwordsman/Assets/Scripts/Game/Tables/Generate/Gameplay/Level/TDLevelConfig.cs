@@ -17,8 +17,6 @@ namespace GameWish.Game
         private string m_Enemies;   
         private string m_Desc;   
         private string m_Reward;   
-        private EInt m_Exp = 0;   
-        private EInt m_KongfuExp = 0;   
         private EInt m_RecommendAtkValue = 0;   
         private string m_BattleName;  
         
@@ -48,16 +46,6 @@ namespace GameWish.Game
         /// 奖励
         /// </summary>
         public  string  reward {get { return m_Reward; } }
-       
-        /// <summary>
-        /// 经验
-        /// </summary>
-        public  int  exp {get { return m_Exp; } }
-       
-        /// <summary>
-        /// 功夫经验
-        /// </summary>
-        public  int  kongfuExp {get { return m_KongfuExp; } }
        
         /// <summary>
         /// 推荐功力
@@ -100,15 +88,9 @@ namespace GameWish.Game
                     m_Reward = dataR.ReadString();
                     break;
                 case 5:
-                    m_Exp = dataR.ReadInt();
-                    break;
-                case 6:
-                    m_KongfuExp = dataR.ReadInt();
-                    break;
-                case 7:
                     m_RecommendAtkValue = dataR.ReadInt();
                     break;
-                case 8:
+                case 6:
                     m_BattleName = dataR.ReadString();
                     break;
                 default:
@@ -121,17 +103,15 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Level", 0);
           ret.Add("Chapter", 1);
           ret.Add("Enemies", 2);
           ret.Add("Desc", 3);
           ret.Add("Reward", 4);
-          ret.Add("Exp", 5);
-          ret.Add("KongfuExp", 6);
-          ret.Add("RecommendAtkValue", 7);
-          ret.Add("BattleName", 8);
+          ret.Add("RecommendAtkValue", 5);
+          ret.Add("BattleName", 6);
           return ret;
         }
     } 

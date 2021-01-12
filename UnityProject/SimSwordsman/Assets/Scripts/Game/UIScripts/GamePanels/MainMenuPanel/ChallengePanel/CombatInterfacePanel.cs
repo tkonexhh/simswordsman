@@ -145,10 +145,13 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 EventSystem.S.Send(EventID.OnBattleSuccessed);
+                EventSystem.S.Send(EventID.OnExitBattle, m_LevelConfigInfo, true);
+
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EventSystem.S.Send(EventID.OnBattleFailed);
+                EventSystem.S.Send(EventID.OnExitBattle, m_LevelConfigInfo, false);
             }
         }
 

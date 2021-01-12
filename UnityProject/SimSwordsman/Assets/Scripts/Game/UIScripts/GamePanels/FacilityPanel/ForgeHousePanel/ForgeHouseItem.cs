@@ -152,7 +152,7 @@ namespace GameWish.Game
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
                     //解锁条件
-                    m_LockConditionTxt.text = string.Format("锻造房升至 <color=#9C4B45>{0}</color>级 后解锁", TDEquipmentConfigTable.GetData(ID).unlockLevel);
+                    //m_LockConditionTxt.text = string.Format("锻造房升至 <color=#9C4B45>{0}</color>级 后解锁", TDEquipmentConfigTable.GetData(ID).unlockLevel);
                     break;
                 case 1:
                     UnLock.SetActive(true);

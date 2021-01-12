@@ -136,12 +136,14 @@ namespace GameWish.Game
 
         public int GetKungfuLevel()
         {
-            return CharacterKongfu.dbData.level;
+            if (CharacterKongfu!=null)
+                 return CharacterKongfu.dbData.level;
+            return -1;
         }
         public void AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
             CharacterKongfu.dbData.curExp += deltaExp;
-
+            int preKungfuLevel = CharacterKongfu.dbData.level;
             while (true)
             {
                 int upExp = TDKongfuConfigTable.GetKungfuUpgradeInfo(CharacterKongfu.dbData);
@@ -153,6 +155,10 @@ namespace GameWish.Game
                 else
                     break;
             }
+            int curKungfuLevel = CharacterKongfu.dbData.level;
+            if (curKungfuLevel!= preKungfuLevel)
+                 EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade,id, CharacterKongfu.dbData);
+
             GameDataMgr.S.GetClanData().AddCharacterKongfuExp(id, kongfuType, deltaExp);
         }
 
@@ -160,7 +166,6 @@ namespace GameWish.Game
         {
             CharacterKongfu.dbData.level = Mathf.Min(CharacterKongfu.dbData.level+1, m_KungfuMaxLevel);
             GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, 1);
-            EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade, CharacterKongfu.dbData);
         }
 
         public KungfuType GetKungfuType()
@@ -297,7 +302,6 @@ namespace GameWish.Game
                 if (priviewStage != this.stage)
                 {
                     GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
-                    EventSystem.S.Send(EventID.OnCharacterUpgrade, this.stage);
                     int delte = stage - priviewStage;
 
                     for (int i = 1; i <= delte; i++)
@@ -365,6 +369,7 @@ namespace GameWish.Game
         public void AddCharacterExp(int deltaExp)
         {
             curExp += deltaExp;
+            int preChracterStage = stage;
 
             while (true)
             {
@@ -377,6 +382,8 @@ namespace GameWish.Game
                 else
                     break;
             }
+            if (stage != preChracterStage)
+                EventSystem.S.Send(EventID.OnCharacterUpgrade, id,stage);
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 

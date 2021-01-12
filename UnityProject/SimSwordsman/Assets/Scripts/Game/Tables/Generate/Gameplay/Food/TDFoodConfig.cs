@@ -20,8 +20,7 @@ namespace GameWish.Game
         private string m_BuffType;   
         private EInt m_BuffRate = 0;   
         private EInt m_BuffTime = 0;   
-        private EInt m_BuffTimeAD = 0;   
-        private EInt m_UnlockLevel = 0;  
+        private EInt m_BuffTimeAD = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -70,11 +69,6 @@ namespace GameWish.Game
         /// </summary>
         public  int  buffTimeAD {get { return m_BuffTimeAD; } }
        
-        /// <summary>
-        /// 解锁等级
-        /// </summary>
-        public  int  unlockLevel {get { return m_UnlockLevel; } }
-       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -117,9 +111,6 @@ namespace GameWish.Game
                 case 8:
                     m_BuffTimeAD = dataR.ReadInt();
                     break;
-                case 9:
-                    m_UnlockLevel = dataR.ReadInt();
-                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -130,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -141,7 +132,6 @@ namespace GameWish.Game
           ret.Add("BuffRate", 6);
           ret.Add("BuffTime", 7);
           ret.Add("BuffTimeAD", 8);
-          ret.Add("UnlockLevel", 9);
           return ret;
         }
     } 

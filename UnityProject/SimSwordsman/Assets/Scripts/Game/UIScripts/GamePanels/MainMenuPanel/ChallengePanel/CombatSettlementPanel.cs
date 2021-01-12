@@ -26,6 +26,8 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            EventSystem.S.Register(EventID.OnCharacterUpgrade, HandleListnerEvent);
+            EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleListnerEvent);
             m_SelectedDiscipleList = MainGameMgr.S.BattleFieldMgr.OurCharacterList;
 
             BindAddListenerEvent();
@@ -35,16 +37,25 @@ namespace GameWish.Game
         {
             m_ExitBtn.onClick.AddListener(()=> 
             {
-                if (m_IsSuccess)
-                    m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-                else
-                    m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
-
-                EventSystem.S.Send(EventID.OnExitBattle);
-                HideSelfWithAnim();
+                PanelPool.S.DisplayPanel();
                 UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
+                OnPanelHideComplete();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
+        }
+        private void HandleListnerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnCharacterUpgrade:
+                    PanelPool.S.AddPromotion(new DiscipleRiseStage((EventID)key, (int)param[0],(int)param[1]));
+                    // UIMgr.S.OpenTopPanel(UIID.PromotionPanel,null, key, m_CurCharacterItem, param[0]);
+                    break;
+                case EventID.OnKongfuLibraryUpgrade:
+                    PanelPool.S.AddPromotion(new WugongBreakthrough((EventID)key, (int)param[0], (CharacterKongfuDBData)param[1]));
+                    //UIMgr.S.OpenTopPanel(UIID.PromotionPanel, null, key, m_CurCharacterItem, param[0]);
+                    break;
+            }
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -59,9 +70,7 @@ namespace GameWish.Game
                 m_CombatSettlementCont.text = "Ê§°Ü";
 
             foreach (var item in m_SelectedDiscipleList)
-            {
                 CreateRewardIInfoItem(item);
-            }
         }
 
         private void CreateRewardIInfoItem(CharacterController item)
@@ -74,6 +83,8 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
+            EventSystem.S.UnRegister(EventID.OnCharacterUpgrade, HandleListnerEvent);
+            EventSystem.S.UnRegister(EventID.OnKongfuLibraryUpgrade, HandleListnerEvent);
         }
     }
 }

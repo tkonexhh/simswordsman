@@ -95,8 +95,6 @@ namespace GameWish.Game
 
         }
 
-       
-
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(()=>{
@@ -110,16 +108,6 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel);
                 });
             }
-        }
-
-        private void ClosePanel()
-        {
-            
-        }
-
-        private void CreateCheckpointItem()
-        {
-            Instantiate(m_CheckpointItem, m_CheckpointTrans);
         }
 
         protected override void OnPanelHideComplete()
