@@ -110,7 +110,6 @@ namespace GameWish.Game
             }
             else if (m_CostItems.Count == 2)
             {
-
                 m_Res1Value.text = m_CostItems[0].value.ToString();
                 m_Res1.sprite = FindSprite("QingRock");
                 m_Res2Value.text = m_CostItems[1].value.ToString();

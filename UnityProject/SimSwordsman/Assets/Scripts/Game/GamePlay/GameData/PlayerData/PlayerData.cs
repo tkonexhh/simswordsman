@@ -321,6 +321,7 @@ namespace GameWish.Game
     
     }
 
+    [Serializable]
     public class RecruitData
     {
         public string lobbyBuildTime = string.Empty;
@@ -489,6 +490,7 @@ namespace GameWish.Game
         }
     }
 
+    [Serializable]
     public class ChapterDbItem
     {
         public int chapter;
@@ -518,6 +520,8 @@ namespace GameWish.Game
                 number++;
                 this.level += 1;
                 this.level = Mathf.Clamp(this.level, 1, Define.LEVEL_COUNT_PER_CHAPTER);
+                GameDataMgr.S.GetPlayerData().SetDataDirty();
+
                 EventSystem.S.Send(EventID.OnChanllengeSuccess, level);
             }
         }
