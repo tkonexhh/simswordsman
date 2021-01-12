@@ -109,14 +109,14 @@ namespace GameWish.Game
             if (isUnlock)
                 MainGameMgr.S.ChapterMgr.AddNewCheckpoint(m_CurChapterConfigInfo.chapterId);     
 
-            m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgress(m_CurChapterConfigInfo.chapterId) - 1;
+            m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_CurChapterConfigInfo.chapterId);
             if (m_CurLevel == -1)
             {
                 UpdataPanelInfo();
                 return;
             }
 
-            if (m_CurLevel == m_CurChapterConfigInfo.chapterCount)
+            if (m_CurLevel == MainGameMgr.S.ChapterMgr.GetChapterNumber(m_CurChapterConfigInfo.chapterId))
             {
                 m_CurChallengeType = ChallengeType.Passed;
                 UpdataPanelInfo();
@@ -133,7 +133,7 @@ namespace GameWish.Game
         /// <returns></returns>
         private float GetCurProgress()
         {
-            return (float)m_CurLevel / m_CurChapterConfigInfo.chapterCount;
+            return (float)m_CurLevel / MainGameMgr.S.ChapterMgr.GetChapterNumber(m_CurChapterConfigInfo.chapterId);
         }
 
         /// <summary>

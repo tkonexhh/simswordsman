@@ -54,7 +54,7 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
-            m_LevelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(m_CurChapterConfigInfo.chapterId, (int)args[1]);
+            m_LevelConfigInfo = (LevelConfigInfo)args[1];
             RefreshPanelInfo();
         }
 

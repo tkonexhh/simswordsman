@@ -19,7 +19,6 @@ namespace GameWish.Game
                 chapterInfo.chapterId = tdData.chapter;
                 chapterInfo.desc = tdData.desc;
                 
-                chapterInfo.chapterCount = tdData.chapterCount;
                 chapterInfo.clanType = EnumUtil.ConvertStringToEnum<ClanType>(tdData.clanType);
 
                 string[] unlockConditionStr = tdData.unlockPrecondition.Split('_');

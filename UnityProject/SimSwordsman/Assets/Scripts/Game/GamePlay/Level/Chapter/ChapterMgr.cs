@@ -43,9 +43,9 @@ namespace GameWish.Game
         /// <param name="chapterId"></param>
         public void AddNewCheckpoint(int chapterId)
         {
-            GameDataMgr.S.GetPlayerData().AddNewCheckpoint(chapterId);
             if (!ChapterInfoDic.ContainsKey(chapterId))
-                ChapterInfoDic.Add(chapterId, GameDataMgr.S.GetPlayerData().FindChapterDbItem(chapterId));
+                ChapterInfoDic.Add(chapterId, new ChapterDbItem(chapterId));
+            GameDataMgr.S.GetPlayerData().AddNewCheckpoint(chapterId);
         }
 
         /// <summary>
@@ -56,17 +56,21 @@ namespace GameWish.Game
         public void PassCheckpoint(int chapterId, int levelId)
         {
             if (ChapterInfoDic.ContainsKey(chapterId))
-            {
                 ChapterInfoDic[chapterId].OnLevelPassed(levelId);
-            }
         }
 
+        /// <summary>
+        /// 判断章节是否解锁
+        /// </summary>
+        /// <param name="chapterId"></param>
+        /// <returns></returns>
         public bool JudgeChapterIsUnlock(int chapterId)
         {
-            int CurlevelId = GetLevelProgress(chapterId);
             ChapterUnlockPrecondition unlockInfo = GetChapterInfo(chapterId).unlockPrecondition;
-            int unlockLevel = GetLevelProgress(unlockInfo.chapter);
-            if ((unlockLevel-1)== unlockInfo.level)
+            if (unlockInfo.chapter == -1)
+                return true;
+            int unlockLevel = GetLevelProgressNumber(unlockInfo.chapter);
+            if ((unlockLevel-1)>= unlockInfo.level)
                 return true;
             return false;
         }
@@ -76,12 +80,20 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="clanType"></param>
         /// <returns></returns>
-        public int GetLevelProgress(int clanId)
+        public int GetLevelProgressNumber(int clanId)
+        {
+            if (ChapterInfoDic.ContainsKey(clanId))
+                return ChapterInfoDic[clanId].number;
+            else
+                return -1;
+        }
+
+        public int GetLevelProgressLevelID(int clanId)
         {
             if (ChapterInfoDic.ContainsKey(clanId))
                 return ChapterInfoDic[clanId].level;
             else
-                return 0;
+                return -1;
         }
 
         /// <summary>
@@ -92,6 +104,16 @@ namespace GameWish.Game
             List<ChapterConfigInfo> chapterList = new List<ChapterConfigInfo>();
             chapterList.AddRange(TDChapterConfigTable.chapterConfigInfoDic.Values);
             return chapterList;
+        }
+
+        public LevelConfigInfo GetChapterFirstLevelInfo(int chapter)
+        {
+            return TDLevelConfigTable.GetFirstLevelInfo(chapter);
+        }
+
+        public int GetChapterNumber(int chapter)
+        {
+            return TDLevelConfigTable.GetChapterNumber(chapter);
         }
 
         /// <summary>
@@ -110,24 +132,14 @@ namespace GameWish.Game
         {
             return TDLevelConfigTable.GetLevelConfigInfo(chapterId,levelId);
         }
-
         /// <summary>
-        /// 获取某一关卡的总关卡数
+        /// 获取某一章节所有关卡的信息
         /// </summary>
-        /// <param name="chapterId"></param>
+        /// <param name="chapterID"></param>
         /// <returns></returns>
-        public int GetTotalLevels(int chapterId)
+        public  Dictionary<int, LevelConfigInfo> GetAllLevelConfigInfo(int chapterID)
         {
-            return TDChapterConfigTable.GetChapterConfigInfo(chapterId).chapterCount;
-        }
-
-        /// <summary>
-        /// 当选中某章时刷新章节数据
-        /// </summary>
-        public void OnSelectChapter(int chapter)
-        {
-            //m_CurChapter = chapter;
-
+            return TDLevelConfigTable.GetAllLevelConfigInfo(chapterID);
         }
         #endregion
 

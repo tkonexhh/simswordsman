@@ -14,7 +14,6 @@ namespace GameWish.Game
         public string battleName;
         public ChapterUnlockPrecondition unlockPrecondition;
         public ClanType clanType;
-        public int chapterCount;
     }
 
     public class ChapterUnlockPrecondition

@@ -13,10 +13,16 @@ namespace GameWish.Game
         private List<Transform> m_OurCurSlots;
         private List<Transform> m_EnemyCurSlots;
 
+        private List<Transform> m_OurSlotsBackup = new List<Transform>();
+        private List<Transform> m_EnemySlotsBackup = new List<Transform>();
+
         public void Init()
         {
             m_OurCurSlots = new List<Transform>(ourSlots);
             m_EnemyCurSlots = new List<Transform>(enemySlots);
+
+            m_OurSlotsBackup.AddRange(m_OurCurSlots);
+            m_EnemySlotsBackup.AddRange(m_EnemyCurSlots);
         }
 
         public Vector3 GetOurCharacterPos()
@@ -35,6 +41,15 @@ namespace GameWish.Game
             m_EnemyCurSlots.RemoveAt(random);
 
             return pos;
+        }
+
+        public void OnBattleEnd()
+        {
+            m_OurCurSlots.Clear();
+            m_OurCurSlots.AddRange(m_OurSlotsBackup);
+
+            m_EnemyCurSlots.Clear();
+            m_EnemyCurSlots.AddRange(m_EnemySlotsBackup);
         }
     }
 	

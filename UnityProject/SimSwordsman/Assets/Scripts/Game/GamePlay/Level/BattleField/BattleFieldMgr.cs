@@ -159,7 +159,7 @@ namespace GameWish.Game
                     OnEnterBattle(enemies, ourSelectedCharacters);
                     break;
                 case (int)EventID.OnExitBattle:
-                    OnExitBattle((LevelConfigInfo)param[0], (bool)param[1]);
+                    OnExitBattle();
                     break;
             }
         }
@@ -196,20 +196,17 @@ namespace GameWish.Game
 
         }
 
-        private void OnExitBattle(LevelConfigInfo levelConfigInfo, bool battleResult)
+        private void OnExitBattle()
         {
-            if (battleResult)
-                levelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-            else
-                levelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
-
             m_IsBattleBegin = false;
             m_OurCharacterList.ForEach(i => i.OnExitBattleField());
-            //m_OurCharacterList.Clear();
+            m_OurCharacterList.Clear();
             m_EnemyCharacterList.Clear();
 
             m_FightGroupList.ForEach(i => i.Release());
             m_FightGroupList.Clear();
+
+            m_BattleField.OnBattleEnd();
         }
 
         private void SpawnOurCharacter(List<CharacterController> characters)
@@ -325,13 +322,13 @@ namespace GameWish.Game
 
             if (curOurTotalHp <= 0)
             {
-                EventSystem.S.Send(EventID.OnBattleFailed);
+                //EventSystem.S.Send(EventID.OnBattleFailed);
                 m_IsBattleEnd = true;
             }
 
             if (curEnemyTotalHp <= 0)
             {
-                EventSystem.S.Send(EventID.OnBattleSuccessed);
+               // EventSystem.S.Send(EventID.OnBattleSuccessed);
                 m_IsBattleEnd = true;
             }
         }

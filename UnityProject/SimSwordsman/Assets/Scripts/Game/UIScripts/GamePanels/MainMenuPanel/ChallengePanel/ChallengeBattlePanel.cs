@@ -24,6 +24,7 @@ namespace GameWish.Game
         private List<Button> m_CheckpointBtns = null;
 
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
+        private Dictionary<int, LevelConfigInfo> m_CurChapterAllLevelConfigInfo = null;
 
         private Dictionary<int, Button> m_LevelBtnDic = new Dictionary<int, Button>();
 
@@ -40,6 +41,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnChanllengeSuccess, HandlingListeningEvents);
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandlingListeningEvents);
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
+            m_CurChapterAllLevelConfigInfo = MainGameMgr.S.ChapterMgr.GetAllLevelConfigInfo(m_CurChapterConfigInfo.chapterId);
 
             InitPanelInfo();
         }
@@ -74,25 +76,22 @@ namespace GameWish.Game
         {
             //m_LevelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(m_CurChapterConfigInfo.chapterId);
             m_ChallengeBattleTitle.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
-            int CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgress(m_CurChapterConfigInfo.chapterId);
-            for (int i = 1; i <= m_CurChapterConfigInfo.chapterCount; i++)
-            {
-                if (i < CurLevel)
-                    continue;
+            int CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressLevelID(m_CurChapterConfigInfo.chapterId);
 
+            foreach (var item in m_CurChapterAllLevelConfigInfo.Values)
+            {
+                if (item.level < CurLevel)
+                    continue;
                 Transform chapterItem = Instantiate(m_CheckpointItem, m_CheckpointTrans).transform;
-                chapterItem.GetComponentInChildren<Text>().text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, TDLevelConfigTable.GetLevelId(m_CurChapterConfigInfo.chapterId, i));
-                Button challengeBtn =  chapterItem.GetComponent<Button>();
-                if (!m_LevelBtnDic.ContainsKey(i))
-                    m_LevelBtnDic.Add(i, challengeBtn);
+                chapterItem.GetComponentInChildren<Text>().text = item.level.ToString();
+                Button challengeBtn = chapterItem.GetComponent<Button>();
+                if (!m_LevelBtnDic.ContainsKey(item.level))
+                    m_LevelBtnDic.Add(item.level, challengeBtn);
                 challengeBtn.onClick.AddListener(() =>
                 {
-                    string[] name = chapterItem.GetComponentInChildren<Text>().text.Split('-');
-                    int levelId = int.Parse(name[1]);
-                    UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, levelId);
+                    UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, item);
                 });
             }
-
         }
 
         private void BindAddListenerEvent()
@@ -109,7 +108,6 @@ namespace GameWish.Game
                 });
             }
         }
-
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();

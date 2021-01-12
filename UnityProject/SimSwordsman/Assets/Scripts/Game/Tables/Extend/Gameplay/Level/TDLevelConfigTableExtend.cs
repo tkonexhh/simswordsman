@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Qarth;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -38,6 +39,32 @@ namespace GameWish.Game
         {
             if (m_AllChapter.ContainsKey(chapterId))
                 return m_AllChapter[chapterId].GetLevelConfigInfo(levelId);
+            return null;
+        }
+
+        /// <summary>
+        /// 获取某一章节的第一个关卡
+        /// </summary>
+        /// <param name="chapterID"></param>
+        /// <returns></returns>
+        public static LevelConfigInfo GetFirstLevelInfo(int chapterID)
+        {
+            if (m_AllChapter.ContainsKey(chapterID))
+                return m_AllChapter[chapterID].GetLevelConfigInfo(0);
+            return null;
+        }
+
+        public static int GetChapterNumber(int chapterID)
+        {
+            if (m_AllChapter.ContainsKey(chapterID))
+                return m_AllChapter[chapterID].GetNumber();
+            return 1;
+        }
+
+        public static Dictionary<int, LevelConfigInfo> GetAllLevelConfigInfo(int chapterID)
+        {
+            if (m_AllChapter.ContainsKey(chapterID))
+                return m_AllChapter[chapterID].GetAllLevelConfigInfo();
             return null;
         }
 
@@ -91,15 +118,25 @@ namespace GameWish.Game
                 m_AllCheckpoint.Add(tDLevelConfig.level,new LevelConfigInfo(tDLevelConfig));
         }
 
+        public Dictionary<int, LevelConfigInfo> GetAllLevelConfigInfo()
+        {
+            return m_AllCheckpoint;
+        }
+
+        public int GetNumber()
+        {
+            return m_AllCheckpoint.Count;
+        }
+
         /// <summary>
         /// 获取一个关卡的信息
         /// </summary>
         /// <param name="levelId"></param>
         /// <returns></returns>
-        public LevelConfigInfo GetLevelConfigInfo(int levelId)
+        public LevelConfigInfo GetLevelConfigInfo(int index)
         {
-            if (m_AllCheckpoint.ContainsKey(levelId))
-                return m_AllCheckpoint[levelId];
+            if (m_AllCheckpoint.Count>0)
+                return m_AllCheckpoint.FirstOrDefault().Value;
             return null;
         }
 

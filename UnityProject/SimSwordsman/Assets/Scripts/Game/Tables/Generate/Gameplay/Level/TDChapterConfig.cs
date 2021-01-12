@@ -15,8 +15,7 @@ namespace GameWish.Game
         private EInt m_Chapter = 0;   
         private string m_Desc;   
         private string m_UnlockPrecondition;   
-        private string m_ClanType;   
-        private EInt m_ChapterCount = 0;  
+        private string m_ClanType;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -39,11 +38,6 @@ namespace GameWish.Game
         /// Value
         /// </summary>
         public  string  clanType {get { return m_ClanType; } }
-       
-        /// <summary>
-        /// 关卡数量
-        /// </summary>
-        public  int  chapterCount {get { return m_ChapterCount; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -72,9 +66,6 @@ namespace GameWish.Game
                 case 3:
                     m_ClanType = dataR.ReadString();
                     break;
-                case 4:
-                    m_ChapterCount = dataR.ReadInt();
-                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -85,13 +76,12 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(4);
           
           ret.Add("Chapter", 0);
           ret.Add("Desc", 1);
           ret.Add("UnlockPrecondition", 2);
           ret.Add("ClanType", 3);
-          ret.Add("ChapterCount", 4);
           return ret;
         }
     } 
