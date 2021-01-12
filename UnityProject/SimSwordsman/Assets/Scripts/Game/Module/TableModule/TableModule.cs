@@ -55,6 +55,7 @@ namespace GameWish.Game
 
                 //Kongfu
                 TDKongfuConfigTable.metaData,
+                TDKongfuStageConfigTable.metaData,
 
                 //Level
                 TDLevelConfigTable.metaData,

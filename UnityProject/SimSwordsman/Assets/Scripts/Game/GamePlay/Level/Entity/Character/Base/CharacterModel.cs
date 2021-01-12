@@ -84,9 +84,9 @@ namespace GameWish.Game
 
         public FacilityType GetTargetFacilityType()
         {
-            if (m_CharacterItem!=null)
-                 return m_CharacterItem.GetTargetFacilityType();
-            return FacilityType.None;
+            if (m_CharacterItem == null)
+                return FacilityType.None;
+            return m_CharacterItem.GetTargetFacilityType();
         }
 
         public void AddKongfuExp(int deltaExp)
@@ -117,11 +117,10 @@ namespace GameWish.Game
 
             foreach (var item in m_CharacterItem.kongfus.Values)
             {
-                int kungfuWeight = 0;
                 KungfuWeightConfig config= TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
                 if (config != null)
                 {
-                    int ratio = kungfuWeight / allWeight;
+                    int ratio = config.Weight / allWeight;
                     m_CharacterItem.AddKongfuExp(item,ratio * expValue);
                 }
             }

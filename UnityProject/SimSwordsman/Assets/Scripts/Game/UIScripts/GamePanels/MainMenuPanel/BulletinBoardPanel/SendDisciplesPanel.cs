@@ -110,6 +110,7 @@ namespace GameWish.Game
 
             m_AcceptBtn.onClick.AddListener(() =>
             {
+                CloseSelfPanel();
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
@@ -133,8 +134,6 @@ namespace GameWish.Game
                     default:
                         break;
                 }
-
-                CloseSelfPanel();
             });
         }
 

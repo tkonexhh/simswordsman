@@ -96,22 +96,6 @@ namespace GameWish.Game
             //    GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);
             //    EventSystem.S.Send(EventID.OnTaskManualFinished);
             //}
-
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                //MainGameMgr.S.CharacterMgr.SpawnCharacterController(1);
-                EventSystem.S.Send(EventID.OnEnterBattle, CharacterMgr.CharacterControllerList);
-            }
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                EventSystem.S.Send(EventID.OnExitBattle);
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                CharacterMgr.CharacterControllerList[0].SetState(CharacterStateID.Practice);
-            }
         }
 
         public void OnDestroyed()
