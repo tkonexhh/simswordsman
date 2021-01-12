@@ -33,9 +33,9 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnRecruitmentOrderIncrease:
-                    if ((RawMaterial)param[0] == RawMaterial.GoldenToken)
+                    if ((RawMaterial)param[0] == RawMaterial.GoldOlder)
                         SetRecruitCount(RecruitType.GoldMedal, (int)param[1]);
-                    else if ((RawMaterial)param[0] == RawMaterial.SilverToken)
+                    else if ((RawMaterial)param[0] == RawMaterial.SilverOlder)
                         SetRecruitCount(RecruitType.SilverMedal, (int)param[1]);
                     break;
                 default:
