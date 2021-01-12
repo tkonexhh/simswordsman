@@ -113,7 +113,7 @@ namespace GameWish.Game
         private void SuccessBtn()
         {
             EventSystem.S.Send(EventID.OnExitBattle);
-            CloseSelfPanel();
+            HideSelfWithAnim();
             UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
 
@@ -126,9 +126,9 @@ namespace GameWish.Game
             StartCoroutine(BattleCountdown(7));
         }
 
-        protected override void OnPanelHideComplete()
+        protected override void OnClose()
         {
-            base.OnPanelHideComplete();
+            base.OnClose();
             EventSystem.S.UnRegister(EventID.OnRefreshBattleProgress, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleSuccessed, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleFailed, HandleAddListenerEvent);
@@ -141,6 +141,11 @@ namespace GameWish.Game
             m_successPanel.OnRefuseBtnEvent -= BattleSuccessCancle;
             m_failPanel.OnSuccessBtnEvent -= BattleFailConfirm;
             m_failPanel.OnRefuseBtnEvent -= BattleFailCancle;
+        }
+
+        protected override void OnPanelHideComplete()
+        {
+            base.OnPanelHideComplete();
             CloseSelfPanel();
         }
         private void Update()
@@ -154,6 +159,7 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnBattleFailed);
             }
         }
+        
 
         private void HandleAddListenerEvent(int key, object[] param)
         {

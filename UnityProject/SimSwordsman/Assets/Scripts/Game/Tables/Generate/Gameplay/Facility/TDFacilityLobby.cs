@@ -62,7 +62,7 @@ namespace GameWish.Game
         public  int  workMaxAmount {get { return m_WorkMaxAmount; } }
        
         /// <summary>
-        /// 工作时长
+        /// 工作时长，秒
         /// </summary>
         public  int  workTime {get { return m_WorkTime; } }
        

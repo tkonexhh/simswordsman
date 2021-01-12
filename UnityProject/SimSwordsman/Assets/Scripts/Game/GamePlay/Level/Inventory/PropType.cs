@@ -21,7 +21,7 @@ namespace GameWish.Game
         XiangLong18Zhang                 = 1,        //Ωµ¡˙ Æ∞À’∆
         XiangLong19Zhang                 = 2,
         WuLinMiJi                        = 3,        //Œ‰¡÷√ÿºÆ
-        LingBoWeiBu                      = 1024,        //¡Ë≤®Œ¢≤Ω
+        LingBoWeiBu                      = 3005,        //¡Ë≤®Œ¢≤Ω
         /// <summary>
         /// »Á¿¥…Ò’∆
         /// </summary>
