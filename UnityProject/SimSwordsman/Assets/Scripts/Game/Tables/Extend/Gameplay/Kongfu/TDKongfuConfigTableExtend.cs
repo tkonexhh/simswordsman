@@ -80,16 +80,16 @@ namespace GameWish.Game
             Desc = tdData.desc;
             KungfuQuality = EnumUtil.ConvertStringToEnum<KungfuQuality>(tdData.quality);
 
-            string[] additionStr = tdData.atkRange.Split(';');
+            string[] additionStr = tdData.atkRange.Split('|');
             for (int i = 0; i < additionStr.Length; i++)
             {
                 AdditionRatioDic.Add(i+1,float.Parse(additionStr[i]));
             }
 
-            string[] UpgradeStr = tdData.upgradeExp.Split(';');
+            string[] UpgradeStr = tdData.upgradeExp.Split('|');
             for (int i = 0; i < UpgradeStr.Length; i++)
             {
-                UpgradeExperienceDic.Add(i+1, int.Parse(UpgradeStr[i]));
+                UpgradeExperienceDic.Add(i+1, int.Parse(additionStr[i]));
             }
         }
 

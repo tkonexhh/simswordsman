@@ -49,14 +49,9 @@ namespace GameWish.Game
 
             m_VillaBtn.onClick.AddListener(() => {
 
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.QingRock), 2000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 2000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.SilverWood), 2000);
-
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,10);
-
-                MainGameMgr.S.CharacterMgr.AddKungfu(0,new KungfuItem (KungfuType.LingBoWeiBu));
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,200);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.QingRock), 200);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 200);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.SilverWood), 200);
                 //GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
                 //m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
             });

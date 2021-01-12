@@ -26,6 +26,9 @@ namespace GameWish.Game
         private CharacterController m_CharacterController = null;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+            EventSystem.S.Register(EventID.OnCharacterUpgrade, HandleListnerEvent);
+            EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleListnerEvent);
+
             m_LevelConfigInfo = (LevelConfigInfo)obj[0];
             m_IsSuccess = (bool)obj[1];
             m_CharacterController = t as CharacterController;
@@ -34,6 +37,18 @@ namespace GameWish.Game
             RefreshPanelInfo();
         }
 
+        private void HandleListnerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnCharacterUpgrade:
+                    UIMgr.S.OpenPanel(UIID.PromotionPanel, key, m_CurCharacterItem, param[0]);
+                    break;
+                case EventID.OnKongfuLibraryUpgrade:
+                    UIMgr.S.OpenPanel(UIID.PromotionPanel, key, m_CurCharacterItem, param[0]);
+                    break;
+            }
+        }
 
         private void RefreshPanelInfo()
         {
@@ -43,11 +58,6 @@ namespace GameWish.Game
             m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
 
             m_ExpCont.text = (m_ExpProportion.value * 100).ToString() + "%";
-        }
-
-        private void OnDestroy()
-        {
-
         }
 
         public void SetButtonEvent(Action<object> action)
