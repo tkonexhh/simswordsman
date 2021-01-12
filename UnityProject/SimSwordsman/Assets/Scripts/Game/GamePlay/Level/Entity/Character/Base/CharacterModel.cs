@@ -84,6 +84,8 @@ namespace GameWish.Game
 
         public FacilityType GetTargetFacilityType()
         {
+            if (m_CharacterItem == null)
+                return FacilityType.None;
             return m_CharacterItem.GetTargetFacilityType();
         }
 
