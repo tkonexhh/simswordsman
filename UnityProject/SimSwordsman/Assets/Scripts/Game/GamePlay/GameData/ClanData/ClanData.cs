@@ -175,9 +175,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID stateId)
+        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType)
         {
-            ownedCharacterData.SetCharacterStateDBData(id, stateId);
+            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType);
 
             SetDataDirty();
         }

@@ -50,7 +50,7 @@ namespace GameWish.Game
             {
                 initState = CharacterStateID.Wander;
             }
-            SetState(initState);
+            SetState(initState, m_CharacterModel.GetTargetFacilityType());
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
         }
@@ -178,21 +178,24 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state)
+        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None)
         {
             if (state != m_CurState)
             {
                 m_CurState = state;
-                m_StateMachine.SetCurrentStateByID(state);
 
-                CollectedObjType collectedObjType = CollectedObjType.None;
-                if (m_CurState == CharacterStateID.CollectRes)
+                if (m_CharacterCamp == CharacterCamp.OurCamp)
                 {
-                    collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
+                    SetStateToDB(m_CurState, targetFacilityType);
                 }
 
-                if(m_CharacterCamp == CharacterCamp.OurCamp)
-                    SetStateToDB(m_CurState);
+                m_StateMachine.SetCurrentStateByID(state);
+
+                //CollectedObjType collectedObjType = CollectedObjType.None;
+                //if (m_CurState == CharacterStateID.CollectRes)
+                //{
+                //    collectedObjType = (CollectedObjType)m_CurTask.GetCurSubType();
+                //}
             }
         }
 
@@ -254,9 +257,9 @@ namespace GameWish.Game
         #endregion
 
         #region Private
-        private void SetStateToDB(CharacterStateID characterStateID)
+        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType)
         {
-            m_CharacterModel.SetDataState(characterStateID);
+            m_CharacterModel.SetDataState(characterStateID, targetFacilityType);
         }
 
         private void SetTaskIfNeed(CharacterStateID initState)

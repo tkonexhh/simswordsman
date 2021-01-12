@@ -501,14 +501,14 @@ namespace GameWish.Game
         }
         public void TrainingIsOver()
         {
-            SetCharacterItem(CharacterItem, PracticeFieldState.Free);
+            SetCharacterItem(CharacterItem, PracticeFieldState.Free, FacilityType.None);
             CharacterItem = null;
             StartTime = string.Empty;
             GameDataMgr.S.GetClanData().TrainingIsOver(this);
             EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
         }
 
-        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState)
+        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState, FacilityType targetFacility)
         {
 
             //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
@@ -524,7 +524,7 @@ namespace GameWish.Game
                 case PracticeFieldState.Practice:
                     StartTime = DateTime.Now.ToString();
                     CharacterItem = characterItem;
-                    characterController.SetState(CharacterStateID.Practice);
+                    characterController.SetState(CharacterStateID.Practice, targetFacility);
                     break;
                 default:
                     break;

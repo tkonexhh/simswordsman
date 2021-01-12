@@ -52,9 +52,9 @@ namespace GameWish.Game
             m_Hp = m_Atk;
         }
 
-        public void SetDataState(CharacterStateID stateId)
+        public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType)
         {
-            m_CharacterItem?.SetCharacterStateData(stateId);
+            m_CharacterItem?.SetCharacterStateData(stateId, targetFacilityType);
         }
 
         public void SetCurTask(SimGameTask simGameTask)
@@ -80,6 +80,11 @@ namespace GameWish.Game
         public int GetExpLevelUpNeed()
         {
             return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem);
+        }
+
+        public FacilityType GetTargetFacilityType()
+        {
+            return m_CharacterItem.GetTargetFacilityType();
         }
 
         public void AddKongfuExp(int deltaExp)

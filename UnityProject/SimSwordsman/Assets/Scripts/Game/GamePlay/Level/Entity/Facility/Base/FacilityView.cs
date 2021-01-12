@@ -58,7 +58,7 @@ namespace GameWish.Game
             //state1Obj.SetActive(false);
             //state2Obj.SetActive(false);
             //state3Obj.SetActive(false);
-            navObstacleObj?.SetActive(false);
+            navObstacleObj?.SetActive(true);
             ShowRoad(false);
 
             switch (m_Controller.GetState())
@@ -80,7 +80,7 @@ namespace GameWish.Game
                         stateObjList[level - 1].SetActive(true);
                     }
 
-                    navObstacleObj?.SetActive(true);
+                    //navObstacleObj?.SetActive(true);
                     ShowRoad(true);
                     break;
                 //case FacilityState.State2:
