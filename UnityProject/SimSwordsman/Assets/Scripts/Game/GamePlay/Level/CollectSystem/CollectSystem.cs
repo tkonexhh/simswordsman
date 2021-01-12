@@ -90,7 +90,7 @@ namespace GameWish.Game
                 for (int i = 0; i < TDCollectConfigTable.dataList.Count; i++)
                 {
                     temp = TDCollectConfigTable.dataList[i];
-                    if (!m_CurrentCollcetCountDic.ContainsKey(i) && temp.lobbyLevelRequired <= MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby))
+                    if (!m_CurrentCollcetCountDic.ContainsKey(temp.id) && temp.lobbyLevelRequired <= MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby))
                     {
                         m_CurrentCollcetCountDic.Add(temp.id, 0);
                         //解锁 开始收集计时
