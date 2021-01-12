@@ -10,9 +10,6 @@ namespace GameWish.Game
     {
         public GameObject stateLockedObj;
         public GameObject stateReadyToUnlockObj;
-        //public GameObject state1Obj;
-        //public GameObject state2Obj;
-        //public GameObject state3Obj;
         public List<GameObject> stateObjList = new List<GameObject>();
         public GameObject navObstacleObj = null;
         public GameObject roadObj = null;
@@ -61,7 +58,7 @@ namespace GameWish.Game
             //state1Obj.SetActive(false);
             //state2Obj.SetActive(false);
             //state3Obj.SetActive(false);
-            navObstacleObj?.SetActive(false);
+            navObstacleObj?.SetActive(true);
             ShowRoad(false);
 
             switch (m_Controller.GetState())
@@ -83,7 +80,7 @@ namespace GameWish.Game
                         stateObjList[level - 1].SetActive(true);
                     }
 
-                    navObstacleObj?.SetActive(true);
+                    //navObstacleObj?.SetActive(true);
                     ShowRoad(true);
                     break;
                 //case FacilityState.State2:

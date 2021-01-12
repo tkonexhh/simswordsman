@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &267142648
 Transform:
   m_ObjectHideFlags: 0
@@ -345,10 +345,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.193574, y: -0.501004}
-      - {x: 0.003918886, y: -1.8198655}
-      - {x: -2.3029115, y: -0.67679}
-      - {x: -0.12813944, y: 0.6429994}
+    - - {x: 3.2647233, y: -0.8553591}
+      - {x: -0.30338025, y: -2.4827082}
+      - {x: -3.1389017, y: -0.9449456}
+      - {x: 0.031791747, y: 1.0339198}
 --- !u!1 &1816311602
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3532048380698372769
 Transform:
   m_ObjectHideFlags: 0
@@ -1074,9 +1074,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateLockedObj: {fileID: 3532048380937625711}
   stateReadyToUnlockObj: {fileID: 3532048380072397617}
-  state1Obj: {fileID: 3532048380698372768}
-  state2Obj: {fileID: 3532048380273226596}
-  state3Obj: {fileID: 3532048380103676994}
   stateObjList:
   - {fileID: 3532048380698372768}
   - {fileID: 3532048380273226596}

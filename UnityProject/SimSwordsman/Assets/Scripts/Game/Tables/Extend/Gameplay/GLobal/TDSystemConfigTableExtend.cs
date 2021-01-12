@@ -11,7 +11,12 @@ namespace GameWish.Game
     {
         static void CompleteRowAdd(TDSystemConfig tdData)
         {
+             
+        }
 
+        public static int GetSysUnlockNeedLobbyLevel()
+        {
+            return 0;
         }
     }
 }

@@ -6,10 +6,15 @@ namespace GameWish.Game
 {
     public class CollectSystem : TSingleton<CollectSystem>
     {
+
         Dictionary<int, int> m_CurrentCollcetCountDic = new Dictionary<int, int>();
+
+        List<int> m_RewardItems { get { return GameDataMgr.S.GetPlayerData().rewardCollectItemIDs; } }
        
         public void Init()
         {
+            //m_RewardItems.Clear();
+            //GameDataMgr.S.GetPlayerData().SetDataDirty();
             CheckUnlockItem(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, UnlockCheck);
             EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
@@ -17,6 +22,18 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
         }
 
+        public void CheckData()
+        {
+            foreach (var item in m_RewardItems)
+                SetDic(item, TDCollectConfigTable.GetData(item).maxStore);
+
+            //检查未开启的收集物
+            foreach (var item in TDCollectConfigTable.dataList)
+            {
+                if (m_CurrentCollcetCountDic.ContainsKey(item.id) && !m_RewardItems.Contains(item.id) && CountdownSystem.S.GetCountdowner("CollectItem", item.id) == null)
+                    CountdownSystem.S.StartCountdownerWithMin("CollectItem", item.id, item.maxStore * item.productTime);
+            }
+        }
 
         private void OnStart(int key, object[] param)
         {
@@ -45,7 +62,11 @@ namespace GameWish.Game
             {
                 var tb = TDCollectConfigTable.dataList[cd.ID];
                 SetDic(cd.ID, tb.maxStore);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)tb.itemId), tb.maxStore);
+                if (!m_RewardItems.Contains(cd.ID))
+                {
+                    m_RewardItems.Add(cd.ID);
+                    GameDataMgr.S.GetPlayerData().SetDataDirty();
+                }
             }
         }
 
@@ -65,10 +86,20 @@ namespace GameWish.Game
             FacilityType facilityType2 = (FacilityType)param[0];
             if (facilityType2 == FacilityType.Lobby)
             {
-                CheckUnlockItem(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
+                TDCollectConfig temp;
+                for (int i = 0; i < TDCollectConfigTable.dataList.Count; i++)
+                {
+                    temp = TDCollectConfigTable.dataList[i];
+                    if (!m_CurrentCollcetCountDic.ContainsKey(i) && temp.lobbyLevelRequired <= MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby))
+                    {
+                        m_CurrentCollcetCountDic.Add(temp.id, 0);
+                        //解锁 开始收集计时
+                        CountdownSystem.S.StartCountdownerWithMin("CollectItem", temp.id, temp.maxStore * temp.productTime);
+                    }
+                }
             }
         }
-
+        
         void CheckUnlockItem(int lobbylevel)
         {
             TDCollectConfig temp;
@@ -76,10 +107,12 @@ namespace GameWish.Game
             {
                 temp = TDCollectConfigTable.dataList[i];
                 if (!m_CurrentCollcetCountDic.ContainsKey(i) && temp.lobbyLevelRequired <= lobbylevel)
+                {
                     m_CurrentCollcetCountDic.Add(temp.id, 0);
+                }
             }
         }
-        
+       
 
         public void Collect(int id)
         {
@@ -104,11 +137,18 @@ namespace GameWish.Game
                
             }
             //弹出UI反馈
-
+            UIMgr.S.OpenPanel(UIID.LogPanel, "奖励", string.Format("获得{0}", m_CurrentCollcetCountDic[id]));
             MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)tb.itemId), m_CurrentCollcetCountDic[id]);
+            SetDic(id, 0);
+            //存档移除
+            if (m_RewardItems.Contains(id))
+            {
+                m_RewardItems.Remove(id);
+                GameDataMgr.S.GetPlayerData().SetDataDirty();
+            }
             //重新计时
             CountdownSystem.S.StartCountdownerWithMin("CollectItem", id, tb.maxStore * tb.productTime);
-
+           
         }
 
     }

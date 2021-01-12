@@ -65,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4819137818516655381
 Transform:
   m_ObjectHideFlags: 0
@@ -361,9 +361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateLockedObj: {fileID: 5124225091098823288}
   stateReadyToUnlockObj: {fileID: 2583151395291202259}
-  state1Obj: {fileID: 7374614444573205939}
-  state2Obj: {fileID: 4426457843445035017}
-  state3Obj: {fileID: 6503358266675317828}
   stateObjList:
   - {fileID: 7374614444573205939}
   - {fileID: 4426457843445035017}
@@ -745,7 +742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4031037877269762971
 Transform:
   m_ObjectHideFlags: 0

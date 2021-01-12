@@ -245,10 +245,10 @@ namespace GameWish.Game
         /// 设置人物的状态
         /// </summary>
         /// <param name="stateId"></param>
-        public void SetCharacterStateData(CharacterStateID stateId)
+        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType)
         {
             this.characterStateId = stateId;
-            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId);
+            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType);
         }
 
         public void SetCurTask(SimGameTask task)
@@ -435,6 +435,11 @@ namespace GameWish.Game
         public int GetCurTaskId()
         {
             return m_ItemDbData.taskId;
+        }
+
+        public FacilityType GetTargetFacilityType()
+        {
+            return m_ItemDbData.targetFacility;
         }
 
         public int CompareTo(object obj)

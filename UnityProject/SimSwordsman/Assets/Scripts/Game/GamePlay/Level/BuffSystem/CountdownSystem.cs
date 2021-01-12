@@ -11,8 +11,10 @@ namespace GameWish.Game
 
         public void Init()
         {
-            //先Init
+            //先注册事件
             FoodBuffSystem.S.Init();
+            CollectSystem.S.Init();
+
 
             //检查存档
             bool isChange = false;
@@ -35,6 +37,9 @@ namespace GameWish.Game
             }
             if (isChange)
                 GameDataMgr.S.GetCountdownData().SetDataDirty();
+
+            //检查其他依赖系统存档
+            CollectSystem.S.CheckData();
         }
 
         /// <summary>
@@ -57,7 +62,7 @@ namespace GameWish.Game
         {
             foreach (var item in m_AllCDs)
             {
-                if (item.stringID.Equals(id) && item.ID == id)
+                if (item.stringID.Equals(stringid) && item.ID == id)
                 {
                     //重新计时
                     item.startTime = DateTime.Now.ToString();

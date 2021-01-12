@@ -26,7 +26,14 @@ namespace GameWish.Game
 
             m_IsExit = false;
 
-            PracticeFieldController practiceFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.PracticeFieldEast);
+            FacilityType facilityType = m_Controller.CharacterModel.GetTargetFacilityType();
+            if (facilityType != FacilityType.PracticeFieldEast && facilityType != FacilityType.PracticeFieldWest)
+            {
+                Qarth.Log.e("facilityType not right: " + facilityType.ToString());
+                return;
+            }
+
+            PracticeFieldController practiceFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(facilityType);
             Vector3 practicePos = practiceFieldController.GetIdlePracticeSlot().GetPosition();
             m_Controller.MoveTo(practicePos, OnReachDestination);
         }

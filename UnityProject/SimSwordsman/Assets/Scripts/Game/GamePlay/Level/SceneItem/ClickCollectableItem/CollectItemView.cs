@@ -11,6 +11,11 @@ namespace GameWish.Game
         public ClickCollectableItem ClickCollectable;
         public Collider2D Collider;
 
+        private void Awake()
+        {
+            InputMgr.S.AddTouchObserver(this);
+        }
+
         #region 
         public void On_Drag(Gesture gesture, bool isTouchStartFromUI)
         {

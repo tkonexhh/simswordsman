@@ -117,11 +117,13 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData)
+        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
-                characterItemDb.SetCharacterStateDBData(characterStateData);
+            {
+                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType);
+            }
         }
 
         public void SetCharacterTaskDBData(int id, SimGameTask task)
@@ -146,7 +148,8 @@ namespace GameWish.Game
         public string startTime;
         public string name;
         public int taskId = -1;
-        public CharacterStateID characterStateId = CharacterStateID.Wander;
+        public CharacterStateID characterStateId = CharacterStateID.Wander; //当前状态
+        public FacilityType targetFacility = FacilityType.None; //当前所在的设施
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
         public int curExp;
@@ -156,9 +159,10 @@ namespace GameWish.Game
 
         }
 
-        public void SetCharacterStateDBData(CharacterStateID stateId)
+        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType)
         {
             characterStateId = stateId;
+            targetFacility = targetFacilityType;
         }
 
         public CharacterItemDbData(CharacterItem item)

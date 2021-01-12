@@ -171,7 +171,7 @@ namespace GameWish.Game
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
                     //解锁条件
-                    //m_LockConditionTxt.text = string.Format("伙房等级达到<color=#384B76>{0}</color>级", TDFoodConfigTable.GetData(ID).unlockLevel);
+                    m_LockConditionTxt.text = string.Format("伙房等级达到<color=#384B76>{0}</color>级", GetUnlockLevel(ID));
                     m_FoodNameTxt.text = "未解锁";
                     break;
                 case 1:
@@ -192,6 +192,18 @@ namespace GameWish.Game
                 default:
                     break;
             }
+        }
+        int GetUnlockLevel(int id)
+        {
+            var tb = TDFacilityKitchenTable.dataList;
+            foreach (var item in tb)
+            {
+                if (item.unlockRecipe == id)
+                {
+                    return item.level;
+                }
+            }
+            return 999;
         }
         void SetMakeNeedRes()
         {

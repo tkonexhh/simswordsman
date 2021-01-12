@@ -6,6 +6,9 @@ using System;
 
 namespace GameWish.Game
 {
+    /// <summary>
+    /// 食物（体力/包子）恢复
+    /// </summary>
     public class FoodRecoverySystem : TSingleton<FoodRecoverySystem>
     {
         const string lastKeepTimeKey = "FoodLastKeepTimeKey";

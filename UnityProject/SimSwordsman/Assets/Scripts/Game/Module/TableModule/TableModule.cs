@@ -52,7 +52,6 @@ namespace GameWish.Game
                 TDFacilityForgeHouseTable.metaData,
                 TDFacilityBaicaohuTable.metaData,
                 TDFacilityPatrolRoomTable.metaData,
-                TDFacilityBartizanTable.metaData,
 
                 //Kongfu
                 TDKongfuConfigTable.metaData,
