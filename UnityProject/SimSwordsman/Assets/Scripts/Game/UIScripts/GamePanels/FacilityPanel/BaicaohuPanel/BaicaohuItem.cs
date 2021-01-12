@@ -55,9 +55,11 @@ namespace GameWish.Game
 
         string m_StringID = "BaicaohuPanel";
 
+        AbstractAnimPanel m_panel;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             BindAddListenerEvent();
+            m_panel = t as AbstractAnimPanel;
             Init();
         }
 
@@ -92,7 +94,8 @@ namespace GameWish.Game
                 transform.SetAsFirstSibling();
 
                 var tb = TDHerbConfigTable.GetData(ID);
-                m_ItemIcon.sprite = Resources.Load<Sprite>("Sprites/HerbIcon/" + tb.iconName);
+                Debug.LogError("ȱͼSprites/HerbIcon");
+                m_ItemIcon.sprite = m_panel.FindSprite(tb.iconName);//Sprites/HerbIcon
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
                 m_EffecTxt.text = tb.effectDesc;
@@ -183,7 +186,7 @@ namespace GameWish.Game
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+                m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
                 m_NeedItemCount2Txt.text = infos[1].value.ToString();
             }
             else
@@ -191,7 +194,7 @@ namespace GameWish.Game
                 m_NeedItem1.gameObject.SetActive(false);
                 m_NeedItemCount1Txt.gameObject.SetActive(false);
             }
-            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
             m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }
