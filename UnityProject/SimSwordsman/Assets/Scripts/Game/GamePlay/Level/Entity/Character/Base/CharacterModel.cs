@@ -84,7 +84,9 @@ namespace GameWish.Game
 
         public FacilityType GetTargetFacilityType()
         {
-            return m_CharacterItem.GetTargetFacilityType();
+            if (m_CharacterItem!=null)
+                 return m_CharacterItem.GetTargetFacilityType();
+            return FacilityType.None;
         }
 
         public void AddKongfuExp(int deltaExp)
