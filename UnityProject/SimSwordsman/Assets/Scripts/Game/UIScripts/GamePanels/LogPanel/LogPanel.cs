@@ -32,11 +32,11 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_LogTitle.text = (string)args[0];
             m_LogCont.text = (string)args[1];
             m_AcceptBtn.transform.GetComponentInChildren<Text>().text = (string)args[2];
             m_RefuseBtn.transform.GetComponentInChildren<Text>().text = (string)args[3];
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         private void BindAddListenerEvent()
