@@ -59,8 +59,6 @@ namespace GameWish.Game
         {
             m_ChallengeTitle.text = TDLanguageTable.Get(Define.CHALLENGE_NAME);
             m_ChallengeCont.text = TDLanguageTable.Get(Define.CHALLENGE_DESCRIBE);
-
-
             foreach (var item in m_CurChapterInfo)
                 CreateChallengeTask(item);
         }

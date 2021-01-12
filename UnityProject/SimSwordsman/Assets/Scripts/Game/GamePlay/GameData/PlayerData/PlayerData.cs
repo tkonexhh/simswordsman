@@ -41,8 +41,6 @@ namespace GameWish.Game
             
             UnlockVisitor = false;
 
-            InitChapterDataList();
-
             SetDataDirty();
         }
 
@@ -94,14 +92,6 @@ namespace GameWish.Game
             if (chapter != null)
                 return chapter;
             return null;
-        }
-
-        /// <summary>
-        /// 初始化默认第一个挑战任务
-        /// </summary>
-        public void InitChapterDataList()
-        {
-            chapterDataList.Add(new ChapterDbItem(1));
         }
 
         /// <summary>
@@ -503,12 +493,19 @@ namespace GameWish.Game
     {
         public int chapter;
         public int level;
+        public int number;
 
         public ChapterDbItem()
         {
         }
 
-        public ChapterDbItem(int chapter, int level = 1)
+        public ChapterDbItem(int chapter)
+        {
+            this.chapter = chapter;
+            number = 0;
+            this.level = MainGameMgr.S.ChapterMgr.GetChapterFirstLevelInfo(chapter).level;
+        }
+        public ChapterDbItem(int chapter,int level)
         {
             this.chapter = chapter;
             this.level = level;
@@ -518,6 +515,7 @@ namespace GameWish.Game
         {
             if (this.level == level)
             {
+                number++;
                 this.level += 1;
                 this.level = Mathf.Clamp(this.level, 1, Define.LEVEL_COUNT_PER_CHAPTER);
                 EventSystem.S.Send(EventID.OnChanllengeSuccess, level);

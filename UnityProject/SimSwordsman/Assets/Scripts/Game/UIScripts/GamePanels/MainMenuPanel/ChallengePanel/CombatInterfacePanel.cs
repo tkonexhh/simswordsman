@@ -40,6 +40,8 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnRefreshBattleProgress, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnBattleSuccessed, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnBattleFailed, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
 
             for (int i = 0; i < 5; i++)
             {
@@ -54,7 +56,7 @@ namespace GameWish.Game
         {
             while (second >= 0)
             {
-                if (second<=5)
+                if (second <= 5)
                 {
                     //m_CombatTime.color = Color.red;
                     //m_CombatTime.Alpha
@@ -130,7 +132,8 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnRefreshBattleProgress, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleSuccessed, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleFailed, HandleAddListenerEvent);
-
+            EventSystem.S.UnRegister(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
 
             m_logPanel.OnSuccessBtnEvent -= SuccessBtn;
             m_logPanel.OnRefuseBtnEvent -= RefuseBtn;
@@ -145,13 +148,10 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 EventSystem.S.Send(EventID.OnBattleSuccessed);
-                EventSystem.S.Send(EventID.OnExitBattle, m_LevelConfigInfo, true);
-
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EventSystem.S.Send(EventID.OnBattleFailed);
-                EventSystem.S.Send(EventID.OnExitBattle, m_LevelConfigInfo, false);
             }
         }
 
@@ -171,6 +171,14 @@ namespace GameWish.Game
                 case EventID.OnBattleFailed:
                     UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_LevelConfigInfo, false);
                     //UIMgr.S.OpenPanel(UIID.LogPanel, BattleFailCallback, "挑战结果", "对不起，您挑战失败!", "确定", "取消");
+                    break;
+                case EventID.OnCharacterUpgrade:
+                    PanelPool.S.AddPromotion(new DiscipleRiseStage((EventID)key, (int)param[0], (int)param[1]));
+                    // UIMgr.S.OpenTopPanel(UIID.PromotionPanel,null, key, m_CurCharacterItem, param[0]);
+                    break;
+                case EventID.OnKongfuLibraryUpgrade:
+                    PanelPool.S.AddPromotion(new WugongBreakthrough((EventID)key, (int)param[0], (CharacterKongfuDBData)param[1]));
+                    //UIMgr.S.OpenTopPanel(UIID.PromotionPanel, null, key, m_CurCharacterItem, param[0]);
                     break;
                 default:
                     break;
@@ -208,6 +216,5 @@ namespace GameWish.Game
         {
 
         }
-
     }
 }

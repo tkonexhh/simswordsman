@@ -21,7 +21,7 @@ namespace GameWish.Game
         XiangLong18Zhang                 = 1,        //½µÁúÊ®°ËÕÆ
         XiangLong19Zhang                 = 2,
         WuLinMiJi                        = 3,        //ÎäÁÖÃØ¼®
-        LingBoWeiBu                      = 3005,        //Áè²¨Î¢²½
+        LingBoWeiBu                      = 1024,        //Áè²¨Î¢²½
         /// <summary>
         /// ÈçÀ´ÉñÕÆ
         /// </summary>
@@ -32,40 +32,40 @@ namespace GameWish.Game
     public enum RawMaterial
     { 
         None= 0,
-        cyanrock = 1001,         //ÇàÑÒ             
-        blackwood = 1002,        //ÎÚÄ¾             
-        moirerock = 1003,        //ÔÆÑÒ
-        silverwood = 1004,       //ÒøÄ¾    
-        wisteria = 1005,         //×ÏÌÙ    
-        iron = 1006,             //ºÚÌú    
-        silverleaf = 1007,       //ÒøÒ¶    
-        moirecrystal = 1008,     //ÔÆ¾§    
-        pork = 1009,             //Èâ    
-        lotusroot = 1010,        //Á«Åº    
-        bearspaw = 1011,         //ĞÜÕÆ    
-        fish = 1012,             //Óã    
-        lotusleaf = 1013,        //ºÉÒ¶    
-        chicken = 1014,          //¼¦    
-        snakegall = 1015,        //Éßµ¨    
-        royaljelly = 1016,       //·äÍõ½¬    
-        lotus = 1017,            //Á«»¨    
-        wellwater = 1018,        //¹Å¾®Ë®    
-        antier = 1019,           //Â¹È×    
-        lingzhi = 1020,          //ÁéÖ¥    
-        beeneedle = 1021,        //·äÕë    
-        poisonfang = 1022,       //¶¾ÑÀ       
+        QingRock = 1001,         //ÇàÑÒ             
+        WuWood = 1002,           //ÎÚÄ¾             
+        CloudRock = 1003,        //ÔÆÑÒ
+        SilverWood = 1004,       //ÒøÄ¾    
+        Vine = 1005,             //×ÏÌÙ    
+        Iron = 1006,             //ºÚÌú    
+        SilverLeaf = 1007,       //ÒøÒ¶    
+        CloudStone = 1008,       //ÔÆ¾§    
+        Meat = 1009,             //Èâ    
+        LotusRoot = 1010,        //Á«Åº    
+        BearPaw = 1011,          //ĞÜÕÆ    
+        Fish = 1012,             //Óã    
+        LotusLeaf = 1013,        //ºÉÒ¶    
+        Chicken = 1014,          //¼¦    
+        SnakeGB = 1015,          //Éßµ¨    
+        Honey = 1016,            //·äÍõ½¬    
+        Lotus = 1017,            //Á«»¨    
+        WellWater = 1018,        //¹Å¾®Ë®    
+        DeerHorn = 1019,         //Â¹È×    
+        Ganoderma = 1020,        //ÁéÖ¥    
+        BeeThorn = 1021,         //·äÕë    
+        SnakeTeeth = 1022,       //¶¾ÑÀ       
         /// <summary>
         /// ÒøÅÆÕĞÄ¼Áî
         /// </summary>
-        SilverOlder = 2001,
+        SilverToken = 2001,
         /// <summary>
         /// ½ğÅÆÕĞÄ¼Áî
         /// </summary>
-        GoldOlder = 2002,
-        malachite = 3001,       //¿×È¸Ê¯
-        agate = 3002,           //ºìÂêè§
-        charoite = 3003,        //×ÏÁú¾§
-        goldenthread = 3004,    //½ğË¿
+        GoldenToken = 2002,
+        Malachite = 3001,       //¿×È¸Ê¯
+        Agate = 3002,           //ºìÂêè§
+        Crystal = 3003,         //×ÏÁú¾§
+        GoldenThread = 3004,    //½ğË¿
         DragonScales = 3005,    //ÁúÁÛ
 
     }

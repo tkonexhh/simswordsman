@@ -109,7 +109,7 @@ namespace GameWish.Game
 
         // Chapter
         public const int MAX_CHAPTER_COUNT = 5;
-        public const int LEVEL_COUNT_PER_CHAPTER = 25;
+        public const int LEVEL_COUNT_PER_CHAPTER = 2000;
 
         // Inventory
         public const int MAX_PROP_COUNT = 999;

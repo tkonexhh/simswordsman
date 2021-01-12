@@ -145,7 +145,7 @@ namespace GameWish.Game
             }
             m_ClanData.AddPropItem(propItem, delta);
 
-            if (propItem.PropSubType == RawMaterial.SilverOlder|| propItem.PropSubType == RawMaterial.GoldOlder)
+            if (propItem.PropSubType == RawMaterial.SilverToken|| propItem.PropSubType == RawMaterial.GoldenToken)
                 EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
         }
         //TODO
@@ -174,11 +174,11 @@ namespace GameWish.Game
                     switch (recruitType)
                     {
                         case RecruitType.GoldMedal:
-                            if (prop.PropSubType == RawMaterial.GoldOlder)
+                            if (prop.PropSubType == RawMaterial.GoldenToken)
                                 count++;
                             continue;
                         case RecruitType.SilverMedal:
-                            if (prop.PropSubType == RawMaterial.SilverOlder)
+                            if (prop.PropSubType == RawMaterial.SilverToken)
                                 count++;
                             continue;
                     }
