@@ -101,7 +101,7 @@ namespace GameWish.Game
             else if (m_CostItems.Count == 1)
             {
                 m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1.sprite = FindSprite("QingRock");
+                m_Res1.sprite = FindSprite(RawMaterial.cyanrock.ToString());
                 m_Res2Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
                 m_Res2.sprite = FindSprite("Coin");
                 m_Res1.gameObject.SetActive(true);
@@ -112,9 +112,9 @@ namespace GameWish.Game
             {
 
                 m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1.sprite = FindSprite("QingRock");
+                m_Res1.sprite = FindSprite(RawMaterial.cyanrock.ToString());
                 m_Res2Value.text = m_CostItems[1].value.ToString();
-                m_Res2.sprite = FindSprite("silverWood");
+                m_Res2.sprite = FindSprite(RawMaterial.silverwood.ToString());
                 m_Res3Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
                 m_Res3.sprite = FindSprite("Coin");
                 m_Res1.gameObject.SetActive(true);
