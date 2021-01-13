@@ -322,13 +322,13 @@ namespace GameWish.Game
 
             if (curOurTotalHp <= 0)
             {
-                //EventSystem.S.Send(EventID.OnBattleFailed);
+                EventSystem.S.Send(EventID.OnBattleFailed);
                 m_IsBattleEnd = true;
             }
 
             if (curEnemyTotalHp <= 0)
             {
-               // EventSystem.S.Send(EventID.OnBattleSuccessed);
+                EventSystem.S.Send(EventID.OnBattleSuccessed);
                 m_IsBattleEnd = true;
             }
         }
