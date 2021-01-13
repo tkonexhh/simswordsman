@@ -9,55 +9,55 @@ namespace GameWish.Game
 	public class PracticeFieldData 
 	{
 
-		public List<PracticeFieldDBData> practiceFieldDBDatas = new List<PracticeFieldDBData>();
+		public List<SoltDBData> practiceFieldDBDatas = new List<SoltDBData>();
 		public PracticeFieldData() { }
 
-		public List<PracticeFieldDBData> GetPracticeFieldData()
+		public List<SoltDBData> GetPracticeFieldData()
 		{
 			return practiceFieldDBDatas;
 		}
 
 		public void AddPracticeFieldData(PracticeField practiceField)
 		{
-			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
+			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
             if (practiceFieldDB==null)
-				practiceFieldDBDatas.Add(new PracticeFieldDBData(practiceField));
+				practiceFieldDBDatas.Add(new SoltDBData(practiceField));
 		}
 
 		public void RefreshPracticeState(PracticeField practiceField)
 		{
-			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
+			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
 			if (practiceFieldDB != null)
 				practiceFieldDB.practiceFieldState = practiceField.PracticeFieldState;
 		}
 
 		public void RefresDBData(PracticeField practiceField)
 		{
-			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
+			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
 			if (practiceFieldDB != null)
 				practiceFieldDB.RefresDBData(practiceField);
 		}
 
 		public void TrainingIsOver(PracticeField practiceField)
 		{
-			PracticeFieldDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.pitPositionID == practiceField.Index).FirstOrDefault();
+			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
 			if (practiceFieldDB != null)
 				practiceFieldDB.TrainingIsOver();
 		}
 	}
 
 
-	public class PracticeFieldDBData
+	public class SoltDBData
 	{
 		public FacilityType facilityType;
-		public PracticeFieldState practiceFieldState;
-		public int pitPositionID;
+		public SlotState practiceFieldState;
+		public int soltID;
 		public int characterID = -1;
 		public int unlockLevel = -1;
 		public string startTime;
 
-		public PracticeFieldDBData() { }
-		public PracticeFieldDBData(PracticeField practiceField) 
+		public SoltDBData() { }
+		public SoltDBData(PracticeField practiceField) 
 		{
 			RefresDBData(practiceField);
 		}
@@ -67,7 +67,7 @@ namespace GameWish.Game
 			unlockLevel = practiceField.UnlockLevel;
 			facilityType = practiceField.FacilityType;
 			practiceFieldState = practiceField.PracticeFieldState;
-			pitPositionID = practiceField.Index;
+			soltID = practiceField.Index;
 			if (practiceField.CharacterItem != null)
 				characterID = practiceField.CharacterItem.id;
 			startTime = practiceField.StartTime;
@@ -77,7 +77,7 @@ namespace GameWish.Game
 		{
 			startTime = string.Empty;
 			characterID = -1;
-			practiceFieldState = PracticeFieldState.Free;
+			practiceFieldState = SlotState.Free;
 		}
 	}
 }

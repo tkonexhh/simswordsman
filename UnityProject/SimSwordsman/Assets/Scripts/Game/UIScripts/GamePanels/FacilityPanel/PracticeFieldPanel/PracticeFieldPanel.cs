@@ -88,7 +88,7 @@ namespace GameWish.Game
                 foreach (var item in m_PracticeEntity.Values)
                 {
                     PracticeDisciple practice = item.GetComponent<PracticeDisciple>();
-                    if (practice.GetPracticeFieldState() == PracticeFieldState.Practice)
+                    if (practice.GetPracticeFieldState() == SlotState.Practice)
                         practice.IncreaseCountDown(nextTime - curTime);
                 }
             }

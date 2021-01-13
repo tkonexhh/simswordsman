@@ -12,6 +12,7 @@ namespace GameWish.Game
 
         public FacilityDbData ownedFacilityData = new FacilityDbData();
         public PracticeFieldData ownedPracticeFieldData = new PracticeFieldData();
+        public KungfuLibraryData ownedKungfuLibraryData = new KungfuLibraryData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
         public KongfuData kongfuData = new KongfuData();
@@ -57,7 +58,7 @@ namespace GameWish.Game
 
         #region Facility
 
-        public List<PracticeFieldDBData> GetPracticeFieldData()
+        public List<SoltDBData> GetPracticeFieldData()
         {
             return ownedPracticeFieldData.GetPracticeFieldData();
         }

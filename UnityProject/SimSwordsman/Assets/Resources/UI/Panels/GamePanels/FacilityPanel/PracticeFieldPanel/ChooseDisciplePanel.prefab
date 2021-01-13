@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1011858238173199971}
   - component: {fileID: 1011858238173199970}
   - component: {fileID: 1011858238173199969}
-  - component: {fileID: 1011858238173199972}
+  - component: {fileID: 5841825375004844500}
   m_Layer: 5
   m_Name: ChooseDisciplePanel
   m_TagString: Untagged
@@ -471,7 +471,7 @@ MonoBehaviour:
   loopAnimationsPresetCategoryName: Uncategorized
   loopAnimationsPresetName: DefaultPreset
   loadLoopAnimationsPresetAtRuntime: 0
---- !u!114 &1011858238173199972
+--- !u!114 &5841825375004844500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7496626235964654945}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.49291942
+  m_Size: 0.6035708
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

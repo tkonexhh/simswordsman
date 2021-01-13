@@ -204,7 +204,7 @@ namespace GameWish.Game
             {
                 if (i.FacilityType == facilityType && i.UnlockLevel == facilityLevel)
                 {
-                    i.PracticeFieldState = PracticeFieldState.Free;
+                    i.PracticeFieldState = SlotState.Free;
                     GameDataMgr.S.GetClanData().RefresDBData(i);
                     EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, i);
                 }
@@ -324,7 +324,7 @@ namespace GameWish.Game
 
         private void InitPracticeField()
         {
-            List<PracticeFieldDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
+            List<SoltDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
 
             if (practiceFieldDBDatas.Count == 0)
             {
@@ -419,17 +419,9 @@ namespace GameWish.Game
     }
 
 
-    public class PracticeField
+    public class PracticeField: BaseSlot
     {
         private PracticeFieldLevelInfo practiceFieldLevelInfo;
-
-        public FacilityType FacilityType { set; get; }
-        public int Index { set; get; }
-        public int UnlockLevel { set; get; }
-        public PracticeFieldState PracticeFieldState { set; get; }
-
-        public CharacterItem CharacterItem { set; get; }
-        public string StartTime { set; get; }
 
         public PracticeField(PracticeFieldLevelInfo item, int index)
         {
@@ -438,24 +430,24 @@ namespace GameWish.Game
             UnlockLevel = index;
             int practiceFieldLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
             if (practiceFieldLevel >= item.level)
-                PracticeFieldState = PracticeFieldState.Free;
+                PracticeFieldState = SlotState.Free;
             else
-                PracticeFieldState = PracticeFieldState.NotUnlocked;
+                PracticeFieldState = SlotState.NotUnlocked;
             CharacterItem = null;
             StartTime = string.Empty;
 
             GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
         }
-        public PracticeField(PracticeFieldDBData item)
+        public PracticeField(SoltDBData item)
         {
             FacilityType = item.facilityType;
-            Index = item.pitPositionID;
+            Index = item.soltID;
             UnlockLevel = item.unlockLevel;
             PracticeFieldState = item.practiceFieldState;
             if (item.characterID != -1)
                 CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(item.characterID);
             StartTime = item.startTime;
-            if (PracticeFieldState == PracticeFieldState.Practice)
+            if (PracticeFieldState == SlotState.Practice)
                 InitTimerUpdate();
         }
 
@@ -501,14 +493,14 @@ namespace GameWish.Game
         }
         public void TrainingIsOver()
         {
-            SetCharacterItem(CharacterItem, PracticeFieldState.Free, FacilityType.None);
+            SetCharacterItem(CharacterItem, SlotState.Free, FacilityType.None);
             CharacterItem = null;
             StartTime = string.Empty;
             GameDataMgr.S.GetClanData().TrainingIsOver(this);
             EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
         }
 
-        public void SetCharacterItem(CharacterItem characterItem, PracticeFieldState practiceFieldState, FacilityType targetFacility)
+        public void SetCharacterItem(CharacterItem characterItem, SlotState practiceFieldState, FacilityType targetFacility)
         {
 
             //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
@@ -516,12 +508,12 @@ namespace GameWish.Game
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
             switch (practiceFieldState)
             {
-                case PracticeFieldState.Free:
+                case SlotState.Free:
                     characterController.SetState(CharacterStateID.Wander);
                     break;
-                case PracticeFieldState.CopyScriptures:
+                case SlotState.CopyScriptures:
                     break;
-                case PracticeFieldState.Practice:
+                case SlotState.Practice:
                     StartTime = DateTime.Now.ToString();
                     CharacterItem = characterItem;
                     characterController.SetState(CharacterStateID.Practice, targetFacility);

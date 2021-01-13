@@ -93,7 +93,6 @@ namespace GameWish.Game
         public void CanclePost2Really()
         {
             Timer.S.Cancel(m_TimerId);
-
         }
 
         public void Tick(int count)

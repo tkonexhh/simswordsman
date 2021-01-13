@@ -33,10 +33,12 @@ namespace GameWish.Game
 
 		private int m_CurLevel;
 		private KongfuLibraryLevelInfo m_CurKongfuLibraryLevelInfo = null;
+		private KongfuLibraryController m_CurKongfuLibraryController = null;
 
 		protected override void OnUIInit()
 	    {
 	        base.OnUIInit();
+
 			BindAddListenerEvent();
 	    }
 
@@ -57,6 +59,7 @@ namespace GameWish.Game
 		{
 			m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
 			m_CurKongfuLibraryLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
+			m_CurKongfuLibraryController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
 		}
 
 		private void RefreshPanelText()
