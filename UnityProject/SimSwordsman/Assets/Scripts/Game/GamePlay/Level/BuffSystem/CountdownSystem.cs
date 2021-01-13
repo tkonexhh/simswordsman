@@ -14,7 +14,7 @@ namespace GameWish.Game
             //先注册事件
             FoodBuffSystem.S.Init();
             CollectSystem.S.Init();
-
+            WorkSystem.S.Init();
 
             //检查存档
             bool isChange = false;
@@ -40,6 +40,7 @@ namespace GameWish.Game
 
             //检查其他依赖系统存档
             CollectSystem.S.CheckData();
+            WorkSystem.S.UpdateCanWorkFacilitys();
         }
 
         /// <summary>
