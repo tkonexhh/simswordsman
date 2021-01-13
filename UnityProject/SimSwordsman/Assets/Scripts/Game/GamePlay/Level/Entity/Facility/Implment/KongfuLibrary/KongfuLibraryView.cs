@@ -12,7 +12,7 @@ namespace GameWish.Game
 
         public override FacilityController GenerateContoller()
         {
-            return new KongfuLibraryController( FacilityType.KongfuLibrary, this);
+            return new KongfuLibraryController(FacilityType.KongfuLibrary, this);
         }
 
         public override void OnClicked()
@@ -26,7 +26,7 @@ namespace GameWish.Game
         protected override void OpenUIElement()
         {
             base.OpenUIElement();
-            UIMgr.S.OpenPanel(UIID.KongfuLibraryPanel,facilityType);
+            UIMgr.S.OpenPanel(UIID.KongfuLibraryPanel, facilityType);
         }
 
         public Vector3 GetSlotPos(int index)

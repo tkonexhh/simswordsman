@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum PracticeFieldState
+    public enum SlotState
     {
         None,
         /// <summary>
@@ -79,19 +79,17 @@ namespace GameWish.Game
             });
         }
 
-        public PracticeFieldState GetPracticeFieldState()
+        public SlotState GetPracticeFieldState()
         {
             return m_PracticeFieldInfo.PracticeFieldState;
         }
 
         public void IncreaseCountDown(int time)
         {
-            CountDownItem countDownMgr = null;
-            countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
-            if (countDownMgr != null)
-            {
-                countDownMgr.IncreasTickTime(time);
-            }
+            CountDownItem countDown = null;
+            countDown = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
+            if (countDown != null)
+                countDown.IncreasTickTime(time);
         }
 
         private void RefreshFixedInfo()
@@ -104,21 +102,21 @@ namespace GameWish.Game
 
             switch (m_PracticeFieldInfo.PracticeFieldState)
             {
-                case PracticeFieldState.None:
+                case SlotState.None:
                     break;
-                case PracticeFieldState.Free:
+                case SlotState.Free:
                     m_PracticeBtn.enabled = true;
                     m_CurPractice.text = "安排弟子";
                     m_Time.text = "空闲";
                     break;
-                case PracticeFieldState.NotUnlocked:
+                case SlotState.NotUnlocked:
                     m_PracticeBtn.enabled = false;
                     m_CurPractice.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     break;
-                case PracticeFieldState.CopyScriptures:
+                case SlotState.CopyScriptures:
                     break;
-                case PracticeFieldState.Practice:
+                case SlotState.Practice:
                     RefreshFixedInfo();
                     m_CurPractice.text = "当前训练:" + m_PracticeFieldInfo.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());

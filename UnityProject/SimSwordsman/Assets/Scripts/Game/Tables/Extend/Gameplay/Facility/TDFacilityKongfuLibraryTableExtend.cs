@@ -24,12 +24,18 @@ namespace GameWish.Game
                 KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(item);
                 kongfuTypeList.Add(kongfuType);
             }
-            kongfuLibLevelInfo.SetCurLevelUnlockedKongfuList(kongfuTypeList);
+            string[] kongfuListStrs = tdData.kongfuList.Split(';');
+            KungFuPoolConfig kungFuPoolConfig = null; 
+            foreach (string item in kongfuListStrs)
+            {
+                string[] kungfuPoolStr =  item.Split('|');
+                KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(kungfuPoolStr[0]);
+                kungFuPoolConfig = new KungFuPoolConfig(kongfuType,int.Parse(kungfuPoolStr[1]));
+            }
+            kongfuLibLevelInfo.SetInitData(kongfuTypeList, kungFuPoolConfig, tdData.duration, tdData.seat);
 
             if (!levelInfoDic.ContainsKey(tdData.level))
-            {
                 levelInfoDic.Add(tdData.level, kongfuLibLevelInfo);
-            }
         }
 
         public static KongfuLibraryLevelInfo GetLevelInfo(int level)
@@ -38,7 +44,6 @@ namespace GameWish.Game
             {
                 return levelInfoDic[level];
             }
-
             return null;
         }
 

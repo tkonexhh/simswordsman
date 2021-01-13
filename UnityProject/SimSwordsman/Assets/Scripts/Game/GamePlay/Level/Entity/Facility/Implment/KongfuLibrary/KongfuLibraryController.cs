@@ -23,12 +23,29 @@ namespace GameWish.Game
 
         private void InitPracticeSlotList()
         {
+
             KongfuLibraryView view = (KongfuLibraryView)m_View;
             for (int i = 0; i < m_MaxSlotCount; i++)
             {
                 FacilitySlot slot = new FacilitySlot(view.GetSlotPos(i));
                 m_ReadingSlotList.Add(slot);
             }
+        }
+
+        private void InitPracticeField()
+        {
+            List<SoltDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
+
+            if (practiceFieldDBDatas.Count == 0)
+            {
+                //LoopInit(FacilityType.PracticeFieldEast);
+                //LoopInit(FacilityType.PracticeFieldWest);
+                return;
+            }
+
+            //foreach (var item in practiceFieldDBDatas)
+            //    m_PracticeField.Add(new PracticeField(item));
+
         }
     }
 

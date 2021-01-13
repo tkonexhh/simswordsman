@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class FacilitySlot
+    public class FacilitySlot: BaseSlot
     {
         private Vector3 m_SlotPos;
         private CharacterController m_Character;
