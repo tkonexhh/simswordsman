@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6102935260996301231}
   m_HandleRect: {fileID: 6102935260996301230}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1752,7 +1752,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -189}
-  m_SizeDelta: {x: 1139.71, y: 1769.3}
+  m_SizeDelta: {x: 750, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6102935260368392474
 CanvasRenderer:
