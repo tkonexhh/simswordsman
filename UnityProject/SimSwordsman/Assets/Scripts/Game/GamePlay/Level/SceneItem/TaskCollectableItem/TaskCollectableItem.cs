@@ -10,8 +10,6 @@ namespace GameWish.Game
 	{
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
-        //public string animName;
-
         private SkeletonAnimation m_SpineAnim;
         private bool m_HasSpine = false;
 
@@ -24,13 +22,16 @@ namespace GameWish.Game
 
                 PlayAnim("idle", true, null);
             }
+
         }
 
-        public void OnStartCollected()
+        public void OnStartCollected(Vector3 collecterPos)
         {
             if (m_HasSpine)
             {
                 PlayAnim("attack", true, null);
+
+                FaceTo(collecterPos.x);
             }
         }
 
@@ -61,6 +62,18 @@ namespace GameWish.Game
                 SpineHelper.PlayAnim(m_SpineAnim, name, loop, onAnimEnd);
             }
         }
-	}
+
+        private void FaceTo(float x)
+        {
+            if (x > transform.position.x)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+    }
 	
 }

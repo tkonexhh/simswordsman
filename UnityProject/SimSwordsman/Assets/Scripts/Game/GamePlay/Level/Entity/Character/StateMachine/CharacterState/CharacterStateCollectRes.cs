@@ -92,7 +92,7 @@ namespace GameWish.Game
             m_Controller.CharacterView.PlayAnim(animName, true, null);
             m_Controller.FaceTo(m_TaskCollectableItem.transform.position.x);
 
-            m_TaskCollectableItem?.OnStartCollected();
+            m_TaskCollectableItem?.OnStartCollected(m_Controller.GetPosition());
         }
 
         private string GetCollectResAnim()
