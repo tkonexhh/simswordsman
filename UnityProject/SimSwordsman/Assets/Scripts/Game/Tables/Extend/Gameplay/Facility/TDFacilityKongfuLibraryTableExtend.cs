@@ -17,7 +17,7 @@ namespace GameWish.Game
             KongfuLibraryLevelInfo kongfuLibLevelInfo = new KongfuLibraryLevelInfo();
             kongfuLibLevelInfo.Warp(levelInfo);
 
-            string[] kongfuStrs = tdData.unlockKongfu.Split('|');
+            string[] kongfuStrs = tdData.unlockKongfu.Split(';');
             List<KungfuType> kongfuTypeList = new List<KungfuType>();
             foreach (string item in kongfuStrs)
             {
