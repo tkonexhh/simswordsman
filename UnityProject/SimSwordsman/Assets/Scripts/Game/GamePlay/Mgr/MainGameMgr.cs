@@ -51,7 +51,7 @@ namespace GameWish.Game
             m_KongfuLibraryMgr = gameObject.AddComponent<KongfuLibraryMgr>();
             m_KongfuLibraryMgr.OnInit();
 
-            m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>();
+            m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ÔÝÊ±Ã»×ö
             //m_MainTaskMgr.OnInit();
 
             m_CommonTaskMgr = gameObject.AddComponent<CommonTaskMgr>();
@@ -72,10 +72,11 @@ namespace GameWish.Game
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();
 
-            m_CharacterMgr.ExrInitData();
+            m_CharacterMgr.InitData();
 
             m_FacilityMgr.ExrInitData();
 
+            m_CommonTaskMgr.InitTaskList();
            
 
 

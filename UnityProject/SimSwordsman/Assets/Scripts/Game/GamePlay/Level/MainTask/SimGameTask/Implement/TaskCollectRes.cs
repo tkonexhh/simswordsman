@@ -16,6 +16,8 @@ namespace GameWish.Game
         {
             try
             {
+                base.ExecuteTask(selectedCharacters);
+
                 // Spawn res
                 CollectedObjType collectedObjType = (CollectedObjType)(m_TaskDetailInfo.subType);
                 MainGameMgr.S.CommonTaskMgr.SpawnTaskCollectableItem(collectedObjType);

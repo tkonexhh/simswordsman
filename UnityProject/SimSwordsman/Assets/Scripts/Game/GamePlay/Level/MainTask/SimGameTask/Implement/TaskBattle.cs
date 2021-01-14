@@ -14,6 +14,8 @@ namespace GameWish.Game
 
         public override void ExecuteTask(List<CharacterController> selectedCharacters)
         {
+            base.ExecuteTask(selectedCharacters);
+
             selectedCharacters.ForEach(i =>
             {
                 i.SetCurTask(this);
