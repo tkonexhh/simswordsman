@@ -46,10 +46,11 @@ namespace GameWish.Game
 
             m_StateMachine = new CharacterStateMachine(this);
 
-            //if (initState == CharacterStateID.Battle || initState == CharacterStateID.CollectRes)
-            //{
-            //    initState = CharacterStateID.Wander;
-            //}
+            if (initState == CharacterStateID.Battle)
+            {
+                initState = CharacterStateID.Wander;
+            }
+
             if (initState != CharacterStateID.CollectRes) // CollectRes状态由CommonTaskMgr进行设置
             {
                 SetState(initState, m_CharacterModel.GetTargetFacilityType());

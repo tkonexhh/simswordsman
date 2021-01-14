@@ -62,8 +62,17 @@ namespace GameWish.Game
             if (m_IsBattleEnd)
                 return;
 
-            m_OurCharacterList.ForEach(i => i.RefreshBattleState());
-            m_EnemyCharacterList.ForEach(i => i.RefreshBattleState());
+            m_OurCharacterList.ForEach(i => 
+            {
+                i.RefreshBattleState();
+                //Log.e("our character atk: " + i.CharacterModel.Atk);
+            });
+
+            m_EnemyCharacterList.ForEach( i => 
+            {
+                i.RefreshBattleState();
+                //Log.e("Enemy character atk: " + i.CharacterModel.Atk);
+            });
 
             m_ApplyDamageTime += Time.deltaTime;
             if (m_ApplyDamageTime >= m_ApplyDamageInterval)
@@ -177,9 +186,9 @@ namespace GameWish.Game
             });
 
             SpawnFightGroup(m_OurCharacterList, m_EnemyCharacterList);
-            m_FightGroupList.ForEach(i => {
-                i.StartFight();
-            });
+            //m_FightGroupList.ForEach(i => {
+            //    i.StartFight();
+            //});
 
             m_InitOurCharacterCount = m_OurCharacterList.Count;
             m_InitEnemeyCharacterCount = m_EnemyCharacterList.Count;
@@ -245,6 +254,8 @@ namespace GameWish.Game
                     if (target != null) // Generate new fight group
                     {
                         FightGroup fightGroup = new FightGroup(m_FightGroupId, i, target);
+                        fightGroup.StartFight();
+
                         m_FightGroupList.Add(fightGroup);
 
                         m_FightGroupId++;
@@ -253,14 +264,14 @@ namespace GameWish.Game
             });
 
             // Add enemy that has no group to exist group
-            List<CharacterController> enemiesThatHaveNoGroup = enemyList.Where(j => j.IsDead() == false && j.GetFightGroup() == null).ToList();
-            if (enemiesThatHaveNoGroup.Count > 0)
-            {
+            //List<CharacterController> enemiesThatHaveNoGroup = enemyList.Where(j => j.IsDead() == false && j.GetFightGroup() == null).ToList();
+            //if (enemiesThatHaveNoGroup.Count > 0)
+            //{
                 //enemiesThatHaveNoGroup.ForEach(i => 
                 //{
                 //    JoinNearestEnemyGroup(i);
                 //});
-            }
+            //}
         }
         private void RemoveFightGroup(FightGroup group)
         {
