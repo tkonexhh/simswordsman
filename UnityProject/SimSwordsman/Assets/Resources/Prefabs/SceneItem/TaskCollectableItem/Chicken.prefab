@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31f44600d34aa9a4fa3ae41134a801ca, type: 2}
+  - {fileID: 2100000, guid: ad5b642c1b62bd44ab3271ac7266cfc0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 0e3a7309c9c92394ea051d5feeaf8cba, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 84e04b1177bf38b4d80c550a1d2f8177, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 8218924289355539496}
   - component: {fileID: 2980200618093463278}
   m_Layer: 0
-  m_Name: Bear
+  m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,5 +172,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a7120cc81cd804e94c16651bb144d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectedObjType: 3
+  collectedObjType: 2
   animName: 

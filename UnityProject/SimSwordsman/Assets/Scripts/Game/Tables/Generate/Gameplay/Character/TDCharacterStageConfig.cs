@@ -12,6 +12,7 @@ namespace GameWish.Game
     {
         
        
+        private EInt m_Id = 0;   
         private EInt m_Stage = 0;   
         private string m_Quality;   
         private EInt m_FromLevel = 0;   
@@ -26,6 +27,11 @@ namespace GameWish.Game
       
         /// <summary>
         /// ID
+        /// </summary>
+        public  int  id {get { return m_Id; } }
+       
+        /// <summary>
+        /// 阶段
         /// </summary>
         public  int  stage {get { return m_Stage; } }
        
@@ -85,30 +91,33 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Stage = dataR.ReadInt();
+                    m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_Quality = dataR.ReadString();
+                    m_Stage = dataR.ReadInt();
                     break;
                 case 2:
-                    m_FromLevel = dataR.ReadInt();
+                    m_Quality = dataR.ReadString();
                     break;
                 case 3:
-                    m_ToLevel = dataR.ReadInt();
+                    m_FromLevel = dataR.ReadInt();
                     break;
                 case 4:
-                    m_BaseAtk = dataR.ReadString();
+                    m_ToLevel = dataR.ReadInt();
                     break;
                 case 5:
-                    m_GrowAtk = dataR.ReadInt();
+                    m_BaseAtk = dataR.ReadString();
                     break;
                 case 6:
-                    m_UnlockContent = dataR.ReadString();
+                    m_GrowAtk = dataR.ReadInt();
                     break;
                 case 7:
-                    m_StartExp = dataR.ReadInt();
+                    m_UnlockContent = dataR.ReadString();
                     break;
                 case 8:
+                    m_StartExp = dataR.ReadInt();
+                    break;
+                case 9:
                     m_GrowExp = dataR.ReadInt();
                     break;
                 default:
@@ -121,17 +130,18 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
-          ret.Add("Stage", 0);
-          ret.Add("Quality", 1);
-          ret.Add("FromLevel", 2);
-          ret.Add("ToLevel", 3);
-          ret.Add("BaseAtk", 4);
-          ret.Add("GrowAtk", 5);
-          ret.Add("UnlockContent", 6);
-          ret.Add("StartExp", 7);
-          ret.Add("GrowExp", 8);
+          ret.Add("Id", 0);
+          ret.Add("Stage", 1);
+          ret.Add("Quality", 2);
+          ret.Add("FromLevel", 3);
+          ret.Add("ToLevel", 4);
+          ret.Add("BaseAtk", 5);
+          ret.Add("GrowAtk", 6);
+          ret.Add("UnlockContent", 7);
+          ret.Add("StartExp", 8);
+          ret.Add("GrowExp", 9);
           return ret;
         }
     } 

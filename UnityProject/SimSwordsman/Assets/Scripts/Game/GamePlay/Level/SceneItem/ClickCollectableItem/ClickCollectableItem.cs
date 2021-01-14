@@ -11,7 +11,6 @@ namespace GameWish.Game
 	{
         public int id;
         public GameObject CollectView;
-        public Text Count;
 
         int count;
 
@@ -32,8 +31,6 @@ namespace GameWish.Game
                 {
                     if (!CollectView.gameObject.activeSelf)
                         CollectView.gameObject.SetActive(true);
-
-                    Count.text = count.ToString();
                 }
                 else if(CollectView.gameObject.activeSelf)
                 {

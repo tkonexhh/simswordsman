@@ -42,7 +42,7 @@ namespace GameWish.Game
 
         private static void OnAddRow(TDCharacterStageConfig memberInstance)
         {
-            int key = memberInstance.stage;
+            int key = memberInstance.id;
             if (m_DataCache.ContainsKey(key))
             {
                 Log.e(string.Format("Invaild,  TDCharacterStageConfigTable Id already exists {0}", key));

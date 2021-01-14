@@ -12,13 +12,19 @@ namespace GameWish.Game
     {
         
        
+        private string m_Id;   
         private string m_Quality;   
         private string m_Desc;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// ID
+        /// Value
+        /// </summary>
+        public  string  id {get { return m_Id; } }
+       
+        /// <summary>
+        /// Value
         /// </summary>
         public  string  quality {get { return m_Quality; } }
        
@@ -43,9 +49,12 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Quality = dataR.ReadString();
+                    m_Id = dataR.ReadString();
                     break;
                 case 1:
+                    m_Quality = dataR.ReadString();
+                    break;
+                case 2:
                     m_Desc = dataR.ReadString();
                     break;
                 default:
@@ -58,10 +67,11 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(2);
+          Dictionary<string, int> ret = new Dictionary<string, int>(3);
           
-          ret.Add("Quality", 0);
-          ret.Add("Desc", 1);
+          ret.Add("Id", 0);
+          ret.Add("Quality", 1);
+          ret.Add("Desc", 2);
           return ret;
         }
     } 
