@@ -20,7 +20,11 @@ namespace GameWish.Game
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
 
+        private TaskPos m_TaskPos;
+
         public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
+
+        public Dictionary<CollectedObjType, TaskCollectableItem> m_CollectedObjDic = new Dictionary<CollectedObjType, TaskCollectableItem>();
 
         #region IMgr
         public void OnInit()
@@ -31,6 +35,8 @@ namespace GameWish.Game
             InitTaskList();
 
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
+
+            m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
         }
 
         public void OnUpdate()
@@ -87,7 +93,49 @@ namespace GameWish.Game
                 m_CurTaskList.Remove(taskItem);
             }
         }
-        
+
+        public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
+        {
+            string prefabName = GetPrefabName(collectedObjType);
+            GameObject prefab = Resources.Load(prefabName) as GameObject;
+            if (prefab == null)
+            {
+                Log.e("Prefab not found: " + prefabName);
+                return;
+            }
+
+            GameObject go = GameObject.Instantiate(prefab);
+            go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
+            if (!m_CollectedObjDic.ContainsKey(collectedObjType))
+            {
+                TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
+                m_CollectedObjDic.Add(collectedObjType, item);
+            }
+            else
+            {
+                Log.e("Task obj has been created before: " + collectedObjType);
+            }
+        }
+
+        public void RemoveTaskCollectableItem(CollectedObjType collectedObjType)
+        {
+            if (m_CollectedObjDic.ContainsKey(collectedObjType))
+            {
+                Destroy(m_CollectedObjDic[collectedObjType].gameObject);
+
+                m_CollectedObjDic.Remove(collectedObjType);
+            }
+        }
+
+        public TaskCollectableItem GetTaskCollectableItem(CollectedObjType collectedObjType)
+        {
+            if (m_CollectedObjDic.ContainsKey(collectedObjType))
+            {
+                return m_CollectedObjDic[collectedObjType];
+            }
+
+            return null;
+        }
 
         #endregion
 
@@ -183,6 +231,12 @@ namespace GameWish.Game
         private bool IsTaskExist(int taskId)
         {
             return m_CurTaskList.Any(i => i.TaskId == taskId);
+        }
+
+        private string GetPrefabName(CollectedObjType collectedObjType)
+        {
+            string prefabName = "Resources/Prefabs/SceneItem/TaskCollectableItem/";
+            return prefabName + collectedObjType.ToString();
         }
         #endregion
 

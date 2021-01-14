@@ -42,7 +42,7 @@ namespace GameWish.Game
 
         private static void OnAddRow(TDCharacterConfig memberInstance)
         {
-            string key = memberInstance.quality;
+            string key = memberInstance.id;
             if (m_DataCache.ContainsKey(key))
             {
                 Log.e(string.Format("Invaild,  TDCharacterConfigTable Id already exists {0}", key));

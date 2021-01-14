@@ -42,7 +42,7 @@ namespace GameWish.Game
 
         private static void OnAddRow(TDFacilityPracticeField memberInstance)
         {
-            int key = memberInstance.level;
+            int key = memberInstance.id;
             if (m_DataCache.ContainsKey(key))
             {
                 Log.e(string.Format("Invaild,  TDFacilityPracticeFieldTable Id already exists {0}", key));
