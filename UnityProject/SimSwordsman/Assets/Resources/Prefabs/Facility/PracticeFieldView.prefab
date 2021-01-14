@@ -498,6 +498,7 @@ Transform:
   - {fileID: 2641341110408741999}
   - {fileID: 4477234947761392207}
   - {fileID: 7742343490151932305}
+  - {fileID: 4726234093280142112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -550,7 +551,7 @@ MonoBehaviour:
   - {fileID: 9088856090670638087}
   navObstacleObj: {fileID: 3394301819060590827}
   roadObj: {fileID: 0}
-  door: {fileID: 0}
+  door: {fileID: 6529346906573763643}
   facilityType: 6
   m_PracticeSlots:
   - {fileID: 431576903423435055}
@@ -784,6 +785,36 @@ Transform:
   - {fileID: 5870659776855832292}
   m_Father: {fileID: 2476930430629197249}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6529346906573763643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4726234093280142112}
+  m_Layer: 11
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4726234093280142112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529346906573763643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18, y: -0.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2476930430629197249}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7116647564011490979
 GameObject:
