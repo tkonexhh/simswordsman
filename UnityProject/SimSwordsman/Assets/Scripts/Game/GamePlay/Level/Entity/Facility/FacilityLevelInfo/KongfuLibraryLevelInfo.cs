@@ -24,6 +24,11 @@ namespace GameWish.Game
             return m_DurationOfCopying;
         }
 
+        public List<KungFuPoolConfig> GetKungFuPoolConfig()
+        {
+            return m_KungFuPool;
+        }
+
 
         public List<KungfuType> GetCurLevelUnlockedKongfuList()
         {
@@ -48,12 +53,12 @@ namespace GameWish.Game
     public class KungFuPoolConfig
     {
         public KungfuType Kungfu { set; get; }
-        public int Number { set; get; }
+        public int Weight { set; get; }
 
         public KungFuPoolConfig(KungfuType kungfu, int number)
         {
             Kungfu = kungfu;
-            Number = number;
+            Weight = number;
         }
     }
 }

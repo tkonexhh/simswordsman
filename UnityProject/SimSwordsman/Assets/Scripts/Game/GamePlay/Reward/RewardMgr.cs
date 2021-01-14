@@ -47,6 +47,17 @@ namespace GameWish.Game
                     return null;
             }
         }
+        /// <summary>
+        /// »ñÈ¡½±Àø
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public RewardBase GetRewardBase(RewardItemType type, int id, int count=1)
+        {
+            return CreateReward(type, id, count);
+        }
 
         /// <summary>
         /// 

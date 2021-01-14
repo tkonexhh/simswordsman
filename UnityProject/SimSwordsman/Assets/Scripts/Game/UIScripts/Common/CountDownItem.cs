@@ -33,6 +33,8 @@ namespace GameWish.Game
         {
             m_CountDownID = _name;
             m_TickCount = tickCount;
+            if (m_TickCount <= 0)
+                m_TickCount = 0;
             m_Interval = interval;
         }
 
@@ -44,7 +46,7 @@ namespace GameWish.Game
                 TimeUpdateMgr.S.AddFinishedObservers(this);
                 return;
             }
-            //Debug.LogError("倒计时" + SplicingTime(m_TickCount));
+            Debug.LogError("倒计时" + SplicingTime(m_TickCount));
 
             OnSecondRefreshEvent?.Invoke(SplicingTime(m_TickCount));
         }
