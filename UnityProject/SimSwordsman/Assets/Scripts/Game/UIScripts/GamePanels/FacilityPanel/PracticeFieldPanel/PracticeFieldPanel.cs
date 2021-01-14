@@ -94,15 +94,6 @@ namespace GameWish.Game
             }
         }
 
-        private void CreateCountDown(PracticeField prac)
-        {
-            CountDownItem countDownMgr = new CountDownItem(prac.FacilityType.ToString() + prac.Index, 100);
-            TimeUpdateMgr.S.AddObserver(countDownMgr);
-            PracticeDisciple practice = GetPracticeDiscipleForID(prac);
-            practice.RefreshPracticeFieldState();
-            countDownMgr.OnSecondRefreshEvent = practice.refresAction;
-        }
-
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)
@@ -165,7 +156,6 @@ namespace GameWish.Game
 
         private void RefreshPanelText()
         {
-
             m_UpgradeCostCoinValueTxt.text = m_CurPracticeFieldLevelInfo.upgradeCoinCost.ToString();
             m_CurLevelTxt.text = m_CurLevel.ToString();
             m_CurTrainingPositionTxt.text = m_CurPracticeFieldLevelInfo.GetCurCapacity().ToString();

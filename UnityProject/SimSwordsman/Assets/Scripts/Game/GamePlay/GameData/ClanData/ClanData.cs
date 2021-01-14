@@ -58,7 +58,9 @@ namespace GameWish.Game
 
         #region Facility
 
-        public List<SoltDBData> GetPracticeFieldData()
+
+        #region Practice
+        public List<PracticeSoltDBData> GetPracticeFieldData()
         {
             return ownedPracticeFieldData.GetPracticeFieldData();
         }
@@ -66,17 +68,51 @@ namespace GameWish.Game
         public void AddPracticeFieldData(PracticeField practiceField)
         {
             ownedPracticeFieldData.AddPracticeFieldData(practiceField);
-        }
 
-        public void RefresDBData(PracticeField practiceField)
+            SetDataDirty();
+        }
+        public void RefresPracticeDBData(PracticeField practiceField)
         {
             ownedPracticeFieldData.RefresDBData(practiceField);
-        }
 
-        public void TrainingIsOver(PracticeField practiceField)
+            SetDataDirty();
+        }
+        public void PraceTrainingIsOver(PracticeField practiceField)
         {
             ownedPracticeFieldData.TrainingIsOver(practiceField);
+
+            SetDataDirty();
         }
+        #endregion
+
+        #region KungfuLibrary
+        public List<kungfuSoltDBData> GetKungfuLibraryData()
+        {
+            return ownedKungfuLibraryData.GetKungfuLibrayData();
+        }
+        public void AddKungfuLibraryData(KungfuLibraySlot kungfuLibraySlot)
+        {
+            ownedKungfuLibraryData.AddKungfuLibrayData(kungfuLibraySlot);
+
+            SetDataDirty();
+        }
+        public void RefresKungfuDBData(KungfuLibraySlot kungfuLibraySlot)
+        {
+            ownedKungfuLibraryData.RefresDBData(kungfuLibraySlot);
+
+            SetDataDirty();
+        }
+        public void KungfuTrainingIsOver(KungfuLibraySlot kungfuLibraySlot)
+        {
+            ownedKungfuLibraryData.TrainingIsOver(kungfuLibraySlot);
+
+            SetDataDirty();
+        }
+        #endregion
+
+
+
+
 
         public List<FacilityItemDbData> GetAllFacility()
         {

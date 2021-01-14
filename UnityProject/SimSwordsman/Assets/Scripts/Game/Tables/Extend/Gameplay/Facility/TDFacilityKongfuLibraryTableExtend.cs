@@ -38,6 +38,46 @@ namespace GameWish.Game
                 levelInfoDic.Add(tdData.level, kongfuLibLevelInfo);
         }
 
+        /// <summary>
+        /// 获取藏经阁的列表
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <returns></returns>
+        public static List<KongfuLibraryLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
+        {
+            List<KongfuLibraryLevelInfo> kongfuLibraryLevelInfos = new List<KongfuLibraryLevelInfo>();
+            kongfuLibraryLevelInfos.AddRange(levelInfoDic.Values);
+            return kongfuLibraryLevelInfos;
+        }
+        /// <summary>
+        /// 获取相同的坑位的列表
+        /// </summary>
+        /// <param name="levelInfo"></param>
+        /// <returns></returns>
+        public static List<KongfuLibraryLevelInfo> GetSameSoltList(KungfuLibraySlot levelInfo)
+        {
+            List<KongfuLibraryLevelInfo> infos = new List<KongfuLibraryLevelInfo>();
+            foreach (var item in levelInfoDic.Values)
+            {
+                if (item.GetCurCapacity() == levelInfo.Index)
+                    infos.Add(item);
+            }
+            return infos;
+        }
+
+        /// <summary>
+        /// 根据等级获取练功时间
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static int GetDurationForLevel( int level)
+        {
+            if (levelInfoDic.ContainsKey(level))
+                return levelInfoDic[level].GetDurationOfCopying();
+            return 0;
+        }
+
         public static KongfuLibraryLevelInfo GetLevelInfo(int level)
         {
             if (levelInfoDic.ContainsKey(level))

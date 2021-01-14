@@ -48,6 +48,7 @@ namespace GameWish.Game
         ForgeHousePanel,
         KitchenPanel,
         KongfuLibraryPanel,
+        KungfuChooseDisciplePanel,
         LivableRoomPanel,
         PatrolRoomPanel,
         PracticeFieldPanel,

@@ -14,6 +14,16 @@ namespace GameWish.Game
         private List<KungfuType> m_UnlockedKongfuType = new List<KungfuType>();
         private List<KungFuPoolConfig> m_KungFuPool = new List<KungFuPoolConfig>();
 
+        public int GetCurCapacity()
+        {
+            return m_SeatOfCopying;
+        }
+
+        public int GetDurationOfCopying()
+        {
+            return m_DurationOfCopying;
+        }
+
 
         public List<KungfuType> GetCurLevelUnlockedKongfuList()
         {

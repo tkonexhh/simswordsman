@@ -64,6 +64,11 @@ namespace GameWish.Game
         /// </summary>
         OnPracticeFieldTimeRefresh,
 
+        //KungfuLibrary
+        /// <summary>
+        /// 刷新功夫坑位的信息
+        /// </summary>
+        OnKungfuSoltInfo,
 
         //Battle
         OnEnterBattle,

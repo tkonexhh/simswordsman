@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,68 +10,76 @@ namespace GameWish.Game
 	public class PracticeFieldData 
 	{
 
-		public List<SoltDBData> practiceFieldDBDatas = new List<SoltDBData>();
+		public List<PracticeSoltDBData> practiceFieldDBDatas = new List<PracticeSoltDBData>();
 		public PracticeFieldData() { }
 
-		public List<SoltDBData> GetPracticeFieldData()
+		public List<PracticeSoltDBData> GetPracticeFieldData()
 		{
 			return practiceFieldDBDatas;
 		}
 
 		public void AddPracticeFieldData(PracticeField practiceField)
 		{
-			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
+			PracticeSoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
             if (practiceFieldDB==null)
-				practiceFieldDBDatas.Add(new SoltDBData(practiceField));
+				practiceFieldDBDatas.Add(new PracticeSoltDBData(practiceField));
 		}
 
 		public void RefreshPracticeState(PracticeField practiceField)
 		{
-			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
+			PracticeSoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
 			if (practiceFieldDB != null)
-				practiceFieldDB.practiceFieldState = practiceField.PracticeFieldState;
+				practiceFieldDB.practiceFieldState = practiceField.slotState;
 		}
 
 		public void RefresDBData(PracticeField practiceField)
 		{
-			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
+			PracticeSoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
 			if (practiceFieldDB != null)
 				practiceFieldDB.RefresDBData(practiceField);
 		}
 
 		public void TrainingIsOver(PracticeField practiceField)
 		{
-			SoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
+			PracticeSoltDBData practiceFieldDB = practiceFieldDBDatas.Where(i => i.facilityType == practiceField.FacilityType && i.soltID == practiceField.Index).FirstOrDefault();
 			if (practiceFieldDB != null)
 				practiceFieldDB.TrainingIsOver();
 		}
 	}
 
 
-	public class SoltDBData
+	public class PracticeSoltDBData: SoltDBDataBase
 	{
+		public PracticeSoltDBData() { }
+		public PracticeSoltDBData(PracticeField practiceField) :base(practiceField)
+		{
+		}
+	}
+	[Serializable]
+	public class SoltDBDataBase
+	{
+
 		public FacilityType facilityType;
 		public SlotState practiceFieldState;
 		public int soltID;
 		public int characterID = -1;
 		public int unlockLevel = -1;
 		public string startTime;
+		public SoltDBDataBase() { }
 
-		public SoltDBData() { }
-		public SoltDBData(PracticeField practiceField) 
+		public SoltDBDataBase(BaseSlot baseSlot)
 		{
-			RefresDBData(practiceField);
+			RefresDBData(baseSlot);
 		}
-
-		public void RefresDBData(PracticeField practiceField)
+		public void RefresDBData(BaseSlot baseSlot)
 		{
-			unlockLevel = practiceField.UnlockLevel;
-			facilityType = practiceField.FacilityType;
-			practiceFieldState = practiceField.PracticeFieldState;
-			soltID = practiceField.Index;
-			if (practiceField.CharacterItem != null)
-				characterID = practiceField.CharacterItem.id;
-			startTime = practiceField.StartTime;
+			unlockLevel = baseSlot.UnlockLevel;
+			facilityType = baseSlot.FacilityType;
+			practiceFieldState = baseSlot.slotState;
+			soltID = baseSlot.Index;
+			if (baseSlot.CharacterItem != null)
+				characterID = baseSlot.CharacterItem.id;
+			startTime = baseSlot.StartTime;
 		}
 
 		public void TrainingIsOver()

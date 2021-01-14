@@ -105,7 +105,7 @@ namespace GameWish.Game
         public const string ANIM_TUMBLE_GETUP = "tumble_get_up";
 
         // Facility
-        public const int FACILITY_MAX_LEVEL = 6;
+        public const int FACILITY_MAX_LEVEL = 5;
 
         // Chapter
         public const int MAX_CHAPTER_COUNT = 5;

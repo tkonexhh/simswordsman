@@ -81,7 +81,7 @@ namespace GameWish.Game
 
         public SlotState GetPracticeFieldState()
         {
-            return m_PracticeFieldInfo.PracticeFieldState;
+            return m_PracticeFieldInfo.slotState;
         }
 
         public void IncreaseCountDown(int time)
@@ -99,8 +99,7 @@ namespace GameWish.Game
 
         public void RefreshPracticeFieldState()
         {
-
-            switch (m_PracticeFieldInfo.PracticeFieldState)
+            switch (m_PracticeFieldInfo.slotState)
             {
                 case SlotState.None:
                     break;
@@ -113,8 +112,6 @@ namespace GameWish.Game
                     m_PracticeBtn.enabled = false;
                     m_CurPractice.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
                     m_Time.text = Define.COMMON_DEFAULT_STR;
-                    break;
-                case SlotState.CopyScriptures:
                     break;
                 case SlotState.Practice:
                     RefreshFixedInfo();

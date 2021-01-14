@@ -96,6 +96,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.KitchenPanel, null, "GamePanels/FacilityPanel/KitchenPanel/KitchenPanel");
 
             UIDataTable.AddPanelData(UIID.KongfuLibraryPanel, null, "GamePanels/FacilityPanel/KongfuLibraryPanel/KongfuLibraryPanel");
+            UIDataTable.AddPanelData(UIID.KungfuChooseDisciplePanel, null, "GamePanels/FacilityPanel/KongfuLibraryPanel/KungfuChooseDisciplePanel");
 
             UIDataTable.AddPanelData(UIID.ConstructionFacilitiesPanel, null, "GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel");
 
