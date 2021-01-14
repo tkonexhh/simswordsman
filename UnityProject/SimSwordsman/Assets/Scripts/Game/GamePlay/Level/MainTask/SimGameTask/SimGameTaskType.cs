@@ -37,5 +37,6 @@ namespace GameWish.Game
         Iron, // ºÚÌú
         Ganoderma, // ÁéÖ¥
         Well, // ¾®Ë®
+        Wolf,
     }
 }

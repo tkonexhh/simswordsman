@@ -14,11 +14,24 @@ namespace GameWish.Game
 
         public override void ExecuteTask(List<CharacterController> selectedCharacters)
         {
-            selectedCharacters.ForEach(i => 
+            try
             {
-                i.SetCurTask(this);
-                i.SetState(CharacterStateID.CollectRes);
-            });
+                // Spawn res
+                CollectedObjType collectedObjType = (CollectedObjType)(m_TaskDetailInfo.subType);
+                MainGameMgr.S.CommonTaskMgr.SpawnTaskCollectableItem(collectedObjType);
+
+                // Set character state
+                selectedCharacters.ForEach(i =>
+                {
+                    i.SetCurTask(this);
+                    i.SetState(CharacterStateID.CollectRes);
+                });
+            }
+            catch (Exception e)
+            {
+                Qarth.Log.e("Task collect res error: " + e.Message.ToString());
+            }
+
         }
     }
 	

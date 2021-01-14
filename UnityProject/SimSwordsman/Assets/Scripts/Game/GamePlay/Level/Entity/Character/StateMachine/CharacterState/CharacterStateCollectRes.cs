@@ -12,13 +12,14 @@ namespace GameWish.Game
     {
         private CharacterController m_Controller = null;
 
-        private TaskPos m_TaskPos = null;
+        //private TaskPos m_TaskPos = null;
 
         private bool m_ReachTargetPos = false;
         private float m_Time = 0f;
         private bool m_IsTaskEnd = false;
 
         private CollectedObjType m_CollectedObjType;
+        private TaskCollectableItem m_TaskCollectableItem;
 
         public CharacterStateCollectRes(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -30,14 +31,22 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            if (m_TaskPos == null)
-            {
-                m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
-            }
+            //if (m_TaskPos == null)
+            //{
+            //    m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
+            //}
 
             m_CollectedObjType = (CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
-            Vector3 pos = m_TaskPos.GetTaskPos(m_CollectedObjType);
-            m_Controller.MoveTo(pos, OnReachDestination);
+            m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
+            if (m_TaskCollectableItem != null)
+            {
+                Vector3 pos = m_TaskCollectableItem.transform.position;
+                m_Controller.MoveTo(pos, OnReachDestination);
+            }
+            else
+            {
+                Log.e("CharacterStateCollectRes task item is null:" + m_CollectedObjType.ToString());
+            }
 
             m_ReachTargetPos = false;
             m_IsTaskEnd = false;
@@ -60,6 +69,7 @@ namespace GameWish.Game
                     m_Time = 0f;
                     m_IsTaskEnd = true;
 
+                    m_TaskCollectableItem?.OnEndCollected();
                     MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
                     //EventSystem.S.Send(EventID.OnTaskManualFinished);
                     //EventSystem.S.Send(EventID.OnTaskFinished);
@@ -79,6 +89,8 @@ namespace GameWish.Game
 
             string animName = GetCollectResAnim();
             m_Controller.CharacterView.PlayAnim(animName, true, null);
+
+            m_TaskCollectableItem?.OnStartCollected();
         }
 
         private string GetCollectResAnim()
