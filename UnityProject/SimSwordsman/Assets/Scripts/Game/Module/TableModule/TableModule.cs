@@ -65,7 +65,7 @@ namespace GameWish.Game
                 TDCommonTaskTable.metaData,
 
                 TDItemConfigTable.metaData,
-                TDWeaponConfigTable.metaData,
+                //TDWeaponConfigTable.metaData,
 
                 //Herb
                 TDHerbConfigTable.metaData,
