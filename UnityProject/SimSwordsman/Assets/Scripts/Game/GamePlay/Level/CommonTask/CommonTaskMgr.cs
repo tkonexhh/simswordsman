@@ -29,14 +29,15 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
+            m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
+
             m_CommonTaskData = GameDataMgr.S.GetCommonTaskData();
 
             m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(1).commonTaskCount;
-            InitTaskList();
+            //InitTaskList();
 
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
 
-            m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
         }
 
         public void OnUpdate()
@@ -163,11 +164,18 @@ namespace GameWish.Game
         }
 
 
-        private void InitTaskList()
+        public void InitTaskList()
         {
             m_CommonTaskData.taskList.ForEach(i => 
             {
-                AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+
+                // 如果数据库中该task正在执行
+                if (i.taskState == TaskState.Running)
+                {
+                    List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(i.taskId);
+                    task.ExecuteTask(characters);
+                }
             });
 
             RefreshTask();
@@ -222,10 +230,12 @@ namespace GameWish.Game
             return null;
         }
 
-        private void AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
+        private SimGameTask AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
         {
             SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime);
             m_CurTaskList.Add(simGameTask);
+
+            return simGameTask;
         }
 
         private bool IsTaskExist(int taskId)
@@ -235,7 +245,7 @@ namespace GameWish.Game
 
         private string GetPrefabName(CollectedObjType collectedObjType)
         {
-            string prefabName = "Resources/Prefabs/SceneItem/TaskCollectableItem/";
+            string prefabName = "Prefabs/SceneItem/TaskCollectableItem/";
             return prefabName + collectedObjType.ToString();
         }
         #endregion

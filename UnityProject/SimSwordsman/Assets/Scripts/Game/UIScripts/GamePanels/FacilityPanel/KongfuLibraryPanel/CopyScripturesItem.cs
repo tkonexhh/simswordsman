@@ -34,6 +34,17 @@ namespace GameWish.Game
             RefreshPracticeFieldState();
         }
 
+        public SlotState GetPracticeFieldState()
+        {
+            return m_KungfuLibraySlot.slotState;
+        }
+        public void IncreaseCountDown(int time)
+        {
+            CountDownItem countDown = null;
+            countDown = TimeUpdateMgr.S.IsHavaITimeObserver(m_KungfuLibraySlot.FacilityType.ToString() + m_KungfuLibraySlot.Index);
+            if (countDown != null)
+                countDown.IncreasTickTime(time);
+        }
         private void BindAddListenerEvent()
         {
             m_CopyScripturesBtn.onClick.AddListener(()=> {
@@ -67,7 +78,7 @@ namespace GameWish.Game
                     m_CurCopyScriptures.text = "µ±Ç°ÑµÁ·:" + m_KungfuLibraySlot.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());
                     CreateCountDown();
-                    //TimeRemaining(m_PracticeFieldInfo.StartTime);
+                    //(m_PracticeFieldInfo.StartTime);
                     m_CopyScripturesBtn.enabled = true;
                     break;
                 default:
@@ -101,6 +112,8 @@ namespace GameWish.Game
         {
             int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(m_CurFacility, m_CurLevel);
             int takeTime = ComputingTime(m_KungfuLibraySlot.StartTime);
+            if (duration - takeTime <= 0)
+                return 0;
             return duration - takeTime;
         }
 

@@ -35,7 +35,6 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             GetInformationForNeed();
 
-
             for (int i = 0; i < m_CharacterItem.Count; i++)
             {
                 if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level<Define.CHARACTER_MAX_LEVEL)

@@ -13,6 +13,9 @@ namespace GameWish.Game
 		public SlotState slotState { set; get; }
 		public FacilityType FacilityType { set; get; }
 		public string StartTime { set; get; }
+
+		private Vector3 m_SlotPos;
+		private CharacterController m_Character;
 		public BaseSlot()
 		{
 		}
@@ -41,6 +44,10 @@ namespace GameWish.Game
 			StartTime = string.Empty;
 		}
 
+		/// <summary>
+		/// ½±Àø¾­Ñé
+		/// </summary>
+		/// <param name="characterItem"></param>
 		public void AddExperience(CharacterItem characterItem)
 		{
 			int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
@@ -48,5 +55,41 @@ namespace GameWish.Game
 			characterItem.AddCharacterExp(exp);
 		}
 
+		public void RewardKungfu(int kungfuLibraryLevel)
+		{
+			int kungfuID = (int)MainGameMgr.S.FacilityMgr.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
+			RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kongfu, kungfuID,1);
+			reward.AcceptReward();
+		}
+
+		public BaseSlot(Vector3 pos)
+		{
+			m_SlotPos = pos;
+		}
+
+		public void SetSlotPos(Vector3 pos)
+		{
+			m_SlotPos = pos;
+		}
+
+		public bool IsEmpty()
+		{
+			return m_Character == null;
+		}
+
+		public void OnCharacterEnter(CharacterController character)
+		{
+			m_Character = character;
+		}
+
+		public void OnCharacterLeave()
+		{
+			m_Character = null;
+		}
+
+		public Vector3 GetPosition()
+		{
+			return m_SlotPos;
+		}
 	}
 }

@@ -49,7 +49,10 @@ namespace GameWish.Game
             return CommonTaskItemInfo.taskType;
         }
 
-        public abstract void ExecuteTask(List<CharacterController> selectedCharacters);
+        public virtual void ExecuteTask(List<CharacterController> selectedCharacters)
+        {
+            GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
+        }
 
         public void ClaimReward()
         {

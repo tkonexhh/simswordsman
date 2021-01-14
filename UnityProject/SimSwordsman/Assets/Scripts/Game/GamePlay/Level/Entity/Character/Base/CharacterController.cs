@@ -42,15 +42,18 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
-            SetTaskIfNeed(initState);
+            //SetTaskIfNeed(initState);
 
             m_StateMachine = new CharacterStateMachine(this);
 
-            if (initState == CharacterStateID.Battle)
+            //if (initState == CharacterStateID.Battle || initState == CharacterStateID.CollectRes)
+            //{
+            //    initState = CharacterStateID.Wander;
+            //}
+            if (initState != CharacterStateID.CollectRes) // CollectRes状态由CommonTaskMgr进行设置
             {
-                initState = CharacterStateID.Wander;
+                SetState(initState, m_CharacterModel.GetTargetFacilityType());
             }
-            SetState(initState, m_CharacterModel.GetTargetFacilityType());
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
         }
@@ -262,29 +265,29 @@ namespace GameWish.Game
             m_CharacterModel.SetDataState(characterStateID, targetFacilityType);
         }
 
-        private void SetTaskIfNeed(CharacterStateID initState)
-        {
-            if (initState == CharacterStateID.CollectRes)
-            {
-                int curTaskId = m_CharacterModel.GetCurTaskId();
-                if (curTaskId != -1)
-                {
-                    SimGameTask simGameTask = MainGameMgr.S.CommonTaskMgr.GetSimGameTask(curTaskId);
-                    if (simGameTask != null)
-                    {
-                        SetCurTask(simGameTask);
-                    }
-                    else
-                    {
-                        Qarth.Log.e("SpawnTaskIfNeed, MainTaskItemData not found");
-                    }
-                }
-                else
-                {
-                    Qarth.Log.e("SpawnTaskIfNeed, Cur task id is -1");
-                }
-            }
-        }
+        //private void SetTaskIfNeed(CharacterStateID initState)
+        //{
+        //    if (initState == CharacterStateID.CollectRes)
+        //    {
+        //        int curTaskId = m_CharacterModel.GetCurTaskId();
+        //        if (curTaskId != -1)
+        //        {
+        //            SimGameTask simGameTask = MainGameMgr.S.CommonTaskMgr.GetSimGameTask(curTaskId);
+        //            if (simGameTask != null)
+        //            {
+        //                SetCurTask(simGameTask);
+        //            }
+        //            else
+        //            {
+        //                Qarth.Log.e("SpawnTaskIfNeed, MainTaskItemData not found");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Qarth.Log.e("SpawnTaskIfNeed, Cur task id is -1");
+        //        }
+        //    }
+        //}
         #endregion
     }
 

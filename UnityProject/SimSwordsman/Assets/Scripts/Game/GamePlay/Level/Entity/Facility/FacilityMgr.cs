@@ -18,10 +18,7 @@ namespace GameWish.Game
         public void OnInit()
         {
             RegisterEvents();
-
             InitFacilityList();
-
-
             InputMgr.S.AddTouchObserver(this);
         }
 
@@ -258,7 +255,16 @@ namespace GameWish.Game
 
         public List<KongfuLibraryLevelInfo> GetKungfuLibraryLevelInfoList(FacilityType facilityType)
         {
-            return TDFacilityKongfuLibraryTable.GetPracticeFieldLevelInfoList(facilityType);
+            return TDFacilityKongfuLibraryTable.GetKongfuLibraryLevelInfoList(facilityType);
+        }
+        /// <summary>
+        /// 根据藏经阁等级获取相应的功夫
+        /// </summary>
+        /// <param name="kungfuLibraryLevel"></param>
+        /// <returns></returns>
+        public KungfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
+        {
+            return TDFacilityKongfuLibraryTable.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
         }
 
         #endregion
@@ -434,6 +440,8 @@ namespace GameWish.Game
 
         public PracticeField(PracticeFieldLevelInfo item, int index, int unlock) : base(item, index, unlock)
         {
+            FacilityType = item.GetHouseID();
+
             GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
         }
         public PracticeField(PracticeSoltDBData item) : base(item)

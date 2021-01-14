@@ -14,7 +14,7 @@ namespace GameWish.Game
 
         public KongfuLibraryController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
-            InitPracticeField();
+            InitKungfuField();
         }
 
         public KungfuLibraySlot GetIdlePracticeSlot()
@@ -27,9 +27,7 @@ namespace GameWish.Game
             return m_ReadingSlotList;
         }
 
-       
-
-        private void InitPracticeField()
+        private void InitKungfuField()
         {
             List<kungfuSoltDBData> kungfuLibraryDBDatas = GameDataMgr.S.GetClanData().GetKungfuLibraryData();
 
@@ -41,8 +39,14 @@ namespace GameWish.Game
 
             foreach (var item in kungfuLibraryDBDatas)
                 m_ReadingSlotList.Add(new KungfuLibraySlot(item));
-        }
 
+
+            for (int i = 0; i < m_ReadingSlotList.Count; i++)
+            {
+                KongfuLibraryView view = (KongfuLibraryView)m_View;
+                m_ReadingSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
+            }
+        }
         public void RefreshSlotInfo(int facilityLevel)
         {
             m_ReadingSlotList.ForEach(i =>

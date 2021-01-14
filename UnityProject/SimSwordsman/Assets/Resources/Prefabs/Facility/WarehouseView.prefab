@@ -211,6 +211,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5160104995438216880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215615390980390428}
+  m_Layer: 11
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &215615390980390428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160104995438216880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.33, y: -1.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5593280619801713578}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5593280618330261452
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +628,7 @@ Transform:
   - {fileID: 6931137092862476379}
   - {fileID: 125259991927724195}
   - {fileID: 3211777390449188457}
+  - {fileID: 215615390980390428}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -649,7 +680,7 @@ MonoBehaviour:
   - {fileID: 7972697166924793919}
   navObstacleObj: {fileID: 5752524607382290547}
   roadObj: {fileID: 3074307753123309994}
-  door: {fileID: 0}
+  door: {fileID: 5160104995438216880}
   facilityType: 10
 --- !u!1 &5593280619962187767
 GameObject:

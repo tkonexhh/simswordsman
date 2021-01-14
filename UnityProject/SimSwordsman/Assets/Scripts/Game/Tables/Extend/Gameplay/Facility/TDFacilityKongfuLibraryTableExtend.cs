@@ -43,7 +43,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="facilityType"></param>
         /// <returns></returns>
-        public static List<KongfuLibraryLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
+        public static List<KongfuLibraryLevelInfo> GetKongfuLibraryLevelInfoList(FacilityType facilityType)
         {
             List<KongfuLibraryLevelInfo> kongfuLibraryLevelInfos = new List<KongfuLibraryLevelInfo>();
             kongfuLibraryLevelInfos.AddRange(levelInfoDic.Values);
@@ -64,6 +64,28 @@ namespace GameWish.Game
             }
             return infos;
         }
+
+        public static KungfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
+        {
+            int allWeight = 0;
+            int boundaryWeight = 0;
+            if (levelInfoDic.ContainsKey(kungfuLibraryLevel))
+            {
+                List<KungFuPoolConfig> kungFuPools = levelInfoDic[kungfuLibraryLevel].GetKungFuPoolConfig();
+                foreach (var item in kungFuPools)
+                    allWeight += item.Weight;
+
+                int random = UnityEngine.Random.Range(1, allWeight+1);
+                foreach (var item in kungFuPools)
+                {
+                    boundaryWeight += item.Weight;
+                    if (random <= boundaryWeight)
+                        return item.Kungfu;
+                }
+            }
+            return KungfuType.None;
+        }
+
 
         /// <summary>
         /// 根据等级获取练功时间

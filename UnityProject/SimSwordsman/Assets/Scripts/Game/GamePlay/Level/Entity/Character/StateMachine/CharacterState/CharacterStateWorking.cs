@@ -20,12 +20,15 @@ namespace GameWish.Game
 
         public override void Enter(ICharacterStateHander handler)
         {
-            //if(m_Controller == null)
-            //    m_Controller = (CharacterController)handler.GetCharacterController();
+            if (m_Controller == null)
+                m_Controller = (CharacterController)handler.GetCharacterController();
 
-            //KongfuLibraryController kongfuLibrary = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
-            //Vector3 practicePos = kongfuLibrary.GetIdlePracticeSlot().GetPosition();
-            //m_Controller.MoveTo(practicePos, OnReachDestination);
+            FacilityType facilityType = m_Controller.CharacterModel.GetTargetFacilityType();
+
+            FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(facilityType);
+            Vector3 targetPos = facilityController.GetDoorPos();
+
+            m_Controller.MoveTo(targetPos, OnReachDestination);
         }
 
         public override void Exit(ICharacterStateHander handler)
