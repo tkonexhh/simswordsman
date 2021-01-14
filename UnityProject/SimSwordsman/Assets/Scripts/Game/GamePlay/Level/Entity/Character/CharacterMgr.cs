@@ -242,9 +242,14 @@ namespace GameWish.Game
 
         private void InitData()
         {
-            m_CharacterDataWrapper.Wrap(GameDataMgr.S.GetClanData().ownedCharacterData);
 
             InitCharacters();
+        }
+
+        public void InitCharacterDataWrapper()
+        {
+            m_CharacterDataWrapper.Wrap(GameDataMgr.S.GetClanData().ownedCharacterData);
+
         }
 
         private void InitCharacters()

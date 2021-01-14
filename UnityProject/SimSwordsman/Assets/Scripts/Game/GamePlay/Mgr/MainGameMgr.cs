@@ -37,10 +37,10 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
-         
-
             m_CharacterMgr = gameObject.AddComponent<CharacterMgr>();
             m_CharacterMgr.OnInit();
+
+            m_CharacterMgr.InitCharacterDataWrapper();
 
             m_FacilityMgr = gameObject.AddComponent<FacilityMgr>();
             m_FacilityMgr.OnInit();
@@ -73,11 +73,7 @@ namespace GameWish.Game
             m_MainCamera.OnInit();
 
             m_CharacterMgr.ExrInitData();
-
             m_FacilityMgr.ExrInitData();
-
-           
-
 
             m_IsInited = true;
         }

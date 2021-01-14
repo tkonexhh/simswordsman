@@ -63,7 +63,6 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-
                 bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(long.Parse(m_UpgradeCostCoinValueTxt.text));
 
                 if (isReduceSuccess)
@@ -186,5 +185,4 @@ namespace GameWish.Game
             CloseSelfPanel();
         }
     }
-
 }

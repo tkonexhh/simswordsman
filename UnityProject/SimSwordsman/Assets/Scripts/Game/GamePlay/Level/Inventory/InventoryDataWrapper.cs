@@ -111,7 +111,7 @@ namespace GameWish.Game
         public void AddKungfu(KungfuItem _kungfuItem, int delta = 1)
         {
             KungfuItem armsItem = (KungfuItem)m_WarehouseItems.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
-            if (armsItem != null)
+            if (armsItem != null) 
                 armsItem.AddEquipNumber(delta);
             else
             {
@@ -277,6 +277,10 @@ namespace GameWish.Game
     {
         public KungfuType KungfuType { set; get; }
         public float AtkScale { set; get; }
+        public KungfuItem()
+        {
+
+        }
         public override int GetSortId()
         {
             throw new NotImplementedException();
