@@ -43,9 +43,10 @@ namespace GameWish.Game
 
         private int m_CurLevel;
         private PracticeFieldLevelInfo m_CurPracticeFieldLevelInfo = null;
+        private PracticeFieldLevelInfo m_NextPracticeFieldLevelInfo = null;
 
         private List<PracticeField> m_AllPracticeFieldInfos = null;
-
+        private PracticeFieldController m_CurPracticeFieldController = null;
         private Dictionary<int, GameObject> m_PracticeEntity = new Dictionary<int, GameObject>();
 
 
@@ -63,14 +64,16 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-                bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(long.Parse(m_UpgradeCostCoinValueTxt.text));
+                if (m_NextPracticeFieldLevelInfo==null)
+                    return;
+                bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextPracticeFieldLevelInfo.upgradeCoinCost);
 
                 if (isReduceSuccess)
                 {
                     AddPracticeTime();
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                     GetInformationForNeed();
-                    MainGameMgr.S.FacilityMgr.RefreshPracticeUnlockInfo(m_CurFacilityType, m_CurLevel);
+                    m_CurPracticeFieldController.RefreshPracticeUnlockInfo(m_CurFacilityType, m_CurLevel);
                     RefreshPanelText();
                 }
             });
@@ -111,8 +114,6 @@ namespace GameWish.Game
             return null;
         }
 
-
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -127,7 +128,9 @@ namespace GameWish.Game
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_CurPracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-            m_AllPracticeFieldInfos = MainGameMgr.S.FacilityMgr.GetPracticeField();
+            m_NextPracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
+            m_CurPracticeFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
+            m_AllPracticeFieldInfos = m_CurPracticeFieldController.GetPracticeField();
         }
 
         private void RefreshPanelInfo()
@@ -155,7 +158,7 @@ namespace GameWish.Game
 
         private void RefreshPanelText()
         {
-            m_UpgradeCostCoinValueTxt.text = m_CurPracticeFieldLevelInfo.upgradeCoinCost.ToString();
+            m_UpgradeCostCoinValueTxt.text = m_NextPracticeFieldLevelInfo.upgradeCoinCost.ToString();
             m_CurLevelTxt.text = m_CurLevel.ToString();
             m_CurTrainingPositionTxt.text = m_CurPracticeFieldLevelInfo.GetCurCapacity().ToString();
             m_NextTrainingPositionTxt.text = m_CurPracticeFieldLevelInfo.GetNextCapacity().ToString();

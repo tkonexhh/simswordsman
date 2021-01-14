@@ -182,10 +182,10 @@ namespace GameWish.Game
             m_CharacterDataWrapper.AddCharacter(id, quality);
         }
 
-        //public void ExrInitData()
-        //{
-        //    InitData();
-        //}
+        public void ExrInitData()
+        {
+            InitData();
+        }
 
         /// <summary>
         /// Remove a character and save db data

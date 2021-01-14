@@ -155,7 +155,7 @@ namespace GameWish.Game
             m_LivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CostItems = m_LivableRoomLevelInfo.GetUpgradeResCosts();
-            if (m_CurLevel == Define.FACILITY_MAX_LEVEL)
+            if (m_CurLevel == Define.FACILITY_MAX_LIVABLEROOM)
             {
                 m_LivableRoomState = LivableRoomState.FullLevel;
                 return;

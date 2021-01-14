@@ -45,7 +45,7 @@ namespace GameWish.Game
 
         public List<KungfuType> GetNextLevelUnlockedKongfuList()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_KUNGFULIBRARY);
             return ((KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.KongfuLibrary, realLevel)).GetCurLevelUnlockedKongfuList();
         }
     }

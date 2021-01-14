@@ -49,17 +49,16 @@ namespace GameWish.Game
             UnlockLevel = kongfuLibrary.level;
         }
 
-        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index,int unLock):base(item, index, unLock)
+        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index,int unLock):base( index, unLock)
         {
             FacilityType = FacilityType.KongfuLibrary;
-
+            InitSlotState(item);
             GameDataMgr.S.GetClanData().AddKungfuLibraryData(this);
         }
         public KungfuLibraySlot()
         {
         }
  
-     
         public void SetCharacterItem(CharacterItem characterItem, SlotState slotState, FacilityType targetFacility)
         {
 

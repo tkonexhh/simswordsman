@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         public List<MedicinalPowderType> GetNextUnlockMedicinalPowderType()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_BAICAOHU);
             List<MedicinalPowderType> type = TDFacilityBaicaohuTable.GetLevelInfo(realLevel).GetCurMedicinalPowderType();
             return type;
         }
