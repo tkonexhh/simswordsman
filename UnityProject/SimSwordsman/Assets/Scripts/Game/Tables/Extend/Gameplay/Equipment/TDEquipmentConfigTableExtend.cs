@@ -19,14 +19,18 @@ namespace GameWish.Game
 
             if (!MakeNeedItemIDsDic.ContainsKey(tdData.id))
             {
-                string[] strs = tdData.buildCondition.Split(';');
-                List<CostItem> infos = new List<CostItem>();
-                foreach (var item in strs)
+                if (!string.IsNullOrEmpty(tdData.buildCondition))
                 {
-                    string[] str = item.Split('|');
-                    infos.Add(new CostItem(int.Parse(str[0]), int.Parse(str[1])));
+                    string[] strs = tdData.buildCondition.Split(';');
+                    List<CostItem> infos = new List<CostItem>();
+                    foreach (var item in strs)
+                    {
+                        string[] str = item.Split('|');
+                        infos.Add(new CostItem(int.Parse(str[0]), int.Parse(str[1])));
+                    }
+
+                    MakeNeedItemIDsDic.Add(tdData.id, infos);
                 }
-                MakeNeedItemIDsDic.Add(tdData.id, infos);
             }
         }
         /// <summary>

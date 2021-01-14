@@ -119,6 +119,9 @@ namespace GameWish.Game
         /// <param name="_bonus"></param>
         private void AnalysisBuildCondition(string _buildCondition)
         {
+            if (string.IsNullOrEmpty(_buildCondition))
+                return;
+
             string[] buildCondition = _buildCondition.Split(';');
             for (int i = 0; i < buildCondition.Length; i++)
             {
