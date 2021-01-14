@@ -47,12 +47,19 @@ namespace GameWish.Game
             taskList.Add(item);
         }
 
-        public void OnTaskFinished(int taskId)
+        public void OnTaskStarted(int taskId)
         {
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
-            mainTaskItem.taskState = TaskState.Unclaimed;
+            mainTaskItem.taskState = TaskState.Running;
             SetDataDirty();
         }
+
+        //public void OnTaskFinished(int taskId)
+        //{
+        //    CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
+        //    mainTaskItem.taskState = TaskState.Unclaimed;
+        //    SetDataDirty();
+        //}
 
         public void OnTaskRewardClaimed(int taskId)
         {

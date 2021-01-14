@@ -75,7 +75,7 @@ namespace GameWish.Game
             }
             foreach (var item in m_RewardFacilitys)
             {
-                characterMgr.GetCharacterController(item.CharacterID).SetState(CharacterStateID.Working);
+                characterMgr.GetCharacterController(item.CharacterID).SetState(CharacterStateID.Working, item.GetFacilityType());
                 EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType());
                 //var type = (FacilityType)item.FaciityTypeID;
                 //if (!m_CurrentWorkItem.ContainsKey(type))

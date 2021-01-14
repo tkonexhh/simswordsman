@@ -122,6 +122,11 @@ namespace GameWish.Game
             return m_CharacterDataWrapper.characterList;
         }
 
+        public List<CharacterController> GetAllCharacterInTask(int taskId)
+        {
+            return m_CharacterControllerList.Where(i => i.CharacterModel.GetCurTaskId() == taskId).ToList();
+        }
+
         public CharacterItem GetCharacterItem(int id)
         {
             return m_CharacterDataWrapper.GetCharacterItem(id);
@@ -240,7 +245,7 @@ namespace GameWish.Game
 
         #region Private Methods
 
-        private void InitData()
+        public void InitData()
         {
 
             InitCharacters();

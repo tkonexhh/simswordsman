@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -51,7 +51,7 @@ namespace GameWish.Game
             m_KongfuLibraryMgr = gameObject.AddComponent<KongfuLibraryMgr>();
             m_KongfuLibraryMgr.OnInit();
 
-            m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>();
+            m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ��ʱû��
             //m_MainTaskMgr.OnInit();
 
             m_CommonTaskMgr = gameObject.AddComponent<CommonTaskMgr>();
@@ -74,6 +74,8 @@ namespace GameWish.Game
 
             m_CharacterMgr.ExrInitData();
 
+            m_CommonTaskMgr.InitTaskList();
+           
             m_IsInited = true;
         }
 
