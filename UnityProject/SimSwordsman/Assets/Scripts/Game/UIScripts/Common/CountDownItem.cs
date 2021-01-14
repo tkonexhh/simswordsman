@@ -46,7 +46,7 @@ namespace GameWish.Game
                 TimeUpdateMgr.S.AddFinishedObservers(this);
                 return;
             }
-            Debug.LogError("倒计时" + SplicingTime(m_TickCount));
+            //Debug.LogError("倒计时" + SplicingTime(m_TickCount));
 
             OnSecondRefreshEvent?.Invoke(SplicingTime(m_TickCount));
         }

@@ -72,7 +72,7 @@ namespace GameWish.Game
 
             RefreshPanelText();
 
-            for (int i = 0; i < KongfuLibraryController.MaxSlotCount; i++)
+            for (int i = 0; i < m_ReadingSlotList.Count; i++)
             {
                 CreateCopyScripturesItem(m_ReadingSlotList[i]);
             }
@@ -111,6 +111,8 @@ namespace GameWish.Game
 
             m_UpgradeBtn.onClick.AddListener(() =>
             {
+                if (m_NextKongfuLibraryLevelInfo == null)
+                    return;
 
                 bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextKongfuLibraryLevelInfo.upgradeCoinCost);
 

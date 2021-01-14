@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         public List<EquipmentType> GetNextUnlockEquipmentType()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_PRACTIVEFIELD);
             List<EquipmentType> type = TDFacilityForgeHouseTable.GetLevelInfo(realLevel).GetCurEquipmentType();
             return type;
         }

@@ -46,7 +46,7 @@ namespace GameWish.Game
 
         public int GetNextCapacity()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_PRACTIVEFIELD);
             int capacity = TDFacilityPracticeFieldTable.GetLevelInfo(m_HouseID,realLevel).GetCurCapacity();
             return capacity;
         }
@@ -68,7 +68,7 @@ namespace GameWish.Game
 
         public int GetNextLevelUpSpeed()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_PRACTIVEFIELD);
             int levelUpSpeed = TDFacilityPracticeFieldTable.GetLevelInfo(m_HouseID,realLevel).GetCurLevelUpSpeed();
             return levelUpSpeed;
         }

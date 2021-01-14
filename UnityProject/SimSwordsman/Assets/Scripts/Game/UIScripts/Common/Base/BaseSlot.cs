@@ -30,18 +30,22 @@ namespace GameWish.Game
 			StartTime = soltDBData.startTime;
 		}
 
-		public BaseSlot(FacilityLevelInfo item, int index,int unlock)
+		public BaseSlot(int index,int unlock)
 		{
-			FacilityType = FacilityType.KongfuLibrary;
 			Index = index;
 			UnlockLevel = unlock;
-			int practiceFieldLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-			if (practiceFieldLevel >= item.level)
+			
+			CharacterItem = null;
+			StartTime = string.Empty;
+		}
+
+		public void InitSlotState(FacilityLevelInfo item)
+		{
+			int Level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+			if (Level >= item.level)
 				slotState = SlotState.Free;
 			else
 				slotState = SlotState.NotUnlocked;
-			CharacterItem = null;
-			StartTime = string.Empty;
 		}
 
 		/// <summary>

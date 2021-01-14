@@ -73,7 +73,6 @@ namespace GameWish.Game
             m_MainCamera.OnInit();
 
             m_CharacterMgr.ExrInitData();
-            m_FacilityMgr.ExrInitData();
 
             m_IsInited = true;
         }

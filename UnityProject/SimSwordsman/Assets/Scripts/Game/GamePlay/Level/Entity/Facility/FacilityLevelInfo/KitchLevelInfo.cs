@@ -32,14 +32,14 @@ namespace GameWish.Game
 
         public int GetNextFoodLimit()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_KITCHEN);
             int capacity = TDFacilityKitchenTable.GetLevelInfo(realLevel).GetCurFoodLimit();
             return capacity;
         }
 
         public int GetNextFoodAddSpeed()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_LEVEL);
+            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_KITCHEN);
             int capacity = TDFacilityKitchenTable.GetLevelInfo(realLevel).GetCurFoodAddSpeed();
             return capacity;
         }
