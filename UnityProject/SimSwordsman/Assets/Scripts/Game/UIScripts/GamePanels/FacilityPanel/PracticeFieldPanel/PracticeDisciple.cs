@@ -2,6 +2,7 @@ using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,22 +19,43 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_PracticeImg;
         [SerializeField]
+        private Text m_ArrangeDisciple;
+        [SerializeField]
+        private Text m_State;
+        [SerializeField]
         private Button m_PracticeBtn;
         private FacilityType m_CurFacilityType;
         private int m_CurLevel;
-        private PracticeField m_PracticeFieldInfo = null;
         private int m_CountDown = 0;
+        private List<Sprite> m_Sprites;
+        private PracticeFieldLevelInfo m_PracticeFieldLevelInfo = null;
+        private FacilityConfigInfo m_FacilityConfigInfo = null;
+        private PracticeField m_PracticeFieldInfo = null;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             EventSystem.S.Register(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
             BindAddListenEvent();
+            GetInformationForNeed();
+
             m_PracticeFieldInfo = t as PracticeField;
             m_CurFacilityType = (FacilityType)obj[0];
+            m_Sprites = (List<Sprite>)obj[1];
             RefreshFixedInfo();
             m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
             RefreshPracticeFieldState();
         }
 
+        private void GetInformationForNeed()
+        {
+            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
+            m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
+            m_PracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
+
+        }
+        private Sprite GetSprite(string name)
+        {
+            return m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
+        }
         private void HandleAddListenerEvent(int key, object[] param)
         {
 
@@ -83,21 +105,29 @@ namespace GameWish.Game
                     break;
                 case SlotState.Free:
                     m_PracticeBtn.enabled = true;
-                    m_CurPractice.text = "安排弟子";
-                    m_Time.text = "空闲";
+                    m_CurPractice.text = Define.COMMON_DEFAULT_STR;
+                    m_Time.text = Define.COMMON_DEFAULT_STR;
+                    //m_PracticeImg.sprite = ""
+                    m_ArrangeDisciple.text = "安排弟子";
+                    m_State.text = "空闲";
                     break;
                 case SlotState.NotUnlocked:
                     m_PracticeBtn.enabled = false;
-                    m_CurPractice.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
+                    m_State.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
+                    m_PracticeImg.sprite = GetSprite("Lock");
                     m_Time.text = Define.COMMON_DEFAULT_STR;
+                    m_CurPractice.text = Define.COMMON_DEFAULT_STR;
+                    m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case SlotState.Practice:
+                    m_PracticeBtn.enabled = false;
+                    m_State.text = Define.COMMON_DEFAULT_STR;
+                    m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     RefreshFixedInfo();
                     m_CurPractice.text = "当前训练:" + m_PracticeFieldInfo.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());
                     CreateCountDown();
                     //TimeRemaining(m_PracticeFieldInfo.StartTime);
-                    m_PracticeBtn.enabled = true;
                     break;
                 default:
                     break;

@@ -125,8 +125,6 @@ namespace GameWish.Game
         {
             base.OnClose();
         }
-      
-
 
         /// <summary>
         /// 刷新按钮文本信息
@@ -135,13 +133,6 @@ namespace GameWish.Game
         {
             m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_CoinValue.text = Define.RIDE + m_CurFacilityLevelInfo.upgradeCoinCost;
-            
-
-
-            
-           
-
-
             //m_FacilitiesName.text = m_CurFacilityConfigInfo.name;
             //m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
             //bool goldMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.GoldMedal);

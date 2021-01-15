@@ -29,6 +29,11 @@ namespace GameWish.Game
             m_LevelUpSpeed = tdData.levelUpSpeed;
         }
 
+        public int GetCurExp()
+        {
+            return m_CurLevelUpSpeed;
+        }
+
         public int GetCurCapacity()
         {
             return m_CurCapacity;
