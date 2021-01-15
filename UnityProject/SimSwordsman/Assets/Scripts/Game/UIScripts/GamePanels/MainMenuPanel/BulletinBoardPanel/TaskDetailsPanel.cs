@@ -12,15 +12,25 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_TaskCont;
         [SerializeField]
-        private Text m_RewardValueOne;
+        private Text m_RewardValueOne;     
         [SerializeField]
-        private Text m_RewardValueTwo;
+        private Text m_EffectValue;
+        [SerializeField]
+        private Text m_SelectedEffectValue;
+        [SerializeField]
+        private Text m_Statue;
+
 
 
         [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
         private Button m_RefuseBtn;
+
+        [SerializeField]
+        private Transform m_SelectedTra;
+        [SerializeField]
+        private GameObject m_DiscipleItem;
 
         private SimGameTask m_CurTaskInfo;
 
