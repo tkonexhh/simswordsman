@@ -291,7 +291,7 @@ namespace GameWish.Game
 
         private string GetPrefabName(int id)
         {
-            return "Prefabs/Character/Character1";
+            return "Prefabs/Character1";
         }
 
         private Vector3 GetSpawnPos(CharacterStateID initState)
