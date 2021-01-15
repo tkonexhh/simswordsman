@@ -17,14 +17,12 @@ namespace GameWish.Game
             base.OnClicked();
 
             Debug.Log("PatrolRoom is clicked");
-
         }
 
         protected override void OpenUIElement()
         {
             base.OpenUIElement();
-            //UIMgr.S.OpenPanel(UIID.PatrolRoom);
+            UIMgr.S.OpenPanel(UIID.PatrolRoomPanel, facilityType);
         }
     }
-
 }

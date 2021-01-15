@@ -289,6 +289,7 @@ namespace GameWish.Game
         /// <param name="type"></param>
         public void GetReward(FacilityType type)
         {
+            //这里应当有铜钱散落飞到铜钱处的效果
             GameDataMgr.S.GetPlayerData().AddCoinNum(lobbyTable.workPay);
             //从奖励列表里移除
             for (int i = m_RewardFacilitys.Count - 1; i >= 0; i--)
@@ -317,9 +318,8 @@ namespace GameWish.Game
             //派遣弟子
             var character = RandomCharacterWorkFor();
             if (character == null)
-            {
                 return false;
-            }
+
             CountdownSystem.S.StartCountdownerWithSec(string.Format("FacilityWorking,{0}", type.ToString()), character.id, lobbyTable.workTime);
             return true;
         }

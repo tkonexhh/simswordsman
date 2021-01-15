@@ -20,6 +20,13 @@ namespace GameWish.Game
         GuideEventTrigger,
         OnSignSuccess,
 
+        #region 新手引导
+        OnFirstGuide,
+        GuideDelayStart,
+
+
+        #endregion
+
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,
@@ -68,7 +75,10 @@ namespace GameWish.Game
         /// <summary>
         /// 刷新功夫坑位的信息
         /// </summary>
-        OnKungfuSoltInfo,
+        OnRefresKungfuSoltInfo,
+
+        //PatrolRoom
+        OnRefresPatrolSoltInfo,
 
         //Battle
         OnEnterBattle,

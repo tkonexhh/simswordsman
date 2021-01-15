@@ -44,7 +44,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
 
-            EventSystem.S.Register(EventID.OnKungfuSoltInfo, HandleAddListenEvent);
+            EventSystem.S.Register(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
 
             BindAddListenerEvent();
         }
@@ -168,7 +168,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-            EventSystem.S.UnRegister(EventID.OnKungfuSoltInfo, HandleAddListenEvent);
+            EventSystem.S.UnRegister(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
         }
     }
 

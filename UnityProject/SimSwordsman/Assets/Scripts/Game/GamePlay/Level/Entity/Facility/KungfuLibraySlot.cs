@@ -9,9 +9,7 @@ namespace GameWish.Game
 {
     public class KungfuLibraySlot: BaseSlot
     {
-        private int slotLevel = 1;
-
-        public KungfuLibraySlot(kungfuSoltDBData soltDBData):base(soltDBData)
+        public KungfuLibraySlot(KungfuSoltDBData soltDBData):base(soltDBData)
         {
             if (slotState == SlotState.CopyScriptures)
                 InitTimerUpdate();
@@ -94,7 +92,7 @@ namespace GameWish.Game
             CharacterItem = null;
             StartTime = string.Empty;
             GameDataMgr.S.GetClanData().KungfuTrainingIsOver(this);
-            EventSystem.S.Send(EventID.OnKungfuSoltInfo, this);
+            EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, this);
         }
     }
 }

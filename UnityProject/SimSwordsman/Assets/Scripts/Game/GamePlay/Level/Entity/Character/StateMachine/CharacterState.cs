@@ -42,6 +42,10 @@ namespace GameWish.Game
         /// 干活
         /// </summary>
         Working,
+        /// <summary>
+        /// 巡逻
+        /// </summary>
+        Patrol,
     }
 
 

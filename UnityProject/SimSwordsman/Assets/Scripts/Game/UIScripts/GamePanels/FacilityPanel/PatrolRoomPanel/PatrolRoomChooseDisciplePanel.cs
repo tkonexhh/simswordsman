@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class KungfuChooseDisciplePanel : AbstractAnimPanel
+	public class PatrolRoomChooseDisciplePanel : AbstractAnimPanel
 	{
         [SerializeField]
         private Button m_CloseBtn;
@@ -19,7 +19,7 @@ namespace GameWish.Game
         private FacilityType m_CurFacilityType;
         private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
-        private KungfuLibraySlot m_KungfuLibraySlotInfo = null;
+        private PatrolRoomSlot m_PatrolRoomSlotInfo = null;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -30,7 +30,7 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             BindAddListenerEvent();
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_KungfuLibraySlotInfo = (KungfuLibraySlot)args[0];
+            m_PatrolRoomSlotInfo = (PatrolRoomSlot)args[0];
             m_CurFacilityType = (FacilityType)args[1];
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             GetInformationForNeed();
@@ -71,8 +71,8 @@ namespace GameWish.Game
         private void AddListenerBtn(object obj)
         {
             CharacterItem characterItem = obj as CharacterItem;
-            m_KungfuLibraySlotInfo.SetCharacterItem(characterItem, SlotState.CopyScriptures, m_CurFacilityType);
-            EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, m_KungfuLibraySlotInfo);
+            m_PatrolRoomSlotInfo.SetCharacterItem(characterItem, SlotState.Patrol, m_CurFacilityType);
+            EventSystem.S.Send(EventID.OnRefresPatrolSoltInfo, m_PatrolRoomSlotInfo);
             OnPanelHideComplete();
         }
     }

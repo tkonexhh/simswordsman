@@ -263,6 +263,12 @@ namespace GameWish.Game
 
         #endregion
 
+        #region PatrolRoom
+        public List<PatrolRoomInfo> GetPatrolRoomLevelInfoList(FacilityType facilityType)
+        {
+            return TDFacilityPatrolRoomTable.GetPatrolRoomLevelInfoList(facilityType);
+        }
+        #endregion
         /// <summary>
         /// Get facility config info
         /// </summary>

@@ -7,28 +7,6 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum SlotState
-    {
-        None,
-        /// <summary>
-        /// 空闲中
-        /// </summary>
-        Free,
-        /// <summary>
-        /// 未解锁
-        /// </summary>
-        NotUnlocked,
-        /// <summary>
-        /// 抄经中
-        /// </summary>
-        CopyScriptures,
-        /// <summary>
-        /// 练功中
-        /// </summary>
-        Practice,
-    }
-
-
     public class PracticeDisciple : MonoBehaviour,ItemICom
     {
         [SerializeField]
