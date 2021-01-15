@@ -21,7 +21,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_CheckpointItem;
 
-        private List<Button> m_CheckpointBtns = null;
+        //private List<Button> m_CheckpointBtns = null;
 
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private Dictionary<int, LevelConfigInfo> m_CurChapterAllLevelConfigInfo = null;
@@ -100,7 +100,8 @@ namespace GameWish.Game
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
-            foreach (var item in m_CheckpointBtns)
+
+            foreach (var item in m_LevelBtnDic.Values)
             {
                 item.onClick.AddListener(() =>
                 {

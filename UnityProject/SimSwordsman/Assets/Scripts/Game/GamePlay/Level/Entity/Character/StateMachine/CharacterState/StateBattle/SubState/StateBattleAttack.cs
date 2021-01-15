@@ -27,10 +27,10 @@ namespace GameWish.Game
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
             string atkName = "01_taizuchangquan";//"attack";
-            if (m_Controller.CharacterCamp == CharacterCamp.EnemyCamp)
-            {
-                atkName = "attack1";
-            }
+            //if (m_Controller.CharacterCamp == CharacterCamp.EnemyCamp)
+            //{
+            //    atkName = "attack1";
+            //}
 
             m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
         }

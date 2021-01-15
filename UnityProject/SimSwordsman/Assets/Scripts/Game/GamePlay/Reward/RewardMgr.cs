@@ -68,7 +68,8 @@ namespace GameWish.Game
         {
             RewardItemType rewardItemType;
             string[] sp = param.Split('|');
-            if (!Enum.TryParse(sp[0], out rewardItemType)) return null;
+            if (!Enum.TryParse(sp[0], out rewardItemType))
+                return null;
             switch (rewardItemType)
             {
                 case RewardItemType.Item:
@@ -77,17 +78,29 @@ namespace GameWish.Game
                 case RewardItemType.Kongfu:
                 case RewardItemType.Medicine:
                 case RewardItemType.Food:
-                    return CreateReward(rewardItemType, int.Parse(sp[1]), int.Parse(sp[2]));
+                    return CreateReward(rewardItemType, int.Parse(sp[1]), GetRewardCount(sp[2]));
                 case RewardItemType.Coin:
                 case RewardItemType.Exp_Role:
                 case RewardItemType.Exp_Kongfu:
-                    return CreateReward(rewardItemType, 0, int.Parse(sp[1]));
+                    return CreateReward(rewardItemType, 0, GetRewardCount(sp[1]));
                 default:
                     break;
             }
             return null;
         }
-
+        string[] temp;
+        int GetRewardCount(string param)
+        {
+            if (param.Contains("_"))
+            {
+                temp = param.Split('_');
+                return RandomHelper.Range(int.Parse(temp[0]), int.Parse(temp[1]) + 1);
+            }
+            else
+            {
+                return int.Parse(param);
+            }
+        }
 
         public RewardBase GetRewardBase(string type, int id, int count)
         {

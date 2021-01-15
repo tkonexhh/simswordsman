@@ -40,7 +40,8 @@ namespace GameWish.Game
             m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
             if (m_TaskCollectableItem != null)
             {
-                Vector3 pos = m_TaskCollectableItem.transform.position;
+                Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
+                Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
                 m_Controller.MoveTo(pos, OnReachDestination);
             }
             else
@@ -89,8 +90,9 @@ namespace GameWish.Game
 
             string animName = GetCollectResAnim();
             m_Controller.CharacterView.PlayAnim(animName, true, null);
+            m_Controller.FaceTo(m_TaskCollectableItem.transform.position.x);
 
-            m_TaskCollectableItem?.OnStartCollected();
+            m_TaskCollectableItem?.OnStartCollected(m_Controller.GetPosition());
         }
 
         private string GetCollectResAnim()
