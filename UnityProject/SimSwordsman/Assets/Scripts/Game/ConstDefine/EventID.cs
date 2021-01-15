@@ -68,7 +68,10 @@ namespace GameWish.Game
         /// <summary>
         /// 刷新功夫坑位的信息
         /// </summary>
-        OnKungfuSoltInfo,
+        OnRefresKungfuSoltInfo,
+
+        //PatrolRoom
+        OnRefresPatrolSoltInfo,
 
         //Battle
         OnEnterBattle,

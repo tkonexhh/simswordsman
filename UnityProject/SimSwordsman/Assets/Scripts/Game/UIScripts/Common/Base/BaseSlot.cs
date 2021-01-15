@@ -5,6 +5,32 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
+	public enum SlotState
+	{
+		None,
+		/// <summary>
+		/// 空闲中
+		/// </summary>
+		Free,
+		/// <summary>
+		/// 未解锁
+		/// </summary>
+		NotUnlocked,
+		/// <summary>
+		/// 抄经中
+		/// </summary>
+		CopyScriptures,
+		/// <summary>
+		/// 巡逻中
+		/// </summary>
+		Patrol,
+		/// <summary>
+		/// 练功中
+		/// </summary>
+		Practice,
+	}
+
+
 	public class BaseSlot 
 	{
 		public int Index { set; get; }

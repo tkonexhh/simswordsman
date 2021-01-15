@@ -17,6 +17,8 @@ namespace GameWish.Game
             PatrolRoomInfo patrolLevelInfo = new PatrolRoomInfo();
             patrolLevelInfo.Warp(levelInfo);
 
+            patrolLevelInfo.InitPatrolRoomInfo(tdData);
+
             if (!levelInfoDic.ContainsKey(tdData.level))
             {
                 levelInfoDic.Add(tdData.level, patrolLevelInfo);
@@ -45,6 +47,24 @@ namespace GameWish.Game
             }
 
             return levelInfo;
+        }
+
+        internal static List<PatrolRoomInfo> GetPatrolRoomLevelInfoList(FacilityType facilityType)
+        {
+            List<PatrolRoomInfo> oatrolRoomInfo = new List<PatrolRoomInfo>();
+            oatrolRoomInfo.AddRange(levelInfoDic.Values);
+            return oatrolRoomInfo;
+        }
+
+        public static List<PatrolRoomInfo> GetSameSoltList(PatrolRoomSlot levelInfo)
+        {
+            List<PatrolRoomInfo> infos = new List<PatrolRoomInfo>();
+            foreach (var item in levelInfoDic.Values)
+            {
+                if (item.GetCurCapacity() == levelInfo.Index)
+                    infos.Add(item);
+            }
+            return infos;
         }
     }
 }

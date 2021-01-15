@@ -29,7 +29,7 @@ namespace GameWish.Game
 
         private void InitKungfuField()
         {
-            List<kungfuSoltDBData> kungfuLibraryDBDatas = GameDataMgr.S.GetClanData().GetKungfuLibraryData();
+            List<KungfuSoltDBData> kungfuLibraryDBDatas = GameDataMgr.S.GetClanData().GetKungfuLibraryData();
 
             if (kungfuLibraryDBDatas.Count == 0)
             {
@@ -60,7 +60,7 @@ namespace GameWish.Game
                     {
                         i.Warp(item);
                         GameDataMgr.S.GetClanData().RefresKungfuDBData(i);
-                        EventSystem.S.Send(EventID.OnKungfuSoltInfo, i);
+                        EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, i);
                     }
                 }
             });

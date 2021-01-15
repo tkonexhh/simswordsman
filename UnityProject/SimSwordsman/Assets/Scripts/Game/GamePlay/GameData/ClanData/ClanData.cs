@@ -13,6 +13,7 @@ namespace GameWish.Game
         public FacilityDbData ownedFacilityData = new FacilityDbData();
         public PracticeFieldData ownedPracticeFieldData = new PracticeFieldData();
         public KungfuLibraryData ownedKungfuLibraryData = new KungfuLibraryData();
+        public PatrolRoomData ownedPatrolRoomData = new PatrolRoomData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
         public KongfuData kongfuData = new KongfuData();
@@ -86,7 +87,7 @@ namespace GameWish.Game
         #endregion
 
         #region KungfuLibrary
-        public List<kungfuSoltDBData> GetKungfuLibraryData()
+        public List<KungfuSoltDBData> GetKungfuLibraryData()
         {
             return ownedKungfuLibraryData.GetKungfuLibrayData();
         }
@@ -109,7 +110,30 @@ namespace GameWish.Game
             SetDataDirty();
         }
         #endregion
+        #region PatrolRoom
+        public List<PatrolRoomSoltDBData> GetPatrolRoomData()
+        {
+            return ownedPatrolRoomData.GetPatrolRoomData();
+        }
+        public void AddPatrolRoomData(PatrolRoomSlot patrolRoomSlot)
+        {
+            ownedPatrolRoomData.AddPatrolRoomData(patrolRoomSlot);
 
+            SetDataDirty();
+        }
+        public void RefresPatrolRoomDBData(PatrolRoomSlot patrolRoomSlot)
+        {
+            ownedPatrolRoomData.RefresDBData(patrolRoomSlot);
+
+            SetDataDirty();
+        }
+        public void PatrolRoomTrainingIsOver(PatrolRoomSlot patrolRoomSlot)
+        {
+            ownedPatrolRoomData.TrainingIsOver(patrolRoomSlot);
+
+            SetDataDirty();
+        }
+        #endregion
 
 
 

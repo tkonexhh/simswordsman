@@ -9,10 +9,10 @@ namespace GameWish.Game
 {
 	public class KungfuLibraryData  
 	{
-		public List<kungfuSoltDBData> kungfuLibraryDBDatas = new List<kungfuSoltDBData>();
+		public List<KungfuSoltDBData> kungfuLibraryDBDatas = new List<KungfuSoltDBData>();
 		public KungfuLibraryData() { }
 
-		public List<kungfuSoltDBData> GetKungfuLibrayData()
+		public List<KungfuSoltDBData> GetKungfuLibrayData()
 		{
 			return kungfuLibraryDBDatas;
 		}
@@ -22,9 +22,9 @@ namespace GameWish.Game
 		/// <param name="kungfuLibraySlot"></param>
 		public void AddKungfuLibrayData(KungfuLibraySlot kungfuLibraySlot)
 		{
-			kungfuSoltDBData kungfuLibraySlotDB = kungfuLibraryDBDatas.Where(i => i.facilityType == kungfuLibraySlot.FacilityType && i.soltID == kungfuLibraySlot.Index).FirstOrDefault();
+			KungfuSoltDBData kungfuLibraySlotDB = kungfuLibraryDBDatas.Where(i => i.facilityType == kungfuLibraySlot.FacilityType && i.soltID == kungfuLibraySlot.Index).FirstOrDefault();
 			if (kungfuLibraySlotDB == null)
-				kungfuLibraryDBDatas.Add(new kungfuSoltDBData(kungfuLibraySlot));
+				kungfuLibraryDBDatas.Add(new KungfuSoltDBData(kungfuLibraySlot));
 		}
 
 		public void RefreshPracticeState(PracticeField kungfuLibraySlot)
@@ -40,24 +40,24 @@ namespace GameWish.Game
 		/// <param name="kungfuLibraySlot"></param>
 		public void RefresDBData(KungfuLibraySlot kungfuLibraySlot)
 		{
-			kungfuSoltDBData kungfuLibraySlotDB = kungfuLibraryDBDatas.Where(i => i.facilityType == kungfuLibraySlot.FacilityType && i.soltID == kungfuLibraySlot.Index).FirstOrDefault();
+			KungfuSoltDBData kungfuLibraySlotDB = kungfuLibraryDBDatas.Where(i => i.facilityType == kungfuLibraySlot.FacilityType && i.soltID == kungfuLibraySlot.Index).FirstOrDefault();
 			if (kungfuLibraySlotDB != null)
 				kungfuLibraySlotDB.RefresDBData(kungfuLibraySlot);
 		}
 
 		public void TrainingIsOver(KungfuLibraySlot kungfuLibraySlot)
 		{
-			kungfuSoltDBData kungfuLibraySlotDB = kungfuLibraryDBDatas.Where(i => i.facilityType == kungfuLibraySlot.FacilityType && i.soltID == kungfuLibraySlot.Index).FirstOrDefault();
+			KungfuSoltDBData kungfuLibraySlotDB = kungfuLibraryDBDatas.Where(i => i.facilityType == kungfuLibraySlot.FacilityType && i.soltID == kungfuLibraySlot.Index).FirstOrDefault();
 			if (kungfuLibraySlotDB != null)
 				kungfuLibraySlotDB.TrainingIsOver();
 		}
 	}
 
 	[Serializable]
-	public class kungfuSoltDBData: SoltDBDataBase
+	public class KungfuSoltDBData: SoltDBDataBase
 	{
-		public kungfuSoltDBData() { }
-		public kungfuSoltDBData(KungfuLibraySlot kungfuLibraySlot) : base(kungfuLibraySlot)
+		public KungfuSoltDBData() { }
+		public KungfuSoltDBData(KungfuLibraySlot kungfuLibraySlot) : base(kungfuLibraySlot)
 		{
 		}
 	}

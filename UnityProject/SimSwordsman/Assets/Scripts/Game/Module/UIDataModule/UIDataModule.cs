@@ -108,6 +108,10 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.ForgeHousePanel, null, "GamePanels/FacilityPanel/ForgeHousePanel/ForgeHousePanel");
 
             UIDataTable.AddPanelData(UIID.BaicaohuPanel, null, "GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel");
+            
+            UIDataTable.AddPanelData(UIID.PatrolRoomPanel, null, "GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomPanel");
+            UIDataTable.AddPanelData(UIID.PatrolRoomChooseDisciplePanel, null, "GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomChooseDisciplePanel");
+
 
             UIDataTable.AddPanelData(UIID.SectNamePanel, null, "GamePanels/SectNamePanel/SectNamePanel");
 
