@@ -20,6 +20,13 @@ namespace GameWish.Game
         GuideEventTrigger,
         OnSignSuccess,
 
+        #region 新手引导
+        OnFirstGuide,
+        GuideDelayStart,
+
+
+        #endregion
+
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,

@@ -19,6 +19,13 @@ namespace GameWish.Game
         /// </summary>
         MyFloatMessagePanel,
         GetRewardPanel,
+        /// <summary>
+        /// 新手引导
+        /// </summary>
+        MyGuidePanel,
+        DialogPanel,
+        WorldGuideClickPanel,
+        GuideMaskPanel,
 
 
         LobbyPanel,
