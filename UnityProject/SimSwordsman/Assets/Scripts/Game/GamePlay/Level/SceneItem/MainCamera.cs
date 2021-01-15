@@ -4,6 +4,7 @@ using HedgehogTeam.EasyTouch;
 using UnityEngine;
 using BitBenderGames;
 using Qarth;
+using System;
 
 namespace GameWish.Game
 {
@@ -19,6 +20,8 @@ namespace GameWish.Game
 
         private CameraProperty m_BattleProperty;
         private CameraProperty m_SimProperty;
+
+        private bool m_CameraMoveSwitch = true;
         #region IMgr
 
         public void OnInit()
@@ -64,6 +67,9 @@ namespace GameWish.Game
         public void On_TouchDown(Gesture gesture)
         {
 #if UNITY_EDITOR
+            if (!m_CameraMoveSwitch)
+                return;
+
             float x = transform.position.x - gesture.deltaPosition.x * m_MoveSpeed;
             float y = transform.position.y - gesture.deltaPosition.y * m_MoveSpeed;
 
@@ -94,6 +100,29 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EventID.OnEnterBattle, HandleEvent);
             EventSystem.S.Register(EventID.OnExitBattle, HandleEvent);
+            EventSystem.S.Register(EventID.InGuideProgress, CameraMoveWwitch);
+        }
+
+        private void CameraMoveWwitch(int key, object[] param)
+        {
+            if (param.Length > 0)
+            {
+                m_CameraMoveSwitch = (bool)param[0];
+                if (m_CameraMoveSwitch)
+                {
+                    if (!m_TouchInput.enabled)
+                        m_TouchInput.enabled = true;
+                    if (!m_MobileTouchCamera.enabled)
+                        m_MobileTouchCamera.enabled = true;
+                }
+                else
+                {
+                    if (m_TouchInput.enabled)
+                        m_TouchInput.enabled = false;
+                    if (m_MobileTouchCamera.enabled)
+                        m_MobileTouchCamera.enabled = false;
+                }
+            }
         }
 
         private void UnregisterEvents()
