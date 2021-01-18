@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
     public class EnemyLoader : TSingleton<EnemyLoader>
     {
-        private List<AddressableGameObjectLoader> m_EnemyLoaderDic = new List<AddressableGameObjectLoader>();
+        private List<AddressableGameObjectLoader> m_EnemyLoaderList = new List<AddressableGameObjectLoader>();
 
         public void LoadEnemySync(int id, Action<GameObject> onLoadDone)
         {
@@ -17,12 +17,21 @@ namespace GameWish.Game
             AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
             loader.InstantiateAsync(prefabName, (obj) =>
             {
-                m_EnemyLoaderDic.Add(loader);
+                m_EnemyLoaderList.Add(loader);
 
                 onLoadDone?.Invoke(obj);
             });
         }
 
+        public void ReleaseAll()
+        {
+            m_EnemyLoaderList.ForEach(i => 
+            {
+                i.Release();
+            });
+
+            m_EnemyLoaderList.Clear();
+        }
 
         private string GetPrefabName(int id)
         {

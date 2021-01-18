@@ -222,6 +222,8 @@ namespace GameWish.Game
             m_FightGroupList.ForEach(i => i.Release());
             m_FightGroupList.Clear();
 
+            EnemyLoader.S.ReleaseAll();
+
             m_BattleField.OnBattleEnd();
         }
 
