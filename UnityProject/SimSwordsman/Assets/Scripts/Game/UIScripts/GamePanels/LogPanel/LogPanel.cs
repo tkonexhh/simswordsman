@@ -35,8 +35,14 @@ namespace GameWish.Game
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_LogTitle.text = (string)args[0];
             m_LogCont.text = (string)args[1];
-            m_AcceptBtn.transform.GetComponentInChildren<Text>().text = (string)args[2];
-            m_RefuseBtn.transform.GetComponentInChildren<Text>().text = (string)args[3];
+            if (args.Length > 2)
+            {
+                m_AcceptBtn.transform.GetComponentInChildren<Text>().text = (string)args[2];
+            }
+            if (args.Length > 3)
+            {
+                m_RefuseBtn.transform.GetComponentInChildren<Text>().text = (string)args[3];
+            }
         }
 
         private void BindAddListenerEvent()
