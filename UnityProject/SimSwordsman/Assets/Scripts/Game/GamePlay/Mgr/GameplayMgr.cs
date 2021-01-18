@@ -33,7 +33,7 @@ namespace GameWish.Game
             // Init Managers
             GameDataMgr.S.Init();
 
-            //AssetPreloaderMgr.S.Init();
+            AssetPreloaderMgr.S.Init();
 
             InputMgr.S.Init();
 
@@ -75,9 +75,7 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Clear();
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(2);
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
-            //客人来访系统
-            VisitorSystem.S.Init();
-
+  
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
                 GameDataMgr.S.GetPlayerData().firstPlayTime = DateTime.Now.ToString();
@@ -128,7 +126,7 @@ namespace GameWish.Game
 
             if (m_IsGameStart == false)
             {
-                //if (AssetPreloaderMgr.S.IsPreloaderDone())
+                if (AssetPreloaderMgr.S.IsPreloaderDone())
                 {
                     m_IsGameStart = true;
                     //Timer.S.OnSingletonInit();
@@ -139,6 +137,9 @@ namespace GameWish.Game
 
                     MusicMgr.S.PlayBgMusic();
                     MainGameMgr.S.OnInit();
+                    //客人来访系统
+                    VisitorSystem.S.Init();
+
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();

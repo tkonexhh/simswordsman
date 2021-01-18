@@ -115,7 +115,6 @@ namespace GameWish.Game
         /// 功夫升级事件
         /// </summary>
         OnKongfuLibraryUpgrade,
-
     }
 
 }

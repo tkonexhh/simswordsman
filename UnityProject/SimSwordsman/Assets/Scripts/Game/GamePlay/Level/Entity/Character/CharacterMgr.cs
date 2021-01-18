@@ -14,7 +14,6 @@ namespace GameWish.Game
 
         private List<CharacterController> m_CharacterControllerList = new List<CharacterController>();
 
-
         private Vector3 m_CharacterSpawnPos = new Vector3(-5.5f, -4.2f, 0);
 
         public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
@@ -204,12 +203,22 @@ namespace GameWish.Game
             if (isSpawned)
                 return;
 
-            string prefabName = GetPrefabName(id);
-            GameObject prefab = Resources.Load(prefabName) as GameObject;
-            GameObject obj = GameObject.Instantiate(prefab);
-            //Vector3 spawnPos = GetSpawnPos(initState); 
-            //obj.transform.position = spawnPos;
+            GameObject go = CharacterLoader.S.GetCharacterGo(id);
+            if (go != null)
+            {
+                OnCharacterLoaded(go, id, initState);
+            }
+            else
+            {
+                CharacterLoader.S.LoadCharacterSync(id, (obj) =>
+                {
+                    OnCharacterLoaded(obj, id, initState);
+                });
+            }
+        }
 
+        private void OnCharacterLoaded(GameObject obj, int id, CharacterStateID initState)
+        {
             CharacterView characterView = obj.GetComponent<CharacterView>();
             CharacterController controller = new CharacterController(id, characterView, initState);
             m_CharacterControllerList.Add(controller);
@@ -222,7 +231,29 @@ namespace GameWish.Game
             Vector3 spawnPos = GetSpawnPos(controller.CurState);
             obj.transform.position = spawnPos;
         }
+        //private void LoadCharacterSync(CharacterItem characterItem, Action onLoadDone)
+        //{
+        //    int id = characterItem.id;
+        //    CharacterStateID initState = characterItem.characterStateId;
+        //    string prefabName = GetPrefabName(id);
 
+        //    AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+        //    loader.InstantiateAsync(prefabName, (obj) => 
+        //    {
+        //        CharacterView characterView = obj.GetComponent<CharacterView>();
+        //        CharacterController controller = new CharacterController(id, characterView, initState);
+        //        m_CharacterControllerList.Add(controller);
+        //        m_CharacterLoaderDic.Add(controller, loader);
+
+        //        if (initState == CharacterStateID.None)
+        //        {
+        //            controller.SetState(CharacterStateID.EnterClan);
+        //        }
+
+        //        Vector3 spawnPos = GetSpawnPos(controller.CurState);
+        //        obj.transform.position = spawnPos;
+        //    });
+        //}
         /// <summary>
         /// Disciple recruit
         /// </summary>
@@ -289,10 +320,6 @@ namespace GameWish.Game
             return isOwned;
         }
 
-        private string GetPrefabName(int id)
-        {
-            return "Prefabs/Character1";
-        }
 
         private Vector3 GetSpawnPos(CharacterStateID initState)
         {
