@@ -211,7 +211,7 @@ namespace GameWish.Game
     public class KungfuItemDbData : ItemDBData
     {
         public KungfuItemDbData() { }
-        public KungfuType KungfuType { set; get; }
+        public KongfuType KungfuType { set; get; }
 
 
         public KungfuItemDbData(KungfuItem _kungfuItem)

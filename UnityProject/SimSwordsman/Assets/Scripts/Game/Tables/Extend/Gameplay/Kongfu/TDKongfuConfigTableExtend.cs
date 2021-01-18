@@ -9,12 +9,12 @@ namespace GameWish.Game
 {
     public partial class TDKongfuConfigTable
     {
-        public static Dictionary<KungfuType, KungfuConfigInfo> m_KungfuConfigDic = new Dictionary<KungfuType, KungfuConfigInfo>();
+        public static Dictionary<KongfuType, KungfuConfigInfo> m_KungfuConfigDic = new Dictionary<KongfuType, KungfuConfigInfo>();
         static void CompleteRowAdd(TDKongfuConfig tdData)
         {
-            if (!m_KungfuConfigDic.ContainsKey((KungfuType)tdData.id))
+            if (!m_KungfuConfigDic.ContainsKey((KongfuType)tdData.id))
             {
-                m_KungfuConfigDic.Add((KungfuType)tdData.id, new KungfuConfigInfo(tdData)); ;
+                m_KungfuConfigDic.Add((KongfuType)tdData.id, new KungfuConfigInfo(tdData)); ;
             }
         }
 
@@ -24,7 +24,7 @@ namespace GameWish.Game
         /// <param name="kungfuType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static float GetAddition(KungfuType kungfuType,int level)
+        public static float GetAddition(KongfuType kungfuType,int level)
         {
             if (m_KungfuConfigDic.ContainsKey(kungfuType))
                 return m_KungfuConfigDic[kungfuType].GetAddition(level);
@@ -35,7 +35,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="kungfuType"></param>
         /// <returns></returns>
-        public static KungfuConfigInfo GetKungfuConfigInfo(KungfuType kungfuType)
+        public static KungfuConfigInfo GetKungfuConfigInfo(KongfuType kungfuType)
         {
             if (m_KungfuConfigDic.ContainsKey(kungfuType))
                 return m_KungfuConfigDic[kungfuType];
@@ -66,19 +66,21 @@ namespace GameWish.Game
         /// <summary>
         /// 功夫id KungfuType和表中ID对应
         /// </summary>
-        public KungfuType KungfuType { set; get; }
+        public KongfuType KungfuType { set; get; }
         public string Name { set; get; }
         public KungfuQuality KungfuQuality { set; get; }
         public string Desc { set; get; }
         public Dictionary<int, float> AdditionRatioDic = new Dictionary<int, float>();
         public Dictionary<int, int> UpgradeExperienceDic = new Dictionary<int, int>();
+        public string AnimName;
 
         public KungfuConfigInfo(TDKongfuConfig tdData)
         {
-            KungfuType = (KungfuType)tdData.id;
+            KungfuType = (KongfuType)tdData.id;
             Name = tdData.kongfuName;
             Desc = tdData.desc;
             KungfuQuality = EnumUtil.ConvertStringToEnum<KungfuQuality>(tdData.quality);
+            AnimName = tdData.animationName;
 
             string[] additionStr = tdData.atkRange.Split(';');
             for (int i = 0; i < additionStr.Length; i++)

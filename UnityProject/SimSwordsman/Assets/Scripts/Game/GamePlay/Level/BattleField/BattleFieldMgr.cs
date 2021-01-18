@@ -188,7 +188,7 @@ namespace GameWish.Game
 
             enemies.ForEach(i =>
             {
-                SpawnEnemyCharacter(i.ID, i.Atk);
+                SpawnEnemyCharacter(i.ConfigId, i.Atk);
             });
 
         }

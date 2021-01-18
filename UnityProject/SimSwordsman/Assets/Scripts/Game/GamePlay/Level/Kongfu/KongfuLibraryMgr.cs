@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class KongfuLibraryMgr : MonoBehaviour, IMgr
     {
-        private List<KungfuType> m_UnlockedKongfuList = new List<KungfuType>();
+        private List<KongfuType> m_UnlockedKongfuList = new List<KongfuType>();
 
         #region IMgr
         public void OnInit()
@@ -27,12 +27,12 @@ namespace GameWish.Game
 
         #region Public
 
-        public List<KungfuType> GetAllUnlockedKongfuList()
+        public List<KongfuType> GetAllUnlockedKongfuList()
         {
             return m_UnlockedKongfuList;
         }
 
-        public void UnlockKongfu(KungfuType kongfuType)
+        public void UnlockKongfu(KongfuType kongfuType)
         {
             if (!m_UnlockedKongfuList.Contains(kongfuType))
             {

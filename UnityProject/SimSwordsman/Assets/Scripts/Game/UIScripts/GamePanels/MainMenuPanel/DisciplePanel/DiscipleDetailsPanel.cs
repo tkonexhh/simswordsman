@@ -148,10 +148,10 @@ namespace GameWish.Game
                         CreateKungfu(KungfuLockState.Learned, GetKungfuSprite(item.CharacterKongfu), -1, item.CharacterKongfu);
                         break;
                     case KungfuLockState.NotLearning:
-                        CreateKungfu(KungfuLockState.NotLearning, FindSprite(KungfuType.WuLinMiJi.ToString())); ;
+                        CreateKungfu(KungfuLockState.NotLearning, FindSprite("WuLinMiJi")); ;
                         break;
                     case KungfuLockState.NotUnlocked:
-                        CreateKungfu(KungfuLockState.NotUnlocked, FindSprite(KungfuType.WuLinMiJi.ToString()), MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.LearnKongfu, item.Index));
+                        CreateKungfu(KungfuLockState.NotUnlocked, FindSprite("WuLinMiJi"), MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.LearnKongfu, item.Index));
                         break;
                     default:
                         break;

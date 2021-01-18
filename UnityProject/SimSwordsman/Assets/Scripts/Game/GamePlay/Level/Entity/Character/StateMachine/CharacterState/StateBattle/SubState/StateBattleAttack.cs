@@ -26,11 +26,9 @@ namespace GameWish.Game
             if (m_BattleState == null)
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
+            //string atkName = GetAnimName();
+
             string atkName = "01_taizuchangquan";//"attack";
-            //if (m_Controller.CharacterCamp == CharacterCamp.EnemyCamp)
-            //{
-            //    atkName = "attack1";
-            //}
 
             m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
         }
@@ -60,6 +58,29 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnBattleAtkEnd, m_Controller);
         }
 
+        private string GetAnimName()
+        {
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            {
+                List<KongfuType> kongfuList = m_Controller.CharacterModel.GetKongfuTypeList();
+                KongfuType kongfu = kongfuList[UnityEngine.Random.Range(0, kongfuList.Count)];
+                string animName = TDKongfuConfigTable.GetKungfuConfigInfo(kongfu).AnimName;
+                return animName;
+            }
+            else
+            {
+                EnemyInfo enemyInfo = TDEnemyConfigTable.GetEnemyInfo(m_Controller.CharacterId);
+                List<string> animNameList = enemyInfo.animNameList;
+                if (animNameList.Count > 0)
+                {
+                    return animNameList[UnityEngine.Random.Range(0, animNameList.Count)];
+                }
+
+                Log.e("Enemy anim list empty");
+
+                return string.Empty;
+            }
+        }
         #endregion
     }
 }
