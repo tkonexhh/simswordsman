@@ -15,16 +15,30 @@ namespace GameWish.Game
 
         public void InstantiateAsync(string name, Action<GameObject> callback)
         {
-            m_LoadCallback = callback;
+            try
+            {
+                m_LoadCallback = callback;
 
-            Addressables.InstantiateAsync(name).Completed += OnLoadDone;
+                Addressables.InstantiateAsync(name).Completed += OnLoadDone;
+            }
+            catch (Exception e)
+            {
+                Qarth.Log.e("InstantiateAsync error: " + e.Message.ToString() + " " + e.StackTrace);
+            }
         }
 
         public void Release()
         {
-            if (m_LoadHandler.Result != null)
+            try
             {
-                Addressables.ReleaseInstance(m_LoadHandler);
+                if (m_LoadHandler.Result != null)
+                {
+                    Addressables.ReleaseInstance(m_LoadHandler);
+                }
+            }
+            catch (Exception e)
+            {
+                Qarth.Log.e("Release addressable gameobject error: " + e.Message.ToString() + " " + e.StackTrace);
             }
         }
 

@@ -275,6 +275,10 @@ namespace GameWish.Game
             ownedCharacterData.AddKonfuExp(id, kongfuType, deltaExp);
         }
 
+        public List<CharacterItemDbData> GetAllCharacterList()
+        {
+            return ownedCharacterData.characterList;
+        }
         /// <summary>
         /// 
         /// </summary>

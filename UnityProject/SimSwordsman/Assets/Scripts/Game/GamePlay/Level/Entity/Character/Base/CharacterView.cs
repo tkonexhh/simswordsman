@@ -89,7 +89,7 @@ namespace GameWish.Game
 
         public void PlayDeadAnim()
         {
-            SpineHelper.PlayAnim(m_SpineAnim, "mining", false, null);
+            SpineHelper.PlayAnim(m_SpineAnim, "tumble", false, null);
         }
 
         public void MoveTo(Vector2 targetPos, System.Action callback)

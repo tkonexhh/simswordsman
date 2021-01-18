@@ -21,7 +21,15 @@ namespace GameWish.Game
         OnSignSuccess,
 
         #region 新手引导
-        OnFirstGuide,
+        OnGuideDialog1,
+        OnGuideTakeName,
+        OnGuideDialog2,
+        OnGuideBuileFacilityTrigger1,
+        OnGuideBuileFacilityPanelTrigger1,
+        OnGuideDialog3,
+        OnGuideClickLobbyTrigger1,
+        OnGuideClickRecruitTrigger1,
+
         GuideDelayStart,
         InGuideProgress,
 
@@ -115,7 +123,6 @@ namespace GameWish.Game
         /// 功夫升级事件
         /// </summary>
         OnKongfuLibraryUpgrade,
-
     }
 
 }
