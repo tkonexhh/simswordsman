@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Qarth;
+using System;
+
+namespace GameWish.Game
+{
+    public class EnemyLoader : TSingleton<EnemyLoader>
+    {
+        private List<AddressableGameObjectLoader> m_EnemyLoaderDic = new List<AddressableGameObjectLoader>();
+
+        public void LoadEnemySync(int id, Action<GameObject> onLoadDone)
+        {
+            string prefabName = GetPrefabName(id);
+
+            AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+            loader.InstantiateAsync(prefabName, (obj) =>
+            {
+                m_EnemyLoaderDic.Add(loader);
+
+                onLoadDone?.Invoke(obj);
+            });
+        }
+
+
+        private string GetPrefabName(int id)
+        {
+            return "Character2";
+        }
+    }
+
+}

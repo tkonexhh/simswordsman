@@ -39,7 +39,7 @@ namespace GameWish.Game
                     }
                 });
 
-            //m_Controller.CharacterView.PlayAnim("idle", OnAtkedAnimEnd);
+            m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, OnAtkedAnimEnd);
         }
 
         public override void Exit(IBattleStateHander handler)
@@ -63,6 +63,14 @@ namespace GameWish.Game
 
             m_BattleState.SetState(BattleStateID.Idle);
 
+        }
+
+        private string GetHurtAnimName()
+        {
+            //if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+                return "hurt_1";
+
+            //return "hurt";
         }
         #endregion
     }

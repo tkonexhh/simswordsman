@@ -44,6 +44,9 @@ namespace GameWish.Game
         //public List<CharacterController> OurNotFightingCharacterList { get => m_OurNotFightingCharacterList; }
         //public List<CharacterController> EnemyNotFightingCharacterList { get => m_EnemyNotFightingCharacterList; }
 
+        private int m_AllEnemyCount = 0;
+        private int m_LoadedEnemyCount = 0;
+
         #region IMgr
 
         public void OnInit()
@@ -178,6 +181,9 @@ namespace GameWish.Game
             m_IsBattleBegin = true;
             m_IsBattleEnd = false;
 
+            m_AllEnemyCount = enemies.Count;
+            m_LoadedEnemyCount = 0;
+
             SpawnOurCharacter(ourSelectedCharacters);
 
             enemies.ForEach(i =>
@@ -185,10 +191,11 @@ namespace GameWish.Game
                 SpawnEnemyCharacter(i.ID, i.Atk);
             });
 
+        }
+
+        private void OnAllEnemyLoaded()
+        {
             SpawnFightGroup(m_OurCharacterList, m_EnemyCharacterList);
-            //m_FightGroupList.ForEach(i => {
-            //    i.StartFight();
-            //});
 
             m_InitOurCharacterCount = m_OurCharacterList.Count;
             m_InitEnemeyCharacterCount = m_EnemyCharacterList.Count;
@@ -234,12 +241,22 @@ namespace GameWish.Game
 
         private void SpawnEnemyCharacter(int id, int atk)
         {
-            CharacterController controller = SpawnCharacterController(1, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp);
-            m_EnemyCharacterList.Add(controller);
-            controller.CharacterModel.SetAtk(atk);
+            SpawnEnemyController(1, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
+            {
+                m_EnemyCharacterList.Add(controller);
+                controller.CharacterModel.SetAtk(atk);
 
-            m_TotalEnemyAtk += controller.CharacterModel.Atk;
-            m_TotalEnemyHp += controller.CharacterModel.Hp;
+                m_TotalEnemyAtk += controller.CharacterModel.Atk;
+                m_TotalEnemyHp += controller.CharacterModel.Hp;
+
+                m_LoadedEnemyCount++;
+
+                if (m_LoadedEnemyCount >= m_AllEnemyCount)
+                {
+                    OnAllEnemyLoaded();
+                }
+            });
+
         }
 
         private void SpawnFightGroup(List<CharacterController> ourList, List<CharacterController> enemyList)
@@ -281,17 +298,22 @@ namespace GameWish.Game
             }
         }
 
-        private CharacterController SpawnCharacterController(int id, Vector3 pos, CharacterCamp camp)
+        private void SpawnEnemyController(int id, Vector3 pos, CharacterCamp camp, System.Action<CharacterController> onCharacterLoaded)
         {
-            GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
-            GameObject obj = GameObject.Instantiate(prefab);
-            obj.name = "Character_" + camp;
-            obj.transform.parent = m_BattleField.transform;
+            //GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
+            //GameObject obj = GameObject.Instantiate(prefab);
 
-            CharacterView characterView = obj.GetComponent<CharacterView>();
-            CharacterController controller = new CharacterController(id, characterView, CharacterStateID.Battle, CharacterCamp.EnemyCamp);
-            controller.OnEnterBattleField(pos);
-            return controller;
+            EnemyLoader.S.LoadEnemySync(id, (obj) => 
+            {
+                obj.name = "Character_" + camp;
+                obj.transform.parent = m_BattleField.transform;
+
+                CharacterView characterView = obj.GetComponent<CharacterView>();
+                CharacterController controller = new CharacterController(id, characterView, CharacterStateID.Battle, CharacterCamp.EnemyCamp);
+                controller.OnEnterBattleField(pos);
+
+                onCharacterLoaded?.Invoke(controller);
+            });
         }
 
         private void ApplyDamage()
