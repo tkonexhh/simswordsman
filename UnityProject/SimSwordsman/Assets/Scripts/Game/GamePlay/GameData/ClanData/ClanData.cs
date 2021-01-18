@@ -348,9 +348,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void RemovePropItem(PropItem _propItem, int delta)
+        public void RemovePropItem(PropItem _propItem, int number)
         {
-            inventoryData.RemovePropItem(_propItem, delta);
+            inventoryData.RefreshPropItem(_propItem, number);
 
             SetDataDirty();
         }

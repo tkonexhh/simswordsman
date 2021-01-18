@@ -10,34 +10,52 @@ namespace GameWish.Game
 {
     public class WarehousePanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Text m_WarehouseName;
-        [SerializeField]
-        private Text m_BriefIntroduction;
-        [SerializeField]
-        private Text m_UpgradeCostCoinValueText;
-        [SerializeField]
-        private Text m_CurLevelValue;
-        [SerializeField]
-        private Text m_CurReservesValue;
-        [SerializeField]
-        private Text m_NextReservesValue;
-        [SerializeField]
-        private Text m_UpgradeConditionsValue;
-
-        [SerializeField]
-        private Button m_UpgradeBtn;
+        [Header("Top")]
         [SerializeField]
         private Button m_ClsoeBtn;
 
+        [Header("Middle")]
+        [SerializeField]
+        private Text m_BriefIntroduction;
+        [SerializeField]
+        private Image m_WarehouseImgae;
+        [SerializeField]
+        private Text m_WarehouseLevel;
+        [SerializeField]
+        private Text m_CurReservesValue; 
+        [SerializeField]
+        private Text m_NextReservesValue;
+        [SerializeField]
+        private Text m_UpgradeCondition;
+        [SerializeField]
+        private Image m_Res1Img;
+        [SerializeField]
+        private Text m_Res1Value;
+        [SerializeField]
+        private Image m_Res2Img;
+        [SerializeField]
+        private Text m_Res2Value;
+        [SerializeField]
+        private Image m_Res3Img;
+        [SerializeField]
+        private Text m_Res3Value;
+        [SerializeField]
+        private Button m_UpgradeBtn;
+        [SerializeField]
+        private Text m_UpgradeText;
+
+        [Header("Bottom")]
+
         [SerializeField]
         private Transform m_GoodsTrans;
-
         [SerializeField]
         private GameObject m_WarehouseItem;
 
+
+        private List<CostItem> m_CostItems;
         private WarehouseLevelInfo m_WarehouseNextLevelInfo = null;
         private WarehouseLevelInfo m_WarehouseCurLevelInfo = null;
+        private FacilityConfigInfo m_FacilityConfigInfo = null;
         private List<ItemBase> m_InventoryItems = null;
         private int m_CurLevel = -1;
 
@@ -65,38 +83,70 @@ namespace GameWish.Game
 
             m_InventoryItems = MainGameMgr.S.InventoryMgr.GetAllInventoryItemList();
 
+            m_FacilityConfigInfo =  MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(FacilityType.Warehouse);
+
             m_WarehouseNextLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, (m_CurLevel + 1)) as WarehouseLevelInfo;
 
             m_WarehouseCurLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, m_CurLevel) as WarehouseLevelInfo;
-
+            m_CostItems = m_WarehouseNextLevelInfo.GetUpgradeResCosts();
         }
 
         private void RefreshPanelInfo()
         {
-            m_WarehouseName.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_WAREHOUSE_NAME);
-            m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_WAREHOUSE_DESCRIBE);
-            //m_UpgradeCostCoinValueText.text = m_WarehouseCurLevelInfo.upgradeCost.ToString();
+            m_BriefIntroduction.text = m_FacilityConfigInfo.desc;
+            m_WarehouseLevel.text = CommonUIMethod.GetGrade(m_WarehouseCurLevelInfo.level);
+            m_CurReservesValue.text = "当前储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
+            m_NextReservesValue.text = "下一级储量:" + m_WarehouseNextLevelInfo.GetCurReserves() + "格";
+            m_UpgradeCondition.text = "升级需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
+            
+            RefreshResInfo();
+        }
 
-            m_CurLevelValue.text = m_CurLevel.ToString();
-            //m_UpgradeCostCoinValueText.text = m_WarehouseLevelInfo.rewards.facilityRewards
-            m_CurReservesValue.text = m_WarehouseCurLevelInfo.reserves.ToString();
-
-            m_NextReservesValue.text = m_WarehouseNextLevelInfo.reserves.ToString();
-
-            //foreach (var item in m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel.facilityConditions)
+        private bool CheackIsBuild()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (m_WarehouseNextLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
+                return true;
+            return false;
+        }
+        private bool CheckPropIsEnough()
+        {
+            for (int i = 0; i < m_CostItems.Count; i++)
             {
-                m_UpgradeConditionsValue.text += m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel.ToString();
-                //m_UpgradeConditionsValue.text += "_";
-                //m_UpgradeConditionsValue.text += item.preditionType.ToString();
-                //m_UpgradeConditionsValue.text += "_";
-                //m_UpgradeConditionsValue.text += item.value.ToString();
-                //m_UpgradeConditionsValue.text += ";";
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
+                if (!isHave)
+                    return false;
+            }
+
+            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_WarehouseNextLevelInfo.upgradeCoinCost);
+        }
+
+        private void RefreshResInfo()
+        {
+            if (m_CostItems.Count == 1)
+            {
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1Img.sprite = FindSprite("QingRock");
+                m_Res2Value.text = m_WarehouseNextLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Img.sprite = FindSprite("Coin");
+                m_Res3Img.gameObject.SetActive(false);
+            }
+            else if (m_CostItems.Count == 2)
+            {
+
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1Img.sprite = FindSprite("QingRock");
+                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Img.sprite = FindSprite("silverWood");
+                m_Res3Value.text = m_WarehouseNextLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Img.sprite = FindSprite("Coin");
+                m_Res3Img.gameObject.SetActive(true);
             }
         }
 
         private void RefreshCreateGoods()
         {
-            int quantityDifference = m_WarehouseCurLevelInfo.reserves - m_CurItemList.Count;
+            int quantityDifference = m_WarehouseCurLevelInfo.GetCurReserves() - m_CurItemList.Count;
             for (int i = 0; i < quantityDifference; i++)
             {
                 m_CurItemList.Add(CreateWarehouseItem());
@@ -121,7 +171,7 @@ namespace GameWish.Game
             {
                 if (m_CurItemList[i].IsHaveItem && m_CurItemList[i].IsSameItemBase(itemBase))
                 {
-                    m_CurItemList[i].RemoveItemCount(delta);
+                    m_CurItemList[i].RefreshNumber();
                     //m_CurItemList.Sort();
 
                     RefeshSort(m_CurItemList);
@@ -131,9 +181,6 @@ namespace GameWish.Game
         //TODO  先装备 后 物品排序 插入排序
         public void RefeshSort(List<WarehouseItem> warehouseItems)
         {
-
-
-
             for (int i = 0; i < m_CurItemList.Count; i++)
             {
                 for (int j = 0; j < i; j++)
@@ -210,7 +257,14 @@ namespace GameWish.Game
             m_ClsoeBtn.onClick.AddListener(HideSelfWithAnim);
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-                bool isReducceSuccess = GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(long.Parse(m_UpgradeCostCoinValueText.text));
+                if (!CheackIsBuild())
+                {
+                    FloatMessage.S.ShowMsg("未达到升级条件");
+                    return;
+                }
+                if (m_WarehouseNextLevelInfo == null)
+                    return;
+                bool isReducceSuccess = GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_WarehouseNextLevelInfo.upgradeCoinCost);
                 if (isReducceSuccess)
                 {
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Warehouse, 1, 1);

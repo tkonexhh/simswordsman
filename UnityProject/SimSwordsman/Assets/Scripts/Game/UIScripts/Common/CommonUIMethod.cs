@@ -192,5 +192,15 @@ namespace GameWish.Game
         {
             return (bonus * 100).ToString() + "%";
         }
+
+        /// <summary>
+        /// 升级需要讲武堂达到
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static string GetUpgradeCondition(int level)
+        {
+           return GetStringForTableKey(Define.COMMON_UPGRADEINFODESC)+ GetGrade(level);
+        }
     }
 }

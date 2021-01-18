@@ -7,8 +7,18 @@ namespace GameWish.Game
 {
     public class WarehouseLevelInfo : FacilityLevelInfo
     {
-        public int reserves;
-      
+        private int m_Reserves;
+
+        public int GetCurReserves()
+        {
+            return m_Reserves;
+        }
+
+        public void SetReserves(int reserves)
+        {
+            m_Reserves = reserves;
+        }
+
     }
 
 }

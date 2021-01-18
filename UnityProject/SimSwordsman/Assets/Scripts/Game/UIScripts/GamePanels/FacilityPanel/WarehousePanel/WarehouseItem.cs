@@ -71,9 +71,8 @@ namespace GameWish.Game
 				IsHaveItem = false;
 		}
 
-		public void RemoveItemCount(int delta)
+		public void RefreshNumber()
 		{
-			CurItemBase.Number -= delta;
 			if (CurItemBase.Number <= 0)
 			{
 				IsHaveItem = false;
