@@ -23,7 +23,7 @@ namespace GameWish.Game
         #region 新手引导
         OnFirstGuide,
         GuideDelayStart,
-
+        InGuideProgress,
 
         #endregion
 
