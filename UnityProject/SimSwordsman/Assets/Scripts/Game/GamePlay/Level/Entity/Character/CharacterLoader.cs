@@ -16,18 +16,25 @@ namespace GameWish.Game
         public void StartPreload()
         {
             var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
-            foreach (var item in characterList)
+            if (characterList.Count == 0)
             {
-                LoadCharacterSync(item.id, (go) => 
+                AssetPreloaderMgr.S.OnLoadDone();
+            }
+            else
+            {
+                foreach (var item in characterList)
                 {
-                    m_CharacterGoDic.Add(item.id, go);
-                    m_Count++;
-
-                    if (m_Count >= characterList.Count)
+                    LoadCharacterSync(item.id, (go) =>
                     {
-                        AssetPreloaderMgr.S.OnLoadDone();
-                    }
-                });
+                        m_CharacterGoDic.Add(item.id, go);
+                        m_Count++;
+
+                        if (m_Count >= characterList.Count)
+                        {
+                            AssetPreloaderMgr.S.OnLoadDone();
+                        }
+                    });
+                }
             }
         }
 
