@@ -23,10 +23,10 @@ namespace GameWish.Game
         /// 新手引导
         /// </summary>
         MyGuidePanel,
-        DialogPanel,
+        StoryPanel,
         WorldGuideClickPanel,
         GuideMaskPanel,
-
+        MaskClickWorldPanel,
 
         LobbyPanel,
         RecruitmentPanel,
