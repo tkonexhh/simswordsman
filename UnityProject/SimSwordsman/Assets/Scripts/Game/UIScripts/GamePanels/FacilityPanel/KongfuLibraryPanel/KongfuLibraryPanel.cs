@@ -120,7 +120,7 @@ namespace GameWish.Game
             }
         }
 
-        private string GetKungfuStr(List<KungfuType> kungfuTypes)
+        private string GetKungfuStr(List<KongfuType> kungfuTypes)
         {
             string str = string.Empty;
             str += TDKongfuConfigTable.GetKungfuConfigInfo(kungfuTypes[0]).Name;
