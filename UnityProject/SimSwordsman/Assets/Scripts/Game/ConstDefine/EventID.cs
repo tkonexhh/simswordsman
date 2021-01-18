@@ -24,15 +24,32 @@ namespace GameWish.Game
         OnGuideDialog1,
         OnGuideTakeName,
         OnGuideDialog2,
-        OnGuideBuileFacilityTrigger1,
-        OnGuideBuileFacilityPanelTrigger1,
+        OnGuideBuildFacilityTrigger1,
+        OnGuideBuildFacilityPanelTrigger1,
         OnGuideDialog3,
         OnGuideClickLobbyTrigger1,
         OnGuideClickRecruitTrigger1,
+        OnGuideDialog4,
+        OnGuideClickTaskTrigger,
+
+        OnGuideUnlockKitchen,
+        OnGuideBuildKitchen,
+        OnGuideBuildKitchenPanel,
+
+        OnGuideUnlockWarehouse,
+        OnGuideBuildWarehouse,
+        OnGuideBuildWarehousePanel,
+
+        OnGuideUnlockBaicaohu,
+        OnGuideUnlockPracticeField,
+        OnGuideUnlockKungfuLibrary,
+        OnGuideUnlockForgeHouse,
+        OnCuideKitchenFirstLvUp,
+        OnGuideUnlockCollectSystem,
 
         GuideDelayStart,
         InGuideProgress,
-
+        OnFirstGetCharacter,
         #endregion
 
         //UI
