@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+  m_Name: KongfuLibraryPanelSpritesData
+  m_EditorClassIdentifier: 
+  m_AtlasName: Assets/Resources/UI/Sprites/KongfuLibraryPanel
+  m_SpriteList:
+  - {fileID: 21300000, guid: e283ab124a725464bb0261c4944a2e69, type: 3}
+  - {fileID: 21300000, guid: 00ad6a05fb1090f4d8e5a104b140224c, type: 3}
+  - {fileID: 21300000, guid: 34de96ebd7763724eaadae3393f77d52, type: 3}
+  - {fileID: 21300000, guid: d3ee256ba53882b47b4701c66aef6bf8, type: 3}
