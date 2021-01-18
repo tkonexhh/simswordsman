@@ -20,6 +20,8 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
+        private Image[] m_NameList;
+        [SerializeField]
         private Button m_CloseBtn;
 
         [Header("Middle")]
@@ -215,11 +217,29 @@ namespace GameWish.Game
         {
             if (m_CurInventoryItem != null)
             {
-                //m_ItemDetailsTitle.text = m_CurInventoryItem.Name.ToString();
+                GenerateItemName();
                 m_Have.text = m_CurInventoryItem.Number.ToString();
                 m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
                 m_BriefIntroduction.text = m_CurInventoryItem.Desc.ToString();
                 m_UnitPrice.text = m_CurInventoryItem.Price.ToString();
+            }
+        }
+        /// <summary>
+        /// 生成物品名称
+        /// </summary>
+        private void GenerateItemName()
+        {
+            foreach (var item in m_NameList)
+            {
+                item.GetComponentInChildren<Text>().text = Define.COMMON_DEFAULT_STR;
+                item.gameObject.SetActive(false);
+            }
+            string strName = m_CurInventoryItem.Name.ToString();
+            int maxLength = Mathf.Min(strName.Length,8);
+            for (int i = 0; i < maxLength; i++)
+            {
+                m_NameList[i].GetComponentInChildren<Text>().text = strName[i].ToString();
+                m_NameList[i].gameObject.SetActive(true);
             }
         }
 

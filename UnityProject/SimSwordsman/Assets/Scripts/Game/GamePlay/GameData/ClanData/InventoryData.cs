@@ -85,7 +85,7 @@ namespace GameWish.Game
 
         public void AddPropItem(PropItem _propItem, int delta)
         {
-            PropItemDbData propItemDbData = propList.FirstOrDefault(i => i.IsHaveItem(_propItem));
+            PropItemDbData propItemDbData = propList.Where(i => i.IsHaveItem(_propItem)).FirstOrDefault();
 
             if (propItemDbData != null)
                 propItemDbData.AddEquipNumber(delta);
@@ -203,7 +203,10 @@ namespace GameWish.Game
 
         public override bool IsHaveItem(ItemBase _itemBase)
         {
-            return true;
+            PropItem propItem = _itemBase as PropItem;
+            if (PropType == propItem.PropType && PropSubType == propItem.PropSubType)
+                return true;
+            return false;
         }
     }
 
@@ -237,7 +240,10 @@ namespace GameWish.Game
 
         public override bool IsHaveItem(ItemBase _itemBase)
         {
-            return true;
+            KungfuItem kungfuItem = _itemBase as KungfuItem;
+            if (PropType == kungfuItem.PropType && KungfuType == kungfuItem.KungfuType)
+                return true;
+            return false;
         }
     }
 }

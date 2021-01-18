@@ -74,7 +74,7 @@ namespace GameWish.Game
         {
             CharacterItem characterItem = obj as CharacterItem;
             m_PracticeFieldInfo.SetCharacterItem(characterItem, SlotState.Practice, m_CurFacilityType);
-            EventSystem.S.Send(EventID.OnSelectDisciple, m_PracticeFieldInfo);
+            EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, m_PracticeFieldInfo);
             OnPanelHideComplete();
         }
     }

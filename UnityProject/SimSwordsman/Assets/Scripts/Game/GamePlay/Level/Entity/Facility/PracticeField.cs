@@ -64,7 +64,7 @@ namespace GameWish.Game
             CharacterItem = null;
             StartTime = string.Empty;
             GameDataMgr.S.GetClanData().PraceTrainingIsOver(this);
-            EventSystem.S.Send(EventID.OnDisciplePracticeOver, this);
+            EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, this);
         }
 
         public void SetCharacterItem(CharacterItem characterItem, SlotState practiceFieldState, FacilityType targetFacility)

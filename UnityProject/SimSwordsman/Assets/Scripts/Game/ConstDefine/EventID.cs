@@ -65,11 +65,7 @@ namespace GameWish.Game
         //OnTaskFinished,
 
         //PracticeField
-        /// <summary>
-        /// 选择弟子
-        /// </summary>
-        OnSelectDisciple,
-        OnDisciplePracticeOver,
+
         /// <summary>
         /// 刷新坑位解锁信息
         /// </summary>
