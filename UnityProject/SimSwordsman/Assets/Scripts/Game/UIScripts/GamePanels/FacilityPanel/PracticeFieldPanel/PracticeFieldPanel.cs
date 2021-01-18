@@ -146,7 +146,6 @@ namespace GameWish.Game
 
         private void RefreshResInfo()
         {
-
             if (m_CostItems.Count == 1)
             {
                 m_Res1Value.text = m_CostItems[0].value.ToString();

@@ -18,36 +18,39 @@ namespace GameWish.Game
     }
     public class ItemDetailsPanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Text m_ItemDetailsTitle;
-        [SerializeField]
-        private Text m_NumberValue;
-        [SerializeField]
-        private Text m_ItemDescribe;
-        [SerializeField]
-        private Text m_UnitPriceValue;
-        [SerializeField]
-        private Text m_CountCont;
-
-        [SerializeField]
-        private Button m_SaleBtn;
+        [Header("Top")]
         [SerializeField]
         private Button m_CloseBtn;
+
+        [Header("Middle")]
+        [SerializeField]
+        private Text m_BriefIntroduction;
+        [SerializeField]
+        private Image m_ItemIcon;
+        [SerializeField]
+        private Text m_UnitPrice;
+        [SerializeField]
+        private Text m_Have;
+        [SerializeField]
+        private Text m_SellNumber;
+        [SerializeField]
+        private Text m_AllPrice;
         [SerializeField]
         private Button m_IncreaseBtn;
         [SerializeField]
         private Button m_ReduceBtn;
+
+        [Header("Bottom")]
         [SerializeField]
-        private Button m_MostBtn;
-        [SerializeField]
-        private Button m_LeastBtn;
+        private Button m_SellBtn;
+
         [SerializeField]
         private EventTrigger m_IncreaseEventTri;
         [SerializeField]
         private EventTrigger m_ReduceEventTri;
 
         private ItemBase m_CurInventoryItem = null;
-
+        private bool m_IsStart = false;
         private int m_SelectedNumber = 0;
 
         private BtnState m_BtnState;
@@ -66,25 +69,26 @@ namespace GameWish.Game
 
         private void BindAddListenerEvevnt()
         {
-            m_SaleBtn.onClick.AddListener(() =>
+            m_SellBtn.onClick.AddListener(() =>
             {
                 if (m_CurInventoryItem != null)
                 {
-                    MainGameMgr.S.InventoryMgr.RemoveItem(m_CurInventoryItem, m_CurInventoryItem.Number);
+                    MainGameMgr.S.InventoryMgr.RemoveItem(m_CurInventoryItem, m_SelectedNumber);
 
-                    //TODO m_CurInventoryItem.Number会变为负数
-                    GameDataMgr.S.GetPlayerData().AddCoinNum(m_CurInventoryItem.Price * int.Parse(m_NumberValue.text));
+                    GameDataMgr.S.GetPlayerData().AddCoinNum(m_CurInventoryItem.Price * m_SelectedNumber);
 
                     CloseSelfPanel();
                 }
             });
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_IncreaseBtn.onClick.AddListener(() => {
-
+                Debug.LogError("点击");
+                RefreshIncreaseSellNumber();
             });
-            m_ReduceBtn.onClick.AddListener(() => { });
-            m_MostBtn.onClick.AddListener(() => { });
-            m_LeastBtn.onClick.AddListener(() => { });
+            m_ReduceBtn.onClick.AddListener(() => {
+                RefresReduceSellNumber();
+            });
+
             m_IncreaseEventTri.triggers = new List<EventTrigger.Entry>();
             m_ReduceEventTri.triggers = new List<EventTrigger.Entry>();
 
@@ -96,12 +100,11 @@ namespace GameWish.Game
             pointerUpEvent.eventID = EventTriggerType.PointerUp;
             pointerUpEvent.callback.AddListener(OnPointerUp);
 
-
             m_ReduceEventTri.triggers.Add(pointerDownEvent);
-            m_IncreaseEventTri.triggers.Add(pointerDownEvent);
             m_ReduceEventTri.triggers.Add(pointerUpEvent);
-            m_IncreaseEventTri.triggers.Add(pointerUpEvent);
 
+            m_IncreaseEventTri.triggers.Add(pointerDownEvent);
+            m_IncreaseEventTri.triggers.Add(pointerUpEvent);
         }
 
         private Coroutine m_StartCount;
@@ -112,25 +115,30 @@ namespace GameWish.Game
         {
             Debug.LogError("按下");
             if (arg0.selectedObject!=null)
-            {
-                if (arg0.selectedObject.name.Equals("IncreaseBtn"))
-                    m_BtnState = BtnState.Increase;
-                else if(arg0.selectedObject.name.Equals("ReduceBtn"))
-                    m_BtnState = BtnState.Reduce;
-
-                m_StartCount = StartCoroutine(TimingBtn(0.5f, m_BtnState, OnCountBtnEvent));
-            }
-        
+                m_StartCount = StartCoroutine(TimingBtn(0.5f, m_BtnState, OnCountBtnEvent, arg0.selectedObject));
         }
-        private IEnumerator TimingBtn(float time, BtnState btnState = BtnState.None, Action<BtnState> action = null)
+        private IEnumerator TimingBtn(float time, BtnState btnState = BtnState.None, Action<BtnState> action = null,GameObject obj = null)
         {
             yield return new WaitForSeconds(time);
-            action?.Invoke(btnState);
+            if (obj!=null)
+            {
+                if (obj.name.Equals("IncreaseBtn"))
+                    m_BtnState = BtnState.Increase;
+                else if (obj.name.Equals("ReduceBtn"))
+                    m_BtnState = BtnState.Reduce;
+            }
+            m_IsStart = true;
+            action?.Invoke(m_BtnState);
         }
 
         private void OnPointerUp(BaseEventData arg0)
         {
             Debug.LogError("起来");
+            if (!m_IsStart)
+            {
+                StopCoroutine(m_StartCount);
+                return;
+            }
             switch (m_BtnState)
             {
                 case BtnState.None:
@@ -144,18 +152,22 @@ namespace GameWish.Game
                 default:
                     break;
             }
-        
+            m_IsStart = false;
         }
         private void OnCountBtnEvent(BtnState btnState)
         {
             switch (btnState)
             {
                 case BtnState.Increase:
-                    m_IncreaseCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, ContinuousCounting));
+                    m_IncreaseCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, (e)=> {
+                        RefreshIncreaseSellNumber();
+                        OnCountBtnEvent(m_BtnState);
+                    }));
                     break;
                 case BtnState.Reduce:
                     m_ReduceCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, (e) => {
-                        m_CountCont.text = (int.Parse(m_CountCont.text) - 1).ToString();
+                        RefresReduceSellNumber();
+                        OnCountBtnEvent(m_BtnState);
                     }));
                     break;  
                 default:
@@ -163,15 +175,32 @@ namespace GameWish.Game
             }
         }
 
-
-        private void ContinuousCounting(BtnState btnState)
+        private void RefresReduceSellNumber()
         {
-            string[] strs = m_CountCont.text.Split('/');
-            m_CountCont.text = (int.Parse(strs[0]) + 1).ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
-            OnCountBtnEvent(m_BtnState);
+            m_SelectedNumber--;
+            if (m_SelectedNumber <= 0)
+            {
+                m_SelectedNumber = 0;
+                m_SellNumber.text = m_SelectedNumber + Define.SLASH + m_CurInventoryItem.Number.ToString();
+                return;
+            }
+            m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
+            m_AllPrice.text = (m_CurInventoryItem.Price * m_SelectedNumber).ToString();
         }
 
-
+        private void RefreshIncreaseSellNumber()
+        {
+            m_SelectedNumber++;
+            int hava = int.Parse(m_Have.text);
+            if (m_SelectedNumber >= hava)
+            {
+                m_SelectedNumber = hava;
+                m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
+                return;
+            }
+            m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
+            m_AllPrice.text = (m_CurInventoryItem.Price * m_SelectedNumber).ToString();
+        }
 
 
         protected override void OnPanelOpen(params object[] args)
@@ -179,18 +208,18 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CurInventoryItem = args[0] as ItemBase;
-            InitPanelInfo();
+            RefreshPanelInfo();
         }
 
-        private void InitPanelInfo()
+        private void RefreshPanelInfo()
         {
             if (m_CurInventoryItem != null)
             {
-                m_ItemDetailsTitle.text = m_CurInventoryItem.Name.ToString();
-                m_NumberValue.text = m_CurInventoryItem.Number.ToString();
-                m_CountCont.text = m_SelectedNumber.ToString()+ Define.SLASH + m_CurInventoryItem.Number.ToString();
-                m_ItemDescribe.text = m_CurInventoryItem.Desc.ToString();
-                m_UnitPriceValue.text = m_CurInventoryItem.Price.ToString();
+                //m_ItemDetailsTitle.text = m_CurInventoryItem.Name.ToString();
+                m_Have.text = m_CurInventoryItem.Number.ToString();
+                m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
+                m_BriefIntroduction.text = m_CurInventoryItem.Desc.ToString();
+                m_UnitPrice.text = m_CurInventoryItem.Price.ToString();
             }
         }
 
@@ -200,6 +229,5 @@ namespace GameWish.Game
             CloseSelfPanel();
             CloseDependPanel(EngineUI.MaskPanel);
         }
-        
     }
 }

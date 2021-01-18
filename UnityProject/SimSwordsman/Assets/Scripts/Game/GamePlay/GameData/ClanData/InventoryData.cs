@@ -48,14 +48,14 @@ namespace GameWish.Game
         public void RemoveArmor(ArmorItem _armorDBData, int delta = 1)
         {
             ArmorDBData armorDBData = armorDBDataList.Where(i => i.IsHaveItem(_armorDBData)).FirstOrDefault();
-            if (armorDBData != null && armorDBData.ReduceItemNumber(delta))
+            if (armorDBData != null && armorDBData.RefreshNumber(delta))
                 armorDBDataList.Remove(armorDBData);
         }
 
         public void RemoveArms(ArmsItem _armsItem, int delta = 1)
         {
             ArmsDBData armsDBData = armsDBDataList.Where(i => i.IsHaveItem(_armsItem)).FirstOrDefault();
-            if (armsDBData != null && armsDBData.ReduceItemNumber(delta))
+            if (armsDBData != null && armsDBData.RefreshNumber(delta))
                 armsDBDataList.Remove(armsDBData);
         }
         #endregion
@@ -79,7 +79,7 @@ namespace GameWish.Game
         public void RemoveKungfuItem(KungfuItem _kungfuItem, int delta)
         {
             KungfuItemDbData kungfutemDbData = kungfuList.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
-            if (kungfutemDbData != null && kungfutemDbData.ReduceItemNumber(delta))
+            if (kungfutemDbData != null && kungfutemDbData.RefreshNumber(delta))
                 kungfuList.Remove(kungfutemDbData);
         }
 
@@ -96,10 +96,10 @@ namespace GameWish.Game
             }
         }
 
-        public void RemovePropItem(PropItem _propItem, int delta)
+        public void RefreshPropItem(PropItem _propItem, int number)
         {
             PropItemDbData propItemDbData = propList.Where(i => i.IsHaveItem(_propItem)).FirstOrDefault();
-            if (propItemDbData != null && propItemDbData.ReduceItemNumber(delta))
+            if (propItemDbData != null && propItemDbData.RefreshNumber(number))
                 propList.Remove(propItemDbData);
         }
     }
@@ -115,12 +115,12 @@ namespace GameWish.Game
             PropType = itemBase.PropType;
             Number = itemBase.Number;
         }
-        public bool ReduceItemNumber(int nmuber)
+        public bool RefreshNumber(int nmuber)
         {
-            Number -= nmuber;
+            Number = nmuber;
             if (Number <= 0)
             {
-                Number = 1;
+                Number = 0;
                 return true;
             }
             return false;

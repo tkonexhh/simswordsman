@@ -17,7 +17,7 @@ namespace GameWish.Game
 
             WarehouseLevelInfo WarehouseLevelInfo = new WarehouseLevelInfo();
             WarehouseLevelInfo.Warp(levelInfo);
-            WarehouseLevelInfo.reserves = tdData.reserves;
+            WarehouseLevelInfo.SetReserves(tdData.reserves);
 
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))
             {
