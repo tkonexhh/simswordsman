@@ -1,7 +1,7 @@
 using Qarth;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 
 namespace GameWish.Game
 {
@@ -16,6 +16,8 @@ namespace GameWish.Game
 		[SerializeField]
 		private Button m_AcceptBtn;
 
+        Action m_CloseAction;
+
         protected override void OnUIInit()
 	    {
 	        base.OnUIInit();
@@ -27,8 +29,11 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
 
+            if (args.Length > 0)
+            {
+                m_CloseAction = (Action)args[0];
+            }
             RandomName();
-
             OpenDependPanel(EngineUI.MaskPanel,-1,null);
         }
 
@@ -60,6 +65,9 @@ namespace GameWish.Game
             m_AcceptBtn.onClick.AddListener(()=> 
             {
                 GameDataMgr.S.GetGameData().clanData.SetClanName(m_ClanName.text);
+                OnNameChange(m_ClanName.text);
+
+                m_CloseAction?.Invoke();
 
                 HideSelfWithAnim();
             });

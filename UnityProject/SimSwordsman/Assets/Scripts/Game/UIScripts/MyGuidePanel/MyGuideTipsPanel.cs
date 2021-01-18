@@ -27,14 +27,12 @@ namespace GameWish.Game
 
         [SerializeField]
         private Vector3 m_Offset;
-
-
+        
         private string[] m_StringArray;
 
         private int m_TextIndex = 0;
         private Action m_EndCallBack;
-
-
+        
         private Tweener m_TextTween;
         private Tweener m_FirstImgTween;
         private Tweener m_SecondImgTween;
@@ -54,35 +52,24 @@ namespace GameWish.Game
         protected override void BeforDestroy()
         {
             base.BeforDestroy();
-            m_ContinueBtn.onClick.RemoveAllListeners();
-         
+            m_ContinueBtn.onClick.RemoveAllListeners();         
         }
         protected override void OnOpen()
         {
-            base.OnOpen();
-        
+            base.OnOpen();        
         }
         protected override void OnClose()
         {
-            base.OnClose();
-         
+            base.OnClose();         
         }
-    
-
-
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
 
-
             if (args.Length > 0)
             {
                  m_StringArray = (string[])args[0];
-
             }
-
-
             if (args.Length > 1)
             {
                 m_EndCallBack = args[1] as Action;
@@ -93,19 +80,10 @@ namespace GameWish.Game
                 m_Offset = (Vector3)args[2];
                 m_Root.transform.localPosition = m_Offset;
             }
-
             m_TextIndex = 0;
             m_NextImg.gameObject.SetActive(false);
             ShowGuideImgByAnimate();
-
         }
-
-
-
-
-
-
- 
 
         private void ShowGuideImgByAnimate()
         {
@@ -121,8 +99,6 @@ namespace GameWish.Game
                 DoTypeWritingText(m_StringArray[0]);
 
             });
-
-
         }
         //持续点击
         private void TapContinue()
@@ -139,7 +115,6 @@ namespace GameWish.Game
         }
         private void ToNextStep()
         {
-
             if (m_TextIndex >= m_StringArray.Length - 1)
             {
                 OnEndBtnClick();
@@ -149,8 +124,6 @@ namespace GameWish.Game
                 m_TextIndex++;
                 DoTypeWritingText(m_StringArray[m_TextIndex]);
             }
-
-
         }
         private void OnEndBtnClick()
         {
@@ -159,13 +132,10 @@ namespace GameWish.Game
             {
                 m_EndCallBack();
             }
-
-
         }
 
         private void CompleteTextImmediately()
         {
-
             if (m_IsTypewriting)
             {
                 m_TextTween.Complete();
@@ -175,7 +145,6 @@ namespace GameWish.Game
             }
         }
 
-
         public void DoTypeWritingText(string GuideText)
         {
             m_GuideTips.text = string.Empty;
@@ -183,35 +152,21 @@ namespace GameWish.Game
             m_IsEndTypeWriting = false;
             m_TextTween.Kill();
 
-
             m_NextImg.gameObject.SetActive(false);
 
             m_TextTween =  m_GuideTips.DoText(GuideText, 0.03f).SetEase(Ease.Linear).OnComplete(()=> {
-
                 m_IsTypewriting = false;
                 m_IsEndTypeWriting = true;
                 Timer.S.Post2Really((x) => {
-
                     m_IsCanContinueNext = true;
                     m_NextImg.gameObject.SetActive(true);
                     if(m_NextTween == null)
                     {
                         m_NextTween = m_NextImg.transform.DOBlendableMoveBy(new Vector3(0.1f, 0, 0), 0.5f).SetLoops(-1, LoopType.Yoyo);
-                    }
-                   
+                    }                   
                 }, 0.5f);
             });
         }
-
- 
-
-
-
-
-
-
-
-
     }
 }
 
