@@ -120,7 +120,7 @@ namespace GameWish.Game
             }
         }
 
-        private string GetKungfuStr(List<KungfuType> kungfuTypes)
+        private string GetKungfuStr(List<KongfuType> kungfuTypes)
         {
             string str = string.Empty;
             str += TDKongfuConfigTable.GetKungfuConfigInfo(kungfuTypes[0]).Name;
@@ -161,7 +161,7 @@ namespace GameWish.Game
                 //m_UpgradeCostCoinValueTxt.text = m_NextKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
             }
 
-            List<KungfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
+            List<KongfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
 
             m_MartialArtsContTxt.text = "";
             for (int i = 0; i < KongfuList.Count; i++)

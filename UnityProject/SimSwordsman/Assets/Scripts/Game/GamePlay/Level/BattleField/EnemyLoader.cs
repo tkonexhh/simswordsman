@@ -35,6 +35,8 @@ namespace GameWish.Game
 
         private string GetPrefabName(int id)
         {
+            EnemyInfo enemyInfo = TDEnemyConfigTable.GetEnemyInfo(id);
+            //return enemyInfo.prefabName;
             return "Character2";
         }
     }

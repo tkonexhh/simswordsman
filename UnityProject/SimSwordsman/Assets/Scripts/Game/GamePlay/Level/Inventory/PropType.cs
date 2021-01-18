@@ -15,18 +15,42 @@ namespace GameWish.Game
         Kungfu                           = 4,        //功夫
     }
 
-    public enum KungfuType
+    public enum KongfuType
     {
         None,
-        XiangLong18Zhang                 = 1,        //降龙十八掌
-        XiangLong19Zhang                 = 2,
-        WuLinMiJi                        = 3,        //武林秘籍
-        LingBoWeiBu                      = 3005,        //凌波微步
-        /// <summary>
-        /// 如来神掌
-        /// </summary>
-        RuLaiShenZhang                   = 1020,
-        JiBenQuanJiao                    = 5,        //基本拳脚
+        TaiZuChangQuan = 1001,
+        PaoDingJieNiu = 1002,
+        FengShenTui = 1003,
+        YanHuiJianFa = 1004,
+        QingMangZhi = 1005,
+        FeiYunDu = 1006,
+        WuLangBaGuaGun = 1007,
+        LianHuaZhang = 1008,
+        KuiHuaDianXueShou = 1009,
+        SaoYeTui = 1010,
+        ZuiQuan = 1011,
+        SuiYuQuan = 2001,
+        FoShanWuYingJiao = 2002,
+        TanZhiShenGong = 2003,
+        LuanPiFengJianFa = 2004,
+        LieYanDaoFa = 2005,
+        YuJianShu = 2006,
+        ShiErLuTanTui = 2007,
+        KaiBeiShou = 2008,
+        RuLaiShenZhang = 3001,
+        XiangLongZhang = 3002,
+        LiuMaiShenJian = 3003,
+        DuGuJiuJian = 3004,
+        LingBoWeiBu = 3005,
+        BaHuangLiuHe = 3006,
+        TianCanJiao = 3007,
+        TianShanZheMeiShou = 3008,
+        YiJinJing = 3009,
+        ///// <summary>
+        ///// 如来神掌
+        ///// </summary>
+        //RuLaiShenZhang                   = 1020,
+        //JiBenQuanJiao                    = 5,        //基本拳脚
     }
 
     public enum RawMaterial

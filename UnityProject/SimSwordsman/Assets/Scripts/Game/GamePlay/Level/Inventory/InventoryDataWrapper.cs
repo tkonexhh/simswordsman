@@ -275,7 +275,7 @@ namespace GameWish.Game
 
     public class KungfuItem : ItemBase
     {
-        public KungfuType KungfuType { set; get; }
+        public KongfuType KungfuType { set; get; }
         public float AtkScale { set; get; }
         public KungfuItem()
         {
@@ -285,7 +285,7 @@ namespace GameWish.Game
         {
             throw new NotImplementedException();
         }
-        public KungfuItem(KungfuType kungfuType)
+        public KungfuItem(KongfuType kungfuType)
         {
             PropType = PropType.Kungfu;
             KungfuType = kungfuType;

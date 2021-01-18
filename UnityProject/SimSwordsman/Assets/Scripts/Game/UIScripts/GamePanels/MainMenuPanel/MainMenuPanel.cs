@@ -55,7 +55,7 @@ namespace GameWish.Game
 
                 MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,10);
 
-                MainGameMgr.S.CharacterMgr.AddKungfu(0,new KungfuItem (KungfuType.LingBoWeiBu));
+                MainGameMgr.S.CharacterMgr.AddKungfu(0,new KungfuItem (KongfuType.LingBoWeiBu));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,200);
                 //GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
                 //m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();

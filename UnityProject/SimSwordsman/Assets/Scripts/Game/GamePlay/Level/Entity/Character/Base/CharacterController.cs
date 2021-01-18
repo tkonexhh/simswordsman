@@ -31,6 +31,7 @@ namespace GameWish.Game
         private CharacterStateBattle m_StateBattle = null;
         private FightGroup m_FightGroup = null;
 
+        // 我方的id唯一，敌方id不唯一 TODO:敌我方Controller分开
         public CharacterController(int id, CharacterView characterView, CharacterStateID initState, CharacterCamp camp = CharacterCamp.OurCamp)
         {
             m_CharacterId = id;

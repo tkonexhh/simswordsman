@@ -168,7 +168,7 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, 1);
         }
 
-        public KungfuType GetKungfuType()
+        public KongfuType GetKungfuType()
         {
             return CharacterKongfu.dbData.kongfuType;
         }
@@ -649,6 +649,11 @@ namespace GameWish.Game
             if (dbData.kongfuType == kungfuItem.KungfuType)
                 return true;
             return false;
+        }
+
+        public KongfuType GetKongfuType()
+        {
+            return dbData.kongfuType;
         }
     }
 

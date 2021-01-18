@@ -10,6 +10,9 @@ namespace GameWish.Game
         [SerializeField]
         private List<Transform> m_PracticeSlots = new List<Transform>();
 
+        [SerializeField]
+        private GameObject m_Flag = null;
+
         public override FacilityController GenerateContoller()
         {
             return new PracticeFieldController(facilityType, this);
@@ -33,6 +36,19 @@ namespace GameWish.Game
         {
             index = Mathf.Clamp(index, 0, m_PracticeSlots.Count - 1);
             return m_PracticeSlots[index].position;
+        }
+
+        public override void SetViewByState()
+        {
+            base.SetViewByState();
+
+            m_Flag.SetActive(false);
+            switch (m_Controller.GetState())
+            {
+                case FacilityState.Unlocked:
+                    m_Flag.SetActive(true);
+                    break;
+            }
         }
     }
 

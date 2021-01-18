@@ -359,7 +359,7 @@ namespace GameWish.Game
 
         #region Kongfu
 
-        public void UnlockKongfu(KungfuType kongfuType)
+        public void UnlockKongfu(KongfuType kongfuType)
         {
             kongfuData.UnlockKongfu(kongfuType);
 
