@@ -32,8 +32,6 @@ namespace GameWish.Game
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private LevelConfigInfo m_LevelConfigInfo = null;
         private LogPanel m_logPanel = null;
-        private LogPanel m_successPanel = null;
-        private LogPanel m_failPanel = null;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -135,12 +133,11 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
 
-            m_logPanel.OnSuccessBtnEvent -= SuccessBtn;
-            m_logPanel.OnRefuseBtnEvent -= RefuseBtn;
-            m_successPanel.OnSuccessBtnEvent -= BattleSuccessConfirm;
-            m_successPanel.OnRefuseBtnEvent -= BattleSuccessCancle;
-            m_failPanel.OnSuccessBtnEvent -= BattleFailConfirm;
-            m_failPanel.OnRefuseBtnEvent -= BattleFailCancle;
+            if (m_logPanel!=null)
+            {
+                m_logPanel.OnSuccessBtnEvent -= SuccessBtn;
+                m_logPanel.OnRefuseBtnEvent -= RefuseBtn;
+            }
         }
 
         protected override void OnPanelHideComplete()
@@ -189,38 +186,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-        }
-
-        private void BattleSucessCallback(AbstractPanel obj)
-        {
-            m_successPanel = obj as LogPanel;
-            m_successPanel.OnSuccessBtnEvent += BattleSuccessConfirm;
-            m_successPanel.OnRefuseBtnEvent += BattleSuccessCancle;
-        }
-
-        private void BattleFailCallback(AbstractPanel obj)
-        {
-            m_failPanel = obj as LogPanel;
-            m_failPanel.OnSuccessBtnEvent += BattleFailConfirm;
-            m_failPanel.OnRefuseBtnEvent += BattleFailCancle;
-        }
-
-        private void BattleSuccessConfirm()
-        {
-            SuccessBtn();
-        }
-        private void BattleSuccessCancle()
-        {
-
-        }
-
-        private void BattleFailConfirm()
-        {
-            SuccessBtn();
-        }
-        private void BattleFailCancle()
-        {
-
         }
     }
 }

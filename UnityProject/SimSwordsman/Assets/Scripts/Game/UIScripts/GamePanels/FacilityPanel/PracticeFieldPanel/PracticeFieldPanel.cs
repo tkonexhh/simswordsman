@@ -75,9 +75,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            EventSystem.S.Register(EventID.OnSelectDisciple, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
-            EventSystem.S.Register(EventID.OnDisciplePracticeOver, HandleAddListenerEvent);
             BindAddListenerEvent();
         }
 
@@ -169,12 +167,6 @@ namespace GameWish.Game
 
         private void HandleAddListenerEvent(int key, object[] param)
         {
-            switch ((EventID)key)
-            {
-                case EventID.OnSelectDisciple:
-                    //CreateCountDown(((PracticeField)param[0]));
-                    break;
-            }
             GetPracticeDiscipleForID((PracticeField)param[0]).RefreshPracticeFieldState();
         }
 
@@ -272,9 +264,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            EventSystem.S.UnRegister(EventID.OnSelectDisciple, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
-            EventSystem.S.UnRegister(EventID.OnDisciplePracticeOver, HandleAddListenerEvent);
             CloseSelfPanel();
         }
     }
