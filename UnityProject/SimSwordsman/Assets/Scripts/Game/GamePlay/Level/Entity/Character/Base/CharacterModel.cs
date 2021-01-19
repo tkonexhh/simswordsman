@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -101,6 +101,12 @@ namespace GameWish.Game
         {
             return m_CharacterItem.kongfus.Count;
         }
+
+        public List<KongfuType> GetKongfuTypeList()
+        {
+            return m_CharacterItem.kongfus.Values.Select(i => i.GetKungfuType()).ToList();
+        }
+
         /// <summary>
         /// 某一功夫功夫的权重比例增加经验
         /// </summary>

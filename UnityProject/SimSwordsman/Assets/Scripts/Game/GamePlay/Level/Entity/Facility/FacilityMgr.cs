@@ -34,7 +34,19 @@ namespace GameWish.Game
         #endregion
 
         #region Public Set
-       
+        public void SetFacilityState(FacilityType type, FacilityState state/*, int subId = 1*/)
+        {
+            GameDataMgr.S.GetClanData().SetFacilityState(type, state/*, subId*/);
+
+            FacilityController controller = GetFacilityController(type/*, subId*/);
+            controller?.SetState(state);
+
+            if (state == FacilityState.Unlocked) // Some facility unlocked
+            {
+                RefreshFacilityUnlockState();
+            }
+        }
+
         #endregion
 
         #region InputObserver
@@ -256,7 +268,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="kungfuLibraryLevel"></param>
         /// <returns></returns>
-        public KungfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
+        public KongfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
         {
             return TDFacilityKongfuLibraryTable.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
         }
@@ -301,18 +313,6 @@ namespace GameWish.Game
 
             return Vector3.zero;
         }
-        public void SetFacilityState(FacilityType type, FacilityState state/*, int subId = 1*/)
-        {
-            GameDataMgr.S.GetClanData().SetFacilityState(type, state/*, subId*/);
-
-            FacilityController controller = GetFacilityController(type/*, subId*/);
-            controller?.SetState(state);
-
-            if (state == FacilityState.Unlocked) // Some facility unlocked
-            {
-                RefreshFacilityUnlockState();
-            }
-        }
 
         #endregion
 
@@ -343,6 +343,11 @@ namespace GameWish.Game
                     FacilityType facilityType2 = (FacilityType)param[0];
                     //int subId2 = (int)param[1];
                     SetFacilityState(facilityType2, FacilityState.Unlocked/*, subId2*/);
+
+                    if (facilityType2 == FacilityType.Lobby) //BulletinBoard unlocked when lobby unlocked
+                    {
+                        SetFacilityState(FacilityType.BulletinBoard, FacilityState.Unlocked);
+                    }
                     break;
             }
         }

@@ -111,7 +111,7 @@ namespace GameWish.Game
                 ob.On_Drag(gesture, m_IsTouchStartFromUI);
             }
 
-            Log.e("On drag");
+            //Log.e("On drag");
         }
 
         private void On_Swipe(Gesture gesture)
@@ -121,7 +121,7 @@ namespace GameWish.Game
                 ob.On_Swipe(gesture);
             }
 
-            Log.e("On swipe");
+            //Log.e("On swipe");
         }
 
         private void On_LongTap(Gesture gesture)
