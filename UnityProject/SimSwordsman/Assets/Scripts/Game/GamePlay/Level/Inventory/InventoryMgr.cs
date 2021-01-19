@@ -90,6 +90,16 @@ namespace GameWish.Game
         }
 
         /// <summary>
+        /// 获取物品的图标名称
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetIconName(int id)
+        {
+            return TDItemConfigTable.GetIconName(id);
+        }
+
+        /// <summary>
         /// 获取所有仓库中装备信息
         /// </summary>
         /// <returns></returns>

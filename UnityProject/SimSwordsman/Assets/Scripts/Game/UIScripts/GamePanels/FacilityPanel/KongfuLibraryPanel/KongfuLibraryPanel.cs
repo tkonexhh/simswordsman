@@ -124,6 +124,10 @@ namespace GameWish.Game
             }
         }
 
+        /// <summary>
+        /// 动态变化字体背景
+        /// </summary>
+        /// <param name="kungfuTypes"></param>
         private void SetNextKungfuStr(List<KongfuType> kungfuTypes)
         {
             m_UnlockBg.sizeDelta = new Vector2 (KungfuFontWight, 0);
