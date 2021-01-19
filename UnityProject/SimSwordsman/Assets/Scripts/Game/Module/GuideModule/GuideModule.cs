@@ -35,15 +35,21 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger3));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickLobbyTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(LobbyPanelGetCharacterTrigger));
-            //GuideMgr.S.RegisterGuideTrigger(typeof(FirstEndFoodTrigger));
-            //GuideMgr.S.RegisterGuideTrigger(typeof(BossMeetTrigger));
-            //GuideMgr.S.RegisterGuideTrigger(typeof(RoadBlockTrigger));
-            //GuideMgr.S.RegisterGuideTrigger(typeof(WeaponUnlockTrigger));
-            //GuideMgr.S.RegisterGuideTrigger(typeof(MagicCloudTrigger));
-            //GuideMgr.S.RegisterGuideTrigger(typeof(MagicCloudEndTriger));
 
 
+            GuideMgr.S.RegisterGuideTrigger(typeof(KitchenDialogTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacility_KitchenTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacilityPanel_KitchenTrigger));
 
+            GuideMgr.S.RegisterGuideTrigger(typeof(WarehouseDialogTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacility_WarehouseTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacilityPanel_WarehouseTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildBaicaohuTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildPracticeFieldTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildKungfuLibraryTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildForgehouseTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(FoodBuffTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystemTrigger));
         }
 
         protected void InitCustomCommand()
