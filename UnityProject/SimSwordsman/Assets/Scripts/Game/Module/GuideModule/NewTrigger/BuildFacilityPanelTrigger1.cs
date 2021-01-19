@@ -19,7 +19,7 @@ namespace GameWish.Game
         public void Start(Action<bool, ITrigger> l)
         {
             m_Listener = l;
-            EventSystem.S.Register(EventID.OnGuideBuileFacilityPanelTrigger1, OnEventListener);
+            EventSystem.S.Register(EventID.OnGuideBuildFacilityPanelTrigger1, OnEventListener);
         }
         void OnEventListener(int key, object[] param)
         {
@@ -38,7 +38,7 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
-            EventSystem.S.UnRegister(EventID.OnGuideBuileFacilityPanelTrigger1, OnEventListener);
+            EventSystem.S.UnRegister(EventID.OnGuideBuildFacilityPanelTrigger1, OnEventListener);
 
             EventSystem.S.Send(EventID.OnGuideDialog3);
         }
