@@ -68,7 +68,7 @@ namespace GameWish.Game
             Desc = tdData.desc;
             Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.quality);
 
-            AnalysisBonus(tdData.bonus);
+            AnalysisBonus(tdData.atkRate);
             AnalysisSellingPrice(tdData.sellingPrice);
             AnalysisUpgradeCondition(tdData.upgradeCondition);
             AnalysisBuildCondition(tdData.buildCondition);
