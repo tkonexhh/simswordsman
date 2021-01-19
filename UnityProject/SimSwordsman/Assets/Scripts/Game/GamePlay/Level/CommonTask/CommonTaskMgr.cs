@@ -22,9 +22,10 @@ namespace GameWish.Game
 
         private TaskPos m_TaskPos;
 
-        public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
+        private Dictionary<CollectedObjType, TaskCollectableItem> m_CollectedObjDic = new Dictionary<CollectedObjType, TaskCollectableItem>();
+        private Dictionary<CollectedObjType, AddressableGameObjectLoader> m_TaskObjLoaderDic = new Dictionary<CollectedObjType, AddressableGameObjectLoader>();
 
-        public Dictionary<CollectedObjType, TaskCollectableItem> m_CollectedObjDic = new Dictionary<CollectedObjType, TaskCollectableItem>();
+        public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
 
         #region IMgr
         public void OnInit()
@@ -98,23 +99,28 @@ namespace GameWish.Game
         public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
         {
             string prefabName = GetPrefabName(collectedObjType);
-            GameObject prefab = Resources.Load(prefabName) as GameObject;
-            if (prefab == null)
-            {
-                Log.e("Prefab not found: " + prefabName);
-                return;
-            }
 
-            GameObject go = GameObject.Instantiate(prefab);
-            go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
-            if (!m_CollectedObjDic.ContainsKey(collectedObjType))
+            try
             {
-                TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
-                m_CollectedObjDic.Add(collectedObjType, item);
+                AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+                loader.InstantiateAsync(prefabName, (go) =>
+                {
+                    go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
+                    if (!m_CollectedObjDic.ContainsKey(collectedObjType))
+                    {
+                        TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
+                        m_CollectedObjDic.Add(collectedObjType, item);
+                        m_TaskObjLoaderDic.Add(collectedObjType, loader);
+                    }
+                    else
+                    {
+                        Log.e("Task obj has been created before: " + collectedObjType);
+                    }
+                });
             }
-            else
+            catch (Exception e)
             {
-                Log.e("Task obj has been created before: " + collectedObjType);
+                Log.e("SpawnTaskCollectableItem error: " + prefabName + " " + e.Message.ToString() + " " + e.StackTrace);
             }
         }
 
@@ -122,7 +128,8 @@ namespace GameWish.Game
         {
             if (m_CollectedObjDic.ContainsKey(collectedObjType))
             {
-                Destroy(m_CollectedObjDic[collectedObjType].gameObject);
+                m_TaskObjLoaderDic[collectedObjType].Release();
+                m_TaskObjLoaderDic.Remove(collectedObjType);
 
                 m_CollectedObjDic.Remove(collectedObjType);
             }
@@ -245,8 +252,7 @@ namespace GameWish.Game
 
         private string GetPrefabName(CollectedObjType collectedObjType)
         {
-            string prefabName = "Prefabs/SceneItem/TaskCollectableItem/";
-            return prefabName + collectedObjType.ToString();
+            return collectedObjType.ToString();
         }
         #endregion
 
