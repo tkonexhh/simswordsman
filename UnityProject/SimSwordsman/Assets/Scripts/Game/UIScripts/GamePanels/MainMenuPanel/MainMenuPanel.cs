@@ -49,9 +49,10 @@ namespace GameWish.Game
 
             m_VillaBtn.onClick.AddListener(() => {
 
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.QingRock), 2000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 2000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.SilverWood), 2000);
+                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
+                }
 
                 MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,10);
 
