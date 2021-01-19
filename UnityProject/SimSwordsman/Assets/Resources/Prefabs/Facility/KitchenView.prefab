@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 3280147034588986659}
   - component: {fileID: 485315160}
   - component: {fileID: 485315161}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: KitchenView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ MonoBehaviour:
   navObstacleObj: {fileID: 2210917602227742338}
   roadObj: {fileID: 0}
   door: {fileID: 4818306822851220035}
-  facilityType: 8
+  facilityType: 14
 --- !u!1 &4426457843445035017
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8273632551249946642
 Transform:
   m_ObjectHideFlags: 0
