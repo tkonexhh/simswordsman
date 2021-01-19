@@ -54,28 +54,38 @@ namespace GameWish.Game
         {
             while (second >= 0)
             {
+              
                 if (second <= 5)
                 {
-                    //m_CombatTime.color = Color.red;
-                    //m_CombatTime.Alpha
+                   //TODO
                 }
 
                 m_CombatTime.text = SplicingTime(second);
                 yield return new WaitForSeconds(1);
                 second--;
+                if (second==0)
+                  EventSystem.S.Send(EventID.OnBattleFailed);
             }
         }
-        /// <summary>
-        /// ∆¥Ω” ±º‰
-        /// </summary>
-        /// <param name="second"></param>
-        /// <returns></returns>
-        public string SplicingTime(int second)
+        public string SplicingTime(int seconds)
         {
-            if (second.ToString().Length > 1)
-                return "00:" + second;
-            else
-                return "00:0" + second;
+            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
+            string str = "";
+
+            if (ts.Hours > 0)
+            {
+                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes > 0)
+            {
+                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes == 0)
+            {
+                str = "00:" + ts.Seconds.ToString("00");
+            }
+
+            return str;
         }
 
         private void RefreshCurPanelInfo()
@@ -121,7 +131,7 @@ namespace GameWish.Game
             m_CurChapterConfigInfo = (ChapterConfigInfo)args[0];
             m_LevelConfigInfo = (LevelConfigInfo)args[1];
             RefreshCurPanelInfo();
-            StartCoroutine(BattleCountdown(7));
+            StartCoroutine(BattleCountdown(30));
         }
 
         protected override void OnClose()

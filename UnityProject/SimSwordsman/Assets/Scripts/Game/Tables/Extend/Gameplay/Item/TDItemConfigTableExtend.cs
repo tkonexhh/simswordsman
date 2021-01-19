@@ -18,6 +18,7 @@ namespace GameWish.Game
                 PropConfigInfo propConfigInfo = new PropConfigInfo();
                 propConfigInfo.id = tdData.id;
                 propConfigInfo.name = tdData.name;
+                propConfigInfo.iconName = tdData.iconName;
                 propConfigInfo.desc = tdData.desc;
                 propConfigInfo.price = tdData.price;
 
@@ -33,6 +34,13 @@ namespace GameWish.Game
             }
             return null;
         }
+
+        public static string GetIconName(int id)
+        {
+            if (propConfigInfoDic.ContainsKey(id))
+                return propConfigInfoDic[id].iconName;
+            return string.Empty;
+        }
     }
 
     public class PropConfigInfo
@@ -41,5 +49,6 @@ namespace GameWish.Game
         public string name;
         public string desc;
         public int price;
+        public string iconName;
     }
 }

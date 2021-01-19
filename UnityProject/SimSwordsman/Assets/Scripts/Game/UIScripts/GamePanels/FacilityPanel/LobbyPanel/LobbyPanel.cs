@@ -45,13 +45,22 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_UpgradeTitle;
         [SerializeField]
-        private Text m_CoinValue;
-        [SerializeField]
-        private Text m_BaoziValue;
-        [SerializeField]
         private Button m_UpgradeBtn; 
         [SerializeField]
         private Text m_UpgradeBtnValue;
+
+        [SerializeField]
+        private Image m_Res1Img;
+        [SerializeField]
+        private Text m_Res1Value;
+        [SerializeField]
+        private Image m_Res2Img;
+        [SerializeField]
+        private Text m_Res2Value;
+        [SerializeField]
+        private Image m_Res3Img;
+        [SerializeField]
+        private Text m_Res3Value;
 
         [Header("Buttom")]
         [SerializeField]
@@ -60,12 +69,9 @@ namespace GameWish.Game
         private GameObject m_RecruitmentOrderItem;
 
         private int m_CurLevel = 1;
-        private FacilityLevelInfo m_CurFacilityLevelInfo = null;
+        private List<CostItem> m_CostItems;
         private FacilityLevelInfo m_NextFacilityLevelInfo = null;
         private FacilityConfigInfo m_CurFacilityConfigInfo = null;
-
-        private int RecruitmentGoldCrder = 2;
-        private int RecruitmentSilverCrder = 2;
 
         private RecruitDiscipleMgr m_RecruitDiscipleMgr = null;
         private FacilityMgr m_FacilityMgr = null;
@@ -74,6 +80,7 @@ namespace GameWish.Game
         private void InitFixedInfo()
         {
             m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
+            //m_UpgradeTitle.text = CommonUIMethod.GetUpgradeCondition(m_NextFacilityLevelInfo.upgradeNeedLobbyLevel);
             m_UpgradeTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADENEEDS);
             m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
         }
@@ -111,8 +118,8 @@ namespace GameWish.Game
 
             RefreshPanelInfo();
 
-            CreateRecruitmentOrder(RecruitType.SilverMedal, FindSprite("SilverOlder"));
-            CreateRecruitmentOrder(RecruitType.GoldMedal, FindSprite("GoldOlder"));
+            CreateRecruitmentOrder(RecruitType.SilverMedal, FindSprite("silverolder"));
+            CreateRecruitmentOrder(RecruitType.GoldMedal, FindSprite("goldolder"));
         }
 
         private void CreateRecruitmentOrder(RecruitType Medal,Sprite sprite)
@@ -132,55 +139,35 @@ namespace GameWish.Game
         public void RefreshPanelInfo()
         {
             m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
-            m_CoinValue.text = Define.RIDE + m_CurFacilityLevelInfo.upgradeCoinCost;
-            //m_FacilitiesName.text = m_CurFacilityConfigInfo.name;
-            //m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
-            //bool goldMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.GoldMedal);
-            //bool silverMedalFirst = m_RecruitDiscipleMgr.GetIsFirstMedal(RecruitType.SilverMedal);
-            //m_GoldRecruitmentTimesTra.gameObject.SetActive(false);
-            //m_SilverRecruitmentTimesTra.gameObject.SetActive(false);
-            //if (silverMedalFirst)
-            //    m_RecruitmentSilverTxt.text = Define.RECRUIT_FREE;
-            //else
-            //{
-            //    if (RecruitmentSilverCrder > 0)
-            //        m_RecruitmentSilverTxt.text = Define.SILVER_ORDER;
-            //    else
-            //    {
-            //        int silverMedalCount = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.SilverMedal);
-            //        m_SilverRecruitmentTimes.text = silverMedalCount.ToString()
-            //           + "/3";
-            //        m_RecruitDic[RecruitType.SilverMedal] = ClickType.LookAdvertisement;
-            //        m_RecruitmentSilverTxt.text = Define.LOOKING_AT_SILVER_ADVERTISEMENT;
-
-            //        m_SilverRecruitmentTimesTra.gameObject.SetActive(true);
-            //        if (silverMedalCount == 0)
-            //            m_RecruitDic[RecruitType.SilverMedal] = ClickType.Over;
-            //    }
-            //}
-
-            //if (goldMedalFirst)
-            //    m_RecruitmentGoldTxt.text = Define.RECRUIT_FREE;
-            //else
-            //{
-            //    if (RecruitmentGoldCrder > 0)
-            //        m_RecruitmentGoldTxt.text = Define.GOLD_MEDAL_RECRUITt_ORDER;
-            //    else
-            //    {
-            //        int goldMedalCount = m_RecruitDiscipleMgr.GetCurRecruitCount(RecruitType.GoldMedal);
-            //        m_GoldRecruitmentTimes.text = goldMedalCount.ToString()
-            //           + "/3";
-            //        m_RecruitDic[RecruitType.GoldMedal] = ClickType.LookAdvertisement;
-            //        m_RecruitmentGoldTxt.text = Define.WATCH_GOLD_MEDALS;
-
-            //        m_GoldRecruitmentTimesTra.gameObject.SetActive(true);
-            //        if (goldMedalCount == 0)
-            //            m_RecruitDic[RecruitType.GoldMedal] = ClickType.Over;
-            //    }
-            //}
+            RefreshResInfo();
         }
 
-     
+        private void RefreshResInfo()
+        {
+            if (m_CostItems.Count == 1)
+            {
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+                m_Res2Value.text = m_NextFacilityLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Img.sprite = FindSprite("Coin");
+                m_Res3Img.gameObject.SetActive(false);
+            }
+            else if (m_CostItems.Count == 2)
+            {
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
+                m_Res3Value.text = m_NextFacilityLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Img.sprite = FindSprite("Coin");
+                m_Res3Img.gameObject.SetActive(true);
+            }
+        }
+
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
+         }
 
         protected override void OnPanelHideComplete()
         {
@@ -194,8 +181,15 @@ namespace GameWish.Game
         /// </summary>
         private void OnClickUpgradeBtn()
         {
-            bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_CurFacilityLevelInfo.upgradeCoinCost);
-
+          
+            if (!CheackIsBuild())
+            {
+                FloatMessage.S.ShowMsg("未达到升级条件");
+                return;
+            }
+            if (m_NextFacilityLevelInfo == null)
+                return;
+            bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)
             {
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
@@ -203,15 +197,32 @@ namespace GameWish.Game
                 RefreshPanelInfo();
             }
         }
+        private bool CheackIsBuild()
+        {
+            if (CheckPropIsEnough())
+                return true;
+            return false;
+        }
+        private bool CheckPropIsEnough()
+        {
+            for (int i = 0; i < m_CostItems.Count; i++)
+            {
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
+                if (!isHave)
+                    return false;
+            }
 
+            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextFacilityLevelInfo.upgradeCoinCost);
+        }
         /// <summary>
         /// 刷新等级信息
         /// </summary>
         private void RefreshLevelInfo()
         {
             m_CurLevel = m_FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            m_CurFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel);
+            m_NextFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel+1);
             m_CurFacilityConfigInfo = m_FacilityMgr.GetFacilityConfigInfo(FacilityType.Lobby);
+            m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
         }
     }
 }

@@ -30,12 +30,27 @@ namespace GameWish.Game
         OnGuideClickLobbyTrigger1,
         OnGuideClickRecruitTrigger1,
         OnGuideDialog4,
-        OnGuideClickTaskTrigger,
-
+        OnGuideClickTaskTrigger1,
+        OnGuideClickTaskDetailsTrigger1,
+        OnGuideSendCharacterOnTaskTrigger1,
+        OnGuideReceiveTaskRewardTrigger1,
+        OnGuideDialog5,
+        OnGuideBuildFacilityTrigger2,
+        OnGuideBuildFacilityPanelTrigger2,
+        OnGuideDialog6,
+        OnGuideClickLobbyTrigger2,
+        OnGuideClickRecruitTrigger2,
+        OnGuideDialog7,
+        OnGuideClickTaskTrigger2,
+        OnGuideClickTaskDetailsTrigger2,
+        OnGuideSelectCharacterTrigger,
+        OnGuideSendCharacterOnTaskTrigger2,
+        OnGuideReceiveTaskRewardTrigger2,
         OnGuideUnlockKitchen,
         OnGuideBuildKitchen,
         OnGuideBuildKitchenPanel,
-
+        OnGuideDialog8,
+        OnGuideSendCharacterWorkTrigger,
         OnGuideUnlockWarehouse,
         OnGuideBuildWarehouse,
         OnGuideBuildWarehousePanel,
@@ -49,7 +64,8 @@ namespace GameWish.Game
 
         GuideDelayStart,
         InGuideProgress,
-        OnFirstGetCharacter,
+        OnGuideFirstGetCharacter,
+        OnGuideSecondGetCharacter,
         #endregion
 
         //UI

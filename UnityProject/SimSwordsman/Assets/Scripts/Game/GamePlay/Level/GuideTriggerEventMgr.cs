@@ -10,12 +10,12 @@ namespace GameWish.Game
 	{
 	    public void Init()
         {
-            EventSystem.S.Register(EventID.OnFirstGetCharacter, StartGuide_Task);
+            EventSystem.S.Register(EventID.OnGuideFirstGetCharacter, StartGuide_Task1);
+            EventSystem.S.Register(EventID.OnGuideSecondGetCharacter, StartGuide_Task2);
             EventSystem.S.Register(EventID.OnStartUnlockFacility, UnlockFacility);
         }
 
-
-        private void StartGuide_Task(int key, object[] param)
+        private void StartGuide_Task1(int key, object[] param)
         {
             //EventSystem.S.Send(EventID.InGuideProgress, false);
             Timer.S.Post2Really(x => 
@@ -23,6 +23,15 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnGuideDialog4);
             }, 1f);
         }
+
+        private void StartGuide_Task2(int key, object[] param)
+        {
+            Timer.S.Post2Really(x =>
+            {
+                EventSystem.S.Send(EventID.OnGuideDialog7);
+            }, 1f);
+        }
+
         private void UnlockFacility(int key, object[] param)
         {
             FacilityType type = (FacilityType)param[0];
