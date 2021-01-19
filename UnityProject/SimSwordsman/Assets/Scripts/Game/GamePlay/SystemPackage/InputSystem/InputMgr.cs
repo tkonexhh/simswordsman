@@ -54,6 +54,8 @@ namespace GameWish.Game
             if (!m_TouchObservers.Contains(ob))
             {
                 m_TouchObservers.Add(ob);
+
+                m_TouchObservers.Sort((a, b) => { return b.GetSortingLayer() - a.GetSortingLayer(); });
             }
         }
 
@@ -70,7 +72,10 @@ namespace GameWish.Game
             {
                 foreach (var ob in m_TouchObservers)
                 {
-                    ob.On_TouchStart(gesture);
+                    bool touched = ob.On_TouchStart(gesture);
+
+                    if (touched && ob.BlockInput())
+                        break;
                 }
             }
         }
@@ -82,7 +87,10 @@ namespace GameWish.Game
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_TouchDown(gesture);
+                bool touched = ob.On_TouchDown(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
@@ -97,7 +105,10 @@ namespace GameWish.Game
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_TouchUp(gesture);
+                bool touched = ob.On_TouchUp(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 
@@ -108,7 +119,10 @@ namespace GameWish.Game
 
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_Drag(gesture, m_IsTouchStartFromUI);
+                bool touched = ob.On_Drag(gesture, m_IsTouchStartFromUI);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
 
             //Log.e("On drag");
@@ -118,7 +132,10 @@ namespace GameWish.Game
         {
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_Swipe(gesture);
+                bool touched = ob.On_Swipe(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
 
             //Log.e("On swipe");
@@ -128,7 +145,10 @@ namespace GameWish.Game
         {
             foreach (var ob in m_TouchObservers)
             {
-                ob.On_LongTap(gesture);
+                bool touched = ob.On_LongTap(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
         }
 

@@ -53,24 +53,41 @@ namespace GameWish.Game
         #endregion
 
         #region IInput
-        public void On_Drag(Gesture gesture, bool isTouchStartFromUI)
+        public bool On_Drag(Gesture gesture, bool isTouchStartFromUI)
         {
-
+            return false;
         }
 
-        public void On_LongTap(Gesture gesture)
+        public bool On_LongTap(Gesture gesture)
         {
+            return false;
         }
 
-        public void On_Swipe(Gesture gesture)
+        public bool On_Swipe(Gesture gesture)
         {
+            return false;
         }
 
-        public void On_TouchDown(Gesture gesture)
+        public bool On_TouchUp(Gesture gesture)
+        {
+            return false;
+        }
+
+        public bool BlockInput()
+        {
+            return true;
+        }
+
+        public int GetSortingLayer()
+        {
+            return 1;
+        }
+
+        public bool On_TouchDown(Gesture gesture)
         {
 #if UNITY_EDITOR
             if (!m_CameraMoveSwitch)
-                return;
+                return false;
 
             float x = transform.position.x - gesture.deltaPosition.x * m_MoveSpeed;
             float y = transform.position.y - gesture.deltaPosition.y * m_MoveSpeed;
@@ -79,16 +96,16 @@ namespace GameWish.Game
             {
                 transform.position -= m_MoveSpeed * new Vector3(gesture.deltaPosition.x, gesture.deltaPosition.y, 0);
             }
+
+            return true;
 #endif
         }
 
-        public void On_TouchStart(Gesture gesture)
+        public bool On_TouchStart(Gesture gesture)
         {
+            return false;
         }
-
-        public void On_TouchUp(Gesture gesture)
-        {
-        }
+      
 
         #endregion
 

@@ -51,39 +51,56 @@ namespace GameWish.Game
 
         #region InputObserver
 
-        public void On_Drag(Gesture gesture, bool isTouchStartFromUI)
+        public bool On_Drag(Gesture gesture, bool isTouchStartFromUI)
         {
+            return false;
         }
 
-        public void On_LongTap(Gesture gesture)
+        public bool On_LongTap(Gesture gesture)
         {
+            return false;
         }
 
-        public void On_Swipe(Gesture gesture)
+        public bool On_Swipe(Gesture gesture)
         {
+            return false;
         }
 
-        public void On_TouchDown(Gesture gesture)
+        public bool On_TouchDown(Gesture gesture)
         {
-
+            return false;
         }
 
-        public void On_TouchStart(Gesture gesture)
+        public bool BlockInput()
+        {
+            return true;
+        }
+
+        public int GetSortingLayer()
+        {
+            return 1;
+        }
+
+        public bool On_TouchStart(Gesture gesture)
         {
             if (gesture.IsOverUIElement())
-                return;
+                return false;
 
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
                 m_ClickHandler = hit.collider.GetComponent<IFacilityClickedHandler>();
+
+                return true;
             }
+
+            return false;
         }
 
-        public void On_TouchUp(Gesture gesture)
+        public bool On_TouchUp(Gesture gesture)
         {
             if (gesture.IsOverUIElement())
-                return;
+                return false;
 
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
@@ -92,8 +109,12 @@ namespace GameWish.Game
                 if (handler != null && m_ClickHandler == handler)
                 {
                     handler.OnClicked();
+
+                    return true;
                 }
             }
+
+            return false;
         }
 
         #endregion
