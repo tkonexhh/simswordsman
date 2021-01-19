@@ -368,6 +368,7 @@ namespace GameWish.Game
         private void UpgradeFacility(FacilityType type, int subId, int deltaLevel)
         {
             GameDataMgr.S.GetClanData().UpgradeFacility(type, deltaLevel/*, subId*/);
+            GetFacilityController(type)?.OnUpgrade();
 
             RefreshFacilityUnlockState();
         }

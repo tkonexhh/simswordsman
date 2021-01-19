@@ -10,53 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Wolf
+  m_Name: Plants
   m_EditorClassIdentifier: 
-  m_GroupName: Wolf
+  m_GroupName: Plants
   m_Data:
     m_SerializedData: []
-  m_GUID: ad121a41bfe96384f92052ae2ea785aa
+  m_GUID: fb66cf50407190e4badd317fdf75d251
   m_SerializeEntries:
-  - m_GUID: 01eba95fc5ee7674b88725a05bf8ccd1
-    m_Address: wolf
+  - m_GUID: 5032809e9eca52e45bbb3d9513feb3ec
+    m_Address: Iron
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 16b25f55f5383994fb6f65e2f9e74ec1
-    m_Address: wolf_Material
+  - m_GUID: 58debe549182d284fbca1a1e4487518b
+    m_Address: Ganoderma
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 72bf668ebab63b24cb8c0128182d9658
-    m_Address: wolf
+  - m_GUID: 939c379d1bf1ef346ad68602d4a1913b
+    m_Address: CloudRock
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 79048732a9b281d46b4947a4fa38b081
-    m_Address: wolf_SkeletonData
+  - m_GUID: a247c63f8294fe24c95a91b4d29b7938
+    m_Address: QingRock
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 9a803eedbe1bea4428390625a05ef628
-    m_Address: wolf.atlas
+  - m_GUID: b1eeb5b5d3121bf48a7d7a8ffda19126
+    m_Address: Vine
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: d02f1ddb273e3724ba80d09bb32d175c
-    m_Address: Wolf
+  - m_GUID: cac886ce70b6c344ca96a815553d684e
+    m_Address: SilverWood
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 2807960780921782558, guid: d02f1ddb273e3724ba80d09bb32d175c,
-      type: 3}
-    m_TargetAsset: {fileID: 2807960780921782558, guid: d02f1ddb273e3724ba80d09bb32d175c,
-      type: 3}
-  - m_GUID: f698ed2e951fa41409d2eaaf7516bc80
-    m_Address: wolf_Atlas
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: fdab36992426e6242a3ad78d98aa2c33
+    m_Address: WuWood
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
@@ -65,4 +63,4 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a5c7b57cd4e494a4685ec46e521ed405, type: 2}
+    - {fileID: 11400000, guid: 3051b5eab82084c41bd6e2057f5fa0e0, type: 2}

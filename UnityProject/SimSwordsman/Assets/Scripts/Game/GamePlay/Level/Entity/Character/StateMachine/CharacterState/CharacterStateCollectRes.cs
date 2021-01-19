@@ -19,7 +19,8 @@ namespace GameWish.Game
         private bool m_IsTaskEnd = false;
 
         private CollectedObjType m_CollectedObjType;
-        private TaskCollectableItem m_TaskCollectableItem;
+        private TaskCollectableItem m_TaskCollectableItem = null;
+        private bool m_IsTaskCollectableItemFound = false;
 
         public CharacterStateCollectRes(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -31,26 +32,11 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            //if (m_TaskPos == null)
-            //{
-            //    m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
-            //}
-
             m_CollectedObjType = (CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
-            m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
-            if (m_TaskCollectableItem != null)
-            {
-                Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
-                Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
-                m_Controller.MoveTo(pos, OnReachDestination);
-            }
-            else
-            {
-                Log.e("CharacterStateCollectRes task item is null:" + m_CollectedObjType.ToString());
-            }
 
             m_ReachTargetPos = false;
             m_IsTaskEnd = false;
+            m_IsTaskCollectableItemFound = false;
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -59,6 +45,22 @@ namespace GameWish.Game
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
+            if (m_IsTaskCollectableItemFound == false)
+            {
+                m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
+                if (m_TaskCollectableItem != null)
+                {
+                    m_IsTaskCollectableItemFound = true;
+
+                    Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
+                    Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
+                    m_Controller.MoveTo(pos, OnReachDestination);
+                }
+            }
+
+            if (m_TaskCollectableItem == null)
+                return;
+
             if (m_IsTaskEnd)
                 return;
 

@@ -45,6 +45,11 @@ namespace GameWish.Game
             m_Model = new FacilityModel(this, dbItem);
 
             SetState(dbItem.facilityState);
+
+            if (m_FacilityState == FacilityState.Unlocked)
+            {
+                m_View.SetViewByLevel();
+            }
         }
 
         public void SetState(FacilityState facilityState)
@@ -52,6 +57,11 @@ namespace GameWish.Game
             m_FacilityState = facilityState;
 
             m_View?.SetViewByState();
+        }
+
+        public void OnUpgrade()
+        {
+            m_View.SetViewByLevel();
         }
 
         public FacilityState GetState()
