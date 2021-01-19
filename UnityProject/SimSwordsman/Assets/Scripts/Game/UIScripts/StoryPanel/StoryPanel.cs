@@ -36,7 +36,7 @@ namespace GameWish.Game
             m_StoryIndex = 0;
             StoryEndedCallBack = (Action)args[1];
 
-            string[] ids = ((string)args[0]).Split(';');
+            string[] ids = ((string)args[0]).Split(',');
             m_NowStoryIDList.Clear();
 
             foreach (var item in ids)

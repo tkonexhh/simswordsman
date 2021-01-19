@@ -4,7 +4,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class ClickTaskBtnTrigger : ITrigger
+	public class DialogTrigger7 : ITrigger
 	{
         bool m_CanStart = false;
         public bool isReady { get { return m_CanStart;  } }
@@ -19,7 +19,7 @@ namespace GameWish.Game
         public void Start(Action<bool, ITrigger> l)
         {
             m_Listener = l;
-            EventSystem.S.Register(EventID.OnGuideClickTaskTrigger, OnEventListener);
+            EventSystem.S.Register(EventID.OnGuideDialog7, OnEventListener);
         }
         void OnEventListener(int key, object[] param)
         {
@@ -38,11 +38,11 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
-            EventSystem.S.UnRegister(EventID.OnGuideClickTaskTrigger, OnEventListener);
+            EventSystem.S.UnRegister(EventID.OnGuideDialog7, OnEventListener);
 
-            //EventSystem.S.Send(EventID.OnGuideClickRecruitTrigger1);
+            EventSystem.S.Send(EventID.OnGuideClickTaskTrigger2);
         }
 
-	}
+    }
 	
 }
