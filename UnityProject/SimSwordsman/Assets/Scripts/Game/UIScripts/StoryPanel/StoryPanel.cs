@@ -13,6 +13,11 @@ namespace GameWish.Game
     /// </summary>
 	public partial class StoryPanel : AbstractAnimPanel
 	{
+        [SerializeField] private Text m_ContentText;
+        [SerializeField] private Button m_NextButton;
+        [SerializeField] private Button m_SkipButton;
+        [SerializeField] private Shader m_ReversalShader;
+
         private Tweener m_TextTweener;
 
         private int m_StoryIndex = 0;
