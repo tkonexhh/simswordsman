@@ -195,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147355786859874251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.052, y: -0.061, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5704242532840243153}
@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2147355787051704824
 Transform:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 2147355788826913850}
   - component: {fileID: 2147355788826913861}
   - component: {fileID: 1618287414398073770}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BulletinBoardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ MonoBehaviour:
   navObstacleObj: {fileID: 1863597596408069048}
   roadObj: {fileID: 0}
   door: {fileID: 0}
-  facilityType: 14
+  facilityType: 20
 --- !u!1 &5643354705011943344
 GameObject:
   m_ObjectHideFlags: 0
