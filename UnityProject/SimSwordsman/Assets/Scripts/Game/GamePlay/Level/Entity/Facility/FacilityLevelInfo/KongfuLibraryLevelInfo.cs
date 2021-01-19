@@ -11,7 +11,7 @@ namespace GameWish.Game
         private int m_DurationOfCopying;
         private int m_SeatOfCopying;
 
-        private List<KungfuType> m_UnlockedKongfuType = new List<KungfuType>();
+        private List<KongfuType> m_UnlockedKongfuType = new List<KongfuType>();
         private List<KungFuPoolConfig> m_KungFuPool = new List<KungFuPoolConfig>();
 
         public int GetCurCapacity()
@@ -30,12 +30,12 @@ namespace GameWish.Game
         }
 
 
-        public List<KungfuType> GetCurLevelUnlockedKongfuList()
+        public List<KongfuType> GetCurLevelUnlockedKongfuList()
         {
             return m_UnlockedKongfuType;
         }
 
-        public void SetInitData(List<KungfuType> list, KungFuPoolConfig kungFuPoolConfig, int duration, int seat)
+        public void SetInitData(List<KongfuType> list, KungFuPoolConfig kungFuPoolConfig, int duration, int seat)
         {
             m_UnlockedKongfuType = list;
             m_KungFuPool.Add(kungFuPoolConfig);
@@ -43,7 +43,7 @@ namespace GameWish.Game
             m_SeatOfCopying = seat;
         }
 
-        public List<KungfuType> GetNextLevelUnlockedKongfuList()
+        public List<KongfuType> GetNextLevelUnlockedKongfuList()
         {
             int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_KUNGFULIBRARY);
             return ((KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.KongfuLibrary, realLevel)).GetCurLevelUnlockedKongfuList();
@@ -52,10 +52,10 @@ namespace GameWish.Game
 
     public class KungFuPoolConfig
     {
-        public KungfuType Kungfu { set; get; }
+        public KongfuType Kungfu { set; get; }
         public int Weight { set; get; }
 
-        public KungFuPoolConfig(KungfuType kungfu, int number)
+        public KungFuPoolConfig(KongfuType kungfu, int number)
         {
             Kungfu = kungfu;
             Weight = number;

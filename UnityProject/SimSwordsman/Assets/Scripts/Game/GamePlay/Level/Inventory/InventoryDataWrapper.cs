@@ -203,7 +203,7 @@ namespace GameWish.Game
             if (item != null && item.ReduceItemNumber(delta))
                 m_WarehouseItems.Remove(item);
             EventSystem.S.Send(EventID.OnReduceItems, _propItem, delta);
-            m_ClanData.RemovePropItem(_propItem, delta);
+            m_ClanData.RemovePropItem(_propItem, item.Number);
         }
     }
 
@@ -275,7 +275,7 @@ namespace GameWish.Game
 
     public class KungfuItem : ItemBase
     {
-        public KungfuType KungfuType { set; get; }
+        public KongfuType KungfuType { set; get; }
         public float AtkScale { set; get; }
         public KungfuItem()
         {
@@ -285,7 +285,7 @@ namespace GameWish.Game
         {
             throw new NotImplementedException();
         }
-        public KungfuItem(KungfuType kungfuType)
+        public KungfuItem(KongfuType kungfuType)
         {
             PropType = PropType.Kungfu;
             KungfuType = kungfuType;

@@ -10,16 +10,17 @@ namespace GameWish.Game
         public int id;
         public List<string> names = new List<string>();
         public ClanType clanType;
-        public string kongfuName;
-        public string animName;
+        public List<string> kongfuNameList;
+        public List<string> animNameList;
         public string prefabName;
 
         public EnemyInfo(TDEnemyConfig tDEnemy)
         {
             this.id = tDEnemy.id;
             this.clanType = EnumUtil.ConvertStringToEnum<ClanType>(tDEnemy.clan);
-            this.kongfuName = tDEnemy.kongfuName;
-            this.animName = tDEnemy.animationName;
+            ParseKongfuName(tDEnemy.kongfuName);
+            ParseAnimName(tDEnemy.animationName);
+
             this.prefabName = tDEnemy.prefabName;
 
             ParseName(tDEnemy.name);
@@ -33,6 +34,30 @@ namespace GameWish.Game
                 names.Add(name);
             }
         }
-	}
+
+        private void ParseKongfuName(string kongfuNameStr)
+        {
+            if (string.IsNullOrEmpty(kongfuNameStr))
+                return;
+
+            string[] nameStrs = kongfuNameStr.Split(';');
+            foreach (string name in nameStrs)
+            {
+                kongfuNameList.Add(name);
+            }
+        }
+
+        private void ParseAnimName(string animNameStr)
+        {
+            if (string.IsNullOrEmpty(animNameStr))
+                return;
+
+            string[] nameStrs = animNameStr.Split(';');
+            foreach (string name in nameStrs)
+            {
+                animNameList.Add(name);
+            }
+        }
+    }
 	
 }

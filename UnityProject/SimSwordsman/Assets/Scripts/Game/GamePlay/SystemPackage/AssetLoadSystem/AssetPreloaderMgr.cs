@@ -15,7 +15,7 @@ namespace GameWish.Game
         {
             Log.i("Asset preloader start........");
 
-            //AddAssetPreloader(ProgressBarMgr.S);
+            AddAssetPreloader(CharacterLoader.S);
         }
 
         private void AddAssetPreloader(IAssetPreloader assetPreloader)

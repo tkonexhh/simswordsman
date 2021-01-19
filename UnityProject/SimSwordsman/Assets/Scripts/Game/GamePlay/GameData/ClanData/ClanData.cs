@@ -275,6 +275,10 @@ namespace GameWish.Game
             ownedCharacterData.AddKonfuExp(id, kongfuType, deltaExp);
         }
 
+        public List<CharacterItemDbData> GetAllCharacterList()
+        {
+            return ownedCharacterData.characterList;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -344,9 +348,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void RemovePropItem(PropItem _propItem, int delta)
+        public void RemovePropItem(PropItem _propItem, int number)
         {
-            inventoryData.RemovePropItem(_propItem, delta);
+            inventoryData.RefreshPropItem(_propItem, number);
 
             SetDataDirty();
         }
@@ -355,7 +359,7 @@ namespace GameWish.Game
 
         #region Kongfu
 
-        public void UnlockKongfu(KungfuType kongfuType)
+        public void UnlockKongfu(KongfuType kongfuType)
         {
             kongfuData.UnlockKongfu(kongfuType);
 

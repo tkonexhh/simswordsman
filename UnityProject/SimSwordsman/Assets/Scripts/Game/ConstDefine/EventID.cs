@@ -21,10 +21,35 @@ namespace GameWish.Game
         OnSignSuccess,
 
         #region 新手引导
-        OnFirstGuide,
+        OnGuideDialog1,
+        OnGuideTakeName,
+        OnGuideDialog2,
+        OnGuideBuildFacilityTrigger1,
+        OnGuideBuildFacilityPanelTrigger1,
+        OnGuideDialog3,
+        OnGuideClickLobbyTrigger1,
+        OnGuideClickRecruitTrigger1,
+        OnGuideDialog4,
+        OnGuideClickTaskTrigger,
+
+        OnGuideUnlockKitchen,
+        OnGuideBuildKitchen,
+        OnGuideBuildKitchenPanel,
+
+        OnGuideUnlockWarehouse,
+        OnGuideBuildWarehouse,
+        OnGuideBuildWarehousePanel,
+
+        OnGuideUnlockBaicaohu,
+        OnGuideUnlockPracticeField,
+        OnGuideUnlockKungfuLibrary,
+        OnGuideUnlockForgeHouse,
+        OnCuideKitchenFirstLvUp,
+        OnGuideUnlockCollectSystem,
+
         GuideDelayStart,
         InGuideProgress,
-
+        OnFirstGetCharacter,
         #endregion
 
         //UI
@@ -57,11 +82,7 @@ namespace GameWish.Game
         //OnTaskFinished,
 
         //PracticeField
-        /// <summary>
-        /// 选择弟子
-        /// </summary>
-        OnSelectDisciple,
-        OnDisciplePracticeOver,
+
         /// <summary>
         /// 刷新坑位解锁信息
         /// </summary>
@@ -115,7 +136,6 @@ namespace GameWish.Game
         /// 功夫升级事件
         /// </summary>
         OnKongfuLibraryUpgrade,
-
     }
 
 }
