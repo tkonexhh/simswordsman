@@ -23,7 +23,6 @@ namespace GameWish.Game
             {
                 return enemyDic[id];
             }
-
             return null;
         }
     }

@@ -10,8 +10,8 @@ namespace GameWish.Game
         public int id;
         public List<string> names = new List<string>();
         public ClanType clanType;
-        public List<string> kongfuNameList;
-        public List<string> animNameList;
+        public List<string> kongfuNameList = new List<string> ();
+        public List<string> animNameList = new List<string> ();
         public string prefabName;
 
         public EnemyInfo(TDEnemyConfig tDEnemy)
@@ -24,6 +24,12 @@ namespace GameWish.Game
             this.prefabName = tDEnemy.prefabName;
 
             ParseName(tDEnemy.name);
+        }
+
+        public string GetNameForRandom()
+        {
+            int random = Random.Range(0, names.Count);
+            return names[random];
         }
 
         private void ParseName(string nameStr)

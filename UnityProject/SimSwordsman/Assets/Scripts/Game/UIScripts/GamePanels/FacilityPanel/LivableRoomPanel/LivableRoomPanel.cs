@@ -24,8 +24,10 @@ namespace GameWish.Game
         private GameObject m_LivableItem;
 
         private FacilityType m_CurFacilityType;
-
+        private List<CostItem> m_CostItems;
         private const int LivableRoomCount = 4;
+        private int m_CurLevel;
+        private LivableRoomLevelInfo m_LivableRoomLevelInfo = null;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -88,23 +90,41 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             m_CurFacilityType = (FacilityType)args[0];
+      
             RefreshPanelInfo();
      
         }
 
         private ItemICom CreateLivableItem(FacilityType facilityType)
         {
+            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType/*, m_SubID*/);
+            m_LivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, m_CurLevel + 1);
+            m_CostItems = m_LivableRoomLevelInfo.GetUpgradeResCosts();
+
+            AddNeedSprite();
+
+           
+            ItemICom itemICom = Instantiate(m_LivableItem, m_LivableRoomTra).GetComponent<ItemICom>();
+            itemICom.OnInit(this,null, facilityType, AddNeedSprite());
+            return itemICom;
+        }
+
+        private List<Sprite> AddNeedSprite()
+        {
             List<Sprite> sprites = new List<Sprite>();
             sprites.Add(FindSprite("BgBtn1"));
             sprites.Add(FindSprite("BgBtn2"));
             sprites.Add(FindSprite("BgBtn3"));
-            sprites.Add(FindSprite("QingRock"));
-            sprites.Add(FindSprite("silverWood"));
             sprites.Add(FindSprite("Coin"));
+         
+            foreach (var item in m_CostItems)
+                sprites.Add(FindSprite(GetIconName(item.itemId)));
 
-            ItemICom itemICom = Instantiate(m_LivableItem, m_LivableRoomTra).GetComponent<ItemICom>();
-            itemICom.OnInit(this,null, facilityType, sprites);
-            return itemICom;
+            return sprites;
+        }
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
 
         protected override void OnPanelHideComplete()

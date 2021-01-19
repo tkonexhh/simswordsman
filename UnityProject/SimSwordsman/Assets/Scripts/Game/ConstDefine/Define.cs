@@ -109,7 +109,7 @@ namespace GameWish.Game
         public const int FACILITY_MAX_PRACTIVEFIELD =6;
         public const int FACILITY_MAX_LOBBY =6;
         public const int FACILITY_MAX_KUNGFULIBRARY =5;
-        public const int FACILITY_MAX_LIVABLEROOM = 10;
+        public const int FACILITY_MAX_LIVABLEROOM = 6;
         public const int FACILITY_MAX_BULLETInBOARD = 10;
         public const int FACILITY_MAX_WAREHOUSE= 10;
         public const int FACILITY_MAX_BAICAOHU = 10;

@@ -152,7 +152,7 @@ namespace GameWish.Game
         {
 
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
-            m_LivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
+            m_LivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CostItems = m_LivableRoomLevelInfo.GetUpgradeResCosts();
             if (m_CurLevel == Define.FACILITY_MAX_LIVABLEROOM)
@@ -182,7 +182,7 @@ namespace GameWish.Game
             switch (m_LivableRoomState)
             {
                 case LivableRoomState.ReadyBuilt:
-                    m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_LivableRoomLevelInfo.level);
+                    m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_CurLevel);
                     m_UpperMiddle.SetActive(false);
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTBUILD);
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
@@ -239,7 +239,7 @@ namespace GameWish.Game
             if (m_CostItems.Count==1)
             {
                 m_Res1Consume.text = m_CostItems[0].value.ToString();
-                m_Res1.sprite = GetSprite("QingRock");
+                m_Res1.sprite = GetSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Consume.text = m_LivableRoomLevelInfo.upgradeCoinCost.ToString();
                 m_Res2.sprite = GetSprite("Coin");
                 m_Res3.gameObject.SetActive(false);
@@ -248,14 +248,19 @@ namespace GameWish.Game
             {
 
                 m_Res1Consume.text = m_CostItems[0].value.ToString();
-                m_Res1.sprite = GetSprite("QingRock");
+                m_Res1.sprite = GetSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Consume.text = m_CostItems[1].value.ToString();
-                m_Res2.sprite = GetSprite("silverWood");
+                m_Res2.sprite = GetSprite(GetIconName(m_CostItems[1].itemId));
                 m_Res3Consume.text = m_LivableRoomLevelInfo.upgradeCoinCost.ToString();
                 m_Res3.sprite = GetSprite("Coin");
                 m_Res3.gameObject.SetActive(true);
             }
         }
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
+        }
+
 
         public void SetButtonEvent(Action<object> action)
         {
