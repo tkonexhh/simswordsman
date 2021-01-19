@@ -9,7 +9,8 @@ namespace GameWish.Game
     {
         [SerializeField]
         private List<Transform> m_PracticeSlots = new List<Transform>();
-
+        [SerializeField]
+        private List<Transform> m_FlagPos = new List<Transform>();
         [SerializeField]
         private GameObject m_Flag = null;
 
@@ -47,8 +48,23 @@ namespace GameWish.Game
             {
                 case FacilityState.Unlocked:
                     m_Flag.SetActive(true);
+                    RefreshFlagPos();
                     break;
             }
+        }
+
+        public override void SetViewByLevel()
+        {
+            base.SetViewByLevel();
+
+            RefreshFlagPos();
+        }
+
+        public void RefreshFlagPos()
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType);
+            int index = Mathf.Clamp(level - 1, 0, m_FlagPos.Count - 1);
+            m_Flag.transform.position = m_FlagPos[index].position;
         }
     }
 

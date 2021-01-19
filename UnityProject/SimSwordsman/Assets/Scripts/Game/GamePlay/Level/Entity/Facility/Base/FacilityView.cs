@@ -70,30 +70,40 @@ namespace GameWish.Game
                     stateReadyToUnlockObj.SetActive(true);
                     break;
                 case FacilityState.Unlocked:
-                    int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_Controller.GetFacilityType());
-                    if (level < 1 || level > stateObjList.Count)
-                    {
-                        Log.e("Level is out of range");
-                    }
-                    else
-                    {
-                        stateObjList[level - 1].SetActive(true);
-                    }
+                    RefreshStateObj();
 
                     //navObstacleObj?.SetActive(true);
                     ShowRoad(true);
                     break;
-                //case FacilityState.State2:
-                //    state2Obj.SetActive(true);
-                //    navObstacleObj?.SetActive(true);
-                //    ShowRoad(true);
-                //    break;
-                //case FacilityState.State3:
-                //    state3Obj.SetActive(true);
-                //    navObstacleObj?.SetActive(true);
-                //    ShowRoad(true);
-                //    break;
+                    //case FacilityState.State2:
+                    //    state2Obj.SetActive(true);
+                    //    navObstacleObj?.SetActive(true);
+                    //    ShowRoad(true);
+                    //    break;
+                    //case FacilityState.State3:
+                    //    state3Obj.SetActive(true);
+                    //    navObstacleObj?.SetActive(true);
+                    //    ShowRoad(true);
+                    //    break;
             }
+        }
+
+        public void RefreshStateObj()
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_Controller.GetFacilityType());
+            if (level < 1 || level > stateObjList.Count)
+            {
+                Log.e("Level is out of range");
+            }
+            else
+            {
+                stateObjList[level - 1].SetActive(true);
+            }
+        }
+
+        public virtual void SetViewByLevel()
+        {
+            RefreshStateObj();
         }
 
         public void SetController(FacilityController facilityController)
