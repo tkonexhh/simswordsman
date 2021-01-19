@@ -82,7 +82,7 @@ namespace GameWish.Game
             KungfuQuality = EnumUtil.ConvertStringToEnum<KungfuQuality>(tdData.quality);
             AnimName = tdData.animationName;
 
-            string[] additionStr = tdData.atkRange.Split(';');
+            string[] additionStr = tdData.atkRate.Split(';');
             for (int i = 0; i < additionStr.Length; i++)
             {
                 AdditionRatioDic.Add(i+1,float.Parse(additionStr[i]));

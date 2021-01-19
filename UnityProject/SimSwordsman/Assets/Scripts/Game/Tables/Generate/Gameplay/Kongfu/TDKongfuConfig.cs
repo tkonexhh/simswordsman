@@ -16,7 +16,7 @@ namespace GameWish.Game
         private string m_KongfuName;   
         private string m_Quality;   
         private string m_Desc;   
-        private string m_AtkRange;   
+        private string m_AtkRate;   
         private string m_UpgradeExp;   
         private string m_AnimationName;   
         private EInt m_Price = 0;  
@@ -46,7 +46,7 @@ namespace GameWish.Game
         /// <summary>
         /// 加成比例
         /// </summary>
-        public  string  atkRange {get { return m_AtkRange; } }
+        public  string  atkRate {get { return m_AtkRate; } }
        
         /// <summary>
         /// 升级经验
@@ -91,7 +91,7 @@ namespace GameWish.Game
                     m_Desc = dataR.ReadString();
                     break;
                 case 4:
-                    m_AtkRange = dataR.ReadString();
+                    m_AtkRate = dataR.ReadString();
                     break;
                 case 5:
                     m_UpgradeExp = dataR.ReadString();
@@ -118,7 +118,7 @@ namespace GameWish.Game
           ret.Add("KongfuName", 1);
           ret.Add("Quality", 2);
           ret.Add("Desc", 3);
-          ret.Add("AtkRange", 4);
+          ret.Add("AtkRate", 4);
           ret.Add("UpgradeExp", 5);
           ret.Add("AnimationName", 6);
           ret.Add("Price", 7);
