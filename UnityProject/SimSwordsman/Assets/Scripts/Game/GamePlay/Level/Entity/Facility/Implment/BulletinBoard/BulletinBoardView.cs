@@ -16,8 +16,8 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            Debug.Log("BulletinBoard is clicked");
-
+            //Debug.Log("BulletinBoard is clicked");
+            UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
         }        
 
         protected override void OpenUIElement()
