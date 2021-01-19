@@ -9,16 +9,31 @@ namespace GameWish.Game
 {
     public class DisciplePanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Text m_DiscipleTitle;
-        [SerializeField]
-        private Text m_DiscipleCont;
-
+        [Header("Top")]
         [SerializeField]
         private Button m_CloseBtn;
+
+        [Header("Left")]
+        [SerializeField]
+        private Toggle m_AllTog;
+        [SerializeField]
+        private Text m_AllValue;
+        [SerializeField]
+        private Toggle m_CivilianTog;
+        [SerializeField]
+        private Text m_CivilianValue;
+        [SerializeField]
+        private Toggle m_EliteTog;
+        [SerializeField]
+        private Text m_EliteValue;
+        [SerializeField]
+        private Toggle m_GeniusTog;
+        [SerializeField]
+        private Text m_GeniusValue;
+
+        [Header("Right")]
         [SerializeField]
         private Transform m_DiscipleContList;
-
         [SerializeField]
         private GameObject m_DiscipleItem;
 
@@ -39,12 +54,14 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
         }
 
         protected override void OnOpen()
         {
             base.OnOpen();
+            OpenDependPanel(EngineUI.MaskPanel,-1,null);
             RegisterEvents();
         }
         protected override void OnClose()
@@ -82,12 +99,21 @@ namespace GameWish.Game
 
         private void InitPanelInfo()
         {
-            m_DiscipleTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_NAME);
-            m_DiscipleCont.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_DESCRIBE);
+            RefreshFixedInfo();
+            //m_DiscipleTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_NAME);
+            //m_DiscipleCont.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_DESCRIBE);
 
             if (m_CharacterList != null)
                 foreach (var item in m_CharacterList)
                     CreateDisciple(m_DiscipleContList, item);
+        }
+
+        private void RefreshFixedInfo()
+        {
+            m_AllValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_ALL);
+            m_CivilianValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_NORMAL);
+            m_EliteValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_GOOD);
+            m_GeniusValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_PREFECT);
         }
 
         private void GetInformationForNeed()
@@ -98,8 +124,31 @@ namespace GameWish.Game
         private void BindAddListenerEvevnt()
         {
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_AllTog.onValueChanged.AddListener((e)=> {
+                foreach (var item in m_DiscipleDic.Values)
+                    item.SetActive(true);
+            });
+            m_CivilianTog.onValueChanged.AddListener((e) => {
+                SwitchDisciple(CharacterQuality.Normal);
+            });
+            m_EliteTog.onValueChanged.AddListener((e) => {
+                SwitchDisciple(CharacterQuality.Good);
+            });
+            m_GeniusTog.onValueChanged.AddListener((e) => {
+                SwitchDisciple(CharacterQuality.Perfect);
+            });
         }
 
+        private void SwitchDisciple(CharacterQuality characterQuality)
+        {
+            foreach (var item in m_DiscipleDic)
+            {
+                if (item.Key.quality == characterQuality)
+                    item.Value.SetActive(true);
+                else
+                    item.Value.SetActive(false);
+            }
+        }
 
         private void RegisterEvents()
         {

@@ -169,6 +169,10 @@ namespace GameWish.Game
         public const string DISCIPLE_PRACTICE = "Disciple_Practice";
         public const string DISCIPLE_WORK = "Disciple_Work";
         public const string DISCIPLE_EJECT = "Disciple_Eject";
+        public const string DISCIPLE_BTNVALUE_NORMAL = "Disciple_BtnValue_Normal";
+        public const string DISCIPLE_BTNVALUE_GOOD = "Disciple_BtnValue_Good";
+        public const string DISCIPLE_BTNVALUE_PREFECT = "Disciple_BtnValue_Perfect";
+        public const string DISCIPLE_BTNVALUE_ALL = "Disciple_BtnValue_All";
 
         //LivableRoom
         public const string FACILITY_LIVABLEROOMEAST_NAME = "Facility_LivableRoomEast_Name";
