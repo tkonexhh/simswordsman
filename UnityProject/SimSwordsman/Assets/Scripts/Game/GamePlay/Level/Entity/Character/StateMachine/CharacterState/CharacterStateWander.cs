@@ -57,7 +57,8 @@ namespace GameWish.Game
 
             if (m_IsExit == false)
             {
-                m_Controller.MoveTo(m_RandomWayPoints.GetRandomWayPointPos(m_Controller.GetPosition()), OnReachDestination);
+                Vector2 deltaPos = UnityEngine.Random.insideUnitCircle;
+                m_Controller.MoveTo(m_RandomWayPoints.GetRandomWayPointPos(m_Controller.GetPosition() + deltaPos), OnReachDestination);
             }
         }
 

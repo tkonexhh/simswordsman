@@ -45,7 +45,8 @@ namespace GameWish.Game
 
             yield return new WaitForSeconds(2);
 
-            m_Controller.MoveTo(MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.Lobby), OnReachLobby);
+            Vector2 deltaPos = UnityEngine.Random.insideUnitCircle;
+            m_Controller.MoveTo(MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.Lobby) + new Vector3(deltaPos.x, deltaPos.y, 0), OnReachLobby);
 
             while (!m_HasReachedDestination)
             {
