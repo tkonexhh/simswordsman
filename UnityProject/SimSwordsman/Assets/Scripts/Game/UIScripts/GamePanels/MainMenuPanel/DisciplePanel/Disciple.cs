@@ -15,7 +15,11 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
-        private Image m_DiscipleImg;  
+        private Image m_DiscipleImg;
+        [SerializeField]
+        private Image m_LineBottom;
+        [SerializeField]
+        private Image m_LineRightBottom;
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
@@ -27,6 +31,21 @@ namespace GameWish.Game
         {
             BindAddListenerEvent();
         }
+
+        public void SetShowLine(int num)
+        {
+            if (num==0)
+            {
+                m_LineRightBottom.gameObject.SetActive(true);
+                m_LineBottom.gameObject.SetActive(false);
+            }
+            else if(num ==1)
+            {
+                m_LineRightBottom.gameObject.SetActive(false);
+                m_LineBottom.gameObject.SetActive(true);
+            }
+        }
+
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_CurCharacter = t as CharacterItem;
