@@ -23,6 +23,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_LevelValue;
         [SerializeField]
+        private RectTransform m_UnlockBg;
+        [SerializeField]
         private Text m_NextLevelUnlockText;
         [SerializeField]
         private Text m_MartialArtsContTxt;
@@ -53,6 +55,8 @@ namespace GameWish.Game
 
         private FacilityType m_CurFacilityType = FacilityType.None;
 
+        private const int NextKungfuFontSize =37;
+        private const int KungfuFontWight =218;
         private int m_CurLevel;
         private List<CostItem> m_CostItems;
         private FacilityConfigInfo m_FacilityConfigInfo = null;
@@ -120,15 +124,25 @@ namespace GameWish.Game
             }
         }
 
-        private string GetKungfuStr(List<KongfuType> kungfuTypes)
+        private void SetNextKungfuStr(List<KongfuType> kungfuTypes)
         {
+            m_UnlockBg.sizeDelta = new Vector2 (KungfuFontWight, 0);
+            m_MartialArtsContTxt.rectTransform.sizeDelta = new Vector2(KungfuFontWight, 0);
             string str = string.Empty;
+            Vector2 deltaData = Vector2.zero;
             str += TDKongfuConfigTable.GetKungfuConfigInfo(kungfuTypes[0]).Name;
+            deltaData += new Vector2(0, NextKungfuFontSize);
             for (int i = 1; i < kungfuTypes.Count; i++)
             {
+                str += "\n";
                 str += TDKongfuConfigTable.GetKungfuConfigInfo(kungfuTypes[i]).Name;
+                deltaData += new Vector2 (0, NextKungfuFontSize);
             }
-            return str; 
+            m_MartialArtsContTxt.rectTransform.sizeDelta += deltaData;
+            deltaData += new Vector2(0, NextKungfuFontSize);
+            m_UnlockBg.sizeDelta += deltaData;
+            m_MartialArtsContTxt.text = str;
+            m_MartialArtsContTxt.text = m_MartialArtsContTxt.text.Replace("\\n", "\n");
          }
 
 
@@ -155,19 +169,13 @@ namespace GameWish.Game
             m_BriefIntroductionTxt.text = m_FacilityConfigInfo.desc;
             m_UpgradeCondition.text = CommonUIMethod.GetUpgradeCondition(m_NextKongfuLibraryLevelInfo.upgradeNeedLobbyLevel);
             m_LevelValue.text = CommonUIMethod.GetGrade(m_CurKongfuLibraryLevelInfo.level);
-            m_MartialArtsContTxt.text = GetKungfuStr(m_CurKongfuLibraryLevelInfo.GetCurLevelUnlockedKongfuList());
+            SetNextKungfuStr(m_NextKongfuLibraryLevelInfo.GetCurLevelUnlockedKongfuList());
             if (m_NextKongfuLibraryLevelInfo != null)
             {
                 //m_UpgradeCostCoinValueTxt.text = m_NextKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
             }
 
             List<KongfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
-
-            m_MartialArtsContTxt.text = "";
-            for (int i = 0; i < KongfuList.Count; i++)
-            {
-                m_MartialArtsContTxt.text += KongfuList[0].ToString();
-            }
         }
         private void RefreshResInfo()
         {

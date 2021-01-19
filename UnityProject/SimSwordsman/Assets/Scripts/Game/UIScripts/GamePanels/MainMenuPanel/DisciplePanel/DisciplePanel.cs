@@ -106,6 +106,24 @@ namespace GameWish.Game
             if (m_CharacterList != null)
                 foreach (var item in m_CharacterList)
                     CreateDisciple(m_DiscipleContList, item);
+
+            RefreshDiscipleLine();
+        }
+
+        /// <summary>
+        /// 刷新弟子线显示
+        /// </summary>
+        private void RefreshDiscipleLine()
+        {
+            int i = -1;
+            foreach (var item in m_DiscipleDic.Values)
+            {
+                if (item.activeInHierarchy)
+                {
+                    i++;
+                    item.GetComponent<Disciple>().SetShowLine(i%2);
+                }
+            }
         }
 
         private void RefreshFixedInfo()
@@ -127,6 +145,8 @@ namespace GameWish.Game
             m_AllTog.onValueChanged.AddListener((e)=> {
                 foreach (var item in m_DiscipleDic.Values)
                     item.SetActive(true);
+
+                RefreshDiscipleLine();
             });
             m_CivilianTog.onValueChanged.AddListener((e) => {
                 SwitchDisciple(CharacterQuality.Normal);
@@ -139,6 +159,10 @@ namespace GameWish.Game
             });
         }
 
+        /// <summary>
+        /// 根据选择切换弟子类型
+        /// </summary>
+        /// <param name="characterQuality"></param>
         private void SwitchDisciple(CharacterQuality characterQuality)
         {
             foreach (var item in m_DiscipleDic)
@@ -148,6 +172,7 @@ namespace GameWish.Game
                 else
                     item.Value.SetActive(false);
             }
+            RefreshDiscipleLine();
         }
 
         private void RegisterEvents()
