@@ -41,9 +41,6 @@ namespace GameWish.Game
                 TDEquipmentConfigTable.metaData,
                 TDCharacterStageConfigTable.metaData,
 
-                //guide
-                TDScenarioTable.metaData,
-
                 //Facility
                 TDFacilityConfigTable.metaData,
                 TDFacilityKongfuLibraryTable.metaData,
