@@ -54,7 +54,7 @@ namespace GameWish.Game
         private GameObject m_GuideTipsImg;
         [SerializeField]
         private Text m_GuideTipsText;
-        
+
         private Vector3 m_StarHand;
         private Vector3 m_StarArrow;
         private GuideMethod m_GuestMethod = GuideMethod.Method1;
@@ -66,7 +66,7 @@ namespace GameWish.Game
 
             m_StarHand = m_Hand.transform.localPosition;
 
-            m_StarArrow = m_DownArrow.transform.localPosition;              
+            m_StarArrow = m_DownArrow.transform.localPosition;
         }
         protected override void OnOpen()
         {
