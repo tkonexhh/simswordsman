@@ -51,12 +51,15 @@ namespace GameWish.Game
         [HideInInspector]
         public int ID;
         [HideInInspector]
-        public int UnlockLevel;//解锁等级
+        public int UnlockLevel;//解锁等级 
+
+        AbstractAnimPanel m_panel;
 
         string m_StringID = "BaicaohuPanel";
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+            m_panel = t as AbstractAnimPanel;
             BindAddListenerEvent();
             Init();
         }
@@ -82,8 +85,7 @@ namespace GameWish.Game
         }
         void Init()
         {
-            var list = TDFacilityBaicaohuTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu)).GetCurMedicinalPowderType();
-            if (!list.Contains((MedicinalPowderType)ID))//未解锁
+            if (!IsUnlock((MedicinalPowderType)ID))
             {
                 SetState(0);
             }
@@ -113,7 +115,18 @@ namespace GameWish.Game
                     SetState(2);
             }
         }
-
+        bool IsUnlock(MedicinalPowderType id)
+        {
+            List<MedicinalPowderType> list = null;
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu);
+            for (int i = 1; i <= level; i++)
+            {
+                list = TDFacilityBaicaohuTable.GetLevelInfo(i).GetCurMedicinalPowderType();
+                if (list.Contains(id))
+                    return true;
+            }
+            return false;
+        }
         private void BindAddListenerEvent()
         {
             m_MakeBtn.onClick.AddListener(() =>
@@ -183,17 +196,16 @@ namespace GameWish.Game
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+                m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
                 m_NeedItemCount2Txt.text = infos[1].value.ToString();
             }
             else
             {
-                m_NeedItem1.gameObject.SetActive(false);
-                m_NeedItemCount1Txt.gameObject.SetActive(false);
+                m_NeedItem2.gameObject.SetActive(false);
+                m_NeedItemCount2Txt.gameObject.SetActive(false);
             }
-            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
             m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }
-	
 }

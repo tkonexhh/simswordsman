@@ -134,7 +134,7 @@ namespace GameWish.Game
                 //if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                 //    GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
 
-                RefreshPanelText();
+                RefreshPanelInfo();
             });
         }
 
