@@ -114,6 +114,11 @@ namespace GameWish.Game
             return character;
         }
 
+        public EnemyInfo GetEnemyInfo(int id)
+        {
+            return TDEnemyConfigTable.GetEnemyInfo(id);
+        }
+
         public CharacterController GetNearestCharacterAlive(List<CharacterController> characterList, Vector2 pos)
         {
             float minDistance = 100;

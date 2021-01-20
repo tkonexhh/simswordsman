@@ -63,6 +63,8 @@ namespace GameWish.Game
 
                 TDMainTaskTable.metaData,
                 TDCommonTaskTable.metaData,
+                TDBattleWordsTable.metaData,
+                TDEnemyConfigTable.metaData,
 
                 TDItemConfigTable.metaData,
                 //TDWeaponConfigTable.metaData,
