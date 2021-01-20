@@ -22,7 +22,7 @@ namespace GameWish.Game
             //食物buff
             if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
-                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd, param[1]);
+                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd);
             }
             //药品，锻造物品增加
             else if(cd.stringID.Equals("BaicaohuPanel"))
