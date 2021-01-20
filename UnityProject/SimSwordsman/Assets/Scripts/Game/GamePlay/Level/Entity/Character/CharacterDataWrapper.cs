@@ -147,6 +147,10 @@ namespace GameWish.Game
             while (true)
             {
                 int upExp = TDKongfuConfigTable.GetKungfuUpgradeInfo(CharacterKongfu.dbData);
+
+                if (upExp == 0)
+                    break;
+
                 if (CharacterKongfu.dbData.curExp > upExp)
                 {
                     UpgradeLevels(id, kongfuType);

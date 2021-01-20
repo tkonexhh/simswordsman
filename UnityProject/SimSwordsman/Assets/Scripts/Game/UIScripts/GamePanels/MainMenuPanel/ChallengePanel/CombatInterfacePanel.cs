@@ -78,7 +78,6 @@ namespace GameWish.Game
                 CreateBattleText(m_BattleText);
             else
                 CreateBattleText(m_TalkText);
-           
         }
     
         /// <summary>
@@ -97,6 +96,9 @@ namespace GameWish.Game
                     CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetDiscipleName(m_OurCharacterList[characterListIndex]), GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex])));
                 else
                     CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex]), GetDiscipleName(m_OurCharacterList[characterListIndex])));
+
+                int randomSecond = UnityEngine.Random.Range(1, 3);
+                m_Coroutine = StartCoroutine(BattleTextCounDown(randomSecond));
             }
             else
             {
@@ -104,7 +106,6 @@ namespace GameWish.Game
                     CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetDiscipleName(m_OurCharacterList[characterListIndex]), GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex])));
                 else//µ–»À §¿˚
                     CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex]), GetDiscipleName(m_OurCharacterList[characterListIndex])));
-
             }
         }
 
@@ -137,9 +138,6 @@ namespace GameWish.Game
             
             Transform matchRecordItem = Instantiate(m_MatchRecordItem, m_MatchRecordTra).transform;
             matchRecordItem.GetComponent<Text>().text = cont;
-
-            int randomSecond = UnityEngine.Random.Range(1, 3);
-            m_Coroutine = StartCoroutine(BattleTextCounDown(randomSecond));
         }
         IEnumerator OnUpdateScroll()
         {

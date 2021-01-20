@@ -51,6 +51,18 @@ namespace GameWish.Game
             this.recommendAtkValue = recommendAtk;
         }
 
+        public int GetExpRoleReward()
+        {
+            foreach (var item in levelRewardList)
+            {
+                if (item.rewardType== RewardItemType.Exp_Role)
+                {
+                    return int.Parse(item.paramStrs[1]);
+                }
+            }
+            return 0;
+        }
+
         public LevelConfigInfo(TDLevelConfig tDLevelConfig)
         {
             this.chapterId = tDLevelConfig.chapter;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+  m_Name: CombatSettlementSpritesData
+  m_EditorClassIdentifier: 
+  m_AtlasName: Assets/Resources/UI/Sprites/CombatSettlement
+  m_SpriteList:
+  - {fileID: 21300000, guid: cce698cab633143478db5f70b8939be0, type: 3}
+  - {fileID: 21300000, guid: 87de6fe695cc6a643ad72130d6f9945d, type: 3}
+  - {fileID: 21300000, guid: d8522f57e05825e46a26650f700f217a, type: 3}
+  - {fileID: 21300000, guid: 3096d4d27f42fcf4c9a0b71f66b00f49, type: 3}
+  - {fileID: 21300000, guid: 452a2db244535e44cb354487dc229c85, type: 3}
+  - {fileID: 21300000, guid: d570298408c49f0438e330f142d48fb6, type: 3}
+  - {fileID: 21300000, guid: c6a726a3299142243a8f3335e7af3e66, type: 3}
+  - {fileID: 21300000, guid: 882e52ee3ec37f24b9ae80518b0a624d, type: 3}
+  - {fileID: 21300000, guid: 7ce346e088abbb740b5f21a109898996, type: 3}
