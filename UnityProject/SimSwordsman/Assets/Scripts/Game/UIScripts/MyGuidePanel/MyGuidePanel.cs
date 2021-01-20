@@ -4,6 +4,7 @@ using UnityEngine;
 using Qarth;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public enum GuideMethod
 {
@@ -26,11 +27,7 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_GuideHandBg;
         [SerializeField]
-        private Transform m_GuideMove;
-        [SerializeField]
         private Transform m_Hand;
-        [SerializeField]
-        private Transform m_Hand2;
       
         [SerializeField]
         private Transform m_GuideMethod1;
@@ -45,29 +42,17 @@ namespace GameWish.Game
         
         [SerializeField]
         private Transform m_GuideMethod3;
-        [SerializeField]
-        private Transform m_GuideMove3;
-        [SerializeField]
-        private Transform m_DownArrow;
 
         [SerializeField]
         private GameObject m_GuideTipsImg;
         [SerializeField]
         private Text m_GuideTipsText;
-
-        private Vector3 m_StarHand;
-        private Vector3 m_StarArrow;
+        
         private GuideMethod m_GuestMethod = GuideMethod.Method1;
         private int m_GuidestepId = -1;
 
-        protected override void OnUIInit()
-        {
-            base.OnUIInit();
-
-            m_StarHand = m_Hand.transform.localPosition;
-
-            m_StarArrow = m_DownArrow.transform.localPosition;
-        }
+        bool canClick = false;
+        
         protected override void OnOpen()
         {
             base.OnOpen();           
@@ -78,9 +63,7 @@ namespace GameWish.Game
             if(args.Length > 0)
             {
                 m_TargetRect = args[0] as RectTransform;
-                m_Hand.transform.localPosition = m_StarHand;
-                // m_TargetRect.GetComponent<Button>().onClick.AddListener(CloseSelfPanel);
-                m_DownArrow.transform.localPosition = m_StarArrow;
+                m_Hand.transform.position = m_TargetRect.position;
             }
             if (args.Length > 1)
             {
@@ -89,14 +72,36 @@ namespace GameWish.Game
 
             if (args.Length > 2)
             {
-                m_GuestMethod = (GuideMethod)args[2];
+                bool isNotForce = (bool)args[2];
+                Action action = (Action)args[3];
+                Button button = m_CircleShaderControl.transform.GetComponent<Button>();
+                if (isNotForce)//弱点击
+                {
+                    Timer.S.Post2Really(x => { canClick = true; }, 1);
+                    if (button == null)
+                        button = m_CircleShaderControl.gameObject.AddComponent<Button>();
+                    else
+                    {
+                        button.onClick.RemoveAllListeners();
+                        button.onClick.AddListener(() => 
+                        {
+                            if (canClick)
+                                action?.Invoke();
+                        });
+                    }
+                }
+                else
+                {
+                    if (button != null)
+                        Destroy(button);
+                }
             }
 
-            if(args.Length > 4)
-            {
-                m_Method2Start = args[3] as Transform;
-                m_Method2End = args[4] as Transform;
-            }
+            //if(args.Length > 4)
+            //{
+            //    m_Method2Start = args[3] as Transform;
+            //    m_Method2End = args[4] as Transform;
+            //}
 
             //是否有黑色遮罩
             if(m_GuestMethod == GuideMethod.NoBlack)
@@ -123,34 +128,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             m_CircleShaderControl.EndGuide();
-            m_Hand.DOKill();
-            m_Hand2.DOKill();
-            m_DownArrow.DOKill();
-           // m_TargetRect.GetComponent<Button>().onClick.RemoveListener(CloseSelfPanel);
-        
             base.OnClose();
-        }
-        private void  LocadGuideHand()
-        {
-            m_GuideHandBg.transform.position = m_TargetRect.transform.position;
-            Vector3 MovePos = m_GuideMove.transform.position;
-
-            m_Hand.transform.DOMove(MovePos, 0.7f).SetLoops(-1,LoopType.Yoyo);
-        }
-
-        private void LocadGuideArrow()
-        {
-            m_GuideMethod3.transform.position = m_TargetRect.transform.position;
-            Vector3 MovePos = m_GuideMove3.transform.position;
-
-            m_DownArrow.transform.DOMove(MovePos, 0.7f).SetLoops(-1, LoopType.Yoyo);
-        }
-        private void HandMove2Target()
-        {
-            m_Hand2.transform.position = m_Method2Start.transform.position;
-            Vector3 MovePos = m_Method2End.transform.position;
-
-            m_Hand2.transform.DOMove(MovePos, 1.5f).SetLoops(-1, LoopType.Restart);
         }
         
         private void CheckMyUIState()
@@ -162,28 +140,27 @@ namespace GameWish.Game
             {
                 case GuideMethod.Method1:
                     m_GuideMethod1.gameObject.SetActive(true);
-                    LocadGuideHand();
+                    //LocadGuideHand();
                     break;
                 case GuideMethod.Method2:
-                    m_GuideMethod2.gameObject.SetActive(true);                 
-                    HandMove2Target();
+                    m_GuideMethod2.gameObject.SetActive(true);   
                     break;
                 case GuideMethod.Method3:
                     m_GuideMethod3.gameObject.SetActive(true);
-                    LocadGuideArrow();
+                    //LocadGuideArrow();
                     break;
                 case GuideMethod.NoMessage:
                     m_GuideMethod1.gameObject.SetActive(true);
-                    LocadGuideHand();
+                    //LocadGuideHand();
                     break;
                 default:
                     break;
             }
         }
-        public void LocateMyGuideTips(string GuideTips, Vector3 position)
+        public void LocateMyGuideTips(string GuideTips, Vector3 guideTipsPosition)
         {
             m_GuideTipsImg.gameObject.SetActive(true);
-            m_GuideTipsImg.transform.localPosition = position;
+            m_GuideTipsImg.transform.localPosition = guideTipsPosition;
             m_GuideTipsText.text = GuideTips;
         }
     }

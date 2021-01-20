@@ -86,6 +86,17 @@ namespace GameWish.Game
                 MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
                 EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
 
+                //Òýµ¼
+                if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
+                {
+                    GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;
+                    EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
+                }
+                if (m_RecruitType == RecruitType.SilverMedal && !GameDataMgr.S.GetPlayerData().firstSilverRecruit)
+                {
+                    GameDataMgr.S.GetPlayerData().firstSilverRecruit = true;
+                    EventSystem.S.Send(EventID.OnGuideSecondGetCharacter);
+                }
                 OnPanelHideComplete();
             });
             m_RefuseBtn.onClick.AddListener(HideSelfWithAnim);
