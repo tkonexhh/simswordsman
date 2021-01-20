@@ -12,14 +12,14 @@ namespace GameWish.Game
     public enum ClanType
     {
         None            = 0,
-        GaiBang         = 1,
-        ShaoLin         = 2,
-        WuDang          = 3,
-        EMei            = 4,
-        HuaShan         = 5,
-        WuDu            = 6,
-        MoJiao          = 7,
-        XiaoYao         = 8,
+        Gaibang         = 1,
+        Shaolin         = 2,
+        Wudang          = 3,
+        Emei            = 4,
+        Huashan         = 5,
+        Wudu            = 6,
+        Mojiao          = 7,
+        Xiaoyao         = 8,
         Zhongli         = 9,
 
     }

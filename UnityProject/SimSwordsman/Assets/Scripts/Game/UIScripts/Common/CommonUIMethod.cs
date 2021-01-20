@@ -18,22 +18,22 @@ namespace GameWish.Game
         {
             switch (clanType)
             {
-                case ClanType.GaiBang:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.GaiBang));
-                case ClanType.ShaoLin:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.ShaoLin));
-                case ClanType.WuDang:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.WuDang));
-                case ClanType.EMei:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.EMei));
-                case ClanType.HuaShan:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.HuaShan));
-                case ClanType.WuDu:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.WuDu));
-                case ClanType.MoJiao:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.MoJiao));
-                case ClanType.XiaoYao:
-                    return TDLanguageTable.Get(SetClanPrefix(ClanType.XiaoYao));
+                case ClanType.Gaibang:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Gaibang));
+                case ClanType.Shaolin:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Shaolin));
+                case ClanType.Wudang:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Wudang));
+                case ClanType.Emei:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Emei));
+                case ClanType.Huashan:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Huashan));
+                case ClanType.Wudu:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Wudu));
+                case ClanType.Mojiao:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Mojiao));
+                case ClanType.Xiaoyao:
+                    return TDLanguageTable.Get(SetClanPrefix(ClanType.Xiaoyao));
                 default:
                     return null;
             }
