@@ -82,7 +82,6 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
-
         }
     }
 }

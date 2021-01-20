@@ -10,8 +10,6 @@ namespace GameWish.Game
 	public class ChallengePanel : AbstractAnimPanel
 	{
         [SerializeField]
-        private Text m_ChallengeTitle;
-        [SerializeField]
         private Text m_ChallengeCont;
 
         [SerializeField]
@@ -22,7 +20,7 @@ namespace GameWish.Game
 
         [SerializeField]
         private GameObject m_ChallengeTaskItem;
-
+        private List<Sprite> m_Sprites = new List<Sprite>();
         private List<ChapterConfigInfo> m_CurChapterInfo = null;
 
         protected override void OnUIInit()
@@ -30,12 +28,11 @@ namespace GameWish.Game
             base.OnUIInit();
 
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandlingEventListening);
-
+            BindAddListenerEvent();
             GetInformationForNeed();
 
             InitPanelInfo();
 
-            BindAddListenerEvent();
         }
 
         private void HandlingEventListening(int key, object[] param)
@@ -57,8 +54,11 @@ namespace GameWish.Game
 
         private void InitPanelInfo()
         {
-            m_ChallengeTitle.text = TDLanguageTable.Get(Define.CHALLENGE_NAME);
             m_ChallengeCont.text = TDLanguageTable.Get(Define.CHALLENGE_DESCRIBE);
+
+            foreach (var item in m_CurChapterInfo)
+                m_Sprites.Add(FindSprite(item.clanType.ToString()));
+
             foreach (var item in m_CurChapterInfo)
                 CreateChallengeTask(item);
         }
@@ -82,7 +82,7 @@ namespace GameWish.Game
         private void CreateChallengeTask(ChapterConfigInfo configInfo)
         {
             ItemICom challengeTask = Instantiate(m_ChallengeTaskItem, m_ChallengeTrans).GetComponent<ItemICom>();
-            challengeTask.OnInit(configInfo);
+            challengeTask.OnInit(configInfo,null, m_Sprites);
         }
     }
 }
