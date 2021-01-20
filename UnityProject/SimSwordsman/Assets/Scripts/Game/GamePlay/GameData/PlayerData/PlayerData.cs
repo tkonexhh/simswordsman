@@ -25,6 +25,10 @@ namespace GameWish.Game
 
         private long m_CoinNum = 0;
         public int signInCount;
+        //是否是第一次使用金牌招募
+        public bool firstGoldRecruit;
+        //是否是第一次使用银牌牌招募
+        public bool firstSilverRecruit;
 
         public bool UnlockVisitor;
 
@@ -40,10 +44,10 @@ namespace GameWish.Game
             firstPlayTime = string.Empty;
             
             UnlockVisitor = false;
-
+            firstGoldRecruit = false;
+            firstSilverRecruit = false;
             SetDataDirty();
         }
-
         public void Init()
         {
             m_CoinNum = long.Parse(coinNumStr);
@@ -93,7 +97,7 @@ namespace GameWish.Game
                 return chapter;
             return null;
         }
-
+        
         /// <summary>
         /// 根据ID判断是否存在该章节任务
         /// </summary>
