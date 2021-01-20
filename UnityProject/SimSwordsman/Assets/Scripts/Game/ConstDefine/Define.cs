@@ -45,6 +45,7 @@ namespace GameWish.Game
         public const string RIDE = "x";
         public const string SPACE = " ";
         public const string COMMA = ",";
+        public const string PERCENT = "%";
 
         public const int AD_MAX_TIME = 120;
 
@@ -144,10 +145,12 @@ namespace GameWish.Game
         public const string CHALLENGE_DESCRIBE = "ChallengeDescribe";
         public const string CHALLENGE_STATUE_COMPLETED = "Challenge_Status_Completed";
         public const string CHALLENGE_STATUE_UNLOCKED = "Challenge_Status_Unlocked"; 
-        public const string Challenge_LOG_TITLE = "Challenge_Log_Title";
-        public const string Challenge_LOG_CONTENT = "Challenge_Log_Content";
-        public const string Challenge_LOG_ACCEPTBTNTXT = "Challenge_Log_AcceptBtnTxt";
-        public const string Challenge_LOG_REFUSEBTNTXT = "Challenge_Log_RefuseBtnTxt";
+        public const string CHALLENGE_LOG_TITLE = "Challenge_Log_Title";
+        public const string CHALLENGE_LOG_CONTENT = "Challenge_Log_Content";
+        public const string CHALLENGE_LOG_ACCEPTBTNTXT = "Challenge_Log_AcceptBtnTxt";
+        public const string CHALLENGE_LOG_REFUSEBTNTXT = "Challenge_Log_RefuseBtnTxt";
+        public const string CHALLENGE_PROGRESS = "Challenge_Progress";
+        public const string CHALLENGE_PROGRESS_OVER = "Challenge_Progress_Over";
 
         //Warehouse
         public const string FACILITY_WAREHOUSE_NAME = "Facility_Warehouse_Name";

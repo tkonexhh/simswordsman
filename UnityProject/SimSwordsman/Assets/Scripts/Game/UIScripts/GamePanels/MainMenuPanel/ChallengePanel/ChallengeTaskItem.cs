@@ -2,6 +2,7 @@ using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,22 +22,27 @@ namespace GameWish.Game
         private Text m_ChallengeCont;
         [SerializeField]
         private Text m_ChallengeProgress;
-        [SerializeField]
-        private Text m_ChallengeState;
 
         [SerializeField]
         private Image m_ChallengePhoto;
+        [SerializeField]
+        private Image m_CompletedImg;
+        [SerializeField]
+        private Text m_CompletedValue;
 
         [SerializeField]
         private Slider m_ChallengeSlide;
 
         [SerializeField]
         private Button m_ChallengeBtn;
-
+        private List<Sprite> m_Sprites;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private ChallengeType m_CurChallengeType = ChallengeType.Unlocked;
         private int m_CurLevel = -1;
-
+        private Sprite GetSprite(string name)
+        {
+            return m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -67,13 +73,14 @@ namespace GameWish.Game
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             EventSystem.S.Register(EventID.OnChanllengeSuccess, HandlingListeningEvents);
-            EventSystem.S.Register(EventID.OnUnlockNewChapter, HandlingListeningEvents);   
+            EventSystem.S.Register(EventID.OnUnlockNewChapter, HandlingListeningEvents);
+            m_Sprites = (List<Sprite>)obj[0];
             m_CurChapterConfigInfo = t as ChapterConfigInfo;
             if (m_CurChapterConfigInfo != null)
             {
                 m_ChallengeSectsName.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                 m_ChallengeCont.text = m_CurChapterConfigInfo.desc;
-
+                m_ChallengePhoto.sprite = GetSprite("GaiBang");
                 RefreshPanelInfo();
             }
         }
@@ -144,25 +151,23 @@ namespace GameWish.Game
             switch (m_CurChallengeType)
             {
                 case ChallengeType.Unlocked:
-                    m_ChallengeState.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_STATUE_UNLOCKED);
-                    m_ChallengeState.gameObject.SetActive(true);
+                    m_CompletedValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED); ;
                     m_ChallengeBtn.gameObject.SetActive(false);
-                    m_ChallengeSlide.value = 0;
-                    m_ChallengeProgress.text = "0%";
+                    m_ChallengeSlide.gameObject.SetActive(false);
+                    m_CompletedImg.gameObject.SetActive(false);
                     break;
                 case ChallengeType.Challenge:
-                    m_ChallengeState.text = "";
-                    m_ChallengeState.gameObject.SetActive(false);
+                    m_CompletedValue.text = Define.COMMON_DEFAULT_STR;
+                    m_CompletedImg.gameObject.SetActive(false);
                     m_ChallengeBtn.gameObject.SetActive(true);
                     m_ChallengeSlide.value = GetCurProgress();
-                    m_ChallengeProgress.text = (GetCurProgress() * 100).ToString() + "%";
+                    m_ChallengeProgress.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS) +(GetCurProgress() * 100).ToString("f2") + Define.PERCENT;
                     break;
                 case ChallengeType.Passed:
-                    m_ChallengeState.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_STATUE_COMPLETED);
-                    m_ChallengeState.gameObject.SetActive(true);
+                    m_CompletedValue.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS_OVER);
+                    m_CompletedImg.gameObject.SetActive(true);
                     m_ChallengeBtn.gameObject.SetActive(false);
-                    m_ChallengeSlide.value = 1;
-                    m_ChallengeProgress.text = "100%";
+                    m_ChallengeSlide.gameObject.SetActive(false);
                     break;
                 default:
                     break;
