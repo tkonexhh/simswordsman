@@ -80,7 +80,7 @@ namespace GameWish.Game
             {
                 m_ChallengeSectsName.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                 m_ChallengeCont.text = m_CurChapterConfigInfo.desc;
-                m_ChallengePhoto.sprite = GetSprite("GaiBang");
+                m_ChallengePhoto.sprite = GetSprite("Gaibang");
                 RefreshPanelInfo();
             }
         }
