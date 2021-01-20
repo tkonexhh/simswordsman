@@ -124,7 +124,7 @@ namespace GameWish.Game
             foreach (var item in m_CharacterItem.kongfus.Values)
             {
                 KungfuWeightConfig config= TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
-                if (config != null)
+                if (config != null && config.Weight!=0)
                 {
                     int ratio = config.Weight / allWeight;
                     m_CharacterItem.AddKongfuExp(item,ratio * expValue);

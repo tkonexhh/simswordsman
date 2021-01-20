@@ -10,9 +10,12 @@ namespace GameWish.Game
     public class CombatSettlementPanel : AbstractAnimPanel
     {
         [SerializeField]
-        private Text m_CombatSettlementCont;
-        [SerializeField]
         private Button m_ExitBtn;
+        [SerializeField]
+        private Image m_Font1;
+        [SerializeField]
+        private Image m_Font2;
+
 
         [SerializeField]
         private Transform m_RewardContainer;
@@ -47,18 +50,21 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_LevelConfigInfo = (LevelConfigInfo)args[0];
             m_IsSuccess = (bool)args[1];
 
             if (m_IsSuccess)
             {
                 m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-                m_CombatSettlementCont.text = "Ê¤Àû";
+                m_Font1.sprite = FindSprite("Font1");
+                m_Font2.sprite = FindSprite("Font2");
             }
             else
             {
                 m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
-                m_CombatSettlementCont.text = "Ê§°Ü";
+                m_Font1.sprite = FindSprite("Font3");
+                m_Font2.sprite = FindSprite("Font4");
             }
 
             foreach (var item in m_SelectedDiscipleList)
@@ -74,6 +80,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
 
         }

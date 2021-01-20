@@ -42,10 +42,10 @@ namespace GameWish.Game
 
             m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
 
-            m_ExpCont.text = (m_ExpProportion.value * 100).ToString() + "%";
+            m_ExpCont.text = Define.PLUS + m_LevelConfigInfo.GetExpRoleReward();
         }
 
-        private void OnDestroy()
+        private void OnDestroy() 
         {
 
         }
