@@ -16,7 +16,15 @@ namespace GameWish.Game
             }
             try
             {
-                textContentID = (string)pv[0];
+                textContentID = "";
+                for (int i = 0; i < pv.Length; i++)
+                {
+                    textContentID += (string)pv[i];
+                    if (i != (pv.Length - 1))
+                    {
+                        textContentID += ",";
+                    }
+                }
             }
             catch (Exception e)
             {
