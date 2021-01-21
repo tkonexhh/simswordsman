@@ -126,7 +126,7 @@ namespace GameWish.Game
             if (m_CostItems.Count == 1)
             {
                 m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1Img.sprite = FindSprite("QingRock");
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Value.text = m_WarehouseNextLevelInfo.upgradeCoinCost.ToString();
                 m_Res2Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(false);
@@ -135,13 +135,17 @@ namespace GameWish.Game
             {
 
                 m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1Img.sprite = FindSprite("QingRock");
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Value.text = m_CostItems[1].value.ToString();
-                m_Res2Img.sprite = FindSprite("silverWood");
+                m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
                 m_Res3Value.text = m_WarehouseNextLevelInfo.upgradeCoinCost.ToString();
                 m_Res3Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(true);
             }
+        }
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
 
         private void RefreshCreateGoods()
@@ -156,13 +160,34 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < m_InventoryItems.Count; i++)
                 {
-                    m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i]);
+                    m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
                     // m_CurItemList.Add(CreateGoods(m_InventoryItems[i], m_CurItemBgList[i]));
                 }
             }
 
             //m_CurItemList.Sort();
             RefeshSort(m_CurItemList);
+        }
+        private Sprite GetItemSprite(ItemBase itemBase)
+        {
+            if (itemBase == null)
+                return null;
+            switch (itemBase.PropType)
+            {
+                case PropType.None:
+                    break;
+                case PropType.Arms:
+                    break;
+                case PropType.Armor:
+                    break;
+                case PropType.RawMaterial:
+                    return FindSprite(GetIconName(itemBase.GetSubName()));
+                case PropType.Kungfu:
+                    break;
+                default:
+                    break;
+            }
+            return null;
         }
 
         private void ReduceItemGameObject(ItemBase itemBase, int delta)
@@ -188,8 +213,8 @@ namespace GameWish.Game
                     if (CompareSize(m_CurItemList[j].CurItemBase, m_CurItemList[i].CurItemBase))
                     {
                         ItemBase tempItem = m_CurItemList[j].CurItemBase;
-                        m_CurItemList[j].AddItemToWarehouse(m_CurItemList[i].CurItemBase);
-                        m_CurItemList[i].AddItemToWarehouse(tempItem);
+                        m_CurItemList[j].AddItemToWarehouse(m_CurItemList[i].CurItemBase, GetItemSprite(m_CurItemList[i].CurItemBase));
+                        m_CurItemList[i].AddItemToWarehouse(tempItem, GetItemSprite(tempItem));
                     }
                 }
             }

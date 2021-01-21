@@ -10,6 +10,8 @@ namespace GameWish.Game
 	public class WarehouseItem : MonoBehaviour,ItemICom
 	{
 		[SerializeField]
+		private Image m_GoodsImg;
+		[SerializeField]
 		private Button m_GoodsBtn;
 		[SerializeField]
 		private Text m_Nums;
@@ -28,6 +30,10 @@ namespace GameWish.Game
 			{
 				return m_IsHaveItem;
 			}
+		}
+		public void SetItemSprite(Sprite sprite)
+		{
+			m_GoodsImg.sprite = sprite;
 		}
 
 		public bool IsSameItemBase(ItemBase _itemBase)
@@ -57,14 +63,16 @@ namespace GameWish.Game
 			return false;
         }
 
-		public void AddItemToWarehouse(ItemBase itemBase)
+		public void AddItemToWarehouse(ItemBase itemBase, Sprite sprite)
 		{
-            if (itemBase!=null)
-            {
+			if (sprite != null)
+				m_GoodsImg.sprite = sprite;
+			if (itemBase != null)
+			{
 				IsHaveItem = true;
 				m_GoodsBtn.onClick.RemoveAllListeners();
 				CurItemBase = itemBase;
-				m_GoodsBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase); });
+				m_GoodsBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase, m_GoodsImg.sprite); });
 				m_Nums.text = CurItemBase.Number.ToString();
 			}
             else
