@@ -15,6 +15,7 @@ namespace GameWish.Game
         {
             FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
             levelInfo.commonTaskCount = tdData.commonTaskAmount;
+            levelInfo.AnalysisUnlockContent(tdData.unlockContent);
 
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))
             {
@@ -29,6 +30,13 @@ namespace GameWish.Game
                 return facilityLevelInfoDic[level];
             }
 
+            return null;
+        }
+
+        public static List<string> GetUnlockContent(int level)
+        {
+            if (facilityLevelInfoDic.ContainsKey(level))
+                return facilityLevelInfoDic[level].unlockContent;
             return null;
         }
 

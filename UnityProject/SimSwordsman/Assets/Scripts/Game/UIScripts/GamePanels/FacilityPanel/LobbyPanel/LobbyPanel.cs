@@ -48,6 +48,13 @@ namespace GameWish.Game
         private Button m_UpgradeBtn; 
         [SerializeField]
         private Text m_UpgradeBtnValue;
+        [SerializeField]
+        private RectTransform m_UnlockBg;
+        [SerializeField]
+        private Text m_NextLevelUnlockText;
+        [SerializeField]
+        private Text m_UnlockContentValue;
+
 
         [SerializeField]
         private Image m_Res1Img;
@@ -69,7 +76,10 @@ namespace GameWish.Game
         private GameObject m_RecruitmentOrderItem;
 
         private int m_CurLevel = 1;
+        private const int NextFontSize = 38;
+        private const int FontWight = 305;
         private List<CostItem> m_CostItems;
+        private List<string> m_UnlockContent = null;
         private FacilityLevelInfo m_NextFacilityLevelInfo = null;
         private FacilityConfigInfo m_CurFacilityConfigInfo = null;
 
@@ -140,8 +150,31 @@ namespace GameWish.Game
         {
             m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
             RefreshResInfo();
+            SetNextLobbyStr();
         }
+        private void SetNextLobbyStr()
+        {
+            if (m_UnlockContent == null)
+                return;
 
+            m_UnlockBg.sizeDelta = new Vector2(FontWight, 0);
+            m_UnlockContentValue.rectTransform.sizeDelta = new Vector2(FontWight, 0);
+            string str = string.Empty;
+            Vector2 deltaData = Vector2.zero;
+            str += m_UnlockContent[0];
+            deltaData += new Vector2(0, NextFontSize);
+            for (int i = 1; i < m_UnlockContent.Count; i++)
+            {
+                str += "\n";
+                str += m_UnlockContent[i];
+                deltaData += new Vector2(0, NextFontSize);
+            }
+            m_UnlockContentValue.rectTransform.sizeDelta += deltaData;
+            deltaData += new Vector2(0, NextFontSize);
+            m_UnlockBg.sizeDelta += deltaData;
+            m_UnlockContentValue.text = str;
+            m_UnlockContentValue.text = m_UnlockContentValue.text.Replace("\\n", "\n");
+        }
         private void RefreshResInfo()
         {
             if (m_CostItems.Count == 1)
@@ -222,6 +255,7 @@ namespace GameWish.Game
             m_CurLevel = m_FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
             m_NextFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel+1);
             m_CurFacilityConfigInfo = m_FacilityMgr.GetFacilityConfigInfo(FacilityType.Lobby);
+            m_UnlockContent = MainGameMgr.S.FacilityMgr.GetUnlockContent(m_CurLevel+1);
             m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
         }
     }
