@@ -174,6 +174,9 @@ namespace GameWish.Game
 
         public KongfuType GetKungfuType()
         {
+            if (CharacterKongfu == null)
+                return KongfuType.None;
+
             return CharacterKongfu.dbData.kongfuType;
         }
 
@@ -181,26 +184,13 @@ namespace GameWish.Game
         {
             Index = i.index;
             KungfuLockState = i.kungfuLockState;
-            if (KungfuLockState== KungfuLockState.Learned&&CharacterKongfu == null)
+            if (KungfuLockState == KungfuLockState.Learned && CharacterKongfu == null)
             {
-                 CharacterKongfu = new CharacterKongfu();
+                CharacterKongfu = new CharacterKongfu();
                 CharacterKongfu.Wrap(i);
             }
         }
     }
-
-    //public class CharacterStateData
-    //{
-    //    public CharacterStateID characterState = CharacterStateID.Wander; // µÜ×ÓÐÐÎª
-    //    public CollectedObjType collectObjType;
-
-    //    public CharacterStateData() { }
-    //    public CharacterStateData(CharacterStateID stateId, CollectedObjType collectObjType = CollectedObjType.None)
-    //    {
-    //        this.characterState = stateId;
-    //        this.collectObjType = collectObjType;
-    //    }
-    //}
 
     public class CharacterItem : IComparable
     {
@@ -240,13 +230,6 @@ namespace GameWish.Game
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
                 kongfus.Add(i + 1, new CharacterKongfuData(i + 1));
-        }
-
-        public CharacterItem(int id)
-        {
-            this.id = id;
-            level = 1;
-            stage = 1;
         }
 
         /// <summary>
