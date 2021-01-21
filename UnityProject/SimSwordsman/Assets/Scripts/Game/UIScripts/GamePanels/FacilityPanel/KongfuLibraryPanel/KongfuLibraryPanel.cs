@@ -186,7 +186,7 @@ namespace GameWish.Game
             if (m_CostItems.Count == 1)
             {
                 m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1Img.sprite = FindSprite("QingRock");
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Value.text = m_NextKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
                 m_Res2Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(false);
@@ -194,15 +194,18 @@ namespace GameWish.Game
             else if (m_CostItems.Count == 2)
             {
                 m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1Img.sprite = FindSprite("QingRock");
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Value.text = m_CostItems[1].value.ToString();
-                m_Res2Img.sprite = FindSprite("silverWood");
+                m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
                 m_Res3Value.text = m_NextKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
                 m_Res3Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(true);
             }
         }
-
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
+        }
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);

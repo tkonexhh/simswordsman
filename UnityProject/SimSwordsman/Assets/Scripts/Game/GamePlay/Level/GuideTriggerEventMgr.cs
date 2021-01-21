@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Qarth;
-using System;
 
 namespace GameWish.Game
 {
@@ -38,14 +34,21 @@ namespace GameWish.Game
             switch (type)
             {
                 case FacilityType.KongfuLibrary:
+                    EventSystem.S.Send(EventID.OnGuideUnlockKungfuLibrary);
                     break;
                 case FacilityType.ForgeHouse:
+                    EventSystem.S.Send(EventID.OnGuideUnlockForgeHouse);
                     break;
                 case FacilityType.Baicaohu:
+                    EventSystem.S.Send(EventID.OnGuideUnlockBaicaohu);
                     break;
                 case FacilityType.PracticeFieldEast:
+                    if (GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.PracticeFieldWest).facilityState != FacilityState.Unlocked)
+                        EventSystem.S.Send(EventID.OnGuideUnlockPracticeField);
                     break;
                 case FacilityType.PracticeFieldWest:
+                    if (GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.PracticeFieldEast).facilityState != FacilityState.Unlocked)
+                        EventSystem.S.Send(EventID.OnGuideUnlockPracticeField);
                     break;
             }
         }

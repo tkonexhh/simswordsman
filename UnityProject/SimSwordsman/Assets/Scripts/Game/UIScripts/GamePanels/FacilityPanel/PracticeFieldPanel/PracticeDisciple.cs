@@ -34,11 +34,11 @@ namespace GameWish.Game
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             EventSystem.S.Register(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
+            m_CurFacilityType = (FacilityType)obj[0];
             BindAddListenEvent();
             GetInformationForNeed();
 
             m_PracticeFieldInfo = t as PracticeField;
-            m_CurFacilityType = (FacilityType)obj[0];
             m_Sprites = (List<Sprite>)obj[1];
             RefreshFixedInfo();
             m_PracticePos.text = "Á·¹¦Î»:" + m_PracticeFieldInfo.Index;

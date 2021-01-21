@@ -58,10 +58,12 @@ namespace GameWish.Game
 
         [HideInInspector]
         public int ID;
-        
+
+        AbstractAnimPanel m_panel;
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+            m_panel = t as AbstractAnimPanel;
             BindAddListenerEvent();
             Init((int)obj[0]);
         }
@@ -95,7 +97,7 @@ namespace GameWish.Game
                 transform.SetAsFirstSibling();
 
                 TDFoodConfig tb = TDFoodConfigTable.GetData(id);
-                m_FoodImg.sprite = Resources.Load<Sprite>("Sprites/Facility/Kitchen/" + tb.spriteName);
+                m_FoodImg.sprite = m_panel.FindSprite(tb.spriteName);
                 m_FoodNameTxt.text = tb.name;
                 m_FoodContTxt.text = tb.desc;
                 m_FoodEffecTxt.text = FoodBuffSystem.S.GetEffectDesc(tb);
@@ -213,7 +215,7 @@ namespace GameWish.Game
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+                m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
                 m_NeedItemCount2Txt.text = infos[1].value.ToString();
             }
             else
@@ -221,7 +223,7 @@ namespace GameWish.Game
                 m_NeedItem1.gameObject.SetActive(false);
                 m_NeedItemCount1Txt.gameObject.SetActive(false);
             }
-            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
             m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }

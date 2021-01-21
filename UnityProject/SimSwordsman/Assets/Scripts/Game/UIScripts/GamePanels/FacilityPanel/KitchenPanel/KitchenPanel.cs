@@ -91,7 +91,7 @@ namespace GameWish.Game
             {
                 m_UpgradeRequiredImg2.gameObject.SetActive(true);
                 m_UpgradeRequiredTxt2.gameObject.SetActive(true);
-                m_UpgradeRequiredImg2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(costsList[1].itemId).iconName);
+                m_UpgradeRequiredImg2.sprite = FindSprite(TDItemConfigTable.GetData(costsList[1].itemId).iconName);
                 m_UpgradeRequiredTxt2.text = costsList[1].value.ToString();
             }
             else
@@ -99,7 +99,7 @@ namespace GameWish.Game
                 m_UpgradeRequiredImg2.gameObject.SetActive(false);
                 m_UpgradeRequiredTxt2.gameObject.SetActive(false);
             }
-            m_UpgradeRequiredImg1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(costsList[0].itemId).iconName);
+            m_UpgradeRequiredImg1.sprite = FindSprite(TDItemConfigTable.GetData(costsList[0].itemId).iconName);
             m_UpgradeRequiredTxt1.text = costsList[0].value.ToString();
         }
 
@@ -188,8 +188,8 @@ namespace GameWish.Game
                 int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
                 if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                     GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
-               
-                RefreshPanelText();
+
+                RefreshPanelInfo();
             });
         }
 
@@ -205,17 +205,14 @@ namespace GameWish.Game
 
         void UpdateFoodItems()
         {
-            if (m_Items.Count == 0)
+            for (int i = 0; i < TDFoodConfigTable.dataList.Count; i++)
             {
-                for (int i = 0; i < TDFoodConfigTable.dataList.Count; i++)
+                if (i >= m_Items.Count)
                 {
                     GameObject obj = Instantiate(m_FoodItemPrefab, m_KitchenContTra);
                     FoodItem item = obj.GetComponent<FoodItem>();
                     m_Items.Add(item);
                 }
-            }
-            for (int i = 0; i < m_Items.Count; i++)
-            {
                 ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
                 itemICom.OnInit(this, null, TDFoodConfigTable.dataList[i].id);
             }

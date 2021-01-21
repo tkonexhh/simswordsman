@@ -134,7 +134,7 @@ namespace GameWish.Game
                 //if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                 //    GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
 
-                RefreshPanelText();
+                RefreshPanelInfo();
             });
         }
 
@@ -176,7 +176,7 @@ namespace GameWish.Game
             {
                 m_UpgradeRequiredImg2.gameObject.SetActive(true);
                 m_UpgradeRequiredTxt2.gameObject.SetActive(true);
-                m_UpgradeRequiredImg2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(costsList[1].itemId).iconName);
+                m_UpgradeRequiredImg2.sprite = FindSprite(TDItemConfigTable.GetData(costsList[1].itemId).iconName);
                 m_UpgradeRequiredTxt2.text = costsList[1].value.ToString();
             }
             else
@@ -184,7 +184,7 @@ namespace GameWish.Game
                 m_UpgradeRequiredImg2.gameObject.SetActive(false);
                 m_UpgradeRequiredTxt2.gameObject.SetActive(false);
             }
-            m_UpgradeRequiredImg1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(costsList[0].itemId).iconName);
+            m_UpgradeRequiredImg1.sprite = FindSprite(TDItemConfigTable.GetData(costsList[0].itemId).iconName);
             m_UpgradeRequiredTxt1.text = costsList[0].value.ToString();
         }
 

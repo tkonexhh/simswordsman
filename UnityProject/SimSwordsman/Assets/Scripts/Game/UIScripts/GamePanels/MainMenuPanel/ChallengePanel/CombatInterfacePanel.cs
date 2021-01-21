@@ -197,10 +197,10 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(() =>
             {
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogPanelCallback,
-                    CommonUIMethod.GetStringForTableKey(Define.Challenge_LOG_TITLE),
-                    CommonUIMethod.GetStringForTableKey(Define.Challenge_LOG_CONTENT),
-                    CommonUIMethod.GetStringForTableKey(Define.Challenge_LOG_ACCEPTBTNTXT),
-                    CommonUIMethod.GetStringForTableKey(Define.Challenge_LOG_REFUSEBTNTXT));
+                    CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_TITLE),
+                    CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_CONTENT),
+                    CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_ACCEPTBTNTXT),
+                    CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_REFUSEBTNTXT));
             });
         }
 
