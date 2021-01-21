@@ -24,7 +24,7 @@ namespace GameWish.Game
             {
                 foreach (var item in characterList)
                 {
-                    LoadCharacterSync(item.id, (go) =>
+                    LoadCharacterSync(item.id, item.quality, item.bodyId, (go) =>
                     {
                         m_CharacterGoDic.Add(item.id, go);
                         m_Count++;
@@ -46,9 +46,9 @@ namespace GameWish.Game
             return null;
         }
 
-        public void LoadCharacterSync(int id, Action<GameObject> onLoadDone)
+        public void LoadCharacterSync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
         {
-            string prefabName = GetPrefabName(id);
+            string prefabName = GetPrefabName(characterQuality, bodyId);
 
             AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
             loader.InstantiateAsync(prefabName, (obj) =>
@@ -60,9 +60,9 @@ namespace GameWish.Game
         }
 
 
-        private string GetPrefabName(int id)
+        private string GetPrefabName(CharacterQuality characterQuality, int bodyId)
         {
-            return "Character1";
+            return "Character_" + characterQuality.ToString().ToLower() + "_" + bodyId; //TODO：优化获取方式？
         }
     }
 

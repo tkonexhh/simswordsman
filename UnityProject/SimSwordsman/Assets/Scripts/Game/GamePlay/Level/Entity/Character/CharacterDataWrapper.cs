@@ -219,17 +219,21 @@ namespace GameWish.Game
         public string desc; // œÍœ∏–≈œ¢
         public CharaceterEquipmentData characeterEquipmentData = new CharaceterEquipmentData();
         public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
+        public int bodyId;
+        public int headId;
 
         private CharacterStageInfoItem stageInfo;
 
 
         private CharacterItemDbData m_ItemDbData = null;
 
-        public CharacterItem(CharacterQuality quality, string decs, string name)
+        public CharacterItem(CharacterQuality quality, string decs, string name, int bodyId, int headId)
         {
             this.quality = quality;
             this.name = name;
             this.desc = decs;
+            this.bodyId = bodyId;
+            this.headId = headId;
         }
 
         public CharacterItem()
@@ -270,6 +274,8 @@ namespace GameWish.Game
             stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
+            bodyId = itemDbData.bodyId;
+            headId = itemDbData.headId;
 
             this.characterStateId = itemDbData.characterStateId;
 

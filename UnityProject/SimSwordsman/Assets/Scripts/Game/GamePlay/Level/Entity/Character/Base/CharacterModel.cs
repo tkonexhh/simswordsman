@@ -77,6 +77,11 @@ namespace GameWish.Game
             return m_CharacterItem.GetCurTaskId();
         }
 
+        public int GetHeadId()
+        {
+            return m_CharacterItem.headId;
+        }
+
         public int GetExpLevelUpNeed()
         {
             return TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CharacterItem);

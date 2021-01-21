@@ -283,11 +283,23 @@ namespace GameWish.Game
             
             if (!MainGameMgr.S.CharacterMgr.CheckForDuplicateNames(name))
             {
-                CharacterItem characterItem = new CharacterItem(characterQuality, desc, name);
+                int bodyId = Random.Range(1, GetBodyMaxId());
+                int headId = Random.Range(1, GetHeadMaxId());
+                CharacterItem characterItem = new CharacterItem(characterQuality, desc, name, bodyId, headId);
                 return characterItem;
             }
             else
                 return GetMoreCharacterInfo(characterQuality);
+        }
+
+        private int GetBodyMaxId()
+        {
+            return 4;
+        }
+
+        private int GetHeadMaxId()
+        {
+            return 4;
         }
     }
 }

@@ -210,7 +210,7 @@ namespace GameWish.Game
             }
             else
             {
-                CharacterLoader.S.LoadCharacterSync(id, (obj) =>
+                CharacterLoader.S.LoadCharacterSync(id, characterItem.quality, characterItem.bodyId, (obj) =>
                 {
                     OnCharacterLoaded(obj, id, initState);
                 });
