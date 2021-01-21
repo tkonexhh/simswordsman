@@ -33,7 +33,7 @@ namespace GameWish.Game
             // Init Managers
             GameDataMgr.S.Init();
 
-            AssetPreloaderMgr.S.Init();
+            //AssetPreloaderMgr.S.Init();
 
             InputMgr.S.Init();
 
@@ -58,7 +58,7 @@ namespace GameWish.Game
             //Set language
             //I18Mgr.S.SwitchLanguage(SystemLanguage.German);
 
-            GameMgr.S.StartGuide();
+            //GameMgr.S.StartGuide();
 
             //GuideObjectMgr.S.Init();
 
@@ -75,7 +75,9 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Clear();
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(2);
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
-  
+            //客人来访系统
+            VisitorSystem.S.Init();
+
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
                 GameDataMgr.S.GetPlayerData().firstPlayTime = DateTime.Now.ToString();
@@ -126,7 +128,7 @@ namespace GameWish.Game
 
             if (m_IsGameStart == false)
             {
-                if (AssetPreloaderMgr.S.IsPreloaderDone())
+                //if (AssetPreloaderMgr.S.IsPreloaderDone())
                 {
                     m_IsGameStart = true;
                     //Timer.S.OnSingletonInit();
@@ -137,12 +139,11 @@ namespace GameWish.Game
 
                     MusicMgr.S.PlayBgMusic();
                     MainGameMgr.S.OnInit();
-                    //客人来访系统
-                    VisitorSystem.S.Init();
-
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();
+
+                    //GameMgr.S.StartGuide();
                 }
             }
             else
@@ -165,8 +166,38 @@ namespace GameWish.Game
             //{
             //    GameDataMgr.S.GetPlayerInfoData().AddStarCount(3);
             //}
+            //if (Input.GetKeyDown(KeyCode.Q))
+            //{
+            //    CheckIsFirstGameStart();
+            //}
         }
 
+        /// <summary>
+        /// 检查是否是第一次启动游戏，直接开启剧情
+        /// </summary>
+        public void CheckIsFirstGameStart()
+        {
+            EventSystem.S.Send(EventID.OnGuideDialog1);
+            return;
+            //if (!AppConfig.S.isGuideActive)
+            //{
+            //    return;
+            //}
+            //锁定镜头
+            EventSystem.S.Send(EventID.InGuideProgress, false);
+            Action action = () => 
+            {
+                //播放打扫动画
+                GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
+                EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Lobby);
+
+                //开始第一个引导
+                Timer.S.Post2Really(x => { EventSystem.S.Send(EventID.OnGuideDialog1, 1); }, 1f);
+                //EventSystem.S.Send(EventID.OnDialogGuide, 1);
+            };
+            UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, "StoryPanel_Text_1,StoryPanel_Text_2,StoryPanel_Text_3,StoryPanel_Text_4", action);
+        }
+        
         private void CheckMedalRefresh()
         {
             int hour = System.DateTime.Now.Hour;

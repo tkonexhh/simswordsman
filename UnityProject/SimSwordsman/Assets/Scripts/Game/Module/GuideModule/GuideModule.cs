@@ -15,10 +15,33 @@ namespace GameWish.Game
             {
                 return;
             }
-            InitCustomTrigger();
-            InitCustomCommand();
-            GuideMgr.S.StartGuideTrack();
-            
+
+            int id = 0;
+            var list = TDGuideTable.dataList;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (GuideMgr.S.IsGuideFinish(list[i].id))
+                    continue;
+                id = list[i].id + 10000;
+                break;
+            }
+
+            if (id != 0)
+            {
+                GuideTriggerEventMgr.S.Init();
+                InitCustomTrigger();
+                InitCustomCommand();
+                GuideMgr.S.StartGuideTrack();
+
+                try
+                {
+                    EventID eventid = (EventID)id;
+                    EventSystem.S.Send(eventid);
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
 
         protected override void OnComAwake()
