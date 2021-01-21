@@ -95,8 +95,12 @@ namespace GameWish.Game
                 return;
             }
 
-            float attackRange = TDKongfuAnimationConfigTable.GetAnimConfig(atkAnimName).atkRangeList[0];
-            //attackRange = 1f;
+            float attackRange = 1f;
+            var config = TDKongfuAnimationConfigTable.GetAnimConfig(atkAnimName);
+            if (config != null)
+            {
+                attackRange = config.atkRangeList[0];
+            }
             // Move to random position
             StartToMove(attackRange);
         }

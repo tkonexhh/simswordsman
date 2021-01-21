@@ -109,7 +109,7 @@ namespace GameWish.Game
 
         public List<KongfuType> GetKongfuTypeList()
         {
-            return m_CharacterItem.kongfus.Values.Select(i => i.GetKungfuType()).ToList();
+            return m_CharacterItem.kongfus.Values.Where(i => i.GetKungfuType() != KongfuType.None).Select(i => i.GetKungfuType()).ToList();
         }
 
         /// <summary>

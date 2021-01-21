@@ -28,7 +28,7 @@ namespace GameWish.Game
                 return kongfuAnimConfigDic[animName];
             }
 
-            Log.e("KongfuAnimConfig not found: " + animName);
+            //Log.e("KongfuAnimConfig not found: " + animName);
 
             return null;
         }
