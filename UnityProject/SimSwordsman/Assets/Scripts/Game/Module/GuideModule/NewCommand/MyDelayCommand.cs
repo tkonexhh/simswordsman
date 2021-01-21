@@ -1,11 +1,5 @@
-
 using System;
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using GameWish.Game;
 using Qarth;
-using UnityEngine.UI;
 
 namespace GameWish.Game
 {
@@ -60,32 +54,22 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.GuideDelayStart, guideStep.stepID);
             }
-
-
         }
 
         protected override void OnFinish(bool forceClean)
         {
             UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 
-            if (m_NextStepTime > 0)
-            {
-                Timer.S.Post2Scale((x) => {
-                    EventSystem.S.Send(EventID.GuideEventTrigger, m_NextStepId);//为下一个引导发送开始
-                }, m_NextStepTime);
-            }
-            else
-            {
-                EventSystem.S.Send(EventID.GuideEventTrigger, m_NextStepId);//为下一个引导发送开始
-            }
-
-
-          
+            //if (m_NextStepTime > 0)
+            //{
+            //    Timer.S.Post2Scale((x) => {
+            //        EventSystem.S.Send(EventID.GuideEventTrigger, m_NextStepId);//为下一个引导发送开始
+            //    }, m_NextStepTime);
+            //}
+            //else
+            //{
+            //    EventSystem.S.Send(EventID.GuideEventTrigger, m_NextStepId);//为下一个引导发送开始
+            //}
         }
-
-
-
-
     }
 }
-
