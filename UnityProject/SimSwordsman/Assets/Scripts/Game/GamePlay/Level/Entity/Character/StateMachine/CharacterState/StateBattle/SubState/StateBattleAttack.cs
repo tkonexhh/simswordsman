@@ -28,7 +28,7 @@ namespace GameWish.Game
 
             string atkName = m_BattleState.NextAtkAnimName;
 
-            atkName = "01_taizuchangquan";//"attack";
+            //atkName = "01_taizuchangquan";//"attack";
 
             m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
         }

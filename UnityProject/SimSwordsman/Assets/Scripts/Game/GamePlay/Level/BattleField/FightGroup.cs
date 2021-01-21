@@ -96,7 +96,7 @@ namespace GameWish.Game
             }
 
             float attackRange = TDKongfuAnimationConfigTable.GetAnimConfig(atkAnimName).atkRangeList[0];
-            attackRange = 1f;
+            //attackRange = 1f;
             // Move to random position
             StartToMove(attackRange);
         }

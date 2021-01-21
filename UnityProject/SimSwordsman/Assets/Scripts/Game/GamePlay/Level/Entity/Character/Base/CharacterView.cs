@@ -91,6 +91,12 @@ namespace GameWish.Game
             SpineHelper.PlayAnim(m_SpineAnim, "move", true, null);
         }
 
+        public void PlayRunAnim()
+        {
+            m_SpineAnim.skeleton.SetToSetupPose();
+            SpineHelper.PlayAnim(m_SpineAnim, "run", true, null);
+        }
+
         public void PlayAnim(string animName, bool loop, System.Action callback)
         {
             SpineHelper.PlayAnim(m_SpineAnim, animName, loop, callback);
