@@ -51,6 +51,10 @@ namespace GameWish.Game
             m_CurCharacter = t as CharacterItem;
             if (m_CurCharacter != null)
             {
+                if (m_CurCharacter.characterStateId == CharacterStateID.EnterClan || m_CurCharacter.characterStateId == CharacterStateID.Wander)
+                    m_DiscipleState.gameObject.SetActive(true);
+                else
+                    m_DiscipleState.gameObject.SetActive(false);
                 m_DiscipleName.text = m_CurCharacter.name;
                 m_DiscipleLevel.text = CommonUIMethod.GetGrade(m_CurCharacter.level);
             }

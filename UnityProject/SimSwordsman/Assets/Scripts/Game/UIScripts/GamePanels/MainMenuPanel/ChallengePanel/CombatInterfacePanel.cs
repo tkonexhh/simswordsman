@@ -103,10 +103,23 @@ namespace GameWish.Game
             else
             {
                 if (type == 1)//我方胜利
-                    CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetDiscipleName(m_OurCharacterList[characterListIndex]), GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex])));
+                {
+                    string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, GameDataMgr.S.GetClanData().GetClanName());
+                    battleText = ReplaceStr(battleText, 1, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                    CreateBattleText(battleText);
+                }
                 else//敌人胜利
-                    CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex]), GetDiscipleName(m_OurCharacterList[characterListIndex])));
+                {
+                    string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                    battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
+                    CreateBattleText(battleText);
+                }
             }
+        }
+
+        private string ReplaceStr(string str,int i,string newStr)
+        {
+            return str.Replace("{"+i+"}", newStr);
         }
 
         private string GetEnemyName(EnemyConfig enemyConfig)
