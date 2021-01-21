@@ -124,7 +124,7 @@ namespace GameWish.Game
         public const int LEVEL_COUNT_PER_CHAPTER = 2000;
 
         // Inventory
-        public const int MAX_PROP_COUNT = 999;
+        public const int MAX_PROP_COUNT = 9999;
 
         //LobbyPanel
         public const string FACILITY_LOBBY_GOLDRECRUITMENT = "Facility_Lobby_GoldRecruitment";

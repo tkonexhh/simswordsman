@@ -271,6 +271,10 @@ namespace GameWish.Game
         {
             return (int)PropType * 100 + (int)PropSubType;
         }
+        public override int GetSubName()
+        {
+            return (int)PropSubType;
+        }
     }
 
     public class KungfuItem : ItemBase
@@ -311,6 +315,10 @@ namespace GameWish.Game
         public override void Wrap<T>(T t)
         {
             throw new NotImplementedException();
+        }
+        public override int GetSubName()
+        {
+            return (int)KungfuType;
         }
     }
 
@@ -364,6 +372,10 @@ namespace GameWish.Game
         public override int GetSortId()
         {
             return (int)PropType * 100 + (int)ArmorID;
+        }
+        public override int GetSubName()
+        {
+            return (int)ArmorID;
         }
     }
     public class ArmsItem : ItemBase
@@ -420,6 +432,10 @@ namespace GameWish.Game
         public override int GetSortId()
         {
             return (int)PropType * 100 + (int)ArmsID;
+        }
+        public override int GetSubName()
+        {
+            return (int)ArmsID;
         }
     }
 
@@ -479,5 +495,7 @@ namespace GameWish.Game
         }
 
         public abstract int GetSortId();
+
+        public abstract int GetSubName();
     }
 }
