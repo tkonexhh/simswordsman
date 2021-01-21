@@ -248,7 +248,7 @@ namespace GameWish.Game
 
         private void SpawnEnemyCharacter(int id, int atk)
         {
-            SpawnEnemyController(1, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
+            SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
             {
                 m_EnemyCharacterList.Add(controller);
                 controller.CharacterModel.SetAtk(atk);

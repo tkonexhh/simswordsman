@@ -188,8 +188,8 @@ namespace GameWish.Game
                 int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
                 if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                     GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
-               
-                RefreshPanelText();
+
+                RefreshPanelInfo();
             });
         }
 
@@ -205,17 +205,14 @@ namespace GameWish.Game
 
         void UpdateFoodItems()
         {
-            if (m_Items.Count == 0)
+            for (int i = 0; i < TDFoodConfigTable.dataList.Count; i++)
             {
-                for (int i = 0; i < TDFoodConfigTable.dataList.Count; i++)
+                if (i >= m_Items.Count)
                 {
                     GameObject obj = Instantiate(m_FoodItemPrefab, m_KitchenContTra);
                     FoodItem item = obj.GetComponent<FoodItem>();
                     m_Items.Add(item);
                 }
-            }
-            for (int i = 0; i < m_Items.Count; i++)
-            {
                 ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
                 itemICom.OnInit(this, null, TDFoodConfigTable.dataList[i].id);
             }

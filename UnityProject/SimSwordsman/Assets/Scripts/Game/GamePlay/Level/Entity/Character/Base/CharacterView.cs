@@ -25,7 +25,7 @@ namespace GameWish.Game
         {
             m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();
 
-            if(m_Body == null)
+            if (m_Body == null)
                 m_Body = m_SpineAnim.gameObject;
 
             m_NavAgent = GetComponentInChildren<PolyNavAgent>();
@@ -33,6 +33,20 @@ namespace GameWish.Game
             m_NavAgent.OnDestinationReached += OnReach;
 
             m_SpineAnim.state.Event += HandleEvent;
+        }
+
+        public void SetSkin(int headId)
+        {
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            {
+                string skinName = GetSkinName(headId);
+                m_SpineAnim.skeleton.SetSkin(skinName);
+            }
+        }
+
+        private string GetSkinName(int headId)
+        {
+            return "tou_" + headId;
         }
 
         private void HandleEvent(Spine.TrackEntry trackEntry, Spine.Event e)
@@ -75,6 +89,12 @@ namespace GameWish.Game
         {
             m_SpineAnim.skeleton.SetToSetupPose();
             SpineHelper.PlayAnim(m_SpineAnim, "move", true, null);
+        }
+
+        public void PlayRunAnim()
+        {
+            m_SpineAnim.skeleton.SetToSetupPose();
+            SpineHelper.PlayAnim(m_SpineAnim, "run", true, null);
         }
 
         public void PlayAnim(string animName, bool loop, System.Action callback)

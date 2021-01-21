@@ -67,10 +67,10 @@ namespace GameWish.Game
 
         private string GetHurtAnimName()
         {
-            //if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
                 return "hurt_1";
 
-            //return "hurt";
+            return "hurt";
         }
         #endregion
     }

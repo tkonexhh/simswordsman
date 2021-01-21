@@ -153,6 +153,8 @@ namespace GameWish.Game
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
         public int curExp;
+        public int bodyId = 1; // Which body used
+        public int headId = 1; // Which head used
 
         public CharacterItemDbData()
         {
@@ -173,6 +175,8 @@ namespace GameWish.Game
             level = item.level;
             quality = item.quality;
             stage = item.stage;
+            bodyId = item.bodyId;
+            headId = item.headId;
         }
 
         public CharacterItemDbData(int id, CharacterQuality quality)

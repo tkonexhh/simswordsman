@@ -29,7 +29,7 @@ namespace GameWish.Game
             if (m_BattleState == null)
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
-            m_Controller.CharacterView.PlayWalkAnim();
+            m_Controller.CharacterView.PlayRunAnim();
 
             m_TargetPos = m_BattleState.MoveTargetPos;
         }

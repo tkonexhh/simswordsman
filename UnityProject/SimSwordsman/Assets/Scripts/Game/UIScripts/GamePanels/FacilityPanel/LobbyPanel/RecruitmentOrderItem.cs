@@ -58,11 +58,13 @@ namespace GameWish.Game
                 case RecruitType.GoldMedal:
 					int _48Count = m_Hours / _48Hours;
 					RefreshFreeRecruit(_48Count);
-					break;
+                    gameObject.name = "RecruitmentOrderItem2";
+                    break;
                 case RecruitType.SilverMedal:
 					int _12Count = m_Hours / _12Hours;
 					RefreshFreeRecruit(_12Count);
-					break;
+                    gameObject.name = "RecruitmentOrderItem1";
+                    break;
                 default:
                     break;
             }

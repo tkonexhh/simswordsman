@@ -14,6 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Level = 0;   
         private EInt m_Chapter = 0;   
+        private string m_EnemyHeadIcon;   
         private string m_Enemies;   
         private string m_Desc;   
         private string m_Reward;   
@@ -31,6 +32,11 @@ namespace GameWish.Game
         /// 所属章节
         /// </summary>
         public  int  chapter {get { return m_Chapter; } }
+       
+        /// <summary>
+        /// 敌人头像
+        /// </summary>
+        public  string  enemyHeadIcon {get { return m_EnemyHeadIcon; } }
        
         /// <summary>
         /// 敌人配置，格式ID|数量|功力;...
@@ -79,18 +85,21 @@ namespace GameWish.Game
                     m_Chapter = dataR.ReadInt();
                     break;
                 case 2:
-                    m_Enemies = dataR.ReadString();
+                    m_EnemyHeadIcon = dataR.ReadString();
                     break;
                 case 3:
-                    m_Desc = dataR.ReadString();
+                    m_Enemies = dataR.ReadString();
                     break;
                 case 4:
-                    m_Reward = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 5:
-                    m_RecommendAtkValue = dataR.ReadInt();
+                    m_Reward = dataR.ReadString();
                     break;
                 case 6:
+                    m_RecommendAtkValue = dataR.ReadInt();
+                    break;
+                case 7:
                     m_BattleName = dataR.ReadString();
                     break;
                 default:
@@ -103,15 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(7);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Level", 0);
           ret.Add("Chapter", 1);
-          ret.Add("Enemies", 2);
-          ret.Add("Desc", 3);
-          ret.Add("Reward", 4);
-          ret.Add("RecommendAtkValue", 5);
-          ret.Add("BattleName", 6);
+          ret.Add("EnemyHeadIcon", 2);
+          ret.Add("Enemies", 3);
+          ret.Add("Desc", 4);
+          ret.Add("Reward", 5);
+          ret.Add("RecommendAtkValue", 6);
+          ret.Add("BattleName", 7);
           return ret;
         }
     } 

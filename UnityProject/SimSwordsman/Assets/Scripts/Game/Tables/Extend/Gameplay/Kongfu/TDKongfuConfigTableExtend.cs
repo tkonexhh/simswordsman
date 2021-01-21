@@ -39,6 +39,8 @@ namespace GameWish.Game
         {
             if (m_KungfuConfigDic.ContainsKey(kungfuType))
                 return m_KungfuConfigDic[kungfuType];
+
+            Qarth.Log.e("Kongfu config info not found: " + kungfuType);
             return null;
         }
         /// <summary>

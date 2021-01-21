@@ -13,19 +13,20 @@ namespace GameWish.Game
 
         private void StartGuide_Task1(int key, object[] param)
         {
-            //EventSystem.S.Send(EventID.InGuideProgress, false);
-            Timer.S.Post2Really(x => 
-            {
+            //Timer.S.Post2Really(x => 
+            //{
+            UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
                 EventSystem.S.Send(EventID.OnGuideDialog4);
-            }, 1f);
+            //}, 1f);
         }
 
         private void StartGuide_Task2(int key, object[] param)
         {
-            Timer.S.Post2Really(x =>
-            {
-                EventSystem.S.Send(EventID.OnGuideDialog7);
-            }, 1f);
+            //Timer.S.Post2Really(x =>
+            //{
+            UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
+            EventSystem.S.Send(EventID.OnGuideDialog7);
+            //}, 1f);
         }
 
         private void UnlockFacility(int key, object[] param)

@@ -55,7 +55,6 @@ namespace GameWish.Game
 
         private void NextRound()
         {
-            float attackRange = 1.5f;
             // Who will attack
             if (m_OurCharacter.IsDead())
             {
@@ -77,11 +76,33 @@ namespace GameWish.Game
                     m_EnemyAttack = false;
                 }
             }
+
+            string atkAnimName;
+            if (m_EnemyAttack)
+            {
+                m_EnemyCharacter.GetBattleState().SetNextAtkAnimName();
+                atkAnimName = m_EnemyCharacter.GetBattleState().NextAtkAnimName;
+            }
+            else
+            {
+                m_OurCharacter.GetBattleState().SetNextAtkAnimName();
+                atkAnimName = m_OurCharacter.GetBattleState().NextAtkAnimName;
+            }
+            Log.e("Test--------------, atk anim name is: " + atkAnimName);
+            if(string.IsNullOrEmpty(atkAnimName))
+            {
+                Log.e("Atk anim name is empty: " + atkAnimName);
+                return;
+            }
+
+            float attackRange = 1f;
+            var config = TDKongfuAnimationConfigTable.GetAnimConfig(atkAnimName);
+            if (config != null)
+            {
+                attackRange = config.atkRangeList[0];
+            }
             // Move to random position
             StartToMove(attackRange);
-            // Attack
-
-            // Next round
         }
 
         private void StartToMove(float attackRange)

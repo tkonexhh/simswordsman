@@ -15,10 +15,12 @@ namespace GameWish.Game
         private BattleStateID m_CurState = BattleStateID.None;
         private Vector2 m_MoveTargetPos = Vector2.zero;
         private float m_HitbackDistance = 0;
+        private string m_NextAtkAnimName = string.Empty;
 
         public BattleStateID CurState { get => m_CurState;}
         public Vector2 MoveTargetPos { get => m_MoveTargetPos; set => m_MoveTargetPos = value; }
         public float HitbackDistance { get => m_HitbackDistance; set => m_HitbackDistance = value; }
+        public string NextAtkAnimName { get => m_NextAtkAnimName;}
 
         public CharacterStateBattle(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -52,19 +54,19 @@ namespace GameWish.Game
             return this;
         }
 
-        public bool IsTargetInAttackRange()
-        {
-            bool canAtk = m_Controller.FightTarget != null && Mathf.Abs(m_Controller.GetPosition().y - m_Controller.FightTarget.GetPosition().y) < 0.3f &&
-                          Vector2.Distance(m_Controller.GetPosition(), m_Controller.FightTarget.GetPosition()) < m_Controller.GetAtkRange();
+        //public bool IsTargetInAttackRange()
+        //{
+        //    bool canAtk = m_Controller.FightTarget != null && Mathf.Abs(m_Controller.GetPosition().y - m_Controller.FightTarget.GetPosition().y) < 0.3f &&
+        //                  Vector2.Distance(m_Controller.GetPosition(), m_Controller.FightTarget.GetPosition()) < m_Controller.GetAtkRange();
 
-            return canAtk;
-        }
+        //    return canAtk;
+        //}
 
-        public bool IsTargetAttacking()
-        {
-            bool isAttacking = m_Controller.FightTarget.GetBattleState().IsAttacking() == true;
-            return isAttacking;
-        }
+        //public bool IsTargetAttacking()
+        //{
+        //    bool isAttacking = m_Controller.FightTarget.GetBattleState().IsAttacking() == true;
+        //    return isAttacking;
+        //}
 
         public bool IsAttacking()
         {
@@ -79,13 +81,43 @@ namespace GameWish.Game
                 m_BattleStateMachine.SetCurrentStateByID((int)m_CurState);
             }
         }
-        public void RefreshTarget()
+
+        public void SetNextAtkAnimName()
         {
-            if (m_Controller.FightTarget == null || m_Controller.FightTarget.IsDead())
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
-                m_Controller.SetFightTarget(FindTarget());
+                List<KongfuType> kongfuList = m_Controller.CharacterModel.GetKongfuTypeList();
+                if (kongfuList.Count == 0) // Not any kongfu learned
+                {
+                    m_NextAtkAnimName = "attack";
+                }
+                else
+                {
+                    KongfuType kongfu = kongfuList[UnityEngine.Random.Range(0, kongfuList.Count)];
+                    m_NextAtkAnimName = TDKongfuConfigTable.GetKungfuConfigInfo(kongfu).AnimName;
+                }
+            }
+            else
+            {
+                EnemyInfo enemyInfo = TDEnemyConfigTable.GetEnemyInfo(m_Controller.CharacterId);
+                List<string> animNameList = enemyInfo.animNameList;
+                if (animNameList.Count > 0)
+                {
+                    m_NextAtkAnimName = animNameList[UnityEngine.Random.Range(0, animNameList.Count)];
+                }
+                else
+                {
+                    Log.e("Enemy anim list empty");
+                }
             }
         }
+        //public void RefreshTarget()
+        //{
+        //    if (m_Controller.FightTarget == null || m_Controller.FightTarget.IsDead())
+        //    {
+        //        m_Controller.SetFightTarget(FindTarget());
+        //    }
+        //}
 
         #region Private
 

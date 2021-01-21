@@ -53,10 +53,13 @@ namespace GameWish.Game
         [HideInInspector]
         public int UnlockLevel;//解锁等级
 
+        AbstractAnimPanel m_panel;
+
         string m_StringID = "ForgeHousePanel";
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+            m_panel = t as AbstractAnimPanel;
             BindAddListenerEvent();
             Init();
         }
@@ -79,10 +82,10 @@ namespace GameWish.Game
             m_DurationTxt.text = dur;
             m_Progress.fillAmount = progress;
         }
+      
         void Init()
         {
-            var list = TDFacilityForgeHouseTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse)).GetCurEquipmentType();
-            if (!list.Contains((EquipmentType)ID))//未解锁
+            if (!IsUnlock((EquipmentType)ID))
             {
                 SetState(0);
             }
@@ -91,7 +94,7 @@ namespace GameWish.Game
                 transform.SetAsFirstSibling();
 
                 var tb = TDEquipmentConfigTable.GetData(ID);
-               // m_ItemIcon.sprite = Resources.Load<Sprite>("Sprites/HerbIcon/" + tb.iconName);
+                //m_ItemIcon.sprite = m_panel.FindSprite(tb.iconName);
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
                 //m_EffecTxt.text = tb.e;
@@ -111,6 +114,18 @@ namespace GameWish.Game
                 else
                     SetState(2);
             }
+        }
+        bool IsUnlock(EquipmentType id)
+        {
+            List<EquipmentType> list = null;
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse);
+            for (int i = 1; i <= level; i++)
+            {
+                list = TDFacilityForgeHouseTable.GetLevelInfo(i).GetCurEquipmentType();
+                if (list.Contains(id))
+                    return true;
+            }
+            return false;
         }
         private void BindAddListenerEvent()
         {
@@ -184,17 +199,16 @@ namespace GameWish.Game
                 m_NeedItem2.gameObject.SetActive(true);
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[1].itemId).iconName);
+                m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
                 m_NeedItemCount2Txt.text = infos[1].value.ToString();
             }
             else
             {
-                m_NeedItem1.gameObject.SetActive(false);
-                m_NeedItemCount1Txt.gameObject.SetActive(false);
+                m_NeedItem2.gameObject.SetActive(false);
+                m_NeedItemCount2Txt.gameObject.SetActive(false);
             }
-            m_NeedItem1.sprite = Resources.Load<Sprite>("Sprites/ItemIcon/" + TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
             m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }
-	
 }

@@ -174,6 +174,9 @@ namespace GameWish.Game
 
         public KongfuType GetKungfuType()
         {
+            if (CharacterKongfu == null)
+                return KongfuType.None;
+
             return CharacterKongfu.dbData.kongfuType;
         }
 
@@ -181,26 +184,13 @@ namespace GameWish.Game
         {
             Index = i.index;
             KungfuLockState = i.kungfuLockState;
-            if (KungfuLockState== KungfuLockState.Learned&&CharacterKongfu == null)
+            if (KungfuLockState == KungfuLockState.Learned && CharacterKongfu == null)
             {
-                 CharacterKongfu = new CharacterKongfu();
+                CharacterKongfu = new CharacterKongfu();
                 CharacterKongfu.Wrap(i);
             }
         }
     }
-
-    //public class CharacterStateData
-    //{
-    //    public CharacterStateID characterState = CharacterStateID.Wander; // 弟子行为
-    //    public CollectedObjType collectObjType;
-
-    //    public CharacterStateData() { }
-    //    public CharacterStateData(CharacterStateID stateId, CollectedObjType collectObjType = CollectedObjType.None)
-    //    {
-    //        this.characterState = stateId;
-    //        this.collectObjType = collectObjType;
-    //    }
-    //}
 
     public class CharacterItem : IComparable
     {
@@ -219,30 +209,27 @@ namespace GameWish.Game
         public string desc; // 详细信息
         public CharaceterEquipmentData characeterEquipmentData = new CharaceterEquipmentData();
         public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
+        public int bodyId;
+        public int headId;
 
         private CharacterStageInfoItem stageInfo;
 
 
         private CharacterItemDbData m_ItemDbData = null;
 
-        public CharacterItem(CharacterQuality quality, string decs, string name)
+        public CharacterItem(CharacterQuality quality, string decs, string name, int bodyId, int headId)
         {
             this.quality = quality;
             this.name = name;
             this.desc = decs;
+            this.bodyId = bodyId;
+            this.headId = headId;
         }
 
         public CharacterItem()
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
                 kongfus.Add(i + 1, new CharacterKongfuData(i + 1));
-        }
-
-        public CharacterItem(int id)
-        {
-            this.id = id;
-            level = 1;
-            stage = 1;
         }
 
         /// <summary>
@@ -270,6 +257,8 @@ namespace GameWish.Game
             stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             quality = itemDbData.quality;
+            bodyId = itemDbData.bodyId;
+            headId = itemDbData.headId;
 
             this.characterStateId = itemDbData.characterStateId;
 

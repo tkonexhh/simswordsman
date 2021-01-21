@@ -43,7 +43,10 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
-            //SetTaskIfNeed(initState);
+            if (m_CharacterCamp == CharacterCamp.OurCamp)
+            {
+                m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
+            }
 
             m_StateMachine = new CharacterStateMachine(this);
 
