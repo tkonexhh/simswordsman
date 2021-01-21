@@ -90,12 +90,12 @@ namespace GameWish.Game
                 if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
                 {
                     GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;
-                    EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
+                    EventSystem.S.Send(EventID.OnGuideSecondGetCharacter);
                 }
                 if (m_RecruitType == RecruitType.SilverMedal && !GameDataMgr.S.GetPlayerData().firstSilverRecruit)
                 {
                     GameDataMgr.S.GetPlayerData().firstSilverRecruit = true;
-                    EventSystem.S.Send(EventID.OnGuideSecondGetCharacter);
+                    EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
                 }
                 OnPanelHideComplete();
             });
