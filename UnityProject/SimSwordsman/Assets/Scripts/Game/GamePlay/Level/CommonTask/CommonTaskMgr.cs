@@ -34,7 +34,8 @@ namespace GameWish.Game
 
             m_CommonTaskData = GameDataMgr.S.GetCommonTaskData();
 
-            m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(1).commonTaskCount;
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(lobbyLevel).commonTaskCount;
             //InitTaskList();
 
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
@@ -200,6 +201,11 @@ namespace GameWish.Game
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+                    bool isTaskTutorialFinished = false;
+                    if (!isTaskTutorialFinished) // TODO:Check is tutorial finished
+                    {
+                        lobbyLevel = 0;
+                    }
                     List<CommonTaskItemInfo> allCommonTask = TDCommonTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
 
                     for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
