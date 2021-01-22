@@ -107,7 +107,41 @@ namespace GameWish.Game
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
-
+            m_AutoSelectedBtn.onClick.AddListener(()=> 
+            {
+                CloseSelfPanel();
+                switch (m_PanelType)
+                {
+                    case PanelType.Task:
+                        if (m_SelectedList.Count == 0)
+                        {
+                            foreach (var item in m_AllCharacterList)
+                            {
+                                if (item.IsFreeState())
+                                    m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
+                            }
+                        } 
+                        m_CurTaskInfo.ExecuteTask(m_SelectedList);
+                        if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
+                        {
+                            List<EnemyConfig> enemiesList = new List<EnemyConfig>();
+                            List<TaskEnemy> taskEnemies = m_CurTaskInfo.CommonTaskItemInfo.taskEnemies;
+                            for (int i = 0; i < taskEnemies.Count; i++)
+                            {
+                                enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
+                            }
+                            EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, enemiesList);
+                            UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                        }
+                        break;
+                    case PanelType.Challenge:
+                        EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
+                        UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                        break;
+                    default:
+                        break;
+                }
+            });
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 CloseSelfPanel();

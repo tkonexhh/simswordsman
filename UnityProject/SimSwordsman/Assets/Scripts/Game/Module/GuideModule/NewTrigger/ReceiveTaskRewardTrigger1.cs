@@ -38,8 +38,9 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
+         
             EventSystem.S.UnRegister(EventID.OnGuideReceiveTaskRewardTrigger1, OnEventListener);
-
+            UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
             EventSystem.S.Send(EventID.OnGuideDialog5);
         }
 

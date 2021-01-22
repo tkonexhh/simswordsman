@@ -20,7 +20,7 @@ namespace GameWish.Game
         {
             Countdowner cd = (Countdowner)param[0];
             //食物buff
-            if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
+            if (cd.stringID.Equals(FoodBuffType.Food_AddExp.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
                 EventSystem.S.Send(EventID.OnFoodBuffEnd, cd);
             }
@@ -41,7 +41,7 @@ namespace GameWish.Game
         private void OnTick(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
+            if (cd.stringID.Equals(FoodBuffType.Food_AddExp.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
                 EventSystem.S.Send(EventID.OnFoodBuffTick, cd, param[1]);
             }
@@ -50,7 +50,7 @@ namespace GameWish.Game
         private void OnStart(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals(FoodBuffType.Food_AddATK.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
+            if (cd.stringID.Equals(FoodBuffType.Food_AddExp.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
             {
                 EventSystem.S.Send(EventID.OnFoodBuffStart, cd, param[1]);
             }
@@ -69,10 +69,10 @@ namespace GameWish.Game
             {
                 switch (type)
                 {
-                    case FoodBuffType.Food_AddATK:
-                        return string.Format("弟子战力+<color=#8C343C>{0}%</color>", tb.buffRate);
+                    case FoodBuffType.Food_AddExp:
+                        return string.Format("弟子获得经验+<color=#8C343C>{0}%</color>", tb.buffRate);
                     case FoodBuffType.Food_AddRoleExp:
-                        return string.Format("获得弟子经验+<color=#8C343C>{0}%</color>", tb.buffRate);
+                        return string.Format("弟子获得功夫经验+<color=#8C343C>{0}%</color>", tb.buffRate);
                     case FoodBuffType.Food_AddCoin:
                         return string.Format("获得铜钱+<color=#8C343C>{0}%</color>", tb.buffRate);
                     default:
@@ -129,13 +129,13 @@ namespace GameWish.Game
             return originalExp + add;
         }
 
-        public long ATK(long originalATK)
+        public long Exp(long originalATK)
         {
             int add = 0;
             foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
             {
                 m_TempTable = TDFoodConfigTable.GetData(item);
-                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddATK.ToString()) && IsActive(item))
+                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddExp.ToString()) && IsActive(item))
                 {
                     add += Mathf.RoundToInt(originalATK * m_TempTable.buffRate * 0.01f);
                 }
@@ -149,7 +149,7 @@ namespace GameWish.Game
         /// <summary>
         /// 增加弟子战斗力
         /// </summary>
-        Food_AddATK = 0,
+        Food_AddExp = 0,
         /// <summary>
         /// 增加弟子获得的功夫经验
         /// </summary>

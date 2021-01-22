@@ -11,21 +11,17 @@ namespace GameWish.Game
     {
         [SerializeField]
         private CircleShaderControl m_CircleShaderControl;
-
         [SerializeField]
         private RectTransform m_TargetRect;
-
         [SerializeField]
         private Button m_Targetbtn;
-
         [SerializeField]
         private RectTransform m_Hand;
-
         [SerializeField]
         private Text m_GuideTipsText;
 
         private Action clickAction;
-        //private int m_GuidestepId = -1;
+        bool canClick = false;
 
         protected override void OnOpen()
         {
@@ -54,15 +50,37 @@ namespace GameWish.Game
                 clickAction = (Action)args[3];
                 m_Targetbtn.onClick.AddListener(OnClick);
             }
-            //EventSystem.S.Send(EventID.OnGuidePanelOpen, m_GuidestepId);
+            if (args.Length > 4)
+            {
+                bool isNotForce = (bool)args[4];
+                Action action = (Action)args[3];
+                Button button = m_CircleShaderControl.transform.GetComponent<Button>();
+                if (isNotForce)//弱点击
+                {
+                    Timer.S.Post2Really(x => { canClick = true; }, 1);
+                    if (button == null)
+                        button = m_CircleShaderControl.gameObject.AddComponent<Button>();
+                    else
+                    {
+                        button.onClick.RemoveAllListeners();
+                        button.onClick.AddListener(() =>
+                        {
+                            if (canClick)
+                                action?.Invoke();
+                        });
+                    }
+                }
+                else
+                {
+                    if (button != null)
+                        Destroy(button);
+                }
+            }
             EventSystem.S.Send(EventID.InGuideProgress, false);
         }
         protected override void OnClose()
         {
             m_CircleShaderControl.EndGuide();
-            //m_Hand.DOKill();
-            //m_Hand2.DOKill();
-
             base.OnClose();
         }
 
@@ -75,4 +93,3 @@ namespace GameWish.Game
         }
     }
 }
-

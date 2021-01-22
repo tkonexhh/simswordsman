@@ -15,6 +15,8 @@ namespace GameWish.Game
         public string TaskStartTime { get => m_TaskStartTime;}
         public int TaskId { get => m_TaskId; }
 
+        public List<int> CharacterIDs = new List<int>();
+
         public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime)
         {
             m_TaskId = taskId;
@@ -51,11 +53,15 @@ namespace GameWish.Game
 
         public virtual void ExecuteTask(List<CharacterController> selectedCharacters)
         {
+            foreach (var item in selectedCharacters)
+                CharacterIDs.Add(item.CharacterId);
+
             GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
         }
 
         public void ClaimReward()
         {
+            CharacterIDs.Clear();
             // Item reward
             for (int i = 0; i < m_TaskDetailInfo.itemRewards.Count; i++)
             {

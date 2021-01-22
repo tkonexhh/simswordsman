@@ -62,6 +62,7 @@ namespace GameWish.Game
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
             mainTaskItem.taskState = TaskState.Running;
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnCommonTaskStart, taskId);
         }
 
         //public void OnTaskFinished(int taskId)

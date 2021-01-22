@@ -142,8 +142,7 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();
-
-                    //GameMgr.S.StartGuide();
+                    GameMgr.S.StartGuide();
                 }
             }
             else
@@ -166,10 +165,6 @@ namespace GameWish.Game
             //{
             //    GameDataMgr.S.GetPlayerInfoData().AddStarCount(3);
             //}
-            //if (Input.GetKeyDown(KeyCode.Q))
-            //{
-            //    CheckIsFirstGameStart();
-            //}
         }
 
         /// <summary>
@@ -177,22 +172,28 @@ namespace GameWish.Game
         /// </summary>
         public void CheckIsFirstGameStart()
         {
-            EventSystem.S.Send(EventID.OnGuideDialog1);
-            return;
-            //if (!AppConfig.S.isGuideActive)
-            //{
-            //    return;
-            //}
+            if (GameDataMgr.S.GetPlayerData().isGuideStart)
+                return;
+
             //锁定镜头
             EventSystem.S.Send(EventID.InGuideProgress, false);
             Action action = () => 
             {
+                //EventSystem.S.Send(EventID.InGuideProgress, false);
                 //播放打扫动画
                 GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
                 EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Lobby);
 
+                GameDataMgr.S.GetPlayerData().isGuideStart = true;
+                GameDataMgr.S.GetPlayerData().SetDataDirty();
+
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 10);
+                GameDataMgr.S.GetPlayerData().AddCoinNum(100);
                 //开始第一个引导
-                Timer.S.Post2Really(x => { EventSystem.S.Send(EventID.OnGuideDialog1, 1); }, 1f);
+                //Timer.S.Post2Really(x => 
+                //{
+                    EventSystem.S.Send(EventID.OnGuideDialog1, 1);
+                //}, 1f);
                 //EventSystem.S.Send(EventID.OnDialogGuide, 1);
             };
             UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, "StoryPanel_Text_1,StoryPanel_Text_2,StoryPanel_Text_3,StoryPanel_Text_4", action);
