@@ -16,6 +16,8 @@ namespace GameWish.Game
         public string firstPlayTime;
         public string lastPlayTime;
 
+        public bool isGuideStart;
+
         public List<HerbModel> herbModels = new List<HerbModel>();
         public RecruitData recruitData = new RecruitData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
@@ -42,7 +44,9 @@ namespace GameWish.Game
 
             lastPlayTime = "0";
             firstPlayTime = string.Empty;
-            
+
+            isGuideStart = false;
+
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;

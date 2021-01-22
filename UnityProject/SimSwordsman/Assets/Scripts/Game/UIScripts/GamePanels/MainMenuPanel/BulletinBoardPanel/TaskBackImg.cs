@@ -54,7 +54,9 @@ namespace GameWish.Game
 			m_TaskIntrodution.text = m_CurTaskInfo.CommonTaskItemInfo.id.ToString();
 			BindAddListenerEvevnt();
 
-			RefreshPanelInfo();
+            gameObject.name = "TaskBackImg" + m_CurTaskInfo.CommonTaskItemInfo.id;
+
+            RefreshPanelInfo();
 		}
 
         private void RefreshPanelInfo()
