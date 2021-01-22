@@ -225,8 +225,14 @@ namespace GameWish.Game
             return facilityLevelInfo;
         }
 
+        public  List<string> GetUnlockContent(int level)
+        {
+            return TDFacilityLobbyTable.GetUnlockContent(level);
+        }
+
+
         #region PracticeField
-    
+
         /// <summary>
         /// 获取配置文件中所有的练兵场信息
         /// </summary>

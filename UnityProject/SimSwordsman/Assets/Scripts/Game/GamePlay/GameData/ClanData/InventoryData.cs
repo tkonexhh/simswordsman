@@ -128,6 +128,7 @@ namespace GameWish.Game
         public void AddEquipNumber(int number)
         {
             Number += number;
+            Number = Mathf.Min(Number,Define.MAX_PROP_COUNT);
         }
 
     }

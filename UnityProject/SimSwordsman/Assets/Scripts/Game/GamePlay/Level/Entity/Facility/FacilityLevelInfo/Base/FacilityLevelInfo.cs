@@ -13,6 +13,7 @@ namespace GameWish.Game
         public FacilityUpgradeCost upgradeResCosts;
         public int commonTaskCount;
 
+        public List<string> unlockContent = new List<string>();
         public FacilityLevelInfo()
         {
 
@@ -28,7 +29,15 @@ namespace GameWish.Game
             this.upgradeNeedLobbyLevel = needLobbyLevel;
             this.upgradeResCosts = rewards;
         }
-    
+
+        public void AnalysisUnlockContent(string unlock)
+        {
+            string[] str = unlock.Split(';');
+            foreach (var item in str)
+                unlockContent.Add(item);
+        }
+
+
         public void Warp(FacilityLevelInfo levelInfo)
         {
             this.level = levelInfo.level;
