@@ -79,6 +79,7 @@ namespace GameWish.Game
             {
                 item.CommonTaskItemInfo.taskState = TaskState.Unclaimed;
                 GameDataMgr.S.GetCommonTaskData().SetTaskFinished(taskId);
+                EventSystem.S.Send(EventID.OnCommonTaskFinish, taskId);
             }
         }
 
