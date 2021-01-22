@@ -65,10 +65,10 @@ namespace GameWish.Game
         }
         public void AddKungfuItem(KungfuItem _kungfuItem, int delta)
         {
-            PropItemDbData propItemDbData = propList.FirstOrDefault(i => i.IsHaveItem(_kungfuItem));
+            KungfuItemDbData kungfuItemDbData = kungfuList.FirstOrDefault(i => i.IsHaveItem(_kungfuItem));
 
-            if (propItemDbData != null)
-                propItemDbData.AddEquipNumber(delta);
+            if (kungfuItemDbData != null)
+                kungfuItemDbData.AddEquipNumber(delta);
             else
             {
                 KungfuItemDbData newKungfuItemDbData = new KungfuItemDbData(_kungfuItem);
@@ -147,7 +147,7 @@ namespace GameWish.Game
         public override bool IsHaveItem(ItemBase _itemBase)
         {
             ArmsItem armsItem = _itemBase as ArmsItem;
-            if (ArmsID == armsItem.ArmsID && ClassID == armsItem.ClassID)
+            if (armsItem != null && ArmsID == armsItem.ArmsID && ClassID == armsItem.ClassID)
                 return true;
             return false;
         }
@@ -168,7 +168,7 @@ namespace GameWish.Game
         public override bool IsHaveItem(ItemBase _itemBase)
         {
             ArmorItem armorItem = _itemBase as ArmorItem;
-            if (ArmorID == armorItem.ArmorID && ClassID == armorItem.ClassID)
+            if (armorItem != null && ArmorID == armorItem.ArmorID && ClassID == armorItem.ClassID)
                 return true;
             return false;
         }
@@ -205,7 +205,7 @@ namespace GameWish.Game
         public override bool IsHaveItem(ItemBase _itemBase)
         {
             PropItem propItem = _itemBase as PropItem;
-            if (PropType == propItem.PropType && PropSubType == propItem.PropSubType)
+            if (propItem != null && PropType == propItem.PropType && PropSubType == propItem.PropSubType)
                 return true;
             return false;
         }
@@ -242,7 +242,7 @@ namespace GameWish.Game
         public override bool IsHaveItem(ItemBase _itemBase)
         {
             KungfuItem kungfuItem = _itemBase as KungfuItem;
-            if (PropType == kungfuItem.PropType && KungfuType == kungfuItem.KungfuType)
+            if (kungfuItem != null &&  PropType == kungfuItem.PropType && KungfuType == kungfuItem.KungfuType)
                 return true;
             return false;
         }

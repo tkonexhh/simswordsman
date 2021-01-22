@@ -71,6 +71,7 @@ namespace GameWish.Game
         /// </summary>
         public KongfuType KungfuType { set; get; }
         public string Name { set; get; }
+        public int Price { set; get; }
         public KungfuQuality KungfuQuality { set; get; }
         public string Desc { set; get; }
         public Dictionary<int, float> AdditionRatioDic = new Dictionary<int, float>();
@@ -96,6 +97,7 @@ namespace GameWish.Game
             {
                 UpgradeExperienceDic.Add(i+1, int.Parse(UpgradeStr[i]));
             }
+            Price = tdData.price;
         }
 
         public  int GetKungfuUpgradeInfo(CharacterKongfuDBData characterKongfu)

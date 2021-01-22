@@ -57,7 +57,10 @@ namespace GameWish.Game
                 case PropType.Arms:
 					ArmsItem armsItem = (ArmsItem)CurItemBase;
 					return armsItem.IsHaveItem(_itemBase);
-                default:
+				case PropType.Kungfu:
+					KungfuItem kunfuItem = (KungfuItem)CurItemBase;
+					return kunfuItem.IsHaveItem(_itemBase);
+				default:
 					return false;
             }
 			return false;

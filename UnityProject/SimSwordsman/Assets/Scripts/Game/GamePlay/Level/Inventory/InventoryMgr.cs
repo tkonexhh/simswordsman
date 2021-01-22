@@ -137,6 +137,9 @@ namespace GameWish.Game
                 case PropType.Arms:
                     m_InventoryDataWrapper.RemoveArms((ArmsItem)item, delta);
                     break;
+                case PropType.Kungfu:
+                    m_InventoryDataWrapper.RemoveKungfu((KungfuItem)item, delta);
+                    break;
                 default:
                     break;
             }

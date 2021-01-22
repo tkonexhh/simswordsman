@@ -44,7 +44,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
+            GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
             m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
 
             m_VillaBtn.onClick.AddListener(() => {
@@ -53,10 +53,31 @@ namespace GameWish.Game
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
                 }
+                //功夫
+                for (int i = (int)KongfuType.TaiZuChangQuan; i < (int)KongfuType.ZuiQuan; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
+                }
+                //添加铠甲
+                for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
+                {
+                    for (int j = 1; j <= 9; j++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)i, (Step)j), 2000);
+                    }
+                }
+                //添加武器
+                //for (int i = (int)ArmsType.ShaZhuDao; i < (int)ArmsType.YanYueDao; i++)
+                //{
+                //    for (int j = 1; j <= 9; j++)
+                //    {
+                //        MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)i, (Step)j), 2000);
+                //    }
+                //}
 
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,10);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,10);
 
-                MainGameMgr.S.CharacterMgr.AddKungfu(0,new KungfuItem (KongfuType.LingBoWeiBu));
+                //MainGameMgr.S.CharacterMgr.AddKungfu(0,new KungfuItem (KongfuType.LingBoWeiBu));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,200);
                 //GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
                 //m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();

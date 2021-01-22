@@ -124,6 +124,9 @@ namespace GameWish.Game
                     default:
                         break;
                 }
+                for (int i = 0; i < m_CostItems.Count; i++)
+                    MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
+
                 RefreshPanelInfo();
             });
         }

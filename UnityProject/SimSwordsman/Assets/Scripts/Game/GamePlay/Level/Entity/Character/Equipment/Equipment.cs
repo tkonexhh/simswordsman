@@ -60,7 +60,6 @@ namespace GameWish.Game
         private Dictionary<int, int> m_SellingPrice = new Dictionary<int, int>();
         private Dictionary<int, UpgradeCondition> m_UpgradeConditionDic = new Dictionary<int, UpgradeCondition>();
         private List<BuildCondition> m_BuildConditionList = new List<BuildCondition>();
-      
         public Equipment(TDEquipmentConfig tdData)
         {
             ID = tdData.id;
@@ -73,6 +72,8 @@ namespace GameWish.Game
             AnalysisUpgradeCondition(tdData.upgradeCondition);
             AnalysisBuildCondition(tdData.buildCondition);
         }
+
+
 
         #region Private 
         /// <summary>
