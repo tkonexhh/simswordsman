@@ -64,9 +64,17 @@ namespace GameWish.Game
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
             }
 
-            // TODO:Exp reward
-
-            // TODO:Kongfu reward
+            // Special reward
+            int random = Random.Range(0, 10000);
+            if (random < m_TaskDetailInfo.specialRewardRate)
+            {
+                for (int i = 0; i < m_TaskDetailInfo.specialRewards.Count; i++)
+                {
+                    int itemId = m_TaskDetailInfo.GetSpecialRewardId(i);
+                    int count = m_TaskDetailInfo.GetSpecialRewardValue(i);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+                }
+            }
         }
     }
 	
