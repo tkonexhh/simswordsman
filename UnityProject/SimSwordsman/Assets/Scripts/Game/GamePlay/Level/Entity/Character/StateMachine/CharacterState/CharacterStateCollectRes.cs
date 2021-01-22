@@ -93,11 +93,19 @@ namespace GameWish.Game
 
             m_ReachTargetPos = true;
 
-            string animName = GetCollectResAnim();
-            m_Controller.CharacterView.PlayAnim(animName, true, null);
-            m_Controller.FaceTo(m_TaskCollectableItem.transform.position.x);
+            m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
+            if (m_TaskCollectableItem != null)
+            {
+                string animName = GetCollectResAnim();
+                m_Controller.CharacterView.PlayAnim(animName, true, null);
+                m_Controller.FaceTo(m_TaskCollectableItem.transform.position.x);
 
-            m_TaskCollectableItem?.OnStartCollected(m_Controller.GetPosition());
+                m_TaskCollectableItem?.OnStartCollected(m_Controller.GetPosition());
+            }
+            else
+            {
+                m_Controller.SetState(CharacterStateID.Wander);
+            }
         }
 
         private string GetCollectResAnim()
