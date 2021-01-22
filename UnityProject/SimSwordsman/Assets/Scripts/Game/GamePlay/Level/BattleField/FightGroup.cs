@@ -88,7 +88,7 @@ namespace GameWish.Game
                 m_OurCharacter.GetBattleState().SetNextAtkAnimName();
                 atkAnimName = m_OurCharacter.GetBattleState().NextAtkAnimName;
             }
-            Log.e("Test--------------, atk anim name is: " + atkAnimName);
+            Log.i("Test--------------, atk anim name is: " + atkAnimName);
             if(string.IsNullOrEmpty(atkAnimName))
             {
                 Log.e("Atk anim name is empty: " + atkAnimName);
