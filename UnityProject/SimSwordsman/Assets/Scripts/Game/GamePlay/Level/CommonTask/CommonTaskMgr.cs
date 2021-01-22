@@ -82,6 +82,14 @@ namespace GameWish.Game
             }
         }
 
+        public void SetTaskExcutedTime(int taskId, int time)
+        {
+            SimGameTask item = GetCommonTaskItemData(taskId);
+            if (item != null)
+            {
+                GameDataMgr.S.GetCommonTaskData().SetTaskExecutedTime(taskId, time);
+            }
+        }
         /// <summary>
         /// 完成任务后领取奖励
         /// </summary>
@@ -176,7 +184,8 @@ namespace GameWish.Game
         {
             m_CommonTaskData.taskList.ForEach(i => 
             {
-                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+                int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
+                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, leftTime);
 
                 // 如果数据库中该task正在执行
                 if (i.taskState == TaskState.Running)

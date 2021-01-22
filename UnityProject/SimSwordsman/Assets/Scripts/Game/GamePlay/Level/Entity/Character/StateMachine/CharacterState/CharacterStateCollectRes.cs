@@ -67,6 +67,9 @@ namespace GameWish.Game
             if (m_ReachTargetPos)
             {
                 m_Time += Time.deltaTime;
+
+                MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, (int)m_Time);
+
                 if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
                 {
                     m_Time = 0f;
