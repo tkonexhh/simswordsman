@@ -84,7 +84,7 @@ namespace GameWish.Game
             });
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_IncreaseBtn.onClick.AddListener(() => {
-                Debug.LogError("点击");
+                //Debug.LogError("点击");
                 RefreshIncreaseSellNumber();
             });
             m_ReduceBtn.onClick.AddListener(() => {
@@ -115,7 +115,7 @@ namespace GameWish.Game
 
         private void OnPointerDown(BaseEventData arg0)
         {
-            Debug.LogError("按下");
+            //Debug.LogError("按下");
             if (arg0.selectedObject!=null)
                 m_StartCount = StartCoroutine(TimingBtn(0.5f, m_BtnState, OnCountBtnEvent, arg0.selectedObject));
         }
@@ -135,7 +135,7 @@ namespace GameWish.Game
 
         private void OnPointerUp(BaseEventData arg0)
         {
-            Debug.LogError("起来");
+            //Debug.LogError("起来");
             if (!m_IsStart)
             {
                 StopCoroutine(m_StartCount);

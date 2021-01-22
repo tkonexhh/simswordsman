@@ -293,6 +293,10 @@ namespace GameWish.Game
 
         #region Inventory
 
+        public List<KungfuItemDbData> GetkungfuDBDataList()
+        {
+            return inventoryData.kungfuList;
+        }
         public List<ArmsDBData> GetArmsDBDataList()
         {
             return inventoryData.armsDBDataList;
@@ -316,6 +320,13 @@ namespace GameWish.Game
         public void AddKungfu(KungfuItem _kungfuItem, int delta = 1)
         {
             inventoryData.AddKungfuItem(_kungfuItem, delta);
+
+            SetDataDirty();
+        }
+
+        public void RemoveKungfu(KungfuItem _kungfuItem, int delta = 1)
+        {
+            inventoryData.RemoveKungfuItem(_kungfuItem, delta);
 
             SetDataDirty();
         }

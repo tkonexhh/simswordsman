@@ -225,6 +225,8 @@ namespace GameWish.Game
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)
             {
+                for (int i = 0; i < m_CostItems.Count; i++)
+                    MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
                 RefreshLevelInfo();
                 RefreshPanelInfo();

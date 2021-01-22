@@ -144,6 +144,9 @@ namespace GameWish.Game
                     if (m_FacilityType == FacilityType.Lobby)
                         GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
 
+                    for (int i = 0; i < m_CostItems.Count; i++)
+                        MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
+
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
 
                     OnPanelHideComplete();

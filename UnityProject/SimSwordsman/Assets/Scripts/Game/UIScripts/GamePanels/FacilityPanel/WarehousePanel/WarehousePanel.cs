@@ -293,6 +293,8 @@ namespace GameWish.Game
                 if (isReducceSuccess)
                 {
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Warehouse, 1, 1);
+                    for (int i = 0; i < m_CostItems.Count; i++)
+                        MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                     GetInformationForNeed();
                     RefreshPanelInfo();
                     RefreshCreateGoods();

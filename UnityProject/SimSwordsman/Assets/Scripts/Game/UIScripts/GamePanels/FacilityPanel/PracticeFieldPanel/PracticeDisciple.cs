@@ -61,13 +61,15 @@ namespace GameWish.Game
 
             if ((bool)param[0])
             {
+                Debug.Log("切换到前台时执行");
                 //切换到前台时执行，游戏启动时执行一次
             }
             else
             {
                 //切换到后台时执行
+                Debug.Log("切换到后台时执行");
 
-               // RefreshPracticeFieldState();
+                // RefreshPracticeFieldState();
 
             }
         }
@@ -164,7 +166,7 @@ namespace GameWish.Game
                 countDownMgr = new CountDownItem(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index, m_CountDown);
             }
             TimeUpdateMgr.S.AddObserver(countDownMgr);
-            countDownMgr.OnSecondRefreshEvent = refresAction;
+            countDownMgr.OnSecondRefreshEvent = OnRefresAction;
             if (countDownMgr.OnCountDownOverEvent == null)
                 countDownMgr.OnCountDownOverEvent = m_PracticeFieldInfo.overAction;
         }
@@ -176,7 +178,7 @@ namespace GameWish.Game
             return  duration - takeTime;
         }
 
-        public void refresAction(string obj)
+        public void OnRefresAction(string obj)
         {
             if (m_Time != null)
                 m_Time.text = obj;

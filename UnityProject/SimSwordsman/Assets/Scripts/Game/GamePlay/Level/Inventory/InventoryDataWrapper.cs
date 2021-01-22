@@ -29,6 +29,14 @@ namespace GameWish.Game
                 m_WarehouseItems.Add(item);
             });
 
+            m_ClanData.GetkungfuDBDataList().ForEach(i =>
+            {
+                KungfuItem item = new KungfuItem();
+                item.Wrap(i);
+
+                m_WarehouseItems.Add(item);
+            });
+
             m_ClanData.GetArmsDBDataList().ForEach(i =>
             {
                 ArmsItem item = new ArmsItem();
@@ -44,6 +52,19 @@ namespace GameWish.Game
                 m_WarehouseItems.Add(item);
             });
         }
+
+
+        #region Private
+        private bool CheckInventoryIsFull()
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Warehouse);
+            WarehouseLevelInfo warehouseNextLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, level) as WarehouseLevelInfo;
+            int limitReserves = warehouseNextLevelInfo.GetCurReserves();
+            if (GetCurReserves() < limitReserves)
+                return false;
+            return true;
+        }
+        #endregion
         /// <summary>
         /// 检查RawMaterial类型
         /// </summary>
@@ -102,21 +123,30 @@ namespace GameWish.Game
                 armorItem.AddEquipNumber(delta);
             else
             {
-                _armorItem.Number += delta;
-                m_WarehouseItems.Add(_armorItem);
-
+                if (!CheckInventoryIsFull())
+                {
+                    _armorItem.Number += delta;
+                    m_WarehouseItems.Add(_armorItem);
+                }
+                else
+                    return;
             }
             m_ClanData.AddArmor(ItemBase.CopySelf(_armorItem), delta);
         }
         public void AddKungfu(KungfuItem _kungfuItem, int delta = 1)
         {
-            KungfuItem armsItem = (KungfuItem)m_WarehouseItems.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
-            if (armsItem != null) 
-                armsItem.AddEquipNumber(delta);
+            KungfuItem kungfuItem = (KungfuItem)m_WarehouseItems.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
+            if (kungfuItem != null) 
+                kungfuItem.AddEquipNumber(delta);
             else
             {
-                _kungfuItem.Number += delta;
-                m_WarehouseItems.Add(_kungfuItem);
+                if (!CheckInventoryIsFull())
+                {
+                    _kungfuItem.Number += delta;
+                    m_WarehouseItems.Add(_kungfuItem);
+                }
+                else
+                    return;
             }
             m_ClanData.AddKungfu(ItemBase.CopySelf(_kungfuItem), delta);
         }
@@ -128,8 +158,13 @@ namespace GameWish.Game
                 armsItem.AddEquipNumber(delta);
             else
             {
-                _armsItem.Number += delta;
-                m_WarehouseItems.Add(_armsItem);
+                if (!CheckInventoryIsFull())
+                {
+                    _armsItem.Number += delta;
+                    m_WarehouseItems.Add(_armsItem);
+                }
+                else
+                    return;
             }
             m_ClanData.AddArms(ItemBase.CopySelf(_armsItem), delta);
         }
@@ -140,15 +175,26 @@ namespace GameWish.Game
                 item.AddEquipNumber(delta);
             else
             {
-                propItem.Number += delta;
-                m_WarehouseItems.Add(propItem);
+                if (!CheckInventoryIsFull())
+                {
+                    propItem.Number += delta;
+                    m_WarehouseItems.Add(propItem);
+                }
+                else
+                    return;
             }
             m_ClanData.AddPropItem(propItem, delta);
 
-            if (propItem.PropSubType == RawMaterial.SilverToken|| propItem.PropSubType == RawMaterial.GoldenToken)
+            if (propItem.PropSubType == RawMaterial.SilverToken || propItem.PropSubType == RawMaterial.GoldenToken)
                 EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
         }
-        //TODO
+
+
+        
+        public int GetCurReserves()
+        {
+            return m_WarehouseItems.Count;
+        }
         public void RemoveArmor(ArmorItem _armorItem, int delta = 1)
         {
             ArmorItem armorItem = (ArmorItem)m_WarehouseItems.Where(i => i.IsHaveItem(_armorItem)).FirstOrDefault();
@@ -156,8 +202,7 @@ namespace GameWish.Game
                 m_WarehouseItems.Remove(armorItem);
 
             EventSystem.S.Send(EventID.OnReduceItems, _armorItem, delta);
-            m_ClanData.RemoveArmor(_armorItem, delta);
-
+            m_ClanData.RemoveArmor(_armorItem, armorItem.Number);
         }
         /// <summary>
         /// 获取招募令数量
@@ -193,9 +238,17 @@ namespace GameWish.Game
                 m_WarehouseItems.Remove(armsItem);
 
             EventSystem.S.Send(EventID.OnReduceItems, _armsItem, delta);
-            m_ClanData.RemoveArms(_armsItem, delta);
+            m_ClanData.RemoveArms(_armsItem, armsItem.Number);
         }
 
+        public void RemoveKungfu(KungfuItem _kungfuItem, int delta)
+        {
+            KungfuItem item = (KungfuItem)m_WarehouseItems.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();
+            if (item != null && item.ReduceItemNumber(delta))
+                m_WarehouseItems.Remove(item);
+            EventSystem.S.Send(EventID.OnReduceItems, _kungfuItem, delta);
+            m_ClanData.RemoveKungfu(_kungfuItem, item.Number);
+        }
 
         public void RemovePropItem(PropItem _propItem, int delta)
         {
@@ -287,7 +340,7 @@ namespace GameWish.Game
         }
         public override int GetSortId()
         {
-            throw new NotImplementedException();
+            return (int)KungfuType;
         }
         public KungfuItem(KongfuType kungfuType)
         {
@@ -308,13 +361,24 @@ namespace GameWish.Game
         public override void RefreshItemInfo()
         {
             KungfuConfigInfo configInfo = TDKongfuConfigTable.GetKungfuConfigInfo(KungfuType);
-            Desc = configInfo.Desc;
-            Name = configInfo.Name;
+            if (configInfo!=null)
+            {
+                Desc = configInfo.Desc;
+                Name = configInfo.Name;
+                Price = configInfo.Price;
+            }
+            else
+                Log.e("KungfuConfigInfo is null,KungfuType is " + KungfuType);
+    
         }
 
         public override void Wrap<T>(T t)
         {
-            throw new NotImplementedException();
+            KungfuItemDbData dBData = t as KungfuItemDbData;
+            PropType = dBData.PropType;
+            Number = dBData.Number;
+            KungfuType = dBData.KungfuType;
+            RefreshItemInfo();
         }
         public override int GetSubName()
         {
@@ -422,7 +486,6 @@ namespace GameWish.Game
 
         public override void RefreshItemInfo()
         {
-            
             Equipment equipment = TDEquipmentConfigTable.GetEquipmentInfo(ArmsID);
             Name = equipment.Name;
             Desc = equipment.Desc;
