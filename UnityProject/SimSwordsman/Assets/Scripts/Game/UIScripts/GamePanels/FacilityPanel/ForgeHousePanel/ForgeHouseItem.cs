@@ -97,7 +97,9 @@ namespace GameWish.Game
                 //m_ItemIcon.sprite = m_panel.FindSprite(tb.iconName);
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
-                //m_EffecTxt.text = tb.e;
+                var equ = TDEquipmentConfigTable.m_EquipDic[ID];
+                float num = 100 * (equ.GetBonusForClassID(1) - 1);
+                m_EffecTxt.text = string.Format("¹¦Á¦+<color=#8C343C>{0}%</color>", (int)num);
 
                 if (CountdownSystem.S.IsActive(m_StringID, ID))
                 {

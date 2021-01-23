@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 namespace GameWish.Game
 {
@@ -26,11 +27,13 @@ namespace GameWish.Game
 	    private Vector3 startPosition;
 	
 	    public static FixedFollowCamera Instance;
-	
-	    private void Awake()
+
+        Camera m_Camera;
+        private void Awake()
 	    {
 	        Instance = this;
-	    }
+            m_Camera = GetComponent<Camera>();
+        }
 	
 	    //void Start()
 	    //{
@@ -45,15 +48,11 @@ namespace GameWish.Game
             //if (!freazeX)
             //{
             oldPosition.x = Mathf.SmoothDamp(transform.position.x, target.position.x + offset.x, ref xVelocity, smoothTime);
-            //Mathf.Clamp(Mathf.SmoothDamp(transform.position.x, target.position.x + offset.x, ref xVelocity, smoothTime), MainGameMgr.S.MainCamera.m_CameraBottomLeft.x, MainGameMgr.S.MainCamera.m_CameraTopRight.x);
-            //}
-            oldPosition.x = Mathf.Clamp(oldPosition.x, MainGameMgr.S.MainCamera.m_CameraBottomLeft.x, MainGameMgr.S.MainCamera.m_CameraTopRight.x);
+            oldPosition.x = Mathf.Clamp(oldPosition.x, -3f, 12f);
             //if (!freazeY)
             //{
             oldPosition.y = Mathf.SmoothDamp(transform.position.y, target.position.y + offset.y, ref yVelocity, smoothTime);
-                //Mathf.Clamp(Mathf.SmoothDamp(transform.position.y, target.position.y + offset.y, ref yVelocity, smoothTime), MainGameMgr.S.MainCamera.m_CameraBottomLeft.y, MainGameMgr.S.MainCamera.m_CameraTopRight.y);
-                //}
-            oldPosition.y = Mathf.Clamp(oldPosition.y, MainGameMgr.S.MainCamera.m_CameraBottomLeft.y, MainGameMgr.S.MainCamera.m_CameraTopRight.y);
+            oldPosition.y = Mathf.Clamp(oldPosition.y, -1.8f, 6.3f);
             //if (!freazeZ)
             //{
             //    oldPosition.z = Mathf.SmoothDamp(transform.position.z, target.position.z + offset.z, ref zVelocity, smoothTime);
@@ -76,6 +75,11 @@ namespace GameWish.Game
             startPosition = transform.position;
             offset = Vector3.zero;
             //offset = transform.position - target.position;
+        }
+
+        public void TweenOrthoSize(float value)
+        {
+            m_Camera.DOOrthoSize(value, 0.8f).SetEase(Ease.OutCubic);
         }
 
         public void DestorySelf()

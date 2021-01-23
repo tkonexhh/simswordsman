@@ -27,6 +27,7 @@ namespace GameWish.Game
                 UIMgr.S.OpenTopPanel(UIID.GuideMaskPanel, null);
 
                 m_FollowCamera = MainGameMgr.S.MainCamera.gameObject.AddComponent<FixedFollowCamera>();
+                m_FollowCamera.TweenOrthoSize(10);
                 m_FollowCamera.SetTarget(MainGameMgr.S.CharacterMgr.GetCharacterController(id).CharacterView.transform);
             }
         }
@@ -39,6 +40,7 @@ namespace GameWish.Game
                 Timer.S.Post2Really(x => 
                 {
                     EventSystem.S.Send(EventID.InGuideProgress, true);
+                    m_FollowCamera.TweenOrthoSize(13);
                     m_FollowCamera.DestorySelf();
                     UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 
@@ -50,6 +52,7 @@ namespace GameWish.Game
                 Timer.S.Post2Really(x =>
                 {
                     EventSystem.S.Send(EventID.InGuideProgress, true);
+                    m_FollowCamera.TweenOrthoSize(13);
                     m_FollowCamera.DestorySelf();
                     UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 

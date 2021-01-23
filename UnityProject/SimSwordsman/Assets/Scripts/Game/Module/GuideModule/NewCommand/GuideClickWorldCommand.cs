@@ -6,9 +6,9 @@ namespace GameWish.Game
 {
     public class GuideClickWorldCommand : AbstractGuideCommand
     {
-        Vector3 handPos;//提示手位置
         Vector3 targetPos;//目标点击位置
         Vector3 cameraPos;//相机位置
+        Vector3 guideTipsPos;//文本位置
         string textContentID;//气泡显示的id（Language表）
         bool isNotForce = false;
 
@@ -21,20 +21,21 @@ namespace GameWish.Game
 
             try
             {
-                handPos = Helper.String2Vector3((string)pv[0], '|');
-
+                Transform tar = GameplayMgr.S.transform.Find((string)pv[0]);
+                targetPos = tar.position;
                 if (pv.Length > 1)
                 {
-                    targetPos = Helper.String2Vector3((string)pv[1], '|');
+                    cameraPos = Helper.String2Vector3((string)pv[1], '|');
+                    Camera.main.transform.position = new Vector3(cameraPos.x, cameraPos.y, Camera.main.transform.position.z);
                 }
                 if (pv.Length > 2)
                 {
-                    cameraPos = Helper.String2Vector3((string)pv[2], '|');
-                    Camera.main.transform.position = new Vector3(cameraPos.x, cameraPos.y, Camera.main.transform.position.z);
+                    guideTipsPos = Helper.String2Vector3((string)pv[2], '|');
                 }
                 if (pv.Length > 3)
                 {
                     textContentID = (string)pv[3];
+                    isNotForce = true;
                 }
                 if (pv.Length > 4)
                 {
@@ -68,7 +69,7 @@ namespace GameWish.Game
                 return;
             }
             Action action = OnGuideClick;
-            UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, handPos, targetPos, textContentID, action, isNotForce);
+            UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, targetPos, guideTipsPos, textContentID, action, isNotForce);
         }
 
         private void OnGuideClick()

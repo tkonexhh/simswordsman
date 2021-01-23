@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Qarth;
-using UnityEngine.UI;
-using DG.Tweening;
+﻿using Qarth;
 using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 public enum GuideMethod
 {
@@ -23,31 +20,20 @@ namespace GameWish.Game
 
         [SerializeField]
         private RectTransform m_TargetRect;
-
-        [SerializeField]
-        private Transform m_GuideHandBg;
+        
         [SerializeField]
         private Transform m_Hand;
-      
-        [SerializeField]
-        private Transform m_GuideMethod1;
-
-        [SerializeField]
-        private Transform m_GuideMethod2;
      
         [SerializeField]
-        private Transform m_Method2Start;
+        private GameObject m_GuideTips1;
         [SerializeField]
-        private Transform m_Method2End;
-        
-        [SerializeField]
-        private Transform m_GuideMethod3;
+        private Text m_GuideTipsText1;
 
         [SerializeField]
-        private GameObject m_GuideTipsImg;
+        private GameObject m_GuideTips2;
         [SerializeField]
-        private Text m_GuideTipsText;
-        
+        private Text m_GuideTipsText2;
+
         private GuideMethod m_GuestMethod = GuideMethod.Method1;
         private int m_GuidestepId = -1;
 
@@ -96,13 +82,6 @@ namespace GameWish.Game
                         Destroy(button);
                 }
             }
-
-            //if(args.Length > 4)
-            //{
-            //    m_Method2Start = args[3] as Transform;
-            //    m_Method2End = args[4] as Transform;
-            //}
-
             //是否有黑色遮罩
             if(m_GuestMethod == GuideMethod.NoBlack)
             {
@@ -115,14 +94,13 @@ namespace GameWish.Game
 
             if(m_GuestMethod == GuideMethod.NoMessage)
             {
-                m_GuideTipsImg.gameObject.SetActive(false);
+                m_GuideTips1.gameObject.SetActive(false);
             }
             else
             {
-                m_GuideTipsImg.gameObject.SetActive(true);
+                m_GuideTips1.gameObject.SetActive(true);
             }
-
-            CheckMyUIState();
+            
             EventSystem.S.Send(EventID.OnGuidePanelOpen, m_GuidestepId);
         }
         protected override void OnClose()
@@ -131,37 +109,22 @@ namespace GameWish.Game
             base.OnClose();
         }
         
-        private void CheckMyUIState()
+        public void LocateMyGuideTips(string GuideTips, Vector3 guideTipsPosition, bool isFlip)
         {
-            m_GuideMethod1.gameObject.SetActive(false);
-            m_GuideMethod2.gameObject.SetActive(false);
-            m_GuideMethod3.gameObject.SetActive(false);
-            switch (m_GuestMethod)
+            if (!isFlip)
             {
-                case GuideMethod.Method1:
-                    m_GuideMethod1.gameObject.SetActive(true);
-                    //LocadGuideHand();
-                    break;
-                case GuideMethod.Method2:
-                    m_GuideMethod2.gameObject.SetActive(true);   
-                    break;
-                case GuideMethod.Method3:
-                    m_GuideMethod3.gameObject.SetActive(true);
-                    //LocadGuideArrow();
-                    break;
-                case GuideMethod.NoMessage:
-                    m_GuideMethod1.gameObject.SetActive(true);
-                    //LocadGuideHand();
-                    break;
-                default:
-                    break;
+                m_GuideTips2.gameObject.SetActive(false);
+                m_GuideTips1.gameObject.SetActive(true);
+                ((RectTransform)m_GuideTips1.transform).anchoredPosition = guideTipsPosition;
+                m_GuideTipsText1.text = GuideTips;
             }
-        }
-        public void LocateMyGuideTips(string GuideTips, Vector3 guideTipsPosition)
-        {
-            m_GuideTipsImg.gameObject.SetActive(true);
-            m_GuideTipsImg.transform.localPosition = guideTipsPosition;
-            m_GuideTipsText.text = GuideTips;
+            else
+            {
+                m_GuideTips1.gameObject.SetActive(false);
+                m_GuideTips2.gameObject.SetActive(true);
+                ((RectTransform)m_GuideTips2.transform).anchoredPosition = guideTipsPosition;
+                m_GuideTipsText2.text = GuideTips;
+            }
         }
     }
 }

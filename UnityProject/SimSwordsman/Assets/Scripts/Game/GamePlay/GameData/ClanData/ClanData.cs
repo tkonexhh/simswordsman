@@ -46,6 +46,7 @@ namespace GameWish.Game
         public void SetClanName(string _clanName)
         {
             clanName = _clanName;
+            EventSystem.S.Send(EventID.OnClanNameChange);
         }
         /// <summary>
         /// 获取宗派名称

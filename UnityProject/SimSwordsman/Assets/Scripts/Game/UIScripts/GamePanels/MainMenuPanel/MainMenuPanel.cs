@@ -44,8 +44,13 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
-            m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
+            if (string.IsNullOrEmpty(GameDataMgr.S.GetClanData().GetClanName()))
+                m_VillaName.transform.parent.gameObject.SetActive(false);
+            else
+            {
+                m_VillaName.transform.parent.gameObject.SetActive(true);
+                m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
+            }
 
             m_VillaBtn.onClick.AddListener(() => {
 
@@ -132,6 +137,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnReduceFoodNum, FoodNumChange);
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
+            EventSystem.S.Register(EventID.OnClanNameChange, ChangeClanName);
         }
 
         private void UnregisterEvents()
@@ -142,6 +148,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnReduceFoodNum, FoodNumChange);
             EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
+            EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -165,7 +172,12 @@ namespace GameWish.Game
         {
             m_BaoziValue.text = GameDataMgr.S.GetPlayerData().foodNum.ToString();
         }
-
+        private void ChangeClanName(int key, object[] param)
+        {
+            if (!m_VillaName.transform.parent.gameObject.activeSelf)
+                m_VillaName.transform.parent.gameObject.SetActive(true);
+            m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
+        }
 
         private void CheckVisitorBtn(int key, params object[] param)
         {
