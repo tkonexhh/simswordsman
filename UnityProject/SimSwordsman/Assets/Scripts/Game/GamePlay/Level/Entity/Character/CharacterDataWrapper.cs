@@ -436,16 +436,14 @@ namespace GameWish.Game
         /// Get atk enhance ratio of all equipments
         /// </summary>
         /// <returns></returns>
-        public float GetEquipmentAtkEnhanceRatio()
+        public float GetArmorAtkEnhanceRatio()
         {
-            float ratio = 1;
-            //foreach (EquipmentItem item in characterEquipment)
-            //{
-            //    float bonus = TDEquipmentConfigTable.GetBonus(item);
-            //    ratio += bonus;
-            //}
+            return characeterEquipmentData.GetArmorAtkRate();
+        }
 
-            return ratio;
+        public float GetArmsAtkEnhanceRatio()
+        {
+            return characeterEquipmentData.GetArmsAtkRate();
         }
 
         public int GetCurTaskId()
@@ -519,6 +517,16 @@ namespace GameWish.Game
             CharacterArms.Wrap(characeterDBEquipmentData.CharacterDBArms);
             CharacterArmor.Wrap(characeterDBEquipmentData.CharacterDBArmor);
         }
+
+        public float GetArmorAtkRate()
+        {
+            return CharacterArmor.AtkAddition;
+        }
+
+        public float GetArmsAtkRate()
+        {
+            return CharacterArms.AtkAddition;
+        }
     }
 
     public abstract class CharaceterEquipment
@@ -527,7 +535,7 @@ namespace GameWish.Game
         public string Name { set; get; }
         public string Desc { set; get; }
         public int Class { set; get; }
-        public float Addition { set; get; }
+        public float AtkAddition { set; get; }
         public EquipQuailty EquipQuality { set; get; }
 
         public abstract void Wrap(CharaceterDBEquipment characeterDBEquipment);
@@ -574,7 +582,7 @@ namespace GameWish.Game
             PropType = PropType.Arms;
             Name = equip.Name;
             Desc = equip.Desc;
-            Addition = equip.GetBonusForClassID(Class);
+            AtkAddition = equip.GetAtkBonusForClassID(Class);
             EquipQuality = equip.Quality;
         }
 
@@ -640,7 +648,7 @@ namespace GameWish.Game
             PropType = PropType.Armor;
             Name = equip.Name;
             Desc = equip.Desc;
-            Addition = equip.GetBonusForClassID(Class);
+            AtkAddition = equip.GetAtkBonusForClassID(Class);
             EquipQuality = equip.Quality;
         }
 

@@ -182,7 +182,7 @@ namespace GameWish.Game
                     m_ArmsNameValue.text = characterArms.Name;
                     m_ArmsClassValue.text = CommonUIMethod.GetClass(characterArms.Class);
                     m_ArmsSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
-                        CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(characterArms.Addition));
+                        CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(characterArms.AtkAddition));
                     m_IntensifyArmsBtn.gameObject.SetActive(true);
                     m_ArmsImg.sprite = FindSprite(characterArms.GetIconName());
                 }
@@ -221,7 +221,7 @@ namespace GameWish.Game
                     m_ArmorNameValue.text = characterArmor.Name;
                     m_ArmorClassValue.text = CommonUIMethod.GetClass(characterArmor.Class);
                     m_ArmorSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
-                        CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(characterArmor.Addition));
+                        CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(characterArmor.AtkAddition));
                     m_IntensifyArmorBtn.gameObject.SetActive(true);
                     m_ArmorImg.sprite = FindSprite(characterArmor.GetIconName());
                 }

@@ -20,6 +20,8 @@ namespace GameWish.Game
         [SerializeField]
         private RectTransform m_Hand;
         [SerializeField]
+        private RectTransform m_GuideTipsTran;
+        [SerializeField]
         private Text m_GuideTipsText;
 
 
@@ -35,19 +37,21 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             if (args.Length > 0)
             {
-                m_Hand.anchoredPosition = (Vector3)args[0];
+                Vector3 ptWorld = Camera.main.WorldToScreenPoint((Vector3)args[0]);
+                Vector2 pos;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, ptWorld, UIMgr.S.uiRoot.uiCamera, out pos);
+                m_Hand.anchoredPosition = pos;//如果位置与预期不一致，请修改锚点对齐方式
+                m_TargetRect.anchoredPosition = pos;
+                m_CircleShaderControl.Init(m_TargetRect);
             }
             if (args.Length > 1)
             {
-                m_TargetRect.anchoredPosition = (Vector3)args[1];
-                m_CircleShaderControl.Init(m_TargetRect);
+                m_GuideTipsTran.anchoredPosition = (Vector3)args[1];
             }
-
             if (args.Length > 2)
             {
                 m_GuideTipsText.text = TDLanguageTable.Get((string)args[2]);
             }
-
             if (args.Length > 3)
             {
                 clickAction = (Action)args[3];
@@ -56,7 +60,7 @@ namespace GameWish.Game
             if (args.Length > 4)
             {
                 bool isNotForce = (bool)args[4];
-                Action action = (Action)args[3];
+                Action action = clickAction;
                 Button button = m_CircleShaderControl.transform.GetComponent<Button>();
                 if (isNotForce)//弱点击
                 {

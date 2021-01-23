@@ -115,7 +115,7 @@ namespace GameWish.Game
             return originalCoin + add;
         }
 
-        public long KongFuExp(long originalExp)
+        public long KongFuExp(long originalValue)
         {
             int add = 0;
             foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
@@ -123,13 +123,13 @@ namespace GameWish.Game
                 m_TempTable = TDFoodConfigTable.GetData(item);
                 if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddRoleExp.ToString()) && IsActive(item))
                 {
-                    add += Mathf.RoundToInt(originalExp * m_TempTable.buffRate * 0.01f);
+                    add += Mathf.RoundToInt(originalValue * m_TempTable.buffRate * 0.01f);
                 }
             }
-            return originalExp + add;
+            return originalValue + add;
         }
 
-        public long Exp(long originalATK)
+        public long Exp(long originalValue)
         {
             int add = 0;
             foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
@@ -137,17 +137,17 @@ namespace GameWish.Game
                 m_TempTable = TDFoodConfigTable.GetData(item);
                 if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddExp.ToString()) && IsActive(item))
                 {
-                    add += Mathf.RoundToInt(originalATK * m_TempTable.buffRate * 0.01f);
+                    add += Mathf.RoundToInt(originalValue * m_TempTable.buffRate * 0.01f);
                 }
             }
-            return originalATK + add;
+            return originalValue + add;
         }
 
     }
     public enum FoodBuffType
     {
         /// <summary>
-        /// 增加弟子战斗力
+        /// 增加弟子获得经验
         /// </summary>
         Food_AddExp = 0,
         /// <summary>

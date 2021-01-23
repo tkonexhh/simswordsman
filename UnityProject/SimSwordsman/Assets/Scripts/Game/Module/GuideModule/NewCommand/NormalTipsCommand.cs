@@ -11,7 +11,7 @@ namespace GameWish.Game
     {
         private string m_TipsKey;
         private Vector3 m_Offset;
-
+        bool m_Flip = false;
 
         public override void SetParam(object[] pv)
         {
@@ -26,7 +26,10 @@ namespace GameWish.Game
             {
                 m_Offset = Helper.String2Vector3((string)pv[1], '|');
             }
-
+            if (pv.Length > 2)
+            {
+                m_Flip = Helper.String2Bool((string)pv[2]);
+            }
         }
 
         protected override void OnStart()
@@ -46,7 +49,7 @@ namespace GameWish.Game
                 MyGuidePanel guidepanel = UIMgr.S.FindPanel(UIID.MyGuidePanel) as MyGuidePanel;
                 if(guidepanel != null)
                 {
-                    guidepanel.LocateMyGuideTips(TDLanguageTable.Get(m_TipsKey), m_Offset);
+                    guidepanel.LocateMyGuideTips(TDLanguageTable.Get(m_TipsKey), m_Offset, m_Flip);
                 }
 
             }

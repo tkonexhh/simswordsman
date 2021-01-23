@@ -64,8 +64,8 @@ namespace GameWish.Game
             m_RandomBtn.onClick.AddListener(RandomName);
             m_AcceptBtn.onClick.AddListener(()=> 
             {
-                GameDataMgr.S.GetGameData().clanData.SetClanName(m_ClanName.text);
                 OnNameChange(m_ClanName.text);
+                GameDataMgr.S.GetGameData().clanData.SetClanName(m_ClanName.text);
 
                 m_CloseAction?.Invoke();
 

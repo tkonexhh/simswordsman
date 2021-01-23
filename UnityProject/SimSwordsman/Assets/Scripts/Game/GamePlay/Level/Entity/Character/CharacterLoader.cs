@@ -59,6 +59,18 @@ namespace GameWish.Game
             });
         }
 
+        public void RemoveCharacter(int id)
+        {
+            if (m_CharacterLoaderDic.ContainsKey(id))
+            {
+                m_CharacterLoaderDic[id].Release();
+                m_CharacterLoaderDic.Remove(id);
+            }
+            else
+            {
+                Log.e("Character loader not found: " + id);
+            }
+        }
 
         private string GetPrefabName(CharacterQuality characterQuality, int bodyId)
         {

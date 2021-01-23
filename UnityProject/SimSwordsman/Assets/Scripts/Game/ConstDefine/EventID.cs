@@ -11,13 +11,12 @@ namespace GameWish.Game
         OnReduceCoinNum,
         OnAddFoodNum,
         OnReduceFoodNum,
+        OnClanNameChange,
         OnUpdateLoadProgress,
         OnShowPopAdUI,
         OnStartAdEffect,
         OnEndAdEffect,
         OnTimeRefresh,
-        OnGuidePanelOpen,
-        GuideEventTrigger,
         OnSignSuccess,
 
         //UI
@@ -161,6 +160,7 @@ namespace GameWish.Game
         OnGuideBuildWarehouse,
         OnGuideBuildWarehousePanel,
 
+        OnGuidePanelOpen,
         GuideDelayStart,
         InGuideProgress,
         OnGuideFirstGetCharacter,
