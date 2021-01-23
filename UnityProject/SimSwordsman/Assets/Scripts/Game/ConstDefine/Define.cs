@@ -15,12 +15,6 @@ namespace GameWish.Game
 
         public const string DEFAULT_SOUND = "";
         public const string DEFAULT_NUMBER_ZERO = "0";
-        public const string SOUND_DEFAULT_SOUND = "Sound_ButtonClick";
-        public const string SOUND_BUTTON_CLICK = "Sound_ButtonClick";
-        public const string SOUND_BLOCK_UPGRADE = "Sound_LevelUp"; 
-        public const string SOUND_PANEL_CLOSE = "Sound_Close";    
-        public const string SOUND_POSITIVE_EFFECT = "Sound_Positive"; 
-        public const string SOUND_EVOLVE = "Sound_Evolve";
 
         public const string NAME_SPACE_PREFIX = "GameWish.Game.";
         //offline
@@ -227,7 +221,8 @@ namespace GameWish.Game
         //ARMS
         public const string ARMS_TITLE = "Arms_title";
 
-
+        //Sound
+        public const string SOUND_UI_BTN = "Button";
 
     }
 }

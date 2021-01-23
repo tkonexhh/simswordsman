@@ -87,7 +87,10 @@ namespace GameWish.Game
                 //GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
                 //m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
             });
-            m_DiscipleBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.DisciplePanel); });
+            m_DiscipleBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                UIMgr.S.OpenPanel(UIID.DisciplePanel);
+            });
             m_BulletinBorardBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.BulletinBoardPanel); });
             m_SignInBtn.onClick.AddListener(() => {
                 UIMgr.S.OpenPanel(UIID.SignInPanel);

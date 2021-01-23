@@ -99,6 +99,7 @@ namespace GameWish.Game
 
             return true;
 #endif
+            return false;
         }
 
         public bool On_TouchStart(Gesture gesture)
