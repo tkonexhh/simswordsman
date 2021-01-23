@@ -25,7 +25,7 @@ namespace GameWish.Game
         {
             ArmsDBData armsItemDBData = armsDBDataList.Where(i => i.IsHaveItem(_armsItem)).FirstOrDefault();
             if (armsItemDBData != null)
-                armsItemDBData.AddEquipNumber(delta);
+                armsItemDBData.AddNumber(delta);
             else
             {
                 ArmsDBData newArmsDBData = new ArmsDBData(_armsItem);
@@ -37,7 +37,7 @@ namespace GameWish.Game
         {
             ArmorDBData armorDBData = armorDBDataList.Where(i => i.IsHaveItem(_armorDBData)).FirstOrDefault();
             if (armorDBData != null)
-                armorDBData.AddEquipNumber(delta);
+                armorDBData.AddNumber(delta);
             else
             {
                 ArmorDBData newArmorDBData = new ArmorDBData(_armorDBData);
@@ -68,7 +68,7 @@ namespace GameWish.Game
             KungfuItemDbData kungfuItemDbData = kungfuList.FirstOrDefault(i => i.IsHaveItem(_kungfuItem));
 
             if (kungfuItemDbData != null)
-                kungfuItemDbData.AddEquipNumber(delta);
+                kungfuItemDbData.AddNumber(delta);
             else
             {
                 KungfuItemDbData newKungfuItemDbData = new KungfuItemDbData(_kungfuItem);
@@ -88,7 +88,7 @@ namespace GameWish.Game
             PropItemDbData propItemDbData = propList.Where(i => i.IsHaveItem(_propItem)).FirstOrDefault();
 
             if (propItemDbData != null)
-                propItemDbData.AddEquipNumber(delta);
+                propItemDbData.AddNumber(delta);
             else
             {
                 PropItemDbData newPropItemDbData = new PropItemDbData(_propItem);
@@ -125,7 +125,7 @@ namespace GameWish.Game
             }
             return false;
         }
-        public void AddEquipNumber(int number)
+        public void AddNumber(int number)
         {
             Number += number;
             Number = Mathf.Min(Number,Define.MAX_PROP_COUNT);
@@ -243,6 +243,43 @@ namespace GameWish.Game
         {
             KungfuItem kungfuItem = _itemBase as KungfuItem;
             if (kungfuItem != null &&  PropType == kungfuItem.PropType && KungfuType == kungfuItem.KungfuType)
+                return true;
+            return false;
+        }
+    }
+
+    [Serializable]
+    public class HerbItemDbData : ItemDBData
+    {
+        public HerbItemDbData() { }
+        public HerbType KungfuType { set; get; }
+
+
+        public HerbItemDbData(KungfuItem _kungfuItem)
+        {
+            PropType = _kungfuItem.PropType;
+            KungfuType = _kungfuItem.KungfuType;
+            Number = _kungfuItem.Number;
+        }
+
+        public void AddCount(int delta)
+        {
+            Number += delta;
+
+            Number = Mathf.Clamp(Number, 0, Define.MAX_PROP_COUNT);
+        }
+
+        public void RemoveCount(int delta)
+        {
+            Number -= delta;
+
+            Number = Mathf.Clamp(Number, 0, Define.MAX_PROP_COUNT);
+        }
+
+        public override bool IsHaveItem(ItemBase _itemBase)
+        {
+            KungfuItem kungfuItem = _itemBase as KungfuItem;
+            if (kungfuItem != null && PropType == kungfuItem.PropType && KungfuType == kungfuItem.KungfuType)
                 return true;
             return false;
         }

@@ -9,13 +9,13 @@ namespace GameWish.Game
 {
     public partial class TDHerbConfigTable
     {
-        public static Dictionary<int, Herb> HerbDic = new Dictionary<int, Herb>();
+        public static Dictionary<int, HerbConfig> HerbDic = new Dictionary<int, HerbConfig>();
         public static Dictionary<int, List<CostItem>> MakeNeedItemIDsDic = new Dictionary<int, List<CostItem>>();
 
         static void CompleteRowAdd(TDHerbConfig tdData)
         {
             if (!HerbDic.ContainsKey(tdData.id))
-                HerbDic.Add(tdData.id, new Herb(tdData));
+                HerbDic.Add(tdData.id, new HerbConfig(tdData));
 
             if (!MakeNeedItemIDsDic.ContainsKey(tdData.id))
             {
@@ -35,7 +35,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Herb GetHerbForId(int id)
+        public static HerbConfig GetHerbForId(int id)
         {
             if (HerbDic.ContainsKey(id))
                 return HerbDic[id];
@@ -45,24 +45,27 @@ namespace GameWish.Game
 
 
 
-    public class Herb
+    public class HerbConfig
     {
         public int ID { set; get; }
         public string Name { set; get; }
         public string Desc { set; get; }
+        public float Price { set; get; }
 
-        public Herb(TDHerbConfig tDHerb)
+        public HerbConfig(TDHerbConfig tDHerb)
         {
             ID = tDHerb.id;
             Name = tDHerb.name;
             Desc = tDHerb.desc;
+            Price = tDHerb.price;
         }
 
-        public Herb(Herb herb)
+        public HerbConfig(HerbConfig herb)
         {
             ID = herb.ID;
             Name = herb.Name;
             Desc = herb.Desc;
+            Price = herb.Price;
         }
     }
 }

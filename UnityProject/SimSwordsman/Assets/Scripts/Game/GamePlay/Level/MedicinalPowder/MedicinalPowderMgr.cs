@@ -9,7 +9,6 @@ namespace GameWish.Game
     {
         private Dictionary<int, PlayerDataHerb> m_Herbs = new Dictionary<int, PlayerDataHerb>();
 
-
         #region Interface
         public void OnDestroyed()
         {
@@ -35,7 +34,7 @@ namespace GameWish.Game
 
         #region Private
 
-        private Herb GetHerbForId(int id)
+        private HerbConfig GetHerbForId(int id)
         {
             return TDHerbConfigTable.GetHerbForId(id);
         }
@@ -67,12 +66,12 @@ namespace GameWish.Game
         #endregion
     }
 
-    public class PlayerDataHerb : Herb
+    public class PlayerDataHerb : HerbConfig
     {
         public int Number { set; get; }
         public PlayerDataHerb(TDHerbConfig tDHerb) : base(tDHerb) { }
 
-        public PlayerDataHerb(Herb herb, int number):base(herb)
+        public PlayerDataHerb(HerbConfig herb, int number):base(herb)
         {
             Number = number;
         }
