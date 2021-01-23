@@ -192,6 +192,14 @@ namespace GameWish.Game
         public void RemoveCharacter(int id)
         {
             m_CharacterDataWrapper.RemoveCharacter(id);
+
+            CharacterController character = GetCharacterController(id);
+            if (character != null && m_CharacterControllerList.Contains(character))
+            {
+                m_CharacterControllerList.Remove(character);
+            }
+
+            CharacterLoader.S.RemoveCharacter(id);
         }
 
         public void SpawnCharacterController(CharacterItem characterItem)

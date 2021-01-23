@@ -84,7 +84,7 @@ namespace GameWish.Game
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
                 float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
-                if (armorAtkEnhanceRatio == 0)
+                if (armorAtkEnhanceRatio == 0) // 暂时这么解决，后期优化从存档中解决
                 {
                     armorAtkEnhanceRatio = 1;
                 }
