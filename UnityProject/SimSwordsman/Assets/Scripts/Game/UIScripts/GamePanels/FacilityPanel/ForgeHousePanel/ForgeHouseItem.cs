@@ -98,7 +98,7 @@ namespace GameWish.Game
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
                 var equ = TDEquipmentConfigTable.m_EquipDic[ID];
-                float num = 100 * (equ.GetBonusForClassID(1) - 1);
+                float num = 100 * (equ.GetAtkBonusForClassID(1) - 1);
                 m_EffecTxt.text = string.Format("¹¦Á¦+<color=#8C343C>{0}%</color>", (int)num);
 
                 if (CountdownSystem.S.IsActive(m_StringID, ID))
