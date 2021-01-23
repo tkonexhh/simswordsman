@@ -12,15 +12,15 @@ namespace GameWish.Game
         protected CharacterController m_Controller = null;
         protected int m_Id = 0;
         protected int m_Level = 1;
-        protected float m_Hp = 10;
+        protected float m_Hp = 0;
         protected float m_Atk = 1;
         protected float m_MoveSpeed = 1f;
         private CharacterItem m_CharacterItem = null;
 
         public int Id { get => m_Id; }
         public int Level { get => m_Level;}
-        public float Hp { get => m_Hp; }
-        public float Atk { get => m_Atk; }
+        //public float Hp { get => m_Hp; }
+        //public float Atk { get => m_Atk; }
         public float MoveSpeed { get => m_MoveSpeed; }
 
         public CharacterModel(int id, CharacterController character)
@@ -28,12 +28,10 @@ namespace GameWish.Game
             m_Controller = character;
             m_Id = id;
 
-            if (character.CharacterCamp == CharacterCamp.OurCamp)
-            {
-                m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(id);
-                m_Atk = m_CharacterItem.atkValue * m_CharacterItem.GetEquipmentAtkEnhanceRatio();
-                m_Hp = m_Atk;
-            }
+            m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_Id);
+
+            SetAtk(GetAtk());
+            SetHp(GetAtk());
         }
 
         public void Init()
@@ -46,10 +44,9 @@ namespace GameWish.Game
             m_Hp = Mathf.Max(m_Hp, 0);
         }
 
-        public void SetAtk(int atk)
+        public void SetAtk(float atk)
         {
             m_Atk = atk;
-            m_Hp = m_Atk;
         }
 
         public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType)
@@ -70,6 +67,42 @@ namespace GameWish.Game
         public void AddExp(int deltaExp)
         {
             m_CharacterItem?.AddCharacterExp(deltaExp);
+        }
+
+        public void SetHp(float hp)
+        {
+            m_Hp = hp;
+        }
+
+        public float GetHp()
+        {
+            return m_Hp;
+        }
+
+        public float GetAtk()
+        {
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            {
+                float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
+                if (armorAtkEnhanceRatio == 0)
+                {
+                    armorAtkEnhanceRatio = 1;
+                }
+
+                float armsAtkEnhanceRatio = m_CharacterItem.GetArmsAtkEnhanceRatio();
+                if (armsAtkEnhanceRatio == 0)
+                {
+                    armsAtkEnhanceRatio = 1;
+                }
+
+                Qarth.Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
+                float value = m_CharacterItem.atkValue * armorAtkEnhanceRatio * armorAtkEnhanceRatio;
+                return value;
+            }
+            else
+            {
+                return m_Atk;
+            }
         }
 
         public int GetCurTaskId()
