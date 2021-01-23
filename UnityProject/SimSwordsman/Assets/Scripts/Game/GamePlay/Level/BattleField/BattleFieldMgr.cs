@@ -241,8 +241,11 @@ namespace GameWish.Game
                 Vector3 pos = m_BattleField.GetOurCharacterPos();
                 i.OnEnterBattleField(pos);
 
-                m_TotalOurAtk += i.CharacterModel.Atk;
-                m_TotalOurHp += i.CharacterModel.Hp;
+                m_TotalOurAtk += i.CharacterModel.GetAtk();
+
+                i.CharacterModel.SetHp(i.CharacterModel.GetAtk());
+
+                m_TotalOurHp += i.CharacterModel.GetHp();
             });
         }
 
@@ -251,10 +254,11 @@ namespace GameWish.Game
             SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
             {
                 m_EnemyCharacterList.Add(controller);
+                controller.CharacterModel.SetHp(atk);
                 controller.CharacterModel.SetAtk(atk);
 
-                m_TotalEnemyAtk += controller.CharacterModel.Atk;
-                m_TotalEnemyHp += controller.CharacterModel.Hp;
+                m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
+                m_TotalEnemyHp += controller.CharacterModel.GetHp();
 
                 m_LoadedEnemyCount++;
 
@@ -346,13 +350,13 @@ namespace GameWish.Game
             float curOurTotalHp = 0;
             m_OurCharacterList.ForEach(i =>
             {
-                curOurTotalHp += i.CharacterModel.Hp;
+                curOurTotalHp += i.CharacterModel.GetHp();
             });
 
             float curEnemyTotalHp = 0;
             m_EnemyCharacterList.ForEach(i =>
             {
-                curEnemyTotalHp += i.CharacterModel.Hp;
+                curEnemyTotalHp += i.CharacterModel.GetHp();
             });
 
             float ourProgress = curOurTotalHp / m_TotalOurHp;

@@ -99,7 +99,7 @@ namespace GameWish.Game
 
         public bool IsDead()
         {
-            return m_CharacterModel.Hp <= 0;
+            return m_CharacterModel.GetHp() <= 0;
         }
 
         public float GetAtkRange()

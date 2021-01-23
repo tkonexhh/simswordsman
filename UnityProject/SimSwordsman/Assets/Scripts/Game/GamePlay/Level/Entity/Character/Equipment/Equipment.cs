@@ -150,11 +150,11 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="classID"></param>
         /// <returns></returns>
-        public float GetBonusForClassID(int classID)
+        public float GetAtkBonusForClassID(int classID)
         {
             if (m_BonusDic.ContainsKey(classID))
                 return m_BonusDic[classID];
-            return 0;
+            return 1;
         }
         /// <summary>
         /// 根据ClassID获取装备的出售价格
