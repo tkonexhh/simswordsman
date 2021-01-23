@@ -19,7 +19,8 @@ namespace GameWish.Game
         private string m_AtkRate;   
         private string m_UpgradeExp;   
         private string m_AnimationName;   
-        private EInt m_Price = 0;  
+        private EInt m_Price = 0;   
+        private string m_IconName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -63,6 +64,11 @@ namespace GameWish.Game
         /// </summary>
         public  int  price {get { return m_Price; } }
        
+        /// <summary>
+        /// 图标名称
+        /// </summary>
+        public  string  iconName {get { return m_IconName; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -102,6 +108,9 @@ namespace GameWish.Game
                 case 7:
                     m_Price = dataR.ReadInt();
                     break;
+                case 8:
+                    m_IconName = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -112,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Id", 0);
           ret.Add("KongfuName", 1);
@@ -122,6 +131,7 @@ namespace GameWish.Game
           ret.Add("UpgradeExp", 5);
           ret.Add("AnimationName", 6);
           ret.Add("Price", 7);
+          ret.Add("IconName", 8);
           return ret;
         }
     } 

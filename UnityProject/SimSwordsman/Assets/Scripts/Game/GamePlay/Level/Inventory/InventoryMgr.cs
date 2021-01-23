@@ -65,6 +65,11 @@ namespace GameWish.Game
             }
         }
 
+        public List<ItemBase> GetAllEquipmentForType(PropType equipType)
+        {
+            return m_InventoryDataWrapper.GetAllEquipmentForType(equipType);
+        }
+
         public bool CheckItemInInventory(RawMaterial rawMaterial, int number)
         {
            return m_InventoryDataWrapper.CheckItemInInventory(rawMaterial, number);

@@ -140,13 +140,13 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 弟子增加功夫
+        /// 弟子学习功夫
         /// </summary>
         /// <param name="id"></param>
         /// <param name="kungfuItem"></param>
-        public void AddKungfu(int id, KungfuItem kungfuItem)
+        public void LearnKungfu(int id, int index, KungfuItem kungfuItem)
         {
-            m_CharacterDataWrapper.AddKungfu(id, kungfuItem);
+            m_CharacterDataWrapper.LearnKungfu(id, index, kungfuItem);
         }
         /// <summary>
         /// 弟子升级

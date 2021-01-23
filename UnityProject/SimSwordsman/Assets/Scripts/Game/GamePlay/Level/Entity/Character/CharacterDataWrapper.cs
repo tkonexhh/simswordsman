@@ -39,7 +39,6 @@ namespace GameWish.Game
             {
                 character.AddEquipmentItem(characeterEquipment);
                 GameDataMgr.S.GetClanData().AddEquipment(chracterID, characeterEquipment);
-                EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
             }
         }
         /// <summary>
@@ -105,11 +104,11 @@ namespace GameWish.Game
             return item;
         }
 
-        public void AddKungfu(int id, KungfuItem kungfuItem)
+        public void LearnKungfu(int id, int index, KungfuItem kungfuItem)
         {
             CharacterItem characterItem = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItem != null)
-                characterItem.LearnKungfu(kungfuItem);
+                characterItem.LearnKungfu(index, kungfuItem);
 
         }
         public void AddCharacterLevel(int id, int level)
@@ -122,6 +121,7 @@ namespace GameWish.Game
 
     public class CharacterKongfuData
     {
+        public const string DefaultKungfu = "DefaultKungfu";
         public int Index { set; get; }
         public KungfuLockState KungfuLockState { set; get; } = KungfuLockState.NotUnlocked;
         public CharacterKongfu CharacterKongfu { set; get; }
@@ -132,12 +132,17 @@ namespace GameWish.Game
             Index = index;
         }
 
-        public CharacterKongfuData(){}
+        public string GetIconName()
+        {
+            return TDKongfuConfigTable.GetIconName(CharacterKongfu.GetKongfuType());
+        }
+
+        public CharacterKongfuData() { }
 
         public int GetKungfuLevel()
         {
-            if (CharacterKongfu!=null)
-                 return CharacterKongfu.dbData.level;
+            if (CharacterKongfu != null)
+                return CharacterKongfu.dbData.level;
             return -1;
         }
         public void AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
@@ -160,15 +165,15 @@ namespace GameWish.Game
                     break;
             }
             int curKungfuLevel = CharacterKongfu.dbData.level;
-            if (curKungfuLevel!= preKungfuLevel)
-                 EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade,id, CharacterKongfu.dbData);
+            if (curKungfuLevel != preKungfuLevel)
+                EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade, id, CharacterKongfu.dbData);
 
             GameDataMgr.S.GetClanData().AddCharacterKongfuExp(id, kongfuType, deltaExp);
         }
 
         private void UpgradeLevels(int id, CharacterKongfuData kongfuType)
         {
-            CharacterKongfu.dbData.level = Mathf.Min(CharacterKongfu.dbData.level+1, m_KungfuMaxLevel);
+            CharacterKongfu.dbData.level = Mathf.Min(CharacterKongfu.dbData.level + 1, m_KungfuMaxLevel);
             GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, 1);
         }
 
@@ -202,7 +207,6 @@ namespace GameWish.Game
         public int curExp = 0; // 当前经验
         public string startTime; // 入门时间
         public CharacterQuality quality; // 品质
-        public CharacterBehavior behavior; // 行为
         public CharacterStateID characterStateId = CharacterStateID.None; // 行为
         public float atkValue; // 武力值
         public string name; // 名字
@@ -231,6 +235,13 @@ namespace GameWish.Game
             for (int i = 0; i < MaxKungfuNumber; i++)
                 kongfus.Add(i + 1, new CharacterKongfuData(i + 1));
         }
+
+        #region Get
+        public CharacterStateID GetCharacterStateID()
+        {
+            return characterStateId;
+        }
+        #endregion
 
         /// <summary>
         /// 设置人物的状态
@@ -288,6 +299,7 @@ namespace GameWish.Game
             if (level < Define.CHARACTER_MAX_LEVEL)
             {
                 level += delta;
+                level = Mathf.Min(level, Define.CHARACTER_MAX_LEVEL);
                 GameDataMgr.S.GetClanData().SetCharacterLevel(m_ItemDbData, level);
 
                 int priviewStage = stage;
@@ -326,9 +338,9 @@ namespace GameWish.Game
         public int GetEntryTime()
         {
             //startTime = "2020/12/27 16:22:50";
-            DateTime dateTime ;
+            DateTime dateTime;
             DateTime.TryParse(startTime, out dateTime);
-            if (dateTime!=null)
+            if (dateTime != null)
             {
                 TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
                 return (int)timeSpan.TotalDays;
@@ -336,21 +348,24 @@ namespace GameWish.Game
             return 1;
         }
 
-        public void LearnKungfu(KungfuItem kungfuItem)
+        public void LearnKungfu(int index, KungfuItem kungfuItem)
         {
             foreach (var item in kongfus.Values)
             {
-                if(item.KungfuLockState == KungfuLockState.Learned)
+                if (index == item.Index)
                 {
-                    if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
+                    if (item.KungfuLockState == KungfuLockState.Learned)
+                    {
+                        if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
+                            break;
+                    }
+                    if (item.KungfuLockState == KungfuLockState.NotLearning)
+                    {
+                        item.CharacterKongfu = new CharacterKongfu(kungfuItem);
+                        item.KungfuLockState = KungfuLockState.Learned;
+                        GameDataMgr.S.GetClanData().AddKungfu(id, item);
                         break;
-                }
-                if (item.KungfuLockState == KungfuLockState.NotLearning)
-                {
-                    item.CharacterKongfu = new CharacterKongfu(kungfuItem);
-                    item.KungfuLockState = KungfuLockState.Learned;
-                    GameDataMgr.S.GetClanData().AddKungfu(id, item);
-                    break;
+                    }
                 }
             }
         }
@@ -376,7 +391,7 @@ namespace GameWish.Game
                     break;
             }
             if (stage != preChracterStage)
-                EventSystem.S.Send(EventID.OnCharacterUpgrade, id,stage);
+                EventSystem.S.Send(EventID.OnCharacterUpgrade, id, stage);
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 
@@ -494,10 +509,12 @@ namespace GameWish.Game
         public abstract void Wrap(CharaceterDBEquipment characeterDBEquipment);
         public abstract void RefreshInfo();
         public abstract bool IsHaveEquip();
+        public abstract string GetIconName();
     }
 
     public class CharacterArms : CharaceterEquipment
     {
+        public const string DefaultArmsIconName = "DefaultArms";
         public ArmsType ArmsID { set; get; }
         public CharacterArms() { }
         public CharacterArms(ArmsType arms)
@@ -506,11 +523,20 @@ namespace GameWish.Game
             Class = 1;
             RefreshInfo();
         }
-
+        public CharacterArms(ItemBase arms)
+        {
+            ArmsItem armsItem =  arms as ArmsItem;
+            if (armsItem!=null)
+            {
+                ArmsID = armsItem.ArmsID;
+                Class = (int)armsItem.ClassID;
+                RefreshInfo();
+            }
+        }
 
         public void AddArms(CharacterArms characterArms)
         {
-            if (ArmsID == characterArms.ArmsID)
+            if (ArmsID == characterArms.ArmsID && Class== characterArms.Class)
                 return;
 
             Class = characterArms.Class;
@@ -547,11 +573,17 @@ namespace GameWish.Game
                 return false;
             return true;
         }
+
+        public override string GetIconName()
+        {
+            return TDEquipmentConfigTable.GetIconName((int)ArmsID);
+        }
     }
     public class CharacterArmor : CharaceterEquipment
     {
-        public ArmorType ArmorID { set; get; }
+        public const string DefaultArmorIconName = "DefaultArmor";
 
+        public ArmorType ArmorID { set; get; }
         public CharacterArmor() { }
         public CharacterArmor(ArmorType armor)
         {
@@ -559,11 +591,22 @@ namespace GameWish.Game
             Class = 1;
             RefreshInfo();
         }
+        public CharacterArmor(ItemBase arms)
+        {
+            ArmorItem armorItem = arms as ArmorItem;
+            if (armorItem != null)
+            {
+                ArmorID = armorItem.ArmorID;
+                Class = (int)armorItem.ClassID;
+                RefreshInfo();
+            }
+        }
         public void AddArmor(CharacterArmor characterArmor)
         {
-            if (ArmorID == characterArmor.ArmorID)
+            if (ArmorID == characterArmor.ArmorID && Class == characterArmor.Class)
                 return;
             ArmorID = characterArmor.ArmorID;
+            Class = characterArmor.Class;
             RefreshInfo();
         }
 
@@ -594,6 +637,11 @@ namespace GameWish.Game
             if (ArmorID == ArmorType.None)
                 return false;
             return true;
+        }
+
+        public override string GetIconName()
+        {
+            return TDEquipmentConfigTable.GetIconName((int)ArmorID);
         }
     }
 

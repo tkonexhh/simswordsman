@@ -63,6 +63,19 @@ namespace GameWish.Game
                 return m_EquipDic[equipID].GetUpgradeConditionForClassID(classID);
             return null;
         }
+        /// <summary>
+        /// 获取装备图标名称
+        /// </summary>
+        /// <param name="equipType">暂留</param>
+        /// <param name="equipID"></param>
+        /// <param name="classID"></param>
+        /// <returns></returns>
+        public static string GetIconName(int equipID)
+        {
+            if (m_EquipDic.ContainsKey(equipID))
+                return m_EquipDic[equipID].IconName;
+            return null;
+        }
         //public static float GetBonus(ItemBase itemBase)
         //{
         //    ArmsItem armsItem = itemBase as ArmsItem;

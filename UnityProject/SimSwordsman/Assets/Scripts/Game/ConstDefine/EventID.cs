@@ -104,6 +104,10 @@ namespace GameWish.Game
         /// 功夫升级事件
         /// </summary>
         OnKongfuLibraryUpgrade,
+        /// <summary>
+        /// 刷新弟子面板
+        /// </summary>
+        OnRefreshDisciple,
 
 
         #region 新手引导
