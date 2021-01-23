@@ -147,6 +147,7 @@ namespace GameWish.Game
         }
         public void AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
+            deltaExp = (int)FoodBuffSystem.S.KongFuExp(deltaExp);
             CharacterKongfu.dbData.curExp += deltaExp;
             int preKungfuLevel = CharacterKongfu.dbData.level;
             while (true)
@@ -376,6 +377,7 @@ namespace GameWish.Game
         /// <param name="deltaExp"></param>
         public void AddCharacterExp(int deltaExp)
         {
+            deltaExp = (int)FoodBuffSystem.S.Exp(deltaExp);
             curExp += deltaExp;
             int preChracterStage = stage;
 
