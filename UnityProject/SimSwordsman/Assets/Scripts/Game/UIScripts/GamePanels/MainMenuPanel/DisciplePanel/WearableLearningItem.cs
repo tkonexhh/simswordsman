@@ -56,14 +56,17 @@ namespace GameWish.Game
                 switch (m_ItemBase.PropType)
                 {
                     case PropType.Arms:
+                        MainGameMgr.S.InventoryMgr.AddItem(m_CurDisciple.GetEquipmentForType(PropType.Arms));
                         MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArms(m_ItemBase)); ;
                         break;
                     case PropType.Armor:
+                        MainGameMgr.S.InventoryMgr.AddItem(m_CurDisciple.GetEquipmentForType(PropType.Armor));
                         MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArmor(m_ItemBase)); ;
                         break;
                     default:
                         break;
                 }
+                MainGameMgr.S.InventoryMgr.RemoveItem(m_ItemBase);
                 EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
                 UIMgr.S.ClosePanelAsUIID(UIID.WearableLearningPanel);
             });

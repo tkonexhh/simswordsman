@@ -399,8 +399,14 @@ namespace GameWish.Game
         {
             kongfuType.AddExpForKungfuType(id, kongfuType, deltaExp);
         }
+
+        public ItemBase GetEquipmentForType(PropType propType)
+        {
+            return characeterEquipmentData.IsHavaEquipment(propType);
+        }
+
         /// <summary>
-        /// 获取装备
+        /// 增加装备
         /// </summary>
         /// <param name="equipmentItem"></param>
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
@@ -486,6 +492,22 @@ namespace GameWish.Game
                     CharacterArmor.AddArmor((CharacterArmor)characeterEquipment);
                     break;
             }
+        }
+
+        public ItemBase IsHavaEquipment(PropType propType)
+        {
+            switch (propType)
+            {
+                case PropType.Arms:
+                    if (CharacterArms.ArmsID != ArmsType.None && CharacterArms.Class != 0)
+                        return new ArmsItem(CharacterArms.ArmsID, (Step)CharacterArms.Class);
+                    break;
+                case PropType.Armor:
+                    if (CharacterArmor.ArmorID != ArmorType.None && CharacterArmor.Class != 0)
+                        return new ArmorItem(CharacterArmor.ArmorID, (Step)CharacterArmor.Class);
+                    break;
+            }
+            return null;
         }
 
         public void Wrap(CharaceterDBEquipmentData characeterDBEquipmentData)

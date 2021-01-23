@@ -156,6 +156,8 @@ namespace GameWish.Game
         /// <param name="delta"></param>
         public void AddItem(ItemBase itemBase, int delta = 1)
         {
+            if (itemBase == null)
+                return;
             switch (itemBase.PropType)
             {
                 case PropType.None:

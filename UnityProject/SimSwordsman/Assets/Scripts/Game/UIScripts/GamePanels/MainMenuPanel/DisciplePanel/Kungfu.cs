@@ -41,6 +41,7 @@ namespace GameWish.Game
         {
             m_DiscipleBtn.onClick.AddListener(()=>{
                 MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, m_CurKungfuItem);
+                MainGameMgr.S.InventoryMgr.RemoveItem(m_CurKungfuItem);
                 EventSystem.S.Send(EventID.OnRefreshDisciple, m_CurIndex);
                 UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
                 //m_KungfuLibraySlotInfo.SetCharacterItem(characterItem, SlotState.CopyScriptures, m_CurFacilityType);
