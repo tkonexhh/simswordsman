@@ -40,7 +40,7 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideBuildKitchenPanel, OnEventListener);
 
-            //EventSystem.S.Send(EventID.OnGuideBuildWarehousePanel);
+            EventSystem.S.Send(EventID.OnGuideDialog8);
         }
 
 	}

@@ -20,8 +20,9 @@ namespace GameWish.Game
 
         private Image m_NormalImage;
         private Image m_GlowImage;
-        private Image m_AlreadyImage;
+        private Image m_ReadyImage;
         private Image m_IconImage;
+        private Image m_GouImage;
 
         private Text m_CountText;
         private Text m_DayText;
@@ -83,7 +84,6 @@ namespace GameWish.Game
         public void SetIconSprite(Sprite sprite)
         {
             m_IconImage.sprite = sprite;
-            //m_IconImage.SetNativeSize();
         }
 
         /// <summary>
@@ -94,9 +94,10 @@ namespace GameWish.Game
         {
             m_NormalImage = trans.Find("NormalBG").GetComponent<Image>();
             m_GlowImage = trans.Find("GlowBG").GetComponent<Image>();
-            m_AlreadyImage = trans.Find("AlreadyBG").GetComponent<Image>();
+            m_ReadyImage = trans.Find("AlreadyBG").GetComponent<Image>();
             m_IconImage = trans.Find("Icon").GetComponent<Image>();
 
+            m_GouImage = trans.Find("Select").GetComponent<Image>();
             m_Button = trans.Find("Button").GetComponent<Button>();
 
             m_CountText = trans.Find("Count").GetComponent<Text>();
@@ -123,20 +124,26 @@ namespace GameWish.Game
                 case SignInStatus.SignEnable:
                     m_NormalImage.gameObject.SetActive(true);
                     m_GlowImage.gameObject.SetActive(true);
-                    m_AlreadyImage.gameObject.SetActive(false);
+                    m_ReadyImage.gameObject.SetActive(true);
+                    m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
+                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 1);
                     break;
                 case SignInStatus.SignDisable:
                     m_NormalImage.gameObject.SetActive(true);
                     m_GlowImage.gameObject.SetActive(false);
-                    m_AlreadyImage.gameObject.SetActive(false);
+                    m_ReadyImage.gameObject.SetActive(false);
+                    m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
+                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
                     break;
                 case SignInStatus.SignAlready:
                     m_NormalImage.gameObject.SetActive(true);
                     m_GlowImage.gameObject.SetActive(false);
-                    m_AlreadyImage.gameObject.SetActive(true);
+                    m_ReadyImage.gameObject.SetActive(false);
+                    m_GouImage.gameObject.SetActive(true);
                     m_DayText.gameObject.SetActive(true);
+                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
                     break;
                 case SignInStatus.None:
                     break;

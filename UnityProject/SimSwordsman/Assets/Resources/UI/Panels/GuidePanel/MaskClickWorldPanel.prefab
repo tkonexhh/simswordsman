@@ -321,6 +321,7 @@ MonoBehaviour:
   m_CircleShaderControl: {fileID: 8391148386289989275}
   m_TargetRect: {fileID: 575496754112258610}
   m_Targetbtn: {fileID: 8566914566469483408}
+  m_Maskbtn: {fileID: 4956411200820838289}
   m_Hand: {fileID: 6015500424166497548}
   m_GuideTipsText: {fileID: 886473817270863054}
 --- !u!1 &3877539155738359517
@@ -584,9 +585,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: fe76861e389468a47bb203433a4ce302, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 42
+    m_BestFit: 1
+    m_MinSize: 5
+    m_MaxSize: 26
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0

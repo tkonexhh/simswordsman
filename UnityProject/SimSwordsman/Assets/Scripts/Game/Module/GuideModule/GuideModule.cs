@@ -32,14 +32,17 @@ namespace GameWish.Game
                 InitCustomTrigger();
                 InitCustomCommand();
                 GuideMgr.S.StartGuideTrack();
-
-                try
+                GameplayMgr.S.CheckIsFirstGameStart();
+                if (GameDataMgr.S.GetPlayerData().isGuideStart)
                 {
-                    EventID eventid = (EventID)id;
-                    EventSystem.S.Send(eventid);
-                }
-                catch (Exception)
-                {
+                    try
+                    {
+                        EventID eventid = (EventID)id;
+                        EventSystem.S.Send(eventid);
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             }
         }
@@ -61,8 +64,11 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger4));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskDetailsTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskTrigger1)); 
             GuideMgr.S.RegisterGuideTrigger(typeof(SendCharacterOnTaskTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger11));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger22));
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger5));
             GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacilityTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacilityPanelTrigger2));
@@ -72,7 +78,7 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger7));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskDetailsTrigger2));
-            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(SendCharacterOnTaskTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(KitchenDialogTrigger));

@@ -15,6 +15,8 @@ namespace GameWish.Game
         public string TaskStartTime { get => m_TaskStartTime;}
         public int TaskId { get => m_TaskId; }
 
+        public List<int> CharacterIDs = new List<int>();
+
         public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime)
         {
             m_TaskId = taskId;
@@ -51,11 +53,15 @@ namespace GameWish.Game
 
         public virtual void ExecuteTask(List<CharacterController> selectedCharacters)
         {
+            foreach (var item in selectedCharacters)
+                CharacterIDs.Add(item.CharacterId);
+
             GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
         }
 
         public void ClaimReward()
         {
+            CharacterIDs.Clear();
             // Item reward
             for (int i = 0; i < m_TaskDetailInfo.itemRewards.Count; i++)
             {
@@ -64,9 +70,17 @@ namespace GameWish.Game
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
             }
 
-            // TODO:Exp reward
-
-            // TODO:Kongfu reward
+            // Special reward
+            int random = Random.Range(0, 10000);
+            if (random < m_TaskDetailInfo.specialRewardRate)
+            {
+                for (int i = 0; i < m_TaskDetailInfo.specialRewards.Count; i++)
+                {
+                    int itemId = m_TaskDetailInfo.GetSpecialRewardId(i);
+                    int count = m_TaskDetailInfo.GetSpecialRewardValue(i);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+                }
+            }
         }
     }
 	

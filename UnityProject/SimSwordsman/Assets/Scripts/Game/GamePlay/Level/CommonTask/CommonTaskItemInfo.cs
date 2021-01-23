@@ -51,7 +51,6 @@ namespace GameWish.Game
                 //ParseNextLevel(tdCommonTask.nextTask);
                 ParseTaskType(tdCommonTask.type);
                 ParseSpecialReward(tdCommonTask.specialReward);
-                ParseSpecialReward(tdCommonTask.specialReward);
                 ParseTaskEnemy(tdCommonTask.enemy);
             }
             catch (Exception e)
@@ -89,6 +88,35 @@ namespace GameWish.Game
             return reward.count1;
         }
 
+        public int GetSpecialRewardId(int index)
+        {
+            if (index < 0 || index > specialRewards.Count - 1)
+            {
+                Log.e("Special reward index out of range");
+                return 0;
+            }
+
+            TaskReward reward = specialRewards[index];
+            return reward.id;
+        }
+
+        public int GetSpecialRewardValue(int index)
+        {
+            if (index < 0 || index > specialRewards.Count - 1)
+            {
+                Log.e("Special reward index out of range");
+                return 0;
+            }
+
+            TaskReward reward = specialRewards[index];
+            if (reward.count2 != -1)
+            {
+                return UnityEngine.Random.Range(reward.count1, reward.count2);
+            }
+
+            return reward.count1;
+        }
+
         private void ParseReward(string reward)
         {
             string[] rewardStrs = reward.Split(';');
@@ -113,7 +141,7 @@ namespace GameWish.Game
                 if (!string.IsNullOrEmpty(item))
                 {
                     TaskReward taskReward = new TaskReward(item);
-                    this.itemRewards.Add(taskReward);
+                    this.specialRewards.Add(taskReward);
                 }
             }
         }

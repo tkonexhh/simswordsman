@@ -42,12 +42,15 @@ namespace GameWish.Game
         OnStartUpgradeFacility,
         OnEndUpgradeFacility,
 
+        OnAddItem,
         OnReduceItems,
 
 
         // MainTask
         OnTaskManualFinished,
         //OnTaskFinished,
+        OnCommonTaskStart,
+        OnCommonTaskFinish,
 
         //PracticeField
 
@@ -119,18 +122,20 @@ namespace GameWish.Game
         OnGuideClickLobbyTrigger1,
         OnGuideDialog4,
         OnGuideClickTaskTrigger1,
-        OnGuideReceiveTaskRewardTrigger1,
+
+        OnGuideReceiveTaskRewardClickBtnTrigger1,
         OnGuideDialog5,
         OnGuideBuildFacilityTrigger2,
         OnGuideDialog6,
         OnGuideClickLobbyTrigger2,
         OnGuideDialog7,
         OnGuideClickTaskTrigger2,
-        OnGuideReceiveTaskRewardTrigger2,
+        OnGuideReceiveTaskRewardClickBtnTrigger2,
         OnGuideUnlockKitchen,
         OnGuideBuildKitchen,
-        OnGuideDialog8 = 10100,
-        OnGuideUnlockWarehouse,
+
+        OnGuideDialog8,
+        OnGuideUnlockWarehouse = 10100,
         OnGuideUnlockBaicaohu,
         OnGuideUnlockPracticeField,
         OnGuideUnlockKungfuLibrary,
@@ -138,14 +143,18 @@ namespace GameWish.Game
         OnCuideKitchenFirstLvUp,
         OnGuideUnlockCollectSystem,
 
+        OnGuideReceiveTaskRewardTrigger2,
+        OnGuideReceiveTaskRewardTrigger1,
+
         OnGuideBuildFacilityPanelTrigger1,
         OnGuideClickRecruitTrigger1,
         OnGuideClickTaskDetailsTrigger1,
+        OnGuideSelectCharacterTrigger1,
         OnGuideSendCharacterOnTaskTrigger1,
         OnGuideBuildFacilityPanelTrigger2,
         OnGuideClickRecruitTrigger2,
         OnGuideClickTaskDetailsTrigger2,
-        OnGuideSelectCharacterTrigger,
+        OnGuideSelectCharacterTrigger2,
         OnGuideSendCharacterOnTaskTrigger2,
         OnGuideBuildKitchenPanel,
         OnGuideSendCharacterWorkTrigger,

@@ -10,6 +10,7 @@ namespace GameWish.Game
         Vector3 targetPos;//目标点击位置
         Vector3 cameraPos;//相机位置
         string textContentID;//气泡显示的id（Language表）
+        bool isNotForce = false;
 
         public override void SetParam(object[] pv)
         {
@@ -34,7 +35,11 @@ namespace GameWish.Game
                 if (pv.Length > 3)
                 {
                     textContentID = (string)pv[3];
-                }           
+                }
+                if (pv.Length > 4)
+                {
+                    isNotForce = true;
+                }
             }
             catch (Exception e)
             {
@@ -63,7 +68,7 @@ namespace GameWish.Game
                 return;
             }
             Action action = OnGuideClick;
-            UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, handPos, targetPos, textContentID, action);
+            UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, handPos, targetPos, textContentID, action, isNotForce);
         }
 
         private void OnGuideClick()

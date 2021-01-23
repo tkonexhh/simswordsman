@@ -33,6 +33,16 @@ namespace GameWish.Game
             }
         }
 
+        public void SetTaskExecutedTime(int taskId, int time)
+        {
+            CommonTaskItemData item = GetCommonTaskItemData(taskId);
+            if (item != null)
+            {
+                item.SetTaskExecutedTime(time);
+                SetDataDirty();
+            }
+        }
+
         public void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
         {
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
@@ -52,6 +62,7 @@ namespace GameWish.Game
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
             mainTaskItem.taskState = TaskState.Running;
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnCommonTaskStart, taskId);
         }
 
         //public void OnTaskFinished(int taskId)
@@ -116,7 +127,8 @@ namespace GameWish.Game
         public SimGameTaskType taskType;
         public int taskSubType = 1;
         public TaskState taskState;
-        public int taskTime;
+        public int taskTime; //总的时间
+        public int executedTime; //已执行时间
 
         public CommonTaskItemData()
         {
@@ -129,6 +141,11 @@ namespace GameWish.Game
             this.taskSubType = subType;
             this.taskState = taskState;
             this.taskTime = taskTime;
+        }
+
+        public void SetTaskExecutedTime(int time)
+        {
+            this.executedTime = time;
         }
     }
 

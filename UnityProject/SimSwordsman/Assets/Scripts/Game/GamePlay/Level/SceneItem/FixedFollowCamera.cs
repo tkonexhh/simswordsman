@@ -44,20 +44,22 @@ namespace GameWish.Game
 
             //if (!freazeX)
             //{
-            oldPosition.x = Mathf.Clamp(Mathf.SmoothDamp(transform.position.x, target.position.x + offset.x, ref xVelocity, smoothTime), MainGameMgr.S.MainCamera.m_CameraBottomLeft.x, MainGameMgr.S.MainCamera.m_CameraTopRight.x);
+            oldPosition.x = Mathf.SmoothDamp(transform.position.x, target.position.x + offset.x, ref xVelocity, smoothTime);
+            //Mathf.Clamp(Mathf.SmoothDamp(transform.position.x, target.position.x + offset.x, ref xVelocity, smoothTime), MainGameMgr.S.MainCamera.m_CameraBottomLeft.x, MainGameMgr.S.MainCamera.m_CameraTopRight.x);
             //}
-
+            oldPosition.x = Mathf.Clamp(oldPosition.x, MainGameMgr.S.MainCamera.m_CameraBottomLeft.x, MainGameMgr.S.MainCamera.m_CameraTopRight.x);
             //if (!freazeY)
             //{
-            oldPosition.y = Mathf.Clamp(Mathf.SmoothDamp(transform.position.y, target.position.y + offset.y, ref yVelocity, smoothTime), MainGameMgr.S.MainCamera.m_CameraBottomLeft.y, MainGameMgr.S.MainCamera.m_CameraTopRight.y);
-	        //}
-	
-	        //if (!freazeZ)
-	        //{
-	        //    oldPosition.z = Mathf.SmoothDamp(transform.position.z, target.position.z + offset.z, ref zVelocity, smoothTime);
-	        //}
-	
-	        transform.position = oldPosition;
+            oldPosition.y = Mathf.SmoothDamp(transform.position.y, target.position.y + offset.y, ref yVelocity, smoothTime);
+                //Mathf.Clamp(Mathf.SmoothDamp(transform.position.y, target.position.y + offset.y, ref yVelocity, smoothTime), MainGameMgr.S.MainCamera.m_CameraBottomLeft.y, MainGameMgr.S.MainCamera.m_CameraTopRight.y);
+                //}
+            oldPosition.y = Mathf.Clamp(oldPosition.y, MainGameMgr.S.MainCamera.m_CameraBottomLeft.y, MainGameMgr.S.MainCamera.m_CameraTopRight.y);
+            //if (!freazeZ)
+            //{
+            //    oldPosition.z = Mathf.SmoothDamp(transform.position.z, target.position.z + offset.z, ref zVelocity, smoothTime);
+            //}
+
+            transform.position = oldPosition;
 	    }
 	
 	    /// <summary>
@@ -72,7 +74,13 @@ namespace GameWish.Game
         {
             target = tar;
             startPosition = transform.position;
-            offset = transform.position - target.position;
+            offset = Vector3.zero;
+            //offset = transform.position - target.position;
+        }
+
+        public void DestorySelf()
+        {
+            Destroy(this);
         }
 	}
 }
