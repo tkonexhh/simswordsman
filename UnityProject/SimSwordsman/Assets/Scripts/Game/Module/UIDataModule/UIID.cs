@@ -34,6 +34,7 @@ namespace GameWish.Game
         DisciplePanel,
         DicipleDetailsPanel,
         WearableLearningPanel,
+        LearnKungfuPanel,
 
         BulletinBoardPanel,
         TaskDetailsPanel,

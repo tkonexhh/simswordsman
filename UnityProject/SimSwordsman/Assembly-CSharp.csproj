@@ -903,11 +903,15 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\FacilityData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\InventoryData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\KongfuData.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\KungfuLibraryData.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\PatrolRoomData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ClanData\PracticeFieldData.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\GameData\CommonTaskData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\GameData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\GameDataHandler.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\GameDataMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\MainTaskData.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\GameData\PlayerData\CountdownData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\PlayerData\HerbModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\GameData\ShopData.cs" />
@@ -921,6 +925,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\BattleField\BattleField.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\BattleField\BattleFieldMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\BattleField\Enemy\EnemyInfo.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\BattleField\EnemyLoader.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\BattleField\FightGroup.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\BuffSystem\CountdownSystem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\BuffSystem\FoodBuffSystem.cs" />
@@ -928,7 +933,6 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\ChapterMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelReward.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelRewardFactory.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelRewardType.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\EquipReward.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpCharacterReward.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpKongfuReward.cs" />
@@ -936,6 +940,9 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\MoneyReward.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\PropItemReward.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Clan\ClanType.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\CollectSystem\CollectSystem.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\CommonTask\CommonTaskItemInfo.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\CommonTask\CommonTaskMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Base\Interfaces\IEntityController.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Base\Interfaces\IEntityData.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Base\Interfaces\IEntityView.cs" />
@@ -945,6 +952,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\Base\CharacterView.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\CharacterDataWrapper.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\CharacterEnum.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\CharacterLoader.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\CharacterMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\CharacterStageInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\Equipment\Equipment.cs" />
@@ -959,6 +967,7 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\CharacterStatePractice.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\CharacterStateReading.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\CharacterStateWander.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\CharacterStateWorking.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\StateBattle\BattleState.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\StateBattle\BattleStateFactory.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Character\StateMachine\CharacterState\StateBattle\BattleStateMachine.cs" />
@@ -987,7 +996,6 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilityLevelInfo\PracticeFieldLevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilityLevelInfo\WarehouseLevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilityMgr.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilitySlot.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilityState.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilityType.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\FacilityUpgradeCost.cs" />
@@ -995,12 +1003,10 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Baicaohu\BaicaohuController.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Baicaohu\BaicaohuModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Baicaohu\BaicaohuView.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Bartizan\BartizanController.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Bartizan\BartizanModel.cs" />
-    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Bartizan\BartizanView.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\BulletinBoard\BulletinBoardController.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\BulletinBoard\BulletinBoardModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\BulletinBoard\BulletinBoardView.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Challenge\PanelPool.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\ForgeHouse\ForgeHouseController.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\ForgeHouse\ForgeHouseModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\ForgeHouse\ForgeHouseView.cs" />
@@ -1025,7 +1031,11 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Warehouse\WarehouseController.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Warehouse\WarehouseModel.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\Implment\Warehouse\WarehouseView.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\KungfuLibraySlot.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\PatrolRoomSlot.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\Entity\Facility\PracticeField.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\FoodRecoverySystem.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\GuideTriggerEventMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Inventory\InventoryDataWrapper.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Inventory\InventoryMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Inventory\PropType.cs" />
@@ -1060,10 +1070,18 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MainTask\SimGameTask\TaskReward\TaskRewardType.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MedicinalPowder\MedicinalPowderMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\MedicinalPowder\MedicinalPowderType.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\ClickCollectableItem\ClickCollectableItem.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\ClickCollectableItem\CollectItemView.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\FixedFollowCamera.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\MainCamera.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\RandomWayPoints.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\TaskCollectableItem\TaskCollectableItem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\TaskPos.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\WorkingBubble\ClickWorkingBubble.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SceneItem\WorkingBubble\WorkingBubbleView.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\SignInSystem\SignSystemMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Level\VisitorSystem\VisitorSystem.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\Level\WorkSystem\WorkSystem.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Mgr\GameplayMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Mgr\Interface\IMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\Mgr\Interface\IResetHandler.cs" />
@@ -1088,6 +1106,14 @@
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdEffectParams.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdTimeControl.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AdEffectHandleSystem\AdType.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetLoad\AddressableAssetLoader.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetLoad\AddressableGameObjectLoader.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetLoad\AssetAddressableSceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetLoad\AssetBundleLoader.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetLoad\IAssetLoadAdapter.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetLoadMgr.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\AssetPreloaderMgr.cs" />
+    <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\AssetLoadSystem\IAssetPreloader.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\InputSystem\IInputObserver.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\InputSystem\InputMgr.cs" />
     <Compile Include="Assets\Scripts\Game\GamePlay\SystemPackage\OfflineRewardSystem\IOfflineRewardStrategy.cs" />
@@ -1120,6 +1146,54 @@
     <Compile Include="Assets\Scripts\Game\Module\GuideModule\Command\SpineHandCommand.cs" />
     <Compile Include="Assets\Scripts\Game\Module\GuideModule\Command\UIClipCommand.cs" />
     <Compile Include="Assets\Scripts\Game\Module\GuideModule\GuideModule.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewCommand\DialogCommand.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewCommand\GuideButtonCommand.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewCommand\GuideClickWorldCommand.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewCommand\MyDelayCommand.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewCommand\NormalTipsCommand.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewCommand\TakeNameCommand.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildBaicaohuTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacilityPanelTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacilityPanelTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacilityPanel_KitchenTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacilityPanel_WarehouseTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacilityTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacilityTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacility_KitchenTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildFacility_WarehouseTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildForgehouseTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildKungfuLibraryTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\BuildPracticeFieldTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickLobbyTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickLobbyTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickTaskBtnTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickTaskBtnTrigger11.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickTaskBtnTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickTaskBtnTrigger22.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickTaskDetailsTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ClickTaskDetailsTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\CollectSystemTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger3.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger4.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger5.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger6.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger7.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\DialogTrigger8.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\FoodBuffTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\KitchenDialogTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\LobbyPanelGetCharacterTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\LobbyPanelGetCharacterTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ReceiveTaskRewardTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\ReceiveTaskRewardTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\SelectCharacterOnTaskTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\SelectCharacterOnTaskTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\SendCharacterOnTaskTrigger1.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\SendCharacterOnTaskTrigger2.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\SendCharacterWorkTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\TakeNameTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game\Module\GuideModule\NewTrigger\WarehouseDialogTrigger.cs" />
     <Compile Include="Assets\Scripts\Game\Module\GuideModule\Trigger\UINodeInvisibleTrigger.cs" />
     <Compile Include="Assets\Scripts\Game\Module\InputModule\InputModule.cs" />
     <Compile Include="Assets\Scripts\Game\Module\PurchaseModule\PurchaseModule.cs" />
@@ -1137,6 +1211,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Achievement\TDAchievementTypeExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Achievement\TDAchievementTypeTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\ConstType\ConstType.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Battle\TDBattleWordsExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Battle\TDBattleWordsTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Character\TDCharacterConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Character\TDCharacterConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Character\TDCharacterNameExtend.cs" />
@@ -1149,16 +1225,14 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Clan\TDEnemyConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Clan\TDSectNameExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Clan\TDSectNameTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Collect\TDCollectConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Collect\TDCollectConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\DailySignin\TDDailySigninExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\DailySignin\TDDailySigninTableExtend.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmorConfigExtend.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmorConfigTableExtend.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmsConfigExtend.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDArmsConfigTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDEquipmentConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Equipment\TDEquipmentConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBaicaohuExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBaicaohuTableExtend.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBartizanExtend.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityBartizanTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityForgeHouseExtend.cs" />
@@ -1179,8 +1253,12 @@
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Facility\TDFacilityWarehouseTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Food\TDFoodConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Food\TDFoodConfigTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\GLobal\TDSystemConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\GLobal\TDSystemConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Item\TDItemConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Item\TDItemConfigTableExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Kongfu\TDKongfuAnimationConfigExtend.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Kongfu\TDKongfuAnimationConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Kongfu\TDKongfuConfigExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Kongfu\TDKongfuConfigTableExtend.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Extend\Gameplay\Kongfu\TDKongfuStageConfigExtend.cs" />
@@ -1227,6 +1305,8 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Achievement\TDAchievementTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Achievement\TDAchievementType.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Achievement\TDAchievementTypeTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Battle\TDBattleWords.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Battle\TDBattleWordsTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Character\TDCharacterConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Character\TDCharacterConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Character\TDCharacterName.cs" />
@@ -1239,16 +1319,14 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Clan\TDEnemyConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Clan\TDSectName.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Clan\TDSectNameTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Collect\TDCollectConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Collect\TDCollectConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\DailySignin\TDDailySignin.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\DailySignin\TDDailySigninTable.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmorConfig.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmorConfigTable.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmsConfig.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDArmsConfigTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDEquipmentConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Equipment\TDEquipmentConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBaicaohu.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBaicaohuTable.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBartizan.cs" />
-    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityBartizanTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityForgeHouse.cs" />
@@ -1269,8 +1347,12 @@
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Facility\TDFacilityWarehouseTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Food\TDFoodConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Food\TDFoodConfigTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\GLobal\TDSystemConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\GLobal\TDSystemConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Item\TDItemConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Item\TDItemConfigTable.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Kongfu\TDKongfuAnimationConfig.cs" />
+    <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Kongfu\TDKongfuAnimationConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Kongfu\TDKongfuConfig.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Kongfu\TDKongfuConfigTable.cs" />
     <Compile Include="Assets\Scripts\Game\Tables\Generate\Gameplay\Kongfu\TDKongfuStageConfig.cs" />
@@ -1343,11 +1425,12 @@
     <Compile Include="Assets\Scripts\Game\Tools\SpriteLoader.cs" />
     <Compile Include="Assets\Scripts\Game\Tools\StringHelper.cs" />
     <Compile Include="Assets\Scripts\Game\Tools\UnityExtensions.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\Common\Base\BaseSlot.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\ButtonClickStay.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\ClosePanelMask.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\CommonUIMethod.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\ContentSizeFitter.cs" />
-    <Compile Include="Assets\Scripts\Game\UIScripts\Common\CountDownMgr.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\Common\CountDownItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\GrideLayout.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\PolygonButton.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\Common\UIButton.cs" />
@@ -1368,11 +1451,15 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\KitchenPanel\KitchenPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\KongfuLibraryPanel\CopyScripturesItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\KongfuLibraryPanel\KongfuLibraryPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\KongfuLibraryPanel\KungfuChooseDisciplePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LivableRoomPanel\LivableRoomItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LivableRoomPanel\LivableRoomPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LobbyPanel\LobbyPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LobbyPanel\RecruitmentOrderItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\LobbyPanel\RecruitmentPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PatrolRoomPanel\PatrolRoomChooseDisciplePanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PatrolRoomPanel\PatrolRoomItem.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PatrolRoomPanel\PatrolRoomPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PracticeFieldPanel\ChooseDisciplePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PracticeFieldPanel\PracticeDisciple.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\FacilityPanel\PracticeFieldPanel\PracticeFieldPanel.cs" />
@@ -1393,10 +1480,13 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\ChallengePanel\PromotionPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\ChallengePanel\RewardIInfoItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\ConstructionFacilitiesPanel\ConstructionFacilitiesPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\Disciple.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\DiscipleDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\DiscipleItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\DisciplePanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\Kungfu.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\KungfuPanelItem.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\LearnKungfuPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\WearableLearningItem.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\DisciplePanel\WearableLearningPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\GamePanels\MainMenuPanel\MainMenuPanel.cs" />
@@ -1417,11 +1507,16 @@
     <Compile Include="Assets\Scripts\Game\UIScripts\MyFloatMessagePanel\MyFloatMessagePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\CircleShaderControl.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\GuideMaskPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\MaskClickWorldPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\MyGuidePanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\MyGuideTipsPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\NoMaskClickPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\NoMaskWorldClickPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\OptionalGuide.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\MyGuidePanel\WorldGuideClickPanel.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\RatePanel\RatePanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\StoryPanel\StoryPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\UIScripts\StoryPanel\StoryPanel_SortText.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\UGUISpriteAnimation.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\UIEffect\UIBlinkImage.cs" />
     <Compile Include="Assets\Scripts\Game\UIScripts\UIMessageController.cs" />
@@ -1437,8 +1532,9 @@
     <None Include="Assets\Res\FolderMode\Shader\Guidematerial\GuideShader.shader" />
     <None Include="Assets\StreamingAssets\config\EnemyConfig.txt" />
     <None Include="Assets\SDKAdapter\DataAnalysis\Facebook\FacebookSDK\link.xml" />
-    <None Include="Assets\Resources\Spines\Character\Character1\pupil_1.atlas.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\Characters\Character\Normal\CharacterNormal1\pupil_1.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityBaicaohu.txt" />
+    <None Include="Assets\StreamingAssets\config\SystemConfig.txt" />
     <None Include="Assets\StreamingAssets\config\VisitorConfig.txt" />
     <None Include="Assets\StreamingAssets\config\language_tw.txt" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\Issues in button behavior (MAC).txt" />
@@ -1447,7 +1543,7 @@
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\DOTween50.xml" />
     <None Include="Assets\StreamingAssets\config\SectName.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityWarehouse.txt" />
-    <None Include="Assets\Resources\Spines\Character\Character2\pupil_2.atlas.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\TaskCollectableItem\Animal\Boar\pig.atlas.txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\DOTween46.xml" />
     <None Include="Assets\SDKAdapter\DataAnalysis\Appsflyer\Plugins\Appsflyer\link.xml" />
     <None Include="Assets\StreamingAssets\config\ChapterConfig.txt" />
@@ -1456,16 +1552,21 @@
     <None Include="Assets\StreamingAssets\config\FacilityLivableRoom.txt" />
     <None Include="Assets\StreamingAssets\config\PurchaseContent.txt" />
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\AddressableAssets\FolderMode\TaskCollectableItem\Animal\Snake\snake.atlas.txt" />
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\Android\proguard-user.txt" />
+    <None Include="Assets\StreamingAssets\config\BattleWords.txt" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouch\_Documentation\How to migrate from EasyTouch 4.X.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\TaskCollectableItem\Animal\Bear\bear.atlas.txt" />
+    <None Include="Assets\StreamingAssets\config\EquipmentConfig.txt" />
     <None Include="Assets\AudienceNetwork\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\iOS\MOAT_VERSION.txt" />
     <None Include="Assets\StreamingAssets\config\const.txt" />
     <None Include="Assets\SDKAdapter\Plugins\UnityPurchasing\script\link.xml" />
-    <None Include="Assets\Resources\Spines\Character\Character4\pupil_4.atlas.txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DemiLib\Core\DemiLib.xml" />
     <None Include="Assets\StreamingAssets\config\DailyTask.txt" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+    <None Include="Assets\Res\FolderMode\Shader\YG\Reversal.shader" />
+    <None Include="Assets\StreamingAssets\config\KongfuAnimationConfig.txt" />
     <None Include="Assets\StreamingAssets\config\ArmorConfig.txt" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />
     <None Include="Assets\StreamingAssets\config\ClanConfig.txt" />
@@ -1473,14 +1574,16 @@
     <None Include="Assets\StreamingAssets\config\MainTask.txt" />
     <None Include="Assets\StreamingAssets\config\language_zh.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityConfig.txt" />
+    <None Include="Assets\StreamingAssets\config\CollectConfig.txt" />
     <None Include="Assets\StreamingAssets\config\CharacterName.txt" />
     <None Include="Assets\StreamingAssets\config\remote_config.txt" />
     <None Include="Assets\Qarth\Plugins\Demigiant\readme_DOTweenPro.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\TaskCollectableItem\Animal\Chick\chicken.atlas.txt" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\ReleaseNotes.txt" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\Documentation\Version 2.0.txt" />
     <None Include="Assets\StreamingAssets\config\purchase.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityKongfuLibrary.txt" />
-    <None Include="Assets\Resources\Spines\Character\MoJiao\mj.atlas.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\Characters\Character\MoJiao\mj.atlas.txt" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-config-unity\maven-metadata.xml" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-analytics-unity\maven-metadata.xml" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouch\How to migrate from EasyTouch 4.X.txt" />
@@ -1489,8 +1592,11 @@
     <None Include="Assets\StreamingAssets\config\ArmsConfig.txt" />
     <None Include="Assets\Res\FolderMode\Shader\Custom\UIClipImage.shader" />
     <None Include="Assets\StreamingAssets\config\LevelConfig.txt" />
+    <None Include="Assets\Effect\Shader\SF_Dissolution.shader" />
     <None Include="Assets\Res\FolderMode\Shader\Custom\UIToGray.shader" />
+    <None Include="Assets\StreamingAssets\config\Scenario.txt" />
     <None Include="Assets\Res\FolderMode\Shader\Custom\OutlineEx.shader" />
+    <None Include="Assets\AddressableAssets\FolderMode\TaskCollectableItem\Animal\Wolf\wolf.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\HerbConfig.txt" />
     <None Include="Assets\SDKAdapter\DataAnalysis\Tenjin\Plugins\Android\Tenjin\AndroidManifest.xml" />
     <None Include="Assets\Qarth\Plugins\Demigiant\DOTweenPro\readme.txt" />
@@ -1501,14 +1607,18 @@
     <None Include="Assets\StreamingAssets\config\social_adapter.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityLobby.txt" />
     <None Include="Assets\StreamingAssets\config\FoodConfig.txt" />
-    <None Include="Assets\Resources\Spines\Character\Character3\pupil_3.atlas.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\Characters\Enemy\ShaoLin\ShaoLin1\sl_1.atlas.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\Characters\Enemy\ShaoLin\ShaoLin2\sl_2.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\CharacterStageConfig.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\Characters\Enemy\ShaoLin\ShaoLin3\sl_3.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\CharacterConfig.txt" />
     <None Include="Assets\StreamingAssets\config\FacilityKitchen.txt" />
     <None Include="Assets\SDKAdapter\Firebase\m2repository\com\google\firebase\firebase-crashlytics-unity\maven-metadata.xml" />
+    <None Include="Assets\StreamingAssets\config\KongfuStageConfig.txt" />
     <None Include="Assets\StreamingAssets\config\ItemConfig.txt" />
     <None Include="Assets\SDKAdapter\ThirdLibs\Plugins\iOS\LICENSE_MOAT.txt" />
     <None Include="Assets\StreamingAssets\config\app_config.txt" />
+    <None Include="Assets\AddressableAssets\FolderMode\TaskCollectableItem\Animal\Deer\deer.atlas.txt" />
     <None Include="Assets\StreamingAssets\config\KongfuConfig.txt" />
     <None Include="Assets\Res\FolderMode\Shader\Custom\UIBlinkImage.shader" />
     <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouch\RealseNotes.txt" />
@@ -2161,6 +2271,12 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -2173,11 +2289,17 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.ResourceManager.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.Addressables.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
@@ -2187,6 +2309,12 @@
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/BitBucket/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>

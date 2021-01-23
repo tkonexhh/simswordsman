@@ -59,13 +59,13 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
                 }
                 //添加铠甲
-                for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
-                {
-                    for (int j = 1; j <= 9; j++)
-                    {
-                        MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)i, (Step)j), 2000);
-                    }
-                }
+                //for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
+                //{
+                //    for (int j = 1; j <= 9; j++)
+                //    {
+                //        MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)i, (Step)j), 2000);
+                //    }
+                //}
                 //添加武器
                 //for (int i = (int)ArmsType.ShaZhuDao; i < (int)ArmsType.YanYueDao; i++)
                 //{
@@ -75,9 +75,9 @@ namespace GameWish.Game
                 //    }
                 //}
 
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,10);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 500);
 
-                //MainGameMgr.S.CharacterMgr.AddKungfu(0,new KungfuItem (KongfuType.LingBoWeiBu));
+                //MainGameMgr.S.CharacterMgr.LearnKungfu(0, new KungfuItem(KongfuType.DuGuJiuJian));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,200);
                 //GameDataMgr.S.GetClanData().SetClanName("修仙山庄");
                 //m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();

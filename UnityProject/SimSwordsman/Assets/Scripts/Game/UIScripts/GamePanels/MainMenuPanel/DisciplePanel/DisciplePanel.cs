@@ -196,15 +196,18 @@ namespace GameWish.Game
                     break;
                 case (int)EventID.OnDiscipleReduce:
                     int id = (int)param[0];
+                    GameObject obj = null;
+                    CharacterItem cha = null;
                     foreach (var item in m_DiscipleDic.Keys)
                     {
-                        if (item.id==id)
+                        if (item.id == id)
                         {
-                            GameObject obj = m_DiscipleDic[item];
-                            m_DiscipleDic.Remove(item);
-                            DestroyImmediate(obj);
+                            obj = m_DiscipleDic[item];
+                            cha = item;
                         }
                     }
+                    m_DiscipleDic.Remove(cha);
+                    DestroyImmediate(obj);
                     break;
             }
         }

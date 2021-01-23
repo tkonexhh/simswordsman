@@ -56,6 +56,11 @@ namespace GameWish.Game
         /// 装备品质
         /// </summary>
         public EquipQuailty Quality { set; get; }
+        /// <summary>
+        /// 图标名称
+        /// </summary>
+        public string IconName { set; get; }
+
         private Dictionary<int, float> m_BonusDic = new Dictionary<int, float>();
         private Dictionary<int, int> m_SellingPrice = new Dictionary<int, int>();
         private Dictionary<int, UpgradeCondition> m_UpgradeConditionDic = new Dictionary<int, UpgradeCondition>();
@@ -66,14 +71,12 @@ namespace GameWish.Game
             Name = tdData.name;
             Desc = tdData.desc;
             Quality = (EquipQuailty)Enum.Parse(typeof(EquipQuailty), tdData.quality);
-
+            IconName = tdData.iconName;
             AnalysisBonus(tdData.atkRate);
             AnalysisSellingPrice(tdData.sellingPrice);
             AnalysisUpgradeCondition(tdData.upgradeCondition);
             AnalysisBuildCondition(tdData.buildCondition);
         }
-
-
 
         #region Private 
         /// <summary>

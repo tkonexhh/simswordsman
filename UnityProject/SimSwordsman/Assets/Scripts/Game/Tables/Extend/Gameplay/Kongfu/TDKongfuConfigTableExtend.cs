@@ -44,6 +44,18 @@ namespace GameWish.Game
             return null;
         }
         /// <summary>
+        /// 获取功夫图标的名称
+        /// </summary>
+        /// <param name="kungfuType"></param>
+        /// <returns></returns>
+        public static string GetIconName(KongfuType kungfuType)
+        {
+            if (m_KungfuConfigDic.ContainsKey(kungfuType))
+                return m_KungfuConfigDic[kungfuType].IconName;
+            Qarth.Log.e("Kongfu config info not found: " + kungfuType);
+            return CharacterKongfuData.DefaultKungfu;
+        }
+        /// <summary>
         /// 获取功夫升级经验
         /// </summary>
         /// <param name="characterKongfu"></param>
@@ -71,6 +83,7 @@ namespace GameWish.Game
         /// </summary>
         public KongfuType KungfuType { set; get; }
         public string Name { set; get; }
+        public string IconName { set; get; }
         public int Price { set; get; }
         public KungfuQuality KungfuQuality { set; get; }
         public string Desc { set; get; }
@@ -82,6 +95,7 @@ namespace GameWish.Game
         {
             KungfuType = (KongfuType)tdData.id;
             Name = tdData.kongfuName;
+            IconName = tdData.iconName;
             Desc = tdData.desc;
             KungfuQuality = EnumUtil.ConvertStringToEnum<KungfuQuality>(tdData.quality);
             AnimName = tdData.animationName;

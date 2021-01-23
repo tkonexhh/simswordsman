@@ -18,7 +18,7 @@ namespace GameWish.Game
         private GameObject m_WearableLearningItem;
 
         private PropType m_CurPropType;
-        //private List<EquipmentItem> m_CurAllEquip = null;
+        private List<ItemBase> m_ItemBase = null;
         private CharacterItem m_CurDisciple = null;
         protected override void OnUIInit()
         {
@@ -30,45 +30,43 @@ namespace GameWish.Game
             //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 1, 2));
             //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 2, 5));
 
-
             BindAddListenerEvent();
+        }
+
+        private void GeInformationForNeed()
+        {
+            m_ItemBase = MainGameMgr.S.InventoryMgr.GetAllEquipmentForType(m_CurPropType);
         }
 
         protected override void OnPanelOpen(params object[] args)
         {
-            //base.OnPanelOpen(args);
-            //OpenDependPanel(EngineUI.MaskPanel, -1, null);
+            base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
-            //m_CurPropType = (PropType)args[0];
-            //m_CurDisciple = args[1] as CharacterItem;
-            //EquipmentItem chracEquip = m_CurDisciple.characterEquipment.Where(i => i.PropType == m_CurPropType).FirstOrDefault();
-            //if (chracEquip!=null)
-            //    MainGameMgr.S.InventoryMgr.AddEquipment(chracEquip);
-            //m_CurAllEquip = MainGameMgr.S.InventoryMgr.GetAllEquipmentForType(m_CurPropType);
+            m_CurPropType = (PropType)args[0];
+            m_CurDisciple = (CharacterItem)args[1];
+            GeInformationForNeed();
 
-            //foreach (var item in m_CurAllEquip)
-            //{
-            //    CreateWearableLearningItem(item);
-            //}
+            foreach (var item in m_ItemBase)
+                CreateWearableLearningItem(item);
         }
 
         private void BindAddListenerEvent()
         {
-            //m_ClsoeBtn.onClick.AddListener(() =>
-            //{
-            //    EquipmentItem chracEquip = m_CurDisciple.characterEquipment.Where(i => i.PropType == m_CurPropType).FirstOrDefault();
-            //    if (chracEquip!=null)
-            //        MainGameMgr.S.InventoryMgr.RemoveItem(chracEquip);
-            //    HideSelfWithAnim();
-            //});
+            m_ClsoeBtn.onClick.AddListener(() =>
+            {
+                //EquipmentItem chracEquip = m_CurDisciple.characterEquipment.Where(i => i.PropType == m_CurPropType).FirstOrDefault();
+                //if (chracEquip != null)
+                //    MainGameMgr.S.InventoryMgr.RemoveItem(chracEquip);
+                HideSelfWithAnim();
+            });
         }
 
-        //private void CreateWearableLearningItem(EquipmentItem equipment)
-        //{
-        //    ItemICom itemICom = Instantiate(m_WearableLearningItem, m_WearableLearningTra).GetComponent<ItemICom>();
-        //    itemICom.OnInit(equipment);
-        //    itemICom.SetButtonEvent(EquipBtnCallback);
-        //}
+        private void CreateWearableLearningItem(ItemBase itemBase)
+        {
+            ItemICom itemICom = Instantiate(m_WearableLearningItem, m_WearableLearningTra).GetComponent<ItemICom>();
+            itemICom.OnInit(itemBase,null, m_CurDisciple);
+        }
 
         private void EquipBtnCallback(object obj)
         {

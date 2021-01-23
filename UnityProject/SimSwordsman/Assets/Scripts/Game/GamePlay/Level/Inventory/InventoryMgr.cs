@@ -65,6 +65,11 @@ namespace GameWish.Game
             }
         }
 
+        public List<ItemBase> GetAllEquipmentForType(PropType equipType)
+        {
+            return m_InventoryDataWrapper.GetAllEquipmentForType(equipType);
+        }
+
         public bool CheckItemInInventory(RawMaterial rawMaterial, int number)
         {
            return m_InventoryDataWrapper.CheckItemInInventory(rawMaterial, number);
@@ -151,6 +156,8 @@ namespace GameWish.Game
         /// <param name="delta"></param>
         public void AddItem(ItemBase itemBase, int delta = 1)
         {
+            if (itemBase == null)
+                return;
             switch (itemBase.PropType)
             {
                 case PropType.None:

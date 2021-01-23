@@ -16,9 +16,12 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Targetbtn;
         [SerializeField]
+        private Button m_Maskbtn;
+        [SerializeField]
         private RectTransform m_Hand;
         [SerializeField]
         private Text m_GuideTipsText;
+
 
         private Action clickAction;
         bool canClick = false;
@@ -58,22 +61,16 @@ namespace GameWish.Game
                 if (isNotForce)//弱点击
                 {
                     Timer.S.Post2Really(x => { canClick = true; }, 1);
-                    if (button == null)
-                        button = m_CircleShaderControl.gameObject.AddComponent<Button>();
-                    else
+                    m_Maskbtn.onClick.RemoveAllListeners();
+                    m_Maskbtn.onClick.AddListener(() =>
                     {
-                        button.onClick.RemoveAllListeners();
-                        button.onClick.AddListener(() =>
-                        {
-                            if (canClick)
-                                action?.Invoke();
-                        });
-                    }
+                        if (canClick)
+                            action?.Invoke();
+                    });
                 }
                 else
                 {
-                    if (button != null)
-                        Destroy(button);
+                    m_Maskbtn.onClick.RemoveAllListeners();
                 }
             }
             EventSystem.S.Send(EventID.InGuideProgress, false);
