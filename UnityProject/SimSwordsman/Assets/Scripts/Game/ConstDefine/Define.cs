@@ -223,6 +223,33 @@ namespace GameWish.Game
 
         //Sound
         public const string SOUND_UI_BTN = "Button";
-
+        public const string SOUND_BATTLE_WIN = "Battle_win";
+        public const string SOUND_BEAR = "Bear";
+        public const string SOUND_CHARACTER_LEVEL_UP = "Character_Levelup";
+        public const string SOUND_CHICKEN = "Chicken";
+        public const string SOUND_COLLECT = "Collect";
+        public const string SOUND_CURE = "Cure";
+        public const string SOUND_DEATH_1 = "Death_1";
+        public const string SOUND_DEATH_2 = "Death_2";
+        public const string SOUND_DEATH_GIRL = "Death_W";
+        public const string SOUND_DEER = "Deer";
+        public const string SOUND_FORGE = "Forge";
+        public const string SOUND_GET_UP = "Getup";
+        public const string SOUND_HIT_1 = "Hit1";
+        public const string SOUND_HIT_2 = "Hit2";
+        public const string SOUND_HIT_3 = "Hit3";
+        public const string SOUND_HIT_4 = "Hit4";
+        public const string SOUND_HUNT = "Hunt";
+        public const string SOUND_INTERFACE = "Interface";
+        public const string SOUND_LUMBER = "Lumber";
+        public const string SOUND_MINE = "Mine";
+        public const string SOUND_PIG = "Pig";
+        public const string SOUND_POUND = "Pound";
+        public const string SOUND_RECRUIT = "Recruit";
+        public const string SOUND_REVIVE = "Revive";
+        public const string SOUND_SNAKE = "Snake";
+        public const string SOUND_SWEEP = "Sweep";
+        public const string SOUND_WELL = "Well";
+        public const string SOUND_WOLF = "Wolf";
     }
 }
