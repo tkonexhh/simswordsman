@@ -13,6 +13,7 @@ namespace GameWish.Game
         Armor                            = 2,        //îø¼×
         RawMaterial                      = 3,        //Ô­²ÄÁÏ
         Kungfu                           = 4,        //¹¦·ò
+        Herb                             = 5,        //²ÝÒ©
     }
 
     public enum KongfuType

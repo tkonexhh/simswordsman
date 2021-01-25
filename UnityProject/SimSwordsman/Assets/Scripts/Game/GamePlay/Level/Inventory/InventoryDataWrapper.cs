@@ -502,6 +502,59 @@ namespace GameWish.Game
         }
     }
 
+    public class HerbItem : ItemBase
+    {
+        public HerbType HerbID { set; get; }
+
+        public HerbItem()
+        {
+
+        }
+
+        public HerbItem(HerbType herbType)
+        {
+            HerbID = herbType;
+            PropType = PropType.Herb;
+            Number = 0;
+            RefreshItemInfo();
+        }
+
+        public override bool IsHaveItem(ItemBase _itemBase)
+        {
+            ArmsItem armsItem = _itemBase as ArmsItem;
+            if (armsItem != null && HerbID == armsItem.ArmsID && ClassID == armsItem.ClassID)
+                return true;
+            return false;
+        }
+
+        public override void Wrap<T>(T t)
+        {
+            ArmsDBData dBData = t as ArmsDBData;
+            PropType = dBData.PropType;
+            Number = dBData.Number;
+            HerbID = dBData.ArmsID;
+            ClassID = dBData.ClassID;
+            RefreshItemInfo();
+        }
+
+        public override void RefreshItemInfo()
+        {
+            HerbConfig herbConfig = TDHerbConfigTable.GetHerbForId((int)HerbID);
+            Name = herbConfig.Name;
+            Desc = herbConfig.Desc;
+            Price = TDEquipmentConfigTable.GetSellingPrice(HerbID, ClassID);
+        }
+
+        public override int GetSortId()
+        {
+            return (int)PropType * 100 + (int)HerbID;
+        }
+        public override int GetSubName()
+        {
+            return (int)HerbID;
+        }
+    }
+
     public abstract class ItemBase
     {
         public PropType PropType { set; get; }
