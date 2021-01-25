@@ -37,6 +37,8 @@ namespace GameWish.Game
 
         private int m_FightGroupId = 1;
 
+        private List<HerbType> m_SelectedHerbList = new List<HerbType>();
+
         public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop;}
         public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom;}
         public List<CharacterController> OurCharacterList { get => m_OurCharacterList; }
@@ -173,6 +175,11 @@ namespace GameWish.Game
                 case (int)EventID.OnEnterBattle:
                     List<EnemyConfig> enemies = (List<EnemyConfig>)param[0];
                     List<CharacterController> ourSelectedCharacters = (List<CharacterController>)param[1];
+                    if (param.Length == 3)
+                    {
+                        m_SelectedHerbList = (List<HerbType>)param[2];
+                    }
+
                     OnEnterBattle(enemies, ourSelectedCharacters);
                     break;
                 case (int)EventID.OnExitBattle:

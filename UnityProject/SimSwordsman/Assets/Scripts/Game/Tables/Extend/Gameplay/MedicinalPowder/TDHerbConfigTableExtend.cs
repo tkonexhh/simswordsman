@@ -35,7 +35,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static HerbConfig GetHerbForId(int id)
+        public static HerbConfig GetHerbById(int id)
         {
             if (HerbDic.ContainsKey(id))
                 return HerbDic[id];

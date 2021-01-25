@@ -556,7 +556,7 @@ namespace GameWish.Game
 
         public override void RefreshItemInfo()
         {
-            HerbConfig herbConfig = TDHerbConfigTable.GetHerbForId((int)HerbID);
+            HerbConfig herbConfig = TDHerbConfigTable.GetHerbById((int)HerbID);
             Name = herbConfig.Name;
             Desc = herbConfig.Desc;
             Price = herbConfig.Price;
