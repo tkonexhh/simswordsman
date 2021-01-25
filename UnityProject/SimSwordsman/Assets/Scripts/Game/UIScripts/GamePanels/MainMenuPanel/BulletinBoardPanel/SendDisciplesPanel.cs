@@ -48,7 +48,7 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
 
         private Dictionary<int, DiscipleItem> m_SelectedDic = new Dictionary<int, DiscipleItem>();
-        private Dictionary<int, PlayerDataHerb> m_PlayerDataHerbDic = new Dictionary<int, PlayerDataHerb>();
+        private List<HerbItem> m_PlayerDataHerbDic = new List<HerbItem>();
 
         private List<CharacterController> m_SelectedList = new List<CharacterController>();
         private List<HerbType> m_PlayerDataHerb = new List<HerbType>();
@@ -85,7 +85,8 @@ namespace GameWish.Game
         private void GetInformationForNeed()
         {
             m_AllCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
-            m_PlayerDataHerbDic = MainGameMgr.S.MedicinalPowderMgr.GetAllHerbs();
+            //m_PlayerDataHerbDic = MainGameMgr.S.MedicinalPowderMgr.GetAllHerbs();
+            m_PlayerDataHerbDic = MainGameMgr.S.InventoryMgr.GetAllHerbs();
         }
 
         private void InitPanelInfo()
@@ -94,7 +95,7 @@ namespace GameWish.Game
                 foreach (var item in m_AllCharacterList)
                     CreateDisciple(m_UnselectedTrans, item, AddAllListenerBtn);
 
-            foreach (var item in m_PlayerDataHerbDic.Values)
+            foreach (var item in m_PlayerDataHerbDic)
             {
                 CreateHerb(item, AddHerbListenerBtn);
             }
@@ -177,7 +178,7 @@ namespace GameWish.Game
             CloseSelfPanel();
         }
 
-        private void CreateHerb(PlayerDataHerb dataHerb, Action<object> action)
+        private void CreateHerb(HerbItem dataHerb, Action<object> action)
         {
 
             if (m_HerbalMedicineItem == null)

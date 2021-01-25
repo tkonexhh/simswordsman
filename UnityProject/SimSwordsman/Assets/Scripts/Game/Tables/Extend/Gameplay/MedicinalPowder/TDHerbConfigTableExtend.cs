@@ -50,7 +50,7 @@ namespace GameWish.Game
         public int ID { set; get; }
         public string Name { set; get; }
         public string Desc { set; get; }
-        public float Price { set; get; }
+        public int Price { set; get; }
 
         public HerbConfig(TDHerbConfig tDHerb)
         {

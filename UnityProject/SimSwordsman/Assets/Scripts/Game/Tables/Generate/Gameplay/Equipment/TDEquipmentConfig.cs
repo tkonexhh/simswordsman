@@ -21,6 +21,7 @@ namespace GameWish.Game
         private string m_AtkRate;   
         private string m_BuildCondition;   
         private string m_SellingPrice;   
+        private EInt m_ForgeTime = 0;   
         private string m_IconName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -71,6 +72,11 @@ namespace GameWish.Game
         public  string  sellingPrice {get { return m_SellingPrice; } }
        
         /// <summary>
+        /// 锻造时长，秒
+        /// </summary>
+        public  int  forgeTime {get { return m_ForgeTime; } }
+       
+        /// <summary>
         /// 图标名称
         /// </summary>
         public  string  iconName {get { return m_IconName; } }
@@ -118,6 +124,9 @@ namespace GameWish.Game
                     m_SellingPrice = dataR.ReadString();
                     break;
                 case 9:
+                    m_ForgeTime = dataR.ReadInt();
+                    break;
+                case 10:
                     m_IconName = dataR.ReadString();
                     break;
                 default:
@@ -130,7 +139,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -141,7 +150,8 @@ namespace GameWish.Game
           ret.Add("AtkRate", 6);
           ret.Add("BuildCondition", 7);
           ret.Add("SellingPrice", 8);
-          ret.Add("IconName", 9);
+          ret.Add("ForgeTime", 9);
+          ret.Add("IconName", 10);
           return ret;
         }
     } 

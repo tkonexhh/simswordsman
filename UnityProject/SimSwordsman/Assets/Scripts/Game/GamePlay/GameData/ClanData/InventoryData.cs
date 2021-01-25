@@ -252,14 +252,13 @@ namespace GameWish.Game
     public class HerbItemDbData : ItemDBData
     {
         public HerbItemDbData() { }
-        public HerbType KungfuType { set; get; }
+        public HerbType HerbType { set; get; }
 
 
-        public HerbItemDbData(KungfuItem _kungfuItem)
+        public HerbItemDbData(HerbItem herbItem)
         {
-            PropType = _kungfuItem.PropType;
-            KungfuType = _kungfuItem.KungfuType;
-            Number = _kungfuItem.Number;
+            PropType = herbItem.PropType;
+            Number = herbItem.Number;
         }
 
         public void AddCount(int delta)
@@ -276,10 +275,10 @@ namespace GameWish.Game
             Number = Mathf.Clamp(Number, 0, Define.MAX_PROP_COUNT);
         }
 
-        public override bool IsHaveItem(ItemBase _itemBase)
+        public override bool IsHaveItem(ItemBase item)
         {
-            KungfuItem kungfuItem = _itemBase as KungfuItem;
-            if (kungfuItem != null && PropType == kungfuItem.PropType && KungfuType == kungfuItem.KungfuType)
+            HerbItem herbItem = item as HerbItem;
+            if (herbItem != null && PropType == herbItem.PropType && HerbType == herbItem.HerbID)
                 return true;
             return false;
         }

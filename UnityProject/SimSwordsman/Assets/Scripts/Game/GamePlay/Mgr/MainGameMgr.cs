@@ -18,7 +18,7 @@ namespace GameWish.Game
         private RecruitDiscipleMgr m_RecruitDisciplerMgr = null;
         private MainCamera m_MainCamera = null;
         private BattleFieldMgr m_BattleFieldMgr = null;
-        private MedicinalPowderMgr m_MedicinalPowderMgr = null;
+        //private MedicinalPowderMgr m_MedicinalPowderMgr = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
@@ -30,7 +30,7 @@ namespace GameWish.Game
         public RecruitDiscipleMgr RecruitDisciplerMgr { get => m_RecruitDisciplerMgr; }
         public MainCamera MainCamera { get => m_MainCamera; }
         public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr;}
-        public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
+        //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
 
         private bool m_IsInited = false;
 
@@ -66,8 +66,8 @@ namespace GameWish.Game
             m_BattleFieldMgr = gameObject.AddComponent<BattleFieldMgr>();
             m_BattleFieldMgr.OnInit();
 
-            m_MedicinalPowderMgr = gameObject.AddComponent<MedicinalPowderMgr>();
-            m_MedicinalPowderMgr.OnInit();
+            //m_MedicinalPowderMgr = gameObject.AddComponent<MedicinalPowderMgr>();
+            //m_MedicinalPowderMgr.OnInit();
 
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();

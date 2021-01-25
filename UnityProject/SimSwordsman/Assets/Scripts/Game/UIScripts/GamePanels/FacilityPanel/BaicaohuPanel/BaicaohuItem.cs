@@ -146,7 +146,8 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
 
                 CountdownSystem.S.Cancel(m_StringID, ID);
-                MainGameMgr.S.MedicinalPowderMgr.AddHerb(ID, 1);
+                //MainGameMgr.S.MedicinalPowderMgr.AddHerb(ID, 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)ID, 1));
                 SetState(2);
             });
         }

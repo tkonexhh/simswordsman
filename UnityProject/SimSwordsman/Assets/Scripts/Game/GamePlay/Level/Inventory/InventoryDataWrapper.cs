@@ -511,29 +511,28 @@ namespace GameWish.Game
 
         }
 
-        public HerbItem(HerbType herbType)
+        public HerbItem(HerbType herbType, int count)
         {
             HerbID = herbType;
             PropType = PropType.Herb;
-            Number = 0;
+            Number = count;
             RefreshItemInfo();
         }
 
-        public override bool IsHaveItem(ItemBase _itemBase)
+        public override bool IsHaveItem(ItemBase item)
         {
-            ArmsItem armsItem = _itemBase as ArmsItem;
-            if (armsItem != null && HerbID == armsItem.ArmsID && ClassID == armsItem.ClassID)
+            HerbItem herbItem = item as HerbItem;
+            if (herbItem != null && HerbID == herbItem.HerbID)
                 return true;
             return false;
         }
 
         public override void Wrap<T>(T t)
         {
-            ArmsDBData dBData = t as ArmsDBData;
+            HerbItemDbData dBData = t as HerbItemDbData;
             PropType = dBData.PropType;
             Number = dBData.Number;
-            HerbID = dBData.ArmsID;
-            ClassID = dBData.ClassID;
+            HerbID = dBData.HerbType;
             RefreshItemInfo();
         }
 
@@ -542,7 +541,7 @@ namespace GameWish.Game
             HerbConfig herbConfig = TDHerbConfigTable.GetHerbForId((int)HerbID);
             Name = herbConfig.Name;
             Desc = herbConfig.Desc;
-            Price = TDEquipmentConfigTable.GetSellingPrice(HerbID, ClassID);
+            Price = herbConfig.Price;
         }
 
         public override int GetSortId()
