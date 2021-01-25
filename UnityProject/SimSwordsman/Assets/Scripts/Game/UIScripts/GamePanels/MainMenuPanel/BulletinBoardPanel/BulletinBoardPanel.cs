@@ -9,17 +9,19 @@ namespace GameWish.Game
 {
     public class BulletinBoardPanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Text m_BulletinCont;
-
+        [Header("Top")]
         [SerializeField]
         private Button m_CloaseBtn;
 
+        [Header("Middle")]
+        [SerializeField]
+        private Text m_BulletinCont;
+
+        [Header("Bottom")]
         [SerializeField]
         private Transform m_TaskContParent;
-
         [SerializeField]
-        private GameObject m_TaskItem;
+        private GameObject m_BulletinBoardtem;
 
         private List<SimGameTask> m_CommonTaskList = null;
 
@@ -114,14 +116,21 @@ namespace GameWish.Game
 
         public void CreateTask(SimGameTask simGameTask)
         {
-            if (m_TaskItem != null)
-            {
-                GameObject obj = Instantiate(m_TaskItem, m_TaskContParent);
-                ItemICom taskItem = obj.GetComponent<ItemICom>();
-                taskItem.OnInit(simGameTask);
-                taskItem.SetButtonEvent(TaskCallback);
-                m_TaskObjDic.Add(simGameTask.TaskId, obj);
-            }
+            List<Sprite> needSprite = new List<Sprite>();
+            List<TaskReward>  taskRewards = simGameTask.CommonTaskItemInfo.GetItemRewards();
+
+            for (int i = 0; i < taskRewards.Count; i++)
+                needSprite.Add(FindSprite(GetStrForItemID(taskRewards[0].id)));
+
+            GameObject obj = Instantiate(m_BulletinBoardtem, m_TaskContParent);
+            ItemICom taskItem = obj.GetComponent<ItemICom>();
+            taskItem.OnInit(simGameTask,null, needSprite);
+            m_TaskObjDic.Add(simGameTask.TaskId, obj);      
+        }
+
+        public string GetStrForItemID(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
     }
 }

@@ -99,6 +99,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// 
         public string GetIconName(int id)
         {
             return TDItemConfigTable.GetIconName(id);
