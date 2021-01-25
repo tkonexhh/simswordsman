@@ -14,7 +14,9 @@ namespace GameWish.Game
 
         private List<CharacterController> m_CharacterControllerList = new List<CharacterController>();
 
+
         private Vector3 m_CharacterSpawnPos = new Vector3(-5f, -4.7f, 0);
+
 
         public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
 
