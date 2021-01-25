@@ -27,7 +27,6 @@ namespace GameWish.Game
         protected override void OnUIInit()
 	    {
 	        base.OnUIInit();
-           
 			BindAddListenerEvent();
         }
 
@@ -53,6 +52,11 @@ namespace GameWish.Game
         
         private void BindAddListenerEvent()
         {
+            //音效
+            foreach (var item in transform.GetComponentsInChildren<Button>(true))
+            {
+                item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
+            }
             m_AcceptBtn.onClick.AddListener(()=> 
             {
                 Debug.LogError("应当看一个广告");

@@ -101,6 +101,11 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
+            //“Ù–ß
+            foreach (var item in transform.GetComponentsInChildren<Button>(true))
+            {
+                item.onClick.AddListener(()=> AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
+            }
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_UpgradeBtn.onClick.AddListener(() =>
             {
