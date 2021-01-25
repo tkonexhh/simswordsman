@@ -104,6 +104,17 @@ namespace GameWish.Game
             return TDItemConfigTable.GetIconName(id);
         }
 
+        public List<HerbItem> GetAllHerbs()
+        {
+            List<ItemBase> herbList = GetAllEquipmentForType(PropType.Herb);
+            List<HerbItem> list = new List<HerbItem>();
+            herbList.ForEach(i => {
+                list.Add((HerbItem) i);
+            });
+
+            return list;
+        }
+
         /// <summary>
         /// 获取所有仓库中装备信息
         /// </summary>

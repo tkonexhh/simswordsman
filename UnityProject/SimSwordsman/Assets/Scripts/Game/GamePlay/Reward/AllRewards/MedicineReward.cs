@@ -14,7 +14,8 @@ namespace GameWish.Game
 		public override void AcceptReward()
 		{
             //Log.e("»ñµÃ" + m_Info.Name + m_Count);
-            MainGameMgr.S.MedicinalPowderMgr.AddHerb(m_KeyID, Count);
+            //MainGameMgr.S.MedicinalPowderMgr.AddHerb(m_KeyID, Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)m_KeyID, Count));
         }
 
 		public override string RewardName()
