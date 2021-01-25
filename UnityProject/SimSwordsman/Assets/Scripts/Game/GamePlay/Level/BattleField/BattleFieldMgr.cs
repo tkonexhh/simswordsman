@@ -248,9 +248,15 @@ namespace GameWish.Game
                 Vector3 pos = m_BattleField.GetOurCharacterPos();
                 i.OnEnterBattleField(pos);
 
+                float baseAtk = i.CharacterModel.GetBaseAtkValue();
+                float atkEnhance = m_SelectedHerbList.Any(j => j == HerbType.ChiDanZhuangQiWan) ? TDHerbConfigTable.GetEffectParam((int)HerbType.ChiDanZhuangQiWan) : 0;
+                float hpEnhance = m_SelectedHerbList.Any(j => j == HerbType.LianHuaQingShenLu) ? TDHerbConfigTable.GetEffectParam((int)HerbType.LianHuaQingShenLu) : 0;
+                i.CharacterModel.SetHp(baseAtk * (1 + hpEnhance));
+                i.CharacterModel.SetAtk(baseAtk * (1 + atkEnhance));
+
                 m_TotalOurAtk += i.CharacterModel.GetAtk();
 
-                i.CharacterModel.SetHp(i.CharacterModel.GetAtk());
+                //i.CharacterModel.SetHp(i.CharacterModel.GetAtk());
 
                 m_TotalOurHp += i.CharacterModel.GetHp();
             });
@@ -261,8 +267,11 @@ namespace GameWish.Game
             SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
             {
                 m_EnemyCharacterList.Add(controller);
-                controller.CharacterModel.SetHp(atk);
-                controller.CharacterModel.SetAtk(atk);
+
+                float debuff = m_SelectedHerbList.Any(j => j == HerbType.JinZhenQingCheGao) ? TDHerbConfigTable.GetEffectParam((int)HerbType.JinZhenQingCheGao) : 0;
+
+                controller.CharacterModel.SetHp(atk * (1 - debuff));
+                controller.CharacterModel.SetAtk(atk * (1 - debuff));
 
                 m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
                 m_TotalEnemyHp += controller.CharacterModel.GetHp();

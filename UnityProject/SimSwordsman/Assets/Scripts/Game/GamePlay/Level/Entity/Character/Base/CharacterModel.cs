@@ -30,8 +30,8 @@ namespace GameWish.Game
 
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_Id);
 
-            SetAtk(GetAtk());
-            SetHp(GetAtk());
+            //SetAtk(GetAtk());
+            //SetHp(GetAtk());
         }
 
         public void Init()
@@ -80,6 +80,11 @@ namespace GameWish.Game
         }
 
         public float GetAtk()
+        {           
+            return m_Atk;
+        }
+
+        public float GetBaseAtkValue()
         {
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
@@ -100,9 +105,7 @@ namespace GameWish.Game
                 return value;
             }
             else
-            {
-                return m_Atk;
-            }
+                return 0;
         }
 
         public int GetCurTaskId()

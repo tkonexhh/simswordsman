@@ -19,7 +19,7 @@ namespace GameWish.Game
         private string m_MakeRes;   
         private EInt m_MakeTime = 0;   
         private string m_EffectDesc;   
-        private EInt m_EffectParam = 0;   
+        private EFloat m_EffectParam = 0.0f;   
         private EInt m_Price = 0;   
         private string m_Icon;  
         
@@ -63,7 +63,7 @@ namespace GameWish.Game
         /// <summary>
         /// 效果参数
         /// </summary>
-        public  int  effectParam {get { return m_EffectParam; } }
+        public  float  effectParam {get { return m_EffectParam; } }
        
         /// <summary>
         /// 售价
@@ -112,7 +112,7 @@ namespace GameWish.Game
                     m_EffectDesc = dataR.ReadString();
                     break;
                 case 7:
-                    m_EffectParam = dataR.ReadInt();
+                    m_EffectParam = dataR.ReadFloat();
                     break;
                 case 8:
                     m_Price = dataR.ReadInt();
