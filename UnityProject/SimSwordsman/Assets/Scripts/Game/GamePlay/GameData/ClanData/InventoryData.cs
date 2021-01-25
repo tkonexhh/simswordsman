@@ -13,7 +13,7 @@ namespace GameWish.Game
         public List<KungfuItemDbData> kungfuList = new List<KungfuItemDbData>();
         public List<ArmsDBData> armsDBDataList = new List<ArmsDBData>();
         public List<ArmorDBData> armorDBDataList = new List<ArmorDBData>();
-
+        public List<HerbItemDbData> herbDBDataList = new List<HerbItemDbData>();
 
         public InventoryDbData()
         {
@@ -59,6 +59,29 @@ namespace GameWish.Game
                 armsDBDataList.Remove(armsDBData);
         }
         #endregion
+
+        #region Herb
+        public void AddHerbItem(HerbItem herbItem, int delta)
+        {
+            HerbItemDbData herbItemDbData = herbDBDataList.FirstOrDefault(i => i.IsHaveItem(herbItem));
+
+            if (herbItemDbData != null)
+                herbItemDbData.AddNumber(delta);
+            else
+            {
+                HerbItemDbData newHerbItemDbData = new HerbItemDbData(herbItem);
+                herbDBDataList.Add(newHerbItemDbData);
+            }
+        }
+
+        public void RemoveHerbItem(HerbItem herbItem, int delta)
+        {
+            HerbItemDbData herbItemDbData = herbDBDataList.Where(i => i.IsHaveItem(herbItem)).FirstOrDefault();
+            if (herbItemDbData != null && herbItemDbData.RefreshNumber(delta))
+                herbDBDataList.Remove(herbItemDbData);
+        }
+        #endregion
+
         public PropItemDbData GetItem(RawMaterial propSubType)
         {
             return propList.FirstOrDefault(i => i.PropSubType == propSubType);

@@ -185,6 +185,9 @@ namespace GameWish.Game
                 case PropType.Kungfu:
                     m_InventoryDataWrapper.AddKungfu((KungfuItem)itemBase, delta);
                     break;
+                case PropType.Herb:
+                    m_InventoryDataWrapper.AddHerb((HerbItem)itemBase, delta);
+                    break;
                 default:
                     break;
             }
