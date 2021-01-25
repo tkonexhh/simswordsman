@@ -200,7 +200,12 @@ namespace GameWish.Game
         /// <returns></returns>
         public static string GetUpgradeCondition(int level)
         {
-           return GetStringForTableKey(Define.COMMON_UPGRADEINFODESC)+ GetGrade(level);
+            return GetStringForTableKey(Define.COMMON_UPGRADEINFODESC) + GetGrade(level);
+        }
+
+        public static string TextIndent()
+        {
+            return "<color=#FFFFFF00>----</color>";
         }
     }
 }

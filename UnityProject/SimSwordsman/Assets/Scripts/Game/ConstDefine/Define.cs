@@ -67,6 +67,9 @@ namespace GameWish.Game
         public const string COMMON_UNIT_ONLY = "Common_Unit_Only";
         public const string COMMON_UNIT_LAYER = "Common_Unit_Layer";
         public const string COMMON_NEXTLEVELUNLOCK = "Common_NextLevelUnlock";
+        public const string COMMON_REWARD = "Common_Reward";
+        public const string COMMON_DECLINED = "Common_Declined";
+        public const string COMMON_GOTO = "Common_GoTo";
 
         //公用数字
         public const string COMMON_NUMBER_ZERO = "Common_Number_Zero";
@@ -204,6 +207,7 @@ namespace GameWish.Game
         //BulletinBoard
         public const string BULLETINBOARD_VIEWDETAILS = "BulletinBoard_ViewDetails";
         public const string BULLETINBOARD_RECEIVEREWARDS = "BulletinBoard_ReceiveRewards";
+        public const string BULLETINBOARD_PUTAWAY = "BulletinBoard_PutAway";
 
         //Kungfo
         public const string KUNGFU_TITLE = "Kungfu_Title";
