@@ -13,8 +13,6 @@ namespace GameWish.Game
        
         public void Init()
         {
-            //m_RewardItems.Clear();
-            //GameDataMgr.S.GetPlayerData().SetDataDirty();
             CheckUnlockItem(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, UnlockCheck);
             EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
@@ -70,13 +68,16 @@ namespace GameWish.Game
             }
         }
 
-        void SetDic(int id, int value)
+        void SetDic(int id, int value, bool isGuide = false)
         {
             //向UI发送事件
             if (m_CurrentCollcetCountDic[id] != value)
             {
-                EventSystem.S.Send(EventID.OnCollectCountChange, id, value);
                 m_CurrentCollcetCountDic[id] = value;
+                if (isGuide)
+                    EventSystem.S.Send(EventID.OnCollectCountChange, id, value, isGuide);
+                else
+                    EventSystem.S.Send(EventID.OnCollectCountChange, id, value);
             }
         }
         
@@ -93,8 +94,16 @@ namespace GameWish.Game
                     if (!m_CurrentCollcetCountDic.ContainsKey(temp.id) && temp.lobbyLevelRequired <= MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby))
                     {
                         m_CurrentCollcetCountDic.Add(temp.id, 0);
-                        //解锁 开始收集计时
-                        CountdownSystem.S.StartCountdownerWithMin("CollectItem", temp.id, temp.maxStore * temp.productTime);
+                        //处理新手引导
+                        if (m_CurrentCollcetCountDic.Count == 0)
+                        {
+                            SetDic(temp.id, 1, true);
+                            CountdownSystem.S.StartCountdownerWithMin("CollectItem", temp.id, (temp.maxStore - 1) * temp.productTime);
+                            UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
+                            EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
+                        }
+                        else
+                            CountdownSystem.S.StartCountdownerWithMin("CollectItem", temp.id, temp.maxStore * temp.productTime);
                     }
                 }
             }
@@ -113,7 +122,6 @@ namespace GameWish.Game
             }
         }
        
-
         public void Collect(int id)
         {
             var tb = TDCollectConfigTable.dataList[id];
@@ -148,7 +156,6 @@ namespace GameWish.Game
             }
             //重新计时
             CountdownSystem.S.StartCountdownerWithMin("CollectItem", id, tb.maxStore * tb.productTime);
-           
         }
 
     }

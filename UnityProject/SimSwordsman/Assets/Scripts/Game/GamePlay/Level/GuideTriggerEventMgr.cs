@@ -11,7 +11,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnGuideFirstGetCharacter, StartGuide_Task1);
             EventSystem.S.Register(EventID.OnGuideSecondGetCharacter, StartGuide_Task2);
             EventSystem.S.Register(EventID.OnStartUnlockFacility, UnlockFacility);
-            EventSystem.S.Register(EventID.OnStartUpgradeFacility, LobbyLvUp);
             EventSystem.S.Register(EventID.OnAddItem, WareHouseGuide);
             EventSystem.S.Register(EventID.OnCommonTaskFinish, OnTaskFinish);
             EventSystem.S.Register(EventID.OnCommonTaskStart, OnTaskStart);
@@ -58,16 +57,6 @@ namespace GameWish.Game
 
                     EventSystem.S.Send(EventID.OnGuideReceiveTaskRewardClickBtnTrigger2);
                 }, 0.5f);
-            }
-        }
-
-        private void LobbyLvUp(int key, object[] param)
-        {
-            FacilityType type = (FacilityType)param[0];
-            if (type == FacilityType.Lobby && MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() == 3)
-            {
-                UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
-                EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
             }
         }
 
