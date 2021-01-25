@@ -9,7 +9,6 @@ namespace GameWish.Game
 	public class SignInPanel : AbstractAnimPanel
 	{
         private Dictionary<int, SignInItem> m_SignItemDic = new Dictionary<int, SignInItem>();
-        //private Sprite[] m_NumberSprite = null;
         private Action m_GetRewardPanelCallBack;
 
         [SerializeField] private Color m_BlurMaskColor;
@@ -22,17 +21,7 @@ namespace GameWish.Game
         //[SerializeField] private Image m_DayHint;
 
         [SerializeField] private Button m_AcceptBtn;//·µ»Ø°´Å¥
-
-        //protected override void OnUIInit()
-        //{
-        //    base.OnUIInit();
-        //}
-
-        //protected override void OnOpen()
-        //{
-        //    base.OnOpen();
-        //}
-
+        
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen();

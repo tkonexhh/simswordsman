@@ -67,7 +67,7 @@ namespace GameWish.Game
             var data = GameDataMgr.S.GetClanData();
             foreach (FacilityType item in Enum.GetValues(typeof(FacilityType)))
             {
-                if (item != FacilityType.None && item != FacilityType.TotalCount)
+                if (item != FacilityType.None && item != FacilityType.TotalCount && item != FacilityType.BulletinBoard && item != FacilityType.PatrolRoom)//巡逻房和公告板除外
                 {
                     if (!m_UnlockFacilitys.Contains(item) && data.GetFacilityData(item).facilityState == FacilityState.Unlocked)
                         m_UnlockFacilitys.Add(item);
@@ -137,7 +137,7 @@ namespace GameWish.Game
         private void UnlockCheck(int key, object[] param)
         {
             FacilityType type = (FacilityType)param[0];
-            if (!m_UnlockFacilitys.Contains(type))
+            if (type != FacilityType.PatrolRoom && type != FacilityType.BulletinBoard && !m_UnlockFacilitys.Contains(type))
             {
                 m_UnlockFacilitys.Add(type);
                 if (CurrentWorkFacility() < m_MaxCanWorkFacilityLimit)
@@ -323,7 +323,5 @@ namespace GameWish.Game
             CountdownSystem.S.StartCountdownerWithSec(string.Format("FacilityWorking,{0}", type.ToString()), character.id, lobbyTable.workTime);
             return true;
         }
-
-
     }
 }
