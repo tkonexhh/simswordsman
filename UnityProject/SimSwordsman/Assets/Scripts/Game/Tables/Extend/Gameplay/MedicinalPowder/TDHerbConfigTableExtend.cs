@@ -51,6 +51,7 @@ namespace GameWish.Game
         public string Name { set; get; }
         public string Desc { set; get; }
         public int Price { set; get; }
+        public string Icon { set; get; }
 
         public HerbConfig(TDHerbConfig tDHerb)
         {
@@ -58,14 +59,16 @@ namespace GameWish.Game
             Name = tDHerb.name;
             Desc = tDHerb.desc;
             Price = tDHerb.price;
+            Icon = tDHerb.icon;
         }
 
-        public HerbConfig(HerbConfig herb)
-        {
-            ID = herb.ID;
-            Name = herb.Name;
-            Desc = herb.Desc;
-            Price = herb.Price;
-        }
+        //public HerbConfig(HerbConfig herb)
+        //{
+        //    ID = herb.ID;
+        //    Name = herb.Name;
+        //    Desc = herb.Desc;
+        //    Price = herb.Price;
+        //    Icon = herb.Icon;
+        //}
     }
 }
