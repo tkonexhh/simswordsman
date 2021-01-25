@@ -59,6 +59,16 @@ namespace GameWish.Game
             }
         }
 
+        public int GetCharacterAmount()
+        {
+            return characterAmount;
+        }
+
+        public List<TaskReward> GetItemRewards()
+        {
+            return itemRewards;
+        }
+
         public int GetRewardId(int index)
         {
             if (index < 0 || index > itemRewards.Count - 1)

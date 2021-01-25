@@ -99,6 +99,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// 
         public string GetIconName(int id)
         {
             return TDItemConfigTable.GetIconName(id);
@@ -184,6 +185,9 @@ namespace GameWish.Game
                     break;
                 case PropType.Kungfu:
                     m_InventoryDataWrapper.AddKungfu((KungfuItem)itemBase, delta);
+                    break;
+                case PropType.Herb:
+                    m_InventoryDataWrapper.AddHerb((HerbItem)itemBase, delta);
                     break;
                 default:
                     break;
