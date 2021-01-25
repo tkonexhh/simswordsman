@@ -21,7 +21,17 @@ namespace GameWish.Game
         //[SerializeField] private Image m_DayHint;
 
         [SerializeField] private Button m_AcceptBtn;//∑µªÿ∞¥≈•
-        
+
+        protected override void OnUIInit()
+        {
+            base.OnUIInit();
+            //“Ù–ß
+            foreach (var item in transform.GetComponentsInChildren<Button>(true))
+            {
+                item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
+            }
+        }
+
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen();
