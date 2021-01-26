@@ -208,6 +208,14 @@ namespace GameWish.Game
         public const string BULLETINBOARD_VIEWDETAILS = "BulletinBoard_ViewDetails";
         public const string BULLETINBOARD_RECEIVEREWARDS = "BulletinBoard_ReceiveRewards";
         public const string BULLETINBOARD_PUTAWAY = "BulletinBoard_PutAway";
+        public const string BULLETINBOARD_RECOMMENDED = "BulletinBoard_Recommended";
+        public const string BULLETINBOARD_SELECTEDDISCIPLEY = "BulletinBoard_SelectedDisciple";
+        public const string BULLETINBOARD_SELECTEDDISCIPLEYSKILLS = "BulletinBoard_SelectedDiscipleSkills";
+        public const string BULLETINBOARD_NOTARRANGED = "BulletinBoard_NotArranged";
+        public const string BULLETINBOARD_RELAXED = "BulletinBoard_Relaxed";
+        public const string BULLETINBOARD_AUTIOUS = "BulletinBoard_Autious";
+        public const string BULLETINBOARD_DANGER = "BulletinBoard_Danger";
+        public const string BULLETINBOARD_NEEDLEVEL = "BulletinBoard_NeedLevel";
 
         //Kungfo
         public const string KUNGFU_TITLE = "Kungfu_Title";
