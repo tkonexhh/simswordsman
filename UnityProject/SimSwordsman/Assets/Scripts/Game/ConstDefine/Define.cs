@@ -216,6 +216,7 @@ namespace GameWish.Game
         public const string BULLETINBOARD_AUTIOUS = "BulletinBoard_Autious";
         public const string BULLETINBOARD_DANGER = "BulletinBoard_Danger";
         public const string BULLETINBOARD_NEEDLEVEL = "BulletinBoard_NeedLevel";
+        public const string BULLETINBOARD_REWARD = "BulletinBoard_Reward";
 
         //Kungfo
         public const string KUNGFU_TITLE = "Kungfu_Title";

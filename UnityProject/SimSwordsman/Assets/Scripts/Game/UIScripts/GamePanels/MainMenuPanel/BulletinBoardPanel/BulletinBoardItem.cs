@@ -72,6 +72,8 @@ namespace GameWish.Game
         private Text m_PromptlyValue;
         [SerializeField]
         private Text m_Baozi;
+        [SerializeField]
+        private Text m_Time;
 
         private bool IsOpen = false;
 
@@ -80,12 +82,14 @@ namespace GameWish.Game
         private SimGameTask m_CurTaskInfo;
         private CommonTaskItemInfo m_CommonTaskItemInfo;
         private List<TaskReward> m_ItemReward;
+        private List<CharacterController> m_CharacterController;
         private Vector2 m_OpenDelta;
         private List<BulletinBoardDisciple> m_BulletinBoardDiscipleList = new List<BulletinBoardDisciple>();
         private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
+
+
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-
             m_CurTaskInfo = t as SimGameTask;
             EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
@@ -93,8 +97,7 @@ namespace GameWish.Game
             m_NeedSprites = (List<Sprite>)obj[0];
             BindAddListenerEvent();
             GetInformationForNeed();
-
-
+            StartCoroutine(CountDown());
             RefreshFixedInfo();
             RefreshPanelInfo();
             RefreshTaskState();
@@ -139,12 +142,7 @@ namespace GameWish.Game
 
         private void OpenCallback(AbstractPanel obj)
         {
-
             BulletinBoardChooseDisciple bulletinBoardChooseDisciple = obj as BulletinBoardChooseDisciple;
-            //if (bulletinBoardChooseDisciple.)
-            //{
-
-            //}
             bulletinBoardChooseDisciple.AddDiscipleDicDic(m_SelectedDiscipleDic);
         }
 
@@ -161,6 +159,7 @@ namespace GameWish.Game
         {
             m_OpenDelta = m_Bottom.GetComponent<RectTransform>().sizeDelta;
             m_ItemReward = m_CommonTaskItemInfo.GetItemRewards();
+            m_CharacterController = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_CommonTaskItemInfo.id);
         }
 
         private void BindAddListenerEvent()
@@ -191,17 +190,67 @@ namespace GameWish.Game
                             selectedControllerList.Add(controller);
                         }
                     }
-                    
                     m_CurTaskInfo.ExecuteTask(selectedControllerList);
                 }
             });
             //婉拒
             m_DeclinedBtn.onClick.AddListener(()=> {
-               
+                UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示","您确定要放弃任务吗");
             });
             m_Promptly.onClick.AddListener(()=> {
-               
+                if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
+                {
+                    MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
+                    DestroyImmediate(this.gameObject);
+                }
             });
+        }
+        private void LogCallBack(AbstractPanel abstractPanel)
+        {
+            LogPanel logPanel= abstractPanel as LogPanel;
+            logPanel.OnSuccessBtnEvent += OnSucessEvent;
+        }
+
+        private IEnumerator CountDown()
+        {
+            int second = 1;
+            while (second>0)
+            {
+                yield return new WaitForSeconds(1);
+                int startTime = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_CommonTaskItemInfo.id);
+                int deltaTime = m_CommonTaskItemInfo.taskTime;
+                second = deltaTime - startTime;
+                if (second <= 0)
+                    break;
+                m_Time.text = SplicingTime(deltaTime - startTime);
+
+            }
+        }
+
+        public string SplicingTime(int seconds)
+        {
+            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
+            string str = "";
+
+            if (ts.Hours > 0)
+            {
+                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes > 0)
+            {
+                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes == 0)
+            {
+                str = "00:" + ts.Seconds.ToString("00");
+            }
+
+            return str;
+        }
+        private void OnSucessEvent()
+        {
+            //MainGameMgr.S.CommonTaskMgr.RemoveTask(m_CurTaskInfo.TaskId);
+            DestroyImmediate(this.gameObject);
         }
 
         private void RefreshBtnInfo()
@@ -209,7 +258,6 @@ namespace GameWish.Game
             m_GoToBtn.gameObject.SetActive(false);
             m_DeclinedBtn.gameObject.SetActive(false);
             m_Promptly.gameObject.SetActive(true);
-
         }
 
         /// <summary>
@@ -252,13 +300,23 @@ namespace GameWish.Game
                     break;
             }
             m_Baozi.text = (m_CommonTaskItemInfo.GetCharacterAmount() * CostBaozi).ToString();
-
         }
 
         private void RefreshDiscipleInfo()
         {
             for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
                 CreateDisciple();
+
+            foreach (var item in m_CharacterController)
+                m_SelectedDiscipleDic.Add(item.CharacterId,MainGameMgr.S.CharacterMgr.GetCharacterItem(item.CharacterId));
+            int k = 0;
+            foreach (var item in m_SelectedDiscipleDic.Values)
+            {
+                m_BulletinBoardDiscipleList[k].RefreshSelectedDisciple(item);
+                k++;
+            }
+            for (int j = m_SelectedDiscipleDic.Values.Count; j < m_BulletinBoardDiscipleList.Count; j++)
+                m_BulletinBoardDiscipleList[j].RefreshSelectedDisciple(null);
         }
 
         private void CreateDisciple()
@@ -305,8 +363,16 @@ namespace GameWish.Game
                     m_Promptly.gameObject.SetActive(false);
                     break;
                 case TaskState.Running:
+                    m_Over.gameObject.SetActive(false);
+                    m_Promptly.gameObject.SetActive(false);
                     break;
                 case TaskState.Unclaimed:
+                    m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
+                    m_Over.gameObject.SetActive(false);
+                    m_PromptlyValue.text = "领取奖励";
+                    m_Promptly.gameObject.SetActive(true);
+                    m_GoToBtn.gameObject.SetActive(false);
+                    m_DeclinedBtn.gameObject.SetActive(false);
                     break;
                 case TaskState.Finished:
                     break;
