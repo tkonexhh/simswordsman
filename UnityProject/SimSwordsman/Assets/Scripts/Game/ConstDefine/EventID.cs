@@ -52,7 +52,7 @@ namespace GameWish.Game
         //OnTaskFinished,
         OnCommonTaskStart,
         OnCommonTaskFinish,
-
+        OnArriveCollectResPos,
         //PracticeField
 
         /// <summary>
