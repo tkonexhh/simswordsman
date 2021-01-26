@@ -37,6 +37,7 @@ namespace GameWish.Game
             m_ReachTargetPos = false;
             m_IsTaskEnd = false;
             m_IsTaskCollectableItemFound = false;
+
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -55,6 +56,8 @@ namespace GameWish.Game
                     Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
                     Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
                     m_Controller.MoveTo(pos, OnReachDestination);
+
+                    m_Time = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_Controller.CurTask.TaskId);
                 }
             }
 

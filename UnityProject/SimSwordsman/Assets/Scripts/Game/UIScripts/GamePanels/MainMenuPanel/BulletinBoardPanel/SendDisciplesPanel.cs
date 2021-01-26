@@ -121,8 +121,12 @@ namespace GameWish.Game
                                 if (item.IsFreeState())
                                     m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
                             }
-                        } 
-                        m_CurTaskInfo.ExecuteTask(m_SelectedList);
+                        }
+                        if (m_CurTaskInfo.GetCurTaskType() != SimGameTaskType.Battle)
+                        {
+                            m_CurTaskInfo.ExecuteTask(m_SelectedList);
+                        }
+
                         if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
                         {
                             List<EnemyConfig> enemiesList = new List<EnemyConfig>();

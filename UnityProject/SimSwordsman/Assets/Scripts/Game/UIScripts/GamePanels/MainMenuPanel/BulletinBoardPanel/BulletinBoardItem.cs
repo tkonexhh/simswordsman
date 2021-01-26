@@ -181,6 +181,18 @@ namespace GameWish.Game
                 {
                     RefreshBtnInfo();
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(baoz);
+
+                    List<CharacterController> selectedControllerList = new List<CharacterController>();
+                    foreach (var item in m_SelectedDiscipleDic.Values)
+                    {
+                        CharacterController controller = MainGameMgr.S.CharacterMgr.GetCharacterController(item.id);
+                        if (controller != null)
+                        {
+                            selectedControllerList.Add(controller);
+                        }
+                    }
+                    
+                    m_CurTaskInfo.ExecuteTask(selectedControllerList);
                 }
             });
             //Íñ¾Ü
