@@ -91,6 +91,17 @@ namespace GameWish.Game
                 GameDataMgr.S.GetCommonTaskData().SetTaskExecutedTime(taskId, time);
             }
         }
+
+        public int GetTaskExecutedTime(int taskId)
+        {
+            SimGameTask item = GetCommonTaskItemData(taskId);
+            if (item != null)
+            {
+                return GameDataMgr.S.GetCommonTaskData().GetTaskExecutedTime(taskId);
+            }
+
+            return 0;
+        }
         /// <summary>
         /// 完成任务后领取奖励
         /// </summary>

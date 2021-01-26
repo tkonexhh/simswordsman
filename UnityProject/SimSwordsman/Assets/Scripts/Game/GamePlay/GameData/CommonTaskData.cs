@@ -43,6 +43,17 @@ namespace GameWish.Game
             }
         }
 
+        public int GetTaskExecutedTime(int taskId)
+        {
+            CommonTaskItemData item = GetCommonTaskItemData(taskId);
+            if (item != null)
+            {
+                return item.executedTime;
+            }
+
+            return 0;
+        }
+
         public void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
         {
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);

@@ -8,11 +8,11 @@ namespace GameWish.Game
 	{
         protected int m_TaskId;
         protected CommonTaskItemInfo m_TaskDetailInfo = null;
-        protected string m_TaskStartTime = string.Empty;
+        //protected string m_TaskStartTime = string.Empty;
 
         public CommonTaskItemInfo CommonTaskItemInfo { get { return m_TaskDetailInfo; } }
 
-        public string TaskStartTime { get => m_TaskStartTime;}
+        //public string TaskStartTime { get => m_TaskStartTime;}
         public int TaskId { get => m_TaskId; }
 
         public List<int> CharacterIDs = new List<int>();
@@ -36,15 +36,15 @@ namespace GameWish.Game
             return m_TaskDetailInfo.taskState;
         }
 
-        public void SetCurTaskFinished()
-        {
-             m_TaskDetailInfo.taskState = TaskState.Finished;
-        }
+        //public void SetCurTaskFinished()
+        //{
+        //     m_TaskDetailInfo.taskState = TaskState.Finished;
+        //}
 
-        public int GetCurSubType()
-        {
-           return CommonTaskItemInfo.subType;
-        }
+        //public int GetCurSubType()
+        //{
+        //   return CommonTaskItemInfo.subType;
+        //}
 
         public SimGameTaskType GetCurTaskType()
         {
@@ -57,6 +57,11 @@ namespace GameWish.Game
                 CharacterIDs.Add(item.CharacterId);
 
             GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
+        }
+
+        public virtual void OnUpdateTask()
+        {
+
         }
 
         public void ClaimReward()
