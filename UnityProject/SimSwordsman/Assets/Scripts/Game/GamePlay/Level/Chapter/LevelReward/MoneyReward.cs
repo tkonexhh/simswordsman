@@ -19,6 +19,11 @@ namespace GameWish.Game
         {
             GameDataMgr.S.GetPlayerData().AddCoinNum(m_MoneyValue);
         }
+
+        public override int GetRewardValue()
+        {
+            return m_MoneyValue;
+        }
     }
 
 }
