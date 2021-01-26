@@ -55,7 +55,7 @@ namespace GameWish.Game
                 initState = CharacterStateID.Wander;
             }
 
-            if (initState != CharacterStateID.CollectRes) // CollectRes状态由CommonTaskMgr进行设置
+            if (initState != CharacterStateID.CollectRes && initState != CharacterStateID.GoOutsideForTaskBattle) // CollectRes和goout状态由CommonTaskMgr进行设置
             {
                 SetState(initState, m_CharacterModel.GetTargetFacilityType());
             }
