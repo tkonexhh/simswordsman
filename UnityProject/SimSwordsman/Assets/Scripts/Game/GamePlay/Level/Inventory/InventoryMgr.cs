@@ -109,9 +109,13 @@ namespace GameWish.Game
         {
             List<ItemBase> herbList = GetAllEquipmentForType(PropType.Herb);
             List<HerbItem> list = new List<HerbItem>();
-            herbList.ForEach(i => {
-                list.Add((HerbItem) i);
-            });
+            if (herbList != null && herbList.Count > 0)
+            {
+                herbList.ForEach(i =>
+                {
+                    list.Add((HerbItem)i);
+                });
+            }
 
             return list;
         }
