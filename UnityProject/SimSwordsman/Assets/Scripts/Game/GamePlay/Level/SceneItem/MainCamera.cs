@@ -132,15 +132,15 @@ namespace GameWish.Game
                 {
                     if (!m_TouchInput.enabled)
                         m_TouchInput.enabled = true;
-                    if (!m_MobileTouchCamera.enabled)
-                        m_MobileTouchCamera.enabled = true;
+                    //if (!m_MobileTouchCamera.enabled)
+                    //    m_MobileTouchCamera.enabled = true;
                 }
                 else
                 {
                     if (m_TouchInput.enabled)
                         m_TouchInput.enabled = false;
-                    if (m_MobileTouchCamera.enabled)
-                        m_MobileTouchCamera.enabled = false;
+                    //if (m_MobileTouchCamera.enabled)
+                    //    m_MobileTouchCamera.enabled = false;
                 }
             }
         }

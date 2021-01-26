@@ -12,8 +12,7 @@ namespace GameWish.Game
         public int id;
         public GameObject CollectView;
 
-        int count;
-
+        bool isGuide = false;
 
         private void Awake()
         {
@@ -27,14 +26,24 @@ namespace GameWish.Game
             {
                 var tb = TDCollectConfigTable.dataList[id];
                 int count = (int)param[1];
-                if (count >= tb.collectMin)
+                if (param.Length > 2)
                 {
-                    if (!CollectView.gameObject.activeSelf)
-                        CollectView.gameObject.SetActive(true);
+                    //Òýµ¼
+                    isGuide = true;
                 }
-                else if(CollectView.gameObject.activeSelf)
+                if (isGuide)
                 {
-                    CollectView.gameObject.SetActive(false);
+                    CollectView.gameObject.SetActive(true);
+                }
+                else
+                {
+                    if (count >= tb.collectMin)
+                    {
+                        if (!CollectView.gameObject.activeSelf)
+                            CollectView.gameObject.SetActive(true);
+                    }
+                    else if (CollectView.gameObject.activeSelf)
+                        CollectView.gameObject.SetActive(false);
                 }
             }
         }
@@ -42,6 +51,7 @@ namespace GameWish.Game
         public void OnClicked()
         {
             CollectSystem.S.Collect(id);
+            isGuide = false;
             CollectView.gameObject.SetActive(false);
         }
 	}

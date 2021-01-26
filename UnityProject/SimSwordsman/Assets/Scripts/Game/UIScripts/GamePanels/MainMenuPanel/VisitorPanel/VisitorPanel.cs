@@ -11,16 +11,20 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_Desc;
         [SerializeField]
-        private Image m_Pic;
+        private Image[] m_TitleBgs;
         [SerializeField]
         private Image m_RewardIcon;
         [SerializeField]
-        private Text m_RewardDesc;
+        private Text m_RewardName;
+        [SerializeField]
+        private Text m_RewardNum;
 
         [SerializeField]
 		private Button m_AcceptBtn;
 		[SerializeField]
 		private Button m_NotAcceptBtn;
+        [SerializeField]
+        private Button m_CloseBtn;
 
         Visitor m_visitor;
 
@@ -41,15 +45,23 @@ namespace GameWish.Game
 
                 TDVisitorConfig tb = TDVisitorConfigTable.GetData(m_visitor.VisitorCfgID);
                 m_Title.text = tb.name;
+                for (int i = 0; i < m_TitleBgs.Length; i++)
+                {
+                    if (i< tb.name.Length)
+                        m_TitleBgs[i].gameObject.SetActive(true);
+                    else
+                        m_TitleBgs[i].gameObject.SetActive(false);
+                }
                 m_Desc.text = tb.desc;
                 m_RewardIcon.sprite = m_visitor.Reward.GetSprite();
-                m_RewardDesc.text = m_visitor.Reward.RewardName() + " ×" + m_visitor.Reward.Count;
+                m_RewardName.text = m_visitor.Reward.RewardName();
+                m_RewardNum.text = m_visitor.Reward.Count.ToString();
             }
 
             OpenDependPanel(EngineUI.MaskPanel,-1,null);
         }
-        
-        
+
+
         private void BindAddListenerEvent()
         {
             //音效
@@ -57,7 +69,7 @@ namespace GameWish.Game
             {
                 item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
             }
-            m_AcceptBtn.onClick.AddListener(()=> 
+            m_AcceptBtn.onClick.AddListener(() =>
             {
                 Debug.LogError("应当看一个广告");
 
@@ -71,7 +83,13 @@ namespace GameWish.Game
                 VisitorSystem.S.Disappear(m_visitor);
                 HideSelfWithAnim();
             });
+            m_CloseBtn.onClick.AddListener(() =>
+            {
+                VisitorSystem.S.Disappear(m_visitor);
+                HideSelfWithAnim();
+            });
         }
+            
 
 
         protected override void OnPanelHideComplete()

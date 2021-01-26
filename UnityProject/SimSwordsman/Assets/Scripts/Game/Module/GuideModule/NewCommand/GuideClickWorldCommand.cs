@@ -7,7 +7,6 @@ namespace GameWish.Game
     public class GuideClickWorldCommand : AbstractGuideCommand
     {
         Vector3 targetPos;//目标点击位置
-        Vector3 cameraPos;//相机位置
         Vector3 guideTipsPos;//文本位置
         string textContentID;//气泡显示的id（Language表）
         bool isNotForce = false;
@@ -18,26 +17,23 @@ namespace GameWish.Game
             {
                 return;
             }
-
             try
             {
                 Transform tar = GameplayMgr.S.transform.Find((string)pv[0]);
                 targetPos = tar.position;
+                //EventSystem.S.Send(EventID.InGuideProgress, true);
+                Camera.main.transform.position = new Vector3(targetPos.x, targetPos.y, Camera.main.transform.position.z);
+                //EventSystem.S.Send(EventID.InGuideProgress, false);
                 if (pv.Length > 1)
                 {
-                    cameraPos = Helper.String2Vector3((string)pv[1], '|');
-                    Camera.main.transform.position = new Vector3(cameraPos.x, cameraPos.y, Camera.main.transform.position.z);
+                    guideTipsPos = Helper.String2Vector3((string)pv[1], '|');
                 }
                 if (pv.Length > 2)
                 {
-                    guideTipsPos = Helper.String2Vector3((string)pv[2], '|');
-                }
-                if (pv.Length > 3)
-                {
-                    textContentID = (string)pv[3];
+                    textContentID = (string)pv[2];
                     isNotForce = true;
                 }
-                if (pv.Length > 4)
+                if (pv.Length > 3)
                 {
                     isNotForce = true;
                 }
