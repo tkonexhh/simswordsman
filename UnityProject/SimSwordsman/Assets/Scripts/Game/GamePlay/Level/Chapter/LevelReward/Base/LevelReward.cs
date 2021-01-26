@@ -18,5 +18,7 @@ namespace GameWish.Game
         }
 
         public abstract void ApplyReward(int pas);
+
+        public abstract int GetRewardValue();
     }
 }

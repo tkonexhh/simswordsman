@@ -26,6 +26,7 @@ namespace GameWish.Game
                     levelReward = new PropItemReward(rewardType, paramStrs);
                     break;
                 case RewardItemType.Armor:
+                case RewardItemType.Arms:
                     levelReward = new EquipReward(rewardType, paramStrs);
                     break;
                 case RewardItemType.Food:

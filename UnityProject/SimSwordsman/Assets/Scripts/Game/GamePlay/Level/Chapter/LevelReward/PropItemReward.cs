@@ -20,6 +20,11 @@ namespace GameWish.Game
         {
             //MainGameMgr.S.InventoryMgr.p
         }
+
+        public override int GetRewardValue()
+        {
+            return m_Number;
+        }
     }
 
 }
