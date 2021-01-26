@@ -18,7 +18,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_HerbalMedicineBtn;
 
-        private PlayerDataHerb m_CurHerb = null;
+        //private PlayerDataHerb m_CurHerb = null;
+        private HerbItem m_HerbItem = null;
 
         private bool m_IsSelected = false;
         private void Start()
@@ -28,11 +29,11 @@ namespace GameWish.Game
         }
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-            m_CurHerb = t as PlayerDataHerb;
-            if (m_CurHerb != null)
+            m_HerbItem = t as HerbItem;
+            if (m_HerbItem != null)
             {
-                m_HerbalMedicineName.text = m_CurHerb.Name;
-                m_HerbalMedicineNumber.text = m_CurHerb.Number.ToString();
+                m_HerbalMedicineName.text = m_HerbItem.Name;
+                m_HerbalMedicineNumber.text = m_HerbItem.Number.ToString();
             }
         }
         /// <summary>
@@ -41,8 +42,8 @@ namespace GameWish.Game
         /// <returns></returns>
         public int GetCurHerbId()
         {
-            if (m_CurHerb != null)
-                return m_CurHerb.ID;
+            if (m_HerbItem != null)
+                return (int)m_HerbItem.HerbID;
             return -1;
         }
 

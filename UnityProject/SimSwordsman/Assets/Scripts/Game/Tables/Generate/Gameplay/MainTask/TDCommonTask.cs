@@ -17,6 +17,7 @@ namespace GameWish.Game
         private EInt m_HomeLevel = 0;   
         private string m_TaskTitle;   
         private string m_TaskDescription;   
+        private string m_TaskTxt;   
         private string m_Type;   
         private EInt m_Time = 0;   
         private string m_Reward;   
@@ -54,6 +55,11 @@ namespace GameWish.Game
         /// 任务描述
         /// </summary>
         public  string  taskDescription {get { return m_TaskDescription; } }
+       
+        /// <summary>
+        /// 任务文本
+        /// </summary>
+        public  string  taskTxt {get { return m_TaskTxt; } }
        
         /// <summary>
         /// 任务类型
@@ -136,33 +142,36 @@ namespace GameWish.Game
                     m_TaskDescription = dataR.ReadString();
                     break;
                 case 5:
-                    m_Type = dataR.ReadString();
+                    m_TaskTxt = dataR.ReadString();
                     break;
                 case 6:
-                    m_Time = dataR.ReadInt();
+                    m_Type = dataR.ReadString();
                     break;
                 case 7:
-                    m_Reward = dataR.ReadString();
+                    m_Time = dataR.ReadInt();
                     break;
                 case 8:
-                    m_SpecialRewardRate = dataR.ReadInt();
+                    m_Reward = dataR.ReadString();
                     break;
                 case 9:
-                    m_SpecialReward = dataR.ReadString();
+                    m_SpecialRewardRate = dataR.ReadInt();
                     break;
                 case 10:
-                    m_ExpReward = dataR.ReadInt();
+                    m_SpecialReward = dataR.ReadString();
                     break;
                 case 11:
-                    m_KongfuExpReward = dataR.ReadInt();
+                    m_ExpReward = dataR.ReadInt();
                     break;
                 case 12:
-                    m_Enemy = dataR.ReadString();
+                    m_KongfuExpReward = dataR.ReadInt();
                     break;
                 case 13:
-                    m_RoleAmount = dataR.ReadInt();
+                    m_Enemy = dataR.ReadString();
                     break;
                 case 14:
+                    m_RoleAmount = dataR.ReadInt();
+                    break;
+                case 15:
                     m_RoleLevelRequired = dataR.ReadInt();
                     break;
                 default:
@@ -175,23 +184,24 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(15);
+          Dictionary<string, int> ret = new Dictionary<string, int>(16);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
           ret.Add("HomeLevel", 2);
           ret.Add("TaskTitle", 3);
           ret.Add("TaskDescription", 4);
-          ret.Add("Type", 5);
-          ret.Add("Time", 6);
-          ret.Add("Reward", 7);
-          ret.Add("SpecialRewardRate", 8);
-          ret.Add("SpecialReward", 9);
-          ret.Add("ExpReward", 10);
-          ret.Add("KongfuExpReward", 11);
-          ret.Add("Enemy", 12);
-          ret.Add("RoleAmount", 13);
-          ret.Add("RoleLevelRequired", 14);
+          ret.Add("TaskTxt", 5);
+          ret.Add("Type", 6);
+          ret.Add("Time", 7);
+          ret.Add("Reward", 8);
+          ret.Add("SpecialRewardRate", 9);
+          ret.Add("SpecialReward", 10);
+          ret.Add("ExpReward", 11);
+          ret.Add("KongfuExpReward", 12);
+          ret.Add("Enemy", 13);
+          ret.Add("RoleAmount", 14);
+          ret.Add("RoleLevelRequired", 15);
           return ret;
         }
     } 

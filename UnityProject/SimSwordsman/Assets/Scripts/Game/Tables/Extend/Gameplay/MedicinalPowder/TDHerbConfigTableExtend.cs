@@ -35,11 +35,22 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static HerbConfig GetHerbForId(int id)
+        public static HerbConfig GetHerbById(int id)
         {
             if (HerbDic.ContainsKey(id))
                 return HerbDic[id];
             return null;
+        }
+
+        public static float GetEffectParam(int id)
+        {
+            HerbConfig config = GetHerbById(id);
+            if (config != null)
+            {
+                return config.EffectParam;
+            }
+
+            return 0;
         }
     }
 
@@ -51,6 +62,9 @@ namespace GameWish.Game
         public string Name { set; get; }
         public string Desc { set; get; }
         public int Price { set; get; }
+        public string Icon { set; get; }
+        public int MakeTime { set; get; }
+        public float EffectParam { set; get; }
 
         public HerbConfig(TDHerbConfig tDHerb)
         {
@@ -58,14 +72,18 @@ namespace GameWish.Game
             Name = tDHerb.name;
             Desc = tDHerb.desc;
             Price = tDHerb.price;
+            Icon = tDHerb.icon;
+            MakeTime = tDHerb.makeTime;
+            EffectParam = tDHerb.effectParam;
         }
 
-        public HerbConfig(HerbConfig herb)
-        {
-            ID = herb.ID;
-            Name = herb.Name;
-            Desc = herb.Desc;
-            Price = herb.Price;
-        }
+        //public HerbConfig(HerbConfig herb)
+        //{
+        //    ID = herb.ID;
+        //    Name = herb.Name;
+        //    Desc = herb.Desc;
+        //    Price = herb.Price;
+        //    Icon = herb.Icon;
+        //}
     }
 }

@@ -19,8 +19,9 @@ namespace GameWish.Game
         private string m_MakeRes;   
         private EInt m_MakeTime = 0;   
         private string m_EffectDesc;   
-        private EInt m_EffectParam = 0;   
-        private EInt m_Price = 0;  
+        private EFloat m_EffectParam = 0.0f;   
+        private EInt m_Price = 0;   
+        private string m_Icon;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -62,12 +63,17 @@ namespace GameWish.Game
         /// <summary>
         /// 效果参数
         /// </summary>
-        public  int  effectParam {get { return m_EffectParam; } }
+        public  float  effectParam {get { return m_EffectParam; } }
        
         /// <summary>
         /// 售价
         /// </summary>
         public  int  price {get { return m_Price; } }
+       
+        /// <summary>
+        /// 售价
+        /// </summary>
+        public  string  icon {get { return m_Icon; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -106,10 +112,13 @@ namespace GameWish.Game
                     m_EffectDesc = dataR.ReadString();
                     break;
                 case 7:
-                    m_EffectParam = dataR.ReadInt();
+                    m_EffectParam = dataR.ReadFloat();
                     break;
                 case 8:
                     m_Price = dataR.ReadInt();
+                    break;
+                case 9:
+                    m_Icon = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -121,7 +130,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -132,6 +141,7 @@ namespace GameWish.Game
           ret.Add("EffectDesc", 6);
           ret.Add("EffectParam", 7);
           ret.Add("Price", 8);
+          ret.Add("Icon", 9);
           return ret;
         }
     } 

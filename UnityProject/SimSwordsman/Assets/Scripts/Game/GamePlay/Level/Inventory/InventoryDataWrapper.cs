@@ -151,6 +151,24 @@ namespace GameWish.Game
             m_ClanData.AddKungfu(ItemBase.CopySelf(_kungfuItem), delta);
         }
 
+        public void AddHerb(HerbItem herbItem, int delta = 1)
+        {
+            HerbItem herb = (HerbItem)m_WarehouseItems.Where(i => i.IsHaveItem(herbItem)).FirstOrDefault();
+            if (herb != null)
+                herb.AddEquipNumber(delta);
+            else
+            {
+                if (!CheckInventoryIsFull())
+                {
+                    herbItem.Number += delta;
+                    m_WarehouseItems.Add(herbItem);
+                }
+                else
+                    return;
+            }
+            m_ClanData.AddHerb(ItemBase.CopySelf(herbItem), delta);
+        }
+
         public void AddArms(ArmsItem _armsItem, int delta = 1)
         {
             ArmsItem armsItem = (ArmsItem)m_WarehouseItems.Where(i => i.IsHaveItem(_armsItem)).FirstOrDefault();
@@ -538,7 +556,7 @@ namespace GameWish.Game
 
         public override void RefreshItemInfo()
         {
-            HerbConfig herbConfig = TDHerbConfigTable.GetHerbForId((int)HerbID);
+            HerbConfig herbConfig = TDHerbConfigTable.GetHerbById((int)HerbID);
             Name = herbConfig.Name;
             Desc = herbConfig.Desc;
             Price = herbConfig.Price;

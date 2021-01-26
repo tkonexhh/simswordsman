@@ -332,6 +332,20 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        public void AddHerb(HerbItem herbItem, int delta = 1)
+        {
+            inventoryData.AddHerbItem(herbItem, delta);
+
+            SetDataDirty();
+        }
+
+        public void RemoveHerb(HerbItem herbItem, int delta = 1)
+        {
+            inventoryData.RemoveHerbItem(herbItem, delta);
+
+            SetDataDirty();
+        }
+
         public void AddArmor(ArmorItem _armorDBData, int delta = 1)
         {
             inventoryData.AddArmor(_armorDBData, delta);

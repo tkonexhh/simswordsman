@@ -14,6 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Name;   
+        private string m_RoleRes;   
         private string m_Desc;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -27,6 +28,11 @@ namespace GameWish.Game
         /// 访客名
         /// </summary>
         public  string  name {get { return m_Name; } }
+       
+        /// <summary>
+        /// 角色立绘
+        /// </summary>
+        public  string  roleRes {get { return m_RoleRes; } }
        
         /// <summary>
         /// 访客文本
@@ -55,6 +61,9 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
+                    m_RoleRes = dataR.ReadString();
+                    break;
+                case 3:
                     m_Desc = dataR.ReadString();
                     break;
                 default:
@@ -67,11 +76,12 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(3);
+          Dictionary<string, int> ret = new Dictionary<string, int>(4);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
-          ret.Add("Desc", 2);
+          ret.Add("RoleRes", 2);
+          ret.Add("Desc", 3);
           return ret;
         }
     } 
