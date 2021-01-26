@@ -220,10 +220,7 @@ namespace GameWish.Game
                 int startTime = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_CommonTaskItemInfo.id);
                 int deltaTime = m_CommonTaskItemInfo.taskTime;
                 second = deltaTime - startTime;
-                if (second <= 0)
-                    break;
                 m_Time.text = SplicingTime(deltaTime - startTime);
-
             }
         }
 
