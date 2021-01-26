@@ -226,6 +226,8 @@ namespace GameWish.Game
         public const string ARMS_TITLE = "Arms_title";
 
         //Sound
+        public const string MUSIC_MENU = "menu_music";
+        public const string MUSIC_BATTLE = "battle_music";
         public const string SOUND_UI_BTN = "Button";
         public const string SOUND_BATTLE_WIN = "Battle_win";
         public const string SOUND_BEAR = "Bear";
