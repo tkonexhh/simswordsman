@@ -72,6 +72,17 @@ namespace GameWish.Game
             return null;
         }
 
+        public void RemoveTask(int taskId)
+        {
+            SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.TaskId == taskId);
+            if (taskItem != null)
+            {
+                m_CurTaskList.Remove(taskItem);
+            }
+
+            GameDataMgr.S.GetCommonTaskData().RemoveTask(taskId);
+        }
+
         public void SetTaskFinished(int taskId)
         {
             SimGameTask item = GetCommonTaskItemData(taskId);

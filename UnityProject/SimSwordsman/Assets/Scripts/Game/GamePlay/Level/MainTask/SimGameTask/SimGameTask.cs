@@ -59,11 +59,6 @@ namespace GameWish.Game
             GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
         }
 
-        public virtual void OnUpdateTask()
-        {
-
-        }
-
         public void ClaimReward()
         {
             CharacterIDs.Clear();
