@@ -16,8 +16,45 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 0610f2e0d8b3b444699ab672090f5d28
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 19dbbdcdb54c3764bbb3f55dac2938c7
+    m_Address: sz_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 253ce55fef17cee4093b7a8bcd04e0f4
+    m_Address: sz_2_Material
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7672f15de7d815245b23548a2c3f84a4
+    m_Address: Shanzei1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c3ef1c414caf30d4c9d48c4727b51e54
+    m_Address: sz_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: de2d17082350dd84fb90ee737e47018c
+    m_Address: sz_2.atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e07427b5c900ad549bd596a468122be0
+    m_Address: sz_2_Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: 1138b28f7b00db34fab2982bb55c487f, type: 2}
