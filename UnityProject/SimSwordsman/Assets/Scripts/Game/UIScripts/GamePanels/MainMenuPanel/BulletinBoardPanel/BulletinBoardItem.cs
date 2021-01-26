@@ -1,3 +1,4 @@
+using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -80,9 +81,14 @@ namespace GameWish.Game
         private CommonTaskItemInfo m_CommonTaskItemInfo;
         private List<TaskReward> m_ItemReward;
         private Vector2 m_OpenDelta;
+        private List<BulletinBoardDisciple> m_BulletinBoardDiscipleList = new List<BulletinBoardDisciple>();
+        private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+
             m_CurTaskInfo = t as SimGameTask;
+            EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
             m_NeedSprites = (List<Sprite>)obj[0];
             BindAddListenerEvent();
@@ -93,6 +99,53 @@ namespace GameWish.Game
             RefreshPanelInfo();
             RefreshTaskState();
             RefreshDiscipleInfo();
+        }
+
+        private void OnDisable()
+        {
+            EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
+        }
+
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnSelectedConfirmEvent:
+                    if (m_CommonTaskItemInfo.id != ((CommonTaskItemInfo)param[1]).id)
+                        return;
+                    m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)param[0];
+                    int i = 0;
+                    foreach (var item in m_SelectedDiscipleDic.Values)
+                    {
+                        m_BulletinBoardDiscipleList[i].RefreshSelectedDisciple(item);
+                        i++;
+                    }
+                    for (int j = m_SelectedDiscipleDic.Values.Count; j < m_BulletinBoardDiscipleList.Count; j++)
+                        m_BulletinBoardDiscipleList[j].RefreshSelectedDisciple(null);
+                    break;
+                case EventID.OnSendDiscipleDicEvent:
+                    if (m_CommonTaskItemInfo.id != ((SimGameTask)param[0]).CommonTaskItemInfo.id)
+                        return;
+                    if ((SimGameTask)param[0]!=null)
+                        UIMgr.S.OpenPanel(UIID.BulletinBoardChooseDisciple, OpenCallback, (SimGameTask)param[0]);
+                    else
+                        UIMgr.S.OpenPanel(UIID.BulletinBoardChooseDisciple, OpenCallback, m_CurTaskInfo);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OpenCallback(AbstractPanel obj)
+        {
+
+            BulletinBoardChooseDisciple bulletinBoardChooseDisciple = obj as BulletinBoardChooseDisciple;
+            //if (bulletinBoardChooseDisciple.)
+            //{
+
+            //}
+            bulletinBoardChooseDisciple.AddDiscipleDicDic(m_SelectedDiscipleDic);
         }
 
         private Sprite GetSprite(int id)
@@ -116,7 +169,37 @@ namespace GameWish.Game
                 IsOpen = !IsOpen;
                 RefreshPanelInfo();
             });
+            //前往
+            m_GoToBtn.onClick.AddListener(()=> {
+               int baoz = int.Parse(m_Baozi.text);
+                if (baoz < GameDataMgr.S.GetPlayerData().GetFoodNum())
+                {
+                    FloatMessage.S.ShowMsg("食物不足，过会儿再来吧");
+                    return;
+                }
+                else
+                {
+                    RefreshBtnInfo();
+                    GameDataMgr.S.GetPlayerData().ReduceFoodNum(baoz);
+                }
+            });
+            //婉拒
+            m_DeclinedBtn.onClick.AddListener(()=> {
+               
+            });
+            m_Promptly.onClick.AddListener(()=> {
+               
+            });
         }
+
+        private void RefreshBtnInfo()
+        {
+            m_GoToBtn.gameObject.SetActive(false);
+            m_DeclinedBtn.gameObject.SetActive(false);
+            m_Promptly.gameObject.SetActive(true);
+
+        }
+
         /// <summary>
         /// 刷新固定信息
         /// </summary>
@@ -169,8 +252,9 @@ namespace GameWish.Game
         private void CreateDisciple()
         {
             GameObject obj = Instantiate(m_BulletinBoardDisciple, m_MiddleDown);
-            ItemICom item = obj.GetComponent<ItemICom>();
-            //item.OnInit();
+            BulletinBoardDisciple item = obj.GetComponent<BulletinBoardDisciple>();
+            item.OnInit(m_CurTaskInfo);
+            m_BulletinBoardDiscipleList.Add(item);
         }
       
         /// <summary>

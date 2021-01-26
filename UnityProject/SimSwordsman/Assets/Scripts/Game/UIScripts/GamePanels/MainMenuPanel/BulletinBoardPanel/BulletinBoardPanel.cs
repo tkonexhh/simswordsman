@@ -26,14 +26,20 @@ namespace GameWish.Game
         private List<SimGameTask> m_CommonTaskList = null;
 
         private Dictionary<int, GameObject> m_TaskObjDic = new Dictionary<int, GameObject>();
-
         protected override void OnUIInit()
         {
-            base.OnUIInit();
 
+            base.OnUIInit();
             GetInformationForNeed();
 
             BindAddListenerEvent();
+        }
+
+    
+
+        private void RefreshDiscipleInfo()
+        {
+            throw new NotImplementedException();
         }
 
         private void GetInformationForNeed()
