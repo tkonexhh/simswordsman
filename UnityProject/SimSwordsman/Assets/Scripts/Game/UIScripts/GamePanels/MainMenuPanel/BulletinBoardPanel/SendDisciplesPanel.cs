@@ -79,7 +79,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-
         }
 
         private void GetInformationForNeed()
