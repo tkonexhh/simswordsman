@@ -97,6 +97,9 @@ namespace GameWish.Game
 
         private void UnlockFacility(int key, object[] param)
         {
+            //第20步结束才能出现建造仓库的引导
+            if (!GuideMgr.S.IsGuideFinish(20))
+                return;
             FacilityType type = (FacilityType)param[0];
             switch (type)
             {
