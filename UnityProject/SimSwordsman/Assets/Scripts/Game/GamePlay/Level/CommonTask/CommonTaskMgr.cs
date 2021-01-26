@@ -74,14 +74,13 @@ namespace GameWish.Game
 
         public void RemoveTask(int taskId)
         {
-            for (int i = m_CurTaskList.Count - 1; i >= 0; i--)
+            SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.TaskId == taskId);
+            if (taskItem != null)
             {
-                if (m_CurTaskList[i].TaskId == taskId)
-                {
-                    m_CurTaskList.RemoveAt(i);
-                    break;
-                }
+                m_CurTaskList.Remove(taskItem);
             }
+
+            GameDataMgr.S.GetCommonTaskData().RemoveTask(taskId);
         }
 
         public void SetTaskFinished(int taskId)
