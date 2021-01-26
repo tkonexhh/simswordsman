@@ -18,6 +18,8 @@ namespace GameWish.Game
         private Button m_AcceptBtn;
         [SerializeField]
         private Button m_RefuseBtn;
+        [SerializeField]
+        private Button m_CloseBtn;
 
         public Action OnSuccessBtnEvent;
         public Action OnRefuseBtnEvent;
@@ -54,6 +56,11 @@ namespace GameWish.Game
             m_AcceptBtn.onClick.AddListener(()=> {
                 HideSelfWithAnim();
                 OnSuccessBtnEvent?.Invoke();
+            });
+
+            m_CloseBtn.onClick.AddListener(() => {
+                HideSelfWithAnim();
+                OnRefuseBtnEvent?.Invoke();
             });
         }
 
