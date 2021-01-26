@@ -188,15 +188,12 @@ namespace GameWish.Game
     public class Countdowner
     {
         public string stringID;
-
         public int ID;
 
         public string startTime;
         public string EndTime;//DateTime.Parse
 
         public int TimerID;
-
-        public int Interval;
 
         private float Progress;
         public float GetProgress()

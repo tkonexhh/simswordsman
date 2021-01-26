@@ -18,8 +18,19 @@ namespace GameWish.Game
 
         public override void ApplyReward(int par)
         {
-            //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem()); //TODO
+            if (rewardType == RewardItemType.Armor)
+            {
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType) m_ItemId, Step.One), m_Number);
+            }
+            else if (rewardType == RewardItemType.Arms)
+            {
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_ItemId, Step.One), m_Number);
+            }
+        }
 
+        public override int GetRewardValue()
+        {
+            return m_Number;
         }
     }
 

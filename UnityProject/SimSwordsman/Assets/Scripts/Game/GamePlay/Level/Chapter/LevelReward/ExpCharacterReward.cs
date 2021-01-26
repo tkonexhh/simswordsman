@@ -22,6 +22,11 @@ namespace GameWish.Game
                 i.AddExp(m_ExpValue/ par);
             });
         }
+
+        public override int GetRewardValue()
+        {
+            return m_ExpValue;
+        }
     }
 
 

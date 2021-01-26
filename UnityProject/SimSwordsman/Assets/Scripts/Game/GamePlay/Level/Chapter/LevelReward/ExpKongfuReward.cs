@@ -21,5 +21,10 @@ namespace GameWish.Game
                 i.CharacterModel.DistributionKungfuExp(m_ExpValue/ par);
             });
         }
+
+        public override int GetRewardValue()
+        {
+            return m_ExpValue;
+        }
     }
 }

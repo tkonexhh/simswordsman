@@ -11,7 +11,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnGuideFirstGetCharacter, StartGuide_Task1);
             EventSystem.S.Register(EventID.OnGuideSecondGetCharacter, StartGuide_Task2);
             EventSystem.S.Register(EventID.OnStartUnlockFacility, UnlockFacility);
-            EventSystem.S.Register(EventID.OnStartUpgradeFacility, LobbyLvUp);
             EventSystem.S.Register(EventID.OnAddItem, WareHouseGuide);
             EventSystem.S.Register(EventID.OnCommonTaskFinish, OnTaskFinish);
             EventSystem.S.Register(EventID.OnCommonTaskStart, OnTaskStart);
@@ -61,16 +60,6 @@ namespace GameWish.Game
             }
         }
 
-        private void LobbyLvUp(int key, object[] param)
-        {
-            FacilityType type = (FacilityType)param[0];
-            if (type == FacilityType.Lobby && MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() == 3)
-            {
-                UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
-                EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
-            }
-        }
-
         private void WareHouseGuide(int key, object[] param)
         {
             //第18步结束才能出现建造仓库的引导
@@ -108,6 +97,9 @@ namespace GameWish.Game
 
         private void UnlockFacility(int key, object[] param)
         {
+            //第20步结束才能出现建造仓库的引导
+            if (!GuideMgr.S.IsGuideFinish(20))
+                return;
             FacilityType type = (FacilityType)param[0];
             switch (type)
             {

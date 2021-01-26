@@ -16,6 +16,9 @@ namespace GameWish.Game
 		[SerializeField]
 		private Button m_AcceptBtn;
 
+        [SerializeField]
+        private Button m_CloseBtn;
+
         Action m_CloseAction;
 
         protected override void OnUIInit()
@@ -32,8 +35,14 @@ namespace GameWish.Game
             if (args.Length > 0)
             {
                 m_CloseAction = (Action)args[0];
+                m_CloseBtn.gameObject.SetActive(false);
+                RandomName();
             }
-            RandomName();
+            else
+            {
+                m_CloseBtn.gameObject.SetActive(true);
+                m_ClanName.text = GameDataMgr.S.GetGameData().clanData.GetClanName();
+            }
             OpenDependPanel(EngineUI.MaskPanel,-1,null);
         }
 
@@ -71,7 +80,8 @@ namespace GameWish.Game
 
                 HideSelfWithAnim();
             });
-		}
+            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+        }
 
 
         protected override void OnPanelHideComplete()

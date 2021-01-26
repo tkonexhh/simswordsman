@@ -10,14 +10,14 @@ namespace GameWish.Game
         Dictionary<int, int> m_CurrentCollcetCountDic = new Dictionary<int, int>();
 
         List<int> m_RewardItems { get { return GameDataMgr.S.GetPlayerData().rewardCollectItemIDs; } }
-       
+
+        TDCollectConfig m_TempTable;
+
         public void Init()
         {
-            //m_RewardItems.Clear();
-            //GameDataMgr.S.GetPlayerData().SetDataDirty();
             CheckUnlockItem(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, UnlockCheck);
-            EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
+            //EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
             EventSystem.S.Register(EventID.OnCountdownerTick, OnTick);
             EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
         }
@@ -35,23 +35,24 @@ namespace GameWish.Game
             }
         }
 
-        private void OnStart(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            if (m_CurrentCollcetCountDic.ContainsKey(cd.ID) && cd.stringID.Equals("CollectItem"))
-            {
-                var tb = TDCollectConfigTable.dataList[cd.ID];
-                SetDic(cd.ID, 0);
-            }
-        }
+        //private void OnStart(int key, object[] param)
+        //{
+        //    Countdowner cd = (Countdowner)param[0];
+        //    if (m_CurrentCollcetCountDic.ContainsKey(cd.ID) && cd.stringID.Equals("CollectItem"))
+        //    {
+        //        var tb = TDCollectConfigTable.dataList[cd.ID];
+        //        SetDic(cd.ID, 0);
+        //    }
+        //}
 
         private void OnTick(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
             if (m_CurrentCollcetCountDic.ContainsKey(cd.ID) && cd.stringID.Equals("CollectItem"))
             {
-                var tb = TDCollectConfigTable.dataList[cd.ID];
-                SetDic(cd.ID, (int)(tb.maxStore * cd.GetProgress()));
+                m_TempTable = TDCollectConfigTable.dataList[cd.ID];
+                OnTickAddCount(cd.ID, (int)(m_TempTable.maxStore * cd.GetProgress()));
+                //SetDic(cd.ID, (int)(tb.maxStore * cd.GetProgress()));
             }
         }
 
@@ -60,8 +61,8 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (m_CurrentCollcetCountDic.ContainsKey(cd.ID) && cd.stringID.Equals("CollectItem"))
             {
-                var tb = TDCollectConfigTable.dataList[cd.ID];
-                SetDic(cd.ID, tb.maxStore);
+                m_TempTable = TDCollectConfigTable.dataList[cd.ID];
+                SetDic(cd.ID, m_TempTable.maxStore);
                 if (!m_RewardItems.Contains(cd.ID))
                 {
                     m_RewardItems.Add(cd.ID);
@@ -70,14 +71,45 @@ namespace GameWish.Game
             }
         }
 
-        void SetDic(int id, int value)
+        void OnTickAddCount(int id,int value)
+        {
+            if(m_CurrentCollcetCountDic[id] < value)
+            {
+                m_CurrentCollcetCountDic[id] = value;
+                EventSystem.S.Send(EventID.OnCollectCountChange, id, value);
+                CheckLotusState();
+            }
+        }
+
+        void SetDic(int id, int value, bool isGuide = false)
         {
             //向UI发送事件
             if (m_CurrentCollcetCountDic[id] != value)
             {
-                EventSystem.S.Send(EventID.OnCollectCountChange, id, value);
                 m_CurrentCollcetCountDic[id] = value;
+                if (isGuide)
+                    EventSystem.S.Send(EventID.OnCollectCountChange, id, value, isGuide);
+                else
+                    EventSystem.S.Send(EventID.OnCollectCountChange, id, value);
+                CheckLotusState();
             }
+        }
+
+        /// <summary>
+        /// 检查莲花的状态（莲藕，莲花，荷叶有一项超过最大数量的一半，则设置图片为状态2，否则为状态1）
+        /// </summary>
+        void CheckLotusState()
+        {
+            foreach (var item in m_CurrentCollcetCountDic)
+            {
+                m_TempTable = TDCollectConfigTable.dataList[item.Key];
+                if (item.Value != 3 && item.Value >= (m_TempTable.maxStore * 0.5f))
+                {
+                    EventSystem.S.Send(EventID.OnChangeCollectLotusState2);
+                    return;
+                }
+            }
+            EventSystem.S.Send(EventID.OnChangeCollectLotusState1);
         }
         
 
@@ -86,15 +118,20 @@ namespace GameWish.Game
             FacilityType facilityType2 = (FacilityType)param[0];
             if (facilityType2 == FacilityType.Lobby)
             {
-                TDCollectConfig temp;
                 for (int i = 0; i < TDCollectConfigTable.dataList.Count; i++)
                 {
-                    temp = TDCollectConfigTable.dataList[i];
-                    if (!m_CurrentCollcetCountDic.ContainsKey(temp.id) && temp.lobbyLevelRequired <= MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby))
+                    m_TempTable = TDCollectConfigTable.dataList[i];
+                    if (!m_CurrentCollcetCountDic.ContainsKey(m_TempTable.id) && m_TempTable.lobbyLevelRequired <= MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby))
                     {
-                        m_CurrentCollcetCountDic.Add(temp.id, 0);
-                        //解锁 开始收集计时
-                        CountdownSystem.S.StartCountdownerWithMin("CollectItem", temp.id, temp.maxStore * temp.productTime);
+                        m_CurrentCollcetCountDic.Add(m_TempTable.id, 0);
+                        CountdownSystem.S.StartCountdownerWithMin("CollectItem", m_TempTable.id, m_TempTable.maxStore * m_TempTable.productTime);
+                        //处理新手引导
+                        if (m_CurrentCollcetCountDic.Count == 1)
+                        {
+                            SetDic(m_TempTable.id, 1, true);
+                            UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
+                            EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
+                        }
                     }
                 }
             }
@@ -102,18 +139,16 @@ namespace GameWish.Game
         
         void CheckUnlockItem(int lobbylevel)
         {
-            TDCollectConfig temp;
             for (int i = 0; i < TDCollectConfigTable.dataList.Count; i++)
             {
-                temp = TDCollectConfigTable.dataList[i];
-                if (!m_CurrentCollcetCountDic.ContainsKey(i) && temp.lobbyLevelRequired <= lobbylevel)
+                m_TempTable = TDCollectConfigTable.dataList[i];
+                if (!m_CurrentCollcetCountDic.ContainsKey(i) && m_TempTable.lobbyLevelRequired <= lobbylevel)
                 {
-                    m_CurrentCollcetCountDic.Add(temp.id, 0);
+                    m_CurrentCollcetCountDic.Add(m_TempTable.id, 0);
                 }
             }
         }
        
-
         public void Collect(int id)
         {
             var tb = TDCollectConfigTable.dataList[id];
@@ -139,7 +174,6 @@ namespace GameWish.Game
             //弹出UI反馈
             UIMgr.S.OpenPanel(UIID.LogPanel, "奖励", string.Format("获得{0}", m_CurrentCollcetCountDic[id]));
             MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)tb.itemId), m_CurrentCollcetCountDic[id]);
-            SetDic(id, 0);
             //存档移除
             if (m_RewardItems.Contains(id))
             {
@@ -147,8 +181,8 @@ namespace GameWish.Game
                 GameDataMgr.S.GetPlayerData().SetDataDirty();
             }
             //重新计时
+            SetDic(id, 0);
             CountdownSystem.S.StartCountdownerWithMin("CollectItem", id, tb.maxStore * tb.productTime);
-           
         }
 
     }

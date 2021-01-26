@@ -15,7 +15,10 @@ namespace GameWish.Game
         private Text m_ChallengeCont;
         [SerializeField]
         private Text m_ChallengeRewardValue;
-
+        [SerializeField]
+        private Text m_ChallengeRecommendAtkText;
+        [SerializeField]
+        private Text m_ChallengeRecommendAtkValue;
         [SerializeField]
         private Image m_ChallengePhoto;
 
@@ -62,10 +65,9 @@ namespace GameWish.Game
         {
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);
             m_ChallengeCont.text = m_LevelConfigInfo.desc;
-            //m_ChallengeRewardValue.text = m_LevelConfigInfo.levelReward.value.ToString();
+            m_ChallengeRewardValue.text = m_LevelConfigInfo.levelRewardList[0].GetRewardValue().ToString();
+            m_ChallengeRecommendAtkValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
         }
-
-
 
         protected override void OnPanelHideComplete()
         {

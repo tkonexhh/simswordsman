@@ -19,6 +19,11 @@ namespace GameWish.Game
         {
             GameDataMgr.S.GetPlayerData().AddFoodNum(m_FoodValue);
         }
+
+        public override int GetRewardValue()
+        {
+            return m_FoodValue;
+        }
     }
 
 }
