@@ -26,6 +26,7 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
+        private PanelType m_PanelType;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -51,8 +52,19 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_LevelConfigInfo = (LevelConfigInfo)args[0];
-            m_IsSuccess = (bool)args[1];
+            m_PanelType = (PanelType)args[0];
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    break;
+                case PanelType.Challenge:
+                    m_LevelConfigInfo = (LevelConfigInfo)args[1];
+                    m_IsSuccess = (bool)args[1];
+                    break;
+                default:
+                    break;
+            }
+  
 
             if (m_IsSuccess)
             {

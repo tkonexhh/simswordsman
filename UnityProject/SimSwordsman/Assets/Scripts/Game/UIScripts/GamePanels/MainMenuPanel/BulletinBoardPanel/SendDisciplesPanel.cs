@@ -131,7 +131,6 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    break;
                 case PanelType.Challenge:
                     int i = 0;
                     foreach (var item in m_SelectedDiscipleDic.Values)
@@ -158,6 +157,8 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     m_CurTaskInfo = args[1] as SimGameTask;
+                    m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
+                    HandConfirmBtnEvent();
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
@@ -214,7 +215,6 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    break;
                 case PanelType.Challenge:
                     if (m_AllCharacterList != null)
                         for (int i = 0; i < MaxDiscipleNumber; i++)
@@ -227,7 +227,6 @@ namespace GameWish.Game
             {
                 CreateHerb(i);
             }
-
         }
 
         private void BindAddListenerEvent()
@@ -286,6 +285,7 @@ namespace GameWish.Game
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 CloseSelfPanel();
+                m_SelectedList = Transformation(m_SelectedDiscipleDic);
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
@@ -298,19 +298,18 @@ namespace GameWish.Game
                             {
                                 enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
                             }
-                            EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, enemiesList);
-                            UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                            EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, m_PlayerDataHerb);
+                            UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType,m_CurTaskInfo, enemiesList);
                         }
                         break;
                     case PanelType.Challenge:
-                        m_SelectedList = Transformation(m_SelectedDiscipleDic);
                         if (m_SelectedList.Count!= MaxDiscipleNumber)
                         {
                             //FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
                             //return;
                         }
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
-                        UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                        UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo);
                         break;
                     default:
                         break;

@@ -55,7 +55,7 @@ namespace GameWish.Game
         {
             foreach (var item in selectedCharacters)
                 CharacterIDs.Add(item.CharacterId);
-
+            m_TaskDetailInfo.taskState = TaskState.Running;
             GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
         }
 

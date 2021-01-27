@@ -41,6 +41,9 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
         private LogPanel m_logPanel = null;
         private Coroutine m_Coroutine;
+        private PanelType m_PanelType;
+        private SimGameTask m_CurTaskInfo = null;
+
 
         protected override void OnUIInit()
         {
@@ -52,7 +55,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
             //m_ScrollRect.
-
         }
 
         private void StartBattleText()
@@ -138,7 +140,6 @@ namespace GameWish.Game
             m_TalkText = TDBattleWordsTable.GetBattleTextForType(BattleText.Talk);
             m_EndText = TDBattleWordsTable.GetBattleTextForType(BattleText.End);
             m_OurCharacterList = MainGameMgr.S.BattleFieldMgr.OurCharacterList;
-            m_EnemyCharacterList = m_LevelConfigInfo.enemiesList;
         }
 
 
@@ -201,8 +202,19 @@ namespace GameWish.Game
         private void RefreshCurPanelInfo()
         {
             m_LeftSchoolNameValue.text = GameDataMgr.S.GetClanData().GetClanName();
-            m_RightSchoolNameValue.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
-            m_MatchNameValue.text = m_LevelConfigInfo.battleName;
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    //m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
+                    m_MatchNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
+                    break;
+                case PanelType.Challenge:
+                    m_RightSchoolNameValue.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
+                    m_MatchNameValue.text = m_LevelConfigInfo.battleName;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void BindAddListenerEvent()
@@ -238,8 +250,22 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            m_CurChapterConfigInfo = (ChapterConfigInfo)args[0];
-            m_LevelConfigInfo = (LevelConfigInfo)args[1];
+            m_PanelType = (PanelType)args[0];
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    m_CurTaskInfo = (SimGameTask)args[1];
+                    m_EnemyCharacterList = (List<EnemyConfig>)args[2];
+                    break;
+                case PanelType.Challenge:
+                    m_CurChapterConfigInfo = (ChapterConfigInfo)args[1];
+                    m_LevelConfigInfo = (LevelConfigInfo)args[2];
+                    m_EnemyCharacterList = m_LevelConfigInfo.enemiesList;
+                    break;
+                default:
+                    break;
+            }
+            
             GetInformationForNeed();
             RefreshCurPanelInfo();
             StartCoroutine(BattleCountdown(30));
@@ -290,13 +316,32 @@ namespace GameWish.Game
                     m_RightBloodStick.value = (float)param[1];
                     break;
                 case EventID.OnBattleSuccessed:
-                    MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
+                    switch (m_PanelType)
+                    {
+                        case PanelType.Task:
+
+                            break;
+                        case PanelType.Challenge:
+                            MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_LevelConfigInfo, true);
+                            break;
+                        default:
+                            break;
+                    }
                     CreateBattleOverText(true);
-                    UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_LevelConfigInfo, true);
                     break;
                 case EventID.OnBattleFailed:
+                    switch (m_PanelType)
+                    {
+                        case PanelType.Task:
+                            break;
+                        case PanelType.Challenge:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_LevelConfigInfo, false);
+                            break;
+                        default:
+                            break;
+                    }
                     CreateBattleOverText(false);
-                    UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_LevelConfigInfo, false);
                     break;
                 case EventID.OnCharacterUpgrade:
                     PanelPool.S.AddPromotion(new DiscipleRiseStage((EventID)key, (int)param[0], (int)param[1]));
