@@ -145,41 +145,8 @@ namespace GameWish.Game
                     if (item.IsHavaSameDisciple(characterItem))
                         item.SetItemState(false);
                 }
-
             }
-            //RefreshDisicipleSkill();
         }
-
-        private void RefreshDisicipleSkill()
-        {
-            //float atkValue = 0;
-            //foreach (var item in m_SelectedDiscipleDic.Values)
-            //    atkValue += item.atkValue;
-            //m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
-
-            //int selected = int.Parse(m_SelectedDiscipleSkillValue.text);
-            //int recommended = int.Parse(m_RecommendedSkillsValue.text);
-            //float result = selected / recommended;
-            //if (result < 0.75)
-            //{
-
-            //    m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-            //else if (result > 1.1f)
-            //    {
-            //        m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
-            //        //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
-
-            //    }
-            //    else
-            //    {
-            //        m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
-
-
-            //    }
-            //}
-        }
-
-       
 
         private void RefreshFixedInfo()
         {
@@ -190,8 +157,6 @@ namespace GameWish.Game
             //m_RecommendedSkillsValue.text = 
         }
 
-
-
         private void BindAddListenerEvent()
         {
             m_ConfirmBtn.onClick.AddListener(() =>
@@ -200,7 +165,6 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
         }
-
         private void GetInformationForNeed()
         {
             m_AllDiscipleList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
@@ -222,7 +186,6 @@ namespace GameWish.Game
             m_SelectedDiscipleObjList.Add(itemICom);
         }
 
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -241,7 +204,6 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
                 CreateSelectedDisciple();
-
         }
         private void RefreshPanelInfo()
         {

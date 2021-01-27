@@ -24,7 +24,6 @@ namespace GameWish.Game
 
         private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
 
-
         private bool IsSelected = false;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {

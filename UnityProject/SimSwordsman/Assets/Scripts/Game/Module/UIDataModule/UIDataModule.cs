@@ -95,6 +95,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.CombatInterfacePanel, null, "GamePanels/MainMenuPanel/ChallengePanel/CombatInterfacePanel");
             UIDataTable.AddPanelData(UIID.CombatSettlementPanel, null, "GamePanels/MainMenuPanel/ChallengePanel/CombatSettlementPanel");
             UIDataTable.AddPanelData(UIID.PromotionPanel, null, "GamePanels/MainMenuPanel/ChallengePanel/PromotionPanel");
+            UIDataTable.AddPanelData(UIID.ChallengeChooseDisciple, null, "GamePanels/MainMenuPanel/ChallengePanel/ChallengeChooseDisciple");
 
 
             UIDataTable.AddPanelData(UIID.HousePanel, null, "GamePanels/FacilityPanel/HousePanel/HousePanel");

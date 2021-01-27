@@ -48,6 +48,7 @@ namespace GameWish.Game
         CombatInterfacePanel,
         CombatSettlementPanel,
         PromotionPanel,
+        ChallengeChooseDisciple,
 
         HousePanel,
         WarehousePanel,

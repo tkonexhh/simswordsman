@@ -51,6 +51,13 @@ namespace GameWish.Game
 
                 m_WarehouseItems.Add(item);
             });
+            m_ClanData.GetHerbList().ForEach(i =>
+            {
+                HerbItem item = new HerbItem();
+                item.Wrap(i);
+
+                m_WarehouseItems.Add(item);
+            });
         }
 
 
@@ -85,7 +92,16 @@ namespace GameWish.Game
             });
             return isGet;
         }
-
+        public ItemBase GetHerbForID(int herbID)
+        {
+            ItemBase itemBase = null;
+            m_WarehouseItems.ForEach(i =>
+            {
+                if (i.PropType == PropType.Herb && i.GetSubName() == herbID)
+                    itemBase = i;
+            });
+            return itemBase;
+        }
         /// <summary>
         /// 根据类型返回所以装备
         /// </summary>
@@ -207,8 +223,6 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
         }
 
-
-        
         public int GetCurReserves()
         {
             return m_WarehouseItems.Count;
@@ -527,6 +541,13 @@ namespace GameWish.Game
         public HerbItem()
         {
 
+        }
+        public HerbItem(HerbType herbType)
+        {
+            PropType = PropType.Herb;
+            HerbID = herbType;
+            Number = 0;
+            RefreshItemInfo();
         }
 
         public HerbItem(HerbType herbType, int count)

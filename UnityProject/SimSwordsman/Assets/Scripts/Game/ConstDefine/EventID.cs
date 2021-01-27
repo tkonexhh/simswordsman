@@ -127,6 +127,7 @@ namespace GameWish.Game
         /// 打开面板发送弟子事件
         /// </summary>
         OnSendDiscipleDicEvent,
+        OnSendHerbEvent,
         #endregion
 
 

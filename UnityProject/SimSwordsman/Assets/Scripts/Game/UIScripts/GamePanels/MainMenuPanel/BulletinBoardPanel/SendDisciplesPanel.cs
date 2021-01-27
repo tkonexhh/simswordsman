@@ -16,7 +16,6 @@ namespace GameWish.Game
 
     public class SendDisciplesPanel : AbstractAnimPanel
     {
-
         [Header("Top")]
         [SerializeField]
         private Button m_ClsseBtn;
@@ -40,29 +39,34 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_DiscipleItem;
 
+        [Header("MiddleDown")]
         [SerializeField]
-        private Transform m_SelectedTrans;
-   
+        private Text m_HerbTitle;
         [SerializeField]
         private Transform m_HerbalMedicineItemTra;
-
-        //[SerializeField]
-        //private GameObject m_DiscipleItem;
         [SerializeField]
         private GameObject m_HerbalMedicineItem;
 
+        [Header("Down")]
 
         [SerializeField]
         private Button m_AutoSelectedBtn;
         [SerializeField]
+        private Text m_AutoSelectedText;
+        [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
+        private Text m_AcceptText;
+        [SerializeField]
         private Button m_RefuseBtn;
+        [SerializeField]
+        private Text m_RefuseText;
 
         private PanelType m_PanelType;
 
         private SimGameTask m_CurTaskInfo = null;
 
+        private const int MaxDiscipleNumber = 5;
 
         private List<CharacterItem> m_AllCharacterList = null;
 
@@ -70,25 +74,86 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
 
         private Dictionary<int, DiscipleItem> m_SelectedDic = new Dictionary<int, DiscipleItem>();
-        private List<HerbItem> m_PlayerDataHerbDic = new List<HerbItem>();
+        private Dictionary<int, HerbalMedicineItem> m_PlayerDataHerbDic = new Dictionary<int, HerbalMedicineItem>();
 
+        private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
+        private List<SendSelectedDisciple> m_ChallengeDiscipleList = new List<SendSelectedDisciple>();
+      
         private List<CharacterController> m_SelectedList = new List<CharacterController>();
         private List<HerbType> m_PlayerDataHerb = new List<HerbType>();
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSendHerbEvent, HandAddListenerEvent);
 
             GetInformationForNeed();
 
-            InitPanelInfo();
-
             BindAddListenerEvent();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+            EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSendHerbEvent, HandAddListenerEvent);
+        }
+
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnSelectedConfirmEvent:
+                    m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)param[0];
+                    HandConfirmBtnEvent();
+                    break;
+                case EventID.OnSendDiscipleDicEvent:
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback);
+                    break;     
+                case EventID.OnSendHerbEvent:
+                    HandHerbEvent((bool)param[0], (HerbItem)param[1]);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OpenCallback(AbstractPanel obj)
+        {
+            ChallengeChooseDisciple challengeChooseDisciple = obj as ChallengeChooseDisciple;
+            challengeChooseDisciple.AddDiscipleDicDic(m_SelectedDiscipleDic);
+        }
+
+        private void HandConfirmBtnEvent()
+        {
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    break;
+                case PanelType.Challenge:
+                    int i = 0;
+                    foreach (var item in m_SelectedDiscipleDic.Values)
+                    {
+                        m_ChallengeDiscipleList[i].RefreshSelectedDisciple(item);
+                        i++;
+                    }
+                    for (int j = m_SelectedDiscipleDic.Values.Count; j < m_ChallengeDiscipleList.Count; j++)
+                        m_ChallengeDiscipleList[j].RefreshSelectedDisciple(null);
+                    break;
+                default:
+                    break;
+            }
         }
 
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
+
             m_PanelType = (PanelType)args[0];
+            InitPanelInfo();
             switch (m_PanelType)
             {
                 case PanelType.Task:
@@ -102,34 +167,83 @@ namespace GameWish.Game
                     break;
             }
         }
+        private void RefreshDisicipleSkill()
+        {
+            float atkValue = 0;
+            foreach (var item in m_SelectedDiscipleDic.Values)
+                atkValue += item.atkValue;
+            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
 
+            int selected = int.Parse(m_SelectedDiscipleSkillValue.text);
+            int recommended = int.Parse(m_RecommendedSkillsValue.text);
+            float result = selected / recommended;
+            if (result < 0.75)
+            {
+
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
+            }
+            else if (result > 1.1f)
+            {
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
+                //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
+            }
+            else
+            {
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
+            }
+
+        }
         private void GetInformationForNeed()
         {
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    break;
+                case PanelType.Challenge:
+                    break;
+                default:
+                    break;
+            }
             m_AllCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
             //m_PlayerDataHerbDic = MainGameMgr.S.MedicinalPowderMgr.GetAllHerbs();
-            m_PlayerDataHerbDic = MainGameMgr.S.InventoryMgr.GetAllHerbs();
+            //m_PlayerDataHerbDic = MainGameMgr.S.InventoryMgr.GetAllHerbs();
         }
 
         private void InitPanelInfo()
         {
-            if (m_AllCharacterList != null)
-                foreach (var item in m_AllCharacterList)
-                    CreateDisciple(m_UnselectedTrans, item, AddAllListenerBtn);
-
-            foreach (var item in m_PlayerDataHerbDic)
+            switch (m_PanelType)
             {
-                CreateHerb(item, AddHerbListenerBtn);
+                case PanelType.Task:
+                    break;
+                case PanelType.Challenge:
+                    if (m_AllCharacterList != null)
+                        for (int i = 0; i < MaxDiscipleNumber; i++)
+                            CreateDisciple(m_UnselectedTrans);
+                    break;
+                default:
+                    break;
             }
+            for (int i = (int)HerbType.ChiDanZhuangQiWan; i <=  (int)HerbType.HuanHunDan; i++)
+            {
+                CreateHerb(i);
+            }
+
         }
 
         private void BindAddListenerEvent()
         {
+            m_ClsseBtn.onClick.AddListener(() =>
+            {
+                HideSelfWithAnim();
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+            });
+
             m_RefuseBtn.onClick.AddListener(() =>
             {
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
-            m_AutoSelectedBtn.onClick.AddListener(()=> 
+            m_AutoSelectedBtn.onClick.AddListener(() =>
             {
                 CloseSelfPanel();
                 switch (m_PanelType)
@@ -161,8 +275,9 @@ namespace GameWish.Game
                         }
                         break;
                     case PanelType.Challenge:
-                        EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
-                        UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                        AutoSelectedDisciple();
+                        //EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
+                        //UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
                         break;
                     default:
                         break;
@@ -188,6 +303,12 @@ namespace GameWish.Game
                         }
                         break;
                     case PanelType.Challenge:
+                        m_SelectedList = Transformation(m_SelectedDiscipleDic);
+                        if (m_SelectedList.Count!= MaxDiscipleNumber)
+                        {
+                            //FloatMessage.S.ShowMsg("请选择满弟子 !");
+                            //return;
+                        }
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
                         UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
                         break;
@@ -197,21 +318,36 @@ namespace GameWish.Game
             });
         }
 
+        private void AutoSelectedDisciple()
+        {
+            //TODO  按照弟子战力从高到底排序
+            //MainGameMgr.S.CharacterMgr.GetAllCharacterList
+            //m_SelectedDiscipleDic
+
+        }
+
+        private List<CharacterController> Transformation(Dictionary<int, CharacterItem> m_SelectedDiscipleDic)
+        {
+            List<CharacterController> characterController = new List<CharacterController>();
+            foreach (var item in m_SelectedDiscipleDic.Values)
+                characterController.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
+            return characterController;
+        }
+
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
         }
 
-        private void CreateHerb(HerbItem dataHerb, Action<object> action)
+        private void CreateHerb(int herbID)
         {
-
             if (m_HerbalMedicineItem == null)
                 return;
-            Transform herbItem = Instantiate(m_HerbalMedicineItem, m_HerbalMedicineItemTra).transform;
-            ItemICom herbItemICom = herbItem.GetComponent<ItemICom>();
-            herbItemICom.OnInit(dataHerb);
-            herbItemICom.SetButtonEvent(action);
+            HerbalMedicineItem herbItem = Instantiate(m_HerbalMedicineItem, m_HerbalMedicineItemTra).GetComponent<HerbalMedicineItem>();
+            herbItem.OnInit(herbID);
+            m_PlayerDataHerbDic.Add(herbID, herbItem);
         }
 
         /// <summary>
@@ -221,64 +357,31 @@ namespace GameWish.Game
         /// <param name="characterItem">弟子信息</param>
         /// <param name="action">按钮监听回调</param>
         /// <returns></returns>
-        private DiscipleItem CreateDisciple(Transform parent, object characterItem, Action<object> action)
+        private void CreateDisciple(Transform parent)
         {
-            if (m_DiscipleItem == null)
-                return null;
-            DiscipleItem discipeItem = Instantiate(m_DiscipleItem, parent).GetComponent<DiscipleItem>();
-            ItemICom discipleItem = discipeItem.GetComponent<ItemICom>();
-            discipleItem.OnInit(characterItem);
-            discipleItem.SetButtonEvent(action);
-            return discipeItem;
-        }
-        /// <summary>
-        /// 所有弟子的按钮监听
-        /// </summary>
-        /// <param name="obj"></param>
-        private void AddAllListenerBtn(object obj)
-        {
-            CharacterItem item = obj as CharacterItem;
-            if (!m_SelectedDic.ContainsKey(item.id))
-            {
-                m_SelectedDic.Add(item.id, CreateDisciple(m_SelectedTrans, obj, AddSelectedListenerBtn));
-                m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
-            }
+            SendSelectedDisciple discipeItem = Instantiate(m_DiscipleItem, parent).GetComponent<SendSelectedDisciple>();
+            discipeItem.OnInit(m_PanelType);
+            m_ChallengeDiscipleList.Add(discipeItem);
         }
 
-        /// <summary>
-        /// 已选择弟子的按钮监听
-        /// </summary>
-        /// <param name="obj"></param>
-        private void AddSelectedListenerBtn(object obj)
-        {
-            CharacterItem item = obj as CharacterItem;
-            if (m_SelectedDic.ContainsKey(item.id))
-            {
-                DiscipleItem discipleItem = m_SelectedDic[item.id];
-                m_SelectedDic.Remove(item.id);
-                DestroyImmediate(discipleItem.gameObject);
-                m_SelectedList.Remove(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
-            }
-        }
         /// <summary>
         /// 草药按钮监听回调
         /// </summary>
         /// <param name="obj"></param>
-        private void AddHerbListenerBtn(object obj)
+        private void HandHerbEvent(bool obj, HerbItem herbItem)
         {
-            HerbalMedicineItem item = obj as HerbalMedicineItem;
-            item.SetStateSelected();
-            if (item.GetHerbStatue())
+            if (herbItem == null)
+                return;
+            if (obj)
             {
-                if (!m_PlayerDataHerb.Contains((HerbType)item.GetCurHerbId()))
-                    m_PlayerDataHerb.Add((HerbType)item.GetCurHerbId());
+                if (!m_PlayerDataHerb.Contains(herbItem.HerbID))
+                    m_PlayerDataHerb.Add(herbItem.HerbID);
             }
             else
             {
-                if (m_PlayerDataHerb.Contains((HerbType)item.GetCurHerbId()))
-                    m_PlayerDataHerb.Remove((HerbType)item.GetCurHerbId());
+                if (m_PlayerDataHerb.Contains(herbItem.HerbID))
+                    m_PlayerDataHerb.Remove(herbItem.HerbID);
             }
-
         }
     }
 }

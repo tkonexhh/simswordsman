@@ -18,9 +18,10 @@ namespace GameWish.Game
         private int m_AtkEndCount = 0;
         private bool m_EnemyAttack = false;
         private float m_AttackRange = 1.5f;
+        private int m_AtkEventIndex = 0;
 
-        private float[] m_OurHitBackDistance = new float[] { 0.3f };
-        private float[] m_EnemyHitBackDistance = new float[] { 0.3f, 0.3f, 0.3f, 0.3f };
+        private List<float> m_OurHitBackDistance = new List<float>();
+        private List<float> m_EnemyHitBackDistance = new List<float>();
 
         public CharacterController OurCharacter { get => m_OurCharacter; }
         public CharacterController EnemyCharacter { get => m_EnemyCharacter; }
@@ -55,6 +56,8 @@ namespace GameWish.Game
 
         private void NextRound()
         {
+            m_AtkEventIndex = 0;
+
             // Who will attack
             if (m_OurCharacter.IsDead())
             {
@@ -78,15 +81,20 @@ namespace GameWish.Game
             }
 
             string atkAnimName;
+            List<float> atkRangeList = null;
             if (m_EnemyAttack)
             {
                 m_EnemyCharacter.GetBattleState().SetNextAtkAnimName();
                 atkAnimName = m_EnemyCharacter.GetBattleState().NextAtkAnimName;
+                atkRangeList = GetAtkRangeList(atkAnimName);
+                m_EnemyHitBackDistance = atkRangeList;
             }
             else
             {
                 m_OurCharacter.GetBattleState().SetNextAtkAnimName();
                 atkAnimName = m_OurCharacter.GetBattleState().NextAtkAnimName;
+                atkRangeList = GetAtkRangeList(atkAnimName);
+                m_OurHitBackDistance = atkRangeList;
             }
             Log.i("Test--------------, atk anim name is: " + atkAnimName);
             if(string.IsNullOrEmpty(atkAnimName))
@@ -96,13 +104,24 @@ namespace GameWish.Game
             }
 
             float attackRange = 1f;
-            var config = TDKongfuAnimationConfigTable.GetAnimConfig(atkAnimName);
-            if (config != null)
+
+            if (atkRangeList != null)
             {
-                attackRange = config.atkRangeList[0];
+                attackRange = atkRangeList[0];
             }
             // Move to random position
             StartToMove(attackRange);
+        }
+
+        private List<float> GetAtkRangeList(string atkAnimName)
+        {
+            var config = TDKongfuAnimationConfigTable.GetAnimConfig(atkAnimName);
+            if (config != null)
+            {
+                return config.atkRangeList;
+            }
+
+            return null;
         }
 
         private void StartToMove(float attackRange)
@@ -123,25 +142,10 @@ namespace GameWish.Game
 
             m_EnemyCharacter.GetBattleState().MoveTargetPos = new Vector2(x1, y);
             m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Move);
-            //m_EnemyCharacter.CharacterView.PlayWalkAnim();
-            //Vector2 pos1 = new Vector2(x1, y);
-            //float distance1 = Vector2.Distance(m_EnemyCharacter.GetPosition(), pos1);
-            //m_EnemyCharacter.CharacterView.transform.DOMove(pos1, distance1/m_EnemyCharacter.GetMoveSpeed()).SetEase(Ease.Linear).OnComplete(()=> 
-            //{
-            //    m_EnemyCharacter.CharacterView.PlayIdleAnim();
-            //    OnArriveDestination();
-            //});
 
             m_OurCharacter.GetBattleState().MoveTargetPos = new Vector2(x2, y);
             m_OurCharacter.GetBattleState().SetState(BattleStateID.Move);
-            //m_OurCharacter.CharacterView.PlayWalkAnim();
-            //Vector2 pos2 = new Vector2(x2, y);
-            //float distance2 = Vector2.Distance(m_OurCharacter.GetPosition(), pos2);
-            //m_OurCharacter.CharacterView.transform.DOMove(pos2, distance2 / m_OurCharacter.GetMoveSpeed()).SetEase(Ease.Linear).OnComplete(() => 
-            //{
-            //    m_OurCharacter.CharacterView.PlayIdleAnim();
-            //    OnArriveDestination();
-            //});
+
         }
 
         private void StartToFight()
@@ -311,15 +315,17 @@ namespace GameWish.Game
                     CharacterController controller3 = (CharacterController)param[0];
                     if (controller3 == m_OurCharacter)
                     {
-                        int index = 1;
-                        m_EnemyCharacter.GetBattleState().HitbackDistance = m_OurHitBackDistance[index - 1];
+                        m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
+                        m_EnemyCharacter.GetBattleState().HitbackDistance = m_OurHitBackDistance[m_AtkEventIndex];
                         m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                        m_AtkEventIndex++;
                     }
                     else if (controller3 == m_EnemyCharacter)
                     {
-                        int index = 1;
-                        m_OurCharacter.GetBattleState().HitbackDistance = m_EnemyHitBackDistance[index - 1];
+                        m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
+                        m_OurCharacter.GetBattleState().HitbackDistance = m_EnemyHitBackDistance[m_AtkEventIndex];
                         m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                        m_AtkEventIndex++;
                     }
                     break;
             }
