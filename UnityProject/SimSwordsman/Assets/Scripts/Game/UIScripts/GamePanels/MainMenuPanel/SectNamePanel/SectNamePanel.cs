@@ -5,12 +5,11 @@ using System;
 
 namespace GameWish.Game
 {
-
-	public class SectNamePanel : AbstractAnimPanel
+   
+    public class SectNamePanel : AbstractAnimPanel
 	{
 	    [SerializeField]
 	    private InputField m_ClanName; 
-
 		[SerializeField]
 		private Button m_RandomBtn;
 		[SerializeField]
@@ -23,7 +22,7 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
 	    {
-	        base.OnUIInit();
+            base.OnUIInit();
            
 			BindAddListenerEvent();
         }
@@ -47,11 +46,14 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 检测敏感词汇 待完善
+        /// 检测敏感词汇
         /// </summary>
-        void OnNameChange(string value)
+        bool IllegalCheckName(string value)
         {
-            Log.e("这里应当检测敏感词汇");
+            FilterSensitiveWords.Initialize();
+            string out1;
+            string s = value;
+            return FilterSensitiveWords.IsContainSensitiveWords(ref s, out out1);
         }
 
         void RandomName()
@@ -67,22 +69,22 @@ namespace GameWish.Game
         
         private void BindAddListenerEvent()
         {
-            m_ClanName.onValueChanged.AddListener(OnNameChange);
-            m_ClanName.onEndEdit.AddListener(OnNameChange);
-
             m_RandomBtn.onClick.AddListener(RandomName);
             m_AcceptBtn.onClick.AddListener(()=> 
             {
-                OnNameChange(m_ClanName.text);
-                GameDataMgr.S.GetGameData().clanData.SetClanName(m_ClanName.text);
-
-                m_CloseAction?.Invoke();
-
-                HideSelfWithAnim();
+                if (IllegalCheckName(m_ClanName.text))
+                {
+                    UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "名称不合法！");
+                }
+                else
+                {
+                    GameDataMgr.S.GetGameData().clanData.SetClanName(m_ClanName.text);
+                    m_CloseAction?.Invoke();
+                    HideSelfWithAnim();
+                }
             });
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
         }
-
 
         protected override void OnPanelHideComplete()
         {

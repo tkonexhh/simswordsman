@@ -21,9 +21,7 @@ namespace GameWish.Game
             {
                 Transform tar = GameplayMgr.S.transform.Find((string)pv[0]);
                 targetPos = tar.position;
-                //EventSystem.S.Send(EventID.InGuideProgress, true);
                 Camera.main.transform.position = new Vector3(targetPos.x, targetPos.y, Camera.main.transform.position.z);
-                //EventSystem.S.Send(EventID.InGuideProgress, false);
                 if (pv.Length > 1)
                 {
                     guideTipsPos = Helper.String2Vector3((string)pv[1], '|');
@@ -31,7 +29,6 @@ namespace GameWish.Game
                 if (pv.Length > 2)
                 {
                     textContentID = (string)pv[2];
-                    isNotForce = true;
                 }
                 if (pv.Length > 3)
                 {
