@@ -13,6 +13,8 @@ namespace GameWish.Game
         private Text m_BaicaohuCont;
         [SerializeField]
         private Text m_CurLevelTxt;
+        [SerializeField]
+        private Image m_FacilityIcon;
 
         [SerializeField]
         private Text m_UpgradeRequiredCoinTxt;
@@ -134,10 +136,6 @@ namespace GameWish.Game
                 GameDataMgr.S.GetPlayerData().ReduceCoinNum(info.upgradeCoinCost);
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                 GetInformationForNeed();
-                //Ω‚À¯“©
-                //int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
-                //if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
-                //    GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
 
                 RefreshPanelInfo();
             });
@@ -146,6 +144,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_BaicaohuCont.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
+            m_FacilityIcon.sprite = FindSprite("Baicaohu" + m_CurLevel);
 
             RefreshPanelText();
             UpdateItems();
@@ -228,5 +227,4 @@ namespace GameWish.Game
             }
         }
     }
-
 }

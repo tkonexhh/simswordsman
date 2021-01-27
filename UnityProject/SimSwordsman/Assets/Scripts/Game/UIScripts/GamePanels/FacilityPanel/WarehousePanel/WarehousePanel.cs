@@ -98,7 +98,9 @@ namespace GameWish.Game
             m_CurReservesValue.text = "当前储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
             m_NextReservesValue.text = "下一级储量:" + m_WarehouseNextLevelInfo.GetCurReserves() + "格";
             m_UpgradeCondition.text = "升级需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
-            
+            m_WarehouseImgae.sprite = FindSprite("Warehouse" + m_CurLevel);
+
+
             RefreshResInfo();
         }
 

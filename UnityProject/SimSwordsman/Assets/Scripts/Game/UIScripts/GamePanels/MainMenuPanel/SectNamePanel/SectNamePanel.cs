@@ -76,6 +76,10 @@ namespace GameWish.Game
                 {
                     UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "名称不合法！");
                 }
+                else if(m_ClanName.text.Length > 8)
+                {
+                    UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "超过字数限制！");
+                }
                 else
                 {
                     GameDataMgr.S.GetGameData().clanData.SetClanName(m_ClanName.text);

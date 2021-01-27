@@ -29,6 +29,8 @@ namespace GameWish.Game
 
         [SerializeField]
         private Image m_LivableRoomImg;
+        [SerializeField]
+        private Image m_LivableRoomImgLock;
         [Header("DividingLine")]
         [Header("MiddleBottom")]
         [SerializeField]
@@ -78,21 +80,22 @@ namespace GameWish.Game
         private int m_CurLevel;
         private string m_CurLivableRoomName = string.Empty;
         private LivableRoomState m_LivableRoomState;
-        private List<Sprite> m_Sprites;
         private List<CostItem> m_CostItems;
+
+        private AbstractAnimPanel m_panel;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             BindAddListenerEvent();
+            m_panel = t as AbstractAnimPanel;
             m_CurFacilityType = (FacilityType)obj[0];
-            m_Sprites = (List<Sprite>)obj[1];
             GetInformationForNeed();
             RefreshPanelText();
             RefreshPanelInfo();
         }
 
         private Sprite GetSprite(string name)
-        { 
-            return m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
+        {
+            return m_panel.FindSprite(name);
         }
 
         private void BindAddListenerEvent()
@@ -199,11 +202,18 @@ namespace GameWish.Game
                     {
                         m_UpgradeBtnImg.sprite = GetSprite("BgBtn3");
                         m_UpgradeBtn.interactable = false;
+
+                        m_LivableRoomImg.gameObject.SetActive(false);
+                        m_LivableRoomImgLock.gameObject.SetActive(true);
                     }
                     else
                     {
                         m_UpgradeBtnImg.sprite = GetSprite("BgBtn1");
                         m_UpgradeBtn.interactable = true;
+
+                        m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
+                        m_LivableRoomImg.gameObject.SetActive(true);
+                        m_LivableRoomImgLock.gameObject.SetActive(false);
                     }
                     break;
                 case LivableRoomState.Upgrade:
@@ -218,6 +228,10 @@ namespace GameWish.Game
                     RefreshResInfo();
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
                     m_UpgradeBtnImg.sprite= GetSprite("BgBtn2");
+
+                    m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
+                    m_LivableRoomImg.gameObject.SetActive(true);
+                    m_LivableRoomImgLock.gameObject.SetActive(false);
                     break;
                 case LivableRoomState.FullLevel:
                     m_LivableRoomLevel.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_FULLLEVEL);
@@ -229,6 +243,10 @@ namespace GameWish.Game
                     m_Res3.gameObject.SetActive(false);
                     m_Res1.gameObject.SetActive(false);
                     m_Res2.gameObject.SetActive(false);
+
+                    m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
+                    m_LivableRoomImg.gameObject.SetActive(true);
+                    m_LivableRoomImgLock.gameObject.SetActive(false);
                     break;
                 default:
                     break;
