@@ -119,6 +119,15 @@ namespace GameWish.Game
 
             return list;
         }
+        /// <summary>
+        /// 根据ID获取Herb
+        /// </summary>
+        /// <param name="herbID"></param>
+        /// <returns></returns>
+        public ItemBase GetHerbForID(int herbID)
+        {
+            return m_InventoryDataWrapper.GetHerbForID(herbID);
+        }
 
         /// <summary>
         /// 获取所有仓库中装备信息

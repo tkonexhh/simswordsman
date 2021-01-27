@@ -7,12 +7,10 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class SendSelectedDisciple : MonoBehaviour
+	public class ChallengeSelectedDisciple : MonoBehaviour
 	{
         [SerializeField]
-        private Button m_Btn;
-        [SerializeField]
-        private Image m_LevelBg;
+        private Button m_ChooseSelectedDisciple;
         [SerializeField]
         private Text m_Level;
         [SerializeField]
@@ -20,33 +18,14 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
-        private Image m_Plus;
         private GameObject m_SelectedImg;
+        [SerializeField]
+        private GameObject m_Plus;
+        [SerializeField]
+        private GameObject m_LevelBg;
         private CharacterItem m_CharacterItem;
-        private PanelType m_PanelType;
-		private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
-		public void OnInit(PanelType panelType)
-		{
-			m_PanelType = panelType;
-			BindAddListenerEvent();
-			RefreshPanelTypeInfo();
-		}
+        private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
 
-        private void BindAddListenerEvent()
-        {
-            m_Btn.onClick.AddListener(()=> {
-                switch (m_PanelType)
-                {
-                    case PanelType.Task:
-                        break;
-                    case PanelType.Challenge:
-                        EventSystem.S.Send(EventID.OnSendDiscipleDicEvent);
-                        break;
-                    default:
-                        break;
-                }
-            });
-		}
         public void RefreshPanelInfo()
         {
             switch (m_SelelctedState)
@@ -55,6 +34,8 @@ namespace GameWish.Game
                     m_DiscipleName.text = m_CharacterItem.name;
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
+                    m_ChooseSelectedDisciple.enabled = true;
+                    m_SelectedImg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
                     break;
@@ -63,35 +44,45 @@ namespace GameWish.Game
                     m_Plus.gameObject.SetActive(true);
                     m_DiscipleHead.gameObject.SetActive(false);
                     m_LevelBg.gameObject.SetActive(false);
+                    m_SelectedImg.gameObject.SetActive(false);
+                    m_ChooseSelectedDisciple.enabled = false;
                     break;
                 default:
                     break;
+            }
+        }
+        public void OnInit(ChallengeChooseDisciple challengeChooseDisciple)
+        {
+            RefreshPanelInfo();
+            m_ChooseSelectedDisciple.onClick.AddListener(() => {
+                EventSystem.S.Send(EventID.OnSelectedDiscipleEvent, m_CharacterItem, false);
+            });
+        }
+        public bool IsHavaSame(CharacterItem characterItem)
+        {
+            if (m_CharacterItem != null && m_CharacterItem.id == characterItem.id)
+                return true;
+            else
+            {
+                Log.w("当前弟子未选中");
+                return false;
             }
         }
 
-        public void RefreshSelectedDisciple(CharacterItem characterItem)
+        public void SetSelectedDisciple(CharacterItem characterItem, bool isSelected)
         {
             m_CharacterItem = characterItem;
-            if (m_CharacterItem == null)
-                m_SelelctedState = SelelctedState.NotSelected;
-            else
+            if (isSelected)
                 m_SelelctedState = SelelctedState.Selected;
+            else
+                m_SelelctedState = SelelctedState.NotSelected;
             RefreshPanelInfo();
         }
-        private void RefreshPanelTypeInfo()
-		{
-            switch (m_PanelType)
-            {
-                case PanelType.Task:
-                    m_Btn.enabled = false;
-                    break;
-                case PanelType.Challenge:
-                    RefreshPanelInfo();
-                    break;
-                default:
-                    break;
-            }
+
+        public SelelctedState GetSelelctedState()
+        {
+            return m_SelelctedState;
         }
-	}
+    }
 	
 }

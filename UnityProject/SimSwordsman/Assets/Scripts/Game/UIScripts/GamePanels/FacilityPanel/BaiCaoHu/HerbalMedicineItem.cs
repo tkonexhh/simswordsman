@@ -8,34 +8,53 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public class HerbalMedicineItem : MonoBehaviour,ItemICom
+    public class HerbalMedicineItem : MonoBehaviour
     {
-        [SerializeField]    
-        private Text m_HerbalMedicineNumber;
         [SerializeField]
-        private Text m_HerbalMedicineName;
+        private Image m_HerbHead;
+        [SerializeField]
+        private Image m_State;
+        [SerializeField]
+        private Text m_HerbName;
 
         [SerializeField]
         private Button m_HerbalMedicineBtn;
 
         //private PlayerDataHerb m_CurHerb = null;
         private HerbItem m_HerbItem = null;
-
+        private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
         private bool m_IsSelected = false;
         private void Start()
         {
             BindAddListenerEvent();
-
         }
-        public void OnInit<T>(T t, Action action = null, params object[] obj)
+        public void OnInit(int id)
         {
-            m_HerbItem = t as HerbItem;
+            m_HerbItem = MainGameMgr.S.InventoryMgr.GetHerbForID(id) as HerbItem;
+
+            RefreshPanelInfo();
+        }
+
+        private void RefreshPanelInfo()
+        {
+            switch (m_SelelctedState)
+            {
+                case SelelctedState.Selected:
+                    m_State.gameObject.SetActive(true);
+                    break;
+                case SelelctedState.NotSelected:
+                    m_State.gameObject.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
             if (m_HerbItem != null)
             {
-                m_HerbalMedicineName.text = m_HerbItem.Name;
-                m_HerbalMedicineNumber.text = m_HerbItem.Number.ToString();
+                m_HerbName.text = m_HerbItem.Name;
+                //m_HerbalMedicineNumber.text = m_HerbItem.Number.ToString();
             }
         }
+
         /// <summary>
         /// 获取当前草药的id
         /// </summary>
@@ -64,13 +83,23 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-           
-        }
+            m_HerbalMedicineBtn.onClick.AddListener(() =>
+            {
+                m_IsSelected = !m_IsSelected;
+                if (m_IsSelected)
+                {
+                    if (m_HerbItem == null || m_HerbItem.Number - 1 <= 0)
+                    {
+                        FloatMessage.S.ShowMsg("草药数量不足!");
+                        return;
+                    }
+                    m_SelelctedState = SelelctedState.Selected;
+                }
+                else
+                    m_SelelctedState = SelelctedState.NotSelected;
 
-        public void SetButtonEvent(Action<object> action)
-        {
-            m_HerbalMedicineBtn.onClick.AddListener(() => {
-                action?.Invoke(this);
+                EventSystem.S.Send(EventID.OnSendHerbEvent, m_IsSelected, m_HerbItem);
+                RefreshPanelInfo();
             });
         }
 

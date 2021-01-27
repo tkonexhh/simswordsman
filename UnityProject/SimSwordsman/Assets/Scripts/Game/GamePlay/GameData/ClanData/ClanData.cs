@@ -307,6 +307,11 @@ namespace GameWish.Game
             return inventoryData.armorDBDataList;
 
         }
+        public List<HerbItemDbData> GetHerbList()
+        {
+            return inventoryData.herbDBDataList;
+
+        }
         public List<PropItemDbData> GetPropList()
         {
             return inventoryData.propList;

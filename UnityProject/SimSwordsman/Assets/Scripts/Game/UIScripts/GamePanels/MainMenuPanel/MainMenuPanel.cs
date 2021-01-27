@@ -52,6 +52,17 @@ namespace GameWish.Game
                 m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
             }
 
+            m_CreateBaoziBtn.onClick.AddListener(()=> {
+                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
+                }
+                for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.LianHuaQingShenLu; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 200);
+                }
+            });
+
             m_VillaBtn.onClick.AddListener(() => {
 
                 for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
