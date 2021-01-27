@@ -56,6 +56,7 @@ namespace GameWish.Game
                 }
                 m_Desc.text = tb.desc;
                 m_RewardIcon.sprite = FindSprite(m_visitor.Reward.RewardName());
+                m_RewardIcon.SetNativeSize();
                 m_RewardName.text = m_visitor.Reward.RewardName();
                 m_RewardNum.text = m_visitor.Reward.Count.ToString();
                 m_Character.sprite = FindSprite(tb.roleRes);

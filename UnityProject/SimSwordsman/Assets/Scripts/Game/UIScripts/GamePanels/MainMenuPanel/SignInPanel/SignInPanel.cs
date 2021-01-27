@@ -131,7 +131,10 @@ namespace GameWish.Game
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
                 SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
-                //item.SetIconSprite(FindSprite(reward.RewardName()));
+                item.m_IconImage.sprite = FindSprite(reward.RewardName());
+                if (reward.Type != RewardItemType.Coin)
+                    item.m_IconImage.SetNativeSize();
+
                 m_SignItemDic.Add(id, item);
             }
             EventSystem.S.Register(EngineEventID.OnSignStateChange, OnSignStateChange);
