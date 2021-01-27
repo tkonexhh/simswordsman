@@ -15,10 +15,13 @@ namespace GameWish.Game
         private Text m_PromotionInfo;
         [SerializeField]
         private Button m_ExitBtn;
+        [SerializeField]
+        private Image m_CharacterImage;
 
         private CharacterItem m_CharacterItem = null;
         private int stage = 0;
         private CharacterKongfuDBData kungfu = null;
+        private AddressableAssetLoader<Sprite> m_CharacterLoader = new AddressableAssetLoader<Sprite>();
 
         protected override void OnUIInit()
         {
@@ -47,6 +50,15 @@ namespace GameWish.Game
                 default:
                     break;
             }
+
+            CharacterQuality quality = m_CharacterItem.quality;
+            int headId = m_CharacterItem.headId;
+            int bodyId = m_CharacterItem.bodyId;
+            string spriteName = quality.ToString().ToLower() + "_" + bodyId + "_" + headId;
+            m_CharacterLoader.LoadAssetAsync(spriteName, (sprite)=>
+            {
+                m_CharacterImage.sprite = sprite;
+            });
         }
 
         private void BindAddListenerEvent()
@@ -57,6 +69,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            m_CharacterLoader.Release();
             CloseSelfPanel();
             PanelPool.S.CurShowPanelIsOver = false;
         }

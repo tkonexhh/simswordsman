@@ -177,24 +177,32 @@ namespace GameWish.Game
 
             //锁定镜头
             EventSystem.S.Send(EventID.InGuideProgress, false);
-            Action action = () => 
+            Action action = () =>
             {
-                //EventSystem.S.Send(EventID.InGuideProgress, false);
+                //开始第一个引导
+                EventSystem.S.Send(EventID.OnGuideDialog1, 1);
                 //播放打扫动画
                 GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
-                EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Lobby);
+                GameObject effect = Resources.Load<GameObject>("Prefabs/EffectPrefab/BuildSmoke3_2");
+                GameObject obj = Instantiate(effect);
+                obj.transform.position = new Vector3(7.07f, 2.34f, 0);
+                
+                Timer.S.Post2Really(x =>
+                {
+                    Transform tz = obj.transform.Find("root/BuildingTZ");
+                    tz.gameObject.SetActive(false);
 
-                GameDataMgr.S.GetPlayerData().isGuideStart = true;
-                GameDataMgr.S.GetPlayerData().SetDataDirty();
-
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 10);
-                GameDataMgr.S.GetPlayerData().AddCoinNum(100);
-                //开始第一个引导
-                //Timer.S.Post2Really(x => 
-                //{
-                    EventSystem.S.Send(EventID.OnGuideDialog1, 1);
-                //}, 1f);
-                //EventSystem.S.Send(EventID.OnDialogGuide, 1);
+                    EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Lobby);
+                    GameDataMgr.S.GetPlayerData().isGuideStart = true;
+                    GameDataMgr.S.GetPlayerData().SetDataDirty();
+                }, 1);
+                Timer.S.Post2Really(x => 
+                {
+                    Destroy(obj);
+                    //增加金币（暂时写在这里）
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 10);
+                    GameDataMgr.S.GetPlayerData().AddCoinNum(100);
+                }, 2.5f);
             };
             UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, "StoryPanel_Text_1,StoryPanel_Text_2,StoryPanel_Text_3,StoryPanel_Text_4", action);
         }

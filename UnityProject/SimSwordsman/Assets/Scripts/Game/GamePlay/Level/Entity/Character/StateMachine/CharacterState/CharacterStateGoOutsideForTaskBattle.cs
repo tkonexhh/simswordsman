@@ -14,6 +14,7 @@ namespace GameWish.Game
 
         private TaskPos m_TaskPos = null;
         private float m_Time = 0;
+        private bool m_IsOutSide = false;
 
         public CharacterStateGoOutsideForTaskBattle(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -30,9 +31,12 @@ namespace GameWish.Game
                 m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
             }
 
+            m_IsOutSide = false;
+
             m_Time = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_Controller.CurTask.TaskId);
             if (m_Time > 0)
             {
+                m_IsOutSide = true;
                 m_Controller.HideBody();
             }
             else
@@ -48,18 +52,22 @@ namespace GameWish.Game
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
-            m_Time += Time.deltaTime;
-
-            if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
+            if (m_IsOutSide == false)
             {
-                m_Time = 0f;
+                m_Time += Time.deltaTime;
 
-                //m_Controller.SetCurTask(null);
-                //m_Controller.SetState(CharacterStateID.Wander);
-            }
-            else
-            {
-                MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, (int)m_Time);
+                if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
+                {
+                    m_Time = 0f;
+
+                    m_IsOutSide = true;
+
+                    MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, m_Controller.CurTask.CommonTaskItemInfo.taskTime);
+                }
+                else
+                {
+                    MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, (int)m_Time);
+                }
             }
         }
 

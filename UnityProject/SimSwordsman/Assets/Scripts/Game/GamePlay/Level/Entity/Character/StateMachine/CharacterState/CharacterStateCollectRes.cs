@@ -78,6 +78,8 @@ namespace GameWish.Game
                     m_Time = 0f;
                     m_IsTaskEnd = true;
 
+                    EventSystem.S.Send(EventID.OnArriveCollectResPos, m_Controller.CurTask.TaskId);
+
                     m_TaskCollectableItem?.OnEndCollected();
                     MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
                     //EventSystem.S.Send(EventID.OnTaskManualFinished);
