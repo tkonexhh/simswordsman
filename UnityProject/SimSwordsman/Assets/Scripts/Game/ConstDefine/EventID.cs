@@ -53,7 +53,7 @@ namespace GameWish.Game
         //OnTaskFinished,
         OnCommonTaskStart,
         OnCommonTaskFinish,
-
+        OnArriveCollectResPos,
         //PracticeField
 
         /// <summary>
@@ -113,6 +113,21 @@ namespace GameWish.Game
         /// 刷新弟子面板
         /// </summary>
         OnRefreshDisciple,
+
+        #region 公告榜
+        /// <summary>
+        /// 选择弟子
+        /// </summary>
+        OnSelectedDiscipleEvent,
+        /// <summary>
+        /// 选择弟子确定事情
+        /// </summary>
+        OnSelectedConfirmEvent,
+        /// <summary>
+        /// 打开面板发送弟子事件
+        /// </summary>
+        OnSendDiscipleDicEvent,
+        #endregion
 
 
         #region 新手引导

@@ -17,15 +17,37 @@ namespace GameWish.Game
     public class SendDisciplesPanel : AbstractAnimPanel
     {
 
+        [Header("Top")]
         [SerializeField]
-        private Transform m_SelectedTrans;
+        private Button m_ClsseBtn;
+        [SerializeField]
+        private Text m_SendDisciplesTitle;
+        [SerializeField]
+        private Text m_RecommendedSkillsTitle;
+        [SerializeField]
+        private Text m_RecommendedSkillsValue;
+        [SerializeField]
+        private Text m_SelectedDiscipleSkillTitle;
+        [SerializeField]
+        private Text m_SelectedDiscipleSkillValue;
+        [SerializeField]
+        private Image m_StateBg;
+        [SerializeField]
+        private Text m_State;
+        [Header("Middle")]
         [SerializeField]
         private Transform m_UnselectedTrans;
         [SerializeField]
-        private Transform m_HerbalMedicineItemTra;
+        private GameObject m_DiscipleItem;
 
         [SerializeField]
-        private GameObject m_DiscipleItem;
+        private Transform m_SelectedTrans;
+   
+        [SerializeField]
+        private Transform m_HerbalMedicineItemTra;
+
+        //[SerializeField]
+        //private GameObject m_DiscipleItem;
         [SerializeField]
         private GameObject m_HerbalMedicineItem;
 
@@ -79,7 +101,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-
         }
 
         private void GetInformationForNeed()
@@ -121,8 +142,12 @@ namespace GameWish.Game
                                 if (item.IsFreeState())
                                     m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
                             }
-                        } 
-                        m_CurTaskInfo.ExecuteTask(m_SelectedList);
+                        }
+                        if (m_CurTaskInfo.GetCurTaskType() != SimGameTaskType.Battle)
+                        {
+                            m_CurTaskInfo.ExecuteTask(m_SelectedList);
+                        }
+
                         if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
                         {
                             List<EnemyConfig> enemiesList = new List<EnemyConfig>();

@@ -203,6 +203,7 @@ namespace GameWish.Game
                 SpawnEnemyCharacter(i.ConfigId, i.Atk);
             });
 
+            MusicMgr.S.PlayBattleMusic();
         }
 
         private void OnAllEnemyLoaded()
@@ -237,6 +238,8 @@ namespace GameWish.Game
             EnemyLoader.S.ReleaseAll();
 
             m_BattleField.OnBattleEnd();
+
+            MusicMgr.S.PlayMenuMusic();
         }
 
         private void SpawnOurCharacter(List<CharacterController> characters)

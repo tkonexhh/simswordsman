@@ -72,6 +72,17 @@ namespace GameWish.Game
             return null;
         }
 
+        public void RemoveTask(int taskId)
+        {
+            SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.TaskId == taskId);
+            if (taskItem != null)
+            {
+                m_CurTaskList.Remove(taskItem);
+            }
+
+            GameDataMgr.S.GetCommonTaskData().RemoveTask(taskId);
+        }
+
         public void SetTaskFinished(int taskId)
         {
             SimGameTask item = GetCommonTaskItemData(taskId);
@@ -90,6 +101,17 @@ namespace GameWish.Game
             {
                 GameDataMgr.S.GetCommonTaskData().SetTaskExecutedTime(taskId, time);
             }
+        }
+
+        public int GetTaskExecutedTime(int taskId)
+        {
+            SimGameTask item = GetCommonTaskItemData(taskId);
+            if (item != null)
+            {
+                return GameDataMgr.S.GetCommonTaskData().GetTaskExecutedTime(taskId);
+            }
+
+            return 0;
         }
         /// <summary>
         /// 完成任务后领取奖励

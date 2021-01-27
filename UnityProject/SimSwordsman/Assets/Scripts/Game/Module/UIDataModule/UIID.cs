@@ -37,6 +37,7 @@ namespace GameWish.Game
         LearnKungfuPanel,
 
         BulletinBoardPanel,
+        BulletinBoardChooseDisciple,
         TaskDetailsPanel,
         SendDisciplesPanel,
 
