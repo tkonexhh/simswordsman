@@ -69,13 +69,17 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Promptly;
         [SerializeField]
-        private Text m_PromptlyValue;
+        private Text m_PromptlyValue;   
+        [SerializeField]
+        private GameObject m_Advertisement;
         [SerializeField]
         private Text m_Baozi;
         [SerializeField]
         private Text m_Time;
 
         private bool IsOpen = false;
+
+        private bool IsStartBattle = false;
 
         private const int CostBaozi = 5;
         private List<Sprite> m_NeedSprites;
@@ -93,21 +97,22 @@ namespace GameWish.Game
             m_CurTaskInfo = t as SimGameTask;
             EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnArriveCollectResPos, HandAddListenerEvent);
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
             m_NeedSprites = (List<Sprite>)obj[0];
             BindAddListenerEvent();
             GetInformationForNeed();
-            StartCoroutine(CountDown());
             RefreshFixedInfo();
             RefreshPanelInfo();
-            RefreshTaskState();
             RefreshDiscipleInfo();
+            RefreshTaskState();
         }
 
         private void OnDisable()
         {
             EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnArriveCollectResPos, HandAddListenerEvent);
         }
 
         private void HandAddListenerEvent(int key, object[] param)
@@ -135,11 +140,22 @@ namespace GameWish.Game
                     else
                         UIMgr.S.OpenPanel(UIID.BulletinBoardChooseDisciple, OpenCallback, m_CurTaskInfo);
                     break;
+                case EventID.OnArriveCollectResPos:
+                    if (m_CommonTaskItemInfo.id != ((SimGameTask)param[0]).TaskId)
+                        return;
+                    m_CurTaskInfo = (SimGameTask)param[0];
+                    m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
+                    StartCoroutine(CountDown());
+                    //RefreshCountDownTaskState();
+                    break;
                 default:
                     break;
             }
         }
-
+        private void RefreshCountDownTaskState()
+        {
+            
+        }
         private void OpenCallback(AbstractPanel obj)
         {
             BulletinBoardChooseDisciple bulletinBoardChooseDisciple = obj as BulletinBoardChooseDisciple;
@@ -170,7 +186,7 @@ namespace GameWish.Game
             });
             //前往
             m_GoToBtn.onClick.AddListener(()=> {
-               int baoz = int.Parse(m_Baozi.text);
+                int baoz = int.Parse(m_Baozi.text);
                 if (baoz < GameDataMgr.S.GetPlayerData().GetFoodNum())
                 {
                     FloatMessage.S.ShowMsg("食物不足，过会儿再来吧");
@@ -178,7 +194,10 @@ namespace GameWish.Game
                 }
                 else
                 {
-                    RefreshBtnInfo();
+                    if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                        StartCoroutine(CountDown());
+
+                    //RefreshBtnInfo();
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(baoz);
 
                     List<CharacterController> selectedControllerList = new List<CharacterController>();
@@ -192,12 +211,25 @@ namespace GameWish.Game
                     }
                     m_CurTaskInfo.ExecuteTask(selectedControllerList);
                 }
+                RefreshTaskState();
             });
             //婉拒
             m_DeclinedBtn.onClick.AddListener(()=> {
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示","您确定要放弃任务吗");
             });
             m_Promptly.onClick.AddListener(()=> {
+          
+                if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                {
+                    if (!IsStartBattle)
+                        FloatMessage.S.ShowMsg("看广告");
+                    else
+                    {   
+                        UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Task, m_CurTaskInfo, m_SelectedDiscipleDic);
+                        UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
+                    }
+                }
+
                 if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
                 {
                     MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
@@ -216,11 +248,17 @@ namespace GameWish.Game
             int second = 1;
             while (second>0)
             {
-                yield return new WaitForSeconds(1);
+                yield return null;
                 int startTime = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_CommonTaskItemInfo.id);
                 int deltaTime = m_CommonTaskItemInfo.taskTime;
                 second = deltaTime - startTime;
                 m_Time.text = SplicingTime(deltaTime - startTime);
+                if (deltaTime - startTime <= 0)
+                {
+                    if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                        IsStartBattle = true;
+                    RefreshTaskState();
+                }
             }
         }
 
@@ -246,7 +284,7 @@ namespace GameWish.Game
         }
         private void OnSucessEvent()
         {
-            //MainGameMgr.S.CommonTaskMgr.RemoveTask(m_CurTaskInfo.TaskId);
+            MainGameMgr.S.CommonTaskMgr.RemoveTask(m_CurTaskInfo.TaskId);
             DestroyImmediate(this.gameObject);
         }
 
@@ -332,8 +370,11 @@ namespace GameWish.Game
             //默认关闭
             if (!IsOpen)
             {
+                if (m_CurTaskInfo.GetCurTaskState()== TaskState.Unclaimed)
+                    m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
+                else
+                    m_FuncBtnText.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_VIEWDETAILS);
                 m_Arrow.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
-                m_FuncBtnText.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_VIEWDETAILS);
                 m_Bottom.SetActive(false);
                 RefreshContHeight(IsOpen);
             }
@@ -357,16 +398,48 @@ namespace GameWish.Game
                 case TaskState.NotStart:
                     m_Over.gameObject.SetActive(false);
                     m_RedPoint.gameObject.SetActive(false);
+                    m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_Promptly.gameObject.SetActive(false);
                     break;
                 case TaskState.Running:
+                    if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                    {
+                        if (IsStartBattle)
+                        {
+                            m_PromptlyValue.text = "开始战斗";
+                            m_Promptly.gameObject.SetActive(true);
+                            m_Advertisement.SetActive(false);
+                        }
+                        else
+                        {
+                            if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                                StartCoroutine(CountDown());
+                            m_PromptlyValue.text = "立即到达";
+                            m_Promptly.gameObject.SetActive(true);
+                            m_Advertisement.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        m_Promptly.gameObject.SetActive(false);
+                    }
                     m_Over.gameObject.SetActive(false);
-                    m_Promptly.gameObject.SetActive(false);
+                    m_GoToBtn.gameObject.SetActive(false);
+                    m_RedPoint.gameObject.SetActive(false);
+                    m_DeclinedBtn.gameObject.SetActive(false);
+                    foreach (var item in m_BulletinBoardDiscipleList)
+                        item.SetBtnClick(false);
+                    m_Time.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case TaskState.Unclaimed:
+                    foreach (var item in m_BulletinBoardDiscipleList)
+                        item.SetBtnClick(false);
                     m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
+                    m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_Over.gameObject.SetActive(false);
                     m_PromptlyValue.text = "领取奖励";
+                    m_Advertisement.SetActive(false);
+                    m_RedPoint.gameObject.SetActive(true);
                     m_Promptly.gameObject.SetActive(true);
                     m_GoToBtn.gameObject.SetActive(false);
                     m_DeclinedBtn.gameObject.SetActive(false);

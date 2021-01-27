@@ -72,13 +72,13 @@ namespace GameWish.Game
                 m_Time += Time.deltaTime;
 
                 MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, (int)m_Time);
+                EventSystem.S.Send(EventID.OnArriveCollectResPos, m_Controller.CurTask);
 
                 if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
                 {
                     m_Time = 0f;
                     m_IsTaskEnd = true;
 
-                    EventSystem.S.Send(EventID.OnArriveCollectResPos, m_Controller.CurTask.TaskId);
 
                     m_TaskCollectableItem?.OnEndCollected();
                     MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
