@@ -1,6 +1,5 @@
 using Qarth;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
 
 namespace GameWish.Game
@@ -17,7 +16,6 @@ namespace GameWish.Game
                 facilityType = (FacilityType)FaciityTypeID;
             return facilityType;
         }
-
     }
     public class WorkSystem : TSingleton<WorkSystem>
     {
@@ -25,10 +23,6 @@ namespace GameWish.Game
         /// 可以工作的建筑(冒气泡)
         /// </summary>
         List<FacilityType> m_CanWorkFacilitys = new List<FacilityType>();
-        /// <summary>
-        /// 已经工作完成，可以领取奖励的建筑
-        /// </summary>
-        List<WorkCharacter> m_RewardFacilitys { get { return GameDataMgr.S.GetCountdownData().workCharacters; } }
         /// <summary>
         /// 已解锁的建筑
         /// </summary>
@@ -41,26 +35,38 @@ namespace GameWish.Game
         /// cd中的建筑
         /// </summary>
         List<FacilityType> m_CDFacilitys = new List<FacilityType>();
-
+        /// <summary>
+        /// 已经工作完成，可以领取奖励的建筑
+        /// </summary>
+        List<WorkCharacter> m_RewardFacilitys { get { return GameDataMgr.S.GetCountdownData().workCharacters; } }
         CharacterMgr characterMgr { get { return MainGameMgr.S.CharacterMgr; } }
         FacilityMgr facilityMgr { get { return MainGameMgr.S.FacilityMgr; } }
         TDFacilityLobby lobbyTable { get { return TDFacilityLobbyTable.GetData(facilityMgr.GetLobbyCurLevel()); } }
 
-        int m_MaxCanWorkFacilityLimit = 0;
-        string[] tempArray;
         List<CharacterItem> characterItemTemp = new List<CharacterItem>();
         List<FacilityType> tempList = new List<FacilityType>();
-
+        int m_MaxCanWorkFacilityLimit = 0;
+        string[] tempArray;
+ 
         public void Init()
         {
-            CheckData();
+            if (GameDataMgr.S.GetPlayerData().UnlockWorkSystem)
+            {
+                CheckData();
+                BindingEvents();
+            }
+        }
+
+        void BindingEvents()
+        {
             EventSystem.S.Register(EventID.OnStartUnlockFacility, UnlockCheck);
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, LobbyLevelUp);
             EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
             //EventSystem.S.Register(EventID.OnCountdownerTick, OnTick);
             EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
+            EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
         }
-        
+
         void CheckData()
         {
             m_MaxCanWorkFacilityLimit = lobbyTable.workMaxAmount;
@@ -77,11 +83,6 @@ namespace GameWish.Game
             {
                 characterMgr.GetCharacterController(item.CharacterID).SetState(CharacterStateID.Working, item.GetFacilityType());
                 EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType());
-                //var type = (FacilityType)item.FaciityTypeID;
-                //if (!m_CurrentWorkItem.ContainsKey(type))
-                //{
-                //m_CurrentWorkItem.Add(type, characterMgr.GetCharacterItem(item.CharacterID));
-                //}
             }
         }
 
@@ -143,6 +144,22 @@ namespace GameWish.Game
                 if (CurrentWorkFacility() < m_MaxCanWorkFacilityLimit)
                     AddCanWorkFacility(type);
             }
+        }
+
+        /// <summary>
+        /// 解锁此系统
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="param"></param>
+        private void UnlockWorkSystem(int key, object[] param)
+        {
+            GameDataMgr.S.GetPlayerData().UnlockWorkSystem = true;
+            GameDataMgr.S.GetPlayerData().SetDataDirty();
+
+            CheckData();
+            BindingEvents();
+            AddCanWorkFacility(FacilityType.Lobby);
+            UpdateCanWorkFacilitys();
         }
 
         /// <summary>
@@ -220,7 +237,6 @@ namespace GameWish.Game
             else
                 return null;
         }
-
         
         /// <summary>
         /// 该建筑是否可以派遣弟子工作
@@ -240,7 +256,6 @@ namespace GameWish.Game
             }
             return true;
         }
-
       
         void AfterFacilityCD(FacilityType type)
         {
@@ -257,6 +272,7 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
             }
         }
+
         void AddRewardFacility(FacilityType type, int characterid)
         {
             if (m_CurrentWorkItem.ContainsKey(type))

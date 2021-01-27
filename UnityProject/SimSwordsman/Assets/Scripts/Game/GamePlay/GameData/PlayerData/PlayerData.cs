@@ -33,6 +33,7 @@ namespace GameWish.Game
         public bool firstSilverRecruit;
 
         public bool UnlockVisitor;
+        public bool UnlockWorkSystem;
 
         public void SetDefaultValue()
         {
@@ -47,6 +48,7 @@ namespace GameWish.Game
 
             isGuideStart = false;
 
+            UnlockWorkSystem = false;
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;

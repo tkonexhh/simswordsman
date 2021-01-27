@@ -23,6 +23,8 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            //解锁工作系统
+            EventSystem.S.Send(EventID.OnUnlockWorkSystem);
             m_CanStart = true;
 
             if (isReady)

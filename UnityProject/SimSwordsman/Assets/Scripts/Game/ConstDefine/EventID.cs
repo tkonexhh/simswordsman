@@ -35,6 +35,7 @@ namespace GameWish.Game
         OnCollectCountChange,//收集物
         OnChangeCollectLotusState1,
         OnChangeCollectLotusState2,
+        OnUnlockWorkSystem,
         OnAddCanWorkFacility,//可以干活的建筑
         OnAddWorkingRewardFacility,//可以获得干活奖励的建筑
 
