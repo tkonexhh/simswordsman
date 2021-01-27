@@ -102,6 +102,7 @@ namespace GameWish.Game
             RefreshPanelInfo();
             RefreshTaskState();
             RefreshDiscipleInfo();
+            gameObject.name = "BulletinBoardItem" + m_CurTaskInfo.TaskId;
         }
 
         private void OnDisable()
