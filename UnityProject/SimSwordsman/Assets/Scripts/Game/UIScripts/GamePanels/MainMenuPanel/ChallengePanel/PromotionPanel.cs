@@ -1,22 +1,23 @@
 using Qarth;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class PromotionPanel : AbstractAnimPanel
+    public class PromotionPanel : AbstractAnimPanel
 	{
         [SerializeField]
-        private Text m_PromotionTitle;
+        private Image m_PromotionTitleImg;
         [SerializeField]
-        private Text m_PromotionInfo;
+        private Text m_CharacterName;
         [SerializeField]
-        private Button m_ExitBtn;
+        private Text m_KongfuName;
+        [SerializeField]
+        private Text m_Level;
         [SerializeField]
         private Image m_CharacterImage;
+        [SerializeField]
+        private Button m_ExitBtn;
 
         private CharacterItem m_CharacterItem = null;
         private int stage = 0;
@@ -33,19 +34,24 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             PromotionBase promotionModel = (PromotionBase)args[0];
-            switch(promotionModel.GetEventID())
+            m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
+            m_CharacterName.text = m_CharacterItem.name;
+            switch (promotionModel.GetEventID())
             {
                 case EventID.OnCharacterUpgrade:
-                    m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
                     stage = promotionModel.ToSubType<DiscipleRiseStage>().GetStage();
-                    m_PromotionTitle.text = "µÜ×ÓÉý¶Î";
-                    m_PromotionInfo.text = m_CharacterItem.name + "ÉýÖÁ" + CommonUIMethod.GetTextNumber(stage) + "¶ÎµÜ×Ó";
+                    m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title2");
+                  
+                    m_KongfuName.gameObject.SetActive(false);
+                    m_Level.text = CommonUIMethod.GetTextNumber(stage) + "¶Î";
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
-                    m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
                     kungfu = promotionModel.ToSubType<WugongBreakthrough>().GetWugongBreakthrough();
-                    m_PromotionTitle.text = "Îä¹¦Í»ÆÆ";
-                    m_PromotionInfo.text = m_CharacterItem.name + "µÄ"+ kungfu.kongfuType.ToString()+"ÉýÖÁ" + CommonUIMethod.GetTextNumber(kungfu.level) + "²ã";
+                    m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title1");
+
+                    m_KongfuName.gameObject.SetActive(true);
+                    m_KongfuName.text = kungfu.kongfuType.ToString();
+                    m_Level.text = CommonUIMethod.GetTextNumber(kungfu.level) + "²ã";
                     break;
                 default:
                     break;
@@ -58,6 +64,7 @@ namespace GameWish.Game
             m_CharacterLoader.LoadAssetAsync(spriteName, (sprite)=>
             {
                 m_CharacterImage.sprite = sprite;
+                m_CharacterImage.SetNativeSize();
             });
         }
 
@@ -73,7 +80,5 @@ namespace GameWish.Game
             CloseSelfPanel();
             PanelPool.S.CurShowPanelIsOver = false;
         }
-
     }
-	
 }
