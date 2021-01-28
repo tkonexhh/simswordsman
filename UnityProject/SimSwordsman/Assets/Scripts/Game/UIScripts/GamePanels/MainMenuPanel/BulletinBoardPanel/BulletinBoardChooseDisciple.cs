@@ -198,7 +198,7 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {
-                if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && m_AllDiscipleList[i].characterStateId ==  CharacterStateID.Wander)
+                if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && m_AllDiscipleList[i].IsFreeState())
                     CreateDisciple(m_AllDiscipleList[i]);
             }
 

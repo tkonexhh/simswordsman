@@ -89,7 +89,7 @@ namespace GameWish.Game
                     m_Free.text = Define.COMMON_DEFAULT_STR;
                     CreateCountDown();
                     //(m_PracticeFieldInfo.StartTime);
-                    m_CopyScripturesBtn.enabled = true;
+                    m_CopyScripturesBtn.enabled = false;
                     break;
                 default:
                     break;
