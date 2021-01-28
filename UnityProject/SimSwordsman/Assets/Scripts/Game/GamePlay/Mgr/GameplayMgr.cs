@@ -156,10 +156,10 @@ namespace GameWish.Game
             //    GameDataMgr.S.GetPlayerInfoData().AddCoinNum(1E100);
             //}
 
-            //if (Input.GetKeyDown(KeyCode.L))
-            //{
-            //    GameDataMgr.S.GetPlayerInfoData().AddLevel(1);
-            //}
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                GameDataMgr.S.GetPlayerData().AddFoodNum(100);
+            }
 
             if (Input.GetKeyDown(KeyCode.T))
             {
