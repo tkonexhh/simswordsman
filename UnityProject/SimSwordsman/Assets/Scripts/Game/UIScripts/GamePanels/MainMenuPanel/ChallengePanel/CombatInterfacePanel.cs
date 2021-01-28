@@ -138,8 +138,6 @@ namespace GameWish.Game
                         default:
                             break;
                     }
-
-
                 }
             }
         }
