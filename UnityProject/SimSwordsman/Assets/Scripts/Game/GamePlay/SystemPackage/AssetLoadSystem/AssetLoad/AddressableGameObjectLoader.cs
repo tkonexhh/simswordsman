@@ -23,7 +23,7 @@ namespace GameWish.Game
             }
             catch (Exception e)
             {
-                Qarth.Log.e("InstantiateAsync error: " + e.Message.ToString() + " " + e.StackTrace);
+                Qarth.Log.e("InstantiateAsync error: " + name + " " + e.Message.ToString() + " " + e.StackTrace);
             }
         }
 

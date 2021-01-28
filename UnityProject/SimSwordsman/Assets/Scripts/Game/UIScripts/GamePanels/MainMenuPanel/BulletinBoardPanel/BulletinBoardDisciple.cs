@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class BulletinBoardDisciple : MonoBehaviour,ItemICom
-	{
+    public class BulletinBoardDisciple : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private Button m_Btn;
         [SerializeField]
@@ -18,7 +18,7 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_DiscipleHead;
         [SerializeField]
-        private Text m_DiscipleName;     
+        private Text m_DiscipleName;
         [SerializeField]
         private Image m_Plus;
         private CharacterItem m_CharacterItem;
@@ -30,7 +30,7 @@ namespace GameWish.Game
 
             m_CurTaskInfo = t as SimGameTask;
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
-            m_Btn.onClick.AddListener(()=>{
+            m_Btn.onClick.AddListener(() => {
                 EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_CurTaskInfo);
             });
         }
@@ -54,6 +54,10 @@ namespace GameWish.Game
                 default:
                     break;
             }
+        }
+        public void SetBtnClick(bool IsClick)
+        {
+            m_Btn.enabled = IsClick;
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)
