@@ -233,7 +233,7 @@ namespace GameWish.Game
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                    bool isTaskTutorialFinished = false;
+                    bool isTaskTutorialFinished = GuideMgr.S.IsGuideFinish(16);
                     if (!isTaskTutorialFinished) // TODO:Check is tutorial finished
                     {
                         lobbyLevel = 0;
