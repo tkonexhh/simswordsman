@@ -1,6 +1,7 @@
 using Qarth;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
@@ -79,6 +80,8 @@ namespace GameWish.Game
                 Debug.LogError("应当看一个广告");
 
                 m_visitor.Reward.AcceptReward();
+
+                UIMgr.S.OpenPanel(UIID.RewardPanel, new List<RewardBase>() { m_visitor.Reward });
                 VisitorSystem.S.Disappear(m_visitor);
 
                 HideSelfWithAnim();

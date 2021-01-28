@@ -145,7 +145,6 @@ namespace GameWish.Game
             if (SignSystemMgr.S.weekSignState.isSignAble)
             {
                 SignSuccess(id);
-                //GameplayMgr.S.CheckIsFirstSign();
                 //Custom event
                 GameDataMgr.S.GetPlayerData().AddSignInCount(1);
                 DateTime now = DateTime.Now;
@@ -167,7 +166,7 @@ namespace GameWish.Game
             SignInItem item = m_SignItemDic[id];
 
             item.RewardCfg.AcceptReward();
-            UIMgr.S.OpenTopPanel(UIID.GetRewardPanel, null, m_GetRewardPanelCallBack, item.RewardCfg);
+            UIMgr.S.OpenPanel(UIID.RewardPanel, new List<RewardBase> { item.RewardCfg });
         }
 
         private void GetRewardCallBack()
@@ -200,10 +199,8 @@ namespace GameWish.Game
             int lastSignIndex = SignSystemMgr.S.weekSignState.lastSignIndex;
             int ableSignIndex = SignSystemMgr.S.weekSignState.signAbleIndex;
 
-
             if (SignSystemMgr.S.weekSignState.isSignAble)
             {
-                //SetSignDayNum(ableSignIndex);
                 foreach (var item in m_SignItemDic)
                 {
                     if (item.Key == ableSignIndex)
@@ -222,7 +219,6 @@ namespace GameWish.Game
             }
             else
             {
-                //SetSignDayNum(lastSignIndex);
                 foreach (var item in m_SignItemDic)
                 {
                     if (item.Key <= lastSignIndex)
@@ -236,33 +232,6 @@ namespace GameWish.Game
                 }
             }
         }
-
-        /// <summary>
-        /// 设置Title中显示的签到天数
-        /// </summary>
-        /// <param name="index"></param>
-        //private void SetSignDayNum(int index)
-        //{
-        //    string numName = "SignPanel_Num" + (index + 1);
-        //    string spriteName = TDLanguageTable.Get(numName);
-
-        //    if (m_NumberSprite == null)
-        //    {
-        //        Sprite[] sprites1 = Resources.LoadAll<Sprite>("UI/Language/SignPanel_Num");
-        //        Sprite[] sprites2 = Resources.LoadAll<Sprite>("UI/Language/SignPanel_Num_TW");
-        //        m_NumberSprite = sprites1.ToArray().Union(sprites2).ToArray();
-        //    }
-        //    Sprite sprite = null;
-        //    foreach (Sprite s in m_NumberSprite)
-        //    {
-        //        if (s.name == spriteName)
-        //        {
-        //            sprite = s;
-        //            break;
-        //        }
-        //    }
-        //    m_DaysShowNum.sprite = sprite;
-        //}
+        
     }
-	
 }

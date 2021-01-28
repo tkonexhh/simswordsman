@@ -24,6 +24,7 @@ namespace GameWish.Game
                 int id = MainGameMgr.S.CommonTaskMgr.GetSimGameTask(taskid).CharacterIDs[0];
                 EventSystem.S.Send(EventID.InGuideProgress, false);
                 UIMgr.S.OpenTopPanel(UIID.GuideMaskPanel, null);
+                UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
 
                 m_FollowCamera = MainGameMgr.S.MainCamera.gameObject.AddComponent<FixedFollowCamera>();
                 m_FollowCamera.TweenOrthoSize(10);

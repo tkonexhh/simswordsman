@@ -7,8 +7,6 @@ namespace GameWish.Game
 {
 	public class Gaibang : ClanBase
 	{
-
-
         // Start is called before the first frame update
         public override void Start()
         {
