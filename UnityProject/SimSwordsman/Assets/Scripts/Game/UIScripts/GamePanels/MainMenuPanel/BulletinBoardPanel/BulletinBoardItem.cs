@@ -258,11 +258,13 @@ namespace GameWish.Game
             while (second>0)
             {
                 yield return null;
-                int startTime = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_CommonTaskItemInfo.id);
-                int deltaTime = m_CommonTaskItemInfo.taskTime;
-                second = deltaTime - startTime;
-                m_Time.text = SplicingTime(deltaTime - startTime);
-                if (deltaTime - startTime <= 0)
+                int executedTime = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_CommonTaskItemInfo.id);
+                int totalTime = m_CommonTaskItemInfo.taskTime;
+                //Log.i("executed time:" + executedTime + " totalTime: " + totalTime + "     " + Time.time);
+
+                second = totalTime - executedTime;
+                m_Time.text = SplicingTime(totalTime - executedTime);
+                if (totalTime - executedTime <= 0)
                 {
                     if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
                         IsStartBattle = true;

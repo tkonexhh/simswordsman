@@ -207,8 +207,8 @@ namespace GameWish.Game
         {
             m_CommonTaskData.taskList.ForEach(i => 
             {
-                int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
-                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, leftTime);
+                //int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
+                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
 
                 // 如果数据库中该task正在执行
                 if (i.taskState == TaskState.Running)
