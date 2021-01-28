@@ -15,12 +15,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_CloseBtn;
 
-        [SerializeField]
-        private Transform m_CheckpointTrans;
 
         [SerializeField]
-        private GameObject m_CheckpointItem;
-
+        private Transform m_Parent;
         //private List<Button> m_CheckpointBtns = null;
 
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
@@ -31,8 +28,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
-            BindAddListenerEvent();
+            //BindAddListenerEvent();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -42,8 +38,18 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandlingListeningEvents);
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_CurChapterAllLevelConfigInfo = MainGameMgr.S.ChapterMgr.GetAllLevelConfigInfo(m_CurChapterConfigInfo.chapterId);
+            //InitPanelInfo();
+            //LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString());
+        }
 
-            InitPanelInfo();
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+            loader.InstantiateAsync(prefabsName, (obj) =>
+            {
+                //m_CharacterLoaderDic.Add(id, loader);
+                obj.transform.SetParent(m_Parent);
+            });
         }
 
         /// <summary>
@@ -82,15 +88,15 @@ namespace GameWish.Game
             {
                 if (item.level < CurLevel)
                     continue;
-                Transform chapterItem = Instantiate(m_CheckpointItem, m_CheckpointTrans).transform;
-                chapterItem.GetComponentInChildren<Text>().text = item.level.ToString();
-                Button challengeBtn = chapterItem.GetComponent<Button>();
-                if (!m_LevelBtnDic.ContainsKey(item.level))
-                    m_LevelBtnDic.Add(item.level, challengeBtn);
-                challengeBtn.onClick.AddListener(() =>
-                {
-                    UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, item);
-                });
+                //Transform chapterItem = Instantiate(m_CheckpointItem, m_CheckpointTrans).transform;
+                //chapterItem.GetComponentInChildren<Text>().text = item.level.ToString();
+                //Button challengeBtn = chapterItem.GetComponent<Button>();
+                //if (!m_LevelBtnDic.ContainsKey(item.level))
+                //    m_LevelBtnDic.Add(item.level, challengeBtn);
+                //challengeBtn.onClick.AddListener(() =>
+                //{
+                //    UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, item);
+                //});
             }
         }
 
