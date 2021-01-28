@@ -34,7 +34,6 @@ namespace GameWish.Game
             InitPanelInfo();
 
         }
-
         private void HandlingEventListening(int key, object[] param)
         {
             switch ((EventID)key)
@@ -46,7 +45,6 @@ namespace GameWish.Game
                     break;
             }
         }
-
         private void GetInformationForNeed()
         {
             m_CurChapterInfo = MainGameMgr.S.ChapterMgr.GetAllChapterInfo();

@@ -13,6 +13,11 @@ namespace GameWish.Game
         {
             m_ExpValue = int.Parse(paramStrs[1]);
         }
+        public ExpKongfuReward(RewardItemType rewardType, int kungfuExp) 
+        {
+            this.rewardType = rewardType;
+            m_ExpValue = kungfuExp;
+        }
 
         public override void ApplyReward(int par)
         {

@@ -105,6 +105,7 @@ namespace GameWish.Game
             RefreshFixedInfo();
             RefreshPanelInfo();
             RefreshDiscipleInfo();
+            gameObject.name = "BulletinBoardItem" + m_CurTaskInfo.TaskId;
             RefreshTaskState();
         }
 
@@ -186,8 +187,15 @@ namespace GameWish.Game
             });
             //前往
             m_GoToBtn.onClick.AddListener(()=> {
+
+                if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
+                {
+                    FloatMessage.S.ShowMsg("人数不足!");
+                    return;
+                }
+
                 int baoz = int.Parse(m_Baozi.text);
-                if (baoz < GameDataMgr.S.GetPlayerData().GetFoodNum())
+                if (baoz > GameDataMgr.S.GetPlayerData().GetFoodNum())
                 {
                     FloatMessage.S.ShowMsg("食物不足，过会儿再来吧");
                     return;
@@ -218,7 +226,12 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示","您确定要放弃任务吗");
             });
             m_Promptly.onClick.AddListener(()=> {
-          
+                if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
+                {
+                    MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
+                    DestroyImmediate(this.gameObject);
+                    return;
+                }
                 if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
                 {
                     if (!IsStartBattle)
@@ -230,11 +243,7 @@ namespace GameWish.Game
                     }
                 }
 
-                if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
-                {
-                    MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
-                    DestroyImmediate(this.gameObject);
-                }
+              
             });
         }
         private void LogCallBack(AbstractPanel abstractPanel)
@@ -420,9 +429,7 @@ namespace GameWish.Game
                         }
                     }
                     else
-                    {
                         m_Promptly.gameObject.SetActive(false);
-                    }
                     m_Over.gameObject.SetActive(false);
                     m_GoToBtn.gameObject.SetActive(false);
                     m_RedPoint.gameObject.SetActive(false);

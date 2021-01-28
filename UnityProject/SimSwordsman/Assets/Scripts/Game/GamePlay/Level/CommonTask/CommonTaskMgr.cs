@@ -123,7 +123,7 @@ namespace GameWish.Game
             SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.TaskId == taskId );
             if (taskItem != null)
             {
-                taskItem.ClaimReward();
+                taskItem.ClaimReward(true);
                 m_CurTaskList.Remove(taskItem);
             }
         }

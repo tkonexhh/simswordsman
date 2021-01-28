@@ -21,6 +21,7 @@ namespace GameWish.Game
             Count = count;
         }
 
+        public abstract string SpriteName();
 
         public abstract void AcceptReward();
 

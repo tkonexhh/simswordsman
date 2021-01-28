@@ -53,6 +53,9 @@ namespace GameWish.Game
             }
 
             m_CreateBaoziBtn.onClick.AddListener(()=> {
+
+                GameDataMgr.S.GetClanData().SetClanName("修仙门派");
+
                 for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);

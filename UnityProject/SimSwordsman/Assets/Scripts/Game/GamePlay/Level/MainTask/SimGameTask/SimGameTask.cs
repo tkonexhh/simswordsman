@@ -59,8 +59,16 @@ namespace GameWish.Game
             GameDataMgr.S.GetCommonTaskData().OnTaskStarted(TaskId);
         }
 
-        public void ClaimReward()
+        public void ClaimReward(bool isSucess)
         {
+            List<LevelReward> levelRewardList = new List<LevelReward>();
+            ExpCharacterReward exp = new ExpCharacterReward(RewardItemType.Exp_Role, CommonTaskItemInfo.expReward);
+            ExpKongfuReward KungfuExp = new ExpKongfuReward(RewardItemType.Exp_Kongfu, CommonTaskItemInfo.kongfuReward);
+            if (isSucess)
+                levelRewardList.ForEach(i => i.ApplyReward(1));
+            else
+                levelRewardList.ForEach(i => i.ApplyReward(2));
+
             CharacterIDs.Clear();
             // Item reward
             for (int i = 0; i < m_TaskDetailInfo.itemRewards.Count; i++)

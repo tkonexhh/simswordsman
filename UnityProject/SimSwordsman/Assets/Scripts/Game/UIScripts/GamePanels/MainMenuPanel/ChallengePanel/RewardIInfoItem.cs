@@ -24,14 +24,31 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
         private CharacterItem m_CurCharacterItem = null;
         private CharacterController m_CharacterController = null;
+        private PanelType m_PanelType;
+        private SimGameTask m_CurTaskInfo = null;
+
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-            m_LevelConfigInfo = (LevelConfigInfo)obj[0];
-            m_IsSuccess = (bool)obj[1];
-            m_CharacterController = t as CharacterController;
-            m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
+            m_PanelType = (PanelType)obj[0];
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    m_CharacterController = t as CharacterController;
+                    m_CurTaskInfo = (SimGameTask)obj[1];
+                    break;
+                case PanelType.Challenge:
+                    m_LevelConfigInfo = (LevelConfigInfo)obj[1];
+                    m_CharacterController = t as CharacterController;
+                    break;
+                default:
+                    break;
+            }
+            m_IsSuccess = (bool)obj[2];
 
+            m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
+
+
         }
 
 
@@ -42,7 +59,17 @@ namespace GameWish.Game
 
             m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
 
-            m_ExpCont.text = Define.PLUS + m_LevelConfigInfo.GetExpRoleReward();
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    m_ExpCont.text = Define.PLUS + m_CurTaskInfo.CommonTaskItemInfo.expReward.ToString();
+                    break;
+                case PanelType.Challenge:
+                    m_ExpCont.text = Define.PLUS + m_LevelConfigInfo.GetExpRoleReward();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void OnDestroy() 
