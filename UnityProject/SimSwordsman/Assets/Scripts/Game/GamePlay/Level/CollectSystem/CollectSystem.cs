@@ -152,6 +152,8 @@ namespace GameWish.Game
         public void Collect(int id)
         {
             var tb = TDCollectConfigTable.dataList[id];
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(RewardMgr.S.GetRewardBase(RewardItemType.Item, tb.itemId, m_CurrentCollcetCountDic[id]));
             //¶îÍâ½±Àø(·äÕë)
             if (tb.specialItemId != 0)
             {
@@ -163,17 +165,13 @@ namespace GameWish.Game
                         specialItemCount++;
                 }
                 if (specialItemCount > 0)
-                {
-                    //¶îÍâµÄui·´À¡
-
-
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)tb.specialItemId), specialItemCount);
-                }
-               
+                    rewards.Add(RewardMgr.S.GetRewardBase(RewardItemType.Item, tb.specialItemId, specialItemCount));
             }
-            //µ¯³öUI·´À¡
-            UIMgr.S.OpenPanel(UIID.LogPanel, "½±Àø", string.Format("»ñµÃ{0}", m_CurrentCollcetCountDic[id]));
-            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)tb.itemId), m_CurrentCollcetCountDic[id]);
+            foreach (var item in rewards)
+                item.AcceptReward();
+
+            //µ¯³ö½±ÀøUI·´À¡
+            UIMgr.S.OpenPanel(UIID.RewardPanel, rewards);
             //´æµµÒÆ³ý
             if (m_RewardItems.Contains(id))
             {
@@ -184,7 +182,5 @@ namespace GameWish.Game
             SetDic(id, 0);
             CountdownSystem.S.StartCountdownerWithMin("CollectItem", id, tb.maxStore * tb.productTime);
         }
-
     }
-    
 }
