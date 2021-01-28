@@ -22,7 +22,7 @@ namespace GameWish.Game
 
         //private PlayerDataHerb m_CurHerb = null;
         private HerbItem m_HerbItem = null;
-        private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private bool m_IsSelected = false;
         private void Start()
         {
@@ -39,10 +39,10 @@ namespace GameWish.Game
         {
             switch (m_SelelctedState)
             {
-                case SelelctedState.Selected:
+                case SelectedState.Selected:
                     m_State.gameObject.SetActive(true);
                     break;
-                case SelelctedState.NotSelected:
+                case SelectedState.NotSelected:
                     m_State.gameObject.SetActive(false);
                     break;
                 default:
@@ -93,10 +93,10 @@ namespace GameWish.Game
                         FloatMessage.S.ShowMsg("²ÝÒ©ÊýÁ¿²»×ã!");
                         return;
                     }
-                    m_SelelctedState = SelelctedState.Selected;
+                    m_SelelctedState = SelectedState.Selected;
                 }
                 else
-                    m_SelelctedState = SelelctedState.NotSelected;
+                    m_SelelctedState = SelectedState.NotSelected;
 
                 EventSystem.S.Send(EventID.OnSendHerbEvent, m_IsSelected, m_HerbItem);
                 RefreshPanelInfo();

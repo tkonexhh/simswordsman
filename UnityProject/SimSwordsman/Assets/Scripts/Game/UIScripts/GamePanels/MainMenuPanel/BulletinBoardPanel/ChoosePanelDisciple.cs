@@ -22,7 +22,7 @@ namespace GameWish.Game
 
         private CharacterItem m_CharacterItem;
 
-        private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
 
         private bool IsSelected = false;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
@@ -38,11 +38,11 @@ namespace GameWish.Game
         {
             switch (m_SelelctedState)
             {
-                case SelelctedState.Selected:
+                case SelectedState.Selected:
                     m_SelectedImg.SetActive(true);
                     m_DiscipleName.text = m_CharacterItem.name;
                     break;
-                case SelelctedState.NotSelected:
+                case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_SelectedImg.SetActive(false);
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
@@ -65,12 +65,12 @@ namespace GameWish.Game
             if (isHave)
             {
                 IsSelected = true;
-                m_SelelctedState = SelelctedState.Selected;
+                m_SelelctedState = SelectedState.Selected;
             }
             else
             {
                 IsSelected = false;
-                m_SelelctedState = SelelctedState.NotSelected;
+                m_SelelctedState = SelectedState.NotSelected;
             }
             RefresPanelInfo();
         }

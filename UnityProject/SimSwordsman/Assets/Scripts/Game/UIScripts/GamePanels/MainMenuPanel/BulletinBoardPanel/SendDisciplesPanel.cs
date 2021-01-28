@@ -152,19 +152,18 @@ namespace GameWish.Game
 
             m_PanelType = (PanelType)args[0];
             InitPanelInfo();
-            RefreshDisicipleSkill();
             switch (m_PanelType)
             {
                 case PanelType.Task:
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
                     HandConfirmBtnEvent();
-                    m_AcceptText.text = "开始战斗";
+                    m_AcceptText.text = "发去战斗";
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
-                    m_AcceptText.text = "发起战斗";
+                    m_AcceptText.text = "开始战斗";
                     break;
                 default:
                     break;

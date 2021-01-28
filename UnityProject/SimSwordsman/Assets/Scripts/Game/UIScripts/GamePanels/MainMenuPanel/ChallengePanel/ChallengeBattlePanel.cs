@@ -39,16 +39,24 @@ namespace GameWish.Game
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_CurChapterAllLevelConfigInfo = MainGameMgr.S.ChapterMgr.GetAllLevelConfigInfo(m_CurChapterConfigInfo.chapterId);
             //InitPanelInfo();
-            //LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString());
+            LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString());
         }
 
         public void LoadClanPrefabs(string prefabsName)
         {
             AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+            prefabsName = prefabsName + "Panel";
             loader.InstantiateAsync(prefabsName, (obj) =>
             {
                 //m_CharacterLoaderDic.Add(id, loader);
                 obj.transform.SetParent(m_Parent);
+                RectTransform rectTransform =((RectTransform)obj.transform);
+                //¼ÇÂ¼
+                rectTransform.localPosition = Vector3.zero;
+                rectTransform.offsetMax = Vector2.zero;
+                rectTransform.offsetMin = Vector2.zero;
+
+                obj.transform.localScale = new Vector3(1,1,1);
                 obj.GetComponent<ClanBase>().SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
             });
         }

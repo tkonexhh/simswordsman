@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace GameWish.Game
 
 	public class BtnFunc : MonoBehaviour
 	{
+		private Button m_Self;
 		[SerializeField]
 		private Text m_Number;
 		[SerializeField]
@@ -32,8 +34,14 @@ namespace GameWish.Game
 		[SerializeField]
 		private Image m_Lock;
 		private ChallengeBtnState m_ChallengeBtnState;
-		public void RefreshBtnInfo(ChallengeBtnState state, int number)
+		private int index;
+		private ChapterConfigInfo m_CurChapterConfigInfo = null;
+		private LevelConfigInfo m_CurChapterLevelConfigInfo = null;
+		public void RefreshBtnInfo(ChallengeBtnState state, int number, ChapterConfigInfo chapterConfigInfo, LevelConfigInfo levelConfigInfo)
 		{
+			index = number;
+			m_CurChapterConfigInfo = chapterConfigInfo;
+			m_CurChapterLevelConfigInfo = levelConfigInfo;
 			m_ChallengeBtnState = state;
 
 			switch (m_ChallengeBtnState)
@@ -61,11 +69,18 @@ namespace GameWish.Game
             }
         }
 
+		public int GetIndex()
+		{
+			return index;
+		}
 		// Start is called before the first frame update
 		void Start()
 	    {
-	        
-	    }
+			m_Self = GetComponent<Button>();
+			m_Self.onClick.AddListener(()=> { 
+				 UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, m_CurChapterLevelConfigInfo);
+			});
+		}
 	
 	    // Update is called once per frame
 	    void Update()

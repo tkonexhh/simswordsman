@@ -18,7 +18,7 @@ namespace GameWish.Game
         // Start is called before the first frame update
         public virtual void Start()
         {
-            m_ScrollRect.DoScrollVertical(0, 0.6f);
+            m_ScrollRect.DoScrollVertical(0, 0.01f);
         }
 
         // Update is called once per frame
@@ -32,30 +32,28 @@ namespace GameWish.Game
             m_CurChapterConfigInfo = chapterConfigInfo;
             m_CurChapterAllLevelConfigInfo = chapterAllLevelConfigInfo;
             m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_CurChapterConfigInfo.chapterId);
-
-            if (m_Buttons.Length == m_CurChapterAllLevelConfigInfo.Count)
+            List<LevelConfigInfo> levelConfigInfo = new List<LevelConfigInfo>();
+            levelConfigInfo.AddRange(m_CurChapterAllLevelConfigInfo.Values);
+            if (m_Buttons.Length == levelConfigInfo.Count)
             {
                 for (int i = 0; i < m_Buttons.Length; i++)
                 {
-                    if (i < m_CurLevel - 1)
+                    if (i < m_CurLevel)
                     {
                         m_Buttons[i].enabled = false;
-                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Over, i);
+                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Over, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
-                    else if (i == m_CurLevel - 1)
+                    else if (i == m_CurLevel )
                     {
-                        m_Buttons[i].enabled = false;
-                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Battle, i);
+                        m_Buttons[i].enabled = true;
+                        BtnFunc btnFunc= m_Buttons[i].GetComponent<BtnFunc>();
+                        btnFunc.RefreshBtnInfo(ChallengeBtnState.Battle, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
                     else
                     {
                         m_Buttons[i].enabled = false;
-                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Lock, i);
+                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Lock, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
-                    m_Buttons[i].onClick.AddListener(() =>
-                    {
-                        UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo[i]);
-                    });
                 }
             }
         }

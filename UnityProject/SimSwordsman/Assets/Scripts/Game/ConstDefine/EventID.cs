@@ -114,7 +114,7 @@ namespace GameWish.Game
         /// </summary>
         OnRefreshDisciple,
 
-        #region 公告榜
+        #region 公用
         /// <summary>
         /// 选择弟子
         /// </summary>
