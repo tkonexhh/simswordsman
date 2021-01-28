@@ -49,6 +49,7 @@ namespace GameWish.Game
             {
                 //m_CharacterLoaderDic.Add(id, loader);
                 obj.transform.SetParent(m_Parent);
+                obj.GetComponent<ClanBase>().SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
             });
         }
 

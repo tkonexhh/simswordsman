@@ -145,7 +145,6 @@ namespace GameWish.Game
                     break;
             }
         }
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -153,16 +152,19 @@ namespace GameWish.Game
 
             m_PanelType = (PanelType)args[0];
             InitPanelInfo();
+            RefreshDisicipleSkill();
             switch (m_PanelType)
             {
                 case PanelType.Task:
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
                     HandConfirmBtnEvent();
+                    m_AcceptText.text = "开始战斗";
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
+                    m_AcceptText.text = "发起战斗";
                     break;
                 default:
                     break;
@@ -192,7 +194,6 @@ namespace GameWish.Game
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
             }
-
         }
         private void GetInformationForNeed()
         {
@@ -206,6 +207,7 @@ namespace GameWish.Game
                     break;
             }
             m_AllCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            BubbleSort(m_AllCharacterList);
             //m_PlayerDataHerbDic = MainGameMgr.S.MedicinalPowderMgr.GetAllHerbs();
             //m_PlayerDataHerbDic = MainGameMgr.S.InventoryMgr.GetAllHerbs();
         }
@@ -248,30 +250,33 @@ namespace GameWish.Game
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
-                        if (m_SelectedList.Count == 0)
-                        {
-                            foreach (var item in m_AllCharacterList)
-                            {
-                                if (item.IsFreeState())
-                                    m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
-                            }
-                        }
-                        if (m_CurTaskInfo.GetCurTaskType() != SimGameTaskType.Battle)
-                        {
-                            m_CurTaskInfo.ExecuteTask(m_SelectedList);
-                        }
+                        FloatMessage.S.ShowMsg("已选择完毕");
+                        //if (m_CurTaskInfo.CommonTaskItemInfo.GetCharacterAmount())
+                        //{
 
-                        if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
-                        {
-                            List<EnemyConfig> enemiesList = new List<EnemyConfig>();
-                            List<TaskEnemy> taskEnemies = m_CurTaskInfo.CommonTaskItemInfo.taskEnemies;
-                            for (int i = 0; i < taskEnemies.Count; i++)
-                            {
-                                enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
-                            }
-                            EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, enemiesList);
-                            UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
-                        }
+                        //}
+                        //    foreach (var item in m_AllCharacterList)
+                        //    {
+                        //        if (item.IsFreeState())
+                        //            m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
+                        //    }
+                        
+                        //if (m_CurTaskInfo.GetCurTaskType() != SimGameTaskType.Battle)
+                        //{
+                        //    m_CurTaskInfo.ExecuteTask(m_SelectedList);
+                        //}
+
+                        //if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
+                        //{
+                        //    List<EnemyConfig> enemiesList = new List<EnemyConfig>();
+                        //    List<TaskEnemy> taskEnemies = m_CurTaskInfo.CommonTaskItemInfo.taskEnemies;
+                        //    for (int i = 0; i < taskEnemies.Count; i++)
+                        //    {
+                        //        enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
+                        //    }
+                        //    EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, enemiesList);
+                        //    UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                        //}
                         break;
                     case PanelType.Challenge:
                         AutoSelectedDisciple();
@@ -320,9 +325,49 @@ namespace GameWish.Game
         private void AutoSelectedDisciple()
         {
             //TODO  按照弟子战力从高到底排序
+            List<CharacterItem> allCharacterList = new List<CharacterItem>();
+            foreach (var item in m_AllCharacterList)
+            {
+                if (item.IsFreeState())
+                    allCharacterList.Add(item);
+            }
+
+            if (allCharacterList.Count>= MaxDiscipleNumber)
+            {
+                for (int i = 0; i < MaxDiscipleNumber; i++)
+                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+            }
+            else
+            {
+                for (int i = 0; i < allCharacterList.Count; i++)
+                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+            }
             //MainGameMgr.S.CharacterMgr.GetAllCharacterList
             //m_SelectedDiscipleDic
+            HandConfirmBtnEvent();
+        }
 
+        /// <summary>
+        /// 冒泡排序
+        /// </summary>
+        /// <param name="characterItems"></param>
+        /// <returns></returns>
+        private List<CharacterItem> BubbleSort(List<CharacterItem> characterItems)
+        {
+            var len = characterItems.Count;
+            for (var i = 0; i < len - 1; i++)
+            {
+                for (var j = 0; j < len - 1 - i; j++)
+                {
+                    if (characterItems[j].atkValue > characterItems[j + 1].atkValue)
+                    {        // 相邻元素两两对比
+                        var temp = characterItems[j + 1];        // 元素交换
+                        characterItems[j + 1] = characterItems[j];
+                        characterItems[j] = temp;
+                    }
+                }
+            }
+            return characterItems;
         }
 
         private List<CharacterController> Transformation(Dictionary<int, CharacterItem> m_SelectedDiscipleDic)
