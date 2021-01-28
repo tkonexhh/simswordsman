@@ -10,45 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: MoJiao
+  m_Name: Mojiao
   m_EditorClassIdentifier: 
-  m_GroupName: MoJiao
+  m_GroupName: Mojiao
   m_Data:
     m_SerializedData: []
-  m_GUID: 06f4501bc0c571449b6be0ed222b70da
+  m_GUID: 6bdd48805a5823e439f1e715f16d55bd
   m_SerializeEntries:
-  - m_GUID: 09334196019c4464ea6a5080cd1f2773
-    m_Address: mj.atlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 2a709bca96b677444858105eb23b21eb
-    m_Address: mj
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 6a722ba08d90bc64897106ba7269e53c
-    m_Address: mj_Atlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 6f5cff378b843a84291a71f13a395ec7
-    m_Address: mj_SkeletonData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: a0e10b1a6dbb5c846882711ce995d571
-    m_Address: mj_Material
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: f0e8c9d341fccf34197182862a10a639
-    m_Address: mj
+  - m_GUID: ccd785eca3cf8ec479e1058f336c11dc
+    m_Address: Mojiao
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
@@ -56,5 +26,4 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
-    m_Schemas:
-    - {fileID: 11400000, guid: 2257669ee1bc99c488d6ba3488bb9e2d, type: 2}
+    m_Schemas: []

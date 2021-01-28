@@ -16,7 +16,10 @@ namespace GameWish.Game
             this.rewardType = rewardType;
             this.paramStrs = paramStrs;
         }
+        public LevelReward()
+        {
 
+        }
         public abstract void ApplyReward(int pas);
 
         public abstract int GetRewardValue();

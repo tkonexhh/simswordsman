@@ -63,8 +63,8 @@ namespace GameWish.Game
             CreateBattleText(m_BattleText);
 
             int randomSecond = UnityEngine.Random.Range(1, 3);
-            m_Coroutine =  StartCoroutine(BattleTextCounDown(randomSecond));
-      
+            m_Coroutine = StartCoroutine(BattleTextCounDown(randomSecond));
+
         }
 
         public IEnumerator BattleTextCounDown(int second)
@@ -81,17 +81,17 @@ namespace GameWish.Game
             else
                 CreateBattleText(m_TalkText);
         }
-    
+
         /// <summary>
         /// 创建文本
         /// </summary>
         /// <param name="battleTexts"></param>
-        private void CreateBattleText(List<BattleTextConfig> battleTexts,int type = 0)
+        private void CreateBattleText(List<BattleTextConfig> battleTexts, int type = 0)
         {
             int characterListIndex = UnityEngine.Random.Range(0, m_OurCharacterList.Count);
             int enemyCharacterListIndex = UnityEngine.Random.Range(0, m_EnemyCharacterList.Count);
             int index = UnityEngine.Random.Range(0, battleTexts.Count);
-            if (type==0)
+            if (type == 0)
             {
                 int random = UnityEngine.Random.Range(0, 2);
                 if (random == 0)
@@ -107,21 +107,44 @@ namespace GameWish.Game
                 if (type == 1)//我方胜利
                 {
                     string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, GameDataMgr.S.GetClanData().GetClanName());
-                    battleText = ReplaceStr(battleText, 1, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                    switch (m_PanelType)
+                    {
+                        case PanelType.Task:
+                            battleText = ReplaceStr(battleText, 1, m_CurTaskInfo.CommonTaskItemInfo.title);
+                            break;
+                        case PanelType.Challenge:
+                            battleText = ReplaceStr(battleText, 1, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                            break;
+                        default:
+                            break;
+                    }
                     CreateBattleText(battleText);
                 }
                 else//敌人胜利
                 {
-                    string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
-                    battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
-                    CreateBattleText(battleText);
+                    string battleText = string.Empty;
+                    switch (m_PanelType)
+                    {
+                        case PanelType.Task:
+                            battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, m_CurTaskInfo.CommonTaskItemInfo.title);
+                            battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
+                            CreateBattleText(battleText);
+                            break;
+                        case PanelType.Challenge:
+                            battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                            battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
+                            CreateBattleText(battleText);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
 
-        private string ReplaceStr(string str,int i,string newStr)
+        private string ReplaceStr(string str, int i, string newStr)
         {
-            return str.Replace("{"+i+"}", newStr);
+            return str.Replace("{" + i + "}", newStr);
         }
 
         private string GetEnemyName(EnemyConfig enemyConfig)
@@ -149,7 +172,7 @@ namespace GameWish.Game
             //m_ScrollRect.normalizedPosition = new Vector2(0, 0);
             //记录
             m_ScrollRect.DoScrollVertical(0, 0.6f);
-            
+
             Transform matchRecordItem = Instantiate(m_MatchRecordItem, m_MatchRecordTra).transform;
             matchRecordItem.GetComponent<Text>().text = cont;
         }
@@ -168,14 +191,14 @@ namespace GameWish.Game
             {
                 if (second <= 5)
                 {
-                   //TODO
+                    //TODO
                 }
 
                 m_CombatTime.text = SplicingTime(second);
                 yield return new WaitForSeconds(1);
                 second--;
-                if (second==0)
-                  EventSystem.S.Send(EventID.OnBattleFailed);
+                if (second == 0)
+                    EventSystem.S.Send(EventID.OnBattleFailed);
             }
         }
         public string SplicingTime(int seconds)
@@ -265,7 +288,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            
+
             GetInformationForNeed();
             RefreshCurPanelInfo();
             StartCoroutine(BattleCountdown(30));
@@ -282,7 +305,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
 
-            if (m_logPanel!=null)
+            if (m_logPanel != null)
             {
                 m_logPanel.OnSuccessBtnEvent -= SuccessBtn;
                 m_logPanel.OnRefuseBtnEvent -= RefuseBtn;
@@ -305,7 +328,7 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnBattleFailed);
             }
         }
-        
+
 
         private void HandleAddListenerEvent(int key, object[] param)
         {
@@ -319,7 +342,8 @@ namespace GameWish.Game
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
-
+                            MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_CurTaskInfo.TaskId);
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, true);
                             break;
                         case PanelType.Challenge:
                             MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
@@ -334,6 +358,7 @@ namespace GameWish.Game
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, false);
                             break;
                         case PanelType.Challenge:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_LevelConfigInfo, false);

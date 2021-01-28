@@ -27,6 +27,7 @@ namespace GameWish.Game
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
+        private SimGameTask m_CurTaskInfo = null;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -48,6 +49,8 @@ namespace GameWish.Game
             });
         }
 
+       
+
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -56,37 +59,50 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    m_CurTaskInfo = (SimGameTask)args[1];
+                    m_CurTaskInfo.ClaimReward((bool)args[2]);
                     break;
                 case PanelType.Challenge:
                     m_LevelConfigInfo = (LevelConfigInfo)args[1];
-                    m_IsSuccess = (bool)args[1];
+                    m_IsSuccess = (bool)args[2];
+                    if (m_IsSuccess)
+                    {
+                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
+                        m_Font1.sprite = FindSprite("Font1");
+                        m_Font2.sprite = FindSprite("Font2");
+                    }
+                    else
+                    {
+                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
+                        m_Font1.sprite = FindSprite("Font3");
+                        m_Font2.sprite = FindSprite("Font4");
+                    }
                     break;
                 default:
                     break;
             }
   
-
-            if (m_IsSuccess)
-            {
-                m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-                m_Font1.sprite = FindSprite("Font1");
-                m_Font2.sprite = FindSprite("Font2");
-            }
-            else
-            {
-                m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
-                m_Font1.sprite = FindSprite("Font3");
-                m_Font2.sprite = FindSprite("Font4");
-            }
-
             foreach (var item in m_SelectedDiscipleList)
                 CreateRewardIInfoItem(item);
         }
 
         private void CreateRewardIInfoItem(CharacterController item)
         {
-            ItemICom rewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
-            rewardItemICom.OnInit(item, null, m_LevelConfigInfo, m_IsSuccess);
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    ItemICom taskRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                    taskRewardItemICom.OnInit(item, null, m_PanelType, m_CurTaskInfo, m_IsSuccess);
+                    break;
+                case PanelType.Challenge:
+                    ItemICom ChaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                    ChaRewardItemICom.OnInit(item, null, m_PanelType, m_LevelConfigInfo, m_IsSuccess);
+                    
+                    break;
+                default:
+                    break;
+            }
+           
         }
 
         protected override void OnPanelHideComplete()
