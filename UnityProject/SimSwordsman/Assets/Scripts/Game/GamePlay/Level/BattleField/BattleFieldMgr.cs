@@ -228,7 +228,10 @@ namespace GameWish.Game
         private void OnExitBattle()
         {
             m_IsBattleBegin = false;
-            m_OurCharacterList.ForEach(i => i.OnExitBattleField());
+            m_OurCharacterList.ForEach(i => {
+                i.OnExitBattleField();
+                i.SetCurTask(null);
+            });
             m_OurCharacterList.Clear();
             m_EnemyCharacterList.Clear();
 
