@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Mojiao
+  m_Name: Huashan
   m_EditorClassIdentifier: 
-  m_GroupName: Mojiao
+  m_GroupName: Huashan
   m_Data:
     m_SerializedData: []
-  m_GUID: 6bdd48805a5823e439f1e715f16d55bd
+  m_GUID: 0c9aadcaa81246646a5416bf154e87e4
   m_SerializeEntries:
-  - m_GUID: ccd785eca3cf8ec479e1058f336c11dc
-    m_Address: Mojiao
+  - m_GUID: 0dfc8e8698d09ea4b83fb355379f4316
+    m_Address: HuashanPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 83f112983e68eb34baf462350bc53949
+    m_Address: Huashan
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
@@ -26,4 +32,5 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: a5709c29a277a7f49a705ce745b55880, type: 2}

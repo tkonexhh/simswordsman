@@ -53,10 +53,13 @@ namespace GameWish.Game
             });
             m_ClanData.GetHerbList().ForEach(i =>
             {
-                HerbItem item = new HerbItem();
-                item.Wrap(i);
+                if (i.HerbType != HerbType.None)
+                {
+                    HerbItem item = new HerbItem();
+                    item.Wrap(i);
 
-                m_WarehouseItems.Add(item);
+                    m_WarehouseItems.Add(item);
+                }
             });
         }
 

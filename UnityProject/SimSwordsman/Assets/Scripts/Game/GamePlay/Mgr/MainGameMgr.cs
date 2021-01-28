@@ -101,10 +101,10 @@ namespace GameWish.Game
         }
         #endregion
 
-        private void Update()
-        {
-            OnUpdate();
-        }
+        //private void Update()
+        //{
+        //    OnUpdate();
+        //}
     }
 
 }
