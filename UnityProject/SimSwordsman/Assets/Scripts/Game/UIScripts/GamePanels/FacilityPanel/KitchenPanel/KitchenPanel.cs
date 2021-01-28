@@ -12,7 +12,10 @@ namespace GameWish.Game
     {
         [SerializeField]
         private Text m_KitchenContTxt;
-       
+
+        [SerializeField]
+        private Image m_FacilityIcon;
+
         [SerializeField]
         private Text m_CurLevelTxt;
         [SerializeField]
@@ -69,7 +72,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_KitchenContTxt.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
-            //CommonUIMethod.GetStringForTableKey(Define.FACILITY_KITCHEN_DESCRIBLE);
+            m_FacilityIcon.sprite = FindSprite("Lobby" + m_CurLevel);
 
             RefreshPanelText();
             UpdateFoodItems();

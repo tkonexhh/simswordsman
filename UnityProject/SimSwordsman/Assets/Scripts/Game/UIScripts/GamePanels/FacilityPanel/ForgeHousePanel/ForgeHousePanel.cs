@@ -13,6 +13,8 @@ namespace GameWish.Game
         private Text m_ForgeHouseCont;
         [SerializeField]
         private Text m_CurLevelTxt;
+        [SerializeField]
+        private Image m_FacilityIcon;
 
         [SerializeField]
         private Text m_UpgradeRequiredCoinTxt;
@@ -146,6 +148,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_ForgeHouseCont.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
+            m_FacilityIcon.sprite = FindSprite("ForgeHouse" + m_CurLevel);
 
             RefreshPanelText();
             UpdateItems();

@@ -9,6 +9,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_Title;
         [SerializeField]
+        private Image m_Character;
+        [SerializeField]
         private Text m_Desc;
         [SerializeField]
         private Image[] m_TitleBgs;
@@ -53,9 +55,12 @@ namespace GameWish.Game
                         m_TitleBgs[i].gameObject.SetActive(false);
                 }
                 m_Desc.text = tb.desc;
-                m_RewardIcon.sprite = m_visitor.Reward.GetSprite();
+                m_RewardIcon.sprite = FindSprite(m_visitor.Reward.SpriteName());
+                m_RewardIcon.SetNativeSize();
                 m_RewardName.text = m_visitor.Reward.RewardName();
                 m_RewardNum.text = m_visitor.Reward.Count.ToString();
+                m_Character.sprite = FindSprite(tb.roleRes);
+                m_Character.SetNativeSize();
             }
 
             OpenDependPanel(EngineUI.MaskPanel,-1,null);

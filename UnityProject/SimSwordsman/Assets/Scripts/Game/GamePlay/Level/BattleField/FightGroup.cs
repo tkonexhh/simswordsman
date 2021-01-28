@@ -120,8 +120,14 @@ namespace GameWish.Game
             {
                 return config.atkRangeList;
             }
+            else // Animation not found in Table, return default atk list
+            {
+                List<float> defaultRangeList = new List<float>();
+                defaultRangeList.Add(2f);
+                defaultRangeList.Add(0.2f);
 
-            return null;
+                return defaultRangeList;
+            }
         }
 
         private void StartToMove(float attackRange)
@@ -315,17 +321,17 @@ namespace GameWish.Game
                     CharacterController controller3 = (CharacterController)param[0];
                     if (controller3 == m_OurCharacter)
                     {
+                        m_AtkEventIndex++;
                         m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
                         m_EnemyCharacter.GetBattleState().HitbackDistance = m_OurHitBackDistance[m_AtkEventIndex];
                         m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
-                        m_AtkEventIndex++;
                     }
                     else if (controller3 == m_EnemyCharacter)
                     {
+                        m_AtkEventIndex++;
                         m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
                         m_OurCharacter.GetBattleState().HitbackDistance = m_EnemyHitBackDistance[m_AtkEventIndex];
                         m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
-                        m_AtkEventIndex++;
                     }
                     break;
             }

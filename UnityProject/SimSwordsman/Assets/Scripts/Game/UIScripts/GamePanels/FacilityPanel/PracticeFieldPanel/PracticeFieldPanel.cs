@@ -228,6 +228,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_CurLevelText.text = m_CurLevel.ToString()+"级";
+            m_PracticeImg.sprite = FindSprite("PracticeField" + m_CurLevel);
             m_CurPracticePos.text = "练功位:" + CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurCapacity().ToString());
             m_NextPracticePos.text = CommonUIMethod.GetStrForColor("#AD7834", Define.PLUS + m_CurPracticeFieldLevelInfo.GetNextCapacity().ToString());
             m_CurExpValue.text = CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurExp().ToString()+"经验");

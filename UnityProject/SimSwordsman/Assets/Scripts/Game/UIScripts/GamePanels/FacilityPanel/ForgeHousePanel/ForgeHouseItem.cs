@@ -94,7 +94,7 @@ namespace GameWish.Game
                 transform.SetAsFirstSibling();
 
                 var tb = TDEquipmentConfigTable.GetData(ID);
-                //m_ItemIcon.sprite = m_panel.FindSprite(tb.iconName);
+                m_ItemIcon.sprite = m_panel.FindSprite(tb.iconName);
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
                 var equ = TDEquipmentConfigTable.m_EquipDic[ID];

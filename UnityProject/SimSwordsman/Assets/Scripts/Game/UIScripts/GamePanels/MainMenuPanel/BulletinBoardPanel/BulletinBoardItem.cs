@@ -105,6 +105,7 @@ namespace GameWish.Game
             RefreshFixedInfo();
             RefreshPanelInfo();
             RefreshDiscipleInfo();
+            gameObject.name = "BulletinBoardItem" + m_CurTaskInfo.TaskId;
             RefreshTaskState();
         }
 

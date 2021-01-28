@@ -169,7 +169,7 @@ namespace GameWish.Game
         private void RefreshPanelText()
         {
             RefreshResInfo();
-            m_IconImage.sprite = FindSprite("KongfuLibrary");
+            m_IconImage.sprite = FindSprite("KongfuLibrary" + m_CurLevel);
             m_BriefIntroductionTxt.text = m_FacilityConfigInfo.desc;
             m_UpgradeCondition.text = CommonUIMethod.GetUpgradeCondition(m_NextKongfuLibraryLevelInfo.upgradeNeedLobbyLevel);
             m_LevelValue.text = CommonUIMethod.GetGrade(m_CurKongfuLibraryLevelInfo.level);

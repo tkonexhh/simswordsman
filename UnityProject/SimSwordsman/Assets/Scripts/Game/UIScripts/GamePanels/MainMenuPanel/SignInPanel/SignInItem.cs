@@ -21,7 +21,8 @@ namespace GameWish.Game
         private Image m_NormalImage;
         private Image m_GlowImage;
         private Image m_ReadyImage;
-        private Image m_IconImage;
+        
+        public Image m_IconImage;
         private Image m_GouImage;
 
         private Text m_CountText;
@@ -75,15 +76,6 @@ namespace GameWish.Game
         public void ClickSignBtn()
         {
             SignItemCallBack?.Invoke(m_ID);
-        }
-
-        /// <summary>
-        /// …Ë÷√IconµƒÕº∆¨
-        /// </summary>
-        /// <param name="sprite"></param>
-        public void SetIconSprite(Sprite sprite)
-        {
-            m_IconImage.sprite = sprite;
         }
 
         /// <summary>

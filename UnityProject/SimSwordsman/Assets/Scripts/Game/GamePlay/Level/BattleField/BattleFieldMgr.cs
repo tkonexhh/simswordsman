@@ -248,6 +248,8 @@ namespace GameWish.Game
             m_OurCharacterList.AddRange(characters);
             m_OurCharacterList.ForEach(i => 
             {
+                i.ShowBody();
+
                 Vector3 pos = m_BattleField.GetOurCharacterPos();
                 i.OnEnterBattleField(pos);
 

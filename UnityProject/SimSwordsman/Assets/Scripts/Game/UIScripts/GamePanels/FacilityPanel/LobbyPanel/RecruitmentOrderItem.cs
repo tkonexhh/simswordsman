@@ -13,7 +13,9 @@ namespace GameWish.Game
 		private Image m_Icon;
 		[SerializeField]
 		private Text m_RecruitmentOrderTitle;
-		[SerializeField]
+        [SerializeField]
+        private Image m_RecruitmentOrderTitleBg;
+        [SerializeField]
 		private Text m_RecruitmentOrderCont;
 		[SerializeField]
 		private Text m_RecruitValue;
@@ -32,15 +34,17 @@ namespace GameWish.Game
 
 		private RecruitType m_CurRecruitType;
 		private Sprite m_CurSprite;
-		private RecruitDiscipleMgr m_RecruitDiscipleMgr = null;
+        private AbstractAnimPanel m_Panel;
+        private RecruitDiscipleMgr m_RecruitDiscipleMgr = null;
 		private bool m_IsFirstRecruitment = false;
 		private Dictionary<RecruitType, ClickType> m_RecruitDic = new Dictionary<RecruitType, ClickType>();
 		private int m_Hours;
 
 		public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+            m_Panel = t as AbstractAnimPanel;
 
-			EventSystem.S.Register(EventID.OnRefreshPanelInfo, HandlingListeningEvents);
+            EventSystem.S.Register(EventID.OnRefreshPanelInfo, HandlingListeningEvents);
 			EventSystem.S.Register(EventID.OnRefreshRecruitmentOrder, HandlingListeningEvents);
 
 			m_RecruitDiscipleMgr = MainGameMgr.S.RecruitDisciplerMgr;
@@ -59,11 +63,13 @@ namespace GameWish.Game
 					int _48Count = m_Hours / _48Hours;
 					RefreshFreeRecruit(_48Count);
                     gameObject.name = "RecruitmentOrderItem2";
+
                     break;
                 case RecruitType.SilverMedal:
 					int _12Count = m_Hours / _12Hours;
 					RefreshFreeRecruit(_12Count);
                     gameObject.name = "RecruitmentOrderItem1";
+
                     break;
                 default:
                     break;
@@ -262,11 +268,13 @@ namespace GameWish.Game
                 case RecruitType.GoldMedal:
 					m_RecruitmentOrderTitle.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_GOLDRECRUITMENT);
 					m_RecruitmentOrderCont.text = RecruitmentOrderCont(RecruitType.GoldMedal);
+                    m_RecruitmentOrderTitleBg.sprite = m_Panel.FindSprite("BgFont2");
 					break;
                 case RecruitType.SilverMedal:
 					m_RecruitmentOrderTitle.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_SILVERRECRUITMENT);
 					m_RecruitmentOrderCont.text = RecruitmentOrderCont(RecruitType.SilverMedal);
-					break;
+                    m_RecruitmentOrderTitleBg.sprite = m_Panel.FindSprite("BgFont3");
+                    break;
                 default:
                     break;
             }

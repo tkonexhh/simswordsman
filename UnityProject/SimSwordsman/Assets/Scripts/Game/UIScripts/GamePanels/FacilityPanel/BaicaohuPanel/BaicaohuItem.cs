@@ -94,7 +94,7 @@ namespace GameWish.Game
                 transform.SetAsFirstSibling();
 
                 var tb = TDHerbConfigTable.GetData(ID);
-                m_ItemIcon.sprite = Resources.Load<Sprite>("Sprites/HerbIcon/" + tb.iconName);
+                m_ItemIcon.sprite = m_panel.FindSprite(tb.icon);
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
                 m_EffecTxt.text = tb.effectDesc;

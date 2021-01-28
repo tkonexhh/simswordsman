@@ -149,6 +149,8 @@ namespace GameWish.Game
         public void RefreshPanelInfo()
         {
             m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
+            m_LobbyImg.sprite = FindSprite("Lobby" + m_CurLevel);
+
             RefreshResInfo();
             SetNextLobbyStr();
         }
