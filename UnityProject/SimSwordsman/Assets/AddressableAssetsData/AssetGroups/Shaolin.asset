@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Mojiao
+  m_Name: Shaolin
   m_EditorClassIdentifier: 
-  m_GroupName: Mojiao
+  m_GroupName: Shaolin
   m_Data:
     m_SerializedData: []
-  m_GUID: 6bdd48805a5823e439f1e715f16d55bd
+  m_GUID: b86b84f6473792f4482f668dce7e87f8
   m_SerializeEntries:
-  - m_GUID: ccd785eca3cf8ec479e1058f336c11dc
-    m_Address: Mojiao
+  - m_GUID: 71a4b9a5f826eab47bd343c47af736eb
+    m_Address: ShaolinPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 87131884259aa5744a7b63825de983de
+    m_Address: Shaolin
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
@@ -26,4 +32,5 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: 7403d214d14027c46918eb3a3708d508, type: 2}
