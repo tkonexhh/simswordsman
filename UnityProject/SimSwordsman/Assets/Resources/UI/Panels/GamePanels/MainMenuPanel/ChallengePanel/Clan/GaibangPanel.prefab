@@ -410,7 +410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 483.79337}
+  m_AnchoredPosition: {x: 50, y: 604.7041}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &108183304964565607
@@ -953,9 +953,8 @@ GameObject:
   - component: {fileID: 8191624386531821754}
   - component: {fileID: 8191624386531821755}
   - component: {fileID: 8191624386531821752}
-  - component: {fileID: 4801435226708299852}
   m_Layer: 5
-  m_Name: ChallengeBattlePanel
+  m_Name: GaibangPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementCategory: Uncategorized
-  elementName: ChallengeBattlePanel
+  elementName: GaibangPanel
   LANDSCAPE: 1
   PORTRAIT: 1
   startHidden: 0
@@ -1335,29 +1334,6 @@ MonoBehaviour:
   loopAnimationsPresetCategoryName: Uncategorized
   loopAnimationsPresetName: DefaultPreset
   loadLoopAnimationsPresetAtRuntime: 0
---- !u!114 &4801435226708299852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8191624386531821759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3363980db8487974e9de1aaf256f8373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ParentPage: {fileID: 0}
-  m_SpritesData: []
-  m_PanelEventLogType: 0
-  m_HideMask: 0
-  m_CustomVisibleFlag: 1
-  m_SortingOrder: -1
-  m_ChallengeBattleTitle: {fileID: 1718608272245135578}
-  m_CloseBtn: {fileID: 1718608272672530898}
-  m_CheckpointTrans: {fileID: 2558693224320143906}
-  m_CheckpointItem: {fileID: 2185726043520044983, guid: c1863062036bf83429a5e2671e6fa1cc,
-    type: 3}
 --- !u!1 &8828152713405037425
 GameObject:
   m_ObjectHideFlags: 0

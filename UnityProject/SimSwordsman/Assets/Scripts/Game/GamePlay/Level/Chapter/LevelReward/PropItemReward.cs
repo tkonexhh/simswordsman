@@ -16,9 +16,15 @@ namespace GameWish.Game
             m_Number = int.Parse(paramStrs[2]);
         }
 
+        public PropItemReward(RewardItemType rewardType, int itemID,int itemNumber) 
+        {
+            this.rewardType = rewardType;
+            m_ItemId = itemID;
+            m_Number = itemNumber;
+        }
         public override void ApplyReward(int par)
         {
-            //MainGameMgr.S.InventoryMgr.p
+            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_ItemId), m_Number);
         }
 
         public override int GetRewardValue()

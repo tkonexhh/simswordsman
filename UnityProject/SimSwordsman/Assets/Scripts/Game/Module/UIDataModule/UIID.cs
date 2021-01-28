@@ -50,6 +50,8 @@ namespace GameWish.Game
         PromotionPanel,
         ChallengeChooseDisciple,
 
+        GaibangPanel,
+
         HousePanel,
         WarehousePanel,
         ItemDetailsPanel,

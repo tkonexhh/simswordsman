@@ -15,6 +15,12 @@ namespace GameWish.Game
             m_ExpValue = int.Parse(paramStrs[1]);
         }
 
+        public ExpCharacterReward(RewardItemType rewardType, int exp)
+        {
+            this.rewardType = rewardType;
+            m_ExpValue = exp;
+        }
+
         public override void ApplyReward(int par)
         {
             MainGameMgr.S.BattleFieldMgr.OurCharacterList.ForEach(i => 
