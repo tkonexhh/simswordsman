@@ -38,6 +38,9 @@ namespace GameWish.Game
 		{
 
 		}
-	}
-	
+        public override string SpriteName()
+        {
+            return TDHerbConfigTable.GetData(m_KeyID).icon;
+        }
+    }
 }

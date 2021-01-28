@@ -38,6 +38,11 @@ namespace GameWish.Game
 		{
 
 		}
-	}
+
+        public override string SpriteName()
+        {
+            return TDEquipmentConfigTable.GetData(m_KeyID).iconName;
+        }
+    }
 	
 }
