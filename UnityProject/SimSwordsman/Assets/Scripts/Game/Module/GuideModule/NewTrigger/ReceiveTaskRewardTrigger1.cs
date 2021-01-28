@@ -43,7 +43,5 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
             EventSystem.S.Send(EventID.OnGuideDialog5);
         }
-
     }
-	
 }

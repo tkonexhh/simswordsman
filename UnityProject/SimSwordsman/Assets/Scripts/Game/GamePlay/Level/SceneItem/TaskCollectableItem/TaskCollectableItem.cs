@@ -10,8 +10,8 @@ namespace GameWish.Game
 	{
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
-        private SkeletonAnimation m_SpineAnim;
-        private bool m_HasSpine = false;
+        protected SkeletonAnimation m_SpineAnim;
+        protected bool m_HasSpine = false;
 
         private void Start()
         {
@@ -25,7 +25,7 @@ namespace GameWish.Game
 
         }
 
-        public void OnStartCollected(Vector3 collecterPos)
+        public virtual void OnStartCollected(Vector3 collecterPos)
         {
             if (m_HasSpine)
             {
@@ -35,7 +35,7 @@ namespace GameWish.Game
             }
         }
 
-        public void OnEndCollected()
+        public virtual void OnEndCollected()
         {
             if (m_HasSpine)
             {
@@ -50,12 +50,12 @@ namespace GameWish.Game
             }
         }
 
-        private void RemoveItem()
+        protected void RemoveItem()
         {
             MainGameMgr.S.CommonTaskMgr.RemoveTaskCollectableItem(collectedObjType);
         }
 
-        private void PlayAnim(string name, bool loop, System.Action onAnimEnd)
+        protected void PlayAnim(string name, bool loop, System.Action onAnimEnd)
         {
             if (m_SpineAnim != null)
             {
@@ -63,7 +63,7 @@ namespace GameWish.Game
             }
         }
 
-        private void FaceTo(float x)
+        protected void FaceTo(float x)
         {
             if (x > transform.position.x)
             {

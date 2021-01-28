@@ -22,7 +22,7 @@ namespace GameWish.Game
             {
                 if (GuideMgr.S.IsGuideFinish(list[i].id))
                     continue;
-                id = list[i].id + 10000;
+                id = list[i].id * 100 + 10001;
                 break;
             }
 
@@ -64,9 +64,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger4));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskDetailsTrigger1));
-            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskTrigger1)); 
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskBtnTrigger1)); 
             GuideMgr.S.RegisterGuideTrigger(typeof(SendCharacterOnTaskTrigger1));
-            GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardBtnTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger11));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger22));
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger5));
@@ -78,7 +78,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger7));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskDetailsTrigger2));
-            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskBtnTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(SendCharacterOnTaskTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(KitchenDialogTrigger));
@@ -95,6 +97,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(BuildForgehouseTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(FoodBuffTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystemTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger1));
+
         }
 
         protected void InitCustomCommand()

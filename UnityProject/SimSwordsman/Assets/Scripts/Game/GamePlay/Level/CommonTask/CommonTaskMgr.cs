@@ -132,6 +132,9 @@ namespace GameWish.Game
         {
             string prefabName = GetPrefabName(collectedObjType);
 
+            if (string.IsNullOrEmpty(prefabName))
+                return;
+
             try
             {
                 AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
@@ -177,6 +180,10 @@ namespace GameWish.Game
             return null;
         }
 
+        public static bool IsNotNeedToSpawnTaskItem(CollectedObjType collectedObjType)
+        {
+            return collectedObjType == CollectedObjType.Well || collectedObjType == CollectedObjType.Fish;
+        }
         #endregion
 
         #region Private
@@ -233,7 +240,7 @@ namespace GameWish.Game
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                    bool isTaskTutorialFinished = false;
+                    bool isTaskTutorialFinished = GuideMgr.S.IsGuideFinish(16);
                     if (!isTaskTutorialFinished) // TODO:Check is tutorial finished
                     {
                         lobbyLevel = 0;
@@ -290,6 +297,11 @@ namespace GameWish.Game
 
         private string GetPrefabName(CollectedObjType collectedObjType)
         {
+            if (IsNotNeedToSpawnTaskItem(collectedObjType))
+            {
+                return string.Empty;
+            }
+
             return collectedObjType.ToString();
         }
         #endregion
