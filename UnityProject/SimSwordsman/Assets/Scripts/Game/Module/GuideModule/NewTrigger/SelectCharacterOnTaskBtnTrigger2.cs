@@ -1,10 +1,10 @@
-using System;
 using Qarth;
+using System;
 
 
 namespace GameWish.Game
 {
-	public class ReceiveTaskRewardTrigger1 : ITrigger
+    public class SelectCharacterOnTaskBtnTrigger2 : ITrigger
 	{
         bool m_CanStart = false;
         public bool isReady { get { return m_CanStart;  } }
@@ -19,7 +19,7 @@ namespace GameWish.Game
         public void Start(Action<bool, ITrigger> l)
         {
             m_Listener = l;
-            EventSystem.S.Register(EventID.OnGuideReceiveTaskRewardTrigger1, OnEventListener);
+            EventSystem.S.Register(EventID.OnGuideSelectCharacterTrigger2, OnEventListener);
         }
         void OnEventListener(int key, object[] param)
         {
@@ -38,10 +38,11 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
-         
-            EventSystem.S.UnRegister(EventID.OnGuideReceiveTaskRewardTrigger1, OnEventListener);
-            UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
-            EventSystem.S.Send(EventID.OnGuideDialog5);
+            EventSystem.S.UnRegister(EventID.OnGuideSelectCharacterTrigger2, OnEventListener);
+
+            EventSystem.S.Send(EventID.OnGuideSelectCharacterPanelTrigger2);
         }
+
     }
+	
 }

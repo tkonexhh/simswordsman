@@ -229,6 +229,9 @@ namespace GameWish.Game
                 if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
                 {
                     MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
+                    if (m_CurTaskInfo.TaskId != 9001 && m_CurTaskInfo.TaskId != 9002)
+                        UIMgr.S.OpenPanel(UIID.RewardPanel, new List<RewardBase>() { RewardMgr.S.GetRewardBase(TDCommonTaskTable.GetData(m_CurTaskInfo.TaskId).reward) });
+
                     DestroyImmediate(this.gameObject);
                     return;
                 }

@@ -60,7 +60,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 
+        /// Param格式为RewardItemType的string|id|数量
         /// </summary>
         /// <param name="param">RewardItemType,id,count</param>
         /// <returns></returns>
