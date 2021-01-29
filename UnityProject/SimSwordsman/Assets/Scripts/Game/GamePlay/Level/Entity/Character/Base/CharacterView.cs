@@ -57,6 +57,9 @@ namespace GameWish.Game
 
         private void Update()
         {
+            if (m_Controller == null)
+                return;
+
             if (m_Controller.CurState != CharacterStateID.Battle)
             {
                 if (m_IsMoving)

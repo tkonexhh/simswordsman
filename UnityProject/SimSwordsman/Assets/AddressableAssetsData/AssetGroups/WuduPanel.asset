@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: WuduPanel
+  m_EditorClassIdentifier: 
+  m_GroupName: WuduPanel
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d300e19d2779d4f44a037fcbcfe0e53d
+  m_SerializeEntries:
+  - m_GUID: 02be07488c03cdc48977a7f33e1b8856
+    m_Address: WuduPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7814739950058470067, guid: 02be07488c03cdc48977a7f33e1b8856,
+      type: 3}
+    m_TargetAsset: {fileID: 7814739950058470067, guid: 02be07488c03cdc48977a7f33e1b8856,
+      type: 3}
+  - m_GUID: 22a559a4f23bf6549aa38fee2cd071dc
+    m_Address: Wudu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 22a559a4f23bf6549aa38fee2cd071dc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 22a559a4f23bf6549aa38fee2cd071dc, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0af546179e72be6478b276d98b789308, type: 2}
+    - {fileID: 11400000, guid: ab06d1d2025a49f4eb4e7829cd8486e4, type: 2}

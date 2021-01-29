@@ -15,52 +15,55 @@ MonoBehaviour:
   m_GroupName: Chick
   m_Data:
     m_SerializedData: []
-  m_GUID: 7502670230e52ba48ae65404ab960a73
+  m_GUID: ebf54c91119491d45897abae6d08703d
   m_SerializeEntries:
   - m_GUID: 18836b1b67b888c4cb3b50c14af7d768
     m_Address: chicken.atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 18836b1b67b888c4cb3b50c14af7d768, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 18836b1b67b888c4cb3b50c14af7d768, type: 3}
   - m_GUID: 84e04b1177bf38b4d80c550a1d2f8177
     m_Address: chicken_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 84e04b1177bf38b4d80c550a1d2f8177, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 84e04b1177bf38b4d80c550a1d2f8177, type: 2}
   - m_GUID: 9eb59b18d5f345b47aa8bcdb8c26b077
     m_Address: chicken
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 9eb59b18d5f345b47aa8bcdb8c26b077, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 9eb59b18d5f345b47aa8bcdb8c26b077, type: 3}
   - m_GUID: ad5b642c1b62bd44ab3271ac7266cfc0
     m_Address: chicken_Material
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2100000, guid: ad5b642c1b62bd44ab3271ac7266cfc0, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: ad5b642c1b62bd44ab3271ac7266cfc0, type: 2}
   - m_GUID: ca9f17d8fd56c2d4595e7a315f21b6af
     m_Address: chicken
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: ca9f17d8fd56c2d4595e7a315f21b6af, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ca9f17d8fd56c2d4595e7a315f21b6af, type: 3}
   - m_GUID: eddde25405181dd4dbe8ac90054dd29e
     m_Address: Chicken
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2807960780921782558, guid: eddde25405181dd4dbe8ac90054dd29e,
+      type: 3}
+    m_TargetAsset: {fileID: 2807960780921782558, guid: eddde25405181dd4dbe8ac90054dd29e,
+      type: 3}
   - m_GUID: f9b5943b68678ba4687bb901e0d0a51f
     m_Address: chicken_Atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: f9b5943b68678ba4687bb901e0d0a51f, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: f9b5943b68678ba4687bb901e0d0a51f, type: 2}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: dd80c5614655c3f4489ee5c870936fad, type: 2}
+    - {fileID: 11400000, guid: 30979dae70481dc4bbf695ac28ea67ba, type: 2}
+    - {fileID: 11400000, guid: eea2ef774112b394aa8fae13e11e6bab, type: 2}
