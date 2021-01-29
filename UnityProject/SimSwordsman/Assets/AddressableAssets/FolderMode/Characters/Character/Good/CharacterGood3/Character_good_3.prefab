@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1875119245}
   - component: {fileID: 7696235984069948748}
   - component: {fileID: 7036753607345804724}
+  - component: {fileID: -9135679789850769398}
   m_Layer: 0
-  m_Name: Character_normal_3
+  m_Name: Character_good_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,6 +89,19 @@ SortingGroup:
   m_SortingLayerID: -1363672637
   m_SortingLayer: 1
   m_SortingOrder: 5
+--- !u!114 &-9135679789850769398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845809598577782914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450ff2b2d5255404d951a9a58a5f33cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NeedBindAgain: 1
 --- !u!1 &3845809599068655259
 GameObject:
   m_ObjectHideFlags: 0
