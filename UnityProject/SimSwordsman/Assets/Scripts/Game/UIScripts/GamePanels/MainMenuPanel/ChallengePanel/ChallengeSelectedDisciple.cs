@@ -24,13 +24,13 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_LevelBg;
         private CharacterItem m_CharacterItem;
-        private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
 
         public void RefreshPanelInfo()
         {
             switch (m_SelelctedState)
             {
-                case SelelctedState.Selected:
+                case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
@@ -39,7 +39,7 @@ namespace GameWish.Game
                     m_Plus.gameObject.SetActive(false);
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
                     break;
-                case SelelctedState.NotSelected:
+                case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_Plus.gameObject.SetActive(true);
                     m_DiscipleHead.gameObject.SetActive(false);
@@ -73,13 +73,13 @@ namespace GameWish.Game
         {
             m_CharacterItem = characterItem;
             if (isSelected)
-                m_SelelctedState = SelelctedState.Selected;
+                m_SelelctedState = SelectedState.Selected;
             else
-                m_SelelctedState = SelelctedState.NotSelected;
+                m_SelelctedState = SelectedState.NotSelected;
             RefreshPanelInfo();
         }
 
-        public SelelctedState GetSelelctedState()
+        public SelectedState GetSelelctedState()
         {
             return m_SelelctedState;
         }

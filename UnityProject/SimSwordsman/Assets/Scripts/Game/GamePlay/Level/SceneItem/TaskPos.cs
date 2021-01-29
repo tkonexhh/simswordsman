@@ -10,6 +10,7 @@ namespace GameWish.Game
         [SerializeField] private Transform m_ClanDoorPos;
         [SerializeField] private Transform m_FishingPos;
         [SerializeField] private Transform m_WellPos;
+        [SerializeField] private Transform m_ChickPos;
         [SerializeField] private List<Transform> m_PosList = new List<Transform>();
 
         public Vector2 GetTaskPos(CollectedObjType objType)
@@ -23,7 +24,6 @@ namespace GameWish.Game
                     break;
                 case CollectedObjType.Bear:
                 case CollectedObjType.Boar:
-                case CollectedObjType.Chicken:
                 case CollectedObjType.CloudRock:
                 case CollectedObjType.Deer:
                 case CollectedObjType.Ganoderma:
@@ -38,6 +38,9 @@ namespace GameWish.Game
                     break;
                 case CollectedObjType.Well:
                     pos = m_WellPos.position;
+                    break;
+                case CollectedObjType.Chicken:
+                    pos = m_ChickPos.position;
                     break;
             }
 

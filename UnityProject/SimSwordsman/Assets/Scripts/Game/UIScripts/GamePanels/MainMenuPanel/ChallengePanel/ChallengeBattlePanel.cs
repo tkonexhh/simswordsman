@@ -28,7 +28,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            //BindAddListenerEvent();
+            BindAddListenerEvent();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -38,17 +38,26 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandlingListeningEvents);
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_CurChapterAllLevelConfigInfo = MainGameMgr.S.ChapterMgr.GetAllLevelConfigInfo(m_CurChapterConfigInfo.chapterId);
-            //InitPanelInfo();
-            //LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString());
+            InitPanelInfo();
+            LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString());
         }
 
         public void LoadClanPrefabs(string prefabsName)
         {
             AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+            prefabsName = prefabsName + "Panel";
             loader.InstantiateAsync(prefabsName, (obj) =>
             {
                 //m_CharacterLoaderDic.Add(id, loader);
                 obj.transform.SetParent(m_Parent);
+                RectTransform rectTransform =((RectTransform)obj.transform);
+                rectTransform.SetSiblingIndex(0);
+                //¼ÇÂ¼
+                rectTransform.localPosition = Vector3.zero;
+                rectTransform.offsetMax = Vector2.zero;
+                rectTransform.offsetMin = Vector2.zero;
+
+                obj.transform.localScale = new Vector3(1,1,1);
                 obj.GetComponent<ClanBase>().SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
             });
         }
@@ -81,24 +90,7 @@ namespace GameWish.Game
 
         private void InitPanelInfo()
         {
-            //m_LevelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(m_CurChapterConfigInfo.chapterId);
             m_ChallengeBattleTitle.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
-            int CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressLevelID(m_CurChapterConfigInfo.chapterId);
-
-            foreach (var item in m_CurChapterAllLevelConfigInfo.Values)
-            {
-                if (item.level < CurLevel)
-                    continue;
-                //Transform chapterItem = Instantiate(m_CheckpointItem, m_CheckpointTrans).transform;
-                //chapterItem.GetComponentInChildren<Text>().text = item.level.ToString();
-                //Button challengeBtn = chapterItem.GetComponent<Button>();
-                //if (!m_LevelBtnDic.ContainsKey(item.level))
-                //    m_LevelBtnDic.Add(item.level, challengeBtn);
-                //challengeBtn.onClick.AddListener(() =>
-                //{
-                //    UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, item);
-                //});
-            }
         }
 
         private void BindAddListenerEvent()
@@ -107,14 +99,6 @@ namespace GameWish.Game
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
-
-            foreach (var item in m_LevelBtnDic.Values)
-            {
-                item.onClick.AddListener(() =>
-                {
-                    UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel);
-                });
-            }
         }
         protected override void OnPanelHideComplete()
         {

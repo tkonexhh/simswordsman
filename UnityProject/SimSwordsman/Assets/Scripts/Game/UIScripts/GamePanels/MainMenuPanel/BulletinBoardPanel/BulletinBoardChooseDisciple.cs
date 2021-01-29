@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum SelelctedState
+    public enum SelectedState
     {
         /// <summary>
         /// бЁжа
@@ -110,7 +110,7 @@ namespace GameWish.Game
                     m_SelectedDiscipleDic.Add(characterItem.id, characterItem);
                     foreach (var item in m_SelectedDiscipleObjList)
                     {
-                        if (item.GetSelelctedState() == SelelctedState.NotSelected)
+                        if (item.GetSelelctedState() == SelectedState.NotSelected)
                         {
                             item.SetSelectedDisciple(characterItem, seleted);
                             break;
@@ -132,7 +132,7 @@ namespace GameWish.Game
                     m_SelectedDiscipleDic.Remove(characterItem.id);
                     foreach (var item in m_SelectedDiscipleObjList)
                     {
-                        if (item.GetSelelctedState() == SelelctedState.Selected && item.IsHavaSame(characterItem))
+                        if (item.GetSelelctedState() == SelectedState.Selected && item.IsHavaSame(characterItem))
                         {
                             item.SetSelectedDisciple(null, seleted);
                             break;
@@ -199,7 +199,7 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {
-                if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && m_AllDiscipleList[i].characterStateId == CharacterStateID.Wander)
+                if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && m_AllDiscipleList[i].IsFreeState())
                 {
                     int num = i;
                     CreateDisciple(m_AllDiscipleList[i], num);

@@ -24,7 +24,7 @@ namespace GameWish.Game
         private GameObject m_SelectedImg;
         private CharacterItem m_CharacterItem;
         private PanelType m_PanelType;
-		private SelelctedState m_SelelctedState = SelelctedState.NotSelected;
+		private SelectedState m_SelelctedState = SelectedState.NotSelected;
 		public void OnInit(PanelType panelType)
 		{
 			m_PanelType = panelType;
@@ -51,14 +51,14 @@ namespace GameWish.Game
         {
             switch (m_SelelctedState)
             {
-                case SelelctedState.Selected:
+                case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
                     break;
-                case SelelctedState.NotSelected:
+                case SelectedState.NotSelected:
                     if (m_PanelType == PanelType.Task)
                     {
                         DestroyImmediate(gameObject);
@@ -78,9 +78,9 @@ namespace GameWish.Game
         {
             m_CharacterItem = characterItem;
             if (m_CharacterItem == null)
-                m_SelelctedState = SelelctedState.NotSelected;
+                m_SelelctedState = SelectedState.NotSelected;
             else
-                m_SelelctedState = SelelctedState.Selected;
+                m_SelelctedState = SelectedState.Selected;
             RefreshPanelInfo();
         }
         private void RefreshPanelTypeInfo()

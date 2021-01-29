@@ -16,6 +16,10 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CurCopyScriptures;
         [SerializeField]
+        private Text m_ArrangeDisciple;
+        [SerializeField]
+        private Text m_Free;
+        [SerializeField]
         private Image m_DiscipleImg;
         [SerializeField]
         private Button m_CopyScripturesBtn;
@@ -65,21 +69,27 @@ namespace GameWish.Game
                     break;
                 case SlotState.Free:
                     m_CopyScripturesBtn.enabled = true;
-                    m_CurCopyScriptures.text = "安排弟子";
-                    m_Time.text = "空闲";
+                    m_ArrangeDisciple.text = "安排弟子";
+                    m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
+                    m_Time.text = Define.COMMON_DEFAULT_STR;
+                    m_Free.text = "空闲";
                     break;
                 case SlotState.NotUnlocked:
+                    m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_CopyScripturesBtn.enabled = false;
-                    m_CurCopyScriptures.text = "抄经位" + m_KungfuLibraySlot.UnlockLevel + "级后解锁";
+                    m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR; 
+                    m_Free.text = "抄经位" + m_KungfuLibraySlot.UnlockLevel + "级后解锁";
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case SlotState.CopyScriptures:
                     RefreshFixedInfo();
                     m_CurCopyScriptures.text = "当前训练:" + m_KungfuLibraySlot.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());
+                    m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
+                    m_Free.text = Define.COMMON_DEFAULT_STR;
                     CreateCountDown();
                     //(m_PracticeFieldInfo.StartTime);
-                    m_CopyScripturesBtn.enabled = true;
+                    m_CopyScripturesBtn.enabled = false;
                     break;
                 default:
                     break;

@@ -14,21 +14,39 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_SelectedList;
         [SerializeField]
-        private GameObject m_Disciple;
+        private GameObject m_Disciple; 
+        [SerializeField]
+        private Button m_ArrangeBtn;
 
         private FacilityType m_CurFacilityType;
         private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
         private KungfuLibraySlot m_KungfuLibraySlotInfo = null;
+        private CharacterItem m_SelectedDisciple = null;
+        private List<KungfuLibraryDisciple> m_KungfuLibraryDisciple = new List<KungfuLibraryDisciple> ();
+
+        private Transform m_Pos;
+        private bool IsSelected = false;
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            m_ArrangeBtn.onClick.AddListener(()=> {
+                m_KungfuLibraySlotInfo.SetCharacterItem(m_SelectedDisciple, SlotState.CopyScriptures, m_CurFacilityType);
+                EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, m_KungfuLibraySlotInfo);
+                HideSelfWithAnim();
+            });
         }
-
+        protected override void OnClose()
+        {
+            base.OnClose();
+            EventSystem.S.UnRegister(EventID.OnSelectedDiscipleEvent, HandAddListenerEvent);
+        }
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
             BindAddListenerEvent();
+            EventSystem.S.Register(EventID.OnSelectedDiscipleEvent,HandAddListenerEvent);
+
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_KungfuLibraySlotInfo = (KungfuLibraySlot)args[0];
             m_CurFacilityType = (FacilityType)args[1];
@@ -41,6 +59,54 @@ namespace GameWish.Game
                     CreateDisciple(m_CharacterItem[i]);
             }
         }
+        
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            CharacterItem selected = (CharacterItem)param[1];
+            IsSelected = (bool)param[0];
+            switch ((EventID)key)
+            {
+                case EventID.OnSelectedDiscipleEvent:
+                    m_Pos = (Transform)param[2];
+                    m_ArrangeBtn.gameObject.SetActive(true);
+                    if (m_SelectedDisciple != null && m_SelectedDisciple.id == selected.id)
+                    {
+                        if (!IsSelected)
+                        {
+                            m_SelectedDisciple = null;
+                            m_ArrangeBtn.gameObject.SetActive(false);
+                            return;
+                        }
+                    }
+                    m_SelectedDisciple = selected;
+                    foreach (var item in m_KungfuLibraryDisciple)
+                        item.IsSame(m_SelectedDisciple);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CalculatePositon(Transform transform)
+        {
+            m_ArrangeBtn.transform.position = transform.position;
+
+        }
+
+        private void LateUpdate()
+        {
+         
+        }
+
+        private void Update()
+        {
+            if (IsSelected)
+                m_ArrangeBtn.transform.position = m_Pos.position;
+            //Debug.LogError(m_ArrangeBtn.transform.position);
+            //m_ArrangeBtn.transform.position = transform.position;
+
+        }
+
 
         private void GetInformationForNeed()
         {
@@ -62,18 +128,15 @@ namespace GameWish.Game
         private void CreateDisciple(CharacterItem characterItem)
         {
             GameObject disciple = Instantiate(m_Disciple, m_SelectedList);
-            ItemICom discipleItem = disciple.GetComponent<ItemICom>();
-
+            KungfuLibraryDisciple discipleItem = disciple.GetComponent<KungfuLibraryDisciple>();
             discipleItem.OnInit(characterItem);
-            discipleItem.SetButtonEvent(AddListenerBtn);
+            m_KungfuLibraryDisciple.Add(discipleItem);
         }
 
         private void AddListenerBtn(object obj)
         {
             CharacterItem characterItem = obj as CharacterItem;
-            m_KungfuLibraySlotInfo.SetCharacterItem(characterItem, SlotState.CopyScriptures, m_CurFacilityType);
-            EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, m_KungfuLibraySlotInfo);
-            OnPanelHideComplete();
+                  OnPanelHideComplete();
         }
     }
 }
