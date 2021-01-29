@@ -15,46 +15,55 @@ MonoBehaviour:
   m_GroupName: Wudang1
   m_Data:
     m_SerializedData: []
-  m_GUID: b4cd7e9897845da4987425c08c5a404d
+  m_GUID: f69ce815948b791468eb9ef77de87b43
   m_SerializeEntries:
   - m_GUID: 076d216f82917c04db5ff8966fb4471a
     m_Address: wd_1_Atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 076d216f82917c04db5ff8966fb4471a, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 076d216f82917c04db5ff8966fb4471a, type: 2}
+  - m_GUID: 7529c0f483d2c9b47b1b0fb59a58c7b8
+    m_Address: wd_1_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: 7529c0f483d2c9b47b1b0fb59a58c7b8, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 7529c0f483d2c9b47b1b0fb59a58c7b8, type: 2}
   - m_GUID: 755e8176659fb4241a44bb06ef2f6e2f
     m_Address: wd_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: 755e8176659fb4241a44bb06ef2f6e2f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 755e8176659fb4241a44bb06ef2f6e2f, type: 3}
   - m_GUID: 8d0de610a93824c40a4b7880380a40c4
     m_Address: wd_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 8d0de610a93824c40a4b7880380a40c4, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 8d0de610a93824c40a4b7880380a40c4, type: 3}
   - m_GUID: aeb4610b716feda4c8a0c9718f59d808
     m_Address: Wudang1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 3845809598577782914, guid: aeb4610b716feda4c8a0c9718f59d808,
+      type: 3}
+    m_TargetAsset: {fileID: 3845809598577782914, guid: aeb4610b716feda4c8a0c9718f59d808,
+      type: 3}
   - m_GUID: bd5c24244cee68c4c804b1c7b6cd76c9
     m_Address: wd_1.atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: bd5c24244cee68c4c804b1c7b6cd76c9, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: bd5c24244cee68c4c804b1c7b6cd76c9, type: 3}
   - m_GUID: f907a2bee0a717641850b45801bd146f
     m_Address: wd_1_Material
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2100000, guid: f907a2bee0a717641850b45801bd146f, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: f907a2bee0a717641850b45801bd146f, type: 2}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 9458ffd81186c284084c261e69312e00, type: 2}
+    - {fileID: 11400000, guid: 9e7a512c3cb175447894bc8028cea475, type: 2}
+    - {fileID: 11400000, guid: a0e1745f229043c46ae7225a6b72751b, type: 2}

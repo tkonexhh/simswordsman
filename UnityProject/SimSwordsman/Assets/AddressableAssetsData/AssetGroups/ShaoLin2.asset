@@ -10,56 +10,60 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: ShaoLin2
+  m_Name: Shaolin2
   m_EditorClassIdentifier: 
   m_GroupName: Shaolin2
   m_Data:
     m_SerializedData: []
-  m_GUID: 30887c80d2a96024ea8463eed46b915a
+  m_GUID: b6cccdf40994c794ba56da302930b5e1
   m_SerializeEntries:
   - m_GUID: 0319f88b4c80afa47af0d8ffed2d71b5
     m_Address: sl_2
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: 0319f88b4c80afa47af0d8ffed2d71b5, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 0319f88b4c80afa47af0d8ffed2d71b5, type: 3}
   - m_GUID: 122d791c9a1a28b43b383bb9c00c33c6
     m_Address: sl_2
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 122d791c9a1a28b43b383bb9c00c33c6, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 122d791c9a1a28b43b383bb9c00c33c6, type: 3}
   - m_GUID: 2d7b3ce51daaf9b4bafeddf370848d31
     m_Address: sl_2.atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 2d7b3ce51daaf9b4bafeddf370848d31, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 2d7b3ce51daaf9b4bafeddf370848d31, type: 3}
   - m_GUID: 3f34f4a955c1c264f8c0411af53fc501
     m_Address: sl_2_Atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 3f34f4a955c1c264f8c0411af53fc501, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 3f34f4a955c1c264f8c0411af53fc501, type: 2}
   - m_GUID: 3fa78fb3363cca34eb31de7ad5dbc9f2
     m_Address: Shaolin2
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 3845809598577782914, guid: 3fa78fb3363cca34eb31de7ad5dbc9f2,
+      type: 3}
+    m_TargetAsset: {fileID: 3845809598577782914, guid: 3fa78fb3363cca34eb31de7ad5dbc9f2,
+      type: 3}
   - m_GUID: 6964c9f2c20b4d54790df452cfa132f0
     m_Address: sl_2_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 6964c9f2c20b4d54790df452cfa132f0, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 6964c9f2c20b4d54790df452cfa132f0, type: 2}
   - m_GUID: c9a416bca36705849961a7d2c35e291b
     m_Address: sl_2_Material
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2100000, guid: c9a416bca36705849961a7d2c35e291b, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: c9a416bca36705849961a7d2c35e291b, type: 2}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: d8f7bd443b11fc848b64d3c3f3317776, type: 2}
+    - {fileID: 11400000, guid: 7786f2a8eac075a40bb77ccdd855acaf, type: 2}

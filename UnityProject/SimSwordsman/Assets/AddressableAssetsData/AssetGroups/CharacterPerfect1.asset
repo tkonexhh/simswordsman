@@ -15,16 +15,19 @@ MonoBehaviour:
   m_GroupName: CharacterPerfect1
   m_Data:
     m_SerializedData: []
-  m_GUID: 98b0841669f43f24e9fc8319e86dbd33
+  m_GUID: edcfffb0485b597488f423a3b0ffd4c0
   m_SerializeEntries:
   - m_GUID: f00ccbacb529b6f4bb7e7eaaf143cf71
     m_Address: Character_perfect_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 3845809598577782914, guid: f00ccbacb529b6f4bb7e7eaaf143cf71,
+      type: 3}
+    m_TargetAsset: {fileID: 3845809598577782914, guid: f00ccbacb529b6f4bb7e7eaaf143cf71,
+      type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d2ce9bed0e42a484987646ddea382c57, type: 2}
+    - {fileID: 11400000, guid: 4ea9f13f998ae93469c9e0541a9db611, type: 2}
+    - {fileID: 11400000, guid: 8d04140dcf617ab43afe16c14a4fbef2, type: 2}

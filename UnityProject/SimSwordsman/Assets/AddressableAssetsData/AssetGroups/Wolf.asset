@@ -15,38 +15,38 @@ MonoBehaviour:
   m_GroupName: Wolf
   m_Data:
     m_SerializedData: []
-  m_GUID: ad121a41bfe96384f92052ae2ea785aa
+  m_GUID: 9aaf9a02e2efd144eb141a39d51f946c
   m_SerializeEntries:
   - m_GUID: 01eba95fc5ee7674b88725a05bf8ccd1
     m_Address: wolf
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: 01eba95fc5ee7674b88725a05bf8ccd1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 01eba95fc5ee7674b88725a05bf8ccd1, type: 3}
   - m_GUID: 16b25f55f5383994fb6f65e2f9e74ec1
     m_Address: wolf_Material
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2100000, guid: 16b25f55f5383994fb6f65e2f9e74ec1, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: 16b25f55f5383994fb6f65e2f9e74ec1, type: 2}
   - m_GUID: 72bf668ebab63b24cb8c0128182d9658
     m_Address: wolf
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 72bf668ebab63b24cb8c0128182d9658, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 72bf668ebab63b24cb8c0128182d9658, type: 3}
   - m_GUID: 79048732a9b281d46b4947a4fa38b081
     m_Address: wolf_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 79048732a9b281d46b4947a4fa38b081, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 79048732a9b281d46b4947a4fa38b081, type: 2}
   - m_GUID: 9a803eedbe1bea4428390625a05ef628
     m_Address: wolf.atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 9a803eedbe1bea4428390625a05ef628, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 9a803eedbe1bea4428390625a05ef628, type: 3}
   - m_GUID: d02f1ddb273e3724ba80d09bb32d175c
     m_Address: Wolf
     m_ReadOnly: 0
@@ -59,10 +59,11 @@ MonoBehaviour:
     m_Address: wolf_Atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: f698ed2e951fa41409d2eaaf7516bc80, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: f698ed2e951fa41409d2eaaf7516bc80, type: 2}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a5c7b57cd4e494a4685ec46e521ed405, type: 2}
+    - {fileID: 11400000, guid: db78aee31ca9f924ebad3cdbb966fba4, type: 2}
+    - {fileID: 11400000, guid: f4deae813e4a4924483ec24a463ba018, type: 2}
