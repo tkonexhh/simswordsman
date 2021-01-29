@@ -70,6 +70,9 @@ namespace GameWish.Game
         public const string COMMON_REWARD = "Common_Reward";
         public const string COMMON_DECLINED = "Common_Declined";
         public const string COMMON_GOTO = "Common_GoTo";
+        public const string COMMON_POPUP_NEEDLOBBY = "Common_Popup_NeedLobby";
+        public const string COMMON_POPUP_MATERIALS = "Common_Popup_Materials";
+        public const string COMMON_POPUP_COIN = "Common_Popup_Coin";
 
         //公用数字
         public const string COMMON_NUMBER_ZERO = "Common_Number_Zero";

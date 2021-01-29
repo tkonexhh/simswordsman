@@ -20,7 +20,11 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_Free;
         [SerializeField]
-        private Image m_DiscipleImg;
+        private Image m_DiscipleImg; 
+        [SerializeField]
+        private Image m_Lock;
+        [SerializeField]
+        private Image m_Plus;
         [SerializeField]
         private Button m_CopyScripturesBtn;
 
@@ -73,8 +77,12 @@ namespace GameWish.Game
                     m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = "ø’œ–";
+                    m_Plus.gameObject.SetActive(true);
+                    m_Lock.gameObject.SetActive(false);
                     break;
                 case SlotState.NotUnlocked:
+                    m_Plus.gameObject.SetActive(false);
+                    m_Lock.gameObject.SetActive(true);
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_CopyScripturesBtn.enabled = false;
                     m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR; 
@@ -82,6 +90,8 @@ namespace GameWish.Game
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case SlotState.CopyScriptures:
+                    m_Plus.gameObject.SetActive(false);
+                    m_Lock.gameObject.SetActive(false);
                     RefreshFixedInfo();
                     m_CurCopyScriptures.text = "µ±«∞—µ¡∑:" + m_KungfuLibraySlot.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());

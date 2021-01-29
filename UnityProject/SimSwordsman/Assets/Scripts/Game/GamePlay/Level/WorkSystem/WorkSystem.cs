@@ -226,12 +226,8 @@ namespace GameWish.Game
             var characters = characterMgr.GetAllCharacterList();
             characterItemTemp.Clear();
             foreach (var item in characters)
-            {
                 if (item.IsFreeState())
-                {
                     characterItemTemp.Add(item);
-                }
-            }
             if (characterItemTemp.Count > 0)
                 return characterItemTemp[RandomHelper.Range(0, characterItemTemp.Count)];
             else

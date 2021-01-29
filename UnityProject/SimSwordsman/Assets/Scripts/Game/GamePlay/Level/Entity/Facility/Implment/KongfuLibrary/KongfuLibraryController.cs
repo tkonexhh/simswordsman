@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Qarth;
+using System;
 
 namespace GameWish.Game
 {
@@ -14,7 +15,27 @@ namespace GameWish.Game
 
         public KongfuLibraryController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
+            EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
+
             InitKungfuField();
+        }
+
+        private void HandleAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.DeleteDisciple:
+                    foreach (var item in m_ReadingSlotList)
+                        if (item.IsHaveSameCharacterItem((int)param[0]))
+                            item.TrainingIsOver();
+                    break;
+                default:
+                    break;
+            }
+        }
+        ~KongfuLibraryController()
+        {
+            EventSystem.S.UnRegister(EventID.DeleteDisciple, HandleAddListenerEvent);
         }
 
         public KungfuLibraySlot GetIdlePracticeSlot()

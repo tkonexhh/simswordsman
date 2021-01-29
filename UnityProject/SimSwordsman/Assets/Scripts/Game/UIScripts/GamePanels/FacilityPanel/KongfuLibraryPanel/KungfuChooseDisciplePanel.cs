@@ -90,7 +90,6 @@ namespace GameWish.Game
         private void CalculatePositon(Transform transform)
         {
             m_ArrangeBtn.transform.position = transform.position;
-
         }
 
         private void LateUpdate()

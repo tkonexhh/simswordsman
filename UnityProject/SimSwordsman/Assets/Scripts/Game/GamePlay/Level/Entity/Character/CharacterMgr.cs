@@ -193,6 +193,7 @@ namespace GameWish.Game
         /// </summary>
         public void RemoveCharacter(int id)
         {
+            EventSystem.S.Send(EventID.DeleteDisciple, id);
             m_CharacterDataWrapper.RemoveCharacter(id);
 
             CharacterController character = GetCharacterController(id);
