@@ -1,8 +1,6 @@
 using Qarth;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +11,7 @@ namespace GameWish.Game
 	public class ConstructionFacilitiesPanel : AbstractAnimPanel
 	{
 	    [SerializeField]
-	    private Text m_TitleTxt;
+	    private Image m_TitleImg;
 	    [SerializeField]
 	    private Text m_FacilityDescribe; 
 		[SerializeField]
@@ -66,7 +64,7 @@ namespace GameWish.Game
 
             m_FacilityType = (FacilityType)args[0];
 
-            Sprite facilityImg =  FindSprite(m_FacilityType.ToString());
+            Sprite facilityImg = GetFacilitySprite(m_FacilityType);
             if (facilityImg != null)
                 m_FacilityPhotoImg.sprite = facilityImg;
             else
@@ -81,13 +79,94 @@ namespace GameWish.Game
         {
             m_CurFacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_FacilityType);
             m_FacilityLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_FacilityType, 1);
-            m_TitleTxt.text = m_CurFacilityConfigInfo.name;
+            m_TitleImg.sprite = GetTitleSprite(m_FacilityType);
+            m_TitleImg.SetNativeSize();
             m_FacilityDescribe.text = m_CurFacilityConfigInfo.desc;
             m_CostItems = m_FacilityLevelInfo.GetUpgradeResCosts();
             m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel);
             // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
             //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
             RefreshResInfo();
+        }
+
+        Sprite GetTitleSprite(FacilityType type)
+        {
+            string spritename = "";
+            switch (type)
+            {
+                case FacilityType.Lobby:
+                    spritename = "lobby_title";
+                    break;
+                case FacilityType.LivableRoomEast1:
+                case FacilityType.LivableRoomEast2:
+                case FacilityType.LivableRoomEast3:
+                case FacilityType.LivableRoomEast4:
+                    spritename = "livableroomeast_title";
+                    break;
+                case FacilityType.LivableRoomWest1:
+                case FacilityType.LivableRoomWest2:
+                case FacilityType.LivableRoomWest3:
+                case FacilityType.LivableRoomWest4:
+                    spritename = "livableroomwest_title";
+                    break;
+                case FacilityType.Warehouse:
+                    spritename = "warehouse_title";
+                    break;
+                case FacilityType.PracticeFieldEast:
+                    spritename = "practicefieldeast_title";
+                    break;
+                case FacilityType.PracticeFieldWest:
+                    spritename = "practicefieldwest_title";
+                    break;
+                case FacilityType.KongfuLibrary:
+                    spritename = "kongfulibrary_title";
+                    break;
+                case FacilityType.Kitchen:
+                    spritename = "kitchen_title";
+                    break;
+                case FacilityType.ForgeHouse:
+                    spritename = "forgehouse_title";
+                    break;
+                case FacilityType.Baicaohu:
+                    spritename = "baicaohu_title";
+                    break;
+                case FacilityType.PatrolRoom:
+                    spritename = "patrolroom_title";
+                    break;
+            }
+            return FindSprite(spritename);
+        }
+
+        Sprite GetFacilitySprite(FacilityType type)
+        {
+            string spritename = "";
+            switch (type)
+            {
+                case FacilityType.Lobby:
+                case FacilityType.Warehouse:
+                case FacilityType.KongfuLibrary:
+                case FacilityType.Kitchen:
+                case FacilityType.ForgeHouse:
+                case FacilityType.Baicaohu:
+                case FacilityType.PatrolRoom:
+                    spritename = type.ToString() + 1;
+                    break;
+                case FacilityType.LivableRoomEast1:
+                case FacilityType.LivableRoomEast2:
+                case FacilityType.LivableRoomEast3:
+                case FacilityType.LivableRoomEast4:
+                case FacilityType.LivableRoomWest1:
+                case FacilityType.LivableRoomWest2:
+                case FacilityType.LivableRoomWest3:
+                case FacilityType.LivableRoomWest4:
+                    spritename = "LivableRoom1";
+                    break;
+                case FacilityType.PracticeFieldEast:
+                case FacilityType.PracticeFieldWest:
+                    spritename = "PracticeField1";
+                    break;
+            }
+            return FindSprite(spritename);
         }
 
         private void RefreshResInfo()
@@ -180,5 +259,4 @@ namespace GameWish.Game
             CloseDependPanel(EngineUI.MaskPanel);
         }
     }
-
 }
