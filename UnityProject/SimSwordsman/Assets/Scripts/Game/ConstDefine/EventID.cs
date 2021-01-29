@@ -127,6 +127,10 @@ namespace GameWish.Game
         /// 打开面板发送弟子事件
         /// </summary>
         OnSendDiscipleDicEvent,
+        /// <summary>
+        /// 删除弟子
+        /// </summary>
+        DeleteDisciple,
         OnSendHerbEvent,
         #endregion
 

@@ -139,19 +139,12 @@ namespace GameWish.Game
         }
         private void HandleAddListenerEvent(int key, object[] param)
         {
-
-            if ((bool)param[0])
+            if ((EngineEventID)key == EngineEventID.OnAfterApplicationFocusChange)
             {
-                Debug.LogError("切换到前台时执行");
-                ReduceTickTime(ComputingTime(startTime));
-            }
-            else
-            {
-                //切换到后台时执行
-                Debug.LogError("切换到后台时执行");
-                startTime = DateTime.Now.ToString();
-                // RefreshPracticeFieldState();
-
+                if ((bool)param[0])
+                    ReduceTickTime(ComputingTime(startTime));
+                else
+                    startTime = DateTime.Now.ToString();
             }
         }
 

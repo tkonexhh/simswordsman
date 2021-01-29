@@ -45,7 +45,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_UpgradeTitle;
         [SerializeField]
-        private Button m_UpgradeBtn; 
+        private Button m_UpgradeBtn;
         [SerializeField]
         private Text m_UpgradeBtnValue;
         [SerializeField]
@@ -101,7 +101,6 @@ namespace GameWish.Game
             m_FacilityMgr = MainGameMgr.S.FacilityMgr;
 
             BindAddListenerEvent();
-
         }
 
         /// <summary>
@@ -132,10 +131,10 @@ namespace GameWish.Game
             CreateRecruitmentOrder(RecruitType.GoldMedal, FindSprite("goldolder"));
         }
 
-        private void CreateRecruitmentOrder(RecruitType Medal,Sprite sprite)
+        private void CreateRecruitmentOrder(RecruitType Medal, Sprite sprite)
         {
             ItemICom itemICom = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<ItemICom>();
-            itemICom.OnInit(this,null, Medal, sprite);
+            itemICom.OnInit(this, null, Medal, sprite);
         }
 
         protected override void OnClose()
@@ -175,6 +174,7 @@ namespace GameWish.Game
             deltaData += new Vector2(0, NextFontSize);
             m_UnlockBg.sizeDelta += deltaData;
             m_UnlockContentValue.text = str;
+            //记录
             m_UnlockContentValue.text = m_UnlockContentValue.text.Replace("\\n", "\n");
         }
         private void RefreshResInfo()
@@ -202,7 +202,7 @@ namespace GameWish.Game
         private string GetIconName(int id)
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
-         }
+        }
 
         protected override void OnPanelHideComplete()
         {
@@ -216,12 +216,9 @@ namespace GameWish.Game
         /// </summary>
         private void OnClickUpgradeBtn()
         {
-          
+
             if (!CheackIsBuild())
-            {
-                FloatMessage.S.ShowMsg("未达到升级条件");
                 return;
-            }
             if (m_NextFacilityLevelInfo == null)
                 return;
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
@@ -246,10 +243,21 @@ namespace GameWish.Game
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
+                }
+            }
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextFacilityLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
             }
 
-            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextFacilityLevelInfo.upgradeCoinCost);
+
         }
         /// <summary>
         /// 刷新等级信息
@@ -257,9 +265,9 @@ namespace GameWish.Game
         private void RefreshLevelInfo()
         {
             m_CurLevel = m_FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            m_NextFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel+1);
+            m_NextFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel + 1);
             m_CurFacilityConfigInfo = m_FacilityMgr.GetFacilityConfigInfo(FacilityType.Lobby);
-            m_UnlockContent = MainGameMgr.S.FacilityMgr.GetUnlockContent(m_CurLevel+1);
+            m_UnlockContent = MainGameMgr.S.FacilityMgr.GetUnlockContent(m_CurLevel + 1);
             m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
         }
     }

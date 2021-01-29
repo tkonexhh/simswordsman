@@ -57,7 +57,7 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_PracticeDiscipleContTra;
         [SerializeField]
-        private GameObject m_PracticeDisciple;
+        private GameObject m_PracticeDisciplePos;
 
         private FacilityType m_CurFacilityType;
 
@@ -85,10 +85,7 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 if (!CheackIsBuild())
-                {
-                    FloatMessage.S.ShowMsg("未达到升级条件");
                     return;
-                }
 
                 if (m_NextPracticeFieldLevelInfo == null)
                     return;
@@ -107,8 +104,15 @@ namespace GameWish.Game
 
         private bool CheackIsBuild()
         {
+
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_NextPracticeFieldLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
+            if (m_NextPracticeFieldLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
+
+            if (CheckPropIsEnough())
                 return true;
             return false;
         }
@@ -118,10 +122,19 @@ namespace GameWish.Game
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
+                }
             }
-
-            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextPracticeFieldLevelInfo.upgradeCoinCost);
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextPracticeFieldLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
+            }
         }
 
         /// <summary>
@@ -135,7 +148,7 @@ namespace GameWish.Game
             {
                 foreach (var item in m_PracticeEntity.Values)
                 {
-                    PracticeDisciple practice = item.GetComponent<PracticeDisciple>();
+                    PracticeDisciplePos practice = item.GetComponent<PracticeDisciplePos>();
                     if (practice.GetPracticeFieldState() == SlotState.Practice)
                         practice.IncreaseCountDown(nextTime - curTime);
                 }
@@ -174,10 +187,10 @@ namespace GameWish.Game
             GetPracticeDiscipleForID((PracticeField)param[0]).RefreshPracticeFieldState();
         }
 
-        private PracticeDisciple GetPracticeDiscipleForID(PracticeField practiceField)
+        private PracticeDisciplePos GetPracticeDiscipleForID(PracticeField practiceField)
         {
             if (m_PracticeEntity.ContainsKey(practiceField.Index))
-                return m_PracticeEntity[practiceField.Index].GetComponent<PracticeDisciple>();
+                return m_PracticeEntity[practiceField.Index].GetComponent<PracticeDisciplePos>();
             return null;
         }
 
@@ -227,12 +240,12 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_CurLevelText.text = m_CurLevel.ToString()+"级";
+            m_CurLevelText.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_PracticeImg.sprite = FindSprite("PracticeField" + m_CurLevel);
             m_CurPracticePos.text = "练功位:" + CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurCapacity().ToString());
             m_NextPracticePos.text = CommonUIMethod.GetStrForColor("#AD7834", Define.PLUS + m_CurPracticeFieldLevelInfo.GetNextCapacity().ToString());
-            m_CurExpValue.text = CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurExp().ToString()+"经验");
-            if (m_NextPracticeFieldLevelInfo!=null)
+            m_CurExpValue.text = CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurExp().ToString() + "经验");
+            if (m_NextPracticeFieldLevelInfo != null)
             {
                 m_NextExpValue.text = CommonUIMethod.GetStrForColor("#365387", Define.PLUS + m_NextPracticeFieldLevelInfo.GetCurExp().ToString());
             }
@@ -240,7 +253,7 @@ namespace GameWish.Game
             {
                 m_NextExpValue.text = Define.COMMON_DEFAULT_STR;
             }
-            m_UpgradeNeeds.text = "升级需要讲武堂达到" + CommonUIMethod.GetStrForColor("#8C343C", m_NextPracticeFieldLevelInfo.upgradeNeedLobbyLevel.ToString()+"级");
+            m_UpgradeNeeds.text = "升级需要讲武堂达到" + CommonUIMethod.GetStrForColor("#8C343C", m_NextPracticeFieldLevelInfo.upgradeNeedLobbyLevel.ToString() + "级");
             RefreshResInfo();
 
             //m_NextTrainingPositionTxt.text = m_CurPracticeFieldLevelInfo.GetNextCapacity().ToString();
@@ -254,9 +267,9 @@ namespace GameWish.Game
         {
             List<Sprite> sprites = new List<Sprite>();
             sprites.Add(FindSprite("Lock"));
-        
 
-            GameObject obj = Instantiate(m_PracticeDisciple, m_PracticeDiscipleContTra);
+
+            GameObject obj = Instantiate(m_PracticeDisciplePos, m_PracticeDiscipleContTra);
 
             ItemICom itemICom = obj.GetComponent<ItemICom>();
             itemICom.OnInit(PracticeField, null, m_CurFacilityType, sprites);

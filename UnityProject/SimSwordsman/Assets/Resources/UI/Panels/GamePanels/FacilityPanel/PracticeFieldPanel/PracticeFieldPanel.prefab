@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_UpgradeText: {fileID: 8225410663861040435}
   m_UpgradeBtn: {fileID: 8762784317187979544}
   m_PracticeDiscipleContTra: {fileID: 7071811125470673405}
-  m_PracticeDisciple: {fileID: 6890752573364516703, guid: e9f75ac0124c0524abd210e33e88adc1,
+  m_PracticeDisciplePos: {fileID: 6890752573364516703, guid: e9f75ac0124c0524abd210e33e88adc1,
     type: 3}
 --- !u!1 &7071811125113638233
 GameObject:
@@ -2523,7 +2523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 511.0981}
+  m_AnchoredPosition: {x: 0, y: 352.515}
   m_SizeDelta: {x: 750, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &7071811125470673404
@@ -2807,8 +2807,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7071811125197104343}
   m_HandleRect: {fileID: 7071811125197104340}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.5
+  m_Size: 0.9773333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

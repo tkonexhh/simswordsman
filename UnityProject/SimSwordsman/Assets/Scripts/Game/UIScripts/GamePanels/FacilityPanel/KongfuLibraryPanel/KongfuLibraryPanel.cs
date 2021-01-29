@@ -79,7 +79,13 @@ namespace GameWish.Game
         private bool CheackIsBuild()
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_NextKongfuLibraryLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
+            if (m_NextKongfuLibraryLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
+
+            if (CheckPropIsEnough())
                 return true;
             return false;
         }
@@ -89,10 +95,19 @@ namespace GameWish.Game
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
+                }
             }
-
-            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextKongfuLibraryLevelInfo.upgradeCoinCost);
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextKongfuLibraryLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
+            }
         }
 
         private void HandleAddListenEvent(int key, object[] param)
@@ -213,10 +228,7 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 if (!CheackIsBuild())
-                {
-                    FloatMessage.S.ShowMsg("未达到升级条件");
                     return;
-                }
                 if (m_NextKongfuLibraryLevelInfo == null)
                     return;
 
