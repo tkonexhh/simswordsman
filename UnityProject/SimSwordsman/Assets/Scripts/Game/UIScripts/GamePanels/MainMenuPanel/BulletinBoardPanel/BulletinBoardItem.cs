@@ -348,7 +348,10 @@ namespace GameWish.Game
                     m_Res2Value.text = m_ItemReward[2].count1.ToString();
                     break;
             }
-            m_Baozi.text = (m_CommonTaskItemInfo.GetCharacterAmount() * CostBaozi).ToString();
+            if (m_CommonTaskItemInfo.id == 9001 || m_CommonTaskItemInfo.id == 9002)
+                m_Baozi.text = "0";
+            else
+                m_Baozi.text = (m_CommonTaskItemInfo.GetCharacterAmount() * CostBaozi).ToString();
         }
 
         private void RefreshDiscipleInfo()
