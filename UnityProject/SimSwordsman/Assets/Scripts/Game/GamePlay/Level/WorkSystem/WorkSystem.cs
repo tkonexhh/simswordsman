@@ -55,6 +55,8 @@ namespace GameWish.Game
                 CheckData();
                 BindingEvents();
             }
+            else
+                EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
         }
 
         void BindingEvents()
@@ -64,7 +66,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
             //EventSystem.S.Register(EventID.OnCountdownerTick, OnTick);
             EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
-            EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
         }
 
         void CheckData()

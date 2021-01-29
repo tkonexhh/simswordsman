@@ -40,7 +40,7 @@ namespace GameWish.Game
             m_Listener = null;
          
             EventSystem.S.UnRegister(EventID.OnGuideReceiveTaskRewardBtnTrigger1, OnEventListener);
-            UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
+           
             EventSystem.S.Send(EventID.OnGuideReceiveTaskRewardTrigger1);
         }
     }

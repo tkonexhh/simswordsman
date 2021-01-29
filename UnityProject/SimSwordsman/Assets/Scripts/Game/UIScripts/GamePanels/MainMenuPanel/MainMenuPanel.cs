@@ -54,29 +54,29 @@ namespace GameWish.Game
 
             m_CreateBaoziBtn.onClick.AddListener(()=> {
 
-                GameDataMgr.S.GetClanData().SetClanName("修仙门派");
+                //GameDataMgr.S.GetClanData().SetClanName("修仙门派");
 
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
-                }
-                for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.LianHuaQingShenLu; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 200);
-                }
+                //for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                //{
+                //    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
+                //}
+                //for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.LianHuaQingShenLu; i++)
+                //{
+                //    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 200);
+                //}
             });
 
             m_VillaBtn.onClick.AddListener(() => {
 
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
-                }
-                //功夫
-                for (int i = (int)KongfuType.TaiZuChangQuan; i < (int)KongfuType.ZuiQuan; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
-                }
+                //for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                //{
+                //    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
+                //}
+                ////功夫
+                //for (int i = (int)KongfuType.TaiZuChangQuan; i < (int)KongfuType.ZuiQuan; i++)
+                //{
+                //    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
+                //}
                 //添加铠甲
                 //for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
                 //{
@@ -94,7 +94,7 @@ namespace GameWish.Game
                 //    }
                 //}
 
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 500);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 500);
 
                 //MainGameMgr.S.CharacterMgr.LearnKungfu(0, new KungfuItem(KongfuType.DuGuJiuJian));
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,200);

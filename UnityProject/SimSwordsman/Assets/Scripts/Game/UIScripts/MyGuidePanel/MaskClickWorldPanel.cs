@@ -60,7 +60,7 @@ namespace GameWish.Game
             if (args.Length > 4)
             {
                 bool isNotForce = (bool)args[4];
-                Action action = clickAction;
+                //Action action = clickAction;
                 Button button = m_CircleShaderControl.transform.GetComponent<Button>();
                 if (isNotForce)//弱点击
                 {
@@ -69,7 +69,7 @@ namespace GameWish.Game
                     m_Maskbtn.onClick.AddListener(() =>
                     {
                         if (canClick)
-                            action?.Invoke();
+                            OnClick();
                     });
                 }
                 else

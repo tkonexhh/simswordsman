@@ -224,6 +224,8 @@ namespace GameWish.Game
 
             if (propItem.PropSubType == RawMaterial.SilverToken || propItem.PropSubType == RawMaterial.GoldenToken)
                 EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
+            else
+                EventSystem.S.Send(EventID.OnAddItem);
         }
 
         public int GetCurReserves()
