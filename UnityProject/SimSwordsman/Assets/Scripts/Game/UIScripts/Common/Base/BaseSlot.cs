@@ -56,6 +56,13 @@ namespace GameWish.Game
 			StartTime = soltDBData.startTime;
 		}
 
+		public bool IsHaveSameCharacterItem(int id)
+		{
+			if (CharacterItem != null && CharacterItem.id == id)
+				return true;
+			return false;
+		}
+
 		public BaseSlot(int index,int unlock)
 		{
 			Index = index;

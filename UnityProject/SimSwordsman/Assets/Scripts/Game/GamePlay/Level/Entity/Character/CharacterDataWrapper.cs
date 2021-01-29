@@ -242,6 +242,12 @@ namespace GameWish.Game
         {
             return characterStateId;
         }
+
+        public string GetHeadIconName()
+        {
+            return quality.ToString().ToLower() + "_" + bodyId + "_" + headId;
+        }
+
         #endregion
 
         /// <summary>

@@ -144,6 +144,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            RefreshDisicipleSkill();
         }
         protected override void OnPanelOpen(params object[] args)
         {
@@ -176,12 +177,11 @@ namespace GameWish.Game
                 atkValue += item.atkValue;
             m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
 
-            int selected = int.Parse(m_SelectedDiscipleSkillValue.text);
+            int selected = (int)atkValue;
             int recommended = int.Parse(m_RecommendedSkillsValue.text);
             float result = selected / recommended;
             if (result < 0.75)
             {
-
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
             }
             else if (result > 1.1f)

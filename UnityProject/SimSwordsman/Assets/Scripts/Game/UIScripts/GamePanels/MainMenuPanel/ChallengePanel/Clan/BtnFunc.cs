@@ -56,13 +56,13 @@ namespace GameWish.Game
 					m_Lock.gameObject.SetActive(false);
 					m_Over.gameObject.SetActive(true);
 					m_Battle.gameObject.SetActive(false);
-					m_Number.text = number.ToString();
+					m_Number.text = (number+1).ToString();
 					break;
                 case ChallengeBtnState.Battle:
 					m_Lock.gameObject.SetActive(false);
 					m_Over.gameObject.SetActive(false);
 					m_Battle.gameObject.SetActive(true);
-					m_Number.text = number.ToString();
+					m_Number.text = (number + 1).ToString();
 					break;
                 default:
                     break;
