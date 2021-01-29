@@ -419,6 +419,10 @@ namespace GameWish.Game
 
         private bool IsUnlockPreconditionSatisfied(FacilityConfigInfo configInfo)
         {
+            //仓库必须通过引导来建造，否则不能变为可建造状态
+            if (configInfo.facilityType == FacilityType.Warehouse)
+                return false;
+
             bool isPrefacilityUnlocked = configInfo.prefacilityType == FacilityType.None ? true : IsFacilityUnlocked(configInfo.prefacilityType, 1);
             bool isSatisfied = GetFacilityCurLevel(FacilityType.Lobby) >= configInfo.GetNeedLobbyLevel() && isPrefacilityUnlocked;
             return isSatisfied;

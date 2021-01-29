@@ -66,16 +66,13 @@ namespace GameWish.Game
             //第18步结束才能出现建造仓库的引导
             if (!GuideMgr.S.IsGuideFinish(18))
                 return;
-            if (GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.Warehouse).facilityState != FacilityState.Unlocked)
+            foreach (var item in TDFacilityWarehouseTable.GetLevelInfo(1).GetUpgradeResCosts())
             {
-                var list = TDFacilityWarehouseTable.GetLevelInfo(1).GetUpgradeResCosts();
-                foreach (var item in list)
-                {
-                    if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
-                        return;
-                }
-                EventSystem.S.Send(EventID.OnGuideUnlockWarehouse);
+                if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
+                    return;
             }
+            MainGameMgr.S.FacilityMgr.SetFacilityState(FacilityType.Warehouse, FacilityState.ReadyToUnlock);
+            EventSystem.S.Send(EventID.OnGuideUnlockWarehouse);
         }
 
         private void StartGuide_Task1(int key, object[] param)

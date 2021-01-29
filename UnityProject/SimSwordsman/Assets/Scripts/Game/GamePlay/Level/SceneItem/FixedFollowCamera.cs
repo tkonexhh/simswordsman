@@ -41,7 +41,7 @@ namespace GameWish.Game
 	    //    offset = transform.position - target.position;
 	    //}
 	
-	    void LateUpdate()
+	    void Update()
 	    {
 	        oldPosition = transform.position;
 

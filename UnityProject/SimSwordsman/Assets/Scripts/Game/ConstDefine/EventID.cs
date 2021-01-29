@@ -178,7 +178,8 @@ namespace GameWish.Game
         OnGuideClickTaskDetailsTrigger2,
         OnGuideSelectCharacterTrigger2,
 
-        OnGuideSelectCharacterPanelTrigger2,
+        OnGuideSelectCharacterPanelTrigger2_1,
+        OnGuideSelectCharacterPanelTrigger2_2,
         OnGuideSelectCharacterSureTrigger2,
 
         OnGuideSendCharacterOnTaskTrigger2,

@@ -170,10 +170,11 @@ namespace GameWish.Game
             m_AllDiscipleList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
         }
 
-        private void CreateDisciple(CharacterItem characterItem)
+        private void CreateDisciple(CharacterItem characterItem, int num)
         {
             GameObject obj = Instantiate(m_ChoosePanelDisciple, m_Cont);
             ChoosePanelDisciple itemICom = obj.GetComponent<ChoosePanelDisciple>();
+            obj.name = m_ChooseSelectedDisciple.name + num;
             itemICom.OnInit(characterItem);
             m_DiscipleObjDic.Add(characterItem.id, itemICom);
         }
@@ -199,11 +200,16 @@ namespace GameWish.Game
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {
                 if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && m_AllDiscipleList[i].IsFreeState())
-                    CreateDisciple(m_AllDiscipleList[i]);
+                {
+                    int num = i;
+                    CreateDisciple(m_AllDiscipleList[i], num);
+                }
             }
 
             for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+            {
                 CreateSelectedDisciple();
+            }
         }
         private void RefreshPanelInfo()
         {

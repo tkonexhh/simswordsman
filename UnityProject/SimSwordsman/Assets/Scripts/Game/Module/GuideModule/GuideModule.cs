@@ -67,6 +67,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskBtnTrigger1)); 
             GuideMgr.S.RegisterGuideTrigger(typeof(SendCharacterOnTaskTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardBtnTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardBtnTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger11));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger22));
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger5));
@@ -79,10 +82,10 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskDetailsTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskBtnTrigger2));
-            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger2_1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger2_2));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(SendCharacterOnTaskTrigger2));
-            GuideMgr.S.RegisterGuideTrigger(typeof(ReceiveTaskRewardTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(KitchenDialogTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacility_KitchenTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(BuildFacilityPanel_KitchenTrigger));
@@ -99,7 +102,7 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystemTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger1));
-
+         
         }
 
         protected void InitCustomCommand()

@@ -10,7 +10,7 @@ namespace GameWish.Game
     public class Define
     {
         public const int DEFAULT_COIN_NUM = 500;
-        public const int DEFAULT_FOOD_NUM = 10;
+        public const int DEFAULT_FOOD_NUM = 0;
         public const int DEFAULT_TIP_NUM = 5;
 
         public const string DEFAULT_SOUND = "";
