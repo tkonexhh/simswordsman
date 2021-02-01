@@ -33,7 +33,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_RankValue;
         [SerializeField]
-        private Text m_GradeValue;
+        private Image m_GradeImg;
         [SerializeField]
         private Image m_DiscipleImg;
 
@@ -57,6 +57,10 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_ArmorImg;
         [SerializeField]
+        private Image m_ArmorLock;
+        [SerializeField]
+        private Image m_ArmorPlus;
+        [SerializeField]
         private Button m_ArmorBtn;
         [SerializeField]
         private Button m_IntensifyArmorBtn;
@@ -74,6 +78,10 @@ namespace GameWish.Game
         private Text m_ArmsSkillValue;
         [SerializeField]
         private Image m_ArmsImg;
+        [SerializeField]
+        private Image m_ArmsLock;
+        [SerializeField]
+        private Image m_ArmsPlus;
         [SerializeField]
         private Button m_ArmsBtn;
         [SerializeField]
@@ -94,12 +102,8 @@ namespace GameWish.Game
         private Button m_EjectValueBtn;
         [SerializeField]
         private Text m_EjectValue;
-
-
-
         [SerializeField]
         private Button m_CloseBtn;
-
         private CharacterItem m_CurDisciple = null;
         private CharacterController m_CurCharacterController = null;
         private Dictionary<int, CharacterKongfuData> m_Kongfus = null;
@@ -112,6 +116,7 @@ namespace GameWish.Game
             base.OnUIInit();
             EventSystem.S.Register(EventID.OnRefreshDisciple, HandleAddListenerEvevt);
             EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
+            EventSystem.S.Register(EventID.OnSelectedKungfuSuccess, HandleAddListenerEvevt);
 
 
             InitPanelTitleInfo();
@@ -145,7 +150,22 @@ namespace GameWish.Game
             m_SkillValue.text = m_CurDisciple.atkValue.ToString();
             m_EntryTimeValue.text = GetEntryTime(m_CurDisciple.GetEntryTime());
             m_RankValue.text = CommonUIMethod.GetPart(m_CurDisciple.stage);
-            m_GradeValue.text = CommonUIMethod.GetStrQualityForChaQua(m_CurDisciple.quality);
+            switch (m_CurDisciple.quality)
+            {
+                case CharacterQuality.Normal:
+                    m_GradeImg.sprite = FindSprite("Bg18");
+                    break;
+                case CharacterQuality.Good:
+                    m_GradeImg.sprite = FindSprite("Bg19");
+                    break;
+                case CharacterQuality.Perfect:
+                    m_GradeImg.sprite = FindSprite("Bg17");
+                    break;
+                default:
+                    break;
+            }
+
+
             SetCharacterBehavior(m_CurDisciple.GetCharacterStateID());
 
             foreach (var item in m_Kongfus.Values)
@@ -156,10 +176,10 @@ namespace GameWish.Game
                         CreateKungfu(item.Index, KungfuLockState.Learned, FindSprite(item.GetIconName()), -1, item.CharacterKongfu);
                         break;
                     case KungfuLockState.NotLearning:
-                        CreateKungfu(item.Index, KungfuLockState.NotLearning, FindSprite(CharacterKongfuData.DefaultKungfu)) ;
+                        CreateKungfu(item.Index, KungfuLockState.NotLearning, FindSprite("NotStudy"));
                         break;
                     case KungfuLockState.NotUnlocked:
-                        CreateKungfu(item.Index, KungfuLockState.NotUnlocked, FindSprite(CharacterKongfuData.DefaultKungfu), MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.LearnKongfu, item.Index));
+                        CreateKungfu(item.Index, KungfuLockState.NotUnlocked, FindSprite("Lock"), MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.LearnKongfu, item.Index));
                         break;
                     default:
                         break;
@@ -169,6 +189,7 @@ namespace GameWish.Game
             RefreshArmsInfo();
             RefreshArmorInfo();
         }
+
         private void RefreshArmsInfo()
         {
             if (m_CurDisciple.characeterEquipmentData.IsArmorUnlock)
@@ -184,6 +205,9 @@ namespace GameWish.Game
                     m_ArmsSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
                         CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(characterArms.AtkAddition));
                     m_IntensifyArmsBtn.gameObject.SetActive(true);
+                    m_ArmsLock.gameObject.SetActive(false);
+                    m_ArmsImg.gameObject.SetActive(true);
+                    m_ArmsPlus.gameObject.SetActive(false);
                     m_ArmsImg.sprite = FindSprite(characterArms.GetIconName());
                 }
                 else
@@ -193,7 +217,9 @@ namespace GameWish.Game
                     m_ArmsClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_ArmsSkillValue.text = Define.COMMON_DEFAULT_STR;
                     m_IntensifyArmsBtn.gameObject.SetActive(false);
-                    m_ArmsImg.sprite = FindSprite(CharacterArms.DefaultArmsIconName);
+                    m_ArmsLock.gameObject.SetActive(false);
+                    m_ArmsImg.gameObject.SetActive(false);
+                    m_ArmsPlus.gameObject.SetActive(true);
                 }
             }
             else
@@ -204,7 +230,9 @@ namespace GameWish.Game
                 m_ArmsClassValue.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
                 m_IntensifyArmsBtn.gameObject.SetActive(false);
                 m_ArmsBtn.enabled = false;
-                m_ArmsImg.sprite = FindSprite(CharacterArms.DefaultArmsIconName);
+                m_ArmsLock.gameObject.SetActive(true);
+                m_ArmsImg.gameObject.SetActive(false);
+                m_ArmsPlus.gameObject.SetActive(false);
             }
 
             // m_ArmsImg.sprite = FindSprite();
@@ -223,6 +251,9 @@ namespace GameWish.Game
                     m_ArmorSkillValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
                         CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(characterArmor.AtkAddition));
                     m_IntensifyArmorBtn.gameObject.SetActive(true);
+                    m_ArmorLock.gameObject.SetActive(false);
+                    m_ArmorImg.gameObject.SetActive(true);
+                    m_ArmorPlus.gameObject.SetActive(false);
                     m_ArmorImg.sprite = FindSprite(characterArmor.GetIconName());
                 }
                 else
@@ -231,7 +262,9 @@ namespace GameWish.Game
                     m_ArmorClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_ArmorSkillValue.text = Define.COMMON_DEFAULT_STR;
                     m_IntensifyArmorBtn.gameObject.SetActive(false);
-                    m_ArmorImg.sprite = FindSprite(CharacterArmor.DefaultArmorIconName);
+                    m_ArmorLock.gameObject.SetActive(false);
+                    m_ArmorImg.gameObject.SetActive(false);
+                    m_ArmorPlus.gameObject.SetActive(true);
                 }
             }
             else
@@ -241,7 +274,9 @@ namespace GameWish.Game
                 m_ArmorClassValue.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
                 m_IntensifyArmorBtn.gameObject.SetActive(false);
                 m_ArmorBtn.enabled = false;
-                m_ArmorImg.sprite = FindSprite(CharacterArmor.DefaultArmorIconName);
+                m_ArmorLock.gameObject.SetActive(true);
+                m_ArmorImg.gameObject.SetActive(false);
+                m_ArmorPlus.gameObject.SetActive(false);
             }
         }
 
@@ -257,7 +292,11 @@ namespace GameWish.Game
             ItemICom itemICom = obj.GetComponent<ItemICom>();
             if (!m_KongfusGameObject.ContainsKey(index))
                 m_KongfusGameObject.Add(index, obj);
-            itemICom.OnInit(characterKongfu, null, kungfuLockState, sprite, UnLockLevel, m_CurDisciple, index);
+
+            
+            List<Sprite> sprites = GetSprite(characterKongfu);
+            sprites.Add(sprite);
+            itemICom.OnInit(characterKongfu, null, kungfuLockState, sprites, UnLockLevel, m_CurDisciple, index);
         }
 
         private string GetEntryTime(int day)
@@ -271,12 +310,21 @@ namespace GameWish.Game
             {
                 case CharacterStateID.None:
                 case CharacterStateID.Wander:
-                    m_StateBg.sprite = FindSprite("BgFont8");
-                    m_StateValue.text = CommonUIMethod.GetStrForColor("#426E7B", CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_FREE));
+                case CharacterStateID.EnterClan:
+                    m_StateBg.sprite = FindSprite("Bg16");
+                    m_StateValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_FREE);
+                    break;
+                case CharacterStateID.Practice:
+                    m_StateBg.sprite = FindSprite("Bg14");
+                    m_StateValue.text = "正在练功";
+                    break;
+                case CharacterStateID.Working:
+                    m_StateBg.sprite = FindSprite("Bg15");
+                    m_StateValue.text = "正在任务";
                     break;
                 default:
-                    m_StateBg.sprite = FindSprite("BgFont3");
-                    m_StateValue.text = CommonUIMethod.GetStrForColor("#31691A", CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_WORKING));
+                    m_StateBg.sprite = FindSprite("Bg13");
+                    m_StateValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_WORKING);
                     break;
             }
         }
@@ -336,6 +384,8 @@ namespace GameWish.Game
                     RefreshArmorInfo();
                     break;
                 case EventID.OnRefreshDisciple:
+                    break;
+                case EventID.OnSelectedKungfuSuccess:
                     RefreshPanelKungfuInfo((int)param[0]);
                     break;
                 default:
@@ -351,19 +401,48 @@ namespace GameWish.Game
                 {
                     if (item.Index == index)
                     {
-                        m_KongfusGameObject[index].GetComponent<KungfuPanelItem>().RefeshKungfuInfo(item, FindSprite(item.GetIconName()));
+                        m_KongfusGameObject[index].GetComponent<KungfuPanelItem>().RefeshKungfuInfo(item, GetSprite(item.CharacterKongfu));
                     }
                 }
             }
         }
+        private List<Sprite> GetSprite(CharacterKongfu characterKongfu)
+        {
+            List<Sprite> sprites = new List<Sprite>();
+            if (characterKongfu==null)
+                return sprites;
+            sprites.Add(FindSprite(GetIconName(characterKongfu.dbData.kongfuType)));
+            switch (GetKungfuQuality(characterKongfu.dbData.kongfuType))
+            {
+                case KungfuQuality.Normal:
+                    sprites.Add(FindSprite("Introduction"));
+                    break;
+                case KungfuQuality.Super:
+                    sprites.Add(FindSprite("Advanced"));
+                    break;
+                case KungfuQuality.Master:
+                    sprites.Add(FindSprite("Excellent"));
+                    break;
+                default:
+                    break;
+            }
+            return sprites;
+        }
+        private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
+        }
 
+        private string GetIconName(KongfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetIconName(kungfuType);
+        }
         protected override void OnClose()
         {
             base.OnClose();
             EventSystem.S.UnRegister(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
             EventSystem.S.UnRegister(EventID.OnRefreshDisciple, HandleAddListenerEvevt);
-
-
+            EventSystem.S.UnRegister(EventID.OnSelectedKungfuSuccess, HandleAddListenerEvevt);
         }
 
         protected override void OnPanelHideComplete()

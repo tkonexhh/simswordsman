@@ -142,7 +142,7 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();
-                    GameMgr.S.StartGuide();
+                    //GameMgr.S.StartGuide();
                 }
             }
             else

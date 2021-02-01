@@ -80,7 +80,7 @@ namespace GameWish.Game
         {
             m_ChoosePanelDisciple.onClick.AddListener(()=> {
                 IsSelected = !IsSelected;
-                EventSystem.S.Send(EventID.OnSelectedDiscipleEvent, m_CharacterItem, IsSelected);
+                EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, IsSelected);
             });
         }
 

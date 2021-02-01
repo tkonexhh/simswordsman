@@ -2,6 +2,7 @@ using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,9 +28,11 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_SecretBookBg;
         [SerializeField]
-        private Text m_SecretBookNameValue;
+        private Image m_KungfuBg;
         [SerializeField]
-        private Button m_KungfuPanelItemBtn;
+        private Text m_KungfuName;
+        [SerializeField]
+        private Button m_KungfuBtn;
         [SerializeField]
         private Text m_ClassValue;
         [SerializeField]
@@ -41,17 +44,17 @@ namespace GameWish.Game
         private CharacterKongfu m_CharacterKongfu = null;
         private CharacterItem m_CurDisciple = null;
         private KungfuLockState m_KungfuLockState;
-        private Sprite m_KungfuSprite;
+        private List<Sprite> m_KungfuSprite = new List<Sprite>();
         private int m_UnLockLevel = -1;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_KungfuLockState = (KungfuLockState)obj[0];
             m_CharacterKongfu = t as CharacterKongfu;
-            m_KungfuSprite = (Sprite)obj[1];
+            m_KungfuSprite.AddRange((List<Sprite>)obj[1]);
             m_CurDisciple = (CharacterItem)obj[3];
             m_UnLockLevel = (int)obj[2];
             m_CurIndex = (int)obj[4];
-            m_KungfuPanelItemBtn.onClick.AddListener(() => {
+            m_KungfuBtn.onClick.AddListener(() => {
                 UIMgr.S.OpenPanel(UIID.LearnKungfuPanel, m_CurDisciple, m_CurIndex);
             });
             RefreshPanelInfo();
@@ -61,45 +64,76 @@ namespace GameWish.Game
         /// 刷新学习的功夫
         /// </summary>
         /// <param name="index"></param>
-        public void RefeshKungfuInfo(CharacterKongfuData item, Sprite sprite)
+        public void RefeshKungfuInfo(CharacterKongfuData item, List<Sprite> sprite)
         {
             m_CharacterKongfu = item.CharacterKongfu;
             m_KungfuLockState = item.KungfuLockState;
-            m_KungfuSprite = sprite;
+            m_KungfuSprite.AddRange(sprite);
             RefreshPanelInfo();
         }
-
+        private string GetIconName(KongfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetIconName(kungfuType);
+        }
+        private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
+        }
         public void RefreshPanelInfo()
         {
-            m_SecretBookBg.sprite = m_KungfuSprite;
-
             switch (m_KungfuLockState)
             {
                 case KungfuLockState.Learned:
-                    m_KungfuPanelItemBtn.enabled = false;
-                    m_SecretBookNameValue.text = m_CharacterKongfu.name;
+                    m_KungfuBtn.enabled = false;
+                    m_KungfuName.text = m_CharacterKongfu.name;
                     m_ClassValue.text = GetKungfuClass(m_CharacterKongfu.dbData.level);
                     m_KungfuAddition.text = GetKungfuAddition(m_CharacterKongfu.atkScale);
                     m_RestrictionsValue.text = Define.COMMON_DEFAULT_STR;
+                    m_SecretBookBg.gameObject.SetActive(true);
+                    switch (GetKungfuQuality(m_CharacterKongfu.GetKongfuType()))
+                    {
+                        case KungfuQuality.Normal:
+                            m_KungfuBg.sprite = GetSprite("Introduction");
+                            break;
+                        case KungfuQuality.Super:
+                            m_KungfuBg.sprite = GetSprite("Advanced");
+                            break;
+                        case KungfuQuality.Master:
+                            m_KungfuBg.sprite = GetSprite("Excellent");
+                            break;
+                        default:
+                            break;
+                    }
+                    m_SecretBookBg.sprite = GetSprite(GetIconName(m_CharacterKongfu.GetKongfuType()));
+
                     break;
                 case KungfuLockState.NotLearning:
-                    m_KungfuPanelItemBtn.enabled = true;
-                    m_SecretBookNameValue.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_STATE_NOTLEARNED);
+                    m_KungfuBtn.enabled = true;
+                    m_KungfuName.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_STATE_NOTLEARNED);
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
                     m_RestrictionsValue.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_STATE_LEARNABLE);
+                    m_KungfuBg.sprite = GetSprite("NotStudy");
+                    m_SecretBookBg.gameObject.SetActive(false);
                     break;
                 case KungfuLockState.NotUnlocked:
-                    m_KungfuPanelItemBtn.enabled = false;
-                    m_SecretBookNameValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED);
+                    m_KungfuBtn.enabled = false;
+                    m_KungfuName.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED);
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
                     m_RestrictionsValue.text = GetKungfuUnLock(m_UnLockLevel);
+                    m_KungfuBg.sprite = GetSprite("Lock");
+                    m_SecretBookBg.gameObject.SetActive(false);
                     break;
                 default:
                     break;
             }
         }
+        private Sprite GetSprite(string name)
+        {
+            return m_KungfuSprite.Where(i => i.name.Equals(name)).FirstOrDefault();
+        }
+
         private string GetKungfuUnLock(int level)
         {
             if (m_UnLockLevel!=-1)

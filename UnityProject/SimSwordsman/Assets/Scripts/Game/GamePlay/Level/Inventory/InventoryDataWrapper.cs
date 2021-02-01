@@ -75,6 +75,7 @@ namespace GameWish.Game
             return true;
         }
         #endregion
+
         /// <summary>
         /// 检查RawMaterial类型
         /// </summary>
@@ -106,7 +107,7 @@ namespace GameWish.Game
             return itemBase;
         }
         /// <summary>
-        /// 根据类型返回所以装备
+        /// 根据类型返回所需装备
         /// </summary>
         /// <param name="equipType"></param>
         /// <returns></returns>
@@ -639,7 +640,6 @@ namespace GameWish.Game
             Number += number;
             Number = Mathf.Clamp(Number, 0, Define.MAX_PROP_COUNT);
         }
-
     
         public static T CopySelf<T>(T obj) where T:ItemBase
         {

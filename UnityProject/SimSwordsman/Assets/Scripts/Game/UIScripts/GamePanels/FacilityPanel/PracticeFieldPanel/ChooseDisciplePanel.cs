@@ -28,7 +28,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            EventSystem.S.Register(EventID.OnSelectedDiscipleEvent, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
 
             m_ArrangeBtn.onClick.AddListener(() => {
                 m_PracticeFieldInfo.SetCharacterItem(m_SelectedDisciple, SlotState.Practice, m_CurFacilityType);
@@ -40,7 +40,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-            EventSystem.S.UnRegister(EventID.OnSelectedDiscipleEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
 
         }
 
@@ -50,7 +50,7 @@ namespace GameWish.Game
             IsSelected = (bool)param[0];
             switch ((EventID)key)
             {
-                case EventID.OnSelectedDiscipleEvent:
+                case EventID.OnSelectedEvent:
                     m_Pos = (Transform)param[2];
                     m_ArrangeBtn.gameObject.SetActive(true);
                     if (m_SelectedDisciple != null && m_SelectedDisciple.id == selected.id)

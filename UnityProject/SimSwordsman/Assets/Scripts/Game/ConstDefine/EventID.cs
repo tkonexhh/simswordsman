@@ -94,7 +94,6 @@ namespace GameWish.Game
         //ChallengePanel
         OnChanllengeSuccess,        //挑战成功事件
         OnUnlockNewChapter,         //挑战成功事件
-        OnSelectedEquipSuccess,     //挑战成功事件
 
         //Disciple
         /// <summary>
@@ -113,14 +112,31 @@ namespace GameWish.Game
         /// 刷新弟子面板
         /// </summary>
         OnRefreshDisciple,
+        /// <summary>
+        /// 装备选择
+        /// </summary>
+        OnSelectedEquipEvent,
+        /// <summary>
+        /// 装备选择成功
+        /// </summary>
+        OnSelectedEquipSuccess,
+        /// <summary>
+        /// 功夫选择
+        /// </summary>
+        OnSelectedKungfuEvent,
+        /// <summary>
+        /// 功夫选择成功
+        /// </summary>
+        OnSelectedKungfuSuccess,     
+
 
         #region 公用
         /// <summary>
-        /// 选择弟子
+        /// 选择
         /// </summary>
-        OnSelectedDiscipleEvent,
+        OnSelectedEvent,
         /// <summary>
-        /// 选择弟子确定事情
+        /// 选择确定事情
         /// </summary>
         OnSelectedConfirmEvent,
         /// <summary>
@@ -128,7 +144,7 @@ namespace GameWish.Game
         /// </summary>
         OnSendDiscipleDicEvent,
         /// <summary>
-        /// 删除弟子
+        /// 删除
         /// </summary>
         DeleteDisciple,
         OnSendHerbEvent,

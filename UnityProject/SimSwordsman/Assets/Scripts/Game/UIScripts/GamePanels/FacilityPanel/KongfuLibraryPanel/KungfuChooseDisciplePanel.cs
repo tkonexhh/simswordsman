@@ -39,13 +39,13 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-            EventSystem.S.UnRegister(EventID.OnSelectedDiscipleEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
         }
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
             BindAddListenerEvent();
-            EventSystem.S.Register(EventID.OnSelectedDiscipleEvent,HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSelectedEvent,HandAddListenerEvent);
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_KungfuLibraySlotInfo = (KungfuLibraySlot)args[0];
@@ -66,7 +66,7 @@ namespace GameWish.Game
             IsSelected = (bool)param[0];
             switch ((EventID)key)
             {
-                case EventID.OnSelectedDiscipleEvent:
+                case EventID.OnSelectedEvent:
                     m_Pos = (Transform)param[2];
                     m_ArrangeBtn.gameObject.SetActive(true);
                     if (m_SelectedDisciple != null && m_SelectedDisciple.id == selected.id)

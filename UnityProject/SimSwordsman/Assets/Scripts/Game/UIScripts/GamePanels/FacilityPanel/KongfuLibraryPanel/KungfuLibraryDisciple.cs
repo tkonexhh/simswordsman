@@ -34,7 +34,7 @@ namespace GameWish.Game
                 else
                     m_SelelctedState = SelectedState.NotSelected;
                 RefreshPanelInfo();
-                EventSystem.S.Send(EventID.OnSelectedDiscipleEvent, isSelected, m_CharacterItem, m_Pos);
+                EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
             RefreshPanelInfo();
         }
