@@ -58,8 +58,6 @@ namespace GameWish.Game
             //Set language
             //I18Mgr.S.SwitchLanguage(SystemLanguage.German);
 
-            //GameMgr.S.StartGuide();
-
             //GuideObjectMgr.S.Init();
 
             //EventSystem.S.Send(EventID.OnUpdateLoadProgress, 0.2f);
@@ -142,7 +140,8 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();
-                    //GameMgr.S.StartGuide();
+
+                    GameMgr.S.StartGuide();
                 }
             }
             else
