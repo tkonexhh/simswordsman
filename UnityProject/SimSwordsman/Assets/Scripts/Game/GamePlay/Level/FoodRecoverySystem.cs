@@ -85,17 +85,15 @@ namespace GameWish.Game
             }, 1, -1);
         }
 
-
         private void OnUnlockKitchen(int key, object[] param)
         {
             FacilityType facilityType = (FacilityType)param[0];
             if (facilityType == FacilityType.Kitchen)
             {
                 limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-                secondCount = 0;
-                lastKeepTime = DateTime.Now.ToString();
-                PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
-                StartCountdown();
+                int num = limit - GameDataMgr.S.GetPlayerData().foodNum;
+                if (num > 0)
+                    GameDataMgr.S.GetPlayerData().AddFoodNum(num);
             }
         }
 
@@ -105,11 +103,14 @@ namespace GameWish.Game
             if (facilityType == FacilityType.Kitchen)
             {
                 limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-                if (timerID == -1)
+                if (timerID != -1)
                 {
-                    secondCount = 0;
-                    StartCountdown();
+                    Timer.S.Cancel(timerID);
+                    timerID = -1;
                 }
+                int num = limit - GameDataMgr.S.GetPlayerData().foodNum;
+                if (num > 0)
+                    GameDataMgr.S.GetPlayerData().AddFoodNum(num);
             }
         }
 
@@ -124,6 +125,4 @@ namespace GameWish.Game
             }
         }
     }
-
-
 }

@@ -81,7 +81,7 @@ namespace GameWish.Game
 
                 m_visitor.Reward.AcceptReward();
 
-                UIMgr.S.OpenPanel(UIID.RewardPanel, new List<RewardBase>() { m_visitor.Reward });
+                UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
                 VisitorSystem.S.Disappear(m_visitor);
 
                 HideSelfWithAnim();

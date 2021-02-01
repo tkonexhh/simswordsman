@@ -166,7 +166,7 @@ namespace GameWish.Game
             SignInItem item = m_SignItemDic[id];
 
             item.RewardCfg.AcceptReward();
-            UIMgr.S.OpenPanel(UIID.RewardPanel, new List<RewardBase> { item.RewardCfg });
+            UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase> { item.RewardCfg });
         }
 
         private void GetRewardCallBack()
