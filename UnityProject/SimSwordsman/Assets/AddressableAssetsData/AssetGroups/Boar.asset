@@ -15,52 +15,55 @@ MonoBehaviour:
   m_GroupName: Boar
   m_Data:
     m_SerializedData: []
-  m_GUID: ddcd3cb6d5db8314fa81998aaffe2a9a
+  m_GUID: ed0d12d0fb8eb324e8c68549ea074b38
   m_SerializeEntries:
   - m_GUID: 5cd47d3052365f44e91ab7ba4d890e03
     m_Address: pig
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: 5cd47d3052365f44e91ab7ba4d890e03, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 5cd47d3052365f44e91ab7ba4d890e03, type: 3}
   - m_GUID: 6ac0ebdd690147541b09828fa13a06b3
     m_Address: pig_Material
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2100000, guid: 6ac0ebdd690147541b09828fa13a06b3, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: 6ac0ebdd690147541b09828fa13a06b3, type: 2}
   - m_GUID: 6e3339a54cbd0a04b9d8373116a823cf
     m_Address: Boar
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2807960780921782558, guid: 6e3339a54cbd0a04b9d8373116a823cf,
+      type: 3}
+    m_TargetAsset: {fileID: 2807960780921782558, guid: 6e3339a54cbd0a04b9d8373116a823cf,
+      type: 3}
   - m_GUID: 8d8488246421e4442a4333398aa26774
     m_Address: pig_Atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 8d8488246421e4442a4333398aa26774, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 8d8488246421e4442a4333398aa26774, type: 2}
   - m_GUID: 9f64e20ea8170d84aa0f7eb4142999d9
     m_Address: pig
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 2800000, guid: 9f64e20ea8170d84aa0f7eb4142999d9, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9f64e20ea8170d84aa0f7eb4142999d9, type: 3}
   - m_GUID: d2e93a2ffd4523f4cb488b9b8b787285
     m_Address: pig.atlas
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 4900000, guid: d2e93a2ffd4523f4cb488b9b8b787285, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: d2e93a2ffd4523f4cb488b9b8b787285, type: 3}
   - m_GUID: d338104fae8c3ba4b82441ca3ec0c0c4
     m_Address: pig_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: d338104fae8c3ba4b82441ca3ec0c0c4, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: d338104fae8c3ba4b82441ca3ec0c0c4, type: 2}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 06847c97d6ffaab4c98b4cdf60e28d1b, type: 2}
+    - {fileID: 11400000, guid: f2e3466c77bf7b74bafbf8ec12f3e439, type: 2}
+    - {fileID: 11400000, guid: 9a7042f23cde9aa4e89a607d69b34c04, type: 2}

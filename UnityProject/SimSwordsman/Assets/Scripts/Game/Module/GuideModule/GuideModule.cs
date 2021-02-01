@@ -102,7 +102,6 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystemTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger1));
-         
         }
 
         protected void InitCustomCommand()
@@ -111,10 +110,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideCommand(typeof(NormalTipsCommand));
             GuideMgr.S.RegisterGuideCommand(typeof(MyDelayCommand));
             GuideMgr.S.RegisterGuideCommand(typeof(GuideClickWorldCommand));
+            GuideMgr.S.RegisterGuideCommand(typeof(GuideClickBubbleCommand)); 
             GuideMgr.S.RegisterGuideCommand(typeof(TakeNameCommand));
             GuideMgr.S.RegisterGuideCommand(typeof(DialogCommand));
-
         }
-
     }
 }

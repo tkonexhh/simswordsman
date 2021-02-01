@@ -204,7 +204,6 @@ namespace GameWish.Game
                     Destroy(obj);
                     //增加金币（暂时写在这里）
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 10);
-                    GameDataMgr.S.GetPlayerData().AddCoinNum(100);
                 }, 2.5f);
             };
             UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, "StoryPanel_Text_1,StoryPanel_Text_2,StoryPanel_Text_3,StoryPanel_Text_4", action);

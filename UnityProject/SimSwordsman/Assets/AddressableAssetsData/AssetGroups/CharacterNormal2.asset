@@ -15,16 +15,19 @@ MonoBehaviour:
   m_GroupName: CharacterNormal2
   m_Data:
     m_SerializedData: []
-  m_GUID: 3b7bc43a9111b1c41a92f45d69c5a6e5
+  m_GUID: 36c8d837a17774841bf340096d10bdd7
   m_SerializeEntries:
   - m_GUID: 0698d2c16cd589a4da273517632b6ac2
     m_Address: Character_normal_2
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 3845809598577782914, guid: 0698d2c16cd589a4da273517632b6ac2,
+      type: 3}
+    m_TargetAsset: {fileID: 3845809598577782914, guid: 0698d2c16cd589a4da273517632b6ac2,
+      type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 4a800a8a1ef843b48b2ad78052784584, type: 2}
+    - {fileID: 11400000, guid: a8ef70cbf0b48ac4d8c46bb1a2d98941, type: 2}
+    - {fileID: 11400000, guid: b6ed443b1130cfe4a9c8baa6f1625314, type: 2}

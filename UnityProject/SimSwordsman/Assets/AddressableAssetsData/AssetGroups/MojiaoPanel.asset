@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MojiaoPanel
+  m_EditorClassIdentifier: 
+  m_GroupName: MojiaoPanel
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b5f1600c339bcaa4d9c535a651d5d1d6
+  m_SerializeEntries:
+  - m_GUID: 0e4a2ff4009bb3047aab9ad35b968f6e
+    m_Address: MojiaoPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7814739950058470067, guid: 0e4a2ff4009bb3047aab9ad35b968f6e,
+      type: 3}
+    m_TargetAsset: {fileID: 7814739950058470067, guid: 0e4a2ff4009bb3047aab9ad35b968f6e,
+      type: 3}
+  - m_GUID: ccd785eca3cf8ec479e1058f336c11dc
+    m_Address: Mojiao
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: ccd785eca3cf8ec479e1058f336c11dc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ccd785eca3cf8ec479e1058f336c11dc, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bf407406621509b4bbdcc9c7169e1207, type: 2}
+    - {fileID: 11400000, guid: af75f979850a2554fb87f479ddc528ac, type: 2}

@@ -171,7 +171,7 @@ namespace GameWish.Game
                 item.AcceptReward();
 
             //µ¯³ö½±ÀøUI·´À¡
-            UIMgr.S.OpenPanel(UIID.RewardPanel, rewards);
+            UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, rewards);
             //´æµµÒÆ³ý
             if (m_RewardItems.Contains(id))
             {
