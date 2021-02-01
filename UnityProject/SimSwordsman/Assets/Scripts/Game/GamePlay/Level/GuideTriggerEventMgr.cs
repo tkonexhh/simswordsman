@@ -40,7 +40,7 @@ namespace GameWish.Game
                 Timer.S.Post2Really(x => 
                 {
                     EventSystem.S.Send(EventID.InGuideProgress, true);
-                    m_FollowCamera.TweenOrthoSize(13);
+                    m_FollowCamera.TweenOrthoSize(10);
                     m_FollowCamera.DestorySelf();
                     UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 
@@ -52,7 +52,7 @@ namespace GameWish.Game
                 Timer.S.Post2Really(x =>
                 {
                     EventSystem.S.Send(EventID.InGuideProgress, true);
-                    m_FollowCamera.TweenOrthoSize(13);
+                    m_FollowCamera.TweenOrthoSize(10);
                     m_FollowCamera.DestorySelf();
                     UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 
