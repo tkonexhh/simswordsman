@@ -140,19 +140,19 @@ namespace GameWish.Game
             {
                 case CollectedObjType.Bear:
                 case CollectedObjType.Boar:
-                case CollectedObjType.Chicken:
                 case CollectedObjType.Deer:
                 case CollectedObjType.Snake:
                     name = "hunting";
                     break;
+                case CollectedObjType.Chicken:
                 case CollectedObjType.Ganoderma:
                 case CollectedObjType.SilverWood:
                 case CollectedObjType.Vine:
                 case CollectedObjType.WuWood:
-                    name = "hunting"; //待修改
+                    name = "collection";
                     break;
                 case CollectedObjType.Fish:
-                    name = "hunting"; //待修改
+                    name = "fishing";
                     break;
                 case CollectedObjType.CloudRock:
                 case CollectedObjType.QingRock:

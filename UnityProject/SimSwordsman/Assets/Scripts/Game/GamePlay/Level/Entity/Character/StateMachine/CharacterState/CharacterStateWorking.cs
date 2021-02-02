@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class CharacterStateWorking : CharacterState
     {
         private CharacterController m_Controller = null;
-
+        private FacilityType m_FacilityType = FacilityType.None;
 
         public CharacterStateWorking(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -23,9 +23,9 @@ namespace GameWish.Game
             if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            FacilityType facilityType = m_Controller.CharacterModel.GetTargetFacilityType();
+            m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
 
-            FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(facilityType);
+            FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
             Vector3 targetPos = facilityController.GetDoorPos();
 
             m_Controller.MoveTo(targetPos, OnReachDestination);
@@ -42,7 +42,30 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
-            m_Controller.CharacterView.PlayAnim("practice", true, null);
+            string anim = GetAnimName(m_FacilityType);
+            m_Controller.CharacterView.PlayAnim(anim, true, null);
+        }
+
+        private string GetAnimName(FacilityType facilityType)
+        {
+            string animName = "clean";
+            switch (facilityType)
+            {
+                case FacilityType.ForgeHouse:
+                    animName = "forge_iron";
+                    break;
+                case FacilityType.Kitchen:
+                    animName = "cook";
+                    break;
+                case FacilityType.Baicaohu:
+                    animName = "pharmacy";
+                    break;
+                case FacilityType.Warehouse:
+                    animName = "carry";
+                    break;
+            }
+
+            return animName;
         }
     }
 }
