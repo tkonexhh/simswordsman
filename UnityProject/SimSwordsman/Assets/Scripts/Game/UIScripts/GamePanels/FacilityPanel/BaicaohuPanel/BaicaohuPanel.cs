@@ -103,15 +103,14 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            //音效
-            foreach (var item in transform.GetComponentsInChildren<Button>(true))
-            {
-                item.onClick.AddListener(()=> AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
-            }
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 //检查等级要求
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 var info = TDFacilityBaicaohuTable.GetLevelInfo(m_CurLevel);
                 if (MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() < info.upgradeNeedLobbyLevel)
                 {
