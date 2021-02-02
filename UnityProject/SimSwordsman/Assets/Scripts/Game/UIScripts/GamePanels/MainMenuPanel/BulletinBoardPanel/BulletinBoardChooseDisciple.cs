@@ -64,7 +64,7 @@ namespace GameWish.Game
             base.OnUIInit();
 
             BindAddListenerEvent();
-            EventSystem.S.Register(EventID.OnSelectedDiscipleEvent, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
 
             GetInformationForNeed();
         }
@@ -73,7 +73,7 @@ namespace GameWish.Game
         {
             switch ((EventID)key)
             {
-                case EventID.OnSelectedDiscipleEvent:
+                case EventID.OnSelectedEvent:
                     HandSelectedDiscipleEvent((CharacterItem)param[0], (bool)param[1]);
                     break;
                 default:
@@ -84,7 +84,7 @@ namespace GameWish.Game
         public void AddDiscipleDicDic(Dictionary<int, CharacterItem> keyValuePairs)
         {
             foreach (var item in keyValuePairs.Values)
-                EventSystem.S.Send(EventID.OnSelectedDiscipleEvent, item, true);
+                EventSystem.S.Send(EventID.OnSelectedEvent, item, true);
 
             RefreshPanelInfo();
         }
@@ -229,7 +229,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-            EventSystem.S.UnRegister(EventID.OnSelectedDiscipleEvent, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
         }
     }
 }

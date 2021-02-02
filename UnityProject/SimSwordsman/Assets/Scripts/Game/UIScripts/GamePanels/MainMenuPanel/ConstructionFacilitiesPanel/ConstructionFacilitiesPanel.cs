@@ -192,7 +192,7 @@ namespace GameWish.Game
                 m_Res1Value.text = m_CostItems[0].value.ToString();
                 m_Res1.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
                 m_Res2Value.text = m_CostItems[1].value.ToString();
-                m_Res2.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+                m_Res2.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
                 m_Res3Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
                 m_Res3.sprite = FindSprite("Coin");
                 m_Res1.gameObject.SetActive(true);

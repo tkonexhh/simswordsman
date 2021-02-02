@@ -55,7 +55,7 @@ namespace GameWish.Game
         {
             RefreshPanelInfo();
             m_ChooseSelectedDisciple.onClick.AddListener(() => {
-                EventSystem.S.Send(EventID.OnSelectedDiscipleEvent, m_CharacterItem, false);
+                EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, false);
             });
         }
         public bool IsHavaSame(CharacterItem characterItem)

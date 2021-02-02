@@ -58,7 +58,26 @@ namespace GameWish.Game
                 m_DiscipleName.text = m_CurCharacter.name;
                 m_DiscipleLevel.text = CommonUIMethod.GetGrade(m_CurCharacter.level);
             }
+
+
+            LoadClanPrefabs(GetLoadDiscipleName(m_CurCharacter));
         }
+
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
+
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleImg.sprite = obj;
+            });
+        }
+
         /// <summary>
         /// 获取当前弟子的id
         /// </summary>

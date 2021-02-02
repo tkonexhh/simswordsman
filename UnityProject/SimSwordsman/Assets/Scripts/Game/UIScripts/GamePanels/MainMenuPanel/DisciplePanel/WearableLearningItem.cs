@@ -9,68 +9,83 @@ namespace GameWish.Game
 {
 	public class WearableLearningItem : MonoBehaviour,ItemICom
 	{
-
         [SerializeField]
-        private Text m_ArticlesName;
+        private Text m_EquipName;  
+        [SerializeField]
+        private Text m_Number;  
+        [SerializeField]
+        private Image m_EquipHead;
         [SerializeField]
         private Text m_Class;
         [SerializeField]
-        private Text m_Number;
-
+        private GameObject m_State;
         [SerializeField]
         private Button m_SelectedBtn;
+        [SerializeField]
+        private Transform m_Pos;
         private ItemBase m_ItemBase;
         private CharacterItem m_CurDisciple = null;
+        private Sprite m_Sprite = null;
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
+        private bool isSelected = false;
         //private EquipmentItem m_CurEquipmentItem = null;
-
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_ItemBase = t as ItemBase;
             m_CurDisciple = (CharacterItem)obj[0];
+            m_Sprite = (Sprite)obj[1];
             BindAddListenerEvent();
-            switch (m_ItemBase.PropType)
+            RefreshPanelInfo();
+         
+            //m_CurEquipmentItem = t as EquipmentItem;
+            //m_ArticlesName.text = m_CurEquipmentItem.Name;
+
+            //m_Number.text = CommonUIMethod.GetItemNumber(m_CurEquipmentItem.Number);
+        }
+        private void RefreshPanelInfo()
+        {
+            switch (m_SelelctedState)
             {
-                case PropType.Arms:
-                    ArmsItem armsItem = m_ItemBase as ArmsItem;
-                    m_Class.text = CommonUIMethod.GetClass((int)armsItem.ClassID);
+                case SelectedState.Selected:
+                    m_State.SetActive(true);
+                    //RefreshEquipInfo();
                     break;
-                case PropType.Armor:
-                    ArmorItem armorItem = m_ItemBase as ArmorItem;
-                    m_Class.text = CommonUIMethod.GetClass((int)armorItem.ClassID);
+                case SelectedState.NotSelected:
+                    m_State.SetActive(false);
                     break;
                 default:
                     break;
             }
-            m_Number.text = m_ItemBase.Name;
-            m_ArticlesName.text = m_ItemBase.Number.ToString() ;
-            //m_CurEquipmentItem = t as EquipmentItem;
-            //m_ArticlesName.text = m_CurEquipmentItem.Name;
-         
-            //m_Number.text = CommonUIMethod.GetItemNumber(m_CurEquipmentItem.Number);
+            m_EquipHead.sprite = m_Sprite;
+            m_EquipName.text = m_ItemBase.Name;
+            m_Number.text = m_ItemBase.Number.ToString();
+        }
+        public void IsSame(ItemBase itemBase)
+        {
+            if (itemBase.GetSortId() != m_ItemBase.GetSortId())
+            {
+                m_SelelctedState = SelectedState.NotSelected;
+                isSelected = false;
+                RefreshPanelInfo();
+            }
         }
 
         private void BindAddListenerEvent()
         {
             m_SelectedBtn.onClick.AddListener(()=> {
-                switch (m_ItemBase.PropType)
-                {
-                    case PropType.Arms:
-                        MainGameMgr.S.InventoryMgr.AddItem(m_CurDisciple.GetEquipmentForType(PropType.Arms));
-                        MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArms(m_ItemBase)); ;
-                        break;
-                    case PropType.Armor:
-                        MainGameMgr.S.InventoryMgr.AddItem(m_CurDisciple.GetEquipmentForType(PropType.Armor));
-                        MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArmor(m_ItemBase)); ;
-                        break;
-                    default:
-                        break;
-                }
-                MainGameMgr.S.InventoryMgr.RemoveItem(m_ItemBase);
-                EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
-                UIMgr.S.ClosePanelAsUIID(UIID.WearableLearningPanel);
+                isSelected = !isSelected;
+                if (isSelected)
+                    m_SelelctedState = SelectedState.Selected;
+                else
+                    m_SelelctedState = SelectedState.NotSelected;
+                RefreshPanelInfo();
+                EventSystem.S.Send(EventID.OnSelectedEquipEvent, isSelected, m_ItemBase, m_Pos);
+              
             });
         }
+
+       
 
         public void SetButtonEvent(Action<object> action)
         {

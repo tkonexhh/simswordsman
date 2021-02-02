@@ -167,6 +167,15 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                for (int i = (int)KongfuType.TaiZuChangQuan; i < (int)KongfuType.ZuiQuan; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
+                }
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
+            }
         }
 
         /// <summary>
