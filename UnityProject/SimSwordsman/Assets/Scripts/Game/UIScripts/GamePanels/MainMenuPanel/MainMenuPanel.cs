@@ -64,6 +64,7 @@ namespace GameWish.Game
                 //{
                 //    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 200);
                 //}
+                GameDataMgr.S.GetPlayerData().AddFoodNum(100);
             });
 
             m_VillaBtn.onClick.AddListener(() => {
