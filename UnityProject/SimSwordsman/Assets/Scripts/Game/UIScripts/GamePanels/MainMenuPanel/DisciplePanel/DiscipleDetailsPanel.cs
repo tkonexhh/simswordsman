@@ -168,13 +168,13 @@ namespace GameWish.Game
             switch (m_CurDisciple.quality)
             {
                 case CharacterQuality.Normal:
-                    m_GradeImg.sprite = FindSprite("Bg18");
+                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg18");
                     break;
                 case CharacterQuality.Good:
-                    m_GradeImg.sprite = FindSprite("Bg19");
+                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg19");
                     break;
                 case CharacterQuality.Perfect:
-                    m_GradeImg.sprite = FindSprite("Bg17");
+                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg17");
                     break;
                 default:
                     break;
@@ -194,7 +194,7 @@ namespace GameWish.Game
                         CreateKungfu(item.Index, KungfuLockState.NotLearning, FindSprite("NotStudy"));
                         break;
                     case KungfuLockState.NotUnlocked:
-                        CreateKungfu(item.Index, KungfuLockState.NotUnlocked, FindSprite("Lock"), MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.LearnKongfu, item.Index));
+                        CreateKungfu(item.Index, KungfuLockState.NotUnlocked, FindSprite("Lock1"), MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.LearnKongfu, item.Index));
                         break;
                     default:
                         break;
@@ -326,19 +326,19 @@ namespace GameWish.Game
                 case CharacterStateID.None:
                 case CharacterStateID.Wander:
                 case CharacterStateID.EnterClan:
-                    m_StateBg.sprite = FindSprite("Bg16");
+                    m_StateBg.sprite = FindSprite("DiscipleDetails_Bg16");
                     m_StateValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_FREE);
                     break;
                 case CharacterStateID.Practice:
-                    m_StateBg.sprite = FindSprite("Bg14");
+                    m_StateBg.sprite = FindSprite("DiscipleDetails_Bg14");
                     m_StateValue.text = "正在练功";
                     break;
                 case CharacterStateID.Working:
-                    m_StateBg.sprite = FindSprite("Bg15");
+                    m_StateBg.sprite = FindSprite("DiscipleDetails_Bg15");
                     m_StateValue.text = "正在任务";
                     break;
                 default:
-                    m_StateBg.sprite = FindSprite("Bg13");
+                    m_StateBg.sprite = FindSprite("DiscipleDetails_Bg13");
                     m_StateValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_STATE_WORKING);
                     break;
             }

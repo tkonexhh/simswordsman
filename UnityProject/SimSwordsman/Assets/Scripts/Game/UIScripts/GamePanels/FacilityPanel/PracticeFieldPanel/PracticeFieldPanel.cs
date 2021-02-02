@@ -266,7 +266,7 @@ namespace GameWish.Game
         private void CreatePracticeDisciple(PracticeField PracticeField)
         {
             List<Sprite> sprites = new List<Sprite>();
-            sprites.Add(FindSprite("Lock"));
+            sprites.Add(FindSprite("Lock2"));
 
 
             GameObject obj = Instantiate(m_PracticeDisciplePos, m_PracticeDiscipleContTra);

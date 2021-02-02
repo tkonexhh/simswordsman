@@ -12,7 +12,8 @@ namespace GameWish.Game
     {
         [SerializeField]
         private Image m_DisciplePhoto;
-
+        [SerializeField]
+        private Button m_CloseBtn;
 
         [SerializeField]
         private Text m_DiscipleName;
@@ -64,6 +65,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
+            m_CloseBtn.onClick.AddListener(()=> {
+                HideSelfWithAnim();
+            });
+
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 switch (m_CurrentClickType)

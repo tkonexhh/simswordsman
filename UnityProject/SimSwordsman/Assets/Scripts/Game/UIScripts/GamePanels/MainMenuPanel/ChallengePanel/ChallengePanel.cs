@@ -55,7 +55,7 @@ namespace GameWish.Game
             m_ChallengeCont.text = TDLanguageTable.Get(Define.CHALLENGE_DESCRIBE);
 
             foreach (var item in m_CurChapterInfo)
-                m_Sprites.Add(FindSprite(item.clanType.ToString()));
+                m_Sprites.Add(FindSprite("ChallengePanel_" + item.clanType.ToString()));
 
             foreach (var item in m_CurChapterInfo)
                 CreateChallengeTask(item);

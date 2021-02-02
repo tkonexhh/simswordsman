@@ -68,14 +68,14 @@ namespace GameWish.Game
                     if (m_IsSuccess)
                     {
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-                        m_Font1.sprite = FindSprite("Font1");
-                        m_Font2.sprite = FindSprite("Font2");
+                        m_Font1.sprite = FindSprite("CombatSettlement_Font1");
+                        m_Font2.sprite = FindSprite("CombatSettlement_Font2");
                     }
                     else
                     {
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
-                        m_Font1.sprite = FindSprite("Font3");
-                        m_Font2.sprite = FindSprite("Font4");
+                        m_Font1.sprite = FindSprite("CombatSettlement_Font3");
+                        m_Font2.sprite = FindSprite("CombatSettlement_Font4");
                     }
                     break;
                 default:

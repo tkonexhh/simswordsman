@@ -103,7 +103,7 @@ namespace GameWish.Game
                 case SlotState.NotUnlocked:
                     m_PracticeBtn.enabled = false;
                     m_State.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
-                    m_PracticeImg.sprite = GetSprite("Lock");
+                    m_PracticeImg.sprite = GetSprite("Lock2");
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;

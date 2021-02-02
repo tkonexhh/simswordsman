@@ -128,7 +128,7 @@ namespace GameWish.Game
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
                     m_RestrictionsValue.text = GetKungfuUnLock(m_UnLockLevel);
-                    m_NotLearnBg.sprite = GetSprite("Lock");
+                    m_NotLearnBg.sprite = GetSprite("Lock1");
                     m_SelectBg.gameObject.SetActive(false);
                     m_LearnBg.gameObject.SetActive(false);
                     m_NotLearnBg.gameObject.SetActive(true);
