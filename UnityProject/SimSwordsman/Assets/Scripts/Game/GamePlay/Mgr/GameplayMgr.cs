@@ -141,7 +141,7 @@ namespace GameWish.Game
 
                     CountdownSystem.S.Init();
 
-                    GameMgr.S.StartGuide();
+                    //GameMgr.S.StartGuide();
                 }
             }
             else
@@ -155,22 +155,34 @@ namespace GameWish.Game
             //    GameDataMgr.S.GetPlayerInfoData().AddCoinNum(1E100);
             //}
 
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                GameDataMgr.S.GetPlayerData().AddFoodNum(100);
-            }
+          
             if (Input.GetKeyDown(KeyCode.J))
             {
-                GameDataMgr.S.GetPlayerData().AddCoinNum(10000);
+                GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
+                GameDataMgr.S.GetPlayerData().AddFoodNum(100);
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,600);
+
+                for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)i,(Step)1), 2000);
+                }  
+                for (int i = (int)ArmsType.ShaZhuDao; i < (int)ArmsType.YanYueDao; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)i,(Step)1), 2000);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                for (int i = (int)RawMaterial.Malachite; i < (int)RawMaterial.Crystal; i++)
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
                 }
             }
+      
 
             if (Input.GetKeyDown(KeyCode.L))
             {

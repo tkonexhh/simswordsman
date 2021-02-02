@@ -33,15 +33,17 @@ namespace GameWish.Game
         private Button m_UpgradeBtn;
 
         [SerializeField]
-        private Text m_UpgradeRequiredCoinTxt;
+        private Image m_Res1Img;
         [SerializeField]
-        private Image m_UpgradeRequiredImg1;
+        private Text m_Res1Value;
         [SerializeField]
-        private Image m_UpgradeRequiredImg2;
+        private Image m_Res2Img;
         [SerializeField]
-        private Text m_UpgradeRequiredTxt1;
+        private Text m_Res2Value;
         [SerializeField]
-        private Text m_UpgradeRequiredTxt2;
+        private Image m_Res3Img;
+        [SerializeField]
+        private Text m_Res3Value;
 
         [SerializeField]
         private Transform m_KitchenContTra;
@@ -50,9 +52,10 @@ namespace GameWish.Game
         private GameObject m_FoodItemPrefab;
 
         private FacilityType m_CurFacilityType = FacilityType.None;
-
+        private List<CostItem> m_CostItems;
         private int m_CurLevel;
         private KitchLevelInfo m_CurKitchLevelInfo = null;
+        private KitchLevelInfo m_NextKitchLevelInfo = null;
 
 
         private List<FoodItem> m_Items = new List<FoodItem>();
@@ -67,6 +70,8 @@ namespace GameWish.Game
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_CurKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
+            m_NextKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
+            m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
         }
 
         private void RefreshPanelInfo()
@@ -86,26 +91,35 @@ namespace GameWish.Game
             m_NextFoodLimitTxt.text = string.Format("+{0}", m_CurKitchLevelInfo.GetNextFoodLimit() - m_CurKitchLevelInfo.GetCurFoodLimit());
             m_NextRecoverySpeedTxt.text = string.Format("+{0}", m_CurKitchLevelInfo.GetNextFoodAddSpeed() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());
 
-            m_UpgradeRequiredCoinTxt.text = m_CurKitchLevelInfo.upgradeCoinCost.ToString();
+            RefreshResInfo();
 
-            //升级所需资源
-            var costsList = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Kitchen, m_CurLevel).upgradeResCosts.facilityCosts;
-            if (costsList.Count > 1)
+        }
+        private void RefreshResInfo()
+        {
+            if (m_CostItems.Count == 1)
             {
-                m_UpgradeRequiredImg2.gameObject.SetActive(true);
-                m_UpgradeRequiredTxt2.gameObject.SetActive(true);
-                m_UpgradeRequiredImg2.sprite = FindSprite(TDItemConfigTable.GetData(costsList[1].itemId).iconName);
-                m_UpgradeRequiredTxt2.text = costsList[1].value.ToString();
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+                m_Res2Value.text = m_NextKitchLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Img.sprite = FindSprite("Coin");
+                m_Res3Img.gameObject.SetActive(false);
             }
-            else
+            else if (m_CostItems.Count == 2)
             {
-                m_UpgradeRequiredImg2.gameObject.SetActive(false);
-                m_UpgradeRequiredTxt2.gameObject.SetActive(false);
+                m_Res1Value.text = m_CostItems[0].value.ToString();
+                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
+                m_Res3Value.text = m_NextKitchLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Img.sprite = FindSprite("Coin");
+                m_Res3Img.gameObject.SetActive(true);
             }
-            m_UpgradeRequiredImg1.sprite = FindSprite(TDItemConfigTable.GetData(costsList[0].itemId).iconName);
-            m_UpgradeRequiredTxt1.text = costsList[0].value.ToString();
         }
 
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
+        }
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);

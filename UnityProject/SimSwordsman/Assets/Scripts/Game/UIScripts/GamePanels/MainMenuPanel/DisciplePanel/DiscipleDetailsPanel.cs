@@ -180,7 +180,6 @@ namespace GameWish.Game
                     break;
             }
 
-
             SetCharacterBehavior(m_CurDisciple.GetCharacterStateID());
 
             foreach (var item in m_Kongfus.Values)
@@ -354,10 +353,23 @@ namespace GameWish.Game
             {
                 UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
             });
-            //m_PracticeValueBtn.onClick.AddListener(()=> {
-            //    m_CurCharacterController.SetState(CharacterStateID.Practice);
-            //    OnPanelHideComplete();
-            //});
+            m_IntensifyArmorBtn.onClick.AddListener(() =>
+            {
+                CharacterArmor characterArmor = m_CurDisciple.characeterEquipmentData.CharacterArmor;
+
+                UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArmor.ArmorID, characterArmor.Class + 1);
+                  
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
+                if (!isHave)   
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
+                    return;
+                }
+
+                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)upgrade.PropID), upgrade.Number);
+                characterArmor.UpGradeClass(m_CurDisciple.id);
+                RefreshArmorInfo();
+            });
             m_EjectValueBtn.onClick.AddListener(() =>
             {
                 MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
@@ -365,11 +377,23 @@ namespace GameWish.Game
             });
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
-            //m_ExpulsionBtn.onClick.AddListener(() =>
-            //{
-            //    MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
-            //    CloseSelfPanel();
-            //});
+            m_IntensifyArmsBtn.onClick.AddListener(() =>
+            {
+                CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
+
+                UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArms.ArmsID, characterArms.Class + 1);
+
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
+                if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
+                    return;
+                }
+
+                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)upgrade.PropID), upgrade.Number);
+                characterArms.UpGradeClass(m_CurDisciple.id);
+                RefreshArmsInfo();
+            });
         }
 
         protected override void OnPanelOpen(params object[] args)

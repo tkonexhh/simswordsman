@@ -208,6 +208,12 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
+        public void UpGradeEquipment(int characterID, CharaceterEquipment characeterEquipment)
+        {
+            ownedCharacterData.AddEquipment(characterID, characeterEquipment);
+
+            SetDataDirty();
+        }
 
         public void UnlockEquip(int characterID, UnlockContent unlockContent)
         {

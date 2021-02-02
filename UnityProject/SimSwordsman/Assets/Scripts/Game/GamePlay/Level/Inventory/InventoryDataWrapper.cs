@@ -88,7 +88,6 @@ namespace GameWish.Game
             {
                 if (i.PropType == PropType.RawMaterial)
                 {
-                    //TODO当某一个物品999的时候
                     PropItem propItem = (PropItem)i;
                     if (propItem.PropSubType == rawMaterial && propItem.Number >= number)
                         isGet =  true;
@@ -353,9 +352,15 @@ namespace GameWish.Game
         public override void RefreshItemInfo()
         {
             PropConfigInfo configInfo = TDItemConfigTable.GetPropConfigInfo((int)PropSubType);
-            Desc = configInfo.desc;
-            Name = configInfo.name;
-            Price = configInfo.price;
+            if (configInfo!=null)
+            {
+                Desc = configInfo.desc;
+                Name = configInfo.name;
+                Price = configInfo.price;
+            }
+            else
+                Log.e("物品ID={0}", PropSubType);
+
         }
 
         public override int GetSortId()
