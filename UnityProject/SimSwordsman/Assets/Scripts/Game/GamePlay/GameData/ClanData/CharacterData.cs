@@ -23,6 +23,12 @@ namespace GameWish.Game
             if (character != null)
                 character.AddEquipmentItem(characeterEquipment);
         }
+        public void UpGradeEquipment(int characterID, CharaceterEquipment characeterEquipment)
+        {
+            CharacterItemDbData character = characterList.Where(i => i.id == characterID).FirstOrDefault();
+            if (character != null)
+                character.UpGradeEquipment(characeterEquipment);
+        }
 
         public void AddCharacter(int id, CharacterQuality quality)
         {
@@ -195,6 +201,10 @@ namespace GameWish.Game
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
         {
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
+        }  
+        public void UpGradeEquipment(CharaceterEquipment characeterEquipment)
+        {
+            characeterDBEquipmentData.AddEquipment(characeterEquipment);
         }
 
         public void SetTask(int taskId)
@@ -280,6 +290,19 @@ namespace GameWish.Game
                     break;
             }
         }
+
+        public void UpGradeEquipment(CharaceterEquipment characeterEquipment)
+        {
+            switch (characeterEquipment.PropType)
+            {
+                case PropType.Arms:
+                    CharacterDBArms.UpGradeArms();
+                    break;
+                case PropType.Armor:
+                    CharacterDBArmor.UpGradeArmor();
+                    break;
+            }
+        }
     }
 
     [Serializable]
@@ -303,6 +326,10 @@ namespace GameWish.Game
             Class = arms.Class;
             ArmsID = arms.ArmsID; ;
         }
+        public void UpGradeArms()
+        {
+            Class = Mathf.Min(CharaceterEquipment.MaxLevel, Class + 1);
+        }
     }
 
     [Serializable]
@@ -316,6 +343,10 @@ namespace GameWish.Game
             PropType = armor.PropType;
             Class = armor.Class;
             ArmorID = armor.ArmorID; ;
+        }
+        public void UpGradeArmor()
+        {
+            Class = Mathf.Min(CharaceterEquipment.MaxLevel, Class + 1);
         }
     }
 

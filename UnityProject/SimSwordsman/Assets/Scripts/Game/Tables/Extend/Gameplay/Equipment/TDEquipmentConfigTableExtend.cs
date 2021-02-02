@@ -57,12 +57,6 @@ namespace GameWish.Game
                 return m_EquipDic[id];
             return null;
         }
-        public static UpgradeCondition GetUpgradeConditions(PropType equipType, int equipID, int classID)
-        {
-            if (m_EquipDic.ContainsKey(equipID))
-                return m_EquipDic[equipID].GetUpgradeConditionForClassID(classID);
-            return null;
-        }
         /// <summary>
         /// 获取装备图标名称
         /// </summary>
@@ -83,6 +77,16 @@ namespace GameWish.Game
         //        return m_EquipDic[(int)armsItem.ArmsID].GetBonusForClassID((int)armsItem.ClassID);
         //    return 0;
         //}
+        /// <summary>
+        /// 获取装备升级消耗
+        /// </summary>
+        public static UpgradeCondition GetEquipUpGradeConsume(int equipID,int step)
+        {
+            if (m_EquipDic.ContainsKey(equipID))
+                return m_EquipDic[equipID].GetUpgradeConditionForClassID(step);
+            return null;
+        }
+
         public static int GetSellingPrice(ArmsType arms, Step step)
         {
             int id = (int)arms;

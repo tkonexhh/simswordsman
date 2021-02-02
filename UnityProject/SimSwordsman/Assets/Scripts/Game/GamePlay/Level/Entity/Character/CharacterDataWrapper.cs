@@ -537,6 +537,8 @@ namespace GameWish.Game
 
     public abstract class CharaceterEquipment
     {
+        public const int MaxLevel = 9;
+
         public PropType PropType { set; get; }
         public string Name { set; get; }
         public string Desc { set; get; }
@@ -571,7 +573,11 @@ namespace GameWish.Game
                 RefreshInfo();
             }
         }
-
+        public void UpGradeClass(int characterID)
+        {
+            Class = Mathf.Min(MaxLevel, Class + 1);
+            GameDataMgr.S.GetClanData().UpGradeEquipment(characterID, this);
+        }
         public void AddArms(CharacterArms characterArms)
         {
             if (ArmsID == characterArms.ArmsID && Class== characterArms.Class)
@@ -602,7 +608,6 @@ namespace GameWish.Game
                 PropType = characterDBArms.PropType;
                 RefreshInfo();
             }
-
         }
 
         public override bool IsHaveEquip()
@@ -638,6 +643,12 @@ namespace GameWish.Game
                 Class = (int)armorItem.ClassID;
                 RefreshInfo();
             }
+        }
+
+        public void UpGradeClass(int characterID)
+        {
+            Class = Mathf.Min(MaxLevel, Class+1);
+            GameDataMgr.S.GetClanData().UpGradeEquipment(characterID, this);
         }
         public void AddArmor(CharacterArmor characterArmor)
         {

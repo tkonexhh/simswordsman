@@ -90,8 +90,8 @@ namespace GameWish.Game
         Malachite = 3001,       //¿×È¸Ê¯
         Agate = 3002,           //ºìÂêè§
         Crystal = 3003,         //×ÏÁú¾§
-        GoldenThread = 3004,    //½ğË¿
-        DragonScales = 3005,    //ÁúÁÛ
+        GoldenThread = 3101,    //½ğË¿
+        DragonScales = 3102,    //ÁúÁÛ
 
     }
 
