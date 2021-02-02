@@ -95,28 +95,28 @@ namespace GameWish.Game
             switch (type)
             {
                 case FacilityType.Lobby:
-                    spritename = "lobby_title";
+                    spritename = "LobbyPanel_lobby_title";
                     break;
                 case FacilityType.LivableRoomEast1:
                 case FacilityType.LivableRoomEast2:
                 case FacilityType.LivableRoomEast3:
                 case FacilityType.LivableRoomEast4:
-                    spritename = "livableroomeast_title";
+                    spritename = "LivableRoomPanel_EastName";
                     break;
                 case FacilityType.LivableRoomWest1:
                 case FacilityType.LivableRoomWest2:
                 case FacilityType.LivableRoomWest3:
                 case FacilityType.LivableRoomWest4:
-                    spritename = "livableroomwest_title";
+                    spritename = "LivableRoomPanel_WeatName";
                     break;
                 case FacilityType.Warehouse:
-                    spritename = "warehouse_title";
+                    spritename = "WareHouse_title";
                     break;
                 case FacilityType.PracticeFieldEast:
-                    spritename = "practicefieldeast_title";
+                    spritename = "PracticeFieldEast";
                     break;
                 case FacilityType.PracticeFieldWest:
-                    spritename = "practicefieldwest_title";
+                    spritename = "PracticeFieldWest";
                     break;
                 case FacilityType.KongfuLibrary:
                     spritename = "kongfulibrary_title";
@@ -125,7 +125,7 @@ namespace GameWish.Game
                     spritename = "kitchen_title";
                     break;
                 case FacilityType.ForgeHouse:
-                    spritename = "forgehouse_title";
+                    spritename = "forgehourse_title";
                     break;
                 case FacilityType.Baicaohu:
                     spritename = "baicaohu_title";
