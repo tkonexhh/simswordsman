@@ -9,6 +9,8 @@ namespace GameWish.Game
 {
 	public class ChallengeChooseDisciple : AbstractAnimPanel
 	{
+        [SerializeField]
+        private Button m_CloseBtn;
 
         [Header("Bottom")]
         [SerializeField]
@@ -162,6 +164,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
+            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+
             m_ConfirmBtn.onClick.AddListener(()=> {
                 if (m_SelectedDiscipleDic.Count!= ChallengeSelectedDiscipleNumber)
                 {

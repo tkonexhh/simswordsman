@@ -160,11 +160,18 @@ namespace GameWish.Game
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
                     HandConfirmBtnEvent();
                     m_AcceptText.text = "发去战斗";
+                    m_RecommendedSkillsTitle.gameObject.SetActive(false);
+                    m_RecommendedSkillsValue.gameObject.SetActive(false);
+                    m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
+                    m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
+                    m_StateBg.gameObject.SetActive(false);
+                    m_State.gameObject.SetActive(false);
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
                     m_AcceptText.text = "开始战斗";
+                    m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
                     break;
                 default:
                     break;
@@ -178,7 +185,7 @@ namespace GameWish.Game
             m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
 
             int selected = (int)atkValue;
-            int recommended = int.Parse(m_RecommendedSkillsValue.text);
+            int recommended = m_LevelConfigInfo.recommendAtkValue;
             float result = selected / recommended;
             if (result < 0.75)
             {

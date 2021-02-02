@@ -118,7 +118,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
             EventSystem.S.Register(EventID.OnSelectedKungfuSuccess, HandleAddListenerEvevt);
 
-
             InitPanelTitleInfo();
 
             BindAddListenerEvent();
@@ -141,6 +140,22 @@ namespace GameWish.Game
             m_EjectValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_EJECT);
             m_IntensifyArmorValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
             m_IntensifyArmsValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
+
+        }
+
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
+
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleImg.sprite = obj;
+            });
         }
 
         private void RefreshPanelInfo()
@@ -365,7 +380,7 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshPanelInfo();
-
+            LoadClanPrefabs(GetLoadDiscipleName(m_CurDisciple));
         }
 
         private void GetInformationForNeed()

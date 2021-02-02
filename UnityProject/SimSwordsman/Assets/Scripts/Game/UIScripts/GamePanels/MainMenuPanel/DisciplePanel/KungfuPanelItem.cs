@@ -26,9 +26,11 @@ namespace GameWish.Game
     public class KungfuPanelItem : MonoBehaviour, ItemICom
     {
         [SerializeField]
-        private Image m_SecretBookBg;
+        private Image m_NotLearnBg;
         [SerializeField]
-        private Image m_KungfuBg;
+        private Image m_SelectBg;
+        [SerializeField]
+        private Image m_LearnBg;
         [SerializeField]
         private Text m_KungfuName;
         [SerializeField]
@@ -89,22 +91,24 @@ namespace GameWish.Game
                     m_ClassValue.text = GetKungfuClass(m_CharacterKongfu.dbData.level);
                     m_KungfuAddition.text = GetKungfuAddition(m_CharacterKongfu.atkScale);
                     m_RestrictionsValue.text = Define.COMMON_DEFAULT_STR;
-                    m_SecretBookBg.gameObject.SetActive(true);
+                    m_LearnBg.gameObject.SetActive(true);
+                    m_SelectBg.gameObject.SetActive(true);
+                    m_NotLearnBg.gameObject.SetActive(false);
                     switch (GetKungfuQuality(m_CharacterKongfu.GetKongfuType()))
                     {
                         case KungfuQuality.Normal:
-                            m_KungfuBg.sprite = GetSprite("Introduction");
+                            m_LearnBg.sprite = GetSprite("Introduction");
                             break;
                         case KungfuQuality.Super:
-                            m_KungfuBg.sprite = GetSprite("Advanced");
+                            m_LearnBg.sprite = GetSprite("Advanced");
                             break;
                         case KungfuQuality.Master:
-                            m_KungfuBg.sprite = GetSprite("Excellent");
+                            m_LearnBg.sprite = GetSprite("Excellent");
                             break;
                         default:
                             break;
                     }
-                    m_SecretBookBg.sprite = GetSprite(GetIconName(m_CharacterKongfu.GetKongfuType()));
+                    m_SelectBg.sprite = GetSprite(GetIconName(m_CharacterKongfu.GetKongfuType()));
 
                     break;
                 case KungfuLockState.NotLearning:
@@ -113,8 +117,10 @@ namespace GameWish.Game
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
                     m_RestrictionsValue.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_STATE_LEARNABLE);
-                    m_KungfuBg.sprite = GetSprite("NotStudy");
-                    m_SecretBookBg.gameObject.SetActive(false);
+                    m_NotLearnBg.sprite = GetSprite("NotStudy");
+                    m_LearnBg.gameObject.SetActive(false);
+                    m_SelectBg.gameObject.SetActive(false);
+                    m_NotLearnBg.gameObject.SetActive(true);
                     break;
                 case KungfuLockState.NotUnlocked:
                     m_KungfuBtn.enabled = false;
@@ -122,8 +128,11 @@ namespace GameWish.Game
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
                     m_RestrictionsValue.text = GetKungfuUnLock(m_UnLockLevel);
-                    m_KungfuBg.sprite = GetSprite("Lock");
-                    m_SecretBookBg.gameObject.SetActive(false);
+                    m_NotLearnBg.sprite = GetSprite("Lock");
+                    m_SelectBg.gameObject.SetActive(false);
+                    m_LearnBg.gameObject.SetActive(false);
+                    m_NotLearnBg.gameObject.SetActive(true);
+
                     break;
                 default:
                     break;

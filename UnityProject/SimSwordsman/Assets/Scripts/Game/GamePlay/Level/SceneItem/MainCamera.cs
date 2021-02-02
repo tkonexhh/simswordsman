@@ -14,7 +14,7 @@ namespace GameWish.Game
         public Vector2 m_CameraBottomLeft = new Vector2(-3.5f, -4.8f);
         [HideInInspector]
         public Vector2 m_CameraTopRight = new Vector2(12.6f, 9.5f);
-        private float m_MoveSpeed = 0.05f;
+        private float m_MoveSpeed = 0.05f;  
 
         private TouchInputController m_TouchInput;
         private MobileTouchCamera m_MobileTouchCamera;

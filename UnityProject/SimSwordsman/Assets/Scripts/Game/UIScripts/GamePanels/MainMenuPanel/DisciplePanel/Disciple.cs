@@ -60,17 +60,24 @@ namespace GameWish.Game
             }
 
 
-            LoadClanPrefabs("head_"+ m_CurCharacter.quality.ToString().ToLower()+"_"+ m_CurCharacter.bodyId+"_"+ m_CurCharacter.headId);
+            LoadClanPrefabs(GetLoadDiscipleName(m_CurCharacter));
+        }
+
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
         }
 
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-            loader.InstantiateAsync(prefabsName, (obj) =>
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
             {
-                Debug.Log(obj);
+                //Debug.Log(obj);
+                m_DiscipleImg.sprite = obj;
             });
         }
+
         /// <summary>
         /// 获取当前弟子的id
         /// </summary>
