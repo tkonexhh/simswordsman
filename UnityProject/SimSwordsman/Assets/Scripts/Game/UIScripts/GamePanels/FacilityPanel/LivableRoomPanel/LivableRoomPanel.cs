@@ -46,14 +46,14 @@ namespace GameWish.Game
                 case FacilityType.LivableRoomEast2:
                 case FacilityType.LivableRoomEast3:
                 case FacilityType.LivableRoomEast4:
-                    m_LivableRoomName.sprite = FindSprite("EastName");
+                    m_LivableRoomName.sprite = FindSprite("LivableRoomPanel_EastName");
                     m_IsLivableRoomEast = true;
                     break;
                 case FacilityType.LivableRoomWest1:
                 case FacilityType.LivableRoomWest2:
                 case FacilityType.LivableRoomWest3:
                 case FacilityType.LivableRoomWest4:
-                    m_LivableRoomName.sprite = FindSprite("WeatName");
+                    m_LivableRoomName.sprite = FindSprite("LivableRoomPanel_WeatName");
                     m_IsLivableRoomEast = false;
                     break;
             }

@@ -46,7 +46,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.UIParticalPanel, null, "Common/UIParticalPanel");
 
             //在开发阶段使用该模式方便调试
-            UIDataTable.SetABMode(false);
+            UIDataTable.SetABMode(true);
 
             //guide
             //UIDataTable.AddPanelData(UIID.MyGuidePanel, null, "GuidePanel/MyGuidePanel", true);

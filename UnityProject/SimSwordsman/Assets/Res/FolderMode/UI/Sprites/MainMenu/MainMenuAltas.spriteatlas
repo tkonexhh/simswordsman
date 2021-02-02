@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MainMenuAltas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: ab2f0e98f738f504a89196c1da0bbd31, type: 3}
+    - {fileID: 2800000, guid: e86596acb357be44da7abe083e6b3cdb, type: 3}
+    - {fileID: 2800000, guid: 39401cfc27621e34ebd3691c80496313, type: 3}
+    - {fileID: 2800000, guid: 4886838afa9c78141955f326926b424c, type: 3}
+    - {fileID: 2800000, guid: 5d8ee03313b4efc4988d6557e7ea89bc, type: 3}
+    - {fileID: 2800000, guid: d7a377975c86abf48bf7852ccb1ba2eb, type: 3}
+    - {fileID: 2800000, guid: e8aaf00342c34d34c8114d2a3d317799, type: 3}
+    - {fileID: 2800000, guid: c6201469d6baa9d48b1c4b57b376eef5, type: 3}
+    - {fileID: 2800000, guid: d1d129eb7d6ce4c4692adae6d60b35b6, type: 3}
+    - {fileID: 2800000, guid: bb07388fd823ae547b768278e56c8390, type: 3}
+    - {fileID: 2800000, guid: 5faaf9533ddfbda47999b7a52d46b257, type: 3}
+    - {fileID: 2800000, guid: f65dd11a852ca584c8a41ec77527cde7, type: 3}
+    - {fileID: 2800000, guid: d8c75ed358d346e459f4f4452f5d257e, type: 3}
+    - {fileID: 2800000, guid: 9c632cf52a8d75e41bca22dee1e1739e, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e8aaf00342c34d34c8114d2a3d317799, type: 3}
+  - {fileID: 21300000, guid: 5d8ee03313b4efc4988d6557e7ea89bc, type: 3}
+  - {fileID: 21300000, guid: 5faaf9533ddfbda47999b7a52d46b257, type: 3}
+  - {fileID: 21300000, guid: d8c75ed358d346e459f4f4452f5d257e, type: 3}
+  - {fileID: 21300000, guid: 9c632cf52a8d75e41bca22dee1e1739e, type: 3}
+  - {fileID: 21300000, guid: d7a377975c86abf48bf7852ccb1ba2eb, type: 3}
+  - {fileID: 21300000, guid: ab2f0e98f738f504a89196c1da0bbd31, type: 3}
+  - {fileID: 21300000, guid: c6201469d6baa9d48b1c4b57b376eef5, type: 3}
+  - {fileID: 21300000, guid: f65dd11a852ca584c8a41ec77527cde7, type: 3}
+  - {fileID: 21300000, guid: 4886838afa9c78141955f326926b424c, type: 3}
+  - {fileID: 21300000, guid: d1d129eb7d6ce4c4692adae6d60b35b6, type: 3}
+  - {fileID: 21300000, guid: e86596acb357be44da7abe083e6b3cdb, type: 3}
+  - {fileID: 21300000, guid: 39401cfc27621e34ebd3691c80496313, type: 3}
+  - {fileID: 21300000, guid: bb07388fd823ae547b768278e56c8390, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - MainMenu_d-3
+  - MainMenu_Challenge
+  - MainMenu_Plus
+  - MainMenu_TitleBtn
+  - MainMenu_VoldemortTower
+  - MainMenu_Coin
+  - MainMenu_Baozi
+  - MainMenu_Disciple
+  - MainMenu_TitleBg
+  - MainMenu_BulletinBoard
+  - MainMenu_m-13
+  - MainMenu_Bg01
+  - MainMenu_Bg02
+  - MainMenu_MenuBg
+  m_Tag: MainMenuAltas
+  m_IsVariant: 0
