@@ -268,12 +268,12 @@ namespace GameWish.Game
                 case RecruitType.GoldMedal:
 					m_RecruitmentOrderTitle.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_GOLDRECRUITMENT);
 					m_RecruitmentOrderCont.text = RecruitmentOrderCont(RecruitType.GoldMedal);
-                    m_RecruitmentOrderTitleBg.sprite = m_Panel.FindSprite("BgFont2");
+                    m_RecruitmentOrderTitleBg.sprite = m_Panel.FindSprite("LobbyPanel_BgFont2");
 					break;
                 case RecruitType.SilverMedal:
 					m_RecruitmentOrderTitle.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_SILVERRECRUITMENT);
 					m_RecruitmentOrderCont.text = RecruitmentOrderCont(RecruitType.SilverMedal);
-                    m_RecruitmentOrderTitleBg.sprite = m_Panel.FindSprite("BgFont3");
+                    m_RecruitmentOrderTitleBg.sprite = m_Panel.FindSprite("LobbyPanel_BgFont3");
                     break;
                 default:
                     break;

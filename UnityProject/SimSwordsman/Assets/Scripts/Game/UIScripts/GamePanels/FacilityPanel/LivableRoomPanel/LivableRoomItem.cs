@@ -200,7 +200,7 @@ namespace GameWish.Game
 
                     if (!CheackIsBuild())
                     {
-                        m_UpgradeBtnImg.sprite = GetSprite("BgBtn3");
+                        m_UpgradeBtnImg.sprite = GetSprite("LivableRoomPanel_BgBtn3");
                         m_UpgradeBtn.interactable = false;
 
                         m_LivableRoomImg.gameObject.SetActive(false);
@@ -208,7 +208,7 @@ namespace GameWish.Game
                     }
                     else
                     {
-                        m_UpgradeBtnImg.sprite = GetSprite("BgBtn1");
+                        m_UpgradeBtnImg.sprite = GetSprite("LivableRoomPanel_BgBtn1");
                         m_UpgradeBtn.interactable = true;
 
                         m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
@@ -227,7 +227,7 @@ namespace GameWish.Game
                         + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_LivableRoomLevelInfo.GetNeedLobbyLevel()));
                     RefreshResInfo();
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
-                    m_UpgradeBtnImg.sprite= GetSprite("BgBtn2");
+                    m_UpgradeBtnImg.sprite= GetSprite("LivableRoomPanel_BgBtn2");
 
                     m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
                     m_LivableRoomImg.gameObject.SetActive(true);
