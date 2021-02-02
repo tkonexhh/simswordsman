@@ -58,8 +58,6 @@ namespace GameWish.Game
             //Set language
             //I18Mgr.S.SwitchLanguage(SystemLanguage.German);
 
-            //GameMgr.S.StartGuide();
-
             //GuideObjectMgr.S.Init();
 
             //EventSystem.S.Send(EventID.OnUpdateLoadProgress, 0.2f);
@@ -142,7 +140,8 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();
-                    //GameMgr.S.StartGuide();
+
+                    GameMgr.S.StartGuide();
                 }
             }
             else
@@ -167,6 +166,15 @@ namespace GameWish.Game
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                for (int i = (int)KongfuType.TaiZuChangQuan; i < (int)KongfuType.ZuiQuan; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
+                }
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
             }
         }
 
