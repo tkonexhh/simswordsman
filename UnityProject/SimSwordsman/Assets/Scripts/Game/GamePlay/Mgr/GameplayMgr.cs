@@ -177,7 +177,7 @@ namespace GameWish.Game
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                for (int i = (int)RawMaterial.Malachite; i < (int)RawMaterial.Crystal; i++)
+                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
                 }

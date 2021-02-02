@@ -199,7 +199,6 @@ namespace GameWish.Game
                         break;
                 }
             }
-
             RefreshArmsInfo();
             RefreshArmorInfo();
         }
@@ -248,9 +247,7 @@ namespace GameWish.Game
                 m_ArmsImg.gameObject.SetActive(false);
                 m_ArmsPlus.gameObject.SetActive(false);
             }
-
             // m_ArmsImg.sprite = FindSprite();
-
         }
         private void RefreshArmorInfo()
         {

@@ -63,13 +63,11 @@ namespace GameWish.Game
 					int _48Count = m_Hours / _48Hours;
 					RefreshFreeRecruit(_48Count);
                     gameObject.name = "RecruitmentOrderItem2";
-
                     break;
                 case RecruitType.SilverMedal:
 					int _12Count = m_Hours / _12Hours;
 					RefreshFreeRecruit(_12Count);
                     gameObject.name = "RecruitmentOrderItem1";
-
                     break;
                 default:
                     break;
@@ -88,14 +86,17 @@ namespace GameWish.Game
                 case ClickType.None:
                     break;
                 case ClickType.Free:
+					m_RecruitmentImg.gameObject.SetActive(false);
 					m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
 					m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_FREE);
 					break;
                 case ClickType.RecruitmentOrder:
+					m_RecruitmentImg.gameObject.SetActive(false);
 					m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT)+ MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType).ToString();
 					m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
 					break;
                 case ClickType.LookAdvertisement:
+					m_RecruitmentImg.gameObject.SetActive(true);
 					RefreshAdvertiseInfo();
 					m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
 					break;
@@ -299,7 +300,6 @@ namespace GameWish.Game
 
 		public void SetButtonEvent(Action<object> action)
         {
-            throw new NotImplementedException();
         }
 
 
