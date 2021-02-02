@@ -39,7 +39,7 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
-            m_Controller.CharacterView.PlayAnim("practice", true, null);
+            m_Controller.CharacterView.PlayAnim("write", true, null);
         }
     }
 }
