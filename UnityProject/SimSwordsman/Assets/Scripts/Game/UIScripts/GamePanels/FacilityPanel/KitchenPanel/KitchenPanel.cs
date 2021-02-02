@@ -72,14 +72,14 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_KitchenContTxt.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
-            m_FacilityIcon.sprite = FindSprite("Lobby" + m_CurLevel);
+            m_FacilityIcon.sprite = FindSprite("Kitchen" + m_CurLevel);
 
             RefreshPanelText();
             UpdateFoodItems();
         }
         private void RefreshPanelText()
         {
-            m_CurLevelTxt.text = m_CurLevel.ToString();
+            m_CurLevelTxt.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_CurFoodLimitTxt.text = m_CurKitchLevelInfo.GetCurFoodLimit().ToString();
             m_CurRecoverySpeedTxt.text = string.Format("{0}/∑÷÷”", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
 
