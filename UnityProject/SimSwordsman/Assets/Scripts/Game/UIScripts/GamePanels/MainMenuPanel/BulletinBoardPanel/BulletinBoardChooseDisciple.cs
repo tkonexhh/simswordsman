@@ -161,6 +161,8 @@ namespace GameWish.Game
         {
             m_ConfirmBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic, m_CommonTaskItemInfo);
                 HideSelfWithAnim();
             });

@@ -31,6 +31,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             m_ArrangeBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 m_KungfuLibraySlotInfo.SetCharacterItem(m_SelectedDisciple, SlotState.CopyScriptures, m_CurFacilityType);
                 EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, m_KungfuLibraySlotInfo);
                 HideSelfWithAnim();

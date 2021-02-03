@@ -243,10 +243,16 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
 
             m_UpgradeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 if (!CheackIsBuild())
                     return;
                 if (m_NextFacilityLevelInfo == null)
@@ -256,6 +262,8 @@ namespace GameWish.Game
 
                 if (isReduceSuccess)
                 {
+                    AudioMgr.S.PlaySound(Define.SOUND_BLEVELUP);
+
                     AddPracticeTime();
                     for (int i = 0; i < m_CostItems.Count; i++)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);

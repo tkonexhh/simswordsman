@@ -73,6 +73,8 @@ namespace GameWish.Game
         {
             m_SellBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 if (m_CurInventoryItem != null)
                 {
                     MainGameMgr.S.InventoryMgr.RemoveItem(m_CurInventoryItem, m_SelectedNumber);
@@ -82,12 +84,19 @@ namespace GameWish.Game
                     CloseSelfPanel();
                 }
             });
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_IncreaseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 //Debug.LogError("µã»÷");
                 RefreshIncreaseSellNumber();
             });
             m_ReduceBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 RefresReduceSellNumber();
             });
 

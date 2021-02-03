@@ -12,7 +12,7 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
-        private Button m_ClsoeBtn;
+        private Button m_CloseBtn;
 
         [Header("Middle")]
         [SerializeField]
@@ -107,7 +107,13 @@ namespace GameWish.Game
         private bool CheackIsBuild()
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_WarehouseNextLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
+            if (m_WarehouseNextLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
+
+            if (CheckPropIsEnough())
                 return true;
             return false;
         }
@@ -117,10 +123,19 @@ namespace GameWish.Game
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
+                }
             }
-
-            return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_WarehouseNextLevelInfo.upgradeCoinCost);
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_WarehouseNextLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
+            }
         }
 
         private void RefreshResInfo()
@@ -281,7 +296,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_ClsoeBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 if (!CheackIsBuild())

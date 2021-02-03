@@ -242,6 +242,7 @@ namespace GameWish.Game
         public const string MUSIC_MENU = "menu_music";
         public const string MUSIC_BATTLE = "battle_music";
         public const string SOUND_UI_BTN = "Button";
+        public const string SOUND_BLEVELUP = "Blevelup";
         public const string SOUND_BATTLE_WIN = "Battle_win";
         public const string SOUND_BEAR = "Bear";
         public const string SOUND_CHARACTER_LEVEL_UP = "Character_Levelup";

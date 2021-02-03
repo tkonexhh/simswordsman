@@ -182,11 +182,15 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_FuncBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 IsOpen = !IsOpen;
                 RefreshPanelInfo();
             });
             //前往
             m_GoToBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
 
                 if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                 {
@@ -223,9 +227,13 @@ namespace GameWish.Game
             });
             //婉拒
             m_DeclinedBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示","您确定要放弃任务吗");
             });
             m_Promptly.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
                 {
                     MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);

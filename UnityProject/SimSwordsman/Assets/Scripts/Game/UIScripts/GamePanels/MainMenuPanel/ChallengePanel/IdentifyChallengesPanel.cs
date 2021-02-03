@@ -39,10 +39,15 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
 
             m_ChallengeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.SendDisciplesPanel,PanelType.Challenge, m_CurChapterConfigInfo, m_LevelConfigInfo);
                 CloseSelfPanel();
                 CloseDependPanel(EngineUI.MaskPanel);

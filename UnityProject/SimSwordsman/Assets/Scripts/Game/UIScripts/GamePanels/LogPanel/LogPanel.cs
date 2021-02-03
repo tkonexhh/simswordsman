@@ -50,15 +50,21 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_RefuseBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 HideSelfWithAnim();
                 OnRefuseBtnEvent?.Invoke();
             });
             m_AcceptBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 HideSelfWithAnim();
                 OnSuccessBtnEvent?.Invoke();
             });
 
             m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 HideSelfWithAnim();
                 OnRefuseBtnEvent?.Invoke();
             });

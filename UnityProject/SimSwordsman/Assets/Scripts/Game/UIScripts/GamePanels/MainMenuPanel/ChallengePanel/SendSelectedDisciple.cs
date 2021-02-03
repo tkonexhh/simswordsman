@@ -35,6 +35,8 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_Btn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 switch (m_PanelType)
                 {
                     case PanelType.Task:

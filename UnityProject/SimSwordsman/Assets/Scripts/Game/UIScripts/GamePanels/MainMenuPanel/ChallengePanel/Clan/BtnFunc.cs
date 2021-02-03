@@ -77,8 +77,10 @@ namespace GameWish.Game
 		void Start()
 	    {
 			m_Self = GetComponent<Button>();
-			m_Self.onClick.AddListener(()=> { 
-				 UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, m_CurChapterLevelConfigInfo);
+			m_Self.onClick.AddListener(()=> {
+				AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+				UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, m_CurChapterLevelConfigInfo);
 			});
 		}
 	

@@ -31,6 +31,8 @@ namespace GameWish.Game
             m_CurTaskInfo = t as SimGameTask;
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
             m_Btn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_CurTaskInfo);
             });
         }

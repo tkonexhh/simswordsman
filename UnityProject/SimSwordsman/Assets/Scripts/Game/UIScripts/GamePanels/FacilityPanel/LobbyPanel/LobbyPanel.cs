@@ -108,9 +108,12 @@ namespace GameWish.Game
         /// </summary>
         private void BindAddListenerEvent()
         {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_UpgradeBtn.onClick.AddListener(() => { OnClickUpgradeBtn(); });
-
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
             //m_SilverRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.SilverMedal); });
             //m_GoldRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.GoldMedal); });
@@ -235,6 +238,8 @@ namespace GameWish.Game
         /// </summary>
         private void OnClickUpgradeBtn()
         {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
             if (!CheackIsBuild())
                 return;
             if (m_NextFacilityLevelInfo == null)
@@ -242,6 +247,7 @@ namespace GameWish.Game
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)
             {
+                AudioMgr.S.PlaySound(Define.SOUND_BLEVELUP);
                 for (int i = 0; i < m_CostItems.Count; i++)
                     MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
@@ -251,6 +257,13 @@ namespace GameWish.Game
         }
         private bool CheackIsBuild()
         {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (m_NextFacilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
+
             if (CheckPropIsEnough())
                 return true;
             return false;

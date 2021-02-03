@@ -51,8 +51,16 @@ namespace GameWish.Game
                 item.Value.SignItemCallBack = SignItemCallBack;
             }
 
-            m_BackBtn.onClick.AddListener(OnBackBtCallBack);
-            m_AcceptBtn.onClick.AddListener(OnClickAccept);
+            m_BackBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                OnBackBtCallBack();
+            });
+            m_AcceptBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                OnClickAccept();
+            });
 
             UpdateSignItemStatus();
 

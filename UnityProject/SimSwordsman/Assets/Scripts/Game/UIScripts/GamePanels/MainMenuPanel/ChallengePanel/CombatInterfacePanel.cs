@@ -244,6 +244,8 @@ namespace GameWish.Game
         {
             m_CloseBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogPanelCallback,
                     CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_TITLE),
                     CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_CONTENT),
