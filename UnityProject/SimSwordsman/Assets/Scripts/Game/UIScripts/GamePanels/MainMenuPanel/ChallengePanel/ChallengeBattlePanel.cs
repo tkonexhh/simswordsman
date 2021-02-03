@@ -96,6 +96,8 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(()=>{
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });

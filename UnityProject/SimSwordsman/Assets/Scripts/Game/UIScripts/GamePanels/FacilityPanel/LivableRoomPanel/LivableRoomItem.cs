@@ -102,6 +102,7 @@ namespace GameWish.Game
         {
             m_UpgradeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (!CheackIsBuild())
                 {
                     FloatMessage.S.ShowMsg("未达到升级条件");
@@ -115,6 +116,7 @@ namespace GameWish.Game
                         MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
                         break;
                     case LivableRoomState.Upgrade:
+                        AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                         bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_LivableRoomLevelInfo.upgradeCoinCost);
                         if (isReduceSuccess)
                         {
@@ -134,24 +136,38 @@ namespace GameWish.Game
             });
         }
 
-        private bool CheackIsBuild()
-        {
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_LivableRoomLevelInfo.GetUpgradeCondition() <= lobbyLevel && CheckPropIsEnough())
-                return true;
-            return false;
-        }
-
-        private bool CheckPropIsEnough()
+     private bool CheckPropIsEnough()
         {
             for (int i = 0; i < m_CostItems.Count; i++)
             {
-              bool isHave =  MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
+                }
+            }
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_LivableRoomLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
+            }
+        }
+        private bool CheackIsBuild()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (m_LivableRoomLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
             }
 
-           return GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_LivableRoomLevelInfo.upgradeCoinCost);
+            if (CheckPropIsEnough())
+                return true;
+            return false;
         }
 
         private void GetInformationForNeed()

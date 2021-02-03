@@ -72,14 +72,20 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_RefuseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_RefuseBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_AcceptBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.SendDisciplesPanel,PanelType.Task, m_CurTaskInfo);
                 UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
                 OnPanelHideComplete();
             });
             m_AcceptBtn.onClick.AddListener(()=> {
-                
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
             });
         }
 

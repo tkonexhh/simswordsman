@@ -11,7 +11,7 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
-        private Button m_CloaseBtn;
+        private Button m_CloseBtn;
 
         [Header("Middle")]
         [SerializeField]
@@ -49,7 +49,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloaseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
         }
 
         protected override void OnOpen()
@@ -127,6 +130,9 @@ namespace GameWish.Game
 
             for (int i = 0; i < taskRewards.Count; i++)
                 needSprite.Add(FindSprite(GetStrForItemID(taskRewards[0].id)));
+
+            needSprite.Add(FindSprite("button_normal_blue"));
+            needSprite.Add(FindSprite("BulletinBoardPanel_Bg11"));
 
             GameObject obj = Instantiate(m_BulletinBoardtem, m_TaskContParent);
             ItemICom taskItem = obj.GetComponent<ItemICom>();

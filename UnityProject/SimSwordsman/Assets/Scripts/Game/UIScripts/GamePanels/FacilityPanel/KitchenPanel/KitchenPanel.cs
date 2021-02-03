@@ -71,7 +71,9 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_CurKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_NextKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
-            m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
+            if (m_NextKitchLevelInfo!=null)
+                 m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
+    
         }
 
         private void RefreshPanelInfo()
@@ -96,26 +98,46 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
+            if (m_CostItems == null)
+                return;
+
             if (m_CostItems.Count == 1)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_NextKitchLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
                 m_Res2Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(false);
             }
             else if (m_CostItems.Count == 2)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
                 m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-                m_Res3Value.text = m_NextKitchLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
                 m_Res3Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(true);
             }
         }
 
+        private int GetCurItem(int hava,int number)
+        {
+            if (hava >= number)
+                return number;
+            return hava;
+        }
+
+        private string GetCurCoin()
+        {
+            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            if (coin >= m_NextKitchLevelInfo.upgradeCoinCost)
+                return CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
+            return CommonUIMethod.GetTenThousand((int)coin);
+        }
         private string GetIconName(int id)
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
@@ -170,48 +192,67 @@ namespace GameWish.Game
                 }
             }
         }
+        private bool CheckPropIsEnough()
+        {
+            for (int i = 0; i < m_CostItems.Count; i++)
+            {
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
+                if (!isHave)
+                {
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
+                    return false;
+                }
+            }
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextKitchLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
+            }
+        }
+        private bool CheackIsBuild()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (m_NextKitchLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
 
+            if (CheckPropIsEnough())
+                return true;
+            return false;
+        }
         private void BindAddListenerEvent()
         {
-            //音效
-            foreach (var item in transform.GetComponentsInChildren<Button>(true))
+            m_CloseBtn.onClick.AddListener(() =>
             {
-                item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
-            }
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-                //检查等级要求
-                if (MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() < TDFacilityKitchenTable.GetLevelInfo(m_CurLevel).upgradeNeedLobbyLevel)
-                {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "主城层级不足！");
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                if (!CheackIsBuild())
                     return;
-                }
-                //判断材料
-                var costsList = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Kitchen, m_CurLevel).upgradeResCosts.facilityCosts;
-                if (!MainGameMgr.S.InventoryMgr.HaveEnoughItem(costsList))
-                {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                if (m_NextKitchLevelInfo == null)
                     return;
-                }
-                //判断铜钱
-                long coins = m_CurKitchLevelInfo.upgradeCoinCost;
-                if (GameDataMgr.S.GetPlayerData().GetCoinNum() < coins)
+                bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextKitchLevelInfo.upgradeCoinCost);
+                if (isReduceSuccess)
                 {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "铜钱不足！");
-                    return;
+                    AudioMgr.S.PlaySound(Define.SOUND_BLEVELUP);
+                    for (int i = 0; i < m_CostItems.Count; i++)
+                        MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
+                    EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
+                    GetInformationForNeed();
+                    //解锁食物
+                    int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
+                    if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
+                        GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
+                    RefreshPanelInfo();
                 }
-
-                MainGameMgr.S.InventoryMgr.ReduceItems(costsList);
-                GameDataMgr.S.GetPlayerData().ReduceCoinNum(coins);
-                EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
-                GetInformationForNeed();
-                //解锁食物
-                int unlockfoodid = TDFacilityKitchenTable.GetData(m_CurLevel).unlockRecipe;
-                if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
-                    GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
-
-                RefreshPanelInfo();
             });
         }
 

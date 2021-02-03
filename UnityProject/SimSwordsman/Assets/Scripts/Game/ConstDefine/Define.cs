@@ -66,6 +66,7 @@ namespace GameWish.Game
         public const string COMMON_UNIT_INDIVIDUAL = "Common_Unit_Individual";
         public const string COMMON_UNIT_ONLY = "Common_Unit_Only";
         public const string COMMON_UNIT_LAYER = "Common_Unit_Layer";
+        public const string COMMON_UNIT_TENTHOUSAND = "Common_Unit_TenThousand";
         public const string COMMON_NEXTLEVELUNLOCK = "Common_NextLevelUnlock";
         public const string COMMON_REWARD = "Common_Reward";
         public const string COMMON_DECLINED = "Common_Declined";
@@ -94,6 +95,7 @@ namespace GameWish.Game
         public const int CHARACTER_GOOD_MAX_LEVEL = 350;
         public const int CHARACTER_EXCELLENT_MAX_LEVEL = 450;
         public const int CHARACTER_MAX_LEVEL = 1000;
+        public const string CHARACTER_TASK_REWARD_BUBBLE = "CharacterTaskRewardBubble";
 
         // Animation
         public const string ANIM_MOVE = "move";
@@ -241,6 +243,7 @@ namespace GameWish.Game
         public const string MUSIC_MENU = "menu_music";
         public const string MUSIC_BATTLE = "battle_music";
         public const string SOUND_UI_BTN = "Button";
+        public const string SOUND_BLEVELUP = "Blevelup";
         public const string SOUND_BATTLE_WIN = "Battle_win";
         public const string SOUND_BEAR = "Bear";
         public const string SOUND_CHARACTER_LEVEL_UP = "Character_Levelup";

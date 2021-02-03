@@ -193,6 +193,8 @@ namespace GameWish.Game
 		/// </summary>
 		private void OnClickRecruitBtn(RecruitType type)
 		{
+			AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
 			switch (m_RecruitDic[type])
 			{
 				case ClickType.Free:

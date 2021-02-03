@@ -81,9 +81,14 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_UpgradeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 if (!CheackIsBuild())
                     return;
 
@@ -93,6 +98,7 @@ namespace GameWish.Game
 
                 if (isReduceSuccess)
                 {
+                    AudioMgr.S.PlaySound(Define.SOUND_BLEVELUP);
                     AddPracticeTime();
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                     GetInformationForNeed();

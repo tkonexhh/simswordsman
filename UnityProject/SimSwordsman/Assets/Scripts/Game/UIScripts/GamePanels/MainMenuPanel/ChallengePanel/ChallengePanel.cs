@@ -63,7 +63,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
         }
 
         protected override void OnPanelHideComplete()

@@ -70,13 +70,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            //音效
-            foreach (var item in transform.GetComponentsInChildren<Button>(true))
-            {
-                item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
-            }
             m_AcceptBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 Debug.LogError("应当看一个广告");
 
                 m_visitor.Reward.AcceptReward();
@@ -88,11 +85,15 @@ namespace GameWish.Game
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 VisitorSystem.S.Disappear(m_visitor);
                 HideSelfWithAnim();
             });
             m_CloseBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 VisitorSystem.S.Disappear(m_visitor);
                 HideSelfWithAnim();
             });

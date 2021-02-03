@@ -108,9 +108,12 @@ namespace GameWish.Game
         /// </summary>
         private void BindAddListenerEvent()
         {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_UpgradeBtn.onClick.AddListener(() => { OnClickUpgradeBtn(); });
-
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
             //m_SilverRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.SilverMedal); });
             //m_GoldRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.GoldMedal); });
@@ -179,24 +182,43 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
+            if (m_CostItems == null)
+                return;
+
             if (m_CostItems.Count == 1)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_NextFacilityLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextFacilityLevelInfo.upgradeCoinCost);
                 m_Res2Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(false);
             }
             else if (m_CostItems.Count == 2)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
                 m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-                m_Res3Value.text = m_NextFacilityLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextFacilityLevelInfo.upgradeCoinCost);
                 m_Res3Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(true);
             }
+        }
+        private int GetCurItem(int hava, int number)
+        {
+            if (hava >= number)
+                return number;
+            return hava;
+        }
+        private string GetCurCoin()
+        {
+            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            if (coin >= m_NextFacilityLevelInfo.upgradeCoinCost)
+                return CommonUIMethod.GetTenThousand(m_NextFacilityLevelInfo.upgradeCoinCost);
+            return CommonUIMethod.GetTenThousand((int)coin);
         }
 
         private string GetIconName(int id)
@@ -216,6 +238,7 @@ namespace GameWish.Game
         /// </summary>
         private void OnClickUpgradeBtn()
         {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
             if (!CheackIsBuild())
                 return;
@@ -224,6 +247,7 @@ namespace GameWish.Game
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)
             {
+                AudioMgr.S.PlaySound(Define.SOUND_BLEVELUP);
                 for (int i = 0; i < m_CostItems.Count; i++)
                     MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
@@ -233,6 +257,13 @@ namespace GameWish.Game
         }
         private bool CheackIsBuild()
         {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (m_NextFacilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
+
             if (CheckPropIsEnough())
                 return true;
             return false;
@@ -256,8 +287,6 @@ namespace GameWish.Game
                 FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
                 return false;
             }
-
-
         }
         /// <summary>
         /// 刷新等级信息
@@ -268,7 +297,8 @@ namespace GameWish.Game
             m_NextFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel + 1);
             m_CurFacilityConfigInfo = m_FacilityMgr.GetFacilityConfigInfo(FacilityType.Lobby);
             m_UnlockContent = MainGameMgr.S.FacilityMgr.GetUnlockContent(m_CurLevel + 1);
-            m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
+            if (m_NextFacilityLevelInfo != null)
+                m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
         }
     }
 }

@@ -69,9 +69,15 @@ namespace GameWish.Game
         
         private void BindAddListenerEvent()
         {
-            m_RandomBtn.onClick.AddListener(RandomName);
+            m_RandomBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                RandomName();
+            });
             m_AcceptBtn.onClick.AddListener(()=> 
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 if (IllegalCheckName(m_ClanName.text))
                 {
                     UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "名称不合法！");

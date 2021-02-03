@@ -167,6 +167,8 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
 
             m_ConfirmBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 if (m_SelectedDiscipleDic.Count!= ChallengeSelectedDiscipleNumber)
                 {
                     //FloatMessage.S.ShowMsg("人数不足五人，请选满");

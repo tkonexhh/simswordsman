@@ -9,6 +9,8 @@ namespace GameWish.Game
 {
     public class DiscipleDetailsPanel : AbstractAnimPanel
     {
+        [SerializeField]
+        private Button m_BlackBtn;
         [Header("Top")]
         [SerializeField]
         private Text m_DiscipleNameValue;
@@ -152,7 +154,7 @@ namespace GameWish.Game
         {
             AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
             loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
+            {          
                 //Debug.Log(obj);
                 m_DiscipleImg.sprite = obj;
             });
@@ -344,14 +346,20 @@ namespace GameWish.Game
         {
             m_ArmorBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Armor, m_CurDisciple);
             });
             m_ArmsBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
             });
             m_IntensifyArmorBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 CharacterArmor characterArmor = m_CurDisciple.characeterEquipmentData.CharacterArmor;
 
                 UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArmor.ArmorID, characterArmor.Class + 1);
@@ -369,13 +377,24 @@ namespace GameWish.Game
             });
             m_EjectValueBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
                 OnPanelHideComplete();
             });
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
 
             m_IntensifyArmsBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
 
                 UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArms.ArmsID, characterArms.Class + 1);

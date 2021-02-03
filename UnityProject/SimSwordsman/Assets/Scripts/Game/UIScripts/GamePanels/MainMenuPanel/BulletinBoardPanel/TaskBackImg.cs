@@ -32,6 +32,8 @@ namespace GameWish.Game
         private void BindAddListenerEvevnt()
         {
 			FuncBtn.onClick.AddListener(()=> {
+				AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
 				m_Action?.Invoke(m_CurTaskInfo);
 			});
 

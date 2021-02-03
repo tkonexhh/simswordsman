@@ -31,6 +31,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
 
             m_ArrangeBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 m_PracticeFieldInfo.SetCharacterItem(m_SelectedDisciple, SlotState.Practice, m_CurFacilityType);
                 EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, m_PracticeFieldInfo);
                 HideSelfWithAnim();

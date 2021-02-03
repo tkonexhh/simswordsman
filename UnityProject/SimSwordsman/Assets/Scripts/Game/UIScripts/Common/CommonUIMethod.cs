@@ -207,5 +207,28 @@ namespace GameWish.Game
         {
             return "<color=#FFFFFF00>----</color>";
         }
+        /// <summary>
+        /// ªÒ»°ÕÚ
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string GetTenThousand(int number)
+        {
+            int fifth = number / 10000;
+            if (fifth == 0)
+                return number.ToString();
+            else
+            {
+                int fourth = GetThousand(number);
+                return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
+            }
+        }
+
+        private static int GetThousand(int number)
+        {
+            string numStr = number.ToString();
+            return int.Parse(numStr.Substring(numStr.Length-4,1));
+        }
+
     }
 }

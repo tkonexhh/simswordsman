@@ -91,9 +91,14 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
 
             m_ArrangeBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KongfuType)m_SelectedItemBase.GetSubName()));
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);

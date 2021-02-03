@@ -75,7 +75,11 @@ namespace GameWish.Game
 				IsHaveItem = true;
 				m_GoodsBtn.onClick.RemoveAllListeners();
 				CurItemBase = itemBase;
-				m_GoodsBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase, m_GoodsImg.sprite); });
+				m_GoodsBtn.onClick.AddListener(() => {
+					AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+					UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase, m_GoodsImg.sprite); 
+				});
 				m_Nums.text = CurItemBase.Number.ToString();
 			}
             else

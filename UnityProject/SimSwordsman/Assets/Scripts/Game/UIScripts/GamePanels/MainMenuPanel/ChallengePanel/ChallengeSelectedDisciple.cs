@@ -55,6 +55,8 @@ namespace GameWish.Game
         {
             RefreshPanelInfo();
             m_ChooseSelectedDisciple.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, false);
             });
         }

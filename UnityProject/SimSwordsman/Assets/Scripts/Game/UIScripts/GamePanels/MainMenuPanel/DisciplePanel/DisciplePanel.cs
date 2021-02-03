@@ -11,6 +11,8 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
+        private Button m_BlackBtn;
+        [SerializeField]
         private Button m_CloseBtn;
 
         [Header("Left")]
@@ -141,20 +143,35 @@ namespace GameWish.Game
 
         private void BindAddListenerEvevnt()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_AllTog.onValueChanged.AddListener((e)=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 foreach (var item in m_DiscipleDic.Values)
                     item.SetActive(true);
 
                 RefreshDiscipleLine();
             });
             m_CivilianTog.onValueChanged.AddListener((e) => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 SwitchDisciple(CharacterQuality.Normal);
             });
             m_EliteTog.onValueChanged.AddListener((e) => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 SwitchDisciple(CharacterQuality.Good);
             });
             m_GeniusTog.onValueChanged.AddListener((e) => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 SwitchDisciple(CharacterQuality.Perfect);
             });
         }
