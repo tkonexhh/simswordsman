@@ -66,6 +66,7 @@ namespace GameWish.Game
         public const string COMMON_UNIT_INDIVIDUAL = "Common_Unit_Individual";
         public const string COMMON_UNIT_ONLY = "Common_Unit_Only";
         public const string COMMON_UNIT_LAYER = "Common_Unit_Layer";
+        public const string COMMON_UNIT_TENTHOUSAND = "Common_Unit_TenThousand";
         public const string COMMON_NEXTLEVELUNLOCK = "Common_NextLevelUnlock";
         public const string COMMON_REWARD = "Common_Reward";
         public const string COMMON_DECLINED = "Common_Declined";

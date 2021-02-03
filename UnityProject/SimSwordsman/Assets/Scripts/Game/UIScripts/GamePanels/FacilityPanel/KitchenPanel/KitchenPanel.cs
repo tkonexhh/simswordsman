@@ -71,7 +71,9 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_CurKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_NextKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
-            m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
+            if (m_NextKitchLevelInfo!=null)
+                 m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
+    
         }
 
         private void RefreshPanelInfo()
@@ -96,26 +98,46 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
+            if (m_CostItems == null)
+                return;
+
             if (m_CostItems.Count == 1)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_NextKitchLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
                 m_Res2Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(false);
             }
             else if (m_CostItems.Count == 2)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
                 m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-                m_Res3Value.text = m_NextKitchLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
                 m_Res3Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(true);
             }
         }
 
+        private int GetCurItem(int hava,int number)
+        {
+            if (hava >= number)
+                return number;
+            return hava;
+        }
+
+        private string GetCurCoin()
+        {
+            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            if (coin >= m_NextKitchLevelInfo.upgradeCoinCost)
+                return CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
+            return CommonUIMethod.GetTenThousand((int)coin);
+        }
         private string GetIconName(int id)
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);

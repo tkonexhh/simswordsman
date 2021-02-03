@@ -152,7 +152,7 @@ namespace GameWish.Game
         {
             AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
             loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
+            {          
                 //Debug.Log(obj);
                 m_DiscipleImg.sprite = obj;
             });
