@@ -9,6 +9,8 @@ namespace GameWish.Game
 {
     public class DiscipleDetailsPanel : AbstractAnimPanel
     {
+        [SerializeField]
+        private Button m_BlackBtn;
         [Header("Top")]
         [SerializeField]
         private Text m_DiscipleNameValue;
@@ -381,6 +383,10 @@ namespace GameWish.Game
                 OnPanelHideComplete();
             });
             m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });

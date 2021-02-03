@@ -67,6 +67,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_GoTo;
         [SerializeField]
+        private Image m_PromptlyImg;
+        [SerializeField]
         private Button m_Promptly;
         [SerializeField]
         private Text m_PromptlyValue;   
@@ -166,6 +168,10 @@ namespace GameWish.Game
         private Sprite GetSprite(int id)
         {
             return m_NeedSprites.Where(i => i.name.Equals(GetStrForItemID(id))).FirstOrDefault();
+        }
+        private Sprite GetSprite(string name)
+        {
+            return m_NeedSprites.Where(i => i.name.Equals(name)).FirstOrDefault();
         }
         public string GetStrForItemID(int id)
         {
@@ -449,6 +455,7 @@ namespace GameWish.Game
                             if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
                                 StartCoroutine(CountDown());
                             m_PromptlyValue.text = "立即到达";
+                            m_PromptlyImg.sprite = GetSprite("BulletinBoardPanel_Bg11");
                             m_Promptly.gameObject.SetActive(true);
                             m_Advertisement.SetActive(true);
                         }
@@ -469,6 +476,7 @@ namespace GameWish.Game
                     m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_Over.gameObject.SetActive(false);
+                    m_PromptlyImg.sprite = GetSprite("button_normal_blue");
                     m_PromptlyValue.text = "领取奖励";
                     m_Advertisement.SetActive(false);
                     m_RedPoint.gameObject.SetActive(true);
