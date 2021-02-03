@@ -34,7 +34,11 @@ public class RatePanel : AbstractAnimPanel
         m_DescribText.text = TDLanguageTable.Get("rate_panel_rateContent");
         m_RateTipText.text = TDLanguageTable.Get("rate_panel_rate_tip");
 
-        m_CloseBtn.onClick.AddListener(() => { HideSelfWithAnim(); });
+        m_CloseBtn.onClick.AddListener(() => {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+            HideSelfWithAnim();
+        });
     }
 
     protected override void OnPanelOpen(params object[] args)

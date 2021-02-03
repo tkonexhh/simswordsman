@@ -28,6 +28,9 @@ namespace GameWish.Game
         {
             m_CharacterItem = characterItem;
             m_Btn.onClick.AddListener(()=> {
+
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 isSelected = !isSelected;
                 if (isSelected)
                     m_SelelctedState = SelectedState.Selected;

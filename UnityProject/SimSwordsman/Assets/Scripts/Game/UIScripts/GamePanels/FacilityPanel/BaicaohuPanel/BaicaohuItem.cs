@@ -141,7 +141,7 @@ namespace GameWish.Game
                     CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDHerbConfigTable.GetData(ID).makeTime);
                 }
                 else
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
             m_CompleteADBtn.onClick.AddListener(() =>
             {

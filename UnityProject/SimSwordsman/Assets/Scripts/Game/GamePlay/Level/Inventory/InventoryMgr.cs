@@ -74,6 +74,11 @@ namespace GameWish.Game
         {
             return m_InventoryDataWrapper.CheckItemInInventory(rawMaterial, number);
         }
+        public int GetRawMaterialNumberForID(int rawMaterial)
+        {
+            return m_InventoryDataWrapper.GetRawMaterialNumberForID((RawMaterial)rawMaterial);
+        }
+
         /// <summary>
         /// 通过item类型得到itembase
         /// </summary>

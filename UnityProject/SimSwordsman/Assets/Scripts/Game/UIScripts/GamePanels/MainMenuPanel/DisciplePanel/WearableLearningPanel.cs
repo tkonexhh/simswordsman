@@ -95,6 +95,8 @@ namespace GameWish.Game
         {
             m_ArrangeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 switch (m_SelectedItemBase.PropType)
                 {
                     case PropType.Arms:
@@ -115,6 +117,8 @@ namespace GameWish.Game
 
             m_ClsoeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 //EquipmentItem chracEquip = m_CurDisciple.characterEquipment.Where(i => i.PropType == m_CurPropType).FirstOrDefault();
                 //if (chracEquip != null)
                 //    MainGameMgr.S.InventoryMgr.RemoveItem(chracEquip);

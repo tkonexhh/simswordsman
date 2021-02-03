@@ -138,6 +138,8 @@ namespace GameWish.Game
             }
             m_MakeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 //判断材料
                 var list = TDEquipmentConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
@@ -146,10 +148,12 @@ namespace GameWish.Game
                     CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDHerbConfigTable.GetData(ID).makeTime);
                 }
                 else
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
             m_CompleteADBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
 
                 CountdownSystem.S.Cancel(m_StringID, ID);

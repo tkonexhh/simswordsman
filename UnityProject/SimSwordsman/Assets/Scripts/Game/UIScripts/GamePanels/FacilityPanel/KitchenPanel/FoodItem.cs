@@ -142,6 +142,8 @@ namespace GameWish.Game
             }
             m_MakeBtn.onClick.AddListener(() => 
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 //判断材料
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
@@ -150,10 +152,12 @@ namespace GameWish.Game
                     FoodBuffSystem.S.StartBuff(ID);
                 }
                 else
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
             m_MakeADBtn.onClick.AddListener(() => 
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 //判断材料
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
@@ -163,7 +167,7 @@ namespace GameWish.Game
                     FoodBuffSystem.S.StartBuff(ID, true);
                 }
                 else
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
         }
         /// <summary>

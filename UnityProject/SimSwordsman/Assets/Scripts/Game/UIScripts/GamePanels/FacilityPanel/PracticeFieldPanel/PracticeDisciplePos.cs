@@ -64,6 +64,8 @@ namespace GameWish.Game
         private void BindAddListenEvent()
         {
             m_PracticeBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo, m_CurFacilityType, m_CurLevel);
             });
         }

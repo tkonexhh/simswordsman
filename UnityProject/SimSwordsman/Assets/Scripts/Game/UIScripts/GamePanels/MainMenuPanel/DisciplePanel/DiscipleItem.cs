@@ -52,6 +52,8 @@ namespace GameWish.Game
         public void SetButtonEvent(Action<object> action)
         {
             m_DiscipleBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 action?.Invoke(m_CurCharacter);
             });
         }

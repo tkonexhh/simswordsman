@@ -95,6 +95,22 @@ namespace GameWish.Game
             });
             return isGet;
         }
+
+        public int GetRawMaterialNumberForID(RawMaterial rawMaterial)
+        {
+            int number = 0;
+            m_WarehouseItems.ForEach(i =>
+            {
+                if (i.PropType == PropType.RawMaterial)
+                {
+                    PropItem propItem = (PropItem)i;
+                    if (propItem.PropSubType == rawMaterial)
+                        number = propItem.Number;
+                }
+            });
+            return number;
+        }
+
         public ItemBase GetHerbForID(int herbID)
         {
             ItemBase itemBase = null;

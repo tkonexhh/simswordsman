@@ -41,6 +41,8 @@ namespace GameWish.Game
         {
             m_ExitBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 PanelPool.S.DisplayPanel();
                 EventSystem.S.Send(EventID.OnExitBattle);
                 UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);

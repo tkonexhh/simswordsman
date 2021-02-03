@@ -53,6 +53,8 @@ namespace GameWish.Game
         {
             m_ChallengeBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.ChallengeBattlePanel, m_CurChapterConfigInfo);
                 EventSystem.S.Send(EventID.OnCloseParentPanel);
             });

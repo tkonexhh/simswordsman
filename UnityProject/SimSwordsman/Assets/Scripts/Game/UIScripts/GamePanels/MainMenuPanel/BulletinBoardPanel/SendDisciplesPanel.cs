@@ -18,6 +18,8 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
+        private Button BlackBtn;    
+        [SerializeField]
         private Button m_ClsseBtn;
         [SerializeField]
         private Text m_SendDisciplesTitle;
@@ -241,17 +243,26 @@ namespace GameWish.Game
         {
             m_ClsseBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+            });
+            BlackBtn.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
 
             m_RefuseBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
             m_AutoSelectedBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 CloseSelfPanel();
                 switch (m_PanelType)
                 {
@@ -295,6 +306,7 @@ namespace GameWish.Game
             });
             m_AcceptBtn.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 CloseSelfPanel();
                 m_SelectedList = Transformation(m_SelectedDiscipleDic);
                 switch (m_PanelType)

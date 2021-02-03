@@ -92,22 +92,40 @@ namespace GameWish.Game
 
             m_DiscipleBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 UIMgr.S.OpenPanel(UIID.DisciplePanel);
             });
-            m_BulletinBorardBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.BulletinBoardPanel); });
+            m_BulletinBorardBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
+            });
             m_SignInBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.SignInPanel);
             });
-            m_ChallengeBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ChallengePanel); });
+            m_ChallengeBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                UIMgr.S.OpenPanel(UIID.ChallengePanel); 
+            });
             m_VoldemortTowerBtn.onClick.AddListener(() => { });
             m_CreateCoinBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             });
 
             m_VisitorBtn1.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 0);
             });
             m_VisitorBtn2.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
         }
