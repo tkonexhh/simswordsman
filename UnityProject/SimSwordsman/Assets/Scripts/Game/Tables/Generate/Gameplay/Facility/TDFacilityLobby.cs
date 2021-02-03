@@ -52,7 +52,7 @@ namespace GameWish.Game
         public  string  unlockContent {get { return m_UnlockContent; } }
        
         /// <summary>
-        /// 生成工作间隔，分钟
+        /// 生成工作间隔，秒
         /// </summary>
         public  int  workInterval {get { return m_WorkInterval; } }
        

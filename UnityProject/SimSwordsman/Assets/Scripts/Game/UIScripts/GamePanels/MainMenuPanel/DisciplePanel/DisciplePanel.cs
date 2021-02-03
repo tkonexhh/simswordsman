@@ -11,6 +11,8 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
+        private Button m_BlackBtn;
+        [SerializeField]
         private Button m_CloseBtn;
 
         [Header("Left")]
@@ -142,6 +144,10 @@ namespace GameWish.Game
         private void BindAddListenerEvevnt()
         {
             m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });

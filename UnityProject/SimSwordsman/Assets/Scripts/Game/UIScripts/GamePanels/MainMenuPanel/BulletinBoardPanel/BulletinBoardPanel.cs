@@ -131,6 +131,9 @@ namespace GameWish.Game
             for (int i = 0; i < taskRewards.Count; i++)
                 needSprite.Add(FindSprite(GetStrForItemID(taskRewards[0].id)));
 
+            needSprite.Add(FindSprite("button_normal_blue"));
+            needSprite.Add(FindSprite("BulletinBoardPanel_Bg11"));
+
             GameObject obj = Instantiate(m_BulletinBoardtem, m_TaskContParent);
             ItemICom taskItem = obj.GetComponent<ItemICom>();
             taskItem.OnInit(simGameTask,null, needSprite);
