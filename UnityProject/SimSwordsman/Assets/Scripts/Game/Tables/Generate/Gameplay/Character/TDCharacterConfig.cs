@@ -19,17 +19,17 @@ namespace GameWish.Game
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
-        /// Value
+        /// 编号
         /// </summary>
         public  string  id {get { return m_Id; } }
        
         /// <summary>
-        /// Value
+        /// 资质
         /// </summary>
         public  string  quality {get { return m_Quality; } }
        
         /// <summary>
-        /// Value
+        /// 描述
         /// </summary>
         public  string  desc {get { return m_Desc; } }
        
