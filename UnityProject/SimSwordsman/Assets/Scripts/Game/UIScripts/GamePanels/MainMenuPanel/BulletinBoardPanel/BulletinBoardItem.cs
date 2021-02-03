@@ -234,6 +234,7 @@ namespace GameWish.Game
                     {
                         i.SetCurTask(null);
                         i.SetState(CharacterStateID.Wander);
+                        i.HideTaskRewardBubble();
                     });
 
                     MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);

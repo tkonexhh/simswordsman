@@ -269,6 +269,15 @@ namespace GameWish.Game
             go.transform.position = m_CharacterView.GetTaskRewardBubblePos();
             go.GetComponent<CharacterTaskRewardBubble>().SetController(this);
         }
+
+        public void HideTaskRewardBubble()
+        {
+            CharacterTaskRewardBubble bubble = m_CharacterView.GetComponentInChildren<CharacterTaskRewardBubble>();
+            if (bubble != null)
+            {
+                Qarth.GameObjectPoolMgr.S.Recycle(bubble.gameObject);
+            }
+        }
         #endregion
 
         #region Private
