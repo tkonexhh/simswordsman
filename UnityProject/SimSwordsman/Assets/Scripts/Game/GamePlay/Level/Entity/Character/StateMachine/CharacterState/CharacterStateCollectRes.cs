@@ -38,10 +38,12 @@ namespace GameWish.Game
             m_IsTaskEnd = false;
             m_IsTaskCollectableItemFound = false;
 
+            RegisterEvents();
         }
 
         public override void Exit(ICharacterStateHander handler)
         {
+            UnregisterEvents();
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
@@ -94,11 +96,7 @@ namespace GameWish.Game
 
                     m_TaskCollectableItem?.OnEndCollected();
                     MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
-                    //EventSystem.S.Send(EventID.OnTaskManualFinished);
-                    //EventSystem.S.Send(EventID.OnTaskFinished);
 
-                    m_Controller.SetCurTask(null);
-                    m_Controller.SetState(CharacterStateID.Wander);
                 }
             }
         }
@@ -123,6 +121,7 @@ namespace GameWish.Game
                 }
                 else
                 {
+                    m_Controller.SetCurTask(null);
                     m_Controller.SetState(CharacterStateID.Wander);
                 }
             }
@@ -165,6 +164,26 @@ namespace GameWish.Game
             }
 
             return name;
+        }
+
+        private void RegisterEvents()
+        {
+            EventSystem.S.Register(EventID.OnCommonTaskFinish, HandleEvent);
+        }
+
+        private void UnregisterEvents()
+        {
+            EventSystem.S.UnRegister(EventID.OnCommonTaskFinish, HandleEvent);
+        }
+
+        private void HandleEvent(int key, params object[] param)
+        {
+            int taskId = (int)param[0];
+            if (taskId == m_Controller.CurTask?.TaskId)
+            {
+                m_Controller.SetCurTask(null);
+                m_Controller.SetState(CharacterStateID.Wander);
+            }
         }
     }
 }
