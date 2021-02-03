@@ -262,6 +262,13 @@ namespace GameWish.Game
             m_CharacterModel.SetCurTask(task);
         }
 
+        public void SpawnTaskRewardBubble()
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnTaskRewardBubble();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetTaskRewardBubblePos();
+            go.GetComponent<CharacterTaskRewardBubble>().SetController(this);
+        }
         #endregion
 
         #region Private

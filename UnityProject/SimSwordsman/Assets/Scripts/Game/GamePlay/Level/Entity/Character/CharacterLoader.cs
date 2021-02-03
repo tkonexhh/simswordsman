@@ -8,34 +8,44 @@ namespace GameWish.Game
 {
     public class CharacterLoader : TSingleton<CharacterLoader>, IAssetPreloader
     {
+        private List<CharacterItemDbData> m_CharacterList = null;
         private Dictionary<int, GameObject> m_CharacterGoDic = new Dictionary<int, GameObject>();
         private Dictionary<int, AddressableGameObjectLoader> m_CharacterLoaderDic = new Dictionary<int, AddressableGameObjectLoader>();
 
-        private int m_Count = 0;
+        private GameObject m_CharacterTaskRewardBubble = null;
+        private AddressableGameObjectLoader m_CharacterTaskRewardBubbleLoader = null;
+
+        private int m_LoadedCharacterCount = 0;
+
+        private bool m_IsLoadDoneSent = false;
 
         public void StartPreload()
         {
-            var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
-            if (characterList.Count == 0)
-            {
-                AssetPreloaderMgr.S.OnLoadDone();
-            }
-            else
-            {
-                foreach (var item in characterList)
+            m_CharacterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
+            //if (characterList.Count == 0 && m_CharacterTaskRewardBubble != null)
+            //{
+            //    AssetPreloaderMgr.S.OnLoadDone();
+            //}
+            //else
+            //{
+                foreach (var item in m_CharacterList)
                 {
-                    LoadCharacterSync(item.id, item.quality, item.bodyId, (go) =>
+                    LoadCharacterAsync(item.id, item.quality, item.bodyId, (go) =>
                     {
                         m_CharacterGoDic.Add(item.id, go);
-                        m_Count++;
+                        m_LoadedCharacterCount++;
 
-                        if (m_Count >= characterList.Count)
-                        {
-                            AssetPreloaderMgr.S.OnLoadDone();
-                        }
+                        SendAssetLoadedMsg();
                     });
                 }
-            }
+            //}
+
+            LoadCharacterRewardBubbleAsync();
+        }
+
+        public GameObject GetCharacterRewardBubble()
+        {
+            return m_CharacterTaskRewardBubble;
         }
 
         public GameObject GetCharacterGo(int id)
@@ -46,7 +56,7 @@ namespace GameWish.Game
             return null;
         }
 
-        public void LoadCharacterSync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
+        public void LoadCharacterAsync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
         {
             string prefabName = GetPrefabName(characterQuality, bodyId);
 
@@ -75,6 +85,34 @@ namespace GameWish.Game
         private string GetPrefabName(CharacterQuality characterQuality, int bodyId)
         {
             return "Character_" + characterQuality.ToString().ToLower() + "_" + bodyId; //TODO：优化获取方式？
+        }
+
+        private void LoadCharacterRewardBubbleAsync()
+        {
+            string prefabName = "CharacterTaskRewardBubble";
+            m_CharacterTaskRewardBubbleLoader = new AddressableGameObjectLoader();
+            m_CharacterTaskRewardBubbleLoader.InstantiateAsync(prefabName, (obj) =>
+            {
+                m_CharacterTaskRewardBubble = obj;
+                m_CharacterTaskRewardBubble.transform.position = new Vector3(-1000,0,0);
+
+                SendAssetLoadedMsg();
+            });
+        }
+
+        private bool IsAllAssetLoaded()
+        {
+            return m_LoadedCharacterCount >= m_CharacterList.Count && m_CharacterTaskRewardBubble != null;
+        }
+
+        private void SendAssetLoadedMsg()
+        {
+            if (IsAllAssetLoaded() && m_IsLoadDoneSent == false)
+            {
+                m_IsLoadDoneSent = true;
+
+                AssetPreloaderMgr.S.OnLoadDone();
+            }
         }
     }
 

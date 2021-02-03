@@ -20,10 +20,13 @@ namespace GameWish.Game
 
         public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
 
+        
         #region IMgr
         public void OnInit()
         {
             RegisterEvents();
+
+            InitPool();
         }
 
         public void OnUpdate()
@@ -170,7 +173,10 @@ namespace GameWish.Game
             return TDCharacterStageConfigTable.GetUnlockConfigInfo(unlockContent, index);
         }
 
-
+        public GameObject SpawnTaskRewardBubble()
+        {
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_TASK_REWARD_BUBBLE);
+        }
         #endregion
 
         #region Public Set
@@ -221,7 +227,7 @@ namespace GameWish.Game
             }
             else
             {
-                CharacterLoader.S.LoadCharacterSync(id, characterItem.quality, characterItem.bodyId, (obj) =>
+                CharacterLoader.S.LoadCharacterAsync(id, characterItem.quality, characterItem.bodyId, (obj) =>
                 {
                     OnCharacterLoaded(obj, id, initState);
                 });
@@ -345,6 +351,12 @@ namespace GameWish.Game
             }
 
             return spawnPos;
+        }
+
+        private void InitPool()
+        {
+            GameObject rewardBubble = CharacterLoader.S.GetCharacterRewardBubble();
+            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_TASK_REWARD_BUBBLE, rewardBubble, 10, 3);
         }
         #endregion
 

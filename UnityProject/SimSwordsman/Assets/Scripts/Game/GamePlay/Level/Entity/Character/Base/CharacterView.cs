@@ -135,6 +135,11 @@ namespace GameWish.Game
             transform.position += m_DeltaPos;
         }
 
+        public void SetPosition(Vector3 pos)
+        {
+            transform.position = pos;
+        }
+
         public void OnEnterBattleField(Vector3 pos, CharacterCamp camp)
         {
             m_SimPos = transform.position;
@@ -180,6 +185,11 @@ namespace GameWish.Game
         public void ShowBody()
         {
             m_Body.SetActive(true);
+        }
+
+        public Vector3 GetTaskRewardBubblePos()
+        {
+            return transform.position + new Vector3(0, -0.04f, 0);
         }
         #endregion
 

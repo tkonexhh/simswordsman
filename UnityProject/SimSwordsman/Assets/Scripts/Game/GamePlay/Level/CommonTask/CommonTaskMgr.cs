@@ -217,11 +217,24 @@ namespace GameWish.Game
                 //int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
                 SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
 
+                List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(i.taskId);
+
                 // 如果数据库中该task正在执行
                 if (i.taskState == TaskState.Running)
                 {
-                    List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(i.taskId);
                     task.ExecuteTask(characters);
+                }
+                else if (i.taskState == TaskState.Unclaimed)
+                {
+                    Vector3 bulletinBoardPos = MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.BulletinBoard);
+
+                    characters.ForEach(j => 
+                    {
+                        j.SetCurTask(task);
+                        Vector2 pos = new Vector2(bulletinBoardPos.x, bulletinBoardPos.y) + UnityEngine.Random.insideUnitCircle * 0.3f;
+                        j.CharacterView.SetPosition(pos);
+                        j.SpawnTaskRewardBubble();
+                    });
                 }
             });
 

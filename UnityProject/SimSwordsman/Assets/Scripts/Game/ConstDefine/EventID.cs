@@ -53,7 +53,9 @@ namespace GameWish.Game
         //OnTaskFinished,
         OnCommonTaskStart,
         OnCommonTaskFinish,
+        OnTaskObjCollected,
         OnArriveCollectResPos,
+        OnCharacterTaskRewardClicked,
         //PracticeField
 
         /// <summary>
