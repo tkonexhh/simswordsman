@@ -26,6 +26,8 @@ namespace GameWish.Game
         private Button m_ChallengeBtn;
         [SerializeField]
         private Button m_CloseBtn;
+        [SerializeField]
+        private Button m_BlackBtn;
 
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private LevelConfigInfo m_LevelConfigInfo = null;
@@ -40,6 +42,10 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });

@@ -24,6 +24,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_LevelBg;
         private CharacterItem m_CharacterItem;
+        private AddressableAssetLoader<Sprite> m_Loader;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -82,8 +83,8 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
                 //Debug.Log(obj);
                 m_DiscipleHead.sprite = obj;
@@ -105,10 +106,10 @@ namespace GameWish.Game
                 m_SelelctedState = SelectedState.NotSelected;
             RefreshPanelInfo();
         }
-
+        
         private void OnDisable()
         {
-
+            m_Loader.Release();
         }
     }
 	

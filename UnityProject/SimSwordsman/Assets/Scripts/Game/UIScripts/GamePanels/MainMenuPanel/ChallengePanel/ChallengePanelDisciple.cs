@@ -19,6 +19,7 @@ namespace GameWish.Game
 		private Text m_DiscipleName;
 		[SerializeField]
 		private GameObject m_SelectedImg;
+		private AddressableAssetLoader<Sprite> m_Loader;
 
 		private CharacterItem m_CharacterItem;
 
@@ -35,8 +36,8 @@ namespace GameWish.Game
 		}
 		public void LoadClanPrefabs(string prefabsName)
 		{
-			AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-			loader.LoadAssetAsync(prefabsName, (obj) =>
+			m_Loader = new AddressableAssetLoader<Sprite>();
+			m_Loader.LoadAssetAsync(prefabsName, (obj) =>
 			{
 				//Debug.Log(obj);
 				m_DiscipleHead.sprite = obj;
@@ -64,7 +65,12 @@ namespace GameWish.Game
 			}
 		}
 
-		public bool IsHavaSameDisciple(CharacterItem characterItem)
+        private void OnDisable()
+        {
+			m_Loader.Release();
+		}
+
+        public bool IsHavaSameDisciple(CharacterItem characterItem)
 		{
 			if (characterItem.id == m_CharacterItem.id)
 				return true;

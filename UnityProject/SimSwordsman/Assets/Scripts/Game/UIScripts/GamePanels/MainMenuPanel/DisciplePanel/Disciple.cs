@@ -24,6 +24,7 @@ namespace GameWish.Game
         private Button m_DiscipleBtn;
         [SerializeField]
         private Transform m_DiscipleState;
+        private AddressableAssetLoader<Sprite> m_Loader;
 
         private CharacterItem m_CurCharacter = null;
 
@@ -70,8 +71,8 @@ namespace GameWish.Game
 
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
                 //Debug.Log(obj);
                 m_DiscipleImg.sprite = obj;
@@ -102,7 +103,10 @@ namespace GameWish.Game
                 action?.Invoke(m_CurCharacter);
             });
         }
-
+        private void OnDisable()
+        {
+            m_Loader.Release();
+        }
         public void DestroySelf()
         {
             DestroyImmediate(gameObject);

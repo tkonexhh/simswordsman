@@ -29,16 +29,17 @@ namespace GameWish.Game
 
         private RecruitType m_RecruitType;
         private CharacterItem m_CharacterItem;
+        private AddressableAssetLoader<Sprite> m_Loader;
 
-        private ClickType m_CurrentClickType = ClickType.None; 
+        private ClickType m_CurrentClickType = ClickType.None;
 
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            
+
 
             BindAddListenerEvent();
-        
+
         }
 
         private void InitPanelInfo()
@@ -51,8 +52,8 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
                 //Debug.Log(obj);
                 m_DisciplePhoto.sprite = obj;
@@ -81,7 +82,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
@@ -105,7 +107,7 @@ namespace GameWish.Game
                 }
                 EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
 
-                MainGameMgr.S.RecruitDisciplerMgr.RemoveCharacterList(m_RecruitType,m_CharacterItem);
+                MainGameMgr.S.RecruitDisciplerMgr.RemoveCharacterList(m_RecruitType, m_CharacterItem);
                 MainGameMgr.S.CharacterMgr.AddCharacter(m_CharacterItem);
                 MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
                 EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
@@ -142,7 +144,7 @@ namespace GameWish.Game
                     {
                         m_RecruitType = RecruitType.GoldMedal;
                         InitPanelInfo();
-                    }     
+                    }
                     break;
                 case RecruitType.SilverMedal:
                     m_CharacterItem = MainGameMgr.S.RecruitDisciplerMgr.GetRecruitForRecruitType(RecruitType.SilverMedal);
@@ -161,8 +163,9 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            CloseSelfPanel();
+            m_Loader.Release();
             CloseDependPanel(EngineUI.MaskPanel);
+            CloseSelfPanel();
         }
     }
 }

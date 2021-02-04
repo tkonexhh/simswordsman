@@ -198,20 +198,45 @@ namespace GameWish.Game
 			switch (m_RecruitDic[type])
 			{
 				case ClickType.Free:
-					UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.Free);
-					break;
+                    UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.Free, type);
+                    //UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.Free);
+                    break;
 				case ClickType.RecruitmentOrder:
-					UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.RecruitmentOrder);
+					GetRandomDisciples(type);
+					UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
+					//UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.RecruitmentOrder);
 					break;
 				case ClickType.LookAdvertisement:
 					int advertisementCount = MainGameMgr.S.RecruitDisciplerMgr.GetAdvertisementCount(type);
 					if (advertisementCount <= 0)
 						UIMgr.S.OpenPanel(UIID.LogPanel, "招募标题", "招募次数用尽");
 					else
-						UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.LookAdvertisement);
+					{
+						UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type);
+					}
+					//UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.LookAdvertisement);
 					break;
 				default:
 					break;
+			}
+		}
+
+		private CharacterItem GetRandomDisciples(RecruitType recruitType)
+		{
+			switch (recruitType)
+			{
+				case RecruitType.GoldMedal:
+					CharacterItem chaGold = MainGameMgr.S.RecruitDisciplerMgr.GetRecruitForRecruitType(RecruitType.GoldMedal);
+					if (chaGold != null)
+						return chaGold;
+					return null;
+				case RecruitType.SilverMedal:
+					CharacterItem chaSilver = MainGameMgr.S.RecruitDisciplerMgr.GetRecruitForRecruitType(RecruitType.SilverMedal);
+					if (chaSilver != null)
+						return chaSilver;
+					return null;
+				default:
+					return null;
 			}
 		}
 

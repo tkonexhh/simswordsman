@@ -23,6 +23,7 @@ namespace GameWish.Game
         private Image m_Plus;
         private GameObject m_SelectedImg;
         private CharacterItem m_CharacterItem;
+        private AddressableAssetLoader<Sprite> m_Loader;
         private PanelType m_PanelType;
 		private SelectedState m_SelelctedState = SelectedState.NotSelected;
 		public void OnInit(PanelType panelType)
@@ -91,8 +92,8 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
                 //Debug.Log(obj);
                 m_DiscipleHead.sprite = obj;
@@ -116,6 +117,11 @@ namespace GameWish.Game
                     break;
             }
         }
-	}
+
+        private void OnDisable()
+        {
+            m_Loader.Release();
+        }
+    }
 	
 }

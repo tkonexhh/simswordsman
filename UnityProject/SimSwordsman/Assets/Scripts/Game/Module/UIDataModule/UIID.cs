@@ -30,6 +30,7 @@ namespace GameWish.Game
 
         LobbyPanel,
         RecruitmentPanel,
+        GetDisciplePanel,
 
         DisciplePanel,
         DicipleDetailsPanel,
