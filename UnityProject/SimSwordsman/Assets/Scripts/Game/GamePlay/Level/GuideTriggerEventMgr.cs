@@ -66,6 +66,10 @@ namespace GameWish.Game
             //第18步结束才能出现建造仓库的引导
             if (!GuideMgr.S.IsGuideFinish(18))
                 return;
+            //第20步结束不出现建造仓库的引导
+            if (GuideMgr.S.IsGuideFinish(20))
+                return;
+
             foreach (var item in TDFacilityWarehouseTable.GetLevelInfo(1).GetUpgradeResCosts())
             {
                 if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)

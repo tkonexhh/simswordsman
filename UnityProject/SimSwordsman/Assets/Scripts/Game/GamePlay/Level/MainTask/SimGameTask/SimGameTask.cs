@@ -61,17 +61,30 @@ namespace GameWish.Game
 
         public void ClaimReward(bool isSucess)
         {
-            List<LevelReward> levelRewardList = new List<LevelReward>();
-            ExpCharacterReward exp = new ExpCharacterReward(RewardItemType.Exp_Role, CommonTaskItemInfo.expReward);
-            ExpKongfuReward KungfuExp = new ExpKongfuReward(RewardItemType.Exp_Kongfu, CommonTaskItemInfo.kongfuReward);
-            levelRewardList.Add(exp);
-            levelRewardList.Add(KungfuExp);
-            if (isSucess)
-                levelRewardList.ForEach(i => i.ApplyReward(1));
-            else
-                levelRewardList.ForEach(i => i.ApplyReward(2));
+            //List<LevelReward> levelRewardList = new List<LevelReward>();
+            //ExpCharacterReward exp = new ExpCharacterReward(RewardItemType.Exp_Role, CommonTaskItemInfo.expReward);
+            //ExpKongfuReward KungfuExp = new ExpKongfuReward(RewardItemType.Exp_Kongfu, CommonTaskItemInfo.kongfuReward);
+            //levelRewardList.Add(exp);
+            //levelRewardList.Add(KungfuExp);
+            //if (isSucess)
+            //    levelRewardList.ForEach(i => i.ApplyReward(1));
+            //else
+            //    levelRewardList.ForEach(i => i.ApplyReward(2));
+            List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_TaskId);
+            float ratio = isSucess ? 1 : 0.5f;
 
-            CharacterIDs.Clear();
+            // Add exp
+            characters.ForEach(i =>
+            {
+                i.AddExp((int)(CommonTaskItemInfo.expReward * ratio));
+            });
+
+            // Add kongfu exp
+            characters.ForEach(i =>
+            {
+                i.CharacterModel.DistributionKungfuExp((int)(CommonTaskItemInfo.kongfuReward * ratio));
+            });
+
             // Item reward
             for (int i = 0; i < m_TaskDetailInfo.itemRewards.Count; i++)
             {
@@ -91,6 +104,8 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
                 }
             }
+
+            CharacterIDs.Clear();
         }
     }
 	
