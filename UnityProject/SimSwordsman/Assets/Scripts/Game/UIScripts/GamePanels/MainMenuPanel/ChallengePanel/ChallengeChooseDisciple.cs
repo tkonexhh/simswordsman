@@ -173,6 +173,8 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_LevelConfigInfo = args[0] as LevelConfigInfo;
+
+
             m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
 
             for (int i = 0; i < m_AllDiscipleList.Count; i++)

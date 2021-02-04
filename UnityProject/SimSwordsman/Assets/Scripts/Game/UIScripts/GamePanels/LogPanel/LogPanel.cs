@@ -15,6 +15,8 @@ namespace GameWish.Game
         private Text m_LogCont;
 
         [SerializeField]
+        private Button m_BlackBtn;
+        [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
         private Button m_RefuseBtn;
@@ -54,6 +56,11 @@ namespace GameWish.Game
 
                 HideSelfWithAnim();
                 OnRefuseBtnEvent?.Invoke();
+            });
+            m_BlackBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                HideSelfWithAnim();
             });
             m_AcceptBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);

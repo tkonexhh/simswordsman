@@ -489,7 +489,7 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_DisciplePhoto: {fileID: 2216379615708370067}
+  m_DisciplePhoto: {fileID: 7388234241661235822}
   m_CloseBtn: {fileID: 1422662090620847325}
   m_DiscipleName: {fileID: 2216379617201442609}
   m_DiscipleQuality: {fileID: 2216379617760810938}
@@ -1575,7 +1575,7 @@ RectTransform:
   m_GameObject: {fileID: 6930412404380534125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 2216379615708370066}
   m_RootOrder: 0
@@ -1583,7 +1583,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 114.9, y: 161}
+  m_SizeDelta: {x: 169, y: 298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1147220141305952606
 CanvasRenderer:
@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fb8d347cbd17034e9f1f0f95e5d5083, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc15ea416c2a2cd44bed355bdd4a5240, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

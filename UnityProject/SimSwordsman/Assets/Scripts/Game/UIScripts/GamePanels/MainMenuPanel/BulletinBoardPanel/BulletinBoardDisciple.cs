@@ -57,6 +57,19 @@ namespace GameWish.Game
                     break;
             }
         }
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         public void SetBtnClick(bool IsClick)
         {
             m_Btn.enabled = IsClick;
@@ -65,10 +78,13 @@ namespace GameWish.Game
         public void RefreshSelectedDisciple(CharacterItem characterItem)
         {
             m_CharacterItem = characterItem;
-            if (m_CharacterItem==null)
+            if (m_CharacterItem == null)
                 m_SelelctedState = SelectedState.NotSelected;
             else
+            {
+                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
+            }
             RefreshPanelInfo();
         }
         public void SetButtonEvent(Action<object> action)

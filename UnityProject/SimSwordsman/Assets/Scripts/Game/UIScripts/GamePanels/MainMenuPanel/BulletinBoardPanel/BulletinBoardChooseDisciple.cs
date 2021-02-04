@@ -21,6 +21,9 @@ namespace GameWish.Game
 
     public class BulletinBoardChooseDisciple : AbstractAnimPanel
     {
+        [SerializeField]
+        private Button m_BlackBtn;
+
         [Header("Top")]
         [SerializeField]
         private Text m_ChoiceDiscipleTitle;
@@ -164,6 +167,10 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic, m_CommonTaskItemInfo);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(()=> { 
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
         }

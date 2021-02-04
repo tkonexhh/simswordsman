@@ -37,9 +37,22 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
+            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
         }
-
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         private void RefreshPanelInfo()
         {
             m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);

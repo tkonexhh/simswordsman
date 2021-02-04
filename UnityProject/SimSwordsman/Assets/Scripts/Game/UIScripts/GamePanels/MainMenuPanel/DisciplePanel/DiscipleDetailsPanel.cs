@@ -379,8 +379,13 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
-                OnPanelHideComplete();
+                if (m_CurDisciple.IsFreeState())
+                {
+                    MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
+                    HideSelfWithAnim();
+                }
+                else
+                    FloatMessage.S.ShowMsg("弟子正在忙碌中");
             });
             m_CloseBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);

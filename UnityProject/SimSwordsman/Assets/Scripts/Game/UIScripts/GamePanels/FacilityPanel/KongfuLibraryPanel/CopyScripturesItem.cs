@@ -20,7 +20,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_Free;
         [SerializeField]
-        private Image m_DiscipleImg; 
+        private Image m_DiscipleImg;     
+        [SerializeField]
+        private Image m_DiscipleHead; 
         [SerializeField]
         private Image m_Lock;
         [SerializeField]
@@ -32,7 +34,19 @@ namespace GameWish.Game
         private int m_CurLevel;
         private FacilityType m_CurFacility;
         private KungfuLibraySlot m_KungfuLibraySlot = null;
-
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             BindAddListenerEvent();
@@ -80,6 +94,7 @@ namespace GameWish.Game
                     m_Free.text = "空闲";
                     m_Plus.gameObject.SetActive(true);
                     m_Lock.gameObject.SetActive(false);
+                    m_DiscipleHead.gameObject.SetActive(false);
                     break;
                 case SlotState.NotUnlocked:
                     m_Plus.gameObject.SetActive(false);
@@ -89,16 +104,19 @@ namespace GameWish.Game
                     m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR; 
                     m_Free.text = "抄经位" + m_KungfuLibraySlot.UnlockLevel + "级后解锁";
                     m_Time.text = Define.COMMON_DEFAULT_STR;
+                    m_DiscipleHead.gameObject.SetActive(false);
                     break;
                 case SlotState.CopyScriptures:
                     m_Plus.gameObject.SetActive(false);
                     m_Lock.gameObject.SetActive(false);
+                    m_DiscipleHead.gameObject.SetActive(true);
                     RefreshFixedInfo();
                     m_CurCopyScriptures.text = "当前训练:" + m_KungfuLibraySlot.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = Define.COMMON_DEFAULT_STR;
                     CreateCountDown();
+                    LoadClanPrefabs(GetLoadDiscipleName(m_KungfuLibraySlot.CharacterItem));
                     //(m_PracticeFieldInfo.StartTime);
                     m_CopyScripturesBtn.enabled = false;
                     break;

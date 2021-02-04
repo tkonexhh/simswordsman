@@ -215,10 +215,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 if (!CheackIsBuild())
-                {
-                    FloatMessage.S.ShowMsg("未达到升级条件");
                     return;
-                }
 
                 if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_CurFacilityConfigInfo.GetUnlockCoinCost()))
                 {

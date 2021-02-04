@@ -36,7 +36,6 @@ namespace GameWish.Game
         {
             m_Btn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
@@ -80,10 +79,28 @@ namespace GameWish.Game
         {
             m_CharacterItem = characterItem;
             if (m_CharacterItem == null)
+            {
                 m_SelelctedState = SelectedState.NotSelected;
+            }
             else
+            {
+                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
+            }
             RefreshPanelInfo();
+        }
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
         }
         private void RefreshPanelTypeInfo()
 		{

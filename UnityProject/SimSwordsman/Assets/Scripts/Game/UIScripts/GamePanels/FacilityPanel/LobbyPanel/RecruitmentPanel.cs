@@ -46,6 +46,22 @@ namespace GameWish.Game
             m_DiscipleName.text = m_CharacterItem.name;
             m_DiscipleDescribe.text = m_CharacterItem.desc;
             m_DiscipleQuality.text = GetQualiteStr(m_CharacterItem.quality);
+
+            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+        }
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DisciplePhoto.sprite = obj;
+                m_DisciplePhoto.SetNativeSize();
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
         }
 
         private string GetQualiteStr(CharacterQuality quality)

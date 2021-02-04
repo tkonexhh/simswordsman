@@ -17,7 +17,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CurPractice;
         [SerializeField]
-        private Image m_PracticeImg;
+        private Image m_PracticeImg;      
+        [SerializeField]
+        private Image m_DiscipleHead;
         [SerializeField]
         private Text m_ArrangeDisciple;
         [SerializeField]
@@ -44,7 +46,19 @@ namespace GameWish.Game
             m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
             RefreshPracticeFieldState();
         }
-
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         private void GetInformationForNeed()
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
@@ -96,6 +110,7 @@ namespace GameWish.Game
                     break;
                 case SlotState.Free:
                     m_PracticeBtn.enabled = true;
+                    m_DiscipleHead.gameObject.SetActive(false);
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     //m_PracticeImg.sprite = ""
@@ -104,6 +119,7 @@ namespace GameWish.Game
                     break;
                 case SlotState.NotUnlocked:
                     m_PracticeBtn.enabled = false;
+                    m_DiscipleHead.gameObject.SetActive(false);
                     m_State.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
                     m_PracticeImg.sprite = GetSprite("Lock2");
                     m_Time.text = Define.COMMON_DEFAULT_STR;
@@ -111,6 +127,7 @@ namespace GameWish.Game
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case SlotState.Practice:
+                    m_DiscipleHead.gameObject.SetActive(true);
                     m_PracticeBtn.enabled = false;
                     m_State.text = Define.COMMON_DEFAULT_STR;
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
@@ -118,6 +135,7 @@ namespace GameWish.Game
                     m_CurPractice.text = "当前训练:" + m_PracticeFieldInfo.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());
                     CreateCountDown();
+                    LoadClanPrefabs(GetLoadDiscipleName(m_PracticeFieldInfo.CharacterItem));
                     //TimeRemaining(m_PracticeFieldInfo.StartTime);
                     break;
                 default:
