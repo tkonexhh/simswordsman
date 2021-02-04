@@ -107,7 +107,7 @@ namespace GameWish.Game
             {
                 int taskId = m_CharacterController.CurTask.TaskId;
                 MainGameMgr.S.CommonTaskMgr.ClaimReward(taskId);
-                if (taskId != 9001 && taskId != 9002)
+                if (GuideMgr.S.IsGuideFinish(20)/*taskId != 9001 && taskId != 9002*/)
                     UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { RewardMgr.S.GetRewardBase(TDCommonTaskTable.GetData(taskId).reward) });
 
                 EventSystem.S.Send(EventID.OnCharacterTaskRewardClicked, taskId);

@@ -141,7 +141,7 @@ namespace GameWish.Game
 
                     CountdownSystem.S.Init();
 
-                    //GameMgr.S.StartGuide();
+                    GameMgr.S.StartGuide();
                 }
             }
             else

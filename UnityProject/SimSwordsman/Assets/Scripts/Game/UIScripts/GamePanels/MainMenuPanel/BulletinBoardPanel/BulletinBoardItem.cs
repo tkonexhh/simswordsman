@@ -252,7 +252,7 @@ namespace GameWish.Game
                     });
 
                     MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
-                    if (m_CurTaskInfo.TaskId != 9001 && m_CurTaskInfo.TaskId != 9002)
+                    if (GuideMgr.S.IsGuideFinish(20)/*m_CurTaskInfo.TaskId != 9001 && m_CurTaskInfo.TaskId != 9002*/)
                         UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { RewardMgr.S.GetRewardBase(TDCommonTaskTable.GetData(m_CurTaskInfo.TaskId).reward) });
 
                     DestroyImmediate(this.gameObject);
