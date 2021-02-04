@@ -40,6 +40,7 @@ namespace GameWish.Game
         public int level;
         public string desc;
         public string battleName;
+        public string enemyHeadIcon;
         public int recommendAtkValue;
         public List<LevelReward> levelRewardList = new List<LevelReward>();
         public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
@@ -69,6 +70,7 @@ namespace GameWish.Game
             this.level = tDLevelConfig.level;
             this.desc = tDLevelConfig.desc;
             this.battleName = tDLevelConfig.battleName;
+            this.enemyHeadIcon = tDLevelConfig.enemyHeadIcon;
             this.recommendAtkValue = tDLevelConfig.recommendAtkValue;
             AnalysisRewards(tDLevelConfig.reward);
             AnalysisEnemies(tDLevelConfig.enemies);
