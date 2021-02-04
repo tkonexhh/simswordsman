@@ -140,29 +140,47 @@ namespace GameWish.Game
 
         private void RefreshResInfo()
         {
+            if (m_CostItems == null)
+                return;
+
             if (m_CostItems.Count == 1)
             {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_WarehouseNextLevelInfo.upgradeCoinCost.ToString();
+                m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
                 m_Res2Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(false);
             }
             else if (m_CostItems.Count == 2)
             {
-
-                m_Res1Value.text = m_CostItems[0].value.ToString();
+                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
+                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
                 m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_CostItems[1].value.ToString();
+                m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
                 m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-                m_Res3Value.text = m_WarehouseNextLevelInfo.upgradeCoinCost.ToString();
+                m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
                 m_Res3Img.sprite = FindSprite("Coin");
                 m_Res3Img.gameObject.SetActive(true);
             }
         }
+        private int GetCurItem(int hava, int number)
+        {
+            if (hava >= number)
+                return number;
+            return hava;
+        }
         private string GetIconName(int id)
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
+        }
+        private string GetCurCoin()
+        {
+            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            if (coin >= m_WarehouseNextLevelInfo.upgradeCoinCost)
+                return CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
+            return CommonUIMethod.GetTenThousand((int)coin);
         }
 
         private void RefreshCreateGoods()
@@ -194,19 +212,24 @@ namespace GameWish.Game
                 case PropType.None:
                     break;
                 case PropType.Arms:
-                    break;
+                    return FindSprite(TDEquipmentConfigTable.GetIconName(itemBase.GetSubName()));
                 case PropType.Armor:
-                    break;
+                    return FindSprite(TDEquipmentConfigTable.GetIconName(itemBase.GetSubName()));
                 case PropType.RawMaterial:
                     return FindSprite(GetIconName(itemBase.GetSubName()));
                 case PropType.Kungfu:
-                    break;
+                    return FindSprite(TDKongfuConfigTable.GetIconName((KongfuType)itemBase.GetSubName()));
+                case PropType.Herb:
+                    return FindSprite(GetHerbIconName(itemBase.GetSubName()));
                 default:
                     break;
             }
             return null;
         }
-
+        private string GetHerbIconName(int herbType)
+        {
+            return TDHerbConfigTable.GetHerbIconNameById(herbType);
+        }
         private void ReduceItemGameObject(ItemBase itemBase, int delta)
         {
             for (int i = 0; i < m_CurItemList.Count; i++)
@@ -303,10 +326,7 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 if (!CheackIsBuild())
-                {
-                    FloatMessage.S.ShowMsg("未达到升级条件");
                     return;
-                }
                 if (m_WarehouseNextLevelInfo == null)
                     return;
                 bool isReducceSuccess = GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_WarehouseNextLevelInfo.upgradeCoinCost);
@@ -330,7 +350,9 @@ namespace GameWish.Game
 
         private WarehouseItem CreateWarehouseItem()
         {
-            return Instantiate(m_WarehouseItem, m_GoodsTrans).GetComponent<WarehouseItem>();
+            WarehouseItem warehouse = Instantiate(m_WarehouseItem, m_GoodsTrans).GetComponent<WarehouseItem>();
+            warehouse.OnInit(this);
+            return warehouse;
         }
     }
 }

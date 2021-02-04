@@ -132,7 +132,6 @@ namespace GameWish.Game
                     m_SelectBg.gameObject.SetActive(false);
                     m_LearnBg.gameObject.SetActive(false);
                     m_NotLearnBg.gameObject.SetActive(true);
-
                     break;
                 default:
                     break;

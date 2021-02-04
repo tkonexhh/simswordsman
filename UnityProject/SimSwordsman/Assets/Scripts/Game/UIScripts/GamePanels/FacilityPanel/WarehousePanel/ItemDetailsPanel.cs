@@ -18,6 +18,9 @@ namespace GameWish.Game
     }
     public class ItemDetailsPanel : AbstractAnimPanel
     {
+        [SerializeField]
+        private Button m_BlackBtn;
+
         [Header("Top")]
         [SerializeField]
         private Image[] m_NameList;
@@ -28,7 +31,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_BriefIntroduction;
         [SerializeField]
-        private Image m_ItemIcon;
+        private Image m_ItemIcon;   
+        [SerializeField]
+        private Image m_KungfuName;
         [SerializeField]
         private Text m_UnitPrice;
         [SerializeField]
@@ -71,6 +76,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvevnt()
         {
+            m_BlackBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
             m_SellBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -88,6 +97,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
+          
             m_IncreaseBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -193,6 +203,7 @@ namespace GameWish.Game
             {
                 m_SelectedNumber = 0;
                 m_SellNumber.text = m_SelectedNumber + Define.SLASH + m_CurInventoryItem.Number.ToString();
+                m_AllPrice.text = (m_CurInventoryItem.Price * m_SelectedNumber).ToString();
                 return;
             }
             m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
@@ -212,16 +223,72 @@ namespace GameWish.Game
             m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
             m_AllPrice.text = (m_CurInventoryItem.Price * m_SelectedNumber).ToString();
         }
-
+        private string GetIconName(KongfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetIconName(kungfuType);
+        }
+        private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
+        }
 
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CurInventoryItem = args[0] as ItemBase;
+
+            if (m_CurInventoryItem.PropType == PropType.Kungfu)
+            {
+                switch (GetKungfuQuality((KongfuType)m_CurInventoryItem.GetSubName()))
+                {
+                    case KungfuQuality.Normal:
+                        m_ItemIcon.sprite = FindSprite("Introduction");
+                        break;
+                    case KungfuQuality.Super:
+                        m_ItemIcon.sprite = FindSprite("Advanced");
+                        break;
+                    case KungfuQuality.Master:
+                        m_ItemIcon.sprite = FindSprite("Excellent");
+                        break;
+                    default:
+                        break;
+                }
+                m_KungfuName.sprite = FindSprite(GetIconName((KongfuType)m_CurInventoryItem.GetSubName()));
+                m_KungfuName.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_KungfuName.gameObject.SetActive(false);
+                m_ItemIcon.sprite = GetItemSprite(m_CurInventoryItem);
+            }
             RefreshPanelInfo();
         }
-
+        private Sprite GetItemSprite(ItemBase itemBase)
+        {
+            if (itemBase == null)
+                return null;
+            switch (itemBase.PropType)
+            {
+                case PropType.None:
+                    break;
+                case PropType.Arms:
+                    return FindSprite(TDEquipmentConfigTable.GetIconName(itemBase.GetSubName()));
+                case PropType.Armor:
+                    return FindSprite(TDEquipmentConfigTable.GetIconName(itemBase.GetSubName()));
+                case PropType.RawMaterial:
+                    return FindSprite(GetIconName(itemBase.GetSubName()));
+                case PropType.Herb:
+                    return FindSprite(TDHerbConfigTable.GetHerbIconNameById(itemBase.GetSubName()));
+                default:
+                    break;
+            }
+            return null;
+        }
+        private string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
+        }
         private void RefreshPanelInfo()
         {
             if (m_CurInventoryItem != null)
