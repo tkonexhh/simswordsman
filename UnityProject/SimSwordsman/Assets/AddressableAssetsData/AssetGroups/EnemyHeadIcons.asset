@@ -1,0 +1,331 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: EnemyHeadIcons
+  m_EditorClassIdentifier: 
+  m_GroupName: EnemyHeadIcons
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 07d8eec22b463614dab3f05bca6b4672
+  m_SerializeEntries:
+  - m_GUID: 034f65afd99e1d941abf18b5c0a8459f
+    m_Address: enemy_icon_wokou2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 034f65afd99e1d941abf18b5c0a8459f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 034f65afd99e1d941abf18b5c0a8459f, type: 3}
+  - m_GUID: 092207c5fb99b7248b33ec999bb85ac8
+    m_Address: enemy_icon_dubi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 092207c5fb99b7248b33ec999bb85ac8, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 092207c5fb99b7248b33ec999bb85ac8, type: 3}
+  - m_GUID: 0b3d542fa25c7ae4fb2760402aa523fd
+    m_Address: enemy_icon_yixian
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 0b3d542fa25c7ae4fb2760402aa523fd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 0b3d542fa25c7ae4fb2760402aa523fd, type: 3}
+  - m_GUID: 1109a638cba09ba42b0cc29cbb7013f6
+    m_Address: enemy_icon_zhangzhenren
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 1109a638cba09ba42b0cc29cbb7013f6, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1109a638cba09ba42b0cc29cbb7013f6, type: 3}
+  - m_GUID: 1a6d16474adda2847b43f4cd9b497ef1
+    m_Address: enemy_icon_wudu1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 1a6d16474adda2847b43f4cd9b497ef1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1a6d16474adda2847b43f4cd9b497ef1, type: 3}
+  - m_GUID: 1b5d390c35a508a409355f9cf0266b6d
+    m_Address: enemy_icon_huashan2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 1b5d390c35a508a409355f9cf0266b6d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1b5d390c35a508a409355f9cf0266b6d, type: 3}
+  - m_GUID: 1cab3fa732d594d44aff2c45b76495c0
+    m_Address: enemy_icon_wudang1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 1cab3fa732d594d44aff2c45b76495c0, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1cab3fa732d594d44aff2c45b76495c0, type: 3}
+  - m_GUID: 1f7cf830532feb940b23fafd422adfb5
+    m_Address: enemy_icon_hongyao
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 1f7cf830532feb940b23fafd422adfb5, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1f7cf830532feb940b23fafd422adfb5, type: 3}
+  - m_GUID: 28a0f45d90e579a4a8f1b9c0b4371283
+    m_Address: enemy_icon_mojiao3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 28a0f45d90e579a4a8f1b9c0b4371283, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 28a0f45d90e579a4a8f1b9c0b4371283, type: 3}
+  - m_GUID: 2b452e36f0fdd3f4582ae40bbddd1d2f
+    m_Address: enemy_icon_wokou1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 2b452e36f0fdd3f4582ae40bbddd1d2f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 2b452e36f0fdd3f4582ae40bbddd1d2f, type: 3}
+  - m_GUID: 380e483456c3c114a8d7e3346ecc74b7
+    m_Address: enemy_icon_xiaoyao1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 380e483456c3c114a8d7e3346ecc74b7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 380e483456c3c114a8d7e3346ecc74b7, type: 3}
+  - m_GUID: 3a783edd0eb68aa4e96e436ce03bfe84
+    m_Address: enemy_icon_shaolin2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 3a783edd0eb68aa4e96e436ce03bfe84, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3a783edd0eb68aa4e96e436ce03bfe84, type: 3}
+  - m_GUID: 3abfb1df46433454d81687a6796aea0e
+    m_Address: enemy_icon_shanbuyang
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 3abfb1df46433454d81687a6796aea0e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3abfb1df46433454d81687a6796aea0e, type: 3}
+  - m_GUID: 3af3d2b62e1cc814697c70ef13b441fd
+    m_Address: enemy_icon_xiaoyao3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 3af3d2b62e1cc814697c70ef13b441fd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3af3d2b62e1cc814697c70ef13b441fd, type: 3}
+  - m_GUID: 3af4bcfc02dae6449a7e0ee54279cac1
+    m_Address: enemy_icon_xuannv
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 3af4bcfc02dae6449a7e0ee54279cac1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3af4bcfc02dae6449a7e0ee54279cac1, type: 3}
+  - m_GUID: 46327f5420644e24988d6f33cf52896e
+    m_Address: enemy_icon_xiaoyaozi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 46327f5420644e24988d6f33cf52896e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 46327f5420644e24988d6f33cf52896e, type: 3}
+  - m_GUID: 49786a1ef24f14747a241296614caaef
+    m_Address: enemy_icon_gaibang2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 49786a1ef24f14747a241296614caaef, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 49786a1ef24f14747a241296614caaef, type: 3}
+  - m_GUID: 4a881dcca8acdab40ba8712d3c7a6284
+    m_Address: enemy_icon_mojiao1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 4a881dcca8acdab40ba8712d3c7a6284, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 4a881dcca8acdab40ba8712d3c7a6284, type: 3}
+  - m_GUID: 508f86c405d6b584e8dc15e756917c9c
+    m_Address: enemy_icon_cike
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 508f86c405d6b584e8dc15e756917c9c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 508f86c405d6b584e8dc15e756917c9c, type: 3}
+  - m_GUID: 60a00030cfb13c54d868de2c8c02f450
+    m_Address: enemy_icon_xiaoyao2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 60a00030cfb13c54d868de2c8c02f450, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 60a00030cfb13c54d868de2c8c02f450, type: 3}
+  - m_GUID: 618dc66540c8d3d44ba4ed7f278e0930
+    m_Address: enemy_icon_huashan1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 618dc66540c8d3d44ba4ed7f278e0930, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 618dc66540c8d3d44ba4ed7f278e0930, type: 3}
+  - m_GUID: 6a68d023f5d71e4448592dbcfa9ca81a
+    m_Address: enemy_icon_shanzeiboss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 6a68d023f5d71e4448592dbcfa9ca81a, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6a68d023f5d71e4448592dbcfa9ca81a, type: 3}
+  - m_GUID: 74db342ac131e9548b834f4450470d24
+    m_Address: enemy_icon_huotouseng
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 74db342ac131e9548b834f4450470d24, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 74db342ac131e9548b834f4450470d24, type: 3}
+  - m_GUID: 799f9b37db940f44494f8891c650d06c
+    m_Address: enemy_icon_shanzei2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 799f9b37db940f44494f8891c650d06c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 799f9b37db940f44494f8891c650d06c, type: 3}
+  - m_GUID: 7a21a48d30bf6264abf4fb94429f67cf
+    m_Address: enemy_icon_wudang2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 7a21a48d30bf6264abf4fb94429f67cf, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7a21a48d30bf6264abf4fb94429f67cf, type: 3}
+  - m_GUID: 7ccb7e6ec82d0e741aeef4e2a1f4003e
+    m_Address: enemy_icon_mojiao2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 7ccb7e6ec82d0e741aeef4e2a1f4003e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7ccb7e6ec82d0e741aeef4e2a1f4003e, type: 3}
+  - m_GUID: 8b0e15aceab08d943a777fd641c62b14
+    m_Address: enemy_icon_jiaozhu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 8b0e15aceab08d943a777fd641c62b14, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8b0e15aceab08d943a777fd641c62b14, type: 3}
+  - m_GUID: 922e8b550be9d8e4fb6aa8e20b1a3fde
+    m_Address: enemy_icon_zhangmen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 922e8b550be9d8e4fb6aa8e20b1a3fde, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 922e8b550be9d8e4fb6aa8e20b1a3fde, type: 3}
+  - m_GUID: a9d1a78f808ae8f449ab9d004a3f9210
+    m_Address: enemy_icon_rilunfawang
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: a9d1a78f808ae8f449ab9d004a3f9210, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a9d1a78f808ae8f449ab9d004a3f9210, type: 3}
+  - m_GUID: abe83bfd8059a02448fe425a266583de
+    m_Address: enemy_icon_wudu2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: abe83bfd8059a02448fe425a266583de, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: abe83bfd8059a02448fe425a266583de, type: 3}
+  - m_GUID: b540591120f9db14e86e6bf7285e2950
+    m_Address: enemy_icon_shitai
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: b540591120f9db14e86e6bf7285e2950, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b540591120f9db14e86e6bf7285e2950, type: 3}
+  - m_GUID: b544759f2e7fead448272a83429b0a56
+    m_Address: enemy_icon_gaibang3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: b544759f2e7fead448272a83429b0a56, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b544759f2e7fead448272a83429b0a56, type: 3}
+  - m_GUID: b6f14b31bef346e46924086a6abdef67
+    m_Address: enemy_icon_wudu3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: b6f14b31bef346e46924086a6abdef67, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b6f14b31bef346e46924086a6abdef67, type: 3}
+  - m_GUID: bda46b158170e6e4a9a95596b5a97543
+    m_Address: enemy_icon_shaolin3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: bda46b158170e6e4a9a95596b5a97543, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bda46b158170e6e4a9a95596b5a97543, type: 3}
+  - m_GUID: c044043e55b9ff746843e8551823b9b6
+    m_Address: enemy_icon_gaibang1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: c044043e55b9ff746843e8551823b9b6, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c044043e55b9ff746843e8551823b9b6, type: 3}
+  - m_GUID: c20050b8663ff3a4ab261d3a45544777
+    m_Address: enemy_icon_xuankongfangzhang
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: c20050b8663ff3a4ab261d3a45544777, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c20050b8663ff3a4ab261d3a45544777, type: 3}
+  - m_GUID: c8b4e3d2a3f2c2447a22eaacab5ff44e
+    m_Address: enemy_icon_hongqi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: c8b4e3d2a3f2c2447a22eaacab5ff44e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c8b4e3d2a3f2c2447a22eaacab5ff44e, type: 3}
+  - m_GUID: d4149fb7da8d733409aeb913f8387362
+    m_Address: enemy_icon_qiaobangzhu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: d4149fb7da8d733409aeb913f8387362, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d4149fb7da8d733409aeb913f8387362, type: 3}
+  - m_GUID: d7762df99168556419b4b11c9e7691d7
+    m_Address: enemy_icon_suhuazi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: d7762df99168556419b4b11c9e7691d7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d7762df99168556419b4b11c9e7691d7, type: 3}
+  - m_GUID: e0d315ab30c88ae4cb26e9c1b845681f
+    m_Address: enemy_icon_shaolin1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: e0d315ab30c88ae4cb26e9c1b845681f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e0d315ab30c88ae4cb26e9c1b845681f, type: 3}
+  - m_GUID: e4621048e80062c48984a881cbfd3d34
+    m_Address: enemy_icon_qiubujun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: e4621048e80062c48984a881cbfd3d34, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e4621048e80062c48984a881cbfd3d34, type: 3}
+  - m_GUID: e5b40c79625ac8f41afbb9e46c4269f5
+    m_Address: enemy_icon_xiantong
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: e5b40c79625ac8f41afbb9e46c4269f5, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e5b40c79625ac8f41afbb9e46c4269f5, type: 3}
+  - m_GUID: e72183fabf0950f4eabce3642efe5b91
+    m_Address: enemy_icon_huashan3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: e72183fabf0950f4eabce3642efe5b91, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e72183fabf0950f4eabce3642efe5b91, type: 3}
+  - m_GUID: ec225ec7fc8e8e04d84ca3c7902a917b
+    m_Address: enemy_icon_emei
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: ec225ec7fc8e8e04d84ca3c7902a917b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ec225ec7fc8e8e04d84ca3c7902a917b, type: 3}
+  - m_GUID: ec9c6e700735ebc409d830b0fd7fac30
+    m_Address: enemy_icon_wokou3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: ec9c6e700735ebc409d830b0fd7fac30, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ec9c6e700735ebc409d830b0fd7fac30, type: 3}
+  - m_GUID: f232684d8ef5f764ab724eee19a66653
+    m_Address: enemy_icon_yuelunfawang
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: f232684d8ef5f764ab724eee19a66653, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f232684d8ef5f764ab724eee19a66653, type: 3}
+  - m_GUID: f692f0dd3db310c4e984cc7b7795f1bf
+    m_Address: enemy_icon_shanzei1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: f692f0dd3db310c4e984cc7b7795f1bf, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f692f0dd3db310c4e984cc7b7795f1bf, type: 3}
+  - m_GUID: f7ee2517686ebbc4f9e5cf845e41a6ab
+    m_Address: enemy_icon_wudushengjun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: f7ee2517686ebbc4f9e5cf845e41a6ab, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f7ee2517686ebbc4f9e5cf845e41a6ab, type: 3}
+  - m_GUID: f88e205a1e8a5d942829502d0f8558fe
+    m_Address: enemy_icon_saodiseng
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: f88e205a1e8a5d942829502d0f8558fe, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f88e205a1e8a5d942829502d0f8558fe, type: 3}
+  - m_GUID: fdfe08252769a49498d89fb3f49587c3
+    m_Address: enemy_icon_zangdaoren
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: fdfe08252769a49498d89fb3f49587c3, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: fdfe08252769a49498d89fb3f49587c3, type: 3}
+  - m_GUID: fe433c2a69e3256488debc949d3eb45c
+    m_Address: enemy_icon_wudang3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: fe433c2a69e3256488debc949d3eb45c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: fe433c2a69e3256488debc949d3eb45c, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 231b8d0fc2f2ac84f931e378638cc415, type: 2}
+    - {fileID: 11400000, guid: bd846224ba9344c469fd853da2438a02, type: 2}
