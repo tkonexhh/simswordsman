@@ -265,52 +265,14 @@ namespace GameWish.Game
             });
             m_AutoSelectedBtn.onClick.AddListener(() =>
             {
+                ///只有挑战有
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                CloseSelfPanel();
-                switch (m_PanelType)
-                {
-                    case PanelType.Task:
-                        FloatMessage.S.ShowMsg("已选择完毕");
-                        //if (m_CurTaskInfo.CommonTaskItemInfo.GetCharacterAmount())
-                        //{
-
-                        //}
-                        //    foreach (var item in m_AllCharacterList)
-                        //    {
-                        //        if (item.IsFreeState())
-                        //            m_SelectedList.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
-                        //    }
-                        
-                        //if (m_CurTaskInfo.GetCurTaskType() != SimGameTaskType.Battle)
-                        //{
-                        //    m_CurTaskInfo.ExecuteTask(m_SelectedList);
-                        //}
-
-                        //if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
-                        //{
-                        //    List<EnemyConfig> enemiesList = new List<EnemyConfig>();
-                        //    List<TaskEnemy> taskEnemies = m_CurTaskInfo.CommonTaskItemInfo.taskEnemies;
-                        //    for (int i = 0; i < taskEnemies.Count; i++)
-                        //    {
-                        //        enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
-                        //    }
-                        //    EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, enemiesList);
-                        //    UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
-                        //}
-                        break;
-                    case PanelType.Challenge:
-                        AutoSelectedDisciple();
-                        //EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
-                        //UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_CurChapterConfigInfo, m_LevelConfigInfo);
-                        break;
-                    default:
-                        break;
-                }
+                AutoSelectedDisciple();
+                RefreshDisicipleSkill();
             });
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                CloseSelfPanel();
                 m_SelectedList = Transformation(m_SelectedDiscipleDic);
                 switch (m_PanelType)
                 {
@@ -331,8 +293,8 @@ namespace GameWish.Game
                     case PanelType.Challenge:
                         if (m_SelectedList.Count!= MaxDiscipleNumber)
                         {
-                            //FloatMessage.S.ShowMsg("请选择满弟子 !");
-                            //return;
+                            FloatMessage.S.ShowMsg("请选择满弟子 !");
+                            return;
                         }
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
                         UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo);
@@ -340,6 +302,7 @@ namespace GameWish.Game
                     default:
                         break;
                 }
+                CloseSelfPanel();
             });
         }
 

@@ -26,7 +26,7 @@ namespace GameWish.Game
         private CharacterController m_CharacterController = null;
         private PanelType m_PanelType;
         private SimGameTask m_CurTaskInfo = null;
-
+           
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_PanelType = (PanelType)obj[0];
@@ -47,10 +47,11 @@ namespace GameWish.Game
 
             m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
-
-
         }
 
+        public void SetButtonEvent(Action<object> action)
+        {
+        }
 
         private void RefreshPanelInfo()
         {
@@ -70,15 +71,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-        }
-
-        private void OnDestroy() 
-        {
-
-        }
-
-        public void SetButtonEvent(Action<object> action)
-        {
         }
 	}
 }

@@ -33,6 +33,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel,-1,null);
             PromotionBase promotionModel = (PromotionBase)args[0];
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
             m_CharacterName.text = m_CharacterItem.name;
@@ -80,6 +81,7 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             m_CharacterLoader.Release();
+            CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
             PanelPool.S.CurShowPanelIsOver = false;
         }

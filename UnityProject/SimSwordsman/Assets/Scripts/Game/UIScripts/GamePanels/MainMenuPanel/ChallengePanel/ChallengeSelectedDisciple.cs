@@ -51,9 +51,24 @@ namespace GameWish.Game
                     break;
             }
         }
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         public void OnInit(ChallengeChooseDisciple challengeChooseDisciple)
         {
+
             RefreshPanelInfo();
+
             m_ChooseSelectedDisciple.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -74,8 +89,12 @@ namespace GameWish.Game
         public void SetSelectedDisciple(CharacterItem characterItem, bool isSelected)
         {
             m_CharacterItem = characterItem;
+
             if (isSelected)
+            {
+                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
+            }
             else
                 m_SelelctedState = SelectedState.NotSelected;
             RefreshPanelInfo();

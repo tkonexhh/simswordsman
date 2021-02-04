@@ -30,10 +30,23 @@ namespace GameWish.Game
             m_CharacterItem = t as CharacterItem;
 
             BindAddListenerEvent();
+            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
 
             RefresPanelInfo();
         }
-
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
+            loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         public void RefresPanelInfo()
         {
             switch (m_SelelctedState)
