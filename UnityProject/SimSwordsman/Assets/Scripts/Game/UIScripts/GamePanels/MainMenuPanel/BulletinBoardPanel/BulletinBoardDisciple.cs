@@ -24,6 +24,7 @@ namespace GameWish.Game
         private CharacterItem m_CharacterItem;
         private SimGameTask m_CurTaskInfo;
         private CommonTaskItemInfo m_CommonTaskItemInfo;
+        private AddressableAssetLoader<Sprite> m_Loader;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -59,8 +60,8 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
                 //Debug.Log(obj);
                 m_DiscipleHead.sprite = obj;
@@ -73,6 +74,11 @@ namespace GameWish.Game
         public void SetBtnClick(bool IsClick)
         {
             m_Btn.enabled = IsClick;
+        }
+
+        private void OnDisable()
+        {
+            m_Loader.Release();
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)

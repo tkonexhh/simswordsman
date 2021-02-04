@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class CopyScripturesItem : MonoBehaviour,ItemICom
-	{
+    public class CopyScripturesItem : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private Text m_CopyScripturesPos;
         [SerializeField]
@@ -20,9 +20,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_Free;
         [SerializeField]
-        private Image m_DiscipleImg;     
+        private Image m_DiscipleImg;
         [SerializeField]
-        private Image m_DiscipleHead; 
+        private Image m_DiscipleHead;
         [SerializeField]
         private Image m_Lock;
         [SerializeField]
@@ -34,14 +34,20 @@ namespace GameWish.Game
         private int m_CurLevel;
         private FacilityType m_CurFacility;
         private KungfuLibraySlot m_KungfuLibraySlot = null;
+        private AddressableAssetLoader<Sprite> m_Loader;
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
                 //Debug.Log(obj);
                 m_DiscipleHead.sprite = obj;
             });
+        }
+
+        private void OnDisable()
+        {
+            m_Loader.Release();
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
@@ -69,9 +75,10 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            m_CopyScripturesBtn.onClick.AddListener(()=> {
+            m_CopyScripturesBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                UIMgr.S.OpenPanel(UIID.KungfuChooseDisciplePanel, m_KungfuLibraySlot, m_CurFacility);            
+                UIMgr.S.OpenPanel(UIID.KungfuChooseDisciplePanel, m_KungfuLibraySlot, m_CurFacility);
             });
         }
 
@@ -101,7 +108,7 @@ namespace GameWish.Game
                     m_Lock.gameObject.SetActive(true);
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_CopyScripturesBtn.enabled = false;
-                    m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR; 
+                    m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = "抄经位" + m_KungfuLibraySlot.UnlockLevel + "级后解锁";
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_DiscipleHead.gameObject.SetActive(false);
@@ -188,5 +195,5 @@ namespace GameWish.Game
             return str;
         }
     }
-	
+
 }

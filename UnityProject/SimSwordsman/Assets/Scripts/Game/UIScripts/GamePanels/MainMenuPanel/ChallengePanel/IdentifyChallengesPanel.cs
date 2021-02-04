@@ -26,6 +26,9 @@ namespace GameWish.Game
         private Button m_ChallengeBtn;
         [SerializeField]
         private Button m_CloseBtn;
+        [SerializeField]
+        private Button m_BlackBtn;
+        private AddressableAssetLoader<Sprite> m_Loader;
 
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private LevelConfigInfo m_LevelConfigInfo = null;
@@ -40,6 +43,10 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
@@ -64,8 +71,19 @@ namespace GameWish.Game
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_LevelConfigInfo = (LevelConfigInfo)args[1];
             RefreshPanelInfo();
+            LoadClanPrefabs(m_LevelConfigInfo.enemyHeadIcon);
         }
-
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_ChallengePhoto.enabled = true;
+                m_ChallengePhoto.sprite = obj;
+            });
+        }
+    
         private void RefreshPanelInfo()
         {
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);

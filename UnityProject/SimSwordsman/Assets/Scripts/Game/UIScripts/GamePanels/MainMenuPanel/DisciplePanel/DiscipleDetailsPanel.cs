@@ -109,6 +109,7 @@ namespace GameWish.Game
         private CharacterItem m_CurDisciple = null;
         private CharacterController m_CurCharacterController = null;
         private Dictionary<int, CharacterKongfuData> m_Kongfus = null;
+        private AddressableAssetLoader<Sprite> m_Loader;
         private Dictionary<int, GameObject> m_KongfusGameObject = new Dictionary<int, GameObject>();
 
         //private EquipmentItem m_CurArmor = null;
@@ -152,8 +153,8 @@ namespace GameWish.Game
 
         public void LoadClanPrefabs(string prefabsName)
         {
-            AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            loader.LoadAssetAsync(prefabsName, (obj) =>
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {          
                 //Debug.Log(obj);
                 m_DiscipleImg.sprite = obj;
@@ -508,6 +509,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            m_Loader.Release();
             CloseSelfPanel();
             CloseDependPanel(EngineUI.MaskPanel);
         }
