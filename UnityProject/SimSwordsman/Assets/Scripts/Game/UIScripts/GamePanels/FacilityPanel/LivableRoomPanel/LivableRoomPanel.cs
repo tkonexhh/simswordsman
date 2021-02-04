@@ -103,8 +103,8 @@ namespace GameWish.Game
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType/*, m_SubID*/);
             m_LivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, m_CurLevel + 1);
-            m_CostItems = m_LivableRoomLevelInfo.GetUpgradeResCosts();
-           
+            if (m_LivableRoomLevelInfo!=null)
+                m_CostItems = m_LivableRoomLevelInfo.GetUpgradeResCosts();
             ItemICom itemICom = Instantiate(m_LivableItem, m_LivableRoomTra).GetComponent<ItemICom>();
             itemICom.OnInit(this, null, facilityType);
             return itemICom;

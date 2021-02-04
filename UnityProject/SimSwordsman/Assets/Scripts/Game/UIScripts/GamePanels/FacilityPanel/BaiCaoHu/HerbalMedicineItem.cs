@@ -22,21 +22,35 @@ namespace GameWish.Game
 
         //private PlayerDataHerb m_CurHerb = null;
         private HerbItem m_HerbItem = null;
+        private int m_HerbItemID;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private bool m_IsSelected = false;
+        private SendDisciplesPanel m_SendDisciplesPanel;
         private void Start()
         {
             BindAddListenerEvent();
         }
-        public void OnInit(int id)
+        public void OnInit(int id, SendDisciplesPanel sendDisciplesPanel)
         {
+            m_HerbItemID = id;
+            m_SendDisciplesPanel = sendDisciplesPanel;
             m_HerbItem = MainGameMgr.S.InventoryMgr.GetHerbForID(id) as HerbItem;
 
             RefreshPanelInfo();
         }
 
+        private string GetIconName(int herbType)
+        {
+            return TDHerbConfigTable.GetHerbIconNameById(herbType);
+        }
+
+        private HerbConfig GetHerbById(int herbType)
+        {
+            return TDHerbConfigTable.GetHerbById(herbType);
+        }
         private void RefreshPanelInfo()
         {
+            m_HerbHead.sprite = m_SendDisciplesPanel.FindSprite(GetIconName(m_HerbItemID));
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
@@ -48,11 +62,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            if (m_HerbItem != null)
-            {
-                m_HerbName.text = m_HerbItem.Name;
-                //m_HerbalMedicineNumber.text = m_HerbItem.Number.ToString();
-            }
+            m_HerbName.text = GetHerbById(m_HerbItemID).Name;
         }
 
         /// <summary>

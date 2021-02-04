@@ -40,7 +40,7 @@ namespace GameWish.Game
         private Button m_ConfirmBtn;
         [SerializeField]
         private Text m_ConfirmText;
-
+        private LevelConfigInfo m_LevelConfigInfo = null;
         private const int ChallengeSelectedDiscipleNumber = 5;
 
         private List<CharacterItem> m_AllDiscipleList;
@@ -127,6 +127,31 @@ namespace GameWish.Game
                         item.SetItemState(false);
                 }
             }
+            RefreshDisicipleSkill();
+        }
+        private void RefreshDisicipleSkill()
+        {
+            float atkValue = 0;
+            foreach (var item in m_SelectedDiscipleDic.Values)
+                atkValue += item.atkValue;
+            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
+
+            int selected = (int)atkValue;
+            int recommended = m_LevelConfigInfo.recommendAtkValue;
+            float result = selected / recommended;
+            if (result < 0.75)
+            {
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
+            }
+            else if (result > 1.1f)
+            {
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
+                //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
+            }
+            else
+            {
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
+            }
         }
         public void AddDiscipleDicDic(Dictionary<int, CharacterItem> keyValuePairs)
         {
@@ -147,14 +172,18 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
+            m_LevelConfigInfo = args[0] as LevelConfigInfo;
+            m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
+
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {
-                if ( m_AllDiscipleList[i].characterStateId == CharacterStateID.Wander)
+                if ( m_AllDiscipleList[i].IsFreeState())
                     CreateDisciple(m_AllDiscipleList[i]);
             }
 
             for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
                 CreateSelectedDisciple();
+            RefreshDisicipleSkill();
 
         }
         private void GetInformationForNeed()
@@ -164,7 +193,10 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+            m_CloseBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
 
             m_ConfirmBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);

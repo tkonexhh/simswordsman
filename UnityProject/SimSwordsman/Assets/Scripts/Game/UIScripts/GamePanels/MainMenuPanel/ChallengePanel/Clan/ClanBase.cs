@@ -20,7 +20,7 @@ namespace GameWish.Game
         {
             m_ScrollRect.DoScrollVertical(0, 0.01f);
         }
-
+            
         // Update is called once per frame
         public virtual void Update()
         {
