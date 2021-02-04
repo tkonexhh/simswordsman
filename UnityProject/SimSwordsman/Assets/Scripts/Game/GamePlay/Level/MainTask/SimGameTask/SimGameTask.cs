@@ -64,6 +64,8 @@ namespace GameWish.Game
             List<LevelReward> levelRewardList = new List<LevelReward>();
             ExpCharacterReward exp = new ExpCharacterReward(RewardItemType.Exp_Role, CommonTaskItemInfo.expReward);
             ExpKongfuReward KungfuExp = new ExpKongfuReward(RewardItemType.Exp_Kongfu, CommonTaskItemInfo.kongfuReward);
+            levelRewardList.Add(exp);
+            levelRewardList.Add(KungfuExp);
             if (isSucess)
                 levelRewardList.ForEach(i => i.ApplyReward(1));
             else

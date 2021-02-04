@@ -242,6 +242,15 @@ namespace GameWish.Game
 
                 if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
                 {
+                    // Set character in this task to idle
+                    List<CharacterController> allCharacterInThisTask = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_CurTaskInfo.TaskId);
+                    allCharacterInThisTask.ForEach(i => 
+                    {
+                        i.SetCurTask(null);
+                        i.SetState(CharacterStateID.Wander);
+                        i.HideTaskRewardBubble();
+                    });
+
                     MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
                     if (m_CurTaskInfo.TaskId != 9001 && m_CurTaskInfo.TaskId != 9002)
                         UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { RewardMgr.S.GetRewardBase(TDCommonTaskTable.GetData(m_CurTaskInfo.TaskId).reward) });

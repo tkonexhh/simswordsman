@@ -95,8 +95,8 @@ namespace GameWish.Game
 
 
                     m_TaskCollectableItem?.OnEndCollected();
-                    MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
-
+                    //MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CurTask.TaskId);
                 }
             }
         }
@@ -119,11 +119,11 @@ namespace GameWish.Game
 
                     m_TaskCollectableItem?.OnStartCollected(m_Controller.GetPosition());
                 }
-                else
-                {
-                    m_Controller.SetCurTask(null);
-                    m_Controller.SetState(CharacterStateID.Wander);
-                }
+                //else
+                //{
+                //    m_Controller.SetCurTask(null);
+                //    m_Controller.SetState(CharacterStateID.Wander);
+                //}
             }
             else
             {
@@ -168,22 +168,39 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnCommonTaskFinish, HandleEvent);
+            EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnCommonTaskFinish, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnTaskObjCollected, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
         {
-            int taskId = (int)param[0];
-            if (taskId == m_Controller.CurTask?.TaskId)
+            if (key == (int)EventID.OnTaskObjCollected)
             {
-                m_Controller.SetCurTask(null);
-                m_Controller.SetState(CharacterStateID.Wander);
+                int taskId = (int)param[0];
+                if (taskId == m_Controller.CurTask?.TaskId)
+                {
+                    //m_Controller.SetCurTask(null);
+                    //m_Controller.SetState(CharacterStateID.Wander);
+                    MoveToBulletinBoard();
+                }
             }
+        }
+
+        private void MoveToBulletinBoard()
+        {
+            Vector3 bulletinBoardPos = MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.BulletinBoard);
+            Vector2 pos = new Vector2(bulletinBoardPos.x, bulletinBoardPos.y) + UnityEngine.Random.insideUnitCircle * 0.3f;
+
+            m_Controller.MoveTo(pos, ()=> 
+            {
+                MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+                m_Controller.CharacterView.PlayIdleAnim();
+                m_Controller.SpawnTaskRewardBubble();
+            });
         }
     }
 }
