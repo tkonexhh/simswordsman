@@ -41,7 +41,12 @@ namespace GameWish.Game
                 return HerbDic[id];
             return null;
         }
-
+        public static string GetHerbIconNameById(int id)
+        {
+            if (HerbDic.ContainsKey(id))
+                return HerbDic[id].Icon;
+            return null;
+        }
         public static float GetEffectParam(int id)
         {
             HerbConfig config = GetHerbById(id);

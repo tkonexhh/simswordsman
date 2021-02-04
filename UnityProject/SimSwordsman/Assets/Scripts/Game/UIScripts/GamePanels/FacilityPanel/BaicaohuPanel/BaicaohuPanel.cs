@@ -140,7 +140,6 @@ namespace GameWish.Game
         {
             m_CloseBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
                 HideSelfWithAnim();
             });
 

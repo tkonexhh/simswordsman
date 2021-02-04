@@ -110,9 +110,10 @@ namespace GameWish.Game
                 case EventID.OnSelectedConfirmEvent:
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)param[0];
                     HandConfirmBtnEvent();
+                    RefreshDisicipleSkill();
                     break;
                 case EventID.OnSendDiscipleDicEvent:
-                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback);
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, m_LevelConfigInfo);
                     break;     
                 case EventID.OnSendHerbEvent:
                     HandHerbEvent((bool)param[0], (HerbItem)param[1]);
@@ -146,7 +147,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            RefreshDisicipleSkill();
         }
         protected override void OnPanelOpen(params object[] args)
         {
@@ -161,11 +161,13 @@ namespace GameWish.Game
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
                     HandConfirmBtnEvent();
-                    m_AcceptText.text = "发去战斗";
+                    m_AcceptText.text = "发起战斗";
                     m_RecommendedSkillsTitle.gameObject.SetActive(false);
                     m_RecommendedSkillsValue.gameObject.SetActive(false);
                     m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
                     m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
+                    m_RefuseBtn.gameObject.SetActive(false);
+                    m_AutoSelectedBtn.gameObject.SetActive(false);
                     m_StateBg.gameObject.SetActive(false);
                     m_State.gameObject.SetActive(false);
                     break;
@@ -174,6 +176,7 @@ namespace GameWish.Game
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
                     m_AcceptText.text = "开始战斗";
                     m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
+                    RefreshDisicipleSkill();
                     break;
                 default:
                     break;
@@ -405,10 +408,11 @@ namespace GameWish.Game
 
         private void CreateHerb(int herbID)
         {
+
             if (m_HerbalMedicineItem == null)
                 return;
             HerbalMedicineItem herbItem = Instantiate(m_HerbalMedicineItem, m_HerbalMedicineItemTra).GetComponent<HerbalMedicineItem>();
-            herbItem.OnInit(herbID);
+            herbItem.OnInit(herbID, this);
             m_PlayerDataHerbDic.Add(herbID, herbItem);
         }
 

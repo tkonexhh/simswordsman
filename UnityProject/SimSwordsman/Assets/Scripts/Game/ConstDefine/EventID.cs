@@ -48,6 +48,14 @@ namespace GameWish.Game
         OnReduceItems,
 
 
+        //LivableRoom
+        /// <summary>
+        /// 升级按钮刷新事件 
+        /// </summary>
+        OnUpgradeRefreshEvent,
+
+
+
         // MainTask
         OnTaskManualFinished,
         //OnTaskFinished,
