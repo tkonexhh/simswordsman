@@ -35,7 +35,7 @@ namespace GameWish.Game
             m_Camera = GetComponent<Camera>();
 
             m_BattleProperty = new CameraProperty(new Vector3(41, 0.4f, -10), 6);
-            m_SimProperty = new CameraProperty(new Vector3(6, 2.2f, -10), 7);
+            m_SimProperty = new CameraProperty(new Vector3(6, 2.2f, -10), 10);
 
             RegisterEvents();
 
