@@ -31,7 +31,7 @@ namespace GameWish.Game
         private void RegisterEvents()
         {
             //EventSystem.S.Register(EventID.OnLevelCompleted, HandleEvent);
-            EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
+            EventSystem.S.Register(EventID.OnRefreshMainMenuPanel, HandleEvent);
         }
 
         private void HandleEvent(int eventId, params object[] param)
@@ -43,7 +43,7 @@ namespace GameWish.Game
 
             //    m_GameDataHandler.GetPlayerInfodata().OnLevelCompleted(levelIndex, starNum);
             //}
-            //if (eventId == (int)EventID.OnAddCoinNum)
+            //if (eventId == (int)EventID.OnRefreshMainMenuPanel)
             //{
             //    int delta = (int)param[0];
             //    m_GameDataHandler.GetPlayerInfodata().AddCoinNum(delta);

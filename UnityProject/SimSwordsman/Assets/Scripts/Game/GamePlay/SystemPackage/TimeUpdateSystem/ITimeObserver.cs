@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ITimeObserver
 {
+
     int GetTickInterval();
     int GetTickCount();
     int GetTotalSeconds(); // -1表示一直执行
@@ -13,4 +14,6 @@ public interface ITimeObserver
     void OnPause();
     void OnResume();
     bool ShouldRemoveWhenMapChanged();
+
+    string GetID();
 }

@@ -10,7 +10,7 @@ namespace GameWish.Game
 {
     public partial class TDFacilityLivableRoomTable
     {
-        public static List<LivableRoomLevelInfo> levelInfoDic = new List<LivableRoomLevelInfo>();
+        public static List<LivableRoomLevelInfo> levelInfoList = new List<LivableRoomLevelInfo>();
 
         static void CompleteRowAdd(TDFacilityLivableRoom tdData)
         {
@@ -21,14 +21,45 @@ namespace GameWish.Game
             roomLevelInfo.SetCurCapatity( tdData.capability);
             roomLevelInfo.roomId = tdData.houseId;
 
-            levelInfoDic.Add(roomLevelInfo);
+            levelInfoList.Add(roomLevelInfo);
 
         }
 
         public static LivableRoomLevelInfo GetLevelInfo(int roomId, int level)
         {
-            LivableRoomLevelInfo info = levelInfoDic.Where(i => i.roomId == roomId && i.level == level).FirstOrDefault();
+            LivableRoomLevelInfo info = levelInfoList.Where(i => i.roomId == roomId && i.level == level).FirstOrDefault();
             return info;
+        }
+        /// <summary>
+        /// 获取某一屋舍某一等级的居住人数
+        /// </summary>
+        /// <param name="wareHouseID"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static int GetCapability(int wareHouseID, int level)
+        {
+            LivableRoomLevelInfo roomLevelInfo = levelInfoList.Where(i => i.roomId == wareHouseID && i.level == level).FirstOrDefault();
+            if (roomLevelInfo!=null)
+                return roomLevelInfo.GetCurCapacity();
+            else
+            {
+                Log.w("LivableRoomLevelInfo is null,wareHouseID = {0}", wareHouseID);
+                return -0;
+            }
+        }
+        /// <summary>
+        /// 获取某一屋舍最大等级
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <returns></returns>
+        public static int GetMaxLevel(int roomId)
+        {
+            int maxLevel = 0;
+            levelInfoList.ForEach(i=> {
+                if (i.roomId == roomId)
+                    maxLevel++;
+            });
+            return maxLevel;
         }
 
         private static FacilityLevelInfo PassLevelInfo(int id)

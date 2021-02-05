@@ -152,6 +152,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_NextCostItems[i].itemId), m_NextCostItems[i].value);
 
                 EventSystem.S.Send(EventID.OnUpgradeRefreshEvent);
+                EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
             });
         }
 

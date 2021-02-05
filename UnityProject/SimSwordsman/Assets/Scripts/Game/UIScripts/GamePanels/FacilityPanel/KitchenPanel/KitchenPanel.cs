@@ -88,7 +88,7 @@ namespace GameWish.Game
         {
             m_CurLevelTxt.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_CurFoodLimitTxt.text = m_CurKitchLevelInfo.GetCurFoodLimit().ToString();
-            m_CurRecoverySpeedTxt.text = string.Format("{0}/∑÷÷”", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
+            m_CurRecoverySpeedTxt.text = string.Format("{0}√Î", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
 
             m_NextFoodLimitTxt.text = string.Format("+{0}", m_CurKitchLevelInfo.GetNextFoodLimit() - m_CurKitchLevelInfo.GetCurFoodLimit());
             m_NextRecoverySpeedTxt.text = string.Format("+{0}", m_CurKitchLevelInfo.GetNextFoodAddSpeed() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());

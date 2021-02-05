@@ -27,6 +27,17 @@ namespace GameWish.Game
             }
         }
 
+        public static int GetFoodMaxLimit(int level)
+        {
+            if (levelInfoDic.ContainsKey(level))
+                return levelInfoDic[level].GetCurFoodLimit();
+            else
+            {
+                Log.w("当前伙房等级为空 = {0}", level);
+                return 0;
+            }
+        }
+
         public static KitchLevelInfo GetLevelInfo(int level)
         {
             if (levelInfoDic.ContainsKey(level))

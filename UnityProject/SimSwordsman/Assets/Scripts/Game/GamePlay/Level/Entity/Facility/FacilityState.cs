@@ -9,6 +9,9 @@ namespace GameWish.Game
     {
         Locked = 1,
         ReadyToUnlock,
+        /// <summary>
+        /// ÒÑ¾­½âËø
+        /// </summary>
         Unlocked,
     }
 	

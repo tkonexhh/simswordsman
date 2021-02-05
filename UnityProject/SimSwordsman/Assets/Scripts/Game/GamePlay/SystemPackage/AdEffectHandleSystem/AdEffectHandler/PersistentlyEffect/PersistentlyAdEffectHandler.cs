@@ -197,6 +197,11 @@ namespace GameWish.Game
         {
             throw new NotImplementedException();
         }
+
+        public string GetID()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 
