@@ -323,14 +323,14 @@ namespace GameWish.Game
                     {
                         m_AtkEventIndex++;
                         m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
-                        m_EnemyCharacter.GetBattleState().HitbackDistance = m_OurHitBackDistance[m_AtkEventIndex];
+                        m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
                         m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
                     }
                     else if (controller3 == m_EnemyCharacter)
                     {
                         m_AtkEventIndex++;
                         m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
-                        m_OurCharacter.GetBattleState().HitbackDistance = m_EnemyHitBackDistance[m_AtkEventIndex];
+                        m_OurCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_EnemyHitBackDistance[m_AtkEventIndex] - m_EnemyHitBackDistance[0], 0);
                         m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
                     }
                     break;
