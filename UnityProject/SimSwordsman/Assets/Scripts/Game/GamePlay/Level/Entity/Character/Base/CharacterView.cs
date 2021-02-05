@@ -160,6 +160,7 @@ namespace GameWish.Game
         {
             transform.position = m_SimPos;
             m_NavAgent.enabled = true;
+            m_NavAgent.SetDestination(m_SimPos);
         }
 
         public void FaceToLeft()
