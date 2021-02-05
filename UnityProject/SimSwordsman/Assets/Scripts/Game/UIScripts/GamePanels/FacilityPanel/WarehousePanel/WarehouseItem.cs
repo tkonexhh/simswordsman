@@ -14,8 +14,10 @@ namespace GameWish.Game
 		[SerializeField]
 		private Button m_GoodsBtn;
 		[SerializeField]
-		private Text m_Nums;
-
+		private Text m_Nums;	
+		[SerializeField]
+		private Image m_KungfuName;
+		private WarehousePanel m_WarehousePanel;
 		public ItemBase CurItemBase { set; get; }
 		private bool m_IsHaveItem = false;
 		public bool IsHaveItem {
@@ -65,11 +67,43 @@ namespace GameWish.Game
             }
 			return false;
         }
-
+		private string GetIconName(KongfuType kungfuType)
+		{
+			return TDKongfuConfigTable.GetIconName(kungfuType);
+		}
+		private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+		{
+			return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
+		}
 		public void AddItemToWarehouse(ItemBase itemBase, Sprite sprite)
 		{
 			if (sprite != null)
-				m_GoodsImg.sprite = sprite;
+			{
+				if (itemBase.PropType == PropType.Kungfu)
+				{
+					switch (GetKungfuQuality((KongfuType)itemBase.GetSubName()))
+					{
+						case KungfuQuality.Normal:
+							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Introduction");
+							break;
+						case KungfuQuality.Super:
+							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Advanced");
+							break;
+						case KungfuQuality.Master:
+							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Excellent");
+							break;
+						default:
+							break;
+					}
+					m_KungfuName.sprite = m_WarehousePanel.FindSprite(GetIconName((KongfuType)itemBase.GetSubName()));
+					m_KungfuName.gameObject.SetActive(true);
+				}
+                else
+                {
+					m_KungfuName.gameObject.SetActive(false);
+					m_GoodsImg.sprite = sprite;
+				}
+			}
 			if (itemBase != null)
 			{
 				IsHaveItem = true;
@@ -78,7 +112,7 @@ namespace GameWish.Game
 				m_GoodsBtn.onClick.AddListener(() => {
 					AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-					UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase, m_GoodsImg.sprite); 
+					UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase, m_WarehousePanel); 
 				});
 				m_Nums.text = CurItemBase.Number.ToString();
 			}
@@ -103,9 +137,10 @@ namespace GameWish.Game
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-			CurItemBase = t as ItemBase;
-			m_GoodsBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase); });
-			m_Nums.text = CurItemBase.Number.ToString();
+			//CurItemBase = t as ItemBase;
+			//m_GoodsBtn.onClick.AddListener(() => { UIMgr.S.OpenPanel(UIID.ItemDetailsPanel, CurItemBase); });
+			//m_Nums.text = CurItemBase.Number.ToString();
+			m_WarehousePanel = t as WarehousePanel;
 		}
 
 		public void GetSubType(ItemBase itemBase)
