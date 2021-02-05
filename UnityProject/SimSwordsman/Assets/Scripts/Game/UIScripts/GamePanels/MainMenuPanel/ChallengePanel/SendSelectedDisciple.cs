@@ -120,7 +120,8 @@ namespace GameWish.Game
 
         private void OnDisable()
         {
-            m_Loader.Release();
+            if (m_Loader!=null)
+                m_Loader.Release();
         }
     }
 	
