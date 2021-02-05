@@ -17,50 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 70b9065683e89f845aae2b23d492a826
   m_SerializeEntries:
-  - m_GUID: 1d27bfa1ad438d446a2f334f37cc6446
-    m_Address: gb_1_Atlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 11400000, guid: 1d27bfa1ad438d446a2f334f37cc6446, type: 2}
-    m_TargetAsset: {fileID: 11400000, guid: 1d27bfa1ad438d446a2f334f37cc6446, type: 2}
-  - m_GUID: 26135fc0ada4ee74b8750076627cef72
-    m_Address: gb_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 2800000, guid: 26135fc0ada4ee74b8750076627cef72, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 26135fc0ada4ee74b8750076627cef72, type: 3}
   - m_GUID: 269c3559d96c15645a8a4f7f3ab5a1af
     m_Address: Gaibang1
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 3845809598577782914, guid: 269c3559d96c15645a8a4f7f3ab5a1af,
-      type: 3}
-    m_TargetAsset: {fileID: 3845809598577782914, guid: 269c3559d96c15645a8a4f7f3ab5a1af,
-      type: 3}
-  - m_GUID: 5810df0682e3edd40aaecb3ff82155e6
-    m_Address: gb_1_SkeletonData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 11400000, guid: 5810df0682e3edd40aaecb3ff82155e6, type: 2}
-    m_TargetAsset: {fileID: 11400000, guid: 5810df0682e3edd40aaecb3ff82155e6, type: 2}
-  - m_GUID: a1dc3fddd01ea0044a7d0af7e3838256
-    m_Address: gb_1.atlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 4900000, guid: a1dc3fddd01ea0044a7d0af7e3838256, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: a1dc3fddd01ea0044a7d0af7e3838256, type: 3}
-  - m_GUID: cbafe3e64e6c1f8478e8301a3748b7ff
-    m_Address: gb_1_Material
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 2100000, guid: cbafe3e64e6c1f8478e8301a3748b7ff, type: 2}
-    m_TargetAsset: {fileID: 2100000, guid: cbafe3e64e6c1f8478e8301a3748b7ff, type: 2}
-  - m_GUID: d4708f2e02d559f4cbb53ae51c714a3b
-    m_Address: gb_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 4900000, guid: d4708f2e02d559f4cbb53ae51c714a3b, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: d4708f2e02d559f4cbb53ae51c714a3b, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
   m_SchemaSet:

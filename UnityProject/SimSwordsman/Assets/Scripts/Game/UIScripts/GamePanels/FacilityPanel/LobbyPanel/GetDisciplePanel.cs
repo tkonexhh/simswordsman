@@ -77,18 +77,6 @@ namespace GameWish.Game
             MainGameMgr.S.CharacterMgr.AddCharacter(m_CharacterItem);
             MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
             EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
-
-            //引导
-            if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
-            {
-                GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;
-                EventSystem.S.Send(EventID.OnGuideSecondGetCharacter);
-            }
-            if (m_RecruitType == RecruitType.SilverMedal && !GameDataMgr.S.GetPlayerData().firstSilverRecruit)
-            {
-                GameDataMgr.S.GetPlayerData().firstSilverRecruit = true;
-                EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
-            }
         }
 
         public void LoadClanPrefabs(string prefabsName)
@@ -109,6 +97,19 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             m_Loader.Release();
+
+            //引导
+            if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
+            {
+                GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;
+                EventSystem.S.Send(EventID.OnGuideSecondGetCharacter);
+            }
+            if (m_RecruitType == RecruitType.SilverMedal && !GameDataMgr.S.GetPlayerData().firstSilverRecruit)
+            {
+                GameDataMgr.S.GetPlayerData().firstSilverRecruit = true;
+                EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
+            }
+
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
         }

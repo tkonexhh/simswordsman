@@ -26,20 +26,26 @@ namespace GameWish.Game
             if (m_BattleState == null)
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
+            m_Controller.TriggerCachedDamage();
+
+            if (!m_Controller.IsDead())
+            {
+                m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
+            }
+
             float hitBackDistance = m_BattleState.HitbackDistance;
             m_Controller.CharacterView.transform.DOMoveX(-m_Controller.CharacterView.GetFaceDir() * hitBackDistance, 0.1f).SetRelative().
                 SetEase(Ease.Linear).OnComplete(()=> 
                 {
-                    m_BattleState.SetState(BattleStateID.Idle);
-
-                    m_Controller.TriggerCachedDamage();
                     if (m_Controller.IsDead())
                     {
                         m_BattleState.SetState(BattleStateID.Dead);
                     }
+                    else
+                    {
+                        m_BattleState.SetState(BattleStateID.Idle);
+                    }
                 });
-
-            m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, OnAtkedAnimEnd);
         }
 
         public override void Exit(IBattleStateHander handler)
