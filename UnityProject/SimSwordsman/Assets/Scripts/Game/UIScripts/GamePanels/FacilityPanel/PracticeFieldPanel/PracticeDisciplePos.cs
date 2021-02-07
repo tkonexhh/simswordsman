@@ -112,7 +112,7 @@ namespace GameWish.Game
                     m_PracticeBtn.enabled = true;
                     m_DiscipleHead.gameObject.SetActive(false);
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
-                    m_Time.text = Define.COMMON_DEFAULT_STR;
+                    m_Time.enabled = false;
                     //m_PracticeImg.sprite = ""
                     m_ArrangeDisciple.text = "安排弟子";
                     m_State.text = "空闲";
@@ -122,11 +122,12 @@ namespace GameWish.Game
                     m_DiscipleHead.gameObject.SetActive(false);
                     m_State.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
                     m_PracticeImg.sprite = GetSprite("Lock2");
-                    m_Time.text = Define.COMMON_DEFAULT_STR;
+                    m_Time.enabled = false;
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case SlotState.Practice:
+                    m_Time.enabled = true;
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_PracticeBtn.enabled = false;
                     m_State.text = Define.COMMON_DEFAULT_STR;
