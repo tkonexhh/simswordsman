@@ -57,7 +57,7 @@ namespace GameWish.Game
                 rectTransform.offsetMax = Vector2.zero;
                 rectTransform.offsetMin = Vector2.zero;
 
-                obj.transform.localScale = new Vector3(1,1,1);
+                obj.transform.localScale = new Vector3(1.01f,1.01f,1);
                 obj.GetComponent<ClanBase>().SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
             });
         }
