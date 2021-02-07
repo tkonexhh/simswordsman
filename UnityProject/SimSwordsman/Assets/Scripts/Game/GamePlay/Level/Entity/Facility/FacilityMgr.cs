@@ -109,7 +109,7 @@ namespace GameWish.Game
             if (hit.collider != null)
             {
                 IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
-                if (handler != null && m_ClickHandler == handler && Time.time - m_TouchStartTime < 0.5f)
+                if (handler != null && m_ClickHandler == handler && Time.time - m_TouchStartTime < 0.3f)
                 {
                     handler.OnClicked();
 
