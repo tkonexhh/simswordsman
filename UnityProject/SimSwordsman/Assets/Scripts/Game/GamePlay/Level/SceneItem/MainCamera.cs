@@ -20,7 +20,7 @@ namespace GameWish.Game
         private MobileTouchCamera m_MobileTouchCamera;
         private Camera m_Camera;
 
-        private CameraProperty m_BattleProperty;
+        private CameraProperty m_BattleProperty;    
         private CameraProperty m_SimProperty;
 
         private bool m_CameraMoveSwitch = true;

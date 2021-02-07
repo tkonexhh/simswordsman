@@ -90,9 +90,14 @@ namespace GameWish.Game
         }
         private void OnDisable()
         {
-            m_Loader.Release();
         }
-
+        private void OnDestroy()
+        {
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
+        }
         private void BindAddListenerEvent()
         {
             m_ChoosePanelDisciple.onClick.AddListener(()=> {

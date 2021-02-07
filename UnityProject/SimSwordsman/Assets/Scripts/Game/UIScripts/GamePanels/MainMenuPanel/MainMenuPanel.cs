@@ -14,7 +14,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CoinValue;
         [SerializeField]
-        private Text m_BaoziValue;  
+        private Text m_BaoziValue;
+        [SerializeField]
+        private GameObject m_BaoziCountDownObj;
         [SerializeField]
         private Text m_BaoziCountDown;
         [SerializeField]
@@ -54,6 +56,13 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            int limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+
+            if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= limit)
+            {
+                m_BaoziCountDownObj.SetActive(false);
+            }
+
             if (string.IsNullOrEmpty(GameDataMgr.S.GetClanData().GetClanName()))
                 m_VillaName.transform.parent.gameObject.SetActive(false);
             else
@@ -190,7 +199,6 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.UnRegister(EventID.OnFoodRefreshEvent, HandleEvent);
-
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -204,7 +212,15 @@ namespace GameWish.Game
                     CloseSelfPanel();
                     break;
                 case EventID.OnFoodRefreshEvent:
-                    m_BaoziCountDown.text = (string)param[0];
+                    if ((bool)param[1])
+                    {
+                        m_BaoziCountDownObj.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        m_BaoziCountDown.text = (string)param[0];
+                        m_BaoziCountDownObj.gameObject.SetActive(true);
+                    }
                     break;
 
             }

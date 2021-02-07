@@ -50,10 +50,16 @@ namespace GameWish.Game
                 m_DiscipleHead.sprite = obj;
             });
         }
+        private void OnDestroy()
+        {
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
 
+        }
         private void OnDisable()
         {
-            m_Loader.Release();
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {

@@ -46,7 +46,6 @@ namespace GameWish.Game
             {
                 OnCountDownOverEvent?.Invoke();
                 TimeUpdateMgr.S.AddFinishedObservers(this);
-                return;
             }
             //Debug.LogError("µ¹¼ÆÊ±" + SplicingTime(m_TickCount));
 

@@ -163,7 +163,10 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            m_Loader.Release();
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
         }

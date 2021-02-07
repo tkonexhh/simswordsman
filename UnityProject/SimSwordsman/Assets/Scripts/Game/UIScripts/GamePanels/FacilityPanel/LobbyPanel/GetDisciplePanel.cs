@@ -96,7 +96,10 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            m_Loader.Release();
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
 
             //Òýµ¼
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
