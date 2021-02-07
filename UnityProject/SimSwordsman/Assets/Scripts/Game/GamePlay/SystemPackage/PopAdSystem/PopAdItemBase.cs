@@ -116,6 +116,11 @@ namespace GameWish.Game
             TimeUpdateMgr.S.AddObserver(this);
         }
 
+        public string GetID()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 

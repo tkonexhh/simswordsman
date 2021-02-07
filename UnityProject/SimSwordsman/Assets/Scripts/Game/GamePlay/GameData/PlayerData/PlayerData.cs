@@ -131,7 +131,7 @@ namespace GameWish.Game
         {
             m_CoinNum = num;
 
-            EventSystem.S.Send(EventID.OnAddCoinNum);
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
             SetDataDirty();
         }
@@ -213,6 +213,10 @@ namespace GameWish.Game
         {
             return foodNum;
         }
+        public void SetFoodNum(int food)
+        {
+            foodNum = food;
+        }
 
         public void AddCoinNum(long delta)
         {
@@ -230,7 +234,7 @@ namespace GameWish.Game
 
             coinNumStr = m_CoinNum.ToString();
 
-            EventSystem.S.Send(EventID.OnAddCoinNum);
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
             SetDataDirty();
         }
@@ -246,7 +250,7 @@ namespace GameWish.Game
             }
             coinNumStr = m_CoinNum.ToString();
 
-            EventSystem.S.Send(EventID.OnReduceCoinNum);
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
             SetDataDirty();
             return true;
@@ -260,7 +264,7 @@ namespace GameWish.Game
                 foodNum = 0;
             }
 
-            EventSystem.S.Send(EventID.OnAddFoodNum);
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
             SetDataDirty();
         }
@@ -274,7 +278,9 @@ namespace GameWish.Game
             {
                 foodNum = 0;
             }
-            EventSystem.S.Send(EventID.OnReduceFoodNum);
+            EventSystem.S.Send(EventID.OnReduceFood);
+
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
             SetDataDirty();
         }
 
@@ -309,7 +315,7 @@ namespace GameWish.Game
             m_CoinNum = 0;
             coinNumStr = m_CoinNum.ToString();
 
-            EventSystem.S.Send(EventID.OnAddCoinNum);
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
             SetDataDirty();
         }

@@ -142,5 +142,10 @@ namespace GameWish.Game
                 return DateTime.Now;
             }
         }
+
+        public string GetID()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

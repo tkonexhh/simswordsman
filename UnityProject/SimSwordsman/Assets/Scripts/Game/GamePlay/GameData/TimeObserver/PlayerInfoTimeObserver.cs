@@ -63,5 +63,10 @@ namespace GameWish.Game
                 GameDataMgr.S.Save();
             }
         }
+
+        public string GetID()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

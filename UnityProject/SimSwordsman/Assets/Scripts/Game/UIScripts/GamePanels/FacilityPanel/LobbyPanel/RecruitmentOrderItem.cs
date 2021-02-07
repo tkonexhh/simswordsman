@@ -175,7 +175,8 @@ namespace GameWish.Game
 
 		private void BindAddListenerEvent()
         {
-            switch (m_CurRecruitType)
+
+			switch (m_CurRecruitType)
             {
                 case RecruitType.GoldMedal:
 					m_RecruitmentBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.GoldMedal); });
@@ -187,14 +188,39 @@ namespace GameWish.Game
                     break;
             }
         }
+		/// <summary>
+		/// 判断招募人数是否已满
+		/// </summary>
+		/// <returns></returns>
+		private bool JudgeRecruitNumberOfPelpleFull()
+		{
+			int CurLevelMaxNumber = 0;
+			int CurLevelNumber = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
+			//for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
+			//    CurLevelMaxNumber+=TDFacilityLivableRoomTable.GetCapability(i, TDFacilityLivableRoomTable.GetMaxLevel(i));
 
+			for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
+			{
+				FacilityController facility = MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i);
+				if (facility.GetState() == FacilityState.Unlocked)
+					CurLevelMaxNumber += TDFacilityLivableRoomTable.GetCapability(i, MainGameMgr.S.FacilityMgr.GetFacilityCurLevel((FacilityType)i));
+			}
+
+            if (CurLevelNumber>= CurLevelMaxNumber)
+				return true;
+			return false;
+		}
 		/// <summary>
 		/// 招募点击事件
 		/// </summary>
 		private void OnClickRecruitBtn(RecruitType type)
 		{
 			AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
+			if (JudgeRecruitNumberOfPelpleFull())
+			{
+				FloatMessage.S.ShowMsg("当前屋舍不足，请升级或建造新的屋舍");
+				return;
+			}
 			switch (m_RecruitDic[type])
 			{
 				case ClickType.Free:

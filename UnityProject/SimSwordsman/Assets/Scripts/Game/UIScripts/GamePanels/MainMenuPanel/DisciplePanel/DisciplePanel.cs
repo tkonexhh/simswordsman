@@ -194,13 +194,13 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
+            EventSystem.S.Register(EventID.OnRefreshMainMenuPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnDiscipleReduce, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnAddCoinNum, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnRefreshMainMenuPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnDiscipleReduce, HandleEvent);
         }
 
@@ -208,7 +208,7 @@ namespace GameWish.Game
         {
             switch (key)
             {
-                case (int)EventID.OnAddCoinNum:
+                case (int)EventID.OnRefreshMainMenuPanel:
                     //RefreshPanelInfo();
                     break;
                 case (int)EventID.OnDiscipleReduce:

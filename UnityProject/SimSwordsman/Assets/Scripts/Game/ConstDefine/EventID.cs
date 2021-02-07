@@ -7,10 +7,8 @@ namespace GameWish.Game
     public enum EventID
     {
         OnLanguageTableSwitchFinish,
-        OnAddCoinNum,
-        OnReduceCoinNum,
-        OnAddFoodNum,
-        OnReduceFoodNum,
+        OnRefreshMainMenuPanel,
+        OnReduceFood,
         OnClanNameChange,
         OnUpdateLoadProgress,
         OnShowPopAdUI,
@@ -27,6 +25,10 @@ namespace GameWish.Game
         OnFoodBuffEnd,//伙房食物增益结束
         OnFoodBuffStart,//伙房食物增益开始
         OnFoodBuffInterval,
+        /// <summary>
+        /// 包子刷新事件
+        /// </summary>
+        OnFoodRefreshEvent,
 
         OnCountdownerStart,
         OnCountdownerTick,

@@ -11,78 +11,111 @@ namespace GameWish.Game
     /// </summary>
     public class FoodRecoverySystem : TSingleton<FoodRecoverySystem>
     {
-        const string lastKeepTimeKey = "FoodLastKeepTimeKey";
-        string lastKeepTime;
-        
-        int interval = 60;
-
         int limit;
-        int secondCount = 0;
-        int timerID = 0;
+        private KitchLevelInfo m_CurKitchLevelInfo;
+
+        private string m_StartTime;
+        private const string m_StartTimeName = "StartTime";
+
+        ~FoodRecoverySystem()
+        {
+            EventSystem.S.UnRegister(EventID.OnEndUpgradeFacility, OnUpgradeKitchen);
+            EventSystem.S.UnRegister(EventID.OnStartUnlockFacility, OnUnlockKitchen);
+            EventSystem.S.UnRegister(EventID.OnReduceFood, OnUnlockKitchen);
+        }
+
 
         public void Init()
         {
+
             EventSystem.S.Register(EventID.OnEndUpgradeFacility, OnUpgradeKitchen);
-            EventSystem.S.Register(EventID.OnReduceFoodNum, OnReduceFood);
-            if (GameDataMgr.S.GetClanData().IsLocked(FacilityType.Kitchen))
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, OnUnlockKitchen);
+            EventSystem.S.Register(EventID.OnReduceFood, ReduceFood);
+            if (!RefreshKitchInfo())
+                return;
+
+
+
+            RefreshCountDown();
+            //PlayerPrefs.SetString(m_StartTimeName, m_StartTime);
+
+        }
+        private void ReduceFood(int key, object[] param)
+        {
+            limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+            if (GameDataMgr.S.GetPlayerData().foodNum < limit)
+                StartCountdown();
+        }
+        private void RefreshCountDown()
+        {
+            int curLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen);
+            limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+            m_CurKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Kitchen, curLevel);
+            if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= limit)
             {
-                EventSystem.S.Register(EventID.OnStartUnlockFacility, OnUnlockKitchen);
+                GameDataMgr.S.GetPlayerData().SetFoodNum(limit);
+                return;
+            }
+
+            string m_StartTime = PlayerPrefs.GetString(m_StartTimeName);
+            if (string.IsNullOrEmpty(m_StartTime))
+            {
+                m_StartTime = DateTime.Now.ToString();
+                StartCountdown();
             }
             else
             {
-                limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-                string value = PlayerPrefs.GetString(lastKeepTimeKey, "");
-                if (string.IsNullOrEmpty(value))
+                DateTime dateTime;
+                DateTime.TryParse(m_StartTime, out dateTime);
+                if (dateTime != null)
                 {
-                    lastKeepTime = DateTime.Now.ToString();
-                    PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
+                    TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
+                    int second = (int)timeSpan.TotalSeconds;
+                    int foodAddSpeed = m_CurKitchLevelInfo.GetCurFoodAddSpeed();
+                    int foodNumber = second / foodAddSpeed;
+                    for (int i = 0; i < foodNumber; i++)
+                        GameDataMgr.S.GetPlayerData().AddFoodNum(1);
+                    int surplus = second % foodAddSpeed;
+                    CountDownItem countDown = new CountDownItem(FacilityType.Kitchen.ToString(), surplus);
+                    TimeUpdateMgr.S.AddObserver(countDown);
+                    countDown.OnCountDownOverEvent += CountDownOver;
+                    countDown.OnSecondRefreshEvent += SecondRefresh;
                 }
-                else
-                {
-                    lastKeepTime = value;
-                    CalculateFoodNum();
-                }
-                StartCountdown();
             }
         }
 
-        void CalculateFoodNum()
+        private bool RefreshKitchInfo()
         {
-            DateTime lasttime = DateTime.Parse(lastKeepTime);
-            TimeSpan offset = DateTime.Now - lasttime;
-            int count = (int)(offset.TotalSeconds/interval);
-            if (GameDataMgr.S.GetPlayerData().foodNum + count >= limit)
-            {
-                GameDataMgr.S.GetPlayerData().AddFoodNum(limit - GameDataMgr.S.GetPlayerData().foodNum);
-                lastKeepTime = DateTime.Now.ToString();
-            }
-            else
-            {
-                GameDataMgr.S.GetPlayerData().AddFoodNum(count);
-                secondCount = (int)(offset.TotalSeconds % interval);
-            }
+            FacilityController facility = MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Kitchen);
+            if (facility.GetState() == FacilityState.Unlocked)
+                return true;
+            return false;
         }
+
         void StartCountdown()
         {
-            timerID = Timer.S.Post2Really(count =>
+            CountDownItem countDown = new CountDownItem(FacilityType.Kitchen.ToString(), m_CurKitchLevelInfo.GetCurFoodAddSpeed());
+            TimeUpdateMgr.S.AddObserver(countDown);
+            countDown.OnCountDownOverEvent += CountDownOver;
+            countDown.OnSecondRefreshEvent += SecondRefresh;
+        }
+
+        private void SecondRefresh(string obj)
+        {
+            EventSystem.S.Send(EventID.OnFoodRefreshEvent, obj);
+            PlayerPrefs.SetString(m_StartTimeName, DateTime.Now.ToString());
+        }
+
+
+
+        private void CountDownOver()
+        {
+            limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+            if (GameDataMgr.S.GetPlayerData().foodNum + 1 <= limit)
             {
-                secondCount++;
-                if (secondCount % interval == 0)
-                {
-                    secondCount = 0;
-                    if (GameDataMgr.S.GetPlayerData().foodNum + 1 <= limit)
-                    {
-                        GameDataMgr.S.GetPlayerData().AddFoodNum(1);
-                        lastKeepTime = DateTime.Now.ToString();
-                        PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
-                    }
-                    else
-                    {
-                        Timer.S.Cancel(timerID);
-                        timerID = -1;
-                    }
-                }
-            }, 1, -1);
+                GameDataMgr.S.GetPlayerData().AddFoodNum(1);
+                StartCountdown();
+            }
         }
 
         private void OnUnlockKitchen(int key, object[] param)
@@ -94,8 +127,11 @@ namespace GameWish.Game
                 int num = limit - GameDataMgr.S.GetPlayerData().foodNum;
                 if (num > 0)
                     GameDataMgr.S.GetPlayerData().AddFoodNum(num);
+                RefreshCountDown();
             }
         }
+
+
 
         private void OnUpgradeKitchen(int key, object[] param)
         {
@@ -103,25 +139,11 @@ namespace GameWish.Game
             if (facilityType == FacilityType.Kitchen)
             {
                 limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-                if (timerID != -1)
-                {
-                    Timer.S.Cancel(timerID);
-                    timerID = -1;
-                }
                 int num = limit - GameDataMgr.S.GetPlayerData().foodNum;
                 if (num > 0)
                     GameDataMgr.S.GetPlayerData().AddFoodNum(num);
-            }
-        }
 
-        private void OnReduceFood(int key, object[] param)
-        {
-            if (timerID == -1 && GameDataMgr.S.GetPlayerData().foodNum < limit)
-            {
-                secondCount = 0;
-                lastKeepTime = DateTime.Now.ToString();
-                PlayerPrefs.SetString(lastKeepTimeKey, lastKeepTime);
-                StartCountdown();
+                RefreshKitchInfo();
             }
         }
     }

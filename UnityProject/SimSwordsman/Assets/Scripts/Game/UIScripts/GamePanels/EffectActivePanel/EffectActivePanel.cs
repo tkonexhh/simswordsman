@@ -154,7 +154,7 @@ namespace GameWish.Game
         {
             //switch ((EventID)id)
             //{
-            //    case EventID.OnAddCoinNum:
+            //    case EventID.OnRefreshMainMenuPanel:
             //        m_Body.SetUpgradeBtnEnable();
             //        break;
             //}

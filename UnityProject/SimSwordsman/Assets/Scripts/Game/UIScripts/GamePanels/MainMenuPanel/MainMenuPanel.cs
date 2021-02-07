@@ -14,7 +14,11 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CoinValue;
         [SerializeField]
-        private Text m_BaoziValue;
+        private Text m_BaoziValue;  
+        [SerializeField]
+        private Text m_BaoziCountDown;
+        [SerializeField]
+        private Text m_WareHouseNumber;
 
 
         [SerializeField]
@@ -25,16 +29,22 @@ namespace GameWish.Game
         private Button m_CreateBaoziBtn;
         [SerializeField]
         private Button m_SignInBtn;
+        [SerializeField]
+        private Button m_BulletinBoardBtn;
+        [SerializeField]
+        private Button m_WareHouseBtn;
 
         [Header("菜单按钮")]
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
-        private Button m_BulletinBorardBtn;
+        private Button TrialRunBtn;
         [SerializeField]
         private Button m_ChallengeBtn;
         [SerializeField]
-        private Button m_VoldemortTowerBtn;
+        private Button m_VoldemortTowerBtn;    
+        [SerializeField]
+        private Button m_MythicalAnimalsBtn;
 
         [SerializeField]
         private Button m_VisitorBtn1;
@@ -53,53 +63,30 @@ namespace GameWish.Game
             }
 
             m_CreateBaoziBtn.onClick.AddListener(()=> {
-
-                //GameDataMgr.S.GetClanData().SetClanName("修仙门派");
-
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
-                }
-                //for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.LianHuaQingShenLu; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 200);
-                //}
                 GameDataMgr.S.GetPlayerData().AddFoodNum(100);
             });
 
             m_VillaBtn.onClick.AddListener(() => {
 
-                //for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
-                //}
-
-                ////功夫
-
-                //添加铠甲
-                //for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)i, (Step)1), 2000);
-
-                //}
-                //添加武器
-                //for (int i = (int)ArmsType.ShaZhuDao; i < (int)ArmsType.YanYueDao; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)i, (Step)2), 2000);
-
-                //}
             });
+            m_BulletinBoardBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
+            });
+            m_WareHouseBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                UIMgr.S.OpenPanel(UIID.WarehousePanel);
+            });
             m_DiscipleBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 UIMgr.S.OpenPanel(UIID.DisciplePanel);
             });
-            m_BulletinBorardBtn.onClick.AddListener(() => {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
+            TrialRunBtn.onClick.AddListener(() => {
+         
             });
             m_SignInBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -111,7 +98,11 @@ namespace GameWish.Game
 
                 UIMgr.S.OpenPanel(UIID.ChallengePanel); 
             });
-            m_VoldemortTowerBtn.onClick.AddListener(() => { });
+            m_VoldemortTowerBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                FloatMessage.S.ShowMsg("暂未开放，敬请期待");
+            });
             m_CreateCoinBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -149,52 +140,74 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_CoinValue.text = GameDataMgr.S.GetPlayerData().GetCoinNum().ToString();
-            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum().ToString();
+            m_CoinValue.text = CommonUIMethod.GetTenThousand((int)GameDataMgr.S.GetPlayerData().GetCoinNum());
+            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum().ToString()+Define.SLASH+ GetFoodUpperLimit().ToString();
+            m_WareHouseNumber.text = GetWareHouseAllPeopleNumber();
+        }
+
+        private int GetFoodUpperLimit()
+        {
+            int foodMaxLimit = 0;
+            FacilityController facility = MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Kitchen);
+            if (facility.GetState() == FacilityState.Unlocked)
+            {
+                int curLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen);
+                foodMaxLimit = TDFacilityKitchenTable.GetFoodMaxLimit(curLevel);
+            }
+            return foodMaxLimit;
+        }
+
+        private string GetWareHouseAllPeopleNumber()
+        {
+            int CurLevelMaxNumber = 0;
+            int CurLevelNumber = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
+            //for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
+            //    CurLevelMaxNumber+=TDFacilityLivableRoomTable.GetCapability(i, TDFacilityLivableRoomTable.GetMaxLevel(i));
+
+            for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
+            {
+                FacilityController facility = MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i);
+                if (facility.GetState()== FacilityState.Unlocked)
+                    CurLevelMaxNumber += TDFacilityLivableRoomTable.GetCapability(i, MainGameMgr.S.FacilityMgr.GetFacilityCurLevel((FacilityType)i));
+            }
+
+            return CurLevelNumber.ToString() + Define.SLASH + CurLevelMaxNumber.ToString();
         }
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnAddCoinNum, HandleEvent);
-            EventSystem.S.Register(EventID.OnReduceCoinNum, HandleEvent);
-            EventSystem.S.Register(EventID.OnAddFoodNum, FoodNumChange);
-            EventSystem.S.Register(EventID.OnReduceFoodNum, FoodNumChange);
+            EventSystem.S.Register(EventID.OnRefreshMainMenuPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.Register(EventID.OnClanNameChange, ChangeClanName);
+            EventSystem.S.Register(EventID.OnFoodRefreshEvent, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnAddCoinNum, HandleEvent);
-            EventSystem.S.UnRegister(EventID.OnReduceCoinNum, HandleEvent);
-            EventSystem.S.UnRegister(EventID.OnAddFoodNum, FoodNumChange);
-            EventSystem.S.UnRegister(EventID.OnReduceFoodNum, FoodNumChange);
+            EventSystem.S.UnRegister(EventID.OnRefreshMainMenuPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
+            EventSystem.S.UnRegister(EventID.OnFoodRefreshEvent, HandleEvent);
+
         }
 
         private void HandleEvent(int key, params object[] param)
         {
             switch ((EventID)key)
             {
-                case EventID.OnAddCoinNum:
-                    RefreshPanelInfo();
-                    break;
-                case EventID.OnReduceCoinNum:
+                case EventID.OnRefreshMainMenuPanel:
                     RefreshPanelInfo();
                     break;
                 case EventID.OnCloseParentPanel:
                     CloseSelfPanel();
                     break;
+                case EventID.OnFoodRefreshEvent:
+                    m_BaoziCountDown.text = (string)param[0];
+                    break;
 
             }
-        }
-
-        private void FoodNumChange(int key, object[] param)
-        {
-            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().foodNum.ToString();
         }
         private void ChangeClanName(int key, object[] param)
         {

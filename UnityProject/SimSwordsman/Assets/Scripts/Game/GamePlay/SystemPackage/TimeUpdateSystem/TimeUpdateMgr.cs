@@ -77,7 +77,8 @@ namespace GameWish.Game
             //{
             //    ob.OnStart();
             //}
-
+            if (m_IsStart)
+                return;
             m_TimerId = Timer.S.Post2Really(Tick, 1, -1);
             m_IsStart = true;
         }

@@ -158,8 +158,9 @@ namespace GameWish.Game
           
             if (Input.GetKeyDown(KeyCode.J))
             {
-                GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
-                GameDataMgr.S.GetPlayerData().AddFoodNum(100);
+                //GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
+                //GameDataMgr.S.GetPlayerData().AddFoodNum(100);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
