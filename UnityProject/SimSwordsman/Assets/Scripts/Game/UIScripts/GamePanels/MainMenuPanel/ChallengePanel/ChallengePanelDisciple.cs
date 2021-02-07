@@ -64,10 +64,16 @@ namespace GameWish.Game
 					break;
 			}
 		}
-
-        private void OnDisable()
+        private void OnDestroy()
         {
-			m_Loader.Release();
+			if (m_Loader != null)
+			{
+				m_Loader.Release();
+			}
+
+		}
+		private void OnDisable()
+        {
 		}
 
         public bool IsHavaSameDisciple(CharacterItem characterItem)

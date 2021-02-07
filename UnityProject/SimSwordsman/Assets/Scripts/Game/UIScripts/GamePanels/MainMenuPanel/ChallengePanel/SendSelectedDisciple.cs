@@ -117,11 +117,16 @@ namespace GameWish.Game
                     break;
             }
         }
-
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (m_Loader!=null)
+            {
                 m_Loader.Release();
+            }
+        }
+        private void OnDisable()
+        {
+            
         }
     }
 	

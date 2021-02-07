@@ -160,7 +160,12 @@ namespace GameWish.Game
             {
                 //GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
                 //GameDataMgr.S.GetPlayerData().AddFoodNum(100);
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(20);
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                GameDataMgr.S.GetPlayerData().AddFoodNum(20);
+
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
@@ -176,13 +181,13 @@ namespace GameWish.Game
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.K))
+            //{
+            //    for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+            //    {
+            //        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
+            //    }
+            //}
       
 
             if (Input.GetKeyDown(KeyCode.L))

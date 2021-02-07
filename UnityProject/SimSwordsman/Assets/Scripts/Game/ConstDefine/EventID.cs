@@ -9,6 +9,7 @@ namespace GameWish.Game
         OnLanguageTableSwitchFinish,
         OnRefreshMainMenuPanel,
         OnReduceFood,
+        OnAddFood,
         OnClanNameChange,
         OnUpdateLoadProgress,
         OnShowPopAdUI,

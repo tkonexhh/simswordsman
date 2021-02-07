@@ -31,7 +31,7 @@ namespace GameWish.Game
             return info;
         }
         /// <summary>
-        /// 获取某一屋舍某一等级的居住人数
+        /// 获取某一屋舍某一等级的居住人数  
         /// </summary>
         /// <param name="wareHouseID"></param>
         /// <param name="level"></param>

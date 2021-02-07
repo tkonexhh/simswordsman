@@ -100,9 +100,10 @@ namespace GameWish.Game
                 m_SelelctedState = SelectedState.NotSelected;
             RefreshPanelInfo();
         }
-        private void OnDisable()
+
+        private void OnDestroy()
         {
-            if (m_Loader!=null)
+            if (m_Loader != null)
                 m_Loader.Release();
         }
         public SelectedState GetSelelctedState()

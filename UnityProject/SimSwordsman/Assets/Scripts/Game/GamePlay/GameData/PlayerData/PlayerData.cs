@@ -263,7 +263,7 @@ namespace GameWish.Game
             {
                 foodNum = 0;
             }
-
+            EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
             SetDataDirty();
@@ -272,14 +272,13 @@ namespace GameWish.Game
         {
             if (delta == 0)
                 return;
-
             foodNum -= delta;
             if (foodNum < 0)
             {
                 foodNum = 0;
             }
-            EventSystem.S.Send(EventID.OnReduceFood);
 
+            EventSystem.S.Send(EventID.OnReduceFood, foodNum + delta);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
             SetDataDirty();
         }

@@ -103,9 +103,16 @@ namespace GameWish.Game
                 action?.Invoke(m_CurCharacter);
             });
         }
+
+        private void OnDestroy()
+        {
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
+        }
         private void OnDisable()
         {
-            m_Loader.Release();
         }
         public void DestroySelf()
         {

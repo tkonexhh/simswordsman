@@ -75,10 +75,16 @@ namespace GameWish.Game
         {
             m_Btn.enabled = IsClick;
         }
+        private void OnDestroy()
+        {
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
 
+        }
         private void OnDisable()
         {
-            m_Loader.Release();
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)
