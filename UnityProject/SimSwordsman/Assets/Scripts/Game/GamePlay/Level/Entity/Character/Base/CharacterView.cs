@@ -84,6 +84,10 @@ namespace GameWish.Game
 
         public void PlayIdleAnim()
         {
+            if (m_NavAgent.enabled)
+            {
+                m_NavAgent.SetDestination(transform.position);
+            }
             m_SpineAnim.skeleton.SetToSetupPose();
             SpineHelper.PlayAnim(m_SpineAnim, "idle", true, null);
         }
