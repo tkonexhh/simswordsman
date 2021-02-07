@@ -83,6 +83,8 @@ namespace GameWish.Game
             m_DurationTxt.text = dur;
             m_Progress.fillAmount = progress;
         }
+
+   
         void Init()
         {
             if (!IsUnlock((MedicinalPowderType)ID))

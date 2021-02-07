@@ -51,7 +51,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_VisitorBtn1;
         [SerializeField]
+        private Image m_VisitorImg1;
+        [SerializeField]
         private Button m_VisitorBtn2;
+        [SerializeField]
+        private Image m_VisitorImg2;
 
         protected override void OnUIInit()
         {
@@ -241,10 +245,12 @@ namespace GameWish.Game
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
                     break;
                 case 1:
+                    RefreshVisitorImg(1);
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
                     break;
                 case 2:
+                    RefreshVisitorImg(2);
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(true);
                     break;
@@ -252,6 +258,23 @@ namespace GameWish.Game
                     break;
             }
         }
+
+        private void RefreshVisitorImg(int numer)
+        {
+            Visitor visitor = VisitorSystem.S.CurrentVisitor[0];
+            TDVisitorConfig tb = TDVisitorConfigTable.GetData(visitor.VisitorCfgID);
+            m_VisitorImg1.sprite = FindSprite(tb.roleRes);
+            if (numer==2)
+            {
+                Visitor visitor2 = VisitorSystem.S.CurrentVisitor[1];
+                TDVisitorConfig tb1 = TDVisitorConfigTable.GetData(visitor2.VisitorCfgID);
+                m_VisitorImg2.sprite = FindSprite(tb1.roleRes);
+            }
+         
+
+
+        }
+
     }
 }
 

@@ -151,12 +151,10 @@ namespace GameWish.Game
                 {
                     EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(0), false);
                     yield return new WaitForSeconds(1);
-                    if (GameDataMgr.S.GetPlayerData().foodNum + 1 <= limit && m_CoroutineID == null)
+                    if (GameDataMgr.S.GetPlayerData().GetFoodNum() + 1 < limit)
                         m_CoroutineID = StartCoroutine("CountDown", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
-                    else
-                    {
+                    else if(GameDataMgr.S.GetPlayerData().foodNum + 1 >= limit)
                         EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(0), true);
-                    }
                     break;
                 }
             }
