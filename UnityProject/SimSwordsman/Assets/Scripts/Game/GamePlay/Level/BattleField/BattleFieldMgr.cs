@@ -315,15 +315,8 @@ namespace GameWish.Game
                 }
             });
 
-            // Add enemy that has no group to exist group
-            //List<CharacterController> enemiesThatHaveNoGroup = enemyList.Where(j => j.IsDead() == false && j.GetFightGroup() == null).ToList();
-            //if (enemiesThatHaveNoGroup.Count > 0)
-            //{
-                //enemiesThatHaveNoGroup.ForEach(i => 
-                //{
-                //    JoinNearestEnemyGroup(i);
-                //});
-            //}
+            ourList.Where(i => i.FightGroup == null).ToList().ForEach(i => i.CharacterView.PlayIdleAnim());
+
         }
         private void RemoveFightGroup(FightGroup group)
         {
