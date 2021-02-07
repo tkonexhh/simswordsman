@@ -42,7 +42,7 @@ namespace GameWish.Game
 		}
         public override string SpriteName()
         {
-            return "";
+            return TDKongfuConfigTable.GetIconName((KongfuType)m_KeyID);
         }
     }
 }

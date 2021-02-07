@@ -51,6 +51,7 @@ namespace GameWish.Game
 
         #region InputObserver
 
+        private float m_TouchStartTime = 0;
         public bool On_Drag(Gesture gesture, bool isTouchStartFromUI)
         {
             return false;
@@ -86,6 +87,8 @@ namespace GameWish.Game
             if (gesture.IsOverUIElement())
                 return false;
 
+            m_TouchStartTime = Time.time;
+
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
@@ -106,7 +109,7 @@ namespace GameWish.Game
             if (hit.collider != null)
             {
                 IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
-                if (handler != null && m_ClickHandler == handler)
+                if (handler != null && m_ClickHandler == handler && Time.time - m_TouchStartTime < 0.5f)
                 {
                     handler.OnClicked();
 

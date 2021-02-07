@@ -25,6 +25,8 @@ namespace GameWish.Game
         
         public Image m_IconImage;
         private Image m_GouImage;
+        private Image m_KonfuImage;
+        public Image m_KonfuNameImage;
 
         private Text m_CountText;
         private Text m_DayText;
@@ -53,6 +55,14 @@ namespace GameWish.Game
                 SignItemCallBack?.Invoke(m_ID);
             });
 
+            if (RewardCfg.Type != RewardItemType.Kongfu)
+            {
+                m_KonfuImage.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_IconImage.gameObject.SetActive(false);
+            }
         }
         string GetWordByNum(int num)
         {
@@ -97,6 +107,9 @@ namespace GameWish.Game
 
             m_CountText = trans.Find("Count").GetComponent<Text>();
             m_DayText = trans.Find("Day").GetComponent<Text>();
+
+            m_KonfuImage = trans.Find("KongfuBg").GetComponent<Image>();
+            m_KonfuNameImage = m_KonfuImage.transform.Find("KongfuName").GetComponent<Image>();
         }
 
         /// <summary>
@@ -123,6 +136,11 @@ namespace GameWish.Game
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
                     m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 1);
+                    if (RewardCfg.Type == RewardItemType.Kongfu)
+                    {
+                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 1);
+                        m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 1);
+                    }
                     break;
                 case SignInStatus.SignDisable:
                     m_NormalImage.gameObject.SetActive(true);
@@ -131,6 +149,11 @@ namespace GameWish.Game
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
                     m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
+                    if (RewardCfg.Type == RewardItemType.Kongfu)
+                    {
+                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 0.4f);
+                        m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 0.4f);
+                    }
                     break;
                 case SignInStatus.SignAlready:
                     m_NormalImage.gameObject.SetActive(true);
@@ -139,6 +162,11 @@ namespace GameWish.Game
                     m_GouImage.gameObject.SetActive(true);
                     m_DayText.gameObject.SetActive(true);
                     m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
+                    if (RewardCfg.Type == RewardItemType.Kongfu)
+                    {
+                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 0.4f);
+                        m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 0.4f);
+                    }
                     break;
                 case SignInStatus.None:
                     break;
