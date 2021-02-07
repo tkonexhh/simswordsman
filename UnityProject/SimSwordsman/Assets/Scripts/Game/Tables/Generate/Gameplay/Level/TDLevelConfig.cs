@@ -39,7 +39,7 @@ namespace GameWish.Game
         public  string  enemyHeadIcon {get { return m_EnemyHeadIcon; } }
        
         /// <summary>
-        /// 敌人配置，格式ID|数量|功力;...
+        /// 敌人配置，格式ID|数量|功力;…
         /// </summary>
         public  string  enemies {get { return m_Enemies; } }
        

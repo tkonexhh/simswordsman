@@ -208,7 +208,10 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
 
-			m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
+			m_CloseBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
 
             m_AcceptBtn.onClick.AddListener(()=> 
             {
@@ -226,6 +229,7 @@ namespace GameWish.Game
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
 
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
+                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
                     OnPanelHideComplete();
                 }
