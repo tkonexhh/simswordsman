@@ -172,7 +172,7 @@ namespace GameWish.Game
                 GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
                 for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
                 }
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,600);
 

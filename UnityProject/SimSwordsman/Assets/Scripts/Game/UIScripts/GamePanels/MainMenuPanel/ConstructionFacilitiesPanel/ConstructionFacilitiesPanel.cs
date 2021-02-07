@@ -10,7 +10,9 @@ namespace GameWish.Game
 
 	public class ConstructionFacilitiesPanel : AbstractAnimPanel
 	{
-	    [SerializeField]
+        [SerializeField]
+        private Button m_BlackBtn;
+        [SerializeField]
 	    private Image m_TitleImg;
 	    [SerializeField]
 	    private Text m_FacilityDescribe; 
@@ -212,7 +214,9 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-
+            m_BlackBtn.onClick.AddListener(() => {
+                HideSelfWithAnim();
+            });
             m_AcceptBtn.onClick.AddListener(()=> 
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);

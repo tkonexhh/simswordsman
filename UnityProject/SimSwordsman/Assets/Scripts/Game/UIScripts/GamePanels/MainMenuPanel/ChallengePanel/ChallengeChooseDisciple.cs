@@ -51,7 +51,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
-
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             BindAddListenerEvent();
 
             GetInformationForNeed();
