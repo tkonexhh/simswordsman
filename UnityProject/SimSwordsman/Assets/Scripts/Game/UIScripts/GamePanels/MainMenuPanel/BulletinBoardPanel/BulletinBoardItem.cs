@@ -78,6 +78,8 @@ namespace GameWish.Game
         private Text m_Baozi;
         [SerializeField]
         private Text m_Time;
+        [SerializeField]
+        private Image m_Line;
 
         private bool IsOpen = false;
 
@@ -148,6 +150,8 @@ namespace GameWish.Game
                         return;
                     m_CurTaskInfo = (SimGameTask)param[0];
                     m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
+                    m_Line.enabled = false;
+                    m_ChooseDisciple.enabled = false;
                     StartCoroutine(CountDown());
                     //RefreshCountDownTaskState();
                     break;
@@ -213,7 +217,11 @@ namespace GameWish.Game
                 else
                 {
                     if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                    {
+                        m_Line.enabled = false;
+                        m_ChooseDisciple.enabled = false;
                         StartCoroutine(CountDown());
+                    }
 
                     //RefreshBtnInfo();
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(baoz);
@@ -289,7 +297,22 @@ namespace GameWish.Game
                 //Log.i("executed time:" + executedTime + " totalTime: " + totalTime + "     " + Time.time);
 
                 second = totalTime - executedTime;
-                m_Time.text = SplicingTime(totalTime - executedTime);
+                switch (m_CommonTaskItemInfo.taskType)
+                {
+                    case SimGameTaskType.None:
+                        break;
+                    case SimGameTaskType.Collect:
+                        m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "完成";
+                        break;
+                    case SimGameTaskType.Battle:
+                        m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "到达";
+                        break;
+                    case SimGameTaskType.Progress:
+                        break;
+                    default:
+                        break;
+                }
+
                 if (totalTime - executedTime <= 0)
                 {
                     if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
@@ -453,7 +476,11 @@ namespace GameWish.Game
                         else
                         {
                             if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
+                            {
+                                m_Line.enabled = false;
+                                m_ChooseDisciple.enabled = false;
                                 StartCoroutine(CountDown());
+                            }
                             m_PromptlyValue.text = "立即到达";
                             m_PromptlyImg.sprite = GetSprite("BulletinBoardPanel_Bg11");
                             m_Promptly.gameObject.SetActive(true);

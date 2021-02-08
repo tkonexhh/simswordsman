@@ -28,6 +28,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             EventSystem.S.Register(EventID.OnSelectedKungfuEvent, HandleAddListenerEvevt);
         }
 

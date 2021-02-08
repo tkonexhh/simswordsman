@@ -26,6 +26,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             m_BlackBtn.onClick.AddListener(()=> {
+                EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });

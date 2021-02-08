@@ -28,6 +28,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             EventSystem.S.Register(EventID.OnSelectedEquipEvent, HandleAddListenerEvevt);
             // 测试代码：增加装备
             //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Armor, 1, 9));

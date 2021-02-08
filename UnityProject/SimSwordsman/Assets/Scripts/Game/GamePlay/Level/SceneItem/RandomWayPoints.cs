@@ -18,5 +18,4 @@ namespace GameWish.Game
             return pos;
         }
 	}
-	
 }

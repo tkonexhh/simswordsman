@@ -31,7 +31,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             m_SelectedDiscipleList = MainGameMgr.S.BattleFieldMgr.OurCharacterList;
 
             BindAddListenerEvent();

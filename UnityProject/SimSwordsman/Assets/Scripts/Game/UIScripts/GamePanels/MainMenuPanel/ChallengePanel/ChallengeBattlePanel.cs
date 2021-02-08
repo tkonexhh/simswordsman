@@ -10,7 +10,7 @@ namespace GameWish.Game
     public class ChallengeBattlePanel : AbstractAnimPanel
     {
         [SerializeField]
-        private Text m_ChallengeBattleTitle;
+        private Image m_ChallengeBattleTitle;
 
         [SerializeField]
         private Button m_CloseBtn;
@@ -90,7 +90,7 @@ namespace GameWish.Game
 
         private void InitPanelInfo()
         {
-            m_ChallengeBattleTitle.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
+            m_ChallengeBattleTitle.sprite = FindSprite("Challenge_Small" + m_CurChapterConfigInfo.clanType.ToString().ToLower());
         }
 
         private void BindAddListenerEvent()

@@ -40,6 +40,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             m_MusicBtn.onClick.AddListener(() => { UpdateMusic(!isMuiscOn); });
             m_SoundBtn.onClick.AddListener(() => { UpdateSound(!isSoundOn); });
             m_PrivacyBtn.onClick.AddListener(() => { Application.OpenURL("https://www.modooplay.com/privacy/modooplay.html"); });

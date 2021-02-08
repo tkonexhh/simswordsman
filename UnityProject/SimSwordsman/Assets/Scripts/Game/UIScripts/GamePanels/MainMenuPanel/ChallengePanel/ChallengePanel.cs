@@ -83,7 +83,7 @@ namespace GameWish.Game
         private void CreateChallengeTask(ChapterConfigInfo configInfo)
         {
             ItemICom challengeTask = Instantiate(m_ChallengeTaskItem, m_ChallengeTrans).GetComponent<ItemICom>();
-            challengeTask.OnInit(configInfo,null, m_Sprites);
+            challengeTask.OnInit(configInfo,null, m_Sprites,this);
         }
     }
 }

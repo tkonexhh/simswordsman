@@ -14,6 +14,7 @@ namespace GameWish.Game
         [SerializeField] private Color m_BlurMaskColor;
         [SerializeField] private Transform[] m_SignItemTrans;
         [SerializeField] private Button m_BackBtn;//返回按钮
+        [SerializeField] private Button m_BlackBtn;//返回按钮
 
         //[Header("Image")]
         //[SerializeField] private Image m_DaysShowNum;//显示签到天数
@@ -26,10 +27,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             //音效
-            foreach (var item in transform.GetComponentsInChildren<Button>(true))
-            {
-                item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
-            }
+            AudioMgr.S.PlaySound(Define.INTERFACE);
         }
 
         protected override void OnPanelOpen(params object[] args)

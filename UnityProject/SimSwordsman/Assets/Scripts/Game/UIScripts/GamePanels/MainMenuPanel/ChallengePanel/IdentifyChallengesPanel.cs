@@ -36,7 +36,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             BindAddListenerEvent();
         }
 
@@ -71,7 +71,14 @@ namespace GameWish.Game
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_LevelConfigInfo = (LevelConfigInfo)args[1];
             RefreshPanelInfo();
-            LoadClanPrefabs(m_LevelConfigInfo.enemyHeadIcon);
+
+            RandomAccess(m_LevelConfigInfo.enemyHeadIcon);
+            LoadClanPrefabs("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
+        }
+
+        private void RandomAccess(string iconName)
+        {
+            iconName.Split(';');
         }
         public void LoadClanPrefabs(string prefabsName)
         {

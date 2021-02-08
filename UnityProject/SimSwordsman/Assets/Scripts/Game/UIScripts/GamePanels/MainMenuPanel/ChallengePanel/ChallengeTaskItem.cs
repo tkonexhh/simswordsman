@@ -39,6 +39,8 @@ namespace GameWish.Game
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private ChallengeType m_CurChallengeType = ChallengeType.Unlocked;
         private int m_CurLevel = -1;
+        private ChallengePanel m_ChallengePanel;
+
         private Sprite GetSprite(string name)
         {
             return m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
@@ -77,12 +79,13 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnChanllengeSuccess, HandlingListeningEvents);
             EventSystem.S.Register(EventID.OnUnlockNewChapter, HandlingListeningEvents);
             m_Sprites = (List<Sprite>)obj[0];
+            m_ChallengePanel = (ChallengePanel)obj[1]; ;
             m_CurChapterConfigInfo = t as ChapterConfigInfo;
             if (m_CurChapterConfigInfo != null)
             {
                 m_ChallengeSectsName.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                 m_ChallengeCont.text = m_CurChapterConfigInfo.desc;
-                m_ChallengePhoto.sprite = GetSprite("ChallengePanel_Gaibang");
+                m_ChallengePhoto.sprite = m_ChallengePanel.FindSprite("Challenge_Big"+ m_CurChapterConfigInfo.clanType.ToString().ToLower());
                 RefreshPanelInfo();
             }
         }

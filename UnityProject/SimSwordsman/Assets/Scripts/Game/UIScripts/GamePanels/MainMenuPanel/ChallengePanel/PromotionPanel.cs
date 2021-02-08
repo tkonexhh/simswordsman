@@ -40,6 +40,7 @@ namespace GameWish.Game
             switch (promotionModel.GetEventID())
             {
                 case EventID.OnCharacterUpgrade:
+                    AudioMgr.S.PlaySound(Define.CLEVELUP);
                     stage = promotionModel.ToSubType<DiscipleRiseStage>().GetStage();
                     m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title2");
                   

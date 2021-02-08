@@ -86,6 +86,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendHerbEvent, HandAddListenerEvent);

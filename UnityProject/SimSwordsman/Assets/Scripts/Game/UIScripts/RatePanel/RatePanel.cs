@@ -20,6 +20,7 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             m_TitleText.text = TDLanguageTable.Get("RateTitle");
             m_DescribeLabel.text = TDLanguageTable.Get("RateDescription");
 
