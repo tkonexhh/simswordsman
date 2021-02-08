@@ -51,12 +51,14 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_WarehouseItem;
 
+        private const int m_NotUnlockMaxCapacity = 10;
 
         private List<CostItem> m_CostItems;
         private WarehouseLevelInfo m_WarehouseNextLevelInfo = null;
         private WarehouseLevelInfo m_WarehouseCurLevelInfo = null;
         private FacilityConfigInfo m_FacilityConfigInfo = null;
         private List<ItemBase> m_InventoryItems = null;
+        private WarehouseController m_FacilityController = null;
         private int m_CurLevel = -1;
 
         private List<WarehouseItem> m_CurItemList = new List<WarehouseItem>();
@@ -89,6 +91,8 @@ namespace GameWish.Game
 
             m_WarehouseCurLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, m_CurLevel) as WarehouseLevelInfo;
             m_CostItems = m_WarehouseNextLevelInfo.GetUpgradeResCosts();
+
+            m_FacilityController = (WarehouseController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Warehouse);
         }
 
         private void RefreshPanelInfo()
@@ -99,7 +103,6 @@ namespace GameWish.Game
             m_NextReservesValue.text = "下一级储量:" + m_WarehouseNextLevelInfo.GetCurReserves() + "格";
             m_UpgradeCondition.text = "升级需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
             m_WarehouseImgae.sprite = FindSprite("Warehouse" + m_CurLevel);
-
 
             RefreshResInfo();
         }
@@ -185,10 +188,20 @@ namespace GameWish.Game
 
         private void RefreshCreateGoods()
         {
-            int quantityDifference = m_WarehouseCurLevelInfo.GetCurReserves() - m_CurItemList.Count;
-            for (int i = 0; i < quantityDifference; i++)
+            if (m_FacilityController.GetState() != FacilityState.Unlocked)
             {
-                m_CurItemList.Add(CreateWarehouseItem());
+                for (int i = 0; i < m_NotUnlockMaxCapacity; i++)
+                {
+                    m_CurItemList.Add(CreateWarehouseItem());
+                }
+            }
+            else
+            {
+                int quantityDifference = m_WarehouseCurLevelInfo.GetCurReserves() - m_CurItemList.Count;
+                for (int i = 0; i < quantityDifference; i++)
+                {
+                    m_CurItemList.Add(CreateWarehouseItem());
+                }
             }
 
             if (m_InventoryItems != null)

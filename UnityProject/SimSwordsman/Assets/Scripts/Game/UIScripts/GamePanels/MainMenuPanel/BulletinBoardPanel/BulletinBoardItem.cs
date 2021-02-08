@@ -302,7 +302,7 @@ namespace GameWish.Game
                     case SimGameTaskType.None:
                         break;
                     case SimGameTaskType.Collect:
-                        m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "完成";
+                        m_Time.text = "弟子们正在任务,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "完成";
                         break;
                     case SimGameTaskType.Battle:
                         m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "到达";

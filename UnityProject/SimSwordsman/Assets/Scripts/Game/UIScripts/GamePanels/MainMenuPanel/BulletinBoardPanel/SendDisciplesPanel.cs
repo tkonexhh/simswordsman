@@ -316,7 +316,7 @@ namespace GameWish.Game
                 if (item.IsFreeState())
                     allCharacterList.Add(item);
             }
-
+            m_SelectedDiscipleDic.Clear();
             if (allCharacterList.Count>= MaxDiscipleNumber)
             {
                 for (int i = 0; i < MaxDiscipleNumber; i++)
