@@ -18,6 +18,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_BriefIntroduction;
         [SerializeField]
+        private Image m_WarehouseFontBg;
+        [SerializeField]
         private Image m_WarehouseImgae;
         [SerializeField]
         private Text m_WarehouseLevel;
@@ -190,6 +192,13 @@ namespace GameWish.Game
         {
             if (m_FacilityController.GetState() != FacilityState.Unlocked)
             {
+                m_WarehouseFontBg.gameObject.SetActive(false);
+                m_WarehouseImgae.sprite = FindSprite("NotUnlockWarehouse");
+                m_CurReservesValue.text = "当前储量:" + m_NotUnlockMaxCapacity + "格";
+                m_NextReservesValue.text = "下一级储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
+                m_UpgradeText.text = "建造";
+                m_UpgradeCondition.text = "建造需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
+
                 for (int i = 0; i < m_NotUnlockMaxCapacity; i++)
                 {
                     m_CurItemList.Add(CreateWarehouseItem());

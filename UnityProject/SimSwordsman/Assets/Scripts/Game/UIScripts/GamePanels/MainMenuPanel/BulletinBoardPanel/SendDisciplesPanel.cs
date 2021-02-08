@@ -192,20 +192,14 @@ namespace GameWish.Game
 
             int selected = (int)atkValue;
             int recommended = m_LevelConfigInfo.recommendAtkValue;
-            float result = selected / recommended;
+            float result = recommended / selected;
             if (result < 0.75)
-            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-            }
             else if (result > 1.1f)
-            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
                 //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
-            }
             else
-            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
-            }
         }
         private void GetInformationForNeed()
         {
@@ -219,7 +213,7 @@ namespace GameWish.Game
                     break;
             }
             m_AllCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
-            BubbleSort(m_AllCharacterList);
+            //BubbleSort(m_AllCharacterList);
             //m_PlayerDataHerbDic = MainGameMgr.S.MedicinalPowderMgr.GetAllHerbs();
             //m_PlayerDataHerbDic = MainGameMgr.S.InventoryMgr.GetAllHerbs();
         }
@@ -310,6 +304,8 @@ namespace GameWish.Game
         private void AutoSelectedDisciple()
         {
             //TODO  按照弟子战力从高到底排序
+
+
             List<CharacterItem> allCharacterList = new List<CharacterItem>();
             foreach (var item in m_AllCharacterList)
             {
@@ -317,6 +313,9 @@ namespace GameWish.Game
                     allCharacterList.Add(item);
             }
             m_SelectedDiscipleDic.Clear();
+
+            BubbleSort(allCharacterList);
+
             if (allCharacterList.Count>= MaxDiscipleNumber)
             {
                 for (int i = 0; i < MaxDiscipleNumber; i++)
@@ -344,7 +343,7 @@ namespace GameWish.Game
             {
                 for (var j = 0; j < len - 1 - i; j++)
                 {
-                    if (characterItems[j].atkValue > characterItems[j + 1].atkValue)
+                    if (characterItems[j].atkValue < characterItems[j + 1].atkValue)
                     {        // 相邻元素两两对比
                         var temp = characterItems[j + 1];        // 元素交换
                         characterItems[j + 1] = characterItems[j];
