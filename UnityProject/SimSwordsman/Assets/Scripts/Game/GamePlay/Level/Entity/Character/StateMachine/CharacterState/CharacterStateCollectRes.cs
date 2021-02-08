@@ -145,11 +145,13 @@ namespace GameWish.Game
                 case CollectedObjType.Snake:
                     name = "hunting";
                     break;
+                case CollectedObjType.SilverWood:
+                case CollectedObjType.WuWood:
+                    name = "lumbering";
+                    break;
                 case CollectedObjType.Chicken:
                 case CollectedObjType.Ganoderma:
-                case CollectedObjType.SilverWood:
                 case CollectedObjType.Vine:
-                case CollectedObjType.WuWood:
                     name = "collection";
                     break;
                 case CollectedObjType.Fish:
@@ -161,7 +163,7 @@ namespace GameWish.Game
                     name = "mining";
                     break;
                 case CollectedObjType.Well:
-                    name = "hunting"; //待修改
+                    name = "collection_well_water";
                     break;
             }
 

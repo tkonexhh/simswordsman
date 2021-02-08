@@ -34,8 +34,6 @@ namespace GameWish.Game
 
             m_CommonTaskData = GameDataMgr.S.GetCommonTaskData();
 
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(lobbyLevel).commonTaskCount;
             //InitTaskList();
 
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
@@ -61,6 +59,9 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshTask()
         {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(lobbyLevel).commonTaskCount;
+
             RefreshCommonTask();
         }
 
