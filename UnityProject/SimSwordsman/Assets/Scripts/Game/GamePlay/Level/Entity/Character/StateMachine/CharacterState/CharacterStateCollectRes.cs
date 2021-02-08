@@ -57,9 +57,11 @@ namespace GameWish.Game
                     {
                         m_IsTaskCollectableItemFound = true;
 
-                        Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
-                        Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
-                        m_Controller.MoveTo(pos, OnReachDestination);
+                        //Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
+                        //Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
+                        Transform t = m_TaskCollectableItem.GetRandomCollectPos();
+                        m_TaskCollectableItem.OnCollectPosTaken(t);
+                        m_Controller.MoveTo(t.position, OnReachDestination);
 
                         m_Time = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_Controller.CurTask.TaskId);
                     }
@@ -143,11 +145,13 @@ namespace GameWish.Game
                 case CollectedObjType.Snake:
                     name = "hunting";
                     break;
+                case CollectedObjType.SilverWood:
+                case CollectedObjType.WuWood:
+                    name = "lumbering";
+                    break;
                 case CollectedObjType.Chicken:
                 case CollectedObjType.Ganoderma:
-                case CollectedObjType.SilverWood:
                 case CollectedObjType.Vine:
-                case CollectedObjType.WuWood:
                     name = "collection";
                     break;
                 case CollectedObjType.Fish:
@@ -159,7 +163,7 @@ namespace GameWish.Game
                     name = "mining";
                     break;
                 case CollectedObjType.Well:
-                    name = "hunting"; //待修改
+                    name = "collection_well_water";
                     break;
             }
 

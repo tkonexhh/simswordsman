@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -264,6 +265,11 @@ namespace GameWish.Game
 
         public void SpawnTaskRewardBubble()
         {
+            if (!GuideMgr.S.IsGuideFinish(16))
+            {
+                return;
+            }
+
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnTaskRewardBubble();
             go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetTaskRewardBubblePos();
