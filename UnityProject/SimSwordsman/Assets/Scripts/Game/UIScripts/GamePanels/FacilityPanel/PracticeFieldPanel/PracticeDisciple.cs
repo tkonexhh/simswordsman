@@ -23,6 +23,7 @@ namespace GameWish.Game
         private Transform m_Pos;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private CharacterItem m_CharacterItem;
+        private AddressableAssetLoader<Sprite> m_Loader;
         private bool isSelected = false;
         public void OnInit(CharacterItem characterItem)
         {
@@ -39,9 +40,30 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
+            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
         }
+        public void LoadClanPrefabs(string prefabsName)
+        {
+            m_Loader = new AddressableAssetLoader<Sprite>();
+            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+            {
+                //Debug.Log(obj);
+                m_DiscipleHead.sprite = obj;
+            });
+        }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
+        private void OnDestroy()
+        {
+            if (m_Loader != null)
+            {
+                m_Loader.Release();
+            }
 
+        }
         private void RefreshPanelInfo()
         {
             m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);

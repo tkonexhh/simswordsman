@@ -7,18 +7,18 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class KungfuLibraryDisciple : MonoBehaviour
-	{
-		[SerializeField]
-		private Text m_Level;
-		[SerializeField]
-		private Text m_DiscipleName;
-		[SerializeField]
-		private Image m_DiscipleHead;
-		[SerializeField]
-		private Image m_State;
-		[SerializeField]
-		private Button m_Btn;
+    public class KungfuLibraryDisciple : MonoBehaviour
+    {
+        [SerializeField]
+        private Text m_Level;
+        [SerializeField]
+        private Text m_DiscipleName;
+        [SerializeField]
+        private Image m_DiscipleHead;
+        [SerializeField]
+        private Image m_State;
+        [SerializeField]
+        private Button m_Btn;
         [SerializeField]
         private Transform m_Pos;
         private AddressableAssetLoader<Sprite> m_Loader;
@@ -28,7 +28,8 @@ namespace GameWish.Game
         public void OnInit(CharacterItem characterItem)
         {
             m_CharacterItem = characterItem;
-            m_Btn.onClick.AddListener(()=> {
+            m_Btn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 isSelected = !isSelected;
                 if (isSelected)
@@ -84,7 +85,7 @@ namespace GameWish.Game
 
         public void IsSame(CharacterItem characterItem)
         {
-            if (characterItem.id!= m_CharacterItem.id)
+            if (characterItem.id != m_CharacterItem.id)
             {
                 m_SelelctedState = SelectedState.NotSelected;
                 isSelected = false;
@@ -93,5 +94,5 @@ namespace GameWish.Game
         }
         // Start is called before the first frame update
     }
-	
+
 }

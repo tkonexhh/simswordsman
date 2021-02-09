@@ -35,8 +35,6 @@ namespace GameWish.Game
             BindAddListenerEvent();
         }
 
-    
-
         private void RefreshDiscipleInfo()
         {
             throw new NotImplementedException();
@@ -82,7 +80,6 @@ namespace GameWish.Game
                     break;
             }
         }
-
         private void TaskCallback(object obj)
         {
             SimGameTask simGameTask = obj as SimGameTask;

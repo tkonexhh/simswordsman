@@ -54,6 +54,11 @@ namespace GameWish.Game
 
                 OnBackBtCallBack();
             });
+            m_BlackBtn.onClick.AddListener(()=> {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                HideSelfWithAnim();
+            });
             m_AcceptBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 

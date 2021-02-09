@@ -140,9 +140,12 @@ namespace GameWish.Game
         /// <summary>
         /// 功夫选择成功
         /// </summary>
-        OnSelectedKungfuSuccess,     
+        OnSelectedKungfuSuccess,
 
-
+        /// <summary>
+        /// 收起公告榜其他面板
+        /// </summary>
+        OnStowPanelEvent,
         #region 公用
         /// <summary>
         /// 选择

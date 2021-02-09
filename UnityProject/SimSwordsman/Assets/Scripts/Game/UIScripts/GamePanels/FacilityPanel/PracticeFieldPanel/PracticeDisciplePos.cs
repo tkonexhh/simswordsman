@@ -125,7 +125,7 @@ namespace GameWish.Game
                     m_Time.enabled = false;
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
-                    break;
+                    break;   
                 case SlotState.Practice:
                     m_Time.enabled = true;
                     m_DiscipleHead.gameObject.SetActive(true);

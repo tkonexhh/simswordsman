@@ -19,6 +19,7 @@ namespace GameWish.Game
 
         private string m_StartTime;
         private const string m_StartTimeName = "StartTime";
+        private const string m_Second = "Second";
 
         ~FoodRecoverySystem()
         {
@@ -75,7 +76,18 @@ namespace GameWish.Game
             {
                 if ((bool)param[0])
                 {
-                    m_CountDownCount-=ComputingTime(m_StartTime);
+                    int second = ComputingTime(m_StartTime);
+                    if (m_CountDownCount - second<=0)
+                    {
+                        int foodAddSpeed = m_CurKitchLevelInfo.GetCurFoodAddSpeed();
+                        int foodNumber = second / foodAddSpeed;
+                        for (int i = 0; i < foodNumber; i++)
+                            GameDataMgr.S.GetPlayerData().AddFoodNum(1);
+                        int surplus = second % foodAddSpeed;
+                        m_CountDownCount = foodAddSpeed - surplus;
+                        return;
+                    }
+                    m_CountDownCount -= second;
                 }
                 else
                     m_StartTime = DateTime.Now.ToString();
@@ -104,6 +116,7 @@ namespace GameWish.Game
                 m_StartTime = string.Empty;
                 m_CoroutineID = null;
                 PlayerPrefs.SetString(m_StartTimeName, DateTime.Now.ToString());
+                PlayerPrefs.SetInt(m_Second, m_CountDownCount);
                 return;
             }
 
@@ -111,6 +124,7 @@ namespace GameWish.Game
             if (string.IsNullOrEmpty(m_StartTime))
             {
                 PlayerPrefs.SetString(m_StartTimeName, DateTime.Now.ToString());
+                PlayerPrefs.SetInt(m_Second, m_CountDownCount);
                 if (m_CoroutineID == null)
                     m_CoroutineID = StartCoroutine("CountDown", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
             }
@@ -127,8 +141,15 @@ namespace GameWish.Game
                     for (int i = 0; i < foodNumber; i++)
                         GameDataMgr.S.GetPlayerData().AddFoodNum(1);
                     int surplus = second % foodAddSpeed;
+                    if (foodNumber == 0)
+                    {
+                        m_CountDownCount = PlayerPrefs.GetInt(m_Second, m_CountDownCount);
+                        m_CountDownCount -= surplus;
+                    }  
+                    else
+                        m_CountDownCount = foodAddSpeed - surplus;
                     if (m_CoroutineID==null)
-                          m_CoroutineID = StartCoroutine("CountDown", surplus);
+                          m_CoroutineID = StartCoroutine("CountDown", m_CountDownCount);
                 }
             }
         }
@@ -139,21 +160,22 @@ namespace GameWish.Game
             m_CountDownCount = second;
             EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(m_CountDownCount), false);
             limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
-            if (GameDataMgr.S.GetPlayerData().foodNum + 1 <= limit)
-                GameDataMgr.S.GetPlayerData().AddFoodNum(1);
             while (true)
             {
                 yield return new WaitForSeconds(1);
                 PlayerPrefs.SetString(m_StartTimeName, DateTime.Now.ToString());
+                PlayerPrefs.SetInt(m_Second, m_CountDownCount);
                 m_CountDownCount--;
                 EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(m_CountDownCount), false);
                 if (m_CountDownCount <= 0)
                 {
+                    if (GameDataMgr.S.GetPlayerData().GetFoodNum() + 1 <= limit)
+                        GameDataMgr.S.GetPlayerData().AddFoodNum(1);
                     EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(0), false);
                     yield return new WaitForSeconds(1);
                     if (GameDataMgr.S.GetPlayerData().GetFoodNum() + 1 < limit)
                         m_CoroutineID = StartCoroutine("CountDown", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
-                    else if(GameDataMgr.S.GetPlayerData().foodNum + 1 >= limit)
+                    else if(GameDataMgr.S.GetPlayerData().GetFoodNum() + 1 >= limit)
                         EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(0), true);
                     break;
                 }

@@ -102,6 +102,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnArriveCollectResPos, HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnStowPanelEvent, HandAddListenerEvent);
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
             m_NeedSprites = (List<Sprite>)obj[0];
             BindAddListenerEvent();
@@ -118,6 +119,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnSendDiscipleDicEvent, HandAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnArriveCollectResPos, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnStowPanelEvent, HandAddListenerEvent);
         }
 
         private void HandAddListenerEvent(int key, object[] param)
@@ -154,6 +156,13 @@ namespace GameWish.Game
                     m_ChooseDisciple.enabled = false;
                     StartCoroutine(CountDown());
                     //RefreshCountDownTaskState();
+                    break;
+                case EventID.OnStowPanelEvent:
+                    if ((bool)param[0] && ((SimGameTask)param[1]).TaskId != m_CurTaskInfo.TaskId && IsOpen)
+                    {
+                        IsOpen = false;
+                        RefreshPanelInfo();
+                    }
                     break;
                 default:
                     break;
@@ -193,9 +202,11 @@ namespace GameWish.Game
         {
             m_FuncBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
                 IsOpen = !IsOpen;
                 RefreshPanelInfo();
+                if (IsOpen)
+                     EventSystem.S.Send(EventID.OnStowPanelEvent, IsOpen, m_CurTaskInfo);
+
             });
             //前往
             m_GoToBtn.onClick.AddListener(()=> {
@@ -302,7 +313,7 @@ namespace GameWish.Game
                     case SimGameTaskType.None:
                         break;
                     case SimGameTaskType.Collect:
-                        m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "完成";
+                        m_Time.text = "弟子们正在任务,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "完成";
                         break;
                     case SimGameTaskType.Battle:
                         m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "到达";

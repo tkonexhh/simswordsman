@@ -309,7 +309,14 @@ namespace GameWish.Game
             if (item != null && item.ReduceItemNumber(delta))
                 m_WarehouseItems.Remove(item);
             EventSystem.S.Send(EventID.OnReduceItems, _propItem, delta);
-            m_ClanData.RemovePropItem(_propItem, item.Number);
+            try
+            {
+                m_ClanData.RemovePropItem(_propItem, item.Number);
+            }
+            catch (Exception)
+            {
+                Log.w("PropItem id = " + _propItem.GetSortId());
+            }
         }
     }
 
