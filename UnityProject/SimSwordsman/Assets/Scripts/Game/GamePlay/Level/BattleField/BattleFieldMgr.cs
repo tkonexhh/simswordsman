@@ -315,7 +315,7 @@ namespace GameWish.Game
                 }
             });
 
-            ourList.Where(i => i.FightGroup == null).ToList().ForEach(i => i.CharacterView.PlayIdleAnim());
+            ourList.Where(i => i.FightGroup == null && i.IsDead() == false).ToList().ForEach(i => i.CharacterView.PlayIdleAnim());
 
         }
         private void RemoveFightGroup(FightGroup group)
@@ -379,7 +379,7 @@ namespace GameWish.Game
             double ourProgress = curOurTotalHp / m_TotalOurHp;
             double enemyProgress = curEnemyTotalHp / m_TotalEnemyHp;
 
-            EventSystem.S.Send(EventID.OnRefreshBattleProgress, ourProgress, enemyProgress);
+            EventSystem.S.Send(EventID.OnRefreshBattleProgress, (float)ourProgress, (float)enemyProgress);
 
             if (curOurTotalHp <= 0)
             {
