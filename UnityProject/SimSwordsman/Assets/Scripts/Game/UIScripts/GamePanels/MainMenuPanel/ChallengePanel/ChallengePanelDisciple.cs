@@ -22,13 +22,15 @@ namespace GameWish.Game
 		private AddressableAssetLoader<Sprite> m_Loader;
 
 		private CharacterItem m_CharacterItem;
+		private ChallengeChooseDisciple m_ChallengeChooseDisciple;
 
 		private SelectedState m_SelelctedState = SelectedState.NotSelected;
 		private bool IsSelected = false;
 
-        internal void OnInit(CharacterItem characterItem)
+        internal void OnInit(CharacterItem characterItem, ChallengeChooseDisciple challengeChoose)
         {
 			m_CharacterItem = characterItem;
+			m_ChallengeChooseDisciple = challengeChoose;
 			BindAddListenerEvent();
 
 			LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
@@ -36,12 +38,13 @@ namespace GameWish.Game
 		}
 		public void LoadClanPrefabs(string prefabsName)
 		{
-			m_Loader = new AddressableAssetLoader<Sprite>();
-			m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-			{
-				//Debug.Log(obj);
-				m_DiscipleHead.sprite = obj;
-			});
+			m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
+			//m_Loader = new AddressableAssetLoader<Sprite>();
+			//m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+			//{
+			//	//Debug.Log(obj);
+			//	m_DiscipleHead.sprite = obj;
+			//});
 		}
 		private string GetLoadDiscipleName(CharacterItem characterItem)
 		{

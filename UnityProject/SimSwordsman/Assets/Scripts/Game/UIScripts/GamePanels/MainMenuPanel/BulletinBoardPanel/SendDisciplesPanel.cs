@@ -389,7 +389,7 @@ namespace GameWish.Game
         private void CreateDisciple(Transform parent)
         {
             SendSelectedDisciple discipeItem = Instantiate(m_DiscipleItem, parent).GetComponent<SendSelectedDisciple>();
-            discipeItem.OnInit(m_PanelType);
+            discipeItem.OnInit(m_PanelType,this);
             m_ChallengeDiscipleList.Add(discipeItem);
         }
 

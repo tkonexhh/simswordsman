@@ -24,6 +24,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_LevelBg;
         private CharacterItem m_CharacterItem;
+        private ChallengeChooseDisciple m_ChallengeChooseDisciple;
         private AddressableAssetLoader<Sprite> m_Loader;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
 
@@ -54,12 +55,13 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
+            m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
+            //m_Loader = new AddressableAssetLoader<Sprite>();
+            //m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+            //{
+            //    //Debug.Log(obj);
+            //    m_DiscipleHead.sprite = obj;
+            //});
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
@@ -67,7 +69,7 @@ namespace GameWish.Game
         }
         public void OnInit(ChallengeChooseDisciple challengeChooseDisciple)
         {
-
+            m_ChallengeChooseDisciple = challengeChooseDisciple;
             RefreshPanelInfo();
 
             m_ChooseSelectedDisciple.onClick.AddListener(() => {

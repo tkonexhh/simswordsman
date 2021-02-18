@@ -211,7 +211,7 @@ namespace GameWish.Game
         {
             GameObject obj = Instantiate(m_ChallengePanelDisciple, m_Cont);
             ChallengePanelDisciple itemICom = obj.GetComponent<ChallengePanelDisciple>();
-            itemICom.OnInit(characterItem);
+            itemICom.OnInit(characterItem,this);
             m_DiscipleObjDic.Add(characterItem.id, itemICom);
         }
 
