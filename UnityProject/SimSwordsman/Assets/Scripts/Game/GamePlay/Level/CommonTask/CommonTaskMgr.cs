@@ -246,7 +246,7 @@ namespace GameWish.Game
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
 
-            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            //if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 
@@ -259,7 +259,14 @@ namespace GameWish.Game
                         lobbyLevel = 0;
                     }
                     List<CommonTaskItemInfo> allCommonTask = TDCommonTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
-
+                    m_CurTaskList.ForEach(i => 
+                    {
+                        CommonTaskItemInfo task = allCommonTask.FirstOrDefault(j => j.id == i.TaskId);
+                        if (task != null)
+                        {
+                            allCommonTask.Remove(task);
+                        }
+                    });
                     for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
                     {
                         int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);

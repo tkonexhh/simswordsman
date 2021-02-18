@@ -12,6 +12,7 @@ namespace GameWish.Game
         [SerializeField] private Transform m_WellPos;
         [SerializeField] private Transform m_ChickPos;
         [SerializeField] private List<Transform> m_PosList = new List<Transform>();
+        private List<Transform> m_UsePosList = new List<Transform>();
 
         public Vector2 GetTaskPos(CollectedObjType objType)
         {
@@ -33,8 +34,24 @@ namespace GameWish.Game
                 case CollectedObjType.Snake:
                 case CollectedObjType.Vine:
                 case CollectedObjType.WuWood:
-                    int index = Random.Range(0, m_PosList.Count);
-                    pos = m_PosList[index].position;
+                    if (m_UsePosList.Count == m_PosList.Count)
+                    {
+                        m_UsePosList.Clear();
+                    }
+
+                    List<Transform> list = new List<Transform>();
+                    list.AddRange(m_PosList);
+                    for (int i = list.Count - 1; i >= 0; i--)
+                    {
+                        if (m_UsePosList.Contains(list[i]))
+                        {
+                            list.RemoveAt(i);
+                        }
+                    }
+                    int index = Random.Range(0, list.Count);
+                    pos = list[index].position;
+
+                    m_UsePosList.Add(list[index]);
                     break;
                 case CollectedObjType.Well:
                     pos = m_WellPos.position;

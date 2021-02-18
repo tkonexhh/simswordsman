@@ -74,6 +74,12 @@ namespace GameWish.Game
         {
             if ((EngineEventID)key == EngineEventID.OnAfterApplicationFocusChange)
             {
+                if (m_CurKitchLevelInfo == null)
+                {
+                    int curLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen);
+                    m_CurKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Kitchen, curLevel);
+                }
+
                 if ((bool)param[0])
                 {
                     int second = ComputingTime(m_StartTime);
