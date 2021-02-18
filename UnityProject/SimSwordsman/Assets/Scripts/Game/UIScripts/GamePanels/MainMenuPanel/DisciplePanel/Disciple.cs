@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public class Disciple : MonoBehaviour,ItemICom
+    public class Disciple : MonoBehaviour
     {
         [SerializeField]
         private Text m_DiscipleLevel;
@@ -27,7 +27,7 @@ namespace GameWish.Game
         private AddressableAssetLoader<Sprite> m_Loader;
 
         private CharacterItem m_CurCharacter = null;
-
+        private DisciplePanel m_ParentPanel;
         private void Start()
         {
             BindAddListenerEvent();
@@ -47,9 +47,10 @@ namespace GameWish.Game
             }
         }
 
-        public void OnInit<T>(T t, Action action = null, params object[] obj)
+        public void OnInit(CharacterItem characterItem, DisciplePanel disciple)
         {
-            m_CurCharacter = t as CharacterItem;
+            m_CurCharacter = characterItem;
+            m_ParentPanel = disciple;
             if (m_CurCharacter != null)
             {
                 if (m_CurCharacter.characterStateId == CharacterStateID.EnterClan || m_CurCharacter.characterStateId == CharacterStateID.Wander)
@@ -59,24 +60,12 @@ namespace GameWish.Game
                 m_DiscipleName.text = m_CurCharacter.name;
                 m_DiscipleLevel.text = CommonUIMethod.GetGrade(m_CurCharacter.level);
             }
-
-
-            LoadClanPrefabs(GetLoadDiscipleName(m_CurCharacter));
+            m_DiscipleImg.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacter));
         }
 
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
             return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
-
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleImg.sprite = obj;
-            });
         }
 
         /// <summary>
@@ -106,10 +95,7 @@ namespace GameWish.Game
 
         private void OnDestroy()
         {
-            if (m_Loader != null)
-            {
-                m_Loader.Release();
-            }
+            m_Loader?.Release();
         }
         private void OnDisable()
         {

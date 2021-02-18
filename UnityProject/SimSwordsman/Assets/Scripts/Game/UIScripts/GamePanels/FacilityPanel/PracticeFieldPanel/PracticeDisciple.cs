@@ -7,28 +7,31 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class PracticeDisciple : MonoBehaviour
-	{
-		[SerializeField]
-		private Text m_Level;
-		[SerializeField]
-		private Text m_DiscipleName;
-		[SerializeField]
-		private Image m_DiscipleHead;
-		[SerializeField]
-		private Image m_State;
-		[SerializeField]
-		private Button m_Btn;
+    public class PracticeDisciple : MonoBehaviour
+    {
+        [SerializeField]
+        private Text m_Level;
+        [SerializeField]
+        private Text m_DiscipleName;
+        [SerializeField]
+        private Image m_DiscipleHead;
+        [SerializeField]
+        private Image m_State;
+        [SerializeField]
+        private Button m_Btn;
         [SerializeField]
         private Transform m_Pos;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private CharacterItem m_CharacterItem;
         private AddressableAssetLoader<Sprite> m_Loader;
+        private ChooseDisciplePanel m_ChooseDisciplePanel;
         private bool isSelected = false;
-        public void OnInit(CharacterItem characterItem)
+        public void OnInit(CharacterItem characterItem, ChooseDisciplePanel chooseDisciplePanel)
         {
             m_CharacterItem = characterItem;
-            m_Btn.onClick.AddListener(()=> {
+            m_ChooseDisciplePanel = chooseDisciplePanel;
+            m_Btn.onClick.AddListener(() =>
+            {
 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -40,17 +43,8 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
-            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+            m_DiscipleHead.sprite = m_ChooseDisciplePanel.FindSprite(GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
-        }
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
@@ -58,11 +52,7 @@ namespace GameWish.Game
         }
         private void OnDestroy()
         {
-            if (m_Loader != null)
-            {
-                m_Loader.Release();
-            }
-
+            m_Loader?.Release();
         }
         private void RefreshPanelInfo()
         {
@@ -83,7 +73,7 @@ namespace GameWish.Game
 
         public void IsSame(CharacterItem characterItem)
         {
-            if (characterItem.id!= m_CharacterItem.id)
+            if (characterItem.id != m_CharacterItem.id)
             {
                 m_SelelctedState = SelectedState.NotSelected;
                 isSelected = false;
@@ -92,5 +82,5 @@ namespace GameWish.Game
         }
         // Start is called before the first frame update
     }
-	
+
 }

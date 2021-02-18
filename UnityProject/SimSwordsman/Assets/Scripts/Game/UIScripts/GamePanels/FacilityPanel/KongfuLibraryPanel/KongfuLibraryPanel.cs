@@ -308,8 +308,8 @@ namespace GameWish.Game
         private void CreateCopyScripturesItem(KungfuLibraySlot kungfuLibraySlot)
         {
             GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
-            ItemICom itemICom = game.GetComponent<ItemICom>();
-            itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType);
+            CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
+            itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType,this);
             m_KongfuLibrarySoltInfo.Add(kungfuLibraySlot.Index, game);
         }
 

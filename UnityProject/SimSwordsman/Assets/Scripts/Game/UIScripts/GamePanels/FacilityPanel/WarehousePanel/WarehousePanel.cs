@@ -258,7 +258,7 @@ namespace GameWish.Game
             {
                 if (m_CurItemList[i].IsHaveItem && m_CurItemList[i].IsSameItemBase(itemBase))
                 {
-                    m_CurItemList[i].RefreshNumber();
+                    m_CurItemList[i].RefreshNumber(delta);
                     //m_CurItemList.Sort();
 
                     RefeshSort(m_CurItemList);

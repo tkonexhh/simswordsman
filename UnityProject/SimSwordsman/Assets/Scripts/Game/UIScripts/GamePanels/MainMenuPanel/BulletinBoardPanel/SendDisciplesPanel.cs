@@ -176,7 +176,7 @@ namespace GameWish.Game
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
                     m_AcceptText.text = "开始战斗";
-                    m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
+                    CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -196,9 +196,9 @@ namespace GameWish.Game
             float result = selected / recommended;
 
             if (result < 0.75)
-                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-            else if (result > 1.1f)
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
+            else if (result > 1.1f) 
+                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
                 //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
             else
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
@@ -306,8 +306,6 @@ namespace GameWish.Game
         private void AutoSelectedDisciple()
         {
             //TODO  按照弟子战力从高到底排序
-
-
             List<CharacterItem> allCharacterList = new List<CharacterItem>();
             foreach (var item in m_AllCharacterList)
             {

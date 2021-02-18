@@ -164,16 +164,17 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                GameDataMgr.S.GetPlayerData().AddFoodNum(20);
+                //GameDataMgr.S.GetPlayerData().AddFoodNum(20);
 
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
-                GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
-                }
+                //GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
+                //for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.HuanHunDan; i++)
+                //{
+                //    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 50);
+                //    Debug.LogError("添加成功");
+                //}
                 //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,600);
 
                 //for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
@@ -186,13 +187,13 @@ namespace GameWish.Game
                 //}
             }
 
-            //if (Input.GetKeyDown(KeyCode.K))
-            //{
-            //    for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-            //    {
-            //        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 2000);
-            //    }
-            //}
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
+                }
+            }
 
 
             if (Input.GetKeyDown(KeyCode.L))

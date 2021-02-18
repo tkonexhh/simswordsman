@@ -130,7 +130,7 @@ namespace GameWish.Game
         {
             GameObject disciple = Instantiate(m_Disciple, m_SelectedList);
             KungfuLibraryDisciple discipleItem = disciple.GetComponent<KungfuLibraryDisciple>();
-            discipleItem.OnInit(characterItem);
+            discipleItem.OnInit(characterItem,this);
             m_KungfuLibraryDisciple.Add(discipleItem);
         }
 
