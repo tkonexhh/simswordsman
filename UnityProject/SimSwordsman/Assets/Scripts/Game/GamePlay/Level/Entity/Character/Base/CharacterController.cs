@@ -218,13 +218,13 @@ namespace GameWish.Game
             m_FightGroup = fightGroup;
         }
 
-        public void OnDamaged(float damage)
+        public void OnDamaged(double damage)
         {
             m_CharacterModel.AddHp(-damage);
         }
 
-        private float m_CachedDamage = 0;
-        public void CacheDamage(float damage)
+        private double m_CachedDamage = 0;
+        public void CacheDamage(double damage)
         {
             m_CachedDamage += damage;
         }

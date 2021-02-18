@@ -191,8 +191,10 @@ namespace GameWish.Game
             m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
 
             int selected = (int)atkValue;
-            int recommended = m_LevelConfigInfo.recommendAtkValue;
-            float result = recommended / selected;
+
+            long recommended = m_LevelConfigInfo.recommendAtkValue;
+            float result = selected / recommended;
+
             if (result < 0.75)
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
             else if (result > 1.1f)

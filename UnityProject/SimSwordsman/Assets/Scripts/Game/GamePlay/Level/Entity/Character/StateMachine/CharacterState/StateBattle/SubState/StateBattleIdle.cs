@@ -28,7 +28,14 @@ namespace GameWish.Game
             if (m_BattleState == null)
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
-            m_Controller.CharacterView.PlayAnim("idle_attack", true, null);
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            {
+                m_Controller.CharacterView.PlayAnim("idle_attack", true, null);
+            }
+            else
+            {
+                m_Controller.CharacterView.PlayAnim("idle", true, null);
+            }
 
             m_IdleTime = UnityEngine.Random.Range(1, 4);
             m_TimeCounter = 0;

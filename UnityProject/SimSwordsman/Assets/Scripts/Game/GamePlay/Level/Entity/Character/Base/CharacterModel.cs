@@ -12,8 +12,8 @@ namespace GameWish.Game
         protected CharacterController m_Controller = null;
         protected int m_Id = 0;
         protected int m_Level = 1;
-        protected float m_Hp = 0;
-        protected float m_Atk = 1;
+        protected double m_Hp = 0;
+        protected double m_Atk = 1;
         protected float m_MoveSpeed = 1f;
         private CharacterItem m_CharacterItem = null;
 
@@ -38,10 +38,12 @@ namespace GameWish.Game
         {
         }
 
-        public void AddHp(float delta)
+        public void AddHp(double delta)
         {
             m_Hp += delta;
-            m_Hp = Mathf.Max(m_Hp, 0);
+            //m_Hp = Mathf.Max(m_Hp, 0);
+            if (m_Hp < 0)
+                m_Hp = 0;
         }
 
         public void SetAtk(float atk)
@@ -69,17 +71,17 @@ namespace GameWish.Game
             m_CharacterItem?.AddCharacterExp(deltaExp);
         }
 
-        public void SetHp(float hp)
+        public void SetHp(double hp)
         {
             m_Hp = hp;
         }
 
-        public float GetHp()
+        public double GetHp()
         {
             return m_Hp;
         }
 
-        public float GetAtk()
+        public double GetAtk()
         {           
             return m_Atk;
         }

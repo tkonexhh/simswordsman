@@ -240,14 +240,14 @@ namespace GameWish.Game
                     break;
                 case (int)EventID.OnBattleAtkEvent:
                     CharacterController controller3 = (CharacterController)param[0];
-                    if (controller3 == m_OurCharacter)
+                    if (controller3 == m_OurCharacter && m_EnemyCharacter.IsDead() == false)
                     {
                         m_AtkEventIndex++;
                         m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
                         m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
                         m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
                     }
-                    else if (controller3 == m_EnemyCharacter)
+                    else if (controller3 == m_EnemyCharacter && m_OurCharacter.IsDead() == false)
                     {
                         m_AtkEventIndex++;
                         m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);

@@ -18,7 +18,7 @@ namespace GameWish.Game
         private string m_Enemies;   
         private string m_Desc;   
         private string m_Reward;   
-        private EInt m_RecommendAtkValue = 0;   
+        private string m_RecommendAtkValue;   
         private string m_BattleName;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -56,7 +56,7 @@ namespace GameWish.Game
         /// <summary>
         /// 推荐功力
         /// </summary>
-        public  int  recommendAtkValue {get { return m_RecommendAtkValue; } }
+        public  string  recommendAtkValue {get { return m_RecommendAtkValue; } }
        
         /// <summary>
         /// 战斗名称
@@ -97,7 +97,7 @@ namespace GameWish.Game
                     m_Reward = dataR.ReadString();
                     break;
                 case 6:
-                    m_RecommendAtkValue = dataR.ReadInt();
+                    m_RecommendAtkValue = dataR.ReadString();
                     break;
                 case 7:
                     m_BattleName = dataR.ReadString();

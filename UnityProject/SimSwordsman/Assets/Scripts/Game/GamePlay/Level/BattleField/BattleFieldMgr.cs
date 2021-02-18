@@ -16,12 +16,12 @@ namespace GameWish.Game
         //private List<CharacterController> m_EnemyNotFightingCharacterList = new List<CharacterController>();
         [SerializeField]private List<FightGroup> m_FightGroupList = new List<FightGroup>();
 
-        private float m_TotalEnemyAtk = 0;
-        private float m_TotalOurAtk = 0;
-        private float m_TotalEnemyHp = 0;
-        private float m_TotalOurHp = 0;
-        private float m_EnemeyDamagePersecond = 1;
-        private float m_OurDamagePersecond = 1;
+        private double m_TotalEnemyAtk = 0;
+        private double m_TotalOurAtk = 0;
+        private double m_TotalEnemyHp = 0;
+        private double m_TotalOurHp = 0;
+        private double m_EnemeyDamagePersecond = 1;
+        private double m_OurDamagePersecond = 1;
         private int m_InitOurCharacterCount;
         private int m_InitEnemeyCharacterCount;
         private int m_Const = 15;
@@ -270,7 +270,7 @@ namespace GameWish.Game
             });
         }
 
-        private void SpawnEnemyCharacter(int id, int atk)
+        private void SpawnEnemyCharacter(int id, long atk)
         {
             SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
             {
@@ -315,7 +315,7 @@ namespace GameWish.Game
                 }
             });
 
-            ourList.Where(i => i.FightGroup == null).ToList().ForEach(i => i.CharacterView.PlayIdleAnim());
+            ourList.Where(i => i.FightGroup == null && i.IsDead() == false).ToList().ForEach(i => i.CharacterView.PlayIdleAnim());
 
         }
         private void RemoveFightGroup(FightGroup group)
@@ -364,22 +364,22 @@ namespace GameWish.Game
 
         private void RefressProgress()
         {
-            float curOurTotalHp = 0;
+            double curOurTotalHp = 0;
             m_OurCharacterList.ForEach(i =>
             {
                 curOurTotalHp += i.CharacterModel.GetHp();
             });
 
-            float curEnemyTotalHp = 0;
+            double curEnemyTotalHp = 0;
             m_EnemyCharacterList.ForEach(i =>
             {
                 curEnemyTotalHp += i.CharacterModel.GetHp();
             });
 
-            float ourProgress = curOurTotalHp / m_TotalOurHp;
-            float enemyProgress = curEnemyTotalHp / m_TotalEnemyHp;
+            double ourProgress = curOurTotalHp / m_TotalOurHp;
+            double enemyProgress = curEnemyTotalHp / m_TotalEnemyHp;
 
-            EventSystem.S.Send(EventID.OnRefreshBattleProgress, ourProgress, enemyProgress);
+            EventSystem.S.Send(EventID.OnRefreshBattleProgress, (float)ourProgress, (float)enemyProgress);
 
             if (curOurTotalHp <= 0)
             {

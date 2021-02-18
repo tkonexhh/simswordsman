@@ -80,7 +80,7 @@ namespace GameWish.Game
     {
         public int ConfigId { set; get; }
         public int Number { set; get; }
-        public int Atk { set; get; }
+        public long Atk { set; get; }
 
         public EnemyConfig(int id,int number,int skill)
         {
@@ -97,14 +97,14 @@ namespace GameWish.Game
                 string[] enemie = enemies[i].Split('|');
                 ConfigId = int.Parse(enemie[0]);
                 Number = int.Parse(enemie[1]);
-                Atk = int.Parse(enemie[2]);
+                Atk = long.Parse(enemie[2]);
             }
         }
         public EnemyConfig(string[] enemyStr)
         {
             ConfigId = int.Parse(enemyStr[0]);
             Number = int.Parse(enemyStr[1]);
-            Atk = int.Parse(enemyStr[2]);
+            Atk = long.Parse(enemyStr[2]);
         }
     }
 

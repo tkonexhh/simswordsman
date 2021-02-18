@@ -41,7 +41,7 @@ namespace GameWish.Game
         public string desc;
         public string battleName;
         public string enemyHeadIcon;
-        public int recommendAtkValue;
+        public long recommendAtkValue;
         public List<LevelReward> levelRewardList = new List<LevelReward>();
         public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
         public LevelConfigInfo(int chapterId, int level, string desc, int recommendAtk)
@@ -71,7 +71,7 @@ namespace GameWish.Game
             this.desc = tDLevelConfig.desc;
             this.battleName = tDLevelConfig.battleName;
             this.enemyHeadIcon = tDLevelConfig.enemyHeadIcon;
-            this.recommendAtkValue = tDLevelConfig.recommendAtkValue;
+            this.recommendAtkValue = long.Parse(tDLevelConfig.recommendAtkValue);
             AnalysisRewards(tDLevelConfig.reward);
             AnalysisEnemies(tDLevelConfig.enemies);
         }

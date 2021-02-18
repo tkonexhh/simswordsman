@@ -201,7 +201,10 @@ namespace GameWish.Game
 
             m_Controller.MoveTo(pos, ()=> 
             {
-                MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+                if (m_Controller.CurTask != null)
+                {
+                    MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+                }
                 m_Controller.CharacterView.PlayIdleAnim();
                 m_Controller.SpawnTaskRewardBubble();
             });
