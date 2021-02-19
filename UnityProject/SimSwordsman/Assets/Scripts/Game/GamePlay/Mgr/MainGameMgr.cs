@@ -18,6 +18,7 @@ namespace GameWish.Game
         private RecruitDiscipleMgr m_RecruitDisciplerMgr = null;
         private MainCamera m_MainCamera = null;
         private BattleFieldMgr m_BattleFieldMgr = null;
+        private RawMatCollectSystem m_RawMatCollectSystem = null;
         //private MedicinalPowderMgr m_MedicinalPowderMgr = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
@@ -31,6 +32,7 @@ namespace GameWish.Game
         public MainCamera MainCamera { get => m_MainCamera; }
         public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr;}
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
+        public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
 
         private bool m_IsInited = false;
 
@@ -66,6 +68,9 @@ namespace GameWish.Game
             m_BattleFieldMgr = gameObject.AddComponent<BattleFieldMgr>();
             m_BattleFieldMgr.OnInit();
 
+            m_RawMatCollectSystem = gameObject.AddComponent<RawMatCollectSystem>();
+            m_RawMatCollectSystem.OnInit();
+
             //m_MedicinalPowderMgr = gameObject.AddComponent<MedicinalPowderMgr>();
             //m_MedicinalPowderMgr.OnInit();
 
@@ -87,7 +92,7 @@ namespace GameWish.Game
 
             m_BattleFieldMgr?.OnUpdate();
             CharacterMgr?.OnUpdate();
-
+            m_RawMatCollectSystem?.OnUpdate();
             //if (Input.GetKeyDown(KeyCode.T))
             //{
             //    GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);

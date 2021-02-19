@@ -216,6 +216,7 @@ namespace GameWish.Game
         public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
         public int bodyId;
         public int headId;
+        public CollectedObjType collectedObjType;
 
         private CharacterStageInfoItem stageInfo;
 
@@ -277,6 +278,7 @@ namespace GameWish.Game
             quality = itemDbData.quality;
             bodyId = itemDbData.bodyId;
             headId = itemDbData.headId;
+            collectedObjType = itemDbData.collectedObjType;
 
             this.characterStateId = itemDbData.characterStateId;
 

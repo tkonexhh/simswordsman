@@ -141,6 +141,15 @@ namespace GameWish.Game
                 characterItemDb.SetTask(taskId);
             }
         }
+
+        public void SetCharacterCollectedObjType(int id, CollectedObjType collectedObjType)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                characterItemDb.SetCollectObjType(collectedObjType);
+            }
+        }
     }
 
     [Serializable]
@@ -161,6 +170,7 @@ namespace GameWish.Game
         public int curExp;
         public int bodyId = 1; // Which body used
         public int headId = 1; // Which head used
+        public CollectedObjType collectedObjType = CollectedObjType.None;
 
         public CharacterItemDbData()
         {
@@ -231,6 +241,11 @@ namespace GameWish.Game
         {
             curExp = delta;
             //curExp = Math.Max(0, curExp);
+        }
+
+        public void SetCollectObjType(CollectedObjType collectedObjType)
+        {
+            this.collectedObjType = collectedObjType;
         }
     }
 
