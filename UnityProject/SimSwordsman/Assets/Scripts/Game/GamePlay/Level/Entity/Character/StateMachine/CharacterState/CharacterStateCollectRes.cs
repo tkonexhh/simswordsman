@@ -127,11 +127,14 @@ namespace GameWish.Game
                 {
                     m_Time = 0f;
                     m_IsCollectResEnd = true;
-                    m_Controller.CollectObjType = CollectedObjType.None;
 
+                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
                     //TODO: Get reward
 
+
                     m_Controller.SetState(CharacterStateID.Wander);
+
+                    m_Controller.CollectObjType = CollectedObjType.None;
                 }
             }
         }
@@ -190,27 +193,29 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
-            //EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
+            EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
-            //EventSystem.S.UnRegister(EventID.OnTaskObjCollected, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnTaskObjCollected, HandleEvent);
         }
 
-        //private void HandleEvent(int key, params object[] param)
-        //{
-        //    if (key == (int)EventID.OnTaskObjCollected)
-        //    {
-        //        int taskId = (int)param[0];
-        //        if (taskId == m_Controller.CurTask?.TaskId)
-        //        {
-        //            //m_Controller.SetCurTask(null);
-        //            //m_Controller.SetState(CharacterStateID.Wander);
-        //            MoveToBulletinBoard();
-        //        }
-        //    }
-        //}
+        private void HandleEvent(int key, params object[] param)
+        {
+            if (key == (int)EventID.OnTaskObjCollected)
+            {
+                CollectedObjType taskId = (CollectedObjType)param[0];
+                if (taskId == m_Controller.CollectObjType)
+                {
+                    m_IsCollectResEnd = true;
+
+                    m_Controller.SetState(CharacterStateID.Wander);
+
+                    m_Controller.CollectObjType = CollectedObjType.None;
+                }
+            }
+        }
 
         private void MoveToBulletinBoard()
         {

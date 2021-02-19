@@ -15,6 +15,7 @@ namespace GameWish.Game
         public GameObject bubble = null;
 
         private bool m_IsBubbleShowed = false;
+        private bool m_IsCharacterCollecting = false;
 
         private List<Transform> m_UsedCollectPos = new List<Transform>();
         private WorkConfigItem m_WorkConfigItem = null;
@@ -44,7 +45,7 @@ namespace GameWish.Game
 
         public void Refresh()
         {
-            if (m_IsBubbleShowed)
+            if (m_IsBubbleShowed || m_IsCharacterCollecting)
                 return;
 
             TimeSpan timeSpan = DateTime.Now - lastShowBubbleTime;
@@ -61,6 +62,10 @@ namespace GameWish.Game
             {
                 character.CollectObjType = collectedObjType;
                 character.SetState(CharacterStateID.CollectRes);
+
+                HideBubble();
+
+                m_IsCharacterCollecting = true;
             }
             else
             {
@@ -103,6 +108,7 @@ namespace GameWish.Game
         private void RegisterEvents()
         {
             EventSystem.S.Register(EventID.OnEndUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
         }
 
         private void CheckUnlocked()
@@ -112,10 +118,22 @@ namespace GameWish.Game
 
         private void HandleEvent(int key, object[] param)
         {
-            FacilityType facilityType = (FacilityType)param[0];
-            if (facilityType == FacilityType.Lobby)
+            switch (key)
             {
-                CheckUnlocked();
+                case (int)EventID.OnEndUpgradeFacility:
+                    FacilityType facilityType = (FacilityType)param[0];
+                    if (facilityType == FacilityType.Lobby)
+                    {
+                        CheckUnlocked();
+                    }
+                    break;
+                case (int)EventID.OnTaskObjCollected:
+                    CollectedObjType collectedObjType = (CollectedObjType)param[0];
+                    if (collectedObjType == this.collectedObjType)
+                    {
+                        m_IsCharacterCollecting = false;
+                    }
+                    break;
             }
         }
     }
