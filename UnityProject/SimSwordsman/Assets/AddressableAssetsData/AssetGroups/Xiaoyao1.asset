@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Xiaoyao1
+  m_EditorClassIdentifier: 
+  m_GroupName: Xiaoyao1
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d6e25cb4da8e3194bbe7814ec5765d75
+  m_SerializeEntries:
+  - m_GUID: 1c0bb46e641e665498313f040936f1bc
+    m_Address: Xiaoyao1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 3845809598577782914, guid: 1c0bb46e641e665498313f040936f1bc,
+      type: 3}
+    m_TargetAsset: {fileID: 3845809598577782914, guid: 1c0bb46e641e665498313f040936f1bc,
+      type: 3}
+  - m_GUID: 227f9ae9611422c4b94e122136d5834f
+    m_Address: XiaoYaoDiZi01_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: 227f9ae9611422c4b94e122136d5834f, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 227f9ae9611422c4b94e122136d5834f, type: 2}
+  - m_GUID: 3dc936b39e132614b85a8adf93d3f958
+    m_Address: XiaoYaoDiZi01_Material
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2100000, guid: 3dc936b39e132614b85a8adf93d3f958, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: 3dc936b39e132614b85a8adf93d3f958, type: 2}
+  - m_GUID: 898e2f794b9b8c24197a5385f83398bb
+    m_Address: XiaoYaoDiZi01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4900000, guid: 898e2f794b9b8c24197a5385f83398bb, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 898e2f794b9b8c24197a5385f83398bb, type: 3}
+  - m_GUID: 97193ad5284a72e4283910f84a12298a
+    m_Address: XiaoYaoDiZi01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 97193ad5284a72e4283910f84a12298a, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 97193ad5284a72e4283910f84a12298a, type: 3}
+  - m_GUID: dd214108969f3df438a126edc2398689
+    m_Address: XiaoYaoDiZi01.atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4900000, guid: dd214108969f3df438a126edc2398689, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: dd214108969f3df438a126edc2398689, type: 3}
+  - m_GUID: e79357a87fce3db43881e55e75e13c80
+    m_Address: XiaoYaoDiZi01_Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: e79357a87fce3db43881e55e75e13c80, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: e79357a87fce3db43881e55e75e13c80, type: 2}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8abdfc6d2a962f94aaf54ea9f6161cdd, type: 2}
+    - {fileID: 11400000, guid: e3292512f4021664a9d5ad685bddd7be, type: 2}
