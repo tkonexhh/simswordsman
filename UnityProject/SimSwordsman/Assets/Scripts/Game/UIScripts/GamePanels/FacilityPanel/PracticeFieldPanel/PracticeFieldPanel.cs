@@ -289,14 +289,12 @@ namespace GameWish.Game
 
         private void CreatePracticeDisciple(PracticeField PracticeField)
         {
-            List<Sprite> sprites = new List<Sprite>();
-            sprites.Add(FindSprite("Lock2"));
 
 
             GameObject obj = Instantiate(m_PracticeDisciplePos, m_PracticeDiscipleContTra);
 
-            ItemICom itemICom = obj.GetComponent<ItemICom>();
-            itemICom.OnInit(PracticeField, null, m_CurFacilityType, sprites);
+            PracticeDisciplePos itemICom = obj.GetComponent<PracticeDisciplePos>();
+            itemICom.OnInit(PracticeField, null, m_CurFacilityType, this);
 
             if (!m_PracticeEntity.ContainsKey(PracticeField.Index))
                 m_PracticeEntity.Add(PracticeField.Index, obj);

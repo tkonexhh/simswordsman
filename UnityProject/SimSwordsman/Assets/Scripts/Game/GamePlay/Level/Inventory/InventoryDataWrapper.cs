@@ -255,7 +255,14 @@ namespace GameWish.Game
                 m_WarehouseItems.Remove(armorItem);
 
             EventSystem.S.Send(EventID.OnReduceItems, _armorItem, delta);
-            m_ClanData.RemoveArmor(_armorItem, armorItem.Number);
+            try
+            {
+                m_ClanData.RemoveArmor(_armorItem, armorItem.Number);
+            }
+            catch (Exception)
+            {
+                Log.w("PropItem id = " + _armorItem.GetSortId());
+            }
         }
         /// <summary>
         /// 获取招募令数量
@@ -291,7 +298,14 @@ namespace GameWish.Game
                 m_WarehouseItems.Remove(armsItem);
 
             EventSystem.S.Send(EventID.OnReduceItems, _armsItem, delta);
-            m_ClanData.RemoveArms(_armsItem, armsItem.Number);
+            try
+            {
+                m_ClanData.RemoveArms(_armsItem, armsItem.Number);
+            }
+            catch (Exception)
+            {
+                Log.w("PropItem id = " + _armsItem.GetSortId());
+            }
         }
 
         public void RemoveKungfu(KungfuItem _kungfuItem, int delta)
@@ -300,7 +314,14 @@ namespace GameWish.Game
             if (item != null && item.ReduceItemNumber(delta))
                 m_WarehouseItems.Remove(item);
             EventSystem.S.Send(EventID.OnReduceItems, _kungfuItem, delta);
-            m_ClanData.RemoveKungfu(_kungfuItem, item.Number);
+            try
+            {
+                m_ClanData.RemoveKungfu(_kungfuItem, item.Number);
+            }
+            catch (Exception)
+            {
+                Log.w("PropItem id = " + _kungfuItem.GetSortId());
+            }
         }
 
         public void RemovePropItem(PropItem _propItem, int delta)

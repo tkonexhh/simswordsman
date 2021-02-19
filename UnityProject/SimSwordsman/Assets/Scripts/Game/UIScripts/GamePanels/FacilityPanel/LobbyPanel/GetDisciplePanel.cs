@@ -36,7 +36,11 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel,-1,null);
             m_CharacterItem = args[0] as CharacterItem;
-            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+
+            m_DiscipleImg.enabled = true;
+            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
+            m_DiscipleImg.SetNativeSize();
+
             m_CurrentClickType = (ClickType)args[1];
             m_RecruitType = (RecruitType)args[2];
             switch (m_CharacterItem.quality)
@@ -85,9 +89,7 @@ namespace GameWish.Game
             m_Loader = new AddressableAssetLoader<Sprite>();
             m_Loader.LoadAssetAsync(prefabsName, (obj) =>
             {
-                m_DiscipleImg.enabled = true;
-                m_DiscipleImg.sprite = obj;
-                m_DiscipleImg.SetNativeSize();
+              
             });
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
@@ -97,10 +99,8 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            if (m_Loader != null)
-            {
-                m_Loader.Release();
-            }
+ 
+            m_Loader?.Release();
 
             //Òýµ¼
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)

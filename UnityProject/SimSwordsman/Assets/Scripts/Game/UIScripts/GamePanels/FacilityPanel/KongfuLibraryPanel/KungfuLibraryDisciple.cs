@@ -24,10 +24,12 @@ namespace GameWish.Game
         private AddressableAssetLoader<Sprite> m_Loader;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private CharacterItem m_CharacterItem;
+        private KungfuChooseDisciplePanel m_KungfuChooseDisciplePanel;
         private bool isSelected = false;
-        public void OnInit(CharacterItem characterItem)
+        public void OnInit(CharacterItem characterItem, KungfuChooseDisciplePanel kungfuChooseDisciplePanel)
         {
             m_CharacterItem = characterItem;
+            m_KungfuChooseDisciplePanel = kungfuChooseDisciplePanel;
             m_Btn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -39,7 +41,7 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
-            LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+            m_DiscipleHead.sprite = m_KungfuChooseDisciplePanel.FindSprite(GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
         }
         public void LoadClanPrefabs(string prefabsName)

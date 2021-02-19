@@ -83,10 +83,10 @@ namespace GameWish.Game
             if (m_DiscipleItem == null)
                 return;
             GameObject disciple =  Instantiate(m_DiscipleItem, parent);
-            ItemICom discipleItem = disciple.GetComponent<ItemICom>();
+            Disciple discipleItem = disciple.GetComponent<Disciple>();
 
             m_DiscipleDic.Add(characterItem, disciple);
-            discipleItem.OnInit(characterItem);
+            discipleItem.OnInit(characterItem,this);
             discipleItem.SetButtonEvent(AddListenerBtn);
         }
 

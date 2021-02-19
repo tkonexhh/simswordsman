@@ -62,8 +62,6 @@ namespace GameWish.Game
             });
         }
 
-
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -73,7 +71,8 @@ namespace GameWish.Game
             RefreshPanelInfo();
 
             RandomAccess(m_LevelConfigInfo.enemyHeadIcon);
-            LoadClanPrefabs("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
+            m_ChallengePhoto.enabled = true;
+            m_ChallengePhoto.sprite = FindSprite("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
         }
 
         private void RandomAccess(string iconName)
@@ -90,7 +89,6 @@ namespace GameWish.Game
                 m_ChallengePhoto.sprite = obj;
             });
         }
-    
         private void RefreshPanelInfo()
         {
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);
@@ -98,7 +96,6 @@ namespace GameWish.Game
             m_ChallengeRewardValue.text = m_LevelConfigInfo.levelRewardList[0].GetRewardValue().ToString();
             m_ChallengeRecommendAtkValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
         }
-
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();

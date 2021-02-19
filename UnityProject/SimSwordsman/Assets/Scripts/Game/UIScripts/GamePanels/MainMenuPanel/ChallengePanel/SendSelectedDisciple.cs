@@ -23,12 +23,14 @@ namespace GameWish.Game
         private Image m_Plus;
         private GameObject m_SelectedImg;
         private CharacterItem m_CharacterItem;
+        private SendDisciplesPanel m_SendDisciplesPanel;
         private AddressableAssetLoader<Sprite> m_Loader;
         private PanelType m_PanelType;
 		private SelectedState m_SelelctedState = SelectedState.NotSelected;
-		public void OnInit(PanelType panelType)
+		public void OnInit(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
 		{
-			m_PanelType = panelType;
+            m_SendDisciplesPanel = sendDisciplesPanel;
+            m_PanelType = panelType;
 			BindAddListenerEvent();
 			RefreshPanelTypeInfo();
 		}
@@ -92,12 +94,7 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
+            m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
@@ -119,10 +116,7 @@ namespace GameWish.Game
         }
         private void OnDestroy()
         {
-            if (m_Loader!=null)
-            {
-                m_Loader.Release();
-            }
+            m_Loader?.Release();
         }
         private void OnDisable()
         {

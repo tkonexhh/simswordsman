@@ -35,6 +35,7 @@ namespace GameWish.Game
         private FacilityType m_CurFacility;
         private KungfuLibraySlot m_KungfuLibraySlot = null;
         private AddressableAssetLoader<Sprite> m_Loader;
+        private KongfuLibraryPanel m_KongfuLibraryPanel;
         public void LoadClanPrefabs(string prefabsName)
         {
             m_Loader = new AddressableAssetLoader<Sprite>();
@@ -62,6 +63,7 @@ namespace GameWish.Game
         {
             BindAddListenerEvent();
             m_CurFacility = (FacilityType)obj[0];
+            m_KongfuLibraryPanel = obj[1] as KongfuLibraryPanel;
             m_KungfuLibraySlot = t as KungfuLibraySlot;
             m_CopyScripturesPos.text = "Á·¹¦Î»:" + m_KungfuLibraySlot.Index;
             RefreshPracticeFieldState();
@@ -128,7 +130,7 @@ namespace GameWish.Game
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = Define.COMMON_DEFAULT_STR;
                     CreateCountDown();
-                    LoadClanPrefabs(GetLoadDiscipleName(m_KungfuLibraySlot.CharacterItem));
+                    m_DiscipleHead.sprite = m_KongfuLibraryPanel.FindSprite(GetLoadDiscipleName(m_KungfuLibraySlot.CharacterItem));
                     //(m_PracticeFieldInfo.StartTime);
                     m_CopyScripturesBtn.enabled = false;
                     break;

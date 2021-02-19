@@ -85,7 +85,7 @@ namespace GameWish.Game
             m_TitleImg.SetNativeSize();
             m_FacilityDescribe.text = m_CurFacilityConfigInfo.desc;
             m_CostItems = m_FacilityLevelInfo.GetUpgradeResCosts();
-            m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel);
+            m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetStrForColor("#7B3735", CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel)); 
             // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
             //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
             RefreshResInfo();

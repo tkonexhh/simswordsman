@@ -120,8 +120,9 @@ namespace GameWish.Game
 				IsHaveItem = false;
 		}
 
-		public void RefreshNumber()
+		public void RefreshNumber(int delta)
 		{
+			CurItemBase.Number -= delta;
 			if (CurItemBase.Number <= 0)
 			{
 				IsHaveItem = false;

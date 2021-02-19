@@ -109,7 +109,6 @@ namespace GameWish.Game
         private CharacterItem m_CurDisciple = null;
         private CharacterController m_CurCharacterController = null;
         private Dictionary<int, CharacterKongfuData> m_Kongfus = null;
-        private AddressableAssetLoader<Sprite> m_Loader;
         private Dictionary<int, GameObject> m_KongfusGameObject = new Dictionary<int, GameObject>();
 
         //private EquipmentItem m_CurArmor = null;
@@ -150,16 +149,6 @@ namespace GameWish.Game
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
             return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
-
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {          
-                //Debug.Log(obj);
-                m_DiscipleImg.sprite = obj;
-            });
         }
 
         private void RefreshPanelInfo()
@@ -295,12 +284,6 @@ namespace GameWish.Game
             }
         }
 
-        //素材名称 和 KongfuType名称保持一致
-        private Sprite GetKungfuSprite(CharacterKongfu characterKongfu)
-        {
-            return FindSprite(characterKongfu.dbData.kongfuType.ToString());
-        }
-
         private void CreateKungfu(int index, KungfuLockState kungfuLockState, Sprite sprite, int UnLockLevel = -1, CharacterKongfu characterKongfu = null)
         {
             GameObject obj = Instantiate(m_KungfuItem, m_KungfuTra);
@@ -427,7 +410,7 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshPanelInfo();
-            LoadClanPrefabs(GetLoadDiscipleName(m_CurDisciple));
+            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
         }
 
         private void GetInformationForNeed()
@@ -510,7 +493,6 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            m_Loader.Release();
             CloseSelfPanel();
             CloseDependPanel(EngineUI.MaskPanel);
         }

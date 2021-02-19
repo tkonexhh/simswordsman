@@ -30,6 +30,7 @@ namespace GameWish.Game
         private int m_CurLevel;
         private int m_CountDown = 0;
         private List<Sprite> m_Sprites;
+        private PracticeFieldPanel m_PracticeFieldPanel;
         private PracticeFieldLevelInfo m_PracticeFieldLevelInfo = null;
         private FacilityConfigInfo m_FacilityConfigInfo = null;
         private PracticeField m_PracticeFieldInfo = null;
@@ -41,7 +42,7 @@ namespace GameWish.Game
             GetInformationForNeed();
 
             m_PracticeFieldInfo = t as PracticeField;
-            m_Sprites = (List<Sprite>)obj[1];
+            m_PracticeFieldPanel = obj[1] as PracticeFieldPanel;
             RefreshFixedInfo();
             m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
             RefreshPracticeFieldState();
@@ -65,10 +66,6 @@ namespace GameWish.Game
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_PracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
 
-        }
-        private Sprite GetSprite(string name)
-        {
-            return m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
         }
         private void HandleAddListenerEvent(int key, object[] param)
         {
@@ -121,7 +118,7 @@ namespace GameWish.Game
                     m_PracticeBtn.enabled = false;
                     m_DiscipleHead.gameObject.SetActive(false);
                     m_State.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
-                    m_PracticeImg.sprite = GetSprite("Lock2");
+                    m_PracticeImg.sprite = m_PracticeFieldPanel.FindSprite("Lock2");
                     m_Time.enabled = false;
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;

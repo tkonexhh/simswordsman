@@ -117,7 +117,7 @@ namespace GameWish.Game
             GameObject disciple = Instantiate(m_Disciple, m_SelectedList);
             PracticeDisciple discipleItem = disciple.GetComponent<PracticeDisciple>();
 
-            discipleItem.OnInit(characterItem);
+            discipleItem.OnInit(characterItem,this);
             m_PracticeDisciple.Add(discipleItem);
 
         }
