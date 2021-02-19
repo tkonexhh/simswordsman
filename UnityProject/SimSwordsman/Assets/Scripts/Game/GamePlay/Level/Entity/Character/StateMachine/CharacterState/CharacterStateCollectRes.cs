@@ -22,6 +22,7 @@ namespace GameWish.Game
         //private TaskCollectableItem m_TaskCollectableItem = null;
         //private bool m_IsTaskCollectableItemFound = false;
         private RawMatItem m_RawMatItem = null;
+        private float m_CollectTotalTime;
 
         public CharacterStateCollectRes(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -35,6 +36,7 @@ namespace GameWish.Game
 
             m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             m_RawMatItem = null;
+            m_CollectTotalTime = TDWorkTable.GetWorkConfigItem(m_CollectedObjType).workTime;
 
             m_ReachTargetPos = false;
             m_IsCollectResEnd = false;
@@ -123,7 +125,7 @@ namespace GameWish.Game
 
                 GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, (int)m_Time);
 
-                if (m_Time > 20)
+                if (m_Time > m_CollectTotalTime)
                 {
                     m_Time = 0f;
                     m_IsCollectResEnd = true;
