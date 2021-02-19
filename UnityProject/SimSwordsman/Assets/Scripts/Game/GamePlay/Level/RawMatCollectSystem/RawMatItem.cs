@@ -7,19 +7,34 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class RawMatItem : MonoBehaviour
-	{
+    public class RawMatItem : MonoBehaviour
+    {
         public CollectedObjType collectedObjType = CollectedObjType.None;
         public List<Transform> collectPos = new List<Transform>();
         public DateTime lastShowBubbleTime;
+        public GameObject bubble = null;
 
         private bool m_IsBubbleShowed = false;
 
         private List<Transform> m_UsedCollectPos = new List<Transform>();
+        private WorkConfigItem m_WorkConfigItem = null;
+        private bool m_IsUnlocked = false;
 
         public void OnInit()
         {
-            lastShowBubbleTime = DateTime.Parse( GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
+            HideBubble();
+
+            lastShowBubbleTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
+            m_WorkConfigItem = TDWorkTable.GetWorkConfigItem(collectedObjType);
+            if (m_WorkConfigItem == null)
+            {
+                Log.e("Work config item is null: " + collectedObjType.ToString());
+                return;
+            }
+
+            CheckUnlocked();
+
+            RegisterEvents();
         }
 
         public void OnUpdate()
@@ -33,7 +48,7 @@ namespace GameWish.Game
                 return;
 
             TimeSpan timeSpan = DateTime.Now - lastShowBubbleTime;
-            if (timeSpan.Seconds > 10)
+            if (m_IsUnlocked && timeSpan.Seconds > m_WorkConfigItem.workInterval)
             {
                 ShowBubble();
             }
@@ -56,12 +71,13 @@ namespace GameWish.Game
         private void ShowBubble()
         {
             m_IsBubbleShowed = true;
-            //
+            bubble.SetActive(true);
         }
 
         private void HideBubble()
         {
-
+            m_IsBubbleShowed = false;
+            bubble.SetActive(false);
         }
 
         public Transform GetRandomCollectPos()
@@ -82,6 +98,25 @@ namespace GameWish.Game
             }
 
             return collectPos[0];
+        }
+
+        private void RegisterEvents()
+        {
+            EventSystem.S.Register(EventID.OnEndUpgradeFacility, HandleEvent);
+        }
+
+        private void CheckUnlocked()
+        {
+            m_IsUnlocked = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= m_WorkConfigItem.unlockHomeLevel;
+        }
+
+        private void HandleEvent(int key, object[] param)
+        {
+            FacilityType facilityType = (FacilityType)param[0];
+            if (facilityType == FacilityType.Lobby)
+            {
+                CheckUnlocked();
+            }
         }
     }
 	

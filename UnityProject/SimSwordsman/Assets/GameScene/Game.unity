@@ -981,6 +981,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 476602729}
     m_Modifications:
+    - target: {fileID: 439074235, guid: 939c379d1bf1ef346ad68602d4a1913b, type: 3}
+      propertyPath: bubble
+      value: 
+      objectReference: {fileID: 1740938575}
     - target: {fileID: 2807960780921782558, guid: 939c379d1bf1ef346ad68602d4a1913b,
         type: 3}
       propertyPath: m_Name
@@ -4471,6 +4475,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1740938575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1538201078, guid: 58debe549182d284fbca1a1e4487518b,
+    type: 3}
+  m_PrefabInstance: {fileID: 387709990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1775650723
 GameObject:
   m_ObjectHideFlags: 0
