@@ -15,7 +15,7 @@ namespace GameWish.Game
         public GameObject bubble = null;
 
         private bool m_IsBubbleShowed = false;
-        private bool m_IsCharacterCollecting = false;
+        private bool m_IsCharacterCollected = false;
 
         private List<Transform> m_UsedCollectPos = new List<Transform>();
         private WorkConfigItem m_WorkConfigItem = null;
@@ -45,17 +45,41 @@ namespace GameWish.Game
 
         public void Refresh()
         {
-            if (m_IsBubbleShowed || m_IsCharacterCollecting)
+            CheckUnlocked();
+
+            if (!m_IsUnlocked)
                 return;
 
             TimeSpan timeSpan = DateTime.Now - lastShowBubbleTime;
-            if (m_IsUnlocked && timeSpan.Seconds > m_WorkConfigItem.workInterval)
+
+            if (!m_IsBubbleShowed && !m_IsCharacterCollected)
             {
-                ShowBubble();
+                if (timeSpan.TotalSeconds > m_WorkConfigItem.workInterval)
+                {
+                    ShowBubble();
+                }
+            }
+
+            if (m_IsBubbleShowed && !m_IsCharacterCollected)
+            {
+                if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
+                {
+                    AutoSelectCharacter();
+                }
             }
         }
 
         public void OnClicked()
+        {
+            CharacterController character = SelectIdleCharacterToCollectRes();
+
+            if (character == null)
+            {
+                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
+            }
+        }
+
+        private CharacterController SelectIdleCharacterToCollectRes()
         {
             CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CurState == CharacterStateID.Wander || i.CurState == CharacterStateID.EnterClan || i.CurState == CharacterStateID.None);
             if (character != null)
@@ -65,21 +89,23 @@ namespace GameWish.Game
 
                 HideBubble();
 
-                m_IsCharacterCollecting = true;
+                m_IsCharacterCollected = true;
             }
-            else
-            {
-                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
-            }
+
+            return character;
         }
 
-        private void ShowBubble()
+        public void ShowBubble()
         {
             m_IsBubbleShowed = true;
             bubble.SetActive(true);
+
+            lastShowBubbleTime = DateTime.Now;
+
+            GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, DateTime.Now);
         }
 
-        private void HideBubble()
+        public void HideBubble()
         {
             m_IsBubbleShowed = false;
             bubble.SetActive(false);
@@ -113,7 +139,17 @@ namespace GameWish.Game
 
         private void CheckUnlocked()
         {
-            m_IsUnlocked = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= m_WorkConfigItem.unlockHomeLevel;
+            m_IsUnlocked = MainGameMgr.S.FacilityMgr.GetFacilityState(FacilityType.Lobby) == FacilityState.Unlocked 
+                && MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= m_WorkConfigItem.unlockHomeLevel;
+        }
+
+        private void AutoSelectCharacter()
+        {
+            CharacterController character = SelectIdleCharacterToCollectRes();
+            if (character != null)
+            {
+                HideBubble();
+            }
         }
 
         private void HandleEvent(int key, object[] param)
@@ -131,7 +167,7 @@ namespace GameWish.Game
                     CollectedObjType collectedObjType = (CollectedObjType)param[0];
                     if (collectedObjType == this.collectedObjType)
                     {
-                        m_IsCharacterCollecting = false;
+                        m_IsCharacterCollected = false;
                     }
                     break;
             }

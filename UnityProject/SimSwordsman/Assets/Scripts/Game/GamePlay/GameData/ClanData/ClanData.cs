@@ -429,11 +429,11 @@ namespace GameWish.Game
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)
             {
-                item.lastShowBubbleTime = time.ToLongTimeString();
+                item.lastShowBubbleTime = time.ToString();
             }
             else
             {
-                rawMatItemDataList.Add(new RawMatItemData(collectedObjType, time.ToLongTimeString()));
+                rawMatItemDataList.Add(new RawMatItemData(collectedObjType, time.ToString()));
             }
 
             SetDataDirty();

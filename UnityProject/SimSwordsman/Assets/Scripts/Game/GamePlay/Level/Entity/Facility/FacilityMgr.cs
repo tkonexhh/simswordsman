@@ -123,7 +123,11 @@ namespace GameWish.Game
         #endregion
 
         #region Public Get    
-
+        public FacilityState GetFacilityState(FacilityType type)
+        {
+            FacilityController controller = GetFacilityController(type);
+            return controller.GetState();
+        }
         /// <summary>
         /// Get facility current level
         /// </summary>
