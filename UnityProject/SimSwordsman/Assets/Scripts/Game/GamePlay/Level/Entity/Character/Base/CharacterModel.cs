@@ -133,6 +133,16 @@ namespace GameWish.Game
             return m_CharacterItem.GetTargetFacilityType();
         }
 
+        public CollectedObjType GetCollectedObjType()
+        {
+            return m_CharacterItem.collectedObjType;
+        }
+
+        public void SetCollectedObjType(CollectedObjType collectedObjType)
+        {
+            m_CharacterItem.collectedObjType = collectedObjType;
+        }
+
         public void AddKongfuExp(int deltaExp)
         {
             //m_CharacterItem.kongfus.ForEach(i => 

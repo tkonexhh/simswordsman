@@ -14,12 +14,14 @@ namespace GameWish.Game
        
         private EInt m_WorkID = 0;   
         private EInt m_HomeLevel = 0;   
+        private string m_CollectObjType;   
         private string m_WorkName;   
         private string m_WorkTalk;   
         private string m_Reward;   
         private string m_SpeReward;   
         private EInt m_WorkTime = 0;   
-        private EInt m_WordInterval = 0;   
+        private EInt m_WorkInterval = 0;   
+        private EInt m_WaitingTime = 0;   
         private EInt m_StoreAmount = 0;   
         private EInt m_MeanWhileWorkman = 0;  
         
@@ -31,9 +33,14 @@ namespace GameWish.Game
         public  int  workID {get { return m_WorkID; } }
        
         /// <summary>
-        /// 讲武堂等级
+        /// 解锁条件，讲武堂等级
         /// </summary>
         public  int  homeLevel {get { return m_HomeLevel; } }
+       
+        /// <summary>
+        /// 收集资源的类型
+        /// </summary>
+        public  string  collectObjType {get { return m_CollectObjType; } }
        
         /// <summary>
         /// 工作名称
@@ -61,9 +68,14 @@ namespace GameWish.Game
         public  int  workTime {get { return m_WorkTime; } }
        
         /// <summary>
-        /// 工作间隔，分钟
+        /// 生成工作间隔，分钟
         /// </summary>
-        public  int  wordInterval {get { return m_WordInterval; } }
+        public  int  workInterval {get { return m_WorkInterval; } }
+       
+        /// <summary>
+        /// 自动采集等待，秒
+        /// </summary>
+        public  int  waitingTime {get { return m_WaitingTime; } }
        
         /// <summary>
         /// 最大保留数量
@@ -71,7 +83,7 @@ namespace GameWish.Game
         public  int  storeAmount {get { return m_StoreAmount; } }
        
         /// <summary>
-        /// 最大同时工作人数
+        /// 手动最大同时工作人数
         /// </summary>
         public  int  meanWhileWorkman {get { return m_MeanWhileWorkman; } }
        
@@ -97,27 +109,33 @@ namespace GameWish.Game
                     m_HomeLevel = dataR.ReadInt();
                     break;
                 case 2:
-                    m_WorkName = dataR.ReadString();
+                    m_CollectObjType = dataR.ReadString();
                     break;
                 case 3:
-                    m_WorkTalk = dataR.ReadString();
+                    m_WorkName = dataR.ReadString();
                     break;
                 case 4:
-                    m_Reward = dataR.ReadString();
+                    m_WorkTalk = dataR.ReadString();
                     break;
                 case 5:
-                    m_SpeReward = dataR.ReadString();
+                    m_Reward = dataR.ReadString();
                     break;
                 case 6:
-                    m_WorkTime = dataR.ReadInt();
+                    m_SpeReward = dataR.ReadString();
                     break;
                 case 7:
-                    m_WordInterval = dataR.ReadInt();
+                    m_WorkTime = dataR.ReadInt();
                     break;
                 case 8:
-                    m_StoreAmount = dataR.ReadInt();
+                    m_WorkInterval = dataR.ReadInt();
                     break;
                 case 9:
+                    m_WaitingTime = dataR.ReadInt();
+                    break;
+                case 10:
+                    m_StoreAmount = dataR.ReadInt();
+                    break;
+                case 11:
                     m_MeanWhileWorkman = dataR.ReadInt();
                     break;
                 default:
@@ -130,18 +148,20 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(12);
           
           ret.Add("WorkID", 0);
           ret.Add("HomeLevel", 1);
-          ret.Add("WorkName", 2);
-          ret.Add("WorkTalk", 3);
-          ret.Add("Reward", 4);
-          ret.Add("SpeReward", 5);
-          ret.Add("WorkTime", 6);
-          ret.Add("WordInterval", 7);
-          ret.Add("StoreAmount", 8);
-          ret.Add("MeanWhileWorkman", 9);
+          ret.Add("CollectObjType", 2);
+          ret.Add("WorkName", 3);
+          ret.Add("WorkTalk", 4);
+          ret.Add("Reward", 5);
+          ret.Add("SpeReward", 6);
+          ret.Add("WorkTime", 7);
+          ret.Add("WorkInterval", 8);
+          ret.Add("WaitingTime", 9);
+          ret.Add("StoreAmount", 10);
+          ret.Add("MeanWhileWorkman", 11);
           return ret;
         }
     } 

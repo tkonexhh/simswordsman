@@ -16,11 +16,13 @@ namespace GameWish.Game
 
         private bool m_ReachTargetPos = false;
         private float m_Time = 0f;
-        private bool m_IsTaskEnd = false;
+        private bool m_IsCollectResEnd = false;
 
         private CollectedObjType m_CollectedObjType;
-        private TaskCollectableItem m_TaskCollectableItem = null;
-        private bool m_IsTaskCollectableItemFound = false;
+        //private TaskCollectableItem m_TaskCollectableItem = null;
+        //private bool m_IsTaskCollectableItemFound = false;
+        private RawMatItem m_RawMatItem = null;
+        private float m_CollectTotalTime;
 
         public CharacterStateCollectRes(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -32,13 +34,25 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            m_CollectedObjType = (CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
+            m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
+            m_RawMatItem = null;
+            m_CollectTotalTime = TDWorkTable.GetWorkConfigItem(m_CollectedObjType).workTime;
 
             m_ReachTargetPos = false;
-            m_IsTaskEnd = false;
-            m_IsTaskCollectableItemFound = false;
+            m_IsCollectResEnd = false;
+            //m_IsTaskCollectableItemFound = false;
 
             RegisterEvents();
+
+            m_RawMatItem = MainGameMgr.S.RawMatCollectSystem.GetRawMatItem(m_CollectedObjType);
+            if (m_RawMatItem != null)
+            {
+                Transform t = m_RawMatItem.GetRandomCollectPos();
+
+                m_Controller.MoveTo(t.position, OnReachDestination);
+
+                m_Time = GameDataMgr.S.GetClanData().GetObjCollectedTime(m_CollectedObjType);
+            }
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -48,90 +62,99 @@ namespace GameWish.Game
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
-            if (!CommonTaskMgr.IsNotNeedToSpawnTaskItem(m_CollectedObjType))
-            {
-                if (m_IsTaskCollectableItemFound == false)
-                {
-                    m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
-                    if (m_TaskCollectableItem != null)
-                    {
-                        m_IsTaskCollectableItemFound = true;
+            //if (!CommonTaskMgr.IsNotNeedToSpawnTaskItem(m_CollectedObjType))
+            //{
+            //    if (m_IsTaskCollectableItemFound == false)
+            //    {
+            //        m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
+            //        if (m_TaskCollectableItem != null)
+            //        {
+            //            m_IsTaskCollectableItemFound = true;
 
-                        //Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
-                        //Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
-                        Transform t = m_TaskCollectableItem.GetRandomCollectPos();
-                        m_TaskCollectableItem.OnCollectPosTaken(t);
-                        m_Controller.MoveTo(t.position, OnReachDestination);
+            //            //Vector2 randomDelta = UnityEngine.Random.insideUnitCircle;
+            //            //Vector3 pos = m_TaskCollectableItem.transform.position + new Vector3(randomDelta.x, randomDelta.y, 0);
+            //            Transform t = m_TaskCollectableItem.GetRandomCollectPos();
+            //            m_TaskCollectableItem.OnCollectPosTaken(t);
+            //            m_Controller.MoveTo(t.position, OnReachDestination);
 
-                        m_Time = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_Controller.CurTask.TaskId);
-                    }
-                }
+            //            m_Time = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_Controller.CurTask.TaskId);
+            //        }
+            //    }
 
-                if (m_TaskCollectableItem == null)
-                    return;
-            }
-            else
-            {
-                if (m_IsTaskCollectableItemFound == false)
-                {
-                    m_IsTaskCollectableItemFound = true;
+            //    if (m_TaskCollectableItem == null)
+            //        return;
+            //}
+            //else
+            //{
+            //    if (m_IsTaskCollectableItemFound == false)
+            //    {
+            //        m_IsTaskCollectableItemFound = true;
 
-                    m_Controller.MoveTo(GameObject.FindObjectOfType<TaskPos>().GetTaskPos(m_CollectedObjType), OnReachDestination);
-                }
-            }
+            //        m_Controller.MoveTo(GameObject.FindObjectOfType<TaskPos>().GetTaskPos(m_CollectedObjType), OnReachDestination);
+            //    }
+            //}
 
-            if (m_IsTaskEnd)
+            //if (m_IsTaskEnd)
+            //    return;
+
+            //if (m_ReachTargetPos)
+            //{
+            //    m_Time += Time.deltaTime;
+
+            //    MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, (int)m_Time);
+            //    EventSystem.S.Send(EventID.OnArriveCollectResPos, m_Controller.CurTask);
+
+            //    if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
+            //    {
+            //        m_Time = 0f;
+            //        m_IsTaskEnd = true;
+
+
+            //        m_TaskCollectableItem?.OnEndCollected();
+            //        //MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+            //        EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CurTask.TaskId);
+            //    }
+            //}
+
+            if (m_IsCollectResEnd)
                 return;
 
             if (m_ReachTargetPos)
             {
                 m_Time += Time.deltaTime;
 
-                MainGameMgr.S.CommonTaskMgr.SetTaskExcutedTime(m_Controller.CurTask.TaskId, (int)m_Time);
-                EventSystem.S.Send(EventID.OnArriveCollectResPos, m_Controller.CurTask);
+                GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, (int)m_Time);
 
-                if (m_Time > m_Controller.CurTask.CommonTaskItemInfo.taskTime)
+                if (m_Time > m_CollectTotalTime)
                 {
                     m_Time = 0f;
-                    m_IsTaskEnd = true;
+                    m_IsCollectResEnd = true;
+
+                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
+                    //TODO: Get reward
 
 
-                    m_TaskCollectableItem?.OnEndCollected();
-                    //MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
-                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CurTask.TaskId);
+                    m_Controller.SetState(CharacterStateID.Wander);
+
+                    m_Controller.CollectObjType = CollectedObjType.None;
                 }
             }
         }
 
         private void OnReachDestination()
         {
-            if (m_IsTaskEnd)
+            if (m_IsCollectResEnd)
                 return;
 
             m_ReachTargetPos = true;
 
-            if (!CommonTaskMgr.IsNotNeedToSpawnTaskItem(m_CollectedObjType))
-            {
-                m_TaskCollectableItem = MainGameMgr.S.CommonTaskMgr.GetTaskCollectableItem(m_CollectedObjType);
-                if (m_TaskCollectableItem != null)
-                {
-                    string animName = GetCollectResAnim();
-                    m_Controller.CharacterView.PlayAnim(animName, true, null);
-                    m_Controller.FaceTo(m_TaskCollectableItem.transform.position.x);
-
-                    m_TaskCollectableItem?.OnStartCollected(m_Controller.GetPosition());
-                }
-                //else
-                //{
-                //    m_Controller.SetCurTask(null);
-                //    m_Controller.SetState(CharacterStateID.Wander);
-                //}
-            }
-            else
+            if (m_RawMatItem != null)
             {
                 string animName = GetCollectResAnim();
                 m_Controller.CharacterView.PlayAnim(animName, true, null);
+                m_Controller.FaceTo(m_RawMatItem.transform.position.x);
             }
+
         }
 
         private string GetCollectResAnim()
@@ -184,12 +207,14 @@ namespace GameWish.Game
         {
             if (key == (int)EventID.OnTaskObjCollected)
             {
-                int taskId = (int)param[0];
-                if (taskId == m_Controller.CurTask?.TaskId)
+                CollectedObjType taskId = (CollectedObjType)param[0];
+                if (taskId == m_Controller.CollectObjType)
                 {
-                    //m_Controller.SetCurTask(null);
-                    //m_Controller.SetState(CharacterStateID.Wander);
-                    MoveToBulletinBoard();
+                    m_IsCollectResEnd = true;
+
+                    m_Controller.SetState(CharacterStateID.Wander);
+
+                    m_Controller.CollectObjType = CollectedObjType.None;
                 }
             }
         }

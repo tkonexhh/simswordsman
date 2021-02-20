@@ -17,7 +17,7 @@ namespace GameWish.Game
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
         public KongfuData kongfuData = new KongfuData();
-        
+        public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
 
 
         public void SetDefaultValue()
@@ -276,6 +276,13 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
+        public void SetCharacterCollectedObjType(int id, CollectedObjType collectedObjType)
+        {
+            ownedCharacterData.SetCharacterCollectedObjType(id, collectedObjType);
+
+            SetDataDirty();
+        }
+
         public void AddCharacterExp(CharacterItemDbData item, int deltaExp)
         {
             ownedCharacterData.AddExp(item, deltaExp);
@@ -416,6 +423,56 @@ namespace GameWish.Game
         }
 
         #endregion
+
+        #region RawMatItem
+        public string GetLastShowBubbleTime(CollectedObjType collectedObjType)
+        {
+            RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
+            if (item != null)
+            {
+                return item.lastShowBubbleTime;
+            }
+
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLongTimeString();
+        }
+
+        public void SetLastShowBubbleTime(CollectedObjType collectedObjType, DateTime time)
+        {
+            RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
+            if (item != null)
+            {
+                item.lastShowBubbleTime = time.ToLongTimeString();
+            }
+            else
+            {
+                rawMatItemDataList.Add(new RawMatItemData(collectedObjType, time.ToLongTimeString()));
+            }
+
+            SetDataDirty();
+        }
+
+        public void SetObjCollectedTime(CollectedObjType collectedObjType, int time)
+        {
+            RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
+            if (item != null)
+            {
+                item.collectTime = time;
+                SetDataDirty();
+            }
+        }
+
+        public int GetObjCollectedTime(CollectedObjType collectedObjType)
+        {
+            RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
+            if (item != null)
+            {
+                return item.collectTime;
+            }
+
+            return 0;
+        }
+        #endregion
+
 
     }
 
