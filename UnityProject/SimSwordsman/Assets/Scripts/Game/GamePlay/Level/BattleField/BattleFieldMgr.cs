@@ -179,7 +179,6 @@ namespace GameWish.Game
                     {
                         m_SelectedHerbList = (List<HerbType>)param[2];
                     }
-
                     OnEnterBattle(enemies, ourSelectedCharacters);
                     break;
                 case (int)EventID.OnExitBattle:

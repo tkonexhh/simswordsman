@@ -71,7 +71,7 @@ namespace GameWish.Game
             this.desc = tDLevelConfig.desc;
             this.battleName = tDLevelConfig.battleName;
             this.enemyHeadIcon = tDLevelConfig.enemyHeadIcon;
-            this.recommendAtkValue = tDLevelConfig.recommendAtkValue;
+            this.recommendAtkValue = long.Parse(tDLevelConfig.recommendAtkValue);
             AnalysisRewards(tDLevelConfig.reward);
             AnalysisEnemies(tDLevelConfig.enemies);
         }

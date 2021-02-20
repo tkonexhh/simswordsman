@@ -511,28 +511,28 @@ namespace GameWish.Game
                     //    }
                     //}
                     //else
-                        //m_Promptly.gameObject.SetActive(false);
+                    //m_Promptly.gameObject.SetActive(false);
+                    //m_GoToBtn.gameObject.SetActive(false);
                     m_Over.gameObject.SetActive(false);
-                    m_GoToBtn.gameObject.SetActive(false);
                     m_RedPoint.gameObject.SetActive(false);
-                    m_DeclinedBtn.gameObject.SetActive(false);
+                    //m_DeclinedBtn.gameObject.SetActive(false);
                     foreach (var item in m_BulletinBoardDiscipleList)
                         item.SetBtnClick(false);
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case TaskState.Unclaimed:
-                    foreach (var item in m_BulletinBoardDiscipleList)
-                        item.SetBtnClick(false);
-                    m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
-                    m_Time.text = Define.COMMON_DEFAULT_STR;
-                    m_Over.gameObject.SetActive(false);
-                    //m_PromptlyImg.sprite = GetSprite("button_normal_blue");
-                    //m_PromptlyValue.text = "领取奖励";
-                    m_Advertisement.SetActive(false);
-                    m_RedPoint.gameObject.SetActive(true);
-                    m_Promptly.gameObject.SetActive(true);
-                    m_GoToBtn.gameObject.SetActive(false);
-                    m_DeclinedBtn.gameObject.SetActive(false);
+                    //foreach (var item in m_BulletinBoardDiscipleList)
+                    //    item.SetBtnClick(false);
+                    //m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
+                    //m_Time.text = Define.COMMON_DEFAULT_STR;
+                    //m_Over.gameObject.SetActive(false);
+                    ////m_PromptlyImg.sprite = GetSprite("button_normal_blue");
+                    ////m_PromptlyValue.text = "领取奖励";
+                    //m_Advertisement.SetActive(false);
+                    //m_RedPoint.gameObject.SetActive(true);
+                    ////m_Promptly.gameObject.SetActive(true);
+                    //m_GoToBtn.gameObject.SetActive(false);
+                    //m_DeclinedBtn.gameObject.SetActive(false);
                     break;
                 case TaskState.Finished:
                     break;

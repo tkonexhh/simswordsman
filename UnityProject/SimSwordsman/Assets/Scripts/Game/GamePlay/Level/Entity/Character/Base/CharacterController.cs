@@ -27,7 +27,7 @@ namespace GameWish.Game
         public CharacterStateID CurState { get => m_CurState;}
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
         public SimGameTask CurTask { get => m_CurTask;}
-        public CollectedObjType CollectObjType { get { return m_CollectedObjType; } set  { m_CollectedObjType = value; m_CharacterModel.SetCollectedObjType(value); GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterId, value); } }
+        public CollectedObjType CollectObjType { get { return m_CollectedObjType; } set { m_CollectedObjType = value; m_CharacterModel.SetCollectedObjType(value); GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterId, value); } }
 
         private CollectedObjType m_CollectedObjType;
         private CharacterStateID m_CurState = CharacterStateID.None;
@@ -46,10 +46,10 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
-            m_CollectedObjType = m_CharacterModel.GetCollectedObjType();
-
             if (m_CharacterCamp == CharacterCamp.OurCamp)
             {
+                m_CollectedObjType = m_CharacterModel.GetCollectedObjType();
+
                 m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
             }
 

@@ -58,7 +58,7 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnBattleAtkEnd, m_Controller);
         }
 
-       
+
         #endregion
     }
 }

@@ -37,7 +37,7 @@ namespace GameWish.Game
             CommonTaskItemData item = GetCommonTaskItemData(taskId);
             if (item != null)
             {
-                item.taskState = TaskState.Unclaimed;
+                item.taskState = TaskState.Finished;
                 SetDataDirty();
             }
         }

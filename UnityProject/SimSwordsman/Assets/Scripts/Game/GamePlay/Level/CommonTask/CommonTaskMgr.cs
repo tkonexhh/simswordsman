@@ -86,12 +86,12 @@ namespace GameWish.Game
             GameDataMgr.S.GetCommonTaskData().RemoveTask(taskId);
         }
 
-        public void SetTaskFinished(int taskId)
+        public void SetTaskFinished(int taskId, TaskState taskState)
         {
             SimGameTask item = GetCommonTaskItemData(taskId);
             if (item != null)
             {
-                item.CommonTaskItemInfo.taskState = TaskState.Unclaimed;
+                item.CommonTaskItemInfo.taskState = taskState;
                 GameDataMgr.S.GetCommonTaskData().SetTaskFinished(taskId);
                 EventSystem.S.Send(EventID.OnCommonTaskFinish, taskId);
             }
@@ -248,7 +248,7 @@ namespace GameWish.Game
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
 
-            //if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 

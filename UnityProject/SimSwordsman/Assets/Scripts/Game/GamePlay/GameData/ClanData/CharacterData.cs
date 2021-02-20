@@ -217,7 +217,7 @@ namespace GameWish.Game
             bodyId = item.bodyId;
             headId = item.headId;
         }
-
+      
         public CharacterItemDbData(int id, CharacterQuality quality)
         {
             this.id = id;

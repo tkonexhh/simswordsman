@@ -230,6 +230,7 @@ namespace GameWish.Game
             this.desc = decs;
             this.bodyId = bodyId;
             this.headId = headId;
+            CalculateForceValue();
         }
 
         public CharacterItem()
@@ -294,7 +295,7 @@ namespace GameWish.Game
 
             this.characterStateId = itemDbData.characterStateId;
 
-            atkValue = itemDbData.atkValue;
+            CalculateForceValue();
 
             itemDbData.kongfuDatas.ForEach(i =>
             {
@@ -354,6 +355,7 @@ namespace GameWish.Game
                         }
                     }
                 }
+                CalculateForceValue();
             }
         }
         public int GetEntryTime()

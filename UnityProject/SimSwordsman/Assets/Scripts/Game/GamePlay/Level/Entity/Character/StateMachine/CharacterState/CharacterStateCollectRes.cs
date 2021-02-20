@@ -228,7 +228,7 @@ namespace GameWish.Game
             {
                 if (m_Controller.CurTask != null)
                 {
-                    MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId);
+                    MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId, TaskState.Finished);
                 }
                 m_Controller.CharacterView.PlayIdleAnim();
                 m_Controller.SpawnTaskRewardBubble();

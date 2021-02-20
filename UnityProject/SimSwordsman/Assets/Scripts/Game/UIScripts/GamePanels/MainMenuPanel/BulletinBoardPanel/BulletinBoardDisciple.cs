@@ -59,12 +59,13 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
+            //m_DiscipleHead.sprite = obj;
+            //m_Loader = new AddressableAssetLoader<Sprite>();
+            //m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+            //{
+            //    //Debug.Log(obj);
+            //    m_DiscipleHead.sprite = obj;
+            //});
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
