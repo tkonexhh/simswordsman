@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-
     public enum PanelType
     {
         Task,
@@ -18,7 +17,7 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
-        private Button BlackBtn;    
+        private Button BlackBtn;
         [SerializeField]
         private Button m_ClsseBtn;
         [SerializeField]
@@ -67,6 +66,7 @@ namespace GameWish.Game
         private PanelType m_PanelType;
 
         private SimGameTask m_CurTaskInfo = null;
+        private CommonTaskItemInfo m_CommonTaskItemInfo = null;
 
         private const int MaxDiscipleNumber = 5;
 
@@ -80,7 +80,7 @@ namespace GameWish.Game
 
         private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
         private List<SendSelectedDisciple> m_ChallengeDiscipleList = new List<SendSelectedDisciple>();
-      
+
         private List<CharacterController> m_SelectedList = new List<CharacterController>();
         private List<HerbType> m_PlayerDataHerb = new List<HerbType>();
         protected override void OnUIInit()
@@ -111,17 +111,31 @@ namespace GameWish.Game
                 case EventID.OnSelectedConfirmEvent:
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)param[0];
                     HandConfirmBtnEvent();
-                    RefreshDisicipleSkill();
+                    if (m_PanelType == PanelType.Challenge)
+                        RefreshDisicipleSkill();
+                    else
+                    {
+
+                        EventSystem.S.Send(EventID.OnBulletinSelectedConfirmEvent, m_SelectedDiscipleDic, m_CommonTaskItemInfo);
+                        m_CurTaskInfo.RecordDiscipleID(m_SelectedDiscipleDic);
+                    }
                     break;
                 case EventID.OnSendDiscipleDicEvent:
-                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, m_LevelConfigInfo);
-                    break;     
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, m_LevelConfigInfo, (PanelType)param[0], m_CommonTaskItemInfo);
+                    break;
                 case EventID.OnSendHerbEvent:
                     HandHerbEvent((bool)param[0], (HerbItem)param[1]);
                     break;
                 default:
                     break;
             }
+        }
+        public void AddDiscipleDicDic(Dictionary<int, CharacterItem> keyValuePairs)
+        {
+            foreach (var item in keyValuePairs.Values)
+                m_SelectedDiscipleDic.Add(item.id, item);
+            //RefreshPanelInfo();
+            HandConfirmBtnEvent();
         }
 
         private void OpenCallback(AbstractPanel obj)
@@ -132,22 +146,14 @@ namespace GameWish.Game
 
         private void HandConfirmBtnEvent()
         {
-            switch (m_PanelType)
+            int i = 0;
+            foreach (var item in m_SelectedDiscipleDic.Values)
             {
-                case PanelType.Task:
-                case PanelType.Challenge:
-                    int i = 0;
-                    foreach (var item in m_SelectedDiscipleDic.Values)
-                    {
-                        m_ChallengeDiscipleList[i].RefreshSelectedDisciple(item);
-                        i++;
-                    }
-                    for (int j = m_SelectedDiscipleDic.Values.Count; j < m_ChallengeDiscipleList.Count; j++)
-                        m_ChallengeDiscipleList[j].RefreshSelectedDisciple(null);
-                    break;
-                default:
-                    break;
+                m_ChallengeDiscipleList[i].RefreshSelectedDisciple(item);
+                i++;
             }
+            for (int j = m_SelectedDiscipleDic.Values.Count; j < m_ChallengeDiscipleList.Count; j++)
+                m_ChallengeDiscipleList[j].RefreshSelectedDisciple(null);
         }
         protected override void OnPanelOpen(params object[] args)
         {
@@ -155,22 +161,17 @@ namespace GameWish.Game
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
             m_PanelType = (PanelType)args[0];
-            InitPanelInfo();
             switch (m_PanelType)
             {
                 case PanelType.Task:
                     m_CurTaskInfo = args[1] as SimGameTask;
-                    m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
+                    m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
+                    //m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
                     HandConfirmBtnEvent();
                     m_AcceptText.text = "发起战斗";
-                    m_RecommendedSkillsTitle.gameObject.SetActive(false);
-                    m_RecommendedSkillsValue.gameObject.SetActive(false);
-                    m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
-                    m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
-                    m_RefuseBtn.gameObject.SetActive(false);
-                    m_AutoSelectedBtn.gameObject.SetActive(false);
-                    m_StateBg.gameObject.SetActive(false);
-                    m_State.gameObject.SetActive(false);
+                    //m_RecommendedSkillsTitle.gameObject.SetActive(false);
+                    //m_RecommendedSkillsValue.gameObject.SetActive(false);
+                    RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
@@ -182,6 +183,20 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            InitPanelInfo();
+        }
+        private void RefreshFixedInfo()
+        {
+            m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
+            m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
+            m_RefuseBtn.gameObject.SetActive(false);
+            m_AutoSelectedBtn.gameObject.SetActive(false);
+            m_StateBg.gameObject.SetActive(false);
+            m_State.gameObject.SetActive(false);
+            m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
+            m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
+            //m_SelectedDiscipleSkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_SELECTEDDISCIPLEYSKILLS);
+            //m_RecommendedSkillsValue.text = 
         }
         private void RefreshDisicipleSkill()
         {
@@ -197,9 +212,9 @@ namespace GameWish.Game
 
             if (result < 0.75)
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
-            else if (result > 1.1f) 
+            else if (result > 1.1f)
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-                //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
+            //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
             else
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
         }
@@ -225,6 +240,9 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    for (int i = 0; i < m_CurTaskInfo.CommonTaskItemInfo.GetCharacterAmount(); i++)
+                        CreateDisciple(m_UnselectedTrans);
+                    break;
                 case PanelType.Challenge:
                     if (m_AllCharacterList != null)
                         for (int i = 0; i < MaxDiscipleNumber; i++)
@@ -233,7 +251,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            for (int i = (int)HerbType.ChiDanZhuangQiWan; i <=  (int)HerbType.HuanHunDan; i++)
+            for (int i = (int)HerbType.ChiDanZhuangQiWan; i <= (int)HerbType.HuanHunDan; i++)
             {
                 CreateHerb(i);
             }
@@ -245,13 +263,15 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                if (m_PanelType== PanelType.Challenge)
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
             BlackBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                if (m_PanelType == PanelType.Challenge)
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
 
             m_RefuseBtn.onClick.AddListener(() =>
@@ -284,11 +304,13 @@ namespace GameWish.Game
                                 enemiesList.Add(new EnemyConfig(taskEnemies[i].enemyId, 1, taskEnemies[i].enemyAtk));
                             }
                             EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, m_PlayerDataHerb);
-                            UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType,m_CurTaskInfo, enemiesList);
+                            UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurTaskInfo, enemiesList);
                         }
+                        UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
+                        UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
                         break;
                     case PanelType.Challenge:
-                        if (m_SelectedList.Count!= MaxDiscipleNumber)
+                        if (m_SelectedList.Count != MaxDiscipleNumber)
                         {
                             FloatMessage.S.ShowMsg("请选择满弟子 !");
                             return;
@@ -309,14 +331,13 @@ namespace GameWish.Game
             List<CharacterItem> allCharacterList = new List<CharacterItem>();
             foreach (var item in m_AllCharacterList)
             {
-                if (item.IsFreeState())
-                    allCharacterList.Add(item);
+                allCharacterList.Add(item);
             }
             m_SelectedDiscipleDic.Clear();
 
             BubbleSort(allCharacterList);
 
-            if (allCharacterList.Count>= MaxDiscipleNumber)
+            if (allCharacterList.Count >= MaxDiscipleNumber)
             {
                 for (int i = 0; i < MaxDiscipleNumber; i++)
                     m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
@@ -389,7 +410,7 @@ namespace GameWish.Game
         private void CreateDisciple(Transform parent)
         {
             SendSelectedDisciple discipeItem = Instantiate(m_DiscipleItem, parent).GetComponent<SendSelectedDisciple>();
-            discipeItem.OnInit(m_PanelType,this);
+            discipeItem.OnInit(m_PanelType, this);
             m_ChallengeDiscipleList.Add(discipeItem);
         }
 

@@ -42,9 +42,8 @@ namespace GameWish.Game
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
-                        break;
                     case PanelType.Challenge:
-                        EventSystem.S.Send(EventID.OnSendDiscipleDicEvent);
+                        EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_PanelType);
                         break;
                     default:
                         break;
@@ -63,11 +62,11 @@ namespace GameWish.Game
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
                     break;
                 case SelectedState.NotSelected:
-                    if (m_PanelType == PanelType.Task)
-                    {
-                        DestroyImmediate(gameObject);
-                        break;
-                    }
+                    //if (m_PanelType == PanelType.Task)
+                    //{
+                    //    DestroyImmediate(gameObject);
+                    //    break;
+                    //}
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_Plus.gameObject.SetActive(true);
                     m_DiscipleHead.gameObject.SetActive(false);
@@ -105,8 +104,7 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    m_Btn.enabled = false;
-                    break;
+                    //m_Btn.enabled = false;
                 case PanelType.Challenge:
                     RefreshPanelInfo();
                     break;

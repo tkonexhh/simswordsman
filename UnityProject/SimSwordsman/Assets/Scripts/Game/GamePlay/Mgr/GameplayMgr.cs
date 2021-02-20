@@ -141,7 +141,7 @@ namespace GameWish.Game
 
                     CountdownSystem.S.Init();
 
-                    GameMgr.S.StartGuide();
+                    //GameMgr.S.StartGuide();
                 }
             }
             else
@@ -185,14 +185,18 @@ namespace GameWish.Game
                 //{
                 //    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)i,(Step)1), 2000);
                 //}
+                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.BeeThorn; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
+                }
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
-                }
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial.SilverToken)));
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial.GoldenToken)));
+
             }
 
 
@@ -200,9 +204,9 @@ namespace GameWish.Game
             {
                 for (int i = (int)KongfuType.TaiZuChangQuan; i < (int)KongfuType.ZuiQuan; i++)
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 2000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)i), 50);
                 }
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 200);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))

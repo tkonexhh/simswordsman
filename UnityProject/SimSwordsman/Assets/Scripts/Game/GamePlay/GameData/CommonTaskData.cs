@@ -23,6 +23,15 @@ namespace GameWish.Game
 
         }
 
+        public void SetRecordChracterID(int taskId,List<int> IDList)
+        {
+            CommonTaskItemData item = GetCommonTaskItemData(taskId);
+            if (item != null)
+            {
+                item.SetRecordChracterID(IDList);
+            }
+        }
+
         public void SetTaskFinished(int taskId)
         {
             CommonTaskItemData item = GetCommonTaskItemData(taskId);
@@ -140,7 +149,7 @@ namespace GameWish.Game
         public TaskState taskState;
         public int taskTime; //总的时间
         public int executedTime; //已执行时间
-
+        public List<int> recordCharacterID = new List<int>();
         public CommonTaskItemData()
         {
         }
@@ -157,6 +166,11 @@ namespace GameWish.Game
         public void SetTaskExecutedTime(int time)
         {
             this.executedTime = time;
+        }
+
+        public void SetRecordChracterID(List<int> iDList)
+        {
+            recordCharacterID = iDList;
         }
     }
 

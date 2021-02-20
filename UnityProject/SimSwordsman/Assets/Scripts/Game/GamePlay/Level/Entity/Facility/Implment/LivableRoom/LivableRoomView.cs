@@ -16,7 +16,7 @@ namespace GameWish.Game
         {
             base.OnClicked();
 
-            Debug.Log("LivableRoom is clicked");
+            Log.i("LivableRoom is clicked");
 
         }
 

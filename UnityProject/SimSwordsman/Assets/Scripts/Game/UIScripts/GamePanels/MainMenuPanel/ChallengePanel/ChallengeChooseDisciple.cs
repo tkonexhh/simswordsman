@@ -41,6 +41,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ConfirmText;
         private LevelConfigInfo m_LevelConfigInfo = null;
+        private CommonTaskItemInfo m_CommonTaskItemInfo = null;
+        private PanelType m_PanelType;
         private const int ChallengeSelectedDiscipleNumber = 5;
 
         private List<CharacterItem> m_AllDiscipleList;
@@ -80,10 +82,22 @@ namespace GameWish.Game
             //选中
             if (seleted)
             {
-                if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
+                if (m_PanelType == PanelType.Challenge)
                 {
-                    FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
-                    return;
+                    if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
+                    {
+                        FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                        return;
+                    }
+                }
+                
+                else
+                {
+                    if (m_SelectedDiscipleDic.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
+                    {
+                        FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                        return;
+                    }
                 }
 
                 if (!m_SelectedDiscipleDic.ContainsKey(characterItem.id))
@@ -127,7 +141,16 @@ namespace GameWish.Game
                         item.SetItemState(false);
                 }
             }
-            RefreshDisicipleSkill();
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    break;
+                case PanelType.Challenge:
+                    RefreshDisicipleSkill();
+                    break;
+                default:
+                    break;
+            }
         }
         private void RefreshDisicipleSkill()
         {
@@ -166,7 +189,8 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_LevelConfigInfo = args[0] as LevelConfigInfo;
-            m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString()); 
+            m_PanelType = (PanelType)args[1];
+            m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
 
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {
@@ -176,8 +200,30 @@ namespace GameWish.Game
 
             for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
                 CreateSelectedDisciple();
-            RefreshDisicipleSkill();
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    RefreshFixedInfo();
+                    break;
+                case PanelType.Challenge:
+                    m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
+                    RefreshDisicipleSkill();
+                    break;
+                default:
+                    break;
+            }
 
+        }
+        private void RefreshFixedInfo()
+        {
+            m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
+            m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
+            m_StateBg.gameObject.SetActive(false);
+            m_State.gameObject.SetActive(false);
+            m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
+            m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
+            //m_SelectedDiscipleSkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_SELECTEDDISCIPLEYSKILLS);
+            //m_RecommendedSkillsValue.text = 
         }
         private void GetInformationForNeed()
         {

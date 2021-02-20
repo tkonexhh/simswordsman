@@ -68,6 +68,10 @@ namespace GameWish.Game
                 case ClickType.Free:
                     break;
                 case ClickType.RecruitmentOrder:
+                    if (m_RecruitType== RecruitType.SilverMedal)
+                        MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem(RawMaterial.SilverToken));
+                    else
+                        MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem(RawMaterial.GoldenToken));
                     MainGameMgr.S.RecruitDisciplerMgr.SetCurRecruitCount(m_RecruitType);
                     break;
                 case ClickType.LookAdvertisement:

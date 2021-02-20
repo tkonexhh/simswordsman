@@ -217,8 +217,8 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < m_InventoryItems.Count; i++)
                 {
-                    m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
-                    // m_CurItemList.Add(CreateGoods(m_InventoryItems[i], m_CurItemBgList[i]));
+                    if (m_CurItemList.Count>i)
+                        m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
                 }
             }
 

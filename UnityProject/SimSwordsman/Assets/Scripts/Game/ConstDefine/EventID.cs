@@ -155,10 +155,12 @@ namespace GameWish.Game
         /// 选择确定事情
         /// </summary>
         OnSelectedConfirmEvent,
+        OnBulletinSelectedConfirmEvent,
         /// <summary>
         /// 打开面板发送弟子事件
         /// </summary>
         OnSendDiscipleDicEvent,
+        OnBulletinSendDiscipleDicEvent,
         /// <summary>
         /// 删除
         /// </summary>

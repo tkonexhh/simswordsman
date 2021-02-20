@@ -10,7 +10,6 @@ namespace GameWish.Game
         public LivableRoomModel(FacilityController controller, FacilityItemDbData facilityItemDb) : base(controller, facilityItemDb)
         {
 
-        }
+        }   
     }
-
 }

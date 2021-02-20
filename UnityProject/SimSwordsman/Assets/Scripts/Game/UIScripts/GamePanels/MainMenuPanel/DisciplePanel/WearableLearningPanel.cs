@@ -11,6 +11,8 @@ namespace GameWish.Game
     public class WearableLearningPanel : AbstractAnimPanel
     {
         [SerializeField]
+        private Text m_Title;
+        [SerializeField]
         private Button m_ClsoeBtn;
         [SerializeField]
         private Button m_ArrangeBtn;
@@ -87,6 +89,17 @@ namespace GameWish.Game
             m_CurPropType = (PropType)args[0];
             m_CurDisciple = (CharacterItem)args[1];
             GeInformationForNeed();
+
+            switch (m_CurPropType)
+            {
+            
+                case PropType.Arms:
+                    m_Title.text = "选择武器";
+                    break;
+                case PropType.Armor:
+                    m_Title.text = "选择装备";
+                    break;
+            }
 
             foreach (var item in m_ItemBaseList)
                 CreateWearableLearningItem(item);

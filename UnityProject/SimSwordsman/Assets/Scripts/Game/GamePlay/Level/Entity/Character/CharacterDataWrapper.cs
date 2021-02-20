@@ -264,6 +264,18 @@ namespace GameWish.Game
         {
             GameDataMgr.S.GetClanData().SetCharacterTaskDBData(id, task);
         }
+        public void ClearCurTask(SimGameTask task)
+        {
+            GameDataMgr.S.GetClanData().ClearCharacterTaskDBData(id, task);
+        }
+        /// <summary>
+        /// 获取没有任何加成的武力值
+        /// </summary>
+        /// <returns></returns>
+        private float BasicsAtkValue()
+        {
+            return TDCharacterStageConfigTable.GetAtk(quality, stage, level);
+        }
 
         public void Wrap(CharacterItemDbData itemDbData)
         {
@@ -280,7 +292,7 @@ namespace GameWish.Game
 
             this.characterStateId = itemDbData.characterStateId;
 
-            atkValue = TDCharacterStageConfigTable.GetAtk(quality, stage, level);
+            atkValue = itemDbData.atkValue;
 
             itemDbData.kongfuDatas.ForEach(i =>
             {
@@ -419,7 +431,22 @@ namespace GameWish.Game
         /// <param name="equipmentItem"></param>
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
         {
+            CalculateForceValue();
             characeterEquipmentData.AddEquipment(characeterEquipment);
+        }
+        /// <summary>
+        /// 计算武力值
+        /// </summary>
+        private void CalculateForceValue()
+        {
+            atkValue = BasicsAtkValue();
+            //characeterEquipmentData.GetArmorAtkRate
+            if (characeterEquipmentData.GetArmorAtkRate() != -1)
+                atkValue *= characeterEquipmentData.GetArmorAtkRate();
+            if (characeterEquipmentData.GetArmsAtkRate() != -1)
+                atkValue *= characeterEquipmentData.GetArmsAtkRate();
+
+            GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }
 
         /// <summary>
@@ -556,7 +583,7 @@ namespace GameWish.Game
     {
         public const string DefaultArmsIconName = "DefaultArms";
         public ArmsType ArmsID { set; get; }
-        public CharacterArms() { }
+        public CharacterArms() { AtkAddition = -1; }
         public CharacterArms(ArmsType arms)
         {
             ArmsID = arms;
@@ -565,8 +592,8 @@ namespace GameWish.Game
         }
         public CharacterArms(ItemBase arms)
         {
-            ArmsItem armsItem =  arms as ArmsItem;
-            if (armsItem!=null)
+            ArmsItem armsItem = arms as ArmsItem;
+            if (armsItem != null)
             {
                 ArmsID = armsItem.ArmsID;
                 Class = (int)armsItem.ClassID;
@@ -580,7 +607,7 @@ namespace GameWish.Game
         }
         public void AddArms(CharacterArms characterArms)
         {
-            if (ArmsID == characterArms.ArmsID && Class== characterArms.Class)
+            if (ArmsID == characterArms.ArmsID && Class == characterArms.Class)
                 return;
 
             Class = characterArms.Class;
@@ -627,7 +654,7 @@ namespace GameWish.Game
         public const string DefaultArmorIconName = "DefaultArmor";
 
         public ArmorType ArmorID { set; get; }
-        public CharacterArmor() { }
+        public CharacterArmor() { AtkAddition = -1; }
         public CharacterArmor(ArmorType armor)
         {
             ArmorID = armor;
@@ -647,7 +674,7 @@ namespace GameWish.Game
 
         public void UpGradeClass(int characterID)
         {
-            Class = Mathf.Min(MaxLevel, Class+1);
+            Class = Mathf.Min(MaxLevel, Class + 1);
             GameDataMgr.S.GetClanData().UpGradeEquipment(characterID, this);
         }
         public void AddArmor(CharacterArmor characterArmor)

@@ -54,6 +54,8 @@ namespace GameWish.Game
 
         #region Public 
 
+   
+
         /// <summary>
         /// 打开UI界面时调用
         /// </summary>
@@ -216,7 +218,7 @@ namespace GameWish.Game
             m_CommonTaskData.taskList.ForEach(i => 
             {
                 //int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
-                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime,i.recordCharacterID);
 
                 List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(i.taskId);
 
@@ -302,9 +304,9 @@ namespace GameWish.Game
             return null;
         }
 
-        private SimGameTask AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
+        private SimGameTask AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime, List<int> recordCharacterID = null)
         {
-            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime);
+            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime, recordCharacterID);
             m_CurTaskList.Add(simGameTask);
 
             return simGameTask;

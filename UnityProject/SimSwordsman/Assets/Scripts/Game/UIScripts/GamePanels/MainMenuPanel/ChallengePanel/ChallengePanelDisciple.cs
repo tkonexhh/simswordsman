@@ -35,7 +35,7 @@ namespace GameWish.Game
 
 			LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
 			RefresPanelInfo();
-		}
+		}   
 		public void LoadClanPrefabs(string prefabsName)
 		{
 			m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);

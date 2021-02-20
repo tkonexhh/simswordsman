@@ -207,6 +207,10 @@ namespace GameWish.Game
         {
             return "<color=#FFFFFF00>----</color>";
         }
+        public static string TextEmptyOne()
+        {
+            return "<color=#FFFFFF00>--</color>";
+        }
         /// <summary>
         /// ªÒ»°ÕÚ
         /// </summary>
