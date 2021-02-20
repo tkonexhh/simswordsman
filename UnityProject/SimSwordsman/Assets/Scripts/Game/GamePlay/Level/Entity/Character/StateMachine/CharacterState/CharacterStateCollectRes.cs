@@ -47,8 +47,10 @@ namespace GameWish.Game
             m_RawMatItem = MainGameMgr.S.RawMatCollectSystem.GetRawMatItem(m_CollectedObjType);
             if (m_RawMatItem != null)
             {
-                Transform t = m_RawMatItem.GetRandomCollectPos();
+                m_RawMatItem.SetCharacterSelected(true);
+                m_RawMatItem.HideBubble();
 
+                Transform t = m_RawMatItem.GetRandomCollectPos();
                 m_Controller.MoveTo(t.position, OnReachDestination);
 
                 m_Time = GameDataMgr.S.GetClanData().GetObjCollectedTime(m_CollectedObjType);
@@ -133,8 +135,8 @@ namespace GameWish.Game
                     m_IsCollectResEnd = true;
 
                     EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
-                    //TODO: Get reward
-
+    
+                    ClaimReward();
 
                     GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
 
@@ -241,6 +243,26 @@ namespace GameWish.Game
                 m_Controller.CharacterView.PlayIdleAnim();
                 m_Controller.SpawnTaskRewardBubble();
             });
+        }
+
+        private void ClaimReward()
+        {
+            WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
+            // Item reward
+            for (int i = 0; i < workConfigItem.itemRewards.Count; i++)
+            {
+                int itemId = workConfigItem.itemRewards[i].id;
+                int count = workConfigItem.itemRewards[i].GetRewardValue();
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            }
+
+            // Special reward
+            for (int i = 0; i < workConfigItem.specialRewards.Count; i++)
+            {
+                int itemId = workConfigItem.specialRewards[i].id;
+                int count = workConfigItem.specialRewards[i].GetRewardValue();
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            }          
         }
     }
 }

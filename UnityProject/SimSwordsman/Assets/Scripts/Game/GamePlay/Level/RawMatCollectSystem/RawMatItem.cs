@@ -105,6 +105,11 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, DateTime.Now);
         }
 
+        public void SetCharacterSelected(bool selected)
+        {
+            m_IsCharacterCollected = selected;
+        }
+
         public void HideBubble()
         {
             m_IsBubbleShowed = false;
