@@ -125,6 +125,8 @@ namespace GameWish.Game
 
                 GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, (int)m_Time);
 
+                m_Controller.SetWorkProgressPercent(m_Time / m_CollectTotalTime);
+
                 if (m_Time > m_CollectTotalTime)
                 {
                     m_Time = 0f;
@@ -133,6 +135,10 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
                     //TODO: Get reward
 
+
+                    GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
+
+                    m_Controller.ReleaseWorkProgressBar();
 
                     m_Controller.SetState(CharacterStateID.Wander);
 
@@ -154,6 +160,8 @@ namespace GameWish.Game
                 m_Controller.CharacterView.PlayAnim(animName, true, null);
                 m_Controller.FaceTo(m_RawMatItem.transform.position.x);
             }
+
+            m_Controller.SpawnWorkProgressBar();
 
         }
 

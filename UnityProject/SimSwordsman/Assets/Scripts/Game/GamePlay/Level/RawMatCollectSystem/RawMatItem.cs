@@ -52,6 +52,14 @@ namespace GameWish.Game
 
             TimeSpan timeSpan = DateTime.Now - lastShowBubbleTime;
 
+            if (m_IsBubbleShowed && !m_IsCharacterCollected)
+            {
+                if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
+                {
+                    AutoSelectCharacter();
+                }
+            }
+
             if (!m_IsBubbleShowed && !m_IsCharacterCollected)
             {
                 if (timeSpan.TotalSeconds > m_WorkConfigItem.workInterval)
@@ -60,13 +68,6 @@ namespace GameWish.Game
                 }
             }
 
-            if (m_IsBubbleShowed && !m_IsCharacterCollected)
-            {
-                if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
-                {
-                    AutoSelectCharacter();
-                }
-            }
         }
 
         public void OnClicked()
@@ -101,7 +102,6 @@ namespace GameWish.Game
             bubble.SetActive(true);
 
             lastShowBubbleTime = DateTime.Now;
-
             GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, DateTime.Now);
         }
 

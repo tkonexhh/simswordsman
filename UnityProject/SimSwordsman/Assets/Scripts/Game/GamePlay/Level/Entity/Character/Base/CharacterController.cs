@@ -280,6 +280,27 @@ namespace GameWish.Game
             go.GetComponent<CharacterTaskRewardBubble>().SetController(this);
         }
 
+        public void SpawnWorkProgressBar()
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkProgressBar();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkProgressBar progress = go.GetComponent<CharacterWorkProgressBar>();
+            m_CharacterView.SetProgressBar(progress);
+        }
+
+        public void ReleaseWorkProgressBar()
+        {
+            m_CharacterView.ReleaseProgressBar();
+        }
+
+        public void SetWorkProgressPercent(float percent)
+        {
+            percent = Mathf.Clamp01(percent);
+
+            m_CharacterView.SetProgressBarPrecent(percent);
+        }
+
         public void HideTaskRewardBubble()
         {
             CharacterTaskRewardBubble bubble = m_CharacterView.GetComponentInChildren<CharacterTaskRewardBubble>();

@@ -177,6 +177,11 @@ namespace GameWish.Game
         {
             return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_TASK_REWARD_BUBBLE);
         }
+
+        public GameObject SpawnWorkProgressBar()
+        {
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_PROGRESS_BAR);
+        }
         #endregion
 
         #region Public Set
@@ -357,6 +362,9 @@ namespace GameWish.Game
         {
             GameObject rewardBubble = CharacterLoader.S.GetCharacterRewardBubble();
             GameObjectPoolMgr.S.AddPool(Define.CHARACTER_TASK_REWARD_BUBBLE, rewardBubble, 10, 3);
+
+            GameObject workProgressBar = CharacterLoader.S.GetCharacterWorkProgressBar();
+            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_PROGRESS_BAR, workProgressBar, 10, 3);
         }
         #endregion
 

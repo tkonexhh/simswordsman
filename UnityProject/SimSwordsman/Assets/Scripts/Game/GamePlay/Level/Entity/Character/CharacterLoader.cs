@@ -15,6 +15,9 @@ namespace GameWish.Game
         private GameObject m_CharacterTaskRewardBubble = null;
         private AddressableGameObjectLoader m_CharacterTaskRewardBubbleLoader = null;
 
+        private AddressableGameObjectLoader m_CharacterWorkProgressBarLoader = null;
+        private GameObject m_CharacterWorkProgressBar = null;
+
         private int m_LoadedCharacterCount = 0;
 
         private bool m_IsLoadDoneSent = false;
@@ -41,11 +44,17 @@ namespace GameWish.Game
             //}
 
             LoadCharacterRewardBubbleAsync();
+            LoadCharacterWorkProgressBarAsync();
         }
 
         public GameObject GetCharacterRewardBubble()
         {
             return m_CharacterTaskRewardBubble;
+        }
+
+        public GameObject GetCharacterWorkProgressBar()
+        {
+            return m_CharacterWorkProgressBar;
         }
 
         public GameObject GetCharacterGo(int id)
@@ -100,9 +109,22 @@ namespace GameWish.Game
             });
         }
 
+        private void LoadCharacterWorkProgressBarAsync()
+        {
+            string prefabName = "WorkProgressBar";
+            m_CharacterWorkProgressBarLoader = new AddressableGameObjectLoader();
+            m_CharacterWorkProgressBarLoader.InstantiateAsync(prefabName, (obj) =>
+            {
+                m_CharacterWorkProgressBar = obj;
+                m_CharacterWorkProgressBar.transform.position = new Vector3(-1000, 0, 0);
+
+                SendAssetLoadedMsg();
+            });
+        }
+
         private bool IsAllAssetLoaded()
         {
-            return m_LoadedCharacterCount >= m_CharacterList.Count && m_CharacterTaskRewardBubble != null;
+            return m_LoadedCharacterCount >= m_CharacterList.Count && m_CharacterTaskRewardBubble != null && m_CharacterWorkProgressBar != null;
         }
 
         private void SendAssetLoadedMsg()

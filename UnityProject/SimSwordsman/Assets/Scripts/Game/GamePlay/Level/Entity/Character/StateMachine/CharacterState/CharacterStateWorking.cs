@@ -29,6 +29,7 @@ namespace GameWish.Game
             Vector3 targetPos = facilityController.GetDoorPos();
 
             m_Controller.MoveTo(targetPos, OnReachDestination);
+
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -44,6 +45,8 @@ namespace GameWish.Game
         {
             string anim = GetAnimName(m_FacilityType);
             m_Controller.CharacterView.PlayAnim(anim, true, null);
+
+            m_Controller.SpawnWorkProgressBar();
         }
 
         private string GetAnimName(FacilityType facilityType)
