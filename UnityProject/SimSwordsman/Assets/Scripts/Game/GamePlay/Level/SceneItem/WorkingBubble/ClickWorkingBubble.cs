@@ -18,7 +18,7 @@ namespace GameWish.Game
         {
             state = 0;
             EventSystem.S.Register(EventID.OnAddCanWorkFacility, CanWorkBubble);
-            EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, RewardBubble);
+            //EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, RewardBubble);
         }
 
         private void CanWorkBubble(int key, object[] param)

@@ -12,6 +12,7 @@ namespace GameWish.Game
     {
         private CharacterController m_Controller = null;
         private FacilityType m_FacilityType = FacilityType.None;
+        private string m_WorkStringId;
 
         public CharacterStateWorking(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -25,6 +26,7 @@ namespace GameWish.Game
 
             m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
 
+            m_WorkStringId = WorkSystem.GetStringId(m_FacilityType);
             m_Controller.SpawnWorkTipWhenWorkInFacility(m_FacilityType);
 
             FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
@@ -32,15 +34,29 @@ namespace GameWish.Game
 
             m_Controller.MoveTo(targetPos, OnReachDestination);
 
+            EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd);
         }
 
         public override void Exit(ICharacterStateHander handler)
         {
+            EventSystem.S.UnRegister(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd);
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
+            Countdowner countDowner = CountdownSystem.S.GetCountdowner(m_WorkStringId, m_Controller.CharacterId);
 
+
+            if (countDowner != null)
+            {
+                float percent = Mathf.Clamp01(countDowner.GetProgress());
+                m_Controller.SetWorkProgressPercent(percent);
+
+                if (percent >= 1)
+                {
+
+                }
+            }
         }
 
         private void OnReachDestination()
@@ -73,6 +89,22 @@ namespace GameWish.Game
             }
 
             return animName;
+        }
+
+        private void OnFacilityWorkEnd(int key, object[] param)
+        {
+            FacilityType type = (FacilityType)param[0];
+
+            ApplyReward(type);
+
+            m_Controller.ReleaseWorkProgressBar();
+
+            m_Controller.SetState(CharacterStateID.Wander);
+        }
+
+        private void ApplyReward(FacilityType type)
+        {
+            WorkSystem.S.GetReward(type);
         }
     }
 }
