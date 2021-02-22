@@ -89,7 +89,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.RemoveItem(m_CurInventoryItem, m_SelectedNumber);
 
                     GameDataMgr.S.GetPlayerData().AddCoinNum(m_CurInventoryItem.Price * m_SelectedNumber);
-
+                    Qarth.EventSystem.S.Send(EventID.RefreshWarehouseRes);
                     CloseSelfPanel();
                 }
             });

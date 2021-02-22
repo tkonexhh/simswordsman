@@ -8,16 +8,16 @@ using UnityEngine.UI;
 namespace GameWish.Game
 {
 
-	public class ConstructionFacilitiesPanel : AbstractAnimPanel
-	{
+    public class ConstructionFacilitiesPanel : AbstractAnimPanel
+    {
         [SerializeField]
         private Button m_BlackBtn;
         [SerializeField]
-	    private Image m_TitleImg;
-	    [SerializeField]
-	    private Text m_FacilityDescribe; 
-		[SerializeField]
-		private Text m_ConstructionConditionValue;
+        private Image m_TitleImg;
+        [SerializeField]
+        private Text m_FacilityDescribe;
+        [SerializeField]
+        private Text m_ConstructionConditionValue;
         [SerializeField]
         private Image m_Res1;
         [SerializeField]
@@ -33,12 +33,12 @@ namespace GameWish.Game
 
 
         [SerializeField]
-		private Image m_FacilityPhotoImg;
+        private Image m_FacilityPhotoImg;
 
-		[SerializeField]
-		private Button m_AcceptBtn;
-		[SerializeField]
-		private Button m_CloseBtn;
+        [SerializeField]
+        private Button m_AcceptBtn;
+        [SerializeField]
+        private Button m_CloseBtn;
 
         private FacilityType m_FacilityType;
         private int m_SubId;
@@ -48,11 +48,11 @@ namespace GameWish.Game
         private FacilityLevelInfo m_FacilityLevelInfo = null;
 
         protected override void OnUIInit()
-	    {
-	        base.OnUIInit();
-           
-			BindAddListenerEvent();
-	    }
+        {
+            base.OnUIInit();
+
+            BindAddListenerEvent();
+        }
 
         protected override void OnPanelOpen(params object[] args)
         {
@@ -74,7 +74,7 @@ namespace GameWish.Game
             m_SubId = (int)args[1];
             RefreshPanelInfo();
 
-            OpenDependPanel(EngineUI.MaskPanel,-1,null);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         private void RefreshPanelInfo()
@@ -83,9 +83,9 @@ namespace GameWish.Game
             m_FacilityLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_FacilityType, 1);
             m_TitleImg.sprite = GetTitleSprite(m_FacilityType);
             m_TitleImg.SetNativeSize();
-            m_FacilityDescribe.text = CommonUIMethod.TextEmptyOne()+ m_CurFacilityConfigInfo.desc;
+            m_FacilityDescribe.text = CommonUIMethod.TextEmptyOne() + m_CurFacilityConfigInfo.desc;
             m_CostItems = m_FacilityLevelInfo.GetUpgradeResCosts();
-            m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetStrForColor("#7B3735", CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel)); 
+            m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetStrForColor("#7B3735", CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel));
             // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
             //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
             RefreshResInfo();
@@ -173,7 +173,7 @@ namespace GameWish.Game
 
         private void RefreshResInfo()
         {
-            if (m_CostItems.Count==0)
+            if (m_CostItems.Count == 0)
             {
                 m_Res1.gameObject.SetActive(false);
                 m_Res2.gameObject.SetActive(false);
@@ -210,14 +210,16 @@ namespace GameWish.Game
         private void BindAddListenerEvent()
         {
 
-			m_CloseBtn.onClick.AddListener(()=> {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-            m_BlackBtn.onClick.AddListener(() => {
+            m_BlackBtn.onClick.AddListener(() =>
+            {
                 HideSelfWithAnim();
             });
-            m_AcceptBtn.onClick.AddListener(()=> 
+            m_AcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -233,12 +235,12 @@ namespace GameWish.Game
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
 
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
-                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
+                    EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
                     OnPanelHideComplete();
                 }
             });
-		}
+        }
         private bool CheackIsBuild()
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);

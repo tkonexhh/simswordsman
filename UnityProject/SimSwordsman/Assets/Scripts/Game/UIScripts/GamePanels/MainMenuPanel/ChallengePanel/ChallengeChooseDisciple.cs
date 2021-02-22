@@ -194,8 +194,8 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {
-                if ( m_AllDiscipleList[i].IsFreeState())
-                    CreateDisciple(m_AllDiscipleList[i]);
+                CreateDisciple(m_AllDiscipleList[i]);
+                //if ( m_AllDiscipleList[i].IsFreeState())
             }
 
             for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)

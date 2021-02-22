@@ -39,9 +39,9 @@ namespace GameWish.Game
             return m_PracticeSlots[index].position;
         }
 
-        public override void SetViewByState()
+        public override void SetViewByState(bool isFile = false)
         {
-            base.SetViewByState();
+            base.SetViewByState(isFile);
 
             m_Flag.SetActive(false);
             switch (m_Controller.GetState())

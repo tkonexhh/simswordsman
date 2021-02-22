@@ -115,7 +115,6 @@ namespace GameWish.Game
                         RefreshDisicipleSkill();
                     else
                     {
-
                         EventSystem.S.Send(EventID.OnBulletinSelectedConfirmEvent, m_SelectedDiscipleDic, m_CommonTaskItemInfo);
                         m_CurTaskInfo.RecordDiscipleID(m_SelectedDiscipleDic);
                     }

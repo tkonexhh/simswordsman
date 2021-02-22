@@ -122,12 +122,6 @@ namespace GameWish.Game
 
 		public void RefreshNumber(int delta)
 		{
-			CurItemBase.Number -= delta;
-			if (CurItemBase.Number <= 0)
-			{
-				IsHaveItem = false;
-				return;
-			}
 			m_Nums.text = CurItemBase.Number.ToString();
 		}
 

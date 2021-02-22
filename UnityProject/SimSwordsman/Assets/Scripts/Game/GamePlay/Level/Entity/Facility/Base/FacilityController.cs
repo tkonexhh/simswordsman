@@ -44,7 +44,7 @@ namespace GameWish.Game
             FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(m_FacilityType/*, subId*/);
             m_Model = new FacilityModel(this, dbItem);
 
-            SetState(dbItem.facilityState);
+            SetState(dbItem.facilityState,true);
 
             if (m_FacilityState == FacilityState.Unlocked)
             {
@@ -52,11 +52,11 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(FacilityState facilityState)
+        public void SetState(FacilityState facilityState,bool isFile = false)
         {
             m_FacilityState = facilityState;
 
-            m_View?.SetViewByState();
+            m_View?.SetViewByState(isFile);
         }
 
         public void OnUpgrade()

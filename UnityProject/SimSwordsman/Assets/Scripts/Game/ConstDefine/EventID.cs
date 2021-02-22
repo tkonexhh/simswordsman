@@ -78,6 +78,14 @@ namespace GameWish.Game
         /// </summary>
         OnPracticeFieldTimeRefresh,
 
+        #region 仓库
+        /// <summary>
+        /// 刷新仓库升级资源
+        /// </summary>
+        RefreshWarehouseRes,
+        #endregion
+
+
         //KungfuLibrary
         /// <summary>
         /// 刷新功夫坑位的信息

@@ -19,7 +19,7 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_Parent;
         //private List<Button> m_CheckpointBtns = null;
-
+        private ResLoader m_ResLoader;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private Dictionary<int, LevelConfigInfo> m_CurChapterAllLevelConfigInfo = null;
 
@@ -44,9 +44,9 @@ namespace GameWish.Game
 
         public void LoadClanPrefabs(string prefabsName)
         {
-            ResLoader resLoader = ResLoader.Allocate();
+            m_ResLoader = ResLoader.Allocate();
 
-            GameObject obj = Instantiate(resLoader.LoadSync(prefabsName)) as GameObject;
+            GameObject obj = Instantiate(m_ResLoader.LoadSync(prefabsName)) as GameObject;
 
             //GameObject obj = resLoader.LoadSync(prefabsName) as GameObject;
             //m_CharacterLoaderDic.Add(id, loader);
@@ -60,6 +60,12 @@ namespace GameWish.Game
 
             obj.transform.localScale = new Vector3(1.01f, 1.01f, 1);
             obj.GetComponent<ClanBase>().SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+            m_ResLoader?.ReleaseRes(m_CurChapterConfigInfo.clanType.ToString() + "Panel");
         }
 
         /// <summary>
