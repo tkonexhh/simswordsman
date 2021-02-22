@@ -248,7 +248,16 @@ namespace GameWish.Game
         private void SpawnOurCharacter(List<CharacterController> characters)
         {
             m_OurCharacterList.Clear();
-            m_OurCharacterList.AddRange(characters);
+            characters.ForEach(i => 
+            {
+                CharacterItem characterItem = MainGameMgr.S.CharacterMgr.CharacterDataWrapper.GetCharacterItem(i.CharacterId);
+                CharacterController controller = SpawnCharacterController(characterItem);
+                if (controller != null)
+                {
+                    m_OurCharacterList.Add(controller);
+                }
+            });
+
             m_OurCharacterList.ForEach(i => 
             {
                 i.ShowBody();
@@ -264,10 +273,29 @@ namespace GameWish.Game
 
                 m_TotalOurAtk += i.CharacterModel.GetAtk();
 
-                //i.CharacterModel.SetHp(i.CharacterModel.GetAtk());
-
                 m_TotalOurHp += i.CharacterModel.GetHp();
             });
+        }
+
+        public CharacterController SpawnCharacterController(CharacterItem characterItem)
+        {
+            CharacterController controller = null;
+
+            int id = characterItem.id;
+
+            GameObject go = CharacterLoader.S.GetCharacterGo(id);
+            if (go != null)
+            {
+                GameObject obj = GameObject.Instantiate(go);
+                CharacterView characterView = obj.GetComponent<CharacterView>();
+                controller = new CharacterController(id, characterView, CharacterStateID.Battle);
+            }
+            else
+            {
+                Log.e("SpawnCharacterController return null");
+            }
+
+            return controller;
         }
 
         private void SpawnEnemyCharacter(int id, long atk)

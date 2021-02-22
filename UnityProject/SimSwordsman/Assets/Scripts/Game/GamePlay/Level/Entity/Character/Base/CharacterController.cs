@@ -46,10 +46,10 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
-            m_CollectedObjType = m_CharacterModel.GetCollectedObjType();
-
             if (m_CharacterCamp == CharacterCamp.OurCamp)
             {
+                m_CollectedObjType = m_CharacterModel.GetCollectedObjType();
+
                 m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
             }
 

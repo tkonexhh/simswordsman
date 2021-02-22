@@ -92,6 +92,9 @@ namespace GameWish.Game
                 case FacilityType.Warehouse:
                     icon = m_WareHouseIcon;
                     break;
+                default:
+                    icon = m_LobbyIcon;
+                    break;
             }
 
             return icon;
@@ -118,6 +121,9 @@ namespace GameWish.Game
                 case CollectedObjType.Vine:
                 case CollectedObjType.Ganoderma:
                     icon = m_FlowerIcon;
+                    break;
+                default:
+                    icon = m_LobbyIcon;
                     break;
             }
 
