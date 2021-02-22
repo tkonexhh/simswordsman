@@ -25,6 +25,7 @@ namespace GameWish.Game
         private Vector3 m_DeltaPos = Vector3.zero;
 
         private CharacterWorkProgressBar m_WorkProgressBar = null;
+        private CharacterWorkTip m_WorkTip = null;
 
         public void Init()
         {
@@ -222,6 +223,21 @@ namespace GameWish.Game
             if (m_WorkProgressBar != null)
             {
                 GameObjectPoolMgr.S.Recycle(m_WorkProgressBar.gameObject);
+                m_WorkProgressBar = null;
+            }
+        }
+
+        public void SetWorkTip(CharacterWorkTip workTip)
+        {
+            m_WorkTip = workTip;
+        }
+
+        public void ReleaseWorkTip()
+        {
+            if (m_WorkTip!= null)
+            {
+                GameObjectPoolMgr.S.Recycle(m_WorkTip.gameObject);
+                m_WorkTip = null;
             }
         }
         #endregion

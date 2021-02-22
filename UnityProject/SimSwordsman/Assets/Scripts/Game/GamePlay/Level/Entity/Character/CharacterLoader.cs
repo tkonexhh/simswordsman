@@ -18,6 +18,9 @@ namespace GameWish.Game
         private AddressableGameObjectLoader m_CharacterWorkProgressBarLoader = null;
         private GameObject m_CharacterWorkProgressBar = null;
 
+        private AddressableGameObjectLoader m_CharacterWorkTipLoader = null;
+        private GameObject m_CharacterWorkTip = null;
+
         private int m_LoadedCharacterCount = 0;
 
         private bool m_IsLoadDoneSent = false;
@@ -45,6 +48,7 @@ namespace GameWish.Game
 
             LoadCharacterRewardBubbleAsync();
             LoadCharacterWorkProgressBarAsync();
+            LoadCharacterWorkTipAsync();
         }
 
         public GameObject GetCharacterRewardBubble()
@@ -55,6 +59,11 @@ namespace GameWish.Game
         public GameObject GetCharacterWorkProgressBar()
         {
             return m_CharacterWorkProgressBar;
+        }
+
+        public GameObject GetCharacterWorkTip()
+        {
+            return m_CharacterWorkTip;
         }
 
         public GameObject GetCharacterGo(int id)
@@ -109,6 +118,20 @@ namespace GameWish.Game
             });
         }
 
+
+        private void LoadCharacterWorkTipAsync()
+        {
+            string prefabName = "WorkTip";
+            m_CharacterWorkTipLoader = new AddressableGameObjectLoader();
+            m_CharacterWorkTipLoader.InstantiateAsync(prefabName, (obj) =>
+            {
+                m_CharacterWorkTip = obj;
+                m_CharacterWorkTip.transform.position = new Vector3(-1000, 0, 0);
+
+                SendAssetLoadedMsg();
+            });
+        }
+
         private void LoadCharacterWorkProgressBarAsync()
         {
             string prefabName = "WorkProgressBar";
@@ -124,7 +147,9 @@ namespace GameWish.Game
 
         private bool IsAllAssetLoaded()
         {
-            return m_LoadedCharacterCount >= m_CharacterList.Count && m_CharacterTaskRewardBubble != null && m_CharacterWorkProgressBar != null;
+            return m_LoadedCharacterCount >= m_CharacterList.Count && 
+                m_CharacterTaskRewardBubble != null && m_CharacterWorkProgressBar != null
+                && m_CharacterWorkTip != null;
         }
 
         private void SendAssetLoadedMsg()

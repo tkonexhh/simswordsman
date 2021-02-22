@@ -25,6 +25,8 @@ namespace GameWish.Game
 
             m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
 
+            m_Controller.SpawnWorkTipWhenWorkInFacility(m_FacilityType);
+
             FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
             Vector3 targetPos = facilityController.GetDoorPos();
 
@@ -43,6 +45,8 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
+            m_Controller.ReleaseWorkTip();
+
             string anim = GetAnimName(m_FacilityType);
             m_Controller.CharacterView.PlayAnim(anim, true, null);
 

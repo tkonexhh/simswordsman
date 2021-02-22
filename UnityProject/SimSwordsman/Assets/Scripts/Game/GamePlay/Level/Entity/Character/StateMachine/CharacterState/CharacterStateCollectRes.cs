@@ -36,6 +36,9 @@ namespace GameWish.Game
 
             m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             m_RawMatItem = null;
+
+            m_Controller.SpawnWorkTipWhenCollectedObj(m_CollectedObjType);
+
             m_CollectTotalTime = TDWorkTable.GetWorkConfigItem(m_CollectedObjType).workTime;
 
             m_ReachTargetPos = false;
@@ -153,6 +156,8 @@ namespace GameWish.Game
         {
             if (m_IsCollectResEnd)
                 return;
+
+            m_Controller.ReleaseWorkTip();
 
             m_ReachTargetPos = true;
 

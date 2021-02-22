@@ -280,6 +280,30 @@ namespace GameWish.Game
             go.GetComponent<CharacterTaskRewardBubble>().SetController(this);
         }
 
+        public void SpawnWorkTipWhenCollectedObj(CollectedObjType collectedObjType)
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkTip workTip = go.GetComponent<CharacterWorkTip>();
+            workTip.OnGotoCollectObj(collectedObjType);
+            m_CharacterView.SetWorkTip(workTip);
+        }
+        public void SpawnWorkTipWhenWorkInFacility(FacilityType facilityType)
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkTip workTip = go.GetComponent<CharacterWorkTip>();
+            workTip.OnGotoFacilityWork(facilityType);
+            m_CharacterView.SetWorkTip(workTip);
+        }
+
+        public void ReleaseWorkTip()
+        {
+            m_CharacterView.ReleaseWorkTip();
+        }
+
         public void SpawnWorkProgressBar()
         {
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkProgressBar();
