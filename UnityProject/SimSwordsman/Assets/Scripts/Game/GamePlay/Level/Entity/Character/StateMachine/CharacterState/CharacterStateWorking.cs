@@ -105,6 +105,9 @@ namespace GameWish.Game
         private void ApplyReward(FacilityType type)
         {
             WorkSystem.S.GetReward(type);
+
+            int count = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()).workPay; 
+            m_Controller.SpawnFacilityWorkRewardPop(type, count);
         }
     }
 }
