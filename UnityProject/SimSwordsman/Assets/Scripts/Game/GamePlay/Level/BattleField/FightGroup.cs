@@ -59,11 +59,11 @@ namespace GameWish.Game
             m_AtkEventIndex = 0;
 
             // Who will attack
-            if (m_OurCharacter.IsDead())
+            if (m_OurCharacter.WillBeDead())
             {
                 m_EnemyAttack = true;
             }
-            else if (m_EnemyCharacter.IsDead())
+            else if (m_EnemyCharacter.WillBeDead())
             {
                 m_EnemyAttack = false;
             }
@@ -196,7 +196,7 @@ namespace GameWish.Game
 
                 if (m_EnemyCharacter.IsDead() || m_OurCharacter.IsDead())
                 {
-                    Debug.LogError("someone is dead");
+                    //Debug.LogError("someone is dead");
                     MainGameMgr.S.BattleFieldMgr.OnFightGroupCharacterDead(this);
                 }
                 else

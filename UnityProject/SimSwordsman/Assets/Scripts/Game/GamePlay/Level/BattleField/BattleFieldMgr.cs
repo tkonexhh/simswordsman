@@ -285,8 +285,7 @@ namespace GameWish.Game
             GameObject go = CharacterLoader.S.GetCharacterGo(id);
             if (go != null)
             {
-                GameObject obj = GameObject.Instantiate(go);
-                CharacterView characterView = obj.GetComponent<CharacterView>();
+                CharacterView characterView = go.GetComponent<CharacterView>();
                 controller = new CharacterController(id, characterView, CharacterStateID.Battle);
             }
             else
