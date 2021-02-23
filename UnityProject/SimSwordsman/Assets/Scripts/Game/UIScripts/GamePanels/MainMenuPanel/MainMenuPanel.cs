@@ -60,6 +60,11 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
+
+            #region Test
+          
+            #endregion
+
             base.OnUIInit();
             int limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
 

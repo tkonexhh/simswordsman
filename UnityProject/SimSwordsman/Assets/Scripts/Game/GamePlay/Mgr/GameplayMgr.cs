@@ -140,7 +140,16 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
 
                     CountdownSystem.S.Init();
+#if TEST_MODE
+                    int num = PlayerPrefs.GetInt("test");
+                    if (num!=1)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
+                        PlayerPrefs.SetInt("test", 1);
+                    }
 
+#endif
                     //GameMgr.S.StartGuide();
                 }
             }
@@ -155,7 +164,7 @@ namespace GameWish.Game
             //    GameDataMgr.S.GetPlayerInfoData().AddCoinNum(1E100);
             //}
 
-            #region 测试代码
+#region 测试代码
             if (Input.GetKeyDown(KeyCode.R))
             {
                 for (int i = (int)RawMaterial.SilverToken; i <= (int)RawMaterial.GoldenToken; i++)
@@ -225,7 +234,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 2000);
                 }
             }
-            #endregion
+#endregion
         }
 
         /// <summary>

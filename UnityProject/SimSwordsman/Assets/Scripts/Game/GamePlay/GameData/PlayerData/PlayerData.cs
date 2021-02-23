@@ -52,6 +52,7 @@ namespace GameWish.Game
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
+
             SetDataDirty();
         }
         public void Init()
@@ -63,7 +64,7 @@ namespace GameWish.Game
             return recruitData;
         }
 
-        #region 草药相关
+#region 草药相关
         /// <summary>
         /// 获取存档中的草药
         /// </summary>
@@ -87,9 +88,9 @@ namespace GameWish.Game
                 herbModels.Add(new HerbModel(id,number));
         }
 
-        #endregion
+#endregion
 
-        #region 角色章节任务相关
+#region 角色章节任务相关
         public void AddNewCheckpoint(int chapterId)
         {
             if (!chapterDataList.Any(i => i.chapter == chapterId))
@@ -125,7 +126,7 @@ namespace GameWish.Game
             else
                 chapterDataList.Add(new ChapterDbItem(chapterId, levelId));
         }
-        #endregion
+#endregion
 
         public void SetCoinNum(long num)
         {
@@ -300,12 +301,12 @@ namespace GameWish.Game
         }
 
 
-        #region Chapter
+#region Chapter
 
 
 
 
-        #endregion
+#endregion
         public void OnReset()
         {
             m_CoinNum = 0;
