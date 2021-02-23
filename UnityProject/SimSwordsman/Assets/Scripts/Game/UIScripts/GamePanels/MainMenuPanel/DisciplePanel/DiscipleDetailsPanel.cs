@@ -367,6 +367,7 @@ namespace GameWish.Game
                 if (m_CurDisciple.IsFreeState())
                 {
                     MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
+                    EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
                     HideSelfWithAnim();
                 }
                 else

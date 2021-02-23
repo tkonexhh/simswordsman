@@ -28,13 +28,12 @@ namespace GameWish.Game
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-
             m_CurTaskInfo = t as SimGameTask;
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
             m_Btn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_CurTaskInfo);
+                EventSystem.S.Send(EventID.OnBulletinSendDiscipleDicEvent, m_CurTaskInfo);
             });
         }
         public void RefreshPanelInfo()
@@ -60,12 +59,13 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
+            //m_DiscipleHead.sprite = obj;
+            //m_Loader = new AddressableAssetLoader<Sprite>();
+            //m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+            //{
+            //    //Debug.Log(obj);
+            //    m_DiscipleHead.sprite = obj;
+            //});
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {

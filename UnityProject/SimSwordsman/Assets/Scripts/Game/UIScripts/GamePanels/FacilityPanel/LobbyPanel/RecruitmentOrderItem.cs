@@ -73,7 +73,6 @@ namespace GameWish.Game
                     break;
             }
 
-
 			BindAddListenerEvent();
 		}
 

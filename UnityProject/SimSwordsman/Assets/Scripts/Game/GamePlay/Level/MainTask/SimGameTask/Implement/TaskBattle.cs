@@ -8,8 +8,9 @@ namespace GameWish.Game
 {
     public class TaskBattle : SimGameTask
     {
-        public TaskBattle(int taskId, string tableName, TaskState taskState, int taskTime) : base(taskId, tableName, taskState, taskTime)
+        public TaskBattle(int taskId, string tableName, TaskState taskState, int taskTime, List<int> recordCharacterID) : base(taskId, tableName, taskState, taskTime, recordCharacterID)
         {
+          
         }
 
         public override void ExecuteTask(List<CharacterController> selectedCharacters)

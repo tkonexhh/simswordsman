@@ -37,11 +37,11 @@ namespace GameWish.Game
 
                 taskState = TaskState.None;
 
-                this.taskTime = tdCommonTask.time;
+                //this.taskTime = tdCommonTask.time;
                 this.title = tdCommonTask.taskTitle;
                 this.desc = tdCommonTask.taskDescription;
                 this.needHomeLevel = tdCommonTask.homeLevel;
-                this.specialRewardRate = tdCommonTask.specialRewardRate;
+                //this.specialRewardRate = tdCommonTask.specialRewardRate;
                 this.characterAmount = tdCommonTask.roleAmount;
                 this.characterLevelRequired = tdCommonTask.roleLevelRequired;
                 this.expReward = tdCommonTask.expReward;
@@ -50,7 +50,7 @@ namespace GameWish.Game
                 ParseReward(tdCommonTask.reward);
                 //ParseNextLevel(tdCommonTask.nextTask);
                 ParseTaskType(tdCommonTask.type);
-                ParseSpecialReward(tdCommonTask.specialReward);
+                //ParseSpecialReward(tdCommonTask.specialReward);
                 ParseTaskEnemy(tdCommonTask.enemy);
             }
             catch (Exception e)

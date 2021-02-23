@@ -19,7 +19,7 @@ namespace GameWish.Game
         public GameData()
         {
             SetDirtyRecorder(GameDataHandler.s_DataDirtyRecorder);
-        }
+        }  
 
         public override void InitWithEmptyData()
         {

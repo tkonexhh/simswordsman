@@ -256,6 +256,18 @@ namespace GameWish.Game
 
             SetDataDirty();
         }
+        public void ClearCharacterTaskDBData(int id, SimGameTask simGameTask)
+        {
+            ownedCharacterData.ClearCharacterTaskDBData(id, simGameTask);
+
+            SetDataDirty();
+        }
+        public void SetAtkValue(int id, float atkValue)
+        {
+            ownedCharacterData.SetAtkValue(id, atkValue);
+
+            SetDataDirty();
+        }
 
         public void SetCharacterStage(CharacterItemDbData item, int stage)
         {

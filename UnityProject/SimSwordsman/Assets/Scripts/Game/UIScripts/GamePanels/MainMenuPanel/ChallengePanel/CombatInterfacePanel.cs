@@ -344,7 +344,8 @@ namespace GameWish.Game
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
-                            MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_CurTaskInfo.TaskId);
+                            MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_CurTaskInfo.TaskId, TaskState.Finished);
+                            MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, true);
                             break;
                         case PanelType.Challenge:
@@ -360,6 +361,7 @@ namespace GameWish.Game
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
+                            MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_CurTaskInfo.TaskId, TaskState.NotStart);
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, false);
                             break;
                         case PanelType.Challenge:

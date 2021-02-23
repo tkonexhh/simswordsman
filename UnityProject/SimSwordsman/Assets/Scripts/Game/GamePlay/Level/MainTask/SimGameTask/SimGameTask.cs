@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public abstract class SimGameTask
-	{
+    public abstract class SimGameTask
+    {
         protected int m_TaskId;
         protected CommonTaskItemInfo m_TaskDetailInfo = null;
         //protected string m_TaskStartTime = string.Empty;
@@ -16,10 +16,21 @@ namespace GameWish.Game
         public int TaskId { get => m_TaskId; }
 
         public List<int> CharacterIDs = new List<int>();
+        public List<CharacterController> m_RecordCharacterController = new List<CharacterController>();
+        private int taskId;
+        private string tableName;
+        private TaskState taskState;
+        private int taskTime;
 
-        public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime)
+        public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime, List<int> recordCharacterID = null)
         {
             m_TaskId = taskId;
+            if (recordCharacterID!=null)
+            {
+                foreach (var item in recordCharacterID)
+                    m_RecordCharacterController.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item));
+            }
+       
 
             m_TaskDetailInfo = TDCommonTaskTable.GetMainTaskItemInfo(taskId);
             if (m_TaskDetailInfo == null)
@@ -29,6 +40,45 @@ namespace GameWish.Game
 
             m_TaskDetailInfo.taskState = taskState;
             m_TaskDetailInfo.taskTime = taskTime;
+        }
+
+        /// <summary>
+        /// 记录参与任务的角色ID
+        /// </summary>
+        /// <param name="values"></param>
+        public void RecordDiscipleID(Dictionary<int, CharacterItem> values)
+        {
+            //ClearCharacterTaskID();
+            //m_RecordCharacterController = Transformation(values);
+            List<int> IDList = new List<int>();
+            foreach (var item in values.Values)
+                IDList.Add(item.id);
+            m_RecordCharacterController = Transformation(values);
+            GameDataMgr.S.GetCommonTaskData().SetRecordChracterID(m_TaskId, IDList);
+        }
+
+        public List<CharacterController> GetRecordCharacterController()
+        {
+            return m_RecordCharacterController;
+        }
+        /// <summary>
+        /// 清除弟子所拥有的当前任务ID
+        /// </summary>
+        private void ClearCharacterTaskID()
+        {
+            List<CharacterController> m_CharacterController = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_TaskDetailInfo.id);
+            foreach (var item in m_CharacterController)
+            {
+                if (item.CharacterModel.GetCurTaskId()== m_TaskDetailInfo.id)
+                    item.CharacterModel.ClearCurTask(this);
+            }
+        }
+        private List<CharacterController> Transformation(Dictionary<int, CharacterItem> m_SelectedDiscipleDic)
+        {
+            List<CharacterController> characterController = new List<CharacterController>();
+            foreach (var item in m_SelectedDiscipleDic.Values)
+                characterController.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item.id));
+            return characterController;
         }
 
         public TaskState GetCurTaskState()

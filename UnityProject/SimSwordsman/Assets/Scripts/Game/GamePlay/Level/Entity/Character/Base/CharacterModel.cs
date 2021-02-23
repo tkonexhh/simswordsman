@@ -5,8 +5,6 @@ using System.Linq;
 
 namespace GameWish.Game
 {
-
-
     public class CharacterModel : IEntityData
     {
         protected CharacterController m_Controller = null;
@@ -60,7 +58,10 @@ namespace GameWish.Game
         {
             m_CharacterItem?.SetCurTask(simGameTask);
         }
-
+        public void ClearCurTask(SimGameTask simGameTask)
+        {
+            m_CharacterItem?.ClearCurTask(simGameTask);
+        }
         public int GetExp()
         {
             return m_CharacterItem.curExp;

@@ -68,17 +68,29 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+
+            EventSystem.S.Register(EventID.RefreshWarehouseRes,HandAddListenerEvent);
+
             GetInformationForNeed();
             BindAddListenerEvent();
 
 
             RefreshPanelInfo();
 
-            //≤÷ø‚≤‚ ‘¥˙¬Î
-            //MainGameMgr.S.InventoryMgr.AddPropItem(new PropItem (), 5);
-            //MainGameMgr.S.InventoryMgr.RemovePropItem(PropType.Wood, 10);
-
             RefreshCreateGoods();
+        }
+
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.RefreshWarehouseRes:
+                    GetInformationForNeed();
+                    RefreshResInfo();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void GetInformationForNeed()
@@ -217,8 +229,8 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < m_InventoryItems.Count; i++)
                 {
-                    m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
-                    // m_CurItemList.Add(CreateGoods(m_InventoryItems[i], m_CurItemBgList[i]));
+                    if (m_CurItemList.Count>i)
+                        m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
                 }
             }
 
@@ -314,6 +326,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+            EventSystem.S.UnRegister(EventID.RefreshWarehouseRes, HandAddListenerEvent);
             UnRegisterEvevnts();
         }
 

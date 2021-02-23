@@ -140,6 +140,24 @@ namespace GameWish.Game
                 int taskId = task == null ? -1 : task.TaskId;
                 characterItemDb.SetTask(taskId);
             }
+        }     
+        public void ClearCharacterTaskDBData(int id, SimGameTask task)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                int taskId = task == null ? -1 : task.TaskId;
+                characterItemDb.ClearTask(-1);
+            }
+        }
+
+        public void SetAtkValue(int id, float atkValue)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                characterItemDb.SetAtkValue(atkValue);
+            }
         }
 
         public void SetCharacterCollectedObjType(int id, CollectedObjType collectedObjType)
@@ -172,6 +190,11 @@ namespace GameWish.Game
         public int headId = 1; // Which head used
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
+
+        public void SetAtkValue(float _atkValue)
+        {
+            atkValue =(int)_atkValue;
+        }
         public CharacterItemDbData()
         {
 
@@ -194,7 +217,7 @@ namespace GameWish.Game
             bodyId = item.bodyId;
             headId = item.headId;
         }
-
+      
         public CharacterItemDbData(int id, CharacterQuality quality)
         {
             this.id = id;
@@ -221,7 +244,10 @@ namespace GameWish.Game
         {
             this.taskId = taskId;
         }
-
+        public void ClearTask(int taskId)
+        {
+            this.taskId = taskId;
+        }
         /// <summary>
         /// ¹é»¹×°±¸
         /// </summary>

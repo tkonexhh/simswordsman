@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Qarth;
 using System;
+using static UnityEngine.Application;
 
 namespace GameWish.Game
 {
@@ -76,7 +77,9 @@ namespace GameWish.Game
             }
 
             m_CreateBaoziBtn.onClick.AddListener(()=> {
-                GameDataMgr.S.GetPlayerData().AddFoodNum(100);
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                UIMgr.S.OpenPanel(UIID.LogPanel, LogPanelCallback,"补充食物", "看一段广告，补充20点食物如何？", "看一个", "算了") ;
             });
 
             m_VillaBtn.onClick.AddListener(() => {
@@ -132,6 +135,18 @@ namespace GameWish.Game
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
+        }
+
+        private void LogPanelCallback(AbstractPanel obj)
+        {
+            LogPanel logPanel = obj as LogPanel;
+            logPanel.OnSuccessBtnEvent += SuccessBtnEvent;
+        }
+
+        private void SuccessBtnEvent()
+        {
+            FloatMessage.S.ShowMsg("广告看完！,加20点食物");
+            GameDataMgr.S.GetPlayerData().AddFoodNum(20);
         }
 
         protected override void OnOpen()

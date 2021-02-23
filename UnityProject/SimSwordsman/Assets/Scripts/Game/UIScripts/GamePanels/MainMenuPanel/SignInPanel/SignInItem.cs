@@ -16,7 +16,7 @@ namespace GameWish.Game
     public class SignInItem : MonoBehaviour
 	{
         public delegate void SignClickDele(int id);
-
+           
         public SignClickDele SignItemCallBack;//点击按钮回调
 
         private Image m_NormalImage;

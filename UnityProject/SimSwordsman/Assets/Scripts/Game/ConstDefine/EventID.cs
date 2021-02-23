@@ -78,6 +78,14 @@ namespace GameWish.Game
         /// </summary>
         OnPracticeFieldTimeRefresh,
 
+        #region 仓库
+        /// <summary>
+        /// 刷新仓库升级资源
+        /// </summary>
+        RefreshWarehouseRes,
+        #endregion
+
+
         //KungfuLibrary
         /// <summary>
         /// 刷新功夫坑位的信息
@@ -155,10 +163,12 @@ namespace GameWish.Game
         /// 选择确定事情
         /// </summary>
         OnSelectedConfirmEvent,
+        OnBulletinSelectedConfirmEvent,
         /// <summary>
         /// 打开面板发送弟子事件
         /// </summary>
         OnSendDiscipleDicEvent,
+        OnBulletinSendDiscipleDicEvent,
         /// <summary>
         /// 删除
         /// </summary>

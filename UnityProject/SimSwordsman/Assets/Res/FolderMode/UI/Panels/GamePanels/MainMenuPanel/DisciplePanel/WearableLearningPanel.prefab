@@ -501,7 +501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -12.022329, y: 320.83084}
+  m_AnchoredPosition: {x: -12.022329, y: 566.35956}
   m_SizeDelta: {x: 620.2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4466071897722088558
@@ -1227,6 +1227,7 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
+  m_Title: {fileID: 4503334065189129043}
   m_ClsoeBtn: {fileID: 4466071897687768156}
   m_ArrangeBtn: {fileID: 7451977781687187861}
   m_WearableLearningTra: {fileID: 4466071897722088557}
@@ -1350,8 +1351,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4466071898059621064}
   m_HandleRect: {fileID: 4466071898059621079}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.00000008724805
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

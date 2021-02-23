@@ -54,6 +54,8 @@ namespace GameWish.Game
 
         #region Public 
 
+   
+
         /// <summary>
         /// 打开UI界面时调用
         /// </summary>
@@ -84,12 +86,12 @@ namespace GameWish.Game
             GameDataMgr.S.GetCommonTaskData().RemoveTask(taskId);
         }
 
-        public void SetTaskFinished(int taskId)
+        public void SetTaskFinished(int taskId, TaskState taskState)
         {
             SimGameTask item = GetCommonTaskItemData(taskId);
             if (item != null)
             {
-                item.CommonTaskItemInfo.taskState = TaskState.Unclaimed;
+                item.CommonTaskItemInfo.taskState = taskState;
                 GameDataMgr.S.GetCommonTaskData().SetTaskFinished(taskId);
                 EventSystem.S.Send(EventID.OnCommonTaskFinish, taskId);
             }
@@ -216,7 +218,7 @@ namespace GameWish.Game
             m_CommonTaskData.taskList.ForEach(i => 
             {
                 //int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
-                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime);
+                SimGameTask task = AddTask(i.taskId, i.taskType, i.taskState, i.taskTime,i.recordCharacterID);
 
                 List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(i.taskId);
 
@@ -246,7 +248,7 @@ namespace GameWish.Game
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
 
-            //if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 
@@ -305,9 +307,9 @@ namespace GameWish.Game
             return null;
         }
 
-        private SimGameTask AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime)
+        private SimGameTask AddTask(int taskId, SimGameTaskType taskType, TaskState taskState, int taskTime, List<int> recordCharacterID = null)
         {
-            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime);
+            SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime, recordCharacterID);
             m_CurTaskList.Add(simGameTask);
 
             return simGameTask;

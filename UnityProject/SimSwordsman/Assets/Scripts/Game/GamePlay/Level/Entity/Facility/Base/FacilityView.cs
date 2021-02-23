@@ -19,6 +19,10 @@ namespace GameWish.Game
         protected FacilityType facilityType;
         protected FacilityController m_Controller = null;
 
+        private ResLoader m_ResLoader;
+        private int PlayParticleEffectsTime = 1;
+        private GameObject m_ParticleEffects;
+
         public void Init()
         {
         }
@@ -50,7 +54,7 @@ namespace GameWish.Game
             return null;
         }
 
-        public virtual void SetViewByState()
+        public virtual void SetViewByState(bool isFile = false)
         {
             stateLockedObj.SetActive(false);
             stateReadyToUnlockObj.SetActive(false);
@@ -70,22 +74,42 @@ namespace GameWish.Game
                     stateReadyToUnlockObj.SetActive(true);
                     break;
                 case FacilityState.Unlocked:
-                    RefreshStateObj();
+                    if (isFile)
+                    {
+                        RefreshStateObj();
+                        ShowRoad(true);
+                        return;
+                    }
 
-                    //navObstacleObj?.SetActive(true);
-                    ShowRoad(true);
+                    if (facilityType == FacilityType.Lobby || (int)facilityType == 20)
+                    {
+                        StartCoroutine(PlayParticleEffects(0));
+                        return;
+                    }
+                    m_ResLoader = ResLoader.Allocate();
+                    m_ParticleEffects = Instantiate(m_ResLoader.LoadSync("BuildSmokeHammer")) as GameObject;
+                    m_ParticleEffects.transform.position = transform.position;
+                    StartCoroutine(PlayParticleEffects(PlayParticleEffectsTime));
                     break;
-                    //case FacilityState.State2:
-                    //    state2Obj.SetActive(true);
-                    //    navObstacleObj?.SetActive(true);
-                    //    ShowRoad(true);
-                    //    break;
-                    //case FacilityState.State3:
-                    //    state3Obj.SetActive(true);
-                    //    navObstacleObj?.SetActive(true);
-                    //    ShowRoad(true);
-                    //    break;
             }
+        }
+
+        private IEnumerator PlayParticleEffects(int second)
+        {
+            yield return new WaitForSeconds(second);
+            DestroyImmediate(m_ParticleEffects);
+            RefreshStateObj();
+            //navObstacleObj?.SetActive(true);
+
+            //ReResLoader.Allocate();
+
+            ShowRoad(true);
+
+        }
+
+        private void OnDestroy()
+        {
+            m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
 
         public void RefreshStateObj()
