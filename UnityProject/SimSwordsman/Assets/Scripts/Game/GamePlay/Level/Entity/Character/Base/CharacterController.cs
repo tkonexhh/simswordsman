@@ -339,6 +339,24 @@ namespace GameWish.Game
                 Qarth.GameObjectPoolMgr.S.Recycle(bubble.gameObject);
             }
         }
+
+        public void SpawnFacilityWorkRewardPop(FacilityType facilityType, int count)
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkRewardPop();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkRewardPop workRewardPop = go.GetComponent<CharacterWorkRewardPop>();
+            workRewardPop.OnGetFacilityWorkReward(facilityType, count);
+        }
+
+        public void SpawnCollectedObjWorkReward(RawMaterial collectedObjType, int count)
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkRewardPop();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkRewardPop workRewardPop = go.GetComponent<CharacterWorkRewardPop>();
+            workRewardPop.OnGetCollectObjWorkReward(collectedObjType, count);
+        }
         #endregion
 
         #region Private

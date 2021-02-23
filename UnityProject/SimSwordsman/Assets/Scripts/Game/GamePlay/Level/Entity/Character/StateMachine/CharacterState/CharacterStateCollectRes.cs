@@ -234,21 +234,21 @@ namespace GameWish.Game
             }
         }
 
-        private void MoveToBulletinBoard()
-        {
-            Vector3 bulletinBoardPos = MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.BulletinBoard);
-            Vector2 pos = new Vector2(bulletinBoardPos.x, bulletinBoardPos.y) + UnityEngine.Random.insideUnitCircle * 0.3f;
+        //private void MoveToBulletinBoard()
+        //{
+        //    Vector3 bulletinBoardPos = MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.BulletinBoard);
+        //    Vector2 pos = new Vector2(bulletinBoardPos.x, bulletinBoardPos.y) + UnityEngine.Random.insideUnitCircle * 0.3f;
 
-            m_Controller.MoveTo(pos, ()=> 
-            {
-                if (m_Controller.CurTask != null)
-                {
-                    MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId, TaskState.Finished);
-                }
-                m_Controller.CharacterView.PlayIdleAnim();
-                m_Controller.SpawnTaskRewardBubble();
-            });
-        }
+        //    m_Controller.MoveTo(pos, ()=> 
+        //    {
+        //        if (m_Controller.CurTask != null)
+        //        {
+        //            MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_Controller.CurTask.TaskId, TaskState.Finished);
+        //        }
+        //        m_Controller.CharacterView.PlayIdleAnim();
+        //        m_Controller.SpawnTaskRewardBubble();
+        //    });
+        //}
 
         private void ClaimReward()
         {
@@ -259,6 +259,8 @@ namespace GameWish.Game
                 int itemId = workConfigItem.itemRewards[i].id;
                 int count = workConfigItem.itemRewards[i].GetRewardValue();
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+
+                m_Controller.SpawnCollectedObjWorkReward((RawMaterial)itemId, count);
             }
 
             // Special reward
@@ -267,7 +269,9 @@ namespace GameWish.Game
                 int itemId = workConfigItem.specialRewards[i].id;
                 int count = workConfigItem.specialRewards[i].GetRewardValue();
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
-            }          
+
+                m_Controller.SpawnCollectedObjWorkReward((RawMaterial)itemId, count);
+            }
         }
     }
 }
