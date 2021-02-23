@@ -17,7 +17,7 @@ namespace GameWish.Game
         OnEndAdEffect,
         OnTimeRefresh,
         OnSignSuccess,
-
+        OpenAbstractPanel,
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,

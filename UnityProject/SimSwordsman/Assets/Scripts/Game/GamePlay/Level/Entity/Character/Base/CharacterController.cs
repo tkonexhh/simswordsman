@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         private int m_CharacterId;
 
-        private SimGameTask m_CurTask = null;
+        private SimGameTask m_CurTask = null;  
 
         private CharacterStateMachine m_StateMachine;
 

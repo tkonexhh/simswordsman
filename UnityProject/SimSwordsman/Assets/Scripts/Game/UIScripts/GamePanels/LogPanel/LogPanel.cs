@@ -10,12 +10,13 @@ namespace GameWish.Game
     public class LogPanel : AbstractAnimPanel
     {
         [SerializeField]
-        private Text m_LogTitle;
-        [SerializeField]
         private Text m_LogCont;
+        [SerializeField]
+        private Image[] m_NameList;
 
         [SerializeField]
-        private Button m_BlackBtn;
+        private Button m_BlackBtn; 
+     
         [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
@@ -37,8 +38,9 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_LogTitle.text = (string)args[0];
+            GenerateItemName((string)args[0]);
             m_LogCont.text = (string)args[1];
+            //m_LogCont.text = (string)args[1];
             if (args.Length > 2)
             {
                 m_AcceptBtn.transform.GetComponentInChildren<Text>().text = (string)args[2];
@@ -46,6 +48,21 @@ namespace GameWish.Game
             if (args.Length > 3)
             {
                 m_RefuseBtn.transform.GetComponentInChildren<Text>().text = (string)args[3];
+            }
+        }
+        private void GenerateItemName(string cont)
+        {
+            foreach (var item in m_NameList)
+            {
+                item.GetComponentInChildren<Text>().text = Define.COMMON_DEFAULT_STR;
+                item.gameObject.SetActive(false);
+            }
+            string strName = cont.ToString();
+            int maxLength = Mathf.Min(strName.Length, 8);
+            for (int i = 0; i < maxLength; i++)
+            {
+                m_NameList[i].GetComponentInChildren<Text>().text = strName[i].ToString();
+                m_NameList[i].gameObject.SetActive(true);
             }
         }
 

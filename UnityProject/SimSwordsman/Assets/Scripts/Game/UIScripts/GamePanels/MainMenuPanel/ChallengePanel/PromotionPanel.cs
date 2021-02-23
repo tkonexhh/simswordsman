@@ -22,7 +22,6 @@ namespace GameWish.Game
         private CharacterItem m_CharacterItem = null;
         private int stage = 0;
         private CharacterKongfuDBData kungfu = null;
-        private AddressableAssetLoader<Sprite> m_CharacterLoader = new AddressableAssetLoader<Sprite>();
 
         protected override void OnUIInit()
         {
@@ -63,11 +62,8 @@ namespace GameWish.Game
             int headId = m_CharacterItem.headId;
             int bodyId = m_CharacterItem.bodyId;
             string spriteName = quality.ToString().ToLower() + "_" + bodyId + "_" + headId;
-            m_CharacterLoader.LoadAssetAsync(spriteName, (sprite)=>
-            {
-                m_CharacterImage.sprite = sprite;
-                m_CharacterImage.SetNativeSize();
-            });
+            m_CharacterImage.sprite = FindSprite(spriteName);
+            m_CharacterImage.SetNativeSize();
         }
 
         private void BindAddListenerEvent()
@@ -81,7 +77,6 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            m_CharacterLoader.Release();
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
             PanelPool.S.CurShowPanelIsOver = false;

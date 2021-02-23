@@ -253,25 +253,31 @@ namespace GameWish.Game
                     CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_REFUSEBTNTXT));
             });
         }
-
         private void LogPanelCallback(AbstractPanel obj)
         {
             m_logPanel = obj as LogPanel;
             m_logPanel.OnSuccessBtnEvent += SuccessBtn;
             m_logPanel.OnRefuseBtnEvent += RefuseBtn;
         }
-
         private void RefuseBtn()
         {
         }
-
         private void SuccessBtn()
         {
             EventSystem.S.Send(EventID.OnExitBattle);
             HideSelfWithAnim();
-            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    break;
+                case PanelType.Challenge:
+                    OpenParentChallenge();
+                    break;
+                default:
+                    break;
+            }
         }
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -330,7 +336,17 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnBattleFailed);
             }
         }
+        /// <summary>
+        /// 打开之前选择的界面
+        /// </summary>
+        private void OpenParentChallenge()
+        {
+            UIMgr.S.OpenPanel(UIID.ChallengePanel, m_CurChapterConfigInfo.clanType);
+        }
 
+        private void ChallengePanelCallback(AbstractPanel obj)
+        {
+        }
 
         private void HandleAddListenerEvent(int key, object[] param)
         {
@@ -350,7 +366,7 @@ namespace GameWish.Game
                             break;
                         case PanelType.Challenge:
                             MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
-                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_LevelConfigInfo, true);
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, true);
                             break;
                         default:
                             break;
@@ -365,7 +381,7 @@ namespace GameWish.Game
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, false);
                             break;
                         case PanelType.Challenge:
-                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_LevelConfigInfo, false);
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, false);
                             break;
                         default:
                             break;

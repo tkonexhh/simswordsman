@@ -25,7 +25,6 @@ namespace GameWish.Game
             m_RecruitData = GameDataMgr.S.GetPlayerData().GetRecruitData();
             m_RecruitModel.Add(new RecruitModel(RecruitType.GoldMedal, m_RecruitData));
             m_RecruitModel.Add(new RecruitModel(RecruitType.SilverMedal, m_RecruitData));
-
         }
 
         private void HandleAddListenerEvent(int key, object[] param)

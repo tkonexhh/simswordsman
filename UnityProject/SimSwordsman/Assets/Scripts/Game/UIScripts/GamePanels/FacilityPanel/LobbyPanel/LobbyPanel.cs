@@ -90,8 +90,8 @@ namespace GameWish.Game
         private void InitFixedInfo()
         {
             m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
-            //m_UpgradeTitle.text = CommonUIMethod.GetUpgradeCondition(m_NextFacilityLevelInfo.upgradeNeedLobbyLevel);
-            m_UpgradeTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADENEEDS);
+            //m_UpgradeTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADENEEDS);
+            m_UpgradeTitle.text = "升级所需资源:";
             m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
         }
         protected override void OnUIInit()
@@ -239,10 +239,9 @@ namespace GameWish.Game
         private void OnClickUpgradeBtn()
         {
             AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-            if (!CheackIsBuild())
-                return;
             if (m_NextFacilityLevelInfo == null)
+                return;
+            if (!CheackIsBuild())
                 return;
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)

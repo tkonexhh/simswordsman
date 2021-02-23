@@ -289,8 +289,6 @@ namespace GameWish.Game
 
         private void CreatePracticeDisciple(PracticeField PracticeField)
         {
-
-
             GameObject obj = Instantiate(m_PracticeDisciplePos, m_PracticeDiscipleContTra);
 
             PracticeDisciplePos itemICom = obj.GetComponent<PracticeDisciplePos>();

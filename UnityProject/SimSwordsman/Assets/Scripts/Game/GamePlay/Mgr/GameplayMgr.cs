@@ -187,9 +187,10 @@ namespace GameWish.Game
                 //}
                 for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.BeeThorn; i++)
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
-                }
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                }   
                 MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
+                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             }
 
             if (Input.GetKeyDown(KeyCode.K))

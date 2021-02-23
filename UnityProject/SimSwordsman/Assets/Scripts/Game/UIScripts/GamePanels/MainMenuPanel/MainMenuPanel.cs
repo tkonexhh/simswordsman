@@ -147,6 +147,10 @@ namespace GameWish.Game
         {
             FloatMessage.S.ShowMsg("广告看完！,加20点食物");
             GameDataMgr.S.GetPlayerData().AddFoodNum(20);
+            for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.BeeThorn; i++)
+            {
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
+            }
         }
 
         protected override void OnOpen()
@@ -169,8 +173,18 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_CoinValue.text = CommonUIMethod.GetTenThousand((int)GameDataMgr.S.GetPlayerData().GetCoinNum());
-            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum().ToString()+Define.SLASH+ GetFoodUpperLimit().ToString();
+            m_BaoziValue.text = GetCurBaoziNum().ToString()+Define.SLASH+ GetFoodUpperLimit().ToString();
             m_WareHouseNumber.text = GetWareHouseAllPeopleNumber();
+        }
+
+        private int GetCurBaoziNum()
+        {
+            if (GameDataMgr.S.GetPlayerData().GetFoodNum() > GetFoodUpperLimit())
+            {
+                GameDataMgr.S.GetPlayerData().SetFoodNum(GetFoodUpperLimit());
+                return GetFoodUpperLimit();
+            }
+            return GameDataMgr.S.GetPlayerData().GetFoodNum();
         }
 
         private int GetFoodUpperLimit()

@@ -29,8 +29,8 @@ namespace GameWish.Game
 		private const int _12Hours = 12;
 		private const int _24Hours = 24;
 		private const int _48Hours = 48;
-		private const string SilverAdvertiseCount = "3";
-		private const string GoldAdvertiseCount = "1";
+		//private const string SilverAdvertiseCount = "3";
+		private const string AdvertiseCount = "1";
 
 		private RecruitType m_CurRecruitType;
 		private Sprite m_CurSprite;
@@ -65,8 +65,8 @@ namespace GameWish.Game
                     gameObject.name = "RecruitmentOrderItem2";
                     break;
                 case RecruitType.SilverMedal:
-					int _12Count = m_Hours / _12Hours;
-					RefreshFreeRecruit(_12Count);
+					int _24Count = m_Hours / _24Hours;
+					RefreshFreeRecruit(_24Count);
                     gameObject.name = "RecruitmentOrderItem1";
                     break;
                 default:
@@ -111,12 +111,12 @@ namespace GameWish.Game
                 case RecruitType.GoldMedal:
 					m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_TIMESTODAY)
 					+ m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType).ToString() + Define.SLASH
-					+ GoldAdvertiseCount;
+					+ AdvertiseCount;
 					break;
                 case RecruitType.SilverMedal:
 					m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_TIMESTODAY)
 					+ m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType).ToString() + Define.SLASH
-					+ SilverAdvertiseCount;
+					+ AdvertiseCount;
 					break;
                 default:
                     break;
@@ -130,14 +130,14 @@ namespace GameWish.Game
 		/// <param name="lobbyTime"></param>
 		private void RefreshFreeRecruit(int Count)
 		{
-			int FreeCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType,RecruitTimeType.Free);
-			if (Count > FreeCount)
-			{
-				m_RecruitDic[m_CurRecruitType] = ClickType.Free;
-				RefreshPanelInfo();
-				return;
-			}
-			int curRecruitCount = MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType);
+            int FreeCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Free);
+            if (Count > FreeCount)
+            {
+                m_RecruitDic[m_CurRecruitType] = ClickType.Free;
+                RefreshPanelInfo();
+                return;
+            }
+            int curRecruitCount = MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType);
 			if (curRecruitCount > 0)
             {
 				m_RecruitDic[m_CurRecruitType] = ClickType.RecruitmentOrder;
@@ -161,7 +161,6 @@ namespace GameWish.Game
 		/// <returns></returns>
 		public int GetDeltaTime(string time)
 		{
-
 			DateTime dateTime;
 			DateTime.TryParse(time, out dateTime);
 			if (dateTime != null)
@@ -174,7 +173,6 @@ namespace GameWish.Game
 
 		private void BindAddListenerEvent()
         {
-
 			switch (m_CurRecruitType)
             {
                 case RecruitType.GoldMedal:
@@ -236,9 +234,7 @@ namespace GameWish.Game
 					if (advertisementCount <= 0)
 						UIMgr.S.OpenPanel(UIID.LogPanel, "招募标题", "招募次数用尽");
 					else
-					{
 						UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type);
-					}
 					//UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.LookAdvertisement);
 					break;
 				default:
@@ -298,7 +294,6 @@ namespace GameWish.Game
 			switch (clickType)
 			{
 				case ClickType.Free:
-				
 					GameDataMgr.S.GetPlayerData().SetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Free, count);
 					break;
 				case ClickType.RecruitmentOrder:

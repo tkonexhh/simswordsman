@@ -145,7 +145,7 @@ namespace GameWish.Game
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDHerbConfigTable.GetData(ID).makeTime);
+                    CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDEquipmentConfigTable.GetData(ID).forgeTime);
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));

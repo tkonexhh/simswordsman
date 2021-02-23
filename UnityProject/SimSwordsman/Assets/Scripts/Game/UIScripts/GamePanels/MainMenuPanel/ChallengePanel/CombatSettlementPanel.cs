@@ -24,6 +24,7 @@ namespace GameWish.Game
 
         private bool m_IsSuccess;
         private LevelConfigInfo m_LevelConfigInfo = null;
+        private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
@@ -47,11 +48,13 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnExitBattle);
                 UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
                 OnPanelHideComplete();
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+
+                if (m_PanelType == PanelType.Task)
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
         }
 
-       
+
 
         protected override void OnPanelOpen(params object[] args)
         {
@@ -65,8 +68,9 @@ namespace GameWish.Game
                     m_CurTaskInfo.ClaimReward((bool)args[2]);
                     break;
                 case PanelType.Challenge:
-                    m_LevelConfigInfo = (LevelConfigInfo)args[1];
-                    m_IsSuccess = (bool)args[2];
+                    m_CurChapterConfigInfo = (ChapterConfigInfo)args[1];
+                    m_LevelConfigInfo = (LevelConfigInfo)args[2];
+                    m_IsSuccess = (bool)args[3];
                     if (m_IsSuccess)
                     {
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
@@ -83,7 +87,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
-  
+
             foreach (var item in m_SelectedDiscipleList)
                 CreateRewardIInfoItem(item);
         }
@@ -99,12 +103,15 @@ namespace GameWish.Game
                 case PanelType.Challenge:
                     ItemICom ChaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
                     ChaRewardItemICom.OnInit(item, null, m_PanelType, m_LevelConfigInfo, m_IsSuccess);
-                    
                     break;
                 default:
                     break;
             }
-           
+
+        }
+        private void OpenParentChallenge()
+        {
+            UIMgr.S.OpenPanel(UIID.ChallengePanel, m_CurChapterConfigInfo.clanType);
         }
 
         protected override void OnPanelHideComplete()
@@ -112,6 +119,7 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
+            OpenParentChallenge();
         }
     }
 }

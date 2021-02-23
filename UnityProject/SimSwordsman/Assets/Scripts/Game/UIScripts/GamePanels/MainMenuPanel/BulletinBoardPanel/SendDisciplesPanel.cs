@@ -177,6 +177,7 @@ namespace GameWish.Game
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
                     m_AcceptText.text = "¿ªÊ¼Õ½¶·";
                     CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
+                    m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -262,22 +263,17 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
-                if (m_PanelType== PanelType.Challenge)
-                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
             BlackBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
-                if (m_PanelType == PanelType.Challenge)
-                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
 
             m_RefuseBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
             m_AutoSelectedBtn.onClick.AddListener(() =>
             {
@@ -316,6 +312,9 @@ namespace GameWish.Game
                         }
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
                         UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                        UIMgr.S.ClosePanelAsUIID(UIID.ChallengePanel);
+                        UIMgr.S.ClosePanelAsUIID(UIID.ChallengeBattlePanel);
+                        UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
                         break;
                     default:
                         break;

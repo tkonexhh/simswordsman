@@ -41,14 +41,25 @@ namespace GameWish.Game
         private int m_CurLevel = -1;
         private ChallengePanel m_ChallengePanel;
 
-        private Sprite GetSprite(string name)
+        public ClanType GetClanType()
         {
-            return m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
+            return m_CurChapterConfigInfo.clanType;
         }
+
         // Start is called before the first frame update
         void Start()
         {
             BindAddListenerEvent();
+        }
+        void OnDestroy()
+        {
+
+        }
+
+
+        public void ClickBtn()
+        {
+            UIMgr.S.OpenPanel(UIID.ChallengeBattlePanel, m_CurChapterConfigInfo);
         }
 
         private void BindAddListenerEvent()
@@ -58,7 +69,6 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 UIMgr.S.OpenPanel(UIID.ChallengeBattlePanel, m_CurChapterConfigInfo);
-                EventSystem.S.Send(EventID.OnCloseParentPanel);
             });
         }
 
@@ -118,7 +128,7 @@ namespace GameWish.Game
         {
             bool isUnlock = MainGameMgr.S.ChapterMgr.JudgeChapterIsUnlock(m_CurChapterConfigInfo.chapterId);
             if (isUnlock)
-                MainGameMgr.S.ChapterMgr.AddNewCheckpoint(m_CurChapterConfigInfo.chapterId);     
+                MainGameMgr.S.ChapterMgr.AddNewCheckpoint(m_CurChapterConfigInfo.chapterId);
 
             m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_CurChapterConfigInfo.chapterId);
             if (m_CurLevel == -1)
@@ -155,7 +165,7 @@ namespace GameWish.Game
             switch (m_CurChallengeType)
             {
                 case ChallengeType.Unlocked:
-                    m_CompletedValue.text = "通过" + CommonUIMethod.GetClanName((ClanType)m_CurChapterConfigInfo.unlockPrecondition.chapter) 
+                    m_CompletedValue.text = "通过" + CommonUIMethod.GetClanName((ClanType)m_CurChapterConfigInfo.unlockPrecondition.chapter)
                         + CommonUIMethod.GetStrForColor("#9C4B45", " 挑战" + m_CurChapterConfigInfo.unlockPrecondition.level) + " 后解锁";
                     m_ChallengePhoto.sprite = m_ChallengePanel.FindSprite("Challenge_Bignotunlock");
                     m_ChallengeBtn.gameObject.SetActive(false);
@@ -168,7 +178,7 @@ namespace GameWish.Game
                     m_CompletedImg.gameObject.SetActive(false);
                     m_ChallengeBtn.gameObject.SetActive(true);
                     m_ChallengeSlide.value = GetCurProgress();
-                    m_ChallengeProgress.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS) +(GetCurProgress() * 100).ToString("f2") + Define.PERCENT;
+                    m_ChallengeProgress.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS) + (GetCurProgress() * 100).ToString("f2") + Define.PERCENT;
                     break;
                 case ChallengeType.Passed:
                     m_CompletedValue.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS_OVER);
