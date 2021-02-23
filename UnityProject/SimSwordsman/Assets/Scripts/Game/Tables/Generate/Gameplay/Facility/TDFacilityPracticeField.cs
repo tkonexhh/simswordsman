@@ -60,7 +60,7 @@ namespace GameWish.Game
         public  int  capability {get { return m_Capability; } }
        
         /// <summary>
-        /// 经验获取速度
+        /// 经验获取值
         /// </summary>
         public  int  levelUpSpeed {get { return m_LevelUpSpeed; } }
        
