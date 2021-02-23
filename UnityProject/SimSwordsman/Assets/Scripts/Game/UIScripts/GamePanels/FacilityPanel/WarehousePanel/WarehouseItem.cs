@@ -67,11 +67,11 @@ namespace GameWish.Game
             }
 			return false;
         }
-		private string GetIconName(KongfuType kungfuType)
+		private string GetIconName(KungfuType kungfuType)
 		{
 			return TDKongfuConfigTable.GetIconName(kungfuType);
 		}
-		private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+		private KungfuQuality GetKungfuQuality(KungfuType kungfuType)
 		{
 			return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
 		}
@@ -81,7 +81,7 @@ namespace GameWish.Game
 			{
 				if (itemBase.PropType == PropType.Kungfu)
 				{
-					switch (GetKungfuQuality((KongfuType)itemBase.GetSubName()))
+					switch (GetKungfuQuality((KungfuType)itemBase.GetSubName()))
 					{
 						case KungfuQuality.Normal:
 							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Introduction");
@@ -95,7 +95,7 @@ namespace GameWish.Game
 						default:
 							break;
 					}
-					m_KungfuName.sprite = m_WarehousePanel.FindSprite(GetIconName((KongfuType)itemBase.GetSubName()));
+					m_KungfuName.sprite = m_WarehousePanel.FindSprite(GetIconName((KungfuType)itemBase.GetSubName()));
 					m_KungfuName.gameObject.SetActive(true);
 				}
                 else

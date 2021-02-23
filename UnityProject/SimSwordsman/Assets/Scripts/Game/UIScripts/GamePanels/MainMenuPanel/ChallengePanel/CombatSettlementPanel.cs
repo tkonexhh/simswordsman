@@ -119,7 +119,10 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
-            OpenParentChallenge();
+            if (m_PanelType == PanelType.Challenge)
+                OpenParentChallenge();
+            else
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
     }
 }

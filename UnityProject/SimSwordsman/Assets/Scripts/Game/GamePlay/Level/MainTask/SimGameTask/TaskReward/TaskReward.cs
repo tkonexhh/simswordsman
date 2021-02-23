@@ -9,14 +9,61 @@ namespace GameWish.Game
 	{
         public TaskRewardType rewardType;
         public int id;
+        public int weight = 0;
         public int count1 = -1;
         public int count2 = -1;
 
+       
+
+        public TaskReward(string reward,bool isHavaWeight = false)
+        {
+            Parse(reward, isHavaWeight);
+        }
         public TaskReward(string reward)
         {
             Parse(reward);
         }
+        private void Parse(string reward, bool isHavaWeight)
+        {
+            string[] strs = reward.Split('|');
 
+            rewardType = EnumUtil.ConvertStringToEnum<TaskRewardType>(strs[0]);
+
+            if (rewardType== TaskRewardType.Coin || rewardType == TaskRewardType.Coin)
+            {
+               
+                string[] countStrs = strs[1].Split('_');
+                if (countStrs.Length == 1)
+                {
+                    count1 = int.Parse(countStrs[0]);
+                }
+                else if (countStrs.Length == 2)
+                {
+                    count1 = int.Parse(countStrs[0]);
+                    count2 = int.Parse(countStrs[0]);
+                }
+
+                if (strs.Length == 3) // Item
+                    weight = int.Parse(strs[2]);
+            }
+            else
+            {
+                id = int.Parse(strs[1]);
+                string[] countStrs = strs[2].Split('_');
+                if (countStrs.Length == 1)
+                {
+                    count1 = int.Parse(countStrs[0]);
+                }
+                else if (countStrs.Length == 2)
+                {
+                    count1 = int.Parse(countStrs[0]);
+                    count2 = int.Parse(countStrs[0]);
+                }
+
+                if (strs.Length == 4) // Item
+                    weight = int.Parse(strs[3]);
+            }
+        }
         private void Parse(string reward)
         {
             string[] strs = reward.Split('|');
@@ -44,7 +91,6 @@ namespace GameWish.Game
                 }
                 return;
             }
-
         }
 
         public int GetRewardValue()

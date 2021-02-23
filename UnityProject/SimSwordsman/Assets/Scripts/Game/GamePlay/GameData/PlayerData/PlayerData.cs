@@ -259,10 +259,7 @@ namespace GameWish.Game
         public void AddFoodNum(int delta)
         {
             foodNum += delta;
-            if (foodNum < 0)
-            {
-                foodNum = 0;
-            }
+           
             EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 

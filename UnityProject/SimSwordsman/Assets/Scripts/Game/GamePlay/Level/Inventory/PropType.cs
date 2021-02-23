@@ -16,7 +16,7 @@ namespace GameWish.Game
         Herb                             = 5,        //²ÝÒ©
     }
 
-    public enum KongfuType
+    public enum KungfuType
     {
         None,
         TaiZuChangQuan = 1001,

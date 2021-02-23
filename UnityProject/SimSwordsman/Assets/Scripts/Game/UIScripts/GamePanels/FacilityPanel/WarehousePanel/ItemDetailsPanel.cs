@@ -223,11 +223,11 @@ namespace GameWish.Game
             }
             m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
         }
-        private string GetIconName(KongfuType kungfuType)
+        private string GetIconName(KungfuType kungfuType)
         {
             return TDKongfuConfigTable.GetIconName(kungfuType);
         }
-        private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+        private KungfuQuality GetKungfuQuality(KungfuType kungfuType)
         {
             return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
         }
@@ -240,7 +240,7 @@ namespace GameWish.Game
 
             if (m_CurInventoryItem.PropType == PropType.Kungfu)
             {
-                switch (GetKungfuQuality((KongfuType)m_CurInventoryItem.GetSubName()))
+                switch (GetKungfuQuality((KungfuType)m_CurInventoryItem.GetSubName()))
                 {
                     case KungfuQuality.Normal:
                         m_ItemIcon.sprite = FindSprite("Introduction");
@@ -254,7 +254,7 @@ namespace GameWish.Game
                     default:
                         break;
                 }
-                m_KungfuName.sprite = FindSprite(GetIconName((KongfuType)m_CurInventoryItem.GetSubName()));
+                m_KungfuName.sprite = FindSprite(GetIconName((KungfuType)m_CurInventoryItem.GetSubName()));
                 m_KungfuName.gameObject.SetActive(true);
             }
             else

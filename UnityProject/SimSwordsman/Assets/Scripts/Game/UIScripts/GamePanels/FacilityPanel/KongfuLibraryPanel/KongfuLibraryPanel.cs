@@ -143,7 +143,7 @@ namespace GameWish.Game
         /// 动态变化字体背景
         /// </summary>
         /// <param name="kungfuTypes"></param>
-        private void SetNextKungfuStr(List<KongfuType> kungfuTypes)
+        private void SetNextKungfuStr(List<KungfuType> kungfuTypes)
         {
             m_UnlockBg.sizeDelta = new Vector2 (KungfuFontWight, 0);
             m_MartialArtsContTxt.rectTransform.sizeDelta = new Vector2(KungfuFontWight, 0);
@@ -195,7 +195,7 @@ namespace GameWish.Game
                 //m_UpgradeCostCoinValueTxt.text = m_NextKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
             }
 
-            List<KongfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
+            List<KungfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
         }
         private void RefreshResInfo()
         {

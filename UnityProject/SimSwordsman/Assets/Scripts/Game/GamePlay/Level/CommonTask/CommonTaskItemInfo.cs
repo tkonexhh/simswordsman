@@ -134,7 +134,11 @@ namespace GameWish.Game
             {
                 if (!string.IsNullOrEmpty(item))
                 {
-                    TaskReward taskReward = new TaskReward(item);
+                    TaskReward taskReward;
+                    if (rewardStrs.Length>1)
+                        taskReward = new TaskReward(item,true);
+                    else
+                        taskReward = new TaskReward(item, false);
                     this.itemRewards.Add(taskReward);
                 }
             }

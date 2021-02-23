@@ -280,7 +280,7 @@ namespace GameWish.Game
     {
         public int index;
         public KungfuLockState kungfuLockState;
-        public KongfuType kongfuType;
+        public KungfuType kongfuType;
         public int level;
         public int curExp;
         public CharacterKongfuDBData()

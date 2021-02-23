@@ -178,10 +178,10 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, 1);
         }
 
-        public KongfuType GetKungfuType()
+        public KungfuType GetKungfuType()
         {
             if (CharacterKongfu == null)
-                return KongfuType.None;
+                return KungfuType.None;
 
             return CharacterKongfu.dbData.kongfuType;
         }
@@ -772,7 +772,7 @@ namespace GameWish.Game
             return false;
         }
 
-        public KongfuType GetKongfuType()
+        public KungfuType GetKongfuType()
         {
             return dbData.kongfuType;
         }

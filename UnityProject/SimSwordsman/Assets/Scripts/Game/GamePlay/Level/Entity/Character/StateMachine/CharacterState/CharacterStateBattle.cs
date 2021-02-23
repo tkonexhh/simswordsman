@@ -86,14 +86,14 @@ namespace GameWish.Game
         {
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
-                List<KongfuType> kongfuList = m_Controller.CharacterModel.GetKongfuTypeList();
+                List<KungfuType> kongfuList = m_Controller.CharacterModel.GetKongfuTypeList();
                 if (kongfuList.Count == 0) // Not any kongfu learned
                 {
                     m_NextAtkAnimName = "attack";
                 }
                 else
                 {
-                    KongfuType kongfu = kongfuList[UnityEngine.Random.Range(0, kongfuList.Count)];
+                    KungfuType kongfu = kongfuList[UnityEngine.Random.Range(0, kongfuList.Count)];
                     m_NextAtkAnimName = TDKongfuConfigTable.GetKungfuConfigInfo(kongfu).AnimName;
                 }
             }

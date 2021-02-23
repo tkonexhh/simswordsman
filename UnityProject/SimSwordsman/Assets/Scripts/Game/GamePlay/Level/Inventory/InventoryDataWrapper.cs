@@ -419,7 +419,7 @@ namespace GameWish.Game
 
     public class KungfuItem : ItemBase
     {
-        public KongfuType KungfuType { set; get; }
+        public KungfuType KungfuType { set; get; }
         public float AtkScale { set; get; }
         public KungfuItem()
         {
@@ -429,7 +429,7 @@ namespace GameWish.Game
         {
             return (int)KungfuType;
         }
-        public KungfuItem(KongfuType kungfuType)
+        public KungfuItem(KungfuType kungfuType)
         {
             PropType = PropType.Kungfu;
             KungfuType = kungfuType;

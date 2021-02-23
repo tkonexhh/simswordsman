@@ -109,7 +109,7 @@ namespace GameWish.Game
 
         private void OnDestroy()
         {
-            m_ResLoader?.ReleaseRes("BuildSmokeHammer");
+             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
 
         public void RefreshStateObj()
