@@ -155,17 +155,24 @@ namespace GameWish.Game
             //    GameDataMgr.S.GetPlayerInfoData().AddCoinNum(1E100);
             //}
 
-          
-            if (Input.GetKeyDown(KeyCode.J))
+            #region 测试代码
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                //GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
-                //GameDataMgr.S.GetPlayerData().AddFoodNum(100);
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(20);
+                for (int i = (int)RawMaterial.SilverToken; i <= (int)RawMaterial.GoldenToken; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5);
+                }
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                //GameDataMgr.S.GetPlayerData().AddFoodNum(20);
-
+                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                }
+                for (int i = (int)RawMaterial.Malachite; i < (int)RawMaterial.DragonScales; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                }
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
@@ -193,12 +200,7 @@ namespace GameWish.Game
                 GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             }
 
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial.SilverToken)));
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial.GoldenToken)));
-
-            }
+           
 
 
             if (Input.GetKeyDown(KeyCode.L))
@@ -218,6 +220,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 2000);
                 }
             }
+            #endregion
         }
 
         /// <summary>
