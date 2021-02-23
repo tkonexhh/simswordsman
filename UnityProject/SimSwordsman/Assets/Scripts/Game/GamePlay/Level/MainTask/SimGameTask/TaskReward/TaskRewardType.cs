@@ -9,6 +9,9 @@ namespace GameWish.Game
     {
         None,
         Coin,
-        Item
+        Item,
+        Food,
+        Medicine,
+        Kongfu,
     }
 }
