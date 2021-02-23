@@ -31,7 +31,7 @@ namespace GameWish.Game
         //rate record
         public const string RATE_RECORD = "rate";
 
-       
+
 
         public const string AD_PLACEMENT_INTER = "";
         public const string SLASH = "/";
@@ -111,12 +111,12 @@ namespace GameWish.Game
         public const string ANIM_TUMBLE_GETUP = "tumble_get_up";
 
         // Facility
-        public const int FACILITY_MAX_PRACTIVEFIELD =6;
-        public const int FACILITY_MAX_LOBBY =6;
-        public const int FACILITY_MAX_KUNGFULIBRARY =5;
+        public const int FACILITY_MAX_PRACTIVEFIELD = 6;
+        public const int FACILITY_MAX_LOBBY = 8;
+        public const int FACILITY_MAX_KUNGFULIBRARY = 5;
         public const int FACILITY_MAX_LIVABLEROOM = 6;
         public const int FACILITY_MAX_BULLETInBOARD = 10;
-        public const int FACILITY_MAX_WAREHOUSE= 10;
+        public const int FACILITY_MAX_WAREHOUSE = 10;
         public const int FACILITY_MAX_BAICAOHU = 10;
         public const int FACILITY_MAX_PATROLROOM = 10;
         public const int FACILITY_MAX_KITCHEN = 10;
@@ -148,7 +148,7 @@ namespace GameWish.Game
         public const string CHALLENGE_NAME = "ChallengeName";
         public const string CHALLENGE_DESCRIBE = "ChallengeDescribe";
         public const string CHALLENGE_STATUE_COMPLETED = "Challenge_Status_Completed";
-        public const string CHALLENGE_STATUE_UNLOCKED = "Challenge_Status_Unlocked"; 
+        public const string CHALLENGE_STATUE_UNLOCKED = "Challenge_Status_Unlocked";
         public const string CHALLENGE_LOG_TITLE = "Challenge_Log_Title";
         public const string CHALLENGE_LOG_CONTENT = "Challenge_Log_Content";
         public const string CHALLENGE_LOG_ACCEPTBTNTXT = "Challenge_Log_AcceptBtnTxt";
@@ -167,12 +167,12 @@ namespace GameWish.Game
         public const string DISCIPLE_QUALITY_NORMAL = "Disciple_Quality_Normal";
         public const string DISCIPLE_NAME_GOOD = "Disciple_Quality_Good";
         public const string DISCIPLE_NAME_PREFECT = "Disciple_Quality_Perfect";
-        public const string DISCIPLE_TITLE_LEVEL= "Disciple_Title_Level";
+        public const string DISCIPLE_TITLE_LEVEL = "Disciple_Title_Level";
         public const string DISCIPLE_TITLE_SKILL = "Disciple_Title_Skill";
         public const string DISCIPLE_TITLE_ENTRYTIME = "Disciple_Title_EntryTime";
         public const string DISCIPLE_TITLE_RANK = "Disciple_Title_Rank";
-        public const string DISCIPLE_STATE_WORKING= "Disciple_State_Working";
-        public const string DISCIPLE_STATE_FREE= "Disciple_State_Free";
+        public const string DISCIPLE_STATE_WORKING = "Disciple_State_Working";
+        public const string DISCIPLE_STATE_FREE = "Disciple_State_Free";
         public const string DISCIPLE_PRACTICE = "Disciple_Practice";
         public const string DISCIPLE_WORK = "Disciple_Work";
         public const string DISCIPLE_EJECT = "Disciple_Eject";
@@ -185,8 +185,8 @@ namespace GameWish.Game
         public const string FACILITY_LIVABLEROOMEAST_NAME = "Facility_LivableRoomEast_Name";
         public const string FACILITY_LIVABLEROOMWEST_NAME = "Facility_LivableRoomWest_Name";
         public const string FACILITY_LIVABLEROOM_DESCRIBLE = "Facility_LivableRoom_Describe";
-        public const string FACILITY_LIVABLEROOM_CURRENTLYHABITABLE= "Facility_LivableRoom_CurrentlyHabitable";
-        public const string FACILITY_LIVABLEROOM_NEXTHABITABLE= "Facility_LivableRoom_NextHabitable";
+        public const string FACILITY_LIVABLEROOM_CURRENTLYHABITABLE = "Facility_LivableRoom_CurrentlyHabitable";
+        public const string FACILITY_LIVABLEROOM_NEXTHABITABLE = "Facility_LivableRoom_NextHabitable";
 
 
 

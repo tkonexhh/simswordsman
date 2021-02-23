@@ -35,7 +35,6 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             EventSystem.S.Register(EventID.OnChanllengeSuccess, HandlingListeningEvents);
-            EventSystem.S.Register(EventID.OnCloseParentPanel, HandlingListeningEvents);
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_CurChapterAllLevelConfigInfo = MainGameMgr.S.ChapterMgr.GetAllLevelConfigInfo(m_CurChapterConfigInfo.chapterId);
             InitPanelInfo();
@@ -86,9 +85,6 @@ namespace GameWish.Game
                         DestroyImmediate(levelBtn.gameObject);
                     }
                     break;
-                case EventID.OnCloseParentPanel:
-                    HideSelfWithAnim();
-                    break;
                 default:
                     break;
             }
@@ -105,16 +101,13 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 HideSelfWithAnim();
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
             });
         }
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
             EventSystem.S.UnRegister(EventID.OnChanllengeSuccess, HandlingListeningEvents);
-            EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandlingListeningEvents);
             CloseSelfPanel();
         }
     }
-
 }

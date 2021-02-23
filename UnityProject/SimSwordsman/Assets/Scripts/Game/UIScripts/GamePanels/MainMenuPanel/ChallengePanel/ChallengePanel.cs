@@ -22,7 +22,7 @@ namespace GameWish.Game
         private GameObject m_ChallengeTaskItem;
         private List<Sprite> m_Sprites = new List<Sprite>();
         private List<ChapterConfigInfo> m_CurChapterInfo = null;
-
+        private List<ChallengeTaskItem> m_ChallengeTaskItemList = new List<ChallengeTaskItem>();
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -34,6 +34,23 @@ namespace GameWish.Game
             InitPanelInfo();
 
         }
+
+        protected override void OnPanelOpen(params object[] args)
+        {
+            base.OnPanelOpen(args);
+
+            if (args.Length == 0)
+                return;
+
+            foreach (var item in m_ChallengeTaskItemList)
+            {
+                if (item.GetClanType() == (ClanType)args[0])
+                {
+                    item.ClickBtn();
+                }
+            }
+        }
+
         private void HandlingEventListening(int key, object[] param)
         {
             switch ((EventID)key)
@@ -65,6 +82,7 @@ namespace GameWish.Game
         {
             m_CloseBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                 HideSelfWithAnim();
             });
         }
@@ -82,8 +100,9 @@ namespace GameWish.Game
         /// <param name="configInfo"></param>
         private void CreateChallengeTask(ChapterConfigInfo configInfo)
         {
-            ItemICom challengeTask = Instantiate(m_ChallengeTaskItem, m_ChallengeTrans).GetComponent<ItemICom>();
+            ChallengeTaskItem challengeTask = Instantiate(m_ChallengeTaskItem, m_ChallengeTrans).GetComponent<ChallengeTaskItem>();
             challengeTask.OnInit(configInfo,null, m_Sprites,this);
+            m_ChallengeTaskItemList.Add(challengeTask);
         }
     }
 }

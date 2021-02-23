@@ -80,12 +80,12 @@ namespace GameWish.Game
                 default:              
                     break;
             }
-            EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
+            //EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
 
             MainGameMgr.S.RecruitDisciplerMgr.RemoveCharacterList(m_RecruitType, m_CharacterItem);
             MainGameMgr.S.CharacterMgr.AddCharacter(m_CharacterItem);
             MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
-            EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
+            //EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
         }
 
         public void LoadClanPrefabs(string prefabsName)

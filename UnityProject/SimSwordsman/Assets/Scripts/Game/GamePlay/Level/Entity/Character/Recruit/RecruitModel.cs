@@ -94,7 +94,7 @@ namespace GameWish.Game
                     advertisementCount = 1;
                     break;
                 case RecruitType.SilverMedal:
-                    advertisementCount = 3;
+                    advertisementCount = 1;
                     break;
                 default:
                     break;

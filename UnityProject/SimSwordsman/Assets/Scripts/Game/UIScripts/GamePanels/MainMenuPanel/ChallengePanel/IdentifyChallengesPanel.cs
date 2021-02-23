@@ -58,7 +58,6 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.SendDisciplesPanel,PanelType.Challenge, m_CurChapterConfigInfo, m_LevelConfigInfo);
                 CloseSelfPanel();
                 CloseDependPanel(EngineUI.MaskPanel);
-                EventSystem.S.Send(EventID.OnCloseParentPanel);
             });
         }
 

@@ -341,13 +341,13 @@ namespace GameWish.Game
     {
         public string lobbyBuildTime = string.Empty;
 
-        public int silverFree = -1;
+        public int silverFree = 1;
         public int silverAdvertisement = 0;
-        public int goldFree = -1;
+        public int goldFree = 1;
         public int goldAdvertisement = 0;
 
         public int goldAdvertisementCount = 1;
-        public int silverAdvertisementCount = 3;
+        public int silverAdvertisementCount = 1;
 
         public int goldRecruitCount = 0;
         public int silverRecruitCount = 0;
@@ -488,20 +488,6 @@ namespace GameWish.Game
             silverMedalNormal = recruitModel.silverMedalNormal;
             silverMedalGood = recruitModel.silverMedalGood;
             silverMedalPerfect = recruitModel.silverMedalPerfect;
-        }
-        public void SetFirstValue(RecruitType recruitType)
-        {
-            switch (recruitType)
-            {
-                case RecruitType.GoldMedal:
-                    goldIsFirst = false;
-                    break;
-                case RecruitType.SilverMedal:
-                    silverIsFirst = false;
-                    break;
-                default:
-                    break;
-            }
         }
     }
 
