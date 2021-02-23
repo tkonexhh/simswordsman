@@ -25,12 +25,12 @@ namespace GameWish.Game
         public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime, List<int> recordCharacterID = null)
         {
             m_TaskId = taskId;
-            if (recordCharacterID!=null)
+            if (recordCharacterID != null)
             {
                 foreach (var item in recordCharacterID)
                     m_RecordCharacterController.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item));
             }
-       
+
 
             m_TaskDetailInfo = TDCommonTaskTable.GetMainTaskItemInfo(taskId);
             if (m_TaskDetailInfo == null)
@@ -69,7 +69,7 @@ namespace GameWish.Game
             List<CharacterController> m_CharacterController = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_TaskDetailInfo.id);
             foreach (var item in m_CharacterController)
             {
-                if (item.CharacterModel.GetCurTaskId()== m_TaskDetailInfo.id)
+                if (item.CharacterModel.GetCurTaskId() == m_TaskDetailInfo.id)
                     item.CharacterModel.ClearCurTask(this);
             }
         }
@@ -134,29 +134,62 @@ namespace GameWish.Game
             {
                 i.CharacterModel.DistributionKungfuExp((int)(CommonTaskItemInfo.kongfuReward * ratio));
             });
+            int allWeight = 0;
 
-            // Item reward
-            for (int i = 0; i < m_TaskDetailInfo.itemRewards.Count; i++)
+            if (!isSucess)
+                return;
+
+            foreach (var item in m_TaskDetailInfo.itemRewards)
             {
-                int itemId = m_TaskDetailInfo.GetRewardId(i);
-                int count = m_TaskDetailInfo.GetRewardValue(i);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+                allWeight += item.weight;
             }
 
-            // Special reward
-            int random = Random.Range(0, 10000);
-            if (random < m_TaskDetailInfo.specialRewardRate)
+            int randomNum = Random.Range(0, allWeight);
+            allWeight = 0;
+            // Item reward
+            foreach (var item in m_TaskDetailInfo.itemRewards)
             {
-                for (int i = 0; i < m_TaskDetailInfo.specialRewards.Count; i++)
+                allWeight += item.weight;
+                if (randomNum < allWeight)
                 {
-                    int itemId = m_TaskDetailInfo.GetSpecialRewardId(i);
-                    int count = m_TaskDetailInfo.GetSpecialRewardValue(i);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+                    switch (item.rewardType)
+                    {
+                        case TaskRewardType.Coin:
+                            GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(item.count1);
+                            break;
+                        case TaskRewardType.Item:
+                            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)item.id), Random.Range(item.count1, item.count1 + 1));
+                            break;
+                        case TaskRewardType.Medicine:
+                            MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)item.id), Random.Range(item.count1, item.count1 + 1));
+                            break;
+                        case TaskRewardType.Kongfu:
+                            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)item.id), Random.Range(item.count1, item.count1 + 1));
+                            break;
+                        case TaskRewardType.Food:
+                            GameDataMgr.S.GetPlayerData().AddFoodNum(item.count1);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
+
+
+            // Special reward
+            //int random = Random.Range(0, 10000);
+            //if (random < m_TaskDetailInfo.specialRewardRate)
+            //{
+            //    for (int i = 0; i < m_TaskDetailInfo.specialRewards.Count; i++)
+            //    {
+            //        int itemId = m_TaskDetailInfo.GetSpecialRewardId(i);
+            //        int count = m_TaskDetailInfo.GetSpecialRewardValue(i);
+            //        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            //    }
+            //}
 
             CharacterIDs.Clear();
         }
     }
-	
+
 }

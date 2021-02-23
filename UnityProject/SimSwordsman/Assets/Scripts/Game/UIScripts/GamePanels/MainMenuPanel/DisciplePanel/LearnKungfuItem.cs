@@ -95,11 +95,11 @@ namespace GameWish.Game
                 RefreshPanelInfo();
             }
         }
-        private string GetIconName(KongfuType kungfuType)
+        private string GetIconName(KungfuType kungfuType)
         {
             return TDKongfuConfigTable.GetIconName(kungfuType);
         }
-        private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+        private KungfuQuality GetKungfuQuality(KungfuType kungfuType)
         {
             return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
         }

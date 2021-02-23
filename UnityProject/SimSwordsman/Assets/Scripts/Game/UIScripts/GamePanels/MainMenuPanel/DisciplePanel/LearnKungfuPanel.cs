@@ -100,7 +100,7 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KongfuType)m_SelectedItemBase.GetSubName()));
+                MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
                 UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
@@ -131,8 +131,8 @@ namespace GameWish.Game
         private List<Sprite> GetSprite(ItemBase itemBase)
         {
             List<Sprite> sprites = new List<Sprite>();
-            sprites.Add(FindSprite(GetIconName((KongfuType)itemBase.GetSubName())));
-            switch (GetKungfuQuality((KongfuType)itemBase.GetSubName()))
+            sprites.Add(FindSprite(GetIconName((KungfuType)itemBase.GetSubName())));
+            switch (GetKungfuQuality((KungfuType)itemBase.GetSubName()))
             {
                 case KungfuQuality.Normal:
                     sprites.Add(FindSprite("Introduction"));
@@ -148,12 +148,12 @@ namespace GameWish.Game
             }
             return sprites;
         }
-        private KungfuQuality GetKungfuQuality(KongfuType kungfuType)
+        private KungfuQuality GetKungfuQuality(KungfuType kungfuType)
         {
             return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
         }
 
-        private string GetIconName(KongfuType kungfuType)
+        private string GetIconName(KungfuType kungfuType)
         {
             return TDKongfuConfigTable.GetIconName(kungfuType);
         }

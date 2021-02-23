@@ -85,7 +85,7 @@ namespace GameWish.Game
             }
 
             return null;
-        }
+        }  
 
         public void LoadCharacterAsync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
         {

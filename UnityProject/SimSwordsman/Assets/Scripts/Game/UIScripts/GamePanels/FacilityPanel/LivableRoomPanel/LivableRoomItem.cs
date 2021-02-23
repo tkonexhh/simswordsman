@@ -246,8 +246,8 @@ namespace GameWish.Game
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
                     m_CurPeopleValue.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
-                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
-                    RefreshResInfo(m_CurLivableRoomLevelInfo, GetCostItem(m_CurLivableRoomLevelInfo));
+                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.GetNeedLobbyLevel()));
+                    RefreshResInfo(m_NextLivableRoomLevelInfo, GetCostItem(m_NextLivableRoomLevelInfo));
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
 
                     if (!CheackIsBuild(false))
@@ -269,14 +269,14 @@ namespace GameWish.Game
                     }
                     break;
                 case LivableRoomState.Upgrade:
-                    m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.level);
+                    m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.level);
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_CURRENTLYHABITABLE);
-                    m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetCurCapacity()));
-                    m_NextPeopleValue.text = CommonUIMethod.GetStrForColor("#AD7834", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetNextCapacity()));
+                    m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_NextLivableRoomLevelInfo.GetCurCapacity()));
+                    m_NextPeopleValue.text = CommonUIMethod.GetStrForColor("#AD7834", CommonUIMethod.GetPeople(m_NextLivableRoomLevelInfo.GetNextCapacity()));
                     m_UpperMiddle.SetActive(true);
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
-                    m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
-                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
+                    m_UpgradeConditions.text = "升级需要讲武堂达到" + Define.SPACE
+                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.GetNeedLobbyLevel()));
                     RefreshResInfo(m_NextLivableRoomLevelInfo, GetCostItem(m_NextLivableRoomLevelInfo));
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
                     m_UpgradeBtnImg.sprite= FindSprite("LivableRoomPanel_BgBtn2");

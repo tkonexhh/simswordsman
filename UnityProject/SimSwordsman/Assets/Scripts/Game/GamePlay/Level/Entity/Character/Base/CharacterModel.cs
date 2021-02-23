@@ -156,9 +156,9 @@ namespace GameWish.Game
             return m_CharacterItem.kongfus.Count;
         }
 
-        public List<KongfuType> GetKongfuTypeList()
+        public List<KungfuType> GetKongfuTypeList()
         {
-            return m_CharacterItem.kongfus.Values.Where(i => i.GetKungfuType() != KongfuType.None).Select(i => i.GetKungfuType()).ToList();
+            return m_CharacterItem.kongfus.Values.Where(i => i.GetKungfuType() != KungfuType.None).Select(i => i.GetKungfuType()).ToList();
         }
 
         /// <summary>

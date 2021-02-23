@@ -16,7 +16,7 @@ namespace GameWish.Game
         Herb                             = 5,        //²ÝÒ©
     }
 
-    public enum KongfuType
+    public enum KungfuType
     {
         None,
         TaiZuChangQuan = 1001,
@@ -92,7 +92,6 @@ namespace GameWish.Game
         Crystal = 3003,         //×ÏÁú¾§
         GoldenThread = 3101,    //½ðË¿
         DragonScales = 3102,    //ÁúÁÛ
-
     }
 
     public enum ArmorType

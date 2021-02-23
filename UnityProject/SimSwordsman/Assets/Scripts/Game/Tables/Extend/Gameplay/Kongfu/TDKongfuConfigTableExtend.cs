@@ -9,12 +9,12 @@ namespace GameWish.Game
 {
     public partial class TDKongfuConfigTable
     {
-        public static Dictionary<KongfuType, KungfuConfigInfo> m_KungfuConfigDic = new Dictionary<KongfuType, KungfuConfigInfo>();
+        public static Dictionary<KungfuType, KungfuConfigInfo> m_KungfuConfigDic = new Dictionary<KungfuType, KungfuConfigInfo>();
         static void CompleteRowAdd(TDKongfuConfig tdData)
         {
-            if (!m_KungfuConfigDic.ContainsKey((KongfuType)tdData.id))
+            if (!m_KungfuConfigDic.ContainsKey((KungfuType)tdData.id))
             {
-                m_KungfuConfigDic.Add((KongfuType)tdData.id, new KungfuConfigInfo(tdData)); ;
+                m_KungfuConfigDic.Add((KungfuType)tdData.id, new KungfuConfigInfo(tdData)); ;
             }
         }
 
@@ -24,7 +24,7 @@ namespace GameWish.Game
         /// <param name="kungfuType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static float GetAddition(KongfuType kungfuType,int level)
+        public static float GetAddition(KungfuType kungfuType,int level)
         {
             if (m_KungfuConfigDic.ContainsKey(kungfuType))
                 return m_KungfuConfigDic[kungfuType].GetAddition(level);
@@ -35,7 +35,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="kungfuType"></param>
         /// <returns></returns>
-        public static KungfuConfigInfo GetKungfuConfigInfo(KongfuType kungfuType)
+        public static KungfuConfigInfo GetKungfuConfigInfo(KungfuType kungfuType)
         {
             if (m_KungfuConfigDic.ContainsKey(kungfuType))
                 return m_KungfuConfigDic[kungfuType];
@@ -48,7 +48,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="kungfuType"></param>
         /// <returns></returns>
-        public static string GetIconName(KongfuType kungfuType)
+        public static string GetIconName(KungfuType kungfuType)
         {
             if (m_KungfuConfigDic.ContainsKey(kungfuType))
                 return m_KungfuConfigDic[kungfuType].IconName;
@@ -81,7 +81,7 @@ namespace GameWish.Game
         /// <summary>
         /// 功夫id KungfuType和表中ID对应
         /// </summary>
-        public KongfuType KungfuType { set; get; }
+        public KungfuType KungfuType { set; get; }
         public string Name { set; get; }
         public string IconName { set; get; }
         public int Price { set; get; }
@@ -93,7 +93,7 @@ namespace GameWish.Game
 
         public KungfuConfigInfo(TDKongfuConfig tdData)
         {
-            KungfuType = (KongfuType)tdData.id;
+            KungfuType = (KungfuType)tdData.id;
             Name = tdData.kongfuName;
             IconName = tdData.iconName;
             Desc = tdData.desc;

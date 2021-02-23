@@ -289,6 +289,11 @@ namespace GameWish.Game
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
+                        if (m_SelectedList.Count != m_CommonTaskItemInfo.GetCharacterAmount())
+                        {
+                            FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
+                            return;
+                        }
                         m_CurTaskInfo.ExecuteTask(m_SelectedList);
                         if (m_CurTaskInfo.GetCurTaskType() == SimGameTaskType.Battle)
                         {

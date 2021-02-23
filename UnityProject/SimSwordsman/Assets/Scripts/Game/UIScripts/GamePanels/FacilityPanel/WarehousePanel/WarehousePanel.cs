@@ -252,7 +252,7 @@ namespace GameWish.Game
                 case PropType.RawMaterial:
                     return FindSprite(GetIconName(itemBase.GetSubName()));
                 case PropType.Kungfu:
-                    return FindSprite(TDKongfuConfigTable.GetIconName((KongfuType)itemBase.GetSubName()));
+                    return FindSprite(TDKongfuConfigTable.GetIconName((KungfuType)itemBase.GetSubName()));
                 case PropType.Herb:
                     return FindSprite(GetHerbIconName(itemBase.GetSubName()));
                 default:

@@ -18,10 +18,10 @@ namespace GameWish.Game
             kongfuLibLevelInfo.Warp(levelInfo);
 
             string[] kongfuStrs = tdData.unlockKongfu.Split(';');
-            List<KongfuType> kongfuTypeList = new List<KongfuType>();
+            List<KungfuType> kongfuTypeList = new List<KungfuType>();
             foreach (string item in kongfuStrs)
             {
-                KongfuType kongfuType = EnumUtil.ConvertStringToEnum<KongfuType>(item);
+                KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(item);
                 kongfuTypeList.Add(kongfuType);
             }
             string[] kongfuListStrs = tdData.kongfuList.Split(';');
@@ -29,7 +29,7 @@ namespace GameWish.Game
             foreach (string item in kongfuListStrs)
             {
                 string[] kungfuPoolStr =  item.Split('|');
-                KongfuType kongfuType = EnumUtil.ConvertStringToEnum<KongfuType>(kungfuPoolStr[0]);
+                KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(kungfuPoolStr[0]);
                 kungFuPoolConfig = new KungFuPoolConfig(kongfuType,int.Parse(kungfuPoolStr[1]));
             }
             kongfuLibLevelInfo.SetInitData(kongfuTypeList, kungFuPoolConfig, tdData.duration, tdData.seat);
@@ -65,7 +65,7 @@ namespace GameWish.Game
             return infos;
         }
 
-        public static KongfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
+        public static KungfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
         {
             int allWeight = 0;
             int boundaryWeight = 0;
@@ -83,7 +83,7 @@ namespace GameWish.Game
                         return item.Kungfu;
                 }
             }
-            return KongfuType.None;
+            return KungfuType.None;
         }
 
 

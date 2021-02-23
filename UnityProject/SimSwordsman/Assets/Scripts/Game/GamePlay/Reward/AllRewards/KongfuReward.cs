@@ -17,7 +17,7 @@ namespace GameWish.Game
 		public override void AcceptReward()
 		{
             //Log.e("»ñµÃ" + m_Info.Name + m_Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KongfuType)m_KeyID), Count);
+            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
         }
         
 		public override string RewardName()
@@ -42,7 +42,7 @@ namespace GameWish.Game
 		}
         public override string SpriteName()
         {
-            return TDKongfuConfigTable.GetIconName((KongfuType)m_KeyID);
+            return TDKongfuConfigTable.GetIconName((KungfuType)m_KeyID);
         }
     }
 }

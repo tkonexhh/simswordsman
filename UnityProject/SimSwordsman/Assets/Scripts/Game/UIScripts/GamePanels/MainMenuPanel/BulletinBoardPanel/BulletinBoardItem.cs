@@ -483,7 +483,7 @@ namespace GameWish.Game
                     break;
                 case TaskState.NotStart:
                     m_Over.gameObject.SetActive(false);
-                    m_RedPoint.gameObject.SetActive(false);
+                    //m_RedPoint.gameObject.SetActive(false);
                     m_Time.text = Define.COMMON_DEFAULT_STR;
                     m_Promptly.gameObject.SetActive(false);
                     break;
@@ -514,7 +514,7 @@ namespace GameWish.Game
                     //m_Promptly.gameObject.SetActive(false);
                     //m_GoToBtn.gameObject.SetActive(false);
                     m_Over.gameObject.SetActive(false);
-                    m_RedPoint.gameObject.SetActive(false);
+                    //m_RedPoint.gameObject.SetActive(false);
                     //m_DeclinedBtn.gameObject.SetActive(false);
                     foreach (var item in m_BulletinBoardDiscipleList)
                         item.SetBtnClick(false);

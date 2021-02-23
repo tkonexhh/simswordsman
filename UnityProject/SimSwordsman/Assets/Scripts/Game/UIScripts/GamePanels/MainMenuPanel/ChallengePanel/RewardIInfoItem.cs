@@ -26,7 +26,9 @@ namespace GameWish.Game
         private CharacterController m_CharacterController = null;
         private PanelType m_PanelType;
         private SimGameTask m_CurTaskInfo = null;
-           
+        private CombatSettlementPanel m_ParentPanel;
+
+
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_PanelType = (PanelType)obj[0];
@@ -44,15 +46,19 @@ namespace GameWish.Game
                     break;
             }
             m_IsSuccess = (bool)obj[2];
-
+            m_ParentPanel = (CombatSettlementPanel)obj[3];
             m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
+            m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
         }
-
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         public void SetButtonEvent(Action<object> action)
         {
         }
-
+    
         private void RefreshPanelInfo()
         {
 

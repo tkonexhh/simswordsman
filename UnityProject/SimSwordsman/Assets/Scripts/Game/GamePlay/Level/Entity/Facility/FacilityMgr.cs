@@ -302,7 +302,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="kungfuLibraryLevel"></param>
         /// <returns></returns>
-        public KongfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
+        public KungfuType GetKungfuForWeightAndLevel(int kungfuLibraryLevel)
         {
             return TDFacilityKongfuLibraryTable.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
         }
