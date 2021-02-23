@@ -51,7 +51,7 @@ namespace GameWish.Game
 
         private void OnAtkAnimEnd()
         {
-            Debug.LogError("OnAtkAnimEnd");
+            //Debug.LogError("OnAtkAnimEnd");
 
             m_BattleState.SetState(BattleStateID.Idle);
 

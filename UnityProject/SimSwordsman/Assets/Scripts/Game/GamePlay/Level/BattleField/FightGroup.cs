@@ -196,7 +196,7 @@ namespace GameWish.Game
 
                 if (m_EnemyCharacter.IsDead() || m_OurCharacter.IsDead())
                 {
-                    Debug.LogError("someone is dead");
+                    //Debug.LogError("someone is dead");
                     MainGameMgr.S.BattleFieldMgr.OnFightGroupCharacterDead(this);
                 }
                 else
