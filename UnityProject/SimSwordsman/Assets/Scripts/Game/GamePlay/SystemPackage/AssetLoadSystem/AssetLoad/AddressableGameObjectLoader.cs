@@ -51,6 +51,14 @@ namespace GameWish.Game
                 m_LoadCallback.Invoke(m_LoadHandler.Result);
             }
         }
+
+        public GameObject GetResult()
+        {
+            if (m_LoadHandler.Result != null)
+                return m_LoadHandler.Result;
+
+            return null;
+        }
     }
 
 }

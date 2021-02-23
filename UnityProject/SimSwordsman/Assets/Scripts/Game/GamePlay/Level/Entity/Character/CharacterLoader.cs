@@ -9,7 +9,7 @@ namespace GameWish.Game
     public class CharacterLoader : TSingleton<CharacterLoader>, IAssetPreloader
     {
         private List<CharacterItemDbData> m_CharacterList = null;
-        private Dictionary<int, GameObject> m_CharacterGoDic = new Dictionary<int, GameObject>();
+        //private Dictionary<int, GameObject> m_CharacterGoDic = new Dictionary<int, GameObject>();
         private Dictionary<int, AddressableGameObjectLoader> m_CharacterLoaderDic = new Dictionary<int, AddressableGameObjectLoader>();
 
         private GameObject m_CharacterTaskRewardBubble = null;
@@ -40,7 +40,6 @@ namespace GameWish.Game
                     {
                         go.transform.parent = GameplayMgr.S.EntityRoot.transform;
                         go.GetComponent<CharacterView>()?.HideBody();
-                        m_CharacterGoDic.Add(item.id, go);
                         m_LoadedCharacterCount++;
 
                         SendAssetLoadedMsg();
@@ -70,9 +69,9 @@ namespace GameWish.Game
 
         public GameObject GetCharacterGo(int id)
         {
-            if (m_CharacterGoDic.ContainsKey(id))
+            if (m_CharacterLoaderDic.ContainsKey(id))
             {
-                return GameObject.Instantiate(m_CharacterGoDic[id]);
+                return GameObject.Instantiate(m_CharacterLoaderDic[id].GetResult());
                 //return m_CharacterGoDic[id];
             }
 
@@ -86,6 +85,7 @@ namespace GameWish.Game
             AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
             loader.InstantiateAsync(prefabName, (obj) =>
             {
+                //m_CharacterGoDic.Add(id, obj);
                 m_CharacterLoaderDic.Add(id, loader);
 
                 onLoadDone?.Invoke(obj);
