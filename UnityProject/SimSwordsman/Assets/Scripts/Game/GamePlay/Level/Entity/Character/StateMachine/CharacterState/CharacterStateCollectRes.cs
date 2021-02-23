@@ -36,6 +36,9 @@ namespace GameWish.Game
 
             m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             m_RawMatItem = null;
+
+            m_Controller.SpawnWorkTipWhenCollectedObj(m_CollectedObjType);
+
             m_CollectTotalTime = TDWorkTable.GetWorkConfigItem(m_CollectedObjType).workTime;
 
             m_ReachTargetPos = false;
@@ -47,8 +50,10 @@ namespace GameWish.Game
             m_RawMatItem = MainGameMgr.S.RawMatCollectSystem.GetRawMatItem(m_CollectedObjType);
             if (m_RawMatItem != null)
             {
-                Transform t = m_RawMatItem.GetRandomCollectPos();
+                m_RawMatItem.SetCharacterSelected(true);
+                m_RawMatItem.HideBubble();
 
+                Transform t = m_RawMatItem.GetRandomCollectPos();
                 m_Controller.MoveTo(t.position, OnReachDestination);
 
                 m_Time = GameDataMgr.S.GetClanData().GetObjCollectedTime(m_CollectedObjType);
@@ -125,14 +130,20 @@ namespace GameWish.Game
 
                 GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, (int)m_Time);
 
+                m_Controller.SetWorkProgressPercent(m_Time / m_CollectTotalTime);
+
                 if (m_Time > m_CollectTotalTime)
                 {
                     m_Time = 0f;
                     m_IsCollectResEnd = true;
 
                     EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
-                    //TODO: Get reward
+    
+                    ClaimReward();
 
+                    GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
+
+                    m_Controller.ReleaseWorkProgressBar();
 
                     m_Controller.SetState(CharacterStateID.Wander);
 
@@ -146,6 +157,8 @@ namespace GameWish.Game
             if (m_IsCollectResEnd)
                 return;
 
+            m_Controller.ReleaseWorkTip();
+
             m_ReachTargetPos = true;
 
             if (m_RawMatItem != null)
@@ -154,6 +167,8 @@ namespace GameWish.Game
                 m_Controller.CharacterView.PlayAnim(animName, true, null);
                 m_Controller.FaceTo(m_RawMatItem.transform.position.x);
             }
+
+            m_Controller.SpawnWorkProgressBar();
 
         }
 
@@ -233,6 +248,26 @@ namespace GameWish.Game
                 m_Controller.CharacterView.PlayIdleAnim();
                 m_Controller.SpawnTaskRewardBubble();
             });
+        }
+
+        private void ClaimReward()
+        {
+            WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
+            // Item reward
+            for (int i = 0; i < workConfigItem.itemRewards.Count; i++)
+            {
+                int itemId = workConfigItem.itemRewards[i].id;
+                int count = workConfigItem.itemRewards[i].GetRewardValue();
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            }
+
+            // Special reward
+            for (int i = 0; i < workConfigItem.specialRewards.Count; i++)
+            {
+                int itemId = workConfigItem.specialRewards[i].id;
+                int count = workConfigItem.specialRewards[i].GetRewardValue();
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            }          
         }
     }
 }

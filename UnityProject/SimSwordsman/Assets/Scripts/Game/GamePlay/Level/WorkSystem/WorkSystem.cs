@@ -50,6 +50,9 @@ namespace GameWish.Game
  
         public void Init()
         {
+            //For Test
+            //GameDataMgr.S.GetPlayerData().UnlockWorkSystem = true;
+
             if (GameDataMgr.S.GetPlayerData().UnlockWorkSystem)
             {
                 CheckData();
@@ -333,8 +336,13 @@ namespace GameWish.Game
             if (character == null)
                 return false;
 
-            CountdownSystem.S.StartCountdownerWithSec(string.Format("FacilityWorking,{0}", type.ToString()), character.id, lobbyTable.workTime);
+            CountdownSystem.S.StartCountdownerWithSec(GetStringId(type), character.id, lobbyTable.workTime);
             return true;
+        }
+
+        public static string GetStringId(FacilityType facilityType)
+        {
+            return string.Format("FacilityWorking,{0}", facilityType.ToString());
         }
     }
 }

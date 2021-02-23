@@ -12,14 +12,20 @@ namespace GameWish.Game
         public string state;
         public string battleState;
 
+        [SerializeField] private GameObject m_Body = null;
+        [SerializeField] private GameObject m_HeadPos = null;
+
         private CharacterController m_Controller = null;
         private SkeletonAnimation m_SpineAnim;
         private PolyNavAgent m_NavAgent;
         private System.Action m_OnReachDestinationCallback = null;
         private bool m_IsMoving = false;
-        [SerializeField]private GameObject m_Body = null;
+
         private Vector3 m_SimPos;
         private Vector3 m_DeltaPos = Vector3.zero;
+
+        private CharacterWorkProgressBar m_WorkProgressBar = null;
+        private CharacterWorkTip m_WorkTip = null;
 
         public void Init()
         {
@@ -195,6 +201,44 @@ namespace GameWish.Game
         public Vector3 GetTaskRewardBubblePos()
         {
             return transform.position + new Vector3(0, -0.04f, 0);
+        }
+
+        public Vector3 GetHeadPos()
+        {
+            return m_HeadPos.transform.position;
+        }
+
+        public void SetProgressBar(CharacterWorkProgressBar characterWorkProgressBar)
+        {
+            m_WorkProgressBar = characterWorkProgressBar;
+        }
+
+        public void SetProgressBarPrecent(float percent)
+        {
+            m_WorkProgressBar?.SetPercent(percent);
+        }
+
+        public void ReleaseProgressBar()
+        {
+            if (m_WorkProgressBar != null)
+            {
+                GameObjectPoolMgr.S.Recycle(m_WorkProgressBar.gameObject);
+                m_WorkProgressBar = null;
+            }
+        }
+
+        public void SetWorkTip(CharacterWorkTip workTip)
+        {
+            m_WorkTip = workTip;
+        }
+
+        public void ReleaseWorkTip()
+        {
+            if (m_WorkTip!= null)
+            {
+                GameObjectPoolMgr.S.Recycle(m_WorkTip.gameObject);
+                m_WorkTip = null;
+            }
         }
         #endregion
 

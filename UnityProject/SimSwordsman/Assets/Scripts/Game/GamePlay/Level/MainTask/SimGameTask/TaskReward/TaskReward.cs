@@ -46,6 +46,11 @@ namespace GameWish.Game
             }
 
         }
+
+        public int GetRewardValue()
+        {
+            return UnityEngine.Random.Range(count1, count2);
+        }
 	}
 	
 }

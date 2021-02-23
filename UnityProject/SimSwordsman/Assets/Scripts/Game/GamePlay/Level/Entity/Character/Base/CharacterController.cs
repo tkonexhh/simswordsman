@@ -60,7 +60,7 @@ namespace GameWish.Game
                 initState = CharacterStateID.Wander;
             }
 
-            if (initState != CharacterStateID.CollectRes && initState != CharacterStateID.GoOutsideForTaskBattle) // CollectRes和goout状态由CommonTaskMgr进行设置
+            if (/*initState != CharacterStateID.CollectRes && */initState != CharacterStateID.GoOutsideForTaskBattle) // CollectRes和goout状态由CommonTaskMgr进行设置
             {
                 SetState(initState, m_CharacterModel.GetTargetFacilityType());
             }
@@ -278,6 +278,51 @@ namespace GameWish.Game
             go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetTaskRewardBubblePos();
             go.GetComponent<CharacterTaskRewardBubble>().SetController(this);
+        }
+
+        public void SpawnWorkTipWhenCollectedObj(CollectedObjType collectedObjType)
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkTip workTip = go.GetComponent<CharacterWorkTip>();
+            workTip.OnGotoCollectObj(collectedObjType);
+            m_CharacterView.SetWorkTip(workTip);
+        }
+        public void SpawnWorkTipWhenWorkInFacility(FacilityType facilityType)
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkTip workTip = go.GetComponent<CharacterWorkTip>();
+            workTip.OnGotoFacilityWork(facilityType);
+            m_CharacterView.SetWorkTip(workTip);
+        }
+
+        public void ReleaseWorkTip()
+        {
+            m_CharacterView.ReleaseWorkTip();
+        }
+
+        public void SpawnWorkProgressBar()
+        {
+            GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkProgressBar();
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.position = m_CharacterView.GetHeadPos();
+            CharacterWorkProgressBar progress = go.GetComponent<CharacterWorkProgressBar>();
+            m_CharacterView.SetProgressBar(progress);
+        }
+
+        public void ReleaseWorkProgressBar()
+        {
+            m_CharacterView.ReleaseProgressBar();
+        }
+
+        public void SetWorkProgressPercent(float percent)
+        {
+            percent = Mathf.Clamp01(percent);
+
+            m_CharacterView.SetProgressBarPrecent(percent);
         }
 
         public void HideTaskRewardBubble()

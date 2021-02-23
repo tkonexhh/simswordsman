@@ -14,13 +14,11 @@ namespace GameWish.Game
 
         private List<CharacterController> m_CharacterControllerList = new List<CharacterController>();
 
-
         private Vector3 m_CharacterSpawnPos = new Vector3(-5f, -4.7f, 0);
 
-
         public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
+        public CharacterDataWrapper CharacterDataWrapper { get => m_CharacterDataWrapper; }
 
-        
         #region IMgr
         public void OnInit()
         {
@@ -176,6 +174,16 @@ namespace GameWish.Game
         public GameObject SpawnTaskRewardBubble()
         {
             return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_TASK_REWARD_BUBBLE);
+        }
+
+        public GameObject SpawnWorkProgressBar()
+        {
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_PROGRESS_BAR);
+        }
+
+        public GameObject SpawnWorkTip()
+        {
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_TIP);
         }
         #endregion
 
@@ -357,6 +365,12 @@ namespace GameWish.Game
         {
             GameObject rewardBubble = CharacterLoader.S.GetCharacterRewardBubble();
             GameObjectPoolMgr.S.AddPool(Define.CHARACTER_TASK_REWARD_BUBBLE, rewardBubble, 10, 3);
+
+            GameObject workProgressBar = CharacterLoader.S.GetCharacterWorkProgressBar();
+            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_PROGRESS_BAR, workProgressBar, 10, 3);
+
+            GameObject workTip = CharacterLoader.S.GetCharacterWorkTip();
+            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_TIP, workTip, 10, 3);
         }
         #endregion
 

@@ -70,7 +70,7 @@ namespace GameWish.Game
         {
             if (CurrentVisitor.Count < m_MaxVisitorCount)
             {
-                Debug.LogError("创建客人");
+                //Debug.LogError("创建客人");
 
                 Visitor visitor = new Visitor();
                 visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);

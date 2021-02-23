@@ -271,13 +271,16 @@ namespace GameWish.Game
                     });
                     for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
                     {
-                        int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
-                        CommonTaskItemInfo task = allCommonTask[randomIndex];
-
-                        if (!IsTaskExist(task.id))
+                        if (allCommonTask.Count > 0)
                         {
-                            GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
-                            allCommonTask.Remove(task);
+                            int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
+                            CommonTaskItemInfo task = allCommonTask[randomIndex];
+
+                            if (!IsTaskExist(task.id))
+                            {
+                                GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+                                allCommonTask.Remove(task);
+                            }
                         }
                     }
                 }
