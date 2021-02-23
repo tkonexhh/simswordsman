@@ -70,7 +70,7 @@ namespace GameWish.Game
             if (unlockInfo.chapter == -1)
                 return true;
             int unlockLevel = GetLevelProgressNumber(unlockInfo.chapter);
-            if ((unlockLevel-1)>= unlockInfo.level)
+            if ((unlockLevel)>= unlockInfo.level)
                 return true;
             return false;
         }

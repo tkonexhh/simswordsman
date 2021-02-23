@@ -22,7 +22,8 @@ namespace GameWish.Game
         private EInt m_WorkTime = 0;   
         private EInt m_WorkPay = 0;   
         private EInt m_DefExp = 0;   
-        private EInt m_CommonTaskAmount = 0;  
+        private EInt m_CommonTaskAmount = 0;   
+        private EInt m_CTDailyMax = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -81,6 +82,11 @@ namespace GameWish.Game
         /// </summary>
         public  int  commonTaskAmount {get { return m_CommonTaskAmount; } }
        
+        /// <summary>
+        /// 日常任务每日最大次数
+        /// </summary>
+        public  int  cTDailyMax {get { return m_CTDailyMax; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -129,6 +135,9 @@ namespace GameWish.Game
                 case 10:
                     m_CommonTaskAmount = dataR.ReadInt();
                     break;
+                case 11:
+                    m_CTDailyMax = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -139,7 +148,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(11);
+          Dictionary<string, int> ret = new Dictionary<string, int>(12);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
@@ -152,6 +161,7 @@ namespace GameWish.Game
           ret.Add("WorkPay", 8);
           ret.Add("DefExp", 9);
           ret.Add("CommonTaskAmount", 10);
+          ret.Add("CTDailyMax", 11);
           return ret;
         }
     } 
