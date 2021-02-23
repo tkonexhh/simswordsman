@@ -39,6 +39,7 @@ namespace GameWish.Game
         {
             m_CharacterId = id;
             m_CharacterView = characterView;
+            m_CharacterView.ShowBody();
             m_CharacterView.Init();
             m_CharacterView.SetController(this);
 
@@ -105,6 +106,11 @@ namespace GameWish.Game
         public bool IsDead()
         {
             return m_CharacterModel.GetHp() <= 0;
+        }
+
+        public bool WillBeDead()
+        {
+            return m_CharacterModel.GetHp() + m_CachedDamage <= 0;
         }
 
         public float GetAtkRange()

@@ -38,6 +38,8 @@ namespace GameWish.Game
                 {
                     LoadCharacterAsync(item.id, item.quality, item.bodyId, (go) =>
                     {
+                        go.transform.parent = GameplayMgr.S.EntityRoot.transform;
+                        go.GetComponent<CharacterView>()?.HideBody();
                         m_CharacterGoDic.Add(item.id, go);
                         m_LoadedCharacterCount++;
 
@@ -69,7 +71,10 @@ namespace GameWish.Game
         public GameObject GetCharacterGo(int id)
         {
             if (m_CharacterGoDic.ContainsKey(id))
-                return m_CharacterGoDic[id];
+            {
+                return GameObject.Instantiate(m_CharacterGoDic[id]);
+                //return m_CharacterGoDic[id];
+            }
 
             return null;
         }
