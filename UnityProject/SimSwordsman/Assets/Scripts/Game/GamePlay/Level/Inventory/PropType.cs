@@ -92,7 +92,6 @@ namespace GameWish.Game
         Crystal = 3003,         //×ÏÁú¾§
         GoldenThread = 3101,    //½ğË¿
         DragonScales = 3102,    //ÁúÁÛ
-
     }
 
     public enum ArmorType
