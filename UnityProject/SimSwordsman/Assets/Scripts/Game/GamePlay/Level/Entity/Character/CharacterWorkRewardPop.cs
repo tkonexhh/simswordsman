@@ -59,17 +59,21 @@ namespace GameWish.Game
             }
 
             m_RewardNumText.text = "+" + count.ToString();
+
+            StartCoroutine(AutoDestroyCor());
         }
 
-        public void OnGetCollectObjWorkReward(CollectedObjType collectedObjType, int count)
+        public void OnGetCollectObjWorkReward(RawMaterial collectedObjType, int count)
         {
-            GameObject go = GetIconByCollectedObjType(collectedObjType);
+            GameObject go = GetIconByCollectedObjType( CollectedObjType.Iron);
             if (go != null)
             {
                 go.SetActive(true);
             }
 
             m_RewardNumText.text = "+" + count.ToString();
+
+            StartCoroutine(AutoDestroyCor());
         }
 
         private GameObject GetIconByFacilityType(FacilityType facilityType)
@@ -129,6 +133,14 @@ namespace GameWish.Game
             }
 
             return icon;
+        }
+
+        WaitForSeconds wait = new WaitForSeconds(2);
+        private IEnumerator AutoDestroyCor()
+        {
+            yield return wait;
+
+            Qarth.GameObjectPoolMgr.S.Recycle(gameObject);
         }
     }
 	

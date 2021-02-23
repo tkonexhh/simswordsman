@@ -98,6 +98,7 @@ namespace GameWish.Game
         public const string CHARACTER_TASK_REWARD_BUBBLE = "CharacterTaskRewardBubble";
         public const string CHARACTER_WORK_PROGRESS_BAR = "CharacterWorkProgressBar";
         public const string CHARACTER_WORK_TIP = "CharacterWorkTip";
+        public const string CHARACTER_WORK_REWARD_POP = "CharacterWorkRewardPop";
 
         // Animation
         public const string ANIM_MOVE = "move";

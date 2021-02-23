@@ -192,6 +192,11 @@ namespace GameWish.Game
             m_IsBattleBegin = true;
             m_IsBattleEnd = false;
 
+            m_TotalEnemyAtk = 0;
+            m_TotalOurAtk = 0;
+            m_TotalEnemyHp = 0;
+            m_TotalOurHp = 0;
+
             m_AllEnemyCount = enemies.Count;
             m_LoadedEnemyCount = 0;
 
@@ -227,9 +232,11 @@ namespace GameWish.Game
         private void OnExitBattle()
         {
             m_IsBattleBegin = false;
-            m_OurCharacterList.ForEach(i => {
-                i.OnExitBattleField();
-                i.SetCurTask(null);
+            m_OurCharacterList.ForEach(i => 
+            {
+                Destroy(i.CharacterView.gameObject);
+                //i.OnExitBattleField();
+                //i.SetCurTask(null);
             });
             m_OurCharacterList.Clear();
             m_EnemyCharacterList.Clear();

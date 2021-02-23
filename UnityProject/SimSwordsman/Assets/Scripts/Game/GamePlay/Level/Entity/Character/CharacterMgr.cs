@@ -181,6 +181,11 @@ namespace GameWish.Game
             return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_PROGRESS_BAR);
         }
 
+        public GameObject SpawnWorkRewardPop()
+        {
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_REWARD_POP);
+        }
+
         public GameObject SpawnWorkTip()
         {
             return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_TIP);
@@ -371,6 +376,9 @@ namespace GameWish.Game
 
             GameObject workTip = CharacterLoader.S.GetCharacterWorkTip();
             GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_TIP, workTip, 10, 3);
+
+            GameObject workRewardPop = CharacterLoader.S.GetCharacterWorkRewardPop();
+            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_REWARD_POP, workRewardPop, 20, 5);
         }
         #endregion
 

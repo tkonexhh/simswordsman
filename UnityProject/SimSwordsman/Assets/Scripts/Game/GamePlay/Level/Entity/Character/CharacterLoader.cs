@@ -21,6 +21,9 @@ namespace GameWish.Game
         private AddressableGameObjectLoader m_CharacterWorkTipLoader = null;
         private GameObject m_CharacterWorkTip = null;
 
+        private AddressableGameObjectLoader m_CharacterWorkRewardLoader = null;
+        private GameObject m_CharacterWorkRewardPop = null;
+
         private int m_LoadedCharacterCount = 0;
 
         private bool m_IsLoadDoneSent = false;
@@ -50,6 +53,7 @@ namespace GameWish.Game
             LoadCharacterRewardBubbleAsync();
             LoadCharacterWorkProgressBarAsync();
             LoadCharacterWorkTipAsync();
+            LoadCharacterWorkRewardAsync();
         }
 
         public GameObject GetCharacterRewardBubble()
@@ -65,6 +69,11 @@ namespace GameWish.Game
         public GameObject GetCharacterWorkTip()
         {
             return m_CharacterWorkTip;
+        }
+
+        public GameObject GetCharacterWorkRewardPop()
+        {
+            return m_CharacterWorkRewardPop;
         }
 
         public GameObject GetCharacterGo(int id)
@@ -137,6 +146,19 @@ namespace GameWish.Game
             });
         }
 
+        private void LoadCharacterWorkRewardAsync()
+        {
+            string prefabName = "PopRewardCanvas";
+            m_CharacterWorkRewardLoader = new AddressableGameObjectLoader();
+            m_CharacterWorkRewardLoader.InstantiateAsync(prefabName, (obj) =>
+            {
+                m_CharacterWorkRewardPop = obj;
+                m_CharacterWorkRewardPop.transform.position = new Vector3(-1000, 0, 0);
+
+                SendAssetLoadedMsg();
+            });
+        }
+
         private void LoadCharacterWorkProgressBarAsync()
         {
             string prefabName = "WorkProgressBar";
@@ -154,7 +176,7 @@ namespace GameWish.Game
         {
             return m_LoadedCharacterCount >= m_CharacterList.Count && 
                 m_CharacterTaskRewardBubble != null && m_CharacterWorkProgressBar != null
-                && m_CharacterWorkTip != null;
+                && m_CharacterWorkTip != null && m_CharacterWorkRewardPop != null;
         }
 
         private void SendAssetLoadedMsg()

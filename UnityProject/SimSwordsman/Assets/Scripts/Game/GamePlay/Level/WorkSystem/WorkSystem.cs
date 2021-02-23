@@ -307,6 +307,7 @@ namespace GameWish.Game
         {
             //这里应当有铜钱散落飞到铜钱处的效果
             GameDataMgr.S.GetPlayerData().AddCoinNum(lobbyTable.workPay);
+
             //从奖励列表里移除
             for (int i = m_RewardFacilitys.Count - 1; i >= 0; i--)
             {
