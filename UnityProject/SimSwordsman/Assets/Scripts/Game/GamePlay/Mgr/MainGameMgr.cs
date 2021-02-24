@@ -82,6 +82,7 @@ namespace GameWish.Game
             m_CommonTaskMgr.InitTaskList();
            
             m_IsInited = true;
+            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
         }
 
 

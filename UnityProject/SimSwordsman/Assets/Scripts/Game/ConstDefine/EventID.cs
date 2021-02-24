@@ -83,6 +83,10 @@ namespace GameWish.Game
         /// 刷新仓库升级资源
         /// </summary>
         RefreshWarehouseRes,
+        /// <summary>
+        /// 仓库增加原材料
+        /// </summary>
+        OnAddRawMaterialEvent,
         #endregion
 
 

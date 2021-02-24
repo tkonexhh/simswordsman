@@ -1,3 +1,5 @@
+using Qarth;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,8 +35,14 @@ namespace GameWish.Game
         }
         #endregion
 
+
+        ~FacilityController()
+        {
+            EventSystem.S.UnRegister(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+        }
         public FacilityController(FacilityType facilityType/*, int subId*/, FacilityView view)
         {
+            EventSystem.S.Register(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
             m_FacilityType = facilityType;
             //m_SubId = subId;
 
@@ -44,7 +52,7 @@ namespace GameWish.Game
             FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(m_FacilityType/*, subId*/);
             m_Model = new FacilityModel(this, dbItem);
 
-            SetState(dbItem.facilityState,true);
+            SetState(dbItem.facilityState, true);
 
             if (m_FacilityState == FacilityState.Unlocked)
             {
@@ -52,7 +60,80 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(FacilityState facilityState,bool isFile = false)
+        private void HandleAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnAddRawMaterialEvent:
+                    if (m_FacilityType == FacilityType.BulletinBoard)
+                        break;
+                    CheckUpgradeConditions();
+                    break;
+            }
+        }
+
+        private void CheckUpgradeConditions()
+        {
+            int curLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_FacilityType);
+            FacilityLevelInfo facilityLevelInfo = null;
+            switch (m_FacilityState)
+            {
+                case FacilityState.Locked:
+                    break;
+                case FacilityState.ReadyToUnlock:
+                    facilityLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_FacilityType, curLevel);
+                    break;
+                case FacilityState.Unlocked:
+                    facilityLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_FacilityType, curLevel + 1);
+                    break;
+                default:
+                    break;
+            }
+           
+            List<CostItem> costItems = null;
+
+            if (facilityLevelInfo != null)
+                costItems = facilityLevelInfo.GetUpgradeResCosts();
+            if (facilityLevelInfo == null || costItems == null)
+                return;
+
+            if (CheackIsBuild(facilityLevelInfo, costItems))
+            {
+                m_View.SetTips(true);
+            }
+            else
+            {
+                m_View.SetTips(false);
+            }
+
+        }
+
+        private bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (facilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
+                return false;
+
+            if (CheckPropIsEnough(facilityLevelInfo, costItems))
+                return true;
+            return false;
+        }  
+        private bool CheckPropIsEnough(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
+        {
+
+            for (int i = 0; i < costItems.Count; i++)
+            {
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)costItems[i].itemId, costItems[i].value);
+                if (!isHave)
+                    return false;
+            }
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(facilityLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+                return false;
+        }
+        public void SetState(FacilityState facilityState, bool isFile = false)
         {
             m_FacilityState = facilityState;
 

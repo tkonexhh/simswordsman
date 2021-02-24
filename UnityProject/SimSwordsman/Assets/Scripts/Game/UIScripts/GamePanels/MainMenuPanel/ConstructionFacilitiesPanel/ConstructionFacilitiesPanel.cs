@@ -237,7 +237,6 @@ namespace GameWish.Game
 
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
-
                     OnPanelHideComplete();
                 }
             });

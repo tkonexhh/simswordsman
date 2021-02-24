@@ -210,7 +210,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-
         }
 
         /// <summary>

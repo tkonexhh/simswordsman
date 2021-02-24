@@ -7,6 +7,7 @@ namespace GameWish.Game
 	{
         public FacilityType Type;
         public GameObject BubbleView;
+        public GameObject Tips;
 
         public GameObject WorkSprite;
         public GameObject RewardSprite;

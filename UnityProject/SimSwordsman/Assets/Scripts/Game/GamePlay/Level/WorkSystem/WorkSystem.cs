@@ -47,7 +47,7 @@ namespace GameWish.Game
         List<FacilityType> tempList = new List<FacilityType>();
         int m_MaxCanWorkFacilityLimit = 0;
         string[] tempArray;
- 
+
         public void Init()
         {
             //For Test
@@ -109,13 +109,13 @@ namespace GameWish.Game
 
         //private void OnTick(int key, object[] param)
         //{
-            //Countdowner cd = (Countdowner)param[0];
-            //if (cd.stringID.Contains("FacilityWorking"))
-            //{
+        //Countdowner cd = (Countdowner)param[0];
+        //if (cd.stringID.Contains("FacilityWorking"))
+        //{
 
-            //    var tb = TDCollectConfigTable.dataList[cd.ID];
+        //    var tb = TDCollectConfigTable.dataList[cd.ID];
 
-            //}
+        //}
         //}
 
         private void OnEnd(int key, object[] param)
@@ -190,7 +190,7 @@ namespace GameWish.Game
                 }
             }
         }
-       
+
         /// <summary>
         /// 刷新可以工作的建筑
         /// </summary>
@@ -237,7 +237,7 @@ namespace GameWish.Game
             else
                 return null;
         }
-        
+
         /// <summary>
         /// 该建筑是否可以派遣弟子工作
         /// </summary>
@@ -256,13 +256,12 @@ namespace GameWish.Game
             }
             return true;
         }
-      
+
         void AfterFacilityCD(FacilityType type)
         {
             if (CurrentWorkFacility() < m_MaxCanWorkFacilityLimit)
                 AddCanWorkFacility(type);
         }
-
         void AddCanWorkFacility(FacilityType type)
         {
             if (!m_CanWorkFacilitys.Contains(type))
@@ -272,7 +271,6 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
             }
         }
-
         void AddRewardFacility(FacilityType type, int characterid)
         {
             if (m_CurrentWorkItem.ContainsKey(type))
