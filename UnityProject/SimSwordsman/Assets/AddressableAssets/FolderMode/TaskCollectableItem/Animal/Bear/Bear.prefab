@@ -156,8 +156,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2807960780921782559}
   - component: {fileID: 8218924289355539496}
-  - component: {fileID: 2980200618093463278}
   - component: {fileID: 6217731519807839199}
+  - component: {fileID: 1612714235179949306}
+  - component: {fileID: 8224083756630139035}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -192,24 +193,6 @@ SortingGroup:
   m_SortingLayerID: -1363672637
   m_SortingLayer: 1
   m_SortingOrder: 5
---- !u!114 &2980200618093463278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2807960780921782558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a7120cc81cd804e94c16651bb144d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectedObjType: 3
-  collectPos:
-  - {fileID: 6145662011562168701}
-  - {fileID: 8311317937834856911}
-  - {fileID: 8327050717113885653}
-  - {fileID: 5597027754355393533}
 --- !u!114 &6217731519807839199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +206,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NeedBindAgain: 1
+--- !u!114 &1612714235179949306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2807960780921782558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ddeef67047fe64ab11cd6897e6b676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 
+  battleState: 
+  m_Body: {fileID: 2807960779365564167}
+  m_HeadPos: {fileID: 0}
+--- !u!114 &8224083756630139035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2807960780921782558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 3.5
+  mass: 20
+  stoppingDistance: 0.1
+  slowingDistance: 1
+  accelerationRate: 2
+  decelerationRate: 2
+  lookAheadDistance: 0.41
+  avoidRadius: 0
+  centerOffset: {x: 0, y: 0}
+  rotateTransform: 0
+  rotateSpeed: 350
+  repath: 1
+  restrict: 1
+  closerPointOnInvalid: 1
+  debugPath: 1
 --- !u!1 &4193231437911306634
 GameObject:
   m_ObjectHideFlags: 0

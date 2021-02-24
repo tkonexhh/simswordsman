@@ -158,6 +158,8 @@ GameObject:
   - component: {fileID: 8218924289355539496}
   - component: {fileID: 2980200618093463278}
   - component: {fileID: -7471541687652535139}
+  - component: {fileID: -5826269994310844171}
+  - component: {fileID: -4279937931739428977}
   m_Layer: 0
   m_Name: Boar
   m_TagString: Untagged
@@ -223,6 +225,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NeedBindAgain: 1
+--- !u!114 &-5826269994310844171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2807960780921782558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ddeef67047fe64ab11cd6897e6b676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 
+  battleState: 
+  m_Body: {fileID: 2807960779365564167}
+  m_HeadPos: {fileID: 0}
+--- !u!114 &-4279937931739428977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2807960780921782558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 3.5
+  mass: 20
+  stoppingDistance: 0.1
+  slowingDistance: 1
+  accelerationRate: 2
+  decelerationRate: 2
+  lookAheadDistance: 0.41
+  avoidRadius: 0
+  centerOffset: {x: 0, y: 0}
+  rotateTransform: 0
+  rotateSpeed: 350
+  repath: 1
+  restrict: 1
+  closerPointOnInvalid: 1
+  debugPath: 1
 --- !u!1 &3265721189377542692
 GameObject:
   m_ObjectHideFlags: 0

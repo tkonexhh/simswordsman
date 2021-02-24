@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Wudu2
+  m_EditorClassIdentifier: 
+  m_GroupName: Wudu2
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4b0b370b78c1af147ab4aa25b7e18f77
+  m_SerializeEntries:
+  - m_GUID: 047a51fac0059294496412146bb784f6
+    m_Address: wd_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4900000, guid: 047a51fac0059294496412146bb784f6, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 047a51fac0059294496412146bb784f6, type: 3}
+  - m_GUID: 1909ea9bcd366cd43b9e9d45795d34d2
+    m_Address: wd_2_Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: 1909ea9bcd366cd43b9e9d45795d34d2, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 1909ea9bcd366cd43b9e9d45795d34d2, type: 2}
+  - m_GUID: 2467981c919761049977f22209c78cc4
+    m_Address: wd_2_Material
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2100000, guid: 2467981c919761049977f22209c78cc4, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: 2467981c919761049977f22209c78cc4, type: 2}
+  - m_GUID: 4c5bd2400adbf6c459ff7ce213c588a6
+    m_Address: wd_2.atlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4900000, guid: 4c5bd2400adbf6c459ff7ce213c588a6, type: 3}
+    m_TargetAsset: {fileID: 4900000, guid: 4c5bd2400adbf6c459ff7ce213c588a6, type: 3}
+  - m_GUID: 57a56ce2b60d4474cb6670700cc9d33d
+    m_Address: wd_2_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 11400000, guid: 57a56ce2b60d4474cb6670700cc9d33d, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 57a56ce2b60d4474cb6670700cc9d33d, type: 2}
+  - m_GUID: 7bbd80a5e89fd234382928fcbdeafe0f
+    m_Address: wd_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 7bbd80a5e89fd234382928fcbdeafe0f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7bbd80a5e89fd234382928fcbdeafe0f, type: 3}
+  - m_GUID: e421c86a13ff5a941876f9857c0d98c7
+    m_Address: Wudu2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 3845809598577782914, guid: e421c86a13ff5a941876f9857c0d98c7,
+      type: 3}
+    m_TargetAsset: {fileID: 3845809598577782914, guid: e421c86a13ff5a941876f9857c0d98c7,
+      type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 94bb397e1d2c25149addf16fbcd1a751, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fc37ca5b686862341ac385d796ea2df3, type: 2}
+    - {fileID: 11400000, guid: f6fb8af976569d740aaa7f5e764e5b2d, type: 2}
