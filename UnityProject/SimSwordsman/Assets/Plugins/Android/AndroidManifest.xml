@@ -13,4 +13,5 @@
     </activity>
     <service android:name="com.google.firebase.messaging.MessageForwardingService" android:exported="false" />
   </application>
+  <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>
