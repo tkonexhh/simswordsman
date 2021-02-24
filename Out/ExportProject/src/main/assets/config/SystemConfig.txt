@@ -1,0 +1,12 @@
+﻿ID	系统	系统名称	解锁条件，大厅等级	其他条件
+int	string	string	int	string
+Id	System	SyeName	LobbyLevelRequired	OtherRequirement
+1	SysStudent	弟子	1	
+2	SysInform	公告榜	1	
+3	SysSignin	签到	1	
+4	SysWork	工作	1	
+5	SysCollect	收集	2	
+6	SysChallenge	挑战	3	
+7	SysTower	伏魔塔	5	
+8	SysHeroTrial	试炼	6	
+9	SysMonster	神兽	7	

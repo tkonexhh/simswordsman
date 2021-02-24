@@ -1,0 +1,75 @@
+ManifestFileVersion: 0
+CRC: 241110623
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b4fcf5d8b518f7686281f03acd46a60c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7aafd4c8b51f19e231fad8c649ce19de
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6052a201b765c994bbf0970170d84733, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cdfac9a3f6145c849af546a9570aaeac, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a97511c46d389f74fb1b6b1ca03f0818, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1fc1ec053597c374b9c95b38c24073ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eb00bd69e65e1cd438fca53aef313ea5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d85b887af7e6c3f45a2e2d2920d641bc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 231e1dca0a42706449712fb9e3a9b8ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c7ed44da057ec9540bd68df6f6ba376f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2552145f730217345ae800fd4cf5535d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: db401d7f8817bfa4bbe423754047d52c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b502da131223c2349b4d4140cd9d4f34, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/WorldGuideClickPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/NoMaskClickPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/MyGuidePanelTwoHighlightTarget.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/MaskClickWorldPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/MyGuidePanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/GuideTipstRoot.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/MyGuideTipsPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GuidePanel/GuideMaskPanel.prefab
+Dependencies:
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/shader/guidematerial.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/guidepanel/prefab.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/storypanel.bundle

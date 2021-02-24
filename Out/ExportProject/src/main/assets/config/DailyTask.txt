@@ -1,0 +1,10 @@
+﻿任务ID	讲武堂等级	任务标题	任务描述	任务类型	奖励
+int	int	string	string	string	string
+TaskID	HomeLevel	TaskTitle	TaskDescription	Type	Reward
+30101	1	认真工作	派遣弟子完成任意3次工作。	Daily_Job	Item|2001|1
+30102	1	努力练功	派遣弟子完成1次练功。	Daily_Exercise	Item|3002|1
+30103	1	好好吃饭	在伙房烹饪1次菜品。	Daily_Cook	Item|3001|1
+30104	2	专心抄经	在藏经阁完成1次抄经。	Daily_Copy	Item|3002|1
+30105	2	开心采集	在池塘边完成任意3次采集。	Daily_Collect	Item|3001|1
+30106	3	勇敢挑战	派遣弟子完成1次挑战。	Daily_Chanllenge	Item|3102|1
+30107	3	天天打铁	在锻造屋完成1次装备打造。	Daily_Forge	Item|3101|1

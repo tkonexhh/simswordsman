@@ -1,0 +1,8 @@
+﻿ID	类型	是不是消耗品	价格	购买数量	苹果ID	安卓ID	购买状态	购买图标	购买图标
+string	int	bool	int	int	string	string	string	string	string
+Id	ItemID	IsConsume	Price	ItemNum	IOSKey	AndroidKey	PurchaseState	ItemIcon	ServiceKey
+Package_1001	1	1	64	1	ios.cook.monster.diamondpack1	tuanzi.gift.traveller	idlegame.cook.monster.diamond1	AA	AA
+Package_1002	1	1	160	1	ios.cook.monster.diamondpack2	tuanzi.gift.idea	idlegame.cook.monster.diamond2	AA	AA
+Package_1003	1	1	310	1	ios.cook.monster.diamondpack3	tuanzi.gift.fashion	idlegame.cook.monster.diamond3	AA	AA
+Package_1004	1	1	570	1	ios.cook.monster.diamondpack4	tuanzi.gift.global	idlegame.cook.monster.diamond4	AA	AA
+Package_1005	1	1	570	1	ios.cook.monster.diamondpack5	tuanzi.gift.happymatch	idlegame.cook.monster.diamond5	AA	AA

@@ -1,0 +1,52 @@
+﻿ID	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
+int	int	string	string	string	int	bool
+Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
+10101	1	DialogTrigger1	DialogCommand:StoryPanel_Text_5;MyDelayCommand:2.3;		0	
+10201	2	TakeNameTrigger	TakeNameCommand;MyDelayCommand:0.4;		0	
+10301	3	DialogTrigger2	DialogCommand:StoryPanel_Text_6;MyDelayCommand:0.4;		0	
+10401	4	BuildFacilityTrigger1	GuideClickWorldCommand:#0,-37|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/EastLivableRoom/LivableRoomView1	0	
+10402	4	BuildFacilityPanelTrigger1	NormalTipsCommand:StoryPanel_Text_9,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
+10501	5	DialogTrigger3	DialogCommand:StoryPanel_Text_7;MyDelayCommand:0.4;		0	
+10601	6	ClickLobbyTrigger1	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_10;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/LobbyView	0	
+10602	6	LobbyPanelGetCharacterTrigger1	NormalTipsCommand:StoryPanel_Text_11,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LobbyPanel,Bottom/RecruitmentOrderItem1/RecruitmentBtn	0	1
+10701	7	DialogTrigger4	DialogCommand:StoryPanel_Text_12;MyDelayCommand:0.4;		0	
+10801	8	ClickTaskBtnTrigger1	NormalTipsCommand:StoryPanel_Text_13,22|108,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,BulletinBoardBtn	0	
+10802	8	ClickTaskDetailsTrigger1	NormalTipsCommand:StoryPanel_Text_14,-78|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Top/Right/FuncBtn	0	
+10803	8	SelectCharacterOnTaskBtnTrigger1	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Bottom/MiddleDown/BulletinBoardDisciple(Clone)	0	
+10804	8	SelectCharacterPanelTrigger1	NormalTipsCommand:StoryPanel_Text_38,103|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:BulletinBoardChooseDisciple,Top/Scroll View/Viewport/Cont/ChooseSelectedDisciple0	0	
+10805	8	SelectCharacterSureTrigger1	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:BulletinBoardChooseDisciple,ConfirmBtn	0	
+10806	8	SendCharacterOnTaskTrigger1	NormalTipsCommand:StoryPanel_Text_39,13|79,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Bottom/Down/GoToBtn	0	1
+10901	9	ClickTaskBtnTrigger11	NormalTipsCommand:StoryPanel_Text_13,20|113,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,BulletinBoardBtn	0	
+10902	9	ReceiveTaskRewardBtnTrigger1	NormalTipsCommand:StoryPanel_Text_16,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Top/Right/FuncBtn	0	1
+10903	9	ReceiveTaskRewardTrigger1	NormalTipsCommand:StoryPanel_Text_16,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Bottom/Down/Promptly	0	
+11001	10	DialogTrigger5	DialogCommand:StoryPanel_Text_17,StoryPanel_Text_18;MyDelayCommand:0.4;		0	
+11101	11	BuildFacilityTrigger2	GuideClickWorldCommand:#0,-61|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/EastLivableRoom/LivableRoomView2	0	
+11102	11	BuildFacilityPanelTrigger2	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
+11201	12	DialogTrigger6	DialogCommand:StoryPanel_Text_37;MyDelayCommand:0.4;		0	
+11301	13	ClickLobbyTrigger2	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_10;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/LobbyView	0	
+11302	13	LobbyPanelGetCharacterTrigger2	NormalTipsCommand:StoryPanel_Text_11,-10|109,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LobbyPanel,Bottom/RecruitmentOrderItem2/RecruitmentBtn	0	1
+11401	14	DialogTrigger7	DialogCommand:StoryPanel_Text_20,StoryPanel_Text_21;MyDelayCommand:0.4;		0	
+11501	15	ClickTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_13,22|108,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,BulletinBoardBtn	0	
+11502	15	ClickTaskDetailsTrigger2	NormalTipsCommand:StoryPanel_Text_14,-78|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9002/Top/Right/FuncBtn	0	
+11503	15	SelectCharacterOnTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9002/Bottom/MiddleDown/BulletinBoardDisciple(Clone)	0	
+11504	15	SelectCharacterPanelTrigger2_1	NormalTipsCommand:StoryPanel_Text_38,103|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardChooseDisciple,Top/Scroll View/Viewport/Cont/ChooseSelectedDisciple0	0	
+11505	15	SelectCharacterPanelTrigger2_2	NormalTipsCommand:StoryPanel_Text_38,103|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:BulletinBoardChooseDisciple,Top/Scroll View/Viewport/Cont/ChooseSelectedDisciple1	0	
+11506	15	SelectCharacterSureTrigger2	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:BulletinBoardChooseDisciple,ConfirmBtn	0	
+11507	15	SendCharacterOnTaskTrigger2	NormalTipsCommand:StoryPanel_Text_39,13|79,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9002/Bottom/Down/GoToBtn	0	1
+11601	16	ClickTaskBtnTrigger22	NormalTipsCommand:StoryPanel_Text_13,20|113,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,BulletinBoardBtn	0	
+11602	16	ReceiveTaskRewardBtnTrigger2	NormalTipsCommand:StoryPanel_Text_16,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9002/Top/Right/FuncBtn	0	1
+11603	16	ReceiveTaskRewardTrigger2	NormalTipsCommand:StoryPanel_Text_16,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9002/Bottom/Down/Promptly	0	
+11701	17	KitchenDialogTrigger	DialogCommand:StoryPanel_Text_25,StoryPanel_Text_26;MyDelayCommand:0.4;		0	
+11801	18	BuildFacility_KitchenTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/KitchenView	0	
+11802	18	BuildFacilityPanel_KitchenTrigger	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
+11901	19	DialogTrigger8	DialogCommand:StoryPanel_Text_27,StoryPanel_Text_28;MyDelayCommand:0.4;		0	
+11902	19	SendCharacterWorkTrigger	GuideClickBubbleCommand:#0,38|-8,StoryPanel_Text_29;MyDelayCommand:0.4;	EntityRoot/SimSection/WorkingBubbles/bubble5/workingbubble	0	1
+12001	20	WarehouseDialogTrigger	DialogCommand:StoryPanel_Text_30;MyDelayCommand:0.4;		0	
+12002	20	BuildFacility_WarehouseTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/WarehouseView	0	
+12003	20	BuildFacilityPanel_WarehouseTrigger	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
+12101	21	BuildBaicaohuTrigger	DialogCommand:StoryPanel_Text_31;MyDelayCommand:0.2;		0	
+12201	22	BuildPracticeFieldTrigger	DialogCommand:StoryPanel_Text_32;MyDelayCommand:0.2;		0	
+12301	23	BuildKungfuLibraryTrigger	DialogCommand:StoryPanel_Text_33;MyDelayCommand:0.2;		0	
+12401	24	BuildForgehouseTrigger	DialogCommand:StoryPanel_Text_34;MyDelayCommand:0.2;		0	
+12501	25	FoodBuffTrigger	DialogCommand:StoryPanel_Text_35;MyDelayCommand:0.2;		0	
+12601	26	CollectSystemTrigger	DialogCommand:StoryPanel_Text_36;MyDelayCommand:0.2;		0	
