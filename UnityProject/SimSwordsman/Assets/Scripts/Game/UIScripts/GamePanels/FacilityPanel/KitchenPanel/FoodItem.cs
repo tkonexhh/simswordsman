@@ -162,7 +162,8 @@ namespace GameWish.Game
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
+                    //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
+                    FloatMessage.S.ShowMsg("广告已看完!");
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
                     FoodBuffSystem.S.StartBuff(ID, true);
                 }

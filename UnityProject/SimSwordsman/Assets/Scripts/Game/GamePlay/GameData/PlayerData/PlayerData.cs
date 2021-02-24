@@ -245,7 +245,8 @@ namespace GameWish.Game
             m_CoinNum = m_CoinNum - delta;
             if (m_CoinNum < 0)
             {
-                UIMgr.S.OpenPanel(UIID.LogPanel, "升级提示", "您的金钱不够，升级失败");
+                FloatMessage.S.ShowMsg("您的金钱不够，升级失败");
+                //UIMgr.S.OpenPanel(UIID.LogPanel, "升级提示", "您的金钱不够，升级失败");
                 m_CoinNum += delta;
                 return false;
             }

@@ -86,7 +86,6 @@ namespace GameWish.Game
         private bool IsStartBattle = false;
 
         private const int CostBaozi = 5;
-        private List<Sprite> m_NeedSprites;
         private SimGameTask m_CurTaskInfo;
         private CommonTaskItemInfo m_CommonTaskItemInfo;
         private List<TaskReward> m_ItemReward;
@@ -94,7 +93,7 @@ namespace GameWish.Game
         private Vector2 m_OpenDelta;
         private List<BulletinBoardDisciple> m_BulletinBoardDiscipleList = new List<BulletinBoardDisciple>();
         private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
-
+        private BulletinBoardPanel m_BulletinBoardPanel;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_CurTaskInfo = t as SimGameTask;
@@ -103,7 +102,7 @@ namespace GameWish.Game
             //EventSystem.S.Register(EventID.OnArriveCollectResPos, HandAddListenerEvent);
             EventSystem.S.Register(EventID.OnStowPanelEvent, HandAddListenerEvent);
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
-            m_NeedSprites = (List<Sprite>)obj[0];
+            m_BulletinBoardPanel = (BulletinBoardPanel)obj[0];
             BindAddListenerEvent();
             GetInformationForNeed();
             RefreshFixedInfo();
@@ -179,11 +178,19 @@ namespace GameWish.Game
 
         private Sprite GetSprite(int id)
         {
-            return m_NeedSprites.Where(i => i.name.Equals(GetStrForItemID(id))).FirstOrDefault();
+            if (id==-1)
+            {
+                m_BulletinBoardPanel.FindSprite("Coin");
+            }
+            else if(id==-2)
+            {
+                m_BulletinBoardPanel.FindSprite("Baozi");
+            }
+            return m_BulletinBoardPanel.FindSprite(GetStrForItemID(id));
         }
         private Sprite GetSprite(string name)
         {
-            return m_NeedSprites.Where(i => i.name.Equals(name)).FirstOrDefault();
+            return m_BulletinBoardPanel.FindSprite(name);
         }
         public string GetStrForItemID(int id)
         {

@@ -154,8 +154,8 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
-
+                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
+                FloatMessage.S.ShowMsg("广告已看完!");
                 CountdownSystem.S.Cancel(m_StringID, ID);
 
                 if (ID > 500)

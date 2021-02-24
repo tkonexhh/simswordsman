@@ -237,7 +237,8 @@ namespace GameWish.Game
                 case ClickType.LookAdvertisement:
                     int advertisementCount = MainGameMgr.S.RecruitDisciplerMgr.GetAdvertisementCount(type);
                     if (advertisementCount <= 0)
-                        UIMgr.S.OpenPanel(UIID.LogPanel, "招募标题", "招募次数用尽");
+                        FloatMessage.S.ShowMsg("招募次数用尽");
+                    //UIMgr.S.OpenPanel(UIID.LogPanel, "招募标题", "招募次数用尽");
                     else
                         UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type);
                     //UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.LookAdvertisement);

@@ -29,9 +29,16 @@ namespace GameWish.Game
 
             rewardType = EnumUtil.ConvertStringToEnum<TaskRewardType>(strs[0]);
 
-            if (rewardType== TaskRewardType.Coin || rewardType == TaskRewardType.Coin)
+            if (rewardType== TaskRewardType.Coin || rewardType == TaskRewardType.Food)
             {
-               
+                if (rewardType == TaskRewardType.Coin)
+                {
+                    id = -1;
+                }
+                else
+                {
+                    id = -2;
+                }
                 string[] countStrs = strs[1].Split('_');
                 if (countStrs.Length == 1)
                 {

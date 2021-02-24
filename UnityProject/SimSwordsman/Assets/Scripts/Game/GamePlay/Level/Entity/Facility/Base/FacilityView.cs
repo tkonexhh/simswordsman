@@ -104,12 +104,11 @@ namespace GameWish.Game
             //ReResLoader.Allocate();
 
             ShowRoad(true);
-
+            m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
 
         private void OnDestroy()
         {
-             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
 
         public void RefreshStateObj()
