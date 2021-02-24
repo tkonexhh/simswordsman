@@ -205,6 +205,9 @@ namespace GameWish.Game
 
         public Vector3 GetHeadPos()
         {
+            if (m_HeadPos == null)
+                return transform.position;
+
             return m_HeadPos.transform.position;
         }
 
