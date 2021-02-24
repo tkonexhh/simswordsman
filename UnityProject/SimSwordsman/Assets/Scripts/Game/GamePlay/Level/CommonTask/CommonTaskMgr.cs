@@ -256,10 +256,10 @@ namespace GameWish.Game
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                    if (GameDataMgr.S.GetPlayerData().isGuideStart == false)
-                    {
-                        lobbyLevel = 0;
-                    }
+                    //if (GameDataMgr.S.GetPlayerData().isGuideStart == false)
+                    //{
+                    //    lobbyLevel = 0;
+                    //}
                     List<CommonTaskItemInfo> allCommonTask = TDCommonTaskTable.GetAllCommonTaskByLobbyLevel(lobbyLevel);
                     m_CurTaskList.ForEach(i => 
                     {

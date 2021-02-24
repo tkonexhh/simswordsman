@@ -51,7 +51,7 @@ namespace GameWish.Game
         public void Init()
         {
             //For Test
-            //GameDataMgr.S.GetPlayerData().UnlockWorkSystem = true;
+            GameDataMgr.S.GetPlayerData().UnlockWorkSystem = true;
 
             if (GameDataMgr.S.GetPlayerData().UnlockWorkSystem)
             {

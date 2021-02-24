@@ -28,7 +28,7 @@ namespace GameWish.Game
         private CharacterWorkTip m_WorkTip = null;
 
         public void Init()
-        {
+        {   
             m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();
 
             if (m_Body == null)

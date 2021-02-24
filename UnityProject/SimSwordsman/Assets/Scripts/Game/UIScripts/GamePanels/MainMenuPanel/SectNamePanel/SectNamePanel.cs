@@ -80,11 +80,13 @@ namespace GameWish.Game
 
                 if (IllegalCheckName(m_ClanName.text))
                 {
-                    UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "名称不合法！");
+                    FloatMessage.S.ShowMsg("名称不合法");
+                    //UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "名称不合法！");
                 }
                 else if(m_ClanName.text.Length > 8)
                 {
-                    UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "超过字数限制！");
+                    FloatMessage.S.ShowMsg("超过字数限制");
+                    //UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "提示", "超过字数限制！");
                 }
                 else
                 {
