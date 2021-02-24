@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace GameWish.Game
 {
@@ -29,6 +30,8 @@ namespace GameWish.Game
         private GameObject m_WareHouseIcon = null;
         [SerializeField]
         private GameObject m_WellIcon = null;
+
+        private float m_ExistTime = 1f;
 
         private void Awake()
         {
@@ -135,10 +138,18 @@ namespace GameWish.Game
             return icon;
         }
 
-        WaitForSeconds wait = new WaitForSeconds(2);
+        WaitForSeconds m_Wait = null;
+
         private IEnumerator AutoDestroyCor()
         {
-            yield return wait;
+            if (m_Wait == null)
+            {
+                m_Wait = new WaitForSeconds(m_ExistTime);
+            }
+
+            transform.DOMoveY(2, m_ExistTime).SetRelative();
+
+            yield return m_Wait;
 
             Qarth.GameObjectPoolMgr.S.Recycle(gameObject);
         }

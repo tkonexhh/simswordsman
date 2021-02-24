@@ -50,7 +50,8 @@ namespace GameWish.Game
             if (state == 1)
             {
                 if (!WorkSystem.S.StartWork(Type))
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
+                    FloatMessage.S.ShowMsg("无空闲弟子");
+                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
                 else
                 {
                     state = 0;

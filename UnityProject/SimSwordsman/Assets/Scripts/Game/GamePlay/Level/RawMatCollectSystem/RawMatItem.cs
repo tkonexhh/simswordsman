@@ -76,7 +76,8 @@ namespace GameWish.Game
 
             if (character == null)
             {
-                UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
+                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
+                FloatMessage.S.ShowMsg("无空闲弟子");
             }
         }
 
