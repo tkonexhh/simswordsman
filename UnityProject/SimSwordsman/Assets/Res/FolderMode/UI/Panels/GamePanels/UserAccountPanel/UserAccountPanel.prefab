@@ -488,6 +488,10 @@ MonoBehaviour:
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
+  m_SecNameText: {fileID: 4669480709308343339}
+  m_LobbyLevelText: {fileID: 4669480710760457134}
+  m_DiscipleCountText: {fileID: 4669480709437345575}
+  m_ChallengeProgressText: {fileID: 4669480710733035147}
   m_CloseBtn: {fileID: 4669480710617964821}
   m_LogOutBtn: {fileID: 4669480711081155938}
   m_PrivateBtn: {fileID: 4669480710108327960}
@@ -503,7 +507,7 @@ GameObject:
   - component: {fileID: 4669480709036512679}
   - component: {fileID: 4669480709036512678}
   m_Layer: 5
-  m_Name: LevelText
+  m_Name: LevelTextParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +586,7 @@ GameObject:
   - component: {fileID: 4669480709078352877}
   - component: {fileID: 4669480709078352876}
   m_Layer: 5
-  m_Name: SecNameText
+  m_Name: SecNameTextParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -813,7 +817,7 @@ GameObject:
   - component: {fileID: 4669480709308343336}
   - component: {fileID: 4669480709308343339}
   m_Layer: 5
-  m_Name: SecNameText (1)
+  m_Name: SecNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,7 +978,7 @@ GameObject:
   - component: {fileID: 4669480709437345572}
   - component: {fileID: 4669480709437345575}
   m_Layer: 5
-  m_Name: SecNameText (1)
+  m_Name: DiscipleCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1056,7 @@ GameObject:
   - component: {fileID: 4669480709580472206}
   - component: {fileID: 4669480709580472193}
   m_Layer: 5
-  m_Name: ChallengeProgressText
+  m_Name: ChallengeProgressTextParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1406,7 +1410,7 @@ GameObject:
   - component: {fileID: 4669480710455044380}
   - component: {fileID: 4669480710455044383}
   m_Layer: 5
-  m_Name: DiscipleCountText
+  m_Name: DiscipleCountTextParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1604,7 +1608,7 @@ GameObject:
   - component: {fileID: 4669480710733035144}
   - component: {fileID: 4669480710733035147}
   m_Layer: 5
-  m_Name: SecNameText (1)
+  m_Name: ChallengeProgressText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1682,7 +1686,7 @@ GameObject:
   - component: {fileID: 4669480710760457135}
   - component: {fileID: 4669480710760457134}
   m_Layer: 5
-  m_Name: SecNameText (1)
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

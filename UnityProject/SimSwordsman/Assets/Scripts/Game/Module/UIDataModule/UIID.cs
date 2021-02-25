@@ -70,7 +70,6 @@ namespace GameWish.Game
         
         SectNamePanel,
         VisitorPanel,
-        LogOutConfirmPanel,
         UserAccountPanel,
     }
 }

@@ -129,7 +129,6 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.VisitorPanel, null, "GamePanels/VisitorPanel/VisitorPanel");
 
             UIDataTable.AddPanelData(UIID.UserAccountPanel, null, "GamePanels/UserAccountPanel/UserAccountPanel");
-            UIDataTable.AddPanelData(UIID.LogOutConfirmPanel, null, "GamePanels/LogOutCoifirmPanel/LogOutConfirmPanel");
         }
     }
 }
