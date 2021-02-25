@@ -79,10 +79,20 @@ namespace GameWish.Game
 
             Log.i("Start game play");
 
-            AdsMgr.S.PreloadAllAd();
-            GameplayMgr.S.InitGameplay();
-        }
+            //AdsMgr.S.PreloadAllAd();
+            //GameplayMgr.S.InitGameplay();
 
+            SDKMgr.S.CheckPrivacy(OnGamePrivacyChecked);
+        }
+        void OnGamePrivacyChecked(int key, params object[] args)
+        {
+            GameplayMgr.S.InitGameplay();
+
+            //GetCom<GuideModule>().StartGuide();
+
+            // 实名制调用封装至SDKMgr，调用该方法即可初始化
+            SDKMgr.S.RequestRealNameSys("http://remoteconf.freeqingnovel.com", "D415");
+        }
         public void StartGuide()
         {
             GetCom<GuideModule>().StartGuide();
