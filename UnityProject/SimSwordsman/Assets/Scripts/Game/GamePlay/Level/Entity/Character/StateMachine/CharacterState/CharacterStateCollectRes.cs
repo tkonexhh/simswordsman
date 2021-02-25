@@ -138,10 +138,10 @@ namespace GameWish.Game
                     m_Time = 0f;
                     m_IsCollectResEnd = true;
 
-                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
-    
                     ClaimReward();
 
+                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
+    
                     GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
 
                     m_Controller.ReleaseWorkProgressBar();

@@ -51,11 +51,6 @@ namespace GameWish.Game
             {
                 float percent = Mathf.Clamp01(countDowner.GetProgress());
                 m_Controller.SetWorkProgressPercent(percent);
-
-                if (percent >= 1)
-                {
-
-                }
             }
         }
 
@@ -106,8 +101,13 @@ namespace GameWish.Game
         {
             WorkSystem.S.GetReward(type);
 
-            int count = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()).workPay; 
+            LobbyLevelInfo lobbyLevelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+
+            int count = lobbyLevelInfo.workPay; 
             m_Controller.SpawnFacilityWorkRewardPop(type, count);
+
+            //Add exp
+            m_Controller.AddExp(lobbyLevelInfo.workExp);
         }
     }
 }
