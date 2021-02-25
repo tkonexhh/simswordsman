@@ -238,6 +238,8 @@ namespace GameWish.Game
             }
             m_ClanData.AddPropItem(propItem, delta);
 
+
+            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
             if (propItem.PropSubType == RawMaterial.SilverToken || propItem.PropSubType == RawMaterial.GoldenToken)
                 EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
             else

@@ -72,7 +72,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_NextPeopleValue;
         [SerializeField]
-        private GameObject m_UpperMiddle;
+        private GameObject m_UpperMiddle; 
+        [SerializeField]
+        private GameObject m_RedPoint;
 
         private LivableRoomLevelInfo m_CurLivableRoomLevelInfo = null;
         private LivableRoomLevelInfo m_NextLivableRoomLevelInfo = null;
@@ -84,13 +86,13 @@ namespace GameWish.Game
         private List<CostItem> m_NextCostItems;
         private List<CostItem> m_CurCostItems;
 
-        private AbstractAnimPanel m_panel;
+        private AbstractAnimPanel m_ParentPanel;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             EventSystem.S.Register(EventID.OnUpgradeRefreshEvent,HandAddListenerEvent);
 
             BindAddListenerEvent();
-            m_panel = t as AbstractAnimPanel;
+            m_ParentPanel = t as AbstractAnimPanel;
             m_CurFacilityType = (FacilityType)obj[0];
             GetInformationForNeed();
             RefreshPanelText();
@@ -116,7 +118,7 @@ namespace GameWish.Game
 
         private Sprite FindSprite(string name)
         {
-            return m_panel.FindSprite(name);
+            return m_ParentPanel.FindSprite(name);
         }
 
         private void BindAddListenerEvent()
@@ -237,6 +239,11 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
+            if (CheackIsBuild(false))
+                m_RedPoint.SetActive(true);
+            else
+                m_RedPoint.SetActive(false);
+
             switch (m_LivableRoomState)
             {
                 case LivableRoomState.ReadyBuilt:
@@ -263,7 +270,7 @@ namespace GameWish.Game
                         m_UpgradeBtnImg.sprite = FindSprite("LivableRoomPanel_BgBtn1");
                         m_UpgradeBtn.interactable = true;
 
-                        m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
+                        m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);
                         m_LivableRoomImg.gameObject.SetActive(true);
                         m_LivableRoomImgLock.gameObject.SetActive(false);
                     }
@@ -281,7 +288,7 @@ namespace GameWish.Game
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
                     m_UpgradeBtnImg.sprite= FindSprite("LivableRoomPanel_BgBtn2");
 
-                    m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
+                    m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);
                     m_LivableRoomImg.gameObject.SetActive(true);
                     m_LivableRoomImgLock.gameObject.SetActive(false);
                     break;
@@ -296,7 +303,7 @@ namespace GameWish.Game
                     m_Res1Img.gameObject.SetActive(false);
                     m_Res2Img.gameObject.SetActive(false);
 
-                    m_LivableRoomImg.sprite = m_panel.FindSprite("LivableRoom" + m_CurLevel);
+                    m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);
                     m_LivableRoomImg.gameObject.SetActive(true);
                     m_LivableRoomImgLock.gameObject.SetActive(false);
                     break;
@@ -308,32 +315,34 @@ namespace GameWish.Game
 
         private void RefreshResInfo(LivableRoomLevelInfo livableRoomLevel, List<CostItem> costItems)
         {
-            if (costItems == null)
-                return;
+            CommonUIMethod.RefreshUpgradeResInfo(costItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, livableRoomLevel, m_ParentPanel);
 
-            if (costItems.Count == 1)
-            {
-                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
-                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
-                m_Res1Img.sprite = FindSprite(GetIconName(costItems[0].itemId));
-                m_Res2Value.text = GetCurCoin(livableRoomLevel) + Define.SLASH + CommonUIMethod.GetTenThousand(livableRoomLevel.upgradeCoinCost);
-                m_Res2Img.sprite = FindSprite("Coin");
-                m_Res3Img.gameObject.SetActive(false);
-            }
-            else if (costItems.Count == 2)
-            {
-                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
-                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[1].itemId);
-                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
-                m_Res1Img.sprite = FindSprite(GetIconName(costItems[0].itemId));
-                m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, costItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[1].value);
-                m_Res2Img.sprite = FindSprite(GetIconName(costItems[1].itemId));
-                m_Res3Value.text = GetCurCoin(livableRoomLevel) + Define.SLASH + CommonUIMethod.GetTenThousand(livableRoomLevel.upgradeCoinCost);
-                m_Res3Img.sprite = FindSprite("Coin");
-                m_Res3Img.gameObject.SetActive(true);
-            }
+            //if (costItems == null)
+            //    return;
+
+            //if (costItems.Count == 1)
+            //{
+            //    int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
+            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
+            //    m_Res1Img.sprite = FindSprite(GetIconName(costItems[0].itemId));
+            //    m_Res2Value.text = GetCurCoin(livableRoomLevel) + Define.SLASH + CommonUIMethod.GetTenThousand(livableRoomLevel.upgradeCoinCost);
+            //    m_Res2Img.sprite = FindSprite("Coin");
+            //    m_Res3Img.gameObject.SetActive(false);
+            //}
+            //else if (costItems.Count == 2)
+            //{
+            //    int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
+            //    int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[1].itemId);
+            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
+            //    m_Res1Img.sprite = FindSprite(GetIconName(costItems[0].itemId));
+            //    m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, costItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[1].value);
+            //    m_Res2Img.sprite = FindSprite(GetIconName(costItems[1].itemId));
+            //    m_Res3Value.text = GetCurCoin(livableRoomLevel) + Define.SLASH + CommonUIMethod.GetTenThousand(livableRoomLevel.upgradeCoinCost);
+            //    m_Res3Img.sprite = FindSprite("Coin");
+            //    m_Res3Img.gameObject.SetActive(true);
+            //}
         }
-         private int GetCurItem(int hava, int number)
+        private int GetCurItem(int hava, int number)
         {
             if (hava >= number)
                 return number;

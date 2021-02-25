@@ -6,7 +6,7 @@ using System;
 namespace GameWish.Game
 {
 	public class CountdownSystem : TSingleton<CountdownSystem>
-	{
+    {
         List<Countdowner> m_AllCDs = new List<Countdowner>();
 
         public void Init()

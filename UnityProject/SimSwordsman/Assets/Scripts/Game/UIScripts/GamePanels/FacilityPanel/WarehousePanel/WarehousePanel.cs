@@ -45,7 +45,8 @@ namespace GameWish.Game
         private Button m_UpgradeBtn;
         [SerializeField]
         private Text m_UpgradeText;
-
+        [SerializeField]
+        private GameObject m_RedPoint;
         [Header("Bottom")]
 
         [SerializeField]
@@ -111,6 +112,11 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
+            if (CheackIsBuild(false))
+                m_RedPoint.SetActive(true);
+            else
+                m_RedPoint.SetActive(false);
+
             m_BriefIntroduction.text = m_FacilityConfigInfo.desc;
             m_WarehouseLevel.text = CommonUIMethod.GetGrade(m_WarehouseCurLevelInfo.level);
             m_CurReservesValue.text = "当前储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
@@ -121,27 +127,29 @@ namespace GameWish.Game
             RefreshResInfo();
         }
 
-        private bool CheackIsBuild()
+        private bool CheackIsBuild(bool floatMessage = true)
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
             if (m_WarehouseNextLevelInfo.GetUpgradeCondition() > lobbyLevel)
             {
-                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                if (floatMessage)
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
                 return false;
             }
 
-            if (CheckPropIsEnough())
+            if (CheckPropIsEnough(floatMessage))
                 return true;
             return false;
         }
-        private bool CheckPropIsEnough()
+        private bool CheckPropIsEnough(bool floatMessage = true)
         {
             for (int i = 0; i < m_CostItems.Count; i++)
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
                 {
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
+                    if (floatMessage)
+                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
                 }
             }
@@ -150,37 +158,39 @@ namespace GameWish.Game
                 return true;
             else
             {
-                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                if (floatMessage)
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
                 return false;
             }
         }
 
         private void RefreshResInfo()
         {
-            if (m_CostItems == null)
-                return;
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_WarehouseNextLevelInfo, this);
+            //if (m_CostItems == null)
+            //    return;
 
-            if (m_CostItems.Count == 1)
-            {
-                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
-                m_Res2Img.sprite = FindSprite("Coin");
-                m_Res3Img.gameObject.SetActive(false);
-            }
-            else if (m_CostItems.Count == 2)
-            {
-                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
-                m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-                m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
-                m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-                m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
-                m_Res3Img.sprite = FindSprite("Coin");
-                m_Res3Img.gameObject.SetActive(true);
-            }
+            //if (m_CostItems.Count == 1)
+            //{
+            //    int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
+            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+            //    m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
+            //    m_Res2Img.sprite = FindSprite("Coin");
+            //    m_Res3Img.gameObject.SetActive(false);
+            //}
+            //else if (m_CostItems.Count == 2)
+            //{
+            //    int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
+            //    int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
+            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
+            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
+            //    m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
+            //    m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
+            //    m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
+            //    m_Res3Img.sprite = FindSprite("Coin");
+            //    m_Res3Img.gameObject.SetActive(true);
+            //}
         }
         private int GetCurItem(int hava, int number)
         {

@@ -146,7 +146,7 @@ namespace GameWish.Game
                     {
                         MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
                         MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
-                        PlayerPrefs.SetInt("test", 1);
+                        PlayerPrefs.SetInt("test", 1);  
                     }
 
 #endif

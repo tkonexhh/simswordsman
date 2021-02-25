@@ -19,15 +19,15 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ConstructionConditionValue;
         [SerializeField]
-        private Image m_Res1;
+        private Image m_Res1Img;
         [SerializeField]
         private Text m_Res1Value;
         [SerializeField]
-        private Image m_Res2;
+        private Image m_Res2Img;
         [SerializeField]
         private Text m_Res2Value;
         [SerializeField]
-        private Image m_Res3;
+        private Image m_Res3Img;
         [SerializeField]
         private Text m_Res3Value;
 
@@ -38,7 +38,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
-        private Button m_CloseBtn;
+        private Button m_CloseBtn;   
+        [SerializeField]
+        private GameObject m_RedPoint;
 
         private FacilityType m_FacilityType;
         private int m_SubId;
@@ -57,7 +59,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
             if (args.Length < 2)
             {
                 Log.e("Construct facility panel, args pattern wrong");
@@ -74,7 +76,6 @@ namespace GameWish.Game
             m_SubId = (int)args[1];
             RefreshPanelInfo();
 
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         private void RefreshPanelInfo()
@@ -89,6 +90,10 @@ namespace GameWish.Game
             // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
             //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
             RefreshResInfo();
+            if (CheackIsBuild(false))
+                m_RedPoint.SetActive(true);
+            else
+                m_RedPoint.SetActive(false);
         }
 
         Sprite GetTitleSprite(FacilityType type)
@@ -170,43 +175,11 @@ namespace GameWish.Game
             }
             return FindSprite(spritename);
         }
-
+   
         private void RefreshResInfo()
         {
-            if (m_CostItems.Count == 0)
-            {
-                m_Res1.gameObject.SetActive(false);
-                m_Res2.gameObject.SetActive(false);
-                m_Res3.gameObject.SetActive(false);
-            }
-            else if (m_CostItems.Count == 1)
-            {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
-                m_Res2.sprite = FindSprite("Coin");
-                m_Res1.gameObject.SetActive(true);
-                m_Res2.gameObject.SetActive(true);
-                m_Res3.gameObject.SetActive(false);
-            }
-            else if (m_CostItems.Count == 2)
-            {
-                m_Res1Value.text = m_CostItems[0].value.ToString();
-                m_Res1.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-                m_Res2Value.text = m_CostItems[1].value.ToString();
-                m_Res2.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-                m_Res3Value.text = m_FacilityLevelInfo.upgradeCoinCost.ToString();
-                m_Res3.sprite = FindSprite("Coin");
-                m_Res1.gameObject.SetActive(true);
-                m_Res2.gameObject.SetActive(true);
-                m_Res3.gameObject.SetActive(true);
-            }
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_FacilityLevelInfo,this);
         }
-        private string GetIconName(int id)
-        {
-            return MainGameMgr.S.InventoryMgr.GetIconName(id);
-        }
-
         private void BindAddListenerEvent()
         {
 
@@ -237,33 +210,34 @@ namespace GameWish.Game
 
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
-
-                    OnPanelHideComplete();
+                    HideSelfWithAnim();
                 }
             });
         }
-        private bool CheackIsBuild()
+        private bool CheackIsBuild(bool floatMessage = true)
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
             if (m_FacilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
             {
-                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                if (floatMessage)
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
                 return false;
             }
 
-            if (CheckPropIsEnough())
+            if (CheckPropIsEnough(floatMessage))
                 return true;
             return false;
         }
 
-        private bool CheckPropIsEnough()
+        private bool CheckPropIsEnough(bool floatMessage = true)
         {
             for (int i = 0; i < m_CostItems.Count; i++)
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
                 if (!isHave)
                 {
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
+                    if (floatMessage)
+                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return false;
                 }
             }
@@ -272,7 +246,8 @@ namespace GameWish.Game
                 return true;
             else
             {
-                FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                if (floatMessage)
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
                 return false;
             }
         }
