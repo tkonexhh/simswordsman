@@ -90,7 +90,6 @@ namespace GameWish.Game
                         return;
                     }
                 }
-                
                 else
                 {
                     if (m_SelectedDiscipleDic.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
@@ -198,14 +197,17 @@ namespace GameWish.Game
                 //if ( m_AllDiscipleList[i].IsFreeState())
             }
 
-            for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
-                CreateSelectedDisciple();
+            
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+                        CreateSelectedDisciple();
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
+                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                        CreateSelectedDisciple();
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
                     RefreshDisicipleSkill();
                     break;

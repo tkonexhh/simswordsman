@@ -75,9 +75,8 @@ namespace GameWish.Game
                 case EventID.OnSendWorkingBubbleFacility:
                     if ((bool)param[1] && !m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
                         m_HavaWorkingBubbleFacility.Add((FacilityType)param[0]);
-                    else
-                        if (m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
-                             m_HavaWorkingBubbleFacility.Remove((FacilityType)param[0]);
+                    else if (!(bool)param[1] && m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
+                        m_HavaWorkingBubbleFacility.Remove((FacilityType)param[0]);
                     break;
             }
         }

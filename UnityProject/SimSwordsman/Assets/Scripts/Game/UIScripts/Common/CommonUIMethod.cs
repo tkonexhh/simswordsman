@@ -80,7 +80,7 @@ namespace GameWish.Game
             if (res1Hava)
                 text.color = Color.black;
             else
-                text.color = Color.red;
+                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
         }
         public static void RefreshUpgradeResInfo(List<CostItem> costItems,Text res1Value,Image res1Image, Text res2Value, Image res2Image, Text res3Value, Image res3Image
             , FacilityLevelInfo facilityLevelInfo,AbstractAnimPanel abstractAnim)
@@ -93,7 +93,7 @@ namespace GameWish.Game
                 res2Image.gameObject.SetActive(false);
                 res3Image.gameObject.SetActive(false);
             }
-            else if (costItems.Count == 1)
+            else if (costItems.Count == 1)  
             {
                
                 CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
@@ -154,7 +154,7 @@ namespace GameWish.Game
             //facilityLevelInfo.upgradeCoinCost
             long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coinNum < facilityLevelInfo.upgradeCoinCost)
-                text.color = Color.red;
+                text.color = new Color(0.5647f, 0.2431f, 0.2666f,1);
             else
                 text.color = Color.black;
         }
