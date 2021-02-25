@@ -77,6 +77,7 @@ namespace GameWish.Game
                 TDClanConfigTable.metaData,
 
                 TDWorkTable.metaData,
+                TDSystemConfigTable.metaData,
 
                 TDSectNameTable.metaData,
                 TDDailySigninTable.metaData,

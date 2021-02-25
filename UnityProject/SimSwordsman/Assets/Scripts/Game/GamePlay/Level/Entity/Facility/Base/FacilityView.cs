@@ -14,6 +14,9 @@ namespace GameWish.Game
         public GameObject navObstacleObj = null;
         public GameObject roadObj = null;
         public GameObject door = null;
+        public GameObject tips;
+        public Transform pos1;
+        public Transform pos2;
 
         [SerializeField]
         protected FacilityType facilityType;
@@ -25,6 +28,28 @@ namespace GameWish.Game
 
         public void Init()
         {
+        }
+
+        public void SetTips(bool active)
+        {
+            switch (m_Controller.GetState())
+            {
+                case FacilityState.Locked:
+                    active = false;
+                    break;
+                case FacilityState.ReadyToUnlock:
+
+                    tips.transform.position = pos1.position;
+                    break;
+                case FacilityState.Unlocked:
+                    tips.transform.position = pos2.position;
+                    break;
+                default:
+                    break;
+            }
+            if (facilityType == FacilityType.Lobby && m_Controller.GetState() == FacilityState.ReadyToUnlock)
+                return;
+            tips.transform.parent.gameObject.SetActive(active);
         }
 
         public virtual void OnClicked()
@@ -46,7 +71,7 @@ namespace GameWish.Game
 
         protected virtual void OpenUIElement()
         {
-            
+
         }
 
         public virtual FacilityController GenerateContoller()
@@ -86,6 +111,9 @@ namespace GameWish.Game
                         StartCoroutine(PlayParticleEffects(0));
                         return;
                     }
+
+
+                    SetTips(false);
                     m_ResLoader = ResLoader.Allocate();
                     m_ParticleEffects = Instantiate(m_ResLoader.LoadSync("BuildSmokeHammer")) as GameObject;
                     m_ParticleEffects.transform.position = transform.position;
@@ -104,6 +132,7 @@ namespace GameWish.Game
             //ReResLoader.Allocate();
 
             ShowRoad(true);
+            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
 

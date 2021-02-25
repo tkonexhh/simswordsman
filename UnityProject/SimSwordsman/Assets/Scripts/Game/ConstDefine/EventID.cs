@@ -83,8 +83,18 @@ namespace GameWish.Game
         /// 刷新仓库升级资源
         /// </summary>
         RefreshWarehouseRes,
+        /// <summary>
+        /// 仓库增加原材料
+        /// </summary>
+        OnAddRawMaterialEvent,
         #endregion
 
+        #region
+        /// <summary>
+        /// 发送头上有工作气泡的设施
+        /// </summary>
+        OnSendWorkingBubbleFacility,
+        #endregion
 
         //KungfuLibrary
         /// <summary>

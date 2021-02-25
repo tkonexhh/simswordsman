@@ -116,8 +116,13 @@ namespace GameWish.Game
             });
             m_ChallengeBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                int needLobbyLevel = TDSystemConfigTable.GetLobbyLevelRequired( GameFunctionSystem.SysChallenge);
 
-                UIMgr.S.OpenPanel(UIID.ChallengePanel); 
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                if (lobbyLevel >= needLobbyLevel)
+                    UIMgr.S.OpenPanel(UIID.ChallengePanel);
+                else
+                    FloatMessage.S.ShowMsg("讲武堂"+ needLobbyLevel + "级后可解锁");
             });
             m_VoldemortTowerBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);

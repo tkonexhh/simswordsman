@@ -372,6 +372,7 @@ namespace GameWish.Game
                     int subId = (int)param[1];
                     int deltaLevel = (int)param[2];
                     UpgradeFacility(facilityType, subId, deltaLevel);
+                    EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
                     break;
                 case (int)EventID.OnStartUnlockFacility:
                     FacilityType facilityType2 = (FacilityType)param[0];

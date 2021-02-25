@@ -7,6 +7,7 @@ namespace GameWish.Game
 	{
         public FacilityType Type;
         public GameObject BubbleView;
+        public GameObject Tips;
 
         public GameObject WorkSprite;
         public GameObject RewardSprite;
@@ -30,6 +31,8 @@ namespace GameWish.Game
                 BubbleView.SetActive(true);
                 WorkSprite.SetActive(true);
                 RewardSprite.SetActive(false);
+
+                EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
             }
         }
 
@@ -56,6 +59,8 @@ namespace GameWish.Game
                 {
                     state = 0;
                     BubbleView.SetActive(false);
+                    EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, false);
+                    EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
                 }
             }
             else if(state == 2)
