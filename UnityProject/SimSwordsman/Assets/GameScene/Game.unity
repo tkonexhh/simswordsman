@@ -1985,12 +1985,12 @@ PrefabInstance:
     - target: {fileID: 2476930429072305962, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2476930429279683885, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2476930430629197249, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
@@ -13975,7 +13975,7 @@ PrefabInstance:
     - target: {fileID: 1007278238036685576, guid: 99d8c5441546c27459193605b0c8492e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1007278238806347201, guid: 99d8c5441546c27459193605b0c8492e,
         type: 3}
@@ -14036,6 +14036,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ForgeHouseView
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007278238829896952, guid: 99d8c5441546c27459193605b0c8492e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4822655848610896069, guid: 99d8c5441546c27459193605b0c8492e,
         type: 3}
@@ -14222,12 +14227,12 @@ PrefabInstance:
     - target: {fileID: 2476930429072305962, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2476930429279683885, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2476930430629197249, guid: 2989018c4e2ccdc4fb391d27aecf1e5c,
         type: 3}
@@ -14339,7 +14344,7 @@ PrefabInstance:
     - target: {fileID: 2583151395291202259, guid: 371df6c134549794f8f83f090715456e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3280147034588986658, guid: 371df6c134549794f8f83f090715456e,
         type: 3}
@@ -14400,6 +14405,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374614444573205939, guid: 371df6c134549794f8f83f090715456e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 371df6c134549794f8f83f090715456e, type: 3}
@@ -14901,7 +14911,7 @@ PrefabInstance:
     - target: {fileID: 5593280618330261452, guid: 5b1de0bd037dd5845ad42a7599bb7c63,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5593280619801713577, guid: 5b1de0bd037dd5845ad42a7599bb7c63,
         type: 3}
@@ -14981,7 +14991,7 @@ PrefabInstance:
     - target: {fileID: 5593280619962187767, guid: 5b1de0bd037dd5845ad42a7599bb7c63,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b1de0bd037dd5845ad42a7599bb7c63, type: 3}
