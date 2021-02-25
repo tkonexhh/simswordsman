@@ -5,12 +5,19 @@ using Qarth;
 using UnityEngine.UI;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace GameWish.Game
 {
 	public class UserAccountPanel : AbstractAnimPanel
 	{
-		[SerializeField]
+        [SerializeField]
+        private Text m_LobbyLevelText;
+        [SerializeField]
+        private Text m_DiscipleCountText;
+        [SerializeField]
+        private Text m_ChallengeProgressText;
+        [SerializeField]
 		private Button m_CloseBtn;
 		[SerializeField]
 		private Button m_LogOutBtn;
@@ -29,6 +36,7 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
+            UpdateUseAccountInfo();
         }
         protected override void OnPanelHideComplete()
         {
@@ -36,6 +44,24 @@ namespace GameWish.Game
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
         }
+        private void UpdateUseAccountInfo() 
+        {
+            m_LobbyLevelText.text = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel().ToString();
+
+            int discipleCount = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
+            m_DiscipleCountText.text = discipleCount.ToString();
+
+            ChapterMgr chapterMgr = MainGameMgr.S.ChapterMgr;
+            List<ChapterConfigInfo> chapterInfoList = MainGameMgr.S.ChapterMgr.GetAllChapterInfo().Where(x => chapterMgr.JudgeChapterIsUnlock(x.chapterId)).ToList();            
+            int chapterLevel = chapterInfoList.Count;
+            int chapterProgressLevel = 1;
+            ChapterConfigInfo lastChapterInfo = chapterInfoList.Last();
+            if (lastChapterInfo != null) {
+                chapterProgressLevel = chapterMgr.GetLevelProgressNumber(lastChapterInfo.chapterId) + 1;
+            }
+            m_ChallengeProgressText.text = string.Format("{0}-{1}", chapterLevel, chapterProgressLevel);
+        }
+
         private void OnPrivateBtnClickCallBack()
         {
             //https://privacy-policy.modooplay.com/ratel.best.sect/user_agreement.html
