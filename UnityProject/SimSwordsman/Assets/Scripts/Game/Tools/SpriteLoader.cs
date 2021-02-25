@@ -9,7 +9,7 @@ namespace GameWish.Game
     //可以优化 缓存加载的图片 索引获取资源
     public class SpriteLoader : TSingleton<SpriteLoader> 
     {
-        private ResLoader m_UILoader;
+        private ResLoader m_SpriteLoader;
 
         public override void OnSingletonInit()
         {
@@ -18,13 +18,12 @@ namespace GameWish.Game
 
         public Sprite GetSpriteByName(string newSpriteName)
         {
-            if (m_UILoader == null)
+            if (m_SpriteLoader == null)
             {
-                m_UILoader = ResLoader.Allocate("UI_UpgradePreviewLoader");
-                Debug.Log("loaded init upgrade panel");
+                m_SpriteLoader = ResLoader.Allocate("SpriteLoader");
             }
 
-            UnityEngine.Object obj = m_UILoader.LoadSync(newSpriteName);
+            UnityEngine.Object obj = m_SpriteLoader.LoadSync(newSpriteName);
             Texture2D text = obj as Texture2D;
             Sprite sprite = null;
 
@@ -39,6 +38,11 @@ namespace GameWish.Game
             //m_UILoader.Recycle2Cache();
 
             return sprite;
+        }
+
+        public void ReleaseRes(string spriteName)
+        {
+            m_SpriteLoader.ReleaseRes(spriteName);
         }
 
         public void ResetImageSprite(string newSpriteName, Image image)

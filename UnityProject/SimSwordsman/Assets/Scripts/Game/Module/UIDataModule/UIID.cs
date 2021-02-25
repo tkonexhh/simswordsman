@@ -70,5 +70,6 @@ namespace GameWish.Game
         
         SectNamePanel,
         VisitorPanel,
+        UserAccountPanel,
     }
 }

@@ -32,6 +32,9 @@ namespace GameWish.Game
         public const string RATE_RECORD = "rate";
 
 
+        //log out 
+        public const string LogoutKey = "m_LogoutKey";
+
 
         public const string AD_PLACEMENT_INTER = "";
         public const string SLASH = "/";
