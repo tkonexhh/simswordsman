@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -10,6 +11,9 @@ namespace GameWish.Game
 	{
         [SerializeField]
         private Text m_RewardNumText = null;
+        [SerializeField]
+        private Image m_RewardIcon = null;
+
         [SerializeField]
         private GameObject m_BaicohuIcon = null;
         [SerializeField]
@@ -33,9 +37,23 @@ namespace GameWish.Game
 
         private float m_ExistTime = 1f;
 
+        private ResLoader m_ResLoader = null;
+
+        private string m_IconResName;
+
         private void Awake()
         {
             HidelAll();
+
+            if (m_ResLoader == null)
+            {
+                m_ResLoader = ResLoader.Allocate("WorkRewardPopResLoader");
+            }
+        }
+
+        private void OnDisable()
+        {
+            m_ResLoader.ReleaseRes(m_IconResName);
         }
 
         private void HidelAll()
@@ -55,12 +73,14 @@ namespace GameWish.Game
 
         public void OnGetFacilityWorkReward(FacilityType facilityType, int count)
         {
-            GameObject go = GetIconByFacilityType(facilityType);
-            if (go != null)
-            {
-                go.SetActive(true);
-            }
-
+            m_IconResName = "rewardcoin";
+            //GameObject go = GetIconByFacilityType(facilityType);
+            //if (go != null)
+            //{
+            //    go.SetActive(true);
+            //}
+            Sprite sprite = SpriteLoader.S.GetSpriteByName(m_IconResName);
+            m_RewardIcon.sprite = sprite;
             m_RewardNumText.text = "+" + count.ToString();
 
             StartCoroutine(AutoDestroyCor());
@@ -68,12 +88,14 @@ namespace GameWish.Game
 
         public void OnGetCollectObjWorkReward(RawMaterial collectedObjType, int count)
         {
-            GameObject go = GetIconByCollectedObjType( CollectedObjType.Iron);
-            if (go != null)
-            {
-                go.SetActive(true);
-            }
-
+            m_IconResName = TDItemConfigTable.GetIconName((int)collectedObjType);
+            //GameObject go = GetIconByCollectedObjType( CollectedObjType.Iron);
+            //if (go != null)
+            //{
+            //    go.SetActive(true);
+            //}
+            Sprite sprite = SpriteLoader.S.GetSpriteByName(m_IconResName);
+            m_RewardIcon.sprite = sprite;
             m_RewardNumText.text = "+" + count.ToString();
 
             StartCoroutine(AutoDestroyCor());
