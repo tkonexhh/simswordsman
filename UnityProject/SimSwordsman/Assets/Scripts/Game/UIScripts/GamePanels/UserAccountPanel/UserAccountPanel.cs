@@ -45,9 +45,36 @@ namespace GameWish.Game
 
         private void OnLogOutBtnClickCallBack()
         {
-            UIMgr.S.OpenTopPanel(UIID.LogOutConfirmPanel, null);
+            UIMgr.S.OpenTopPanel(UIID.LogPanel, LogPanelCallBack,"注销","确认要注销吗？","确认","取消");
 
             HideSelfWithAnim();
+        }
+
+        private void LogPanelCallBack(AbstractPanel obj)
+        {
+            LogPanel logPanel = obj as LogPanel;
+            if (logPanel != null) 
+            {
+                logPanel.OnSuccessBtnEvent = LogOut;
+            }
+        }
+
+        private void LogOut() {
+            PlayerPrefs.DeleteAll();
+
+            string path = GameDataHandler.s_path;
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            PlayerPrefs.SetInt(Define.LogoutKey, 1);
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         private void OnCloseBtnClickCallBack()
