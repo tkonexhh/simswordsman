@@ -12,6 +12,8 @@ namespace GameWish.Game
 	public class UserAccountPanel : AbstractAnimPanel
 	{
         [SerializeField]
+        private Text m_SecNameText;
+        [SerializeField]
         private Text m_LobbyLevelText;
         [SerializeField]
         private Text m_DiscipleCountText;
@@ -46,6 +48,8 @@ namespace GameWish.Game
         }
         private void UpdateUseAccountInfo() 
         {
+            m_SecNameText.text = GameDataMgr.S.GetClanData().GetClanName();
+
             m_LobbyLevelText.text = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel().ToString();
 
             int discipleCount = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
