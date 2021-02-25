@@ -108,21 +108,24 @@ namespace GameWish.Game
 
                     if (facilityType == FacilityType.Lobby || (int)facilityType == 20)
                     {
-                        StartCoroutine(PlayParticleEffects(0));
+                        StartCoroutine(PlayConsParticleEffects(0));
                         return;
                     }
-
-
                     SetTips(false);
                     m_ResLoader = ResLoader.Allocate();
                     m_ParticleEffects = Instantiate(m_ResLoader.LoadSync("BuildSmokeHammer")) as GameObject;
                     m_ParticleEffects.transform.position = transform.position;
-                    StartCoroutine(PlayParticleEffects(PlayParticleEffectsTime));
+                    StartCoroutine(PlayConsParticleEffects(PlayParticleEffectsTime));
                     break;
             }
         }
 
-        private IEnumerator PlayParticleEffects(int second)
+        private void CreatesSpecialEffects()
+        {
+            
+        }
+
+        private IEnumerator PlayConsParticleEffects(int second)
         {
             yield return new WaitForSeconds(second);
             DestroyImmediate(m_ParticleEffects);
@@ -135,7 +138,15 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
+        private IEnumerator PlayUpGradeParticleEffects(int second,int level)
+        {
+            yield return new WaitForSeconds(second);
+            DestroyImmediate(m_ParticleEffects);
 
+            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+            stateObjList[level - 1].SetActive(true);
+            m_ResLoader?.ReleaseRes("BuildSmokeHammer");
+        }
         private void OnDestroy()
         {
         }
@@ -149,6 +160,9 @@ namespace GameWish.Game
             }
             else
             {
+                //m_ParticleEffects = Instantiate(m_ResLoader.LoadSync("BuildSmokeHammer")) as GameObject;
+                //m_ParticleEffects.transform.position = transform.position;
+                //StartCoroutine(PlayUpGradeParticleEffects(PlayParticleEffectsTime, level));
                 stateObjList[level - 1].SetActive(true);
             }
         }
