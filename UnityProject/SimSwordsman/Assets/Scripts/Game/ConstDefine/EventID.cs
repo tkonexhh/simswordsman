@@ -89,6 +89,12 @@ namespace GameWish.Game
         OnAddRawMaterialEvent,
         #endregion
 
+        #region
+        /// <summary>
+        /// 发送头上有工作气泡的设施
+        /// </summary>
+        OnSendWorkingBubbleFacility,
+        #endregion
 
         //KungfuLibrary
         /// <summary>

@@ -1356,6 +1356,7 @@ MonoBehaviour:
   m_CloseBtn: {fileID: 8519037410675569241}
   m_UpgradeBtn: {fileID: 1448067437784216521}
   m_ItemTra: {fileID: 5618606821824273302}
+  m_RedPoint: {fileID: 4874282431352077401}
   m_ItemPrefab: {fileID: 6334097201836050068, guid: 9d89392830391184e9ae107f9c0c413d,
     type: 3}
 --- !u!223 &8267018549378657955
@@ -1715,7 +1716,7 @@ GameObject:
   - component: {fileID: 7286957134475429934}
   - component: {fileID: 7655148849605777828}
   m_Layer: 5
-  m_Name: Image
+  m_Name: RedPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace GameWish.Game
 {
@@ -69,7 +69,95 @@ namespace GameWish.Game
         {
             return TDLanguageTable.Get(key);
         }
+        /// <summary>
+        /// 检查资源是否足够
+        /// </summary>
+        /// <param name="costItem"></param>
+        /// <param name="text"></param>
+        public static void CheckResFontColor(CostItem costItem, Text text)
+        {
+            bool res1Hava = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)costItem.itemId, costItem.value);
+            if (res1Hava)
+                text.color = Color.black;
+            else
+                text.color = Color.red;
+        }
+        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Text res1Value,Image res1Image, Text res2Value, Image res2Image, Text res3Value, Image res3Image
+            , FacilityLevelInfo facilityLevelInfo,AbstractAnimPanel abstractAnim)
+        {
+            if (costItems == null)
+                return;
+            if (costItems.Count==0)
+            {
+                res1Image.gameObject.SetActive(false);
+                res2Image.gameObject.SetActive(false);
+                res3Image.gameObject.SetActive(false);
+            }
+            else if (costItems.Count == 1)
+            {
+               
+                CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
+                CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res2Value);
 
+                int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
+                res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
+                res1Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[0].itemId));
+                res2Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousand(facilityLevelInfo.upgradeCoinCost);
+                res2Image.sprite = abstractAnim.FindSprite("Coin");
+                res3Image.gameObject.SetActive(false);
+                res1Image.gameObject.SetActive(true);
+                res2Image.gameObject.SetActive(true);
+            }
+            else if (costItems.Count == 2)
+            {
+                CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
+                CommonUIMethod.CheckResFontColor(costItems[1], res2Value);
+                CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res3Value);
+                int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
+                int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[1].itemId);
+                res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
+                res1Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[0].itemId));
+                res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, costItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[1].value);
+                res2Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[1].itemId));
+                res3Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousand(facilityLevelInfo.upgradeCoinCost);
+                res3Image.sprite = abstractAnim.FindSprite("Coin");
+                res3Image.gameObject.SetActive(true);
+                res1Image.gameObject.SetActive(true);
+                res2Image.gameObject.SetActive(true);
+            }
+        }
+        private static string GetCurCoin(FacilityLevelInfo facilityLevelInfo)
+        {
+            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            if (coin >= facilityLevelInfo.upgradeCoinCost)
+                return GetTenThousand(facilityLevelInfo.upgradeCoinCost);
+            return GetTenThousand((int)coin);
+        }
+        private static int GetCurItem(int hava, int number)
+        {
+            if (hava >= number)
+                return number;
+            return hava;
+        }
+        private static string GetIconName(int id)
+        {
+            return MainGameMgr.S.InventoryMgr.GetIconName(id);
+        }
+
+        /// <summary>
+        /// 检查钱是否足够
+        /// </summary>
+        /// <param name="facilityLevelInfo"></param>
+        /// <param name="text"></param>
+        public static void CheckCoinFontColor(FacilityLevelInfo facilityLevelInfo, Text text)
+        {
+            //facilityLevelInfo.upgradeCoinCost
+            long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            if (coinNum < facilityLevelInfo.upgradeCoinCost)
+                text.color = Color.red;
+            else
+                text.color = Color.black;
+        }
         public static string GetStrForColor(string color, string cont)
         {
             return "<color=" + color + ">" + GetStringForTableKey(cont) + "</color>";

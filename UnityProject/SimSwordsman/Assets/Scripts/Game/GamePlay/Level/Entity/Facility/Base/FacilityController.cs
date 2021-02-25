@@ -35,14 +35,17 @@ namespace GameWish.Game
         }
         #endregion
 
-
+        private List<FacilityType> m_HavaWorkingBubbleFacility = new List<FacilityType>();
         ~FacilityController()
         {
             EventSystem.S.UnRegister(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
         }
         public FacilityController(FacilityType facilityType/*, int subId*/, FacilityView view)
         {
             EventSystem.S.Register(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
+            
             m_FacilityType = facilityType;
             //m_SubId = subId;
 
@@ -68,6 +71,13 @@ namespace GameWish.Game
                     if (m_FacilityType == FacilityType.BulletinBoard)
                         break;
                     CheckUpgradeConditions();
+                    break;
+                case EventID.OnSendWorkingBubbleFacility:
+                    if ((bool)param[1] && !m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
+                        m_HavaWorkingBubbleFacility.Add((FacilityType)param[0]);
+                    else
+                        if (m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
+                             m_HavaWorkingBubbleFacility.Remove((FacilityType)param[0]);
                     break;
             }
         }
@@ -96,8 +106,8 @@ namespace GameWish.Game
                 costItems = facilityLevelInfo.GetUpgradeResCosts();
             if (facilityLevelInfo == null || costItems == null)
                 return;
-
-            if (CheackIsBuild(facilityLevelInfo, costItems))
+            
+            if (CheackIsBuild(facilityLevelInfo, costItems) && !m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
             {
                 m_View.SetTips(true);
             }
