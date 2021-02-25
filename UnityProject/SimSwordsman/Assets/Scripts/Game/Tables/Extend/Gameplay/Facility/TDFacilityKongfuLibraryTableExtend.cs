@@ -21,7 +21,7 @@ namespace GameWish.Game
             List<KungfuType> kongfuTypeList = new List<KungfuType>();
             foreach (string item in kongfuStrs)
             {
-                KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(item);
+                KungfuType kongfuType = (KungfuType)(int.Parse(item));
                 kongfuTypeList.Add(kongfuType);
             }
             string[] kongfuListStrs = tdData.kongfuList.Split(';');
@@ -29,7 +29,7 @@ namespace GameWish.Game
             foreach (string item in kongfuListStrs)
             {
                 string[] kungfuPoolStr =  item.Split('|');
-                KungfuType kongfuType = EnumUtil.ConvertStringToEnum<KungfuType>(kungfuPoolStr[0]);
+                KungfuType kongfuType = (KungfuType)(int.Parse(kungfuPoolStr[0]));
                 kungFuPoolConfig = new KungFuPoolConfig(kongfuType,int.Parse(kungfuPoolStr[1]));
             }
             kongfuLibLevelInfo.SetInitData(kongfuTypeList, kungFuPoolConfig, tdData.duration, tdData.seat);
