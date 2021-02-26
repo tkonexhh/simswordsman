@@ -137,6 +137,18 @@ namespace GameWish.Game
             m_NavAgent.SetDestination(targetPos);
         }
 
+        public void RunTo(Vector2 targetPos, System.Action callback)
+        {
+            m_IsMoving = true;
+
+            PlayRunAnim();
+
+            m_OnReachDestinationCallback = callback;
+
+            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
+            m_NavAgent.SetDestination(targetPos);
+        }
+
         public void Move(Vector2 deltaPos)
         {
             m_DeltaPos.x = deltaPos.x;

@@ -171,7 +171,19 @@ namespace GameWish.Game
                 if (!string.IsNullOrEmpty(item))
                 {
                     string[] strs = item.Split('|');
-                    this.taskEnemies.Add(new TaskEnemy(int.Parse(strs[0]), int.Parse(strs[1])));
+                    if (strs.Length != 3)
+                    {
+                        Log.e("Common task enemy pattern error: " + strs.Length);
+                    }
+                    else
+                    {
+                        int count = int.Parse(strs[1]);
+                        for (int i = 0; i < count; i++)
+                        {
+                            this.taskEnemies.Add(new TaskEnemy(int.Parse(strs[0]), int.Parse(strs[2])));
+                        }
+                    }
+
                 }
             }
         }

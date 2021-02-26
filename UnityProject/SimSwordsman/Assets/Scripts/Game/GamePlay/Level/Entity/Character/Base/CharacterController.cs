@@ -180,6 +180,11 @@ namespace GameWish.Game
             m_CharacterView.MoveTo(pos, callback);
         }
 
+        public void RunTo(Vector2 pos, System.Action callback)
+        {
+            m_CharacterView.RunTo(pos, callback);
+        }
+
         public void Move(Vector2 deltaPos)
         {
             m_CharacterView.Move(deltaPos);
