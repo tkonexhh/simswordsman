@@ -11,8 +11,9 @@ namespace GameWish.Game
     {
         public CollectedObjType collectedObjType = CollectedObjType.None;
         public List<Transform> collectPos = new List<Transform>();
-        public DateTime lastShowBubbleTime;
         public GameObject bubble = null;
+
+        private DateTime m_LastShowBubbleTime;
 
         private bool m_IsBubbleShowed = false;
         private bool m_IsCharacterCollected = false;
@@ -25,7 +26,7 @@ namespace GameWish.Game
         {
             HideBubble();
 
-            lastShowBubbleTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
+            m_LastShowBubbleTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
             m_WorkConfigItem = TDWorkTable.GetWorkConfigItem(collectedObjType);
             if (m_WorkConfigItem == null)
             {
@@ -50,7 +51,7 @@ namespace GameWish.Game
             if (!m_IsUnlocked)
                 return;
 
-            TimeSpan timeSpan = DateTime.Now - lastShowBubbleTime;
+            TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
 
             if (m_IsBubbleShowed && !m_IsCharacterCollected)
             {
@@ -116,7 +117,7 @@ namespace GameWish.Game
             m_IsBubbleShowed = true;
             bubble.SetActive(true);
 
-            lastShowBubbleTime = DateTime.Now;
+            m_LastShowBubbleTime = DateTime.Now;
             GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, DateTime.Now);
         }
 
@@ -167,7 +168,7 @@ namespace GameWish.Game
         {
             if (IsFoodEnough() == false)
             {
-                lastShowBubbleTime = DateTime.Now; // Check next interval
+                m_LastShowBubbleTime = DateTime.Now; // Check next interval
                 return;
             }
 
