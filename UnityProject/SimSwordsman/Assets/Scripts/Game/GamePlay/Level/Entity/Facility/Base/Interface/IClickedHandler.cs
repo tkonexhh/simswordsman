@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IFacilityClickedHandler
-	{
+	public interface IClickedHandler
+    {
         void OnClicked();
 	}
 	
