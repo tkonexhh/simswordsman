@@ -169,7 +169,7 @@ namespace GameWish.Game
             {
                 for (int i = (int)RawMaterial.SilverToken; i <= (int)RawMaterial.GoldenToken; i++)
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 1);
                 }
             }
             if (Input.GetKeyDown(KeyCode.T))

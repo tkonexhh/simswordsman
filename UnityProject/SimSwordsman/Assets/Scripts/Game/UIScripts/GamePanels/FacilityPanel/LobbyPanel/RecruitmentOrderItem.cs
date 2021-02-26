@@ -144,6 +144,7 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 return;
             }
+
             m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
             int silverAdverCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Advertisement);
 
@@ -212,6 +213,7 @@ namespace GameWish.Game
                 return true;
             return false;
         }
+    
         /// <summary>
         /// 招募点击事件
         /// </summary>
@@ -234,7 +236,7 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
                     //UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.RecruitmentOrder);
                     break;
-                case ClickType.LookAdvertisement:
+                case ClickType.LookAdvertisement:   
                     int advertisementCount = MainGameMgr.S.RecruitDisciplerMgr.GetAdvertisementCount(type);
                     if (advertisementCount <= 0)
                         FloatMessage.S.ShowMsg("招募次数用尽");

@@ -113,8 +113,17 @@ namespace GameWish.Game
             else
             {
                 m_View.SetTips(false);
+                CheackRecruitmentOrder();
             }
+        }
 
+        private void CheackRecruitmentOrder()
+        {
+            int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
+            if (allCount>0)
+                EventSystem.S.Send(EventID.OnSendRecruitable,true);
+            else
+                EventSystem.S.Send(EventID.OnSendRecruitable, false);
         }
 
         private bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)

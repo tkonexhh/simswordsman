@@ -75,6 +75,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.WearableLearningPanel, null, "GamePanels/MainMenuPanel/DisciplePanel/WearableLearningPanel");
             UIDataTable.AddPanelData(UIID.LearnKungfuPanel, null, "GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuPanel");
 
+            UIDataTable.AddPanelData(UIID.SupplementFoodPanel, null, "GamePanels/MainMenuPanel/SupplementFoodPanel/SupplementFoodPanel");
+
             UIDataTable.AddPanelData(UIID.BulletinBoardPanel, null, "GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardPanel");
             UIDataTable.AddPanelData(UIID.BulletinBoardChooseDisciple, null, "GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardChooseDisciple");
             UIDataTable.AddPanelData(UIID.TaskDetailsPanel, null, "GamePanels/MainMenuPanel/BulletinBoardPanel/TaskDetailsPanel");

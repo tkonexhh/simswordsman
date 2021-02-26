@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -16,7 +17,7 @@ namespace GameWish.Game
         private CharacterItem m_CharacterItem = null;
 
         public int Id { get => m_Id; }
-        public int Level { get => m_Level;}
+        public int Level { get => m_Level; }
         //public float Hp { get => m_Hp; }
         //public float Atk { get => m_Atk; }
         public float MoveSpeed { get => m_MoveSpeed; }
@@ -83,12 +84,13 @@ namespace GameWish.Game
         }
 
         public double GetAtk()
-        {           
+        {
             return m_Atk;
         }
 
         public float GetBaseAtkValue()
         {
+            
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
                 float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
@@ -103,7 +105,7 @@ namespace GameWish.Game
                     armsAtkEnhanceRatio = 1;
                 }
 
-                Qarth.Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
+                Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
                 float value = m_CharacterItem.atkValue * armorAtkEnhanceRatio * armorAtkEnhanceRatio;
                 return value;
             }
@@ -171,17 +173,17 @@ namespace GameWish.Game
             foreach (var item in m_CharacterItem.kongfus.Values)
             {
                 KungfuWeightConfig kungfuWeight = TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
-                if (kungfuWeight!=null)
+                if (kungfuWeight != null)
                     allWeight += kungfuWeight.Weight;
             }
 
             foreach (var item in m_CharacterItem.kongfus.Values)
             {
-                KungfuWeightConfig config= TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
-                if (config != null && config.Weight!=0)
+                KungfuWeightConfig config = TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
+                if (config != null && config.Weight != 0)
                 {
                     int ratio = config.Weight / allWeight;
-                    m_CharacterItem.AddKongfuExp(item,ratio * expValue);
+                    m_CharacterItem.AddKongfuExp(item, ratio * expValue);
                 }
             }
         }

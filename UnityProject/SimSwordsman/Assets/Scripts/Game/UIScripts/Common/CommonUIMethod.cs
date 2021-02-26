@@ -49,7 +49,17 @@ namespace GameWish.Game
                 + chapterConfig.chapterId.ToString() + "-"
                 + level.ToString();
         }
-
+        /// <summary>
+        /// À¢–¬Ω≤Œ‰Ã√’–ƒº¡Ó∫Ïµ„
+        /// </summary>
+        public static void CheackRecruitmentOrder()
+        {
+            int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
+            if (allCount > 0)
+                EventSystem.S.Send(EventID.OnSendRecruitable, true);
+            else
+                EventSystem.S.Send(EventID.OnSendRecruitable, false);
+        }
         /// <summary>
         /// …Ë÷√√≈≈…«∞◊∫
         /// </summary>

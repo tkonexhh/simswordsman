@@ -12,17 +12,20 @@ namespace GameWish.Game
 
         public void LoadEnemySync(int id, Action<GameObject> onLoadDone)
         {
+            Log.e("###############=====>4");
             string prefabName = GetPrefabName(id);
+            Log.e("=======>prefabName=====>"+ prefabName);
 
             AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
             loader.InstantiateAsync(prefabName, (obj) =>
             {
                 m_EnemyLoaderList.Add(loader);
-
+                Log.e("============>AddressableGameObjectLoader obj name<=====" + obj.name);
                 onLoadDone?.Invoke(obj);
             });
+            Log.e("###############=====>5");
         }
-
+      
         public void ReleaseAll()
         {
             m_EnemyLoaderList.ForEach(i => 
