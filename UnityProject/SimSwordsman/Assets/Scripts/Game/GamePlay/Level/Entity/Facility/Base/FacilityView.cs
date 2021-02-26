@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class FacilityView : MonoBehaviour, IEntityView, IFacilityClickedHandler
+    public class FacilityView : MonoBehaviour, IEntityView, IClickedHandler
     {
         public GameObject stateLockedObj;
         public GameObject stateReadyToUnlockObj;
