@@ -76,8 +76,8 @@ namespace GameWish.Game
             }
             //For debug
 #if UNITY_EDITOR
-            //state = m_Controller.CurState.ToString();
-            //battleState = ((CharacterStateBattle)(m_Controller.GetState(CharacterStateID.Battle))).CurState.ToString();
+            state = m_Controller.CurState.ToString();
+            battleState = ((CharacterStateBattle)(m_Controller.GetState(CharacterStateID.Battle))).CurState.ToString();
 #endif
         }
 
@@ -130,6 +130,18 @@ namespace GameWish.Game
             m_IsMoving = true;
             //m_NavAgent.enabled = true;
             PlayWalkAnim();
+
+            m_OnReachDestinationCallback = callback;
+
+            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
+            m_NavAgent.SetDestination(targetPos);
+        }
+
+        public void RunTo(Vector2 targetPos, System.Action callback)
+        {
+            m_IsMoving = true;
+
+            PlayRunAnim();
 
             m_OnReachDestinationCallback = callback;
 

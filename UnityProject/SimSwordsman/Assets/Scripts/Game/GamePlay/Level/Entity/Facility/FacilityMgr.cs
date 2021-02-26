@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class FacilityMgr : MonoBehaviour, IMgr, IInputObserver
     {
         private List<FacilityController> m_FacilityList = new List<FacilityController>();
-        private IFacilityClickedHandler m_ClickHandler = null;
+        private IClickedHandler m_ClickHandler = null;
 
         #region IMgr
         public void OnInit()
@@ -92,7 +92,7 @@ namespace GameWish.Game
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                m_ClickHandler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                m_ClickHandler = hit.collider.GetComponent<IClickedHandler>();
 
                 return true;
             }
@@ -108,7 +108,7 @@ namespace GameWish.Game
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                IClickedHandler handler = hit.collider.GetComponent<IClickedHandler>();
                 if (handler != null && m_ClickHandler == handler && Time.time - m_TouchStartTime < 0.3f)
                 {
                     handler.OnClicked();

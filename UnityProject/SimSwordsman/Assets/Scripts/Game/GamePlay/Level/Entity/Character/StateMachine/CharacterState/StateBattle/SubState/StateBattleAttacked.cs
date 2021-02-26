@@ -30,7 +30,7 @@ namespace GameWish.Game
 
             if (!m_Controller.IsDead())
             {
-                m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
+                //m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
             }
 
             float hitBackDistance = m_BattleState.HitbackDistance;
