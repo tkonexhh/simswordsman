@@ -25,9 +25,13 @@ namespace GameWish.Game
         private ResLoader m_ResLoader;
         private int PlayParticleEffectsTime = 1;
         private GameObject m_ParticleEffects;
-
-        public void Init()
+        private void Awake()
         {
+            Init();
+        }
+        public virtual void Init()
+        {
+
         }
 
         public void SetTips(bool active)
@@ -53,7 +57,6 @@ namespace GameWish.Game
             if (facilityType == FacilityType.Lobby && m_Controller.GetState() == FacilityState.ReadyToUnlock)
                 return;
             tips.transform.parent.gameObject.SetActive(active);
-            Debug.LogError(facilityType + "##" + tips.transform.parent.gameObject.activeSelf);
         }
 
         public virtual void OnClicked()
