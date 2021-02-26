@@ -26,7 +26,6 @@ namespace GameWish.Game
     }
     public class LivableRoomItem : MonoBehaviour, ItemICom
     {
-
         [SerializeField]
         private Image m_LivableRoomImg;
         [SerializeField]
@@ -126,7 +125,7 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                if (!CheackIsBuild())
+                if (!CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems))
                     return;
 
                 switch (m_LivableRoomState)
@@ -155,6 +154,7 @@ namespace GameWish.Game
 
                 EventSystem.S.Send(EventID.OnUpgradeRefreshEvent);
                 EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
+                UIMgr.S.ClosePanelAsUIID(UIID.LivableRoomPanel);
             });
         }
 
@@ -199,24 +199,26 @@ namespace GameWish.Game
         {
 
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
+            int maxLevel = MainGameMgr.S.FacilityMgr.GetFacilityMaxLevel(m_CurFacilityType);
             m_CurLivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-            m_NextLivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
-            if (m_NextLivableRoomLevelInfo != null)
-                m_NextCostItems = m_NextLivableRoomLevelInfo.GetUpgradeResCosts();
-            if (m_CurLevel == Define.FACILITY_MAX_LIVABLEROOM)
-            {
-                m_LivableRoomState = LivableRoomState.FullLevel;
-                return;
-            }
-
             FacilityState facilityState = GameDataMgr.S.GetClanData().GetFacilityData(m_CurFacilityType/*, m_SubID*/).facilityState;
 
-            if (facilityState == FacilityState.ReadyToUnlock || facilityState== FacilityState.Locked)
+            if (facilityState == FacilityState.ReadyToUnlock || facilityState == FacilityState.Locked)
                 m_LivableRoomState = LivableRoomState.ReadyBuilt;
             else
                 m_LivableRoomState = LivableRoomState.Upgrade;
-
+            if (m_CurLevel == maxLevel)
+            {
+                m_UpgradeBtn.gameObject.SetActive(false);
+                m_LivableRoomState = LivableRoomState.FullLevel;
+                //m_UnlockContentValue.text = "нч";
+            }
+            else
+            {
+                m_NextLivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel + 1);
+                m_NextCostItems = m_NextLivableRoomLevelInfo.GetUpgradeResCosts();
+            }
         }
 
         private void RefreshPanelText()
@@ -239,11 +241,11 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            if (CheackIsBuild(false))
+            if (CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems, false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
-
+        
             switch (m_LivableRoomState)
             {
                 case LivableRoomState.ReadyBuilt:
@@ -257,7 +259,7 @@ namespace GameWish.Game
                     RefreshResInfo(m_NextLivableRoomLevelInfo, GetCostItem(m_NextLivableRoomLevelInfo));
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
 
-                    if (!CheackIsBuild(false))
+                    if (!CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems, false))
                     {
                         m_UpgradeBtnImg.sprite = FindSprite("LivableRoomPanel_BgBtn3");
                         m_UpgradeBtn.interactable = false;

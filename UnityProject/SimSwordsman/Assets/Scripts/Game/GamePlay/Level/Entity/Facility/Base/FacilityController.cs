@@ -59,7 +59,7 @@ namespace GameWish.Game
 
             if (m_FacilityState == FacilityState.Unlocked)
             {
-                m_View.SetViewByLevel();
+                m_View.SetViewByLevel(true);
             }
         }
 

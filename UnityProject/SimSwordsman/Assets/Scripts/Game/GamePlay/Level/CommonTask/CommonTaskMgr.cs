@@ -84,6 +84,7 @@ namespace GameWish.Game
             }
 
             GameDataMgr.S.GetCommonTaskData().RemoveTask(taskId);
+            RefreshRedPoint(m_CurTaskList.Count);
         }
 
         public void SetTaskFinished(int taskId, TaskState taskState)
@@ -129,6 +130,7 @@ namespace GameWish.Game
                 taskItem.ClaimReward(true);
                 m_CurTaskList.Remove(taskItem);
             }
+            RefreshRedPoint(m_CurTaskList.Count);
         }
 
         public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
@@ -215,6 +217,7 @@ namespace GameWish.Game
 
         public void InitTaskList()
         {
+            RefreshRedPoint(m_CommonTaskData.taskList.Count);
             m_CommonTaskData.taskList.ForEach(i => 
             {
                 //int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
@@ -243,16 +246,28 @@ namespace GameWish.Game
 
             RefreshTask();
         }
+        /// <summary>
+        /// 刷新公告榜的惊叹号
+        /// </summary>
+        /// <param name="curCommonTaskCount"></param>
+        private void RefreshRedPoint(int curCommonTaskCount)
+        {
+            if (curCommonTaskCount > 0)
+                EventSystem.S.Send(EventID.OnSendBulletinBoardFacility, true);
+            else
+                EventSystem.S.Send(EventID.OnSendBulletinBoardFacility, false);
+        }
 
         private void RefreshCommonTask()
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
-
+            RefreshRedPoint(m_CurTaskList.Count);
             if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 
                 int curCommonTaskCount = m_CurTaskList.Where(i => i.CommonTaskItemInfo.triggerType == SimGameTaskTriggerType.Common).ToList().Count;
+               
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);

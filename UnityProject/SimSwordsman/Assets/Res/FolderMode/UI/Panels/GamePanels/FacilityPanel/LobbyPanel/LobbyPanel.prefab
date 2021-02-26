@@ -1643,6 +1643,7 @@ MonoBehaviour:
   m_UnlockBg: {fileID: 7069879030863723848}
   m_NextLevelUnlockText: {fileID: 3948391788028983060}
   m_UnlockContentValue: {fileID: 484212668099804796}
+  m_RedPoint: {fileID: 255809457389686048}
   m_Res1Img: {fileID: 933024709871844298}
   m_Res1Value: {fileID: 3501850961299975532}
   m_Res2Img: {fileID: 3090093185702639031}
@@ -1652,7 +1653,6 @@ MonoBehaviour:
   m_Bottom: {fileID: 4270535031811109130}
   m_RecruitmentOrderItem: {fileID: 672934180583671171, guid: 69a03a92f152f2d4b81eddaf4be570a0,
     type: 3}
-  m_RedPoint: {fileID: 255809457389686048}
 --- !u!1 &4675826362035442766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -37.4}
+  m_AnchoredPosition: {x: 0, y: -48}
   m_SizeDelta: {x: 305.4, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5683644113337479122

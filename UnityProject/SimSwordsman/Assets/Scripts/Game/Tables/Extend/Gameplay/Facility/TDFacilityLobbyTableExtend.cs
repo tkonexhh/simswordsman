@@ -37,6 +37,11 @@ namespace GameWish.Game
             }
         }
 
+        public static int GetMaxLevel()
+        {
+            return facilityLevelInfoDic.Values.Count - 1;
+        }
+
         public static FacilityLevelInfo GetLevelInfo(int level)
         {
             if (facilityLevelInfoDic.ContainsKey(level))

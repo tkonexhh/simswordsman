@@ -69,6 +69,9 @@ namespace GameWish.Game
         {
             return TDLanguageTable.Get(key);
         }
+
+        #region 设置面板资源
+
         /// <summary>
         /// 检查资源是否足够
         /// </summary>
@@ -85,7 +88,7 @@ namespace GameWish.Game
         public static void RefreshUpgradeResInfo(List<CostItem> costItems,Text res1Value,Image res1Image, Text res2Value, Image res2Image, Text res3Value, Image res3Image
             , FacilityLevelInfo facilityLevelInfo,AbstractAnimPanel abstractAnim)
         {
-            if (costItems == null)
+            if (costItems == null || facilityLevelInfo==null)
                 return;
             if (costItems.Count==0)
             {
@@ -133,6 +136,7 @@ namespace GameWish.Game
                 return GetTenThousand(facilityLevelInfo.upgradeCoinCost);
             return GetTenThousand((int)coin);
         }
+
         private static int GetCurItem(int hava, int number)
         {
             if (hava >= number)
@@ -143,6 +147,50 @@ namespace GameWish.Game
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
+        #endregion
+
+
+        #region 检查资源是否足够
+        public static bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems, bool floatMessage = true)
+        {
+            if (facilityLevelInfo == null)
+                return false;
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            if (facilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
+            {
+                if (floatMessage)
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
+                return false;
+            }
+
+            if (CheckPropIsEnough(facilityLevelInfo, costItems, floatMessage))
+                return true;
+            return false;
+        }
+
+        private static bool CheckPropIsEnough(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems, bool floatMessage = true)
+        {
+            for (int i = 0; i < costItems.Count; i++)
+            {
+                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)costItems[i].itemId, costItems[i].value);
+                if (!isHave)
+                {
+                    if (floatMessage)
+                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
+                    return false;
+                }
+            }
+            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(facilityLevelInfo.upgradeCoinCost);
+            if (isHaveCoin)
+                return true;
+            else
+            {
+                if (floatMessage)
+                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
+                return false;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 检查钱是否足够
