@@ -53,7 +53,7 @@ namespace GameWish.Game
 
         private void OnDisable()
         {
-            m_ResLoader.ReleaseRes(m_IconResName);
+            m_ResLoader?.ReleaseRes(m_IconResName);
         }
 
         private void HidelAll()

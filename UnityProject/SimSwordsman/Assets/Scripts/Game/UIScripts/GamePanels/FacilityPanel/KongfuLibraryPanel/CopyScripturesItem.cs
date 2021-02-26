@@ -65,7 +65,7 @@ namespace GameWish.Game
             m_CurFacility = (FacilityType)obj[0];
             m_KongfuLibraryPanel = obj[1] as KongfuLibraryPanel;
             m_KungfuLibraySlot = t as KungfuLibraySlot;
-            m_CopyScripturesPos.text = "练功位:" + m_KungfuLibraySlot.Index;
+            m_CopyScripturesPos.text = "抄经位:" + m_KungfuLibraySlot.Index;
             RefreshPracticeFieldState();
         }
 
@@ -125,7 +125,7 @@ namespace GameWish.Game
                     m_Lock.gameObject.SetActive(false);
                     m_DiscipleHead.gameObject.SetActive(true);
                     RefreshFixedInfo();
-                    m_CurCopyScriptures.text = "当前训练:" + m_KungfuLibraySlot.CharacterItem.name;
+                    m_CurCopyScriptures.text = "当前抄经:" + m_KungfuLibraySlot.CharacterItem.name;
                     m_Time.text = SplicingTime(GetDuration());
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = Define.COMMON_DEFAULT_STR;

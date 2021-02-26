@@ -24,7 +24,7 @@ namespace GameWish.Game
             if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
+            m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();  
 
             m_WorkStringId = WorkSystem.GetStringId(m_FacilityType);
             m_Controller.SpawnWorkTipWhenWorkInFacility(m_FacilityType);

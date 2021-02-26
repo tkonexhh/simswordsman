@@ -182,7 +182,39 @@ namespace GameWish.Game
             return GetFacilityCurLevel(FacilityType.Lobby);
         }
 
-
+        public int GetFacilityMaxLevel(FacilityType facilityType)
+        {
+            switch (facilityType)
+            {
+                case FacilityType.Lobby:
+                    return Define.FACILITY_MAX_LOBBY;
+                case FacilityType.LivableRoomEast1:
+                case FacilityType.LivableRoomEast2:
+                case FacilityType.LivableRoomEast3:
+                case FacilityType.LivableRoomEast4:
+                case FacilityType.LivableRoomWest1:
+                case FacilityType.LivableRoomWest2:
+                case FacilityType.LivableRoomWest3:
+                case FacilityType.LivableRoomWest4:
+                    return Define.FACILITY_MAX_LIVABLEROOM;
+                case FacilityType.Warehouse:
+                    return Define.FACILITY_MAX_LIVABLEROOM;
+                case FacilityType.PracticeFieldEast:
+                case FacilityType.PracticeFieldWest:
+                    return Define.FACILITY_MAX_PRACTIVEFIELD;
+                case FacilityType.KongfuLibrary:
+                    return Define.FACILITY_MAX_KUNGFULIBRARY;
+                case FacilityType.Kitchen:
+                    return Define.FACILITY_MAX_KITCHEN;
+                case FacilityType.ForgeHouse:
+                    return Define.FACILITY_MAX_FORGEHOUSE;
+                case FacilityType.Baicaohu:
+                    return Define.FACILITY_MAX_BAICAOHU;
+                case FacilityType.PatrolRoom:
+                    return Define.FACILITY_MAX_PATROLROOM;
+            }
+            return -1;
+        }
         /// <summary>
         /// Get facility info by level
         /// </summary> 
@@ -372,7 +404,6 @@ namespace GameWish.Game
                     int subId = (int)param[1];
                     int deltaLevel = (int)param[2];
                     UpgradeFacility(facilityType, subId, deltaLevel);
-                    EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
                     break;
                 case (int)EventID.OnStartUnlockFacility:
                     FacilityType facilityType2 = (FacilityType)param[0];
