@@ -70,8 +70,20 @@ namespace GameWish.Game
 
         }
 
+        private bool IsFoodEnough()
+        {
+            int curFood = GameDataMgr.S.GetPlayerData().GetFoodNum();
+            return curFood >= Define.WORK_NEED_FOOD_COUNT;
+        }
+
         public void OnClicked()
         {
+            if (IsFoodEnough() == false)
+            {
+                FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
+                return;
+            }
+
             CharacterController character = SelectIdleCharacterToCollectRes();
 
             if (character == null)
@@ -92,6 +104,8 @@ namespace GameWish.Game
                 HideBubble();
 
                 m_IsCharacterCollected = true;
+
+                GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
             }
 
             return character;
@@ -151,6 +165,12 @@ namespace GameWish.Game
 
         private void AutoSelectCharacter()
         {
+            if (IsFoodEnough() == false)
+            {
+                lastShowBubbleTime = DateTime.Now; // Check next interval
+                return;
+            }
+
             CharacterController character = SelectIdleCharacterToCollectRes();
             if (character != null)
             {
