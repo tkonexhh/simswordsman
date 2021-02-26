@@ -53,9 +53,9 @@ namespace GameWish.Game
             }
         }
 
-        public override void SetViewByLevel()
+        public override void SetViewByLevel(bool isFile = false)
         {
-            base.SetViewByLevel();
+            base.SetViewByLevel(isFile);
 
             RefreshFlagPos();
         }

@@ -383,6 +383,7 @@ namespace GameWish.Game
                     GetInformationForNeed();
                     RefreshPanelInfo();
                     RefreshCreateGoods();
+                    HideSelfWithAnim();
                 }
             });
         }

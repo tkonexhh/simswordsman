@@ -25,7 +25,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CurRecoverySpeedTxt;
         [SerializeField]
-        private Text m_NextRecoverySpeedTxt;
+        private Text m_NextRecoverySpeedTxt;  
+        [SerializeField]
+        private Text m_UpgradeTitle;
 
         [SerializeField]
         private Button m_CloseBtn;
@@ -49,7 +51,7 @@ namespace GameWish.Game
         private Transform m_KitchenContTra;
 
         [SerializeField]
-        private GameObject m_FoodItemPrefab;  
+        private GameObject m_FoodItemPrefab;
         [SerializeField]
         private GameObject m_RedPoint;
 
@@ -62,25 +64,38 @@ namespace GameWish.Game
 
         private List<FoodItem> m_Items = new List<FoodItem>();
 
-        protected override void OnUIInit() 
+        protected override void OnUIInit()
         {
             base.OnUIInit();
             BindAddListenerEvent();
         }
-        
+
         private void GetInformationForNeed()
         {
+            int maxLevel = MainGameMgr.S.FacilityMgr.GetFacilityMaxLevel(m_CurFacilityType);
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_CurKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-            m_NextKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel+1);
-            if (m_NextKitchLevelInfo!=null)
-                 m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
-    
+            if (m_CurLevel == maxLevel)
+            {
+                m_UpgradeBtn.gameObject.SetActive(false);
+                m_Res1Img.gameObject.SetActive(false);
+                m_Res2Img.gameObject.SetActive(false);
+                m_Res3Img.gameObject.SetActive(false);
+                m_NextFoodLimitTxt.text = Define.COMMON_DEFAULT_STR;
+                m_NextRecoverySpeedTxt.text = Define.COMMON_DEFAULT_STR;
+                m_NextRecoverySpeedTxt.text = Define.COMMON_DEFAULT_STR;
+                m_UpgradeTitle.text = Define.COMMON_DEFAULT_STR;
+            }
+            else
+            {
+                m_NextKitchLevelInfo = (KitchLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel + 1);
+                m_CostItems = m_NextKitchLevelInfo.GetUpgradeResCosts();
+            }
         }
 
         private void RefreshPanelInfo()
         {
-            if (CheackIsBuild(false))
+            if (CommonUIMethod.CheackIsBuild(m_NextKitchLevelInfo, m_CostItems, false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
@@ -96,59 +111,17 @@ namespace GameWish.Game
             m_CurLevelTxt.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_CurFoodLimitTxt.text = m_CurKitchLevelInfo.GetCurFoodLimit().ToString();
             m_CurRecoverySpeedTxt.text = string.Format("{0}Ãë", m_CurKitchLevelInfo.GetCurFoodAddSpeed());
-
-            m_NextFoodLimitTxt.text = string.Format("+{0}", m_CurKitchLevelInfo.GetNextFoodLimit() - m_CurKitchLevelInfo.GetCurFoodLimit());
-            m_NextRecoverySpeedTxt.text = string.Format("+{0}", m_CurKitchLevelInfo.GetNextFoodAddSpeed() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());
-
+            if (m_NextKitchLevelInfo!=null)
+            {
+                m_NextFoodLimitTxt.text = string.Format("+{0}", m_NextKitchLevelInfo.GetCurFoodLimit() - m_CurKitchLevelInfo.GetCurFoodLimit());
+                m_NextRecoverySpeedTxt.text = string.Format("+{0}", m_NextKitchLevelInfo.GetCurFoodLimit() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());
+            }
             RefreshResInfo();
 
         }
         private void RefreshResInfo()
         {
             CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_NextKitchLevelInfo, this);
-            //if (m_CostItems == null)
-            //    return;
-
-            //if (m_CostItems.Count == 1)
-            //{
-            //    int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-            //    m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
-            //    m_Res2Img.sprite = FindSprite("Coin");
-            //    m_Res3Img.gameObject.SetActive(false);
-            //}
-            //else if (m_CostItems.Count == 2)
-            //{
-            //    int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-            //    int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
-            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-            //    m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
-            //    m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-            //    m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
-            //    m_Res3Img.sprite = FindSprite("Coin");
-            //    m_Res3Img.gameObject.SetActive(true);
-            //}
-        }
-
-        private int GetCurItem(int hava,int number)
-        {
-            if (hava >= number)
-                return number;
-            return hava;
-        }
-
-        private string GetCurCoin()
-        {
-            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            if (coin >= m_NextKitchLevelInfo.upgradeCoinCost)
-                return CommonUIMethod.GetTenThousand(m_NextKitchLevelInfo.upgradeCoinCost);
-            return CommonUIMethod.GetTenThousand((int)coin);
-        }
-        private string GetIconName(int id)
-        {
-            return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
         protected override void OnPanelOpen(params object[] args)
         {
@@ -200,42 +173,6 @@ namespace GameWish.Game
                 }
             }
         }
-        private bool CheckPropIsEnough(bool floatMessage = true)
-        {
-            for (int i = 0; i < m_CostItems.Count; i++)
-            {
-                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
-                if (!isHave)
-                {
-                    if (floatMessage)
-                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
-                    return false;
-                }
-            }
-            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextKitchLevelInfo.upgradeCoinCost);
-            if (isHaveCoin)
-                return true;
-            else
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
-                return false;
-            }
-        }
-        private bool CheackIsBuild(bool floatMessage = true)
-        {
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_NextKitchLevelInfo.GetUpgradeCondition() > lobbyLevel)
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
-                return false;
-            }
-
-            if (CheckPropIsEnough(floatMessage))
-                return true;
-            return false;
-        }
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(() =>
@@ -246,9 +183,7 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                if (!CheackIsBuild())
-                    return;
-                if (m_NextKitchLevelInfo == null)
+                if (!CommonUIMethod.CheackIsBuild(m_NextKitchLevelInfo, m_CostItems))
                     return;
                 bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextKitchLevelInfo.upgradeCoinCost);
                 if (isReduceSuccess)
@@ -263,6 +198,7 @@ namespace GameWish.Game
                     if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                         GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
                     RefreshPanelInfo();
+                    HideSelfWithAnim();
                 }
             });
         }

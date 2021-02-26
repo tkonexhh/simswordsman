@@ -52,13 +52,13 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_MartialArtsContTra;
         [SerializeField]
-        private GameObject m_CopyScripturesItem; 
-  
+        private GameObject m_CopyScripturesItem;
+
 
         private FacilityType m_CurFacilityType = FacilityType.None;
 
-        private const int NextKungfuFontSize =37;
-        private const int KungfuFontWight =218;
+        private const int NextKungfuFontSize = 37;
+        private const int KungfuFontWight = 218;
         private int m_CurLevel;
         private List<CostItem> m_CostItems;
         private FacilityConfigInfo m_FacilityConfigInfo = null;
@@ -76,43 +76,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
 
             BindAddListenerEvent();
-        }
-
-        private bool CheackIsBuild(bool floatMessage = true)
-        {
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_NextFacilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
-                return false;
-            }
-
-            if (CheckPropIsEnough(floatMessage))
-                return true;
-            return false;
-        }
-        private bool CheckPropIsEnough(bool floatMessage = true)
-        {
-            for (int i = 0; i < m_CostItems.Count; i++)
-            {
-                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
-                if (!isHave)
-                {
-                    if (floatMessage)
-                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
-                    return false;
-                }
-            }
-            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_NextFacilityLevelInfo.upgradeCoinCost);
-            if (isHaveCoin)
-                return true;
-            else
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
-                return false;
-            }
         }
 
         private void HandleAddListenEvent(int key, object[] param)
@@ -133,13 +96,13 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            if (CheackIsBuild(false))
+            if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems, false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
 
             RefreshFixedInfo();
-       
+
             RefreshPanelText();
 
             for (int i = 0; i < m_ReadingSlotList.Count; i++)
@@ -154,7 +117,7 @@ namespace GameWish.Game
         /// <param name="kungfuTypes"></param>
         private void SetNextKungfuStr(List<KungfuType> kungfuTypes)
         {
-            m_UnlockBg.sizeDelta = new Vector2 (KungfuFontWight, 0);
+            m_UnlockBg.sizeDelta = new Vector2(KungfuFontWight, 0);
             m_MartialArtsContTxt.rectTransform.sizeDelta = new Vector2(KungfuFontWight, 0);
             string str = string.Empty;
             Vector2 deltaData = Vector2.zero;
@@ -164,14 +127,14 @@ namespace GameWish.Game
             {
                 str += "\n";
                 str += TDKongfuConfigTable.GetKungfuConfigInfo(kungfuTypes[i]).Name;
-                deltaData += new Vector2 (0, NextKungfuFontSize);
+                deltaData += new Vector2(0, NextKungfuFontSize);
             }
             m_MartialArtsContTxt.rectTransform.sizeDelta += deltaData;
             deltaData += new Vector2(0, NextKungfuFontSize);
             m_UnlockBg.sizeDelta += deltaData;
             m_MartialArtsContTxt.text = str;
             m_MartialArtsContTxt.text = m_MartialArtsContTxt.text.Replace("\\n", "\n");
-         }
+        }
 
 
         private void RefreshFixedInfo()
@@ -181,77 +144,48 @@ namespace GameWish.Game
 
         private void GetInformationForNeed()
         {
+            int maxLevel = MainGameMgr.S.FacilityMgr.GetFacilityMaxLevel(m_CurFacilityType);
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CurKongfuLibraryLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-            m_NextFacilityLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel + 1);
             m_CurKongfuLibraryController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
             m_ReadingSlotList = m_CurKongfuLibraryController.GetReadingSlotList();
-            if (m_NextFacilityLevelInfo != null)
+            if (m_CurLevel == maxLevel)
+            {
+                m_UpgradeBtn.gameObject.SetActive(false);
+                m_Res1Img.gameObject.SetActive(false);
+                m_Res2Img.gameObject.SetActive(false);
+                m_Res3Img.gameObject.SetActive(false);
+                m_UpgradeCondition.text = Define.COMMON_DEFAULT_STR;
+                m_MartialArtsContTxt.text = Define.COMMON_DEFAULT_STR;
+            }
+            else
+            {
+                m_NextFacilityLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel + 1);
                 m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
+            }
         }
 
         private void RefreshPanelText()
         {
+            if (m_NextFacilityLevelInfo != null)
+            {
+                SetNextKungfuStr(m_NextFacilityLevelInfo.GetCurLevelUnlockedKongfuList());
+                m_UpgradeCondition.text = CommonUIMethod.GetUpgradeCondition(m_NextFacilityLevelInfo.upgradeNeedLobbyLevel);
+            }
             RefreshResInfo();
             m_IconImage.sprite = FindSprite("KongfuLibrary" + m_CurLevel);
             m_BriefIntroductionTxt.text = m_FacilityConfigInfo.desc;
-            m_UpgradeCondition.text = CommonUIMethod.GetUpgradeCondition(m_NextFacilityLevelInfo.upgradeNeedLobbyLevel);
             m_LevelValue.text = CommonUIMethod.GetGrade(m_CurKongfuLibraryLevelInfo.level);
-            SetNextKungfuStr(m_NextFacilityLevelInfo.GetCurLevelUnlockedKongfuList());
-            if (m_NextFacilityLevelInfo != null)
-            {
-                //m_UpgradeCostCoinValueTxt.text = m_NextKongfuLibraryLevelInfo.upgradeCoinCost.ToString();
-            }
+
 
             List<KungfuType> KongfuList = m_CurKongfuLibraryLevelInfo.GetNextLevelUnlockedKongfuList();
         }
         private void RefreshResInfo()
         {
             CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_NextFacilityLevelInfo, this);
+        }
 
-            //if (m_CostItems == null)
-            //    return;
-
-            //if (m_CostItems.Count == 1)
-            //{
-            //    int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-            //    m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextFacilityLevelInfo.upgradeCoinCost);
-            //    m_Res2Img.sprite = FindSprite("Coin");
-            //    m_Res3Img.gameObject.SetActive(false);
-            //}
-            //else if (m_CostItems.Count == 2)
-            //{
-            //    int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-            //    int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
-            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-            //    m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
-            //    m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-            //    m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_NextFacilityLevelInfo.upgradeCoinCost);
-            //    m_Res3Img.sprite = FindSprite("Coin");
-            //    m_Res3Img.gameObject.SetActive(true);
-            //}
-        }
-        private int GetCurItem(int hava, int number)
-        {
-            if (hava >= number)
-                return number;
-            return hava;
-        }
-        private string GetIconName(int id)
-        {
-            return MainGameMgr.S.InventoryMgr.GetIconName(id);
-        }
-        private string GetCurCoin()
-        {
-            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            if (coin >= m_NextFacilityLevelInfo.upgradeCoinCost)
-                return CommonUIMethod.GetTenThousand(m_NextFacilityLevelInfo.upgradeCoinCost);
-            return CommonUIMethod.GetTenThousand((int)coin);
-        }
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(() =>
@@ -264,7 +198,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                if (!CheackIsBuild())
+                if (!CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems))
                     return;
                 if (m_NextFacilityLevelInfo == null)
                     return;
@@ -282,6 +216,7 @@ namespace GameWish.Game
                     GetInformationForNeed();
                     m_CurKongfuLibraryController.RefreshSlotInfo(m_CurLevel);
                     RefreshPanelText();
+                    HideSelfWithAnim();
                 }
             });
         }
@@ -320,7 +255,7 @@ namespace GameWish.Game
         {
             GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
             CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
-            itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType,this);
+            itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType, this);
             m_KongfuLibrarySoltInfo.Add(kungfuLibraySlot.Index, game);
         }
 

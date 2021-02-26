@@ -76,8 +76,8 @@ namespace GameWish.Game
             }
             //For debug
 #if UNITY_EDITOR
-            //state = m_Controller.CurState.ToString();
-            //battleState = ((CharacterStateBattle)(m_Controller.GetState(CharacterStateID.Battle))).CurState.ToString();
+            state = m_Controller.CurState.ToString();
+            battleState = ((CharacterStateBattle)(m_Controller.GetState(CharacterStateID.Battle))).CurState.ToString();
 #endif
         }
 

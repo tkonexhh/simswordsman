@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class RawMatBubbleView : MonoBehaviour, IInputObserver
+	public class RawMatBubbleView : MonoBehaviour, IInputObserver, IClickedHandler
     {
         public RawMatItem rawMatItem;
         private Collider2D m_Collider;
@@ -63,12 +63,16 @@ namespace GameWish.Game
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Bubble"));
             if (hit.collider != null && hit.collider == m_Collider)
             {
-                rawMatItem.OnClicked();
-
+                OnClicked();
                 return true;
             }
 
             return false;
         }
-	}
+
+        public void OnClicked()
+        {
+            rawMatItem.OnClicked();
+        }
+    }
 }

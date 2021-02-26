@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class FacilityMgr : MonoBehaviour, IMgr, IInputObserver
     {
         private List<FacilityController> m_FacilityList = new List<FacilityController>();
-        private IFacilityClickedHandler m_ClickHandler = null;
+        private IClickedHandler m_ClickHandler = null;
 
         #region IMgr
         public void OnInit()
@@ -92,7 +92,7 @@ namespace GameWish.Game
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                m_ClickHandler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                m_ClickHandler = hit.collider.GetComponent<IClickedHandler>();
 
                 return true;
             }
@@ -108,7 +108,7 @@ namespace GameWish.Game
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                IClickedHandler handler = hit.collider.GetComponent<IClickedHandler>();
                 if (handler != null && m_ClickHandler == handler && Time.time - m_TouchStartTime < 0.3f)
                 {
                     handler.OnClicked();
@@ -182,7 +182,39 @@ namespace GameWish.Game
             return GetFacilityCurLevel(FacilityType.Lobby);
         }
 
-
+        public int GetFacilityMaxLevel(FacilityType facilityType)
+        {
+            switch (facilityType)
+            {
+                case FacilityType.Lobby:
+                    return Define.FACILITY_MAX_LOBBY;
+                case FacilityType.LivableRoomEast1:
+                case FacilityType.LivableRoomEast2:
+                case FacilityType.LivableRoomEast3:
+                case FacilityType.LivableRoomEast4:
+                case FacilityType.LivableRoomWest1:
+                case FacilityType.LivableRoomWest2:
+                case FacilityType.LivableRoomWest3:
+                case FacilityType.LivableRoomWest4:
+                    return Define.FACILITY_MAX_LIVABLEROOM;
+                case FacilityType.Warehouse:
+                    return Define.FACILITY_MAX_LIVABLEROOM;
+                case FacilityType.PracticeFieldEast:
+                case FacilityType.PracticeFieldWest:
+                    return Define.FACILITY_MAX_PRACTIVEFIELD;
+                case FacilityType.KongfuLibrary:
+                    return Define.FACILITY_MAX_KUNGFULIBRARY;
+                case FacilityType.Kitchen:
+                    return Define.FACILITY_MAX_KITCHEN;
+                case FacilityType.ForgeHouse:
+                    return Define.FACILITY_MAX_FORGEHOUSE;
+                case FacilityType.Baicaohu:
+                    return Define.FACILITY_MAX_BAICAOHU;
+                case FacilityType.PatrolRoom:
+                    return Define.FACILITY_MAX_PATROLROOM;
+            }
+            return -1;
+        }
         /// <summary>
         /// Get facility info by level
         /// </summary> 
@@ -372,7 +404,6 @@ namespace GameWish.Game
                     int subId = (int)param[1];
                     int deltaLevel = (int)param[2];
                     UpgradeFacility(facilityType, subId, deltaLevel);
-                    EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
                     break;
                 case (int)EventID.OnStartUnlockFacility:
                     FacilityType facilityType2 = (FacilityType)param[0];

@@ -120,11 +120,11 @@ namespace GameWish.Game
         public const int FACILITY_MAX_KUNGFULIBRARY = 5;
         public const int FACILITY_MAX_LIVABLEROOM = 6;
         public const int FACILITY_MAX_BULLETInBOARD = 10;
-        public const int FACILITY_MAX_WAREHOUSE = 10;
-        public const int FACILITY_MAX_BAICAOHU = 10;
-        public const int FACILITY_MAX_PATROLROOM = 10;
-        public const int FACILITY_MAX_KITCHEN = 10;
-        public const int FACILITY_MAX_FORGEHOUSE = 10;
+        public const int FACILITY_MAX_WAREHOUSE = 5;
+        public const int FACILITY_MAX_BAICAOHU = 4;
+        public const int FACILITY_MAX_PATROLROOM = 6;
+        public const int FACILITY_MAX_KITCHEN = 5;
+        public const int FACILITY_MAX_FORGEHOUSE = 6;
         public const int FACILITY_MAX_TOTALCOUNT = 10;
 
         // Chapter
@@ -244,6 +244,9 @@ namespace GameWish.Game
         public const string ARMOR_NAME_MKJ = "Armor_Name_MKJ";
         //ARMS
         public const string ARMS_TITLE = "Arms_title";
+
+        //Work
+        public const int WORK_NEED_FOOD_COUNT = 5;
 
         //Sound
         public const string MUSIC_MENU = "menu_music";

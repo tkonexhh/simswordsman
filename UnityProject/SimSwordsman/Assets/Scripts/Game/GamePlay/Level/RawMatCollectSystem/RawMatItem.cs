@@ -11,8 +11,9 @@ namespace GameWish.Game
     {
         public CollectedObjType collectedObjType = CollectedObjType.None;
         public List<Transform> collectPos = new List<Transform>();
-        public DateTime lastShowBubbleTime;
         public GameObject bubble = null;
+
+        private DateTime m_LastShowBubbleTime;
 
         private bool m_IsBubbleShowed = false;
         private bool m_IsCharacterCollected = false;
@@ -25,7 +26,7 @@ namespace GameWish.Game
         {
             HideBubble();
 
-            lastShowBubbleTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
+            m_LastShowBubbleTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
             m_WorkConfigItem = TDWorkTable.GetWorkConfigItem(collectedObjType);
             if (m_WorkConfigItem == null)
             {
@@ -50,7 +51,7 @@ namespace GameWish.Game
             if (!m_IsUnlocked)
                 return;
 
-            TimeSpan timeSpan = DateTime.Now - lastShowBubbleTime;
+            TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
 
             if (m_IsBubbleShowed && !m_IsCharacterCollected)
             {
@@ -70,8 +71,20 @@ namespace GameWish.Game
 
         }
 
+        private bool IsFoodEnough()
+        {
+            int curFood = GameDataMgr.S.GetPlayerData().GetFoodNum();
+            return curFood >= Define.WORK_NEED_FOOD_COUNT;
+        }
+
         public void OnClicked()
         {
+            if (IsFoodEnough() == false)
+            {
+                FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
+                return;
+            }
+
             CharacterController character = SelectIdleCharacterToCollectRes();
 
             if (character == null)
@@ -83,7 +96,7 @@ namespace GameWish.Game
 
         private CharacterController SelectIdleCharacterToCollectRes()
         {
-            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CurState == CharacterStateID.Wander || i.CurState == CharacterStateID.None);
+            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CurState == CharacterStateID.Wander || i.CurState == CharacterStateID.EnterClan || i.CurState == CharacterStateID.None);
             if (character != null)
             {
                 character.CollectObjType = collectedObjType;
@@ -92,6 +105,8 @@ namespace GameWish.Game
                 HideBubble();
 
                 m_IsCharacterCollected = true;
+
+                GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
             }
 
             return character;
@@ -102,7 +117,7 @@ namespace GameWish.Game
             m_IsBubbleShowed = true;
             bubble.SetActive(true);
 
-            lastShowBubbleTime = DateTime.Now;
+            m_LastShowBubbleTime = DateTime.Now;
             GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, DateTime.Now);
         }
 
@@ -151,6 +166,12 @@ namespace GameWish.Game
 
         private void AutoSelectCharacter()
         {
+            if (IsFoodEnough() == false)
+            {
+                m_LastShowBubbleTime = DateTime.Now; // Check next interval
+                return;
+            }
+
             CharacterController character = SelectIdleCharacterToCollectRes();
             if (character != null)
             {

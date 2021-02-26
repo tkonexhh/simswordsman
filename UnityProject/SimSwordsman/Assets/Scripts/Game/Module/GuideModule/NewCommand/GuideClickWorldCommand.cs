@@ -70,7 +70,7 @@ namespace GameWish.Game
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
             if (hit.collider != null)
             {
-                IFacilityClickedHandler handler = hit.collider.GetComponent<IFacilityClickedHandler>();
+                IClickedHandler handler = hit.collider.GetComponent<IClickedHandler>();
                 if (handler != null)
                 {
                     handler.OnClicked();
