@@ -48,10 +48,22 @@ namespace GameWish.Game
             }
         }
 
+        private bool IsFoodEnough()
+        {
+            int curFood = GameDataMgr.S.GetPlayerData().GetFoodNum();
+            return curFood >= Define.WORK_NEED_FOOD_COUNT;
+        }
+
         public void OnClicked()
         {
             if (state == 1)
             {
+                if (IsFoodEnough() == false)
+                {
+                    FloatMessage.S.ShowMsg("食物不足");
+                    return;
+                }
+
                 if (!WorkSystem.S.StartWork(Type))
                     FloatMessage.S.ShowMsg("无空闲弟子");
                 //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
@@ -61,6 +73,8 @@ namespace GameWish.Game
                     BubbleView.SetActive(false);
                     EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, false);
                     EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+
+                    GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
                 }
             }
             else if(state == 2)

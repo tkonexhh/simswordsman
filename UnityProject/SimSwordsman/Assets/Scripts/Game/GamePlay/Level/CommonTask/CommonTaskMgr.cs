@@ -62,7 +62,7 @@ namespace GameWish.Game
         public void RefreshTask()
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            m_CommonTaskCount = TDFacilityLobbyTable.GetLevelInfo(lobbyLevel).commonTaskCount;
+            m_CommonTaskCount = ((LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel)).commonTaskCount;
 
             RefreshCommonTask();
         }

@@ -245,6 +245,9 @@ namespace GameWish.Game
         //ARMS
         public const string ARMS_TITLE = "Arms_title";
 
+        //Work
+        public const int WORK_NEED_FOOD_COUNT = 5;
+
         //Sound
         public const string MUSIC_MENU = "menu_music";
         public const string CLEVELUP = "CLevelup";

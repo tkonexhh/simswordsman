@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Qarth;
 using DG.Tweening;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -137,10 +138,10 @@ namespace GameWish.Game
                     m_Time = 0f;
                     m_IsCollectResEnd = true;
 
-                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
-    
                     ClaimReward();
 
+                    EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
+    
                     GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
 
                     m_Controller.ReleaseWorkProgressBar();
@@ -272,6 +273,15 @@ namespace GameWish.Game
 
                 m_Controller.SpawnCollectedObjWorkReward((RawMaterial)itemId, count);
             }
+
+            // Add exp
+            List<CharacterController> characters = MainGameMgr.S.CharacterMgr.CharacterControllerList.Where(i => i.CollectObjType == m_CollectedObjType).ToList();
+            LobbyLevelInfo lobbyLevelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
+            characters.ForEach(i =>
+            {
+                i.AddExp(lobbyLevelInfo.workExp);
+            });
+
         }
     }
 }

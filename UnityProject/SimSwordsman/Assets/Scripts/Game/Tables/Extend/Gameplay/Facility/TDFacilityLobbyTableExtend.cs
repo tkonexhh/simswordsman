@@ -9,17 +9,31 @@ namespace GameWish.Game
 {
     public partial class TDFacilityLobbyTable
     {
-        public static Dictionary<int, FacilityLevelInfo> facilityLevelInfoDic = new Dictionary<int, FacilityLevelInfo>();
+        public static Dictionary<int, LobbyLevelInfo> facilityLevelInfoDic = new Dictionary<int, LobbyLevelInfo>();
 
         static void CompleteRowAdd(TDFacilityLobby tdData)
         {
+            //FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
+            //levelInfo.commonTaskCount = tdData.commonTaskAmount;
+            //levelInfo.AnalysisUnlockContent(tdData.unlockContent);
+
+            //if (!facilityLevelInfoDic.ContainsKey(tdData.level))
+            //{
+            //    facilityLevelInfoDic.Add(tdData.level, levelInfo);
+            //}
+
+
             FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
-            levelInfo.commonTaskCount = tdData.commonTaskAmount;
-            levelInfo.AnalysisUnlockContent(tdData.unlockContent);
+            levelInfo.level = tdData.level;
+            LobbyLevelInfo lobbyLevelInfo = new LobbyLevelInfo();
+            lobbyLevelInfo.Warp(levelInfo);
+
+            lobbyLevelInfo.commonTaskCount = tdData.commonTaskAmount;
+            lobbyLevelInfo.AnalysisUnlockContent(tdData.unlockContent);
 
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))
             {
-                facilityLevelInfoDic.Add(tdData.level, levelInfo);
+                facilityLevelInfoDic.Add(tdData.level, lobbyLevelInfo);
             }
         }
 
@@ -88,17 +102,17 @@ namespace GameWish.Game
             return levelInfo;
         }
 
-        public static int GetCommonTaskCount(int lobbyLevel)
-        {
-            FacilityLevelInfo levelInfo = GetLevelInfo(lobbyLevel);
-            if (levelInfo != null)
-            {
-                return levelInfo.commonTaskCount;
-            }
+        //public static int GetCommonTaskCount(int lobbyLevel)
+        //{
+        //    FacilityLevelInfo levelInfo = GetLevelInfo(lobbyLevel);
+        //    if (levelInfo != null)
+        //    {
+        //        return levelInfo.commonTaskCount;
+        //    }
 
-            Log.e("Facility level info not found");
+        //    Log.e("Facility level info not found");
 
-            return -1;
-        }
+        //    return -1;
+        //}
     }
 }
