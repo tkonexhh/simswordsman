@@ -8,15 +8,13 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDKongfuAnimationConfig
+    public partial class TDTalk
     {
         
        
         private EInt m_Id = 0;   
-        private string m_AnimationName;   
-        private string m_AtkRange;   
-        private string m_CastSE;   
-        private string m_HitSE;  
+        private EInt m_LobbyLevel = 0;   
+        private string m_TalkWords;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -26,24 +24,14 @@ namespace GameWish.Game
         public  int  id {get { return m_Id; } }
        
         /// <summary>
-        /// 动画名称
+        /// 解锁条件（讲武堂等级）
         /// </summary>
-        public  string  animationName {get { return m_AnimationName; } }
+        public  int  lobbyLevel {get { return m_LobbyLevel; } }
        
         /// <summary>
-        /// 攻击距离
+        /// 文本
         /// </summary>
-        public  string  atkRange {get { return m_AtkRange; } }
-       
-        /// <summary>
-        /// 释放特效
-        /// </summary>
-        public  string  castSE {get { return m_CastSE; } }
-       
-        /// <summary>
-        /// 受击特效
-        /// </summary>
-        public  string  hitSE {get { return m_HitSE; } }
+        public  string  talkWords {get { return m_TalkWords; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -64,16 +52,10 @@ namespace GameWish.Game
                     m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_AnimationName = dataR.ReadString();
+                    m_LobbyLevel = dataR.ReadInt();
                     break;
                 case 2:
-                    m_AtkRange = dataR.ReadString();
-                    break;
-                case 3:
-                    m_CastSE = dataR.ReadString();
-                    break;
-                case 4:
-                    m_HitSE = dataR.ReadString();
+                    m_TalkWords = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -85,13 +67,11 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(3);
           
           ret.Add("Id", 0);
-          ret.Add("AnimationName", 1);
-          ret.Add("AtkRange", 2);
-          ret.Add("CastSE", 3);
-          ret.Add("HitSE", 4);
+          ret.Add("LobbyLevel", 1);
+          ret.Add("TalkWords", 2);
           return ret;
         }
     } 

@@ -188,30 +188,9 @@ namespace GameWish.Game
             {
                 GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             }
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                //GameDataMgr.S.GetPlayerData().AddCoinNum(100000);
-                //for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.HuanHunDan; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 50);
-                //    Debug.LogError("添加成功");
-                //}
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(0,600);
-
-                //for (int i = (int)ArmorType.ZiTenJia; i < (int)ArmorType.RuanWeiJia; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)i,(Step)1), 2000);
-                //}  
-                //for (int i = (int)ArmsType.ShaZhuDao; i < (int)ArmsType.YanYueDao; i++)
-                //{
-                //    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)i,(Step)1), 2000);
-                //}
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.BeeThorn; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
-                }   
                 MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
-                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             }
 
            
@@ -223,7 +202,7 @@ namespace GameWish.Game
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 50);
                 }
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 29);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))

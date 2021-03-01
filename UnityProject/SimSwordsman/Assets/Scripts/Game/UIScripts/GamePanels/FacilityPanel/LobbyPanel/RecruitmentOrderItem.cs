@@ -20,13 +20,16 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_RecruitValue;
         [SerializeField]
-        private Text m_RecruitmentBtnValue;
+        private Text m_RecruitmentBtnValue;  
+        [SerializeField]
+        private Text m_RecruitOrderValue;
+        [SerializeField]
+        private Image m_RecruitOrderImg;
         [SerializeField]
         private Button m_RecruitmentBtn;
         [SerializeField]
         private Image m_RecruitmentImg;
 
-        private const int _12Hours = 12;
         private const int _24Hours = 24;
         private const int _48Hours = 48;
         //private const string SilverAdvertiseCount = "3";
@@ -86,16 +89,31 @@ namespace GameWish.Game
                     break;
                 case ClickType.Free:
                     m_RecruitmentImg.gameObject.SetActive(false);
+                    m_RecruitOrderValue.gameObject.SetActive(false);
                     m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_FREE);
                     break;
                 case ClickType.RecruitmentOrder:
                     m_RecruitmentImg.gameObject.SetActive(false);
-                    m_RecruitValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType).ToString();
+                    m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
+                    switch (m_CurRecruitType)
+                    {
+                        case RecruitType.GoldMedal:
+                            m_RecruitOrderImg.sprite = m_Panel.FindSprite("goldolder");
+                            break;
+                        case RecruitType.SilverMedal:
+                            m_RecruitOrderImg.sprite = m_Panel.FindSprite("silverolder");
+                            break;
+                        default:
+                            break;
+                    }
+                    m_RecruitOrderValue.gameObject.SetActive(true);
+                    m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType).ToString();
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 case ClickType.LookAdvertisement:
                     m_RecruitmentImg.gameObject.SetActive(true);
+                    m_RecruitOrderValue.gameObject.SetActive(false);
                     RefreshAdvertiseInfo();
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
@@ -157,7 +175,20 @@ namespace GameWish.Game
             {
                 MainGameMgr.S.RecruitDisciplerMgr.ResetAdvertisementCount(m_CurRecruitType);
             }
+
+            JudgeRecruitmentConditions();
+
             RefreshPanelInfo();
+        }
+
+        /// <summary>
+        /// 判断所有的招募条件是否全部没有
+        /// </summary>
+        private void JudgeRecruitmentConditions()
+        {
+            int adverRecruitCount = m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType);
+            if (adverRecruitCount<=0)
+                m_RecruitDic[m_CurRecruitType] = ClickType.RecruitmentOrder;
         }
 
         /// <summary>
@@ -199,8 +230,6 @@ namespace GameWish.Game
         {
             int CurLevelMaxNumber = 0;
             int CurLevelNumber = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
-            //for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
-            //    CurLevelMaxNumber+=TDFacilityLivableRoomTable.GetCapability(i, TDFacilityLivableRoomTable.GetMaxLevel(i));
 
             for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
             {
@@ -229,21 +258,17 @@ namespace GameWish.Game
             {
                 case ClickType.Free:
                     UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.Free, type);
-                    //UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.Free);
                     break;
                 case ClickType.RecruitmentOrder:
                     GetRandomDisciples(type);
                     UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
-                    //UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.RecruitmentOrder);
                     break;
                 case ClickType.LookAdvertisement:   
                     int advertisementCount = MainGameMgr.S.RecruitDisciplerMgr.GetAdvertisementCount(type);
                     if (advertisementCount <= 0)
                         FloatMessage.S.ShowMsg("招募次数用尽");
-                    //UIMgr.S.OpenPanel(UIID.LogPanel, "招募标题", "招募次数用尽");
                     else
                         UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type);
-                    //UIMgr.S.OpenPanel(UIID.RecruitmentPanel, type, ClickType.LookAdvertisement);
                     break;
                 default:
                     break;

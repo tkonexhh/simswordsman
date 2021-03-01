@@ -7,6 +7,13 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
+    public enum EquipBtnState
+    {
+        None,
+        Lock,
+        UnLock,
+    }
+
     public class DiscipleDetailsPanel : AbstractAnimPanel
     {
         [SerializeField]
@@ -111,6 +118,8 @@ namespace GameWish.Game
         private Dictionary<int, CharacterKongfuData> m_Kongfus = null;
         private Dictionary<int, GameObject> m_KongfusGameObject = new Dictionary<int, GameObject>();
 
+        private EquipBtnState m_ArmorState = EquipBtnState.None;
+        private EquipBtnState m_ArmsState = EquipBtnState.None;
         //private EquipmentItem m_CurArmor = null;
         //private EquipmentItem m_CurArms = null;
         protected override void OnUIInit()
@@ -143,7 +152,6 @@ namespace GameWish.Game
             m_EjectValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_EJECT);
             m_IntensifyArmorValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
             m_IntensifyArmsValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
-
         }
 
         private string GetLoadDiscipleName(CharacterItem characterItem)
@@ -198,9 +206,9 @@ namespace GameWish.Game
 
         private void RefreshArmsInfo()
         {
-            if (m_CurDisciple.characeterEquipmentData.IsArmorUnlock)
+            if (m_CurDisciple.characeterEquipmentData.IsArmsUnlock)
             {
-                m_ArmsBtn.enabled = true;
+                m_ArmsState = EquipBtnState.UnLock;
                 //解锁
                 CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
                 if (characterArms.IsHaveEquip())
@@ -235,7 +243,7 @@ namespace GameWish.Game
                 int unlockLevel = MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.EquipWeapon);
                 m_ArmsClassValue.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
                 m_IntensifyArmsBtn.gameObject.SetActive(false);
-                m_ArmsBtn.enabled = false;
+                m_ArmsState = EquipBtnState.Lock;
                 m_ArmsLock.gameObject.SetActive(true);
                 m_ArmsImg.gameObject.SetActive(false);
                 m_ArmsPlus.gameObject.SetActive(false);
@@ -246,7 +254,7 @@ namespace GameWish.Game
         {
             if (m_CurDisciple.characeterEquipmentData.IsArmorUnlock)
             {
-                m_ArmorBtn.enabled = true;
+                m_ArmorState = EquipBtnState.UnLock;
                 CharacterArmor characterArmor = m_CurDisciple.characeterEquipmentData.CharacterArmor;
                 if (characterArmor.IsHaveEquip())
                 {
@@ -277,7 +285,7 @@ namespace GameWish.Game
                 int unlockLevel = MainGameMgr.S.CharacterMgr.GetUnlockConfigInfo(UnlockContent.EquipArmor);
                 m_ArmorClassValue.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
                 m_IntensifyArmorBtn.gameObject.SetActive(false);
-                m_ArmorBtn.enabled = false;
+                m_ArmorState = EquipBtnState.Lock;
                 m_ArmorLock.gameObject.SetActive(true);
                 m_ArmorImg.gameObject.SetActive(false);
                 m_ArmorPlus.gameObject.SetActive(false);
@@ -291,7 +299,7 @@ namespace GameWish.Game
             if (!m_KongfusGameObject.ContainsKey(index))
                 m_KongfusGameObject.Add(index, obj);
 
-            
+
             List<Sprite> sprites = GetSprite(characterKongfu);
             sprites.Add(sprite);
             itemICom.OnInit(characterKongfu, null, kungfuLockState, sprites, UnLockLevel, m_CurDisciple, index);
@@ -332,14 +340,38 @@ namespace GameWish.Game
             m_ArmorBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Armor, m_CurDisciple);
+                switch (m_ArmorState)
+                {
+                    case EquipBtnState.None:
+                        break;
+                    case EquipBtnState.Lock:
+                        FloatMessage.S.ShowMsg("弟子等级不足，先去升级吧");
+                        break;
+                    case EquipBtnState.UnLock:
+                        UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Armor, m_CurDisciple);
+                        break;
+                    default:
+                        break;
+                }
             });
             m_ArmsBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                switch (m_ArmsState)
+                {
+                    case EquipBtnState.None:
+                        break;
+                    case EquipBtnState.Lock:
+                        FloatMessage.S.ShowMsg("弟子等级不足，先去升级吧");
+                        break;
+                    case EquipBtnState.UnLock:
+                        UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
+                        break;
+                    default:
+                        break;
+                }
 
-                UIMgr.S.OpenPanel(UIID.WearableLearningPanel, PropType.Arms, m_CurDisciple);
+
             });
             m_IntensifyArmorBtn.onClick.AddListener(() =>
             {
@@ -348,9 +380,9 @@ namespace GameWish.Game
                 CharacterArmor characterArmor = m_CurDisciple.characeterEquipmentData.CharacterArmor;
 
                 UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArmor.ArmorID, characterArmor.Class + 1);
-                  
+
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
-                if (!isHave)   
+                if (!isHave)
                 {
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
                     return;
@@ -373,11 +405,13 @@ namespace GameWish.Game
                 else
                     FloatMessage.S.ShowMsg("弟子正在忙碌中");
             });
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-            m_BlackBtn.onClick.AddListener(() => {
+            m_BlackBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
@@ -455,7 +489,7 @@ namespace GameWish.Game
         private List<Sprite> GetSprite(CharacterKongfu characterKongfu)
         {
             List<Sprite> sprites = new List<Sprite>();
-            if (characterKongfu==null)
+            if (characterKongfu == null)
                 return sprites;
             sprites.Add(FindSprite(GetIconName(characterKongfu.dbData.kongfuType)));
             switch (GetKungfuQuality(characterKongfu.dbData.kongfuType))

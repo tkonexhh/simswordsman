@@ -84,7 +84,7 @@ namespace GameWish.Game
             m_CreateBaoziBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                UIMgr.S.OpenPanel(UIID.LogPanel, LogPanelCallback,"补充食物", "看一段广告，补充20点食物如何？", "看一个", "算了") ;
+                UIMgr.S.OpenPanel(UIID.SupplementFoodPanel) ;
             });
 
             m_VillaBtn.onClick.AddListener(() => {
@@ -145,12 +145,6 @@ namespace GameWish.Game
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
-        }
-
-        private void LogPanelCallback(AbstractPanel obj)
-        {
-            LogPanel logPanel = obj as LogPanel;
-            logPanel.OnSuccessBtnEvent += SuccessBtnEvent;
         }
 
         private void SuccessBtnEvent()

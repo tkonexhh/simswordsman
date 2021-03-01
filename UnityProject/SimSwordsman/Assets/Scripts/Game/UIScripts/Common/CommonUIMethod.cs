@@ -61,6 +61,22 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnSendRecruitable, false);
         }
         /// <summary>
+        /// 计算小时差
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static int GetDeltaTime(string time)
+        {
+            DateTime dateTime;
+            DateTime.TryParse(time, out dateTime);
+            if (dateTime != null)
+            {
+                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
+                return (int)timeSpan.TotalHours;
+            }
+            return 0;
+        }
+        /// <summary>
         /// 设置门派前缀
         /// </summary>
         /// <param name="clanType">门派类型</param>

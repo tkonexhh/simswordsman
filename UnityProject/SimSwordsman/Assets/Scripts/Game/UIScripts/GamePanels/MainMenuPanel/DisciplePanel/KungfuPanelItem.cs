@@ -57,7 +57,20 @@ namespace GameWish.Game
             m_UnLockLevel = (int)obj[2];
             m_CurIndex = (int)obj[4];
             m_KungfuBtn.onClick.AddListener(() => {
-                UIMgr.S.OpenPanel(UIID.LearnKungfuPanel, m_CurDisciple, m_CurIndex);
+
+                switch (m_KungfuLockState)
+                {
+                    case KungfuLockState.Learned:
+                        break;
+                    case KungfuLockState.NotLearning:
+                        UIMgr.S.OpenPanel(UIID.LearnKungfuPanel, m_CurDisciple, m_CurIndex);
+                        break;
+                    case KungfuLockState.NotUnlocked:
+                        FloatMessage.S.ShowMsg("弟子等级不足，先去升级吧");
+                        break;
+                    default:
+                        break;
+                }
             });
             RefreshPanelInfo();
         }
@@ -86,7 +99,6 @@ namespace GameWish.Game
             switch (m_KungfuLockState)
             {
                 case KungfuLockState.Learned:
-                    m_KungfuBtn.enabled = false;
                     m_KungfuName.text = m_CharacterKongfu.name;
                     m_ClassValue.text = GetKungfuClass(m_CharacterKongfu.dbData.level);
                     m_KungfuAddition.text = GetKungfuAddition(m_CharacterKongfu.atkScale);
@@ -112,7 +124,6 @@ namespace GameWish.Game
 
                     break;
                 case KungfuLockState.NotLearning:
-                    m_KungfuBtn.enabled = true;
                     m_KungfuName.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_STATE_NOTLEARNED);
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
@@ -123,7 +134,6 @@ namespace GameWish.Game
                     m_NotLearnBg.gameObject.SetActive(true);
                     break;
                 case KungfuLockState.NotUnlocked:
-                    m_KungfuBtn.enabled = false;
                     m_KungfuName.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED);
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
