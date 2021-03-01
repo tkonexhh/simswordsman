@@ -86,8 +86,10 @@ namespace GameWish.Game
             //    //return m_CharacterGoDic[id];
             //}
             string prefabName = GetPrefabName(characterQuality, bodyId);
+
             GameObject go = GameObjectPoolMgr.S.Allocate(prefabName);
-            go.transform.parent = GameplayMgr.S.EntityRoot;
+            if(go != null)
+                go.transform.parent = GameplayMgr.S.EntityRoot;
 
             return go;
         }  
