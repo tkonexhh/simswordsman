@@ -179,13 +179,9 @@ namespace GameWish.Game
         private Sprite GetSprite(int id)
         {
             if (id==-1)
-            {
-                m_BulletinBoardPanel.FindSprite("Coin");
-            }
+                return m_BulletinBoardPanel.FindSprite("Coin");
             else if(id==-2)
-            {
-                m_BulletinBoardPanel.FindSprite("Baozi");
-            }
+                return m_BulletinBoardPanel.FindSprite("Baozi");
             return m_BulletinBoardPanel.FindSprite(GetStrForItemID(id));
         }
         private Sprite GetSprite(string name)

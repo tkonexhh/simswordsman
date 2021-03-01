@@ -203,10 +203,7 @@ namespace GameWish.Game
             SpawnOurCharacter(ourSelectedCharacters);
             enemies.ForEach(i =>
             {
-                Log.e("###############=====>1");
                 SpawnEnemyCharacter(i.ConfigId, i.Atk);
-                Log.e("###############=====>20");
-
             });
             MusicMgr.S.PlayBattleMusic();
         }
@@ -302,10 +299,8 @@ namespace GameWish.Game
 
         private void SpawnEnemyCharacter(int id, long atk)
         {
-            Log.e("###############=====>2");
             SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
             {
-                Log.e("###############=====>10");
                 m_EnemyCharacterList.Add(controller);
 
                 float debuff = m_SelectedHerbList.Any(j => j == HerbType.JinZhenQingCheGao) ? TDHerbConfigTable.GetEffectParam((int)HerbType.JinZhenQingCheGao) : 0;
@@ -315,17 +310,12 @@ namespace GameWish.Game
 
                 m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
                 m_TotalEnemyHp += controller.CharacterModel.GetHp();
-                Log.e("============>m_LoadedEnemyCount<====="+ m_LoadedEnemyCount);
-                Log.e("============>m_AllEnemyCount<=====" + m_AllEnemyCount);
                 m_LoadedEnemyCount++;
 
                 if (m_LoadedEnemyCount >= m_AllEnemyCount)
                 {
-                    Log.e("###############=====>11");
                     OnAllEnemyLoaded();
-                    Log.e("###############=====>12");
                 }
-                Log.e("###############=====>13");
             });
 
         }
@@ -366,26 +356,19 @@ namespace GameWish.Game
         {
             //GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
             //GameObject obj = GameObject.Instantiate(prefab);
-            Log.e("###############=====>3");
             EnemyLoader.S.LoadEnemySync(id, (obj) => 
             {
-                Log.e("###############=====>6");
                 obj.name = "Character_" + camp;
                 obj.transform.parent = m_BattleField.transform;
-                Log.e("============> EnemyLoader obj name<=====" + obj.name);
 
                 CharacterView characterView = obj.GetComponent<CharacterView>();
                 CharacterController controller = new CharacterController(id, characterView, CharacterStateID.Battle, CharacterCamp.EnemyCamp);
                 controller.OnEnterBattleField(pos);
-                Log.e("###############=====>7");
 
                 onCharacterLoaded?.Invoke(controller);
-                Log.e("###############=====>8");
 
             });
-            Log.e("###############=====>9");
         }
-
         private void ApplyDamage()
         {
             m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * Random.Range(0.8f, 1.2f);
