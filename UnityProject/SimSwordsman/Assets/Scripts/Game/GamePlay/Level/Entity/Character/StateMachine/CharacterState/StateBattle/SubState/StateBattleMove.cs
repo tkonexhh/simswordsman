@@ -13,7 +13,7 @@ namespace GameWish.Game
         private CharacterController m_Controller = null;
         private CharacterStateBattle m_BattleState = null;
 
-        private float m_MoveSpeed = 1f;
+        private float m_MoveSpeed = 1.5f;
         private Vector2 m_TargetPos = Vector3.zero;
 
         public StateBattleMove(BattleStateID stateEnum) : base(stateEnum)
@@ -32,6 +32,8 @@ namespace GameWish.Game
             m_Controller.CharacterView.PlayRunAnim();
 
             m_TargetPos = m_BattleState.MoveTargetPos;
+
+            //Qarth.Log.i("State battle move:" + m_Controller.CharacterCamp);
         }
 
         public override void Exit(IBattleStateHander handler)
