@@ -99,9 +99,10 @@ namespace GameWish.Game
         public const int CHARACTER_EXCELLENT_MAX_LEVEL = 450;
         public const int CHARACTER_MAX_LEVEL = 1000;
         public const string CHARACTER_TASK_REWARD_BUBBLE = "CharacterTaskRewardBubble";
-        public const string CHARACTER_WORK_PROGRESS_BAR = "CharacterWorkProgressBar";
-        public const string CHARACTER_WORK_TIP = "CharacterWorkTip";
-        public const string CHARACTER_WORK_REWARD_POP = "CharacterWorkRewardPop";
+        public const string CHARACTER_WORK_PROGRESS_BAR = "WorkProgressBar";
+        public const string CHARACTER_WORK_TIP = "WorkTip";
+        public const string CHARACTER_WORK_REWARD_POP = "PopRewardCanvas";
+        //public const string CHARACTER_POP_REWARD_CANVAS = "PopRewardCanvas";
 
         // Animation
         public const string ANIM_MOVE = "move";

@@ -10,26 +10,33 @@ namespace GameWish.Game
     {
         private List<CharacterItemDbData> m_CharacterList = null;
         //private Dictionary<int, GameObject> m_CharacterGoDic = new Dictionary<int, GameObject>();
-        private Dictionary<int, AddressableGameObjectLoader> m_CharacterLoaderDic = new Dictionary<int, AddressableGameObjectLoader>();
+        //private Dictionary<int, AddressableGameObjectLoader> m_CharacterLoaderDic = new Dictionary<int, AddressableGameObjectLoader>();
 
-        private GameObject m_CharacterTaskRewardBubble = null;
-        private AddressableGameObjectLoader m_CharacterTaskRewardBubbleLoader = null;
+        //private GameObject m_CharacterTaskRewardBubble = null;
+        //private AddressableGameObjectLoader m_CharacterTaskRewardBubbleLoader = null;
 
-        private AddressableGameObjectLoader m_CharacterWorkProgressBarLoader = null;
-        private GameObject m_CharacterWorkProgressBar = null;
+        //private AddressableGameObjectLoader m_CharacterWorkProgressBarLoader = null;
+        //private GameObject m_CharacterWorkProgressBar = null;
 
-        private AddressableGameObjectLoader m_CharacterWorkTipLoader = null;
-        private GameObject m_CharacterWorkTip = null;
+        //private AddressableGameObjectLoader m_CharacterWorkTipLoader = null;
+        //private GameObject m_CharacterWorkTip = null;
 
-        private AddressableGameObjectLoader m_CharacterWorkRewardLoader = null;
-        private GameObject m_CharacterWorkRewardPop = null;
+        //private AddressableGameObjectLoader m_CharacterWorkRewardLoader = null;
+        //private GameObject m_CharacterWorkRewardPop = null;
 
         private int m_LoadedCharacterCount = 0;
 
         private bool m_IsLoadDoneSent = false;
 
+        private ResLoader m_CharacterLoader = null;
+
         public void StartPreload()
         {
+            if (m_CharacterLoader == null)
+            {
+                m_CharacterLoader = ResLoader.Allocate("CharacterLoader");
+            }
+
             m_CharacterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
             //if (characterList.Count == 0 && m_CharacterTaskRewardBubble != null)
             //{
@@ -39,14 +46,7 @@ namespace GameWish.Game
             //{
                 foreach (var item in m_CharacterList)
                 {
-                    LoadCharacterAsync(item.id, item.quality, item.bodyId, (go) =>
-                    {
-                        go.transform.parent = GameplayMgr.S.EntityRoot.transform;
-                        go.GetComponent<CharacterView>()?.HideBody();
-                        m_LoadedCharacterCount++;
-
-                        SendAssetLoadedMsg();
-                    });
+                    LoadCharacterAsync(item.id, item.quality, item.bodyId,  null);
                 }
             //}
 
@@ -54,65 +54,78 @@ namespace GameWish.Game
             LoadCharacterWorkProgressBarAsync();
             LoadCharacterWorkTipAsync();
             LoadCharacterWorkRewardAsync();
+
+            SendAssetLoadedMsg();
         }
 
         public GameObject GetCharacterRewardBubble()
         {
-            return m_CharacterTaskRewardBubble;
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_TASK_REWARD_BUBBLE);
         }
 
         public GameObject GetCharacterWorkProgressBar()
         {
-            return m_CharacterWorkProgressBar;
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_PROGRESS_BAR);
         }
 
         public GameObject GetCharacterWorkTip()
         {
-            return m_CharacterWorkTip;
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_TIP);
         }
 
         public GameObject GetCharacterWorkRewardPop()
         {
-            return m_CharacterWorkRewardPop;
+            return GameObjectPoolMgr.S.Allocate(Define.CHARACTER_WORK_REWARD_POP);
         }
 
-        public GameObject GetCharacterGo(int id)
+        public GameObject GetCharacterGo(int id, CharacterQuality characterQuality, int bodyId)
         {
-            if (m_CharacterLoaderDic.ContainsKey(id))
-            {
-                return GameObject.Instantiate(m_CharacterLoaderDic[id].GetResult());
-                //return m_CharacterGoDic[id];
-            }
+            //if (m_CharacterLoaderDic.ContainsKey(id))
+            //{
+            //    return GameObject.Instantiate(m_CharacterLoaderDic[id].GetResult());
+            //    //return m_CharacterGoDic[id];
+            //}
+            string prefabName = GetPrefabName(characterQuality, bodyId);
 
-            return null;
+            GameObject go = GameObjectPoolMgr.S.Allocate(prefabName);
+            if(go != null)
+                go.transform.parent = GameplayMgr.S.EntityRoot;
+
+            return go;
         }  
 
         public void LoadCharacterAsync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
         {
             string prefabName = GetPrefabName(characterQuality, bodyId);
 
-            AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-            loader.InstantiateAsync(prefabName, (obj) =>
-            {
-                //m_CharacterGoDic.Add(id, obj);
-                m_CharacterLoaderDic.Add(id, loader);
+            GameObject obj = m_CharacterLoader.LoadSync(prefabName) as GameObject;
 
-                onLoadDone?.Invoke(obj);
-            });
+            GameObjectPoolMgr.S.AddPool(prefabName, obj, 5, 2);
+
+            //GameObject go = GetCharacterGo(id, characterQuality, bodyId);
+
+            //onLoadDone?.Invoke(go);
+            //AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+            //loader.InstantiateAsync(prefabName, (obj) =>
+            //{
+            //    m_CharacterLoaderDic.Add(id, loader);
+
+            //    onLoadDone?.Invoke(obj);
+            //});
         }
 
-        public void RemoveCharacter(int id)
-        {
-            if (m_CharacterLoaderDic.ContainsKey(id))
-            {
-                m_CharacterLoaderDic[id].Release();
-                m_CharacterLoaderDic.Remove(id);
-            }
-            else
-            {
-                Log.e("Character loader not found: " + id);
-            }
-        }
+        //public void RemoveCharacter(int id)
+        //{
+        //    if (m_CharacterLoaderDic.ContainsKey(id))
+        //    {
+        //        m_CharacterLoaderDic[id].Release();
+        //        m_CharacterLoaderDic.Remove(id);
+        //    }
+        //    else
+        //    {
+        //        Log.e("Character loader not found: " + id);
+        //    }
+        //}
 
         private string GetPrefabName(CharacterQuality characterQuality, int bodyId)
         {
@@ -121,67 +134,86 @@ namespace GameWish.Game
 
         private void LoadCharacterRewardBubbleAsync()
         {
-            string prefabName = "CharacterTaskRewardBubble";
-            m_CharacterTaskRewardBubbleLoader = new AddressableGameObjectLoader();
-            m_CharacterTaskRewardBubbleLoader.InstantiateAsync(prefabName, (obj) =>
-            {
-                m_CharacterTaskRewardBubble = obj;
-                m_CharacterTaskRewardBubble.transform.position = new Vector3(-1000,0,0);
+            string prefabName = Define.CHARACTER_TASK_REWARD_BUBBLE;
+            //m_CharacterTaskRewardBubbleLoader = new AddressableGameObjectLoader();
+            //m_CharacterTaskRewardBubbleLoader.InstantiateAsync(prefabName, (obj) =>
+            //{
+            //    m_CharacterTaskRewardBubble = obj;
+            //    m_CharacterTaskRewardBubble.transform.position = new Vector3(-1000,0,0);
 
-                SendAssetLoadedMsg();
-            });
+            //    SendAssetLoadedMsg();
+            //});
+            GameObject obj = m_CharacterLoader.LoadSync(prefabName) as GameObject;
+
+            GameObjectPoolMgr.S.AddPool(prefabName, obj, 10, 2);
         }
 
 
         private void LoadCharacterWorkTipAsync()
         {
-            string prefabName = "WorkTip";
-            m_CharacterWorkTipLoader = new AddressableGameObjectLoader();
-            m_CharacterWorkTipLoader.InstantiateAsync(prefabName, (obj) =>
-            {
-                m_CharacterWorkTip = obj;
-                m_CharacterWorkTip.transform.position = new Vector3(-1000, 0, 0);
+            //string prefabName = "WorkTip";
+            //m_CharacterWorkTipLoader = new AddressableGameObjectLoader();
+            //m_CharacterWorkTipLoader.InstantiateAsync(prefabName, (obj) =>
+            //{
+            //    m_CharacterWorkTip = obj;
+            //    m_CharacterWorkTip.transform.position = new Vector3(-1000, 0, 0);
 
-                SendAssetLoadedMsg();
-            });
+            //    SendAssetLoadedMsg();
+            //});
+
+            string prefabName = Define.CHARACTER_WORK_TIP;
+
+            GameObject obj = m_CharacterLoader.LoadSync(prefabName) as GameObject;
+
+            GameObjectPoolMgr.S.AddPool(prefabName, obj, 10, 2);
         }
 
         private void LoadCharacterWorkRewardAsync()
         {
-            string prefabName = "PopRewardCanvas";
-            m_CharacterWorkRewardLoader = new AddressableGameObjectLoader();
-            m_CharacterWorkRewardLoader.InstantiateAsync(prefabName, (obj) =>
-            {
-                m_CharacterWorkRewardPop = obj;
-                m_CharacterWorkRewardPop.transform.position = new Vector3(-1000, 0, 0);
+            //string prefabName = "PopRewardCanvas";
+            //m_CharacterWorkRewardLoader = new AddressableGameObjectLoader();
+            //m_CharacterWorkRewardLoader.InstantiateAsync(prefabName, (obj) =>
+            //{
+            //    m_CharacterWorkRewardPop = obj;
+            //    m_CharacterWorkRewardPop.transform.position = new Vector3(-1000, 0, 0);
 
-                SendAssetLoadedMsg();
-            });
+            //    SendAssetLoadedMsg();
+            //});
+            string prefabName = Define.CHARACTER_WORK_REWARD_POP;
+
+            GameObject obj = m_CharacterLoader.LoadSync(prefabName) as GameObject;
+
+            GameObjectPoolMgr.S.AddPool(prefabName, obj, 10, 2);
         }
 
         private void LoadCharacterWorkProgressBarAsync()
         {
-            string prefabName = "WorkProgressBar";
-            m_CharacterWorkProgressBarLoader = new AddressableGameObjectLoader();
-            m_CharacterWorkProgressBarLoader.InstantiateAsync(prefabName, (obj) =>
-            {
-                m_CharacterWorkProgressBar = obj;
-                m_CharacterWorkProgressBar.transform.position = new Vector3(-1000, 0, 0);
+            //string prefabName = "WorkProgressBar";
+            //m_CharacterWorkProgressBarLoader = new AddressableGameObjectLoader();
+            //m_CharacterWorkProgressBarLoader.InstantiateAsync(prefabName, (obj) =>
+            //{
+            //    m_CharacterWorkProgressBar = obj;
+            //    m_CharacterWorkProgressBar.transform.position = new Vector3(-1000, 0, 0);
 
-                SendAssetLoadedMsg();
-            });
+            //    SendAssetLoadedMsg();
+            //});
+            string prefabName = Define.CHARACTER_WORK_PROGRESS_BAR;
+
+            GameObject obj = m_CharacterLoader.LoadSync(prefabName) as GameObject;
+
+            GameObjectPoolMgr.S.AddPool(prefabName, obj, 10, 2);
         }
 
-        private bool IsAllAssetLoaded()
-        {
-            return m_LoadedCharacterCount >= m_CharacterList.Count && 
-                m_CharacterTaskRewardBubble != null && m_CharacterWorkProgressBar != null
-                && m_CharacterWorkTip != null && m_CharacterWorkRewardPop != null;
-        }
+        //private bool IsAllAssetLoaded()
+        //{
+        //    return m_LoadedCharacterCount >= m_CharacterList.Count && 
+        //        m_CharacterTaskRewardBubble != null && m_CharacterWorkProgressBar != null
+        //        && m_CharacterWorkTip != null && m_CharacterWorkRewardPop != null;
+        //}
 
         private void SendAssetLoadedMsg()
         {
-            if (IsAllAssetLoaded() && m_IsLoadDoneSent == false)
+            //if (IsAllAssetLoaded() && m_IsLoadDoneSent == false)
             {
                 m_IsLoadDoneSent = true;
 

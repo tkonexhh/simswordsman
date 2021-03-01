@@ -24,7 +24,7 @@ namespace GameWish.Game
         {
             RegisterEvents();
 
-            InitPool();
+            //InitPool();
         }
 
         public void OnUpdate()
@@ -221,7 +221,7 @@ namespace GameWish.Game
                 m_CharacterControllerList.Remove(character);
             }
 
-            CharacterLoader.S.RemoveCharacter(id);
+            //CharacterLoader.S.RemoveCharacter(id);
         }
 
         public void SpawnCharacterController(CharacterItem characterItem)
@@ -233,23 +233,30 @@ namespace GameWish.Game
             if (isSpawned)
                 return;
 
-            GameObject go = CharacterLoader.S.GetCharacterGo(id);
+            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
             if (go != null)
             {
                 OnCharacterLoaded(go, id, initState);
             }
             else
             {
-                CharacterLoader.S.LoadCharacterAsync(id, characterItem.quality, characterItem.bodyId, (obj) =>
-                {
-                    OnCharacterLoaded(obj, id, initState);
-                });
+                CharacterLoader.S.LoadCharacterAsync(id, characterItem.quality, characterItem.bodyId, null);
+                GameObject obj = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
+                OnCharacterLoaded(obj, id, initState);
             }
         }
 
         private void OnCharacterLoaded(GameObject obj, int id, CharacterStateID initState)
         {
+            //obj.transform.parent = GameplayMgr.S.EntityRoot.transform; 
+
             CharacterView characterView = obj.GetComponent<CharacterView>();
+            if (characterView == null)
+            {
+                Log.e("Characterview is null, id: " + id + " obj name: " + obj.name);
+                return;
+            }
+
             CharacterController controller = new CharacterController(id, characterView, initState);
             m_CharacterControllerList.Add(controller);
 
@@ -366,20 +373,20 @@ namespace GameWish.Game
             return spawnPos;
         }
 
-        private void InitPool()
-        {
-            GameObject rewardBubble = CharacterLoader.S.GetCharacterRewardBubble();
-            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_TASK_REWARD_BUBBLE, rewardBubble, 10, 3);
+        //private void InitPool()
+        //{
+        //    GameObject rewardBubble = CharacterLoader.S.GetCharacterRewardBubble();
+        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_TASK_REWARD_BUBBLE, rewardBubble, 10, 3);
 
-            GameObject workProgressBar = CharacterLoader.S.GetCharacterWorkProgressBar();
-            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_PROGRESS_BAR, workProgressBar, 10, 3);
+        //    GameObject workProgressBar = CharacterLoader.S.GetCharacterWorkProgressBar();
+        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_PROGRESS_BAR, workProgressBar, 10, 3);
 
-            GameObject workTip = CharacterLoader.S.GetCharacterWorkTip();
-            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_TIP, workTip, 10, 3);
+        //    GameObject workTip = CharacterLoader.S.GetCharacterWorkTip();
+        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_TIP, workTip, 10, 3);
 
-            GameObject workRewardPop = CharacterLoader.S.GetCharacterWorkRewardPop();
-            GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_REWARD_POP, workRewardPop, 20, 5);
-        }
+        //    GameObject workRewardPop = CharacterLoader.S.GetCharacterWorkRewardPop();
+        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_REWARD_POP, workRewardPop, 20, 5);
+        //}
         #endregion
 
     }

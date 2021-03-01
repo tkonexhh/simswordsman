@@ -38,6 +38,11 @@ namespace GameWish.Game
             //m_NavAgent.enabled = false;
             m_NavAgent.OnDestinationReached += OnReach;
 
+            if (m_SpineAnim == null)
+                m_SpineAnim = m_Body.GetComponent<SkeletonAnimation>();
+
+            m_SpineAnim.Initialize(false);
+
             m_SpineAnim.state.Event += HandleEvent;
         }
 

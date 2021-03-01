@@ -37,6 +37,10 @@ namespace GameWish.Game
             {
                 RebindShader();
             }
+
+#if UNITY_EDITOR
+            RebindShader();
+#endif
         }
 
         public void RebindShader()
