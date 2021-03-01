@@ -32,6 +32,8 @@ namespace GameWish.Game
             m_Controller.CharacterView.PlayRunAnim();
 
             m_TargetPos = m_BattleState.MoveTargetPos;
+
+            //Qarth.Log.i("State battle move:" + m_Controller.CharacterCamp);
         }
 
         public override void Exit(IBattleStateHander handler)

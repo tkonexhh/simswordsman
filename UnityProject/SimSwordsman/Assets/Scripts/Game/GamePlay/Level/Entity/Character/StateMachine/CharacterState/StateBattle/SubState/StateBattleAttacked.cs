@@ -30,7 +30,7 @@ namespace GameWish.Game
 
             if (!m_Controller.IsDead())
             {
-                //m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
+                m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
             }
 
             float hitBackDistance = m_BattleState.HitbackDistance;
@@ -43,7 +43,8 @@ namespace GameWish.Game
                     }
                     else
                     {
-                        m_BattleState.SetState(BattleStateID.Idle);
+                        if(m_BattleState.CurState == BattleStateID.Attacked)
+                            m_BattleState.SetState(BattleStateID.Idle);
                     }
                 });
         }
