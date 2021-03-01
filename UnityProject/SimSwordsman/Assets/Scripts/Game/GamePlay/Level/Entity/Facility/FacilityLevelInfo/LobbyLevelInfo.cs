@@ -14,6 +14,7 @@ namespace GameWish.Game
         public int workPay;
         public int workExp;
         public int maxDailyTask;
+        public int PracticeLevelMax;
     }
 	
 }

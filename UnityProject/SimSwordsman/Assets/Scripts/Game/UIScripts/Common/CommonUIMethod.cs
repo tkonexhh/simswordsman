@@ -49,6 +49,88 @@ namespace GameWish.Game
                 + chapterConfig.chapterId.ToString() + "-"
                 + level.ToString();
         }
+
+        public enum SortType
+        {
+            AtkValue,
+            Level,
+        }
+        /// <summary>
+        /// 顺序类型
+        /// </summary>
+        public enum OrderType
+        {
+            /// <summary>
+            /// 从大到小
+            /// </summary>
+            FromBigToSmall,
+            /// <summary>
+            /// 从小到达
+            /// </summary>
+            FromSmallToBig,
+        }
+        /// <summary>
+        /// 对弟子排序按照武力值
+        /// </summary>
+        /// <param name="characterItems"></param>
+        /// <returns></returns>
+        public static List<CharacterItem> BubbleSortForType(List<CharacterItem> characterItems, SortType sortType, OrderType orderType)
+        {
+            var len = characterItems.Count;
+            for (var i = 0; i < len - 1; i++)
+            {
+                for (var j = 0; j < len - 1 - i; j++)
+                {
+                    switch (sortType)
+                    {
+                        case SortType.AtkValue:
+                            if (orderType == OrderType.FromBigToSmall)
+                            {
+                                if (characterItems[j].atkValue < characterItems[j + 1].atkValue)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                            else
+                            {
+                                if (characterItems[j].atkValue > characterItems[j + 1].atkValue)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                          
+                            break;
+                        case SortType.Level:
+                            if (orderType == OrderType.FromBigToSmall)
+                            {
+                                if (characterItems[j].level < characterItems[j + 1].level)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                            else
+                            {
+                                if (characterItems[j].level > characterItems[j + 1].level)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            return characterItems;
+        }
+      
+
         /// <summary>
         /// 刷新讲武堂招募令红点
         /// </summary>

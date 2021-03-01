@@ -191,6 +191,9 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.F))
             {
                 MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 29);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 2);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 3);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 4);
             }
 
             if (Input.GetKeyDown(KeyCode.G))

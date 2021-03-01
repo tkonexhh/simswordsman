@@ -62,11 +62,6 @@ namespace GameWish.Game
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
                     break;
                 case SelectedState.NotSelected:
-                    //if (m_PanelType == PanelType.Task)
-                    //{
-                    //    DestroyImmediate(gameObject);
-                    //    break;
-                    //}
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_Plus.gameObject.SetActive(true);
                     m_DiscipleHead.gameObject.SetActive(false);

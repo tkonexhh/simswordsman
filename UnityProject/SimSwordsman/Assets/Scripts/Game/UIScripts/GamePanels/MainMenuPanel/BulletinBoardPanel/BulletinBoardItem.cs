@@ -447,7 +447,7 @@ namespace GameWish.Game
         {
             GameObject obj = Instantiate(m_BulletinBoardDisciple, m_MiddleDown);
             BulletinBoardDisciple item = obj.GetComponent<BulletinBoardDisciple>();
-            item.OnInit(m_CurTaskInfo);
+            item.OnInit(m_CurTaskInfo,null, m_BulletinBoardPanel);
             m_BulletinBoardDiscipleList.Add(item);
         }
       

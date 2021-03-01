@@ -198,7 +198,7 @@ namespace GameWish.Game
                 case FacilityType.LivableRoomWest4:
                     return Define.FACILITY_MAX_LIVABLEROOM;
                 case FacilityType.Warehouse:
-                    return Define.FACILITY_MAX_LIVABLEROOM;
+                    return Define.FACILITY_MAX_WAREHOUSE;
                 case FacilityType.PracticeFieldEast:
                 case FacilityType.PracticeFieldWest:
                     return Define.FACILITY_MAX_PRACTIVEFIELD;

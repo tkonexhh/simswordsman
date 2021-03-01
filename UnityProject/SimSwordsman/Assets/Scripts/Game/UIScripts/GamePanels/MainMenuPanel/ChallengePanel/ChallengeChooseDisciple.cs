@@ -1,13 +1,11 @@
-using System.Collections;
+using Qarth;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Qarth;
-using System;
 
 namespace GameWish.Game
 {
-	public class ChallengeChooseDisciple : AbstractAnimPanel
+    public class ChallengeChooseDisciple : AbstractAnimPanel
 	{
         [SerializeField]
         private Button m_CloseBtn;
@@ -190,6 +188,8 @@ namespace GameWish.Game
             m_LevelConfigInfo = args[0] as LevelConfigInfo;
             m_PanelType = (PanelType)args[1];
             m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
+
+            CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
 
             for (int i = 0; i < m_AllDiscipleList.Count; i++)
             {

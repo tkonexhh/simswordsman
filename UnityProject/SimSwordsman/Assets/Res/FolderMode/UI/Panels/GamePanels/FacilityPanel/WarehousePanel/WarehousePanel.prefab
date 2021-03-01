@@ -1820,6 +1820,7 @@ MonoBehaviour:
   m_WarehouseLevel: {fileID: 1833327936488037716}
   m_CurReservesValue: {fileID: 4433229713852492872}
   m_NextReservesValue: {fileID: 5924765847676056313}
+  m_NextReservesIcon: {fileID: 6439400088247438813}
   m_UpgradeCondition: {fileID: 6269280543616058585}
   m_Res1Img: {fileID: 5321362331080309642}
   m_Res1Value: {fileID: 5659439559951596498}
@@ -2260,7 +2261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 358}
+  m_AnchoredPosition: {x: 0, y: 357.9998}
   m_SizeDelta: {x: 680, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4518213588040145361
@@ -2567,7 +2568,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4518213588420242806}
   m_HandleRect: {fileID: 4518213588420242805}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
