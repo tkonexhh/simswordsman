@@ -289,7 +289,7 @@ namespace GameWish.Game
 
             int id = characterItem.id;
 
-            GameObject go = CharacterLoader.S.GetCharacterGo(id);
+            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
             if (go != null)
             {
                 CharacterView characterView = go.GetComponent<CharacterView>();
