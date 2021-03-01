@@ -261,14 +261,14 @@ namespace GameWish.Game
                     break;
                 case ClickType.RecruitmentOrder:
                     GetRandomDisciples(type);
-                    UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
-                    break;
-                case ClickType.LookAdvertisement:   
-                    int advertisementCount = MainGameMgr.S.RecruitDisciplerMgr.GetAdvertisementCount(type);
-                    if (advertisementCount <= 0)
+                    int curRecruitCount = MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType);
+                    if (curRecruitCount <= 0)
                         FloatMessage.S.ShowMsg("ÕÐÄ¼´ÎÊýÓÃ¾¡");
                     else
-                        UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type);
+                        UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
+                    break;
+                case ClickType.LookAdvertisement:   
+                    UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type); 
                     break;
                 default:
                     break;

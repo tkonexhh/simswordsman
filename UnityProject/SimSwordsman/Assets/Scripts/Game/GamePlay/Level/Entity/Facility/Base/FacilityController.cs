@@ -138,7 +138,6 @@ namespace GameWish.Game
         }  
         private bool CheckPropIsEnough(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
         {
-
             for (int i = 0; i < costItems.Count; i++)
             {
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)costItems[i].itemId, costItems[i].value);
