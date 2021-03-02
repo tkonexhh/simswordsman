@@ -14,9 +14,8 @@ namespace GameWish.Game
 
         static void CompleteRowAdd(TDFacilityPracticeField tdData)
         {
-            FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
             PracticeFieldLevelInfo practiceFieldLevelInfo = new PracticeFieldLevelInfo();
-            practiceFieldLevelInfo.Warp(levelInfo);
+            practiceFieldLevelInfo.Warp(tdData);
             practiceFieldLevelInfo.SetCurData(tdData);
             levelInfoList.Add(practiceFieldLevelInfo);
         }

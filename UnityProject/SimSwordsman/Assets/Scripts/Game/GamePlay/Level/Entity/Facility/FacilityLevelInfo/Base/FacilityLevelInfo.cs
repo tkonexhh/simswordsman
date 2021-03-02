@@ -44,7 +44,21 @@ namespace GameWish.Game
             this.upgradeNeedLobbyLevel = levelInfo.upgradeNeedLobbyLevel;
             this.upgradeResCosts = levelInfo.upgradeResCosts;
         }
+        public void Warp(TDFacilityPracticeField levelInfo)
+        {
+            this.level = levelInfo.level;
+            this.upgradeCoinCost = levelInfo.upgradeCost;
+            this.upgradeNeedLobbyLevel = levelInfo.upgradePreconditions;
+            FacilityUpgradeCost upgradeCost = new FacilityUpgradeCost();
 
+            string[] resArray = levelInfo.upgradeRes.Split(';');
+            for (int i = 0; i < resArray.Length; i++)
+            {
+                string[] res = resArray[i].Split('|');
+                upgradeCost.AddRewardItem(new CostItem(int.Parse(res[0]), int.Parse(res[1])));
+            }
+            this.upgradeResCosts = upgradeCost;
+        }
         public List<CostItem> GetUpgradeResCosts()
         {
             return upgradeResCosts.facilityCosts;
