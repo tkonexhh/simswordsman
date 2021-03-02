@@ -35,6 +35,10 @@ namespace GameWish.Game
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
 
+        #region 食物倒计时
+        public string FoodCoundDownTime;
+        #endregion
+
         /// <summary>
         /// 辅助记录刷新了食物的次数
         /// </summary>
@@ -175,6 +179,19 @@ namespace GameWish.Game
             FoodRefreshRecordingTime = recordingTime;
         }
         #endregion
+
+        #region 食物倒计时
+        public string GetFoodCoundDownTime()
+        {
+            return FoodCoundDownTime;
+        }
+
+        public void SetFoodCoundDownTime(string str)
+        {
+            FoodCoundDownTime = str;
+        }
+        #endregion
+
         public void SetCoinNum(long num)
         {
             m_CoinNum = num;
@@ -308,6 +325,7 @@ namespace GameWish.Game
         public void AddFoodNum(int delta)
         {
             foodNum += delta;
+            Debug.LogError("foodNum+++" + foodNum);
 
             EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
