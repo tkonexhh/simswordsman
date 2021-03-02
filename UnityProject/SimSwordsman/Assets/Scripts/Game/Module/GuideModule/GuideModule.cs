@@ -102,6 +102,35 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystemTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger1));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger1));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(CollectStoneTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(CollectStoneProgressTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(BuildPracticeFieldEastTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(VisitotBtnNormalTipTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ClickVisitorBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ClickVisitorPanelAcceptBtnTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(KungFuTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(KungFuTrigger_ClickOpenDisciplePanelTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(KungFuTrigger_ChoiceTargetDiscipleTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(KungFuTrigger_ClickStudyKungFuTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(KungFuTrigger_ChoiceKungFuTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(KungFuTrigger_ConfirmChoiceKungFuTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArmsTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArmsTrigger_ClickOpenDisciplePanelTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArmsTrigger_ChoiceTargetDiscipleTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArmsTrigger_ClickArmsBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArmsTrigger_ChoiceArmsTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArmsTrigger_ConfirmChoiceArmsTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickChallengeBtnTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ChoiceChallengeObjTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ChoiceChallengeLevelTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickAKeyChoiceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickStartChallengeTrigger));
         }
 
         protected void InitCustomCommand()
@@ -113,6 +142,7 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideCommand(typeof(GuideClickBubbleCommand)); 
             GuideMgr.S.RegisterGuideCommand(typeof(TakeNameCommand));
             GuideMgr.S.RegisterGuideCommand(typeof(DialogCommand));
+            GuideMgr.S.RegisterGuideCommand(typeof(DialogWithCircleMaskCommand));
         }
     }
 }
