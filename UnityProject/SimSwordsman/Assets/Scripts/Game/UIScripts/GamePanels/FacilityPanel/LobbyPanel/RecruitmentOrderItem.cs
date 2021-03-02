@@ -257,7 +257,12 @@ namespace GameWish.Game
             switch (m_RecruitDic[type])
             {
                 case ClickType.Free:
-                    UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.Free, type);
+                    CharacterItem itemData = GetRandomDisciples(type);
+                    if (GuideMgr.S.IsGuideFinish(8) == false) {
+                        itemData.quality = CharacterQuality.Normal;
+                        itemData.bodyId = 1;
+                    }
+                    UIMgr.S.OpenPanel(UIID.GetDisciplePanel, itemData, ClickType.Free, type);
                     break;
                 case ClickType.RecruitmentOrder:
                     GetRandomDisciples(type);

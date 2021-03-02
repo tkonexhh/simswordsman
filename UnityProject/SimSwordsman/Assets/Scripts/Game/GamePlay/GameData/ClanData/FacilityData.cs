@@ -52,6 +52,8 @@ namespace GameWish.Game
             {
                 facilityDbData.AddLevel(deltaLevel);
             }
+
+            EventSystem.S.Send(EventID.OnUpgradeFacility, facilityType);
         }
 
         public int GetFacilityLevel(FacilityType facilityType/*, int subId*/)

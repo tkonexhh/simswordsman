@@ -39,8 +39,7 @@ namespace GameWish.Game
             m_CanStart = false;
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideClickTaskTrigger1, OnEventListener);
-
-            EventSystem.S.Send(EventID.OnGuideClickTaskDetailsTrigger1);
+            EventSystem.S.Send(EventID.OnFinishedClickWuWoodBubbleTrigger);
         }
 
 	}

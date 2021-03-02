@@ -40,7 +40,9 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideBuildKitchenPanel, OnEventListener);
 
-            EventSystem.S.Send(EventID.OnGuideDialog8);
+            Timer.S.Post2Really((x)=> {
+                EventSystem.S.Send(EventID.OnGuideClickTaskTrigger2);
+            },2.0f);
         }
 
 	}

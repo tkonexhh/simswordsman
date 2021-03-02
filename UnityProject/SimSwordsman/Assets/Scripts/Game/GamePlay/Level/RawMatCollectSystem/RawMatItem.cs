@@ -79,7 +79,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (IsFoodEnough() == false)
+            if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(8) && GuideMgr.S.IsGuideFinish(14))
             {
                 FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
                 return;

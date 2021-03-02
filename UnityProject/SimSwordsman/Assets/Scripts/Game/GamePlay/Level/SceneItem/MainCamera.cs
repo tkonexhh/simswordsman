@@ -121,6 +121,20 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnEnterBattle, HandleEvent);
             EventSystem.S.Register(EventID.OnExitBattle, HandleEvent);
             EventSystem.S.Register(EventID.InGuideProgress, CameraMoveWwitch);
+            EventSystem.S.Register(EventID.OnLimitCameraTouchMove, OnLimitCameraTouchMove);
+        }
+
+        private void OnLimitCameraTouchMove(int key, object[] param)
+        {
+            bool isLimitTouch = false;
+
+            if (param.Length > 0) {
+                isLimitTouch = bool.Parse(param[0].ToString());
+            }            
+
+            m_TouchInput.enabled = !isLimitTouch;
+            m_MobileTouchCamera.enabled = !isLimitTouch;
+            m_SimProperty.Apply(m_Camera);
         }
 
         private void CameraMoveWwitch(int key, object[] param)

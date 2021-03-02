@@ -40,9 +40,7 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideClickTaskDetailsTrigger1, OnEventListener);
 
-            EventSystem.S.Send(EventID.OnGuideSelectCharacterBtnTrigger1);
+            EventSystem.S.Send(EventID.OnGuideDialog5);
         }
-
-    }
-	
+    }	
 }
