@@ -85,7 +85,7 @@ namespace GameWish.Game
                 return;
             }
 
-            CharacterController character = SelectIdleCharacterToCollectRes();
+            CharacterController character = SelectIdleCharacterToCollectRes(true);
 
             if (character == null)
             {
@@ -94,12 +94,13 @@ namespace GameWish.Game
             }
         }
 
-        private CharacterController SelectIdleCharacterToCollectRes()
+        private CharacterController SelectIdleCharacterToCollectRes(bool manual)
         {
             CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CurState == CharacterStateID.Wander || i.CurState == CharacterStateID.EnterClan || i.CurState == CharacterStateID.None);
             if (character != null)
             {
                 character.CollectObjType = collectedObjType;
+                character.ManualSelectedToCollectObj = manual;
                 character.SetState(CharacterStateID.CollectRes);
 
                 HideBubble();
@@ -172,7 +173,7 @@ namespace GameWish.Game
                 return;
             }
 
-            CharacterController character = SelectIdleCharacterToCollectRes();
+            CharacterController character = SelectIdleCharacterToCollectRes(false);
             if (character != null)
             {
                 HideBubble();

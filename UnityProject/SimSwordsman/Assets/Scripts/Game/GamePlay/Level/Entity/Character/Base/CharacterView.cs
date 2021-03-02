@@ -150,7 +150,7 @@ namespace GameWish.Game
 
             m_OnReachDestinationCallback = callback;
 
-            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
+            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed * 1.5f;
             m_NavAgent.SetDestination(targetPos);
         }
 
