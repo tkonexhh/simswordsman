@@ -49,7 +49,7 @@ namespace GameWish.Game
             {
                 if (m_CoroutineID!=null)
                   StopCoroutine(m_CoroutineID);
-                GameDataMgr.S.GetPlayerData().SetFoodNum(limit);
+                //GameDataMgr.S.GetPlayerData().SetFoodNum(limit);
                 EventSystem.S.Send(EventID.OnFoodRefreshEvent, SplicingTime(0), true);
             }
         }
@@ -64,10 +64,8 @@ namespace GameWish.Game
 
             if (!RefreshKitchInfo())
                 return;
-
             RefreshCountDown();
             //PlayerPrefs.SetString(m_StartTimeName, m_StartTime);
-
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
@@ -87,7 +85,7 @@ namespace GameWish.Game
                     {
                         int foodAddSpeed = m_CurKitchLevelInfo.GetCurFoodAddSpeed();
                         int foodNumber = second / foodAddSpeed;
-                        for (int i = 0; i < foodNumber; i++)
+                        for (int i = 0; i <= foodNumber; i++)
                             GameDataMgr.S.GetPlayerData().AddFoodNum(1);
                         int surplus = second % foodAddSpeed;
                         m_CountDownCount = foodAddSpeed - surplus;

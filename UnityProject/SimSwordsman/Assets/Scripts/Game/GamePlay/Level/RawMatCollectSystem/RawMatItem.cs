@@ -106,7 +106,7 @@ namespace GameWish.Game
 
                 m_IsCharacterCollected = true;
 
-                GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
             }
 
             return character;

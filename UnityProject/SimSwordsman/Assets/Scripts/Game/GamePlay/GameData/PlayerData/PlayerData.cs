@@ -62,7 +62,7 @@ namespace GameWish.Game
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
-            FoodRefreshRecordingTime = DateTime.Now.ToString();
+            FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 8) + ' ' + "06:00:00";
             FoodRefreshTimesToday = 5;
             FoodRefreshCount = 0;
             SetDataDirty();
@@ -149,7 +149,7 @@ namespace GameWish.Game
         public void SetFoodRefreshCount(int count)
         {
             FoodRefreshCount = count;
-        }  
+        }
         public int GetFoodRefreshTimesToday()
         {
             return FoodRefreshTimesToday;

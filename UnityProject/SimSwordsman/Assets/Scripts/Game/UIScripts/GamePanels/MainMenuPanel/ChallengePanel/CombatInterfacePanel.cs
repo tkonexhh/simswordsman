@@ -377,7 +377,8 @@ namespace GameWish.Game
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
-                            MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_CurTaskInfo.TaskId, TaskState.NotStart);
+                            MainGameMgr.S.CommonTaskMgr.RemoveTask(m_CurTaskInfo.TaskId);
+                            //MainGameMgr.S.CommonTaskMgr.SetTaskFinished(m_CurTaskInfo.TaskId, TaskState.NotStart);
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, false);
                             break;
                         case PanelType.Challenge:

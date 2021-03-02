@@ -446,11 +446,18 @@ namespace GameWish.Game
         {
             return GetStringForTableKey(Define.COMMON_UPGRADEINFODESC) + GetGrade(level);
         }
-
+        /// <summary>
+        /// ¿Õ¸ñ
+        /// </summary>
+        /// <returns></returns>
         public static string TextIndent()
         {
             return "<color=#FFFFFF00>----</color>";
         }
+        /// <summary>
+        /// ¿Õ¸ñ
+        /// </summary>
+        /// <returns></returns>
         public static string TextEmptyOne()
         {
             return "<color=#FFFFFF00>--</color>";

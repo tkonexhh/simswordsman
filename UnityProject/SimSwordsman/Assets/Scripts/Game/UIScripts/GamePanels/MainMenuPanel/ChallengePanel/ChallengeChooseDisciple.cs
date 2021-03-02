@@ -191,21 +191,21 @@ namespace GameWish.Game
 
             CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
 
-            for (int i = 0; i < m_AllDiscipleList.Count; i++)
-            {
-                CreateDisciple(m_AllDiscipleList[i]);
-                //if ( m_AllDiscipleList[i].IsFreeState())
-            }
-
-            
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
+                            CreateDisciple(m_AllDiscipleList[i]);
+
                     for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
                         CreateSelectedDisciple();
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        CreateDisciple(m_AllDiscipleList[i]);
+
                     for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
                         CreateSelectedDisciple();
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
@@ -214,7 +214,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-
         }
         private void RefreshFixedInfo()
         {
@@ -244,8 +243,8 @@ namespace GameWish.Game
 
                 if (m_SelectedDiscipleDic.Count!= ChallengeSelectedDiscipleNumber)
                 {
-                    //FloatMessage.S.ShowMsg("人数不足五人，请选满");
-                    //return;
+                    FloatMessage.S.ShowMsg("人数不足五人，请选满");
+                    return;
                 }
                 EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic);
                 HideSelfWithAnim();

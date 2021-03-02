@@ -18,6 +18,8 @@ namespace GameWish.Game
         public int taskTime;
         public string title;
         public string desc;
+        public string taskTxt;
+        public string iconRes;
         public TaskState taskState;
         public List<TaskReward> itemRewards = new List<TaskReward>();
         public int expReward;
@@ -40,13 +42,14 @@ namespace GameWish.Game
                 //this.taskTime = tdCommonTask.time;
                 this.title = tdCommonTask.taskTitle;
                 this.desc = tdCommonTask.taskDescription;
+                this.taskTxt = tdCommonTask.taskTxt;
                 this.needHomeLevel = tdCommonTask.homeLevel;
                 //this.specialRewardRate = tdCommonTask.specialRewardRate;
                 this.characterAmount = tdCommonTask.roleAmount;
                 this.characterLevelRequired = tdCommonTask.roleLevelRequired;
                 this.expReward = tdCommonTask.expReward;
                 this.kongfuReward = tdCommonTask.kongfuExpReward;
-
+                this.iconRes = tdCommonTask.iconRes;
                 ParseReward(tdCommonTask.reward);
                 //ParseNextLevel(tdCommonTask.nextTask);
                 ParseTaskType(tdCommonTask.type);

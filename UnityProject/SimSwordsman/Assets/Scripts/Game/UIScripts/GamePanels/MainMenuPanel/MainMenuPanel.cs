@@ -60,11 +60,6 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
-
-            #region Test
-          
-            #endregion
-
             base.OnUIInit();
             int limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
 
@@ -84,6 +79,11 @@ namespace GameWish.Game
             m_CreateBaoziBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                if (GameDataMgr.S.GetPlayerData().GetFoodNum()>= GetFoodUpperLimit())
+                {
+                    FloatMessage.S.ShowMsg("当前食物已经满了哦。");
+                    return;
+                }
                 UIMgr.S.OpenPanel(UIID.SupplementFoodPanel) ;
             });
 
@@ -147,16 +147,6 @@ namespace GameWish.Game
             });
         }
 
-        private void SuccessBtnEvent()
-        {
-            FloatMessage.S.ShowMsg("广告看完！,加20点食物");
-            GameDataMgr.S.GetPlayerData().AddFoodNum(20);
-            for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.BeeThorn; i++)
-            {
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 50);
-            }
-        }
-
         protected override void OnOpen()
         {
             base.OnOpen();
@@ -166,7 +156,6 @@ namespace GameWish.Game
 
             RegisterEvents();
         }
-
         protected override void OnClose()
         {
             base.OnClose();
@@ -177,7 +166,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_CoinValue.text = CommonUIMethod.GetTenThousand((int)GameDataMgr.S.GetPlayerData().GetCoinNum());
-            m_BaoziValue.text = GetCurBaoziNum().ToString()+Define.SLASH+ GetFoodUpperLimit().ToString();
+            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum()+ Define.SLASH+ GetFoodUpperLimit().ToString();
             m_WareHouseNumber.text = GetWareHouseAllPeopleNumber();
         }
 
