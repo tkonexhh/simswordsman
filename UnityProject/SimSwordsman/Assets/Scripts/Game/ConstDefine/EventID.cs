@@ -140,6 +140,10 @@ namespace GameWish.Game
         /// </summary>
         OnCharacterUpgrade,
         /// <summary>
+        /// 弟子升级
+        /// </summary>
+        OnCharacterUpLevel,
+        /// <summary>
         /// 功夫升级事件
         /// </summary>
         OnKongfuLibraryUpgrade,
@@ -163,6 +167,10 @@ namespace GameWish.Game
         /// 功夫选择成功
         /// </summary>
         OnSelectedKungfuSuccess,
+        /// <summary>
+        /// 获取到功夫秘籍
+        /// </summary>
+        OnGetKungFu,
 
         /// <summary>
         /// 收起公告榜其他面板
@@ -253,8 +261,25 @@ namespace GameWish.Game
         InGuideProgress,
         OnGuideFirstGetCharacter,
         OnGuideSecondGetCharacter,
+
+        OnCollectStoneTaskTrigger,
+        OnCollectStoneProgressTaskTrigger,
+        BuildPracticeFieldEastTrigger,//建造练功房
+        OnCloseFightingPanel,//关闭战斗面板
+        OnVisitorBtnNormalTipTrigger,//访客系统
+        OnClickVisitorBtnTrigger,//点击访客系统
+        OnClickVisitorPanelAcceptBtnTrigger,//点击访客面板收下按钮
+        OnKungFuTrigger_IntroduceTrigger,//武功秘籍trigger
+        OnKungFuTrigger_ClickOpenDisciplePanelTrigger,//点击打开弟子界面
+        OnKungFuTrigger_ChoiceTargetDiscipleTrigger,//选择目标弟子
+        OnKungFuTrigger_ClickStudyKungFuTrigger,//点击学习武功秘籍
+        OnKungFuTrigger_ChoiceKungFuTrigger,//选择武功秘籍 
+        OnKungFuTrigger_ConfirmChoiceKungFuTrigger,//确认选择武功秘籍
         #endregion
 
+
+        OnAddArmor,//获取新装备护甲
+        OnAddArms,//获取信装备武器
     }
 
 }
