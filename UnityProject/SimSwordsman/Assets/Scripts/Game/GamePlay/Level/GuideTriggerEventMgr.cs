@@ -7,6 +7,7 @@ namespace GameWish.Game
     public class GuideTriggerEventMgr : TSingleton<GuideTriggerEventMgr>
     {
         FixedFollowCamera m_FollowCamera;
+        private bool m_IsFixedCamera = false;
         public void Init()
         {
             EventSystem.S.Register(EventID.OnGuideFirstGetCharacter, StartGuide_Task1);
@@ -31,31 +32,37 @@ namespace GameWish.Game
 
         private void OnGuidClickTaskDetailsTrigger1CallBack(int key, object[] param)
         {
-            EventSystem.S.Send(EventID.OnLimitCameraTouchMove, false);
             EventSystem.S.Send(EventID.InGuideProgress, true);
             
             if (m_FollowCamera != null) {
                 m_FollowCamera.TweenOrthoSize(10);
                 m_FollowCamera.DestorySelf();
-            }            
+            }
+
+            EventSystem.S.Send(EventID.OnLimitCameraTouchMove, false);
 
             UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
         }
 
         private void OnFinishedClickWuWoodBubbleTrigger1CallBack(int key, object[] param)
         {
-            EventSystem.S.Send(EventID.OnLimitCameraTouchMove, true);
-            EventSystem.S.Send(EventID.InGuideProgress, false);
-            UIMgr.S.OpenTopPanel(UIID.GuideMaskPanel, null);
-            UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
+            if (GuideMgr.S.IsGuideFinish(8) == false && m_IsFixedCamera == false) 
+            {
+                m_IsFixedCamera = true;
+                EventSystem.S.Send(EventID.OnLimitCameraTouchMove, true);
+                EventSystem.S.Send(EventID.InGuideProgress, false);
+                UIMgr.S.OpenTopPanel(UIID.GuideMaskPanel, null);
+                UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
 
-            m_FollowCamera = MainGameMgr.S.MainCamera.gameObject.AddComponent<FixedFollowCamera>();
-            m_FollowCamera.TweenOrthoSize(10);
+                m_FollowCamera = MainGameMgr.S.MainCamera.gameObject.AddComponent<FixedFollowCamera>();
+                m_FollowCamera.TweenOrthoSize(10);
 
-            //引导固定某个人视角
-            Transform target = GameplayMgr.S.transform.Find("EntityRoot/Character_normal_1");
-            if (target != null) {
-                m_FollowCamera.SetTarget(target);
+                //引导固定某个人视角
+                Transform target = GameplayMgr.S.transform.Find("EntityRoot/Character_normal_1");
+                if (target != null)
+                {
+                    m_FollowCamera.SetTarget(target);
+                }
             }            
         }
 
