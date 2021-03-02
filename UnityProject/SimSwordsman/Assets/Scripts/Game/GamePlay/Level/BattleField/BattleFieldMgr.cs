@@ -201,12 +201,10 @@ namespace GameWish.Game
             m_LoadedEnemyCount = 0;
 
             SpawnOurCharacter(ourSelectedCharacters);
-
             enemies.ForEach(i =>
             {
                 SpawnEnemyCharacter(i.ConfigId, i.Atk);
             });
-
             MusicMgr.S.PlayBattleMusic();
         }
 
@@ -226,7 +224,6 @@ namespace GameWish.Game
             {
                 i.GetBattleState().SetState(BattleStateID.Wait);
             });
-
         }
 
         private void OnExitBattle()
@@ -270,15 +267,12 @@ namespace GameWish.Game
 
                 Vector3 pos = m_BattleField.GetOurCharacterPos();
                 i.OnEnterBattleField(pos);
-
                 float baseAtk = i.CharacterModel.GetBaseAtkValue();
                 float atkEnhance = m_SelectedHerbList.Any(j => j == HerbType.ChiDanZhuangQiWan) ? TDHerbConfigTable.GetEffectParam((int)HerbType.ChiDanZhuangQiWan) : 0;
                 float hpEnhance = m_SelectedHerbList.Any(j => j == HerbType.LianHuaQingShenLu) ? TDHerbConfigTable.GetEffectParam((int)HerbType.LianHuaQingShenLu) : 0;
                 i.CharacterModel.SetHp(baseAtk * (1 + hpEnhance));
                 i.CharacterModel.SetAtk(baseAtk * (1 + atkEnhance));
-
                 m_TotalOurAtk += i.CharacterModel.GetAtk();
-
                 m_TotalOurHp += i.CharacterModel.GetHp();
             });
         }
@@ -316,7 +310,6 @@ namespace GameWish.Game
 
                 m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
                 m_TotalEnemyHp += controller.CharacterModel.GetHp();
-
                 m_LoadedEnemyCount++;
 
                 if (m_LoadedEnemyCount >= m_AllEnemyCount)
@@ -363,7 +356,6 @@ namespace GameWish.Game
         {
             //GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
             //GameObject obj = GameObject.Instantiate(prefab);
-
             EnemyLoader.S.LoadEnemySync(id, (obj) => 
             {
                 obj.name = "Character_" + camp;
@@ -374,9 +366,9 @@ namespace GameWish.Game
                 controller.OnEnterBattleField(pos);
 
                 onCharacterLoaded?.Invoke(controller);
+
             });
         }
-
         private void ApplyDamage()
         {
             m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * Random.Range(0.8f, 1.2f);

@@ -87,10 +87,8 @@ namespace GameWish.Game
             m_FacilityDescribe.text = CommonUIMethod.TextEmptyOne() + m_CurFacilityConfigInfo.desc;
             m_CostItems = m_FacilityLevelInfo.GetUpgradeResCosts();
             m_ConstructionConditionValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + CommonUIMethod.GetStrForColor("#7B3735", CommonUIMethod.GetGrade(m_FacilityLevelInfo.upgradeNeedLobbyLevel));
-            // m_ConstructionConditionValue.text = Define.LECTURE_HALL + m_CurFacilityConfigInfo.GetNeedLobbyLevel() + Define.LEVEL;
-            //m_CoinValue.text = m_CurFacilityConfigInfo.GetUnlockCoinCost().ToString();
             RefreshResInfo();
-            if (CheackIsBuild(false))
+            if (CommonUIMethod.CheackIsBuild(m_FacilityLevelInfo, m_CostItems,false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
@@ -196,7 +194,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                if (!CheackIsBuild())
+                if (!CommonUIMethod.CheackIsBuild(m_FacilityLevelInfo, m_CostItems))
                     return;
 
                 if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_CurFacilityConfigInfo.GetUnlockCoinCost()))
@@ -208,50 +206,13 @@ namespace GameWish.Game
                     for (int i = 0; i < m_CostItems.Count; i++)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
 
-                    EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType, m_SubId);
+                    EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType);
                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
                     HideSelfWithAnim();
                 }
             });
         }
-        private bool CheackIsBuild(bool floatMessage = true)
-        {
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_FacilityLevelInfo.GetUpgradeCondition() > lobbyLevel)
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
-                return false;
-            }
-
-            if (CheckPropIsEnough(floatMessage))
-                return true;
-            return false;
-        }
-
-        private bool CheckPropIsEnough(bool floatMessage = true)
-        {
-            for (int i = 0; i < m_CostItems.Count; i++)
-            {
-                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
-                if (!isHave)
-                {
-                    if (floatMessage)
-                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
-                    return false;
-                }
-            }
-            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_FacilityLevelInfo.upgradeCoinCost);
-            if (isHaveCoin)
-                return true;
-            else
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
-                return false;
-            }
-        }
-
+ 
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();

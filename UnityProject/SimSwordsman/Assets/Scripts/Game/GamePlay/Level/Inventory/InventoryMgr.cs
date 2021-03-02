@@ -222,6 +222,15 @@ namespace GameWish.Game
         }
 
         /// <summary>
+        /// 获取所有招募令的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetAllRecruitmentOrderCount()
+        {
+            return GetRecruitmentOrderCount(RecruitType.GoldMedal)+ GetRecruitmentOrderCount(RecruitType.SilverMedal);
+        }
+
+        /// <summary>
         /// 判断材料是否足够
         /// </summary>
         /// <returns></returns>

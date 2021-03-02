@@ -189,8 +189,8 @@ namespace GameWish.Game
         {
             m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
             m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
-            m_RefuseBtn.gameObject.SetActive(false);
-            m_AutoSelectedBtn.gameObject.SetActive(false);
+            //m_RefuseBtn.gameObject.SetActive(false);
+            //m_AutoSelectedBtn.gameObject.SetActive(false);
             m_StateBg.gameObject.SetActive(false);
             m_State.gameObject.SetActive(false);
             m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
@@ -230,9 +230,6 @@ namespace GameWish.Game
                     break;
             }
             m_AllCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
-            //BubbleSort(m_AllCharacterList);
-            //m_PlayerDataHerbDic = MainGameMgr.S.MedicinalPowderMgr.GetAllHerbs();
-            //m_PlayerDataHerbDic = MainGameMgr.S.InventoryMgr.GetAllHerbs();
         }
 
         private void InitPanelInfo()
@@ -280,7 +277,13 @@ namespace GameWish.Game
                 ///只有挑战有
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 AutoSelectedDisciple();
-                RefreshDisicipleSkill();
+                if (m_PanelType == PanelType.Challenge)
+                    RefreshDisicipleSkill();
+                else
+                {
+                    EventSystem.S.Send(EventID.OnBulletinSelectedConfirmEvent, m_SelectedDiscipleDic, m_CommonTaskItemInfo);
+                    m_CurTaskInfo.RecordDiscipleID(m_SelectedDiscipleDic);
+                }
             });
             m_AcceptBtn.onClick.AddListener(() =>
             {
@@ -338,44 +341,40 @@ namespace GameWish.Game
             }
             m_SelectedDiscipleDic.Clear();
 
-            BubbleSort(allCharacterList);
+            CommonUIMethod.BubbleSortForType(allCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    if (allCharacterList.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
+                    {
+                        for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < allCharacterList.Count; i++)
+                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                    }
+                    break;
+                case PanelType.Challenge:
+                    if (allCharacterList.Count >= MaxDiscipleNumber)
+                    {
+                        for (int i = 0; i < MaxDiscipleNumber; i++)
+                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < allCharacterList.Count; i++)
+                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                    }
+                    break;
+                default:
+                    break;
+            }
 
-            if (allCharacterList.Count >= MaxDiscipleNumber)
-            {
-                for (int i = 0; i < MaxDiscipleNumber; i++)
-                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
-            }
-            else
-            {
-                for (int i = 0; i < allCharacterList.Count; i++)
-                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
-            }
             //MainGameMgr.S.CharacterMgr.GetAllCharacterList
             //m_SelectedDiscipleDic
             HandConfirmBtnEvent();
-        }
-
-        /// <summary>
-        /// 冒泡排序
-        /// </summary>
-        /// <param name="characterItems"></param>
-        /// <returns></returns>
-        private List<CharacterItem> BubbleSort(List<CharacterItem> characterItems)
-        {
-            var len = characterItems.Count;
-            for (var i = 0; i < len - 1; i++)
-            {
-                for (var j = 0; j < len - 1 - i; j++)
-                {
-                    if (characterItems[j].atkValue < characterItems[j + 1].atkValue)
-                    {        // 相邻元素两两对比
-                        var temp = characterItems[j + 1];        // 元素交换
-                        characterItems[j + 1] = characterItems[j];
-                        characterItems[j] = temp;
-                    }
-                }
-            }
-            return characterItems;
         }
 
         private List<CharacterController> Transformation(Dictionary<int, CharacterItem> m_SelectedDiscipleDic)
@@ -395,7 +394,6 @@ namespace GameWish.Game
 
         private void CreateHerb(int herbID)
         {
-
             if (m_HerbalMedicineItem == null)
                 return;
             HerbalMedicineItem herbItem = Instantiate(m_HerbalMedicineItem, m_HerbalMedicineItemTra).GetComponent<HerbalMedicineItem>();

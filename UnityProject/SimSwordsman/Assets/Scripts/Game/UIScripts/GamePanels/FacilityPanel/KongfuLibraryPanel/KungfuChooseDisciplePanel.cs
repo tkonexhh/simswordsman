@@ -55,6 +55,8 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             GetInformationForNeed();
 
+            CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+
             for (int i = 0; i < m_CharacterItem.Count; i++)
             {
                 if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level<Define.CHARACTER_MAX_LEVEL)
@@ -103,9 +105,6 @@ namespace GameWish.Game
         {
             if (IsSelected)
                 m_ArrangeBtn.transform.position = m_Pos.position+new Vector3 (0,0.05f,0);
-            //Debug.LogError(m_ArrangeBtn.transform.position);
-            //m_ArrangeBtn.transform.position = transform.position;
-
         }
 
 

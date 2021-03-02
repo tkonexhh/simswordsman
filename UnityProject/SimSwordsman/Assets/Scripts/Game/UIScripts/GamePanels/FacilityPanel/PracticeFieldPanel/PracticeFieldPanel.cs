@@ -212,8 +212,8 @@ namespace GameWish.Game
             m_CurExpValue.text = CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurExp().ToString() + "经验");
             if (m_NextPracticeFieldLevelInfo != null)
             {
-                m_NextPracticePos.text = CommonUIMethod.GetStrForColor("#AD7834", Define.PLUS + m_CurPracticeFieldLevelInfo.GetNextCapacity().ToString());
-                m_NextExpValue.text = CommonUIMethod.GetStrForColor("#365387", Define.PLUS + m_NextPracticeFieldLevelInfo.GetCurExp().ToString());
+                m_NextPracticePos.text = CommonUIMethod.GetStrForColor("#AD7834", Define.PLUS + (m_NextPracticeFieldLevelInfo.GetNextCapacity ()- m_CurPracticeFieldLevelInfo.GetNextCapacity()).ToString());
+                m_NextExpValue.text = CommonUIMethod.GetStrForColor("#365387", Define.PLUS + (m_NextPracticeFieldLevelInfo.GetCurExp()- m_CurPracticeFieldLevelInfo.GetCurExp()).ToString());
                 m_UpgradeNeeds.text = "升级需要讲武堂达到" + CommonUIMethod.GetStrForColor("#8C343C", m_NextPracticeFieldLevelInfo.upgradeNeedLobbyLevel.ToString() + "级");
             }
             RefreshResInfo();

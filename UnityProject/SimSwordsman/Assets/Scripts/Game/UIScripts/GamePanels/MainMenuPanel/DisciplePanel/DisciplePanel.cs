@@ -102,9 +102,7 @@ namespace GameWish.Game
         private void InitPanelInfo()
         {
             RefreshFixedInfo();
-            //m_DiscipleTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_NAME);
-            //m_DiscipleCont.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_DESCRIBE);
-
+            CommonUIMethod.BubbleSortForType(m_CharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
             if (m_CharacterList != null)
                 foreach (var item in m_CharacterList)
                     CreateDisciple(m_DiscipleContList, item);
@@ -117,6 +115,7 @@ namespace GameWish.Game
         /// </summary>
         private void RefreshDiscipleLine()
         {
+            CommonUIMethod.BubbleSortForType(m_CharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
             int i = -1;
             foreach (var item in m_DiscipleDic.Values)
             {

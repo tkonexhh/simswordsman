@@ -81,13 +81,13 @@ namespace GameWish.Game
                     break;
             }
             //EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
-
+            CommonUIMethod.CheackRecruitmentOrder();
             MainGameMgr.S.RecruitDisciplerMgr.RemoveCharacterList(m_RecruitType, m_CharacterItem);
             MainGameMgr.S.CharacterMgr.AddCharacter(m_CharacterItem);
             MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
             EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
         }
-
+  
         public void LoadClanPrefabs(string prefabsName)
         {
             m_Loader = new AddressableAssetLoader<Sprite>();

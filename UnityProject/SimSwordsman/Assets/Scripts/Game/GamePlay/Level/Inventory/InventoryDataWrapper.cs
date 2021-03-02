@@ -241,7 +241,9 @@ namespace GameWish.Game
 
             EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
             if (propItem.PropSubType == RawMaterial.SilverToken || propItem.PropSubType == RawMaterial.GoldenToken)
+            {
                 EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, propItem.PropSubType, delta);
+            }
             else
                 EventSystem.S.Send(EventID.OnAddItem);
         }
@@ -680,8 +682,8 @@ namespace GameWish.Game
         {
             Number -= nmuber;
             if (Number <= 0)
-            {
-                Number = 1;
+            { 
+                Number = 0;
                 return true;
             }
             return false;

@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "SbIfBw7/HsNLs5eTBMYQ+eKlheQ",
+	"hash": "ANtdCMqF9OIa8ezsECeGySpwXWA",
 	"spine": "3.8.95",
 	"x": -25.61,
 	"y": -4.02,
@@ -10,7 +10,7 @@
 	"audio": "E:/工作文件/Spine-GC/2020项目工程/武侠模拟经营/敌方角色/山贼/山贼-2"
 },
 "bones": [
-	{ "name": "root", "x": 0.22 },
+	{ "name": "root", "x": 0.22, "scaleX": 1.2123, "scaleY": 1.2123 },
 	{ "name": "bone5", "parent": "root", "x": 0.4, "y": 108.92, "color": "42bffdff" },
 	{ "name": "bone", "parent": "bone5", "x": -0.13, "y": -68.6 },
 	{

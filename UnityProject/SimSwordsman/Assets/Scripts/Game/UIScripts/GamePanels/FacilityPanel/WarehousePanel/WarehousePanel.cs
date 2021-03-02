@@ -28,6 +28,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_NextReservesValue;
         [SerializeField]
+        private Image m_NextReservesIcon;
+        [SerializeField]
         private Text m_UpgradeCondition;
         [SerializeField]
         private Image m_Res1Img;
@@ -93,26 +95,35 @@ namespace GameWish.Game
                     break;
             }
         }
-
         private void GetInformationForNeed()
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Warehouse);
-
+            int maxLevel = MainGameMgr.S.FacilityMgr.GetFacilityMaxLevel(FacilityType.Warehouse);
             m_InventoryItems = MainGameMgr.S.InventoryMgr.GetAllInventoryItemList();
-
             m_FacilityConfigInfo =  MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(FacilityType.Warehouse);
-
-            m_WarehouseNextLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, (m_CurLevel + 1)) as WarehouseLevelInfo;
-
             m_WarehouseCurLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, m_CurLevel) as WarehouseLevelInfo;
-            m_CostItems = m_WarehouseNextLevelInfo.GetUpgradeResCosts();
-
             m_FacilityController = (WarehouseController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Warehouse);
+
+            if (m_CurLevel == maxLevel)
+            {
+                m_UpgradeBtn.gameObject.SetActive(false);
+                m_Res1Img.gameObject.SetActive(false);
+                m_Res2Img.gameObject.SetActive(false);
+                m_Res3Img.gameObject.SetActive(false);
+                m_NextReservesIcon.gameObject.SetActive(false);
+                m_NextReservesValue.text = Define.COMMON_DEFAULT_STR;
+                m_UpgradeCondition.text = Define.COMMON_DEFAULT_STR; ;
+            }
+            else
+            {
+                m_WarehouseNextLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, (m_CurLevel + 1)) as WarehouseLevelInfo;
+                m_CostItems = m_WarehouseNextLevelInfo?.GetUpgradeResCosts();
+            }
         }
 
         private void RefreshPanelInfo()
         {
-            if (CheackIsBuild(false))
+            if (CommonUIMethod.CheackIsBuild(m_WarehouseNextLevelInfo, m_CostItems, false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
@@ -120,95 +131,26 @@ namespace GameWish.Game
             m_BriefIntroduction.text = m_FacilityConfigInfo.desc;
             m_WarehouseLevel.text = CommonUIMethod.GetGrade(m_WarehouseCurLevelInfo.level);
             m_CurReservesValue.text = "当前储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
-            m_NextReservesValue.text = "下一级储量:" + m_WarehouseNextLevelInfo.GetCurReserves() + "格";
-            m_UpgradeCondition.text = "升级需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
+            if (m_WarehouseNextLevelInfo!=null)
+            {
+                m_NextReservesValue.text = "下一级储量:" + m_WarehouseNextLevelInfo.GetCurReserves() + "格";
+                m_UpgradeCondition.text = "升级需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
+            }
             m_WarehouseImgae.sprite = FindSprite("Warehouse" + m_CurLevel);
 
             RefreshResInfo();
         }
-
-        private bool CheackIsBuild(bool floatMessage = true)
-        {
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            if (m_WarehouseNextLevelInfo.GetUpgradeCondition() > lobbyLevel)
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_NEEDLOBBY));
-                return false;
-            }
-
-            if (CheckPropIsEnough(floatMessage))
-                return true;
-            return false;
-        }
-        private bool CheckPropIsEnough(bool floatMessage = true)
-        {
-            for (int i = 0; i < m_CostItems.Count; i++)
-            {
-                bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)m_CostItems[i].itemId, m_CostItems[i].value);
-                if (!isHave)
-                {
-                    if (floatMessage)
-                        FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
-                    return false;
-                }
-            }
-            bool isHaveCoin = GameDataMgr.S.GetPlayerData().CheckHaveCoin(m_WarehouseNextLevelInfo.upgradeCoinCost);
-            if (isHaveCoin)
-                return true;
-            else
-            {
-                if (floatMessage)
-                    FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_COIN));
-                return false;
-            }
-        }
-
+      
         private void RefreshResInfo()
         {
             CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_WarehouseNextLevelInfo, this);
-            //if (m_CostItems == null)
-            //    return;
-
-            //if (m_CostItems.Count == 1)
-            //{
-            //    int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-            //    m_Res2Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
-            //    m_Res2Img.sprite = FindSprite("Coin");
-            //    m_Res3Img.gameObject.SetActive(false);
-            //}
-            //else if (m_CostItems.Count == 2)
-            //{
-            //    int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[0].itemId);
-            //    int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(m_CostItems[1].itemId);
-            //    m_Res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, m_CostItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[0].value);
-            //    m_Res1Img.sprite = FindSprite(GetIconName(m_CostItems[0].itemId));
-            //    m_Res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, m_CostItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(m_CostItems[1].value);
-            //    m_Res2Img.sprite = FindSprite(GetIconName(m_CostItems[1].itemId));
-            //    m_Res3Value.text = GetCurCoin() + Define.SLASH + CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
-            //    m_Res3Img.sprite = FindSprite("Coin");
-            //    m_Res3Img.gameObject.SetActive(true);
-            //}
         }
-        private int GetCurItem(int hava, int number)
-        {
-            if (hava >= number)
-                return number;
-            return hava;
-        }
+       
         private string GetIconName(int id)
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
-        private string GetCurCoin()
-        {
-            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            if (coin >= m_WarehouseNextLevelInfo.upgradeCoinCost)
-                return CommonUIMethod.GetTenThousand(m_WarehouseNextLevelInfo.upgradeCoinCost);
-            return CommonUIMethod.GetTenThousand((int)coin);
-        }
+     
 
         private void RefreshCreateGoods()
         {
@@ -370,9 +312,15 @@ namespace GameWish.Game
             });
             m_UpgradeBtn.onClick.AddListener(() =>
             {
-                if (!CheackIsBuild())
+                #region  新手引导没有时候暂用
+                if (m_FacilityController.GetState() != FacilityState.Unlocked)
+                {
+                    EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Warehouse);
+                    HideSelfWithAnim();
                     return;
-                if (m_WarehouseNextLevelInfo == null)
+                }
+                #endregion
+                if (!CommonUIMethod.CheackIsBuild(m_WarehouseNextLevelInfo, m_CostItems))
                     return;
                 bool isReducceSuccess = GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_WarehouseNextLevelInfo.upgradeCoinCost);
                 if (isReducceSuccess)

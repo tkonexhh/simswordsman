@@ -98,6 +98,10 @@ namespace GameWish.Game
         /// 公告榜任务
         /// </summary>
         OnSendBulletinBoardFacility,
+        /// <summary>
+        /// 可招募的时候惊叹号
+        /// </summary>
+        OnSendRecruitable,
         #endregion
 
         //KungfuLibrary

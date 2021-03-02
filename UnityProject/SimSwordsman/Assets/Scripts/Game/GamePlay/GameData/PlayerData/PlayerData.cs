@@ -35,6 +35,16 @@ namespace GameWish.Game
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
 
+        /// <summary>
+        /// 辅助记录刷新了食物的次数
+        /// </summary>
+        public int FoodRefreshCount;
+        /// <summary>
+        /// 今日食物刷新总次数
+        /// </summary>
+        public int FoodRefreshTimesToday;
+        public string FoodRefreshRecordingTime;
+
         public void SetDefaultValue()
         {
             m_CoinNum = Define.DEFAULT_COIN_NUM;
@@ -52,7 +62,9 @@ namespace GameWish.Game
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
-
+            FoodRefreshRecordingTime = DateTime.Now.ToString();
+            FoodRefreshTimesToday = 5;
+            FoodRefreshCount = 0;
             SetDataDirty();
         }
         public void Init()
@@ -64,7 +76,7 @@ namespace GameWish.Game
             return recruitData;
         }
 
-#region 草药相关
+        #region 草药相关
         /// <summary>
         /// 获取存档中的草药
         /// </summary>
@@ -82,15 +94,15 @@ namespace GameWish.Game
         public void AddArchiveHerb(int id, int number)
         {
             HerbModel herbModel = herbModels.Where(i => i.ID == id).FirstOrDefault();
-            if (herbModel!=null)
+            if (herbModel != null)
                 herbModel.Number += number;
             else
-                herbModels.Add(new HerbModel(id,number));
+                herbModels.Add(new HerbModel(id, number));
         }
 
-#endregion
+        #endregion
 
-#region 角色章节任务相关
+        #region 角色章节任务相关
         public void AddNewCheckpoint(int chapterId)
         {
             if (!chapterDataList.Any(i => i.chapter == chapterId))
@@ -99,12 +111,12 @@ namespace GameWish.Game
 
         public ChapterDbItem FindChapterDbItem(int chapterId)
         {
-            ChapterDbItem chapter= chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
+            ChapterDbItem chapter = chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
             if (chapter != null)
                 return chapter;
             return null;
         }
-        
+
         /// <summary>
         /// 根据ID判断是否存在该章节任务
         /// </summary>
@@ -121,13 +133,48 @@ namespace GameWish.Game
         public void AddChapterDbItem(int chapterId, int levelId)
         {
             ChapterDbItem chapter = chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
-            if (chapter!=null)
+            if (chapter != null)
                 chapter.OnLevelPassed(levelId);
             else
                 chapterDataList.Add(new ChapterDbItem(chapterId, levelId));
         }
-#endregion
+        #endregion
 
+        #region 食物刷新次数
+        public int GetFoodRefreshCount()
+        {
+            return FoodRefreshCount;
+        }
+
+        public void SetFoodRefreshCount(int count)
+        {
+            FoodRefreshCount = count;
+        }  
+        public int GetFoodRefreshTimesToday()
+        {
+            return FoodRefreshTimesToday;
+        }
+
+        public void SetFoodRefreshTimesToday()
+        {
+            FoodRefreshTimesToday -= 1;
+            if (FoodRefreshTimesToday < 0)
+                FoodRefreshTimesToday = 0;
+        }
+        public void ResetFoodRefreshTimesToday()
+        {
+            FoodRefreshTimesToday = 5;
+        }
+        public string GetFoodRefreshRecordingTime()
+        {
+            return FoodRefreshRecordingTime;
+        }
+
+        public void SetFoodRefreshRecordingTime(string recordingTime)
+        {
+            FoodRefreshRecordingTime = recordingTime;
+        }
+        #endregion
         public void SetCoinNum(long num)
         {
             m_CoinNum = num;
@@ -180,7 +227,7 @@ namespace GameWish.Game
                     recruitData.SetSilverRecruitTimeType(recruitTimeType, value);
                     break;
             }
-            
+
         }
         /// <summary>
         /// 设置招募次数
@@ -225,7 +272,7 @@ namespace GameWish.Game
             //{
             //    Log.e(m_CoinNum + "/" + delta + "/");
             //}
-            if (delta> 0)
+            if (delta > 0)
                 m_CoinNum += FoodBuffSystem.S.Coin(delta);
 
             if (m_CoinNum < 0)
@@ -261,7 +308,7 @@ namespace GameWish.Game
         public void AddFoodNum(int delta)
         {
             foodNum += delta;
-           
+
             EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
@@ -302,12 +349,12 @@ namespace GameWish.Game
         }
 
 
-#region Chapter
+        #region Chapter
 
 
 
 
-#endregion
+        #endregion
         public void OnReset()
         {
             m_CoinNum = 0;
@@ -332,7 +379,7 @@ namespace GameWish.Game
         /// 广告招募
         /// </summary>
         Advertisement,
-    
+
     }
 
     [Serializable]
@@ -507,7 +554,7 @@ namespace GameWish.Game
             number = 0;
             this.level = MainGameMgr.S.ChapterMgr.GetChapterFirstLevelInfo(chapter).level;
         }
-        public ChapterDbItem(int chapter,int level)
+        public ChapterDbItem(int chapter, int level)
         {
             this.chapter = chapter;
             this.level = level;

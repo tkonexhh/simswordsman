@@ -145,6 +145,12 @@ namespace GameWish.Game
                 return CharacterKongfu.dbData.level;
             return -1;
         }
+        public float GetKungfuAtkScale()
+        {
+            if (CharacterKongfu != null)
+                return CharacterKongfu.atkScale;
+            return 1;
+        }
         public void AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
             deltaExp = (int)FoodBuffSystem.S.KongFuExp(deltaExp);
@@ -295,15 +301,13 @@ namespace GameWish.Game
 
             this.characterStateId = itemDbData.characterStateId;
 
-            CalculateForceValue();
-
             itemDbData.kongfuDatas.ForEach(i =>
             {
                 CharacterKongfuData kongfu = new CharacterKongfuData();
                 kongfu.Wrap(i);
                 kongfus[i.index] = kongfu;
             });
-
+            CalculateForceValue();
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
             stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
@@ -390,6 +394,7 @@ namespace GameWish.Game
                         item.CharacterKongfu = new CharacterKongfu(kungfuItem);
                         item.KungfuLockState = KungfuLockState.Learned;
                         GameDataMgr.S.GetClanData().AddKungfu(id, item);
+                        CalculateForceValue();
                         break;
                     }
                 }
@@ -452,6 +457,11 @@ namespace GameWish.Game
                 atkValue *= characeterEquipmentData.GetArmorAtkRate();
             if (characeterEquipmentData.GetArmsAtkRate() != -1)
                 atkValue *= characeterEquipmentData.GetArmsAtkRate();
+
+            foreach (var item in kongfus.Values)
+            {
+                atkValue *= item.GetKungfuAtkScale();
+            }
 
             GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }

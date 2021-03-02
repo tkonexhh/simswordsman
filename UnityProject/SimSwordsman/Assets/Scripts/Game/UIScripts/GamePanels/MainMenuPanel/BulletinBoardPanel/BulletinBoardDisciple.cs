@@ -25,10 +25,12 @@ namespace GameWish.Game
         private SimGameTask m_CurTaskInfo;
         private CommonTaskItemInfo m_CommonTaskItemInfo;
         private AddressableAssetLoader<Sprite> m_Loader;
+        private BulletinBoardPanel m_BulletinBoardPanel;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_CurTaskInfo = t as SimGameTask;
+            m_BulletinBoardPanel = (BulletinBoardPanel)obj[0];
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
             m_Btn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -36,12 +38,17 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnBulletinSendDiscipleDicEvent, m_CurTaskInfo);
             });
         }
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         public void RefreshPanelInfo()
         {
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
+                    m_DiscipleHead.sprite = m_BulletinBoardPanel.FindSprite(GetLoadDiscipleName(m_CharacterItem));
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
@@ -66,10 +73,6 @@ namespace GameWish.Game
             //    //Debug.Log(obj);
             //    m_DiscipleHead.sprite = obj;
             //});
-        }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
         }
         public void SetBtnClick(bool IsClick)
         {

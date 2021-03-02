@@ -50,6 +50,114 @@ namespace GameWish.Game
                 + level.ToString();
         }
 
+        public enum SortType
+        {
+            AtkValue,
+            Level,
+        }
+        /// <summary>
+        /// 顺序类型
+        /// </summary>
+        public enum OrderType
+        {
+            /// <summary>
+            /// 从大到小
+            /// </summary>
+            FromBigToSmall,
+            /// <summary>
+            /// 从小到达
+            /// </summary>
+            FromSmallToBig,
+        }
+        /// <summary>
+        /// 对弟子排序按照武力值
+        /// </summary>
+        /// <param name="characterItems"></param>
+        /// <returns></returns>
+        public static List<CharacterItem> BubbleSortForType(List<CharacterItem> characterItems, SortType sortType, OrderType orderType)
+        {
+            var len = characterItems.Count;
+            for (var i = 0; i < len - 1; i++)
+            {
+                for (var j = 0; j < len - 1 - i; j++)
+                {
+                    switch (sortType)
+                    {
+                        case SortType.AtkValue:
+                            if (orderType == OrderType.FromBigToSmall)
+                            {
+                                if (characterItems[j].atkValue < characterItems[j + 1].atkValue)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                            else
+                            {
+                                if (characterItems[j].atkValue > characterItems[j + 1].atkValue)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                          
+                            break;
+                        case SortType.Level:
+                            if (orderType == OrderType.FromBigToSmall)
+                            {
+                                if (characterItems[j].level < characterItems[j + 1].level)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                            else
+                            {
+                                if (characterItems[j].level > characterItems[j + 1].level)
+                                {
+                                    var temp = characterItems[j + 1];
+                                    characterItems[j + 1] = characterItems[j];
+                                    characterItems[j] = temp;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            return characterItems;
+        }
+      
+
+        /// <summary>
+        /// 刷新讲武堂招募令红点
+        /// </summary>
+        public static void CheackRecruitmentOrder()
+        {
+            int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
+            if (allCount > 0)
+                EventSystem.S.Send(EventID.OnSendRecruitable, true);
+            else
+                EventSystem.S.Send(EventID.OnSendRecruitable, false);
+        }
+        /// <summary>
+        /// 计算小时差
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static int GetDeltaTime(string time)
+        {
+            DateTime dateTime;
+            DateTime.TryParse(time, out dateTime);
+            if (dateTime != null)
+            {
+                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
+                return (int)timeSpan.TotalHours;
+            }
+            return 0;
+        }
         /// <summary>
         /// 设置门派前缀
         /// </summary>

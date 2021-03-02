@@ -13,16 +13,6 @@ namespace GameWish.Game
 
         static void CompleteRowAdd(TDFacilityLobby tdData)
         {
-            //FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
-            //levelInfo.commonTaskCount = tdData.commonTaskAmount;
-            //levelInfo.AnalysisUnlockContent(tdData.unlockContent);
-
-            //if (!facilityLevelInfoDic.ContainsKey(tdData.level))
-            //{
-            //    facilityLevelInfoDic.Add(tdData.level, levelInfo);
-            //}
-
-
             FacilityLevelInfo levelInfo = PassLevelInfo(tdData.level);
             levelInfo.level = tdData.level;
             LobbyLevelInfo lobbyLevelInfo = new LobbyLevelInfo();
@@ -30,13 +20,26 @@ namespace GameWish.Game
 
             lobbyLevelInfo.commonTaskCount = tdData.commonTaskAmount;
             lobbyLevelInfo.AnalysisUnlockContent(tdData.unlockContent);
-
+            lobbyLevelInfo.PracticeLevelMax = tdData.practiceLevelMax;
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))
             {
                 facilityLevelInfoDic.Add(tdData.level, lobbyLevelInfo);
             }
         }
-
+        /// <summary>
+        /// 获取练功长最大等级
+        /// </summary>
+        /// <param name="lobbyLevel"></param>
+        /// <returns></returns>
+        public static int GetPracticeLevelMax(int lobbyLevel)
+        {
+            if (facilityLevelInfoDic.ContainsKey(lobbyLevel))
+            {
+                return facilityLevelInfoDic[lobbyLevel].PracticeLevelMax;
+            }
+            return 1;
+        }
+        
         public static int GetMaxLevel()
         {
             return facilityLevelInfoDic.Values.Count - 1;

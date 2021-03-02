@@ -92,7 +92,6 @@ namespace GameWish.Game
         private void InitFixedInfo()
         {
             m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
-            //m_UpgradeTitle.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADENEEDS);
             m_UpgradeTitle.text = "升级所需资源:";
             m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
         }
