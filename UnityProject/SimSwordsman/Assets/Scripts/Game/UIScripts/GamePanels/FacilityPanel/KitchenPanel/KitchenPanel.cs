@@ -114,7 +114,7 @@ namespace GameWish.Game
             if (m_NextKitchLevelInfo!=null)
             {
                 m_NextFoodLimitTxt.text = string.Format("+{0}", m_NextKitchLevelInfo.GetCurFoodLimit() - m_CurKitchLevelInfo.GetCurFoodLimit());
-                m_NextRecoverySpeedTxt.text = string.Format("+{0}", m_NextKitchLevelInfo.GetCurFoodLimit() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());
+                m_NextRecoverySpeedTxt.text = string.Format("{0}", m_NextKitchLevelInfo.GetCurFoodAddSpeed() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());
             }
             RefreshResInfo();
 
