@@ -41,9 +41,12 @@ namespace GameWish.Game
             if (m_SpineAnim == null)
                 m_SpineAnim = m_Body.GetComponent<SkeletonAnimation>();
 
-            m_SpineAnim.Initialize(false);
+            m_SpineAnim.Initialize(true);
 
-            m_SpineAnim.state.Event += HandleEvent;
+            //if (m_SpineAnim.state.Event != null)
+            {
+                m_SpineAnim.state.Event += HandleEvent;
+            }
         }
 
         public void SetSkin(int headId)
@@ -150,7 +153,7 @@ namespace GameWish.Game
 
             m_OnReachDestinationCallback = callback;
 
-            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
+            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed * 1.5f;
             m_NavAgent.SetDestination(targetPos);
         }
 

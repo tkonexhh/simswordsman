@@ -14,14 +14,14 @@ namespace GameWish.Game
 	public partial class StoryPanel : AbstractAnimPanel
 	{
         [SerializeField] private Text m_ContentText;
-        [SerializeField] private Button m_NextButton;
-        [SerializeField] private Button m_SkipButton;
+        [SerializeField] protected Button m_NextButton;
+        [SerializeField] protected Button m_SkipButton;
         [SerializeField] private Shader m_ReversalShader;
 
         private Tweener m_TextTweener;
 
-        private int m_StoryIndex = 0;
-        private List<string> m_NowStoryIDList = new List<string>();
+        protected int m_StoryIndex = 0;
+        protected List<string> m_NowStoryIDList = new List<string>();
 
         private bool m_IsUpdateContent;
         private Tweener m_UpdateContentTweener;
@@ -81,7 +81,7 @@ namespace GameWish.Game
         /// 更新对话内容
         /// </summary>
         /// <param name="config"></param>
-        private void UpdateContent()
+        protected void UpdateContent()
         {
             KillTweener(m_TextTweener);
             m_Content = TDLanguageTable.Get(m_NowStoryIDList[m_StoryIndex]);
@@ -99,7 +99,7 @@ namespace GameWish.Game
         /// <summary>
         /// 下一步回调
         /// </summary>
-        private void NextBtCallBack()
+        protected void NextBtCallBack()
         {
             if(!m_SkipButton.gameObject.activeInHierarchy)
             {
@@ -169,7 +169,7 @@ namespace GameWish.Game
         /// <summary>
         /// 跳过剧情
         /// </summary>
-        private void SkipStory()
+        protected void SkipStory()
         {
             //Dictionary<string, object> dic = new Dictionary<string, object>();
             //dic.Add("StoryID", m_ChapterID);

@@ -53,6 +53,21 @@ namespace GameWish.Game
             characterList = characterList.Except(characterList.Where(i => i.id == id)).ToList();
         }
 
+        public bool IsHaveCharacterLevelGreaterNumber(int number) 
+        {
+            for (int i = 0; i < characterList.Count; i++)
+            {
+                CharacterItemDbData data = characterList[i];
+                if (data != null && data.level >= number) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public int GetCharacterCount() {
+            return characterList.Count;
+        }
         public void SetLevel(CharacterItemDbData item, int level)
         {
             item.level = level;

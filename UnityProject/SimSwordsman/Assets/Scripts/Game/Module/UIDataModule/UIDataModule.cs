@@ -84,6 +84,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.RewardPanel, null, "GamePanels/CommonPanel/RewardPanel/RewardPanel");
 
             UIDataTable.AddPanelData(UIID.StoryPanel, null, "GamePanels/StoryPanel/StoryPanel");
+            UIDataTable.AddPanelData(UIID.StoryWithCircleMaskPanel, null, "GamePanels/StoryPanel/StoryWithCircleMaskPanel");
             UIDataTable.AddPanelData(UIID.MyGuidePanel, null, "GuidePanel/MyGuidePanel");
             UIDataTable.AddPanelData(UIID.WorldGuideClickPanel, null, "GuidePanel/WorldGuideClickPanel");
             UIDataTable.AddPanelData(UIID.GuideMaskPanel, null, "GuidePanel/GuideMaskPanel");

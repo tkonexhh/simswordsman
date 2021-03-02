@@ -42,7 +42,5 @@ namespace GameWish.Game
 
             EventSystem.S.Send(EventID.OnGuideClickTaskTrigger1);
         }
-
-    }
-	
+    }	
 }

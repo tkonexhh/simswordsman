@@ -24,6 +24,7 @@ namespace GameWish.Game
         /// </summary>
         MyGuidePanel,
         StoryPanel,
+        StoryWithCircleMaskPanel,
         WorldGuideClickPanel,
         GuideMaskPanel,
         MaskClickWorldPanel,

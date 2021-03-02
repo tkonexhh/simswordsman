@@ -138,7 +138,9 @@ namespace GameWish.Game
 
 
 
-
+        public FacilityDbData GetFacilityDbData() {
+            return ownedFacilityData;
+        }
         public List<FacilityItemDbData> GetAllFacility()
         {
             return ownedFacilityData.facilityList;
@@ -201,7 +203,9 @@ namespace GameWish.Game
         #endregion
 
         #region Character
-
+        public CharacterDbData GetOwnedCharacterData() {
+            return ownedCharacterData;
+        }
         public void AddEquipment(int characterID,CharaceterEquipment characeterEquipment)
         {
             ownedCharacterData.AddEquipment(characterID, characeterEquipment);
@@ -225,7 +229,7 @@ namespace GameWish.Game
         public void AddCharacter(int id, CharacterQuality quality)
         {
             ownedCharacterData.AddCharacter(id, quality);
-
+            EventSystem.S.Send(EventID.OnAddCharacter, id, quality);
             SetDataDirty();
         }
 
@@ -351,6 +355,8 @@ namespace GameWish.Game
         public void AddKungfu(KungfuItem _kungfuItem, int delta = 1)
         {
             inventoryData.AddKungfuItem(_kungfuItem, delta);
+
+            EventSystem.S.Send(EventID.OnGetKungFu, _kungfuItem);
 
             SetDataDirty();
         }
