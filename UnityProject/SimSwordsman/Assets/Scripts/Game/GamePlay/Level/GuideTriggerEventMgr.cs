@@ -8,6 +8,9 @@ namespace GameWish.Game
     {
         FixedFollowCamera m_FollowCamera;
         private bool m_IsFixedCamera = false;
+
+        private bool m_IsInBattleing = false;
+
         public void Init()
         {
             EventSystem.S.Register(EventID.OnGuideFirstGetCharacter, StartGuide_Task1);
@@ -28,6 +31,23 @@ namespace GameWish.Game
 
             EventSystem.S.Register(EventID.OnFinishedClickWuWoodBubbleTrigger, OnFinishedClickWuWoodBubbleTrigger1CallBack);
             EventSystem.S.Register(EventID.OnGuideClickTaskDetailsTrigger1, OnGuidClickTaskDetailsTrigger1CallBack);
+
+            EventSystem.S.Register(EventID.OnEnterBattle, OnEnterBattleCallBack);
+            EventSystem.S.Register(EventID.OnExitBattle, OnExitBattleCallBack);
+        }
+
+        private void OnExitBattleCallBack(int key, object[] param)
+        {
+            m_IsInBattleing = false;
+
+            CheckIsStartGuideKungFuTrigger();
+
+            CheckIsStartGuideArmorTrigger();
+        }
+
+        private void OnEnterBattleCallBack(int key, object[] param)
+        {
+            m_IsInBattleing = true;
         }
 
         private void OnGuidClickTaskDetailsTrigger1CallBack(int key, object[] param)
@@ -96,19 +116,27 @@ namespace GameWish.Game
 
         private void OnCharacterUpLevelCallBack(int key, object[] param)
         {
-            CheckIsStartGuideKungFuTrigger();
+            if (m_IsInBattleing == false)
+            {
+                CheckIsStartGuideKungFuTrigger();
 
-            CheckIsStartGuideArmorTrigger();
+                CheckIsStartGuideArmorTrigger();
+            }
         }
 
         private void OnGetKungFuCallBack(int key, object[] param)
         {
-            CheckIsStartGuideKungFuTrigger();
+            if (m_IsInBattleing == false) 
+            {
+                CheckIsStartGuideKungFuTrigger();
+            }             
         }
 
         private void OnAddArmsCallBack(int key, object[] param)
         {
-            CheckIsStartGuideArmorTrigger();
+            if (m_IsInBattleing == false) {
+                CheckIsStartGuideArmorTrigger();
+            }            
         }
         private void CheckIsStartGuideArmorTrigger() 
         {
@@ -166,9 +194,7 @@ namespace GameWish.Game
 
         private void OnTaskStart(int key, object[] param)
         {
-            int taskid = (int)param[0];
-
-            Debug.LogError("task id:" + taskid);
+            //int taskid = (int)param[0];
             //if (taskid == 9001 || taskid == 9002)
             //{
             //    int id = MainGameMgr.S.CommonTaskMgr.GetSimGameTask(taskid).CharacterIDs[0];
