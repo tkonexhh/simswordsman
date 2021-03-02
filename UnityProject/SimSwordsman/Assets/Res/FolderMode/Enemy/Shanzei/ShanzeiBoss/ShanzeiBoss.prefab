@@ -81,6 +81,7 @@ MonoBehaviour:
   state: 
   battleState: 
   m_Body: {fileID: 3463124831795743576}
+  m_HeadPos: {fileID: 0}
 --- !u!114 &7696235984069948748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 3845809599068655259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7835595323112790788}
   m_RootOrder: 0
