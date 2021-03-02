@@ -28,11 +28,13 @@ namespace GameWish.Game
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
         public SimGameTask CurTask { get => m_CurTask;}
         public CollectedObjType CollectObjType { get { return m_CollectedObjType; } set { m_CollectedObjType = value; m_CharacterModel.SetCollectedObjType(value); GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterId, value); } }
+        public bool ManualSelectedToCollectObj { get { return m_ManualSelectedToCollectObj; } set { m_ManualSelectedToCollectObj = value; } }
 
+        private bool m_ManualSelectedToCollectObj = false;
         private CollectedObjType m_CollectedObjType;
         private CharacterStateID m_CurState = CharacterStateID.None;
         private CharacterStateBattle m_StateBattle = null;
-        private FightGroup m_FightGroup = null;
+        private FightGroup m_FightGroup = null;                
 
         // 我方的id唯一，敌方id不唯一 TODO:敌我方Controller分开
         public CharacterController(int id, CharacterView characterView, CharacterStateID initState, CharacterCamp camp = CharacterCamp.OurCamp)

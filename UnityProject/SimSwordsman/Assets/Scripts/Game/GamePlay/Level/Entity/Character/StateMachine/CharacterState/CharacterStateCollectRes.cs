@@ -55,7 +55,16 @@ namespace GameWish.Game
                 m_RawMatItem.HideBubble();
 
                 Transform t = m_RawMatItem.GetRandomCollectPos();
-                m_Controller.MoveTo(t.position, OnReachDestination);
+
+                if (m_Controller.ManualSelectedToCollectObj)
+                {
+                    m_Controller.RunTo(t.position, OnReachDestination);
+                }
+                else
+                {
+                    m_Controller.MoveTo(t.position, OnReachDestination);
+                }
+                m_Controller.ManualSelectedToCollectObj = false;
 
                 m_Time = GameDataMgr.S.GetClanData().GetObjCollectedTime(m_CollectedObjType);
             }
