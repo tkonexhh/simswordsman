@@ -36,7 +36,7 @@ namespace GameWish.Game
         public bool UnlockWorkSystem;
 
         #region 食物倒计时
-        public string FoodCoundDownTime;
+        public string FoodCoundDownTime = string.Empty;
         #endregion
 
         /// <summary>
@@ -325,8 +325,8 @@ namespace GameWish.Game
         public void AddFoodNum(int delta)
         {
             foodNum += delta;
-            Debug.LogError("foodNum+++" + foodNum);
 
+          
             EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 

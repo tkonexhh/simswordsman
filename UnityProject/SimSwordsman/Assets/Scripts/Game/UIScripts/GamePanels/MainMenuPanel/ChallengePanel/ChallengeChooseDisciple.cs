@@ -240,12 +240,26 @@ namespace GameWish.Game
 
             m_ConfirmBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                if (m_SelectedDiscipleDic.Count!= ChallengeSelectedDiscipleNumber)
+                switch (m_PanelType)
                 {
-                    FloatMessage.S.ShowMsg("人数不足五人，请选满");
-                    return;
+                    case PanelType.Task:
+                        if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
+                        {
+                            FloatMessage.S.ShowMsg("人数不足"+ m_CommonTaskItemInfo.GetCharacterAmount() + "人，请选满");
+                            return;
+                        }
+                        break;
+                    case PanelType.Challenge:
+                        if (m_SelectedDiscipleDic.Count != ChallengeSelectedDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("人数不足5人，请选满");
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
                 }
+               
                 EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic);
                 HideSelfWithAnim();
             });
