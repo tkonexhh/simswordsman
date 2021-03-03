@@ -191,21 +191,21 @@ namespace GameWish.Game
 
             CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
 
-            for (int i = 0; i < m_AllDiscipleList.Count; i++)
-            {
-                CreateDisciple(m_AllDiscipleList[i]);
-                //if ( m_AllDiscipleList[i].IsFreeState())
-            }
-
-            
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
+                            CreateDisciple(m_AllDiscipleList[i]);
+
                     for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
                         CreateSelectedDisciple();
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        CreateDisciple(m_AllDiscipleList[i]);
+
                     for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
                         CreateSelectedDisciple();
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
@@ -214,7 +214,6 @@ namespace GameWish.Game
                 default:
                     break;
             }
-
         }
         private void RefreshFixedInfo()
         {
@@ -241,12 +240,26 @@ namespace GameWish.Game
 
             m_ConfirmBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                if (m_SelectedDiscipleDic.Count!= ChallengeSelectedDiscipleNumber)
+                switch (m_PanelType)
                 {
-                    //FloatMessage.S.ShowMsg("人数不足五人，请选满");
-                    //return;
+                    case PanelType.Task:
+                        if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
+                        {
+                            FloatMessage.S.ShowMsg("人数不足"+ m_CommonTaskItemInfo.GetCharacterAmount() + "人，请选满");
+                            return;
+                        }
+                        break;
+                    case PanelType.Challenge:
+                        if (m_SelectedDiscipleDic.Count != ChallengeSelectedDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("人数不足5人，请选满");
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
                 }
+               
                 EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic);
                 HideSelfWithAnim();
             });

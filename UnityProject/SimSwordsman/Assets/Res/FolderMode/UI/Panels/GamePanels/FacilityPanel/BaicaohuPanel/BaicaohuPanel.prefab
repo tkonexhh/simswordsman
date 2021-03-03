@@ -1331,19 +1331,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4482388110786749153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad6f21d7ebe21e4c81bad042458c4b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6299ebe51a6787847b93bb84a34423c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ParentPage: {fileID: 0}
   m_SpritesData:
+  - {fileID: 11400000, guid: 47950af7b0a2cb94183e314277407b66, type: 2}
   - {fileID: 11400000, guid: 872a043633cf4d04f905dc00b258b631, type: 2}
   - {fileID: 11400000, guid: ccf3145b60724a147be0541917e0b72b, type: 2}
-  - {fileID: 11400000, guid: 47950af7b0a2cb94183e314277407b66, type: 2}
   m_PanelEventLogType: 0
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_BaicaohuCont: {fileID: 6519418173963885590}
+  m_BaicaohuCont: {fileID: 3048341388367586249}
   m_CurLevelTxt: {fileID: 3993963708460667429}
   m_FacilityIcon: {fileID: 548967263321465412}
   m_Res1Img: {fileID: 6462951249109086198}
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_Res3Img: {fileID: 4751209103118911245}
   m_Res3Value: {fileID: 336034131639682631}
   m_NextUnlockName: {fileID: 5952322050109721957}
-  m_UpGradeCondition: {fileID: 2810134520239655366}
+  m_UpGradeCondition: {fileID: 9084494189964974682}
   m_CloseBtn: {fileID: 8519037410675569241}
   m_UpgradeBtn: {fileID: 1448067437784216521}
   m_ItemTra: {fileID: 5618606821824273302}
@@ -1932,7 +1932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 683.5338}
+  m_AnchoredPosition: {x: 0, y: 723.5337}
   m_SizeDelta: {x: 1178.8778, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5618606821824273300

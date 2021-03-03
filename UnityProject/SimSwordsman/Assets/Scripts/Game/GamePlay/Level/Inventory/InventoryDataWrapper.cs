@@ -13,7 +13,7 @@ namespace GameWish.Game
 
         private ClanData m_ClanData = null;
         private List<ItemBase> m_WarehouseItems = new List<ItemBase>();
-
+        private const int NOTUNLOCK = 10;
         public List<ItemBase> WarehouseItems { get => m_WarehouseItems; }
 
         public void Init()
@@ -68,11 +68,21 @@ namespace GameWish.Game
         private bool CheckInventoryIsFull()
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Warehouse);
+            FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Warehouse);
             WarehouseLevelInfo warehouseNextLevelInfo = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(FacilityType.Warehouse, level) as WarehouseLevelInfo;
             int limitReserves = warehouseNextLevelInfo.GetCurReserves();
-            if (GetCurReserves() < limitReserves)
-                return false;
-            return true;
+            if (facilityController.GetState() != FacilityState.Unlocked)
+            {
+                if (GetCurReserves() < NOTUNLOCK)
+                    return false;
+                return true;
+            }
+            else
+            {
+                if (GetCurReserves() < limitReserves)
+                    return false;
+                return true;
+            }
         }
         #endregion
 

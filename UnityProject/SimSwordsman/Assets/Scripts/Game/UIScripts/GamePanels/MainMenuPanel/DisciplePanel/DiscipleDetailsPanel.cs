@@ -396,14 +396,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                if (m_CurDisciple.IsFreeState())
-                {
-                    MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
-                    EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
-                    HideSelfWithAnim();
-                }
-                else
-                    FloatMessage.S.ShowMsg("弟子正在忙碌中");
+                UIMgr.S.OpenPanel(UIID.LogPanel,LogCallBack, "逐出师门", "确定要将该弟子逐出师门吗？", "确定", "再想想");
             });
             m_CloseBtn.onClick.AddListener(() =>
             {
@@ -435,6 +428,24 @@ namespace GameWish.Game
                 characterArms.UpGradeClass(m_CurDisciple.id);
                 RefreshArmsInfo();
             });
+        }
+
+        private void LogCallBack(AbstractPanel obj)
+        {
+            LogPanel logPanel =  obj as LogPanel;
+            logPanel.OnSuccessBtnEvent += SuccessBtn;
+        }
+
+        private void SuccessBtn()
+        {
+            if (m_CurDisciple.IsFreeState())
+            {
+                MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
+                EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
+                HideSelfWithAnim();
+            }
+            else
+                FloatMessage.S.ShowMsg("弟子正在忙碌中");
         }
 
         protected override void OnPanelOpen(params object[] args)

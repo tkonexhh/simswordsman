@@ -35,6 +35,10 @@ namespace GameWish.Game
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
 
+        #region 食物倒计时
+        public string FoodCoundDownTime = string.Empty;
+        #endregion
+
         /// <summary>
         /// 辅助记录刷新了食物的次数
         /// </summary>
@@ -62,7 +66,7 @@ namespace GameWish.Game
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
-            FoodRefreshRecordingTime = DateTime.Now.ToString();
+            FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 8) + ' ' + "06:00:00";
             FoodRefreshTimesToday = 5;
             FoodRefreshCount = 0;
             SetDataDirty();
@@ -149,7 +153,7 @@ namespace GameWish.Game
         public void SetFoodRefreshCount(int count)
         {
             FoodRefreshCount = count;
-        }  
+        }
         public int GetFoodRefreshTimesToday()
         {
             return FoodRefreshTimesToday;
@@ -175,6 +179,19 @@ namespace GameWish.Game
             FoodRefreshRecordingTime = recordingTime;
         }
         #endregion
+
+        #region 食物倒计时
+        public string GetFoodCoundDownTime()
+        {
+            return FoodCoundDownTime;
+        }
+
+        public void SetFoodCoundDownTime(string str)
+        {
+            FoodCoundDownTime = str;
+        }
+        #endregion
+
         public void SetCoinNum(long num)
         {
             m_CoinNum = num;
@@ -309,6 +326,7 @@ namespace GameWish.Game
         {
             foodNum += delta;
 
+          
             EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 

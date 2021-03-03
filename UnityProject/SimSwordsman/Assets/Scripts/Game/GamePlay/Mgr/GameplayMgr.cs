@@ -210,15 +210,19 @@ namespace GameWish.Game
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                MainGameMgr.S.InventoryMgr.GetAllInventoryItemList().Clear();
-                for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.HuanHunDan; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 2000);
-                }
+                GameDataMgr.S.GetPlayerData().AddFoodNum(1);
             }
-#endregion
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(2);
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(1);
+            }
+            #endregion
         }
 
         /// <summary>
