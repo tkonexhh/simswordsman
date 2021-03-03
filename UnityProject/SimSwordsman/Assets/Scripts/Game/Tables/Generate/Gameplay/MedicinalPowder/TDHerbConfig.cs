@@ -14,6 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Id = 0;   
         private string m_Name;   
+        private EInt m_UseLevelRequire = 0;   
         private string m_Desc;   
         private string m_MakeRes;   
         private EInt m_MakeTime = 0;   
@@ -33,6 +34,11 @@ namespace GameWish.Game
         /// 名称
         /// </summary>
         public  string  name {get { return m_Name; } }
+       
+        /// <summary>
+        /// 战斗使用等级条件（讲武堂等级）
+        /// </summary>
+        public  int  useLevelRequire {get { return m_UseLevelRequire; } }
        
         /// <summary>
         /// 药物描述
@@ -91,24 +97,27 @@ namespace GameWish.Game
                     m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_Desc = dataR.ReadString();
+                    m_UseLevelRequire = dataR.ReadInt();
                     break;
                 case 3:
-                    m_MakeRes = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 4:
-                    m_MakeTime = dataR.ReadInt();
+                    m_MakeRes = dataR.ReadString();
                     break;
                 case 5:
-                    m_EffectDesc = dataR.ReadString();
+                    m_MakeTime = dataR.ReadInt();
                     break;
                 case 6:
-                    m_EffectParam = dataR.ReadFloat();
+                    m_EffectDesc = dataR.ReadString();
                     break;
                 case 7:
-                    m_Price = dataR.ReadInt();
+                    m_EffectParam = dataR.ReadFloat();
                     break;
                 case 8:
+                    m_Price = dataR.ReadInt();
+                    break;
+                case 9:
                     m_Icon = dataR.ReadString();
                     break;
                 default:
@@ -121,17 +130,18 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
-          ret.Add("Desc", 2);
-          ret.Add("MakeRes", 3);
-          ret.Add("MakeTime", 4);
-          ret.Add("EffectDesc", 5);
-          ret.Add("EffectParam", 6);
-          ret.Add("Price", 7);
-          ret.Add("Icon", 8);
+          ret.Add("UseLevelRequire", 2);
+          ret.Add("Desc", 3);
+          ret.Add("MakeRes", 4);
+          ret.Add("MakeTime", 5);
+          ret.Add("EffectDesc", 6);
+          ret.Add("EffectParam", 7);
+          ret.Add("Price", 8);
+          ret.Add("Icon", 9);
           return ret;
         }
     } 
