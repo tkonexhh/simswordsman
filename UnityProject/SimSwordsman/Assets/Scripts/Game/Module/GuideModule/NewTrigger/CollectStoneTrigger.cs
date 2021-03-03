@@ -42,7 +42,8 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnCollectStoneTaskTrigger, OnEventListener);
 
-            EventSystem.S.Send(EventID.OnCollectStoneProgressTaskTrigger);
+            //EventSystem.S.Send(EventID.OnCollectStoneProgressTaskTrigger);
+            EventSystem.S.Send(EventID.OnGuideUnlockKitchen);
         }
     }	
 }

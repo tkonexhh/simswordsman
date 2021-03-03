@@ -34,6 +34,30 @@ namespace GameWish.Game
 
             EventSystem.S.Register(EventID.OnEnterBattle, OnEnterBattleCallBack);
             EventSystem.S.Register(EventID.OnExitBattle, OnExitBattleCallBack);
+
+            EventSystem.S.Register(EventID.OnCloseAllUIPanel, OnCloseAllUIPanelCallBack);
+        }
+
+        private void OnCloseAllUIPanelCallBack(int key, object[] param)
+        {
+            UIMgr.S.ClosePanelAsUIID(UIID.SignInPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardChooseDisciple);
+            UIMgr.S.ClosePanelAsUIID(UIID.WarehousePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ItemDetailsPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.KitchenPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ConstructionFacilitiesPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.SupplementFoodPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.DisciplePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.DicipleDetailsPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.WearableLearningPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ChallengePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ChallengeBattlePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.IdentifyChallengesPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.SendDisciplesPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ChallengeChooseDisciple);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)
@@ -247,6 +271,11 @@ namespace GameWish.Game
             //第20步结束不出现建造仓库的引导
             if (GuideMgr.S.IsGuideFinish(20))
                 return;
+            //在战斗中不显示引导
+            if (m_IsInBattleing) 
+            {
+                return;
+            }
 
             foreach (var item in TDFacilityWarehouseTable.GetLevelInfo(1).GetUpgradeResCosts())
             {
