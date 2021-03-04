@@ -185,7 +185,7 @@ namespace GameWish.Game
             m_Controller.SpawnWorkProgressBar();
 
             if (GuideMgr.S.IsGuideFinish(8) == false) {
-                EventSystem.S.Send(EventID.OnGuideClickTaskDetailsTrigger1);
+                EventSystem.S.Send(EventID.OnDiscipleAutoWorkTrigger);
             }
         }
 
