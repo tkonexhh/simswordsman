@@ -25,6 +25,8 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            EventSystem.S.Send(EventID.OnCloseAllUIPanel);
+
             m_CanStart = true;
 
             if (isReady)

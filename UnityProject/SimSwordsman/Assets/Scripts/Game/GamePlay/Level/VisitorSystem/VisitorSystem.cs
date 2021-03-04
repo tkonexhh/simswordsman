@@ -72,7 +72,6 @@ namespace GameWish.Game
             {
                 m_IsSendGuideTrigger = true;
                 EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
-                Debug.LogError("send trigger");
             }
 
             if (CurrentVisitor.Count < m_MaxVisitorCount)
