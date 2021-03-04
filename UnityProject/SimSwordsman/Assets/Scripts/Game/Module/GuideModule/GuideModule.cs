@@ -131,6 +131,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickAKeyChoiceTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickStartChallengeTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DiscipleAutoWorkTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(TaskPanelTrigger_IntroduceTrigger));
         }
 
         protected void InitCustomCommand()

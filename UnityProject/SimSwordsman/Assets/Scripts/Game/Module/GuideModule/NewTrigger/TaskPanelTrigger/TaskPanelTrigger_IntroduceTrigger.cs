@@ -1,28 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using System;
 using Qarth;
 
-
 namespace GameWish.Game
 {
-	public class BuildFacilityPanel_KitchenTrigger : ITrigger
-	{
+	public class TaskPanelTrigger_IntroduceTrigger : ITrigger
+    {
         bool m_CanStart = false;
-        public bool isReady { get { return m_CanStart;  } }
+        public bool isReady { get { return m_CanStart; } }
 
         Action<bool, ITrigger> m_Listener;
 
         public void SetParam(object[] param)
         {
-            
+
         }
 
         public void Start(Action<bool, ITrigger> l)
         {
             m_Listener = l;
-            EventSystem.S.Register(EventID.OnGuideBuildKitchenPanel, OnEventListener);
+            EventSystem.S.Register(EventID.OnTaskPanelTrigger_IntroduceTrigger, OnEventListener);
         }
         void OnEventListener(int key, object[] param)
         {
+            EventSystem.S.Send(EventID.OnCloseAllUIPanel);
+
             m_CanStart = true;
 
             if (isReady)
@@ -38,13 +42,9 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
-            EventSystem.S.UnRegister(EventID.OnGuideBuildKitchenPanel, OnEventListener);
+            EventSystem.S.UnRegister(EventID.OnTaskPanelTrigger_IntroduceTrigger, OnEventListener);
 
-            Timer.S.Post2Really((x)=> {
-                EventSystem.S.Send(EventID.OnTaskPanelTrigger_IntroduceTrigger);
-            },2.0f);
+            EventSystem.S.Send(EventID.OnGuideClickTaskTrigger2);
         }
-
-	}
-	
+    }
 }
