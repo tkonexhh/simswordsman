@@ -9,6 +9,8 @@ namespace GameWish.Game
     {
         public List<CommonTaskItemData> taskList = new List<CommonTaskItemData>();
         public string lastRefreshTime;
+        public int finishedTaskCount = 0;
+        public int lastRefreshTaskDay = -1;
 
         public void SetDefaultValue()
         {
@@ -21,6 +23,20 @@ namespace GameWish.Game
         public void Init()
         {
 
+        }
+
+        public void SetLastRefreshTaskDay(int day)
+        {
+            lastRefreshTaskDay = day;
+
+            SetDataDirty();
+        }
+
+        public void SetFinishedTaskCount(int value)
+        {
+            finishedTaskCount = value;
+
+            SetDataDirty();
         }
 
         public void SetRecordChracterID(int taskId,List<int> IDList)
@@ -97,6 +113,8 @@ namespace GameWish.Game
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
             if (mainTaskItem != null)
             {
+                finishedTaskCount++;
+
                 taskList.Remove(mainTaskItem);
                 // mainTaskItem.isRewardClaimed = true;
             }

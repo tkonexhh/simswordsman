@@ -283,6 +283,7 @@ namespace GameWish.Game
         OnClickVisitorBtnTrigger,//点击访客系统
         OnClickVisitorPanelAcceptBtnTrigger,//点击访客面板收下按钮
         OnFinishedClickWuWoodBubbleTrigger,//点击砍树气泡trigger完成
+        OnDiscipleAutoWorkTrigger,//弟子自动工作trigger
         #region 装备武功秘籍
         OnKungFuTrigger_IntroduceTrigger,//武功秘籍trigger
         OnKungFuTrigger_ClickOpenDisciplePanelTrigger,//点击打开弟子界面
@@ -309,6 +310,10 @@ namespace GameWish.Game
         OnChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger,//点击接受挑战
         OnChallengeSystemTrigger_ClickAKeyChoiceTrigger,//点击一键选择
         OnChallengeSystemTrigger_ClickStartChallengeTrigger,//点击开始战斗
+        #endregion
+
+        #region 任务面板
+        OnTaskPanelTrigger_IntroduceTrigger,//任务面板介绍
         #endregion
         #endregion
 

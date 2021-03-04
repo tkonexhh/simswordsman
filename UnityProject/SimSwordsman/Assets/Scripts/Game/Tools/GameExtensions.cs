@@ -102,7 +102,7 @@ namespace GameWish.Game
         public static DateTime GetTimeFromTimestamp(string timestamp)
         {
             DateTime dtStart = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            return dtStart.AddMilliseconds(long.Parse(timestamp));
+            return dtStart.AddSeconds(long.Parse(timestamp));
         }
 
         public static long GetSecFromTimestamps(string timestamp)

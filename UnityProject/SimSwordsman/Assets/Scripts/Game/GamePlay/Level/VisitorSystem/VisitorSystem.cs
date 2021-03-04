@@ -25,6 +25,8 @@ namespace GameWish.Game
         /// </summary>
         int m_MaxVisitorCount = 2;
 
+        const int MaxVisitorCountDaily = 12;
+
         public List<Visitor> CurrentVisitor = new List<Visitor>();
 
 
@@ -55,6 +57,10 @@ namespace GameWish.Game
         {
             if (m_StartAppearVisitorCDID != -1)
                 return;
+
+            if (GameDataMgr.S.GetPlayerData().visitorCount >= MaxVisitorCountDaily)
+                return;
+
             if (CurrentVisitor.Count < m_MaxVisitorCount)
             {
                 m_StartAppearVisitorCDID = Timer.S.Post2Really(count =>

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace GameWish.Game
 {
-	public class VisitorPanel : AbstractAnimPanel
-	{
+    public class VisitorPanel : AbstractAnimPanel
+    {
         [SerializeField]
         private Text m_Title;
         [SerializeField]
@@ -23,18 +23,18 @@ namespace GameWish.Game
         private Text m_RewardNum;
 
         [SerializeField]
-		private Button m_AcceptBtn;
-		[SerializeField]
-		private Button m_NotAcceptBtn;
+        private Button m_AcceptBtn;
+        [SerializeField]
+        private Button m_NotAcceptBtn;
         [SerializeField]
         private Button m_CloseBtn;
 
         Visitor m_visitor;
 
         protected override void OnUIInit()
-	    {
-	        base.OnUIInit();
-			BindAddListenerEvent();
+        {
+            base.OnUIInit();
+            BindAddListenerEvent();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -50,7 +50,7 @@ namespace GameWish.Game
                 m_Title.text = tb.name;
                 for (int i = 0; i < m_TitleBgs.Length; i++)
                 {
-                    if (i< tb.name.Length)
+                    if (i < tb.name.Length)
                         m_TitleBgs[i].gameObject.SetActive(true);
                     else
                         m_TitleBgs[i].gameObject.SetActive(false);
@@ -64,13 +64,13 @@ namespace GameWish.Game
                 m_Character.SetNativeSize();
             }
 
-            OpenDependPanel(EngineUI.MaskPanel,-1,null);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         private void LookADSuccessCallBack(bool obj)
         {
             m_visitor.Reward.AcceptReward();
-
+            GameDataMgr.S.GetPlayerData().AddVisitorCount();
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
             VisitorSystem.S.Disappear(m_visitor);
 
@@ -81,7 +81,6 @@ namespace GameWish.Game
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
                 AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
@@ -99,7 +98,7 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
         }
-            
+
 
 
         protected override void OnPanelHideComplete()

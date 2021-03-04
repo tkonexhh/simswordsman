@@ -32,15 +32,20 @@ namespace GameWish.Game
 
         public override void Enter(ICharacterStateHander handler)
         {
-            if(m_Controller == null)
+            if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
+
+            Qarth.Log.i("Enter State collect res: " + m_Controller.CharacterView.name);
 
             m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             m_RawMatItem = null;
 
             m_Controller.SpawnWorkTipWhenCollectedObj(m_CollectedObjType);
 
-            m_CollectTotalTime = TDWorkTable.GetWorkConfigItem(m_CollectedObjType).workTime;
+            var warkConf = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
+            m_CollectTotalTime = warkConf.workTime;
+            //显示对话气泡
+            WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, warkConf.workTalk);
 
             m_ReachTargetPos = false;
             m_IsCollectResEnd = false;
@@ -72,6 +77,8 @@ namespace GameWish.Game
 
         public override void Exit(ICharacterStateHander handler)
         {
+            Qarth.Log.i("Exit State collect res: " + m_Controller.CharacterView.name);
+
             UnregisterEvents();
         }
 
@@ -150,7 +157,7 @@ namespace GameWish.Game
                     ClaimReward();
 
                     EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
-    
+
                     GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
 
                     m_Controller.ReleaseWorkProgressBar();
@@ -180,8 +187,9 @@ namespace GameWish.Game
 
             m_Controller.SpawnWorkProgressBar();
 
-            if (GuideMgr.S.IsGuideFinish(8) == false) {
-                EventSystem.S.Send(EventID.OnGuideClickTaskDetailsTrigger1);
+            if (GuideMgr.S.IsGuideFinish(8) == false)
+            {
+                EventSystem.S.Send(EventID.OnDiscipleAutoWorkTrigger);
             }
         }
 
@@ -281,9 +289,13 @@ namespace GameWish.Game
             {
                 int itemId = workConfigItem.specialRewards[i].id;
                 int count = workConfigItem.specialRewards[i].GetRewardValue();
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
 
-                m_Controller.SpawnCollectedObjWorkReward((RawMaterial)itemId, count);
+                if (count > 0)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+
+                    m_Controller.SpawnCollectedObjWorkRewardWithDelay((RawMaterial)itemId, count, 1f);
+                }
             }
 
             // Add exp

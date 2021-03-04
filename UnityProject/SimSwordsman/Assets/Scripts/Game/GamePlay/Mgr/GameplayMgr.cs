@@ -32,6 +32,7 @@ namespace GameWish.Game
         {
             // Init Managers
             GameDataMgr.S.Init();
+            GameDataMgr.S.GetPlayerData().SetLastPlayTime(GameExtensions.GetTimeStamp());
 
             AssetPreloaderMgr.S.Init();
 
@@ -132,6 +133,7 @@ namespace GameWish.Game
 
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
+                    UIMgr.S.OpenPanel(UIID.WorldUIPanel);
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 
                     MusicMgr.S.PlayMenuMusic();

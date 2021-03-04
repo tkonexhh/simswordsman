@@ -57,9 +57,15 @@ namespace GameWish.Game
         private Button m_VisitorBtn2;
         [SerializeField]
         private Image m_VisitorImg2;
+        [SerializeField]
+        private Button m_SettingBtn;
 
         protected override void OnUIInit()
         {
+            m_SettingBtn.onClick.AddListener(()=> {
+                UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
+            });
+
             base.OnUIInit();
             int limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
 
