@@ -79,7 +79,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (IsFoodEnough() == false)
+            if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(8) && GuideMgr.S.IsGuideFinish(14))
             {
                 FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
                 return;
@@ -96,7 +96,7 @@ namespace GameWish.Game
 
         private CharacterController SelectIdleCharacterToCollectRes(bool manual)
         {
-            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CurState == CharacterStateID.Wander || i.CurState == CharacterStateID.EnterClan || i.CurState == CharacterStateID.None);
+            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CharacterModel.IsIdle());
             if (character != null)
             {
                 character.CollectObjType = collectedObjType;
@@ -107,7 +107,7 @@ namespace GameWish.Game
 
                 m_IsCharacterCollected = true;
 
-                GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
             }
 
             return character;

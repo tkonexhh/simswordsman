@@ -85,17 +85,6 @@ namespace GameWish.Game
         {
             return m_TaskDetailInfo.taskState;
         }
-
-        //public void SetCurTaskFinished()
-        //{
-        //     m_TaskDetailInfo.taskState = TaskState.Finished;
-        //}
-
-        //public int GetCurSubType()
-        //{
-        //   return CommonTaskItemInfo.subType;
-        //}
-
         public SimGameTaskType GetCurTaskType()
         {
             return CommonTaskItemInfo.taskType;
@@ -111,15 +100,6 @@ namespace GameWish.Game
 
         public void ClaimReward(bool isSucess)
         {
-            //List<LevelReward> levelRewardList = new List<LevelReward>();
-            //ExpCharacterReward exp = new ExpCharacterReward(RewardItemType.Exp_Role, CommonTaskItemInfo.expReward);
-            //ExpKongfuReward KungfuExp = new ExpKongfuReward(RewardItemType.Exp_Kongfu, CommonTaskItemInfo.kongfuReward);
-            //levelRewardList.Add(exp);
-            //levelRewardList.Add(KungfuExp);
-            //if (isSucess)
-            //    levelRewardList.ForEach(i => i.ApplyReward(1));
-            //else
-            //    levelRewardList.ForEach(i => i.ApplyReward(2));
             List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_TaskId);
             float ratio = isSucess ? 1 : 0.5f;
 
@@ -174,20 +154,6 @@ namespace GameWish.Game
                     }
                 }
             }
-
-
-            // Special reward
-            //int random = Random.Range(0, 10000);
-            //if (random < m_TaskDetailInfo.specialRewardRate)
-            //{
-            //    for (int i = 0; i < m_TaskDetailInfo.specialRewards.Count; i++)
-            //    {
-            //        int itemId = m_TaskDetailInfo.GetSpecialRewardId(i);
-            //        int count = m_TaskDetailInfo.GetSpecialRewardValue(i);
-            //        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
-            //    }
-            //}
-
             CharacterIDs.Clear();
         }
     }

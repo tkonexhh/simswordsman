@@ -150,7 +150,7 @@ namespace GameWish.Game
                     }
 
 #endif
-                    //GameMgr.S.StartGuide();
+                    GameMgr.S.StartGuide();
                 }
             }
             else
@@ -164,7 +164,12 @@ namespace GameWish.Game
             //    GameDataMgr.S.GetPlayerInfoData().AddCoinNum(1E100);
             //}
 
-#region 测试代码
+            #region 测试代码
+            if (Input.GetKeyDown(KeyCode.W)) {
+                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)101, Step.One), 10);
+
+                EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
+            }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 for (int i = (int)RawMaterial.SilverToken; i <= (int)RawMaterial.GoldenToken; i++)
@@ -205,15 +210,19 @@ namespace GameWish.Game
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                MainGameMgr.S.InventoryMgr.GetAllInventoryItemList().Clear();
-                for (int i = (int)HerbType.ChiDanZhuangQiWan; i < (int)HerbType.HuanHunDan; i++)
-                {
-                    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 2000);
-                }
+                GameDataMgr.S.GetPlayerData().AddFoodNum(1);
             }
-#endregion
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(2);
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(1);
+            }
+            #endregion
         }
 
         /// <summary>

@@ -146,14 +146,6 @@ namespace GameWish.Game
                         UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, OpenCallback, PanelType.Task, m_CurTaskInfo);
                     break;
                 case EventID.OnArriveCollectResPos:
-                    //if (m_CommonTaskItemInfo.id != ((SimGameTask)param[0]).TaskId)
-                    //    return;
-                    //m_CurTaskInfo = (SimGameTask)param[0];
-                    //m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
-                    //m_Line.enabled = false;
-                    //m_ChooseDisciple.enabled = false;
-                    //StartCoroutine(CountDown());
-                    //RefreshCountDownTaskState();
                     break;
                 case EventID.OnStowPanelEvent:
                     if ((bool)param[0] && ((SimGameTask)param[1]).TaskId != m_CurTaskInfo.TaskId && IsOpen)
@@ -182,12 +174,17 @@ namespace GameWish.Game
                 return m_BulletinBoardPanel.FindSprite("Coin");
             else if(id==-2)
                 return m_BulletinBoardPanel.FindSprite("Baozi");
-            return m_BulletinBoardPanel.FindSprite(GetStrForItemID(id));
+            Sprite sprite = m_BulletinBoardPanel.FindSprite(GetStrForItemID(id));
+            if (sprite==null)
+                sprite =  m_BulletinBoardPanel.FindSprite(GetIconName(id));
+            return sprite;
         }
-        private Sprite GetSprite(string name)
+
+        private string GetIconName(int herbType)
         {
-            return m_BulletinBoardPanel.FindSprite(name);
+            return TDHerbConfigTable.GetHerbIconNameById(herbType);
         }
+
         public string GetStrForItemID(int id)
         {
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
@@ -387,12 +384,12 @@ namespace GameWish.Game
         private void RefreshFixedInfo()
         {
             m_TaskName.text = m_CommonTaskItemInfo.title;
-            m_RewardCompleted.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_REWARD);
+            m_RewardCompleted.text = "可能获得";
             m_DeclinedText.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_DECLINED);
             m_GoTo.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_GOTO);
             m_TaskIntrodution.text = m_CommonTaskItemInfo.desc;
-            m_Description.text = CommonUIMethod.TextIndent() + m_CommonTaskItemInfo.desc;
-
+            m_Description.text = CommonUIMethod.TextIndent() + m_CommonTaskItemInfo.taskTxt;
+            m_TaskPhoto.sprite = m_BulletinBoardPanel.FindSprite("enemy_icon_"+ m_CommonTaskItemInfo.iconRes);
             switch (m_ItemReward.Count)
             {
                 case 1:

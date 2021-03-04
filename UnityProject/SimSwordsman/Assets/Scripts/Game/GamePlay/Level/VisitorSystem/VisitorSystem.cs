@@ -65,9 +65,15 @@ namespace GameWish.Game
                 }, m_AppearVisitorCountdown);
             }
         }
-
+        private bool m_IsSendGuideTrigger = false;
         void CreateVisitor()
         {
+            if (GuideMgr.S.IsGuideFinish(18) && GuideMgr.S.IsGuideFinish(19) == false && m_IsSendGuideTrigger == false) 
+            {
+                m_IsSendGuideTrigger = true;
+                EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
+            }
+
             if (CurrentVisitor.Count < m_MaxVisitorCount)
             {
                 //Debug.LogError("创建客人");

@@ -23,6 +23,8 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            EventSystem.S.Send(EventID.OnCloseAllUIPanel);
+
             m_CanStart = true;
 
             if (isReady)
@@ -39,10 +41,10 @@ namespace GameWish.Game
             m_CanStart = false;
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideClickTaskTrigger1, OnEventListener);
-
-            EventSystem.S.Send(EventID.OnGuideClickTaskDetailsTrigger1);
+            
+            Timer.S.Post2Really((x)=> {
+                EventSystem.S.Send(EventID.OnFinishedClickWuWoodBubbleTrigger);
+            },0.5f);
         }
-
-	}
-	
+	}	
 }

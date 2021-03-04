@@ -40,7 +40,6 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideClickRecruitTrigger2, OnEventListener);
         }
-
 	}
 	
 }

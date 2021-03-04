@@ -31,6 +31,7 @@ namespace GameWish.Game
                 ArmsDBData newArmsDBData = new ArmsDBData(_armsItem);
                 armsDBDataList.Add(newArmsDBData);
             }
+            Qarth.EventSystem.S.Send(EventID.OnAddArms, _armsItem);
         }
 
         public void AddArmor(ArmorItem _armorDBData, int delta = 1)
@@ -43,6 +44,8 @@ namespace GameWish.Game
                 ArmorDBData newArmorDBData = new ArmorDBData(_armorDBData);
                 armorDBDataList.Add(newArmorDBData);
             }
+
+            Qarth.EventSystem.S.Send(EventID.OnAddArmor, _armorDBData);
         }
 
         public void RemoveArmor(ArmorItem _armorDBData, int delta = 1)
@@ -57,6 +60,15 @@ namespace GameWish.Game
             ArmsDBData armsDBData = armsDBDataList.Where(i => i.IsHaveItem(_armsItem)).FirstOrDefault();
             if (armsDBData != null && armsDBData.RefreshNumber(delta))
                 armsDBDataList.Remove(armsDBData);
+        }
+
+        public bool IsHaveFreeArmor() 
+        {
+            return armorDBDataList.Count > 0;
+        }
+
+        public bool IsHaveFreeArms() {
+            return armsDBDataList.Count > 0;
         }
         #endregion
 
@@ -99,6 +111,10 @@ namespace GameWish.Game
             }
         }
 
+        public bool IsHaveFreeKungFu() 
+        {
+            return kungfuList.Count > 0;
+        }
         public void RemoveKungfuItem(KungfuItem _kungfuItem, int delta)
         {
             KungfuItemDbData kungfutemDbData = kungfuList.Where(i => i.IsHaveItem(_kungfuItem)).FirstOrDefault();

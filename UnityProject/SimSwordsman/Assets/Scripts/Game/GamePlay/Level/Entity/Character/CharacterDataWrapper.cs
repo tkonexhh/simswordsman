@@ -315,7 +315,7 @@ namespace GameWish.Game
 
         public bool IsFreeState()
         {
-            if (characterStateId == CharacterStateID.Wander || characterStateId == CharacterStateID.EnterClan)
+            if (characterStateId == CharacterStateID.Wander || characterStateId == CharacterStateID.EnterClan || characterStateId == CharacterStateID.None)
                 return true;
             return false;
         }
@@ -326,7 +326,10 @@ namespace GameWish.Game
             {
                 level += delta;
                 level = Mathf.Min(level, Define.CHARACTER_MAX_LEVEL);
+
                 GameDataMgr.S.GetClanData().SetCharacterLevel(m_ItemDbData, level);
+
+                EventSystem.S.Send(EventID.OnCharacterUpLevel, id, level);
 
                 int priviewStage = stage;
                 this.stage = TDCharacterStageConfigTable.GetStage(quality, level);

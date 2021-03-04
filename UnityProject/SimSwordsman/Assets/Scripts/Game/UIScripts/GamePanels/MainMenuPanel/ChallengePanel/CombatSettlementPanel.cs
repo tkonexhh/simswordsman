@@ -51,6 +51,15 @@ namespace GameWish.Game
 
                 if (m_PanelType == PanelType.Task)
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+
+                if (m_CurTaskInfo != null)
+                {
+                    EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
+                }
+                else {
+                    Debug.LogError("cur task info is null!!!!!!");
+                }
+                
             });
         }
 
@@ -65,33 +74,39 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     m_CurTaskInfo = (SimGameTask)args[1];
-                    m_CurTaskInfo.ClaimReward((bool)args[2]);
+                    m_IsSuccess = (bool)args[2];
+                    m_CurTaskInfo.ClaimReward(m_IsSuccess);
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = (ChapterConfigInfo)args[1];
                     m_LevelConfigInfo = (LevelConfigInfo)args[2];
                     m_IsSuccess = (bool)args[3];
                     if (m_IsSuccess)
-                    {
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-                        m_Font1.sprite = FindSprite("CombatSettlement_Font1");
-                        m_Font2.sprite = FindSprite("CombatSettlement_Font2");
-                    }
                     else
-                    {
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
-                        m_Font1.sprite = FindSprite("CombatSettlement_Font3");
-                        m_Font2.sprite = FindSprite("CombatSettlement_Font4");
-                    }
                     break;
                 default:
                     break;
             }
+            RefreshFont();
 
             foreach (var item in m_SelectedDiscipleList)
                 CreateRewardIInfoItem(item);
         }
-
+        private void RefreshFont()
+        {
+            if (m_IsSuccess)
+            {
+                m_Font1.sprite = FindSprite("CombatSettlement_Font1");
+                m_Font2.sprite = FindSprite("CombatSettlement_Font2");
+            }
+            else
+            {
+                m_Font1.sprite = FindSprite("CombatSettlement_Font3");
+                m_Font2.sprite = FindSprite("CombatSettlement_Font4");
+            }
+        }
         private void CreateRewardIInfoItem(CharacterController item)
         {
             switch (m_PanelType)

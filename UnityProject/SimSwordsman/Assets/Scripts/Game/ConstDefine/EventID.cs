@@ -21,6 +21,10 @@ namespace GameWish.Game
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,
+        /// <summary>
+        /// 关闭所有UI面板，不包含mainmenu
+        /// </summary>
+        OnCloseAllUIPanel,
 
         OnFoodBuffTick,//伙房食物增益消失倒计时
         OnFoodBuffEnd,//伙房食物增益结束
@@ -46,6 +50,7 @@ namespace GameWish.Game
         OnStartUnlockFacility,
         OnStartUpgradeFacility,
         OnEndUpgradeFacility,
+        OnUpgradeFacility,
 
         OnAddItem,
         OnReduceItems,
@@ -67,6 +72,7 @@ namespace GameWish.Game
         OnTaskObjCollected,
         OnArriveCollectResPos,
         OnCharacterTaskRewardClicked,
+        OnAddCharacter,
         //PracticeField
 
         /// <summary>
@@ -77,7 +83,10 @@ namespace GameWish.Game
         /// 练功场倒计时刷新
         /// </summary>
         OnPracticeFieldTimeRefresh,
-
+        /// <summary>
+        /// 限制相机的触摸移动
+        /// </summary>
+        OnLimitCameraTouchMove,
         #region 仓库
         /// <summary>
         /// 刷新仓库升级资源
@@ -144,6 +153,10 @@ namespace GameWish.Game
         /// </summary>
         OnCharacterUpgrade,
         /// <summary>
+        /// 弟子升级
+        /// </summary>
+        OnCharacterUpLevel,
+        /// <summary>
         /// 功夫升级事件
         /// </summary>
         OnKongfuLibraryUpgrade,
@@ -167,6 +180,10 @@ namespace GameWish.Game
         /// 功夫选择成功
         /// </summary>
         OnSelectedKungfuSuccess,
+        /// <summary>
+        /// 获取到功夫秘籍
+        /// </summary>
+        OnGetKungFu,
 
         /// <summary>
         /// 收起公告榜其他面板
@@ -257,8 +274,47 @@ namespace GameWish.Game
         InGuideProgress,
         OnGuideFirstGetCharacter,
         OnGuideSecondGetCharacter,
+
+        OnCollectStoneTaskTrigger,
+        OnCollectStoneProgressTaskTrigger,
+        BuildPracticeFieldEastTrigger,//建造练功房
+        OnCloseFightingPanel,//关闭战斗面板
+        OnVisitorBtnNormalTipTrigger,//访客系统
+        OnClickVisitorBtnTrigger,//点击访客系统
+        OnClickVisitorPanelAcceptBtnTrigger,//点击访客面板收下按钮
+        OnFinishedClickWuWoodBubbleTrigger,//点击砍树气泡trigger完成
+        #region 装备武功秘籍
+        OnKungFuTrigger_IntroduceTrigger,//武功秘籍trigger
+        OnKungFuTrigger_ClickOpenDisciplePanelTrigger,//点击打开弟子界面
+        OnKungFuTrigger_ChoiceTargetDiscipleTrigger,//选择目标弟子
+        OnKungFuTrigger_ClickStudyKungFuTrigger,//点击学习武功秘籍
+        OnKungFuTrigger_ChoiceKungFuTrigger,//选择武功秘籍 
+        OnKungFuTrigger_ConfirmChoiceKungFuTrigger,//确认选择武功秘籍
         #endregion
 
+        #region 装备武器
+        OnArmsTrigger_IntroduceTrigger,//武器trigger
+        OnArmsTrigger_ClickOpenDisciplePanelTrigger,//点击打开弟子界面
+        OnArmsTrigger_ChoiceTargetDiscipleTrigger,//目标弟子选择
+        OnArmsTrigger_ClickArmsBtnTrigger,//点击武器槽
+        OnArmsTrigger_ChoiceArmsTrigger,//选择武器
+        OnArmsTrigger_ConfirmChoiceArmsTrigger,//确定选择武器
+        #endregion
+
+        #region 挑战系统
+        OnChallengeSystemTrigger_IntroduceTrigger,//挑战系统trigger
+        OnChallengeSystemTrigger_ClickChallengeBtnTrigger1,//点击挑战系统按钮
+        OnChallengeSystemTrigger_ChoiceChallengeObjTrigger,//选择挑战对象
+        OnChallengeSystemTrigger_ChoiceChallengeLevelTrigger,//选择挑战关卡
+        OnChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger,//点击接受挑战
+        OnChallengeSystemTrigger_ClickAKeyChoiceTrigger,//点击一键选择
+        OnChallengeSystemTrigger_ClickStartChallengeTrigger,//点击开始战斗
+        #endregion
+        #endregion
+
+
+        OnAddArmor,//获取新装备护甲
+        OnAddArms,//获取信装备武器
     }
 
 }

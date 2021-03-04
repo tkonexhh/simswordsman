@@ -61,13 +61,14 @@ namespace GameWish.Game
                 Log.e("不满足条件无法开启" + guideStep.stepID);
                 return;
             }
-            Action action = OnGuideClick;
+            //Action action = OnGuideClick;
+            Action action = FinishStep;
             UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, targetPos, guideTipsPos, textContentID, action, isNotForce);
         }
 
         private void OnGuideClick()
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Facility"));
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1000);
             if (hit.collider != null)
             {
                 IClickedHandler handler = hit.collider.GetComponent<IClickedHandler>();

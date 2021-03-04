@@ -88,10 +88,29 @@ namespace GameWish.Game
 
         void OnClick()
         {
-            EventSystem.S.Send(EventID.InGuideProgress, true);
-            m_Targetbtn.onClick.RemoveAllListeners();
-            CloseSelfPanel();
-            clickAction?.Invoke();
+            if (OnGuideClick()) {
+                EventSystem.S.Send(EventID.InGuideProgress, true);
+                m_Targetbtn.onClick.RemoveAllListeners();
+                CloseSelfPanel();
+                clickAction?.Invoke();
+            }            
+        }
+        private bool OnGuideClick()
+        {
+            LayerMask lm = LayerMask.GetMask(new string[] { Define.Facility, Define.Bubble });
+
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1000, lm.value);
+            if (hit.collider != null)
+            {
+                IClickedHandler handler = hit.collider.GetComponent<IClickedHandler>();
+                if (handler != null)
+                {
+                    handler.OnClicked();
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
