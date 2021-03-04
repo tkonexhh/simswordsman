@@ -7,7 +7,7 @@ using System;
 namespace GameWish.Game
 {
     public class VisitorSystem : TSingleton<VisitorSystem>
-	{
+    {
         /// <summary>
         /// 开放等级（主城）
         /// </summary>
@@ -26,7 +26,7 @@ namespace GameWish.Game
         int m_MaxVisitorCount = 2;
 
         public List<Visitor> CurrentVisitor = new List<Visitor>();
-        
+
 
         public void Init()
         {
@@ -68,7 +68,7 @@ namespace GameWish.Game
         private bool m_IsSendGuideTrigger = false;
         void CreateVisitor()
         {
-            if (GuideMgr.S.IsGuideFinish(18) && GuideMgr.S.IsGuideFinish(19) == false && m_IsSendGuideTrigger == false) 
+            if (GuideMgr.S.IsGuideFinish(18) && GuideMgr.S.IsGuideFinish(19) == false && m_IsSendGuideTrigger == false)
             {
                 m_IsSendGuideTrigger = true;
                 EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
@@ -81,7 +81,7 @@ namespace GameWish.Game
                 Visitor visitor = new Visitor();
                 visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);
                 visitor.Reward = GetRandomReward(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
-                visitor.CountDown(m_DisAppearVisitorCountdown, ()=> 
+                visitor.CountDown(m_DisAppearVisitorCountdown, () =>
                 {
                     CheckVisitorList();
                     StartAppearVisitorCountdown();
@@ -139,7 +139,24 @@ namespace GameWish.Game
                 }
             }
             //Debug.LogError(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
-            return RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
+            var reward = RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
+            if (reward.Type == RewardItemType.Item)
+            {
+                // Debug.LogError(reward.KeyID);
+                if (reward.KeyID == (int)RawMaterial.QingRock || reward.KeyID == (int)RawMaterial.WuWood)
+                {
+                    int nowQingRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.QingRock);
+                    int nowWuWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.WuWood);
+                    reward = new ItemReward(RewardItemType.Item, nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
+                }
+                else if (reward.KeyID == (int)RawMaterial.CloudRock || reward.KeyID == (int)RawMaterial.SilverWood)
+                {
+                    int nowCloudRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.CloudRock);
+                    int nowSliverWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverWood);
+                    reward = new ItemReward(RewardItemType.Item, nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
+                }
+            }
+            return reward;
         }
 
         public void ShowInPanel(Visitor visitor)
@@ -155,7 +172,7 @@ namespace GameWish.Game
             StartAppearVisitorCountdown();
         }
 
-	}
+    }
     public class Visitor
     {
         public int VisitorCfgID;

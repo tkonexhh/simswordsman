@@ -8,6 +8,7 @@ namespace GameWish.Game
     {
         protected int m_KeyID;
         public int Count { get; protected set; }
+        public int KeyID => m_KeyID;
 
         //protected bool m_isInitSuccess = true;
         protected Action m_CallBackAction;

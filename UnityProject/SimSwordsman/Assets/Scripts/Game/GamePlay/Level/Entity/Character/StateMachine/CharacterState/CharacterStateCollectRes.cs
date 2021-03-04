@@ -134,7 +134,7 @@ namespace GameWish.Game
             if (m_IsCollectResEnd)
                 return;
 
-            if (m_ReachTargetPos)
+            if (m_ReachTargetPos && GuideMgr.S.IsGuideFinish(8))
             {
                 m_Time += Time.deltaTime;
 
