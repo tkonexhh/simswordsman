@@ -315,7 +315,7 @@ namespace GameWish.Game
 
         public bool IsFreeState()
         {
-            if (characterStateId == CharacterStateID.Wander || characterStateId == CharacterStateID.EnterClan)
+            if (characterStateId == CharacterStateID.Wander || characterStateId == CharacterStateID.EnterClan || characterStateId == CharacterStateID.None)
                 return true;
             return false;
         }

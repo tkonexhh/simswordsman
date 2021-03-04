@@ -187,6 +187,11 @@ namespace GameWish.Game
                 }
             }
         }
+
+        public bool IsIdle()
+        {
+            return m_CharacterItem.IsFreeState();
+        }
     }
 
 }
