@@ -66,27 +66,27 @@ namespace GameWish.Game
             return (T)Enum.Parse(typeof(T), val);
         }
 
-        public static Coroutine CallWithDelay(this MonoBehaviour obj, System.Action call, float delay)
-        {
-            return obj.StartCoroutine(doCallWithDelay(call, delay));
-        }
+        //public static Coroutine CallWithDelay(this MonoBehaviour obj, System.Action call, float delay)
+        //{
+        //    return obj.StartCoroutine(doCallWithDelay(call, delay));
+        //}
 
-        static IEnumerator doCallWithDelay(System.Action call, float delay)
-        {
-            if (delay <= 0)
-                yield return null;
-            else
-            {
-                float start = Time.realtimeSinceStartup;
-                while (Time.realtimeSinceStartup < start + delay)
-                {
-                    yield return null;
-                }
-            }
+        //static IEnumerator doCallWithDelay(System.Action call, float delay)
+        //{
+        //    if (delay <= 0)
+        //        yield return null;
+        //    else
+        //    {
+        //        float start = Time.realtimeSinceStartup;
+        //        while (Time.realtimeSinceStartup < start + delay)
+        //        {
+        //            yield return null;
+        //        }
+        //    }
 
-            if (call != null)
-                call.Invoke();
-        }
+        //    if (call != null)
+        //        call.Invoke();
+        //}
 
         static public void SetLocalPos(this GameObject obj, Vector3 pos)
         {

@@ -289,9 +289,13 @@ namespace GameWish.Game
             {
                 int itemId = workConfigItem.specialRewards[i].id;
                 int count = workConfigItem.specialRewards[i].GetRewardValue();
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
 
-                m_Controller.SpawnCollectedObjWorkReward((RawMaterial)itemId, count);
+                if (count > 0)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+
+                    m_Controller.SpawnCollectedObjWorkRewardWithDelay((RawMaterial)itemId, count, 1f);
+                }
             }
 
             // Add exp
