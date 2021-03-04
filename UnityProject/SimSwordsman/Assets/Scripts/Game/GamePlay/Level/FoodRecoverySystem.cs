@@ -62,6 +62,9 @@ namespace GameWish.Game
         private void ReduceFood(int key, object[] param)
         {
             limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
+            FacilityController facility = MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Kitchen);
+            if (facility.GetState() != FacilityState.Unlocked)
+                return;
             if (GameDataMgr.S.GetPlayerData().GetFoodNum() < limit)
                 isSwitch = true;
         }

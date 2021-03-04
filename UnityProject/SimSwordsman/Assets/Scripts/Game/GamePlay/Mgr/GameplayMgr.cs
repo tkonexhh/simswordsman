@@ -177,6 +177,13 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 1);
                 }
             }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                for (int i = (int)HerbType.ChiDanZhuangQiWan; i <= (int)HerbType.HuanHunDan; i++)
+                {
+                    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 1);
+                }
+            }
             if (Input.GetKeyDown(KeyCode.T))
             {
                 for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)

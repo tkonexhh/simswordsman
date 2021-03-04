@@ -27,7 +27,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// 获取练功长最大等级
+        /// 获取练功长最大等级||弟子升级限制
         /// </summary>
         /// <param name="lobbyLevel"></param>
         /// <returns></returns>

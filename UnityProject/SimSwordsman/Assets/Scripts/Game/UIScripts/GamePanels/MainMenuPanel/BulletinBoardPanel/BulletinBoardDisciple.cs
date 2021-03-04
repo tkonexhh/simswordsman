@@ -21,6 +21,10 @@ namespace GameWish.Game
         private Text m_DiscipleName;
         [SerializeField]
         private Image m_Plus;
+        [SerializeField]
+        private Image m_DiscipleLevelBg;
+        [SerializeField]
+        private Image m_Line;
         private CharacterItem m_CharacterItem;
         private SimGameTask m_CurTaskInfo;
         private CommonTaskItemInfo m_CommonTaskItemInfo;
@@ -53,6 +57,7 @@ namespace GameWish.Game
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
                     m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
+                    RefreshDiscipleColor();
                     break;
                 case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
@@ -64,6 +69,28 @@ namespace GameWish.Game
                     break;
             }
         }
+
+        private void RefreshDiscipleColor()
+        {
+            switch (m_CharacterItem.quality)
+            {
+                case CharacterQuality.Normal:
+                    m_DiscipleLevelBg.sprite = m_BulletinBoardPanel.FindSprite("Disciple_FontBg_Blue");
+                    m_Line.sprite = m_BulletinBoardPanel.FindSprite("Disciple_Line_Bule");
+                    break;
+                case CharacterQuality.Good:
+                    m_DiscipleLevelBg.sprite = m_BulletinBoardPanel.FindSprite("Disciple_FontBg_Yellow");
+                    m_Line.sprite = m_BulletinBoardPanel.FindSprite("Disciple_Line_Yellow");
+                    break;
+                case CharacterQuality.Perfect:
+                    m_DiscipleLevelBg.sprite = m_BulletinBoardPanel.FindSprite("Disciple_FontBg_Red");
+                    m_Line.sprite = m_BulletinBoardPanel.FindSprite("Disciple_Line_Red");
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public void LoadClanPrefabs(string prefabsName)
         {
             //m_DiscipleHead.sprite = obj;

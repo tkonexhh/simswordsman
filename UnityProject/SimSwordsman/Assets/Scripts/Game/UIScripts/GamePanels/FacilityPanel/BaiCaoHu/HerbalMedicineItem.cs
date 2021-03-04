@@ -15,7 +15,11 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_State;
         [SerializeField]
-        private Text m_HerbName;
+        private Text m_HerbName; 
+        [SerializeField]
+        private Text m_Count;  
+        [SerializeField]
+        private Image m_Lock;
 
         [SerializeField]
         private Button m_HerbalMedicineBtn;
@@ -35,8 +39,30 @@ namespace GameWish.Game
             m_HerbItemID = id;
             m_SendDisciplesPanel = sendDisciplesPanel;
             m_HerbItem = MainGameMgr.S.InventoryMgr.GetHerbForID(id) as HerbItem;
-
             RefreshPanelInfo();
+            //解锁
+            if (RefreshHerbUnlockLevel())
+            {
+                m_Lock.gameObject.SetActive(false);
+                m_HerbHead.gameObject.SetActive(true);
+                m_State.gameObject.SetActive(true);
+            }
+            else
+            //未解锁
+            {
+                m_Lock.gameObject.SetActive(true);
+                m_HerbHead.gameObject.SetActive(false);
+                m_State.gameObject.SetActive(false);
+            }
+        }
+
+        private bool RefreshHerbUnlockLevel()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            int unlockLevel = TDHerbConfigTable.GetUnlockLobbyLevel(m_HerbItemID);
+            if (lobbyLevel >= unlockLevel)
+                return true;
+            return false;
         }
 
         private string GetIconName(int herbType)
@@ -54,10 +80,15 @@ namespace GameWish.Game
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
-                    m_State.gameObject.SetActive(true);
+                    m_State.sprite = m_SendDisciplesPanel.FindSprite("SendDisciplePanel_Bg4");
+                    m_Count.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case SelectedState.NotSelected:
-                    m_State.gameObject.SetActive(false);
+                    m_State.sprite = m_SendDisciplesPanel.FindSprite("SendDisciplePanel_Bg3");
+                    if (m_HerbItem != null)
+                        m_Count.text = m_HerbItem.Number.ToString();
+                    else
+                        m_Count.text = Define.DEFAULT_NUMBER_ZERO;
                     break;
                 default:
                     break;
@@ -98,10 +129,18 @@ namespace GameWish.Game
                 m_IsSelected = !m_IsSelected;
                 if (m_IsSelected)
                 {
-                    if (m_HerbItem == null || m_HerbItem.Number - 1 <= 0)
+                    if (!RefreshHerbUnlockLevel())
                     {
-                        FloatMessage.S.ShowMsg("草药数量不足!");
+                        FloatMessage.S.ShowMsg("草药未解锁!");
                         return;
+                    }
+                    else
+                    {
+                        if (m_HerbItem == null || m_HerbItem.Number <= 0)
+                        {
+                            FloatMessage.S.ShowMsg("草药数量不足!");
+                            return;
+                        }
                     }
                     m_SelelctedState = SelectedState.Selected;
                 }

@@ -293,6 +293,8 @@ MonoBehaviour:
   m_DiscipleHead: {fileID: 5337991693102059493}
   m_DiscipleName: {fileID: 4686368713898849741}
   m_SelectedImg: {fileID: 3865701331821816847}
+  m_DiscipleLevelBg: {fileID: 406869211592768627}
+  m_Line: {fileID: 7470635507986242130}
 --- !u!1 &3865701331821816847
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
