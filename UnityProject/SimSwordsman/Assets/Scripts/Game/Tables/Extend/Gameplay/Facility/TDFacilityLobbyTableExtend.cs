@@ -18,6 +18,7 @@ namespace GameWish.Game
             LobbyLevelInfo lobbyLevelInfo = new LobbyLevelInfo();
             lobbyLevelInfo.Warp(levelInfo);
 
+            lobbyLevelInfo.maxDailyTask = tdData.cTDailyMax;
             lobbyLevelInfo.commonTaskCount = tdData.commonTaskAmount;
             lobbyLevelInfo.AnalysisUnlockContent(tdData.unlockContent);
             lobbyLevelInfo.PracticeLevelMax = tdData.practiceLevelMax;

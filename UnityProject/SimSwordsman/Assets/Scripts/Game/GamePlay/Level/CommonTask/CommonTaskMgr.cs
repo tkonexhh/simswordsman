@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
 
-        private float m_CommonTaskRefreshInterval = 0.1f; // 5分钟刷新一次
+        private float m_CommonTaskRefreshInterval = 1f; // 1分钟刷新一次
         private int m_CommonTaskCount = 2;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
@@ -38,6 +38,7 @@ namespace GameWish.Game
 
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
 
+            //EventSystem.S.Register(EngineEventID.OnDateUpdate, OnPassDayEvent);
         }
 
         public void OnUpdate()
@@ -61,8 +62,21 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshTask()
         {
+            int lastRefreshDay = GameDataMgr.S.GetCommonTaskData().lastRefreshTaskDay;
+            if (lastRefreshDay != DateTime.Today.DayOfYear)
+            {
+                GameDataMgr.S.GetCommonTaskData().SetLastRefreshTaskDay(DateTime.Today.DayOfYear);
+                GameDataMgr.S.GetCommonTaskData().SetFinishedTaskCount(0);
+            }
+
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-            m_CommonTaskCount = ((LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel)).commonTaskCount;
+            LobbyLevelInfo levelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel);
+
+            int dailyRefreshCount = levelInfo.maxDailyTask;
+            if (GameDataMgr.S.GetCommonTaskData().finishedTaskCount >= dailyRefreshCount)
+                return;
+
+            m_CommonTaskCount = levelInfo.commonTaskCount;
 
             RefreshCommonTask();
         }
@@ -192,6 +206,10 @@ namespace GameWish.Game
         #endregion
 
         #region Private
+        private void OnPassDayEvent(int key, params object[] args)
+        {
+
+        }
 
         private void RegisterEvents()
         {

@@ -35,6 +35,8 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
+            Qarth.Log.i("Enter State collect res: " + m_Controller.CharacterView.name);
+
             m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             m_RawMatItem = null;
 
@@ -72,6 +74,8 @@ namespace GameWish.Game
 
         public override void Exit(ICharacterStateHander handler)
         {
+            Qarth.Log.i("Exit State collect res: " + m_Controller.CharacterView.name);
+
             UnregisterEvents();
         }
 
