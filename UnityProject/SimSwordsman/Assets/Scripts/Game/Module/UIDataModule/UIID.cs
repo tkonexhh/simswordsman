@@ -1,7 +1,7 @@
 ﻿
 namespace GameWish.Game
 {
-    public enum UIID:byte
+    public enum UIID : byte
     {
         LogPanel = 0,
         LogoPanel = 1,
@@ -18,6 +18,7 @@ namespace GameWish.Game
         /// 消息提示界面
         /// </summary>
         MyFloatMessagePanel,
+        WorldUIPanel,
         RewardPanel,
         /// <summary>
         /// 新手引导
@@ -70,7 +71,7 @@ namespace GameWish.Game
         PatrolRoomChooseDisciplePanel,
         ChooseDisciplePanel,
         ConstructionFacilitiesPanel,
-        
+
         SectNamePanel,
         VisitorPanel,
         UserAccountPanel,

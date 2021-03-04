@@ -32,7 +32,7 @@ namespace GameWish.Game
 
         public override void Enter(ICharacterStateHander handler)
         {
-            if(m_Controller == null)
+            if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             Qarth.Log.i("Enter State collect res: " + m_Controller.CharacterView.name);
@@ -42,7 +42,10 @@ namespace GameWish.Game
 
             m_Controller.SpawnWorkTipWhenCollectedObj(m_CollectedObjType);
 
-            m_CollectTotalTime = TDWorkTable.GetWorkConfigItem(m_CollectedObjType).workTime;
+            var warkConf = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
+            m_CollectTotalTime = warkConf.workTime;
+            //显示对话气泡
+            WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, warkConf.workTalk);
 
             m_ReachTargetPos = false;
             m_IsCollectResEnd = false;
@@ -154,7 +157,7 @@ namespace GameWish.Game
                     ClaimReward();
 
                     EventSystem.S.Send(EventID.OnTaskObjCollected, m_Controller.CollectObjType);
-    
+
                     GameDataMgr.S.GetClanData().SetObjCollectedTime(m_CollectedObjType, 0);
 
                     m_Controller.ReleaseWorkProgressBar();
@@ -184,7 +187,8 @@ namespace GameWish.Game
 
             m_Controller.SpawnWorkProgressBar();
 
-            if (GuideMgr.S.IsGuideFinish(8) == false) {
+            if (GuideMgr.S.IsGuideFinish(8) == false)
+            {
                 EventSystem.S.Send(EventID.OnDiscipleAutoWorkTrigger);
             }
         }
