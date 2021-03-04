@@ -151,7 +151,11 @@ namespace GameWish.Game
        
         public void Collect(int id)
         {
-            var tb = TDCollectConfigTable.dataList[id];
+            //var tb = TDCollectConfigTable.dataList[id];
+            var tb = TDCollectConfigTable.dataList.Find(x => x.id == id);
+            if (tb == null) {
+                Debug.LogError("collect配置表中未找到数据，id：" + id);
+            }
             List<RewardBase> rewards = new List<RewardBase>();
             rewards.Add(RewardMgr.S.GetRewardBase(RewardItemType.Item, tb.itemId, m_CurrentCollcetCountDic[id]));
             //额外奖励(蜂针)

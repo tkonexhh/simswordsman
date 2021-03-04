@@ -69,6 +69,8 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.KongfuLibraryPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.KungfuChooseDisciplePanel);
             UIMgr.S.ClosePanelAsUIID(UIID.GetDisciplePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.UserAccountPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.LogPanel);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)

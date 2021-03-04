@@ -210,7 +210,7 @@ namespace GameWish.Game
             {
                 m_CurState = state;
 
-                if (m_CharacterCamp == CharacterCamp.OurCamp)
+                if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ²»´æñÉ
                 {
                     SetStateToDB(m_CurState, targetFacilityType);
                 }
@@ -295,6 +295,13 @@ namespace GameWish.Game
 
         public void SpawnWorkTipWhenCollectedObj(CollectedObjType collectedObjType)
         {
+            CharacterWorkTip tip = m_CharacterView.GetComponentInChildren<CharacterWorkTip>();
+            if (tip != null)
+            {
+                Log.w("Work tip already added");
+                return;
+            }
+
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
             go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
@@ -304,6 +311,13 @@ namespace GameWish.Game
         }
         public void SpawnWorkTipWhenWorkInFacility(FacilityType facilityType)
         {
+            CharacterWorkTip tip = m_CharacterView.GetComponentInChildren<CharacterWorkTip>();
+            if (tip != null)
+            {
+                Log.w("Work tip already added");
+                return;
+            }
+
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
             go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
@@ -363,6 +377,14 @@ namespace GameWish.Game
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkRewardPop workRewardPop = go.GetComponent<CharacterWorkRewardPop>();
             workRewardPop.OnGetCollectObjWorkReward(collectedObjType, count);
+        }
+
+        public void SpawnCollectedObjWorkRewardWithDelay(RawMaterial collectedObjType, int count, float delay)
+        {
+            m_CharacterView.GetComponent<MonoBehaviour>().CallWithDelay(() => 
+            {
+                SpawnCollectedObjWorkReward(collectedObjType, count);
+            }, delay);
         }
         #endregion
 
