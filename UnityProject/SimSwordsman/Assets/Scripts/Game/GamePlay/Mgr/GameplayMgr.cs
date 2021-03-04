@@ -73,8 +73,7 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Clear();
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(2);
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
-            //客人来访系统
-            VisitorSystem.S.Init();
+
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
@@ -138,15 +137,15 @@ namespace GameWish.Game
                     MusicMgr.S.PlayMenuMusic();
                     MainGameMgr.S.OnInit();
                     FoodRecoverySystem.S.Init();
-
+                    VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
 #if TEST_MODE
                     int num = PlayerPrefs.GetInt("test");
-                    if (num!=1)
+                    if (num != 1)
                     {
                         MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
                         MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
-                        PlayerPrefs.SetInt("test", 1);  
+                        PlayerPrefs.SetInt("test", 1);
                     }
 
 #endif
@@ -165,7 +164,8 @@ namespace GameWish.Game
             //}
 
             #region 测试代码
-            if (Input.GetKeyDown(KeyCode.W)) {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
                 //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)101, Step.One), 10);
 
                 EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
@@ -244,7 +244,7 @@ namespace GameWish.Game
                 GameObject effect = Resources.Load<GameObject>("Prefabs/EffectPrefab/BuildSmoke3_2");
                 GameObject obj = Instantiate(effect);
                 obj.transform.position = new Vector3(7.07f, 2.34f, 0);
-                
+
                 Timer.S.Post2Really(x =>
                 {
                     Transform tz = obj.transform.Find("root/BuildingTZ");
@@ -254,7 +254,7 @@ namespace GameWish.Game
                     GameDataMgr.S.GetPlayerData().isGuideStart = true;
                     GameDataMgr.S.GetPlayerData().SetDataDirty();
                 }, 1);
-                Timer.S.Post2Really(x => 
+                Timer.S.Post2Really(x =>
                 {
                     Destroy(obj);
                     //增加金币（暂时写在这里）
@@ -263,7 +263,7 @@ namespace GameWish.Game
             };
             UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, "StoryPanel_Text_1,StoryPanel_Text_2,StoryPanel_Text_3,StoryPanel_Text_4", action);
         }
-        
+
         private void CheckMedalRefresh()
         {
             int hour = System.DateTime.Now.Hour;
@@ -271,15 +271,15 @@ namespace GameWish.Game
             switch (hour)
             {
                 case 23:
-                    if (minute>=59)
+                    if (minute >= 59)
                         EventSystem.S.Send(EventID.OnGoldMedalRefresh);
                     break;
                 case 00:
-                    if (minute<=1)
+                    if (minute <= 1)
                         EventSystem.S.Send(EventID.OnGoldMedalRefresh);
                     break;
                 case 11:
-                    if(minute>=59)
+                    if (minute >= 59)
                         EventSystem.S.Send(EventID.OnSilverMedalRefresh);
                     break;
                 case 12:
@@ -287,7 +287,7 @@ namespace GameWish.Game
                         EventSystem.S.Send(EventID.OnSilverMedalRefresh);
                     break;
             }
-            
+
         }
 
         private void FixedUpdate()
