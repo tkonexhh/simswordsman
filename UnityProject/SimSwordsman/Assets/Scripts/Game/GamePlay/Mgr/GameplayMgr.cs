@@ -32,6 +32,7 @@ namespace GameWish.Game
         {
             // Init Managers
             GameDataMgr.S.Init();
+            GameDataMgr.S.GetPlayerData().SetLastPlayTime(GameExtensions.GetTimeStamp());
 
             AssetPreloaderMgr.S.Init();
 

@@ -9,12 +9,14 @@ namespace GameWish.Game
     /// <summary>
     /// GameData对外交互类
     /// </summary>
-    public class GameDataMgr : TSingleton<GameDataMgr>,IResetHandler
+    public class GameDataMgr : TSingleton<GameDataMgr>, IResetHandler, IDailyResetData
     {
         private GameDataHandler m_GameDataHandler = null;
 
-        public GameDataHandler GameDataHandler {
-            get {
+        public GameDataHandler GameDataHandler
+        {
+            get
+            {
                 return m_GameDataHandler;
             }
         }
@@ -26,6 +28,12 @@ namespace GameWish.Game
             RegisterEvents();
 
             m_GameDataHandler.GetPlayerInfodata().Init();
+        }
+
+        public void ResetDailyData()
+        {
+            Debug.LogError("ResetDailyData");
+            GetPlayerData().ResetDailyData();
         }
 
         private void RegisterEvents()

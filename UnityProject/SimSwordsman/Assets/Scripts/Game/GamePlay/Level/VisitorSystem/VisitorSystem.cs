@@ -57,6 +57,10 @@ namespace GameWish.Game
         {
             if (m_StartAppearVisitorCDID != -1)
                 return;
+
+            if (GameDataMgr.S.GetPlayerData().visitorCount >= MaxVisitorCountDaily)
+                return;
+
             if (CurrentVisitor.Count < m_MaxVisitorCount)
             {
                 m_StartAppearVisitorCDID = Timer.S.Post2Really(count =>
