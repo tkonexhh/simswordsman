@@ -245,6 +245,7 @@ namespace GameWish.Game
         {
             if (m_WorkProgressBar != null)
             {
+                SetProgressBarPrecent(0);
                 GameObjectPoolMgr.S.Recycle(m_WorkProgressBar.gameObject);
                 m_WorkProgressBar = null;
             }

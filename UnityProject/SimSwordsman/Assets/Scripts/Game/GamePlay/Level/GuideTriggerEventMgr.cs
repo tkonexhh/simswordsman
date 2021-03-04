@@ -63,6 +63,12 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.RewardPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.VisitorPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.PromotionPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ForgeHousePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.BaicaohuPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.LivableRoomPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.KongfuLibraryPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.KungfuChooseDisciplePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.GetDisciplePanel);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)

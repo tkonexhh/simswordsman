@@ -16,6 +16,7 @@ namespace GameWish.Game
         private void Start()
         {
             m_Mat = m_ProgressBar.GetComponent<SpriteRenderer>().material;
+            SetPercent(0);
         }
 
         public void SetPercent(float percent)
