@@ -63,7 +63,7 @@ namespace GameWish.Game
             //UIDataTable.AddPanelData(UIID.SettingPanel, null, "GamePanels/SettingPanel/SettingPanel");
 
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
-
+            UIDataTable.AddPanelData(UIID.WorldUIPanel, null, "Common/WorldUIPanel", true, 1);
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
 
             UIDataTable.AddPanelData(UIID.LobbyPanel, null, "GamePanels/FacilityPanel/LobbyPanel/LobbyPanel");
@@ -88,7 +88,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.MyGuidePanel, null, "GuidePanel/MyGuidePanel");
             UIDataTable.AddPanelData(UIID.WorldGuideClickPanel, null, "GuidePanel/WorldGuideClickPanel");
             UIDataTable.AddPanelData(UIID.GuideMaskPanel, null, "GuidePanel/GuideMaskPanel");
-            UIDataTable.AddPanelData(UIID.MaskClickWorldPanel, null, "GuidePanel/MaskClickWorldPanel"); 
+            UIDataTable.AddPanelData(UIID.MaskClickWorldPanel, null, "GuidePanel/MaskClickWorldPanel");
 
 
 
@@ -101,7 +101,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.CombatSettlementPanel, null, "GamePanels/MainMenuPanel/ChallengePanel/CombatSettlementPanel");
             UIDataTable.AddPanelData(UIID.PromotionPanel, null, "GamePanels/MainMenuPanel/ChallengePanel/PromotionPanel");
             UIDataTable.AddPanelData(UIID.ChallengeChooseDisciple, null, "GamePanels/MainMenuPanel/ChallengePanel/ChallengeChooseDisciple");
-            
+
             UIDataTable.AddPanelData(UIID.HousePanel, null, "GamePanels/FacilityPanel/HousePanel/HousePanel");
 
             UIDataTable.AddPanelData(UIID.WarehousePanel, null, "GamePanels/FacilityPanel/WarehousePanel/WarehousePanel");
@@ -122,7 +122,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.ForgeHousePanel, null, "GamePanels/FacilityPanel/ForgeHousePanel/ForgeHousePanel");
 
             UIDataTable.AddPanelData(UIID.BaicaohuPanel, null, "GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel");
-            
+
             UIDataTable.AddPanelData(UIID.PatrolRoomPanel, null, "GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomPanel");
             UIDataTable.AddPanelData(UIID.PatrolRoomChooseDisciplePanel, null, "GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomChooseDisciplePanel");
 

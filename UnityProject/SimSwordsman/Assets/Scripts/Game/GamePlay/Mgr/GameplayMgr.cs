@@ -132,6 +132,7 @@ namespace GameWish.Game
 
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
+                    UIMgr.S.OpenPanel(UIID.WorldUIPanel);
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 
                     MusicMgr.S.PlayMenuMusic();
