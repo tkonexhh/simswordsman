@@ -41,7 +41,12 @@ namespace GameWish.Game
                 return HerbDic[id];
             return null;
         }
-    
+        public static string GetHerbNameById(int id)
+        {
+            if (HerbDic.ContainsKey(id))
+                return HerbDic[id].Name;
+            return null;
+        }
         public static string GetHerbIconNameById(int id)
         {
             if (HerbDic.ContainsKey(id))

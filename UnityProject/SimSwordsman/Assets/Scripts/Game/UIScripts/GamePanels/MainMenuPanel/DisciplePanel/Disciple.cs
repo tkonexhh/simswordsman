@@ -13,9 +13,15 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_DiscipleLevel;
         [SerializeField]
+        private Image m_DiscipleLevelBg;
+        [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
         private Image m_DiscipleImg;
+        [SerializeField]
+        private Image m_Line;   
+        [SerializeField]
+        private Image m_DiscipleSmallHead;
         [SerializeField]
         private Image m_LineBottom;
         [SerializeField]
@@ -24,7 +30,6 @@ namespace GameWish.Game
         private Button m_DiscipleBtn;
         [SerializeField]
         private Transform m_DiscipleState;
-        private AddressableAssetLoader<Sprite> m_Loader;
 
         private CharacterItem m_CurCharacter = null;
         private DisciplePanel m_ParentPanel;
@@ -59,6 +64,27 @@ namespace GameWish.Game
                     m_DiscipleState.gameObject.SetActive(false);
                 m_DiscipleName.text = m_CurCharacter.name;
                 m_DiscipleLevel.text = CommonUIMethod.GetGrade(m_CurCharacter.level);
+
+                switch (m_CurCharacter.quality)
+                {
+                    case CharacterQuality.Normal:
+                        m_DiscipleLevelBg.sprite = m_ParentPanel.FindSprite("Disciple_FontBg_Blue");
+                        m_Line.sprite = m_ParentPanel.FindSprite("Disciple_Line_Bule");
+                        m_DiscipleSmallHead.sprite = m_ParentPanel.FindSprite("Disciple_SmallHead_Blue");
+                        break;
+                    case CharacterQuality.Good:
+                        m_DiscipleLevelBg.sprite = m_ParentPanel.FindSprite("Disciple_FontBg_Yellow");
+                        m_Line.sprite = m_ParentPanel.FindSprite("Disciple_Line_Yellow");
+                        m_DiscipleSmallHead.sprite = m_ParentPanel.FindSprite("Disciple_SmallHead_Yellow");
+                        break;
+                    case CharacterQuality.Perfect:
+                        m_DiscipleLevelBg.sprite = m_ParentPanel.FindSprite("Disciple_FontBg_Red");
+                        m_Line.sprite = m_ParentPanel.FindSprite("Disciple_Line_Red");
+                        m_DiscipleSmallHead.sprite = m_ParentPanel.FindSprite("Disciple_SmallHead_Red");
+                        break;
+                    default:
+                        break;
+                }
             }
             m_DiscipleImg.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacter));
         }
@@ -95,7 +121,6 @@ namespace GameWish.Game
 
         private void OnDestroy()
         {
-            m_Loader?.Release();
         }
         private void OnDisable()
         {

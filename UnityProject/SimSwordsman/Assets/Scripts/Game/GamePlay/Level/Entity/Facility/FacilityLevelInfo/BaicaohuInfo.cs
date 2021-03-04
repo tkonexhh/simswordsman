@@ -7,23 +7,20 @@ namespace GameWish.Game
 {
 	public class BaicaohuInfo : FacilityLevelInfo
 	{
-        private List<MedicinalPowderType> m_CurUnlockMedicinalPowderTypeList;
+        private HerbType m_CurUnlockHerbType;
 
-        public void SetCurMedicinalPowderType(List<MedicinalPowderType> equipmentType)
+        public void SetCurMedicinalPowderType(HerbType equipmentType)
         {
-            m_CurUnlockMedicinalPowderTypeList = equipmentType;
+            m_CurUnlockHerbType = equipmentType;
         }
 
-        public List<MedicinalPowderType> GetCurMedicinalPowderType()
+        public string GetCurMedicinalPowderName()
         {
-            return m_CurUnlockMedicinalPowderTypeList;
+            return TDHerbConfigTable.GetHerbNameById((int)m_CurUnlockHerbType);
         }
-
-        public List<MedicinalPowderType> GetNextUnlockMedicinalPowderType()
+        public HerbType GetCurMedicinalPowderType()
         {
-            int realLevel = Mathf.Min(level + 1, Define.FACILITY_MAX_BAICAOHU);
-            List<MedicinalPowderType> type = TDFacilityBaicaohuTable.GetLevelInfo(realLevel).GetCurMedicinalPowderType();
-            return type;
+            return m_CurUnlockHerbType;
         }
     }
 	
