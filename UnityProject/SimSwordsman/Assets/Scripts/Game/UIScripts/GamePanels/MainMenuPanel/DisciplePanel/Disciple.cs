@@ -58,7 +58,7 @@ namespace GameWish.Game
             m_ParentPanel = disciple;
             if (m_CurCharacter != null)
             {
-                if (m_CurCharacter.characterStateId == CharacterStateID.EnterClan || m_CurCharacter.characterStateId == CharacterStateID.Wander)
+                if (m_CurCharacter.IsFreeState())
                     m_DiscipleState.gameObject.SetActive(true);
                 else
                     m_DiscipleState.gameObject.SetActive(false);

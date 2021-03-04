@@ -21,6 +21,10 @@ namespace GameWish.Game
         //UI
         OnCloseParentPanel,
         OnCheckVisitorBtn,
+        /// <summary>
+        /// 关闭所有UI面板，不包含mainmenu
+        /// </summary>
+        OnCloseAllUIPanel,
 
         OnFoodBuffTick,//伙房食物增益消失倒计时
         OnFoodBuffEnd,//伙房食物增益结束

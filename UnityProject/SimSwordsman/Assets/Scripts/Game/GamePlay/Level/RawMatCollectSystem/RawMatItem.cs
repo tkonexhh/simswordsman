@@ -96,7 +96,7 @@ namespace GameWish.Game
 
         private CharacterController SelectIdleCharacterToCollectRes(bool manual)
         {
-            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CurState == CharacterStateID.Wander || i.CurState == CharacterStateID.EnterClan || i.CurState == CharacterStateID.None);
+            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CharacterModel.IsIdle());
             if (character != null)
             {
                 character.CollectObjType = collectedObjType;

@@ -61,7 +61,8 @@ namespace GameWish.Game
                 Log.e("不满足条件无法开启" + guideStep.stepID);
                 return;
             }
-            Action action = OnGuideClick;
+            //Action action = OnGuideClick;
+            Action action = FinishStep;
             UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, targetPos, guideTipsPos, textContentID, action, isNotForce);
         }
 

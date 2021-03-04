@@ -284,5 +284,12 @@ namespace GameWish.Game
         public const string SOUND_SWEEP = "Sweep";
         public const string SOUND_WELL = "Well";
         public const string SOUND_WOLF = "Wolf";
+
+
+
+        #region layer name
+        public const string Bubble = "Bubble";
+        public const string Facility = "Facility";
+        #endregion
     }
 }

@@ -14,6 +14,8 @@ namespace GameWish.Game
 
         private bool m_IsExit = false;
 
+        private BaseSlot m_PracticeSlot = null;
+
         public CharacterStatePractice(CharacterStateID stateEnum) : base(stateEnum)
         {
 
@@ -34,13 +36,25 @@ namespace GameWish.Game
             }
 
             PracticeFieldController practiceFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(facilityType);
-            Vector3 practicePos = practiceFieldController.GetIdlePracticeSlot().GetPosition();
-            m_Controller.MoveTo(practicePos, OnReachDestination);
+            m_PracticeSlot = practiceFieldController.GetIdlePracticeSlot();
+            if (m_PracticeSlot != null)
+            {
+                m_PracticeSlot.OnCharacterEnter(m_Controller);
+                Vector3 practicePos = m_PracticeSlot.GetPosition();
+                m_Controller.MoveTo(practicePos, OnReachDestination);
+            }
+            else
+            {
+                Log.e("Practice field slot not found");
+            }
         }
 
         public override void Exit(ICharacterStateHander handler)    
         {
             m_IsExit = true;
+
+            m_PracticeSlot.OnCharacterLeave();
+            m_PracticeSlot = null;
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
