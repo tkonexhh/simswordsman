@@ -341,10 +341,10 @@ namespace GameWish.Game
             }
             m_SelectedDiscipleDic.Clear();
 
-            CommonUIMethod.BubbleSortForType(allCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    CommonUIMethod.BubbleSortForType(allCharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
                     if (allCharacterList.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
                     {
                         for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
@@ -357,6 +357,7 @@ namespace GameWish.Game
                     }
                     break;
                 case PanelType.Challenge:
+                    CommonUIMethod.BubbleSortForType(allCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
                     if (allCharacterList.Count >= MaxDiscipleNumber)
                     {
                         for (int i = 0; i < MaxDiscipleNumber; i++)

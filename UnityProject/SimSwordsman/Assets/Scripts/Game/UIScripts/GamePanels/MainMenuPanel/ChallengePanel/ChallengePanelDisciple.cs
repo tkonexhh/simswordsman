@@ -19,6 +19,10 @@ namespace GameWish.Game
 		private Text m_DiscipleName;
 		[SerializeField]
 		private GameObject m_SelectedImg;
+		[SerializeField]
+		private Image m_DiscipleLevelBg;
+		[SerializeField]
+		private Image m_Line;
 		private AddressableAssetLoader<Sprite> m_Loader;
 
 		private CharacterItem m_CharacterItem;
@@ -39,12 +43,6 @@ namespace GameWish.Game
 		public void LoadClanPrefabs(string prefabsName)
 		{
 			m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
-			//m_Loader = new AddressableAssetLoader<Sprite>();
-			//m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-			//{
-			//	//Debug.Log(obj);
-			//	m_DiscipleHead.sprite = obj;
-			//});
 		}
 		private string GetLoadDiscipleName(CharacterItem characterItem)
 		{
@@ -57,6 +55,7 @@ namespace GameWish.Game
 				case SelectedState.Selected:
 					m_SelectedImg.SetActive(true);
 					m_DiscipleName.text = m_CharacterItem.name;
+					RefreshDiscipleColor();
 					break;
 				case SelectedState.NotSelected:
 					m_SelectedImg.SetActive(false);
@@ -67,6 +66,28 @@ namespace GameWish.Game
 					break;
 			}
 		}
+
+        private void RefreshDiscipleColor()
+        {
+			switch (m_CharacterItem.quality)
+			{
+				case CharacterQuality.Normal:
+					m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Blue");
+					m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Bule");
+					break;
+				case CharacterQuality.Good:
+					m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Yellow");
+					m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Yellow");
+					break;
+				case CharacterQuality.Perfect:
+					m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Red");
+					m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Red");
+					break;
+				default:
+					break;
+			}
+		}
+
         private void OnDestroy()
         {
 			if (m_Loader != null)

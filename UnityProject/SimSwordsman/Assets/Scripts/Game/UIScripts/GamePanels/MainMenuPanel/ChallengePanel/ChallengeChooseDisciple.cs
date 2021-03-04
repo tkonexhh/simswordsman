@@ -189,11 +189,11 @@ namespace GameWish.Game
             m_PanelType = (PanelType)args[1];
             m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
 
-            CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
 
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
                             CreateDisciple(m_AllDiscipleList[i]);
@@ -203,6 +203,7 @@ namespace GameWish.Game
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         CreateDisciple(m_AllDiscipleList[i]);
 

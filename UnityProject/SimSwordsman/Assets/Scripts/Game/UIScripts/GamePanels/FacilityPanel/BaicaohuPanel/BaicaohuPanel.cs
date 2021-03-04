@@ -118,8 +118,6 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (!CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems))
                     return;
-                if (m_NextFacilityLevelInfo == null)
-                    return;
                 bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
                 if (isReduceSuccess)
                 {
@@ -143,7 +141,7 @@ namespace GameWish.Game
             m_CurLevelTxt.text = CommonUIMethod.GetGrade(m_CurBaicaohuInfo.level);
             m_BaicaohuCont.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
             m_FacilityIcon.sprite = FindSprite("Baicaohu" + m_CurLevel);
-
+            m_NextUnlockName.text = ((BaicaohuInfo)m_NextFacilityLevelInfo).GetCurMedicinalPowderName();
             RefreshPanelText();
             UpdateItems();
         }

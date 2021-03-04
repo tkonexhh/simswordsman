@@ -272,12 +272,17 @@ namespace GameWish.Game
                     else
                         UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
                     break;
-                case ClickType.LookAdvertisement:   
-                    UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.LookAdvertisement, type); 
+                case ClickType.LookAdvertisement:
+                    AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
                     break;
                 default:
                     break;
             }
+        }
+
+        private void LookADSuccessCallBack(bool obj)
+        {
+            UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(m_CurRecruitType), ClickType.LookAdvertisement, m_CurRecruitType);
         }
 
         private CharacterItem GetRandomDisciples(RecruitType recruitType)

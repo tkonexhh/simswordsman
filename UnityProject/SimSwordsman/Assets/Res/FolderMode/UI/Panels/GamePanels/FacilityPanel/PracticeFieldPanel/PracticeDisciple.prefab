@@ -143,6 +143,8 @@ MonoBehaviour:
   m_State: {fileID: 6168117846159146881}
   m_Btn: {fileID: 3813024114350678011}
   m_Pos: {fileID: 7640225956474987449}
+  m_DiscipleLevelBg: {fileID: 3376292915338459184}
+  m_Line: {fileID: 5535903096277671441}
 --- !u!1 &428059620730151522
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

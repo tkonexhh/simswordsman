@@ -807,6 +807,7 @@ MonoBehaviour:
   m_ParentPage: {fileID: 0}
   m_SpritesData:
   - {fileID: 11400000, guid: 95dde2f735f8ca94d8c200358c220801, type: 2}
+  - {fileID: 11400000, guid: 4091c3f104e5acb459140950f06fb514, type: 2}
   m_PanelEventLogType: 0
   m_HideMask: 0
   m_CustomVisibleFlag: 1
@@ -945,8 +946,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6389698921379488717}
   m_HandleRect: {fileID: 481024193911915098}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

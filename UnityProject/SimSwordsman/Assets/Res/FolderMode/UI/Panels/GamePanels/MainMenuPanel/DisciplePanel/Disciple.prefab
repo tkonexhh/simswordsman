@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 7546543196671875030}
   - component: {fileID: 5585001536709354133}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DiscipleLevelBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 7357010665055711689}
   - component: {fileID: 615327047662640214}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: DiscipleSmallHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -819,8 +819,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DiscipleLevel: {fileID: 8166962919037149100}
+  m_DiscipleLevelBg: {fileID: 5585001536709354133}
   m_DiscipleName: {fileID: 866078116873402191}
   m_DiscipleImg: {fileID: 1730729020529505874}
+  m_Line: {fileID: 2044968800089838717}
+  m_DiscipleSmallHead: {fileID: 615327047662640214}
   m_LineBottom: {fileID: 1451618520982710914}
   m_LineRightBottom: {fileID: 2816111387864578765}
   m_DiscipleBtn: {fileID: 8166962920289389508}

@@ -87,7 +87,7 @@ namespace GameWish.Game
    
         void Init()
         {
-            if (!IsUnlock((MedicinalPowderType)ID))
+            if (!IsUnlock((HerbType)ID))
             {
                 SetState(0);
             }
@@ -117,16 +117,12 @@ namespace GameWish.Game
                     SetState(2);
             }
         }
-        bool IsUnlock(MedicinalPowderType id)
+        bool IsUnlock(HerbType id)
         {
-            List<MedicinalPowderType> list = null;
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu);
             for (int i = 1; i <= level; i++)
-            {
-                list = TDFacilityBaicaohuTable.GetLevelInfo(i).GetCurMedicinalPowderType();
-                if (list.Contains(id))
+                if (id == TDFacilityBaicaohuTable.GetLevelInfo(i).GetCurMedicinalPowderType())
                     return true;
-            }
             return false;
         }
         private void BindAddListenerEvent()

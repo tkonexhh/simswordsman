@@ -320,11 +320,20 @@ namespace GameWish.Game
             return false;
         }
 
+        private int GetMaxLevelForLobby()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            return TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
+        }
+
         public void UpgradeLevels(int delta)
         {
-            if (level < Define.CHARACTER_MAX_LEVEL)
+            if (level < GetMaxLevelForLobby())
             {
-                level += delta;
+                if (level + delta > GetMaxLevelForLobby())
+                    level = GetMaxLevelForLobby();
+                else
+                    level += delta;
                 level = Mathf.Min(level, Define.CHARACTER_MAX_LEVEL);
 
                 GameDataMgr.S.GetClanData().SetCharacterLevel(m_ItemDbData, level);

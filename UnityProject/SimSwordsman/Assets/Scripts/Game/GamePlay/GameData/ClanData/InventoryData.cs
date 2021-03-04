@@ -297,6 +297,7 @@ namespace GameWish.Game
         public HerbItemDbData(HerbItem herbItem)
         {
             PropType = herbItem.PropType;
+            HerbType = herbItem.HerbID;
             Number = herbItem.Number;
         }
 

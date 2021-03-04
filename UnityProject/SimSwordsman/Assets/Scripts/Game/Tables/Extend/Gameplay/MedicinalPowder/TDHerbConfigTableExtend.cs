@@ -41,7 +41,12 @@ namespace GameWish.Game
                 return HerbDic[id];
             return null;
         }
-    
+        public static string GetHerbNameById(int id)
+        {
+            if (HerbDic.ContainsKey(id))
+                return HerbDic[id].Name;
+            return null;
+        }
         public static string GetHerbIconNameById(int id)
         {
             if (HerbDic.ContainsKey(id))
@@ -58,6 +63,17 @@ namespace GameWish.Game
 
             return 0;
         }
+        /// <summary>
+        /// 获取草药解锁等级
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static int GetUnlockLobbyLevel(int id)
+        {
+            if (HerbDic.ContainsKey(id))
+                return HerbDic[id].UseLevelRequire;
+            return 0;
+        }
     }
 
 
@@ -71,6 +87,7 @@ namespace GameWish.Game
         public string Icon { set; get; }
         public int MakeTime { set; get; }
         public float EffectParam { set; get; }
+        public int UseLevelRequire { set; get; }
 
         public HerbConfig(TDHerbConfig tDHerb)
         {
@@ -81,6 +98,7 @@ namespace GameWish.Game
             Icon = tDHerb.icon;
             MakeTime = tDHerb.makeTime;
             EffectParam = tDHerb.effectParam;
+            UseLevelRequire = tDHerb.useLevelRequire;
         }
 
         //public HerbConfig(HerbConfig herb)

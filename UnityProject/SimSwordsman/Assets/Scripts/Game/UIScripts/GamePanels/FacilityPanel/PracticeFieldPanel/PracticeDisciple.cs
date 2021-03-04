@@ -21,6 +21,10 @@ namespace GameWish.Game
         private Button m_Btn;
         [SerializeField]
         private Transform m_Pos;
+        [SerializeField]
+        private Image m_DiscipleLevelBg;
+        [SerializeField]
+        private Image m_Line;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private CharacterItem m_CharacterItem;
         private AddressableAssetLoader<Sprite> m_Loader;
@@ -58,6 +62,23 @@ namespace GameWish.Game
         {
             m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
             m_DiscipleName.text = m_CharacterItem.name;
+            switch (m_CharacterItem.quality)
+            {
+                case CharacterQuality.Normal:
+                    m_DiscipleLevelBg.sprite = m_ChooseDisciplePanel.FindSprite("Disciple_FontBg_Blue");
+                    m_Line.sprite = m_ChooseDisciplePanel.FindSprite("Disciple_Line_Bule");
+                    break;
+                case CharacterQuality.Good:
+                    m_DiscipleLevelBg.sprite = m_ChooseDisciplePanel.FindSprite("Disciple_FontBg_Yellow");
+                    m_Line.sprite = m_ChooseDisciplePanel.FindSprite("Disciple_Line_Yellow");
+                    break;
+                case CharacterQuality.Perfect:
+                    m_DiscipleLevelBg.sprite = m_ChooseDisciplePanel.FindSprite("Disciple_FontBg_Red");
+                    m_Line.sprite = m_ChooseDisciplePanel.FindSprite("Disciple_Line_Red");
+                    break;
+                default:
+                    break;
+            }
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:

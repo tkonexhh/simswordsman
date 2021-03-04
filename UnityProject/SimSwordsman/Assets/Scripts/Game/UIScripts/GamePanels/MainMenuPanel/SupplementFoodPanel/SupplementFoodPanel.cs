@@ -80,13 +80,19 @@ namespace GameWish.Game
                 }
 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                FloatMessage.S.ShowMsg("播放了广告");
-                GameDataMgr.S.GetPlayerData().SetFoodRefreshTimesToday();
-                GameDataMgr.S.GetPlayerData().AddFoodNum(m_SupplementFood);
 
-                GetInformationForNeed();
-                RefreshPanelInfo();
+                AdsManager.S.PlayRewardAD("AddFood",LookADSuccessCallBack);
+                HideSelfWithAnim();
             });
+        }
+
+        private void LookADSuccessCallBack(bool obj)
+        {
+            GameDataMgr.S.GetPlayerData().SetFoodRefreshTimesToday();
+            GameDataMgr.S.GetPlayerData().AddFoodNum(m_SupplementFood);
+
+            GetInformationForNeed();
+            RefreshPanelInfo();
         }
 
         protected override void OnOpen()
