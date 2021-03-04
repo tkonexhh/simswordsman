@@ -55,7 +55,7 @@ namespace GameWish.Game
                 SignItemCallBack?.Invoke(m_ID);
             });
 
-            if (RewardCfg.Type != RewardItemType.Kongfu)
+            if (RewardCfg.RewardItem != RewardItemType.Kongfu)
             {
                 m_KonfuImage.gameObject.SetActive(false);
             }
@@ -136,7 +136,7 @@ namespace GameWish.Game
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
                     m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 1);
-                    if (RewardCfg.Type == RewardItemType.Kongfu)
+                    if (RewardCfg.RewardItem == RewardItemType.Kongfu)
                     {
                         m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 1);
                         m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 1);
@@ -149,7 +149,7 @@ namespace GameWish.Game
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
                     m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
-                    if (RewardCfg.Type == RewardItemType.Kongfu)
+                    if (RewardCfg.RewardItem == RewardItemType.Kongfu)
                     {
                         m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 0.4f);
                         m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 0.4f);
@@ -162,7 +162,7 @@ namespace GameWish.Game
                     m_GouImage.gameObject.SetActive(true);
                     m_DayText.gameObject.SetActive(true);
                     m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
-                    if (RewardCfg.Type == RewardItemType.Kongfu)
+                    if (RewardCfg.RewardItem == RewardItemType.Kongfu)
                     {
                         m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 0.4f);
                         m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 0.4f);

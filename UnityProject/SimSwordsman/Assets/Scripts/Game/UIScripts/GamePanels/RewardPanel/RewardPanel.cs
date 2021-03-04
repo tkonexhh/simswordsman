@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace GameWish.Game
 {
-	public class RewardPanel : AbstractAnimPanel
-	{
+    public class RewardPanel : AbstractAnimPanel
+    {
         [SerializeField]
         private Transform m_RewardTran;
         [SerializeField]
@@ -19,9 +19,9 @@ namespace GameWish.Game
         List<RewardPanelItem> m_Items = new List<RewardPanelItem>();
 
         protected override void OnUIInit()
-	    {
-	        base.OnUIInit();
-			BindAddListenerEvent();
+        {
+            base.OnUIInit();
+            BindAddListenerEvent();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -34,7 +34,7 @@ namespace GameWish.Game
                 InitItems(rewards);
             }
 
-            OpenDependPanel(EngineUI.MaskPanel,-1,null);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         void InitItems(List<RewardBase> rewards)
@@ -48,8 +48,10 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(FindSprite(rewards[i].SpriteName()), rewards[i]);
+                m_Items[i].Init(this, rewards[i]);
             }
+
+
             if (m_Items.Count > rewards.Count)
             {
                 for (int i = rewards.Count - 1; i < m_Items.Count - rewards.Count; i++)
@@ -73,7 +75,7 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
         }
-            
+
 
 
         protected override void OnPanelHideComplete()

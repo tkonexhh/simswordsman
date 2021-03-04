@@ -67,21 +67,22 @@ namespace GameWish.Game
             OpenDependPanel(EngineUI.MaskPanel,-1,null);
         }
 
+        private void LookADSuccessCallBack(bool obj)
+        {
+            m_visitor.Reward.AcceptReward();
 
+            UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
+            VisitorSystem.S.Disappear(m_visitor);
+
+            HideSelfWithAnim();
+        }
         private void BindAddListenerEvent()
         {
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                Debug.LogError("应当看一个广告");
-
-                m_visitor.Reward.AcceptReward();
-
-                UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
-                VisitorSystem.S.Disappear(m_visitor);
-
-                HideSelfWithAnim();
+                AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
             {
