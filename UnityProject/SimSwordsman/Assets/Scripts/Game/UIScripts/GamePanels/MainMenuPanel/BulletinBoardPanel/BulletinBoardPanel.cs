@@ -57,6 +57,9 @@ namespace GameWish.Game
         {
             base.OnOpen();
             EventSystem.S.Register(EventID.OnTaskManualFinished, HandleAddListenerEvent);
+
+            MainGameMgr.S.CommonTaskMgr.RefreshTask();
+
             if (m_CommonTaskList != null)
             {
                 for (int i = 0; i < m_CommonTaskList.Count; i++)
@@ -65,8 +68,6 @@ namespace GameWish.Game
                         CreateTask(m_CommonTaskList[i]);
                 }
             }
-
-            MainGameMgr.S.CommonTaskMgr.RefreshTask();
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
