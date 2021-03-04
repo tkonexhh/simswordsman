@@ -62,6 +62,7 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.ChooseDisciplePanel);
             UIMgr.S.ClosePanelAsUIID(UIID.RewardPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.VisitorPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.PromotionPanel);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)
