@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4148646909335917782}
   - component: {fileID: 1909209867270454003}
   m_Layer: 0
-  m_Name: Gaibang1
+  m_Name: Huashan3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cbafe3e64e6c1f8478e8301a3748b7ff, type: 2}
+  - {fileID: 2100000, guid: 2e0b2f07b9091e94f8bf613ddcce12aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 5810df0682e3edd40aaecb3ff82155e6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 2edb8b0a5d69a0a44bbdd6c328b54f3f, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
