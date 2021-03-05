@@ -28,7 +28,7 @@ namespace GameWish.Game
         private CharacterWorkTip m_WorkTip = null;
 
         public void Init()
-        {   
+        {
             m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();
 
             if (m_Body == null)
@@ -66,7 +66,7 @@ namespace GameWish.Game
         private void HandleEvent(Spine.TrackEntry trackEntry, Spine.Event e)
         {
             //Debug.LogError("evnet name is: " + e.Data.Name);
-            EventSystem.S.Send(EventID.OnBattleAtkEvent, m_Controller);
+            EventSystem.S.Send(EventID.OnBattleAtkEvent, m_Controller, e.Data.ToString());
         }
 
         private void Update()
@@ -258,7 +258,7 @@ namespace GameWish.Game
 
         public void ReleaseWorkTip()
         {
-            if (m_WorkTip!= null)
+            if (m_WorkTip != null)
             {
                 GameObjectPoolMgr.S.Recycle(m_WorkTip.gameObject);
                 m_WorkTip = null;
