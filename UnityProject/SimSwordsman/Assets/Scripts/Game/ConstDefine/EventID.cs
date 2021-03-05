@@ -62,8 +62,6 @@ namespace GameWish.Game
         /// </summary>
         OnUpgradeRefreshEvent,
 
-
-
         // MainTask
         OnTaskManualFinished,
         //OnTaskFinished,
@@ -111,6 +109,10 @@ namespace GameWish.Game
         /// 可招募的时候惊叹号
         /// </summary>
         OnSendRecruitable,
+        /// <summary>
+        /// 藏经阁有空位的时候
+        /// </summary>
+        OnKongfuLibraryVacancy,
         #endregion
 
         //KungfuLibrary
