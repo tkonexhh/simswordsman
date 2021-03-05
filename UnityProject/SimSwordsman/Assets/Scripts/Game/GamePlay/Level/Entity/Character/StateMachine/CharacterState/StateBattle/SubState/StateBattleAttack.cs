@@ -29,7 +29,7 @@ namespace GameWish.Game
             string atkName = m_BattleState.NextAtkAnimName;
 
             //atkName = "01_taizuchangquan";//"attack";
-
+            EventSystem.S.Send(EventID.OnBattleAtkStart, m_Controller, atkName);
             m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
         }
 

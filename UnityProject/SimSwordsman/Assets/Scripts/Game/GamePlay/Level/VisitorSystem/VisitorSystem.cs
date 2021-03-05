@@ -131,7 +131,10 @@ namespace GameWish.Game
             //加权平均
             int all = 0;
             foreach (var item in idList)
+            {
                 all += TDVisitorRewardConfigTable.dataList[item].weight;
+            }
+
             int value = RandomHelper.Range(0, all + 1);
             int resultindex = 1;
             int temp = 0;
