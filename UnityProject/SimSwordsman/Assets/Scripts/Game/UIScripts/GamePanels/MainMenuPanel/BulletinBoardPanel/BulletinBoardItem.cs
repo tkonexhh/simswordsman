@@ -158,10 +158,6 @@ namespace GameWish.Game
                     break;
             }
         }
-        private void RefreshCountDownTaskState()
-        {
-            
-        }
         private void OpenCallback(AbstractPanel obj)
         {
             SendDisciplesPanel sendDisciplesPanel = obj as SendDisciplesPanel;
@@ -248,18 +244,7 @@ namespace GameWish.Game
                 //}
                 //RefreshTaskState();
                 #endregion
-                foreach (var item in m_SelectedDiscipleDic.Values)
-                {
-                    CharacterController controller = MainGameMgr.S.CharacterMgr.GetCharacterController(item.id);
-                    if (controller != null)
-                    {
-                        //selectedControllerList.Add(controller);
-                    }
-                }
-
-                //m_CurTaskInfo.ExecuteTask(selectedControllerList);
                 UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, OpenCallback, PanelType.Task, m_CurTaskInfo);
-                //UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
             });
             //婉拒
             m_DeclinedBtn.onClick.AddListener(()=> {
@@ -316,7 +301,6 @@ namespace GameWish.Game
                 yield return null;
                 int executedTime = MainGameMgr.S.CommonTaskMgr.GetTaskExecutedTime(m_CommonTaskItemInfo.id);
                 int totalTime = m_CommonTaskItemInfo.taskTime;
-                //Log.i("executed time:" + executedTime + " totalTime: " + totalTime + "     " + Time.time);
 
                 second = totalTime - executedTime;
                 #region 可能还需要的代码
@@ -344,27 +328,6 @@ namespace GameWish.Game
                 }
             }
         }
-
-        public string SplicingTime(int seconds)
-        {
-            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
-            string str = "";
-
-            if (ts.Hours > 0)
-            {
-                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes > 0)
-            {
-                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes == 0)
-            {
-                str = "00:" + ts.Seconds.ToString("00");
-            }
-
-            return str;
-        }
         private void OnSucessEvent()
         {
             MainGameMgr.S.CommonTaskMgr.RemoveTask(m_CurTaskInfo.TaskId);
@@ -390,6 +353,7 @@ namespace GameWish.Game
             m_TaskIntrodution.text = m_CommonTaskItemInfo.desc;
             m_Description.text = CommonUIMethod.TextIndent() + m_CommonTaskItemInfo.taskTxt;
             m_TaskPhoto.sprite = m_BulletinBoardPanel.FindSprite("enemy_icon_"+ m_CommonTaskItemInfo.iconRes);
+
             switch (m_ItemReward.Count)
             {
                 case 1:
@@ -413,8 +377,8 @@ namespace GameWish.Game
                     m_Res1Value.text = m_ItemReward[0].count1.ToString();
                     m_Res2Img.sprite = GetSprite(m_ItemReward[1].id);
                     m_Res2Value.text = m_ItemReward[1].count1.ToString();
-                    m_Res2Img.sprite = GetSprite(m_ItemReward[2].id);
-                    m_Res2Value.text = m_ItemReward[2].count1.ToString();
+                    m_Res3Img.sprite = GetSprite(m_ItemReward[2].id);
+                    m_Res3Value.text = m_ItemReward[2].count1.ToString();
                     break;
             }
             if (m_CommonTaskItemInfo.id == 9001 || m_CommonTaskItemInfo.id == 9002)
@@ -488,55 +452,10 @@ namespace GameWish.Game
                     m_Promptly.gameObject.SetActive(false);
                     break;
                 case TaskState.Running:
-                    //if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
-                    //{
-                    //    if (IsStartBattle)
-                    //    {
-                    //        m_PromptlyValue.text = "开始战斗";
-                    //        m_Promptly.gameObject.SetActive(true);
-                    //        m_Advertisement.SetActive(false);
-                    //    }
-                    //    else
-                    //    {
-                    //        if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
-                    //        {
-                    //            m_Line.enabled = false;
-                    //            m_ChooseDisciple.enabled = false;
-                    //            //StartCoroutine(CountDown());
-                    //        }
-                    //        //m_PromptlyValue.text = "立即到达";
-                    //        //m_PromptlyImg.sprite = GetSprite("BulletinBoardPanel_Bg11");
-                    //        m_Promptly.gameObject.SetActive(true);
-                    //        m_Advertisement.SetActive(true);
-                    //    }
-                    //}
-                    //else
-                    //m_Promptly.gameObject.SetActive(false);
-                    //m_GoToBtn.gameObject.SetActive(false);
                     m_Over.gameObject.SetActive(false);
-                    //m_RedPoint.gameObject.SetActive(false);
-                    //m_DeclinedBtn.gameObject.SetActive(false);
                     foreach (var item in m_BulletinBoardDiscipleList)
                         item.SetBtnClick(false);
                     m_Time.text = Define.COMMON_DEFAULT_STR;
-                    break;
-                case TaskState.Unclaimed:
-                    //foreach (var item in m_BulletinBoardDiscipleList)
-                    //    item.SetBtnClick(false);
-                    //m_FuncBtnText.text = CommonUIMethod.GetStrForColor("#657D5D", Define.BULLETINBOARD_REWARD);
-                    //m_Time.text = Define.COMMON_DEFAULT_STR;
-                    //m_Over.gameObject.SetActive(false);
-                    ////m_PromptlyImg.sprite = GetSprite("button_normal_blue");
-                    ////m_PromptlyValue.text = "领取奖励";
-                    //m_Advertisement.SetActive(false);
-                    //m_RedPoint.gameObject.SetActive(true);
-                    ////m_Promptly.gameObject.SetActive(true);
-                    //m_GoToBtn.gameObject.SetActive(false);
-                    //m_DeclinedBtn.gameObject.SetActive(false);
-                    break;
-                case TaskState.Finished:
-                    break;
-                default:
                     break;
             }
         }

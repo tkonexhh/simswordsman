@@ -142,11 +142,11 @@ namespace GameWish.Game
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
                 SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
-                if (reward.Type != RewardItemType.Kongfu)
+                if (reward.RewardItem != RewardItemType.Kongfu)
                 {
                     item.m_IconImage.sprite = FindSprite(reward.SpriteName());
                 }
-                if (reward.Type != RewardItemType.Coin)
+                if (reward.RewardItem != RewardItemType.Coin)
                     item.m_IconImage.SetNativeSize();
 
                 m_SignItemDic.Add(id, item);

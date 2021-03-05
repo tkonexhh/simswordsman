@@ -68,9 +68,6 @@ namespace GameWish.Game
  
         public void SetCharacterItem(CharacterItem characterItem, SlotState slotState, FacilityType targetFacility)
         {
-
-            //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
-
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
             switch (slotState)
             {

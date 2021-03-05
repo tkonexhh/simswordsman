@@ -154,17 +154,29 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
-                FloatMessage.S.ShowMsg("广告已看完!");
-                CountdownSystem.S.Cancel(m_StringID, ID);
-
-                if (ID > 500)
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)ID, Step.One), 1);
-                else
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)ID, Step.One), 1);
+                AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
               
-                SetState(2);
             });
+        }
+        private void LookADSuccessCallBack(bool obj)
+        {
+            if (ID > 500)
+            {
+                List<RewardBase> rewards = new List<RewardBase>();
+                rewards.Add(new ArmorReward(RewardItemType.Armor,ID, 1));
+                UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)ID, Step.One), 1);
+
+            }
+            else
+            {
+                List<RewardBase> rewards = new List<RewardBase>();
+                rewards.Add(new ArmsReward(RewardItemType.Arms, ID, 1));
+                UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)ID, Step.One), 1);
+            }
+            SetState(2);
+            CountdownSystem.S.Cancel(m_StringID, ID);
         }
 
         /// <summary>

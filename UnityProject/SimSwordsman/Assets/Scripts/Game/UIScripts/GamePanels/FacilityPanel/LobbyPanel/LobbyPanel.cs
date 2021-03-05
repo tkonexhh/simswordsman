@@ -78,7 +78,7 @@ namespace GameWish.Game
     
 
         private int m_CurLevel = 1;
-        private const int NextFontSize = 38;
+        private const int NextFontSize = 45;
         private const int FontWight = 305;
         private List<CostItem> m_CostItems;
         private List<string> m_UnlockContent = null;

@@ -62,7 +62,10 @@ namespace GameWish.Game
                 m_View.SetViewByLevel(true);
             }
         }
-
+        public void RefreshExclamatoryMark(bool active)
+        {
+            m_View.SetTips(active);
+        }
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)

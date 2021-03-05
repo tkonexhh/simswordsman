@@ -14,7 +14,7 @@ namespace GameWish.Game
         private List<CharacterController> m_EnemyCharacterList = new List<CharacterController>();
         //private List<CharacterController> m_OurNotFightingCharacterList = new List<CharacterController>();
         //private List<CharacterController> m_EnemyNotFightingCharacterList = new List<CharacterController>();
-        [SerializeField]private List<FightGroup> m_FightGroupList = new List<FightGroup>();
+        [SerializeField] private List<FightGroup> m_FightGroupList = new List<FightGroup>();
 
         private double m_TotalEnemyAtk = 0;
         private double m_TotalOurAtk = 0;
@@ -39,8 +39,8 @@ namespace GameWish.Game
 
         private List<HerbType> m_SelectedHerbList = new List<HerbType>();
 
-        public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop;}
-        public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom;}
+        public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop; }
+        public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom; }
         public List<CharacterController> OurCharacterList { get => m_OurCharacterList; }
         public List<CharacterController> EnemyCharacterList { get => m_EnemyCharacterList; }
         //public List<CharacterController> OurNotFightingCharacterList { get => m_OurNotFightingCharacterList; }
@@ -67,17 +67,17 @@ namespace GameWish.Game
             if (m_IsBattleEnd)
                 return;
 
-            m_OurCharacterList.ForEach(i => 
+            m_OurCharacterList.ForEach(i =>
             {
                 i.RefreshBattleState();
                 //Log.e("our character atk: " + i.CharacterModel.Atk);
             });
 
-            m_EnemyCharacterList.ForEach( i => 
-            {
-                i.RefreshBattleState();
-                //Log.e("Enemy character atk: " + i.CharacterModel.Atk);
-            });
+            m_EnemyCharacterList.ForEach(i =>
+           {
+               i.RefreshBattleState();
+               //Log.e("Enemy character atk: " + i.CharacterModel.Atk);
+           });
 
             m_ApplyDamageTime += Time.deltaTime;
             if (m_ApplyDamageTime >= m_ApplyDamageInterval)
@@ -229,7 +229,7 @@ namespace GameWish.Game
         private void OnExitBattle()
         {
             m_IsBattleBegin = false;
-            m_OurCharacterList.ForEach(i => 
+            m_OurCharacterList.ForEach(i =>
             {
                 Destroy(i.CharacterView.gameObject);
                 //i.OnExitBattleField();
@@ -251,7 +251,7 @@ namespace GameWish.Game
         private void SpawnOurCharacter(List<CharacterController> characters)
         {
             m_OurCharacterList.Clear();
-            characters.ForEach(i => 
+            characters.ForEach(i =>
             {
                 CharacterItem characterItem = MainGameMgr.S.CharacterMgr.CharacterDataWrapper.GetCharacterItem(i.CharacterId);
                 CharacterController controller = SpawnCharacterController(characterItem);
@@ -261,7 +261,7 @@ namespace GameWish.Game
                 }
             });
 
-            m_OurCharacterList.ForEach(i => 
+            m_OurCharacterList.ForEach(i =>
             {
                 i.ShowBody();
 
@@ -299,7 +299,7 @@ namespace GameWish.Game
 
         private void SpawnEnemyCharacter(int id, long atk)
         {
-            SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) => 
+            SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) =>
             {
                 m_EnemyCharacterList.Add(controller);
 
@@ -356,7 +356,7 @@ namespace GameWish.Game
         {
             //GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
             //GameObject obj = GameObject.Instantiate(prefab);
-            EnemyLoader.S.LoadEnemySync(id, (obj) => 
+            EnemyLoader.S.LoadEnemySync(id, (obj) =>
             {
                 obj.name = "Character_" + camp;
                 obj.transform.parent = m_BattleField.transform;
@@ -374,7 +374,7 @@ namespace GameWish.Game
             m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * Random.Range(0.8f, 1.2f);
             m_EnemeyDamagePersecond = m_TotalOurAtk / m_InitEnemeyCharacterCount / m_Const * Random.Range(0.8f, 1.2f);
 
-            m_OurCharacterList.ForEach(i => 
+            m_OurCharacterList.ForEach(i =>
             {
                 i.CacheDamage(m_OurDamagePersecond);
             });

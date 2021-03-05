@@ -56,6 +56,12 @@ namespace GameWish.Game
 			StartTime = soltDBData.startTime;
 		}
 
+		public bool IsFree()
+		{
+			if (slotState == SlotState.Free)
+				return true;
+			return false;
+		}
 		public bool IsHaveSameCharacterItem(int id)
 		{
 			if (CharacterItem != null && CharacterItem.id == id)

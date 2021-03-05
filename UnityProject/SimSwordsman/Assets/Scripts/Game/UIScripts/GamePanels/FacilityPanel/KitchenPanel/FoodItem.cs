@@ -161,15 +161,16 @@ namespace GameWish.Game
                 //判断材料
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
-                {
-                    //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
-                    FloatMessage.S.ShowMsg("广告已看完!");
-                    MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    FoodBuffSystem.S.StartBuff(ID, true);
-                }
+                    AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
+        }
+        private void LookADSuccessCallBack(bool obj)
+        {
+            var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
+            MainGameMgr.S.InventoryMgr.ReduceItems(list);
+            FoodBuffSystem.S.StartBuff(ID, true);
         }
         /// <summary>
         /// 0未解锁 1 正在炒制 2 未炒制

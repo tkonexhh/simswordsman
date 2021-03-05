@@ -50,12 +50,12 @@ namespace GameWish.Game
 		}
 		private void RefresPanelInfo()
         {
+			RefreshDiscipleColor();
 			switch (m_SelelctedState)
 			{
 				case SelectedState.Selected:
 					m_SelectedImg.SetActive(true);
 					m_DiscipleName.text = m_CharacterItem.name;
-					RefreshDiscipleColor();
 					break;
 				case SelectedState.NotSelected:
 					m_SelectedImg.SetActive(false);
