@@ -146,7 +146,7 @@ namespace GameWish.Game
             }
             //Debug.LogError(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
             var reward = RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
-            if (reward.Type == RewardItemType.Item)
+            if (reward.RewardItem == RewardItemType.Item)
             {
                 // Debug.LogError(reward.KeyID);
                 if (reward.KeyID == (int)RawMaterial.QingRock || reward.KeyID == (int)RawMaterial.WuWood)

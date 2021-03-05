@@ -16,7 +16,9 @@ namespace GameWish.Game
 
 		public override void AcceptReward()
 		{
-            //Log.e("»ñµÃ" + m_Info.Name + m_Count);
+            List < RewardBase > rewards =   new List<RewardBase>();
+            rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID, Count));
+            UIMgr.S.OpenPanel(UIID.RewardPanel,null, rewards);
             MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
         }
         

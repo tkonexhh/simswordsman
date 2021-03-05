@@ -199,10 +199,10 @@ namespace GameWish.Game
 
                 if (GameDataMgr.S.GetGameData().playerInfoData.ReduceCoinNum(m_CurFacilityConfigInfo.GetUnlockCoinCost()))
                 {
-                    #region 不开新手引导时需要存在
-                    if (m_FacilityType == FacilityType.Lobby)
-                        GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
-                    #endregion
+                    //#region 不开新手引导时需要存在
+                    //if (m_FacilityType == FacilityType.Lobby)
+                    //    GameDataMgr.S.GetPlayerData().SetLobbyBuildeTime();
+                    //#endregion
                     for (int i = 0; i < m_CostItems.Count; i++)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
 

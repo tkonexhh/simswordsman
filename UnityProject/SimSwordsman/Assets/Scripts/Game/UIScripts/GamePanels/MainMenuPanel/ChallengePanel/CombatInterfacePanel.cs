@@ -251,19 +251,24 @@ namespace GameWish.Game
                     CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_CONTENT),
                     CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_ACCEPTBTNTXT),
                     CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_LOG_REFUSEBTNTXT));
+
+                Time.timeScale = 0;
             });
         }
         private void LogPanelCallback(AbstractPanel obj)
         {
+
             m_logPanel = obj as LogPanel;
             m_logPanel.OnSuccessBtnEvent += SuccessBtn;
             m_logPanel.OnRefuseBtnEvent += RefuseBtn;
         }
         private void RefuseBtn()
         {
+            Time.timeScale = 1;
         }
         private void SuccessBtn()
         {
+            Time.timeScale = 1;
             EventSystem.S.Send(EventID.OnExitBattle);
             HideSelfWithAnim();
             switch (m_PanelType)

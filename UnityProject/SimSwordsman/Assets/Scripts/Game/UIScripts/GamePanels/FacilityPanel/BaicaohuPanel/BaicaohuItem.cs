@@ -7,8 +7,8 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class BaicaohuItem : MonoBehaviour, ItemICom
-	{
+    public class BaicaohuItem : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private GameObject Lock;
         [SerializeField]
@@ -84,7 +84,7 @@ namespace GameWish.Game
             m_Progress.fillAmount = progress;
         }
 
-   
+
         void Init()
         {
             if (!IsUnlock((HerbType)ID))
@@ -145,14 +145,21 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
-                FloatMessage.S.ShowMsg("广告已看完！");
-                CountdownSystem.S.Cancel(m_StringID, ID);
+                AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
                 //MainGameMgr.S.MedicinalPowderMgr.AddHerb(ID, 1);
                 MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)ID, 1));
-                SetState(2);
             });
         }
+        private void LookADSuccessCallBack(bool obj)
+        {
+            CountdownSystem.S.Cancel(m_StringID, ID);
 
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(new MedicineReward(RewardItemType.Medicine, ID, 1));
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+            MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)ID, 1));
+            SetState(2);
+        }
 
         /// <summary>
         /// 0未解锁 1 正在炒制 2 未炒制
@@ -190,7 +197,7 @@ namespace GameWish.Game
                     break;
             }
         }
-        
+
         void SetMakeNeedRes(List<CostItem> infos)
         {
             if (infos.Count == 2)

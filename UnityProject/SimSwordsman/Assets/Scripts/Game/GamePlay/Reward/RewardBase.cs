@@ -13,11 +13,11 @@ namespace GameWish.Game
         //protected bool m_isInitSuccess = true;
         protected Action m_CallBackAction;
 
-        public RewardItemType Type;
+        public RewardItemType RewardItem;
 
         public RewardBase(RewardItemType type, int id, int count)
         {
-            Type = type;
+            RewardItem = type;
             m_KeyID = id;
             Count = count;
         }

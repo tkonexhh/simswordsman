@@ -25,17 +25,13 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnSendRecruitable:
-                    RefreshRecruitableExclamatoryMark((bool)param[0]);
+                    RefreshExclamatoryMark((bool)param[0]);
                     break;
             }
         }
         /// <summary>
         /// Ë¢ÐÂÕÐÄ¼¾ªÌ¾ºÅ
         /// </summary>
-        private void RefreshRecruitableExclamatoryMark(bool active)
-        {
-            m_View.SetTips(active);
-        }
+    
     }
-
 }
