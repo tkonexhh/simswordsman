@@ -14,6 +14,7 @@ namespace GameWish.Game
         private KongfuLibraryController m_KongFuController = null;
         private KungfuLibraySlot m_KongfuSlot = null;
         private int m_TimerID = -1;
+        private float m_ReadingProgress = 0;
 
         public CharacterStateReading(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -30,11 +31,6 @@ namespace GameWish.Game
             m_KongfuSlot.OnCharacterEnter(m_Controller);
             Vector3 practicePos = m_KongfuSlot.GetPosition();
             m_Controller.MoveTo(practicePos, OnReachDestination);
-            UpdateReadKongFuProgress();
-            m_TimerID = Timer.S.Post2Really((x)=> 
-            {
-                UpdateReadKongFuProgress();
-            },1,-1);
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -58,18 +54,25 @@ namespace GameWish.Game
         {
         }
 
-        private void UpdateReadKongFuProgress() {
-            float progress = m_KongfuSlot.GetProgress();
-            m_Controller.SetWorkProgressPercent(progress);
-            if (progress >= 1.0f) {
-                m_Controller.ReleaseWorkProgressBar();
-            }
+        private void UpdateReadKongFuProgress() 
+        {
+            if (m_Controller != null && m_KongfuSlot != null) 
+            {
+                m_ReadingProgress = m_KongfuSlot.GetProgress();
+                m_Controller.SetWorkProgressPercent(m_ReadingProgress);
+            }            
         }
 
         private void OnReachDestination()
         {
             m_Controller.CharacterView.PlayAnim("write", true, null);
             m_Controller.SpawnWorkProgressBar();
+
+            UpdateReadKongFuProgress();
+            m_TimerID = Timer.S.Post2Really((x) =>
+            {
+                UpdateReadKongFuProgress();
+            }, 1, -1);
         }
     }
 }

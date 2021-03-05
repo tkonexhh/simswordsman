@@ -17,7 +17,7 @@ namespace GameWish.Game
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static double GetPowNumber(float x,int y)
+        public static double GetPowNumber(float x, int y)
         {
             double d = double.Parse(x.ToString());
             double tmp = 1;
@@ -215,23 +215,6 @@ namespace GameWish.Game
             go.transform.localPosition = Vector3.zero;
         }
 
-        static public T AddMissingComponent<T>(this GameObject go) where T : Component
-        {
-#if UNITY_FLASH
-		object comp = go.GetComponent<T>();
-#else
-            T comp = go.GetComponent<T>();
-#endif
-            if (comp == null)
-            {
-                comp = go.AddComponent<T>();
-            }
-#if UNITY_FLASH
-		return (T)comp;
-#else
-            return comp;
-#endif
-        }
 
         static public List<T> CheckInSphere<T>(this Vector3 startPos, float radius) where T : Component
         {

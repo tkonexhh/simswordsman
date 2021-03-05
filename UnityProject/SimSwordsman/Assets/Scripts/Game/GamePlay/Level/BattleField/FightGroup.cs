@@ -32,8 +32,6 @@ namespace GameWish.Game
             m_OurCharacter = ourCharacter;
             m_EnemyCharacter = enemyCharacter;
 
-            Debug.LogError("FightGroup");
-
             ourCharacter.SetFightGroup(this);
             ourCharacter.SetFightTarget(m_EnemyCharacter);
 
@@ -41,7 +39,7 @@ namespace GameWish.Game
             enemyCharacter.SetFightTarget(m_OurCharacter);
 
             RegisterEvents();
-
+            ParpareEffectPool();
         }
 
         public void Release()
@@ -50,18 +48,17 @@ namespace GameWish.Game
             m_OurCharacter.FightGroup = null;
 
             UnregisterEvents();
+            ReleaseEffectPool();
         }
 
         private void ParpareEffectPool()
         {
-
             var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
             foreach (var kongfu in ourkongfus)
             {
                 var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
                 AddKongfuToPool(config);
             }
-
 
             var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
             var enemykongfus = enemyConfig.kongfuNameList;
@@ -70,21 +67,27 @@ namespace GameWish.Game
                 var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
                 AddKongfuToPool(config);
             }
-
         }
 
         private void ReleaseEffectPool()
         {
+            var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
+            var enemykongfus = enemyConfig.kongfuNameList;
+            foreach (var kongfu in enemykongfus)
+            {
+                var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
+                config?.ReleaseEffectPool();
+            }
 
+            m_KongfuAnimMap.Clear();
         }
 
         private void AddKongfuToPool(KongfuAnimConfig kongfu)
         {
+            if (kongfu == null)
+                return;
             kongfu.ParpareEffectPool();
             m_KongfuAnimMap.Add(kongfu.animName, kongfu);
-            GameObject effectPrefab = new GameObject();
-            // GameObjectPoolMgr.S.AddPool(kongfu.castSE, effectPrefab, 3, 3);//攻击特效
-            //                                                                //受击特效
         }
 
         public void StartFight()
@@ -248,6 +251,7 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EventID.OnBattleMoveEnd, HandleEvent);
             EventSystem.S.Register(EventID.OnBattleAtkEvent, HandleEvent);
+            EventSystem.S.Register(EventID.OnBattleAtkStart, HandleEvent);
             EventSystem.S.Register(EventID.OnBattleAtkEnd, HandleEvent);
         }
 
@@ -255,6 +259,7 @@ namespace GameWish.Game
         {
             EventSystem.S.UnRegister(EventID.OnBattleMoveEnd, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnBattleAtkEvent, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnBattleAtkStart, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnBattleAtkEnd, HandleEvent);
         }
 
@@ -263,45 +268,57 @@ namespace GameWish.Game
             switch (key)
             {
                 case (int)EventID.OnBattleMoveEnd:
-                    CharacterController controller1 = (CharacterController)param[0];
-                    if (IsCharacterInGroup(controller1))
                     {
-                        OnArriveDestination();
+                        CharacterController controller = (CharacterController)param[0];
+                        if (IsCharacterInGroup(controller))
+                        {
+                            OnArriveDestination();
+                        }
+                    }
+                    break;
+                case (int)EventID.OnBattleAtkStart:
+                    {
+                        CharacterController controller = (CharacterController)param[0];
+                        string skillname = (string)param[1];
+                        KongfuAnimConfig animConfig;
+                        m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
+                        animConfig?.PlayAttackEffect(controller.CharacterView.transform);
                     }
                     break;
                 case (int)EventID.OnBattleAtkEnd:
-                    CharacterController controller2 = (CharacterController)param[0];
-                    if (IsCharacterInGroup(controller2))
                     {
-                        OnAtkEnd();
+                        CharacterController controller = (CharacterController)param[0];
+                        if (IsCharacterInGroup(controller))
+                        {
+                            OnAtkEnd();
+                        }
                     }
                     break;
-                case (int)EventID.OnBattleAtkEvent:
-                    CharacterController controller3 = (CharacterController)param[0];
-                    string skillname = (string)param[1];
-                    //TODO Fight Effect
-                    Debug.LogError("Attack:" + skillname);
-                    KongfuAnimConfig animConfig;
-                    m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
-                    animConfig?.PlayAttackEffect();
 
-                    if (controller3 == m_OurCharacter && m_EnemyCharacter.IsDead() == false)
+                case (int)EventID.OnBattleAtkEvent:
                     {
-                        m_AtkEventIndex++;
-                        m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
-                        m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
-                        m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
-                        Debug.LogError("Our Hurt");
-                        animConfig.PlayHurtEffect();
-                    }
-                    else if (controller3 == m_EnemyCharacter && m_OurCharacter.IsDead() == false)
-                    {
-                        m_AtkEventIndex++;
-                        m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
-                        m_OurCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_EnemyHitBackDistance[m_AtkEventIndex] - m_EnemyHitBackDistance[0], 0);
-                        m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
-                        Debug.LogError("Enemy Hurt");
-                        animConfig.PlayHurtEffect();
+                        CharacterController controller = (CharacterController)param[0];
+                        string skillname = (string)param[1];
+
+                        KongfuAnimConfig animConfig;
+                        m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
+
+                        if (controller == m_OurCharacter && m_EnemyCharacter.IsDead() == false)
+                        {
+                            m_AtkEventIndex++;
+                            m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
+                            m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
+                            m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                            animConfig?.PlayHurtEffect(m_EnemyCharacter.CharacterView.transform, 0);
+                        }
+                        else if (controller == m_EnemyCharacter && m_OurCharacter.IsDead() == false)
+                        {
+                            m_AtkEventIndex++;
+                            m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
+                            m_OurCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_EnemyHitBackDistance[m_AtkEventIndex] - m_EnemyHitBackDistance[0], 0);
+                            m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                            animConfig?.PlayHurtEffect(m_OurCharacter.CharacterView.transform, 0);
+                        }
                     }
                     break;
             }

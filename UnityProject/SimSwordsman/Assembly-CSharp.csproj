@@ -552,6 +552,7 @@
      <Compile Include="Assets\Qarth\Scripts\Framework\VecorEngine\Core\VectorData.cs" />
      <Compile Include="Assets\Qarth\Scripts\Framework\VecorEngine\Core\VectorEngine.cs" />
      <Compile Include="Assets\Qarth\Scripts\Framework\VecorEngine\Tester\VectorEngineTester.cs" />
+     <Compile Include="Assets\QarthExtension\Extension\GameObjectExtension.cs" />
      <Compile Include="Assets\SDKAdapter\AbstractSDKAdapter.cs" />
      <Compile Include="Assets\SDKAdapter\Ads\ADVideoPanel.cs" />
      <Compile Include="Assets\SDKAdapter\Ads\AdsConfig.cs" />
@@ -1554,6 +1555,7 @@
      <Compile Include="Assets\Scripts\Game\Tools\MeasureUnitHelper.cs" />
      <Compile Include="Assets\Scripts\Game\Tools\OutlineEx.cs" />
      <Compile Include="Assets\Scripts\Game\Tools\PanelRoot.cs" />
+     <Compile Include="Assets\Scripts\Game\Tools\ParticleAutoRecycle.cs" />
      <Compile Include="Assets\Scripts\Game\Tools\PlayRewardTrailMgr.cs" />
      <Compile Include="Assets\Scripts\Game\Tools\PosTools.cs" />
      <Compile Include="Assets\Scripts\Game\Tools\PrefabLightmapData.cs" />
