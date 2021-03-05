@@ -65,8 +65,8 @@ namespace GameWish.Game
 
         private void HandleEvent(Spine.TrackEntry trackEntry, Spine.Event e)
         {
-            //Debug.LogError("evnet name is: " + e.Data.Name);
-            EventSystem.S.Send(EventID.OnBattleAtkEvent, m_Controller, e.Data.ToString());
+            // Debug.LogError("event name is: " + e.Data.Name + "-anim name is " + trackEntry.Animation.Name);
+            EventSystem.S.Send(EventID.OnBattleAtkEvent, m_Controller, trackEntry.Animation.Name.ToString());
         }
 
         private void Update()
