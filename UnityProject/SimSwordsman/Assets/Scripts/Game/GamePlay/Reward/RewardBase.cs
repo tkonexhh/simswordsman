@@ -10,9 +10,6 @@ namespace GameWish.Game
         public int Count { get; protected set; }
         public int KeyID => m_KeyID;
 
-        //protected bool m_isInitSuccess = true;
-        protected Action m_CallBackAction;
-
         public RewardItemType RewardItem;
 
         public RewardBase(RewardItemType type, int id, int count)
@@ -26,12 +23,6 @@ namespace GameWish.Game
 
         public abstract void AcceptReward();
 
-        public abstract Sprite GetSprite();
-
-        public abstract void GetSpriteAsyn(GetSpriteCallBack callBack);
-
         public abstract string RewardName();
-
-        public abstract void SetCallBackAction(Action action);
     }
 }

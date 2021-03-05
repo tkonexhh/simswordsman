@@ -9,20 +9,20 @@ namespace GameWish.Game
     public enum SignInStatus
     {
         None,
-        SignEnable,//¿ÉÇ©µ½
-        SignDisable,//²»¿ÉÇ©µ½
-        SignAlready//ÒÑ¾­Ç©µ½
+        SignEnable,//å¯ç­¾åˆ°
+        SignDisable,//ä¸å¯ç­¾åˆ°
+        SignAlready//å·²ç»ç­¾åˆ°
     }
     public class SignInItem : MonoBehaviour
-	{
+    {
         public delegate void SignClickDele(int id);
-           
-        public SignClickDele SignItemCallBack;//µã»÷°´Å¥»Øµ÷
+
+        public SignClickDele SignItemCallBack;//ç‚¹å‡»æŒ‰é’®å›è°ƒ
 
         private Image m_NormalImage;
         private Image m_GlowImage;
         private Image m_ReadyImage;
-        
+
         public Image m_IconImage;
         private Image m_GouImage;
         private Image m_KonfuImage;
@@ -31,7 +31,7 @@ namespace GameWish.Game
         private Text m_CountText;
         private Text m_DayText;
 
-        private Button m_Button;//µã»÷°´Å¥
+        private Button m_Button;//ç‚¹å‡»æŒ‰é’®
 
         private int m_ID;
         public RewardBase RewardCfg;
@@ -45,7 +45,7 @@ namespace GameWish.Game
             m_ID = id;
             m_DayText.text = GetWordByNum(id + 1);
             RewardCfg = signConfig;
-            
+
             SetCount(signConfig.Count);
 
             m_Button.onClick.AddListener(() =>
@@ -55,13 +55,17 @@ namespace GameWish.Game
                 SignItemCallBack?.Invoke(m_ID);
             });
 
-            if (RewardCfg.RewardItem != RewardItemType.Kongfu)
+            Debug.LogError(RewardCfg.RewardItem);
+            if (RewardCfg.RewardItem == RewardItemType.Kongfu)
             {
-                m_KonfuImage.gameObject.SetActive(false);
+                m_KonfuImage.gameObject.SetActive(true);
+                m_IconImage.gameObject.SetActive(false);
+
             }
             else
             {
-                m_IconImage.gameObject.SetActive(false);
+                m_IconImage.gameObject.SetActive(true);
+                m_KonfuImage.gameObject.SetActive(false);
             }
         }
         string GetWordByNum(int num)
@@ -69,20 +73,20 @@ namespace GameWish.Game
             switch (num)
             {
                 case 2:
-                    return "µÚ¶şÌì";
+                    return "ç¬¬äºŒå¤©";
                 case 3:
-                    return "µÚÈıÌì";
+                    return "ç¬¬ä¸‰å¤©";
                 case 4:
-                    return "µÚËÄÌì";
+                    return "ç¬¬å››å¤©";
                 case 5:
-                    return "µÚÎåÌì";
+                    return "ç¬¬äº”å¤©";
                 case 6:
-                    return "µÚÁùÌì";
+                    return "ç¬¬å…­å¤©";
                 case 7:
-                    return "µÚÆßÌì";
+                    return "ç¬¬ä¸ƒå¤©";
                 case 1:
                 default:
-                    return "µÚÒ»Ìì";
+                    return "ç¬¬ä¸€å¤©";
             }
         }
 
@@ -92,7 +96,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ²éÕÒÏÂÃæµÄ×ÓÎïÌå
+        /// æŸ¥æ‰¾ä¸‹é¢çš„å­ç‰©ä½“
         /// </summary>
         /// <param name="trans"></param>
         private void FindChildObject(Transform trans)
@@ -113,16 +117,16 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÉèÖÃSignItemÓÒÏÂ·½½±ÀøÊı×Ö
+        /// è®¾ç½®SignItemå³ä¸‹æ–¹å¥–åŠ±æ•°å­—
         /// </summary>
         /// <param name="count"></param>
         public void SetCount(int count)
         {
-            m_CountText.text = "¡Á" + count.ToString();
+            m_CountText.text = "Ã—" + count.ToString();
         }
 
         /// <summary>
-        /// ¸Ä±äSignItemµÄÏÔÊ¾×´Ì¬
+        /// æ”¹å˜SignItemçš„æ˜¾ç¤ºçŠ¶æ€
         /// </summary>
         /// <param name="status"></param>
         public void SetSignItemStatus(SignInStatus status)
@@ -148,10 +152,10 @@ namespace GameWish.Game
                     m_ReadyImage.gameObject.SetActive(false);
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
-                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
+                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 1);
                     if (RewardCfg.RewardItem == RewardItemType.Kongfu)
                     {
-                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 0.4f);
+                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 1);
                         m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 0.4f);
                     }
                     break;
@@ -161,10 +165,10 @@ namespace GameWish.Game
                     m_ReadyImage.gameObject.SetActive(false);
                     m_GouImage.gameObject.SetActive(true);
                     m_DayText.gameObject.SetActive(true);
-                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 0.4f);
+                    m_IconImage.color = new Color(m_IconImage.color.r, m_IconImage.color.g, m_IconImage.color.b, 1);
                     if (RewardCfg.RewardItem == RewardItemType.Kongfu)
                     {
-                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 0.4f);
+                        m_KonfuImage.color = new Color(m_KonfuImage.color.r, m_KonfuImage.color.g, m_KonfuImage.color.b, 1);
                         m_KonfuNameImage.color = new Color(m_KonfuNameImage.color.r, m_KonfuNameImage.color.g, m_KonfuNameImage.color.b, 0.4f);
                     }
                     break;
@@ -178,5 +182,5 @@ namespace GameWish.Game
 
 
     }
-	
+
 }

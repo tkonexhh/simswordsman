@@ -19,7 +19,7 @@ namespace GameWish.Game
         Exp_Kongfu,//¹¦·ò¾­Ñé
     }
     public class RewardMgr : TSingleton<RewardMgr>
-	{
+    {
         RewardBase CreateReward(RewardItemType type, int id, int count)
         {
             switch (type)
@@ -54,7 +54,7 @@ namespace GameWish.Game
         /// <param name="id"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public RewardBase GetRewardBase(RewardItemType type, int id, int count=1)
+        public RewardBase GetRewardBase(RewardItemType type, int id, int count = 1)
         {
             return CreateReward(type, id, count);
         }

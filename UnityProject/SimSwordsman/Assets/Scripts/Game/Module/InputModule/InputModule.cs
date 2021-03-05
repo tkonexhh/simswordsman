@@ -34,21 +34,21 @@ namespace GameWish.Game
             if (PlayerPrefs.GetInt("channel_exit_key", 0) == 1)
             {
                 FloatMessage.S.ShowMsg(TDLanguageTable.Get("Press Again to Quit"));
-            }           
+            }
         }
 
         private void OnClickF1()
         {
-            MeasureUnitHelper.AddCount(0,0,-50,-500);
+            MeasureUnitHelper.AddCount(0, 0, -50, -500);
             Log.i(MeasureUnitHelper.GetTotalCount());
         }
         int adtype = (int)AdType.PowerUp;
         private void OnClickF2()
         {
 
-           //  EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonGiant);
+            //  EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonGiant);
 
-             EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonReinforcements);
+            EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonReinforcements);
 
             // adtype++;
             // UIMgrExtend.S.OpenOccupyOverPanel(TDStageTable.GetData(101));
@@ -59,6 +59,7 @@ namespace GameWish.Game
 
         private void OnClickF3()
         {
+            UIMgr.S.OpenPanel(UIID.SignInPanel);
             //GameDataMgr.S.GetPlayerInfoData().AddCoinNum(10000);
 
             //  AdEffectHandleMgr.S.Handle(AdType.AutoDoubleSummon, null);

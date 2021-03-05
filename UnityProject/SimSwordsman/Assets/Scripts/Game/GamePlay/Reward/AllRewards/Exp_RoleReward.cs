@@ -5,39 +5,24 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class Exp_RoleReward : RewardBase
-	{
-		public Exp_RoleReward(RewardItemType type, int id, int count) : base(type, id, count)
+    public class Exp_RoleReward : RewardBase
+    {
+        public Exp_RoleReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
 
         }
 
-		public override void AcceptReward()
-		{
-            Log.e("ªÒµ√µ‹◊”æ≠—È£∫" + Count);
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-        
-		public override string RewardName()
-		{
-			return "µ‹◊”æ≠—È";
-		}
-
-		public override Sprite GetSprite()
-		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
-            return sprite;
-        }
-
-        public override void GetSpriteAsyn(GetSpriteCallBack callBack)
+        public override void AcceptReward()
         {
-            
+            Log.e("ÔøΩÔøΩ√µÔøΩÔøΩ”æÔøΩÔøΩÈ£∫" + Count);
+            //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
         }
 
-        public override void SetCallBackAction(Action action)
-		{
+        public override string RewardName()
+        {
+            return "ÂºüÂ≠êÁªèÈ™å";
+        }
 
-		}
         public override string SpriteName()
         {
             return "";
