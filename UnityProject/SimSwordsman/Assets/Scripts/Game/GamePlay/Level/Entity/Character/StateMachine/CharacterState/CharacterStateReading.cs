@@ -11,7 +11,9 @@ namespace GameWish.Game
     public class CharacterStateReading : CharacterState
     {
         private CharacterController m_Controller = null;
-
+        private KongfuLibraryController m_KongFuController = null;
+        private KungfuLibraySlot m_KongfuSlot = null;
+        private int m_TimerID = -1;
 
         public CharacterStateReading(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -23,23 +25,51 @@ namespace GameWish.Game
             if(m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            KongfuLibraryController kongfuLibrary = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
-            Vector3 practicePos = kongfuLibrary.GetIdlePracticeSlot().GetPosition();
+            m_KongFuController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
+            m_KongfuSlot = m_KongFuController.GetIdlePracticeSlot();
+            m_KongfuSlot.OnCharacterEnter(m_Controller);
+            Vector3 practicePos = m_KongfuSlot.GetPosition();
             m_Controller.MoveTo(practicePos, OnReachDestination);
+            UpdateReadKongFuProgress();
+            m_TimerID = Timer.S.Post2Really((x)=> 
+            {
+                UpdateReadKongFuProgress();
+            },1,-1);
         }
 
         public override void Exit(ICharacterStateHander handler)
         {
+            if (m_TimerID != -1) {
+                Timer.S.Cancel(m_TimerID);
+                m_TimerID = -1;
+            }
+
+            if (m_Controller != null) {
+                m_Controller.ReleaseWorkProgressBar();
+            }
+
+            m_KongfuSlot.OnCharacterLeave();
+            m_KongfuSlot = null;
+            m_KongFuController = null;
+            m_Controller = null;
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
+        }
 
+        private void UpdateReadKongFuProgress() {
+            float progress = m_KongfuSlot.GetProgress();
+            m_Controller.SetWorkProgressPercent(progress);
+            if (progress >= 1.0f) {
+                m_Controller.ReleaseWorkProgressBar();
+            }
         }
 
         private void OnReachDestination()
         {
             m_Controller.CharacterView.PlayAnim("write", true, null);
+            m_Controller.SpawnWorkProgressBar();
         }
     }
 }
