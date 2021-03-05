@@ -68,7 +68,7 @@ namespace GameWish.Game
 				return true;
 			return false;
 		}
-
+		
 		public BaseSlot(int index,int unlock)
 		{
 			Index = index;
@@ -133,6 +133,10 @@ namespace GameWish.Game
 		public Vector3 GetPosition()
 		{
 			return m_SlotPos;
+		}
+		public virtual float GetProgress()
+		{
+			return 0;
 		}
 	}
 }
