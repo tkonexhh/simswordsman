@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3463124831795743576
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7835595323112790788}
-  m_Layer: 0
-  m_Name: Body
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7835595323112790788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463124831795743576}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3845809599068655256}
-  m_Father: {fileID: 3845809598577782915}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3845809598577782914
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +14,7 @@ GameObject:
   - component: {fileID: 4148646909335917782}
   - component: {fileID: 8182623276636966342}
   m_Layer: 0
-  m_Name: Emei2
+  m_Name: Juejueshitai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7835595323112790788}
+  - {fileID: 3845809599068655256}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 
   battleState: 
-  m_Body: {fileID: 3463124831795743576}
+  m_Body: {fileID: 3845809599068655259}
   m_HeadPos: {fileID: 0}
 --- !u!114 &7696235984069948748
 MonoBehaviour:
@@ -147,7 +116,7 @@ GameObject:
   - component: {fileID: 3845809599068655254}
   - component: {fileID: 3845809599068655257}
   m_Layer: 0
-  m_Name: Spine
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +133,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7835595323112790788}
+  m_Father: {fileID: 3845809598577782915}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3845809599068655255
@@ -193,7 +162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e011daa232d52dd4e8b16b3e16a2b81b, type: 2}
+  - {fileID: 2100000, guid: 67679ea42467fe4448e0ff3c30efbad2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -226,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 447db00d157269b45a08d85f6c4c8aa6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: a71fae1424563f842917563f979bfe0b, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
