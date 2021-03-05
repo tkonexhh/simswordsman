@@ -203,7 +203,7 @@ namespace GameWish.Game
             SpawnOurCharacter(ourSelectedCharacters);
             enemies.ForEach(i =>
             {
-                SpawnEnemyCharacter(i.ConfigId, i.Atk);
+                SpawnEnemyCharacter(i.ConfigId, i.Number, i.Atk);
             });
             MusicMgr.S.PlayBattleMusic();
         }
@@ -297,27 +297,29 @@ namespace GameWish.Game
             return controller;
         }
 
-        private void SpawnEnemyCharacter(int id, long atk)
+        private void SpawnEnemyCharacter(int id,int count, long atk)
         {
-            SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) =>
+            for (int i = 0; i < count; i++)
             {
-                m_EnemyCharacterList.Add(controller);
-
-                float debuff = m_SelectedHerbList.Any(j => j == HerbType.JinZhenQingCheGao) ? TDHerbConfigTable.GetEffectParam((int)HerbType.JinZhenQingCheGao) : 0;
-
-                controller.CharacterModel.SetHp(atk * (1 - debuff));
-                controller.CharacterModel.SetAtk(atk * (1 - debuff));
-
-                m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
-                m_TotalEnemyHp += controller.CharacterModel.GetHp();
-                m_LoadedEnemyCount++;
-
-                if (m_LoadedEnemyCount >= m_AllEnemyCount)
+                SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) =>
                 {
-                    OnAllEnemyLoaded();
-                }
-            });
+                    m_EnemyCharacterList.Add(controller);
 
+                    float debuff = m_SelectedHerbList.Any(j => j == HerbType.JinZhenQingCheGao) ? TDHerbConfigTable.GetEffectParam((int)HerbType.JinZhenQingCheGao) : 0;
+
+                    controller.CharacterModel.SetHp(atk * (1 - debuff));
+                    controller.CharacterModel.SetAtk(atk * (1 - debuff));
+
+                    m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
+                    m_TotalEnemyHp += controller.CharacterModel.GetHp();
+                    m_LoadedEnemyCount++;
+
+                    if (m_LoadedEnemyCount >= m_AllEnemyCount)
+                    {
+                        OnAllEnemyLoaded();
+                    }
+                });
+            }
         }
 
         private void SpawnFightGroup(List<CharacterController> ourList, List<CharacterController> enemyList)
