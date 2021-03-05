@@ -88,16 +88,17 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
-            if(!m_IsExit)
+            if (!m_IsExit) {
                 m_Controller.CharacterView.PlayAnim("practice", true, null);
 
-            m_Controller.SpawnWorkProgressBar();
+                m_Controller.SpawnWorkProgressBar();
 
-            UpdateProgress();
-            m_TimerID = Timer.S.Post2Really((x) =>
-            {
                 UpdateProgress();
-            }, 1, -1);
+                m_TimerID = Timer.S.Post2Really((x) =>
+                {
+                    UpdateProgress();
+                }, 1, -1);
+            }            
         }
     }
 }
