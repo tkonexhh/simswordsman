@@ -59,11 +59,19 @@ namespace GameWish.Game
             m_Controller.ReleaseWorkTip();
 
             string anim = GetAnimName(m_FacilityType);
-            m_Controller.CharacterView.PlayAnim(anim, true, null);
+            m_Controller.CharacterView.PlayAnim(anim, true, ()=> {
+                if (IsClean(anim)) 
+                {
+                    AudioManager.S.PlaySweepSound();
+                }
+            });
 
             m_Controller.SpawnWorkProgressBar();
         }
-
+        private bool IsClean(string anim)  
+        {
+            return anim.Equals("clean");
+        }
         private string GetAnimName(FacilityType facilityType)
         {
             string animName = "clean";
@@ -85,7 +93,6 @@ namespace GameWish.Game
                     break;
                 default:
                     animName = "clean";
-                    AudioManager.S.PlaySweepSound();
                     break;
             }
 
