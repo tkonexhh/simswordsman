@@ -71,15 +71,20 @@ namespace GameWish.Game
             {
                 case FacilityType.ForgeHouse:
                     animName = "forge_iron";
+                    AudioManager.S.PlayForgeSound();
                     break;
                 case FacilityType.Kitchen:
                     animName = "cook";
                     break;
                 case FacilityType.Baicaohu:
                     animName = "pharmacy";
+                    AudioManager.S.PlayPoundSound();
                     break;
                 case FacilityType.Warehouse:
                     animName = "carry";
+                    break;
+                default:
+                    animName = "clean";
                     break;
             }
 
