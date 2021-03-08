@@ -13,7 +13,8 @@ namespace GameWish.Game
 
         public override void AcceptReward()
         {
-            MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID, Step.One), Count);
+            if (m_KeyID.HasValue)
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID.Value, Step.One), Count);
         }
 
         public override string RewardName()

@@ -15,8 +15,11 @@ namespace GameWish.Game
 
         public override void AcceptReward()
         {
-            Log.e("??¨´????ï“" + Count);
-            //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
+            if (!m_KeyID.HasValue)
+                return;
+
+            var characterItem = MainGameMgr.S.CharacterMgr.GetCharacterController(m_KeyID.Value);
+            characterItem.CharacterModel.DistributionKungfuExp(Count);
         }
 
         public override string RewardName()

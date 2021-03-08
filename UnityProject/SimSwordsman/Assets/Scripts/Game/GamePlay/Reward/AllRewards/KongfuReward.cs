@@ -18,7 +18,7 @@ namespace GameWish.Game
                 // List<RewardBase> rewards = new List<RewardBase>();
                 // rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID.Value, Count));
                 // UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-                MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
+                MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID.Value), Count);
             }
         }
 

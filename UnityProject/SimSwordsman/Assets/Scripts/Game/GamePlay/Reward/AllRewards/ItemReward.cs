@@ -13,8 +13,8 @@ namespace GameWish.Game
 
         public override void AcceptReward()
         {
-            //Log.e("???" + m_TDItem.name + m_Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID), Count);
+            if (m_KeyID.HasValue)
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID.Value), Count);
         }
 
         public override string RewardName()

@@ -16,9 +16,9 @@ namespace GameWish.Game
                 case RewardItemType.Exp_Role:
                     levelReward = new ExpCharacterReward(rewardType, paramStrs);
                     break;
-                case RewardItemType.Exp_Kongfu:
-                    levelReward = new ExpKongfuReward(rewardType, paramStrs);
-                    break;
+                // case RewardItemType.Exp_Kongfu:
+                //     levelReward = new ExpKongfuReward(rewardType, paramStrs);
+                //     break;
                 case RewardItemType.Coin:
                     levelReward = new MoneyReward(rewardType, paramStrs);
                     break;

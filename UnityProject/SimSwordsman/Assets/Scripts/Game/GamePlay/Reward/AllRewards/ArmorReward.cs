@@ -14,8 +14,8 @@ namespace GameWish.Game
 
         public override void AcceptReward()
         {
-            //Log.e("???" + m_Equip.Name + m_Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)m_KeyID, Step.One), Count);
+            if (m_KeyID.HasValue)
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)m_KeyID.Value, Step.One), Count);
         }
 
         public override string RewardName()
