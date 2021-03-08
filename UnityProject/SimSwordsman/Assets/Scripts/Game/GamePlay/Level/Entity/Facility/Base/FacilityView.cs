@@ -141,7 +141,7 @@ namespace GameWish.Game
             //ReResLoader.Allocate();
 
             ShowRoad(true);
-            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+            EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
         private IEnumerator PlayUpGradeParticleEffects(int second, int level)
@@ -150,7 +150,7 @@ namespace GameWish.Game
             DestroyImmediate(m_ParticleEffects);
             stateObjList[level - 1].SetActive(true);
             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
-            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+            EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
         }
         private void OnDestroy()
         {

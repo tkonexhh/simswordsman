@@ -200,11 +200,13 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 500);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 500);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 500);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 500);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1003), 500);
 
-                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)1006), 400);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1006), 5);
+                //MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)1006), 400);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1011), 1);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1016), 5);
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5);
                 //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5);
             }

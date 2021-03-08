@@ -170,15 +170,7 @@ namespace GameWish.Game
             foreach (var item in m_SelectedDiscipleList)
                 CreateRewardIInfoItem(item);
         }
-
-        private void ReceiveChallengeReward()
-        {
-            //if (m_IsSuccess)
-            //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
-            //else
-            //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
-        }
-
+      
         private void RefreshFont()
         {
             if (m_IsSuccess)

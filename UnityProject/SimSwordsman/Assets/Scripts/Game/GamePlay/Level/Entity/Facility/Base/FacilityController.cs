@@ -41,12 +41,12 @@ namespace GameWish.Game
         private List<FacilityType> m_HavaWorkingBubbleFacility = new List<FacilityType>();
         ~FacilityController()
         {
-            EventSystem.S.UnRegister(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnRawMaterialChangeEvent, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
         }
         public FacilityController(FacilityType facilityType/*, int subId*/, FacilityView view)
         {
-            EventSystem.S.Register(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnRawMaterialChangeEvent, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
 
             m_FacilityType = facilityType;
@@ -73,7 +73,7 @@ namespace GameWish.Game
         {
             switch ((EventID)key)
             {
-                case EventID.OnAddRawMaterialEvent:
+                case EventID.OnRawMaterialChangeEvent:
                     if (m_FacilityType == FacilityType.BulletinBoard)
                         break;
                     CheckUpgradeConditions();

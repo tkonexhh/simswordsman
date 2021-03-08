@@ -269,7 +269,7 @@ namespace GameWish.Game
                 m_CanWorkFacilitys.Add(type);
                 //·¢ËÍÏûÏ¢
                 EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
-                EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+                EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
             }
         }
         void AddRewardFacility(FacilityType type, int characterid)
