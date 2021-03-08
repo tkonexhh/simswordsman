@@ -11,10 +11,10 @@ namespace GameWish.Game
     {
         public ArmsReward(int id, int count) : base(RewardItemType.Arms, id, count) { }
 
-        public override void AcceptReward()
+        public override void AcceptReward(int bonus = 1)
         {
             if (m_KeyID.HasValue)
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID.Value, Step.One), Count);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID.Value, Step.One), Count * bonus);
         }
 
         public override string RewardName()

@@ -150,7 +150,10 @@ namespace GameWish.Game
                     m_CurChapterConfigInfo = (ChapterConfigInfo)args[1];
                     m_LevelConfigInfo = (LevelConfigInfo)args[2];
                     m_IsSuccess = (bool)args[3];
-                    ReceiveChallengeReward();
+                    if (m_IsSuccess)
+                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
+                    else
+                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
                     break;
                 default:
                     break;
@@ -188,7 +191,7 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     ItemICom taskRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
-                    taskRewardItemICom.OnInit(item, null, m_PanelType, m_CurTaskInfo, m_IsSuccess,this);
+                    taskRewardItemICom.OnInit(item, null, m_PanelType, m_CurTaskInfo, m_IsSuccess, this);
                     break;
                 case PanelType.Challenge:
                     ItemICom ChaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();

@@ -89,6 +89,7 @@ namespace GameWish.Game
                     // string[] reward = rewards[i].Split('|');
                     // RewardItemType rewardType = EnumUtil.ConvertStringToEnum<RewardItemType>(reward[0]);
                     RewardBase levelReward = RewardMgr.S.GetRewardBase(rewards[i]);//LevelRewardFactory.SpawnLevelReward(rewardType, reward);
+                    // if()
                     levelRewardList.Add(levelReward);
                 }
             }

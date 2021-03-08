@@ -98,17 +98,28 @@ namespace GameWish.Game
     {
         None = 0,
         ZiTenJia = 501,  //×ÏÌÙ¼×
-        YinYeJia,        //ÒøÒ¶¼×
-        RuanWeiJia,      //Èíâ¬¼×
+        YinYeJia = 601,        //ÒøÒ¶¼×
+        RuanWeiJia = 701,      //Èíâ¬¼×
+        MingGuangKai = 702,
     }
 
     public enum ArmsType
     {
         None = 0,
         ShaZhuDao = 101,//É±Öíµ¶
-        DaHuanDao,      //´ó»·µ¶
-        TuLongDao,      //ÍÀÁúµ¶
-        YanYueDao,      //ÙÈÔÂµ¶
+        DaHuanDao = 201,      //´ó»·µ¶
+        HongYingQiang = 202,
+        JinGuBang = 203,
+        MengGuBaoDao = 204,
+        XueDiZi = 205,
+        XueDao = 206,
+        TuLongDao =  301,      //ÍÀÁúµ¶
+        YanYueDao = 302,      //ÙÈÔÂµ¶
+        DaGouBang = 303,
+        JinSheJian = 304,
+        XuanTieBiShou = 305,
+        YiTianJian = 306,
+
     }
     public enum Step
     {
