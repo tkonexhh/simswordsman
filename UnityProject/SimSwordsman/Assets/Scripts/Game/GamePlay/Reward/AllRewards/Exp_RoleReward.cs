@@ -12,13 +12,13 @@ namespace GameWish.Game
 
         }
 
-        public override void AcceptReward()
+        public override void AcceptReward(int bonus = 1)
         {
             if (!m_KeyID.HasValue)
                 return;
 
             var characterItem = MainGameMgr.S.CharacterMgr.GetCharacterController(m_KeyID.Value);
-            characterItem.AddExp(Count);
+            characterItem.AddExp(Count * bonus);
         }
 
         public override string RewardName()

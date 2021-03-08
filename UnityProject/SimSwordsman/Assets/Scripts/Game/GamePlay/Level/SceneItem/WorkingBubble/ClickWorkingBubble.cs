@@ -89,7 +89,7 @@ namespace GameWish.Game
                     state = 0;
                     BubbleView.SetActive(false);
                     EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, false);
-                    EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+                    EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
 
                     GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
                 }

@@ -16,7 +16,8 @@ namespace GameWish.Game
             KongfuAnimConfig config = new KongfuAnimConfig(tdData)
             {
                 id = tdData.id,
-                animName = tdData.animationName
+                animName = tdData.animationName,
+                soundName = tdData.attackSound,
             };
             ParseAtkRange(ref config, tdData.atkRange);
 
@@ -64,6 +65,7 @@ namespace GameWish.Game
         public List<float> atkRangeList = new List<float>();
         public List<string> castSEList = new List<string>();
         public List<string> hitSEList = new List<string>();
+        public string soundName;
 
         private KongfuAnimStrategy m_AnimStrategy;
 
@@ -94,6 +96,20 @@ namespace GameWish.Game
         public void PlayAttackEffect(Transform transform)
         {
             m_AnimStrategy.PlayAttackEffect(transform);
+        }
+
+        public void PlayAttackSound()
+        {
+            List<string> soundNameList = Helper.String2ListString(soundName, "|");
+
+            if (soundNameList != null && soundNameList.Count > 0) 
+            {
+                int index = UnityEngine.Random.Range(0, soundNameList.Count);
+
+                string sound = soundNameList[index];
+
+                AudioManager.S.PlayEnemyAttackSound(sound);
+            }
         }
 
         public void PlayHurtEffect(Transform transform, float delay)

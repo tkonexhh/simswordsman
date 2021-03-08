@@ -292,10 +292,10 @@ RectTransform:
   m_Father: {fileID: 6799842291094482939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 466}
+  m_SizeDelta: {x: 1430, y: 2386}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7327162213816570315
 CanvasRenderer:
@@ -318,13 +318,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d03052b22579664dbf20bc56b3077d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 596725975fb255547b1c3a64bc571aee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2597,7 +2597,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7071811125113638232}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.98794377
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2708,10 +2708,10 @@ RectTransform:
   m_Father: {fileID: 7071811125913182241}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 352.515}
-  m_SizeDelta: {x: 750, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &7071811125470673404
 MonoBehaviour:
@@ -2994,8 +2994,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7071811125197104343}
   m_HandleRect: {fileID: 7071811125197104340}
   m_Direction: 0
-  m_Value: 0.5
-  m_Size: 0.9773333
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3381,7 +3381,6 @@ GameObject:
   - component: {fileID: 4468628523761861742}
   - component: {fileID: 3870969040113715292}
   - component: {fileID: 877982312580874205}
-  - component: {fileID: 1395983269982223197}
   m_Layer: 5
   m_Name: Middle
   m_TagString: Untagged
@@ -3447,27 +3446,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!223 &1395983269982223197
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7981899423071012131}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &8227438284168812012
 GameObject:
   m_ObjectHideFlags: 0

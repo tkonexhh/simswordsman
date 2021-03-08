@@ -309,7 +309,7 @@ namespace GameWish.Game
             coinNumStr = m_CoinNum.ToString();
 
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
-            EventSystem.S.Send(EventID.OnAddRawMaterialEvent);
+            EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
             SetDataDirty();
         }
 

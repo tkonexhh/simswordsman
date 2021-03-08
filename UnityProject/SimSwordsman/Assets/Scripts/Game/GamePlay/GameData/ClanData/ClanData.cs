@@ -229,7 +229,7 @@ namespace GameWish.Game
         public void AddCharacter(int id, CharacterQuality quality)
         {
             ownedCharacterData.AddCharacter(id, quality);
-            EventSystem.S.Send(EventID.OnAddCharacter, id, quality);
+            //EventSystem.S.Send(EventID.OnAddCharacter, id, quality);
             SetDataDirty();
         }
 

@@ -257,6 +257,7 @@ namespace GameWish.Game
         public const string SOUND_UI_BTN = "Button";
         public const string SOUND_BLEVELUP = "Blevelup";
         public const string SOUND_BATTLE_WIN = "Battle_win";
+        public const string SOUND_BATTLE_LOSE = "Battle_lose";
         public const string SOUND_BEAR = "Bear";
         public const string SOUND_CHARACTER_LEVEL_UP = "Character_Levelup";
         public const string SOUND_CHICKEN = "Chicken";

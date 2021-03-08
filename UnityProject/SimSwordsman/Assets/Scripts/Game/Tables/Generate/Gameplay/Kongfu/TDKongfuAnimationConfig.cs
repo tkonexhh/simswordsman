@@ -16,7 +16,8 @@ namespace GameWish.Game
         private string m_AnimationName;   
         private string m_AtkRange;   
         private string m_CastSE;   
-        private string m_HitSE;  
+        private string m_HitSE;   
+        private string m_AttackSound;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -44,6 +45,11 @@ namespace GameWish.Game
         /// 受击特效
         /// </summary>
         public  string  hitSE {get { return m_HitSE; } }
+       
+        /// <summary>
+        /// 攻击声音
+        /// </summary>
+        public  string  attackSound {get { return m_AttackSound; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -75,6 +81,9 @@ namespace GameWish.Game
                 case 4:
                     m_HitSE = dataR.ReadString();
                     break;
+                case 5:
+                    m_AttackSound = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -85,13 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
           ret.Add("Id", 0);
           ret.Add("AnimationName", 1);
           ret.Add("AtkRange", 2);
           ret.Add("CastSE", 3);
           ret.Add("HitSE", 4);
+          ret.Add("AttackSound", 5);
           return ret;
         }
     } 

@@ -26,6 +26,8 @@ namespace GameWish.Game
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
             m_Controller.CharacterView.PlayDeadAnim();
+
+            AudioManager.S.PlayCharacterDeadSound(m_Controller.CharacterModel.IsWoman());
         }
 
         public override void Exit(IBattleStateHander handler)

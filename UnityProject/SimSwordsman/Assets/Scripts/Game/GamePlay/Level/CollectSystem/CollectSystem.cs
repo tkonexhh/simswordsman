@@ -50,7 +50,7 @@ namespace GameWish.Game
             Countdowner cd = (Countdowner)param[0];
             if (m_CurrentCollcetCountDic.ContainsKey(cd.ID) && cd.stringID.Equals("CollectItem"))
             {
-                m_TempTable = TDCollectConfigTable.dataList[cd.ID];
+                m_TempTable = TDCollectConfigTable.dataList[cd.ID - 1];
                 OnTickAddCount(cd.ID, (int)(m_TempTable.maxStore * cd.GetProgress()));
                 //SetDic(cd.ID, (int)(tb.maxStore * cd.GetProgress()));
             }

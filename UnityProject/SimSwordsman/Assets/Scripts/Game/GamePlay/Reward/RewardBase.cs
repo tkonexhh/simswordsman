@@ -15,13 +15,19 @@ namespace GameWish.Game
         {
             RewardItem = type;
             m_KeyID = id;
+            Count = count;
+        }
+
+        public void SetCount(int newCount)
+        {
+            Count = newCount;
         }
 
         // public RewardBase
 
         public abstract string SpriteName();
 
-        public abstract void AcceptReward();
+        public abstract void AcceptReward(int bonus = 1);
 
         public abstract string RewardName();
     }

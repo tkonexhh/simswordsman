@@ -61,7 +61,7 @@ namespace GameWish.Game
             }
 
             var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
-            var enemykongfus = enemyConfig.kongfuNameList;
+            var enemykongfus = enemyConfig.animNameList;
             foreach (var kongfu in enemykongfus)
             {
                 var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
@@ -283,6 +283,7 @@ namespace GameWish.Game
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
                         animConfig?.PlayAttackEffect(controller.CharacterView.transform);
+                        animConfig?.PlayAttackSound();
                     }
                     break;
                 case (int)EventID.OnBattleAtkEnd:

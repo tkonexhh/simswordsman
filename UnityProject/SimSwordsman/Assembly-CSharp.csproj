@@ -1018,15 +1018,6 @@
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\BuffSystem\FoodBuffSystem.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\ChapterInfo.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\ChapterMgr.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelRewardFactory.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\EquipReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpCharacterReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpKongfuReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\FoodReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\KongfuItemReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\MoneyReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\PropItemReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Clan\ClanType.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\CollectSystem\CollectSystem.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\CommonTask\CommonTaskItemInfo.cs" />
@@ -1190,7 +1181,7 @@
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\Exp_RoleReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\FoodsReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\ItemReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\KongfuReward.cs" />
+     <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\KungfuReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\MedicineReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\RewardBase.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\RewardMgr.cs" />
@@ -1777,6 +1768,7 @@
      <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Gaibang2\gb_2.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\ad_native_view.txt" />
      <None Include="Assets\StreamingAssets\config\const.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Suhuazi\ZuiGuaiSuHuaZi.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Huashan\Huashan3\hsp_3.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Shaolin1\sl_1.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Wudu\Wudu3\wud_3.atlas.txt" />
@@ -2411,6 +2403,9 @@
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
         <HintPath>/Users/neo.xu/Documents/MyWork/Unity/simswordsman/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AssetBundleBrowser.Editor">
+        <HintPath>/Users/neo.xu/Documents/MyWork/Unity/simswordsman/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>/Users/neo.xu/Documents/MyWork/Unity/simswordsman/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>

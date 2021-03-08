@@ -45,7 +45,7 @@ namespace GameWish.Game
             int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
 
             int remainingTime = duration - ComputingTime(StartTime);
-            return (remainingTime * 1.0f) / duration;
+            return 1 - (remainingTime * 1.0f) / duration;
         }
         public int GetDurationTime()
         {

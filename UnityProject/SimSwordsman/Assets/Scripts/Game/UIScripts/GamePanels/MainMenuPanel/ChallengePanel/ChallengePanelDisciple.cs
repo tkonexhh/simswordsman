@@ -36,7 +36,7 @@ namespace GameWish.Game
 			m_CharacterItem = characterItem;
 			m_ChallengeChooseDisciple = challengeChoose;
 			BindAddListenerEvent();
-
+			m_DiscipleName.text = m_CharacterItem.name;
 			LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
 			RefresPanelInfo();
 		}   
@@ -55,11 +55,9 @@ namespace GameWish.Game
 			{
 				case SelectedState.Selected:
 					m_SelectedImg.SetActive(true);
-					m_DiscipleName.text = m_CharacterItem.name;
 					break;
 				case SelectedState.NotSelected:
 					m_SelectedImg.SetActive(false);
-					m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
 					m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
 					break;
 				default:

@@ -75,6 +75,7 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(2);
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
 
+            AudioManager.S.OnInit();
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
@@ -192,11 +193,24 @@ namespace GameWish.Game
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
                 }
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 500);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 500);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1003), 500);
+
+                //MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)1006), 400);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1011), 1);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1016), 5);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5);
+                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5);
             }
             if (Input.GetKeyDown(KeyCode.Y))
             {
@@ -236,7 +250,7 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.V))
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new KongfuReward((int)KungfuType.LiuMaiShenJian, 1));
+                rewards.Add(new KongfuReward( (int)KungfuType.LiuMaiShenJian, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 

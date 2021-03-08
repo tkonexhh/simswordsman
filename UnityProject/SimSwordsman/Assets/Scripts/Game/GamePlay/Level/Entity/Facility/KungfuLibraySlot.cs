@@ -21,7 +21,7 @@ namespace GameWish.Game
 
             int remainingTime = duration - ComputingTime(StartTime);
 
-            return (remainingTime * 1.0f) / duration;
+            return  1 - (remainingTime * 1.0f) / duration;
         }
         public int GetDurationTime()
         {
