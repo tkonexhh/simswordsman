@@ -1,82 +1,89 @@
 
 sz_3.png
-size: 126,82
+size: 137,78
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 刀
-  rotate: false
-  xy: 49, 39
+  rotate: true
+  xy: 80, 45
   size: 31, 41
   orig: 31, 41
   offset: 0, 0
   index: -1
 右大腿
   rotate: true
-  xy: 82, 30
+  xy: 24, 4
   size: 25, 22
   orig: 25, 22
   offset: 0, 0
   index: -1
 右大臂
-  rotate: false
-  xy: 106, 33
+  rotate: true
+  xy: 110, 2
   size: 18, 22
   orig: 18, 22
   offset: 0, 0
   index: -1
 右小臂
-  rotate: false
-  xy: 101, 4
+  rotate: true
+  xy: 110, 22
   size: 20, 24
   orig: 20, 24
   offset: 0, 0
   index: -1
 图层 1
-  rotate: true
-  xy: 72, 8
+  rotate: false
+  xy: 2, 2
   size: 20, 27
   orig: 20, 27
   offset: 0, 0
   index: -1
 图层 2
   rotate: false
-  xy: 82, 57
+  xy: 85, 20
   size: 23, 23
   orig: 23, 23
   offset: 0, 0
   index: -1
 图层 3
-  rotate: true
-  xy: 41, 2
+  rotate: false
+  xy: 70, 8
   size: 13, 29
   orig: 13, 29
   offset: 0, 0
   index: -1
+地影
+  rotate: true
+  xy: 123, 44
+  size: 32, 12
+  orig: 34, 15
+  offset: 1, 2
+  index: -1
 头
   rotate: false
-  xy: 2, 4
+  xy: 41, 39
   size: 37, 37
   orig: 37, 37
   offset: 0, 0
   index: -1
 左大臂
-  rotate: false
-  xy: 107, 60
+  rotate: true
+  xy: 85, 5
   size: 13, 20
   orig: 13, 20
   offset: 0, 0
   index: -1
 左小臂
-  rotate: true
-  xy: 41, 17
+  rotate: false
+  xy: 48, 8
   size: 20, 29
   orig: 20, 29
   offset: 0, 0
   index: -1
 身体
-  rotate: true
-  xy: 2, 43
+  rotate: false
+  xy: 2, 31
   size: 37, 45
   orig: 37, 45
   offset: 0, 0

@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "sMgVIbHD2spcj3+08GC25/aAB4g",
+	"hash": "yU++UasPChU4OATTyaE679GTUu0",
 	"spine": "3.8.95",
 	"x": -54.98,
-	"y": -1.65,
+	"y": -8.6,
 	"width": 120.31,
-	"height": 124.92,
+	"height": 131.86,
 	"images": "./images/",
 	"audio": "E:/工作文件/Spine-GC/2020项目工程/武侠模拟经营/敌方角色/山贼"
 },
@@ -137,9 +137,11 @@
 	},
 	{ "name": "bone30", "parent": "骨骼", "x": -28.91, "y": -230.03, "color": "ff3f00ff" },
 	{ "name": "bone31", "parent": "骨骼", "x": 22.62, "y": -231.01, "color": "ff3f00ff" },
-	{ "name": "骨骼2", "parent": "root", "x": 3.95, "y": 103.06, "scaleX": 0.4331, "scaleY": 0.4331 }
+	{ "name": "骨骼2", "parent": "root", "x": 3.95, "y": 103.06, "scaleX": 0.4331, "scaleY": 0.4331 },
+	{ "name": "骨骼3", "parent": "root", "scaleY": 1.1035, "color": "fff363ff" }
 ],
 "slots": [
+	{ "name": "地影", "bone": "骨骼3", "attachment": "地影" },
 	{ "name": "左小腿", "bone": "骨骼2", "attachment": "左小腿" },
 	{ "name": "左大腿", "bone": "骨骼2", "attachment": "左大腿" },
 	{ "name": "右小腿", "bone": "骨骼2", "attachment": "右小腿" },
@@ -228,6 +230,9 @@
 					"width": 145,
 					"height": 192
 				}
+			},
+			"地影": {
+				"地影": { "x": 5.42, "y": 1.58, "scaleX": 6.3792, "scaleY": 2.1602, "width": 34, "height": 15 }
 			},
 			"头": {
 				"头": {
@@ -402,6 +407,14 @@
 				],
 				"translate": [
 					{ "x": 11.19, "y": -9.15 }
+				]
+			},
+			"骨骼3": {
+				"translate": [
+					{ "y": -4.26 }
+				],
+				"scale": [
+					{ "x": 0.887 }
 				]
 			}
 		},
@@ -902,6 +915,20 @@
 					{ "time": 0.6667, "angle": 46.94 },
 					{ "time": 1 }
 				]
+			},
+			"骨骼3": {
+				"translate": [
+					{ "y": -4.87, "curve": "stepped" },
+					{ "time": 0.1667, "y": -4.87, "curve": "stepped" },
+					{ "time": 1, "y": -4.87 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 },
+					{ "time": 0.5, "x": 0.586, "y": 0.7, "curve": "stepped" },
+					{ "time": 0.7, "x": 0.586, "y": 0.7 },
+					{ "time": 1 }
+				]
 			}
 		},
 		"ik": {
@@ -1037,13 +1064,26 @@
 					{ "time": 0.2667, "x": -4.91, "y": -0.15 },
 					{ "time": 0.5333 }
 				]
+			},
+			"骨骼3": {
+				"translate": [
+					{ "y": -5.33 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.1, "x": 0.877 },
+					{ "time": 0.2333, "x": 0.974 },
+					{ "time": 0.3333, "x": 0.877 },
+					{ "time": 0.4333, "x": 0.974 },
+					{ "time": 0.5333 }
+				]
 			}
 		},
 		"drawOrder": [
 			{
 				"offsets": [
-					{ "slot": "左大臂", "offset": -4 },
-					{ "slot": "左小臂", "offset": -5 }
+					{ "slot": "左大臂", "offset": -5 },
+					{ "slot": "左小臂", "offset": -6 }
 				]
 			}
 		]
@@ -1240,6 +1280,24 @@
 					{ "time": 0.6667, "x": -9.09, "y": -43.49 },
 					{ "time": 0.8333 }
 				]
+			},
+			"骨骼3": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{ "x": 2.27, "y": -3.4 },
+					{ "time": 0.2, "x": -6.24, "y": -3.4 },
+					{ "time": 0.3667, "x": -48.76, "y": -5.67, "curve": "stepped" },
+					{ "time": 0.6667, "x": -48.76, "y": -5.67 },
+					{ "time": 0.8333, "x": 2.27, "y": -3.4 }
+				],
+				"scale": [
+					{ "x": 0.879 },
+					{ "time": 0.3667, "x": 1.074, "y": 1.085, "curve": "stepped" },
+					{ "time": 0.6667, "x": 1.074, "y": 1.085 },
+					{ "time": 0.8333, "x": 0.879 }
+				]
 			}
 		},
 		"deform": {
@@ -1270,16 +1328,16 @@
 			{
 				"time": 0.4333,
 				"offsets": [
-					{ "slot": "左大臂", "offset": -4 },
-					{ "slot": "左小臂", "offset": -5 },
+					{ "slot": "左大臂", "offset": -5 },
+					{ "slot": "左小臂", "offset": -6 },
 					{ "slot": "右大臂", "offset": 1 }
 				]
 			},
 			{
 				"time": 0.4667,
 				"offsets": [
-					{ "slot": "左大臂", "offset": -4 },
-					{ "slot": "左小臂", "offset": -5 },
+					{ "slot": "左大臂", "offset": -5 },
+					{ "slot": "左小臂", "offset": -6 },
 					{ "slot": "右大臂", "offset": 1 }
 				]
 			}
@@ -1534,6 +1592,21 @@
 					{ "time": 1.4, "x": -87.62 },
 					{ "time": 1.5 }
 				]
+			},
+			"骨骼3": {
+				"translate": [
+					{ "y": -4.03, "curve": "stepped" },
+					{ "time": 0.4, "y": -4.03 },
+					{ "time": 0.6, "x": -111.57, "curve": "stepped" },
+					{ "time": 0.9333, "x": -111.57 },
+					{ "time": 1.0667, "x": -189.43, "y": -2.43, "curve": "stepped" },
+					{ "time": 1.3667, "x": -189.43, "y": -2.43 },
+					{ "time": 1.5, "y": -4.03 }
+				],
+				"scale": [
+					{ "y": 1.193, "curve": "stepped" },
+					{ "time": 0.6, "y": 1.193 }
+				]
 			}
 		},
 		"deform": {
@@ -1580,16 +1653,16 @@
 		"drawOrder": [
 			{
 				"offsets": [
-					{ "slot": "左大臂", "offset": -4 },
-					{ "slot": "左小臂", "offset": -5 },
+					{ "slot": "左大臂", "offset": -5 },
+					{ "slot": "左小臂", "offset": -6 },
 					{ "slot": "右大臂", "offset": 1 }
 				]
 			},
 			{
 				"time": 1.5,
 				"offsets": [
-					{ "slot": "左大臂", "offset": -4 },
-					{ "slot": "左小臂", "offset": -5 },
+					{ "slot": "左大臂", "offset": -5 },
+					{ "slot": "左小臂", "offset": -6 },
 					{ "slot": "右大臂", "offset": 1 }
 				]
 			}
@@ -1721,6 +1794,20 @@
 				"translate": [
 					{ "curve": "stepped" },
 					{ "time": 0.8667 }
+				]
+			},
+			"骨骼3": {
+				"translate": [
+					{},
+					{ "time": 0.2, "x": 166.15, "y": -3.32 },
+					{ "time": 0.3333, "x": 246.57, "y": -3.32 },
+					{ "time": 0.6667, "x": 296.42, "y": -10.63 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.2, "x": 1.467 },
+					{ "time": 0.3333, "x": 1.202 },
+					{ "time": 0.6667, "x": 0.984, "y": 2.336 }
 				]
 			}
 		},
@@ -1935,6 +2022,18 @@
 					{ "x": 342.98, "y": -39.2, "curve": "stepped" },
 					{ "time": 0.1333, "x": 342.98, "y": -39.2 },
 					{ "time": 0.4333, "x": -27.2, "y": -18.44 }
+				]
+			},
+			"骨骼3": {
+				"translate": [
+					{ "x": 298.75, "curve": "stepped" },
+					{ "time": 0.1333, "x": 298.75 },
+					{ "time": 0.4667, "x": -1.33, "y": -6.56 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1333, "curve": "stepped" },
+					{ "time": 0.4667 }
 				]
 			}
 		},

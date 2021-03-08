@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "pVgkLt9W168kXKwndncD8zp4bKE",
+	"hash": "Gq1gRTjGQJEUo8uRYGfWCbISVUw",
 	"spine": "3.8.95",
 	"x": -45.41,
-	"y": -5.09,
+	"y": -7.15,
 	"width": 73.89,
-	"height": 144.18,
+	"height": 146.24,
 	"images": "./images/",
 	"audio": ""
 },
@@ -117,9 +117,19 @@
 	{ "name": "bone14", "parent": "bone13", "length": 7.99, "rotation": -41.34, "x": 15.44, "color": "954cffff" },
 	{ "name": "bone30", "parent": "bone5", "x": -5.3, "y": -107.24, "color": "ff3f00ff" },
 	{ "name": "bone31", "parent": "bone5", "x": 7.7, "y": -107.73, "color": "ff3f00ff" },
-	{ "name": "bone20", "parent": "bone19", "rotation": -72.92, "x": 18.63, "y": 6.5, "color": "5bff36ff" }
+	{ "name": "bone20", "parent": "bone19", "rotation": -72.92, "x": 18.63, "y": 6.5, "color": "5bff36ff" },
+	{
+		"name": "骨骼",
+		"parent": "root",
+		"x": -0.72,
+		"y": 1.58,
+		"scaleX": 1.3898,
+		"scaleY": 1.0644,
+		"color": "f6ff36ff"
+	}
 ],
 "slots": [
+	{ "name": "地影", "bone": "骨骼", "attachment": "地影" },
 	{ "name": "右鞋子", "bone": "bone14", "attachment": "右鞋子" },
 	{ "name": "左鞋子", "bone": "bone11", "attachment": "左鞋子" },
 	{ "name": "右腿", "bone": "bone13", "attachment": "右腿" },
@@ -200,6 +210,9 @@
 			"右鞋子": {
 				"右鞋子": { "x": 3.99, "y": 1.17, "rotation": -47.11, "width": 13, "height": 13 }
 			},
+			"地影": {
+				"地影": { "x": -0.42, "y": -0.71, "scaleX": 0.9995, "scaleY": 0.9995, "width": 34, "height": 15 }
+			},
 			"头": {
 				"头": {
 					"type": "mesh",
@@ -266,9 +279,6 @@
 		}
 	}
 ],
-"events": {
-	"attack": {}
-},
 "animations": {
 	"hurt": {
 		"bones": {
@@ -443,6 +453,18 @@
 				"rotate": [
 					{ "angle": 0.51, "curve": "stepped" },
 					{ "time": 0.2667, "angle": 0.51 }
+				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "x": 1.77, "y": -1.39 },
+					{ "time": 0.1667, "x": 4.98, "y": -2.58 },
+					{ "time": 0.2667, "x": 1.77, "y": -1.39 }
+				],
+				"scale": [
+					{ "x": 1.132 },
+					{ "time": 0.1667, "x": 1.233 },
+					{ "time": 0.2667, "x": 1.132 }
 				]
 			}
 		},
@@ -638,6 +660,16 @@
 				"rotate": [
 					{ "angle": 0.51, "curve": "stepped" },
 					{ "time": 1, "angle": 0.51 }
+				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "y": -1.07 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.5, "x": 1.055, "y": 1.055 },
+					{ "time": 1 }
 				]
 			}
 		},
@@ -879,6 +911,18 @@
 					{ "y": 1.088, "curve": "stepped" },
 					{ "time": 0.5, "y": 1.088, "curve": "stepped" },
 					{ "time": 1, "y": 1.088 }
+				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "x": -12.91, "y": -1.36, "curve": "stepped" },
+					{ "time": 0.5, "x": -12.91, "y": -1.36, "curve": "stepped" },
+					{ "time": 1, "x": -12.91, "y": -1.36 }
+				],
+				"scale": [
+					{ "x": 1.598 },
+					{ "time": 0.5, "x": 1.645 },
+					{ "time": 1, "x": 1.598 }
 				]
 			}
 		},
@@ -1168,6 +1212,23 @@
 					{ "time": 0.5, "curve": 0.25, "c3": 0.75 },
 					{ "time": 1, "y": 1.129 }
 				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "y": -1.36, "curve": "stepped" },
+					{ "time": 0.2333, "y": -1.36, "curve": "stepped" },
+					{ "time": 0.8333, "y": -1.36, "curve": "stepped" },
+					{ "time": 1, "y": -1.36 }
+				],
+				"scale": [
+					{ "x": 1.263 },
+					{ "time": 0.2333, "x": 1.909 },
+					{ "time": 0.2667, "x": 1.614 },
+					{ "time": 0.3, "x": 1.486 },
+					{ "time": 0.5, "x": 0.746, "y": 0.502 },
+					{ "time": 0.8333, "x": 1.909 },
+					{ "time": 1, "x": 1.263 }
+				]
 			}
 		},
 		"ik": {
@@ -1335,6 +1396,25 @@
 				],
 				"scale": [
 					{ "y": 1.066 }
+				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "x": 0.91, "y": -2.95, "curve": "stepped" },
+					{ "time": 0.1333, "x": 0.91, "y": -2.95, "curve": "stepped" },
+					{ "time": 0.2667, "x": 0.91, "y": -2.95 },
+					{ "time": 0.4, "x": -0.23, "y": -2.95, "curve": "stepped" },
+					{ "time": 0.5333, "x": -0.23, "y": -2.95 },
+					{ "time": 0.6, "x": 0.91, "y": -2.95 }
+				],
+				"scale": [
+					{ "x": 1.686 },
+					{ "time": 0.1, "x": 1.988 },
+					{ "time": 0.1333, "x": 1.709 },
+					{ "time": 0.2667, "x": 1.328 },
+					{ "time": 0.4, "x": 1.86 },
+					{ "time": 0.5333, "x": 1.387 },
+					{ "time": 0.6, "x": 1.686 }
 				]
 			}
 		},
@@ -1736,6 +1816,29 @@
 					{ "time": 1.0333, "y": 1.088, "curve": "stepped" },
 					{ "time": 1.6667, "y": 1.088 }
 				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "x": -12.48, "y": -1.13, "curve": "stepped" },
+					{ "time": 1.0333, "x": -12.48, "y": -1.13 },
+					{ "time": 1.0667, "x": -28.03, "y": -3.18 },
+					{ "time": 1.1667, "x": -83.76, "y": -1.13, "curve": "stepped" },
+					{ "time": 1.2333, "x": -83.76, "y": -1.13 },
+					{ "time": 1.2667, "x": -82.34, "y": -1.13 },
+					{ "time": 1.3667, "x": -60.84, "y": -1.13, "curve": "stepped" },
+					{ "time": 1.4, "x": -60.84, "y": -1.13 },
+					{ "time": 1.6667, "x": -12.48, "y": -1.13 }
+				],
+				"scale": [
+					{ "x": 1.729, "curve": "stepped" },
+					{ "time": 1.0333, "x": 1.729 },
+					{ "time": 1.0667, "x": 1.341 },
+					{ "time": 1.1667, "x": 2.165, "curve": "stepped" },
+					{ "time": 1.2333, "x": 2.165 },
+					{ "time": 1.3667, "x": 1.541, "curve": "stepped" },
+					{ "time": 1.4, "x": 1.541 },
+					{ "time": 1.6667, "x": 1.729 }
+				]
 			}
 		},
 		"ik": {
@@ -1859,13 +1962,9 @@
 					{ "slot": "头", "offset": -3 }
 				]
 			}
-		],
-		"events": [
-			{ "time": 0.4667, "name": "attack" },
-			{ "time": 1.1667, "name": "attack" }
 		]
 	},
-	"taijizhang": {
+	"taijiquan": {
 		"slots": {
 			"剑": {
 				"attachment": [
@@ -2401,6 +2500,30 @@
 					{ "time": 1.9333, "y": 1.088, "curve": "stepped" },
 					{ "time": 2.3333, "y": 1.088 }
 				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "x": -5.85, "y": -0.53 },
+					{ "time": 0.1667, "x": -21.68, "y": -0.53, "curve": "stepped" },
+					{ "time": 0.3, "x": -21.68, "y": -0.53 },
+					{ "time": 0.4667, "x": -5.85, "y": -0.53, "curve": "stepped" },
+					{ "time": 0.7667, "x": -5.85, "y": -0.53 },
+					{ "time": 0.8667, "x": -16.89, "y": -0.53, "curve": "stepped" },
+					{ "time": 1.5, "x": -16.89, "y": -0.53 },
+					{ "time": 1.6667, "x": -58.68, "y": -2, "curve": "stepped" },
+					{ "time": 1.9333, "x": -58.68, "y": -2 },
+					{ "time": 2.3333, "x": -11.96, "y": -0.53 }
+				],
+				"scale": [
+					{ "x": 1.632, "curve": "stepped" },
+					{ "time": 0.1667, "x": 1.632, "curve": "stepped" },
+					{ "time": 0.3, "x": 1.632, "curve": "stepped" },
+					{ "time": 0.4667, "x": 1.632, "curve": "stepped" },
+					{ "time": 1.5, "x": 1.632 },
+					{ "time": 1.6667, "x": 1.873, "curve": "stepped" },
+					{ "time": 1.9333, "x": 1.873 },
+					{ "time": 2.3333, "x": 1.632 }
+				]
 			}
 		},
 		"ik": {
@@ -2680,12 +2803,6 @@
 					{ "slot": "头", "offset": -3 }
 				]
 			}
-		],
-		"events": [
-			{ "time": 0.1667, "name": "attack" },
-			{ "time": 0.8333, "name": "attack" },
-			{ "time": 1, "name": "attack" },
-			{ "time": 1.7333, "name": "attack" }
 		]
 	},
 	"tumble": {
@@ -2799,6 +2916,16 @@
 			"bone9": {
 				"translate": [
 					{ "x": 5.74, "y": -4.73 }
+				]
+			},
+			"骨骼": {
+				"translate": [
+					{},
+					{ "time": 0.3667, "x": 108.02, "y": -3.96 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.3667, "x": 2.352 }
 				]
 			}
 		},
@@ -3089,6 +3216,20 @@
 					{ "time": 0.1667, "x": -0.5, "y": 17.5 },
 					{ "time": 0.2667, "x": -8.9, "y": -7.28 },
 					{ "time": 0.3333 }
+				]
+			},
+			"骨骼": {
+				"translate": [
+					{ "x": 108.02, "y": -3.96, "curve": "stepped" },
+					{ "time": 0.2, "x": 108.02, "y": -3.96 },
+					{ "time": 0.5333 },
+					{ "time": 0.6667, "x": 3.19, "y": -0.21 }
+				],
+				"scale": [
+					{ "x": 2.352, "curve": "stepped" },
+					{ "time": 0.2, "x": 2.352 },
+					{ "time": 0.5333 },
+					{ "time": 0.6667, "x": 1.279 }
 				]
 			}
 		},

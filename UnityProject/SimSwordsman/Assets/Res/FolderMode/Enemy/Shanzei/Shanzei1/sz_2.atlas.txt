@@ -1,82 +1,89 @@
 
 sz_2.png
-size: 78,114
+size: 125,76
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 刀
   rotate: true
-  xy: 2, 80
+  xy: 38, 42
   size: 32, 45
   orig: 32, 45
   offset: 0, 0
   index: -1
 右上臂
-  rotate: true
-  xy: 23, 6
+  rotate: false
+  xy: 98, 5
   size: 15, 19
   orig: 15, 19
   offset: 0, 0
   index: -1
 右下臂
-  rotate: true
-  xy: 2, 23
+  rotate: false
+  xy: 42, 16
   size: 19, 24
   orig: 19, 24
   offset: 0, 0
   index: -1
 右大腿
   rotate: false
-  xy: 2, 2
+  xy: 85, 55
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: -1
 右小腿
-  rotate: true
-  xy: 47, 43
+  rotate: false
+  xy: 93, 26
   size: 12, 27
   orig: 12, 27
   offset: 0, 0
   index: -1
-头
+地影
   rotate: false
-  xy: 49, 74
+  xy: 42, 2
+  size: 32, 12
+  orig: 34, 15
+  offset: 1, 2
+  index: -1
+头
+  rotate: true
+  xy: 2, 2
   size: 27, 38
   orig: 27, 38
   offset: 0, 0
   index: -1
 左大腿
   rotate: false
-  xy: 28, 23
+  xy: 106, 55
   size: 17, 19
   orig: 17, 19
   offset: 0, 0
   index: -1
 左大臂
-  rotate: true
-  xy: 44, 4
+  rotate: false
+  xy: 107, 35
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 左小腿
   rotate: true
-  xy: 47, 57
+  xy: 63, 25
   size: 15, 28
   orig: 15, 28
   offset: 0, 0
   index: -1
 左小臂
-  rotate: false
-  xy: 47, 21
+  rotate: true
+  xy: 76, 2
   size: 21, 20
   orig: 21, 20
   offset: 0, 0
   index: -1
 身体
-  rotate: true
-  xy: 2, 44
+  rotate: false
+  xy: 2, 31
   size: 34, 43
   orig: 34, 43
   offset: 0, 0

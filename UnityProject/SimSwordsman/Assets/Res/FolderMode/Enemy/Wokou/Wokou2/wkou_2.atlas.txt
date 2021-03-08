@@ -1,61 +1,61 @@
 
 wkou_2.png
-size: 333,52
+size: 236,77
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 bode
   rotate: true
-  xy: 280, 17
+  xy: 163, 42
   size: 33, 51
   orig: 34, 51
   offset: 0, 0
   index: -1
 d_tui_l
-  rotate: true
-  xy: 80, 3
+  rotate: false
+  xy: 181, 16
   size: 19, 24
   orig: 19, 24
   offset: 0, 0
   index: -1
 d_tui_r
   rotate: true
-  xy: 208, 27
+  xy: 154, 2
   size: 23, 25
   orig: 23, 25
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 235, 2
+  xy: 118, 27
   size: 43, 48
   orig: 43, 48
   offset: 0, 0
   index: -1
 s_gb_l
   rotate: false
-  xy: 211, 2
+  xy: 218, 25
   size: 16, 23
   orig: 16, 23
   offset: 0, 0
   index: -1
 s_gb_r
-  rotate: true
-  xy: 106, 6
+  rotate: false
+  xy: 216, 50
   size: 16, 25
   orig: 17, 28
   offset: 1, 0
   index: -1
 wq
   rotate: true
-  xy: 118, 27
+  xy: 2, 24
   size: 23, 88
   orig: 23, 88
   offset: 0, 0
   index: -1
 wqd
   rotate: true
-  xy: 2, 24
+  xy: 2, 49
   size: 26, 114
   orig: 26, 114
   offset: 0, 0
@@ -68,8 +68,8 @@ x_foot_l
   offset: 0, 0
   index: -1
 x_foot_r
-  rotate: true
-  xy: 133, 2
+  rotate: false
+  xy: 92, 8
   size: 23, 39
   orig: 23, 39
   offset: 0, 0
@@ -83,8 +83,15 @@ x_gb_l
   index: -1
 x_gb_r
   rotate: true
-  xy: 174, 3
+  xy: 117, 3
   size: 22, 35
   orig: 23, 35
   offset: 1, 0
+  index: -1
+地影
+  rotate: true
+  xy: 202, 8
+  size: 32, 14
+  orig: 34, 15
+  offset: 1, 1
   index: -1

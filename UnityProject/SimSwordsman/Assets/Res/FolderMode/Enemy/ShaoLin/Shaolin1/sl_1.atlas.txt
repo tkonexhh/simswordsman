@@ -1,89 +1,96 @@
 
 sl_1.png
-size: 110,103
+size: 156,77
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 右上臂
-  rotate: true
-  xy: 64, 43
+  rotate: false
+  xy: 124, 20
   size: 19, 29
   orig: 19, 29
   offset: 0, 0
   index: -1
 右下臂
   rotate: true
-  xy: 2, 28
+  xy: 2, 2
   size: 17, 29
   orig: 17, 29
   offset: 0, 0
   index: -1
 右大腿
-  rotate: true
-  xy: 62, 2
+  rotate: false
+  xy: 110, 51
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 右小腿
-  rotate: true
-  xy: 33, 25
+  rotate: false
+  xy: 88, 9
   size: 20, 27
   orig: 20, 27
   offset: 0, 0
   index: -1
 右脚
   rotate: true
-  xy: 95, 27
+  xy: 145, 34
   size: 16, 9
   orig: 18, 11
   offset: 1, 1
   index: -1
+地影
+  rotate: true
+  xy: 110, 17
+  size: 32, 12
+  orig: 34, 15
+  offset: 1, 2
+  index: -1
 头
   rotate: false
-  xy: 64, 64
+  xy: 64, 38
   size: 44, 37
   orig: 46, 39
   offset: 1, 1
   index: -1
 左上臂
   rotate: true
-  xy: 2, 9
+  xy: 33, 2
   size: 17, 27
   orig: 17, 31
   offset: 0, 4
   index: -1
 左下臂
   rotate: true
-  xy: 62, 26
+  xy: 129, 3
   size: 15, 25
   orig: 15, 25
   offset: 0, 0
   index: -1
 左大腿
   rotate: true
-  xy: 31, 2
+  xy: 64, 15
   size: 21, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 左小腿
-  rotate: true
-  xy: 95, 45
+  rotate: false
+  xy: 110, 3
   size: 17, 12
   orig: 17, 19
   offset: 0, 0
   index: -1
 左脚
   rotate: false
-  xy: 89, 2
+  xy: 134, 52
   size: 19, 23
   orig: 20, 24
   offset: 1, 1
   index: -1
 身体
   rotate: true
-  xy: 2, 47
+  xy: 2, 21
   size: 54, 60
   orig: 54, 60
   offset: 0, 0
