@@ -1777,6 +1777,7 @@
      <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Gaibang2\gb_2.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\ad_native_view.txt" />
      <None Include="Assets\StreamingAssets\config\const.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Suhuazi\ZuiGuaiSuHuaZi.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Huashan\Huashan3\hsp_3.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Shaolin1\sl_1.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Wudu\Wudu3\wud_3.atlas.txt" />
@@ -2411,6 +2412,9 @@
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
         <HintPath>/Users/neo.xu/Documents/MyWork/Unity/simswordsman/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AssetBundleBrowser.Editor">
+        <HintPath>/Users/neo.xu/Documents/MyWork/Unity/simswordsman/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>/Users/neo.xu/Documents/MyWork/Unity/simswordsman/UnityProject/SimSwordsman/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>

@@ -9,11 +9,11 @@ namespace GameWish.Game
         public MedicineReward(int id, int count) : base(RewardItemType.Medicine, id, count) { }
 
 
-        public override void AcceptReward()
+        public override void AcceptReward(int bonus = 1)
         {
             //Log.e("???" + m_Info.Name + m_Count);
             if (m_KeyID.HasValue)
-                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)m_KeyID.Value, Count));
+                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)m_KeyID.Value, Count * bonus));
         }
 
         public override string RewardName()
