@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         public abstract string SpriteName();
 
-        public abstract void AcceptReward();
+        public abstract void AcceptReward(int bonus = 1);
 
         public abstract string RewardName();
     }
