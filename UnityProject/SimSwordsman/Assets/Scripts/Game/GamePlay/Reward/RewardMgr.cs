@@ -11,7 +11,7 @@ namespace GameWish.Game
         Item,//��Ʒ
         Armor,//����
         Arms,//����
-        Kungfu,//�书�ؼ�
+        Kongfu,//�书�ؼ�
         Medicine,//ҩ
         Food,//ʳ��
         Coin,//ͭǮ
@@ -30,7 +30,7 @@ namespace GameWish.Game
                     return new ArmorReward(id, count);
                 case RewardItemType.Arms:
                     return new ArmsReward(id, count);
-                case RewardItemType.Kungfu:
+                case RewardItemType.Kongfu:
                     return new KongfuReward(id, count);
                 case RewardItemType.Medicine:
                     return new MedicineReward(id, count);
@@ -75,7 +75,7 @@ namespace GameWish.Game
                 case RewardItemType.Item:
                 case RewardItemType.Armor:
                 case RewardItemType.Arms:
-                case RewardItemType.Kungfu:
+                case RewardItemType.Kongfu:
                 case RewardItemType.Medicine:
                     return CreateReward(rewardItemType, int.Parse(sp[1]), GetRewardCount(sp[2]));
                 case RewardItemType.Food:

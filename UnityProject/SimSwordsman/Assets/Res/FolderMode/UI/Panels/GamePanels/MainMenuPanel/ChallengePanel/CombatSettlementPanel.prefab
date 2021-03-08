@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6967171995349822799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -86,9 +86,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4097385360470819286}
   - component: {fileID: 2365789281133092928}
-  - component: {fileID: 5615402197239214993}
   m_Layer: 5
-  m_Name: Image
+  m_Name: EffectTra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,10 +108,10 @@ RectTransform:
   m_Father: {fileID: 6119605567839169931}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.12666668, y: 0.51349324}
-  m_AnchorMax: {x: 0.87333333, y: 0.8064978}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.72874814}
+  m_AnchorMax: {x: 0.5, y: 0.72874814}
+  m_AnchoredPosition: {x: 0, y: -24}
+  m_SizeDelta: {x: 560, y: 391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2365789281133092928
 CanvasRenderer:
@@ -122,35 +121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508227021913673389}
   m_CullTransparentMesh: 0
---- !u!114 &5615402197239214993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508227021913673389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cce698cab633143478db5f70b8939be0, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4911336658699757639
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7099866698209234322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -721,8 +691,13 @@ MonoBehaviour:
   m_ExitBtn: {fileID: 7986421698670448654}
   m_Font1: {fileID: 6401200342955503071}
   m_Font2: {fileID: 2626229062738553834}
+  m_EffectParent: {fileID: 4097385360470819286}
   m_RewardContainer: {fileID: 7986421699653432189}
   m_RewardinfoItem: {fileID: 7863385815333022519, guid: dc9ff8f5fcf3c2646949cbadf4c7c058,
+    type: 3}
+  m_SuccessEffect: {fileID: 1398929142381325839, guid: 443cb6919cdc66742b2fe85559f6acb5,
+    type: 3}
+  m_FailEffect: {fileID: 5291506063012771369, guid: 156f843bda4cd9241b28cdde6f3bd881,
     type: 3}
 --- !u!1 &6267132444638044130
 GameObject:
@@ -741,7 +716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2097608604489855978
 RectTransform:
   m_ObjectHideFlags: 0

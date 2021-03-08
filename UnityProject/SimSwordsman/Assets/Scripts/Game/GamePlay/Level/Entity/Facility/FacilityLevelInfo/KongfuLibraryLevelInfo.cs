@@ -35,10 +35,10 @@ namespace GameWish.Game
             return m_UnlockedKongfuType;
         }
 
-        public void SetInitData(List<KungfuType> list, KungFuPoolConfig kungFuPoolConfig, int duration, int seat)
+        public void SetInitData(List<KungfuType> list, List<KungFuPoolConfig> kungFuPoolConfig, int duration, int seat)
         {
             m_UnlockedKongfuType = list;
-            m_KungFuPool.Add(kungFuPoolConfig);
+            m_KungFuPool.AddRange(kungFuPoolConfig);
             m_DurationOfCopying = duration;
             m_SeatOfCopying = seat;
         }

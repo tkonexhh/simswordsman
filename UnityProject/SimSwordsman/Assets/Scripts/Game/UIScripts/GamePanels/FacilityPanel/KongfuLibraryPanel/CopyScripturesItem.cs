@@ -104,8 +104,8 @@ namespace GameWish.Game
                     m_CopyScripturesBtn.enabled = true;
                     m_ArrangeDisciple.text = "安排弟子";
                     m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
-                    m_Time.text = Define.COMMON_DEFAULT_STR;
-                    m_Free.text = "空闲";
+                    m_Time.gameObject.SetActive(false);
+                    m_Free.gameObject.SetActive(false);
                     m_Plus.gameObject.SetActive(true);
                     m_Lock.gameObject.SetActive(false);
                     m_DiscipleHead.gameObject.SetActive(false);
@@ -117,7 +117,7 @@ namespace GameWish.Game
                     m_CopyScripturesBtn.enabled = false;
                     m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = "抄经位" + m_KungfuLibraySlot.UnlockLevel + "级后解锁";
-                    m_Time.text = Define.COMMON_DEFAULT_STR;
+                    m_Time.gameObject.SetActive(false);
                     m_DiscipleHead.gameObject.SetActive(false);
                     break;
                 case SlotState.CopyScriptures:
@@ -126,6 +126,7 @@ namespace GameWish.Game
                     m_DiscipleHead.gameObject.SetActive(true);
                     RefreshFixedInfo();
                     m_CurCopyScriptures.text = "当前抄经:" + m_KungfuLibraySlot.CharacterItem.name;
+                    m_Time.gameObject.SetActive(true);
                     m_Time.text = SplicingTime(GetDuration());
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = Define.COMMON_DEFAULT_STR;

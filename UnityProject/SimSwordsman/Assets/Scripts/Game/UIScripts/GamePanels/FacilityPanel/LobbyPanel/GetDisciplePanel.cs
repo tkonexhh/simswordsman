@@ -16,7 +16,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CharacterName;
         [SerializeField]
-        private Button m_BlackBtn;
+        private Button m_BlackBtn;  
+        [SerializeField]
+        private GameObject m_NewSkillHeroUnlock;
 
         private CharacterItem m_CharacterItem;
         private ClickType m_CurrentClickType = ClickType.None;
@@ -58,6 +60,7 @@ namespace GameWish.Game
                     break;
             }
             m_CharacterName.text = m_CharacterItem.name;
+            Instantiate(m_NewSkillHeroUnlock, m_DiscipleImg.transform).transform.localPosition = Vector3.zero;
             RecruitDisciple();
         }
 

@@ -135,6 +135,10 @@ namespace GameWish.Game
         OnBattleAtkStart,
         OnBattleAtkEnd,
         OnBattleAtkEvent,
+        /// <summary>
+        /// 战斗描述刷新
+        /// </summary>
+        OnBattleSecondEvent,
 
         //RecruitmentOrderRefresh
         OnGoldMedalRefresh,         //金牌招募刷新事件

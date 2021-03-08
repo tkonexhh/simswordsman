@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System.Linq;
+using System;
 
 namespace GameWish.Game
 {
     public class BattleFieldMgr : MonoBehaviour, IMgr
     {
         private BattleField m_BattleField = null;
+        private  const int BattleMaxTime = 30;
 
         private List<CharacterController> m_OurCharacterList = new List<CharacterController>();
         private List<CharacterController> m_EnemyCharacterList = new List<CharacterController>();
@@ -180,6 +182,7 @@ namespace GameWish.Game
                         m_SelectedHerbList = (List<HerbType>)param[2];
                     }
                     OnEnterBattle(enemies, ourSelectedCharacters);
+                    StartCoroutine("BattleCountdown",(BattleMaxTime));
                     break;
                 case (int)EventID.OnExitBattle:
                     OnExitBattle();
@@ -373,8 +376,8 @@ namespace GameWish.Game
         }
         private void ApplyDamage()
         {
-            m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * Random.Range(0.8f, 1.2f);
-            m_EnemeyDamagePersecond = m_TotalOurAtk / m_InitEnemeyCharacterCount / m_Const * Random.Range(0.8f, 1.2f);
+            m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * UnityEngine.Random.Range(0.8f, 1.2f);
+            m_EnemeyDamagePersecond = m_TotalOurAtk / m_InitEnemeyCharacterCount / m_Const * UnityEngine.Random.Range(0.8f, 1.2f);
 
             m_OurCharacterList.ForEach(i =>
             {
@@ -388,7 +391,55 @@ namespace GameWish.Game
 
             RefressProgress();
         }
+        private IEnumerator BattleCountdown(int second)
+        {
+            while (second >= 0)
+            {
+                if (second <= 5)
+                {
+                    //TODO
+                }
+                EventSystem.S.Send(EventID.OnBattleSecondEvent, SplicingTime(second));
+                //m_CombatTime.text = SplicingTime(second);
+                yield return new WaitForSeconds(1);
+                second--;
+                if (second == 0)
+                {
+                    m_IsBattleEnd = true;
+                    EventSystem.S.Send(EventID.OnBattleFailed);
 
+                    m_OurCharacterList.ForEach(i =>
+                    {
+                        i.GetBattleState().SetState(BattleStateID.Idle);
+                    });
+
+                    m_EnemyCharacterList.ForEach(i =>
+                    {
+                        i.GetBattleState().SetState(BattleStateID.Idle);
+                    });
+                }
+            }
+        }
+        public string SplicingTime(int seconds)
+        {
+            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
+            string str = "";
+
+            if (ts.Hours > 0)
+            {
+                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes > 0)
+            {
+                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes == 0)
+            {
+                str = "00:" + ts.Seconds.ToString("00");
+            }
+
+            return str;
+        }
         private void RefressProgress()
         {
             double curOurTotalHp = 0;
@@ -412,12 +463,14 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnBattleFailed);
                 m_IsBattleEnd = true;
+                StopCoroutine("BattleCountdown");
             }
 
             if (curEnemyTotalHp <= 0)
             {
                 EventSystem.S.Send(EventID.OnBattleSuccessed);
                 m_IsBattleEnd = true;
+                StopCoroutine("BattleCountdown");
             }
         }
 

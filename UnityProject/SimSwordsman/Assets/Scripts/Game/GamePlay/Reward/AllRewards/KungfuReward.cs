@@ -11,7 +11,7 @@ namespace GameWish.Game
     {
         public KongfuReward(KungfuType id, int count = 1) : base(RewardItemType.Kongfu, (int)id, count) { }
         public KongfuReward(int id, int count = 1) : base(RewardItemType.Kongfu, id, count) { }
-
+            
         public override void AcceptReward(int bonus = 1)
         {
             if (m_KeyID.HasValue)

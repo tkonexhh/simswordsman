@@ -133,6 +133,7 @@ namespace GameWish.Game
                     case LivableRoomState.ReadyBuilt:
                         m_LivableRoomState = LivableRoomState.Upgrade;
                         MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
+                        ReduceItem(m_CurLivableRoomLevelInfo);
                         GetInformationForNeed();
                         break;
                     case LivableRoomState.Upgrade:
@@ -140,6 +141,7 @@ namespace GameWish.Game
                         bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_CurLivableRoomLevelInfo.upgradeCoinCost);
                         if (isReduceSuccess)
                         {
+                            ReduceItem(m_NextLivableRoomLevelInfo);
                             EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                             GetInformationForNeed();
                         }
@@ -158,7 +160,18 @@ namespace GameWish.Game
             });
         }
 
-     private bool CheckPropIsEnough(bool isShow = true)
+        private void ReduceItem(LivableRoomLevelInfo livableRoomLevelInfo)
+        {
+            List<CostItem>  costItems = livableRoomLevelInfo.GetUpgradeResCosts();
+            for (int i = 0; i < costItems.Count; i++)
+            {
+                MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)costItems[i].itemId), costItems[i].value);
+            }
+           
+
+        }
+
+        private bool CheckPropIsEnough(bool isShow = true)
         {
             for (int i = 0; i < m_NextCostItems.Count; i++)
             {

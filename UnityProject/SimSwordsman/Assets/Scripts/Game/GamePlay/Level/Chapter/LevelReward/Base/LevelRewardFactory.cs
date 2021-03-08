@@ -32,7 +32,7 @@ namespace GameWish.Game
                 case RewardItemType.Food:
                     levelReward = new FoodReward(rewardType, paramStrs);
                     break;
-                case RewardItemType.Kungfu:
+                case RewardItemType.Kongfu:
                     levelReward = new KongfuItemReward(rewardType, paramStrs);
                     break;
             }

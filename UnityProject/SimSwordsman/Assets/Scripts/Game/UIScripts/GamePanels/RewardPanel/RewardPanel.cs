@@ -11,7 +11,9 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_RewardTran;
         [SerializeField]
-        private Button m_CloseBtn;
+        private Button m_CloseBtn; 
+        [SerializeField]
+        private GameObject m_LootFirework;
 
         [SerializeField]
         private GameObject m_ItemObj;
@@ -60,6 +62,8 @@ namespace GameWish.Game
                     m_Items[i].gameObject.SetActive(false);
                 }
             }
+
+            Instantiate(m_LootFirework, transform).transform.localPosition = Vector3.zero;
         }
 
         private void BindAddListenerEvent()
