@@ -150,6 +150,13 @@ namespace GameWish.Game
                     m_CurChapterConfigInfo = (ChapterConfigInfo)args[1];
                     m_LevelConfigInfo = (LevelConfigInfo)args[2];
                     m_IsSuccess = (bool)args[3];
+                    m_LevelConfigInfo.levelRewardList.ForEach(i =>
+                    {
+                        if (i.RewardItem == RewardItemType.Exp_Kongfu || i.RewardItem == RewardItemType.Exp_Role)
+                        {
+                            i.SetCount(i.Count / m_SelectedDiscipleList.Count);
+                        }
+                    });
                     if (m_IsSuccess)
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
                     else

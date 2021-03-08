@@ -17,6 +17,11 @@ namespace GameWish.Game
             m_KeyID = id;
         }
 
+        public void SetCount(int newCount)
+        {
+            Count = newCount;
+        }
+
         // public RewardBase
 
         public abstract string SpriteName();

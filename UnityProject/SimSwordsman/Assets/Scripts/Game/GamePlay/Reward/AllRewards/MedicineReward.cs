@@ -6,8 +6,8 @@ namespace GameWish.Game
 {
     public class MedicineReward : RewardBase
     {
+        public MedicineReward(HerbType id, int count) : base(RewardItemType.Medicine, (int)id, count) { }
         public MedicineReward(int id, int count) : base(RewardItemType.Medicine, id, count) { }
-
 
         public override void AcceptReward(int bonus = 1)
         {

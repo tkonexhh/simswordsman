@@ -9,12 +9,15 @@ namespace GameWish.Game
 {
     public class ItemReward : RewardBase
     {
+        public ItemReward(RawMaterial id, int count) : base(RewardItemType.Item, (int)id, count) { }
         public ItemReward(int id, int count) : base(RewardItemType.Item, id, count) { }
 
         public override void AcceptReward(int bonus = 1)
         {
             if (m_KeyID.HasValue)
+            {
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID.Value), Count * bonus);
+            }
         }
 
         public override string RewardName()
