@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using Qarth;
 using UnityEngine.SceneManagement;
@@ -59,12 +60,9 @@ namespace GameWish.Game
 
         private void OnClickF3()
         {
-            UIMgr.S.OpenPanel(UIID.SignInPanel);
-            //GameDataMgr.S.GetPlayerInfoData().AddCoinNum(10000);
-
-            //  AdEffectHandleMgr.S.Handle(AdType.AutoDoubleSummon, null);
-            // UIMgrExtend.S.OpenAdStaticShowPanel(AdType.AutoDoubleSummon);
-            //MagicCloudMgr.S.StartCloudAttack();
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(new KongfuReward(1001));
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
         }
         int add = 1;
         private void OnClickF4()

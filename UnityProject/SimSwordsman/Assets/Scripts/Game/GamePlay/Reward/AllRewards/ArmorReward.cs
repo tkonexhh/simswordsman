@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public class ArmorReward : RewardBase
     {
-        public ArmorReward(RewardItemType type, int id, int count) : base(type, id, count)
+        public ArmorReward(int id, int count) : base(RewardItemType.Armor, id, count)
         {
 
         }
@@ -20,12 +20,16 @@ namespace GameWish.Game
 
         public override string RewardName()
         {
-            return TDEquipmentConfigTable.GetData(m_KeyID).name;
+            if (m_KeyID.HasValue)
+                return TDEquipmentConfigTable.GetData(m_KeyID.Value).name;
+            throw new NullReferenceException("m_KeyID");
         }
 
         public override string SpriteName()
         {
-            return TDEquipmentConfigTable.GetData(m_KeyID).iconName;
+            if (m_KeyID.HasValue)
+                return TDEquipmentConfigTable.GetData(m_KeyID.Value).iconName;
+            throw new NullReferenceException("m_KeyID");
         }
     }
 

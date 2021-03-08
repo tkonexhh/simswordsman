@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class LevelRewardFactory
-	{
+    public class LevelRewardFactory
+    {
         public static LevelReward SpawnLevelReward(RewardItemType rewardType, string[] paramStrs)
         {
             LevelReward levelReward = null;
@@ -39,6 +39,6 @@ namespace GameWish.Game
 
             return levelReward;
         }
-	}
-	
+    }
+
 }

@@ -9,26 +9,32 @@ namespace GameWish.Game
 {
     public class KongfuReward : RewardBase
     {
-        public KongfuReward(RewardItemType type, int id, int count) : base(type, id, count)
-        {
-
-        }
+        public KongfuReward(int id, int count = 1) : base(RewardItemType.Kongfu, id, count) { }
 
         public override void AcceptReward()
         {
-            List<RewardBase> rewards = new List<RewardBase>();
-            rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID, Count));
-            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
+            if (m_KeyID.HasValue)
+            {
+                // List<RewardBase> rewards = new List<RewardBase>();
+                // rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID.Value, Count));
+                // UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+                MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
+            }
         }
 
         public override string RewardName()
         {
-            return TDKongfuConfigTable.GetData(m_KeyID).kongfuName;
+            if (m_KeyID.HasValue)
+                return TDKongfuConfigTable.GetData(m_KeyID.Value).kongfuName;
+
+            throw new NullReferenceException("m_KeyID");
         }
         public override string SpriteName()
         {
-            return TDKongfuConfigTable.GetIconName((KungfuType)m_KeyID);
+            if (m_KeyID.HasValue)
+                return TDKongfuConfigTable.GetIconName((KungfuType)m_KeyID.Value);
+
+            throw new NullReferenceException("m_KeyID");
         }
     }
 }

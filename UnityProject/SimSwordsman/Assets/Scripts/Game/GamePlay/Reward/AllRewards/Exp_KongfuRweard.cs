@@ -8,7 +8,7 @@ namespace GameWish.Game
     public class Exp_KongfuRweard : RewardBase
     {
 
-        public Exp_KongfuRweard(RewardItemType type, int id, int count) : base(type, id, count)
+        public Exp_KongfuRweard(int id, int count) : base(RewardItemType.Exp_Kongfu, id, count)
         {
 
         }

@@ -156,13 +156,13 @@ namespace GameWish.Game
                 {
                     int nowQingRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.QingRock);
                     int nowWuWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.WuWood);
-                    reward = new ItemReward(RewardItemType.Item, nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
+                    reward = new ItemReward(nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
                 }
                 else if (reward.KeyID == (int)RawMaterial.CloudRock || reward.KeyID == (int)RawMaterial.SilverWood)
                 {
                     int nowCloudRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.CloudRock);
                     int nowSliverWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverWood);
-                    reward = new ItemReward(RewardItemType.Item, nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
+                    reward = new ItemReward(nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
                 }
             }
             return reward;

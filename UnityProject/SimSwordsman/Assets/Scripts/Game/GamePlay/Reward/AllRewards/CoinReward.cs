@@ -7,9 +7,8 @@ namespace GameWish.Game
 {
     public class CoinReward : RewardBase
     {
-        public CoinReward(RewardItemType type, int id, int count) : base(type, id, count)
+        public CoinReward(int count) : base(RewardItemType.Coin, null, count)
         {
-
         }
 
         public override void AcceptReward()

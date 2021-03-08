@@ -6,10 +6,8 @@ namespace GameWish.Game
 {
     public class MedicineReward : RewardBase
     {
-        public MedicineReward(RewardItemType type, int id, int count) : base(type, id, count)
-        {
-            //m_isInitSuccess = false;
-        }
+        public MedicineReward(int id, int count) : base(RewardItemType.Medicine, id, count) { }
+
 
         public override void AcceptReward()
         {
@@ -20,12 +18,18 @@ namespace GameWish.Game
 
         public override string RewardName()
         {
-            return TDHerbConfigTable.GetData(m_KeyID).name;
+            if (m_KeyID.HasValue)
+                return TDHerbConfigTable.GetData(m_KeyID.Value).name;
+
+            throw new NullReferenceException("m_KeyID");
         }
 
         public override string SpriteName()
         {
-            return TDHerbConfigTable.GetData(m_KeyID).icon;
+            if (m_KeyID.HasValue)
+                return TDHerbConfigTable.GetData(m_KeyID.Value).icon;
+
+            throw new NullReferenceException("m_KeyID");
         }
     }
 }

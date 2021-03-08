@@ -9,9 +9,9 @@ namespace GameWish.Game
 {
     public class FoodsReward : RewardBase
     {
-        public FoodsReward(RewardItemType type, int id, int count) : base(type, id, count)
-        {
 
+        public FoodsReward(int count) : base(RewardItemType.Food, null, count)
+        {
         }
 
         public override void AcceptReward()

@@ -7,14 +7,14 @@ namespace GameWish.Game
 {
     public class Exp_RoleReward : RewardBase
     {
-        public Exp_RoleReward(RewardItemType type, int id, int count) : base(type, id, count)
+        public Exp_RoleReward(int id, int count) : base(RewardItemType.Exp_Role, id, count)
         {
 
         }
 
         public override void AcceptReward()
         {
-            Log.e("��õ��Ӿ��飺" + Count);
+            Log.e("��õ��Ӿ���?" + Count);
             //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
         }
 
