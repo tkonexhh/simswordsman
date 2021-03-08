@@ -42,11 +42,13 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-            m_BlackBtn.onClick.AddListener(() => {
+            m_BlackBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
@@ -55,7 +57,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                UIMgr.S.OpenPanel(UIID.SendDisciplesPanel,PanelType.Challenge, m_CurChapterConfigInfo, m_LevelConfigInfo);
+                UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Challenge, m_CurChapterConfigInfo, m_LevelConfigInfo);
                 CloseSelfPanel();
                 CloseDependPanel(EngineUI.MaskPanel);
             });
@@ -92,7 +94,7 @@ namespace GameWish.Game
         {
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);
             m_ChallengeCont.text = m_LevelConfigInfo.desc;
-            m_ChallengeRewardValue.text = m_LevelConfigInfo.levelRewardList[0].GetRewardValue().ToString();
+            m_ChallengeRewardValue.text = m_LevelConfigInfo.levelRewardList[0].Count.ToString();
             m_ChallengeRecommendAtkValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
         }
         protected override void OnPanelHideComplete()

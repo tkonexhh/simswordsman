@@ -4,43 +4,32 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class MedicineReward : RewardBase
-	{
-		public MedicineReward(RewardItemType type, int id, int count) : base(type, id, count)
+    public class MedicineReward : RewardBase
+    {
+        public MedicineReward(int id, int count) : base(RewardItemType.Medicine, id, count) { }
+
+
+        public override void AcceptReward()
         {
-            //m_isInitSuccess = false;
+            //Log.e("???" + m_Info.Name + m_Count);
+            if (m_KeyID.HasValue)
+                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)m_KeyID.Value, Count));
         }
 
-		public override void AcceptReward()
-		{
-            //Log.e("»ñµÃ" + m_Info.Name + m_Count);
-            //MainGameMgr.S.MedicinalPowderMgr.AddHerb(m_KeyID, Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)m_KeyID, Count));
-        }
-
-		public override string RewardName()
-		{
-			return TDHerbConfigTable.GetData(m_KeyID).name;
-		}
-
-		public override Sprite GetSprite()
-		{
-            Sprite sprite = Resources.Load<Sprite>("UI/Sprites/ItemIcon/" + TDHerbConfigTable.GetData(m_KeyID).icon);
-            return sprite;
-        }
-
-        public override void GetSpriteAsyn(GetSpriteCallBack callBack)
+        public override string RewardName()
         {
-            
+            if (m_KeyID.HasValue)
+                return TDHerbConfigTable.GetData(m_KeyID.Value).name;
+
+            throw new NullReferenceException("m_KeyID");
         }
 
-        public override void SetCallBackAction(Action action)
-		{
-
-		}
         public override string SpriteName()
         {
-            return TDHerbConfigTable.GetData(m_KeyID).icon;
+            if (m_KeyID.HasValue)
+                return TDHerbConfigTable.GetData(m_KeyID.Value).icon;
+
+            throw new NullReferenceException("m_KeyID");
         }
     }
 }

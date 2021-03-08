@@ -155,7 +155,7 @@ namespace GameWish.Game
             CountdownSystem.S.Cancel(m_StringID, ID);
 
             List<RewardBase> rewards = new List<RewardBase>();
-            rewards.Add(new MedicineReward(RewardItemType.Medicine, ID, 1));
+            rewards.Add(new MedicineReward(ID, 1));
             UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)ID, 1));
             SetState(2);

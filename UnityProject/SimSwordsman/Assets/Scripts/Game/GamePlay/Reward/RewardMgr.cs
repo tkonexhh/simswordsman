@@ -19,29 +19,29 @@ namespace GameWish.Game
         Exp_Kongfu,//功夫经验
     }
     public class RewardMgr : TSingleton<RewardMgr>
-	{
+    {
         RewardBase CreateReward(RewardItemType type, int id, int count)
         {
             switch (type)
             {
                 case RewardItemType.Item:
-                    return new ItemReward(type, id, count);
+                    return new ItemReward(id, count);
                 case RewardItemType.Armor:
-                    return new ArmorReward(type, id, count);
+                    return new ArmorReward(id, count);
                 case RewardItemType.Arms:
-                    return new ArmsReward(type, id, count);
+                    return new ArmsReward(id, count);
                 case RewardItemType.Kongfu:
-                    return new KongfuReward(type, id, count);
+                    return new KongfuReward(id, count);
                 case RewardItemType.Medicine:
-                    return new MedicineReward(type, id, count);
+                    return new MedicineReward(id, count);
                 case RewardItemType.Food:
-                    return new FoodsReward(type, id, count);
+                    return new FoodsReward(count);
                 case RewardItemType.Coin:
-                    return new CoinReward(type, id, count);
+                    return new CoinReward(count);
                 case RewardItemType.Exp_Role:
-                    return new Exp_RoleReward(type, id, count);
+                    return new Exp_RoleReward(id, count);
                 case RewardItemType.Exp_Kongfu:
-                    return new Exp_KongfuRweard(type, id, count);
+                    return new Exp_KongfuRweard(id, count);
                 default:
                     Log.e("无此奖励类型");
                     return null;
@@ -54,7 +54,7 @@ namespace GameWish.Game
         /// <param name="id"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public RewardBase GetRewardBase(RewardItemType type, int id, int count=1)
+        public RewardBase GetRewardBase(RewardItemType type, int id, int count = 1)
         {
             return CreateReward(type, id, count);
         }
@@ -77,9 +77,10 @@ namespace GameWish.Game
                 case RewardItemType.Arms:
                 case RewardItemType.Kongfu:
                 case RewardItemType.Medicine:
-                case RewardItemType.Food:
                     return CreateReward(rewardItemType, int.Parse(sp[1]), GetRewardCount(sp[2]));
+                case RewardItemType.Food:
                 case RewardItemType.Coin:
+                    return CreateReward(rewardItemType, 0, int.Parse(sp[1]));
                 case RewardItemType.Exp_Role:
                 case RewardItemType.Exp_Kongfu:
                     return CreateReward(rewardItemType, 0, GetRewardCount(sp[1]));
@@ -102,13 +103,13 @@ namespace GameWish.Game
             }
         }
 
-        public RewardBase GetRewardBase(string type, int id, int count)
-        {
-            RewardItemType rewardItemType;
-            if (!Enum.TryParse(type, out rewardItemType))
-                return null;
-            return CreateReward(rewardItemType, id, count);
-        }
+        // public RewardBase GetRewardBase(string type, int id, int count)
+        // {
+        //     RewardItemType rewardItemType;
+        //     if (!Enum.TryParse(type, out rewardItemType))
+        //         return null;
+        //     return CreateReward(rewardItemType, id, count);
+        // }
 
 
         //public RewardBase AcceptRewardByConfig(string type, int id, int count)
