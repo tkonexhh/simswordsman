@@ -85,6 +85,7 @@ namespace GameWish.Game
                     break;
                 default:
                     animName = "clean";
+                    AudioManager.S.PlaySweepSound();
                     break;
             }
 
