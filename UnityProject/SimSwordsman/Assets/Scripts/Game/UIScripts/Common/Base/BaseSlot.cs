@@ -101,7 +101,7 @@ namespace GameWish.Game
 		public void RewardKungfu(int kungfuLibraryLevel)
 		{
 			int kungfuID = (int)MainGameMgr.S.FacilityMgr.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
-			RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kongfu, kungfuID,1);
+			RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kungfu, kungfuID,1);
 			reward.AcceptReward();
 		}
 

@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -126,6 +127,7 @@ namespace GameWish.Game
 
             int randomNum = Random.Range(0, allWeight);
             allWeight = 0;
+            List<RewardBase> rewards = new List<RewardBase>();
             // Item reward
             foreach (var item in m_TaskDetailInfo.itemRewards)
             {
@@ -136,24 +138,33 @@ namespace GameWish.Game
                     {
                         case TaskRewardType.Coin:
                             GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(item.count1);
+                            rewards.Add(new CoinReward(RewardItemType.Coin, -1, item.count1));
                             break;
                         case TaskRewardType.Item:
-                            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)item.id), Random.Range(item.count1, item.count1 + 1));
+                            int itemRan = Random.Range(item.count1, item.count1 + 1);
+                            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)item.id), itemRan);
+                            rewards.Add(new ItemReward(RewardItemType.Item, item.id, itemRan));
                             break;
                         case TaskRewardType.Medicine:
-                            MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)item.id), Random.Range(item.count1, item.count1 + 1));
+                            int medicRan = Random.Range(item.count1, item.count1 + 1);
+                            MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)item.id), medicRan);
+                            rewards.Add(new MedicineReward(RewardItemType.Medicine, item.id, medicRan));
                             break;
-                        case TaskRewardType.Kongfu:
-                            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)item.id), Random.Range(item.count1, item.count1 + 1));
+                        case TaskRewardType.Kungfu:
+                            int kungfuRan = Random.Range(item.count1, item.count1 + 1);
+                            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)item.id), kungfuRan);
+                            rewards.Add(new KungfuReward(RewardItemType.Kungfu, item.id, kungfuRan));
                             break;
                         case TaskRewardType.Food:
                             GameDataMgr.S.GetPlayerData().AddFoodNum(item.count1);
+                            rewards.Add(new FoodsReward(RewardItemType.Food,-2, item.count1));
                             break;
                         default:
                             break;
                     }
                 }
             }
+            EventSystem.S.Send(EventID.OnReciveRewardList, rewards);
             CharacterIDs.Clear();
         }
     }

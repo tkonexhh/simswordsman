@@ -12,6 +12,6 @@ namespace GameWish.Game
         Item,
         Food,
         Medicine,
-        Kongfu,
+        Kungfu,
     }
 }

@@ -21,17 +21,17 @@ namespace GameWish.Game
             if (obj!=null)
             {
                 DestroyImmediate(obj);
-                m_ResLoader.ReleaseRes("NewSkillHeroUnlock");
+                //m_ResLoader.ReleaseRes("NewSkillHeroUnlock");
             }
         }
 
         public void Init(RewardPanel rewardPanel, RewardBase reward)
         {
             m_ResLoader = ResLoader.Allocate();
-            obj = Instantiate(m_ResLoader.LoadSync("NewSkillHeroUnlock"), transform) as GameObject;
+            //obj = Instantiate(m_ResLoader.LoadSync("NewSkillHeroUnlock"), transform) as GameObject;
             //obj.transform.position = transform.position;
 
-            if (reward.RewardItem == RewardItemType.Kongfu)
+            if (reward.RewardItem == RewardItemType.Kungfu)
             {
                 KungfuQuality kungfuQuality = TDKongfuConfigTable.GetKungfuConfigInfo((KungfuType)reward.KeyID).KungfuQuality;
 

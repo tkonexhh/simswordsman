@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class KongfuReward : RewardBase
+	public class KungfuReward : RewardBase
 	{
-		public KongfuReward(RewardItemType type, int id, int count) : base(type, id, count)
+		public KungfuReward(RewardItemType type, int id, int count) : base(type, id, count)
         {
 
         }
@@ -17,7 +17,7 @@ namespace GameWish.Game
 		public override void AcceptReward()
 		{
             List < RewardBase > rewards =   new List<RewardBase>();
-            rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID, Count));
+            rewards.Add(new KungfuReward(RewardItemType.Kungfu, m_KeyID, Count));
             UIMgr.S.OpenPanel(UIID.RewardPanel,null, rewards);
             MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
         }
