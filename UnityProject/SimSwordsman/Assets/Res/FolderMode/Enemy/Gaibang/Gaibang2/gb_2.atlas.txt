@@ -1,47 +1,47 @@
 
 gb_2.png
-size: 292,62
+size: 303,62
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 右上臂
-  rotate: false
-  xy: 257, 32
+  rotate: true
+  xy: 269, 11
   size: 18, 28
   orig: 20, 30
   offset: 1, 1
   index: -1
 右上臂-揣手
-  rotate: false
-  xy: 257, 32
+  rotate: true
+  xy: 269, 11
   size: 18, 28
   orig: 20, 30
   offset: 1, 1
   index: -1
 右下臂
   rotate: true
-  xy: 210, 5
+  xy: 206, 4
   size: 22, 29
   orig: 24, 31
   offset: 1, 1
   index: -1
 右下臂-揣手
   rotate: true
-  xy: 227, 31
+  xy: 241, 31
   size: 29, 28
   orig: 31, 30
   offset: 1, 1
   index: -1
 右手
   rotate: false
-  xy: 199, 20
+  xy: 269, 2
   size: 9, 7
   orig: 11, 9
   offset: 1, 1
   index: -1
 右脚
   rotate: false
-  xy: 277, 41
+  xy: 237, 8
   size: 11, 19
   orig: 13, 21
   offset: 1, 1
@@ -53,9 +53,16 @@ repeat: none
   orig: 52, 56
   offset: 1, 1
   index: -1
+地影
+  rotate: true
+  xy: 199, 28
+  size: 32, 12
+  orig: 34, 15
+  offset: 1, 2
+  index: -1
 左上臂
   rotate: false
-  xy: 241, 2
+  xy: 250, 2
   size: 17, 27
   orig: 17, 27
   offset: 0, 0
@@ -69,28 +76,28 @@ repeat: none
   index: -1
 左下臂
   rotate: false
-  xy: 199, 29
+  xy: 213, 29
   size: 26, 31
   orig: 26, 31
   offset: 0, 0
   index: -1
 左下臂-揣手
   rotate: false
-  xy: 260, 2
+  xy: 271, 32
   size: 17, 28
   orig: 19, 30
   offset: 1, 1
   index: -1
 左手
   rotate: false
-  xy: 279, 10
+  xy: 290, 31
   size: 8, 10
   orig: 10, 12
   offset: 1, 1
   index: -1
 左脚
   rotate: false
-  xy: 279, 22
+  xy: 290, 43
   size: 11, 17
   orig: 13, 19
   offset: 1, 1

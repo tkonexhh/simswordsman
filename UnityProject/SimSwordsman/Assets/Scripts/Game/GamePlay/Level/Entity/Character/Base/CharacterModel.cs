@@ -192,6 +192,9 @@ namespace GameWish.Game
         {
             return m_CharacterItem.IsFreeState();
         }
-    }
 
+        public bool IsWoman() {
+            return m_CharacterItem.IsWoman();
+        }
+    }
 }

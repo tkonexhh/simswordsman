@@ -1,90 +1,97 @@
 
 wud_3.png
-size: 62,235
+size: 241,62
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 bode
-  rotate: false
-  xy: 2, 125
+  rotate: true
+  xy: 57, 4
   size: 56, 53
   orig: 58, 58
   offset: 2, 5
   index: -1
 dt_L
-  rotate: true
-  xy: 17, 72
+  rotate: false
+  xy: 139, 19
   size: 24, 26
   orig: 24, 26
   offset: 0, 0
   index: -1
 dt_R
-  rotate: false
-  xy: 17, 98
+  rotate: true
+  xy: 112, 17
   size: 28, 25
   orig: 28, 25
   offset: 0, 0
   index: -1
 foot_L
-  rotate: true
-  xy: 37, 19
+  rotate: false
+  xy: 205, 3
   size: 15, 22
   orig: 15, 22
   offset: 0, 0
   index: -1
 foot_R
-  rotate: true
-  xy: 37, 2
+  rotate: false
+  xy: 222, 3
   size: 15, 22
   orig: 15, 22
   offset: 0, 0
   index: -1
 gb_L
-  rotate: false
-  xy: 38, 36
+  rotate: true
+  xy: 175, 5
   size: 19, 28
   orig: 19, 28
   offset: 0, 0
   index: -1
 gb_R
-  rotate: false
-  xy: 17, 39
+  rotate: true
+  xy: 165, 26
   size: 19, 31
   orig: 21, 32
   offset: 1, 0
   index: -1
 gj_2
-  rotate: false
-  xy: 47, 95
+  rotate: true
+  xy: 211, 52
   size: 8, 28
   orig: 11, 28
   offset: 3, 0
   index: -1
 haed
-  rotate: false
-  xy: 2, 180
+  rotate: true
+  xy: 2, 3
   size: 57, 53
   orig: 57, 53
   offset: 0, 0
   index: -1
 hand_L
-  rotate: false
-  xy: 45, 66
+  rotate: true
+  xy: 146, 2
   size: 15, 27
   orig: 16, 28
   offset: 0, 0
   index: -1
 hand_R
-  rotate: false
-  xy: 17, 10
+  rotate: true
+  xy: 198, 27
   size: 18, 27
   orig: 22, 28
   offset: 2, 1
   index: -1
 wq
-  rotate: false
-  xy: 2, 26
+  rotate: true
+  xy: 112, 47
   size: 13, 97
   orig: 13, 97
   offset: 0, 0
+  index: -1
+地影
+  rotate: false
+  xy: 112, 3
+  size: 32, 12
+  orig: 34, 15
+  offset: 1, 2
   index: -1

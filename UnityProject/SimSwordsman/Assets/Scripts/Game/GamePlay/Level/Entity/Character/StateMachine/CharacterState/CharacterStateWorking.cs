@@ -59,11 +59,19 @@ namespace GameWish.Game
             m_Controller.ReleaseWorkTip();
 
             string anim = GetAnimName(m_FacilityType);
-            m_Controller.CharacterView.PlayAnim(anim, true, null);
+            m_Controller.CharacterView.PlayAnim(anim, true, ()=> {
+                if (IsClean(anim)) 
+                {
+                    AudioManager.S.PlaySweepSound();
+                }
+            });
 
             m_Controller.SpawnWorkProgressBar();
         }
-
+        private bool IsClean(string anim)  
+        {
+            return anim.Equals("clean");
+        }
         private string GetAnimName(FacilityType facilityType)
         {
             string animName = "clean";
@@ -71,15 +79,20 @@ namespace GameWish.Game
             {
                 case FacilityType.ForgeHouse:
                     animName = "forge_iron";
+                    AudioManager.S.PlayForgeSound();
                     break;
                 case FacilityType.Kitchen:
                     animName = "cook";
                     break;
                 case FacilityType.Baicaohu:
                     animName = "pharmacy";
+                    AudioManager.S.PlayPoundSound();
                     break;
                 case FacilityType.Warehouse:
                     animName = "carry";
+                    break;
+                default:
+                    animName = "clean";
                     break;
             }
 

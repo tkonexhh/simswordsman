@@ -105,6 +105,7 @@ namespace GameWish.Game
         public void AddCharacter(CharacterItem item)
         {
             m_CharacterDataWrapper.AddCharacter(item);
+            EventSystem.S.Send(EventID.OnAddCharacter);
         }
 
         /// <summary>

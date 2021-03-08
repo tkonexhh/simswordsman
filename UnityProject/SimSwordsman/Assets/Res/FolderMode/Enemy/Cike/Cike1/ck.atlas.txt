@@ -1,82 +1,89 @@
 
 ck.png
-size: 171,63
+size: 178,62
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 bode
   rotate: false
-  xy: 2, 4
+  xy: 2, 3
   size: 48, 57
   orig: 48, 57
   offset: 0, 0
   index: -1
 右上臂
-  rotate: false
-  xy: 134, 38
+  rotate: true
+  xy: 149, 44
   size: 16, 23
   orig: 18, 25
   offset: 1, 1
   index: -1
 右下臂
-  rotate: false
-  xy: 126, 11
+  rotate: true
+  xy: 135, 24
   size: 18, 23
   orig: 20, 25
   offset: 1, 1
   index: -1
 右大腿
-  rotate: true
-  xy: 99, 2
+  rotate: false
+  xy: 115, 21
   size: 18, 25
   orig: 20, 27
   offset: 1, 1
   index: -1
 右脚
-  rotate: true
-  xy: 146, 20
+  rotate: false
+  xy: 160, 20
   size: 16, 22
   orig: 18, 24
   offset: 1, 1
   index: -1
+地影
+  rotate: false
+  xy: 115, 48
+  size: 32, 12
+  orig: 34, 15
+  offset: 1, 2
+  index: -1
 头
   rotate: false
-  xy: 52, 16
+  xy: 52, 15
   size: 45, 45
   orig: 47, 47
   offset: 1, 1
   index: -1
 左上臂
   rotate: true
-  xy: 52, 3
+  xy: 52, 2
   size: 11, 28
   orig: 13, 30
   offset: 1, 1
   index: -1
 左下臂
-  rotate: true
-  xy: 152, 41
+  rotate: false
+  xy: 126, 2
   size: 20, 17
   orig: 22, 19
   offset: 1, 1
   index: -1
 左大腿
-  rotate: false
-  xy: 115, 36
+  rotate: true
+  xy: 99, 2
   size: 17, 25
   orig: 19, 27
   offset: 1, 1
   index: -1
 左脚
   rotate: true
-  xy: 146, 2
+  xy: 148, 2
   size: 16, 22
   orig: 18, 24
   offset: 1, 1
   index: -1
 武器
   rotate: false
-  xy: 99, 22
+  xy: 99, 21
   size: 14, 39
   orig: 16, 41
   offset: 1, 1

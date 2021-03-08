@@ -9,16 +9,13 @@ namespace GameWish.Game
 {
     public class KongfuReward : RewardBase
     {
-        public KongfuReward(KungfuType id, int count = 1) : base(RewardItemType.Kongfu, (int)id, count) { }
-        public KongfuReward(int id, int count = 1) : base(RewardItemType.Kongfu, id, count) { }
-            
+        public KongfuReward(KungfuType id, int count = 1) : base(RewardItemType.Kungfu, (int)id, count) { }
+        public KongfuReward(int id, int count = 1) : base(RewardItemType.Kungfu, id, count) { }
+
         public override void AcceptReward(int bonus = 1)
         {
             if (m_KeyID.HasValue)
             {
-                // List<RewardBase> rewards = new List<RewardBase>();
-                // rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID.Value, Count));
-                // UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
                 MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID.Value), Count * bonus);
             }
         }
