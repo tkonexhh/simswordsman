@@ -234,14 +234,12 @@ namespace GameWish.Game
         /// 判断材料是否足够
         /// </summary>
         /// <returns></returns>
-        public bool HaveEnoughItem(List<CostItem> items)
+        public bool HaveEnoughItem(List<CostItem> items,bool isShow = true)
         {
             foreach (var item in items)
             {
                 if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
                 {
-                    FloatMessage.S.ShowMsg("材料不足");
-                    //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "材料不足！");
                     return false;
                 }
             }

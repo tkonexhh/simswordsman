@@ -93,7 +93,7 @@ namespace GameWish.Game
         /// <summary>
         /// 仓库增加原材料
         /// </summary>
-        OnAddRawMaterialEvent,
+        OnRawMaterialChangeEvent,
         #endregion
 
         #region 感叹号相关

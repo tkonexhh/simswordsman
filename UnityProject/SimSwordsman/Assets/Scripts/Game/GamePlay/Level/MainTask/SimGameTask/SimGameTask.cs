@@ -147,7 +147,7 @@ namespace GameWish.Game
                             MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)item.id), medicRan);
                             rewards.Add(new MedicineReward(item.id, medicRan));
                             break;
-                        case TaskRewardType.Kungfu:
+                        case TaskRewardType.Kongfu:
                             int kungfuRan = Random.Range(item.count1, item.count1 + 1);
                             MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)item.id), kungfuRan);
                             rewards.Add(new KongfuReward(item.id, kungfuRan));
