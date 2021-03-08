@@ -17,6 +17,8 @@ namespace GameWish.Game
             if (m_KeyID.HasValue)
             {
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID.Value), Count * bonus);
+
+                AudioManager.S.PlayCollectSound(m_KeyID.Value);
             }
         }
 
