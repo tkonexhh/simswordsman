@@ -75,6 +75,7 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(2);
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
 
+            AudioManager.S.OnInit();
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
@@ -192,6 +193,7 @@ namespace GameWish.Game
                 {
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
                 }
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);

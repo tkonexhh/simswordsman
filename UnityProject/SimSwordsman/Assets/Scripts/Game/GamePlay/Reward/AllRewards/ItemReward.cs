@@ -18,6 +18,8 @@ namespace GameWish.Game
 		{
             //Log.e("»ñµÃ" + m_TDItem.name + m_Count);
             MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_KeyID), Count);
+
+            AudioManager.S.PlayCollectSound(m_KeyID);
         }
 
 		public override string RewardName()

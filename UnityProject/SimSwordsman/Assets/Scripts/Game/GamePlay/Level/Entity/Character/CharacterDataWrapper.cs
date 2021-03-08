@@ -258,6 +258,15 @@ namespace GameWish.Game
 
         #endregion
 
+        public CollectedObjType GetCollectObjType() {
+            return collectedObjType;
+        }
+
+        public bool IsWoman() 
+        {
+            return bodyId == 1;
+        }
+
         /// <summary>
         /// 设置人物的状态
         /// </summary>
