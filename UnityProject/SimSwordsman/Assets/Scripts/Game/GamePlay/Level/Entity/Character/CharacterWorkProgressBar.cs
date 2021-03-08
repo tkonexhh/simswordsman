@@ -13,15 +13,23 @@ namespace GameWish.Game
 
         private Material m_Mat;
 
-        private void Start()
+        public Material Mat 
         {
-            m_Mat = m_ProgressBar.GetComponent<SpriteRenderer>().material;
-            SetPercent(0);
+            get {
+                if (m_Mat == null) {
+                    m_Mat = m_ProgressBar.GetComponent<SpriteRenderer>().material;
+                    SetPercent(0);
+                }
+
+                return m_Mat;
+            }
         }
 
         public void SetPercent(float percent)
         {
-            m_Mat.SetFloat("_FillPercent", percent);
+            if (Mat != null) {
+                Mat.SetFloat("_FillPercent", percent);
+            }            
         }
     }
 

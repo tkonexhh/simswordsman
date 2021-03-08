@@ -132,6 +132,7 @@ namespace GameWish.Game
         OnBattleFailed,
         OnBattleSuccessed,
         OnBattleMoveEnd,
+        OnBattleAtkStart,
         OnBattleAtkEnd,
         OnBattleAtkEvent,
 

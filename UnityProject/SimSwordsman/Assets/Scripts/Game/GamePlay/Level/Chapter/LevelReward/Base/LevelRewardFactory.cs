@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class LevelRewardFactory
-	{
+    public class LevelRewardFactory
+    {
         public static LevelReward SpawnLevelReward(RewardItemType rewardType, string[] paramStrs)
         {
             LevelReward levelReward = null;
@@ -16,9 +16,9 @@ namespace GameWish.Game
                 case RewardItemType.Exp_Role:
                     levelReward = new ExpCharacterReward(rewardType, paramStrs);
                     break;
-                case RewardItemType.Exp_Kongfu:
-                    levelReward = new ExpKongfuReward(rewardType, paramStrs);
-                    break;
+                // case RewardItemType.Exp_Kongfu:
+                //     levelReward = new ExpKongfuReward(rewardType, paramStrs);
+                //     break;
                 case RewardItemType.Coin:
                     levelReward = new MoneyReward(rewardType, paramStrs);
                     break;
@@ -39,6 +39,6 @@ namespace GameWish.Game
 
             return levelReward;
         }
-	}
-	
+    }
+
 }

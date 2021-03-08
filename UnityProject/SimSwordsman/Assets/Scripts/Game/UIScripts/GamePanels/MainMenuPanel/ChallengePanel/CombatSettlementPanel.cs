@@ -66,22 +66,22 @@ namespace GameWish.Game
             switch ((RewardItemType)param[0])
             {
                 case RewardItemType.Item:
-                    m_RewardList.Add(new ItemReward((RewardItemType)param[0], (int)param[1], (int)param[2]));
+                    m_RewardList.Add(new ItemReward((int)param[1], (int)param[2]));
                     break;
                 case RewardItemType.Armor:
-                    m_RewardList.Add(new ArmorReward((RewardItemType)param[0], (int)param[1], (int)param[2]));
+                    m_RewardList.Add(new ArmorReward((int)param[1], (int)param[2]));
                     break;
                 case RewardItemType.Arms:
-                    m_RewardList.Add(new ArmsReward((RewardItemType)param[0], (int)param[1], (int)param[2]));
+                    m_RewardList.Add(new ArmsReward((int)param[1], (int)param[2]));
                     break;
                 case RewardItemType.Kungfu:
-                    m_RewardList.Add(new KungfuReward((RewardItemType)param[0], (int)param[1], (int)param[2]));
+                    m_RewardList.Add(new KongfuReward((int)param[1], (int)param[2]));
                     break;
                 case RewardItemType.Food:
-                    m_RewardList.Add(new FoodsReward((RewardItemType)param[0], (int)param[1], (int)param[2]));
+                    m_RewardList.Add(new FoodsReward((int)param[2]));
                     break;
                 case RewardItemType.Coin:
-                    m_RewardList.Add(new CoinReward((RewardItemType)param[0], (int)param[1], (int)param[2]));
+                    m_RewardList.Add(new CoinReward((int)param[2]));
                     break;
                 default:
                     break;
@@ -163,10 +163,10 @@ namespace GameWish.Game
 
         private void ReceiveChallengeReward()
         {
-            if (m_IsSuccess)
-                m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(1));
-            else
-                m_LevelConfigInfo.levelRewardList.ForEach(i => i.ApplyReward(2));
+            //if (m_IsSuccess)
+            //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
+            //else
+            //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
         }
 
         private void RefreshFont()

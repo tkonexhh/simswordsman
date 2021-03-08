@@ -81,6 +81,7 @@ MonoBehaviour:
   state: 
   battleState: 
   m_Body: {fileID: 3463124831795743576}
+  m_HeadPos: {fileID: 0}
 --- !u!114 &7696235984069948748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +247,6 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: attack1
+  _animationName: idle
   loop: 1
   timeScale: 1

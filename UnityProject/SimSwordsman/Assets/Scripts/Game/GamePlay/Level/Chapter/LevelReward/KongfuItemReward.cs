@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class KongfuItemReward : LevelReward
+    public class KongfuItemReward : LevelReward
     {
         private int m_KongfuItemID;
         private int m_KongfuItemNumber;
@@ -14,7 +14,7 @@ namespace GameWish.Game
         public KongfuItemReward(RewardItemType rewardType, string[] paramStrs) : base(rewardType, paramStrs)
         {
             m_KongfuItemID = int.Parse(paramStrs[1]);
-            m_KongfuItemID = int.Parse(paramStrs[2]);
+            m_KongfuItemNumber = int.Parse(paramStrs[2]);
         }
 
         public override void ApplyReward(int par)
@@ -29,5 +29,5 @@ namespace GameWish.Game
             return m_KongfuItemNumber;
         }
     }
-	
+
 }

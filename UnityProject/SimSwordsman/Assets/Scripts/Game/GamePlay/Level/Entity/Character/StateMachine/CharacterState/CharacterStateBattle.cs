@@ -17,10 +17,10 @@ namespace GameWish.Game
         private float m_HitbackDistance = 0;
         private string m_NextAtkAnimName = string.Empty;
 
-        public BattleStateID CurState { get => m_CurState;}
+        public BattleStateID CurState { get => m_CurState; }
         public Vector2 MoveTargetPos { get => m_MoveTargetPos; set => m_MoveTargetPos = value; }
         public float HitbackDistance { get => m_HitbackDistance; set => m_HitbackDistance = value; }
-        public string NextAtkAnimName { get => m_NextAtkAnimName;}
+        public string NextAtkAnimName { get => m_NextAtkAnimName; }
 
         public CharacterStateBattle(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -29,7 +29,7 @@ namespace GameWish.Game
 
         public override void Enter(ICharacterStateHander handler)
         {
-            if(m_Controller == null)
+            if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             //SetState(BattleStateID.Idle);
@@ -96,6 +96,9 @@ namespace GameWish.Game
                     KungfuType kongfu = kongfuList[UnityEngine.Random.Range(0, kongfuList.Count)];
                     m_NextAtkAnimName = TDKongfuConfigTable.GetKungfuConfigInfo(kongfu).AnimName;
                 }
+                //TODO Test
+                m_NextAtkAnimName = "taizuchangquan";
+                Debug.LogError("Our Next Anim Name:" + m_NextAtkAnimName + "--" + kongfuList.Count);
             }
             else
             {

@@ -7,44 +7,34 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class KungfuReward : RewardBase
-	{
-		public KungfuReward(RewardItemType type, int id, int count) : base(type, id, count)
+    public class KongfuReward : RewardBase
+    {
+        public KongfuReward(int id, int count = 1) : base(RewardItemType.Kungfu, id, count) { }
+
+        public override void AcceptReward()
         {
-
+            if (m_KeyID.HasValue)
+            {
+                // List<RewardBase> rewards = new List<RewardBase>();
+                // rewards.Add(new KongfuReward(RewardItemType.Kongfu, m_KeyID.Value, Count));
+                // UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+                MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID.Value), Count);
+            }
         }
 
-		public override void AcceptReward()
-		{
-            List < RewardBase > rewards =   new List<RewardBase>();
-            rewards.Add(new KungfuReward(RewardItemType.Kungfu, m_KeyID, Count));
-            UIMgr.S.OpenPanel(UIID.RewardPanel,null, rewards);
-            MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)m_KeyID), Count);
-        }
-        
-		public override string RewardName()
-		{
-            return TDKongfuConfigTable.GetData(m_KeyID).kongfuName;
-		}
-
-		public override Sprite GetSprite()
-		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
-            return sprite;
-        }
-
-        public override void GetSpriteAsyn(GetSpriteCallBack callBack)
+        public override string RewardName()
         {
-            
+            if (m_KeyID.HasValue)
+                return TDKongfuConfigTable.GetData(m_KeyID.Value).kongfuName;
+
+            throw new NullReferenceException("m_KeyID");
         }
-
-        public override void SetCallBackAction(Action action)
-		{
-
-		}
         public override string SpriteName()
         {
-            return TDKongfuConfigTable.GetIconName((KungfuType)m_KeyID);
+            if (m_KeyID.HasValue)
+                return TDKongfuConfigTable.GetIconName((KungfuType)m_KeyID.Value);
+
+            throw new NullReferenceException("m_KeyID");
         }
     }
 }

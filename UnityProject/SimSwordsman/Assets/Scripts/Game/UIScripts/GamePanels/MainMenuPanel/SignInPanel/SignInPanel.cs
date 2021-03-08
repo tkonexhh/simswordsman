@@ -1,4 +1,4 @@
-using Qarth;
+ï»¿using Qarth;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,28 +6,27 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class SignInPanel : AbstractAnimPanel
-	{
+    public class SignInPanel : AbstractAnimPanel
+    {
         private Dictionary<int, SignInItem> m_SignItemDic = new Dictionary<int, SignInItem>();
-        private Action m_GetRewardPanelCallBack;
-
-        [SerializeField] private Color m_BlurMaskColor;
         [SerializeField] private Transform[] m_SignItemTrans;
-        [SerializeField] private Button m_BackBtn;//·µ»Ø°´Å¥
-        [SerializeField] private Button m_BlackBtn;//·µ»Ø°´Å¥
+        [SerializeField] private Button m_BackBtn;//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
+        [SerializeField] private Button m_BlackBtn;//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
+        [SerializeField] private Button m_AcceptBtn;//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
 
         //[Header("Image")]
-        //[SerializeField] private Image m_DaysShowNum;//ÏÔÊ¾Ç©µ½ÌìÊý
+        //[SerializeField] private Image m_DaysShowNum;//??????????
         //[SerializeField] private Image m_Title;
         //[SerializeField] private Image m_DayHint;
-
-        [SerializeField] private Button m_AcceptBtn;//·µ»Ø°´Å¥
 
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            //ÒôÐ§
+            //ï¿½ï¿½Ð§
             AudioMgr.S.PlaySound(Define.INTERFACE);
+            m_BackBtn.onClick.AddListener(OnClickClose);
+            m_BlackBtn.onClick.AddListener(OnClickClose);
+            m_AcceptBtn.onClick.AddListener(OnClickAccept);
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -38,9 +37,6 @@ namespace GameWish.Game
             InitSignItem();
             SignSystemMgr.S.weekSignState.Check();
 
-            //UIMgr.S.OpenPanel(UIID.BlurMaskPanel);
-
-            m_GetRewardPanelCallBack += GetRewardCallBack;
             //m_Title.sprite = UIMgrExtend.FindLanguageSprite(TDLanguageTable.Get("SignPanel_Title"));
             //m_DayHint.sprite = UIMgrExtend.FindLanguageSprite(TDLanguageTable.Get("SignPanel_DayItem"));
 
@@ -48,22 +44,6 @@ namespace GameWish.Game
             {
                 item.Value.SignItemCallBack = SignItemCallBack;
             }
-
-            m_BackBtn.onClick.AddListener(()=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                OnBackBtCallBack();
-            });
-            m_BlackBtn.onClick.AddListener(()=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                HideSelfWithAnim();
-            });
-            m_AcceptBtn.onClick.AddListener(()=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                OnClickAccept();
-            });
 
             UpdateSignItemStatus();
 
@@ -89,19 +69,21 @@ namespace GameWish.Game
         {
             base.OnClose();
 
-            m_BackBtn.onClick.RemoveListener(OnBackBtCallBack);
-            m_AcceptBtn.onClick.RemoveListener(OnClickAccept);
-
             foreach (var item in m_SignItemDic)
             {
                 item.Value.SignItemCallBack = null;
             }
-            
-            m_GetRewardPanelCallBack -= GetRewardCallBack;
+        }
+
+        void OnClickClose()
+        {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+            HideSelfWithAnim();
         }
 
         void OnClickAccept()
         {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
             foreach (var item in m_SignItemDic.Values)
             {
                 if (item.Status == SignInStatus.SignEnable)
@@ -112,12 +94,6 @@ namespace GameWish.Game
             }
         }
 
-        private void OnBackBtCallBack()
-        {
-            HideSelfWithAnim();
-            //UIMgrExtend.S.TryCloesPanelWithAnimation(UIID.BlurMaskPanel);
-        }
-
         protected override void BeforDestroy()
         {
             base.BeforDestroy();
@@ -125,31 +101,31 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ´´½¨SignItem²¢ÇÒ¼ÓÈë×Öµä¹ÜÀí
+        /// ï¿½ï¿½ï¿½ï¿½SignItemï¿½ï¿½ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
         /// </summary>
         private void InitSignItem()
         {
             ClearSignItem();
             if (TDDailySigninTable.dataList.Count != 7)
             {
-                Log.e("Ç©µ½Åä±íÊýÁ¿´íÎó");
+                Log.e("Ç©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 return;
             }
 
             for (int i = 0; i < TDDailySigninTable.dataList.Count; i++)
             {
-                int id = i;
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
-                SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
+                SignInItem item = new SignInItem(i, m_SignItemTrans[i], reward);
                 if (reward.RewardItem != RewardItemType.Kungfu)
                 {
+                    // Debug.LogError(reward.SpriteName());
                     item.m_IconImage.sprite = FindSprite(reward.SpriteName());
                 }
                 if (reward.RewardItem != RewardItemType.Coin)
                     item.m_IconImage.SetNativeSize();
 
-                m_SignItemDic.Add(id, item);
+                m_SignItemDic.Add(i, item);
             }
             EventSystem.S.Register(EngineEventID.OnSignStateChange, OnSignStateChange);
         }
@@ -169,7 +145,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ç©µ½³É¹¦
+        /// Ç©ï¿½ï¿½ï¿½É¹ï¿½
         /// </summary>
         /// <param name="id"></param>
         private void SignSuccess(int id)
@@ -183,18 +159,13 @@ namespace GameWish.Game
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase> { item.RewardCfg });
         }
 
-        private void GetRewardCallBack()
-        {
-            //HideSelfWithAnim();
-        }
-
         private void OnSignStateChange(int key, params object[] args)
         {
             UpdateSignItemStatus();
         }
 
         /// <summary>
-        /// ÇåÀíSignItemDic
+        /// ï¿½ï¿½ï¿½ï¿½SignItemDic
         /// </summary>
         private void ClearSignItem()
         {
@@ -206,7 +177,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¸üÐÂÇ©µ½Í¼±ê×´Ì¬
+        /// ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½Í¼ï¿½ï¿½×´Ì¬
         /// </summary>
         private void UpdateSignItemStatus()
         {
@@ -246,6 +217,6 @@ namespace GameWish.Game
                 }
             }
         }
-        
+
     }
 }

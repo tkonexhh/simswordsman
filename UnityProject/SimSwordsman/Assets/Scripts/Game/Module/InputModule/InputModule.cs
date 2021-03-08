@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using Qarth;
 using UnityEngine.SceneManagement;
@@ -34,21 +35,21 @@ namespace GameWish.Game
             if (PlayerPrefs.GetInt("channel_exit_key", 0) == 1)
             {
                 FloatMessage.S.ShowMsg(TDLanguageTable.Get("Press Again to Quit"));
-            }           
+            }
         }
 
         private void OnClickF1()
         {
-            MeasureUnitHelper.AddCount(0,0,-50,-500);
+            MeasureUnitHelper.AddCount(0, 0, -50, -500);
             Log.i(MeasureUnitHelper.GetTotalCount());
         }
         int adtype = (int)AdType.PowerUp;
         private void OnClickF2()
         {
 
-           //  EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonGiant);
+            //  EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonGiant);
 
-             EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonReinforcements);
+            EventSystem.S.Send(EventID.OnShowPopAdUI, AdType.SummonReinforcements);
 
             // adtype++;
             // UIMgrExtend.S.OpenOccupyOverPanel(TDStageTable.GetData(101));
@@ -59,11 +60,9 @@ namespace GameWish.Game
 
         private void OnClickF3()
         {
-            //GameDataMgr.S.GetPlayerInfoData().AddCoinNum(10000);
-
-            //  AdEffectHandleMgr.S.Handle(AdType.AutoDoubleSummon, null);
-            // UIMgrExtend.S.OpenAdStaticShowPanel(AdType.AutoDoubleSummon);
-            //MagicCloudMgr.S.StartCloudAttack();
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(new KongfuReward(1001));
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
         }
         int add = 1;
         private void OnClickF4()

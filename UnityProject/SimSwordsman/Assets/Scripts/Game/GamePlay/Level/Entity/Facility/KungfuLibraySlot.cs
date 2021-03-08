@@ -14,6 +14,15 @@ namespace GameWish.Game
             if (slotState == SlotState.CopyScriptures)
                 InitTimerUpdate();
         }
+        public override float GetProgress() 
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
+
+            int remainingTime = duration - ComputingTime(StartTime);
+
+            return (remainingTime * 1.0f) / duration;
+        }
         public int GetDurationTime()
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);

@@ -60,10 +60,9 @@ namespace GameWish.Game
                 return false;
             return CheckSlotInfo();
         }
-
-        public BaseSlot GetIdlePracticeSlot()
+        public BaseSlot GetIdlePracticeSlot(FacilityType  facilityType)
         {
-            return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty());
+            return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));
         }
         private void InitPracticeField()
         {

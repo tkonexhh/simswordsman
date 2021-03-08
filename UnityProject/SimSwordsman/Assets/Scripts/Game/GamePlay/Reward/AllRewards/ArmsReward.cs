@@ -7,42 +7,29 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class ArmsReward : RewardBase
-	{
-		public ArmsReward(RewardItemType type, int id, int count) : base(type, id, count)
+    public class ArmsReward : RewardBase
+    {
+        public ArmsReward(int id, int count) : base(RewardItemType.Arms, id, count) { }
+
+        public override void AcceptReward()
         {
-
+            if (m_KeyID.HasValue)
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID.Value, Step.One), Count);
         }
 
-		public override void AcceptReward()
-		{
-            MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_KeyID, Step.One), Count);
-        }
-        
-		public override string RewardName()
-		{
-			return TDEquipmentConfigTable.GetData(m_KeyID).name;
-		}
-
-		public override Sprite GetSprite()
-		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
-            return sprite;
-        }
-
-        public override void GetSpriteAsyn(GetSpriteCallBack callBack)
+        public override string RewardName()
         {
-            
+            if (m_KeyID.HasValue)
+                return TDEquipmentConfigTable.GetData(m_KeyID.Value).name;
+            throw new NullReferenceException("m_KeyID");
         }
 
-        public override void SetCallBackAction(Action action)
-		{
-
-		}
         public override string SpriteName()
         {
-            return TDEquipmentConfigTable.GetData(m_KeyID).iconName;
+            if (m_KeyID.HasValue)
+                return TDEquipmentConfigTable.GetData(m_KeyID.Value).iconName;
+            throw new NullReferenceException("m_KeyID");
         }
     }
-	
+
 }

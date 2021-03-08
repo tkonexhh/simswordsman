@@ -15,7 +15,7 @@ namespace GameWish.Game
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
-        int m_AppearVisitorCountdown = 90;
+        int m_AppearVisitorCountdown = 150;
         /// <summary>
         /// 客人消失倒计时
         /// </summary>
@@ -131,7 +131,10 @@ namespace GameWish.Game
             //加权平均
             int all = 0;
             foreach (var item in idList)
+            {
                 all += TDVisitorRewardConfigTable.dataList[item].weight;
+            }
+
             int value = RandomHelper.Range(0, all + 1);
             int resultindex = 1;
             int temp = 0;
@@ -153,13 +156,13 @@ namespace GameWish.Game
                 {
                     int nowQingRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.QingRock);
                     int nowWuWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.WuWood);
-                    reward = new ItemReward(RewardItemType.Item, nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
+                    reward = new ItemReward(nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
                 }
                 else if (reward.KeyID == (int)RawMaterial.CloudRock || reward.KeyID == (int)RawMaterial.SilverWood)
                 {
                     int nowCloudRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.CloudRock);
                     int nowSliverWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverWood);
-                    reward = new ItemReward(RewardItemType.Item, nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
+                    reward = new ItemReward(nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
                 }
             }
             return reward;
