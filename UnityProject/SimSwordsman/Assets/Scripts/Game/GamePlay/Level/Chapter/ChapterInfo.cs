@@ -84,12 +84,13 @@ namespace GameWish.Game
             try
             {
                 string[] rewards = rewardStr.Split(';');
+                // Debug.LogError(rewards.Length);
                 for (int i = 0; i < rewards.Length; i++)
                 {
+                    // Debug.LogError(rewards[i]);
                     // string[] reward = rewards[i].Split('|');
                     // RewardItemType rewardType = EnumUtil.ConvertStringToEnum<RewardItemType>(reward[0]);
                     RewardBase levelReward = RewardMgr.S.GetRewardBase(rewards[i]);//LevelRewardFactory.SpawnLevelReward(rewardType, reward);
-                    // if()
                     levelRewardList.Add(levelReward);
                 }
             }

@@ -7,10 +7,8 @@ namespace GameWish.Game
 {
     public class ArmorReward : RewardBase
     {
-        public ArmorReward(int id, int count) : base(RewardItemType.Armor, id, count)
-        {
-
-        }
+        public ArmorReward(ArmorType id, int count) : base(RewardItemType.Armor, (int)id, count) { }
+        public ArmorReward(int id, int count) : base(RewardItemType.Armor, id, count) { }
 
         public override void AcceptReward(int bonus = 1)
         {
