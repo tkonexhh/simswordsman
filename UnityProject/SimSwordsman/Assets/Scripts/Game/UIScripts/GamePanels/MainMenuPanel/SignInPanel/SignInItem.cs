@@ -55,7 +55,7 @@ namespace GameWish.Game
                 SignItemCallBack?.Invoke(m_ID);
             });
 
-            Debug.LogError(RewardCfg.RewardItem);
+            // Debug.LogError(RewardCfg.RewardItem);
             if (RewardCfg.RewardItem == RewardItemType.Kongfu)
             {
                 m_KonfuImage.gameObject.SetActive(true);

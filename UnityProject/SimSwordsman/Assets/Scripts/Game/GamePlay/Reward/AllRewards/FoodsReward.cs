@@ -16,8 +16,7 @@ namespace GameWish.Game
 
         public override void AcceptReward()
         {
-            Log.e("?????? -- ??????");
-            //GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
+            GameDataMgr.S.GetPlayerData().AddFoodNum(Count);
         }
 
         public override string RewardName()
@@ -28,7 +27,7 @@ namespace GameWish.Game
 
         public override string SpriteName()
         {
-            return "";
+            return "Baozi";
         }
     }
 }

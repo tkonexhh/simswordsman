@@ -17,10 +17,7 @@ namespace GameWish.Game
 
         public List<int> CharacterIDs = new List<int>();
         public List<CharacterController> m_RecordCharacterController = new List<CharacterController>();
-        private int taskId;
-        private string tableName;
-        private TaskState taskState;
-        private int taskTime;
+
 
         public SimGameTask(int taskId, string tableName, TaskState taskState, int taskTime, List<int> recordCharacterID = null)
         {
