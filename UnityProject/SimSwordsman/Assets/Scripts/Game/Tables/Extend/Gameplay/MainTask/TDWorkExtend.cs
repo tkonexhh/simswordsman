@@ -9,9 +9,10 @@ namespace GameWish.Game
 {
     public partial class TDWork
     {
+        public List<string> workTalkLst;
         public void Reset()
         {
-
+            workTalkLst = Helper.String2ListString(workTalk, ";");
         }
     }
 }

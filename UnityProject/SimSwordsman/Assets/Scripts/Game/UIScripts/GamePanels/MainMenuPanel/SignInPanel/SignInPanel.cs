@@ -6,28 +6,27 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class SignInPanel : AbstractAnimPanel
-	{
+    public class SignInPanel : AbstractAnimPanel
+    {
         private Dictionary<int, SignInItem> m_SignItemDic = new Dictionary<int, SignInItem>();
-        private Action m_GetRewardPanelCallBack;
-
-        [SerializeField] private Color m_BlurMaskColor;
         [SerializeField] private Transform[] m_SignItemTrans;
         [SerializeField] private Button m_BackBtn;//返回按钮
         [SerializeField] private Button m_BlackBtn;//返回按钮
+        [SerializeField] private Button m_AcceptBtn;//返回按钮
 
         //[Header("Image")]
-        //[SerializeField] private Image m_DaysShowNum;//显示签到天数
+        //[SerializeField] private Image m_DaysShowNum;//??????????
         //[SerializeField] private Image m_Title;
         //[SerializeField] private Image m_DayHint;
-
-        [SerializeField] private Button m_AcceptBtn;//返回按钮
 
         protected override void OnUIInit()
         {
             base.OnUIInit();
             //音效
             AudioMgr.S.PlaySound(Define.INTERFACE);
+            m_BackBtn.onClick.AddListener(OnClickClose);
+            m_BlackBtn.onClick.AddListener(OnClickClose);
+            m_AcceptBtn.onClick.AddListener(OnClickAccept);
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -38,9 +37,6 @@ namespace GameWish.Game
             InitSignItem();
             SignSystemMgr.S.weekSignState.Check();
 
-            //UIMgr.S.OpenPanel(UIID.BlurMaskPanel);
-
-            m_GetRewardPanelCallBack += GetRewardCallBack;
             //m_Title.sprite = UIMgrExtend.FindLanguageSprite(TDLanguageTable.Get("SignPanel_Title"));
             //m_DayHint.sprite = UIMgrExtend.FindLanguageSprite(TDLanguageTable.Get("SignPanel_DayItem"));
 
@@ -48,22 +44,6 @@ namespace GameWish.Game
             {
                 item.Value.SignItemCallBack = SignItemCallBack;
             }
-
-            m_BackBtn.onClick.AddListener(()=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                OnBackBtCallBack();
-            });
-            m_BlackBtn.onClick.AddListener(()=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                HideSelfWithAnim();
-            });
-            m_AcceptBtn.onClick.AddListener(()=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                OnClickAccept();
-            });
 
             UpdateSignItemStatus();
 
@@ -89,19 +69,21 @@ namespace GameWish.Game
         {
             base.OnClose();
 
-            m_BackBtn.onClick.RemoveListener(OnBackBtCallBack);
-            m_AcceptBtn.onClick.RemoveListener(OnClickAccept);
-
             foreach (var item in m_SignItemDic)
             {
                 item.Value.SignItemCallBack = null;
             }
-            
-            m_GetRewardPanelCallBack -= GetRewardCallBack;
+        }
+
+        void OnClickClose()
+        {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+            HideSelfWithAnim();
         }
 
         void OnClickAccept()
         {
+            AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
             foreach (var item in m_SignItemDic.Values)
             {
                 if (item.Status == SignInStatus.SignEnable)
@@ -110,12 +92,6 @@ namespace GameWish.Game
                     return;
                 }
             }
-        }
-
-        private void OnBackBtCallBack()
-        {
-            HideSelfWithAnim();
-            //UIMgrExtend.S.TryCloesPanelWithAnimation(UIID.BlurMaskPanel);
         }
 
         protected override void BeforDestroy()
@@ -138,18 +114,18 @@ namespace GameWish.Game
 
             for (int i = 0; i < TDDailySigninTable.dataList.Count; i++)
             {
-                int id = i;
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
-                SignInItem item = new SignInItem(id, m_SignItemTrans[i], reward);
+                SignInItem item = new SignInItem(i, m_SignItemTrans[i], reward);
                 if (reward.RewardItem != RewardItemType.Kongfu)
                 {
+                    // Debug.LogError(reward.SpriteName());
                     item.m_IconImage.sprite = FindSprite(reward.SpriteName());
                 }
                 if (reward.RewardItem != RewardItemType.Coin)
                     item.m_IconImage.SetNativeSize();
 
-                m_SignItemDic.Add(id, item);
+                m_SignItemDic.Add(i, item);
             }
             EventSystem.S.Register(EngineEventID.OnSignStateChange, OnSignStateChange);
         }
@@ -181,11 +157,6 @@ namespace GameWish.Game
 
             item.RewardCfg.AcceptReward();
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase> { item.RewardCfg });
-        }
-
-        private void GetRewardCallBack()
-        {
-            //HideSelfWithAnim();
         }
 
         private void OnSignStateChange(int key, params object[] args)
@@ -246,6 +217,6 @@ namespace GameWish.Game
                 }
             }
         }
-        
+
     }
 }

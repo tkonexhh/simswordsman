@@ -32,7 +32,7 @@ namespace GameWish.Game
         public int unlockHomeLevel;
         public CollectedObjType collectedObjType;
         public string workName;
-        public string workTalk;
+        public List<string> workTalk;
         public List<TaskReward> itemRewards = new List<TaskReward>();
         public List<TaskReward> specialRewards = new List<TaskReward>();
         public int workTime;
@@ -47,7 +47,7 @@ namespace GameWish.Game
             this.unlockHomeLevel = tdData.homeLevel;
             this.collectedObjType = EnumUtil.ConvertStringToEnum<CollectedObjType>(tdData.collectObjType);
             this.workName = tdData.workName;
-            this.workTalk = tdData.workTalk;
+            this.workTalk = tdData.workTalkLst;
             ParseReward(tdData.reward);
             ParseSpecialReward(tdData.speReward);
             this.workTime = tdData.workTime;
@@ -84,6 +84,11 @@ namespace GameWish.Game
                     this.specialRewards.Add(taskReward);
                 }
             }
+        }
+
+        public string RandomTalk()
+        {
+            return this.workTalk[RandomHelper.Range(0, this.workTalk.Count)];
         }
     }
 }

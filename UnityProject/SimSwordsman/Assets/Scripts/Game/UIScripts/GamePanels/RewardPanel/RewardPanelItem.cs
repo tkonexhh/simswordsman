@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class RewardPanelItem : MonoBehaviour
-	{
+    public class RewardPanelItem : MonoBehaviour
+    {
         [SerializeField]
         private Image m_Icon;
         [SerializeField]
@@ -14,11 +14,13 @@ namespace GameWish.Game
         private Text m_Count;
         [SerializeField]
         private Text m_RewardName;
+        [SerializeField]
+        private GameObject m_CountBg;
         private ResLoader m_ResLoader;
         private GameObject obj;
         private void OnDisable()
         {
-            if (obj!=null)
+            if (obj != null)
             {
                 DestroyImmediate(obj);
                 m_ResLoader.ReleaseRes("NewSkillHeroUnlock");
@@ -57,7 +59,8 @@ namespace GameWish.Game
 
             m_RewardName.text = reward.RewardName();
             m_Count.text = "+" + reward.Count;
+            m_CountBg.SetActive(reward.Count > 1);
         }
-    
+
     }
 }

@@ -1024,6 +1024,7 @@
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpCharacterReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpKongfuReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\FoodReward.cs" />
+     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\KongfuItemReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\MoneyReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\PropItemReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Clan\ClanType.cs" />
@@ -1707,6 +1708,7 @@
      <None Include="Assets\Res\FolderMode\Enemy\Animal\Boar\pig.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Emei\Emei1\EMiDiZi01.atlas.txt" />
      <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\DOTween46.xml" />
+     <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Saodiseng\saodiseng.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Qiaofeng\qf.atlas.txt" />
      <None Include="Assets\Qarth\Plugins\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\StreamingAssets\config\CharacterName.txt" />
@@ -1725,6 +1727,7 @@
      <None Include="Assets\StreamingAssets\config\PurchaseContent.txt" />
      <None Include="Assets\StreamingAssets\config\ItemConfig.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Xuankong\hkfz.atlas.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Wokou\Wokou3\wkou_3.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Wudu\Wudu1\wud_1.atlas.txt" />
      <None Include="Assets\Qarth\Plugins\Demigiant\DemiLib\Core\DemiLib.xml" />
      <None Include="Assets\Res\FolderMode\Effects\BattleEffects\Shaders\Blend_TwoSides.shader" />
@@ -1733,6 +1736,8 @@
      <None Include="Assets\Res\FolderMode\Effects\BattleEffects\Shaders\Blend_CenterGlow.shader" />
      <None Include="Assets\StreamingAssets\config\social_adapter.txt" />
      <None Include="Assets\Res\FolderMode\Characters\Character\Normal\CharacterNormal4\normal_4.atlas.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Wokou\Wokou2\wkou_2.atlas.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Huotouseng\HuoTouSeng.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\ad_config.txt" />
      <None Include="Assets\Qarth\Plugins\Demigiant\readme_DOTweenPro.txt" />
      <None Include="Assets\Res\FolderMode\Characters\Character\Normal\CharacterNormal2\normal_2.atlas.txt" />
@@ -1745,12 +1750,14 @@
      <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\ReleaseNotes.txt" />
      <None Include="Assets\StreamingAssets\config\FacilityLobby.txt" />
      <None Include="Assets\Resources\Illegal\IllegalUrls.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Huashan\Huashan1\hsp_1.atlas.txt" />
      <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouchControls\Documentation\Version 2.0.txt" />
      <None Include="Assets\StreamingAssets\config\app_config.txt" />
      <None Include="Assets\3rdAssets\EasyTouchBundle\EasyTouch\How to migrate from EasyTouch 4.X.txt" />
      <None Include="Assets\StreamingAssets\config\LevelConfig.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Wudang\Wudang2\wd_2.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Shader\Custom\UIClipImage.shader" />
+     <None Include="Assets\Res\FolderMode\Enemy\Emei\Juejueshitai\jjst.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\FacilityPracticeField.txt" />
      <None Include="Assets\StreamingAssets\config\FacilityLivableRoom.txt" />
      <None Include="Assets\StreamingAssets\config\ChapterConfig.txt" />
@@ -1759,6 +1766,7 @@
      <None Include="Assets\Res\FolderMode\Shader\Custom\OutlineEx.shader" />
      <None Include="Assets\StreamingAssets\config\DailyTask.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Xiaoyao\Xiaoyao3\XiaoYaoDiZi03.atlas.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Wokou\Wokou1\wkou_1.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Animal\Wolf\wolf.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\FacilityPatrolRoom.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Wudang\ZhangZhenRen\zzr.atlas.txt" />
@@ -1769,6 +1777,7 @@
      <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Gaibang2\gb_2.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\ad_native_view.txt" />
      <None Include="Assets\StreamingAssets\config\const.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Huashan\Huashan3\hsp_3.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Shaolin1\sl_1.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Wudu\Wudu3\wud_3.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\VisitorRewardConfig.txt" />
@@ -1777,6 +1786,7 @@
      <None Include="Assets\SDKAdapter\JPush\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\StreamingAssets\config\FacilityWarehouse.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\ShaoLin\Shaolin2\sl_2.atlas.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Huashan\Huashan2\hsp_2.atlas.txt" />
      <None Include="Assets\StreamingAssets\config\SectName.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Gaibang\Gaibang3\gb_3.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Shanzei\Shanzei2\sz_3.atlas.txt" />
@@ -1792,6 +1802,7 @@
      <None Include="Assets\Res\FolderMode\Enemy\Xiaoyao\Xiaoyao2\XiaoYaoDiZi02.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Shanzei\Shanzei1\sz_2.atlas.txt" />
      <None Include="Assets\Res\FolderMode\Enemy\Animal\Deer\deer.atlas.txt" />
+     <None Include="Assets\Res\FolderMode\Enemy\Xiaoyao\Xiaoyaozi\XiaoYaoZI.atlas.txt" />
      <None Include="Assets\Resources\Illegal\IllegalKeywords.txt" />
      <None Include="Assets\StreamingAssets\config\language_tw.txt" />
      <None Include="Assets\StreamingAssets\config\Talk.txt" />
