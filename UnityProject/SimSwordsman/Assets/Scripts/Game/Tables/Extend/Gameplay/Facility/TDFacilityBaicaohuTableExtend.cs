@@ -35,7 +35,10 @@ namespace GameWish.Game
 
             return null;
         }
-
+        public static Dictionary<int, BaicaohuInfo> GetLevelInfoDic()
+        {
+            return levelInfoDic;
+        }
         private static FacilityLevelInfo PassLevelInfo(int level)
         {
             FacilityLevelInfo levelInfo = null;

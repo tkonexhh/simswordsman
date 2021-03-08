@@ -132,7 +132,7 @@ namespace GameWish.Game
             return 0;
         }
         /// <summary>
-        /// 完成任务后领取奖励
+        /// 完成任务
         /// </summary>
         public void ClaimReward(int taskId)
         {
@@ -141,7 +141,7 @@ namespace GameWish.Game
             SimGameTask taskItem = m_CurTaskList.FirstOrDefault(i => i.TaskId == taskId );
             if (taskItem != null)
             {
-                taskItem.ClaimReward(true);
+                //taskItem.ClaimReward(true);
                 m_CurTaskList.Remove(taskItem);
             }
             RefreshRedPoint(m_CurTaskList.Count);

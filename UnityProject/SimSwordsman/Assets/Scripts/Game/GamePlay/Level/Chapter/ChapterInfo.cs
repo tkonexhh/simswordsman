@@ -42,7 +42,7 @@ namespace GameWish.Game
         public string battleName;
         public string enemyHeadIcon;
         public long recommendAtkValue;
-        public List<LevelReward> levelRewardList = new List<LevelReward>();
+        public List<RewardBase> levelRewardList = new List<RewardBase>();
         public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
         public LevelConfigInfo(int chapterId, int level, string desc, int recommendAtk)
         {
@@ -56,9 +56,9 @@ namespace GameWish.Game
         {
             foreach (var item in levelRewardList)
             {
-                if (item.rewardType== RewardItemType.Exp_Role)
+                if (item.RewardItem == RewardItemType.Exp_Role)
                 {
-                    return int.Parse(item.paramStrs[1]);
+                    return item.Count;
                 }
             }
             return 0;
@@ -84,11 +84,13 @@ namespace GameWish.Game
             try
             {
                 string[] rewards = rewardStr.Split(';');
+                // Debug.LogError(rewards.Length);
                 for (int i = 0; i < rewards.Length; i++)
                 {
-                    string[] reward = rewards[i].Split('|');
-                    RewardItemType rewardType = EnumUtil.ConvertStringToEnum<RewardItemType>(reward[0]);
-                    LevelReward levelReward = LevelRewardFactory.SpawnLevelReward(rewardType, reward);
+                    // Debug.LogError(rewards[i]);
+                    // string[] reward = rewards[i].Split('|');
+                    // RewardItemType rewardType = EnumUtil.ConvertStringToEnum<RewardItemType>(reward[0]);
+                    RewardBase levelReward = RewardMgr.S.GetRewardBase(rewards[i]);//LevelRewardFactory.SpawnLevelReward(rewardType, reward);
                     levelRewardList.Add(levelReward);
                 }
             }

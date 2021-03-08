@@ -16,6 +16,9 @@ namespace GameWish.Game
         protected FacilityState m_FacilityState;
         protected int m_SubId; // TODO: delete
 
+        private bool UpGradeRedPoint;
+        private bool SubRedPoint;
+
         #region IEntityController
         public virtual void Init()
         {
@@ -38,14 +41,14 @@ namespace GameWish.Game
         private List<FacilityType> m_HavaWorkingBubbleFacility = new List<FacilityType>();
         ~FacilityController()
         {
-            EventSystem.S.UnRegister(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnRawMaterialChangeEvent, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
         }
         public FacilityController(FacilityType facilityType/*, int subId*/, FacilityView view)
         {
-            EventSystem.S.Register(EventID.OnAddRawMaterialEvent, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnRawMaterialChangeEvent, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
-            
+
             m_FacilityType = facilityType;
             //m_SubId = subId;
 
@@ -70,7 +73,7 @@ namespace GameWish.Game
         {
             switch ((EventID)key)
             {
-                case EventID.OnAddRawMaterialEvent:
+                case EventID.OnRawMaterialChangeEvent:
                     if (m_FacilityType == FacilityType.BulletinBoard)
                         break;
                     CheckUpgradeConditions();
@@ -101,32 +104,41 @@ namespace GameWish.Game
                 default:
                     break;
             }
-           
+
             List<CostItem> costItems = null;
 
             if (facilityLevelInfo != null)
                 costItems = facilityLevelInfo.GetUpgradeResCosts();
             if (facilityLevelInfo == null || costItems == null)
                 return;
-            
+
             if (CheackIsBuild(facilityLevelInfo, costItems) && !m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
             {
-                m_View.SetTips(true);
+                UpGradeRedPoint = true;
             }
             else
             {
-                m_View.SetTips(false);
-                CheackRecruitmentOrder();
+                UpGradeRedPoint = false;
             }
+            SubRedPoint = CheckSubFunc();
+            RefreshRedPoint();
         }
 
-        private void CheackRecruitmentOrder()
+        private void RefreshRedPoint()
         {
-            int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
-            if (allCount>0)
-                EventSystem.S.Send(EventID.OnSendRecruitable,true);
+            if (SubRedPoint || UpGradeRedPoint)
+                m_View.SetTips(true);
             else
-                EventSystem.S.Send(EventID.OnSendRecruitable, false);
+                m_View.SetTips(false);
+        }
+
+        /// <summary>
+        /// 检测子类红点功能
+        /// </summary>
+        protected virtual bool CheckSubFunc()
+        {
+            SubRedPoint = false;
+            return SubRedPoint;
         }
 
         private bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
@@ -138,7 +150,7 @@ namespace GameWish.Game
             if (CheckPropIsEnough(facilityLevelInfo, costItems))
                 return true;
             return false;
-        }  
+        }
         private bool CheckPropIsEnough(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
         {
             for (int i = 0; i < costItems.Count; i++)
@@ -153,7 +165,7 @@ namespace GameWish.Game
             else
                 return false;
         }
-        public void SetState(FacilityState facilityState, bool isFile = false)
+        public virtual void SetState(FacilityState facilityState, bool isFile = false)
         {
             m_FacilityState = facilityState;
 

@@ -5,44 +5,30 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class ArmorReward : RewardBase
-	{
-		public ArmorReward(RewardItemType type, int id, int count) : base(type, id, count)
+    public class ArmorReward : RewardBase
+    {
+        public ArmorReward(ArmorType id, int count) : base(RewardItemType.Armor, (int)id, count) { }
+        public ArmorReward(int id, int count) : base(RewardItemType.Armor, id, count) { }
+
+        public override void AcceptReward(int bonus = 1)
         {
-
+            if (m_KeyID.HasValue)
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)m_KeyID.Value, Step.One), Count * bonus);
         }
 
-		public override void AcceptReward()
-		{
-            //Log.e("»ñµÃ" + m_Equip.Name + m_Count);
-            MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)m_KeyID, Step.One), Count);
-        }
-        
-		public override string RewardName()
-		{
-			return TDEquipmentConfigTable.GetData(m_KeyID).name;
-		}
-
-		public override Sprite GetSprite()
-		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
-            return sprite;
-        }
-
-        public override void GetSpriteAsyn(GetSpriteCallBack callBack)
+        public override string RewardName()
         {
-            
+            if (m_KeyID.HasValue)
+                return TDEquipmentConfigTable.GetData(m_KeyID.Value).name;
+            throw new NullReferenceException("m_KeyID");
         }
-
-        public override void SetCallBackAction(Action action)
-		{
-
-		}
 
         public override string SpriteName()
         {
-            return TDEquipmentConfigTable.GetData(m_KeyID).iconName;
+            if (m_KeyID.HasValue)
+                return TDEquipmentConfigTable.GetData(m_KeyID.Value).iconName;
+            throw new NullReferenceException("m_KeyID");
         }
     }
-	
+
 }

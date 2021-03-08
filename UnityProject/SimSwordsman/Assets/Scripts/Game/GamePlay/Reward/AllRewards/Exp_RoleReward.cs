@@ -5,39 +5,27 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class Exp_RoleReward : RewardBase
-	{
-		public Exp_RoleReward(RewardItemType type, int id, int count) : base(type, id, count)
+    public class Exp_RoleReward : RewardBase
+    {
+        public Exp_RoleReward(int id, int count) : base(RewardItemType.Exp_Role, id, count)
         {
 
         }
 
-		public override void AcceptReward()
-		{
-            Log.e("获得弟子经验：" + Count);
-			//GameDataMgr.S.GetPropsDbData().AddCountFromType(m_BoostType, count);
-		}
-        
-		public override string RewardName()
-		{
-			return "弟子经验";
-		}
-
-		public override Sprite GetSprite()
-		{
-            Sprite sprite = null;// Resources.Load("UI/BoostItem/" + m_TDItem.icon, typeof(Sprite)) as Sprite;
-            return sprite;
-        }
-
-        public override void GetSpriteAsyn(GetSpriteCallBack callBack)
+        public override void AcceptReward(int bonus = 1)
         {
-            
+            if (!m_KeyID.HasValue)
+                return;
+
+            var characterItem = MainGameMgr.S.CharacterMgr.GetCharacterController(m_KeyID.Value);
+            characterItem.AddExp(Count * bonus);
         }
 
-        public override void SetCallBackAction(Action action)
-		{
+        public override string RewardName()
+        {
+            return "寮熷瓙缁忛獙";
+        }
 
-		}
         public override string SpriteName()
         {
             return "";

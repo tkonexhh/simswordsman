@@ -81,38 +81,6 @@ namespace GameWish.Game
                     break;
             }
         }
-        private void TaskCallback(object obj)
-        {
-            SimGameTask simGameTask = obj as SimGameTask;
-
-            switch (simGameTask.GetCurTaskState())
-            {
-                case TaskState.NotStart:
-                    UIMgr.S.OpenPanel(UIID.TaskDetailsPanel, simGameTask);
-                    break;
-                case TaskState.Unclaimed:
-                    MainGameMgr.S.CommonTaskMgr.ClaimReward(simGameTask.TaskId);
-                    if (m_TaskObjDic.ContainsKey(simGameTask.TaskId))
-                    {
-                        DestroyImmediate(m_TaskObjDic[simGameTask.TaskId]);
-                        m_TaskObjDic[simGameTask.TaskId] = null;
-                    }
-
-                    //if (simGameTask.CommonTaskItemInfo.triggerType == SimGameTaskTriggerType.Main)
-                    //{
-                    //    List<int> nextTasks = simGameTask.CommonTaskItemInfo.nextTaskIdList;
-                    //    foreach (int taskId in nextTasks)
-                    //    {
-                    //        MainTaskItemInfo taskInfo = TDMainTaskTable.GetMainTaskItemInfo(taskId);
-                    //        MainGameMgr.S.MainTaskMgr.GenerateTask(taskId, taskInfo.taskType, taskInfo.subType, taskInfo.taskTime);
-                    //        SimGameTask nextTask = MainGameMgr.S.MainTaskMgr.GetSimGameTask(taskId);
-                    //        if (nextTask!=null)
-                    //            CreateTask(nextTask);
-                    //    }
-                    //}
-                    break;
-            }
-        }
 
         protected override void OnPanelHideComplete()
         {

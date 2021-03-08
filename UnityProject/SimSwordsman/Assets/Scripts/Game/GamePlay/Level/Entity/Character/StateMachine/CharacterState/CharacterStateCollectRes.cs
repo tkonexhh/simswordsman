@@ -45,7 +45,7 @@ namespace GameWish.Game
             var warkConf = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
             m_CollectTotalTime = warkConf.workTime;
             //显示对话气泡
-            WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, warkConf.workTalk);
+            WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, warkConf.RandomTalk());
 
             m_ReachTargetPos = false;
             m_IsCollectResEnd = false;

@@ -20,7 +20,6 @@ namespace GameWish.Game
             base.OnClicked();
 
             Debug.Log("KongfuLibrary is clicked");
-
         }
 
         protected override void OpenUIElement()

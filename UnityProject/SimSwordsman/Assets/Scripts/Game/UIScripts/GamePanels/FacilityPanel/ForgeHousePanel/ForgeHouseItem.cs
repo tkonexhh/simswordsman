@@ -7,8 +7,8 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class ForgeHouseItem : MonoBehaviour, ItemICom
-	{
+    public class ForgeHouseItem : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private GameObject Lock;
         [SerializeField]
@@ -82,7 +82,7 @@ namespace GameWish.Game
             m_DurationTxt.text = dur;
             m_Progress.fillAmount = progress;
         }
-      
+
         void Init()
         {
             if (!IsUnlock((EquipmentType)ID))
@@ -155,7 +155,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
-              
+
             });
         }
         private void LookADSuccessCallBack(bool obj)
@@ -163,15 +163,14 @@ namespace GameWish.Game
             if (ID > 500)
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new ArmorReward(RewardItemType.Armor,ID, 1));
+                rewards.Add(new ArmorReward(ID, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
                 MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)ID, Step.One), 1);
-
             }
             else
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new ArmsReward(RewardItemType.Arms, ID, 1));
+                rewards.Add(new ArmsReward(ID, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
                 MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)ID, Step.One), 1);
             }
@@ -205,7 +204,6 @@ namespace GameWish.Game
                 case 2:
                     UnLock.SetActive(true);
                     Lock.SetActive(false);
-
                     m_MakingTra.gameObject.SetActive(false);
                     m_DontMakeTra.gameObject.SetActive(true);
                     //…Ë÷√≤ƒ¡œ
