@@ -1018,15 +1018,6 @@
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\BuffSystem\FoodBuffSystem.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\ChapterInfo.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\ChapterMgr.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\Base\LevelRewardFactory.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\EquipReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpCharacterReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\ExpKongfuReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\FoodReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\KongfuItemReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\MoneyReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Level\Chapter\LevelReward\PropItemReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\Clan\ClanType.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\CollectSystem\CollectSystem.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Level\CommonTask\CommonTaskItemInfo.cs" />
@@ -1190,7 +1181,7 @@
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\Exp_RoleReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\FoodsReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\ItemReward.cs" />
-     <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\KongfuReward.cs" />
+     <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\KungfuReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\AllRewards\MedicineReward.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\RewardBase.cs" />
      <Compile Include="Assets\Scripts\Game\GamePlay\Reward\RewardMgr.cs" />

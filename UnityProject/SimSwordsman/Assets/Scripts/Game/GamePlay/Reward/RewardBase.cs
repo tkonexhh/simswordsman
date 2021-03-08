@@ -15,6 +15,7 @@ namespace GameWish.Game
         {
             RewardItem = type;
             m_KeyID = id;
+            Count = count;
         }
 
         public void SetCount(int newCount)
