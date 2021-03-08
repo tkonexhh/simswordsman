@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace GameWish.Game
         public override void ApplyReward(int par)
         {
             GameDataMgr.S.GetPlayerData().AddCoinNum(m_MoneyValue);
+            EventSystem.S.Send(EventID.OnChallengeReward, rewardType, -1, m_MoneyValue);
         }
 
         public override int GetRewardValue()

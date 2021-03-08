@@ -1,4 +1,4 @@
-using Qarth;
+ï»¿using Qarth;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +10,9 @@ namespace GameWish.Game
     {
         private Dictionary<int, SignInItem> m_SignItemDic = new Dictionary<int, SignInItem>();
         [SerializeField] private Transform[] m_SignItemTrans;
-        [SerializeField] private Button m_BackBtn;//·µ»Ø°´Å¥
-        [SerializeField] private Button m_BlackBtn;//·µ»Ø°´Å¥
-        [SerializeField] private Button m_AcceptBtn;//·µ»Ø°´Å¥
+        [SerializeField] private Button m_BackBtn;//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
+        [SerializeField] private Button m_BlackBtn;//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
+        [SerializeField] private Button m_AcceptBtn;//ï¿½ï¿½ï¿½Ø°ï¿½Å¥
 
         //[Header("Image")]
         //[SerializeField] private Image m_DaysShowNum;//??????????
@@ -22,7 +22,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            //ÒôÐ§
+            //ï¿½ï¿½Ð§
             AudioMgr.S.PlaySound(Define.INTERFACE);
             m_BackBtn.onClick.AddListener(OnClickClose);
             m_BlackBtn.onClick.AddListener(OnClickClose);
@@ -101,14 +101,14 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ´´½¨SignItem²¢ÇÒ¼ÓÈë×Öµä¹ÜÀí
+        /// ï¿½ï¿½ï¿½ï¿½SignItemï¿½ï¿½ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
         /// </summary>
         private void InitSignItem()
         {
             ClearSignItem();
             if (TDDailySigninTable.dataList.Count != 7)
             {
-                Log.e("Ç©µ½Åä±íÊýÁ¿´íÎó");
+                Log.e("Ç©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 return;
             }
 
@@ -117,7 +117,7 @@ namespace GameWish.Game
                 TDDailySignin config = TDDailySigninTable.dataList[i];
                 RewardBase reward = RewardMgr.S.GetRewardBase(config.reward);
                 SignInItem item = new SignInItem(i, m_SignItemTrans[i], reward);
-                if (reward.RewardItem != RewardItemType.Kongfu)
+                if (reward.RewardItem != RewardItemType.Kungfu)
                 {
                     // Debug.LogError(reward.SpriteName());
                     item.m_IconImage.sprite = FindSprite(reward.SpriteName());
@@ -145,7 +145,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ç©µ½³É¹¦
+        /// Ç©ï¿½ï¿½ï¿½É¹ï¿½
         /// </summary>
         /// <param name="id"></param>
         private void SignSuccess(int id)
@@ -165,7 +165,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÇåÀíSignItemDic
+        /// ï¿½ï¿½ï¿½ï¿½SignItemDic
         /// </summary>
         private void ClearSignItem()
         {
@@ -177,7 +177,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¸üÐÂÇ©µ½Í¼±ê×´Ì¬
+        /// ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½Í¼ï¿½ï¿½×´Ì¬
         /// </summary>
         private void UpdateSignItemStatus()
         {

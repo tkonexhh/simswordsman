@@ -20,8 +20,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnKongfuLibraryVacancy, HandleAddListenerEvent);
 
             InitKungfuField();
-
-            //CheckSlotInfo();
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
@@ -33,21 +31,31 @@ namespace GameWish.Game
                         if (item.IsHaveSameCharacterItem((int)param[0]))
                             item.TrainingIsOver();
                     break;
-                case EventID.OnKongfuLibraryVacancy:
-                    RefreshExclamatoryMark((bool)param[0]);
-                    break;
                 case EventID.OnRefresKungfuSoltInfo:
-                    //CheckSlotInfo();
+                    RefreshExclamatoryMark(CheckSlotInfo());
                     break;
                 default:
                     break;
             }
         }
+
+        protected override bool CheckSubFunc()
+        {
+            if (m_FacilityState != FacilityState.Unlocked)
+                return false;
+            return CheckSlotInfo();
+        }
+
         ~KongfuLibraryController()
         {
             EventSystem.S.UnRegister(EventID.DeleteDisciple, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnRefresKungfuSoltInfo, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnKongfuLibraryVacancy, HandleAddListenerEvent);
+        }
+
+        public override void SetState(FacilityState facilityState, bool isFile = false)
+        {
+            base.SetState(facilityState, isFile);
         }
 
         public KungfuLibraySlot GetIdlePracticeSlot()
@@ -100,17 +108,16 @@ namespace GameWish.Game
         /// <summary>
         /// 检测是否有空闲的抄经空位
         /// </summary>
-        private void CheckSlotInfo()
+        private bool CheckSlotInfo()
         {
             foreach (var item in m_ReadingSlotList)
             {
                 if (item.IsFree())
                 {
-                    EventSystem.S.Send(EventID.OnKongfuLibraryVacancy,true);
-                    return;
+                    return true;
                 }
             }
-            EventSystem.S.Send(EventID.OnKongfuLibraryVacancy, false);
+            return false;
         }
 
         /// <summary>

@@ -16,12 +16,16 @@ namespace GameWish.Game
         public PracticeFieldController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
             EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnPracticeVacancy, HandleAddListenerEvent);
 
             InitPracticeField();
         }
         ~PracticeFieldController()
         {
             EventSystem.S.UnRegister(EventID.DeleteDisciple, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnPracticeVacancy, HandleAddListenerEvent);
         }
         private void HandleAddListenerEvent(int key, object[] param)
         {
@@ -32,11 +36,30 @@ namespace GameWish.Game
                         if (item.IsHaveSameCharacterItem((int)param[0]))
                             item.TrainingIsOver();
                     break;
-                default:
+                case EventID.OnRefreshPracticeUnlock:
+                    RefreshExclamatoryMark(CheckSlotInfo());
                     break;
             }
         }
 
+        private bool CheckSlotInfo()
+        {
+            foreach (var item in m_PracticeSlotList)
+            {
+                if (item.IsFree() && m_FacilityType == item.FacilityType)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        protected override bool CheckSubFunc()
+        {
+            if (m_FacilityState != FacilityState.Unlocked)
+                return false;
+            return CheckSlotInfo();
+        }
         public BaseSlot GetIdlePracticeSlot(FacilityType  facilityType)
         {
             return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));

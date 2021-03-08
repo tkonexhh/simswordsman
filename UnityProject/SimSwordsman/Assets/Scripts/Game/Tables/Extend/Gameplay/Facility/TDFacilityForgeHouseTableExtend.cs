@@ -24,12 +24,17 @@ namespace GameWish.Game
                 EquipmentType equip = (EquipmentType)int.Parse(item);
                 equipTypeList.Add(equip);
             }
-            forgeHouseLevelInfo.SetCurEquipmentType(equipTypeList);
+            forgeHouseLevelInfo.SetCurEquipmentType(equipTypeList, int.Parse(tdData.unlockEquip));
 
             if (!levelInfoDic.ContainsKey(tdData.level))
             {
                 levelInfoDic.Add(tdData.level, forgeHouseLevelInfo);
             }
+        }
+
+        public static Dictionary<int, ForgeHouseInfo> GetLevelInfoDic()
+        {
+            return levelInfoDic;
         }
 
         public static ForgeHouseInfo GetLevelInfo(int level)

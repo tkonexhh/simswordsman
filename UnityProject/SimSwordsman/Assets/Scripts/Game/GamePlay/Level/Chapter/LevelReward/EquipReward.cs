@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,8 @@ namespace GameWish.Game
             {
                 MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_ItemId, Step.One), m_Number);
             }
+
+            EventSystem.S.Send(EventID.OnChallengeReward, rewardType, m_ItemId, m_Number);
         }
 
         public override int GetRewardValue()

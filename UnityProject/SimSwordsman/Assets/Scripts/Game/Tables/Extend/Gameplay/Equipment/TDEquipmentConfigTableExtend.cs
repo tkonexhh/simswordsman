@@ -33,6 +33,12 @@ namespace GameWish.Game
                 }
             }
         }
+        public static Equipment GetEquipmentInfo(int id)
+        {
+            if (m_EquipDic.ContainsKey(id))
+                return m_EquipDic[id];
+            return null;
+        }
         /// <summary>
         /// 获取武器信息
         /// </summary>

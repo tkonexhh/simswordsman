@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace GameWish.Game
         public override void ApplyReward(int par)
         {
             MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)m_ItemId), m_Number);
+            EventSystem.S.Send(EventID.OnChallengeReward, rewardType, m_ItemId, m_Number);
         }
 
         public override int GetRewardValue()

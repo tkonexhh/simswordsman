@@ -2,6 +2,7 @@ using Qarth;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 namespace GameWish.Game
 {
@@ -15,7 +16,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_ItemObj;
 
-
+        public Action OnBtnCloseEvent = null;
         List<RewardPanelItem> m_Items = new List<RewardPanelItem>();
 
         protected override void OnUIInit()
@@ -71,7 +72,7 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
+                OnBtnCloseEvent?.Invoke();
                 HideSelfWithAnim();
             });
         }

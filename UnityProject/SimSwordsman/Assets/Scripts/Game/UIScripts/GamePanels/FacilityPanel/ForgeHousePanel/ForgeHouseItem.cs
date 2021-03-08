@@ -166,7 +166,6 @@ namespace GameWish.Game
                 rewards.Add(new ArmorReward(ID, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
                 MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)ID, Step.One), 1);
-
             }
             else
             {
@@ -205,7 +204,6 @@ namespace GameWish.Game
                 case 2:
                     UnLock.SetActive(true);
                     Lock.SetActive(false);
-
                     m_MakingTra.gameObject.SetActive(false);
                     m_DontMakeTra.gameObject.SetActive(true);
                     //…Ë÷√≤ƒ¡œ

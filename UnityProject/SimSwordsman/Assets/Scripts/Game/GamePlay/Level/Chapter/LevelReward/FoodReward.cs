@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace GameWish.Game
         public override void ApplyReward(int par)
         {
             GameDataMgr.S.GetPlayerData().AddFoodNum(m_FoodValue);
+            EventSystem.S.Send(EventID.OnChallengeReward, rewardType, -2, m_FoodValue);
         }
 
         public override int GetRewardValue()

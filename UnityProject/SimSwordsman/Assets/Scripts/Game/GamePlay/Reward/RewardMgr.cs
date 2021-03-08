@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
@@ -8,15 +8,15 @@ namespace GameWish.Game
 {
     public enum RewardItemType
     {
-        Item,//ÎïÆ·
-        Armor,//¿ø¼×
-        Arms,//ÎäÆ÷
-        Kongfu,//Îä¹¦ÃØ¼®
+        Item,//ï¿½ï¿½Æ·
+        Armor,//ï¿½ï¿½ï¿½ï¿½
+        Arms,//ï¿½ï¿½ï¿½ï¿½
+        Kungfu,//ï¿½ä¹¦ï¿½Ø¼ï¿½
         Medicine,//Ò©
-        Food,//Ê³Îï
+        Food,//Ê³ï¿½ï¿½
         Coin,//Í­Ç®
-        Exp_Role,//µÜ×Ó¾­Ñé
-        Exp_Kongfu,//¹¦·ò¾­Ñé
+        Exp_Role,//ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½
+        Exp_Kongfu,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
     public class RewardMgr : TSingleton<RewardMgr>
     {
@@ -30,7 +30,7 @@ namespace GameWish.Game
                     return new ArmorReward(id, count);
                 case RewardItemType.Arms:
                     return new ArmsReward(id, count);
-                case RewardItemType.Kongfu:
+                case RewardItemType.Kungfu:
                     return new KongfuReward(id, count);
                 case RewardItemType.Medicine:
                     return new MedicineReward(id, count);
@@ -43,12 +43,12 @@ namespace GameWish.Game
                 case RewardItemType.Exp_Kongfu:
                     return new Exp_KongfuRweard(id, count);
                 default:
-                    Log.e("ÎÞ´Ë½±ÀøÀàÐÍ");
+                   
                     return null;
             }
         }
         /// <summary>
-        /// »ñÈ¡½±Àø
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="type"></param>
         /// <param name="id"></param>
@@ -60,7 +60,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Param¸ñÊ½ÎªRewardItemTypeµÄstring|id|ÊýÁ¿
+        /// Paramï¿½ï¿½Ê½ÎªRewardItemTypeï¿½ï¿½string|id|ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="param">RewardItemType,id,count</param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace GameWish.Game
                 case RewardItemType.Item:
                 case RewardItemType.Armor:
                 case RewardItemType.Arms:
-                case RewardItemType.Kongfu:
+                case RewardItemType.Kungfu:
                 case RewardItemType.Medicine:
                     return CreateReward(rewardItemType, int.Parse(sp[1]), GetRewardCount(sp[2]));
                 case RewardItemType.Food:

@@ -113,6 +113,7 @@ namespace GameWish.Game
         /// 藏经阁有空位的时候
         /// </summary>
         OnKongfuLibraryVacancy,
+        OnPracticeVacancy,
         #endregion
 
         //KungfuLibrary
@@ -145,6 +146,14 @@ namespace GameWish.Game
         //ChallengePanel
         OnChanllengeSuccess,        //挑战成功事件
         OnUnlockNewChapter,         //挑战成功事件
+        /// <summary>
+        /// 任务接受奖励列表
+        /// </summary>
+        OnReciveRewardList,
+        /// <summary>
+        /// 添加挑战奖励
+        /// </summary>
+        OnChallengeReward,
 
         //Disciple
         /// <summary>

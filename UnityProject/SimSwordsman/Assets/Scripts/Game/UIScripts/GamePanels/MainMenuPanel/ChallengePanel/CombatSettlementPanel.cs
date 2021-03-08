@@ -29,13 +29,63 @@ namespace GameWish.Game
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
         private SimGameTask m_CurTaskInfo = null;
+        private List<RewardBase> m_RewardList = new List<RewardBase>();
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            EventSystem.S.Register(EventID.OnReciveRewardList,HandListenerEvent);
+            EventSystem.S.Register(EventID.OnChallengeReward, HandListenerEvent);
             AudioMgr.S.PlaySound(Define.INTERFACE);
             m_SelectedDiscipleList = MainGameMgr.S.BattleFieldMgr.OurCharacterList;
 
             BindAddListenerEvent();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+            EventSystem.S.UnRegister(EventID.OnReciveRewardList, HandListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnChallengeReward, HandListenerEvent);
+        }
+
+        private void HandListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnReciveRewardList:
+                    m_RewardList.AddRange((List<RewardBase>)param[0]);
+                    break;
+                case EventID.OnChallengeReward:
+                    HandChallengeReward(param);
+                    break;
+            }
+        }
+
+        private void HandChallengeReward(object[] param)
+        {
+            switch ((RewardItemType)param[0])
+            {
+                case RewardItemType.Item:
+                    m_RewardList.Add(new ItemReward((int)param[1], (int)param[2]));
+                    break;
+                case RewardItemType.Armor:
+                    m_RewardList.Add(new ArmorReward((int)param[1], (int)param[2]));
+                    break;
+                case RewardItemType.Arms:
+                    m_RewardList.Add(new ArmsReward((int)param[1], (int)param[2]));
+                    break;
+                case RewardItemType.Kungfu:
+                    m_RewardList.Add(new KongfuReward((int)param[1], (int)param[2]));
+                    break;
+                case RewardItemType.Food:
+                    m_RewardList.Add(new FoodsReward((int)param[2]));
+                    break;
+                case RewardItemType.Coin:
+                    m_RewardList.Add(new CoinReward((int)param[2]));
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void BindAddListenerEvent()
@@ -44,27 +94,45 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                PanelPool.S.DisplayPanel();
-                EventSystem.S.Send(EventID.OnExitBattle);
-                UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
-                OnPanelHideComplete();
-
-                if (m_PanelType == PanelType.Task)
-                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-
-                if (m_CurTaskInfo != null)
+                HideSelfWithAnim();
+                if (m_IsSuccess)
                 {
-                    EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
+                    if (m_RewardList.Count > 0)
+                    {
+                        UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
+                        return;
+                    }
                 }
-                else
-                {
-                    Debug.LogError("cur task info is null!!!!!!");
-                }
-
+                CloseEvent();
             });
         }
 
+        private void RewardPanelCallback(AbstractPanel obj)
+        {
+            RewardPanel rewardPanel = obj as RewardPanel;
+            rewardPanel.OnBtnCloseEvent += CloseEvent;
+        }
 
+        private void CloseEvent()
+        {
+            EventSystem.S.Send(EventID.OnExitBattle);
+            UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
+            PanelPool.S.DisplayPanel();
+            
+            if (m_CurTaskInfo != null)
+            {
+                EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
+            }
+            else
+            {
+                Debug.LogError("cur task info is null!!!!!!");
+            }
+            if (m_PanelType == PanelType.Task)
+                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+
+            if (m_PanelType == PanelType.Challenge)
+                OpenParentChallenge();
+        }
 
         protected override void OnPanelOpen(params object[] args)
         {
@@ -102,6 +170,15 @@ namespace GameWish.Game
             foreach (var item in m_SelectedDiscipleList)
                 CreateRewardIInfoItem(item);
         }
+
+        private void ReceiveChallengeReward()
+        {
+            //if (m_IsSuccess)
+            //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
+            //else
+            //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
+        }
+
         private void RefreshFont()
         {
             if (m_IsSuccess)
@@ -142,10 +219,9 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
-            if (m_PanelType == PanelType.Challenge)
-                OpenParentChallenge();
-            else
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+       
+            //else
+            //    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
     }
 }

@@ -8,10 +8,11 @@ namespace GameWish.Game
 	public class ForgeHouseInfo : FacilityLevelInfo
 	{
         private List<EquipmentType> m_CurUnlockEquipmentTypeList;
-
-        public void SetCurEquipmentType(List<EquipmentType> equipmentType)
+        public int EquipID;
+        public void SetCurEquipmentType(List<EquipmentType> equipmentType,int id)
         {
             m_CurUnlockEquipmentTypeList = equipmentType;
+            EquipID = id;
         }
 
         public List<EquipmentType> GetCurEquipmentType()
