@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class WorkingBubbleView : MonoBehaviour, IInputObserver
+	public class WorkingBubbleView : MonoBehaviour, IInputObserver,IClickedHandler
     {
         public ClickWorkingBubble BubbleCtrl;
         public Collider2D Collider;
@@ -68,5 +68,10 @@ namespace GameWish.Game
 
             return false;
         }
-	}
+
+        public void OnClicked()
+        {
+            BubbleCtrl.OnClicked();
+        }
+    }
 }
