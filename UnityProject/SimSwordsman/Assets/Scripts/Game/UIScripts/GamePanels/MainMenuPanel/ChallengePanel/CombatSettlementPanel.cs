@@ -38,7 +38,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            EventSystem.S.Register(EventID.OnReciveRewardList,HandListenerEvent);
+            EventSystem.S.Register(EventID.OnReciveRewardList, HandListenerEvent);
             EventSystem.S.Register(EventID.OnChallengeReward, HandListenerEvent);
             AudioMgr.S.PlaySound(Define.INTERFACE);
             m_SelectedDiscipleList = MainGameMgr.S.BattleFieldMgr.OurCharacterList;
@@ -123,7 +123,7 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnExitBattle);
             UIMgr.S.ClosePanelAsUIID(UIID.CombatInterfacePanel);
             PanelPool.S.DisplayPanel();
-            
+
             if (m_CurTaskInfo != null)
             {
                 EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
@@ -162,6 +162,7 @@ namespace GameWish.Game
                             i.SetCount(i.Count / m_SelectedDiscipleList.Count);
                         }
                     });
+                    m_LevelConfigInfo.PrepareReward();
                     if (m_IsSuccess)
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
                     else
@@ -175,7 +176,7 @@ namespace GameWish.Game
             foreach (var item in m_SelectedDiscipleList)
                 CreateRewardIInfoItem(item);
         }
-      
+
         private void RefreshFont()
         {
             if (m_IsSuccess)
@@ -219,7 +220,7 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
-       
+
             //else
             //    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
