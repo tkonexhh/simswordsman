@@ -1,33 +1,47 @@
 
 snake.png
-size: 108,54
+size: 101,136
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-地影
+head
   rotate: false
-  xy: 50, 8
-  size: 32, 12
+  xy: 33, 38
+  size: 45, 46
+  orig: 46, 46
+  offset: 1, 0
+  index: -1
+wb
+  rotate: true
+  xy: 2, 2
+  size: 132, 29
+  orig: 132, 29
+  offset: 0, 0
+  index: -1
+地影
+  rotate: true
+  xy: 80, 50
+  size: 34, 15
   orig: 34, 15
-  offset: 1, 2
+  offset: 0, 0
   index: -1
 头
   rotate: false
-  xy: 2, 4
+  xy: 33, 86
   size: 46, 48
   orig: 48, 48
   offset: 1, 0
   index: -1
 尾巴
-  rotate: true
-  xy: 84, 2
+  rotate: false
+  xy: 81, 113
   size: 18, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
 身
   rotate: false
-  xy: 50, 22
+  xy: 33, 6
   size: 56, 30
   orig: 56, 31
   offset: 0, 1
