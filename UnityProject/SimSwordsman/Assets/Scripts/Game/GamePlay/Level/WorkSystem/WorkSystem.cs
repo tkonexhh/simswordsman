@@ -324,6 +324,10 @@ namespace GameWish.Game
             CountdownSystem.S.StartCountdownerWithMin("WorkFacilityCD", (int)type, lobbyTable.workInterval);
         }
 
+        public int GetWorkPay()
+        {
+            return lobbyTable.workPay;
+        }
         /// <summary>
         /// 开始工作
         /// </summary>
