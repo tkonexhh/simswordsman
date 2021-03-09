@@ -57,7 +57,7 @@ namespace GameWish.Game
 
         private FacilityType m_CurFacilityType = FacilityType.None;
 
-        private const int NextKungfuFontSize = 37;
+        private const int NextKungfuFontSize = 0;
         private const int KungfuFontWight = 218;
         private int m_CurLevel;
         private List<CostItem> m_CostItems;
