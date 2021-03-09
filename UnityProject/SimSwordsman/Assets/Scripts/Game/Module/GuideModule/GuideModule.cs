@@ -134,6 +134,7 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DiscipleAutoWorkTrigger));
 
             GuideMgr.S.RegisterGuideTrigger(typeof(TaskPanelTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystem_ClickLotusrootTrigger));
         }
 
         protected void InitCustomCommand()

@@ -257,6 +257,7 @@ namespace GameWish.Game
         OnGuideUnlockForgeHouse,
         OnCuideKitchenFirstLvUp,
         OnGuideUnlockCollectSystem,
+        OnCollectSystem_ClickLotusrootTrigger,//点击收集莲藕
 
         OnGuideReceiveTaskRewardBtnTrigger1,
         OnGuideReceiveTaskRewardTrigger1,
