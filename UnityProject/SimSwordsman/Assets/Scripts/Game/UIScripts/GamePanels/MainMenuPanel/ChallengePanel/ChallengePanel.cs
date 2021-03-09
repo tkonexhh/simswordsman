@@ -39,6 +39,11 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
 
+            int isOpened = PlayerPrefs.GetInt(Define.Is_Enter_Challenge_Panel, -1);
+            if (isOpened == -1) {
+                PlayerPrefs.SetInt(Define.Is_Enter_Challenge_Panel, 1);
+            }
+
             if (args.Length == 0)
                 return;
 

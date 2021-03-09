@@ -160,6 +160,7 @@ namespace GameWish.Game
         public const string CHALLENGE_LOG_REFUSEBTNTXT = "Challenge_Log_RefuseBtnTxt";
         public const string CHALLENGE_PROGRESS = "Challenge_Progress";
         public const string CHALLENGE_PROGRESS_OVER = "Challenge_Progress_Over";
+        public const string Is_Enter_Challenge_Panel = "IsEnterChallengePanel";
 
         //Warehouse
         public const string FACILITY_WAREHOUSE_NAME = "Facility_Warehouse_Name";
