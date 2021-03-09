@@ -112,12 +112,13 @@ namespace GameWish.Game
 
         private void ApplyReward(FacilityType type)
         {
+            int count = WorkSystem.S.GetWorkPay();
+            m_Controller.SpawnFacilityWorkRewardPop(type, count);
+
             WorkSystem.S.GetReward(type);
 
             LobbyLevelInfo lobbyLevelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
 
-            int count = lobbyLevelInfo.workPay; 
-            m_Controller.SpawnFacilityWorkRewardPop(type, count);
 
             //Add exp
             m_Controller.AddExp(lobbyLevelInfo.workExp);

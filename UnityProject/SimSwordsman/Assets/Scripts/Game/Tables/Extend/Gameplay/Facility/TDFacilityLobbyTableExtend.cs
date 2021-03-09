@@ -20,6 +20,12 @@ namespace GameWish.Game
 
             lobbyLevelInfo.maxDailyTask = tdData.cTDailyMax;
             lobbyLevelInfo.commonTaskCount = tdData.commonTaskAmount;
+            lobbyLevelInfo.workTime = tdData.workTime;
+            lobbyLevelInfo.workPay = tdData.workPay;
+            lobbyLevelInfo.workExp = tdData.workExp;
+            lobbyLevelInfo.workMaxAmount = tdData.workMaxAmount;
+            lobbyLevelInfo.workInterval = tdData.workInterval;
+
             lobbyLevelInfo.AnalysisUnlockContent(tdData.unlockContent);
             lobbyLevelInfo.PracticeLevelMax = tdData.practiceLevelMax;
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))

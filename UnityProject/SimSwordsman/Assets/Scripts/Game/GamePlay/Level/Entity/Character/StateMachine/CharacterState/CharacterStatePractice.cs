@@ -88,6 +88,9 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
+            if (m_Controller == null || m_Controller.CurState != CharacterStateID.Practice)
+                return;
+
             if (!m_IsExit) {
                 m_Controller.CharacterView.PlayAnim("practice", true, null);
 
