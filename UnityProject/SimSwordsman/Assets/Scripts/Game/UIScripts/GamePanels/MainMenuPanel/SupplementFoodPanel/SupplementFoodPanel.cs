@@ -22,7 +22,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_TimesToday;
 
-        private int m_SupplementFood = 50;
+        private int m_SupplementFood = 100;
         private int m_CurFoodFreshCount;
         private const int _24House = 24;
         private const int FOODFRESHCOUNT = 5;

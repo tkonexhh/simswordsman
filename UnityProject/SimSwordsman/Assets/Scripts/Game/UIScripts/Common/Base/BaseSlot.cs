@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -101,7 +102,10 @@ namespace GameWish.Game
 		public void RewardKungfu(int kungfuLibraryLevel)
 		{
 			int kungfuID = (int)MainGameMgr.S.FacilityMgr.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
-			RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kungfu, kungfuID,1);
+			RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kongfu, kungfuID,1);
+			List<RewardBase> rewards = new List<RewardBase>();
+			rewards.Add(reward);
+			UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
 			reward.AcceptReward();
 		}
 

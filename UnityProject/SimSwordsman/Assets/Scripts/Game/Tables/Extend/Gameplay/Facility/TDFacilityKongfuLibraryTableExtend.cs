@@ -25,12 +25,12 @@ namespace GameWish.Game
                 kongfuTypeList.Add(kongfuType);
             }
             string[] kongfuListStrs = tdData.kongfuList.Split(';');
-            KungFuPoolConfig kungFuPoolConfig = null; 
+            List<KungFuPoolConfig> kungFuPoolConfig = new List<KungFuPoolConfig>();
             foreach (string item in kongfuListStrs)
             {
                 string[] kungfuPoolStr =  item.Split('|');
                 KungfuType kongfuType = (KungfuType)(int.Parse(kungfuPoolStr[0]));
-                kungFuPoolConfig = new KungFuPoolConfig(kongfuType,int.Parse(kungfuPoolStr[1]));
+                kungFuPoolConfig.Add(new KungFuPoolConfig(kongfuType, int.Parse(kungfuPoolStr[1])));
             }
             kongfuLibLevelInfo.SetInitData(kongfuTypeList, kungFuPoolConfig, tdData.duration, tdData.seat);
 

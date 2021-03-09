@@ -348,12 +348,14 @@ namespace GameWish.Game
                     if (allCharacterList.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
                     {
                         for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
-                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                            if (allCharacterList[i].level>=m_CommonTaskItemInfo.characterLevelRequired)
+                                m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
                     }
                     else
                     {
                         for (int i = 0; i < allCharacterList.Count; i++)
-                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                            if (allCharacterList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
+                                m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
                     }
                     break;
                 case PanelType.Challenge:

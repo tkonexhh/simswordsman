@@ -110,16 +110,19 @@ namespace GameWish.Game
             if (facilityLevelInfo != null)
                 costItems = facilityLevelInfo.GetUpgradeResCosts();
             if (facilityLevelInfo == null || costItems == null)
-                return;
-
-            if (CheackIsBuild(facilityLevelInfo, costItems) && !m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
-            {
-                UpGradeRedPoint = true;
-            }
+                UpGradeRedPoint = false;
             else
             {
-                UpGradeRedPoint = false;
+                if (CheackIsBuild(facilityLevelInfo, costItems) && !m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
+                {
+                    UpGradeRedPoint = true;
+                }
+                else
+                {
+                    UpGradeRedPoint = false;
+                }
             }
+           
             SubRedPoint = CheckSubFunc();
             RefreshRedPoint();
         }
