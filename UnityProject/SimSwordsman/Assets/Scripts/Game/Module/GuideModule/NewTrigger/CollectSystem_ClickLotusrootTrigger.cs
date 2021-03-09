@@ -1,25 +1,28 @@
-using System;
 using Qarth;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace GameWish.Game
 {
-	public class CollectSystemTrigger : ITrigger
-	{
+	public class CollectSystem_ClickLotusrootTrigger : ITrigger
+    {
         bool m_CanStart = false;
-        public bool isReady { get { return m_CanStart;  } }
+        public bool isReady { get { return m_CanStart; } }
 
         Action<bool, ITrigger> m_Listener;
 
         public void SetParam(object[] param)
         {
-            
+
         }
 
         public void Start(Action<bool, ITrigger> l)
         {
             m_Listener = l;
-            EventSystem.S.Register(EventID.OnGuideUnlockCollectSystem, OnEventListener);
+            EventSystem.S.Register(EventID.OnCollectSystem_ClickLotusrootTrigger, OnEventListener);
         }
         void OnEventListener(int key, object[] param)
         {
@@ -39,11 +42,9 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
-            EventSystem.S.UnRegister(EventID.OnGuideUnlockCollectSystem, OnEventListener);
-
-            EventSystem.S.Send(EventID.OnCollectSystem_ClickLotusrootTrigger);
+            EventSystem.S.UnRegister(EventID.OnCollectSystem_ClickLotusrootTrigger, OnEventListener);
         }
 
     }
-	
+
 }

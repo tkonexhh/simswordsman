@@ -62,7 +62,7 @@ namespace GameWish.Game
             m_Controller.CharacterView.PlayAnim(anim, true, ()=> {
                 if (IsClean(anim)) 
                 {
-                    AudioManager.S.PlaySweepSound();
+                    AudioManager.S.PlaySweepSound(m_Controller.GetPosition());
                 }
             });
 
@@ -79,14 +79,14 @@ namespace GameWish.Game
             {
                 case FacilityType.ForgeHouse:
                     animName = "forge_iron";
-                    AudioManager.S.PlayForgeSound();
+                    AudioManager.S.PlayForgeSound(m_Controller.GetPosition());
                     break;
                 case FacilityType.Kitchen:
                     animName = "cook";
                     break;
                 case FacilityType.Baicaohu:
                     animName = "pharmacy";
-                    AudioManager.S.PlayPoundSound();
+                    AudioManager.S.PlayPoundSound(m_Controller.GetPosition());
                     break;
                 case FacilityType.Warehouse:
                     animName = "carry";

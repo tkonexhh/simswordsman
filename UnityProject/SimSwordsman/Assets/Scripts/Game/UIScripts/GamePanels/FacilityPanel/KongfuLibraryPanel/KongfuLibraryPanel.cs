@@ -69,6 +69,8 @@ namespace GameWish.Game
 
         private Dictionary<int, GameObject> m_KongfuLibrarySoltInfo = new Dictionary<int, GameObject>();
 
+        public static bool isOpened = false;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -238,6 +240,8 @@ namespace GameWish.Game
 
         protected override void OnPanelOpen(params object[] args)
         {
+            isOpened = true;
+
             base.OnPanelOpen(args);
             m_CurFacilityType = (FacilityType)args[0];
             GetInformationForNeed();
@@ -262,6 +266,9 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+
+            isOpened = false;
+
             EventSystem.S.UnRegister(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
         }
     }

@@ -26,6 +26,7 @@ namespace GameWish.Game
         void OnEventListener(int key, object[] param)
         {
             EventSystem.S.Send(EventID.OnCloseAllUIPanel);
+            EventSystem.S.Send(EventID.OnCreateVisitor);
 
             m_CanStart = true;
 

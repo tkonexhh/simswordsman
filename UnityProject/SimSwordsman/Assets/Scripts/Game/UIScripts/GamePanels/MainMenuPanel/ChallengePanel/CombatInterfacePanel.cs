@@ -400,7 +400,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
                     PanelPool.S.AddPromotion(new WugongBreakthrough((EventID)key, (int)param[0], (CharacterKongfuDBData)param[1]));
-                    break; 
+                    break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
                     break;

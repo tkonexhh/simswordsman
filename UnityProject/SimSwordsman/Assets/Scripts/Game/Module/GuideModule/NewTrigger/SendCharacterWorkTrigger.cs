@@ -39,6 +39,8 @@ namespace GameWish.Game
             m_CanStart = false;
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnGuideSendCharacterWorkTrigger, OnEventListener);
+
+            EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
         }
     }
 }

@@ -32,6 +32,8 @@ namespace GameWish.Game
 
         public void Init()
         {
+            EventSystem.S.Register(EventID.OnCreateVisitor, OnCreateVisitorCallBack);
+
             if (!GameDataMgr.S.GetPlayerData().UnlockVisitor)
             {
                 EventSystem.S.Register(EventID.OnEndUpgradeFacility, HandleEvent);
@@ -40,6 +42,11 @@ namespace GameWish.Game
             {
                 StartAppearVisitorCountdown();
             }
+        }
+
+        private void OnCreateVisitorCallBack(int key, object[] param)
+        {
+            CreateVisitor();
         }
 
         private void HandleEvent(int key, object[] param)
@@ -74,11 +81,11 @@ namespace GameWish.Game
         private bool m_IsSendGuideTrigger = false;
         void CreateVisitor()
         {
-            if (GuideMgr.S.IsGuideFinish(18) && GuideMgr.S.IsGuideFinish(19) == false && m_IsSendGuideTrigger == false)
-            {
-                m_IsSendGuideTrigger = true;
-                EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
-            }
+            //if (GuideMgr.S.IsGuideFinish(18) && GuideMgr.S.IsGuideFinish(19) == false && m_IsSendGuideTrigger == false)
+            //{
+            //    m_IsSendGuideTrigger = true;
+            //    EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
+            //}
 
             if (CurrentVisitor.Count < m_MaxVisitorCount)
             {

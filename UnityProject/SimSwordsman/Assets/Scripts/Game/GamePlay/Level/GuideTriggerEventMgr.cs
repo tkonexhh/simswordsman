@@ -143,12 +143,17 @@ namespace GameWish.Game
         /// </summary>
         private void CheckIsStartChallengeSystemGuide() 
         {
-            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
-            int characterCount = GameDataMgr.S.GetClanData().GetOwnedCharacterData().GetCharacterCount();
-            if (facilityLevel >= 2 && characterCount >= 5)
+            int isOpenChallengePanel = PlayerPrefs.GetInt(Define.Is_Enter_Challenge_Panel, -1);
+            //-1  表示未打开挑战面板
+            if (isOpenChallengePanel == -1) 
             {
-                EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
-            }
+                int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+                int characterCount = GameDataMgr.S.GetClanData().GetOwnedCharacterData().GetCharacterCount();
+                if (facilityLevel >= 2 && characterCount >= 5)
+                {
+                    EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
+                }
+            }            
         }
 
         private void OnCharacterUpLevelCallBack(int key, object[] param)

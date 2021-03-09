@@ -257,6 +257,7 @@ namespace GameWish.Game
         OnGuideUnlockForgeHouse,
         OnCuideKitchenFirstLvUp,
         OnGuideUnlockCollectSystem,
+        OnCollectSystem_ClickLotusrootTrigger,//点击收集莲藕
 
         OnGuideReceiveTaskRewardBtnTrigger1,
         OnGuideReceiveTaskRewardTrigger1,
@@ -300,6 +301,7 @@ namespace GameWish.Game
         OnClickVisitorPanelAcceptBtnTrigger,//点击访客面板收下按钮
         OnFinishedClickWuWoodBubbleTrigger,//点击砍树气泡trigger完成
         OnDiscipleAutoWorkTrigger,//弟子自动工作trigger
+        OnCreateVisitor,//添加访客item
         #region 装备武功秘籍
         OnKungFuTrigger_IntroduceTrigger,//武功秘籍trigger
         OnKungFuTrigger_ClickOpenDisciplePanelTrigger,//点击打开弟子界面
