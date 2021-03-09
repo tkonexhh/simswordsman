@@ -208,7 +208,7 @@ namespace GameWish.Game
             int selected = (int)atkValue;
 
             long recommended = m_LevelConfigInfo.recommendAtkValue;
-            float result = selected / recommended;
+            float result = (float)selected / recommended;
 
             if (result < 0.75)
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);

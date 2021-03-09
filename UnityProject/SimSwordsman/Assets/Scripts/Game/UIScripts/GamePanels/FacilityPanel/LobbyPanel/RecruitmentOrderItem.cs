@@ -316,8 +316,7 @@ namespace GameWish.Game
                 case EventID.OnRefreshPanelInfo:
                     if (m_CurRecruitType == (RecruitType)param[0])
                         SetRecruitCount((ClickType)param[1]);
-                    //m_RecruitDic[m_CurRecruitType] = (ClickType)param[0];
-                    //RefreshPanelInfo();
+                    CommonUIMethod.CheackRecruitmentOrder();
                     break;
                 case EventID.OnRefreshRecruitmentOrder:
                     //RefreshRecruitmentOrder((RecruitType)param[0]);

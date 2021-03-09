@@ -437,9 +437,9 @@ namespace GameWish.Game
         public string lobbyBuildTime = string.Empty;
 
         public int silverFree = 1;
-        public int silverAdvertisement = 0;
+        public int silverAdvertisement = 1;
         public int goldFree = 1;
-        public int goldAdvertisement = 0;
+        public int goldAdvertisement = 1;
 
         public int goldAdvertisementCount = 1;
         public int silverAdvertisementCount = 1;

@@ -73,7 +73,7 @@ namespace GameWish.Game
 
         public void OnGetFacilityWorkReward(FacilityType facilityType, int count)
         {
-            m_IconResName = "rewardcoin";
+            m_IconResName = "bubble_coin";
             //GameObject go = GetIconByFacilityType(facilityType);
             //if (go != null)
             //{

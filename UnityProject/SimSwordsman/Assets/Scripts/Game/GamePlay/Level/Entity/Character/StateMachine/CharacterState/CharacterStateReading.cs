@@ -27,10 +27,7 @@ namespace GameWish.Game
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             m_KongFuController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
-            m_KongfuSlot = m_KongFuController.GetIdlePracticeSlot();
-            m_KongfuSlot.OnCharacterEnter(m_Controller);
-            Vector3 practicePos = m_KongfuSlot.GetPosition();
-            m_Controller.MoveTo(practicePos, OnReachDestination);
+
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -52,6 +49,16 @@ namespace GameWish.Game
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
+            if (m_KongfuSlot == null)
+            {
+                m_KongfuSlot = m_KongFuController.GetIdlePracticeSlot();
+                if (m_KongfuSlot != null)
+                {
+                    m_KongfuSlot.OnCharacterEnter(m_Controller);
+                    Vector3 practicePos = m_KongfuSlot.GetPosition();
+                    m_Controller.MoveTo(practicePos, OnReachDestination);
+                }
+            }
         }
 
         private void UpdateReadKongFuProgress() 
@@ -65,6 +72,9 @@ namespace GameWish.Game
 
         private void OnReachDestination()
         {
+            if (m_Controller == null || m_Controller.CurState != CharacterStateID.Reading)
+                return;
+
             m_Controller.CharacterView.PlayAnim("write", true, null);
             m_Controller.SpawnWorkProgressBar();
 
