@@ -17,8 +17,10 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnBattleSuccessed, OnBattleSuccessCallBack);
             EventSystem.S.Register(EventID.OnBattleFailed, OnBattleFaildCallBack);
             EventSystem.S.Register(EventID.OnAddCharacter, OnAddCharacterCallBack);
-        }
 
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, OnStartUnlockFacilityCallBack);
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, OnStartUpradeFacilityCallBack);
+        }
         public void OnUpdate()
         {
 
@@ -50,34 +52,44 @@ namespace GameWish.Game
         {
             AudioMgr.S.PlaySound(Define.SOUND_RECRUIT);
         }
+        private void OnStartUpradeFacilityCallBack(int key, object[] param)
+        {
+            PlayFacilityBuildOrUpgradSound();
+        }
+        private void OnStartUnlockFacilityCallBack(int key, object[] param)
+        {
+            PlayFacilityBuildOrUpgradSound();
+        }
         #endregion
 
         #region public
         /// <summary>
         /// 人物被攻击音效
         /// </summary>
-        public void PlayCharacterAttackedSound() 
+        public void PlayCharacterAttackedSound(Vector3 characterPos) 
         {
             int index = UnityEngine.Random.Range(1, 5);
 
             string soundName = string.Format("Hit{0}", index);
 
-            AudioMgr.S.PlaySound(soundName);
+            AudioMgr.S.PlaySound3D(soundName, characterPos);
         }
         /// <summary>
         /// 人物死亡音效
         /// </summary>
         /// <param name="isWoman"></param>
-        public void PlayCharacterDeadSound(bool isWoman) 
+        public void PlayCharacterDeadSound(bool isWoman,Vector3 characterPos) 
         {
             if (isWoman)
             {
-                AudioMgr.S.PlaySound(Define.SOUND_DEATH_GIRL);
+                AudioMgr.S.PlaySound3D(Define.SOUND_DEATH_GIRL, characterPos);
             }
             else {
                 int index = Random.Range(1, 3);
+                
                 string soundName = string.Format("Death_{0}", index);
-                AudioMgr.S.PlaySound(soundName);
+
+                AudioMgr.S.PlaySound3D(soundName, characterPos);
             }            
         }
         /// <summary>
@@ -101,32 +113,35 @@ namespace GameWish.Game
         /// <summary>
         /// 播放干活  锻造音效
         /// </summary>
-        public void PlayForgeSound() {
-            AudioMgr.S.PlaySound(Define.SOUND_FORGE);
+        public void PlayForgeSound(Vector3 pos) 
+        {
+            AudioMgr.S.PlaySound3D(Define.SOUND_FORGE, pos);
         }
         /// <summary>
         /// 播放干活  扫地音效
         /// </summary>
-        public void PlaySweepSound() {
-            AudioMgr.S.PlaySound(Define.SOUND_SWEEP);
+        public void PlaySweepSound(Vector3 characterPos) 
+        {        
+            AudioMgr.S.PlaySound3D(Define.SOUND_COLLECT, characterPos);
         }
         /// <summary>
         /// 播放干活  捣药音效
         /// </summary>
-        public void PlayPoundSound() {
-            AudioMgr.S.PlaySound(Define.SOUND_POUND);
+        public void PlayPoundSound(Vector3 pos) 
+        {
+            AudioMgr.S.PlaySound3D(Define.SOUND_POUND, pos);
         }
-        public void PlayCollectWuwoodOrRockSound(CollectedObjType objType) 
+        public void PlayCollectWuwoodOrRockSound(CollectedObjType objType,Vector3 pos) 
         {
             switch (objType)
             {
                 case CollectedObjType.WuWood:
                 case CollectedObjType.SilverWood:
-                    AudioMgr.S.PlaySound(Define.SOUND_LUMBER);
+                    AudioMgr.S.PlaySound3D(Define.SOUND_LUMBER, pos);
                     break;
                 case CollectedObjType.CloudRock:
                 case CollectedObjType.QingRock:
-                    AudioMgr.S.PlaySound(Define.SOUND_MINE);
+                    AudioMgr.S.PlaySound3D(Define.SOUND_MINE, pos);
                     break;
             }
         }
@@ -135,36 +150,19 @@ namespace GameWish.Game
         /// </summary>
         public void PlayEnemyAttackSound(string soundName) 
         {
-            //string soundName = string.Empty;
-
-            //switch (objType)
-            //{
-            //    case CollectedObjType.Boar:
-            //        soundName = Define.SOUND_PIG;
-            //        break;
-            //    case CollectedObjType.Wolf:
-            //        soundName = Define.SOUND_WOLF;
-            //        break;
-            //    case CollectedObjType.Bear:
-            //        soundName = Define.SOUND_BEAR;
-            //        break;
-            //    case CollectedObjType.Snake:
-            //        soundName = Define.SOUND_SNAKE;
-            //        break;
-            //    case CollectedObjType.Deer:
-            //        soundName = Define.SOUND_DEER;
-            //        break;
-            //    case CollectedObjType.Chicken:
-            //        soundName = Define.SOUND_CHICKEN;
-            //        break;
-            //}
-
             if (string.IsNullOrEmpty(soundName)) 
             {
                 return;
             }
 
             AudioMgr.S.PlaySound(soundName);
+        }
+        /// <summary>
+        /// 建筑建造或者升级音效
+        /// </summary>
+        public void PlayFacilityBuildOrUpgradSound() 
+        {
+            AudioMgr.S.PlaySound(Define.SOUND_FACILITY_BUILD_UPGRAD);
         }
         #endregion
     }

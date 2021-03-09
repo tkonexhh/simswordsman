@@ -183,7 +183,7 @@ namespace GameWish.Game
                 string animName = GetCollectResAnim();
                 m_Controller.CharacterView.PlayAnim(animName, true, ()=> 
                 {
-                    AudioManager.S.PlayCollectWuwoodOrRockSound(m_CollectedObjType);
+                    AudioManager.S.PlayCollectWuwoodOrRockSound(m_CollectedObjType, m_Controller.GetPosition());
                 });
                 m_Controller.FaceTo(m_RawMatItem.transform.position.x);
             }
