@@ -22,17 +22,7 @@ namespace GameWish.Game
         }
         private bool CheackRecruitmentOrder()
         {
-            int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
-            if (allCount > 0)
-            {
-                EventSystem.S.Send(EventID.OnSendRecruitable, true);
-                return true;
-            }
-            else
-            {
-                EventSystem.S.Send(EventID.OnSendRecruitable, false);
-                return false;
-            }
+            return CommonUIMethod.CheackRecruitmentOrder();
         }
         protected override bool CheckSubFunc()
         {
@@ -51,6 +41,6 @@ namespace GameWish.Game
         /// <summary>
         /// Ë¢ÐÂÕÐÄ¼¾ªÌ¾ºÅ
         /// </summary>
-    
+
     }
 }

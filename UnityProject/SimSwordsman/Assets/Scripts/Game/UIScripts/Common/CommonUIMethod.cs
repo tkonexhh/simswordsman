@@ -134,13 +134,23 @@ namespace GameWish.Game
         /// <summary>
         /// À¢–¬Ω≤Œ‰Ã√’–ƒº¡Ó∫Ïµ„
         /// </summary>
-        public static void CheackRecruitmentOrder()
+        public static bool CheackRecruitmentOrder()
         {
+            int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
+            int GoldFreeCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Free);
+            int SilverFreeCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Free);
+            int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
             int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
-            if (allCount > 0)
+            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount > 0 || GoldAdvCount > 0)
+            {
                 EventSystem.S.Send(EventID.OnSendRecruitable, true);
+                return true;
+            }
             else
+            {
                 EventSystem.S.Send(EventID.OnSendRecruitable, false);
+                return false;
+            }
         }
         /// <summary>
         /// º∆À„–° ±≤Ó

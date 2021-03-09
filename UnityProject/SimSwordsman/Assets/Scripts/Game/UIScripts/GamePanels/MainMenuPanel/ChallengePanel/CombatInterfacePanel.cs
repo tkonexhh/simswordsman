@@ -318,6 +318,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnBattleFailed, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnBattleSecondEvent, HandleAddListenerEvent);
 
             if (m_logPanel != null)
             {

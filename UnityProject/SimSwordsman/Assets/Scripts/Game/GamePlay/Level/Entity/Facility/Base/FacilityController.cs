@@ -16,8 +16,8 @@ namespace GameWish.Game
         protected FacilityState m_FacilityState;
         protected int m_SubId; // TODO: delete
 
-        private bool UpGradeRedPoint;
-        private bool SubRedPoint;
+        private bool UpGradeRedPoint = false;
+        private bool SubRedPoint = false;
 
         #region IEntityController
         public virtual void Init()
@@ -79,10 +79,14 @@ namespace GameWish.Game
                     CheckUpgradeConditions();
                     break;
                 case EventID.OnSendWorkingBubbleFacility:
-                    if ((bool)param[1] && !m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
-                        m_HavaWorkingBubbleFacility.Add((FacilityType)param[0]);
-                    else if (!(bool)param[1] && m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
-                        m_HavaWorkingBubbleFacility.Remove((FacilityType)param[0]);
+                    if ((FacilityType)param[0] == m_FacilityType)
+                    {
+                        if ((bool)param[1] && !m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
+                            m_HavaWorkingBubbleFacility.Add((FacilityType)param[0]);
+                        else if (!(bool)param[1] && m_HavaWorkingBubbleFacility.Contains((FacilityType)param[0]))
+                            m_HavaWorkingBubbleFacility.Remove((FacilityType)param[0]);
+                        CheckUpgradeConditions();
+                    }
                     break;
             }
         }
@@ -107,13 +111,22 @@ namespace GameWish.Game
 
             List<CostItem> costItems = null;
 
+            if (m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
+            {
+
+                UpGradeRedPoint = false;
+                SubRedPoint = false;
+                RefreshRedPoint();
+                return;
+            }
+
             if (facilityLevelInfo != null)
                 costItems = facilityLevelInfo.GetUpgradeResCosts();
             if (facilityLevelInfo == null || costItems == null)
                 UpGradeRedPoint = false;
             else
             {
-                if (CheackIsBuild(facilityLevelInfo, costItems) && !m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
+                if (CheackIsBuild(facilityLevelInfo, costItems))
                 {
                     UpGradeRedPoint = true;
                 }
