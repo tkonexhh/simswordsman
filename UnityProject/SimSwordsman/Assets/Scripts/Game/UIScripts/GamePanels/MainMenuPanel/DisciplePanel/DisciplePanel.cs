@@ -208,7 +208,6 @@ namespace GameWish.Game
             switch (key)
             {
                 case (int)EventID.OnRefreshMainMenuPanel:
-                    //RefreshPanelInfo();
                     break;
                 case (int)EventID.OnDiscipleReduce:
                     int id = (int)param[0];
