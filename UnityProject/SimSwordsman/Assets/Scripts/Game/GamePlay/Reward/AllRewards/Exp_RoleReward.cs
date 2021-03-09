@@ -16,9 +16,9 @@ namespace GameWish.Game
         {
             if (!m_KeyID.HasValue)
                 return;
-
+            // Debug.LogError("RoleID:" + m_KeyID.Value);
             var characterItem = MainGameMgr.S.CharacterMgr.GetCharacterController(m_KeyID.Value);
-            characterItem.AddExp(Count * bonus);
+            characterItem?.AddExp(Count * bonus);
         }
 
         public override string RewardName()
