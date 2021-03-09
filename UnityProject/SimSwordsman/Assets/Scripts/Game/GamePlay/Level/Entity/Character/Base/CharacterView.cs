@@ -43,9 +43,13 @@ namespace GameWish.Game
 
             m_SpineAnim.Initialize(true);
 
-            //if (m_SpineAnim.state.Event != null)
+            if (m_SpineAnim.state != null)
             {
                 m_SpineAnim.state.Event += HandleEvent;
+            }
+            else
+            {
+                Log.e("Spine state is null: " + transform.name);
             }
         }
 
