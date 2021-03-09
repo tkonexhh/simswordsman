@@ -31,7 +31,7 @@ namespace GameWish.Game
             if (!m_Controller.IsDead())
             {
                 m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
-                AudioManager.S.PlayCharacterAttackedSound();
+                AudioManager.S.PlayCharacterAttackedSound(m_Controller.GetPosition());
             }
 
             float hitBackDistance = m_BattleState.HitbackDistance;
