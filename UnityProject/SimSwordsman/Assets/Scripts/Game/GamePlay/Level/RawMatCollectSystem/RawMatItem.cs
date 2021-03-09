@@ -21,7 +21,7 @@ namespace GameWish.Game
         private List<Transform> m_UsedCollectPos = new List<Transform>();
         private WorkConfigItem m_WorkConfigItem = null;
         private bool m_IsUnlocked = false;
-
+        private bool m_IsWorking = false;
         public void OnInit()
         {
             HideBubble();
@@ -50,6 +50,8 @@ namespace GameWish.Game
 
             if (!m_IsUnlocked)
                 return;
+            if (m_IsWorking)
+                return;
 
             TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
 
@@ -68,7 +70,6 @@ namespace GameWish.Game
                     ShowBubble();
                 }
             }
-
         }
 
         private bool IsFoodEnough()
@@ -106,6 +107,7 @@ namespace GameWish.Game
                 HideBubble();
 
                 m_IsCharacterCollected = true;
+                m_IsWorking = true;
 
                 GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
             }
@@ -116,10 +118,12 @@ namespace GameWish.Game
         public void ShowBubble()
         {
             m_IsBubbleShowed = true;
+
             bubble.SetActive(true);
 
-            m_LastShowBubbleTime = DateTime.Now;
-            GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, DateTime.Now);
+            m_LastShowBubbleTime = DateTime.Now.AddSeconds(m_WorkConfigItem.workTime);
+
+            GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, m_LastShowBubbleTime);
         }
 
         public void SetCharacterSelected(bool selected)
@@ -169,7 +173,7 @@ namespace GameWish.Game
         {
             if (IsFoodEnough() == false)
             {
-                m_LastShowBubbleTime = DateTime.Now; // Check next interval
+                m_LastShowBubbleTime = DateTime.Now.AddSeconds(m_WorkConfigItem.workTime); // Check next interval
                 return;
             }
 
@@ -195,7 +199,9 @@ namespace GameWish.Game
                     CollectedObjType collectedObjType = (CollectedObjType)param[0];
                     if (collectedObjType == this.collectedObjType)
                     {
+                        m_LastShowBubbleTime = DateTime.Now;
                         m_IsCharacterCollected = false;
+                        m_IsWorking = false;
                     }
                     break;
             }
