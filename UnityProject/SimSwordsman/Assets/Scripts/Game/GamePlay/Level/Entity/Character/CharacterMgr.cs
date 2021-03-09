@@ -219,10 +219,10 @@ namespace GameWish.Game
             CharacterController character = GetCharacterController(id);
             if (character != null && m_CharacterControllerList.Contains(character))
             {
+                Destroy(character.CharacterView.gameObject);
+
                 m_CharacterControllerList.Remove(character);
             }
-
-            //CharacterLoader.S.RemoveCharacter(id);
         }
 
         public void SpawnCharacterController(CharacterItem characterItem)
