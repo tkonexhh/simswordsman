@@ -15,6 +15,8 @@ namespace GameWish.Game
         private EInt m_Id = 0;   
         private string m_AnimationName;   
         private string m_AtkRange;   
+        private string m_AtkDelay;   
+        private string m_FootSE;   
         private string m_CastSE;   
         private string m_HitSE;   
         private string m_AttackSound;  
@@ -35,6 +37,16 @@ namespace GameWish.Game
         /// 攻击距离
         /// </summary>
         public  string  atkRange {get { return m_AtkRange; } }
+       
+        /// <summary>
+        /// 攻击延时
+        /// </summary>
+        public  string  atkDelay {get { return m_AtkDelay; } }
+       
+        /// <summary>
+        /// 脚步特效
+        /// </summary>
+        public  string  footSE {get { return m_FootSE; } }
        
         /// <summary>
         /// 释放特效
@@ -76,12 +88,18 @@ namespace GameWish.Game
                     m_AtkRange = dataR.ReadString();
                     break;
                 case 3:
-                    m_CastSE = dataR.ReadString();
+                    m_AtkDelay = dataR.ReadString();
                     break;
                 case 4:
-                    m_HitSE = dataR.ReadString();
+                    m_FootSE = dataR.ReadString();
                     break;
                 case 5:
+                    m_CastSE = dataR.ReadString();
+                    break;
+                case 6:
+                    m_HitSE = dataR.ReadString();
+                    break;
+                case 7:
                     m_AttackSound = dataR.ReadString();
                     break;
                 default:
@@ -94,14 +112,16 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(8);
           
           ret.Add("Id", 0);
           ret.Add("AnimationName", 1);
           ret.Add("AtkRange", 2);
-          ret.Add("CastSE", 3);
-          ret.Add("HitSE", 4);
-          ret.Add("AttackSound", 5);
+          ret.Add("AtkDelay", 3);
+          ret.Add("FootSE", 4);
+          ret.Add("CastSE", 5);
+          ret.Add("HitSE", 6);
+          ret.Add("AttackSound", 7);
           return ret;
         }
     } 
