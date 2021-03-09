@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GameWish.Game
 {
-    public class PlayerData : DataDirtyHandler, IResetHandler
+    public class PlayerData : DataDirtyHandler, IResetHandler, IDailyResetData
     {
         public string coinNumStr;
 
@@ -33,6 +33,7 @@ namespace GameWish.Game
         public bool firstSilverRecruit;
 
         public bool UnlockVisitor;
+        public int visitorCount;
         public bool UnlockWorkSystem;
 
         #region 食物倒计时
@@ -64,6 +65,7 @@ namespace GameWish.Game
 
             UnlockWorkSystem = false;
             UnlockVisitor = false;
+            visitorCount = 0;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
             FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 8) + ' ' + "06:00:00";
@@ -71,6 +73,13 @@ namespace GameWish.Game
             FoodRefreshCount = 0;
             SetDataDirty();
         }
+
+        public void ResetDailyData()
+        {
+            visitorCount = 0;
+            SetDataDirty();
+        }
+
         public void Init()
         {
             m_CoinNum = long.Parse(coinNumStr);
@@ -326,7 +335,7 @@ namespace GameWish.Game
         {
             foodNum += delta;
 
-          
+
             EventSystem.S.Send(EventID.OnAddFood);
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
 
@@ -351,6 +360,13 @@ namespace GameWish.Game
         {
             if (long.Parse(time) > long.Parse(lastPlayTime))
             {
+                //判断是否过一天
+                var lastTime = GameExtensions.GetTimeFromTimestamp(lastPlayTime);
+                var now = GameExtensions.GetTimeFromTimestamp(time);
+                if (lastTime.DayOfYear != now.DayOfYear)
+                {
+                    GameDataMgr.S.ResetDailyData();
+                }
                 lastPlayTime = time;
                 SetDataDirty();
             }
@@ -372,6 +388,21 @@ namespace GameWish.Game
 
 
 
+        #endregion
+
+
+        #region Visitor
+        public void AddVisitorCount(int count = 1)
+        {
+            visitorCount += count;
+            SetDataDirty();
+        }
+
+        public void ResetVisitorCount()
+        {
+            visitorCount = 0;
+            SetDataDirty();
+        }
         #endregion
         public void OnReset()
         {
