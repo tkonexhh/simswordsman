@@ -47,6 +47,11 @@ namespace GameWish.Game
             }
         }
 
+        public void InitFacilityControllers()
+        {
+            ((KongfuLibraryController)GetFacilityController(FacilityType.KongfuLibrary)).InitKungfuField();
+        }
+
         #endregion
 
         #region InputObserver

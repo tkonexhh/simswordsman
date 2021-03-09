@@ -80,7 +80,9 @@ namespace GameWish.Game
             m_CharacterMgr.ExrInitData();
 
             m_CommonTaskMgr.InitTaskList();
-           
+
+            m_FacilityMgr.InitFacilityControllers();
+
             m_IsInited = true;
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
         }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace GameWish.Game
 {
     public class PromotionPanel : AbstractAnimPanel
-	{
+    {
         [SerializeField]
         private Image m_PromotionTitleImg;
         [SerializeField]
@@ -32,7 +32,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            OpenDependPanel(EngineUI.MaskPanel,-1,null);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
             PromotionBase promotionModel = (PromotionBase)args[0];
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
             m_CharacterName.text = m_CharacterItem.name;
@@ -42,7 +42,7 @@ namespace GameWish.Game
                     AudioMgr.S.PlaySound(Define.CLEVELUP);
                     stage = promotionModel.ToSubType<DiscipleRiseStage>().GetStage();
                     m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title2");
-                  
+
                     m_KongfuName.gameObject.SetActive(false);
                     m_Level.text = CommonUIMethod.GetTextNumber(stage) + "¶Î";
                     break;
@@ -51,7 +51,7 @@ namespace GameWish.Game
                     m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title1");
 
                     m_KongfuName.gameObject.SetActive(true);
-                    m_KongfuName.text = kungfu.kongfuType.ToString();
+                    m_KongfuName.text = TDKongfuConfigTable.GetData((int)kungfu.kongfuType).kongfuName;
                     m_Level.text = CommonUIMethod.GetTextNumber(kungfu.level) + "²ã";
                     break;
                 default:
@@ -68,7 +68,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_ExitBtn.onClick.AddListener(()=> {
+            m_ExitBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
