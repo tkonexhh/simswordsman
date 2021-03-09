@@ -48,7 +48,7 @@ namespace GameWish.Game
             m_OurCharacter.FightGroup = null;
 
             UnregisterEvents();
-            ReleaseEffectPool();
+            // ReleaseEffectPool();
         }
 
         private void ParpareEffectPool()
@@ -282,8 +282,24 @@ namespace GameWish.Game
                         string skillname = (string)param[1];
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
-                        animConfig?.PlayAttackEffect(controller.CharacterView.transform);
+                        animConfig?.PlayAttackEffect(controller.CharacterView.Body.transform);
+                        animConfig?.PlayFootEffect(controller.CharacterView.BoneFollower_Foot);
                         animConfig?.PlayAttackSound();
+
+                        CharacterController targetHurtController = null;
+                        if (controller == m_OurCharacter)
+                        {
+                            targetHurtController = m_EnemyCharacter;
+                        }
+                        else if (controller == m_EnemyCharacter)
+                        {
+                            targetHurtController = m_OurCharacter;
+                        }
+                        if (targetHurtController != null)
+                        {
+                            animConfig?.PlayHurtEffect(targetHurtController.CharacterView.transform);
+                        }
+
                     }
                     break;
                 case (int)EventID.OnBattleAtkEnd:
@@ -310,7 +326,6 @@ namespace GameWish.Game
                             m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
                             m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
                             m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
-                            animConfig?.PlayHurtEffect(m_EnemyCharacter.CharacterView.transform, 0);
                         }
                         else if (controller == m_EnemyCharacter && m_OurCharacter.IsDead() == false)
                         {
@@ -318,7 +333,6 @@ namespace GameWish.Game
                             m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
                             m_OurCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_EnemyHitBackDistance[m_AtkEventIndex] - m_EnemyHitBackDistance[0], 0);
                             m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
-                            animConfig?.PlayHurtEffect(m_OurCharacter.CharacterView.transform, 0);
                         }
                     }
                     break;

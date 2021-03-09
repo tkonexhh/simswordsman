@@ -11,7 +11,6 @@ namespace GameWish.Game
     {
         public void Reset()
         {
-
         }
     }
 }
