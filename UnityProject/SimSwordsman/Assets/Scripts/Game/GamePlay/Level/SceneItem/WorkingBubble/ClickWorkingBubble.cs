@@ -91,8 +91,9 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, false);
                     EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
 
-                    GameDataMgr.S.GetPlayerData().AddFoodNum(-Define.WORK_NEED_FOOD_COUNT);
+                    GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
                 }
+
             }
             else if(state == 2)
             {
