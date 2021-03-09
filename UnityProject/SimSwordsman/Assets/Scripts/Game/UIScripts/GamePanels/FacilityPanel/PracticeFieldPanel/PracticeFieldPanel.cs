@@ -73,6 +73,7 @@ namespace GameWish.Game
         private PracticeFieldController m_CurPracticeFieldController = null;
         private Dictionary<int, GameObject> m_PracticeEntity = new Dictionary<int, GameObject>();
 
+        public static bool isOpened = false;
 
         protected override void OnUIInit()
         {
@@ -146,6 +147,9 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+
+            isOpened = true;
+
             m_CurFacilityType = (FacilityType)args[0];
 
             GetInformationForNeed();
@@ -230,10 +234,12 @@ namespace GameWish.Game
                 m_PracticeEntity.Add(PracticeField.Index, obj);
         }
 
-
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+
+            isOpened = false;
+
             EventSystem.S.UnRegister(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
             CloseSelfPanel();
         }

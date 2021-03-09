@@ -57,9 +57,12 @@ namespace GameWish.Game
 
             if (m_IsBubbleShowed && !m_IsCharacterCollected)
             {
-                if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
+                if (!(KongfuLibraryPanel.isOpened || PracticeFieldPanel.isOpened))
                 {
-                    AutoSelectCharacter();
+                    if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
+                    {
+                        AutoSelectCharacter();
+                    }
                 }
             }
 
