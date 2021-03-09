@@ -151,7 +151,7 @@ namespace GameWish.Game
                 attackRange = atkRangeList[0];
             }
             // Move to random position
-            StartToMove(attackRange);
+            StartToMove(attackRange / 4);
         }
 
         private List<float> GetAtkRangeList(string atkAnimName)
