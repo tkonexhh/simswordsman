@@ -15,12 +15,17 @@ namespace GameWish.Game
         private Image m_Font1;
         [SerializeField]
         private Image m_Font2;
-
+        [SerializeField]
+        private Transform m_EffectParent;
 
         [SerializeField]
         private Transform m_RewardContainer;
         [SerializeField]
         private GameObject m_RewardinfoItem;
+        [SerializeField]
+        private GameObject m_SuccessEffect;
+        [SerializeField]
+        private GameObject m_FailEffect;
 
         private bool m_IsSuccess;
         private LevelConfigInfo m_LevelConfigInfo = null;
@@ -74,7 +79,7 @@ namespace GameWish.Game
                 case RewardItemType.Arms:
                     m_RewardList.Add(new ArmsReward((int)param[1], (int)param[2]));
                     break;
-                case RewardItemType.Kungfu:
+                case RewardItemType.Kongfu:
                     m_RewardList.Add(new KongfuReward((int)param[1], (int)param[2]));
                     break;
                 case RewardItemType.Food:
@@ -175,13 +180,16 @@ namespace GameWish.Game
         {
             if (m_IsSuccess)
             {
-                m_Font1.sprite = FindSprite("CombatSettlement_Font1");
-                m_Font2.sprite = FindSprite("CombatSettlement_Font2");
+                Instantiate(m_SuccessEffect, m_EffectParent).transform.localPosition = Vector3.zero;
+
+                //m_Font1.sprite = FindSprite("CombatSettlement_Font1");
+                //m_Font2.sprite = FindSprite("CombatSettlement_Font2");
             }
             else
             {
-                m_Font1.sprite = FindSprite("CombatSettlement_Font3");
-                m_Font2.sprite = FindSprite("CombatSettlement_Font4");
+                Instantiate(m_FailEffect, m_EffectParent).transform.localPosition = Vector3.zero;
+                //m_Font1.sprite = FindSprite("CombatSettlement_Font3");
+                //m_Font2.sprite = FindSprite("CombatSettlement_Font4");
             }
         }
         private void CreateRewardIInfoItem(CharacterController item)

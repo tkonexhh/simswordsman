@@ -141,7 +141,10 @@ namespace GameWish.Game
             m_CurLevelTxt.text = CommonUIMethod.GetGrade(m_CurBaicaohuInfo.level);
             m_BaicaohuCont.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
             m_FacilityIcon.sprite = FindSprite("Baicaohu" + m_CurLevel);
-            m_NextUnlockName.text = ((BaicaohuInfo)m_NextFacilityLevelInfo).GetCurMedicinalPowderName();
+            if (m_NextFacilityLevelInfo!=null)
+                m_NextUnlockName.text = ((BaicaohuInfo)m_NextFacilityLevelInfo).GetCurMedicinalPowderName();
+            else
+                m_NextUnlockName.text = "нч";
             RefreshPanelText();
             UpdateItems();
         }

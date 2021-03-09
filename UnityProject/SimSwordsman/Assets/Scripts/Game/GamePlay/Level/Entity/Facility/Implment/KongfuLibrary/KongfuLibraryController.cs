@@ -19,7 +19,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnRefresKungfuSoltInfo, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnKongfuLibraryVacancy, HandleAddListenerEvent);
 
-            InitKungfuField();
+            //InitKungfuField();
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
@@ -68,7 +68,7 @@ namespace GameWish.Game
             return m_ReadingSlotList;
         }
 
-        private void InitKungfuField()
+        public void InitKungfuField()
         {
             List<KungfuSoltDBData> kungfuLibraryDBDatas = GameDataMgr.S.GetClanData().GetKungfuLibraryData();
 

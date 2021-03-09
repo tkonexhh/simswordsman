@@ -67,7 +67,7 @@ namespace GameWish.Game
             BindAddListenerEvent();
             Init((int)obj[0]);
         }
-        
+
         public void StartEffect(float progress, string dur)
         {
             SetState(1);
@@ -140,7 +140,7 @@ namespace GameWish.Game
             {
                 item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
             }
-            m_MakeBtn.onClick.AddListener(() => 
+            m_MakeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -154,7 +154,7 @@ namespace GameWish.Game
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
-            m_MakeADBtn.onClick.AddListener(() => 
+            m_MakeADBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -227,7 +227,11 @@ namespace GameWish.Game
                 m_NeedItemCount2Txt.gameObject.SetActive(true);
 
                 m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
-                m_NeedItemCount2Txt.text = infos[1].value.ToString();
+                int Cost2 = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)infos[1].itemId);
+                if (Cost2 > infos[1].value)
+                    m_NeedItemCount2Txt.text = infos[1].value.ToString() + Define.SLASH + infos[1].value.ToString();
+                else
+                    m_NeedItemCount2Txt.text = CommonUIMethod.GetStrForColor("#A35953", Cost2.ToString()) + Define.SLASH + infos[1].value.ToString();
             }
             else
             {
@@ -235,9 +239,12 @@ namespace GameWish.Game
                 m_NeedItemCount1Txt.gameObject.SetActive(false);
             }
             m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
-            m_NeedItemCount1Txt.text = infos[0].value.ToString();
+            int Cost1 = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)infos[0].itemId);
+            if (Cost1 > infos[0].value)
+                m_NeedItemCount1Txt.text = infos[0].value.ToString() + Define.SLASH + infos[0].value.ToString();
+            else
+                m_NeedItemCount1Txt.text = CommonUIMethod.GetStrForColor("#A35953", Cost1.ToString()) + Define.SLASH + infos[0].value.ToString();
         }
     }
-
 }
 

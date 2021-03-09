@@ -54,6 +54,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnBattleFailed, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnCharacterUpgrade, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnBattleSecondEvent, HandleAddListenerEvent);
             //m_ScrollRect.
         }
 
@@ -304,7 +305,7 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshCurPanelInfo();
-            StartCoroutine(BattleCountdown(30));
+            //StartCoroutine(BattleCountdown(30));
 
             StartBattleText();
         }
@@ -352,7 +353,6 @@ namespace GameWish.Game
         private void ChallengePanelCallback(AbstractPanel obj)
         {
         }
-
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)
@@ -399,6 +399,9 @@ namespace GameWish.Game
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
                     PanelPool.S.AddPromotion(new WugongBreakthrough((EventID)key, (int)param[0], (CharacterKongfuDBData)param[1]));
+                    break; 
+                case EventID.OnBattleSecondEvent:
+                    m_CombatTime.text = (string)param[0];
                     break;
                 default:
                     break;

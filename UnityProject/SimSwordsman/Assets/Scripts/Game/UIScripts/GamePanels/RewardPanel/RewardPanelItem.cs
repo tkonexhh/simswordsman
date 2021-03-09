@@ -16,24 +16,24 @@ namespace GameWish.Game
         private Text m_RewardName;
         [SerializeField]
         private GameObject m_CountBg;
+        [SerializeField]
+        private GameObject m_LootSingle;  
+        //[SerializeField]
+        //private GameObject m_NewSkillHeroUnlock;
+
         private ResLoader m_ResLoader;
         private GameObject obj;
+
+
         private void OnDisable()
         {
-            if (obj != null)
-            {
-                DestroyImmediate(obj);
-                //m_ResLoader.ReleaseRes("NewSkillHeroUnlock");
-            }
         }
 
         public void Init(RewardPanel rewardPanel, RewardBase reward)
         {
             m_ResLoader = ResLoader.Allocate();
-            //obj = Instantiate(m_ResLoader.LoadSync("NewSkillHeroUnlock"), transform) as GameObject;
-            //obj.transform.position = transform.position;
 
-            if (reward.RewardItem == RewardItemType.Kungfu)
+            if (reward.RewardItem == RewardItemType.Kongfu)
             {
                 KungfuQuality kungfuQuality = TDKongfuConfigTable.GetKungfuConfigInfo((KungfuType)reward.KeyID).KungfuQuality;
 
@@ -60,6 +60,7 @@ namespace GameWish.Game
             m_RewardName.text = reward.RewardName();
             m_Count.text = "+" + reward.Count;
             m_CountBg.SetActive(reward.Count > 1);
+            Instantiate(m_LootSingle, transform).transform.localPosition = Vector3.zero;
         }
 
     }
