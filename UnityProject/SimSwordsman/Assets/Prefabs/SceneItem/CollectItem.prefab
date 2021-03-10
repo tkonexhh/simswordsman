@@ -362,6 +362,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Honey
       objectReference: {fileID: 0}
+    - target: {fileID: 6023947622454249970, guid: 43f98080b50969d4e9712ef76bb440a9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 85c1f4bffd0f1f840a98e531593234ed,
+        type: 3}
+    - target: {fileID: 6023947622454249970, guid: 43f98080b50969d4e9712ef76bb440a9,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43f98080b50969d4e9712ef76bb440a9, type: 3}
 --- !u!4 &1424548194582594485 stripped
@@ -377,6 +388,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7150100210221723334}
     m_Modifications:
+    - target: {fileID: 510161908724280939, guid: 52eb2ea0dffb8dd41b7caa0a7483564d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e5e4ef751ecf02408940b6928d671a6,
+        type: 3}
+    - target: {fileID: 510161908724280939, guid: 52eb2ea0dffb8dd41b7caa0a7483564d,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3182808979087116762, guid: 52eb2ea0dffb8dd41b7caa0a7483564d,
         type: 3}
       propertyPath: m_Name
@@ -511,6 +533,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Leaf
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093964616936208802, guid: b2eedf4b5f7df9846af6982730659aea,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 978fdcacbaf46be42b9c1c62dd9509b9,
+        type: 3}
+    - target: {fileID: 4093964616936208802, guid: b2eedf4b5f7df9846af6982730659aea,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2eedf4b5f7df9846af6982730659aea, type: 3}
