@@ -45,6 +45,7 @@ namespace GameWish.Game
         public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom; }
         public List<CharacterController> OurCharacterList { get => m_OurCharacterList; }
         public List<CharacterController> EnemyCharacterList { get => m_EnemyCharacterList; }
+        public BattleField BattleField { get { return m_BattleField; } }
         //public List<CharacterController> OurNotFightingCharacterList { get => m_OurNotFightingCharacterList; }
         //public List<CharacterController> EnemyNotFightingCharacterList { get => m_EnemyNotFightingCharacterList; }
 
