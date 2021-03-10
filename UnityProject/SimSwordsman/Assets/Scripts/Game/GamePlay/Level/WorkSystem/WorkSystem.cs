@@ -83,10 +83,22 @@ namespace GameWish.Game
                         m_UnlockFacilitys.Add(item);
                 }
             }
-            foreach (var item in m_RewardFacilitys)
+            //foreach (var item in m_RewardFacilitys)
+            //{
+            //    CharacterController controller = characterMgr.GetCharacterController(item.CharacterID);
+            //    controller.SetState(CharacterStateID.Working, item.GetFacilityType());
+            //    EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType(), controller);
+            //}
+            //TODO:这里用foreach不知道哪里在add或者remove，暂时没找到，先用for
+            for (int i = 0; i < m_RewardFacilitys.Count; i++)
             {
-                characterMgr.GetCharacterController(item.CharacterID).SetState(CharacterStateID.Working, item.GetFacilityType());
-                EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType());
+                var item = m_RewardFacilitys[i];
+                if (item != null) 
+                {
+                    CharacterController controller = characterMgr.GetCharacterController(item.CharacterID);
+                    controller.SetState(CharacterStateID.Working, item.GetFacilityType());
+                    EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType(), controller);
+                }                
             }
         }
 
@@ -294,7 +306,8 @@ namespace GameWish.Game
                 m_RewardFacilitys.Add(temp);
                 GameDataMgr.S.GetCountdownData().SetDataDirty();
                 //发送消息
-                EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, type);
+                CharacterController controller = characterMgr.GetCharacterController(temp.CharacterID);
+                EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, type, controller);
             }
         }
 

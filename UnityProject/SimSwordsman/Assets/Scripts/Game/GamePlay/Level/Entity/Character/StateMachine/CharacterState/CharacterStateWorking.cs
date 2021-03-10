@@ -34,7 +34,7 @@ namespace GameWish.Game
 
             m_Controller.MoveTo(targetPos, OnReachDestination);
 
-            EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd);
+            EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd); 
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -103,11 +103,16 @@ namespace GameWish.Game
         {
             FacilityType type = (FacilityType)param[0];
 
-            ApplyReward(type);
+            CharacterController controller = (CharacterController)param[1];
 
-            m_Controller.ReleaseWorkProgressBar();
+            if (controller == m_Controller)
+            {
+                ApplyReward(type);
 
-            m_Controller.SetState(CharacterStateID.Wander);
+                m_Controller.ReleaseWorkProgressBar();
+
+                m_Controller.SetState(CharacterStateID.Wander);
+            }            
         }
 
         private void ApplyReward(FacilityType type)
