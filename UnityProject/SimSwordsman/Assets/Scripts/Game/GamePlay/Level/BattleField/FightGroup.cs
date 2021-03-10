@@ -151,7 +151,7 @@ namespace GameWish.Game
                 attackRange = atkRangeList[0];
             }
             // Move to random position
-            StartToMove(attackRange / 4);
+            StartToMove(attackRange);
         }
 
         private List<float> GetAtkRangeList(string atkAnimName)
@@ -173,8 +173,15 @@ namespace GameWish.Game
 
         private void StartToMove(float attackRange)
         {
-            float x1 = Random.Range(MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
-            float y = Random.Range(MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.y);
+            float maxDeltaX = 1;
+            float maxDeltaY = 0.5f;
+
+            //float x1 = Random.Range(MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
+            //float y = Random.Range(MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.y);
+            float x1 = Random.Range(m_OurCharacter.GetPosition().x - maxDeltaX, m_OurCharacter.GetPosition().x + maxDeltaX);
+            float y = Random.Range(m_OurCharacter.GetPosition().y - maxDeltaY, m_OurCharacter.GetPosition().y + maxDeltaY);
+            x1 = Mathf.Clamp(x1, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
+            y = Mathf.Clamp(y, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.y);
 
             float x2 = Random.Range(0, 100) > 50 ? x1 + attackRange : x1 - attackRange;
             if (x2 < MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x)
@@ -297,7 +304,7 @@ namespace GameWish.Game
                         }
                         if (targetHurtController != null)
                         {
-                            animConfig?.PlayHurtEffect(targetHurtController.CharacterView.transform);
+                            animConfig?.PlayHurtEffect(MainGameMgr.S.transform, targetHurtController.CharacterView.transform.position);
                         }
 
                     }

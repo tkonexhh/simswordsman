@@ -112,7 +112,7 @@ namespace GameWish.Game
 
         public bool WillBeDead()
         {
-            return m_CharacterModel.GetHp() + m_CachedDamage <= 0;
+            return m_CharacterModel.GetHp() - m_CachedDamage <= 0;
         }
 
         public float GetAtkRange()

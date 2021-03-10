@@ -25,7 +25,7 @@ namespace GameWish.Game
         /// </summary>
         int m_MaxVisitorCount = 2;
 
-        const int MaxVisitorCountDaily = 12;
+        const int MaxVisitorCountDaily = 15;
 
         public List<Visitor> CurrentVisitor = new List<Visitor>();
 
