@@ -121,7 +121,7 @@ namespace GameWish.Game
                 {
                     var reward = levelRewardList[i];
                     levelRewardList.RemoveAt(i);
-                    Debug.LogError("AddEXP:" + i);
+                    // Debug.LogError("AddEXP:" + i);
                     for (int r = 0; r < MainGameMgr.S.BattleFieldMgr.OurCharacterList.Count; r++)
                     {
                         if (reward is Exp_RoleReward)

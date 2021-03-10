@@ -55,7 +55,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 1.15
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -4885,7 +4885,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.7
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9868,7 +9868,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.7
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -14617,7 +14617,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.7
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -19447,7 +19447,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.7
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -24162,7 +24162,7 @@ GameObject:
   - component: {fileID: 6356451047897699820}
   - component: {fileID: 6356451047897699821}
   m_Layer: 0
-  m_Name: YuJianShu_Hit_Left
+  m_Name: YuJianShu_Hit_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

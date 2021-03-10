@@ -124,10 +124,10 @@ namespace GameWish.Game
             }
         }
 
-        public void PlayHurtEffect(Transform transform)
+        public void PlayHurtEffect(Transform transform, Vector3 pos)
         {
             // Debug.LogError("PlayHurtEffect");
-            m_AnimStrategy.PlayHurtEffect(transform);
+            m_AnimStrategy.PlayHurtEffect(transform, pos);
         }
     }
 
@@ -183,15 +183,15 @@ namespace GameWish.Game
         }
 
         public abstract void PlayAttackEffect(Transform transform);
-        public void PlayHurtEffect(Transform transform)
+        public void PlayHurtEffect(Transform transform, Vector3 offset)
         {
             for (int i = 0; i < animConfig.atkEffectDelayList.Count; i++)
             {
-                AddHurtEffect(transform, animConfig.atkEffectDelayList[i]);
+                AddHurtEffect(transform, offset, animConfig.atkEffectDelayList[i]);
             }
         }
 
-        private void AddHurtEffect(Transform transform, float delay)
+        private void AddHurtEffect(Transform transform, Vector3 offset, float delay)
         {
             Timer.S.Post2Scale(i =>
             {
@@ -202,6 +202,7 @@ namespace GameWish.Game
                     var effectGo = GameObjectPoolMgr.S.Allocate(animConfig.hitSEList[index]);
                     effectGo.transform.SetParent(transform);
                     effectGo.transform.ResetTrans();
+                    effectGo.transform.localPosition = new Vector3(offset.x, offset.y, 10);
                     var com = effectGo.AddMissingComponent<ParticleAutoRecycle>();
                     com.StartCD();
 
@@ -268,6 +269,8 @@ namespace GameWish.Game
                 com.StartCD();
 
                 effectGo.AddMissingComponent<CustomShaderFinder>();
+                {
+                }
             }
         }
     }
