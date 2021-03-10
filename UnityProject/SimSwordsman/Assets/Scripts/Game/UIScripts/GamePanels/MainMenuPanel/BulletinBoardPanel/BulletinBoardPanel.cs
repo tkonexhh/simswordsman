@@ -22,6 +22,8 @@ namespace GameWish.Game
         private Transform m_TaskContParent;
         [SerializeField]
         private GameObject m_BulletinBoardtem;
+        [SerializeField]
+        private GameObject m_NoTaskImg;
 
         private List<SimGameTask> m_CommonTaskList = null;
 
@@ -67,6 +69,15 @@ namespace GameWish.Game
                     if (m_CommonTaskList[i].GetCurTaskState() != TaskState.Finished)
                         CreateTask(m_CommonTaskList[i]);
                 }
+            }
+
+            if (MainGameMgr.S.CommonTaskMgr.IsTodayMissionAllClear())
+            {
+                m_NoTaskImg.SetActive(true);
+            }
+            else
+            {
+                m_NoTaskImg.SetActive(false);
             }
         }
 
