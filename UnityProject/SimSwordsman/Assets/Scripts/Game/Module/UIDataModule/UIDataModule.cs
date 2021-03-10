@@ -132,6 +132,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.VisitorPanel, null, "GamePanels/VisitorPanel/VisitorPanel");
 
             UIDataTable.AddPanelData(UIID.UserAccountPanel, null, "GamePanels/UserAccountPanel/UserAccountPanel");
+
+            RealNameMgr.S.RegisterPanels();
         }
     }
 }
