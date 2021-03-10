@@ -151,7 +151,7 @@ namespace GameWish.Game
                 attackRange = atkRangeList[0];
             }
             // Move to random position
-            StartToMove(attackRange / 4);
+            StartToMove(attackRange);
         }
 
         private List<float> GetAtkRangeList(string atkAnimName)
@@ -297,7 +297,7 @@ namespace GameWish.Game
                         }
                         if (targetHurtController != null)
                         {
-                            animConfig?.PlayHurtEffect(targetHurtController.CharacterView.transform);
+                            animConfig?.PlayHurtEffect(MainGameMgr.S.transform, targetHurtController.CharacterView.transform.position);
                         }
 
                     }
