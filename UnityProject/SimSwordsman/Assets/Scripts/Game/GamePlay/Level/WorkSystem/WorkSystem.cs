@@ -48,6 +48,8 @@ namespace GameWish.Game
         int m_MaxCanWorkFacilityLimit = 0;
         string[] tempArray;
 
+        private int m_WorkTimerID = -1;
+
         public void Init()
         {
             //For Test
@@ -57,9 +59,50 @@ namespace GameWish.Game
             {
                 CheckData();
                 BindingEvents();
+                
+                UpdateWorkTime();
             }
             else
                 EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
+        }
+
+        private void UpdateWorkTime() 
+        {
+            Timer.S.Cancel(m_WorkTimerID);
+
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+
+            TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(lobbyLevel);
+            
+            if (lobbyData == null) 
+            {
+                lobbyData = TDFacilityLobbyTable.GetData(0);
+            }
+
+            if (lobbyData != null)
+            {
+                //TODO:临时增加
+                m_WorkTimerID = Timer.S.Post2Really((x) =>
+                {
+                    try
+                    {
+                        int index = UnityEngine.Random.Range(0, m_CanWorkFacilitys.Count);
+
+                        FacilityType type = m_CanWorkFacilitys[index];
+
+                        if (m_CurrentWorkItem.ContainsKey(type) == false) 
+                        {
+                            EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
+                        }                        
+                    }
+                    catch (Exception ex) {
+                        UnityEngine.Debug.LogError("error:" + ex.ToString());
+                    }                    
+                }, lobbyData.workInterval, -1);
+            }
+            else {
+                UnityEngine.Debug.LogError("error:");
+            }            
         }
 
         void BindingEvents()
@@ -200,6 +243,8 @@ namespace GameWish.Game
                     //可工作建筑数量增多
                     UpdateCanWorkFacilitys();
                 }
+
+                UpdateWorkTime();
             }
         }
 
@@ -280,7 +325,7 @@ namespace GameWish.Game
             {
                 m_CanWorkFacilitys.Add(type);
                 //发送消息
-                EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
+                //EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
                 EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
             }
         }
