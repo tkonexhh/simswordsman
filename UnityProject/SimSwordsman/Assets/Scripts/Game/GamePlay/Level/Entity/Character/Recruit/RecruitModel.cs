@@ -152,6 +152,21 @@ namespace GameWish.Game
         }
 
         /// <summary>
+        /// 减少招募数量 因为招募令出售
+        /// </summary>
+        public void ReduceRecruitCount(int count)
+        {
+            m_RecruitCount -= count;
+            if (m_RecruitCount < 0)
+            {
+                m_RecruitCount = 0;
+            }
+
+            MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
+        }
+
+
+        /// <summary>
         /// 增加招募次数
         /// </summary>
         /// <param name="delta"></param>

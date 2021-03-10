@@ -214,13 +214,11 @@ namespace GameWish.Game
         {
             m_SelectedNumber++;
             int hava = int.Parse(m_Have.text);
-            m_AllPrice.text = (m_CurInventoryItem.Price * m_SelectedNumber).ToString();
             if (m_SelectedNumber >= hava)
             {
                 m_SelectedNumber = hava;
-                m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
-                return;
             }
+            m_AllPrice.text = (m_CurInventoryItem.Price * m_SelectedNumber).ToString();
             m_SellNumber.text = m_SelectedNumber.ToString() + Define.SLASH + m_CurInventoryItem.Number.ToString();
         }
         private string GetIconName(KungfuType kungfuType)

@@ -43,6 +43,7 @@ namespace GameWish.Game
                 if (countStrs.Length == 1)
                 {
                     count1 = int.Parse(countStrs[0]);
+                    count2 = int.Parse(countStrs[0]);
                 }
                 else if (countStrs.Length == 2)
                 {
@@ -60,11 +61,12 @@ namespace GameWish.Game
                 if (countStrs.Length == 1)
                 {
                     count1 = int.Parse(countStrs[0]);
+                    count2 = int.Parse(countStrs[0]);
                 }
                 else if (countStrs.Length == 2)
                 {
                     count1 = int.Parse(countStrs[0]);
-                    count2 = int.Parse(countStrs[0]);
+                    count2 = int.Parse(countStrs[1]);
                 }
 
                 if (strs.Length == 4) // Item

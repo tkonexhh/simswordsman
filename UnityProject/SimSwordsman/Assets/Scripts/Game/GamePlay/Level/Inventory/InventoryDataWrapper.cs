@@ -352,6 +352,12 @@ namespace GameWish.Game
             {
                 Log.w("PropItem id = " + _propItem.GetSortId());
             }
+
+            if (_propItem.PropSubType == RawMaterial.SilverToken || _propItem.PropSubType == RawMaterial.GoldenToken)
+            {
+                EventSystem.S.Send(EventID.OnRecruitmentOrderIncrease, _propItem.PropSubType, -delta);
+            }
+
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
         }
     }
