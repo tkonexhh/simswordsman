@@ -60,6 +60,19 @@ namespace GameWish.Game
             m_CurTaskList.ForEach(i => i.RemoveCharacter(id));
         }
 
+        public bool IsTodayMissionAllClear()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            LobbyLevelInfo levelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel);
+
+            int dailyRefreshCount = levelInfo.maxDailyTask;
+
+            if (GameDataMgr.S.GetCommonTaskData().finishedTaskCount >= dailyRefreshCount)
+                return true;
+
+            return false;
+        }
+
         /// <summary>
         /// 打开UI界面时调用
         /// </summary>
@@ -72,13 +85,11 @@ namespace GameWish.Game
                 GameDataMgr.S.GetCommonTaskData().SetFinishedTaskCount(0);
             }
 
+            if (IsTodayMissionAllClear())
+                return;
+
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
             LobbyLevelInfo levelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel);
-
-            int dailyRefreshCount = levelInfo.maxDailyTask;
-
-            if (GameDataMgr.S.GetCommonTaskData().finishedTaskCount >= dailyRefreshCount)
-                return;
 
             m_CommonTaskCount = levelInfo.commonTaskCount;
 
