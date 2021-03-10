@@ -334,41 +334,39 @@ namespace GameWish.Game
         private void AutoSelectedDisciple()
         {
             //TODO  按照弟子战力从高到底排序
-            List<CharacterItem> allCharacterList = new List<CharacterItem>();
-            foreach (var item in m_AllCharacterList)
-            {
-                allCharacterList.Add(item);
-            }
+
             m_SelectedDiscipleDic.Clear();
 
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    CommonUIMethod.BubbleSortForType(allCharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
-                    if (allCharacterList.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
+                    CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+                    List<CharacterItem> alCharacterList = new List<CharacterItem>();
+                    foreach (var item in m_AllCharacterList)
+                        if (item.level >= m_CommonTaskItemInfo.characterLevelRequired)
+                            alCharacterList.Add(item);
+                    if (alCharacterList.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
                     {
                         for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
-                            if (allCharacterList[i].level>=m_CommonTaskItemInfo.characterLevelRequired)
-                                m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                            m_SelectedDiscipleDic.Add(alCharacterList[i].id, alCharacterList[i]);
                     }
                     else
                     {
-                        for (int i = 0; i < allCharacterList.Count; i++)
-                            if (allCharacterList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
-                                m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                        for (int i = 0; i < alCharacterList.Count; i++)
+                            m_SelectedDiscipleDic.Add(alCharacterList[i].id, alCharacterList[i]);
                     }
                     break;
                 case PanelType.Challenge:
-                    CommonUIMethod.BubbleSortForType(allCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
-                    if (allCharacterList.Count >= MaxDiscipleNumber)
+                    CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+                    if (m_AllCharacterList.Count >= MaxDiscipleNumber)
                     {
                         for (int i = 0; i < MaxDiscipleNumber; i++)
-                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                            m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
                     }
                     else
                     {
-                        for (int i = 0; i < allCharacterList.Count; i++)
-                            m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                        for (int i = 0; i < m_AllCharacterList.Count; i++)
+                            m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
                     }
                     break;
                 default:
