@@ -23,10 +23,11 @@ namespace GameWish.Game
             {
                 Countdowner cd = GameDataMgr.S.GetCountdownData().countdownerData[i];
                 offset = DateTime.Parse(cd.EndTime) - DateTime.Now;
+
                 if (offset.TotalSeconds > 0)
                 {
                     m_AllCDs.Add(cd);
-                    CountdownStart(cd);
+                    CountdownStart(cd, false);
                 }
                 else
                 {
@@ -88,22 +89,27 @@ namespace GameWish.Game
             GameDataMgr.S.GetCountdownData().SetDataDirty();
         }
 
-        void CountdownStart(Countdowner cd)
+        void CountdownStart(Countdowner cd,bool isCancelLastTimer = true)
         {
-            //结束之前的计时（如果有）
-            Timer.S.Cancel(cd.TimerID);
+            if (isCancelLastTimer) {
+                //结束之前的计时（如果有）
+                Timer.S.Cancel(cd.TimerID);
+            }            
 
             TimeSpan offset = DateTime.Parse(cd.EndTime) - DateTime.Now;
             DateTime endtime = DateTime.Parse(cd.EndTime);
             DateTime starttime = DateTime.Parse(cd.startTime);
             TimeSpan total = endtime - starttime;
             cd.SetProgress((float)(1f - (offset.TotalSeconds / total.TotalSeconds)));
+
             if (offset.TotalSeconds >= 0)
             {
                 EventSystem.S.Send(EventID.OnCountdownerStart, cd, offset.ToString(@"hh\:mm\:ss"));
+                if (Timer.S == null) Debug.LogError("timer s is null");
                 cd.TimerID = Timer.S.Post2Really(count =>
                 {
                     offset -= TimeSpan.FromSeconds(1);
+
                     if (offset.TotalSeconds > 0)
                     {
                         cd.SetProgress((float)(1f - (offset.TotalSeconds / total.TotalSeconds)));
@@ -112,6 +118,9 @@ namespace GameWish.Game
                     else
                         CountdownEnd(cd);//结束
                 }, 1, -1);
+            }
+            else {
+                CountdownEnd(cd);
             }
         }
         

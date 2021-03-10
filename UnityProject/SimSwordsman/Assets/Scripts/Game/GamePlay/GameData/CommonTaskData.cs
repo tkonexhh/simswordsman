@@ -95,6 +95,8 @@ namespace GameWish.Game
 
         public void OnTaskStarted(int taskId)
         {
+            finishedTaskCount++;
+
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
             mainTaskItem.taskState = TaskState.Running;
             SetDataDirty();
@@ -113,8 +115,6 @@ namespace GameWish.Game
             CommonTaskItemData mainTaskItem = GetCommonTaskItemData(taskId);
             if (mainTaskItem != null)
             {
-                finishedTaskCount++;
-
                 taskList.Remove(mainTaskItem);
                 // mainTaskItem.isRewardClaimed = true;
             }

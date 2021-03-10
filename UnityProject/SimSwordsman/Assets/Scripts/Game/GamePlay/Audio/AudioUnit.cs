@@ -41,12 +41,17 @@ namespace Qarth
                 if (is3DSound)
                 {
                     m_Source.spatialBlend = 1;
-                    m_Source.minDistance = 0.7f;
-                    m_Source.maxDistance = 10;//暂定自己项目中的参数
+                    //m_Source.minDistance = 0.7f;
+                    //m_Source.maxDistance = 10;//暂定自己项目中的参数
+
+                    m_Source.rolloffMode = AudioRolloffMode.Linear;
+                    m_Source.minDistance = 8f;
+                    m_Source.maxDistance = 16;//暂定自己项目中的参数
                 }
                 else
                 {
                     m_Source.spatialBlend = 0;
+                    m_Source.rolloffMode = AudioRolloffMode.Logarithmic;
                     m_Source.minDistance = 1;
                     m_Source.maxDistance = 500;
                 }

@@ -2,6 +2,7 @@ using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -26,7 +27,13 @@ namespace GameWish.Game
             if (recordCharacterID != null)
             {
                 foreach (var item in recordCharacterID)
-                    m_RecordCharacterController.Add(MainGameMgr.S.CharacterMgr.GetCharacterController(item));
+                {
+                    CharacterController controller = MainGameMgr.S.CharacterMgr.GetCharacterController(item);
+                    if (controller != null)
+                    {
+                        m_RecordCharacterController.Add(controller);
+                    }
+                }
             }
 
 
@@ -57,7 +64,16 @@ namespace GameWish.Game
 
         public List<CharacterController> GetRecordCharacterController()
         {
-            return m_RecordCharacterController;
+            return m_RecordCharacterController.Where(i => i != null).ToList();
+        }
+
+        public void RemoveCharacter(int id)
+        {
+            CharacterController character = m_RecordCharacterController.FirstOrDefault(i => i.CharacterId == id);
+            if (character != null)
+            {
+                m_RecordCharacterController.Remove(character);
+            }
         }
         /// <summary>
         /// 清除弟子所拥有的当前任务ID
