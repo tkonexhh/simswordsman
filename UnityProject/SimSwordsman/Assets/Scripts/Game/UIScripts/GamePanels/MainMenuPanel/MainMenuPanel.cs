@@ -138,7 +138,6 @@ namespace GameWish.Game
             m_CreateCoinBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
             });
 
             m_VisitorBtn1.onClick.AddListener(() => {

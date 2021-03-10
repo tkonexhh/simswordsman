@@ -229,7 +229,7 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    //m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
+                    m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.enemyClan;
                     m_MatchNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
                     break;
                 case PanelType.Challenge:                    
@@ -240,8 +240,8 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            
         }
-
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(() =>
