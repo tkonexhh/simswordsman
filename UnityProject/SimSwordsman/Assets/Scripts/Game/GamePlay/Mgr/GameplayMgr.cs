@@ -287,13 +287,13 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Lobby);
                     GameDataMgr.S.GetPlayerData().isGuideStart = true;
                     GameDataMgr.S.GetPlayerData().SetDataDirty();
-                }, 1);
+                }, 0.5f);
                 Timer.S.Post2Really(x =>
                 {
                     Destroy(obj);
                     //增加金币（暂时写在这里）
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem(RawMaterial.WuWood), 10);
-                }, 2.5f);
+                }, 0.7f);
             };
             UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, "StoryPanel_Text_1,StoryPanel_Text_2,StoryPanel_Text_3,StoryPanel_Text_4", action);
         }

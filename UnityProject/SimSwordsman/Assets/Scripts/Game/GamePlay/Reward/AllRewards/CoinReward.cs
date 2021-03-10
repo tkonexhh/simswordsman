@@ -18,7 +18,7 @@ namespace GameWish.Game
 
         public override string RewardName()
         {
-            return "食物";
+            return "金钱";
         }
 
         public override string SpriteName()
