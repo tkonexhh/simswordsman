@@ -232,9 +232,10 @@ namespace GameWish.Game
                     //m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
                     m_MatchNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
                     break;
-                case PanelType.Challenge:
+                case PanelType.Challenge:                    
                     m_RightSchoolNameValue.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                     m_MatchNameValue.text = m_LevelConfigInfo.battleName;
+                    MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRender(m_CurChapterConfigInfo.clanType);
                     break;
                 default:
                     break;
