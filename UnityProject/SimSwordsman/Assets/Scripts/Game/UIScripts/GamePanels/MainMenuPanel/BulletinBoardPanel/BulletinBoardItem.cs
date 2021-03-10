@@ -393,7 +393,10 @@ namespace GameWish.Game
                 CreateDisciple();
 
             foreach (var item in m_CharacterController)
-                m_SelectedDiscipleDic.Add(item.CharacterId,MainGameMgr.S.CharacterMgr.GetCharacterItem(item.CharacterId));
+            {
+                CharacterItem characterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(item.CharacterId);
+                m_SelectedDiscipleDic.Add(item.CharacterId, characterItem);
+            }
             int k = 0;
             foreach (var item in m_SelectedDiscipleDic.Values)
             {
