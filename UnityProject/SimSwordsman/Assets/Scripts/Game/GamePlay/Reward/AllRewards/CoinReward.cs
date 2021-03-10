@@ -26,5 +26,4 @@ namespace GameWish.Game
             return "Coin";
         }
     }
-
 }
