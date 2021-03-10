@@ -46,9 +46,11 @@ namespace GameWish.Game
             if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= limit)
                 return;
             if (GameDataMgr.S.GetPlayerData().GetFoodNum()+ foodNumber >= limit)
-                GameDataMgr.S.GetPlayerData().SetFoodRefreshCount(limit);
+                GameDataMgr.S.GetPlayerData().SetFoodNum(limit);
             else
                 GameDataMgr.S.GetPlayerData().AddFoodNum(foodNumber);
+
+            EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
         }
 
         private void OnDestroy()
