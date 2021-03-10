@@ -76,7 +76,7 @@ namespace GameWish.Game
             LobbyLevelInfo levelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel);
 
             int dailyRefreshCount = levelInfo.maxDailyTask;
-            //dailyRefreshCount = 1;
+
             if (GameDataMgr.S.GetCommonTaskData().finishedTaskCount >= dailyRefreshCount)
                 return;
 
