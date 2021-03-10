@@ -55,7 +55,10 @@ namespace GameWish.Game
 
         #region Public 
 
-   
+        public void TaskRemoveCharacter(int id)
+        {
+            m_CurTaskList.ForEach(i => i.RemoveCharacter(id));
+        }
 
         /// <summary>
         /// 打开UI界面时调用
@@ -73,6 +76,7 @@ namespace GameWish.Game
             LobbyLevelInfo levelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel);
 
             int dailyRefreshCount = levelInfo.maxDailyTask;
+
             if (GameDataMgr.S.GetCommonTaskData().finishedTaskCount >= dailyRefreshCount)
                 return;
 

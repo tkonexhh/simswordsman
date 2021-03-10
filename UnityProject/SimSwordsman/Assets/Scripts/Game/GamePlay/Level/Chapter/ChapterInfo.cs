@@ -112,6 +112,28 @@ namespace GameWish.Game
                 enemiesList.Add(new EnemyConfig(enemie));
             }
         }
+
+        public void PrepareReward()
+        {
+            for (int i = levelRewardList.Count - 1; i >= 0; i--)
+            {
+                if (levelRewardList[i].RewardItem == RewardItemType.Exp_Role || levelRewardList[i].RewardItem == RewardItemType.Exp_Kongfu)
+                {
+                    var reward = levelRewardList[i];
+                    levelRewardList.RemoveAt(i);
+                    Debug.LogError("AddEXP:" + i);
+                    for (int r = 0; r < MainGameMgr.S.BattleFieldMgr.OurCharacterList.Count; r++)
+                    {
+                        if (reward is Exp_RoleReward)
+                            levelRewardList.Add(new Exp_RoleReward(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, reward.Count));
+                        else if (reward is Exp_KongfuRweard)
+                            levelRewardList.Add(new Exp_KongfuRweard(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, reward.Count));
+                    }
+                }
+
+
+            }
+        }
     }
 
 }

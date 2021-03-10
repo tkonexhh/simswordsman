@@ -6,7 +6,6 @@ namespace GameWish.Game
         LogPanel = 0,
         LogoPanel = 1,
         TopPanel,
-        MainGamePanel,
         UIParticalPanel,
         SettingPanel,
         GuideWordsPanel,

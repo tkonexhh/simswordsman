@@ -19,7 +19,7 @@ namespace GameWish.Game
                 return;
 
             var characterItem = MainGameMgr.S.CharacterMgr.GetCharacterController(m_KeyID.Value);
-            characterItem.CharacterModel.DistributionKungfuExp(Count * bonus);
+            characterItem?.CharacterModel.DistributionKungfuExp(Count * bonus);
         }
 
         public override string RewardName()
