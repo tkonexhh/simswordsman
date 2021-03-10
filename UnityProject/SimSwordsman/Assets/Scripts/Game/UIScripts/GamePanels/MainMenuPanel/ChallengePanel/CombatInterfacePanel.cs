@@ -229,18 +229,19 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    //m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
+                    m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.enemyClan;
                     m_MatchNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
                     break;
-                case PanelType.Challenge:
+                case PanelType.Challenge:                    
                     m_RightSchoolNameValue.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                     m_MatchNameValue.text = m_LevelConfigInfo.battleName;
+                    MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRender(m_CurChapterConfigInfo.clanType);
                     break;
                 default:
                     break;
             }
+            
         }
-
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(() =>

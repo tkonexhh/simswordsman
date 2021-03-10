@@ -60,12 +60,8 @@ namespace GameWish.Game
 
         private void OnClickF3()
         {
-            List<RewardBase> rewards = new List<RewardBase>();
-            rewards.Add(new KongfuReward(1001));
-            rewards.Add(new FoodsReward(10));
-            rewards.Add(new ItemReward(RawMaterial.BearPaw, 4));
-            rewards.ForEach(p => p.AcceptReward());
-            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+
+            UIMgr.S.OpenPanel(UIID.SignInPanel);
         }
         int add = 1;
         private void OnClickF4()

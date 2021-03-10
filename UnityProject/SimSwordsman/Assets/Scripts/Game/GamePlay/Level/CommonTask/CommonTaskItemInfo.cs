@@ -20,6 +20,7 @@ namespace GameWish.Game
         public string desc;
         public string taskTxt;
         public string iconRes;
+        public string enemyClan;
         public TaskState taskState;
         public List<TaskReward> itemRewards = new List<TaskReward>();
         public int expReward;
@@ -43,6 +44,7 @@ namespace GameWish.Game
                 this.title = tdCommonTask.taskTitle;
                 this.desc = tdCommonTask.taskDescription;
                 this.taskTxt = tdCommonTask.taskTxt;
+                this.enemyClan = tdCommonTask.enemyClan;
                 this.needHomeLevel = tdCommonTask.homeLevel;
                 //this.specialRewardRate = tdCommonTask.specialRewardRate;
                 this.characterAmount = tdCommonTask.roleAmount;

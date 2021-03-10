@@ -96,9 +96,7 @@ namespace GameWish.Game
                     KungfuType kongfu = kongfuList[UnityEngine.Random.Range(0, kongfuList.Count)];
                     m_NextAtkAnimName = TDKongfuConfigTable.GetKungfuConfigInfo(kongfu).AnimName;
                 }
-                //TODO Test
-                m_NextAtkAnimName = "taizuchangquan";
-                Debug.LogError("Our Next Anim Name:" + m_NextAtkAnimName + "--" + kongfuList.Count);
+
             }
             else
             {

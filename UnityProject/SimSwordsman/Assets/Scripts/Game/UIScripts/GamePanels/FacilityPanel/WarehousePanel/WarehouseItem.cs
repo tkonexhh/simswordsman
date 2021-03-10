@@ -40,10 +40,6 @@ namespace GameWish.Game
 
 		public bool IsSameItemBase(ItemBase _itemBase)
 		{
-            if (_itemBase==null)
-            {
-
-            }
 			if (_itemBase.PropType != CurItemBase.PropType)
 				return false;
             switch (_itemBase.PropType)
@@ -75,8 +71,16 @@ namespace GameWish.Game
 		{
 			return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
 		}
+
+        public void ItemReset()
+        {
+			m_KungfuName.gameObject.SetActive(false);
+			IsHaveItem = false;
+		}
+
 		public void AddItemToWarehouse(ItemBase itemBase, Sprite sprite)
 		{
+			ItemReset();
 			if (sprite != null)
 			{
 				if (itemBase.PropType == PropType.Kungfu)

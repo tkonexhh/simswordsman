@@ -16,12 +16,12 @@ namespace GameWish.Game
         private RecruitData m_RecruitData = null;
         public void OnDestroyed()
         {
-            
+
         }
 
         public void OnInit()
         {
-            EventSystem.S.Register(EventID.OnRecruitmentOrderIncrease,HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnRecruitmentOrderIncrease, HandleAddListenerEvent);
             m_RecruitData = GameDataMgr.S.GetPlayerData().GetRecruitData();
             m_RecruitModel.Add(new RecruitModel(RecruitType.GoldMedal, m_RecruitData));
             m_RecruitModel.Add(new RecruitModel(RecruitType.SilverMedal, m_RecruitData));
@@ -47,7 +47,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="recruitType"></param>
         /// <param name="delta"></param>
-        private void SetRecruitCount(RecruitType recruitType,int delta)
+        private void SetRecruitCount(RecruitType recruitType, int delta)
         {
             RecruitModel recruitModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (recruitModel != null)
@@ -56,7 +56,7 @@ namespace GameWish.Game
 
         public void OnUpdate()
         {
-            
+
         }
 
         #region ÕÐÄ¼µÜ×Ó
@@ -132,6 +132,16 @@ namespace GameWish.Game
             RecruitModel ReModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
             if (ReModel != null)
                 ReModel.SetCurRecruitCount();
+            else
+            {
+                Log.w("RecruitModel is Null");
+            }
+        }
+        public void ReduceRecruitCount(RecruitType recruitType, int count)
+        {
+            RecruitModel ReModel = m_RecruitModel.Where(i => i.GetCurRecruitType() == recruitType).FirstOrDefault();
+            if (ReModel != null)
+                ReModel.ReduceRecruitCount(count);
             else
             {
                 Log.w("RecruitModel is Null");
@@ -215,7 +225,7 @@ namespace GameWish.Game
 
         private void OnDisable()
         {
-            EventSystem.S.Register(EventID.OnRecruitmentOrderIncrease,HandleAddListenerEvent);
+            EventSystem.S.Register(EventID.OnRecruitmentOrderIncrease, HandleAddListenerEvent);
         }
     }
 

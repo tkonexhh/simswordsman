@@ -24,6 +24,7 @@ namespace GameWish.Game
         private EInt m_ExpReward = 0;   
         private EInt m_KongfuExpReward = 0;   
         private string m_Enemy;   
+        private string m_EnemyClan;   
         private EInt m_RoleAmount = 0;   
         private EInt m_RoleLevelRequired = 0;  
         
@@ -90,6 +91,11 @@ namespace GameWish.Game
         public  string  enemy {get { return m_Enemy; } }
        
         /// <summary>
+        /// 敌人派别
+        /// </summary>
+        public  string  enemyClan {get { return m_EnemyClan; } }
+       
+        /// <summary>
         /// 可派弟子数量
         /// </summary>
         public  int  roleAmount {get { return m_RoleAmount; } }
@@ -151,9 +157,12 @@ namespace GameWish.Game
                     m_Enemy = dataR.ReadString();
                     break;
                 case 12:
-                    m_RoleAmount = dataR.ReadInt();
+                    m_EnemyClan = dataR.ReadString();
                     break;
                 case 13:
+                    m_RoleAmount = dataR.ReadInt();
+                    break;
+                case 14:
                     m_RoleLevelRequired = dataR.ReadInt();
                     break;
                 default:
@@ -166,7 +175,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(14);
+          Dictionary<string, int> ret = new Dictionary<string, int>(15);
           
           ret.Add("TaskID", 0);
           ret.Add("TriggerType", 1);
@@ -180,8 +189,9 @@ namespace GameWish.Game
           ret.Add("ExpReward", 9);
           ret.Add("KongfuExpReward", 10);
           ret.Add("Enemy", 11);
-          ret.Add("RoleAmount", 12);
-          ret.Add("RoleLevelRequired", 13);
+          ret.Add("EnemyClan", 12);
+          ret.Add("RoleAmount", 13);
+          ret.Add("RoleLevelRequired", 14);
           return ret;
         }
     } 

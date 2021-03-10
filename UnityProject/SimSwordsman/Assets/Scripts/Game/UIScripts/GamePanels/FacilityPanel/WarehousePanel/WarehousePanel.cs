@@ -89,7 +89,7 @@ namespace GameWish.Game
             {
                 case EventID.RefreshWarehouseRes:
                     GetInformationForNeed();
-                    RefreshResInfo();
+                    RefreshCreateGoods();
                     break;
                 default:
                     break;
@@ -179,6 +179,11 @@ namespace GameWish.Game
 
             if (m_InventoryItems != null)
             {
+                foreach (var item in m_CurItemList)
+                {
+                    item.ItemReset();
+                }
+
                 for (int i = 0; i < m_InventoryItems.Count; i++)
                 {
                     if (m_CurItemList.Count>i)
@@ -297,7 +302,7 @@ namespace GameWish.Game
             switch (key)
             {
                 case (int)EventID.OnReduceItems:
-                    ReduceItemGameObject((ItemBase)param[0], (int)param[1]);
+                    //ReduceItemGameObject((ItemBase)param[0], (int)param[1]);
                     break;
                 default:
                     break;
