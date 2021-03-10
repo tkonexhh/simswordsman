@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1678548966
+CRC: 3516145846
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ac6f05e0b1ff0960e287e47865ea23b8
+    Hash: 7b64c28a2d9aaa701631cc7e5dcb964f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cea17de082da1dfd38b5ed053fc34ca1
+    Hash: 43c8c57c533c0e6cb6ba6a9ea1385c0e
 HashAppended: 0
 ClassTypes:
 - Class: 21
@@ -17,9 +17,11 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Font/NumberMat.mat
 - Assets/Res/FolderMode/Font/Number.fontsettings
+- Assets/Res/FolderMode/Font/ChallengeBattle_FontImg.png
 - Assets/Res/FolderMode/Font/JingDianLiBian.TTF
-Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
+Dependencies: []

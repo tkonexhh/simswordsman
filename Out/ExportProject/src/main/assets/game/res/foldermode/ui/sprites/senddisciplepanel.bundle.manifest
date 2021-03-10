@@ -1,18 +1,27 @@
 ManifestFileVersion: 0
-CRC: 1150680277
+CRC: 529140432
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aebb140a6813e484f15b0b12ddf6b78e
+    Hash: 737c232c93cad1166c64f735c7452e5d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanel_Bg3.png
+- Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanel_Lock.png
+- Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanelSpritesData.asset
+- Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanel_Bg4.png
 - Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanel_Bg1.png
+- Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanel_Bg2.png
 Dependencies: []

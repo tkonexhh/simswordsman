@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2490556114
+CRC: 3034388975
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6d89bdf3360950a802a6357f8873ef62
+    Hash: c50a1985894eb60f8abf92b942b8c51f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0cac45ce0a1bb63231c4dcc27047896f
+    Hash: 2fe9a74583f705443224678ac24877c5
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -14,19 +14,19 @@ ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8786f468c87df444b8d77a6b5a16ec85, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
@@ -45,6 +45,6 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Huashan/HuashanPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Huashan/Huashan.jpg
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle

@@ -1,15 +1,17 @@
 ManifestFileVersion: 0
-CRC: 1677326253
+CRC: 1126788465
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f9025c6da378bb28956b5773ec34810e
+    Hash: d41b2090633f3b724822707a5fbb1f23
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e6adaf3e6e8ee03c0ae71116b7e77089
+    Hash: 80d68d46fdfbc3d35968b4be5948883d
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 4
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -18,13 +20,23 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 54b1a21244a55894894cba5af37defa0, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  Script: {fileID: 11500000, guid: e764e926030b04aa6b6369d8221a66aa, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 25b1c387ea45f6547b773ee33ee5f554, type: 3}
 - Class: 114
@@ -32,15 +44,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 523a2d88b684e8e4d8989e71522c6e50, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: b4ca7baa174ee6c4d9b1a8db8c04c4f1, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  Script: {fileID: 11500000, guid: 54ea711d851f64f9a94cb098db819f7c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: cdb2e11fd411eb240973527eb49a880c, type: 3}
 - Class: 114
@@ -52,6 +58,8 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
+  Script: {instanceID: 0}
+- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -69,7 +77,9 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/Common/OfficialVersionAdPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/MaskPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/FloatMessagePanel.prefab
+- Assets/Res/FolderMode/UI/Panels/Common/WorldUIPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/UIParticalPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/RatePanel.prefab
+- Assets/Res/FolderMode/UI/Panels/Common/Tip.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle

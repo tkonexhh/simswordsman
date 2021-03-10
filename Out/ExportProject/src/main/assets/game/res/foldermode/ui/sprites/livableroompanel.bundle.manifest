@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3457137545
+CRC: 145459110
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 88f02ee58a356565d1c32027ed4de39e
+    Hash: 0f99ac0b07f0bc2e240b494db25af21e
   TypeTreeHash:
     serializedVersion: 2
     Hash: c03bbcd67ef17a7b0a7f07982d0b6939
@@ -19,7 +19,6 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_Bg1.png
-- Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_icon@2x.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_Bg4.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_Bg2.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgBtn3.png
@@ -31,4 +30,5 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomSpritesData.asset
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgBtn2.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgBtn1.png
-Dependencies: []
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle

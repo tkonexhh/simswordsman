@@ -1,57 +1,102 @@
-﻿ID	动画名称	攻击距离
-int	string	string
-Id	AnimationName	AtkRange
-1	taizuchangquan	0.5;0.5;0.9;1
-2	paodingjieniu	0.6;1;0.5
-3	fengshentui	0.4;0.5
-4	yanhuijianfa	2;1
-5	qingmangzhi	2
-6	feiyundu	2;1
-7	wulangbaguagun	2.6;2;2.2;2.2
-8	lianhuazhang	0.5;0.4;0.5
-9	kuihuadianxueshou	0.5;0.5;0.5;1
-10	saoyetui	2;1
-11	zuiquan	0.4;0.75;0.7;1.5
-12	suiyuquan	0.5;0.4;0.5;0.5
-13	foshanwuyingjiao	2;1
-14	tanzhishengong	2;2;2;2;2
-15	luanpifengjianfa	1;1.5;1.5;1.5;1.5;1.5
-16	lieyandaofa	2;1
-17	yujianshu	2;1
-18	shierlutantui	0.4;0.6;0.5
-19	kaibeishou	0.5;0.5;0.5;1
-20	rulaishenzhang	2;1
-21	xianglongzhang	2
-22	liumaishenjian	2;1
-23	dugujiujian	1;1;0
-24	lingboweibu	2;1
-25	bahuangliuhe	2;1
-26	tiancanjiao	2;1
-27	tianshanzhemeishou	2;1
-28	yijinjing	2;1
-29	dagoubangfa	1.5;1.1;1.4
-30	diaoyugunfa	2.1;2.2
-31	chanzhanggong	1.1;1.1;1.1;1.1
-32	qinlonggong	2;1
-33	luohanfumoquan	1;1
-34	qianshourulaizhang	1;1;1;1;1;1;1
-35	taijijianfa	0.8;2
-36	taijizhang	0.8;0.6;0.6;1.1
-37	qingliannvshenjian	2;1
-38	baimangbian	2;1
-39	huashanjianfa	2;1
-40	wudushenbian	2;1
-41	qianzhuwandushou	2;1
-42	modao	2;1
-43	modaoyishan	2;1
-44	bodongquan	2;1
-45	yeluoxinghejian	2;1
-46	shanzei_attack_1	1
-47	shanzei_attack_2	0.7
-48	shanzeiBoss_attack_1	0.9
-49	shanzeiBoss_attack_2	1.6;2.5;2.5
-50	bear_attack	2;1
-51	boar_attack	2;1
-52	deer_attack	2;1
-53	snake_attack	2;1
-54	wolf_attack	2;1
+﻿ID	动画名称	攻击距离	攻击延时	脚步特效	释放特效	受击特效	攻击声音
+int	string	string	string	string	string	string	string
+Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	AttackSound
+1001	taizuchangquan	0.5;0.5;0.9;1	0			Hit_Light_Left|Hit_Light_Right	
+1002	paodingjieniu	0.6;1;0.5	0			Hit_Light_Left|Hit_Light_Right	
+1003	fengshentui	0.4;0.5	0			Hit_Light_Left|Hit_Light_Right	
+1004	yanhuijianfa	2	0.6;1.13		YanHuiJianFa_Left|YanHuiJianFa_Right	Hit_Light_Left|Hit_Light_Right	
+1005	qingmangzhi	2	0.4		QingMangZhi_Muzzle_Left|QingMangZhi_Muzzle_Right	QingMangZhi_BulletHit_Left|QingMangZhi_BulletHit_Right	
+1006	feiyundu					Hit_Light_Left|Hit_Light_Right	
+1007	wulangbaguagun	2.6;2;2.2;2.2	0			Hit_Light_Left|Hit_Light_Right	
+1008	lianhuazhang	0.5;0.4;0.5	0			Hit_Light_Left|Hit_Light_Right	
+1009	kuihuadianxueshou	0.5;0.5;0.5;1	0			Hit_Light_Left|Hit_Light_Right	
+1010	saoyetui					Hit_Light_Left|Hit_Light_Right	
+1011	zuiquan	0.4;0.75;0.7;1.5	0			Hit_Light_Left|Hit_Light_Right	
+2001	suiyuquan	0.5;0.4;0.5;0.5	0			Hit_Light_Left|Hit_Light_Right	
+2002	foshanwuyingjiao		0.35	WuYingJiao_Smoke	WuYingJiao_Hit_Left|WuYingJiao_Hit_Right	Hit_Light_Left|Hit_Light_Right	
+2003	tanzhishengong	2;2;2;2;2	0			Hit_Light_Left|Hit_Light_Right	
+2004	luanpifengjianfa	1;1.5;1.5;1.5;1.5;1.5	0.17;0.56;0.86;1.16;1.35;1.58	LuanPiFengJianFa_DragSmoke	LuanPiFengJianFa_Left|LuanPiFengJianFa_Right	Hit_Light_Left|Hit_Light_Right	
+2005	lieyandaofa	2	0.58;1.22;1.53		LieYanDaoFa_Left|LieYanDaoFa_Right	Hit_Light_Left|Hit_Light_Right	
+2006	yujianshu	2	0.7		YuJianShu_Muzzle_Left|YuJianShu_Muzzle_Right	YuJianShu_Hit_Left|YuJianShu_Hit_Right	
+2007	shierlutantui	0.4;0.6;0.5	0			Hit_Light_Left|Hit_Light_Right	
+2008	kaibeishou	0.5;0.5;0.5;1	0			Hit_Light_Left|Hit_Light_Right	
+3001	rulaishenzhang	2	0.8		RuLaiShenZhang_Muzzle_Left|RuLaiShenZhang_Muzzle_Right	RuLaiShenZhang_bullet_Left|RuLaiShenZhang_bullet_Right	
+3002	xianglongzhang	2	2		XiangLongShiBaZhang_Muzzle	XiangLongShiBaZhang_Hit_Left|XiangLongShiBaZhang_Hit_Right	
+3003	liumaishenjian	2;2;2;2;2;2;2	1		LiuMaiShenJian_Muzzle	LiuMaiShenJian_BulletHit_Left|LiuMaiShenJian_BulletHit_Right	
+3004	dugujiujian	1;1;0	1;1.69;2.65	DuGuJiuJian_DragSmoke	DuGuJiuJian_Left|DuGuJiuJian_Right	Hit_Light_Left|Hit_Light_Right	
+3005	lingboweibu					Hit_Light_Left|Hit_Light_Right	
+3006	bahuangliuhe	2;2;2	2.2000000000000002		BaHuangLiuHeE	BaHuangLiuHe_Hit_Left|BaHuangLiuHe_Hit_Right	
+3007	tiancanjiao	2;2;2;2	0.2	TianCanJiao_Smoke		TianCanJiao_Bullets_Left|TianCanJiao_Bullets_Right	
+3008	tianshanzhemeishou	0.5;0.5;0.5	0			Hit_Light_Left|Hit_Light_Right	
+3009	yijinjing	0.5;0.5;1;2	1.3		YiJinJing_Pre_Left|YiJinJing_Pre_Right	YiJinJing_Hit_Left|YiJinJing_Hit_Right	
+4001	dagoubangfa	1.5;1.1;1.4	0			Hit_Light_Left|Hit_Light_Right	
+4002	diaoyugunfa	2.1;2.2	0				
+4003	luohanfumoquan	1;1	0				
+4004	qianshourulaizhang	1;1;1;1;1;1;1	0				
+4005	taijijianfa	0.8;2	0				
+4006	taijizhang	0.8;0.6;0.6;1.1	0				
+4007	qingnianshennvjian	2	2.1800000000000002		QingLianJianFa_Left|QingLianJianFa_Right	QingLianJianFa_Hit_Left|QingLianJianFa_Hit_Right	
+4008	baimangbian	2	2.5		BaiMangBian_Left|BaiMangBian_Right	BaiMangBian_Hit_Left|BaiMangBian_Hit_Right	
+4009	huashanjianfa	1;1.2;1;-1;4	0.46;1.15;2.04;3.17		HuaShanJian_Left|HuaShanJian_Right	HuaShanJian_Hit_Left|HuaShanJian_Hit_Right	
+4010	wudushenbian	1.5;1.5;2	0				
+4011	qianzhuwandushou	0.8;0.6;1.1;1.4	0				
+4012	modao	1.5;2;2.1;2.6	1;1.4;1.6;2.8	MoJiaoDaoFa1_DragSmoke	MoJiaoDaoFa1_Left|MoJiaoDaoFa1_Right		
+4013	modaoyishan	1.2;1.7;2.3;2.5	0.8;1.12;1.6;1.9	MoJiaoDaoFa2_DragSmoke	MoJiaoDaoFa2_Left|MoJiaoDaoFa2_Right		
+4014	bodongquan	2	1.25		BoDongQuan_Left|BoDongQuan_Right	BoDongQuan_Hit_Left|BoDongQuan_Hit_Right	
+4015	yeluoxinghejian	2	2.6		YeLuoXingHeJian_Right|YeLuoXingHeJian_Left	YeLuoXingHeJian_Hit_Left|YeLuoXingHeJian_Hit_Right	
+4016	shanzei_attack_1	1	0				
+4017	shanzei_attack_2	0.7	0				
+4018	shanzeiBoss_attack_1	0.9	0				
+4019	shanzeiBoss_attack_2	1.6;2.5;2.5	0				
+4020	bear_attack	1	0				
+4021	boar_attack	0.8	0				
+4022	deer_attack	1	0				
+4023	snake_attack	0.5	0				
+4024	wolf_attack	1	0				
+4025	cike_attack_1	0.5;1.1;1	0				
+4026	cike_attack_2	1;1.5	0				
+4027	yujianshu_huashan	2	0.7		YuJianShu_Muzzle_Left|YuJianShu_Muzzle_Right	YuJianShu_Hit_Left|YuJianShu_Hit_Right	
+4028	wk_attack_1	2	0.37		YiDaoQie_Left|YiDaoQie_Right		
+4029	wk_attack_2	1.1;1.7;1.8	0.31;0.74		LangRenDaoFa_Left|LangRenDaoFa_Right		
+5001	xianglongzhang_qiaofeng	2	1.55		XiangLongShiBaZhang_Muzzle	XiangLongShiBaZhang_Hit_Left|XiangLongShiBaZhang_Hit_Right	
+5002	qinlonggong	2	1.3	QinLongGong_GroundRingSmokeGE		QinLongGong_Left|QinLongGong_Right	
+5003	rulaishenzhang_fangzhang	2	0.6		RuLaiShenZhang_Muzzle_Left_xkfs|RuLaiShenZhang_Muzzle_Right_xkfs	RuLaiShenZhang_bullet_Left|RuLaiShenZhang_bullet_Right	
+5004	chanzhanggong	1.1;1.1;1.1;1.1	0.72		ChanZhangGong_Bullet_Left|ChanZhangGong_Bullet_Right	ChanZhangGong_Hit_Left|ChanZhangGong_Hit_Right	
+5005	jiuyanggong	2	2.5		JiuYangGong_Left|JiuYangGong_Right	JiuYangGong_Hit_Left|JiuYangGong_Hit_Right	
+5006	laoyuechanfa	2	1.77		LaoYueChanFa_Left|LaoYueChanFa_Right		
+5007	yijinjing_saodiseng	2	2.2000000000000002		YiJinJing_SaoDiSeng_Pre_Left|YiJinJing_SaoDiSeng_Pre_Right	YiJinJing_Hit_Left|YiJinJing_Hit_Right	
+5008	jingangbuhuaishen	2	2		JinGangBuHuaiShen	JinGangBuHuaiShen_Hit_Left|JinGangBuHuaiShen_Hit_Right	
+5009	zuihuji						
+5010	jiuhuolianji						
+5011	dagoubangfa_hongqi						
+5012	lianhualuo						
+5013	taijijianfa_zhangzhenren						
+5014	taijiquan_zhangzhenren						
+5015	taijijianfa_zangdaoren						
+5016	taijiquan_zangdaoren						
+5017	yanling						
+5018	qiankunyizhi						
+5019	miejue1						
+5020	miejue2						
+5021	xiuliqiankun						
+5022	qingliannvshenjian_dubi						
+5023	yujianshu_qiubujun						
+5024	wanjianguizong						
+5025	zixiazhang						
+5026	ziqidonglai						
+5027	dizangyin						
+5028	yanluotie						
+5029	qianzhuwandushou_hongyao						
+5030	tianluozhuwang						
+5031	jiaozhu1						
+5032	jiaozhu2						
+5033	jinwudao						
+5034	huoquan						
+5035	jianwu						
+5036	huanyingjianwu						
+5037	shenguangpuzhao						
+5038	shenxiaoleifa						
+5039	xiantong1						
+5040	xiantong2						
+5041	xuannv1						
+5042	xuannv2						

@@ -1,7 +1,7 @@
-﻿ID	名称	药物描述	制作材料	制作时长(分钟)	效果描述	效果参数	售价	icon名
-int	string	string	string	int	string	float	int	string
-Id	Name	Desc	MakeRes	MakeTime	EffectDesc	EffectParam	Price	Icon
-101	赤胆壮气丸	用蛇胆汁和蜂王浆熬制而成，可补气凝神，提升功力。	1015|5;1016|5	3	战斗中增加弟子20%攻击	0.200000	200	arrogancemaru
-102	莲花清神露	莲花祛瘀，井水活血，两者同服，满血满魔。	1017|5;1018|5	3	战斗开始时增加弟子20%血量	0.200000	500	sobermaru
-103	金针青蛇膏	金针即蜂尾，起麻痹之效；毒牙出蛇口，有瘫痪之用。	1022|5;1021|5	5	战斗中降低敌人10%功力	0.100000	1000	toxicmaru
-104	还魂丹	由鹿茸、灵芝两味上等药材制成，能让人起死回生。	1019|5;1020|5	8	战斗中复活一名弟子	1.000000	2500	revivalmaru
+﻿ID	名称	战斗使用等级条件（讲武堂等级）	药物描述	制作材料	制作时长(分钟)	效果描述	效果参数	售价	icon名
+int	string	int	string	string	int	string	float	int	string
+Id	Name	UseLevelRequire	Desc	MakeRes	MakeTime	EffectDesc	EffectParam	Price	Icon
+101	赤胆壮气丸	3	用蛇胆汁和蜂王浆熬制而成，可补气凝神，提升功力。	1015|5;1016|10	3	战斗中增加弟子20%攻击	0.200000	50	arrogancemaru
+102	莲花清神露	4	莲花祛瘀，井水活血，两者同服，满血满魔。	1018|5;1017|10	3	战斗开始时增加弟子20%血量	0.200000	50	sobermaru
+103	金针青蛇膏	5	金针即蜂尾，起麻痹之效；毒牙出蛇口，有瘫痪之用。	1022|5;1021|5	5	战斗中降低敌人10%功力	0.100000	50	toxicmaru
+104	还魂丹	6	由鹿茸、灵芝两味上等药材制成，能让人起死回生。	1019|5;1020|5	8	战斗中复活一名弟子	1.000000	150	revivalmaru

@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 1571478373
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e2f0d7d7dff6c431d5da419c9615215c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 22357172b8cea85847937e8f62d0c077
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/FolderMode/Effects/LevelSuccessAndFailedEffect/shader/shuimo.shader
+- Assets/Res/FolderMode/Effects/LevelSuccessAndFailedEffect/shader/UIShuimo.shader
+- Assets/Res/FolderMode/Effects/LevelSuccessAndFailedEffect/shader/UI_UIShuimo.mat
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/texture.bundle

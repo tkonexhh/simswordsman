@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+CRC: 2115157128
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d23ac84bc2fcb42256edcdedaab21f06
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 965fb8726a201cac309bd5939b135b7d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: a97511c46d389f74fb1b6b1ca03f0818, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1e4d745803f75494689e7f1f81eface5, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/FolderMode/Characters/WorkProgressBar/WorkProgressBarBgSprite.png
+- Assets/Res/FolderMode/Characters/WorkProgressBar/Unlit_SpriteCircleProgress.mat
+- Assets/Res/FolderMode/Characters/WorkProgressBar/WorkProgressBar.prefab
+- Assets/Res/FolderMode/Characters/WorkProgressBar/WorkProgressBarSprite.png
+- Assets/Res/FolderMode/Characters/WorkProgressBar/SpriteCircleProgress.shader
+Dependencies: []

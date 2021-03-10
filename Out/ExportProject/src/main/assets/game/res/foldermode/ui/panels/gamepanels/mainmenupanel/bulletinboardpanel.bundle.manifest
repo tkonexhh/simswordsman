@@ -1,36 +1,36 @@
 ManifestFileVersion: 0
-CRC: 3191503368
+CRC: 2836317293
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4c7c95607f20a93792039b5a53fca463
+    Hash: cb464ebd81e660c81986edbb70a96dab
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cd0a0d8d10078dbd75adabcf0674e805
+    Hash: 7d64750d27956a67ad3f68dad3e9e15e
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
-- Class: 21
-  Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
-- Class: 48
-  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: ecff300006b572f46bfbacba158f5c63, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: abb5c4702c7d6e344b9832a97ae1264d, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 523bc8f2cacfa2344a90e6874772f4a9, type: 3}
 - Class: 114
@@ -42,10 +42,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 6bc47068eaf50c045a1c836c83bb483a, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
@@ -53,8 +49,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3999e98b6b5915e438ae0883b83c54ba, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 39b8c53d8328b7f409205764fef5db11, type: 3}
 - Class: 114
@@ -76,16 +70,15 @@ ClassTypes:
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/ChooseSelectedDisciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardDisciple.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/TaskBackImg.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/TaskDetailsPanel.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinDiscipleItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardChooseDisciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/ChoosePanelDisciple.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
