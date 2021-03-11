@@ -239,19 +239,27 @@ namespace GameWish.Game
         OnGuideDialog4 = 10701,
         OnGuideClickTaskTrigger1 = 10801,
 
-        OnGuideReceiveTaskRewardClickBtnTrigger1 = 10901,
-        OnGuideDialog5 = 11001,
-        OnGuideBuildFacilityTrigger2 = 11101,
-        OnGuideDialog6 = 11201,
-        OnGuideClickLobbyTrigger2 = 11301,
-        OnGuideDialog7 = 11401,
-        OnGuideClickTaskTrigger2 = 11501,
+        OnGuideReceiveTaskRewardClickBtnTrigger1 = 2220901,
+        OnGuideDialog5 = 10901,
+        OnGuideBuildFacilityTrigger2 = 11001,
+        OnGuideDialog6 = 11101,
+        OnGuideClickLobbyTrigger2 = 11201,
+        OnGuideDialog7 = 11301,
+        OnCollectStoneTaskTrigger = 11401,
+        OnGuideUnlockKitchen = 11501,
+        OnGuideBuildKitchen = 11601,
+        #region 任务面板
+        OnTaskPanelTrigger_IntroduceTrigger = 11701,//任务面板介绍
+        #endregion
+        BuildPracticeFieldEastTrigger = 11801,//建造练功房
+        OnVisitorBtnNormalTipTrigger = 11901,//访客系统
+        OnGuideUnlockWarehouse = 12001,
+        OnGuideClickTaskTrigger2,
         OnGuideReceiveTaskRewardClickBtnTrigger2 = 11601,
-        OnGuideUnlockKitchen = 11701,
-        OnGuideBuildKitchen = 11801,
-        OnGuideDialog8 = 11901,
 
-        OnGuideUnlockWarehouse = 20000,
+        OnGuideDialog8,
+
+
         OnGuideUnlockBaicaohu,
         OnGuideUnlockPracticeField,
         OnGuideUnlockKungfuLibrary,
@@ -293,16 +301,17 @@ namespace GameWish.Game
         OnGuideFirstGetCharacter,
         OnGuideSecondGetCharacter,
 
-        OnCollectStoneTaskTrigger,
+        
         OnCollectStoneProgressTaskTrigger,
-        BuildPracticeFieldEastTrigger,//建造练功房
+
         OnCloseFightingPanel,//关闭战斗面板
-        OnVisitorBtnNormalTipTrigger,//访客系统
+
         OnClickVisitorBtnTrigger,//点击访客系统
         OnClickVisitorPanelAcceptBtnTrigger,//点击访客面板收下按钮
         OnFinishedClickWuWoodBubbleTrigger,//点击砍树气泡trigger完成
         OnDiscipleAutoWorkTrigger,//弟子自动工作trigger
         OnCreateVisitor,//添加访客item
+        OnShowWorkBubble,//显示工作气泡（砍乌木和青岩）
         #region 装备武功秘籍
         OnKungFuTrigger_IntroduceTrigger,//武功秘籍trigger
         OnKungFuTrigger_ClickOpenDisciplePanelTrigger,//点击打开弟子界面
@@ -331,9 +340,6 @@ namespace GameWish.Game
         OnChallengeSystemTrigger_ClickStartChallengeTrigger,//点击开始战斗
         #endregion
 
-        #region 任务面板
-        OnTaskPanelTrigger_IntroduceTrigger,//任务面板介绍
-        #endregion
         #endregion
 
 

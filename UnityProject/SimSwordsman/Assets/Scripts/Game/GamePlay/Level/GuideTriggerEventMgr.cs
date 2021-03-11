@@ -103,7 +103,7 @@ namespace GameWish.Game
 
         private void OnFinishedClickWuWoodBubbleTrigger1CallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuideFinish(8) == false && m_IsFixedCamera == false) 
+            if (GuideMgr.S.IsGuideFinish(31) == false && m_IsFixedCamera == false) 
             {
                 m_IsFixedCamera = true;
                 EventSystem.S.Send(EventID.OnLimitCameraTouchMove, true);

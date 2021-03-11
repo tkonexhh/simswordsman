@@ -25,6 +25,9 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            EventSystem.S.Send(EventID.OnCloseAllUIPanel);
+            EventSystem.S.Send(EventID.OnShowWorkBubble, CollectedObjType.QingRock);
+
             m_CanStart = true;
 
             if (isReady)
