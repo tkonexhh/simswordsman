@@ -53,7 +53,8 @@ namespace GameWish.Game
                 return;
             }
             Action action = FinishStep;
-            UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, textContentID, action);
+            //UIMgr.S.OpenTopPanel(UIID.StoryPanel, null, textContentID, action);
+            UIMgr.S.OpenPanel(UIID.StoryPanel, textContentID, action);
         }
     }
 }
