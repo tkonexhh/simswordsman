@@ -138,7 +138,7 @@ namespace GameWish.Game
                         break;
                     case LivableRoomState.Upgrade:
                         AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                        bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_CurLivableRoomLevelInfo.upgradeCoinCost);
+                        bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextLivableRoomLevelInfo.upgradeCoinCost);
                         if (isReduceSuccess)
                         {
                             ReduceItem(m_NextLivableRoomLevelInfo);
@@ -151,8 +151,8 @@ namespace GameWish.Game
                     default:
                         break;
                 }
-                for (int i = 0; i < m_NextCostItems.Count; i++)
-                    MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_NextCostItems[i].itemId), m_NextCostItems[i].value);
+                //for (int i = 0; i < m_NextCostItems.Count; i++)
+                //    MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_NextCostItems[i].itemId), m_NextCostItems[i].value);
 
                 EventSystem.S.Send(EventID.OnUpgradeRefreshEvent);
                 EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
@@ -210,7 +210,6 @@ namespace GameWish.Game
 
         private void GetInformationForNeed()
         {
-
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
             int maxLevel = MainGameMgr.S.FacilityMgr.GetFacilityMaxLevel(m_CurFacilityType);
             m_CurLivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
@@ -291,7 +290,7 @@ namespace GameWish.Game
                     }
                     break;
                 case LivableRoomState.Upgrade:
-                    m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.level);
+                    m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.level);
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_CURRENTLYHABITABLE);
                     m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_NextLivableRoomLevelInfo.GetCurCapacity()));
                     m_NextPeopleValue.text = CommonUIMethod.GetStrForColor("#AD7834", CommonUIMethod.GetPeople(m_NextLivableRoomLevelInfo.GetNextCapacity()));

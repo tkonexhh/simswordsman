@@ -15,17 +15,19 @@ namespace GameWish.Game
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
-        int m_AppearVisitorCountdown = 150;
+        static int AppearVisitorCountdown = 150;
+        private float m_AppearVisitorTimer = 0;
+        private bool m_CanApperaVisitor = false;
         /// <summary>
         /// 客人消失倒计时
         /// </summary>
-        int m_DisAppearVisitorCountdown = 180;
+
         /// <summary>
         /// 客人最大数量
         /// </summary>
-        int m_MaxVisitorCount = 2;
+        static int MaxVisitorCount = 2;
 
-        const int MaxVisitorCountDaily = 15;
+        static int MaxVisitorCountDaily = 12;
 
         public List<Visitor> CurrentVisitor = new List<Visitor>();
 
@@ -40,8 +42,24 @@ namespace GameWish.Game
             }
             else
             {
-                StartAppearVisitorCountdown();
+                m_CanApperaVisitor = true;
             }
+        }
+
+        public void Update()
+        {
+            if (m_CanApperaVisitor)
+            {
+                //处理创建
+                m_AppearVisitorTimer += Time.deltaTime;
+                if (m_AppearVisitorTimer >= AppearVisitorCountdown)
+                {
+                    CreateVisitor();
+                }
+            }
+
+            CurrentVisitor.ForEach(visitor => { visitor.Update(); });
+            CheckVisitorList();
         }
 
         private void OnCreateVisitorCallBack(int key, object[] param)
@@ -56,71 +74,43 @@ namespace GameWish.Game
             {
                 GameDataMgr.S.GetPlayerData().UnlockVisitor = true;
                 GameDataMgr.S.GetPlayerData().SetDataDirty();
-                StartAppearVisitorCountdown();
+
+                m_CanApperaVisitor = true;
                 EventSystem.S.UnRegister(EventID.OnEndUpgradeFacility, HandleEvent);
             }
         }
-        int m_StartAppearVisitorCDID = -1;
-        public void StartAppearVisitorCountdown()
-        {
-            if (m_StartAppearVisitorCDID != -1)
-                return;
 
+        void CreateVisitor()
+        {
+            // Debug.LogError("CreateVisitor");
             if (GameDataMgr.S.GetPlayerData().visitorCount >= MaxVisitorCountDaily)
                 return;
 
-            if (CurrentVisitor.Count < m_MaxVisitorCount)
-            {
-                m_StartAppearVisitorCDID = Timer.S.Post2Really(count =>
-                {
-                    CreateVisitor();
-                    m_StartAppearVisitorCDID = -1;
-                    StartAppearVisitorCountdown();
-                }, m_AppearVisitorCountdown);
-            }
-        }
-        private bool m_IsSendGuideTrigger = false;
-        void CreateVisitor()
-        {
-            //if (GuideMgr.S.IsGuideFinish(18) && GuideMgr.S.IsGuideFinish(19) == false && m_IsSendGuideTrigger == false)
-            //{
-            //    m_IsSendGuideTrigger = true;
-            //    EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
-            //}
+            if (CurrentVisitor.Count >= MaxVisitorCount)
+                return;
+            m_AppearVisitorTimer = 0;
+            // Debug.LogError("CreateVisitor_Finally");
+            Visitor visitor = new Visitor();
+            visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);
+            visitor.Reward = GetRandomReward(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
+            CurrentVisitor.Add(visitor);
+            CheckMainPanelBtn(CurrentVisitor.Count);
 
-            if (CurrentVisitor.Count < m_MaxVisitorCount)
-            {
-                //Debug.LogError("创建客人");
-
-                Visitor visitor = new Visitor();
-                visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);
-                visitor.Reward = GetRandomReward(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
-                visitor.CountDown(m_DisAppearVisitorCountdown, () =>
-                {
-                    CheckVisitorList();
-                    StartAppearVisitorCountdown();
-                });
-
-                CurrentVisitor.Add(visitor);
-                CheckVisitorList();
-            }
         }
 
-
-        public void CheckVisitorList()
+        void CheckVisitorList()
         {
-            int count = 0;
             for (int i = CurrentVisitor.Count - 1; i >= 0; i--)
             {
-                if (CurrentVisitor[i].state == 0)
-                    count++;
-                else if (CurrentVisitor[i].state == 2)
+                if (CurrentVisitor[i].state == 2)
+                {
                     CurrentVisitor.RemoveAt(i);
+                    CheckMainPanelBtn(CurrentVisitor.Count);
+                }
             }
-            CheckMainPanelBtn(count);
         }
 
-        public void CheckMainPanelBtn(int count)
+        void CheckMainPanelBtn(int count)
         {
             Timer.S.Post2Really((x) =>
             {
@@ -189,19 +179,39 @@ namespace GameWish.Game
         {
             visitor.Disappear();
             CheckVisitorList();
-            StartAppearVisitorCountdown();
         }
 
     }
     public class Visitor
     {
+        static int DisAppearVisitorCountdown = 180;
+        private float m_DisappearTimer = 0;
+        private bool m_IsCounting = true;
         public int VisitorCfgID;
-        public string IconName;
+        // public string IconName;
         public RewardBase Reward;
 
         public Visitor()
         {
             state = 0;
+            m_DisappearTimer = 0;
+            m_IsCounting = true;
+        }
+
+        public void Update()
+        {
+
+            if (m_IsCounting)
+            {
+                m_DisappearTimer += Time.deltaTime;
+                if (m_DisappearTimer >= DisAppearVisitorCountdown)
+                {
+                    state = 2;
+                    m_IsCounting = false;
+                    m_DisappearTimer = 0;
+                    Debug.LogError("Remove Visitor");
+                }
+            }
         }
 
         /// <summary>
@@ -211,22 +221,14 @@ namespace GameWish.Game
         public void Disappear()
         {
             state = 2;
-            Timer.S.Cancel(m_CountdownID);
+            // m_IsCounting = true;
+            // Timer.S.Cancel(m_CountdownID);
         }
         public void ShowInPanel()
         {
             state = 1;
-            Timer.S.Cancel(m_CountdownID);
-        }
-
-        int m_CountdownID;
-        public void CountDown(int time, Action onComplete)
-        {
-            m_CountdownID = Timer.S.Post2Really(count =>
-            {
-                Disappear();
-                onComplete();
-            }, time);
+            m_IsCounting = false;
+            // Timer.S.Cancel(m_CountdownID);
         }
     }
 }

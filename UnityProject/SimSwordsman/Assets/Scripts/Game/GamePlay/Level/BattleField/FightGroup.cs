@@ -110,15 +110,16 @@ namespace GameWish.Game
             }
             else
             {
-                int random = Random.Range(0, 100);
-                if (random > 50)
-                {
-                    m_EnemyAttack = true;
-                }
-                else
-                {
-                    m_EnemyAttack = false;
-                }
+                //int random = Random.Range(0, 100);
+                //if (random > 50)
+                //{
+                //    m_EnemyAttack = true;
+                //}
+                //else
+                //{
+                //    m_EnemyAttack = false;
+                //}
+                m_EnemyAttack = !m_EnemyAttack;
             }
 
             string atkAnimName;

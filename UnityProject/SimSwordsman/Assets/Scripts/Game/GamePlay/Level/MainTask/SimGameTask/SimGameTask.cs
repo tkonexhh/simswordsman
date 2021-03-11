@@ -134,16 +134,12 @@ namespace GameWish.Game
                 return;
 
           
-            RandomWeightHelper randomWeightHelpe = new RandomWeightHelper();
+            RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
             foreach (var item in m_TaskDetailInfo.itemRewards)
             {
-                randomWeightHelpe.AddWeightItem(item.id, item.weight);
+                randomWeightHelpe.AddWeightItem(item, item.weight);
             }
-            TaskReward taskReward = null;
-            int id = randomWeightHelpe.GetRandomWeightValue();
-            foreach (var item in m_TaskDetailInfo.itemRewards)
-                if (id == item.id)
-                    taskReward = item;
+            TaskReward taskReward = randomWeightHelpe.GetRandomWeightValue();
             List<RewardBase> rewards = new List<RewardBase>();
             if (taskReward==null)
                 taskReward = m_TaskDetailInfo.itemRewards[0];

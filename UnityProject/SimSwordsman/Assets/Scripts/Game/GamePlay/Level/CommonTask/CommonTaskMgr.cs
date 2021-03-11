@@ -27,6 +27,9 @@ namespace GameWish.Game
 
         public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
 
+        private float m_TaskRefreshInterval = 10;
+        private float m_TaskRefreshTime = 0;
+
         #region IMgr
         public void OnInit()
         {
@@ -43,7 +46,13 @@ namespace GameWish.Game
 
         public void OnUpdate()
         {
-
+            m_TaskRefreshTime += Time.deltaTime;
+            if (m_TaskRefreshTime > m_TaskRefreshInterval)
+            {
+                m_TaskRefreshTime = 0;
+                RefreshCommonTask();
+                EventSystem.S.Send(EventID.OnCommonTaskRefreshed);
+            }
         }
 
         public void OnDestroyed()
