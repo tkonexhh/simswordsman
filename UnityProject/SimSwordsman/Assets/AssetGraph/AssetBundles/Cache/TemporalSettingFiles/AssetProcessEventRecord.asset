@@ -13,18 +13,727 @@ MonoBehaviour:
   m_Name: AssetProcessEventRecord
   m_EditorClassIdentifier: 
   m_events:
-  - m_kind: 1
-    m_timestampUtc: 132598148879890940
-    m_assetName: 
-    m_assetGuid: 
-    m_graphGuid: 85b8f674131134cf3a87bfaaaa78b637
-    m_nodeId: 569af123-4d7e-40c1-8d52-d0f1778aee74
+  - m_kind: 0
+    m_timestampUtc: 132599216881713160
+    m_assetName: battle_music.mp3
+    m_assetGuid: 006c97461db666d4d8c2a7d2df827883
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
     m_nodeName: Overwrite Import Settings
-    m_description: ImportSetting expect UnityEditor.TextureImporter, but different
-      type of incoming asset is found(ChallengePanelSpritesData.asset, )
-    m_howToFix: Remove ChallengePanelSpritesData from node input, or change this
-      importer type.
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881728440
+    m_assetName: Battle_win.wav
+    m_assetGuid: dd52359a239fe684d81c571a3adadaef
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881729790
+    m_assetName: BearSound.wav
+    m_assetGuid: 1188003b3abc2e84e97d087d15f29c7a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881730930
+    m_assetName: Button.wav
+    m_assetGuid: 85063ca5e5e17a74fa444114bf0ee8a9
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881732090
+    m_assetName: Character_Levelup.wav
+    m_assetGuid: ecc7a4f9366cb8640b250d41ca4dacab
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881733210
+    m_assetName: ChickenSound.wav
+    m_assetGuid: 3ed26c8ef8c31324a9b801db52e9ee1a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881734340
+    m_assetName: Collect.wav
+    m_assetGuid: 130f5622b8dfbc945864e3941d6d7e26
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881735450
+    m_assetName: Cure.wav
+    m_assetGuid: aea1df6a48473fc4190e178326e71003
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881736530
+    m_assetName: Death_1.wav
+    m_assetGuid: 36154b525f37f4a4b96cc0d1c69fbb5c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881737660
+    m_assetName: Death_2.wav
+    m_assetGuid: bfe7b70106ade25478be6ac83e881819
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881738750
+    m_assetName: Death_W.wav
+    m_assetGuid: 6cd418958b189c846b70e33fa4bad13c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881739810
+    m_assetName: DeerSound.wav
+    m_assetGuid: cd3b37102d4fa374184464d8a2dacad2
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881741480
+    m_assetName: FacilityBuildAndUpgradSound.wav
+    m_assetGuid: 4ba71ba3d8c21cc44b48e5a0ed17773d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881743340
+    m_assetName: Forge.wav
+    m_assetGuid: cd7aae30841680749ae5fce74158f2b7
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881744470
+    m_assetName: Getup.wav
+    m_assetGuid: d3637385cedc621499792942ce111ccd
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881745580
+    m_assetName: Hit1.wav
+    m_assetGuid: a9f225ce2dced334ea59418b9ba96f8b
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881746720
+    m_assetName: Hit2.wav
+    m_assetGuid: 1e586b3372a73dd49a37e2d209b51de8
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881749110
+    m_assetName: Hit3.wav
+    m_assetGuid: 1719d44e8ff2dfa4cbe62b8904cb916d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881752150
+    m_assetName: Hit4.wav
+    m_assetGuid: dc196a51529208e4a93aa9890fddb07d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881754180
+    m_assetName: Hunt.wav
+    m_assetGuid: 68302a63fc5b1d241af33caa821e51db
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881756410
+    m_assetName: Interface.wav
+    m_assetGuid: 7a75a7eb422b3944d991ae6bebe4cafa
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881758470
+    m_assetName: Lumber.wav
+    m_assetGuid: 62f5531abe5d2d74cac8ba66fa448612
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881759910
+    m_assetName: menu_music.mp3
+    m_assetGuid: 1d8eb267b299dc84589be0a626b2ed57
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881761060
+    m_assetName: Mine.wav
+    m_assetGuid: 9dbaf59b439ec0c42bc81bc584ad5b53
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881762110
+    m_assetName: PigSound.wav
+    m_assetGuid: 4fa5cc87db0a35a48a0471d936b1d89b
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881763160
+    m_assetName: Pound.wav
+    m_assetGuid: efa58ea3a16c40e42ab3015aa329b01c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881764270
+    m_assetName: Recruit.wav
+    m_assetGuid: e91c679f8ed151e4eba77c244c4d1201
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881765760
+    m_assetName: Revive.wav
+    m_assetGuid: 18ea363d7e68e7c4f9f777081aebc4af
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881766810
+    m_assetName: SnakeSound.wav
+    m_assetGuid: c7751f2a7474cd24380f7ead107f924a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881767860
+    m_assetName: Sweep.wav
+    m_assetGuid: 49f6874310b97a44e9e2fde0e6dbf1e7
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881768900
+    m_assetName: Well.wav
+    m_assetGuid: e6b5d8f1df1cb4344bdf37bd3b855595
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216881770000
+    m_assetName: WolfSound.wav
+    m_assetGuid: b49b9a97d212f8c4dba591fe19fd0170
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883052590
+    m_assetName: BattleField_emei.jpg
+    m_assetGuid: b81d20ad7f4e5cd45a596fe7b186e193
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883108650
+    m_assetName: BattleField_gaibang.jpg
+    m_assetGuid: fe54e93c67c7ca44a929e983c4d7789c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883295110
+    m_assetName: BattleField_huashan.jpg
+    m_assetGuid: 2b3743da8516f9f45835e64c1ea2ca4a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883412490
+    m_assetName: BattleField_mojiao.jpg
+    m_assetGuid: 05269b148059b3f4a95cb69ad6b2489a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883513930
+    m_assetName: BattleField_shanzei.jpg
+    m_assetGuid: 836e16c15f07c574a8b382f59dbb9809
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883621050
+    m_assetName: BattleField_shaolin.jpg
+    m_assetGuid: 4ec78332a2d8dab4cb662cb9c55b1d18
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883719050
+    m_assetName: BattleField_wokou.jpg
+    m_assetGuid: 598335a34dca6004e8347b8f1efa6488
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883774200
+    m_assetName: BattleField_wudang.jpg
+    m_assetGuid: 5e65e64071339c64092483f12dfc1a91
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883861060
+    m_assetName: BattleField_wudu.jpg
+    m_assetGuid: c06e8b72320311242b2cae702b194d10
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216883976530
+    m_assetName: BattleField_xiaoyao.jpg
+    m_assetGuid: 6b5d0279c0b79104481f4e139bf2529c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216885552760
+    m_assetName: BulletinBoardPanel_NoMission.png
+    m_assetGuid: af64c2d670a519645add92cf1205f12d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216910398370
+    m_assetName: IconFood.png
+    m_assetGuid: b66df29dc67a78c4b9bcdd7454891016
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216924585810
+    m_assetName: PanelCommon_Bg.png
+    m_assetGuid: 596725975fb255547b1c3a64bc571aee
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216924861200
+    m_assetName: PanelCommon_Bg2.png
+    m_assetGuid: 4250a3ee3968a04489e1b2ce06adcea4
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599216924916390
+    m_assetName: PanelCommon_Bg3.png
+    m_assetGuid: 15c4b9bedff202441b603bf20d6efb6f
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: a7bada20-bdca-40bc-93e1-f7729a120b58
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814351890
+    m_assetName: battle_music.mp3
+    m_assetGuid: 006c97461db666d4d8c2a7d2df827883
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814353590
+    m_assetName: Battle_win 1.wav
+    m_assetGuid: cb677546174534c86bafe5b5bd5dfbb5
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814354770
+    m_assetName: Battle_win.wav
+    m_assetGuid: dd52359a239fe684d81c571a3adadaef
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814356300
+    m_assetName: BearSound.wav
+    m_assetGuid: 1188003b3abc2e84e97d087d15f29c7a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814357390
+    m_assetName: Button.wav
+    m_assetGuid: 85063ca5e5e17a74fa444114bf0ee8a9
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814358520
+    m_assetName: Character_Levelup.wav
+    m_assetGuid: ecc7a4f9366cb8640b250d41ca4dacab
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814359590
+    m_assetName: ChickenSound.wav
+    m_assetGuid: 3ed26c8ef8c31324a9b801db52e9ee1a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814360700
+    m_assetName: Collect.wav
+    m_assetGuid: 130f5622b8dfbc945864e3941d6d7e26
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814361820
+    m_assetName: Cure.wav
+    m_assetGuid: aea1df6a48473fc4190e178326e71003
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814362890
+    m_assetName: Death_1.wav
+    m_assetGuid: 36154b525f37f4a4b96cc0d1c69fbb5c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814363980
+    m_assetName: Death_2.wav
+    m_assetGuid: bfe7b70106ade25478be6ac83e881819
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814365050
+    m_assetName: Death_W.wav
+    m_assetGuid: 6cd418958b189c846b70e33fa4bad13c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814366090
+    m_assetName: DeerSound.wav
+    m_assetGuid: cd3b37102d4fa374184464d8a2dacad2
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814367810
+    m_assetName: FacilityBuildAndUpgradSound.wav
+    m_assetGuid: 4ba71ba3d8c21cc44b48e5a0ed17773d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814368910
+    m_assetName: Forge.wav
+    m_assetGuid: cd7aae30841680749ae5fce74158f2b7
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814369990
+    m_assetName: Getup.wav
+    m_assetGuid: d3637385cedc621499792942ce111ccd
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814371080
+    m_assetName: Hit1.wav
+    m_assetGuid: a9f225ce2dced334ea59418b9ba96f8b
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814372200
+    m_assetName: Hit2.wav
+    m_assetGuid: 1e586b3372a73dd49a37e2d209b51de8
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814374450
+    m_assetName: Hit3.wav
+    m_assetGuid: 1719d44e8ff2dfa4cbe62b8904cb916d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814376210
+    m_assetName: Hit4.wav
+    m_assetGuid: dc196a51529208e4a93aa9890fddb07d
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814377870
+    m_assetName: Hunt.wav
+    m_assetGuid: 68302a63fc5b1d241af33caa821e51db
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814379350
+    m_assetName: Interface.wav
+    m_assetGuid: 7a75a7eb422b3944d991ae6bebe4cafa
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814381500
+    m_assetName: Lumber.wav
+    m_assetGuid: 62f5531abe5d2d74cac8ba66fa448612
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814382780
+    m_assetName: menu_music.mp3
+    m_assetGuid: 1d8eb267b299dc84589be0a626b2ed57
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814384020
+    m_assetName: Mine.wav
+    m_assetGuid: 9dbaf59b439ec0c42bc81bc584ad5b53
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814385160
+    m_assetName: PigSound.wav
+    m_assetGuid: 4fa5cc87db0a35a48a0471d936b1d89b
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814386310
+    m_assetName: Pound.wav
+    m_assetGuid: efa58ea3a16c40e42ab3015aa329b01c
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814387520
+    m_assetName: Recruit.wav
+    m_assetGuid: e91c679f8ed151e4eba77c244c4d1201
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814388710
+    m_assetName: Revive.wav
+    m_assetGuid: 18ea363d7e68e7c4f9f777081aebc4af
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814389850
+    m_assetName: SnakeSound.wav
+    m_assetGuid: c7751f2a7474cd24380f7ead107f924a
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814390990
+    m_assetName: Sweep.wav
+    m_assetGuid: 49f6874310b97a44e9e2fde0e6dbf1e7
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814392120
+    m_assetName: Well.wav
+    m_assetGuid: e6b5d8f1df1cb4344bdf37bd3b855595
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  - m_kind: 0
+    m_timestampUtc: 132599217814393330
+    m_assetName: WolfSound.wav
+    m_assetGuid: b49b9a97d212f8c4dba591fe19fd0170
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 5f732ced-9df9-4db2-85f6-d06a70115b0b
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
   m_errorEventCount: 1
-  m_infoEventCount: 0
+  m_infoEventCount: 80
   m_version: 1
   m_processStartIndex: 0
