@@ -85,7 +85,17 @@ namespace GameWish.Game
             {
                 if (m_Character.CollectObjType == collectedObjType)
                 {
-                    m_Character.SetState(CharacterStateID.CollectRes);
+                    if (m_Character.CurState == CharacterStateID.Wander)
+                    {
+                        Log.e("RawMatItem, The selected character state wrong, this should not happen, collectedObjType: " + collectedObjType);
+                        m_Character.SetState(CharacterStateID.CollectRes);
+                    }
+                }
+                else
+                {
+                    Log.e("RawMatItem, The selected character collectedObjType not right, this should not happen, collectedObjType: " + collectedObjType);
+
+                    ResetData();
                 }
             }
         }
@@ -218,12 +228,17 @@ namespace GameWish.Game
                     if (collectedObjType == this.collectedObjType)
                     {
                         m_LastShowBubbleTime = DateTime.Now;
-                        m_Character = null;
-                        m_IsCharacterCollected = false;
-                        m_IsWorking = false;
+                        ResetData();
                     }
                     break;
             }
+        }
+
+        private void ResetData()
+        {
+            m_Character = null;
+            m_IsCharacterCollected = false;
+            m_IsWorking = false;
         }
     }
 	
