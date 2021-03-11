@@ -335,14 +335,7 @@ namespace GameWish.Game
         }
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                EventSystem.S.Send(EventID.OnBattleSuccessed);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                EventSystem.S.Send(EventID.OnBattleFailed);
-            }
+           
         }
         /// <summary>
         /// 打开之前选择的界面

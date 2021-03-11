@@ -151,8 +151,9 @@ namespace GameWish.Game
                 return CharacterKongfu.atkScale;
             return 1;
         }
-        public void AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
+        public bool AddExpForKungfuType(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
+            bool isUpgrader = false;
             deltaExp = (int)FoodBuffSystem.S.KongFuExp(deltaExp);
             CharacterKongfu.dbData.curExp += deltaExp;
             int preKungfuLevel = CharacterKongfu.dbData.level;
@@ -167,6 +168,7 @@ namespace GameWish.Game
                 {
                     UpgradeLevels(id, kongfuType);
                     CharacterKongfu.dbData.curExp -= upExp;
+                    isUpgrader = true;
                 }
                 else
                     break;
@@ -176,12 +178,14 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade, id, CharacterKongfu.dbData);
 
             GameDataMgr.S.GetClanData().AddCharacterKongfuExp(id, kongfuType, deltaExp);
+            return isUpgrader;
         }
 
         private void UpgradeLevels(int id, CharacterKongfuData kongfuType)
         {
             CharacterKongfu.dbData.level = Mathf.Min(CharacterKongfu.dbData.level + 1, m_KungfuMaxLevel);
-            GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, 1);
+            CharacterKongfu.RefeshKungfuInfo();
+            GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, CharacterKongfu.dbData.level);
         }
 
         public KungfuType GetKungfuType()
@@ -316,10 +320,10 @@ namespace GameWish.Game
                 kongfu.Wrap(i);
                 kongfus[i.index] = kongfu;
             });
-            CalculateForceValue();
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
             stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
+            CalculateForceValue();
         }
 
         public bool IsFreeState()
@@ -447,7 +451,9 @@ namespace GameWish.Game
 
         public void AddKongfuExp(CharacterKongfuData kongfuType, int deltaExp)
         {
-            kongfuType.AddExpForKungfuType(id, kongfuType, deltaExp);
+            bool isUpgrade = kongfuType.AddExpForKungfuType(id, kongfuType, deltaExp);
+            if (isUpgrade)
+                CalculateForceValue();
         }
 
         public ItemBase GetEquipmentForType(PropType propType)
@@ -461,13 +467,13 @@ namespace GameWish.Game
         /// <param name="equipmentItem"></param>
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
         {
-            CalculateForceValue();
             characeterEquipmentData.AddEquipment(characeterEquipment);
+            CalculateForceValue();
         }
         /// <summary>
         /// º∆À„Œ‰¡¶÷µ
         /// </summary>
-        private void CalculateForceValue()
+        public void CalculateForceValue()
         {
             atkValue = BasicsAtkValue();
             //characeterEquipmentData.GetArmorAtkRate
@@ -638,6 +644,7 @@ namespace GameWish.Game
         public void UpGradeClass(int characterID)
         {
             Class = Mathf.Min(MaxLevel, Class + 1);
+            RefreshInfo();
             GameDataMgr.S.GetClanData().UpGradeEquipment(characterID, this);
         }
         public void AddArms(CharacterArms characterArms)
@@ -710,6 +717,7 @@ namespace GameWish.Game
         public void UpGradeClass(int characterID)
         {
             Class = Mathf.Min(MaxLevel, Class + 1);
+            RefreshInfo();
             GameDataMgr.S.GetClanData().UpGradeEquipment(characterID, this);
         }
         public void AddArmor(CharacterArmor characterArmor)
@@ -788,7 +796,7 @@ namespace GameWish.Game
             atkScale = TDKongfuConfigTable.GetAddition(dbData.kongfuType, dbData.level);
         }
 
-        private void RefeshKungfuInfo()
+        public void RefeshKungfuInfo()
         {
             KungfuConfigInfo kungfuConfig = TDKongfuConfigTable.GetKungfuConfigInfo(dbData.kongfuType);
             name = kungfuConfig.Name;

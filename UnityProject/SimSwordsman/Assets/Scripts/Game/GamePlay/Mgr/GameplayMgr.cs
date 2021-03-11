@@ -218,10 +218,11 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 29);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 2);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 3);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 4);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(4, 50);
             }
 
             if (Input.GetKeyDown(KeyCode.G))
@@ -255,7 +256,14 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 
-
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                EventSystem.S.Send(EventID.OnBattleSuccessed);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EventSystem.S.Send(EventID.OnBattleFailed);
+            }
             #endregion
         }
 
