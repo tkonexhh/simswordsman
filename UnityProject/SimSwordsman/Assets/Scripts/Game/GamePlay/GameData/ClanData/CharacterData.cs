@@ -319,7 +319,7 @@ namespace GameWish.Game
         }
         public void AddLevel(int deltaLevel)
         {
-            level += deltaLevel;
+            level = deltaLevel;
         }
     }
 

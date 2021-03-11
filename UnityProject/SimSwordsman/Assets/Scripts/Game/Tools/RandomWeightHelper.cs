@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Qarth;
 /**
  * 
  * 权重随机
@@ -17,10 +16,10 @@ namespace GameWish.Game
 		public int End { set; get; }
 		public RandomRange(int start,int end) { Start = start; End = end; }
 	}
-	public class RandomWeightHelper 
+	public class RandomWeightHelper<T>
 	{
-		private Dictionary<int, int> m_WeightItemDic = new Dictionary<int, int>();
-		private Dictionary<int, RandomRange> m_WeightItemSectionDic = new Dictionary<int, RandomRange>();
+		private Dictionary<T, int> m_WeightItemDic = new Dictionary<T, int>();
+		private Dictionary<T, RandomRange> m_WeightItemSectionDic = new Dictionary<T, RandomRange>();
 
 		private int m_AllWeight = 0;
 
@@ -28,85 +27,89 @@ namespace GameWish.Game
 		{
 
 		}
+
+		#region Public
 		/// <summary>
 		/// 添加权重子项
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="weight"></param>
-		public void AddWeightItem(int id, int weight)
+		public void AddWeightItem(T id, int weight)
 		{
-            if (!m_WeightItemDic.ContainsKey(id))
-            {
-				m_WeightItemDic.Add(id,weight);
+			if (!m_WeightItemDic.ContainsKey(id))
+			{
+				m_WeightItemDic.Add(id, weight);
 			}
-		}
-
-		private int GetAllWeight()
-		{
-			int allWeight = 0;
-            if (m_WeightItemDic.Count<=0)
-            {
-				return 1;
-            }
-
-            foreach (var item in m_WeightItemDic)
-            {
-				allWeight += item.Value;
-			}
-			return allWeight;
 		}
 		/// <summary>
 		/// 获取随机key
 		/// </summary>
 		/// <returns></returns>
-		public int GetRandomWeightValue()
+		public T GetRandomWeightValue()
 		{
-            if (m_WeightItemDic.Count>0)
-            {
+			if (m_WeightItemDic.Count > 0)
+			{
 				GetWeightItemSectionDic();
-				int randomNumber = Random.Range(0, GetAllWeight()+1);
+				int randomNumber = Random.Range(0, GetAllWeight());
 				return GetRandomKey(randomNumber);
 			}
-            else
-            {
+			else
+			{
 				Debug.Log("随机池中无种子");
-				return 0;
-            }
+				return default;
+			}
+		}
+		#endregion
+
+		#region Private
+		private int GetAllWeight()
+		{
+			int allWeight = 0;
+			if (m_WeightItemDic.Count <= 0)
+			{
+				return 1;
+			}
+
+			foreach (var item in m_WeightItemDic)
+			{
+				allWeight += item.Value;
+			}
+			return allWeight;
 		}
 
-        private int GetRandomKey(int randomNumber)
-        {
-			int key = 0;
-            if (m_WeightItemSectionDic.Count<=0)
-            {
+		private T GetRandomKey(int randomNumber)
+		{
+			T key = default;
+			if (m_WeightItemSectionDic.Count <= 0)
+			{
 				Debug.Log("随机区域未空");
 				return key;
-            }
-            foreach (var item in m_WeightItemSectionDic)
-            {
-                if (item.Value.Start<= randomNumber && item.Value.End> randomNumber)
-                {
-					key =  item.Key;
+			}
+			foreach (var item in m_WeightItemSectionDic)
+			{
+				if (item.Value.Start <= randomNumber && item.Value.End > randomNumber)
+				{
+					key = item.Key;
 				}
-            }
+			}
 			return key;
 		}
 		/// <summary>
 		/// 获取权重区域
 		/// </summary>
-        private void GetWeightItemSectionDic()
+		private void GetWeightItemSectionDic()
 		{
-			List<int> keys = new List<int>();
+			List<T> keys = new List<T>();
 			keys.AddRange(m_WeightItemDic.Keys);
 			List<int> values = new List<int>();
 			values.AddRange(m_WeightItemDic.Values);
 			for (int i = 0; i < keys.Count; i++)
-            {
+			{
 				int preWight = 0;
 				int curWight = 0;
 
-                for (int j = 0; j < values.Count; j++)
-                {
+				for (int j = 0; j < values.Count; j++)
+				{
 					curWight += values[j];
 					preWight += values[j];
 					if (i <= j)
@@ -120,7 +123,6 @@ namespace GameWish.Game
 
 			}
 		}
-
+		#endregion
 	}
-	
 }

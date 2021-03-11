@@ -41,15 +41,21 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_RewardCompleted;  
         [SerializeField]
-        private Image m_Res1Img;     
+        private Image m_Res1Img;
+        [SerializeField]
+        private Image m_Res1KungfuName;
         [SerializeField]
         private Text m_Res1Value;    
         [SerializeField]
-        private Image m_Res2Img;     
+        private Image m_Res2Img;
+        [SerializeField]
+        private Image m_Res2KungfuName;
         [SerializeField]
         private Text m_Res2Value;
         [SerializeField]
-        private Image m_Res3Img;     
+        private Image m_Res3Img;
+        [SerializeField]
+        private Image m_Res3KungfuName;
         [SerializeField]
         private Text m_Res3Value;  
         [SerializeField]
@@ -164,18 +170,54 @@ namespace GameWish.Game
             sendDisciplesPanel.AddDiscipleDicDic(m_SelectedDiscipleDic);
         } 
 
-        private Sprite GetSprite(int id)
+        private void GetSprite(TaskReward taskReward,Image image, Image res1KungfuName)
         {
-            if (id==-1)
-                return m_BulletinBoardPanel.FindSprite("Coin");
-            else if(id==-2)
-                return m_BulletinBoardPanel.FindSprite("Baozi");
-            Sprite sprite = m_BulletinBoardPanel.FindSprite(GetStrForItemID(id));
-            if (sprite==null)
-                sprite =  m_BulletinBoardPanel.FindSprite(GetIconName(id));
-            return sprite;
+            switch (taskReward.rewardType)
+            {
+                case TaskRewardType.Item:
+                    image.sprite = m_BulletinBoardPanel.FindSprite(TDItemConfigTable.GetIconName((int)taskReward.id));
+                    break;
+                case TaskRewardType.Armor:
+                case TaskRewardType.Arms:
+                    image.sprite = m_BulletinBoardPanel.FindSprite(TDEquipmentConfigTable.GetIconName((int)taskReward.id));
+                    break;
+                case TaskRewardType.Kongfu:
+                    SetKungfuSprite(taskReward, image, res1KungfuName);
+                    break;
+                case TaskRewardType.Medicine:
+                    image.sprite = m_BulletinBoardPanel.FindSprite(TDHerbConfigTable.GetHerbIconNameById((int)taskReward.id));
+                    break;
+                case TaskRewardType.Food:
+                    image.sprite = m_BulletinBoardPanel.FindSprite("Baozi");
+                    break;
+                case TaskRewardType.Coin:
+                    image.sprite = m_BulletinBoardPanel.FindSprite("Coin");
+                    break;
+            }
         }
-
+        private KungfuQuality GetKungfuQuality(KungfuType kungfuType)
+        {
+            return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
+        }
+        private void SetKungfuSprite(TaskReward item, Image image, Image kungfuName)
+        {
+            kungfuName.gameObject.SetActive(true);
+            switch (GetKungfuQuality((KungfuType)item.id))
+            {
+                case KungfuQuality.Normal:
+                    image.sprite = m_BulletinBoardPanel.FindSprite("Introduction");
+                    break;
+                case KungfuQuality.Super:
+                    image.sprite = m_BulletinBoardPanel.FindSprite("Advanced");
+                    break;
+                case KungfuQuality.Master:
+                    image.sprite = m_BulletinBoardPanel.FindSprite("Excellent");
+                    break;
+                default:
+                    break;
+            }
+            kungfuName.sprite = m_BulletinBoardPanel.FindSprite(TDKongfuConfigTable.GetIconName((KungfuType)item.id));
+        }
         private string GetIconName(int herbType)
         {
             return TDHerbConfigTable.GetHerbIconNameById(herbType);
@@ -353,11 +395,10 @@ namespace GameWish.Game
             m_TaskIntrodution.text = m_CommonTaskItemInfo.desc;
             m_Description.text = CommonUIMethod.TextIndent() + m_CommonTaskItemInfo.taskTxt;
             m_TaskPhoto.sprite = m_BulletinBoardPanel.FindSprite("enemy_icon_"+ m_CommonTaskItemInfo.iconRes);
-
             switch (m_ItemReward.Count)
             {
                 case 1:
-                    m_Res1Img.sprite = GetSprite(m_ItemReward[0].id);
+                    GetSprite(m_ItemReward[0], m_Res1Img, m_Res1KungfuName);
                     m_Res1Value.text = m_ItemReward[0].count1.ToString();
                     m_Res2Img.gameObject.SetActive(false);
                     m_Res2Value.text = Define.COMMON_DEFAULT_STR;
@@ -365,19 +406,19 @@ namespace GameWish.Game
                     m_Res3Value.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case 2:
-                    m_Res1Img.sprite = GetSprite(m_ItemReward[0].id);
+                    GetSprite(m_ItemReward[0], m_Res1Img, m_Res1KungfuName);
                     m_Res1Value.text = m_ItemReward[0].count1.ToString();
-                    m_Res2Img.sprite = GetSprite(m_ItemReward[1].id);
+                    GetSprite(m_ItemReward[1], m_Res2Img, m_Res2KungfuName);
                     m_Res2Value.text = m_ItemReward[1].count1.ToString();
                     m_Res3Img.gameObject.SetActive(false);
                     m_Res3Value.text = Define.COMMON_DEFAULT_STR;
                     break;
                 case 3:
-                    m_Res1Img.sprite = GetSprite(m_ItemReward[0].id);
+                    GetSprite(m_ItemReward[0], m_Res1Img, m_Res1KungfuName);
                     m_Res1Value.text = m_ItemReward[0].count1.ToString();
-                    m_Res2Img.sprite = GetSprite(m_ItemReward[1].id);
+                    GetSprite(m_ItemReward[1], m_Res2Img, m_Res2KungfuName);
                     m_Res2Value.text = m_ItemReward[1].count1.ToString();
-                    m_Res3Img.sprite = GetSprite(m_ItemReward[2].id);
+                    GetSprite(m_ItemReward[2], m_Res3Img, m_Res3KungfuName);
                     m_Res3Value.text = m_ItemReward[2].count1.ToString();
                     break;
             }
@@ -386,6 +427,7 @@ namespace GameWish.Game
             else
                 m_Baozi.text = (m_CommonTaskItemInfo.GetCharacterAmount() * CostBaozi).ToString();
         }
+
 
         private void RefreshDiscipleInfo()
         {

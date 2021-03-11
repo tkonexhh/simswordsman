@@ -10,7 +10,7 @@ namespace GameWish.Game
     public class BattleFieldMgr : MonoBehaviour, IMgr
     {
         private BattleField m_BattleField = null;
-        private  const int BattleMaxTime = 30;
+        private const int BattleMaxTime = 30;
 
         private List<CharacterController> m_OurCharacterList = new List<CharacterController>();
         private List<CharacterController> m_EnemyCharacterList = new List<CharacterController>();
@@ -183,7 +183,7 @@ namespace GameWish.Game
                         m_SelectedHerbList = (List<HerbType>)param[2];
                     }
                     OnEnterBattle(enemies, ourSelectedCharacters);
-                    StartCoroutine("BattleCountdown",(BattleMaxTime));
+                    StartCoroutine("BattleCountdown", (BattleMaxTime));
                     break;
                 case (int)EventID.OnExitBattle:
                     OnExitBattle();
@@ -301,7 +301,7 @@ namespace GameWish.Game
             return controller;
         }
 
-        private void SpawnEnemyCharacter(int id,int count, long atk)
+        private void SpawnEnemyCharacter(int id, int count, long atk)
         {
             for (int i = 0; i < count; i++)
             {

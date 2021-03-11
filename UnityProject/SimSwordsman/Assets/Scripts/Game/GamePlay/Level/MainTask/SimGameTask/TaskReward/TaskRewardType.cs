@@ -13,5 +13,7 @@ namespace GameWish.Game
         Food,
         Medicine,
         Kongfu,
+        Armor,
+        Arms,
     }
 }

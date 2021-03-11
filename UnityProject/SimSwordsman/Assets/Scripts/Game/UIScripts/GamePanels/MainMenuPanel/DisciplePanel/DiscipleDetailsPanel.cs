@@ -381,6 +381,9 @@ namespace GameWish.Game
 
                 UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArmor.ArmorID, characterArmor.Class + 1);
 
+                if (upgrade==null)
+                    return;
+
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
                 if (!isHave)
                 {
@@ -390,7 +393,9 @@ namespace GameWish.Game
 
                 MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)upgrade.PropID), upgrade.Number);
                 characterArmor.UpGradeClass(m_CurDisciple.id);
+                m_CurDisciple.CalculateForceValue();
                 RefreshArmorInfo();
+                RefreshSkillValue();
             });
             m_EjectValueBtn.onClick.AddListener(() =>
             {
@@ -417,6 +422,9 @@ namespace GameWish.Game
 
                 UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArms.ArmsID, characterArms.Class + 1);
 
+                if (upgrade==null)
+                    return;
+
                 bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
                 if (!isHave)
                 {
@@ -426,7 +434,9 @@ namespace GameWish.Game
 
                 MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)upgrade.PropID), upgrade.Number);
                 characterArms.UpGradeClass(m_CurDisciple.id);
+                m_CurDisciple.CalculateForceValue();
                 RefreshArmsInfo();
+                RefreshSkillValue();
             });
         }
 
@@ -468,26 +478,32 @@ namespace GameWish.Game
 
         private void HandleAddListenerEvevt(int key, object[] param)
         {
-            GetInformationForNeed();
             switch ((EventID)key)
             {
                 case EventID.OnSelectedEquipSuccess:
                     RefreshArmsInfo();
                     RefreshArmorInfo();
+                    RefreshSkillValue();
                     break;
                 case EventID.OnRefreshDisciple:
                     break;
                 case EventID.OnSelectedKungfuSuccess:
                     RefreshPanelKungfuInfo((int)param[0]);
+                    RefreshSkillValue();
                     break;
                 default:
                     break;
             }
         }
 
+        private void RefreshSkillValue()
+        {
+            GetInformationForNeed();
+            m_SkillValue.text = ((int)m_CurDisciple.atkValue).ToString();
+        }
+
         private void RefreshPanelKungfuInfo(int index)
         {
-            m_SkillValue.text = ((int)m_CurDisciple.atkValue).ToString();
             if (m_KongfusGameObject.ContainsKey(index))
             {
                 foreach (var item in m_CurDisciple.kongfus.Values)
