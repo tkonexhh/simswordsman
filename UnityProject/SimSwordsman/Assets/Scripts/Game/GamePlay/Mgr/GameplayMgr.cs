@@ -158,6 +158,7 @@ namespace GameWish.Game
             else
             {
                 MainGameMgr.S.OnUpdate();
+                VisitorSystem.S.Update();
             }
 
             ////For test
@@ -250,8 +251,8 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.V))
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new KongfuReward( (int)KungfuType.LiuMaiShenJian, 1));
-                rewards.Add(new KongfuReward( (int)KungfuType.DuGuJiuJian, 1));
+                rewards.Add(new KongfuReward((int)KungfuType.LiuMaiShenJian, 1));
+                rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 
