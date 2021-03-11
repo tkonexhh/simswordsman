@@ -50,13 +50,18 @@ namespace GameWish.Game
 
             while (!m_HasReachedDestination)
             {
+                if (m_Controller.CurState != CharacterStateID.EnterClan)
+                    yield break;
+
                 yield return null;
             }
 
-            m_Controller.CharacterView.PlayIdleAnim();
+            if (m_Controller.CurState == CharacterStateID.EnterClan)
+            {
+                m_Controller.CharacterView.PlayIdleAnim();
 
-            m_Controller.SetState(CharacterStateID.Wander);
-
+                m_Controller.SetState(CharacterStateID.Wander);
+            }
         }
     }
 }

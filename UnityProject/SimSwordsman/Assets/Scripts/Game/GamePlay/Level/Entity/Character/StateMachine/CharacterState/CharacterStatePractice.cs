@@ -45,7 +45,7 @@ namespace GameWish.Game
             {
                 m_PracticeSlot.OnCharacterEnter(m_Controller);
                 Vector3 practicePos = m_PracticeSlot.GetPosition();
-                m_Controller.MoveTo(practicePos, OnReachDestination);
+                m_Controller.RunTo(practicePos, OnReachDestination);
             }
             else
             {
