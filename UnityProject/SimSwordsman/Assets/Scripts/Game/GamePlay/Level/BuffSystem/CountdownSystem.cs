@@ -105,7 +105,7 @@ namespace GameWish.Game
             if (offset.TotalSeconds >= 0)
             {
                 EventSystem.S.Send(EventID.OnCountdownerStart, cd, offset.ToString(@"hh\:mm\:ss"));
-                if (Timer.S == null) Debug.LogError("timer s is null");
+
                 cd.TimerID = Timer.S.Post2Really(count =>
                 {
                     offset -= TimeSpan.FromSeconds(1);

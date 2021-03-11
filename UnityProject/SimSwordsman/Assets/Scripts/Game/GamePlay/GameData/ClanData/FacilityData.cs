@@ -45,6 +45,21 @@ namespace GameWish.Game
             }
         }
 
+        public List<FacilityItemDbData> GetUnlockFacilityList() 
+        {
+            List<FacilityItemDbData> dataList = new List<FacilityItemDbData>();
+
+            for (int i = 0; i < facilityList.Count; i++)
+            {
+                FacilityItemDbData data = facilityList[i];
+                if (data != null && data.facilityState == FacilityState.Unlocked) {
+                    dataList.Add(data);
+                }
+            }
+
+            return dataList;
+        }
+
         public void UpgradeFacility(FacilityType facilityType, int deltaLevel/*, int subId*/)
         {
             FacilityItemDbData facilityDbData = GetFacilityData(facilityType/*, subId*/);

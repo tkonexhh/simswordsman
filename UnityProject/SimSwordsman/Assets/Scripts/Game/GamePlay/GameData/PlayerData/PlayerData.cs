@@ -89,6 +89,18 @@ namespace GameWish.Game
             return recruitData;
         }
 
+        #region work system
+        public bool IsUnlockWorkSystem() 
+        {
+            return UnlockWorkSystem;
+        }
+        public void SetWorkSystem(bool isUnlock) 
+        {
+            UnlockWorkSystem = isUnlock;
+            SetDataDirty();
+        }
+        #endregion
+
         #region 草药相关
         /// <summary>
         /// 获取存档中的草药
