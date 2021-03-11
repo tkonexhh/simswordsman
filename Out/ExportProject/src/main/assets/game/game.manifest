@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3191270749
+CRC: 2650937044
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -92,10 +92,11 @@ AssetBundleManifest:
         Dependency_0: res/foldermode/font.bundle
         Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
         Dependency_2: res/foldermode/ui/sprites/characterheadicons.bundle
-        Dependency_3: res/foldermode/ui/sprites/enmeyheadicons.bundle
-        Dependency_4: res/foldermode/ui/sprites/bulletinboardpanel.bundle
-        Dependency_5: res/foldermode/ui/sprites/itemicon.bundle
-        Dependency_6: res/foldermode/ui/sprites/disciple.bundle
+        Dependency_3: res/foldermode/ui/sprites/martialarts.bundle
+        Dependency_4: res/foldermode/ui/sprites/enmeyheadicons.bundle
+        Dependency_5: res/foldermode/ui/sprites/bulletinboardpanel.bundle
+        Dependency_6: res/foldermode/ui/sprites/itemicon.bundle
+        Dependency_7: res/foldermode/ui/sprites/disciple.bundle
     Info_27:
       Name: res/foldermode/ui/sprites/itemicon.bundle
       Dependencies: {}
@@ -833,3 +834,6 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle
+    Info_192:
+      Name: res/foldermode/music.bundle
+      Dependencies: {}
