@@ -8345,7 +8345,7 @@ MonoBehaviour:
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 006c97461db666d4d8c2a7d2df827883
-    m_importFrom: Assets/Res/FolderMode/Audio/battle_music.mp3
+    m_importFrom: Assets/Res/FolderMode/Music/battle_music.mp3
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: dd52359a239fe684d81c571a3adadaef
@@ -8641,27 +8641,27 @@ MonoBehaviour:
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: b22aa8c33f665b946be20362f0f4db30
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/PopRewardCanvas.prefab
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTips/PopRewardCanvas.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: f0f7fe06371722e4bbbb8ce948c45977
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/RewardPopFont/RewardPopFont.fontsettings
+    m_importFrom: Assets/Res/FolderMode/Characters/RewardPopFont/RewardPopFont.fontsettings
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: f34ca9c09d22904419e352bdc3fbfb3d
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/RewardPopFont/RewardPopFontMat.mat
+    m_importFrom: Assets/Res/FolderMode/Characters/RewardPopFont/RewardPopFontMat.mat
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: a0019b79060f87244afc63b666f501bd
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/RewardPopFont/RewardPopFontSprite.png
+    m_importFrom: Assets/Res/FolderMode/Characters/RewardPopFont/RewardPopFontSprite.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: e471f182f15e4994a9744c075dab7f6b
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/RewardPopFont/RewardPopPlusSprite.png
+    m_importFrom: Assets/Res/FolderMode/Characters/RewardPopFont/RewardPopPlusSprite.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1522efab9623e354c9f952b7d757a0a8
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/WorkTip.prefab
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTips/WorkTip.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 360e33a236aa6314ab105cde4392c6b9
@@ -12693,22 +12693,6 @@ MonoBehaviour:
     m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/workprogressbar.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 8ef7be83083b74f6880764bdfb97c54c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip/rewardpopfont.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b574072580e054c3e92e292986df97cb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip/rewardpopfont.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4d4f6feca8bbe49768667c49d5184e6c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 63530a8ab64cc42b3a25d5d90855d53f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 6906d0d2414f3489c8b2982243a259cd
     m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/ge.bundle
     m_exportTo: 
@@ -13935,6 +13919,62 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 8bdc72795ef1648e68dad5243be4d7ed
     m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetProcessEventRecord.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e9d25bcad25694af184526bb1d3efb94
+    m_importFrom: Assets/Res/FolderMode/Music
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 58267f24654e947888efe373bd093051
+    m_importFrom: Assets/AssetGraph/AssetBundles/SavedSettings/ImportSettings/3b56dc05-b7cc-4eea-8cb2-dc5753706d3a
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fa66a72baa6054abb9bcfaaf21cb746b
+    m_importFrom: Assets/AssetGraph/AssetBundles/SavedSettings/ImportSettings/3b56dc05-b7cc-4eea-8cb2-dc5753706d3a/setting.wav
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3eebfc24da9de4b65b4bfaef854a2566
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/music.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 110d06d71b6b14c93a7dfae50e2362db
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/music.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1522efab9623e354c9f952b7d757a0a8
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/WorkTip1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 36dbce0a72f6c84408704fed03c33e04
+    m_importFrom: Assets/Res/FolderMode/Characters/RewardPopFont
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 78ad442de80abea41b38e3b6ff6b818d
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTips
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a53f5282f2a974786872ce19a9840d22
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktips/rewardpopfont.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ff92597b72b594642bcccf06c99bd64e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktips.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eb4b306d22418465c8403438314c696d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktips.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 26a2d5bee348d48c8845bbf4328855b2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktips/rewardpopfont.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2094462fc1ca04965b2df6c009ce0371
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktips
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 36dbce0a72f6c84408704fed03c33e04
+    m_importFrom: Assets/Res/FolderMode/Characters/RewardPopFont
     m_exportTo: 
     m_variantName: 
   m_version: 2

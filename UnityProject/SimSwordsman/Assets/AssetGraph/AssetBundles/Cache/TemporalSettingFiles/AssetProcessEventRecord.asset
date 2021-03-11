@@ -733,7 +733,25 @@ MonoBehaviour:
     m_nodeName: Overwrite Import Settings
     m_description: 
     m_howToFix: 
-  m_errorEventCount: 1
-  m_infoEventCount: 80
+  - m_kind: 1
+    m_timestampUtc: 132599224126319270
+    m_assetName: 
+    m_assetGuid: 
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 3b56dc05-b7cc-4eea-8cb2-dc5753706d3a
+    m_nodeName: Overwrite Import Settings
+    m_description: Reference importer not found.
+    m_howToFix: Configure reference importer from inspector
+  - m_kind: 0
+    m_timestampUtc: 132599224520095080
+    m_assetName: battle_music.mp3
+    m_assetGuid: 006c97461db666d4d8c2a7d2df827883
+    m_graphGuid: bdcd9257f9ee0424281eebc1430a5f9d
+    m_nodeId: 3b56dc05-b7cc-4eea-8cb2-dc5753706d3a
+    m_nodeName: Overwrite Import Settings
+    m_description: 
+    m_howToFix: 
+  m_errorEventCount: 2
+  m_infoEventCount: 81
   m_version: 1
   m_processStartIndex: 0
