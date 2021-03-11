@@ -22,6 +22,9 @@ namespace GameWish.Game
         private WorkConfigItem m_WorkConfigItem = null;
         private bool m_IsUnlocked = false;
         private bool m_IsWorking = false;
+
+        private CharacterController m_Character = null;
+
         public void OnInit()
         {
             HideBubble();
@@ -44,6 +47,7 @@ namespace GameWish.Game
 
         }
 
+        //TODO:改为状态机方式
         public void Refresh()
         {
             CheckUnlocked();
@@ -55,6 +59,7 @@ namespace GameWish.Game
 
             TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
 
+            //气泡在，角色未选
             if (m_IsBubbleShowed && !m_IsCharacterCollected)
             {
                 if (!(KongfuLibraryPanel.isOpened || PracticeFieldPanel.isOpened))
@@ -66,11 +71,31 @@ namespace GameWish.Game
                 }
             }
 
+            //气泡不在，角色未选
             if (!m_IsBubbleShowed && !m_IsCharacterCollected)
             {
                 if (timeSpan.TotalSeconds > m_WorkConfigItem.workInterval)
                 {
                     ShowBubble();
+                }
+            }
+
+            //气泡不在，角色已选
+            if (!m_IsBubbleShowed && m_IsCharacterCollected && m_Character != null)
+            {
+                if (m_Character.CollectObjType == collectedObjType)
+                {
+                    if (m_Character.CurState == CharacterStateID.Wander)
+                    {
+                        Log.e("RawMatItem, The selected character state wrong, this should not happen, collectedObjType: " + collectedObjType);
+                        m_Character.SetState(CharacterStateID.CollectRes);
+                    }
+                }
+                else
+                {
+                    Log.e("RawMatItem, The selected character collectedObjType not right, this should not happen, collectedObjType: " + collectedObjType);
+
+                    ResetData();
                 }
             }
         }
@@ -89,9 +114,9 @@ namespace GameWish.Game
                 return;
             }
 
-            CharacterController character = SelectIdleCharacterToCollectRes(true);
+            m_Character = SelectIdleCharacterToCollectRes(true);
 
-            if (character == null)
+            if (m_Character == null)
             {
                 //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
                 FloatMessage.S.ShowMsg("无空闲弟子");
@@ -180,8 +205,8 @@ namespace GameWish.Game
                 return;
             }
 
-            CharacterController character = SelectIdleCharacterToCollectRes(false);
-            if (character != null)
+            m_Character = SelectIdleCharacterToCollectRes(false);
+            if (m_Character != null)
             {
                 HideBubble();
             }
@@ -203,11 +228,17 @@ namespace GameWish.Game
                     if (collectedObjType == this.collectedObjType)
                     {
                         m_LastShowBubbleTime = DateTime.Now;
-                        m_IsCharacterCollected = false;
-                        m_IsWorking = false;
+                        ResetData();
                     }
                     break;
             }
+        }
+
+        private void ResetData()
+        {
+            m_Character = null;
+            m_IsCharacterCollected = false;
+            m_IsWorking = false;
         }
     }
 	

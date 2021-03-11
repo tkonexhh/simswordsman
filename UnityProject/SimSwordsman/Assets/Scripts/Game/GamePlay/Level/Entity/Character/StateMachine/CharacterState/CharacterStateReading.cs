@@ -56,7 +56,7 @@ namespace GameWish.Game
                 {
                     m_KongfuSlot.OnCharacterEnter(m_Controller);
                     Vector3 practicePos = m_KongfuSlot.GetPosition();
-                    m_Controller.MoveTo(practicePos, OnReachDestination);
+                    m_Controller.RunTo(practicePos, OnReachDestination);
                 }
             }
         }

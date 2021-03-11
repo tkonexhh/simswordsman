@@ -24,7 +24,7 @@ namespace GameWish.Game
         /// </summary>
         List<FacilityType> m_CanWorkFacilitys = new List<FacilityType>();
         /// <summary>
-        /// 已解锁的建筑
+        /// 已解锁的建筑,可以产生气泡的建筑
         /// </summary>
         List<FacilityType> m_UnlockFacilitys = new List<FacilityType>();
         /// <summary>
@@ -45,28 +45,31 @@ namespace GameWish.Game
 
         List<CharacterItem> characterItemTemp = new List<CharacterItem>();
         List<FacilityType> tempList = new List<FacilityType>();
-        int m_MaxCanWorkFacilityLimit = 0;
+        private int m_MaxCanWorkFacilityLimit {
+            get {
+                return lobbyTable.workMaxAmount;
+            }
+        }
         string[] tempArray;
 
         private int m_WorkTimerID = -1;
 
         public void Init()
         {
-            //For Test
-            //GameDataMgr.S.GetPlayerData().UnlockWorkSystem = true;
-
-            if (GameDataMgr.S.GetPlayerData().UnlockWorkSystem)
+            if (GameDataMgr.S.GetPlayerData().IsUnlockWorkSystem())
             {
                 CheckData();
+
                 BindingEvents();
-                
-                UpdateWorkTime();
+
+                StartWork();
             }
-            else
+            else {
                 EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
+            }            
         }
 
-        private void UpdateWorkTime() 
+        private void StartWork() 
         {
             Timer.S.Cancel(m_WorkTimerID);
 
@@ -107,45 +110,53 @@ namespace GameWish.Game
 
         void BindingEvents()
         {
-            EventSystem.S.Register(EventID.OnStartUnlockFacility, UnlockCheck);
-            EventSystem.S.Register(EventID.OnStartUpgradeFacility, LobbyLevelUp);
-            EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
-            //EventSystem.S.Register(EventID.OnCountdownerTick, OnTick);
-            EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, OnStartUnlockFacilityCallBack);
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, OnStartUpgradeFacilityCallBack);
+            EventSystem.S.Register(EventID.OnCountdownerStart, OnCountDownStartCallBack);
+            EventSystem.S.Register(EventID.OnCountdownerEnd, OnCountDownEndCallBack);
         }
 
         void CheckData()
         {
-            m_MaxCanWorkFacilityLimit = lobbyTable.workMaxAmount;
-            var data = GameDataMgr.S.GetClanData();
-            foreach (FacilityType item in Enum.GetValues(typeof(FacilityType)))
+            var unlockFacilityDataList = GameDataMgr.S.GetClanData().ownedFacilityData.GetUnlockFacilityList();
+
+            for (int i = 0; i < unlockFacilityDataList.Count; i++)
             {
-                if (item != FacilityType.None && item != FacilityType.TotalCount && item != FacilityType.BulletinBoard && item != FacilityType.PatrolRoom)//巡逻房和公告板除外
+                FacilityItemDbData data = unlockFacilityDataList[i];
+
+                FacilityType type = (FacilityType)data.id;
+
+                if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false) 
                 {
-                    if (!m_UnlockFacilitys.Contains(item) && data.GetFacilityData(item).facilityState == FacilityState.Unlocked)
-                        m_UnlockFacilitys.Add(item);
+                    m_UnlockFacilitys.Add(type);
                 }
             }
-            //foreach (var item in m_RewardFacilitys)
-            //{
-            //    CharacterController controller = characterMgr.GetCharacterController(item.CharacterID);
-            //    controller.SetState(CharacterStateID.Working, item.GetFacilityType());
-            //    EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType(), controller);
-            //}
+
             //TODO:这里用foreach不知道哪里在add或者remove，暂时没找到，先用for
             for (int i = 0; i < m_RewardFacilitys.Count; i++)
             {
                 var item = m_RewardFacilitys[i];
+
                 if (item != null) 
                 {
                     CharacterController controller = characterMgr.GetCharacterController(item.CharacterID);
+
                     controller.SetState(CharacterStateID.Working, item.GetFacilityType());
+
                     EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType(), controller);
                 }                
             }
         }
 
-        private void OnStart(int key, object[] param)
+        private bool IsCanShowWorkBubble(FacilityType type) 
+        {
+            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount || type == FacilityType.PatrolRoom) {
+                return false;
+            }
+            return true;
+        }
+
+        private void OnCountDownStartCallBack(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals("WorkFacilityCD"))//cd状态
@@ -162,18 +173,7 @@ namespace GameWish.Game
             }
         }
 
-        //private void OnTick(int key, object[] param)
-        //{
-        //Countdowner cd = (Countdowner)param[0];
-        //if (cd.stringID.Contains("FacilityWorking"))
-        //{
-
-        //    var tb = TDCollectConfigTable.dataList[cd.ID];
-
-        //}
-        //}
-
-        private void OnEnd(int key, object[] param)
+        private void OnCountDownEndCallBack(int key, object[] param)
         {
             Countdowner cd = (Countdowner)param[0];
             if (cd.stringID.Equals("WorkFacilityCD"))//cd状态
@@ -194,12 +194,14 @@ namespace GameWish.Game
             }
         }
 
-        private void UnlockCheck(int key, object[] param)
+        private void OnStartUnlockFacilityCallBack(int key, object[] param)
         {
             FacilityType type = (FacilityType)param[0];
-            if (type != FacilityType.PatrolRoom && type != FacilityType.BulletinBoard && !m_UnlockFacilitys.Contains(type))
+
+            if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false) 
             {
                 m_UnlockFacilitys.Add(type);
+
                 if (CurrentWorkFacility() < m_MaxCanWorkFacilityLimit)
                     AddCanWorkFacility(type);
             }
@@ -212,13 +214,19 @@ namespace GameWish.Game
         /// <param name="param"></param>
         private void UnlockWorkSystem(int key, object[] param)
         {
-            GameDataMgr.S.GetPlayerData().UnlockWorkSystem = true;
-            GameDataMgr.S.GetPlayerData().SetDataDirty();
+            GameDataMgr.S.GetPlayerData().SetWorkSystem(true);
 
             CheckData();
+
             BindingEvents();
+
             AddCanWorkFacility(FacilityType.Lobby);
+
+            EventSystem.S.Send(EventID.OnAddCanWorkFacility, FacilityType.Lobby);
+
             UpdateCanWorkFacilitys();
+
+            StartWork();
         }
 
         /// <summary>
@@ -230,21 +238,19 @@ namespace GameWish.Game
             return m_RewardFacilitys.Count + m_CanWorkFacilitys.Count + m_CurrentWorkItem.Count;
         }
 
-        private void LobbyLevelUp(int key, object[] param)
+        private void OnStartUpgradeFacilityCallBack(int key, object[] param)
         {
             FacilityType type = (FacilityType)param[0];
             if (type == FacilityType.Lobby)
             {
-                int currentLimit = m_MaxCanWorkFacilityLimit;
                 int nextLimit = lobbyTable.workMaxAmount;
                 if (m_MaxCanWorkFacilityLimit < nextLimit)
                 {
-                    m_MaxCanWorkFacilityLimit = nextLimit;
                     //可工作建筑数量增多
                     UpdateCanWorkFacilitys();
                 }
 
-                UpdateWorkTime();
+                StartWork();
             }
         }
 

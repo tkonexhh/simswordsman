@@ -63,7 +63,8 @@ namespace GameWish.Game
             }
             //Action action = OnGuideClick;
             Action action = FinishStep;
-            UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, targetPos, guideTipsPos, textContentID, action, isNotForce);
+            //UIMgr.S.OpenTopPanel(UIID.MaskClickWorldPanel, null, targetPos, guideTipsPos, textContentID, action, isNotForce);
+            UIMgr.S.OpenPanel(UIID.MaskClickWorldPanel, targetPos, guideTipsPos, textContentID, action, isNotForce);
         }
 
         private void OnGuideClick()
