@@ -12,7 +12,7 @@ namespace GameWish.Game
         public bool isReady { get { return m_CanStart; } }
 
         Action<bool, ITrigger> m_Listener;
-
+        private bool m_IsExcuteListener = false;
         public void SetParam(object[] param)
         {
 
@@ -25,6 +25,10 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            if (m_IsExcuteListener) return;
+
+            m_IsExcuteListener = true;
+
             EventSystem.S.Send(EventID.OnCloseAllUIPanel);
             EventSystem.S.Send(EventID.OnCreateVisitor);
 

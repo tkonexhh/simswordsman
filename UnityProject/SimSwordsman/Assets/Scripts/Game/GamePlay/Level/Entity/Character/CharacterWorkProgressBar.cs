@@ -25,6 +25,11 @@ namespace GameWish.Game
             }
         }
 
+        private void OnEnable()
+        {
+            SetPercent(0);
+        }
+
         public void SetPercent(float percent)
         {
             if (Mat != null) {

@@ -98,7 +98,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(8) && GuideMgr.S.IsGuideFinish(14))
+            if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(31) && GuideMgr.S.IsGuideFinish(14))
             {
                 FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
                 return;
@@ -135,6 +135,8 @@ namespace GameWish.Game
 
         public void ShowBubble()
         {
+            if (m_IsBubbleShowed) return;
+
             m_IsBubbleShowed = true;
 
             bubble.SetActive(true);
@@ -179,6 +181,7 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EventID.OnEndUpgradeFacility, HandleEvent);
             EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
+            EventSystem.S.Register(EventID.OnShowWorkBubble, HandleEvent);
         }
 
         private void CheckUnlocked()
@@ -221,6 +224,12 @@ namespace GameWish.Game
                         m_Character = null;
                         m_IsCharacterCollected = false;
                         m_IsWorking = false;
+                    }
+                    break;
+                case (int)EventID.OnShowWorkBubble:
+                    CollectedObjType type = (CollectedObjType)param[0];
+                    if (this.collectedObjType == type) {
+                        ShowBubble();
                     }
                     break;
             }
