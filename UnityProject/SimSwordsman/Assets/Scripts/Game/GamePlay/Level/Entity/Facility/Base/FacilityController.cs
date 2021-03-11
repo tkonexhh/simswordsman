@@ -69,6 +69,12 @@ namespace GameWish.Game
         {
             m_View.SetTips(active);
         }
+
+        public void BuildClosedRedDot(bool active)
+        {
+            m_View.SetTips(active);
+        }
+
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)

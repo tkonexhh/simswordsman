@@ -13,1604 +13,148 @@ MonoBehaviour:
   m_Name: AssetReferenceDB
   m_EditorClassIdentifier: 
   m_assets:
-  - m_assetDatabaseId: 28fb0900b6e316143988322b6f94201a
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AssetPublishEditor.cs
+  - m_assetDatabaseId: 0000000000000000a100000000000000
+    m_importFrom: ProjectSettings/UnityConnectSettings.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 776e8b00aee724f69a02402947a3967f
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/FileRegistry.cs
+  - m_assetDatabaseId: 59e8a2208f600aa4198fd87a76a51ab6
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao3/mj_3_Material.mat
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: fb4c2e00689dfb34985500f260df63cb
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildSpriteData.cs
+  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
+    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4d148220e8d54054e851e5c220feea5f
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/ChainOperation.cs
+  - m_assetDatabaseId: da3169e138a08a24c8fd5ecf6fb09213
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao1/mj_1_Material.mat
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4664ae20418c56944a2f6c5ab30f82bf
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/CacheEntry.cs
+  - m_assetDatabaseId: 408fde54ea6f14d40a4e93235f5158f3
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao2/mj_2_Atlas.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: bef0b83030006f0409c3a3cfa181ee64
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/ReturnCode.cs
+  - m_assetDatabaseId: d264a65741f5dc842aad15b0feb9c8dc
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao2/mj_2_Material.mat
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 431079301da72b74cba77e88c2af37ba
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildContent.cs
+  - m_assetDatabaseId: 1abe4c79fb0d0f4479af2ba225cf7232
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao1/mj_1_Atlas.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: a6ea1740a8df96b44bd23845119733cf
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/DelegateList.cs
+  - m_assetDatabaseId: bf0d7fcbf0b939d4f9974dd8a9c02aba
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao3/mj_3_Atlas.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 43224c404bd343b44a2ecd99237e285c
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/CacheInitialization.cs
+  - m_assetDatabaseId: 94bb397e1d2c25149addf16fbcd1a751
+    m_importFrom: Assets/AddressableAssetsData/AddressableAssetSettings.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: ff13fc60e2c44923960deaf73512a9d0
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/ProductCollection.cs
+  - m_assetDatabaseId: 16a6c820542b6934ca92a27f773174a3
+    m_importFrom: Assets/Scripts/Game/ConstDefine/EventID.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e3e97670d537e784e9f104552b533056
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildScriptTests.cs
+  - m_assetDatabaseId: aef6cf948d1b3cd4a84118f9a6f3bd56
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/ExclamatoryMark
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: d723a770823401649b007044d9a978ba
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BundleExplictObjectLayout.cs
+  - m_assetDatabaseId: a940ce3728b6cb8478db8a7500338183
+    m_importFrom: Assets/Scripts/Game/GamePlay/Mgr/GameplayMgr.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 28e27e70c0f8cee45a62f86887957a0f
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/GenerateLocationListsTaskTests.cs
+  - m_assetDatabaseId: 2c7661a8091bde94ca10cca0e17f08e5
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Chapter/LevelReward
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: c5676580c9e682d4da654a6c5440b917
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/DynamicContentUpdateTests.cs
+  - m_assetDatabaseId: b056219a609ca034f96c3b590e3dabee
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/VisitorSystem/VisitorSystem.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 61985980b88404b40abb13be18b78b3b
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/TestObject2.cs
+  - m_assetDatabaseId: 54ea711d851f64f9a94cb098db819f7c
+    m_importFrom: Assets/Scripts/Game/UIScripts/WorldUIPanel/WorldUIPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 2caf4b90ea25a724b8db4ffb88123a60
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AssetLabelReferenceDrawer.cs
+  - m_assetDatabaseId: a360ea5fd6f8c9f4c848763e968fdc0c
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/CommonTask/CommonTaskMgr.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: c9b3cd90055a04b48b05f0e458e05c07
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/BuildLogTests.cs
+  - m_assetDatabaseId: 33dd2708c7035bd43b87fb71144aa5c4
+    m_importFrom: Assets/StreamingAssets/config/VisitorRewardConfig.txt
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 7f6d95a065ad1d84fa0d05a15c369e81
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AssetReferenceDrawer.cs
+  - m_assetDatabaseId: 2b31048a65d2fcd458c53bf758b25c6d
+    m_importFrom: Assets/StreamingAssets/config/CommonTask.txt
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0619aca0c5e2b4dc38311d8bdc157e99
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/Simulation/VirtualAssetBundleProvider.cs
+  - m_assetDatabaseId: 44afbeedf0ba76d45ad79bab08a9bac8
+    m_importFrom: Assets/StreamingAssets/config/EquipmentConfig.txt
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e6c1d0b0ab4d44f42a99963de99d60ba
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/Initialization/AddrRuntimePropertiesTests.cs
+  - m_assetDatabaseId: 1f9939c3a68990349a26160eecc68c37
+    m_importFrom: Assets/StreamingAssets/game/game.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 832363b0cc1d7e44dbd8750e91343bd1
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceProviders/ContentCatalogProviderTests.cs
+  - m_assetDatabaseId: 3da71814ce6f3d34f9dfc7c507db6765
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: ef7207c080a54574b9bfc095d91595aa
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetGroupSchema.cs
+  - m_assetDatabaseId: 57976cf41d3394d4e9dd21139c2642e9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao2.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: f13538c0e661bcc4c979c0f336830337
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/AssemblyInfo.cs
+  - m_assetDatabaseId: a319f405897e9bc43a2f71d7b08f4f0f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e4a7ddc0ee0cb5e47b5c53fb53a97808
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CompatibilityBuildPipeline.cs
+  - m_assetDatabaseId: bc7b73775eac8d34f960c13b9b773c23
+    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: ba5033d0e43aacc4aa1fe4bed1f637e6
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/Exceptions.cs
+  - m_assetDatabaseId: 15ff3219333185f4584b0d2af4463245
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao1.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 468a46d0ae32c3544b7d98094e6448a9
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetSettings.cs
+  - m_assetDatabaseId: 33ee716fefe364b4db9e0475663659df
+    m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: c18f0df0496b5418bbb5a34c4c30d6e8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CacheServer/CacheServerUploaderWindow.cs
+  - m_assetDatabaseId: 1f9ff1df4028e4d4e8f01a09a988a26c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao3.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: bf5e6ef0e57ead045be2e03ae1ec38b0
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AddressablesIntegrationTestsImpl.cs
+  - m_assetDatabaseId: 3f89ddef334a5e043ab2625baf50533a
+    m_importFrom: Assets/StreamingAssets/game/game
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: f8683601388ff6b4bb7d1f1a52ee6108
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DirectoryUtility.cs
+  - m_assetDatabaseId: 748526058af89db4bbc5ab332f87455d
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 3f9489010bc9cdc458c23db402d6b3fa
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/GlobalInitialization.cs
+  - m_assetDatabaseId: d7ac58ccf5e67e849be7dd9d2e219376
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Facility/Base/FacilityController.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4adbd11117ba14195be497c6ee4bbe8f
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/HostingServices/TestHostingService.cs
+  - m_assetDatabaseId: 04deeae3b2787ff4db9da93af7b08d7d
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/DiscipleDetailsPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e5d17a21594effb4e9591490b009e7aa
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/GroupSchemas/BundledAssetGroupSchema.cs
+  - m_assetDatabaseId: fda0e59f32f71da42a5c75be98fa339b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DicipleDetailsPanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: feaf7c3171943034785f9cfaa726f10d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/BuildLog.cs
+  - m_assetDatabaseId: 22444a88e44b77646a876e1a36b1b133
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KongfuLibraryPanel/KungfuChooseDisciplePanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 54000781df714fc4da1e646cae7e534f
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/Data/EventDataStream.cs
+  - m_assetDatabaseId: a1532a7cf27be8249b828e5e9aed2688
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/FacilityPanel/KongfuLibraryPanel/KungfuChooseDisciplePanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e2bbbc81002ad3642a2b1e7857a3f11a
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/BuildCache.cs
+  - m_assetDatabaseId: 37af36408f3897645b0a01101f57c71a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kongfulibrarypanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e49dad816ceeeb94386b907d5f361a0d
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Diagnostics/SegmentIteration.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a0b38e81794b245a7a71fc9c19242c85
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/HostingServicesAddServiceWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5ad5fa919de6248649b4c095f3809802
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetGroupTemplateInterface.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ce10b9a173f68e7439b96557cb1bc223
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/InitializationObjectsAsyncTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e51f1aa10d814ff4a85c671e5120de6f
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AnalyzeWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 46f31ab199825eb488ad8f2a8f6d1a4c
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/ProfileValueReference.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3a189bb168d8d90478a09ea08c2f3d72
-    m_importFrom: Packages/com.unity.addressables/Editor/AddressableAssetSettingsDefaultObject.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 722c9cb137e6ef0458798b9a9e0d1204
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/ProfileSettingsTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e25b76d1a8a87c641894e4694a750cd8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IProgressTracker.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c41ecdd192a66174db9ae6b457c3a68c
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/LinkXMLGenerator.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2c42a8e1e1d1b874e95761dab5bdfbc8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/BuildPlayerScripts.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0f2109e178c64897a911d0c8471401d7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/PostWritingCallback.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a8092de151d449b0962952fe68a54dd9
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IWriteData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b29514f1c114d144094eebc93ad52783
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/ProfileValueReferenceDrawer.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b19f99025db4a1e44a095aa3f1284c54
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/BuildPipelineTasks/GenerateLocationListsTask.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cd396e02e0371554e9bfc4ebb8035318
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/BuildCacheTestBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a8e45712f43ff0645b809f8a5c1ba37e
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/BuiltinSceneCache.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0fc8c72284fb9414ca3384e659772838
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/AddressableBuildTaskTestBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8195792273a50ed4982b1717d1203dbf
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/SwitchToBuildPlatform.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: faf32c22a012a554c8e6e71e64844c23
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/DownloadStatus.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6b4a4e229baaa2544a4d681cc0dc5dea
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetEntry.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 31314932afa7e4ce3ab642bfbc2dd8ff
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CacheServer/IDownloadItem.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 36e2ba320a6ae3e4596bd1fe59b4fe21
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/ContentUpdateScript.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cfc18942d8f87f147a241b9de540a2a1
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/DynamicResourceLocationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 09b260528be79b74ab75d43b23001eab
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Diagnostics/DiagnosticEventCollector.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b9c2125236cf11d4a98cd25ea3214ad4
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AddressableAssetSettingsLocator.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a286e4526d8a69d4cb47c5d75f5acc83
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/BundledAssetProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f8f85552081e62e47abaaba497a138d7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/GenerateBundleCommands.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e14d3e528f112e445aa46b7870f93944
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/Preferences.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d314656232cf1b24a9d7e6470f8f72eb
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/BuildBundleLayout.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3ab92f62759743ba8976ad68c90774fd
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/Extension/IStoreCallback.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f2f62872d2484231aa95c2eb9feb8326
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IDeterministicIdentifiers.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 552d6f72e940a1c4a809b635a8f40d8b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/DefaultBuildTasks.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 29402082393e3a1439cfaa6cc77aa31b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Injector/ContextInjector.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5b9c8582a5e831f4788aca482a4c95d3
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/ProfileValueReferenceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 00f6abb2299813b4881f1f2b0f6640b1
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/RevertUnchangedAssetsToPreviousAssetState.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a99d07c2f0fab1e4f8623f5913408df5
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IDependencyData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c7613ad25e9a1794eb580050f86f4889
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/LinkXMLGenerator.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d136ebd2e9594408296041252ad6d2a9
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/IResourceProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d91d0dd2a4ed2df41b742f33881892a2
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/ComponentSingletonTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: dad58be2203967e4f927f5193b96266a
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/QualitySettingsApi.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6b6231f2625ddce4e99b07635ce1d101
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/KeyDataStoreTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3bf61af2f16576547894347350205854
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/LocalBuildCacheTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7b6713137edb6b2439d3ff26eb990180
-    m_importFrom: Packages/com.unity.addressables/Runtime/AddressablesImpl.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: caa3431363af216479bf77b9d16e8c72
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/DelayedActionManager.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b734b613791eb4b0381013f84745a995
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CacheServer/TestDownloadItem.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 88035523492c438caeffc0cc452c5301
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/TransactionLog.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d415d633eb1c9d44c854bac7bdc6d17f
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceLocators/ContentCatalogData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bd1bea4352ab4fb49a0d15da275cd26d
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/CheckSceneDupeDependencies.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 892bac4397edc914d9ffa4cde040eb0b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IAssetRepresentationData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f6fc6153494d34438861807b8e2ded93
-    m_importFrom: Packages/com.unity.addressables/Editor/HostingServices/IHostingService.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6d97546331657044a99aed2e45ee76a2
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/AnalyzeSystem.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ef728e637accb8d46ad52f863653cf75
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildContext.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 66a7a5932b5cd4dceb8261d66734b440
-    m_importFrom: Packages/com.unity.addressables/Editor/HostingServices/HostingServicesManager.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 327933a391986b441b4355cdd9257400
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/CheckBundleDupeDependencies.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5ec22ea32817fe444823d42d0c4e0024
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/WriteTypes/AssetBundleWriteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1575d1c3656610c40ad50c15e8f5855a
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/DataBuilderInputTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6e4b11d3ae39f459483b122f50af55ee
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/Simulation/VirtualBundledAssetProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: befd95e3f3af5eb49bf7c53d00cb4d44
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/BuildUtility.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0cbdebf3ba7c84c42a15f1cb8c47c14e
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetBuildSettings.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d30a4104a18db1f42a5da276c7db34fe
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetEntryCollectionEditor.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2406ad24700d76e4da5005529a6bafce
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/BuildContextTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 392da734bbda8ef48a14423bb399280e
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetFolderSubfolderTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 49d4a1540f2adfc418fd2e5dd536420b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/RebuildSpriteAtlasCache.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: effdbb54c7b44cb78e0976ea0ecf0c26
-    m_importFrom: Packages/com.unity.purchasing/Editor/managed/Core/MigrationCleanupTooling.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1a3c5d64ac83548c09dd1678b9f6f1cd
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetGroupTemplate.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 69303074fc8049c794e80a49d142e38d
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Diagnostics/EventDataPlayerSessionTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b28e4f74756c9e3418600f517d56e9f2
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/ProviderOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fa12bf74f16f5e84f93111cdd55bf70b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ContextObjectSerializationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1b623084ee8eb4b9199e34858add3cac
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CacheServer/LocalCacheServer.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9834b3849844b497cbdd2afdd4701e4a
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/HostingServicesWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1f0e09841d3888f46a1a3f84af21a639
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/PostPackingCallback.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c3a73b848f18b6b498c76e82b2551f0d
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/MonoBehaviourCallbackHooks.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 69d3f19413a88324199b41186cf34b9f
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AddressablesDataBuilderInput.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bb0e4994b34add1409fd8ccaf4a82de5
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/BuildScriptVirtualMode.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5b2102a42c1d8884989d74c98d4442b4
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/LocalCacheServer.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0c39c5a44c2b90c4787a92f26e3286f4
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/Layout
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4f2308a41f0f71948bf45196f5b2d8ef
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceLocations/ILocationSizeData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ba3cb7b4776e6c24ba53e7f8f7e751b5
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CalculateCustomDependencyTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 26d46fb4de7c9fd40b94f75aaf6bff0f
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/PlayerSettingsApi.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d65991d4bb3d75541bf06688c370ff05
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/ContentCatalogTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 84f724d4704815c4e96da7a3308f0be7
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/ListWithEvents.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a6212fd4877a4704aa905b317e16bac8
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ManualPercentCompleteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b5aaf4e4b41e6a447935d02bf76b2aa3
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetGroupSchemaTemplate.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2f6c3fe4244bf1b4eb6ff845821aa417
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/CacheInitializationDataDrawer.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 33d6ef15c1984642bd83826064bee25d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildParameters.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8597e625afbd18f4fa730ad9b5507d61
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/HashingHelpers.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6665e03593d44dae8f9e2ada8752d2dc
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Diagnostics/EventDataSetTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 77af4245676cdae4e90c350b07b947d0
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/ResourceProfilerWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 242d63556dd92c346a8d3a24fa55d25b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/WriteTypes/SceneBundleWriteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 753f9965abdd3f24eb42eafccaf7a286
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceLocators/DynamicResourceLocators.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7b9ded651292a474fad227fce94f4c79
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/CreateBuiltInShadersBundle.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 569f15755d5d88e48a93ae6b28dd62f8
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/GUI/Graph/GraphLayerBackground.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 353e24853179e47bf9ebb9de6c42e428
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/ResourceProviderBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 35a493a535627401094f36bf216c0306
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/TestObject.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: de7854a5f7ef2054dbf92514bee6d796
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AssetSettingsAnalyzeTreeView.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3e8cc8b5af2f62e418573550ab569877
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/TestInterfaceImplementations.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b44c2db511ef19949950f4b3b93a6e53
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/CacheInitializationSettings.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f2b227c56ee439f46b08efa638b27a84
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/AsyncOperationStatus.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 012e8bc53e96d4c638db9f5b04ef84de
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CacheServer/Tests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8559dec58f92398448ea2ea83fd63c3e
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/BuildScriptBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 82e826e5c9181f2449a34ca76c3837e2
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/AtlasSpriteProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 63e950f5b8d524d43b391e54d52f9ac0
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableScenesManager.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b42ee6f5a38f94b4baafd3c426bee7f5
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/Operations/ChainOperationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3b8b37f5037b1e945af5621a67f45bc0
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AssetGroupTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 60bfecf5cb232594891bc622f40d6bed
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/UnityEngine.Purchasing.asmdef
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d07c590681843734482b565ad928be3e
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/Operations/ProviderOperationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f1a1c0162fa02cb42ae827251833e0bb
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildScriptFastTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3ed24626228f71246a5f32ebe0fb61e2
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/PostScriptsCallback.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a92af236ef5230b4eae4fcfbb2b3d41a
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/TestObject.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ee92aa36338b87445ac230ed769ea068
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ReflectionExtentions.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 859e5046b2060774898d8e87f4e78761
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/Layout/BuildLayoutPrinter.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e25a61468ff30f44fad56a6b40062363
-    m_importFrom: Packages/com.unity.purchasing/Editor/managed/UnityEditor.Purchasing.asmdef
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b9d68e463588743e48c547b980d041f7
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/Simulation/VirtualAssetBundleRuntimeData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6d2f1f46c2a196649b1eb9cd319cc991
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/FileCompressorTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 632c145638f685b4883fbd81884e496a
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/CustomTestSchema.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3a6ea556a4c75be4a88f236f22eec817
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AddressableAnalytics.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f72b7476a69b89147a08603d7391218a
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/HashingMethods.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c2dcb086cc041f2459f8cb57dee4d25f
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/TaskCachingUtilityTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 02d56b860c3f05a47a85e63f62578654
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/ProgressTracker.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8ea72f96947844c99a3bf31644980db9
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetReferenceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bdd672a655042ae4fa4c3f8c8d8853a6
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/AddressableAssetsBuildContext.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 493e67a6e86284a8681aab6f10d05c34
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CacheServer/Utils.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8f2c2ad6904ea9147a43a79fccd94ca1
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildTasks.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5f0270e64b3580847a1adbb01f58852b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/CalculateCustomDependencyData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 10fd20f634856da4a8adcac07d018d68
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceProviders/ContentCatalogProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 288dd00735888d6419c1d6312c8a1d51
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ContextInjectionTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d34ce007ffbd4e74c9151022c3fb56df
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/BuildPipelineTasks/BuildLayoutGenerationTask.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: abc77607c2a62ef48b8f7dec55cc6d91
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/AnalyzeResultData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 25714517fd8c0f048b3a5d95c94233a7
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/Data/EventDataSample.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2b783d170d8ed6b468a9500bbe040087
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildWriteData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e054c3274b8fb154c876b5be5db09359
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AnalyzeRules/CheckSceneDupeDependenciesTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b8e58c37b4da2490c9d0a789a70df844
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/LabelWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7ba37647c6bae7846b28d56e45adee11
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetsWindowTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3d9b4067bd3135d46a8f5e265bee07cb
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/Simulation/VirtualAssetBundle.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: caa347671b900804bb0624c39d5404f5
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetUtility.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0069ff676acf4c95a1d53bf8f9f21a44
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/ProfileTreeView.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 155a61777399d7f48800d1791751daab
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CalculateAssetDependencyTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e2d5a57757fc0cc4eb4f2fade47b59dd
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/CalculateSceneDependencyData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5046b687c98667141a9a4f0add3345be
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/PrefabPackedIdentifiers.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b644b787231a1784ab6bbb39217a63b9
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildScriptVirtualTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1f2eff97e91ec624b8d35cecfb1ccf38
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildScriptPackedTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e18580a7226c3b34c9fa7fdb324edfe6
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildParameters.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f72ac6a7a32304f2baf84ce520e0a2b6
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/IInstanceProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6f5f2eb71e71b446dae10e69b8a38b2c
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceLocators/LegacyResourcesLocator.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 02aa99c7f5d8f4c77810419ebddad96d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CacheServer/Client.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fa9edcd7497f45242bddd18f8e0582d4
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/GenerateSubAssetPathMaps.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d6c922e734ba25649a6af8e03e27a324
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/BuildProfileSettingsEditor.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 225da2e71801378408ef9f717020c323
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/PostDependencyCallback.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 10534ee7753023c4dbd1556e9efb590c
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/ExtensionMethods.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e4e9f0f7eaff4094990720ec2b944faf
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/AddressableAssetsBundleBuildParameters.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f4d7d9f74fa394649b729102066b4b96
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetSettingsLocatorTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cc721af777e8101459b9a2ea31544b01
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/TrackerExtensions.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f7db1cf7b24f9784a8c53aaaa271654d
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/InitializationOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 22e49408c617c404480396d74c837024
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/JSONAssetProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5834b5087d578d24c926ce20cd31e6d6
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/GroupSchemas/ContentUpdateGroupSchema.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9e8b2b0856594ea1b7d38d496cb164d5
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/AssemblyInfo.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a8294b087f18cdb49a6dc0c48dccb3a8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/AssetLoadInfoSortingTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9b0e503817aafa447ac3b7d7db84ccc8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildExtendedAssetData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 722d9658f4892ba47a7a9db5fdf152d6
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/SceneProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 87c0e75886b4481693ca963bc0955c1c
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Diagnostics/EventDataPlayerSessionCollectionTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: aee1195813efc3b45b3173443338b2c3
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/WriteTypes/RawWriteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cfcdca687c6d4574928e2741e1fb9287
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AddressablesImplTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 504a37785439743bba6a7259d90d6652
-    m_importFrom: Packages/com.unity.addressables/Editor/HostingServices/BaseHostingService.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c8e7a7789891dd440b809c2cfab69ccc
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetsSettingsGroupEditor.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f3f18a7841f7dca47bee246dcd538b31
-    m_importFrom: Packages/com.unity.addressables/Runtime/IKeyEvaluator.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cf769c7817ebfa842bedf81cae9f2f6c
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/PackedPlayModeBuildLogs.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 40e93d78541d2664e8424875bca4e041
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/CalculateAssetDependencyData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4c30a288c553aa7488774857f37eee83
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/ResourceManagerVirtualModeTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7df65588254d9194cb3fb45879168954
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IWriteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 47c8f9980c2f63349a8fb20e6e1b5013
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/AddHashToBundleNameTaskTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6ab8ec987142fec4f84a3daa06a8b4c8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ArchiveAndCompressTestFixture.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6fea6aa8d800ff94baa9d7edb9754298
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressablesFileEnumeration.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4f928cb80657c364680d0c25895df60f
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/WebRequestQueue.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ba1f63c8c87d5ab4cad407b7245879e4
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Profiler/BuildProfiler.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bc7120d80c21d014885f3e7a4d4217cb
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/SerializedTypeDrawer.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 05b619d8a4e3fce47acecb2fcf4122b7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/FileCompressor.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bf2de0e8cc0a18b4d8887aad8e168377
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/ResourceManagerPackedModeTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e59bf5e81ff06ac4ca62188908370bbb
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/BuiltInDataTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 54aaf7e8e1f02d34182d881089f11f33
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildSpriteData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fc13c309185f5ef4cb30649341ab86fe
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/DiagnosticEventCollectorIntegrationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b84b1a09f476ad84db74f048d23fb8e1
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/SpookyHash.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: df12a2293fd242bfbc52457696a64820
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/UnityPurchasing.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 49c2c229315d04249b13bbf17069f486
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildScriptPackedPlayTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 774cd729e4d232a45a38ea35fed32c81
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AnalyzeRules/AnalyzeRuleBaseTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a0c7d049419ae46f19ead59b45d622fb
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CacheServer/Util.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0a15f049c10fa744ca827575ffac1c0d
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AddressablesBuildScriptHooks.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0244ca4987514734a84f74195d54113d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/Unity.ScriptableBuildPipeline.Editor.Tests.asmdef
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f8b45d496263c4f4da1cdd5c22c51cc8
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/HostingServices/HostingServicesManagerTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8583f759fa46fea46a8d2e9a4b3f51fd
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/HideResourceFoldersScope.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: be36d66973700384fbeb7fc898581fbb
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetGroupInspector.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: df92c48909f708647b98ae363e7618d8
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/TestUtil/MockProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e98b4a8982e76bc4d86c10db25cd7193
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetsWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 88d21199f5d473f4db36845f2318f180
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/BuildScriptFastMode.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4d29a4991c6c8884aa7a81dc6d2e1cc5
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/WriteSerializedFiles.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9d24a7995f0e1ed4c81c185bcc48a695
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/GenerateBundleMaps.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e766efa9ccaf441728f810262e5ca359
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CacheServer/CacheServerUploader.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 81e994b90fc45fb46963bcce32bf4969
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/ResourceManagerRuntimeData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4533d6b9f915a16429e5a3143d2f7a1b
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/ProjectConfigData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f4af5ab96cd890342912b92e54ac2c3e
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/AppendBundleHash.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 46ff9bb9c11e4daa9d9424fa410fcc30
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/PreviewSceneDependencyData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fdd470c95bb040bdb705dc362b132291
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildContext.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 170ac2c906650624cbab749adb2cc2ed
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ScriptableBuildPipelineTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8f1af3c9e697f3c439c2716bb5704abb
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AssetReferenceDrawerTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b4b0a7d96d7360c4abef5bae019289c7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/BuildCacheUtility.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a752b6e9dc874574babc9f4b5c08d5aa
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/LegacyResourceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 058b74f9ad5dc0e489456e842029fb0b
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/GUI/EventGraphListView.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6a7a6cf901dabe64586a9bd99395189a
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/WriteSerializedFileTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 322ae10a4b62a437c901e1f23093ac3a
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/HostingServices/AbstractTestHostingService.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1a78160a9be3bdf4d9397ca7b0466850
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBundleExplictObjectLayout.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 48594b0afbd3e84448546c74bf35a6b3
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildDependencyData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 31aaa31a24f444640bde087a4bd59d51
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Runtime/CompatibilityAssetBundleManifest.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 98f1571a4d4b4a3f8a65343e6ca1966d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildCallbacks.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c3b0971a8e5dab44a959bfe453348846
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/AsyncOperationHandle.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9e65091a2762811409d478d08fabe665
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/EditorAddressablesAssetsTestFixture.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 11643b1a70376ce4e807aa759c0f4dbd
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/ComponentSingleton.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8de0232a33280c9479a3db23d266ef17
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/GenerateBundlePacking.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a896103a5441cc040ab6d184ad038c6a
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/GenerateBundlePackingTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9ec0ed3a7d1ee3c4e808cd29000a5b70
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AssetInspectorGUI.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 15c4c65a2f08147dc8d82b3099685af5
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/TestSubObject.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8ad3aa5a0429b934a8ae72ceddf3b2bf
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/CheckCatalogsOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c8cf226ae39e82446b1bb827024f582c
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Util/ResourceManagerConfig.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1095566ae23dbab4985b87dc92390bc2
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/InitializationObjectsOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cfe8ad6aa7980734a89a782fcc937045
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/AnalyzeRule.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6294567ae0241e540a0423a0515d287d
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/UpdateCatalogsOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7e08d97accaeb0f47909f2371a26ca32
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/CommonStrings.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d2fe9d7a258944946a57628f3e9de498
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/WriteTypes/SceneDataWriteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f9508f7aaece47b45a0d499d7c67a777
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetTestBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8616508a31d0c47989ed4cdef04c5f7f
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/HostingServicesProfileVarsTreeView.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9fb0f68aa5e81c448815f0b79325a30f
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceLocations/ResourceLocationBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2fa9998af31eaba4d86afdc900c345ec
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetGroupSchemaSet.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 902a23aa7fb810b4c90bd35c50e66fde
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceLocators/ResourceLocationMap.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2b2e14ba7b808458585452ae88c62b95
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetGroupTemplateInspector.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2c53f1cace3a81a4bbe8280d05abda4e
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/CustomTestSchemaSubClass.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9d5c72ca5a9734f80b3a76cdb4232e21
-    m_importFrom: Packages/com.unity.addressables/Editor/HostingServices/IHostingServiceConfigurationProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3c6632daa352f6846a162383f7a00fe7
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AnalyzeRuleGUI.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f88726da597753f45b7ea82733006421
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetPostProcessor.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b599dbeafb09d4db69110c404ab9552f
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/HostingServices/HostingServiceInterfaceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3d01c0faeb539534689fe05bc369751e
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/MD4.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cde708facb1abd24cb7b42fedf436309
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CacheServerBuildCacheTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4f7b9efa5835d6249b3b62a7cb09877d
-    m_importFrom: Packages/com.unity.addressables/Runtime/Services/PlatformMappingService.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3e2e0ffa088c91d41a086d0b8cb16bdc
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/BuildScriptPackedMode.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d628170b66f4d154eb5dda6859439c32
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/HashingMethodsTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4f04442bb071fe8438a7e40408a9bada
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildLog.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bb04252b53f48b349a901615af6a84fe
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetsBundleBuildParametersTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 91c0d72bf78e7e042bef124e1c546c32
-    m_importFrom: Packages/com.unity.addressables/Runtime/AssetReferenceUIRestriction.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5d624c3bd70705446adc7ee473ceb159
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/BuildPipelineTasks/AddHashToBundleNameTask.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5ad0e35b994160844b457bd2836737b2
-    m_importFrom: Packages/com.unity.addressables/Runtime/AssetReference.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5102485b735d4d0439d6da999841b9c8
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetsSettingsGroupTreeView.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 44dfdb5bbfab6614a8481d1d899d884b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/TaskCachingUtility.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1912c97b524efd244bc0647b18230c7e
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AddressablesDataBuilders.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 44a6309b482db49b0a5aa08e393f503c
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/ResourceCleanupTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 58d7919bd300ea94c8bc969913548cd8
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AddressablesTestUtilities.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3e78249b603b049aa9dfd59ec52d2f30
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceLocations/IResourceLocation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2030ed9ba38c2be4bbbc6a3499d8a4d7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/LinkXMLGeneratorTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3db256bbb74b81f4b9c9b3495ab97e6b
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/ResourceManagerCacheWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8262b6bbc428e3147b18b7f7f4527359
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/Diagnostics/DiagnosticEvent.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 91081fbba8a37084c8b7e9d7d5995080
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/BuildLogger.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: de4318cbbab37fa40bc08ac8c2f51a9b
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/ResourceManagerBaseTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8eba8fcb4416d1943b33efb3d9bd01c8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/ThreadingManager.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 834e2bdb5fd1336429e26ec5bcbb77f7
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AddressablesPlayerBuildProcessor.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c49e24ebadbf2c64cb350d3f62c0ad14
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetProfileSettings.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 717b55fbf36106b449169defda0705c7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildCache.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a79b2afb1cd133b47b8cf25ace7ad051
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/ReflectionExtensions.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 48d49afb756d3456da9e2b0b66b2221d
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceManager.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3534c90cd89bf7342937035fa421fd9c
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/TestBehaviourWithReference.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8cce051c0b60040d68cd27a80e58f787
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CacheServer/ByteArrayStream.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a4c1f91c2b38c564e9e4ab0c5ff1ac1a
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/Layout/BuildLayout.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 555da02c9c624644c9695f325ea6a22c
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/CheckResourcesDupeDependencies.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 87c4ff2c85dcb524685caba3bb22110c
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Interfaces/IBuildResults.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f409833c61db2b9428d2f2bcf4dbb0a1
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceLocators/ResourceLocationData.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f004933c56f4b2f4792fdcc1aca8f9b7
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/LinearPackedIdentifiers.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cb09304cefcaac544889b26c496a2cac
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ThreadingManagerTasks.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c6cb8c4cac7a64d109ab5f65c0f85aca
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/LegacyResourcesProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0ea2465c600278f4db3fdb6b76ee06a9
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/RuntimePlatformMappingServiceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3b86965c40eee0449a9c0a7db2f0e759
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/HashStream.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f498126c527f05c4f9202c95abf8ba3d
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetsSettingsLabelMaskPopup.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c03bc07c7a3d844849931ab6ebeb4adf
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/HostingServices/HttpHostingServiceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3275c47c6e434362a78bf0ec660eebd0
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Diagnostics/EventDataSetStreamTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bbc66e9c19bb4284686b4dbce7530ccf
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/BuiltinSceneCacheTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 948f5bac7ffcefe4e8dbcf04b503e79b
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetEntryCollection.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 97094eac59b52044e8ae8aab18264deb
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/HostingServicesListTreeView.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b7bdc0bcfab4e714b88a12d6b22bac9b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/ArchiveAndCompressBundles.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bb8458bc10d7afe4f8ad0204ab6f1fd8
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/FastModeInitializationOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f39ee2ccb61c17549b2f6551af68ab88
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/GenerateLinkXml.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3a3b28cc6d2f5b444af3331b13911334
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/KeyDataStore.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8aae9ccc172d3fd48a20726e5c902489
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/AnalyzeRules/BundleRuleBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fe5d67dc3f01349a8ae810148424c3b8
-    m_importFrom: Packages/com.unity.addressables/Editor/HostingServices/HttpHostingService.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7cbf9ceccd804b446bc46ab595d96182
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/Preferences.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d12d000d99808e140bb7ec633895cf09
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/Data/EventDataPlayerSessionCollection.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f9fa130dc1a674f38a215c4f52e2b420
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/AsyncOperationBase.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ad8c280d42ee0ed41a27db23b43dd2bf
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilders/BuildScriptPackedPlayMode.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a210a02d6f3e52247a958bb97f5850a7
-    m_importFrom: Packages/com.unity.addressables/Runtime/Utility/SerializationUtilities.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: db8e822ddcadee542b625284a3d0aa16
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/StripUnusedSpriteSources.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d370242d9a79ba64cb55333c896bfdb0
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AnalyzeRules/CheckResourcesDupeDependenciesTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1b61a52d425c4e0f990ee2abd92efb46
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Diagnostics/EventGraphListViewTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6927363d65dcda940b12e68308e980bc
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/GroupSchemaTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3ba8763d94231c9459f5a2d2aae30cfa
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/ContentPipeline.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ea375d4d72197e143ba4ebfe5d21ed7c
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetUtilityTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ae38715d198830145a8bf7fa7adf9ee1
-    m_importFrom: Packages/com.unity.addressables/Runtime/Addressables.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f5fa1c5d453431041ab1e49b72e569e2
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/AsyncOperations/GroupOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 07426e5d16eb07442847b80692e452c9
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AssetReferenceDrawerTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b1487f5d688e4f94f828f879d599dbdc
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/GroupSchemas/PlayerDataGroupSchema.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cff0546d9c35a3248bd820d7dd136af6
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/BuildInterfacesWrapper.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 95d66b6da395d7142abdc96d603e7eb0
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/EditorPlatformMappingServiceTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3c6caf6db0f23fb459226c679978683d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/CacheServerDownloader.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 93cc378d60f13644e9669c22e5cb4618
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/HashingHelpersTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2dd2619d56bf0674e930cbfd1f598197
-    m_importFrom: Packages/com.unity.addressables/Runtime/Initialization/AddressablesRuntimeProperties.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3c09a39d41a474a4a886225f2513ed5e
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/ContentUpdateTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e135f99d5c3f044e4aba84ddbed0d30b
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/ISceneProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ef6015bd730743e3b6fce3252c6d04fd
-    m_importFrom: Packages/com.unity.purchasing/Runtime/managed/Purchasing/PurchasingManager.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3f0645bd0f9b0ea46a9bec32c403ab9e
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AddressablesIntegrationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 69a3d9bdf64896044a9fdb61df07a1f8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Tasks/UpdateBundleObjectLayout.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9ba75fbd280d0c849b9b6a53db5056ac
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/SceneStateCleanup.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 86a4f4dd6530757418ab820c2c781436
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/AssetBundleProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f6d71bdd364b36340962d0eb7f11980c
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/ResourceManagerFastModeTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 38c7e0fdbf240784998304d4d11ed645
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetEntryTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bfa3710e9aeaad547bae8719bd664926
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AssetReferenceTestBehavior.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b5d9831e406a04294b27e5e2577dccb5
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/ProfileWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c2c7d61e655a9134eb902da0ddc663ce
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/ArchiveAndCompressTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9c5f681e19be9ae4c845e9227f9b755a
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/IUpdateReceiver.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 15f7962ec30713a4992a23b060cdf71c
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/TextDataProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d6c85b3ea86fd7d45a0284311e03aa02
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/CalculateSceneDependencyTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 03115f3e85a5cee4ba080db3d02670e9
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AddressableAssetSettingsResourceLocationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5e17c64e4d2cf1742879de399aad96bb
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/VirtualAssetBundleProviderTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3b68615e65d03ce49becfd9eb02f7fa2
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/AddressableAssetSettingsInspector.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a5ead37e5b8764940b99748a48ed48a6
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/GUI/GraphColors.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b8ee6f8e7df445bfb88fb0372dcf691a
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/Unity5PackedIdentifiers.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 07feb49ed5894cd459f42e594a2fbb94
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/GraphicsSettingsApi.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4f6ca99e013fe6c49bb6b98f8ec1897b
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/Operations/BaseOperationBehaviorTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f2a640ae477de17469deed96101db8c5
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/ValidationMethods.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b95096aeec814934caf102c7159c6585
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/WriteTypes/SceneRawWriteOperation.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f0364baebb057874782f9bd6e4dcfa78
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceManager/ResourceProviders/AssetDatabaseProvider.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: aa28bcae85fa11447917912c39d705c7
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/IgnoreFailingLogMessage.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0cc816be7de984cd8ba3ef6b19370a30
-    m_importFrom: Packages/com.unity.addressables/Runtime/Utility/ResourceManagerEventCollector.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e253c6be7d9134114a9b533965c2b45f
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/CacheServer/FileDownloadItem.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: aaa68dbe5d4e2b24281d446a29c84c78
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/ResourceManagerTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d5db91ce60c3e4e44907fbbadd68e6f4
-    m_importFrom: Packages/com.unity.addressables/Editor/GUI/ContentUpdatePreviewWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b9df82cea39d69a4a9e27b9eb6103717
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/LabelTable.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 429f5bce8a9b4ba4295f2d48eebd9639
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/CacheServerUploader.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b47f3ece14ba6b74e883481b6ef86d53
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildScriptPackedIntegrationTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bbb281ee3bf0b054c82ac2347e9e782c
-    m_importFrom: Packages/com.unity.addressables/Editor/Settings/AddressableAssetGroup.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bbb71bee805aca34a84943ae76051c5d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Runtime/Shared/BundleDetails.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9dafe60ff4149624880b04d0cea88719
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/BuildPipelineTasks/ExtractDataTask.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e0d9d70fb62e8164d98b6567cf268d5c
-    m_importFrom: Packages/com.unity.addressables/Runtime/ResourceLocators/IResourceLocator.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 041ea21fa30a4a34fa6cfe55505b452c
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/Build/BuildLayoutGenerationTaskTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6616141fe64e4fc2b16c015f32d0a64d
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildContent.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6719223fb1e7d804091db79ce4200b50
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AnalyzeRules/CheckBundleDupeDependencyTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 019dda5fbf4d3854eb49b455c17c0de6
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/Data/EventDataPlayerSession.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cba3bf5fbe905c841b9ace7d603fb1d8
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildTasksRunner.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0437b76f03e61424abbe630113ecd0f2
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Tests/Editor/AssemblyInfo.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9847c86f230bc2e4d8f60483d345704c
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/SceneTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e32f647f6eec5dd458031b2ccab2880b
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/SceneManagerState.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 89f8257facdc8e04fbf8eefd512ee6a9
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/ResourceManagerUtilityTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fdaf4f8f6845474a8b19554240f1e8ed
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Utilities/ProgressLoggingTracker.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0931d4af80159344eb7e15928166dafd
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/GUI/Graph/GraphLayerEventMarker.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 63ad63bf47749b944a87fce982b8b54b
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/Editor/Shared/BuildResults.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 732aa8bf67ed2de438b3f2f56850c43e
-    m_importFrom: Packages/com.unity.addressables/Editor/Build/DataBuilderInterfaces.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 82bbdcbf8b70eda4e80f931393924ac1
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/DomainReloadTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 488e0dbf9a6f5ac48bbe7875855651f1
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/AddressablesTestFixture.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 62d523cfe47d64e43a6d72011ad4a7ca
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/GUI/EventViewerWindow.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 68204acf7cb1bb74091cd6779c3da569
-    m_importFrom: Packages/com.unity.addressables/Tests/Runtime/ResourceManager/Operations/AsyncOperationHandleTests.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5cc79dcfe4c99ee4c8baf9bf0e5c8a40
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/Data/EventDataSet.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b8b70aff15e9f9640ac1126bbb4f1b75
-    m_importFrom: Packages/com.unity.addressables/Editor/Diagnostics/GUI/Graph/GraphLayerBarChart.cs
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3a04deffd16d96345b57337ce2b4d075
-    m_importFrom: Packages/com.unity.addressables/Tests/Editor/AddressableAssetSettingsTests.cs
+  - m_assetDatabaseId: b4c6e7d43e460974fb17efea2d22a744
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kongfulibrarypanel.bundle
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 43f98080b50969d4e9712ef76bb440a9
@@ -1623,10 +167,6 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 52eb2ea0dffb8dd41b7caa0a7483564d
     m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Lotus.prefab
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 17398fe03e0c9964facca42590620825
-    m_importFrom: Packages/com.unity.addressables/Editor/Icons/PickerDropArrow-Personal.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: e264c091bad2ab641a90aeacdd3c5a8d
@@ -1645,14 +185,6 @@ MonoBehaviour:
     m_importFrom: Assets/Prefabs/Facility/KitchenView.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: d38d5a5256466c349a81338d02621916
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/package.json
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9f7bab82afe46a340a4e3e64a0024ce5
-    m_importFrom: Assets/Prefabs/SceneItem/CollectItem.prefab
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 746baea24a9224ddd99bd02d48a85f8e
     m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_002.prefab
     m_exportTo: 
@@ -1663,6 +195,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 2cc1584384435c54084b3407590f940f
     m_importFrom: Assets/Prefabs/Facility/LobbyView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a77ed063debb75f4aac4c2c69fce43c4
+    m_importFrom: Assets/Sprites/Plants/RawMatCollectItems.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: c727fdb3c5032e5429f7b390c69aabfb
@@ -1677,12 +213,12 @@ MonoBehaviour:
     m_importFrom: Assets/Prefabs/Facility/PatrolRoomView.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 58debe549182d284fbca1a1e4487518b
-    m_importFrom: Assets/Sprites/Plants/Ganoderma.prefab
+  - m_assetDatabaseId: 99d8c5441546c27459193605b0c8492e
+    m_importFrom: Assets/Prefabs/Facility/ForgeHouseView.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 44f39a74ca5ee4bf5936b17e901f251c
-    m_importFrom: Packages/com.unity.purchasing/package.json
+  - m_assetDatabaseId: 58debe549182d284fbca1a1e4487518b
+    m_importFrom: Assets/Sprites/Plants/Ganoderma.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 4f9d63e48840e7f4ca74e6e7f51b599f
@@ -1693,8 +229,8 @@ MonoBehaviour:
     m_importFrom: Assets/Sprites/Plants/Vine.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 31d206f64e7f2f14c9c128ed22445108
-    m_importFrom: Packages/com.unity.addressables/Editor/Icons/PickerDropArrow-Pro.png
+  - m_assetDatabaseId: 72ceedf5372ac494582df60e52d758df
+    m_importFrom: Assets/SDKAdapter/SDKBOX/iap/IAP.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: cedc6e1995c3ec145bc818667aeeb05b
@@ -1709,12 +245,8 @@ MonoBehaviour:
     m_importFrom: Assets/Sprites/Plants/WuWood.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: c499a2a91e3095b4c8e10d8f7de9bbb5
-    m_importFrom: Packages/com.unity.addressables/package.json
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bb15697a279504a90b825c44dc355047
-    m_importFrom: Packages/com.unity.purchasing/CHANGELOG.md
+  - m_assetDatabaseId: 4a0acc9a317ee4b6191c57e81b0ddfb7
+    m_importFrom: Assets/SDKAdapter/DataAnalysis/Appsflyer/AppsflyerScripts/AppsFlyerObject.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 6429f24b52e8d4f15acb6493183da777
@@ -1723,10 +255,6 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: b2eedf4b5f7df9846af6982730659aea
     m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Leaf.prefab
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6f6c277bb5d2a164e8c95a7f0754c0f6
-    m_importFrom: Packages/com.unity.addressables/CHANGELOG.md
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 81663f9bf432e4ad78e02e0d3e773ccf
@@ -1785,10 +313,6 @@ MonoBehaviour:
     m_importFrom: Assets/Sprites/Plants/QingRock.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: eb7f165f4002c4f4bb7cf6eb7f1166d9
-    m_importFrom: Packages/com.unity.scriptablebuildpipeline/CHANGELOG.md
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 74ea11cfbe16ed5409faca72692f9ab4
     m_importFrom: Assets/Resources/IAP.prefab
     m_exportTo: 
@@ -1797,48 +321,48 @@ MonoBehaviour:
     m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_001.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 5ec8d115b10275649afe3b36798e9b0a
-    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/StateMachine/CharacterState/CharacterStateBattle.cs
+  - m_assetDatabaseId: b1283b8efce22fa4089fbcb8bbba8172
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/FacilityPanel/PracticeFieldPanel/ChooseDisciplePanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 99a111d5790404e48987d871e5dea9aa
-    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/GE/Hit_Light_Left.prefab
+  - m_assetDatabaseId: 5fbb5c954ac1a0249a5530b6bd6b54e5
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PracticeFieldPanel/ChooseDisciplePanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0f06169d48a3dbf43b5c6062bc88af7f
-    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/GE/Hit_Light_Right.prefab
+  - m_assetDatabaseId: d80d7f71dc4632d48abd49d54b5b8f31
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/practicefieldpanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
-    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
+  - m_assetDatabaseId: 3ece6f1781685c04a948d1d2c92914cc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/practicefieldpanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 10fb49215b0fb4cea9514e1bb98178d1
-    m_importFrom: Assets/StreamingAssets/game/game.manifest
+  - m_assetDatabaseId: fdcd2129f336fb74d9df7ef8fa8cf060
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuPanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 6906d0d2414f3489c8b2982243a259cd
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/ge.bundle
+  - m_assetDatabaseId: 4e7c4ad576872e64b88266a033cd7e5f
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: dc9f7fd38a8294551967e92e70867057
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/ge.bundle.manifest
+  - m_assetDatabaseId: 081fad1941f94284696b4af0cd0d217b
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: d062dcf75dfd84857a856aaded04f55c
-    m_importFrom: Assets/StreamingAssets/game/game
+  - m_assetDatabaseId: 2b9a03c50c5e744499f6f1dd9e93219f
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningPanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 73a1c4b9789eb496caae720baeb79974
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/material.bundle
+  - m_assetDatabaseId: e2a9774c68865f8449ae83d13044b1dd
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningItem.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 435854cd5bed7467b9da516c09560c2f
-    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
+  - m_assetDatabaseId: 8203f073566b0fd47812b6630b1aec02
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuItem.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: eae1665e6baaf4de39e41a2ea35cca9c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/material.bundle.manifest
+  - m_assetDatabaseId: 357ff23886e83a04eade1f31eb4fd6db
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Inventory/InventoryDataWrapper.cs
     m_exportTo: 
     m_variantName: 
   m_version: 2

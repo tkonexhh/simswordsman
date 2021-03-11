@@ -25,6 +25,12 @@ namespace GameWish.Game
         private List<PracticeDisciple> m_PracticeDisciple = new List<PracticeDisciple>();
         private Transform m_Pos;
         private bool IsSelected = false;
+
+
+        private const int Rows = 5;
+        private const float DiscipleHeight = 156f;
+        private const float BtnHeight = 38f;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -44,6 +50,15 @@ namespace GameWish.Game
             base.OnClose();
             EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
 
+        }
+        private void CalculateContainerHeight()
+        {
+            int rows = m_PracticeDisciple.Count / Rows;
+            if ((m_PracticeDisciple.Count % Rows) != 0)
+                rows += 1;
+
+            float height = DiscipleHeight * rows;
+            m_SelectedList.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
         }
 
         private void HandAddListenerEvent(int key, object[] param)
@@ -96,6 +111,7 @@ namespace GameWish.Game
                 if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level< maxLevel)
                     CreateDisciple(m_CharacterItem[i]);
             }
+            CalculateContainerHeight();
         }
 
         private void GetInformationForNeed()
@@ -122,7 +138,6 @@ namespace GameWish.Game
 
             discipleItem.OnInit(characterItem,this);
             m_PracticeDisciple.Add(discipleItem);
-
         }
     }
 }
