@@ -1,24 +1,31 @@
 ManifestFileVersion: 0
-CRC: 2336458151
+CRC: 2414022916
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 062c848ce0a4d5c03cbf250d496797fa
+    Hash: 89a811d609571bbcf190f8d735e0a9e8
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
 HashAppended: 0
 ClassTypes:
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+- Class: 115
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_bg.png
+- Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_MessagOn.png
+- Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_MessagOff.png
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_HeadIconBg.png
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_SoundOn.png
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_MusicOn.png
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_MusicClose.png
+- Assets/Res/FolderMode/UI/Sprites/Setting/SettingSpritesData.asset
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_SoundClose.png
 - Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_icon1.png
 Dependencies: []

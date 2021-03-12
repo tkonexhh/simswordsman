@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2342055823
+CRC: 3654192400
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9d3ff4f87bcad7f1d0c1dc4681cc527a
+    Hash: b52e916f4b75400eb74a609aedda6957
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1872cadf8767773b8317cd530674d663
+    Hash: 7a43f67f87f606e17a89b45b2dee1df0
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -37,7 +37,13 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
   Script: {instanceID: 0}
 - Class: 210
   Script: {instanceID: 0}
@@ -49,4 +55,6 @@ Assets:
 - Assets/Res/FolderMode/Enemy/Mojiao/Mojiao3/mj_3_Atlas.asset
 - Assets/Res/FolderMode/Enemy/Mojiao/Mojiao3/mj_3_SkeletonData.asset
 - Assets/Res/FolderMode/Enemy/Mojiao/Mojiao3/Mojiao3.prefab
-Dependencies: []
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/mojiaodaofa.bundle

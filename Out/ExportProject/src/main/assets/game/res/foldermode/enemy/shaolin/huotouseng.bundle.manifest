@@ -1,23 +1,27 @@
 ManifestFileVersion: 0
-CRC: 95957999
+CRC: 2242554551
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5b476e1104970cc7b58284978e6526db
+    Hash: 5a1ef1da34af7d410790cd0b976e4127
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 89ccd6f166268df1fd68d0ad9be74068
+    Hash: 1872cadf8767773b8317cd530674d663
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
   Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
 - Class: 23
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
 - Class: 33
+  Script: {instanceID: 0}
+- Class: 48
   Script: {instanceID: 0}
 - Class: 49
   Script: {instanceID: 0}
@@ -27,6 +31,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f3ddeef67047fe64ab11cd6897e6b676, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
 - Class: 114
@@ -38,7 +44,9 @@ ClassTypes:
 Assets:
 - Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuoTouSeng.atlas.txt
 - Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuotousengPrefab.prefab
+- Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuoTouSeng_Material.mat
 - Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuoTouSeng_SkeletonData.asset
 - Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuoTouSeng.png
 - Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuoTouSeng_json.json
+- Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuoTouSeng_Atlas.asset
 Dependencies: []

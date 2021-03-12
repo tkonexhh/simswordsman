@@ -1,23 +1,27 @@
 ManifestFileVersion: 0
-CRC: 1875129387
+CRC: 1170821010
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a778a722e0bd6bbd8415352167a90cd6
+    Hash: 155d64eda8410751df630e455f468e63
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 89ccd6f166268df1fd68d0ad9be74068
+    Hash: 1872cadf8767773b8317cd530674d663
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
   Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
 - Class: 23
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
 - Class: 33
+  Script: {instanceID: 0}
+- Class: 48
   Script: {instanceID: 0}
 - Class: 49
   Script: {instanceID: 0}
@@ -28,6 +32,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: f3ddeef67047fe64ab11cd6897e6b676, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
@@ -37,8 +43,10 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi.atlas.txt
-- Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi_json.json
+- Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi_Atlas.asset
 - Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/Suhuazi.prefab
+- Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi_json.json
+- Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi_Material.mat
 - Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi_SkeletonData.asset
 - Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/ZuiGuaiSuHuaZi.png
 Dependencies: []

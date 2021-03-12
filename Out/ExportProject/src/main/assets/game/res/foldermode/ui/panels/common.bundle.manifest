@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2110626168
+CRC: 1126788465
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 306d821710d098872b86cb28e4e3ce44
+    Hash: d41b2090633f3b724822707a5fbb1f23
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e10f258b9599325c47940b4d661b8ec5
+    Hash: 80d68d46fdfbc3d35968b4be5948883d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -32,6 +32,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 54b1a21244a55894894cba5af37defa0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e764e926030b04aa6b6369d8221a66aa, type: 3}
@@ -45,8 +47,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: b4ca7baa174ee6c4d9b1a8db8c04c4f1, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 54ea711d851f64f9a94cb098db819f7c, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: cdb2e11fd411eb240973527eb49a880c, type: 3}
 - Class: 114
@@ -82,4 +82,4 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/Common/RatePanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/Tip.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle

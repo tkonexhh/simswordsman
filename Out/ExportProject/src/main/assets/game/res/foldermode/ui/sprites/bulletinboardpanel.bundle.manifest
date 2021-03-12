@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 919039628
+CRC: 499009547
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 68ea6b5f65256c5587eeb70bc75126f7
+    Hash: ccb764f8aaf27addbd98964e1cc1703e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c4d5dee85f6c263eb0adbea350984ae1
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/Line4.png
@@ -31,7 +33,8 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_Bg2.png
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_Bg7.png
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/GreenArrow.png
-- "Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/\u7EC4 79 \u62F7\u8D1D 7@2x.png"
+- Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_Bg14.png
+- Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_Bg1.png
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_Bg10.png
 - Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/Selected.png

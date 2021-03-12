@@ -30,15 +30,15 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	AttackSound
 3008	tianshanzhemeishou	0.5;0.5;0.5	0			Hit_Light_Left|Hit_Light_Right	
 3009	yijinjing	0.5;0.5;1;2	1.3		YiJinJing_Pre_Left|YiJinJing_Pre_Right	YiJinJing_Hit_Left|YiJinJing_Hit_Right	
 4001	dagoubangfa	1.5;1.1;1.4	0			Hit_Light_Left|Hit_Light_Right	
-4002	diaoyugunfa	2.1;2.2	0				
+4002	diaoyugunfa	2.1;2.2	0			Hit_Light_Left|Hit_Light_Right	
 4003	luohanfumoquan	1;1	0				
-4004	qianshourulaizhang	1;1;1;1;1;1;1	0				
+4004	qianshouzhang	1;1;1;1;1;1;1	0				
 4005	taijijianfa	0.8;2	0				
-4006	taijizhang	0.8;0.6;0.6;1.1	0				
+4006	taijiquan	0.8;0.6;0.6;1.1	0				
 4007	qingnianshennvjian	2	2.1800000000000002		QingLianJianFa_Left|QingLianJianFa_Right	QingLianJianFa_Hit_Left|QingLianJianFa_Hit_Right	
 4008	baimangbian	2	2.5		BaiMangBian_Left|BaiMangBian_Right	BaiMangBian_Hit_Left|BaiMangBian_Hit_Right	
-4009	huashanjianfa	1;1.2;1;-1;4	0.46;1.15;2.04;3.17		HuaShanJian_Left|HuaShanJian_Right	HuaShanJian_Hit_Left|HuaShanJian_Hit_Right	
-4010	wudushenbian	1.5;1.5;2	0				
+4009	huashanjian	1;1.2;1;-1;4	0.46;1.15;2.04;3.17		HuaShanJian_Left|HuaShanJian_Right	HuaShanJian_Hit_Left|HuaShanJian_Hit_Right	
+4010	bianfa	1.5;1.5;2	0				
 4011	qianzhuwandushou	0.8;0.6;1.1;1.4	0				
 4012	modao	1.5;2;2.1;2.6	1;1.4;1.6;2.8	MoJiaoDaoFa1_DragSmoke	MoJiaoDaoFa1_Left|MoJiaoDaoFa1_Right		
 4013	modaoyishan	1.2;1.7;2.3;2.5	0.8;1.12;1.6;1.9	MoJiaoDaoFa2_DragSmoke	MoJiaoDaoFa2_Left|MoJiaoDaoFa2_Right		
@@ -100,3 +100,4 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	AttackSound
 5040	xiantong2						
 5041	xuannv1						
 5042	xuannv2						
+9901	attack	1.5	0			Hit_Light_Left|Hit_Light_Right	
