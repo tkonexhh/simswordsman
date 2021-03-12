@@ -32,7 +32,7 @@ namespace GameWish.Game
             FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
             Vector3 targetPos = facilityController.GetDoorPos();
 
-            m_Controller.MoveTo(targetPos, OnReachDestination);
+            m_Controller.RunTo(targetPos, OnReachDestination);
 
             EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd); 
         }
