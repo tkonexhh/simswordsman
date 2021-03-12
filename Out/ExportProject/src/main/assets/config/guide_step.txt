@@ -42,7 +42,7 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 12401	24	BuildForgehouseTrigger	DialogCommand:StoryPanel_Text_34;MyDelayCommand:0.2;		0	
 12501	25	FoodBuffTrigger	DialogCommand:StoryPanel_Text_35;MyDelayCommand:0.2;		0	
 12601	26	CollectSystemTrigger	DialogCommand:StoryPanel_Text_36;MyDelayCommand:0.2;		0	
-12602	26	CollectSystem_ClickLotusrootTrigger	DialogWithCircleMaskCommand:#0,StoryPanel_Text_59;MyDelayCommand:0.4;	EntityRoot/SimSection/CollectItem/LotusRoot/Bubble	0	
+12602	26	CollectSystem_ClickLotusrootTrigger	DialogWithCircleMaskCommand:#0,StoryPanel_Text_59;MyDelayCommand:0.4;	EntityRoot/SimSection/CollectItem/LotusRoot/Bubble	0	1
 12701	27	KungFuTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_44;MyDelayCommand:0.2;		0	
 12702	27	KungFuTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
 12703	27	KungFuTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	
@@ -66,3 +66,5 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 13002	30	SendCharacterWorkTrigger	GuideClickBubbleCommand:#0,38|-8,StoryPanel_Text_58;MyDelayCommand:0.4;	EntityRoot/SimSection/WorkingBubbles/bubble5/workingbubble	0	1
 13101	31	DiscipleAutoWorkTrigger	DialogCommand:StoryPanel_Text_56;MyDelayCommand:0.4;		0	
 13102	31	ClickTaskDetailsTrigger1	DialogWithCircleMaskCommand:#0,StoryPanel_Text_40;MyDelayCommand:0.4;	EntityRoot/Character_normal_1/WorkProgressBar	0	1
+13201	32	FoodNotEnoughTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_68;MyDelayCommand:0.4;		0	
+13202	32	FoodNotEnoughTrigger_ClickFoodBtnBrigger	NormalTipsCommand:StoryPanel_Text_69,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,Baozi/CreateBaoziBtn	0	1
