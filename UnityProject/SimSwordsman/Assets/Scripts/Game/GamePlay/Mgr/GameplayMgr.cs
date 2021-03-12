@@ -143,6 +143,7 @@ namespace GameWish.Game
                     VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
 #if TEST_MODE
+                    Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
                     {
@@ -245,7 +246,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
                 }
             }
-          
+
 
             if (Input.GetKeyDown(KeyCode.Z))
             {

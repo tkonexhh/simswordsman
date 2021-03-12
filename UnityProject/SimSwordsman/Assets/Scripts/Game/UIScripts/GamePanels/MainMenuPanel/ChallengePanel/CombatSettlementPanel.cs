@@ -168,9 +168,9 @@ namespace GameWish.Game
                     });
                     m_LevelConfigInfo.PrepareReward();
                     if (m_IsSuccess)
-                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(2));
-                    else
-                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
+                        m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward());
+                    // else
+                    //     m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
                     break;
                 default:
                     break;
