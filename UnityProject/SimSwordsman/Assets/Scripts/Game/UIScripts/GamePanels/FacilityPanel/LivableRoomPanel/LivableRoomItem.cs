@@ -167,8 +167,6 @@ namespace GameWish.Game
             {
                 MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)costItems[i].itemId), costItems[i].value);
             }
-           
-
         }
 
         private bool CheckPropIsEnough(bool isShow = true)
@@ -292,8 +290,8 @@ namespace GameWish.Game
                 case LivableRoomState.Upgrade:
                     m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.level);
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_CURRENTLYHABITABLE);
-                    m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_NextLivableRoomLevelInfo.GetCurCapacity()));
-                    m_NextPeopleValue.text = CommonUIMethod.GetStrForColor("#AD7834", CommonUIMethod.GetPeople(m_NextLivableRoomLevelInfo.GetNextCapacity()));
+                    m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetCurCapacity()));
+                    m_NextPeopleValue.text = CommonUIMethod.GetStrForColor("#AD7834", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetNextCapacity()));
                     m_UpperMiddle.SetActive(true);
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeConditions.text = "升级需要讲武堂达到" + Define.SPACE
@@ -316,7 +314,6 @@ namespace GameWish.Game
                     m_Res3Img.gameObject.SetActive(false);
                     m_Res1Img.gameObject.SetActive(false);
                     m_Res2Img.gameObject.SetActive(false);
-
                     m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);
                     m_LivableRoomImg.gameObject.SetActive(true);
                     m_LivableRoomImgLock.gameObject.SetActive(false);

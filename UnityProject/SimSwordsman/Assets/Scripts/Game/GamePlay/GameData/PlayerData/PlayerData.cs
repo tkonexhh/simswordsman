@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class PlayerData : DataDirtyHandler, IResetHandler, IDailyResetData
     {
+        public bool messagePush;
+
         public string coinNumStr;
 
         public int coinNum;
@@ -52,6 +54,7 @@ namespace GameWish.Game
 
         public void SetDefaultValue()
         {
+            messagePush = true;
             m_CoinNum = Define.DEFAULT_COIN_NUM;
             coinNumStr = m_CoinNum.ToString();
 
@@ -88,6 +91,19 @@ namespace GameWish.Game
         {
             return recruitData;
         }
+
+        #region 消息推送
+        public bool GetMessagePush()
+        {
+            return messagePush;
+        }
+
+        public void SetMessagePush(bool msg)
+        {
+            messagePush = msg;
+        }
+        #endregion
+
 
         #region work system
         public bool IsUnlockWorkSystem() 

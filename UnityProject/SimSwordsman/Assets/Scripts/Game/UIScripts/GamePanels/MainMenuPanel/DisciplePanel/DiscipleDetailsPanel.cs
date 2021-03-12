@@ -246,7 +246,7 @@ namespace GameWish.Game
             if (curNumber >= upgrade.Number)
                 text.text = upgrade.Number + Define.SLASH + upgrade.Number;
             else
-                text.text = CommonUIMethod.GetStrForColor("#8C343C", upgrade.Number.ToString()) + Define.SLASH + curNumber;
+                text.text = CommonUIMethod.GetStrForColor("#8C343C", curNumber.ToString()) + Define.SLASH + upgrade.Number;
         }
 
         private void RefreshArmsInfo()

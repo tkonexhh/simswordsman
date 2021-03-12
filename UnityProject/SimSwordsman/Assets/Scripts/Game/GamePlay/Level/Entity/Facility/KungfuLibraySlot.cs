@@ -68,6 +68,12 @@ namespace GameWish.Game
  
         public void SetCharacterItem(CharacterItem characterItem, SlotState slotState, FacilityType targetFacility)
         {
+            if (CharacterItem != null)
+            {
+                Log.w("ÒÑÓÐµÜ×Ó");
+                return;
+            }
+
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
             switch (slotState)
             {

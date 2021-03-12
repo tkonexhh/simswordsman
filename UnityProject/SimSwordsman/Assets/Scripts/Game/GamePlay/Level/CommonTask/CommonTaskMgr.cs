@@ -52,7 +52,6 @@ namespace GameWish.Game
                 m_TaskRefreshTime = 0;
                 RefreshCommonTask();
                 EventSystem.S.Send(EventID.OnCommonTaskRefreshed);
-                RefreshRedPoint(m_CommonTaskData.taskList.Count);
             }
         }
 
