@@ -89,9 +89,21 @@ namespace GameWish.Game
                 {
                     try
                     {
-                        int index = UnityEngine.Random.Range(0, m_CanWorkFacilitys.Count);
+                        tempList.Clear();
 
-                        FacilityType type = m_CanWorkFacilitys[index];
+                        for (int i = 0; i < m_UnlockFacilitys.Count; i++)
+                        {
+                            FacilityType tempType = m_UnlockFacilitys[i];
+                            if (m_CurrentWorkItem.ContainsKey(tempType) == false) 
+                            {
+                                tempList.Add(tempType);
+                            }
+                        }
+                        if (tempList.Count == 0) return;
+
+                        int index = UnityEngine.Random.Range(0, tempList.Count);
+                        
+                        FacilityType type = tempList[index];
 
                         if (m_CurrentWorkItem.ContainsKey(type) == false) 
                         {
