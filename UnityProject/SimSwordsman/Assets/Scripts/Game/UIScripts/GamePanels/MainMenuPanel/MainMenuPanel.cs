@@ -62,6 +62,8 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
+            RegisterEvents();
+
             m_SettingBtn.onClick.AddListener(()=> {
                 UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
             });
@@ -158,8 +160,6 @@ namespace GameWish.Game
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             //GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
             RefreshPanelInfo();
-
-            RegisterEvents();
         }
         protected override void OnClose()
         {

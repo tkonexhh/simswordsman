@@ -158,6 +158,7 @@ namespace GameWish.Game
             else
             {
                 MainGameMgr.S.OnUpdate();
+                VisitorSystem.S.Update();
             }
 
             ////For test
@@ -202,15 +203,26 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 500);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 500);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1003), 500);
-
-                //MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)1006), 400);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1011), 1);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1016), 5);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5);
-                //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Four), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Seven), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Nine), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Four), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Seven), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Nine), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Four), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Seven), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Nine), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Four), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Seven), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Nine), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
             }
             if (Input.GetKeyDown(KeyCode.Y))
             {
@@ -218,10 +230,11 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 29);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 2);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 3);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 4);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 50);
+                MainGameMgr.S.CharacterMgr.AddCharacterLevel(4, 50);
             }
 
             if (Input.GetKeyDown(KeyCode.G))
@@ -232,6 +245,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
                 }
             }
+          
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -250,12 +264,19 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.V))
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new KongfuReward( (int)KungfuType.LiuMaiShenJian, 1));
-                rewards.Add(new KongfuReward( (int)KungfuType.DuGuJiuJian, 1));
+                rewards.Add(new KongfuReward((int)KungfuType.LiuMaiShenJian, 1));
+                rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 
-
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                EventSystem.S.Send(EventID.OnBattleSuccessed);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EventSystem.S.Send(EventID.OnBattleFailed);
+            }
             #endregion
         }
 

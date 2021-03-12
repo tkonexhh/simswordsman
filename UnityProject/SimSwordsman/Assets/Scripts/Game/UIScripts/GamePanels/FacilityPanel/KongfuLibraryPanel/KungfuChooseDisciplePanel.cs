@@ -18,6 +18,10 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ArrangeBtn;
 
+        private const int Rows = 5;
+        private const float DiscipleHeight = 153.5f;
+        private const float BtnHeight = 38f;
+
         private FacilityType m_CurFacilityType;
         private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
@@ -62,8 +66,22 @@ namespace GameWish.Game
                 if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level<Define.CHARACTER_MAX_LEVEL)
                     CreateDisciple(m_CharacterItem[i]);
             }
+
+            CalculateContainerHeight();
         }
-        
+        /// <summary>
+        /// ¼ÆËãÈÝÆ÷¸ß¶È
+        /// </summary>
+        private void CalculateContainerHeight()
+        {
+            int rows = m_KungfuLibraryDisciple.Count / Rows;
+            if ((m_KungfuLibraryDisciple.Count % Rows) != 0)
+                rows += 1;
+
+            float height = DiscipleHeight * rows;
+            m_SelectedList.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
+        }
+
         private void HandAddListenerEvent(int key, object[] param)
         {
             CharacterItem selected = (CharacterItem)param[1];

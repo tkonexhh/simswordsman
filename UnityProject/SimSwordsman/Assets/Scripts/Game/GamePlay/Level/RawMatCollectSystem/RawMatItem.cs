@@ -85,7 +85,17 @@ namespace GameWish.Game
             {
                 if (m_Character.CollectObjType == collectedObjType)
                 {
-                    m_Character.SetState(CharacterStateID.CollectRes);
+                    if (m_Character.CurState == CharacterStateID.Wander)
+                    {
+                        Log.e("RawMatItem, The selected character state wrong, this should not happen, collectedObjType: " + collectedObjType);
+                        m_Character.SetState(CharacterStateID.CollectRes);
+                    }
+                }
+                else
+                {
+                    Log.e("RawMatItem, The selected character collectedObjType not right, this should not happen, collectedObjType: " + collectedObjType);
+
+                    ResetData();
                 }
             }
         }
@@ -98,7 +108,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(8) && GuideMgr.S.IsGuideFinish(14))
+            if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(31) && GuideMgr.S.IsGuideFinish(14))
             {
                 FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
                 return;
@@ -135,6 +145,8 @@ namespace GameWish.Game
 
         public void ShowBubble()
         {
+            if (m_IsBubbleShowed) return;
+
             m_IsBubbleShowed = true;
 
             bubble.SetActive(true);
@@ -179,6 +191,7 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EventID.OnEndUpgradeFacility, HandleEvent);
             EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
+            EventSystem.S.Register(EventID.OnShowWorkBubble, HandleEvent);
         }
 
         private void CheckUnlocked()
@@ -218,12 +231,23 @@ namespace GameWish.Game
                     if (collectedObjType == this.collectedObjType)
                     {
                         m_LastShowBubbleTime = DateTime.Now;
-                        m_Character = null;
-                        m_IsCharacterCollected = false;
-                        m_IsWorking = false;
+                        ResetData();
+                    }
+                    break;
+                case (int)EventID.OnShowWorkBubble:
+                    CollectedObjType type = (CollectedObjType)param[0];
+                    if (this.collectedObjType == type) {
+                        ShowBubble();
                     }
                     break;
             }
+        }
+
+        private void ResetData()
+        {
+            m_Character = null;
+            m_IsCharacterCollected = false;
+            m_IsWorking = false;
         }
     }
 	

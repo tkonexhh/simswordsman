@@ -11,8 +11,8 @@ namespace GameWish.Game
         public override void OnBegin()
         {
             Log.i("ExecuteNode:" + GetType().Name);
-            AdsMgr.S.Init();
-            AdsMgr.S.InitAllAdData();
+            //AdsMgr.S.Init();
+            //AdsMgr.S.InitAllAdData();
             GameMgr.S.AddCom<UIDataModule>();
             GameMgr.S.AddCom<InputModule>();
             GameMgr.S.AddCom<CommonResModule>();

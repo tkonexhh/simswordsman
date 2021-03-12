@@ -203,7 +203,7 @@ namespace GameWish.Game
             float atkValue = 0;
             foreach (var item in m_SelectedDiscipleDic.Values)
                 atkValue += item.atkValue;
-            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString());
+            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString("0"));
 
             int selected = (int)atkValue;
 

@@ -155,6 +155,10 @@ namespace GameWish.Game
                     m_CurChapterConfigInfo = (ChapterConfigInfo)args[1];
                     m_LevelConfigInfo = (LevelConfigInfo)args[2];
                     m_IsSuccess = (bool)args[3];
+                    foreach (var item in m_LevelConfigInfo.levelRewardList)
+                        if (item.RewardItem != RewardItemType.Exp_Kongfu && item.RewardItem != RewardItemType.Exp_Role)
+                            m_RewardList.Add(item);
+
                     m_LevelConfigInfo.levelRewardList.ForEach(i =>
                     {
                         if (i.RewardItem == RewardItemType.Exp_Kongfu || i.RewardItem == RewardItemType.Exp_Role)

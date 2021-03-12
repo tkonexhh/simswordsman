@@ -53,6 +53,8 @@ namespace GameWish.Game
 
             RegisterEvents();
 
+            m_Controller.SetWorkProgressPercent(0);
+
             m_RawMatItem = MainGameMgr.S.RawMatCollectSystem.GetRawMatItem(m_CollectedObjType);
             if (m_RawMatItem != null)
             {
@@ -141,7 +143,7 @@ namespace GameWish.Game
             if (m_IsCollectResEnd)
                 return;
 
-            if (m_ReachTargetPos && GuideMgr.S.IsGuideFinish(8))
+            if (m_ReachTargetPos && GuideMgr.S.IsGuideFinish(31))
             {
                 m_Time += Time.deltaTime;
 
@@ -190,7 +192,7 @@ namespace GameWish.Game
 
             m_Controller.SpawnWorkProgressBar();
 
-            if (GuideMgr.S.IsGuideFinish(8) == false)
+            if (GuideMgr.S.IsGuideFinish(31) == false)
             {
                 EventSystem.S.Send(EventID.OnDiscipleAutoWorkTrigger);
             }

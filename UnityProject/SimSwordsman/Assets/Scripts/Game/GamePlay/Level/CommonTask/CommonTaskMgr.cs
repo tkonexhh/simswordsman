@@ -27,6 +27,9 @@ namespace GameWish.Game
 
         public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
 
+        private float m_TaskRefreshInterval = 10;
+        private float m_TaskRefreshTime = 0;
+
         #region IMgr
         public void OnInit()
         {
@@ -43,7 +46,14 @@ namespace GameWish.Game
 
         public void OnUpdate()
         {
-
+            m_TaskRefreshTime += Time.deltaTime;
+            if (m_TaskRefreshTime > m_TaskRefreshInterval)
+            {
+                m_TaskRefreshTime = 0;
+                RefreshCommonTask();
+                EventSystem.S.Send(EventID.OnCommonTaskRefreshed);
+                RefreshRedPoint(m_CommonTaskData.taskList.Count);
+            }
         }
 
         public void OnDestroyed()
@@ -250,7 +260,6 @@ namespace GameWish.Game
 
         public void InitTaskList()
         {
-            RefreshRedPoint(m_CommonTaskData.taskList.Count);
             m_CommonTaskData.taskList.ForEach(i => 
             {
                 //int leftTime = Mathf.Max(0, i.taskTime - i.executedTime);
@@ -276,8 +285,8 @@ namespace GameWish.Game
                     });
                 }
             });
-
             RefreshTask();
+            RefreshRedPoint(m_CommonTaskData.taskList.Count);
         }
         /// <summary>
         /// 刷新公告榜的惊叹号
@@ -294,7 +303,6 @@ namespace GameWish.Game
         private void RefreshCommonTask()
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
-            RefreshRedPoint(m_CurTaskList.Count);
             if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
@@ -333,6 +341,7 @@ namespace GameWish.Game
                     }
                 }
             }
+            RefreshRedPoint(m_CurTaskList.Count);
         }
 
         public void GenerateTask(int taskId, SimGameTaskType taskType, int subType, int taskTime)
