@@ -259,6 +259,10 @@ namespace GameWish.Game
 
         OnGuideDialog8,
 
+        #region 食物不足引导
+        OnFoodNotEnoughTrigger_IntroduceTrigger,
+        OnFoodNotEnoughTrigger_ClickFoodBtnBrigger,
+        #endregion
 
         OnGuideUnlockBaicaohu,
         OnGuideUnlockPracticeField,
