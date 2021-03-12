@@ -24,7 +24,9 @@ namespace GameWish.Game
         private List<ItemBase> m_ItemBaseList = null;
         private CharacterItem m_CharacterItem = null;
         private List<LearnKungfuItem> m_KungfuLearningItemDic = new List<LearnKungfuItem>();
-
+        private const int Rows = 4;
+        private const float KungfuHeight = 169.4f;
+        private const float BtnHeight = 38f;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -42,6 +44,15 @@ namespace GameWish.Game
                 default:
                     break;
             }
+        }
+        private void CalculateContainerHeight()
+        {
+            int rows = m_KungfuLearningItemDic.Count / Rows;
+            if ((m_KungfuLearningItemDic.Count % Rows) != 0)
+                rows += 1;
+
+            float height = KungfuHeight * rows;
+            m_SelectedList.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
         }
 
         private void RefreshKungfuInfo(bool isSelected, ItemBase itemBase, Transform transform)
@@ -83,6 +94,7 @@ namespace GameWish.Game
             {
                 CreateKungfu(m_ItemBaseList[i]);
             }
+            CalculateContainerHeight();
         }
 
         private void GetInformationForNeed()

@@ -543,7 +543,7 @@ namespace GameWish.Game
 
         public override int GetSortId()
         {
-            return (int)PropType * 100 + (int)ArmorID;
+            return (int)ArmorID * 100 + (int)ClassID;
         }
         public override int GetSubName()
         {
@@ -602,7 +602,7 @@ namespace GameWish.Game
 
         public override int GetSortId()
         {
-            return (int)PropType * 100 + (int)ArmsID;
+            return (int)ArmsID * 100 + (int)ClassID;
         }
         public override int GetSubName()
         {

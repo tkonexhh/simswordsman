@@ -309,6 +309,15 @@ namespace GameWish.Game
                 item.gameObject.SetActive(false);
             }
             string strName = m_CurInventoryItem.Name.ToString();
+            switch (m_CurInventoryItem.PropType)
+            {
+                case PropType.Arms:
+                    strName += CommonUIMethod.GetTextNumber((int)((ArmsItem)m_CurInventoryItem).ClassID) + "½×";
+                    break;
+                case PropType.Armor:
+                    strName += CommonUIMethod.GetTextNumber((int)((ArmorItem)m_CurInventoryItem).ClassID) + "½×";
+                    break;
+            }
             int maxLength = Mathf.Min(strName.Length,8);
             for (int i = 0; i < maxLength; i++)
             {

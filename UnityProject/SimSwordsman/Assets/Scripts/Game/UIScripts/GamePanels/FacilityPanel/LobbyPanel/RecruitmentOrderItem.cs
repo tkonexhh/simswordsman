@@ -108,7 +108,10 @@ namespace GameWish.Game
                             break;
                     }
                     m_RecruitOrderValue.gameObject.SetActive(true);
-                    m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType).ToString();
+                    if (m_CurRecruitType == RecruitType.GoldMedal )
+                        m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType( RawMaterial.GoldenToken);
+                    else
+                        m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 case ClickType.LookAdvertisement:
@@ -141,6 +144,14 @@ namespace GameWish.Game
             }
         }
 
+        private int GetRecruitCount()
+        {
+            if (m_CurRecruitType == RecruitType.GoldMedal)
+                return MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
+            else
+                return MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
+        }
+
 
         /// <summary>
         /// 检测招募数据
@@ -155,7 +166,8 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 return;
             }
-            int curRecruitCount = MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType);
+            int curRecruitCount = GetRecruitCount();
+
             if (curRecruitCount > 0)
             {
                 m_RecruitDic[m_CurRecruitType] = ClickType.RecruitmentOrder;
@@ -266,7 +278,7 @@ namespace GameWish.Game
                     break;
                 case ClickType.RecruitmentOrder:
                     GetRandomDisciples(type);
-                    int curRecruitCount = MainGameMgr.S.RecruitDisciplerMgr.GetCurRecruitCount(m_CurRecruitType);
+                    int curRecruitCount = GetRecruitCount();
                     if (curRecruitCount <= 0)
                         FloatMessage.S.ShowMsg("招募次数用尽");
                     else

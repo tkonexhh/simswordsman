@@ -206,6 +206,8 @@ namespace GameWish.Game
                     for (int i = 0; i < m_CostItems.Count; i++)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
 
+                    FacilityController facilityController =  MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
+                    facilityController.BuildClosedRedDot(false);
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType);
                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
                     HideSelfWithAnim();

@@ -26,17 +26,16 @@ namespace GameWish.Game
         private Transform m_Pos;
         private List<ItemBase> m_ItemBaseList = null;
         private CharacterItem m_CurDisciple = null;
+
+        private const int Rows = 4;
+        private const float EquipHeight = 169.4f;
+        private const float BtnHeight = 43f;
         private List<WearableLearningItem> m_WearableLearningItemDic = new List<WearableLearningItem>();
         protected override void OnUIInit()
         {
             base.OnUIInit();
             AudioMgr.S.PlaySound(Define.INTERFACE);
             EventSystem.S.Register(EventID.OnSelectedEquipEvent, HandleAddListenerEvevt);
-            // 测试代码：增加装备
-            //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Armor, 1, 9));
-            //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Armor, 1, 2));
-            //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 1, 2));
-            //MainGameMgr.S.InventoryMgr.AddEquipment(new EquipmentItem(PropType.Arms, 2, 5));
 
             BindAddListenerEvent();
         }
@@ -50,6 +49,15 @@ namespace GameWish.Game
                 default:
                     break;
             }
+        }
+        private void CalculateContainerHeight()
+        {
+            int rows = m_WearableLearningItemDic.Count / Rows;
+            if ((m_WearableLearningItemDic.Count % Rows) != 0)
+                rows += 1;
+
+            float height = EquipHeight * rows;
+            m_WearableLearningTra.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
         }
 
         private void RefreshEquipInfo(bool isSelected, ItemBase itemBase, Transform transform)
@@ -92,7 +100,6 @@ namespace GameWish.Game
 
             switch (m_CurPropType)
             {
-            
                 case PropType.Arms:
                     m_Title.text = "选择武器";
                     break;
@@ -103,6 +110,8 @@ namespace GameWish.Game
 
             foreach (var item in m_ItemBaseList)
                 CreateWearableLearningItem(item);
+
+            CalculateContainerHeight();
         }
 
         private void BindAddListenerEvent()
@@ -114,11 +123,13 @@ namespace GameWish.Game
                 switch (m_SelectedItemBase.PropType)
                 {
                     case PropType.Arms:
-                        MainGameMgr.S.InventoryMgr.AddItem(m_CurDisciple.GetEquipmentForType(PropType.Arms));
+                        //MainGameMgr.S.InventoryMgr.AddItem((ArmsItem)m_SelectedItemBase);
+                        MainGameMgr.S.InventoryMgr.AddItem((ArmsItem)m_CurDisciple.GetEquipmentForType(PropType.Arms));
                         MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArms(m_SelectedItemBase));
                         break;
                     case PropType.Armor:
-                        MainGameMgr.S.InventoryMgr.AddItem(m_CurDisciple.GetEquipmentForType(PropType.Armor));
+                        MainGameMgr.S.InventoryMgr.AddItem((ArmorItem)m_CurDisciple.GetEquipmentForType(PropType.Armor));
+                        //MainGameMgr.S.InventoryMgr.AddItem((ArmorItem)m_SelectedItemBase);
                         MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArmor(m_SelectedItemBase));
                         break;
                     default:
@@ -133,9 +144,6 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                //EquipmentItem chracEquip = m_CurDisciple.characterEquipment.Where(i => i.PropType == m_CurPropType).FirstOrDefault();
-                //if (chracEquip != null)
-                //    MainGameMgr.S.InventoryMgr.RemoveItem(chracEquip);
                 HideSelfWithAnim();
             });
         }

@@ -72,6 +72,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ArmorBtn;
         [SerializeField]
+        private Image m_IntensifyArmorImg;
+        [SerializeField]
         private Button m_IntensifyArmorBtn;
         [SerializeField]
         private Text m_IntensifyArmorValue;
@@ -93,6 +95,8 @@ namespace GameWish.Game
         private Image m_ArmsPlus;
         [SerializeField]
         private Button m_ArmsBtn;
+        [SerializeField]
+        private Image m_IntensifyArmsImg;
         [SerializeField]
         private Button m_IntensifyArmsBtn;
         [SerializeField]
@@ -150,8 +154,7 @@ namespace GameWish.Game
             //m_PracticeValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_PRACTICE);
             //m_WorkValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_WORK);
             m_EjectValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_EJECT);
-            m_IntensifyArmorValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
-            m_IntensifyArmsValue.text = CommonUIMethod.GetStringForTableKey(Define.EQUIP_INTENSIFY);
+
         }
 
         private string GetLoadDiscipleName(CharacterItem characterItem)
@@ -202,6 +205,48 @@ namespace GameWish.Game
             }
             RefreshArmsInfo();
             RefreshArmorInfo();
+        }
+
+        private void RefershIntensifyImg()
+        {
+            RefershIntensifyArmorImg();
+            RefershIntensifyArmsImg();
+        }
+        private void RefershIntensifyArmsImg()
+        {
+            CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
+            UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArms.ArmsID, characterArms.Class + 1);
+            if (upgrade == null)
+            {
+                m_IntensifyArmsBtn.gameObject.SetActive(false);
+                return;
+            }
+            RefrshIntensifyText(m_IntensifyArmsValue, upgrade);
+            m_IntensifyArmsImg.sprite = FindSprite(TDItemConfigTable.GetIconName(upgrade.PropID));
+        }
+
+        private void RefershIntensifyArmorImg()
+        {
+            CharacterArmor characterArmor = m_CurDisciple.characeterEquipmentData.CharacterArmor;
+            UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume((int)characterArmor.ArmorID, characterArmor.Class + 1);
+            if (upgrade == null)
+            {
+                m_IntensifyArmorBtn.gameObject.SetActive(false);
+                return;
+            }
+
+            RefrshIntensifyText(m_IntensifyArmorValue, upgrade);
+
+            m_IntensifyArmorImg.sprite = FindSprite(TDItemConfigTable.GetIconName(upgrade.PropID));
+        }
+
+        private void RefrshIntensifyText(Text text, UpgradeCondition upgrade)
+        {
+            int curNumber = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)upgrade.PropID);
+            if (curNumber >= upgrade.Number)
+                text.text = upgrade.Number + Define.SLASH + upgrade.Number;
+            else
+                text.text = CommonUIMethod.GetStrForColor("#8C343C", upgrade.Number.ToString()) + Define.SLASH + curNumber;
         }
 
         private void RefreshArmsInfo()
@@ -396,6 +441,7 @@ namespace GameWish.Game
                 m_CurDisciple.CalculateForceValue();
                 RefreshArmorInfo();
                 RefreshSkillValue();
+                RefershIntensifyArmorImg();
             });
             m_EjectValueBtn.onClick.AddListener(() =>
             {
@@ -437,6 +483,7 @@ namespace GameWish.Game
                 m_CurDisciple.CalculateForceValue();
                 RefreshArmsInfo();
                 RefreshSkillValue();
+                RefershIntensifyArmsImg();
             });
         }
 
@@ -467,6 +514,7 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshPanelInfo();
+            RefershIntensifyImg();
             m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
         }
 
@@ -484,6 +532,7 @@ namespace GameWish.Game
                     RefreshArmsInfo();
                     RefreshArmorInfo();
                     RefreshSkillValue();
+                    RefershIntensifyImg();
                     break;
                 case EventID.OnRefreshDisciple:
                     break;
