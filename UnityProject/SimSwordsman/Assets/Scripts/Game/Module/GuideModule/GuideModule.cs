@@ -135,6 +135,9 @@ namespace GameWish.Game
 
             GuideMgr.S.RegisterGuideTrigger(typeof(TaskPanelTrigger_IntroduceTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystem_ClickLotusrootTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(FoodNotEnoughTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(FoodNotEnoughTrigger_ClickFoodBtnBrigger));
         }
 
         protected void InitCustomCommand()
