@@ -111,6 +111,12 @@ namespace GameWish.Game
             if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(31) && GuideMgr.S.IsGuideFinish(14))
             {
                 FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
+
+                if (GuideMgr.S.IsGuideFinish(32) == false)
+                {
+                    EventSystem.S.Send(EventID.OnFoodNotEnoughTrigger_IntroduceTrigger);
+                }
+
                 return;
             }
 
