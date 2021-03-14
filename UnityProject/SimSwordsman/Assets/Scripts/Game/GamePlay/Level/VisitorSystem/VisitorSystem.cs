@@ -11,7 +11,7 @@ namespace GameWish.Game
         /// <summary>
         /// 开放等级（主城）
         /// </summary>
-        int m_UnlockLevel = 1;
+        int m_UnlockLevel = 2;
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
