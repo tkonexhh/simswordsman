@@ -213,6 +213,19 @@ namespace GameWish.Game
                 if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state 不存裆
                 {
                     SetStateToDB(m_CurState, targetFacilityType);
+
+                    //保护性代码：消除头上没有消失的Progress
+                    if (state == CharacterStateID.Wander)
+                    {
+                        CharacterWorkProgressBar[] progressList = m_CharacterView.GetComponentsInChildren<CharacterWorkProgressBar>();
+                        foreach (var item in progressList)
+                        {
+                            if (item != m_CharacterView.WorkProgressBar)
+                            {
+                                GameObjectPoolMgr.S.Recycle(item.gameObject);
+                            }
+                        }
+                    }
                 }
 
                 m_StateMachine.SetCurrentStateByID(state);
