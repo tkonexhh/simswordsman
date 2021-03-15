@@ -85,8 +85,28 @@ namespace GameWish.Game
             m_CopyScripturesBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                UIMgr.S.OpenPanel(UIID.KungfuChooseDisciplePanel, m_KungfuLibraySlot, m_CurFacility);
+                if (CheckIsEmpty())
+                    UIMgr.S.OpenPanel(UIID.KungfuChooseDisciplePanel, m_KungfuLibraySlot, m_CurFacility);
+                else
+                {
+                    FloatMessage.S.ShowMsg("暂时没有空闲的弟子，等会儿再试试吧");
+                }
             });
+        }
+
+        private bool CheckIsEmpty()
+        {
+            bool isEntry = false;
+            List<CharacterItem> characterItems = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            int maxLevel = TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
+            for (int i = 0; i < characterItems.Count; i++)
+            {
+                if (characterItems[i].IsFreeState() && characterItems[i].level < Define.CHARACTER_MAX_LEVEL)
+                    isEntry = true;
+            }
+            return isEntry;
         }
 
         public void SetButtonEvent(Action<object> action)
