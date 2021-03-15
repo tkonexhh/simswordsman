@@ -10,7 +10,7 @@ Level	Chapter	EnemyHeadIcon	Enemies	Desc	Reward	RecommendAtkValue	BattleName
 107	1	gaibang1	104|2|167;106|3|167	一本武功秘籍，想必此事不会如此简单。	Food|20;Exp_Role|112;Exp_Kongfu|43	835	丐帮切磋7
 108	1	gaibang2	105|2|178;106|3|178	“大孝分舵”管它的，进去探个究竟！	Coin|50;Exp_Role|114;Exp_Kongfu|44	891	丐帮切磋8
 109	1	gaibang1	104|2|190;105|3|190	丐帮看似散乱，管理却井井有条，切莫小看。	Food|20;Exp_Role|116;Exp_Kongfu|44	951	丐帮切磋9
-110	1	suhuazi	105|2|203;106|2|203;103|1|203	敌人越来越难缠了，让他们看看我们的本事。	Arms|101|1;Exp_Role|118;Exp_Kongfu|45	1015	丐帮切磋10
+110	1	qiaobangzhu	105|2|203;106|2|203;101|1|203	敌人越来越难缠了，让他们看看我们的本事。	Arms|101|1;Exp_Role|118;Exp_Kongfu|45	1015	丐帮切磋10
 111	1	gaibang1	104|3|217;105|2|217	几场打斗后弟子们逐渐摸清了丐帮路数。	Coin|50;Exp_Role|120;Exp_Kongfu|45	1083	丐帮切磋11
 112	1	gaibang3	104|2|231;105|2|231;106|1|231	听落败的那人说，大孝分舵舵主就在前面。	Food|20;Exp_Role|122;Exp_Kongfu|46	1155	丐帮切磋12
 113	1	gaibang2	105|3|246;106|2|246	大勇分舵，听起来很厉害的样子。	Coin|50;Exp_Role|124;Exp_Kongfu|46	1232	丐帮切磋13
@@ -20,7 +20,7 @@ Level	Chapter	EnemyHeadIcon	Enemies	Desc	Reward	RecommendAtkValue	BattleName
 117	1	gaibang2	105|3|319;106|2|319	弟子们信心满满，正准备暴揍这帮叫花子。	Food|20;Exp_Role|132;Exp_Kongfu|48	1596	丐帮切磋17
 118	1	gaibang1	104|2|341;105|2|341;106|1|341	丐帮弟子四散而逃并留下一句：有本事别跑。	Coin|50;Exp_Role|134;Exp_Kongfu|49	1703	丐帮切磋18
 119	1	gaibang2	105|3|363;106|2|363	大勇分舵被打的落花流水，屁滚尿流。	Food|20;Exp_Role|136;Exp_Kongfu|49	1817	丐帮切磋19
-120	1	suhuazi	104|2|388;105|2|388;103|1|388	前边又有几个小叫花子叫阵，还等什么？	Kongfu|1002|1;Exp_Role|138;Exp_Kongfu|50	1939	丐帮切磋20
+120	1	qiaobangzhu	104|2|388;105|2|388;101|1|388	前边又有几个小叫花子叫阵，还等什么？	Kongfu|1002|1;Exp_Role|138;Exp_Kongfu|50	1939	丐帮切磋20
 121	1	gaibang1	104|3|414;106|2|414	还有什么功夫尽管使出来!	Coin|50;Exp_Role|140;Exp_Kongfu|50	2069	丐帮切磋21
 122	1	gaibang2	105|3|441;106|2|441	树林中一声大叫：菜鸡止步。	Food|20;Exp_Role|142;Exp_Kongfu|51	2207	丐帮切磋22
 123	1	gaibang1	104|3|471;105|2|471	师父说丐帮人喜欢吹牛皮，果然不假。	Coin|50;Exp_Role|144;Exp_Kongfu|52	2355	丐帮切磋23
@@ -28,9 +28,9 @@ Level	Chapter	EnemyHeadIcon	Enemies	Desc	Reward	RecommendAtkValue	BattleName
 125	1	qiaobangzhu	105|2|536;106|2|536;101|1|536	“不怕挨揍的往前站！”	Item|2002|1;Exp_Role|148;Exp_Kongfu|54	2681	丐帮切磋25
 126	1	gaibang3	104|3|572;106|2|572	日暮时分，弟子们看见了不远处的丐帮总舵.	Coin|50;Exp_Role|150;Exp_Kongfu|55	2860	丐帮切磋26
 127	1	gaibang1	104|3|610;106|2|610	总舵的守卫弟子将我们团团围住，不妙！	Food|20;Exp_Role|152;Exp_Kongfu|56	3051	丐帮切磋27
-128	1	suhuazi	104|3|651;105|2|651	前面一老翁席地而坐，正在树下独酌。	Coin|50;Exp_Role|154;Exp_Kongfu|57	3255	丐帮切磋28
-129	1	qiaobangzhu	103|1|695;104|2|695;105|1|695;106|1|695	手持打狗棒，是洪七长老没错了。	Food|20;Exp_Role|156;Exp_Kongfu|58	3473	丐帮切磋29
-130	1	qiaobangzhu	102|1|742;104|2|742;105|1|742;106|1|742	一声龙吟响彻天地，乔帮主终于现身！	Kongfu|2001|1;Exp_Role|158;Exp_Kongfu|59	3708	丐帮切磋30
+128	1	qiaobangzhu	104|3|651;105|2|651	前面一老翁席地而坐，正在树下独酌。	Coin|50;Exp_Role|154;Exp_Kongfu|57	3255	丐帮切磋28
+129	1	qiaobangzhu	101|1|695;104|2|695;105|1|695;106|1|695	手持打狗棒，是洪七长老没错了。	Food|20;Exp_Role|156;Exp_Kongfu|58	3473	丐帮切磋29
+130	1	qiaobangzhu	101|1|742;104|2|742;105|1|742;106|1|742	一声龙吟响彻天地，乔帮主终于现身！	Kongfu|2001|1;Exp_Role|158;Exp_Kongfu|59	3708	丐帮切磋30
 201	2	shaolin1	204|5|418	少林名动天下，切不可轻敌。	Coin|100;Exp_Role|160;Exp_Kongfu|60	2090	少林切磋1
 202	2	shaolin1	204|5|448	小和尚一脸傲气，再叫他尝尝厉害。	Food|20;Exp_Role|164;Exp_Kongfu|61	2240	少林切磋2
 203	2	shaolin2	205|2|480;204|3|480	打了个小光头，来了个大光头。	Coin|100;Exp_Role|168;Exp_Kongfu|62	2400	少林切磋3
