@@ -58,7 +58,7 @@ namespace GameWish.Game
 					break;
 				case SelectedState.NotSelected:
 					m_SelectedImg.SetActive(false);
-					m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
+					m_Level.text = m_CharacterItem.level.ToString();
 					break;
 				default:
 					break;

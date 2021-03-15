@@ -27,7 +27,7 @@ namespace GameWish.Game
             }
 
             foreach (var item in patrolRoomSoltDBData)
-                m_PatrolRoomSlotList.Add(new PatrolRoomSlot(item));
+                m_PatrolRoomSlotList.Add(new PatrolRoomSlot(item,m_View));
         }
 
         public List<PatrolRoomSlot> GetReadingSlotList()

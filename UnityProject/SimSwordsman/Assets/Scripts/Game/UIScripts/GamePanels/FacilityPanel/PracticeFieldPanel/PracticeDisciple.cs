@@ -60,7 +60,7 @@ namespace GameWish.Game
         }
         private void RefreshPanelInfo()
         {
-            m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
+            m_Level.text = m_CharacterItem.level.ToString();
             m_DiscipleName.text = m_CharacterItem.name;
             switch (m_CharacterItem.quality)
             {
