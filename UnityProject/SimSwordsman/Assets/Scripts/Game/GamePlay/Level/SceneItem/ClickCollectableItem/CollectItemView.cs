@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class CollectItemView : MonoBehaviour, IInputObserver
+	public class CollectItemView : MonoBehaviour, IInputObserver,IClickedHandler
     {
         public ClickCollectableItem ClickCollectable;
         public Collider2D Collider;
@@ -66,6 +66,11 @@ namespace GameWish.Game
             }
 
             return false;
+        }
+
+        public void OnClicked()
+        {
+            ClickCollectable.OnClicked();
         }
         #endregion
 
