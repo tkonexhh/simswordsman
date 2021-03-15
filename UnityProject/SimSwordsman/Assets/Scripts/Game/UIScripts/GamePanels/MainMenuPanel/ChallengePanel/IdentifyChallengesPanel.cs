@@ -124,6 +124,7 @@ namespace GameWish.Game
                     case RewardItemType.Coin:
                         m_RewardIcon.sprite = FindSprite("Coin");
                         break;
+
                     case RewardItemType.Exp_Role:
                     case RewardItemType.Exp_Kongfu:
                         break;

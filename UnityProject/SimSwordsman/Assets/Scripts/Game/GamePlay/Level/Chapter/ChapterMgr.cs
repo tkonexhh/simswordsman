@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
     public class ChapterMgr : MonoBehaviour, IMgr
     {
-        private Dictionary<int, ChapterDbItem> ChapterInfoDic = new Dictionary<int, ChapterDbItem>();
+        public Dictionary<int, ChapterDbItem> ChapterInfoDic = new Dictionary<int, ChapterDbItem>();
 
         #region IMgr
         public void OnInit()
@@ -33,7 +33,7 @@ namespace GameWish.Game
         #endregion
 
         #region Private
-        
+
         #endregion
 
         #region Public
@@ -43,9 +43,19 @@ namespace GameWish.Game
         /// <param name="chapterId"></param>
         public void AddNewCheckpoint(int chapterId)
         {
-            if (!ChapterInfoDic.ContainsKey(chapterId))
-                ChapterInfoDic.Add(chapterId, new ChapterDbItem(chapterId));
             GameDataMgr.S.GetPlayerData().AddNewCheckpoint(chapterId);
+            if (!ChapterInfoDic.ContainsKey(chapterId))
+            {
+                ChapterDbItem item = GameDataMgr.S.GetPlayerData().GetChapterDbItem(chapterId);
+                if (item != null)
+                {
+                    ChapterInfoDic.Add(chapterId, item);
+                }
+                else
+                {
+                    Log.e("Chapter item not found");
+                }
+            }
         }
 
         /// <summary>

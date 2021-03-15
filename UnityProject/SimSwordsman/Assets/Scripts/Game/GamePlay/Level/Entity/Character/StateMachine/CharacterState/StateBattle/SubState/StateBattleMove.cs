@@ -13,7 +13,7 @@ namespace GameWish.Game
         private CharacterController m_Controller = null;
         private CharacterStateBattle m_BattleState = null;
 
-        private float m_MoveSpeed = 1.5f;
+        private float m_MoveSpeed = 2.5f;
         private Vector2 m_TargetPos = Vector3.zero;
 
         public StateBattleMove(BattleStateID stateEnum) : base(stateEnum)
@@ -23,7 +23,7 @@ namespace GameWish.Game
 
         public override void Enter(IBattleStateHander handler)
         {
-            if(m_Controller == null)
+            if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             if (m_BattleState == null)

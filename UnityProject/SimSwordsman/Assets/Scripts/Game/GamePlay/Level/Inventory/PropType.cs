@@ -6,14 +6,14 @@ using UnityEngine;
 namespace GameWish.Game
 {
     // Equal to id in table
-	public enum PropType
-	{
-        None                             = 0,
-        Arms                             = 1,        //ÎäÆ÷
-        Armor                            = 2,        //îø¼×
-        RawMaterial                      = 3,        //Ô­²ÄÁÏ
-        Kungfu                           = 4,        //¹¦·ò
-        Herb                             = 5,        //²ÝÒ©
+    public enum PropType
+    {
+        None = 0,
+        Arms = 1,        //ÎäÆ÷
+        Armor = 2,        //îø¼×
+        RawMaterial = 3,        //Ô­²ÄÁÏ
+        Kungfu = 4,        //¹¦·ò
+        Herb = 5,        //²ÝÒ©
     }
 
     public enum KungfuType
@@ -47,6 +47,7 @@ namespace GameWish.Game
         TianCanJiao = 3007,
         TianShanZheMeiShou = 3008,
         YiJinJing = 3009,
+        Attack = 9901,
         ///// <summary>
         ///// ÈçÀ´ÉñÕÆ
         ///// </summary>
@@ -55,8 +56,8 @@ namespace GameWish.Game
     }
 
     public enum RawMaterial
-    { 
-        None= 0,
+    {
+        None = 0,
         QingRock = 1001,         //ÇàÑÒ             
         WuWood = 1002,           //ÎÚÄ¾             
         CloudRock = 1003,        //ÔÆÑÒ
@@ -113,7 +114,7 @@ namespace GameWish.Game
         MengGuBaoDao = 204,
         XueDiZi = 205,
         XueDao = 206,
-        TuLongDao =  301,      //ÍÀÁúµ¶
+        TuLongDao = 301,      //ÍÀÁúµ¶
         YanYueDao = 302,      //ÙÈÔÂµ¶
         DaGouBang = 303,
         JinSheJian = 304,
@@ -123,15 +124,15 @@ namespace GameWish.Game
     }
     public enum Step
     {
-        None                             = 0,
-        One                              = 1,
-        Two                              = 2,
-        Three                            = 3,
-        Four                             = 4,
-        Five                             = 5,
-        Six                              = 6,
-        Seven                            = 7,
-        Eight                            = 8,
-        Nine                             = 9,
+        None = 0,
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
     }
 }

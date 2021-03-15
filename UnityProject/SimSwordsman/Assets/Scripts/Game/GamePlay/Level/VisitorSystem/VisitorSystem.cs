@@ -11,7 +11,7 @@ namespace GameWish.Game
         /// <summary>
         /// 开放等级（主城）
         /// </summary>
-        int m_UnlockLevel = 1;
+        int m_UnlockLevel = 2;
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
@@ -65,19 +65,25 @@ namespace GameWish.Game
         private void OnCreateVisitorCallBack(int key, object[] param)
         {
             CreateVisitor();
+            UnlockVisitor();
         }
 
         private void HandleEvent(int key, object[] param)
         {
             FacilityType facilityType = (FacilityType)param[0];
-            if (facilityType == FacilityType.Lobby && MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType) == m_UnlockLevel)
+            if (facilityType == FacilityType.Lobby && MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType) >= m_UnlockLevel)
             {
-                GameDataMgr.S.GetPlayerData().UnlockVisitor = true;
-                GameDataMgr.S.GetPlayerData().SetDataDirty();
-
-                m_CanApperaVisitor = true;
-                EventSystem.S.UnRegister(EventID.OnEndUpgradeFacility, HandleEvent);
+                UnlockVisitor();
             }
+        }
+
+        private void UnlockVisitor()
+        {
+            GameDataMgr.S.GetPlayerData().UnlockVisitor = true;
+            GameDataMgr.S.GetPlayerData().SetDataDirty();
+
+            m_CanApperaVisitor = true;
+            EventSystem.S.UnRegister(EventID.OnEndUpgradeFacility, HandleEvent);
         }
 
         void CreateVisitor()

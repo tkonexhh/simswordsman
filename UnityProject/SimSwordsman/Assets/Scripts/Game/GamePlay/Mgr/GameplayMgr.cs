@@ -143,6 +143,7 @@ namespace GameWish.Game
                     VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
 #if TEST_MODE
+                    Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
                     {
@@ -245,7 +246,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
                 }
             }
-          
+
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -264,8 +265,8 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.V))
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new KongfuReward((int)KungfuType.LiuMaiShenJian, 1));
-                rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+                rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
+                //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 

@@ -18,9 +18,9 @@ namespace GameWish.Game
         // Start is called before the first frame update
         public virtual void Start()
         {
-            m_ScrollRect.DoScrollVertical(0, 0.01f);
+            // m_ScrollRect.DoScrollVertical(0, 0.01f);
         }
-            
+
         // Update is called once per frame
         public virtual void Update()
         {
@@ -38,16 +38,21 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < m_Buttons.Length; i++)
                 {
+                    m_Buttons[i].transform.SetAsFirstSibling();
                     if (i < m_CurLevel)
                     {
                         m_Buttons[i].enabled = false;
                         m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Over, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
-                    else if (i == m_CurLevel )
+                    else if (i == m_CurLevel)
                     {
                         m_Buttons[i].enabled = true;
-                        BtnFunc btnFunc= m_Buttons[i].GetComponent<BtnFunc>();
+                        BtnFunc btnFunc = m_Buttons[i].GetComponent<BtnFunc>();
                         btnFunc.RefreshBtnInfo(ChallengeBtnState.Battle, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
+                        //TODO scrollview跳转到此处
+                        float range = ScrollViewExtension.GetScrollViewNormalizedPosition(m_ScrollRect, m_ScrollRect.content.GetChild(0).rectTransform(), Mathf.Min(0, m_Buttons.Length - i), 200);
+
+                        m_ScrollRect.verticalNormalizedPosition = range;
                     }
                     else
                     {

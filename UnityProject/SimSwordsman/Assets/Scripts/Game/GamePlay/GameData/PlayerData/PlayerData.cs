@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class PlayerData : DataDirtyHandler, IResetHandler, IDailyResetData
     {
+        public bool messagePush;
+
         public string coinNumStr;
 
         public int coinNum;
@@ -52,6 +54,7 @@ namespace GameWish.Game
 
         public void SetDefaultValue()
         {
+            messagePush = true;
             m_CoinNum = Define.DEFAULT_COIN_NUM;
             coinNumStr = m_CoinNum.ToString();
 
@@ -89,12 +92,25 @@ namespace GameWish.Game
             return recruitData;
         }
 
+        #region 消息推送
+        public bool GetMessagePush()
+        {
+            return messagePush;
+        }
+
+        public void SetMessagePush(bool msg)
+        {
+            messagePush = msg;
+        }
+        #endregion
+
+
         #region work system
-        public bool IsUnlockWorkSystem() 
+        public bool IsUnlockWorkSystem()
         {
             return UnlockWorkSystem;
         }
-        public void SetWorkSystem(bool isUnlock) 
+        public void SetWorkSystem(bool isUnlock)
         {
             UnlockWorkSystem = isUnlock;
             SetDataDirty();
@@ -134,35 +150,40 @@ namespace GameWish.Game
                 chapterDataList.Add(new ChapterDbItem(chapterId));
         }
 
-        public ChapterDbItem FindChapterDbItem(int chapterId)
+        public ChapterDbItem GetChapterDbItem(int chapterId)
         {
             ChapterDbItem chapter = chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
-            if (chapter != null)
-                return chapter;
-            return null;
+            return chapter;
         }
+        //public ChapterDbItem FindChapterDbItem(int chapterId)
+        //{
+        //    ChapterDbItem chapter = chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
+        //    if (chapter != null)
+        //        return chapter;
+        //    return null;
+        //}
 
         /// <summary>
         /// 根据ID判断是否存在该章节任务
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool ContainsForChapterDbItemId(int id)
-        {
-            return chapterDataList.Any(i => i.chapter == id);
-        }
+        //public bool ContainsForChapterDbItemId(int id)
+        //{
+        //    return chapterDataList.Any(i => i.chapter == id);
+        //}
         /// <summary>
         /// 添加该章节任务
         /// </summary>
         /// <param name="chapterDbItem"></par am>
-        public void AddChapterDbItem(int chapterId, int levelId)
-        {
-            ChapterDbItem chapter = chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
-            if (chapter != null)
-                chapter.OnLevelPassed(levelId);
-            else
-                chapterDataList.Add(new ChapterDbItem(chapterId, levelId));
-        }
+        //public void AddChapterDbItem(int chapterId, int levelId)
+        //{
+        //    ChapterDbItem chapter = chapterDataList.Where(i => i.chapter == chapterId).FirstOrDefault();
+        //    if (chapter != null)
+        //        chapter.OnLevelPassed(levelId);
+        //    else
+        //        chapterDataList.Add(new ChapterDbItem(chapterId, levelId));
+        //}
         #endregion
 
         #region 食物刷新次数
@@ -605,6 +626,7 @@ namespace GameWish.Game
         public int level;
         public int number;
 
+
         public ChapterDbItem()
         {
         }
@@ -631,6 +653,8 @@ namespace GameWish.Game
                 GameDataMgr.S.GetPlayerData().SetDataDirty();
 
                 EventSystem.S.Send(EventID.OnChanllengeSuccess, level);
+
+                GameDataMgr.S.Save();
             }
         }
     }

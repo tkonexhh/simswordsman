@@ -13,7 +13,7 @@ namespace GameWish.Game
         protected int m_Level = 1;
         protected double m_Hp = 0;
         protected double m_Atk = 1;
-        protected float m_MoveSpeed = 1f;
+        protected float m_MoveSpeed = 1.5f;//人物移动速度
         private CharacterItem m_CharacterItem = null;
 
         public int Id { get => m_Id; }
@@ -90,7 +90,7 @@ namespace GameWish.Game
 
         public float GetBaseAtkValue()
         {
-            
+
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
                 float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
@@ -193,9 +193,10 @@ namespace GameWish.Game
             return m_CharacterItem.IsFreeState();
         }
 
-        public bool IsWoman() 
+        public bool IsWoman()
         {
-            if (m_CharacterItem == null) {
+            if (m_CharacterItem == null)
+            {
                 return false;
             }
             return m_CharacterItem.IsWoman();
