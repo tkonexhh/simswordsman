@@ -42,13 +42,13 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 12401	24	BuildForgehouseTrigger	DialogCommand:StoryPanel_Text_34;MyDelayCommand:0.2;		0	
 12501	25	FoodBuffTrigger	DialogCommand:StoryPanel_Text_35;MyDelayCommand:0.2;		0	
 12601	26	CollectSystemTrigger	DialogCommand:StoryPanel_Text_36;MyDelayCommand:0.2;		0	
-12602	26	CollectSystem_ClickLotusrootTrigger	DialogWithCircleMaskCommand:#0,StoryPanel_Text_59;MyDelayCommand:0.4;	EntityRoot/SimSection/CollectItem/LotusRoot/Bubble	0	1
+12602	26	CollectSystem_ClickLotusrootTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_59;MyDelayCommand:0.4;	EntityRoot/SimSection/CollectItem/LotusRoot/Bubble	0	1
 12701	27	KungFuTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_44;MyDelayCommand:0.2;		0	
 12702	27	KungFuTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
 12703	27	KungFuTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	
 12704	27	KungFuTrigger_ClickStudyKungFuTrigger	NormalTipsCommand:StoryPanel_Text_62,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DicipleDetailsPanel,Bg/UpperMiddle/KungfuTra/KungfuPanelItem(Clone)	0	
 12705	27	KungFuTrigger_ChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_64,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LearnKungfuPanel,Bg/Image/Scroll View/Viewport/KungfuLearningList/LearnKungfuItem(Clone)	0	
-12706	27	KungFuTrigger_ConfirmChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_63,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LearnKungfuPanel,Bg/Image/Arrange	0	1
+12706	27	KungFuTrigger_ConfirmChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_63,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LearnKungfuPanel,Bg/Image/Scroll View/Viewport/Arrange	0	1
 12801	28	ArmsTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_47;MyDelayCommand:0.2;		0	
 12802	28	ArmsTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
 12803	28	ArmsTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	

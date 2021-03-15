@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2603025359
+CRC: 1450628320
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -844,3 +844,8 @@ AssetBundleManifest:
     Info_192:
       Name: res/foldermode/music.bundle
       Dependencies: {}
+    Info_193:
+      Name: res/foldermode/effects/battleeffects/skills/qianshouzhang.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/battleeffects/skills/rulaishenzhang.bundle
