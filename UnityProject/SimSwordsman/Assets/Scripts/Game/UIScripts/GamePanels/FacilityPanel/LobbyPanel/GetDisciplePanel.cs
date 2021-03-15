@@ -108,6 +108,8 @@ namespace GameWish.Game
  
             m_Loader?.Release();
 
+            EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
+
             //Òýµ¼
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
             {
