@@ -43,6 +43,8 @@ namespace GameWish.Game
             //½âËø
             if (RefreshHerbUnlockLevel())
             {
+
+                m_HerbName.text = TDHerbConfigTable.GetHerbById(m_HerbItemID).Name;
                 m_Lock.gameObject.SetActive(false);
                 m_HerbHead.gameObject.SetActive(true);
                 m_State.gameObject.SetActive(true);
@@ -50,6 +52,7 @@ namespace GameWish.Game
             else
             //Î´½âËø
             {
+                m_HerbName.text = "Î´½âËø";
                 m_Lock.gameObject.SetActive(true);
                 m_HerbHead.gameObject.SetActive(false);
                 m_State.gameObject.SetActive(false);

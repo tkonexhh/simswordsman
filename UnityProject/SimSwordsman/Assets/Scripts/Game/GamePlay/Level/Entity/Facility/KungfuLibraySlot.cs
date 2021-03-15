@@ -73,6 +73,7 @@ namespace GameWish.Game
             {
                 case SlotState.Free:
                     characterController.SetState(CharacterStateID.Wander);
+                    CharacterItem = null;
                     break;
                 case SlotState.CopyScriptures:
                     StartTime = DateTime.Now.ToString();

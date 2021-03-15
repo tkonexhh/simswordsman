@@ -337,6 +337,21 @@ namespace GameWish.Game
                 Log.w("PropItem id = " + _kungfuItem.GetSortId());
             }
         }
+        public void RemoveHerb(HerbItem _herbItem, int delta)
+        {
+            HerbItem item = (HerbItem)m_WarehouseItems.Where(i => i.IsHaveItem(_herbItem)).FirstOrDefault();
+            if (item != null && item.ReduceItemNumber(delta))
+                m_WarehouseItems.Remove(item);
+            EventSystem.S.Send(EventID.OnReduceItems, _herbItem, delta);
+            try
+            {
+                m_ClanData.RemoveHerb(_herbItem, item.Number);
+            }
+            catch (Exception)
+            {
+                Log.w("PropItem id = " + _herbItem.GetSortId());
+            }
+        }
 
         public void RemovePropItem(PropItem _propItem, int delta)
         {

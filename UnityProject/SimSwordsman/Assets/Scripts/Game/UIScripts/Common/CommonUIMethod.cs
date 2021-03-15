@@ -47,7 +47,28 @@ namespace GameWish.Game
         {
             return TDLanguageTable.Get(Define.CHALLENGE_NAME) + ":"
                 + chapterConfig.chapterId.ToString() + "-"
-                + level.ToString();
+                + GetChallengeSubTitle(level.ToString());
+        }
+
+        private static string GetChallengeSubTitle(string subTitle)
+        {
+            if (subTitle.Length == 3)
+            {
+                string str = subTitle.Substring(subTitle.Length - 2, subTitle.Length-1);
+                if (str[0] == '0')
+                {
+                    return str[1].ToString();
+                }
+                else
+                {
+                    return str;
+                }
+            }
+            else
+            {
+                Log.w("挑战标题ID长度不对 = "+ subTitle);
+                return "0";
+            }
         }
 
         public enum SortType

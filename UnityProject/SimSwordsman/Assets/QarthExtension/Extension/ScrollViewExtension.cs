@@ -115,7 +115,8 @@ namespace GameWish.Game
                 // throw new NullReferenceException("ScrollView??Content??Viewport???
                 return 0;
             }
-
+            if (content.GetChildCount() > currentChildIndex)
+                return 0;
             var childTrans = content.GetChild(currentChildIndex) as RectTransform;
             if (childTrans == null)
             {
