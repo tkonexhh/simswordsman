@@ -10,9 +10,9 @@ namespace GameWish.Game
     {
 
         /// <summary>
-		/// ֻ���þ��ȷֵ����
+		/// ֻ���þ��ȷֵ����?
         /// ��ȡScrollView��ӦVerticalNormalizedPosition����HorizontalNormalizedPosition
-        /// ������vertical��horizontalͬʱ��ѡ�����
+        /// ������vertical��horizontalͬʱ��ѡ�����?
         /// </summary>
         /// <param name="currentChildIndex">�����������е�index</param>
         /// <param name="inverse">�Ƿ����������϶��¡���������Ҫ������</param>
@@ -38,7 +38,7 @@ namespace GameWish.Game
 
             if (scrollRect.vertical && scrollRect.horizontal)
             {
-                Debug.LogError("��ʱ������ScrollView��vertical��horizontalͬʱ��ѡ�����");
+                Debug.LogError("��ʱ������ScrollView��vertical��horizontalͬʱ��ѡ�����?");
                 return inverse ? 1 : 0;
             }
 
@@ -115,8 +115,10 @@ namespace GameWish.Game
                 // throw new NullReferenceException("ScrollView??Content??Viewport???
                 return 0;
             }
-            if (content.childCount > currentChildIndex)
+            if (content.childCount <= currentChildIndex)
+            {
                 return 0;
+            }
             var childTrans = content.GetChild(currentChildIndex) as RectTransform;
             if (childTrans == null)
             {

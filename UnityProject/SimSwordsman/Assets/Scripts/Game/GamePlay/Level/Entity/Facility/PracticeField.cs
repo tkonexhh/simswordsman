@@ -39,7 +39,7 @@ namespace GameWish.Game
                 TrainingIsOver();
             }
         }
-        public override float GetProgress() 
+        public override float GetProgress()
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
             int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);

@@ -45,16 +45,16 @@ namespace GameWish.Game
 
         List<CharacterItem> characterItemTemp = new List<CharacterItem>();
         List<FacilityType> tempList = new List<FacilityType>();
-        private int m_MaxCanWorkFacilityLimit {
-            get {
+        private int m_MaxCanWorkFacilityLimit
+        {
+            get
+            {
                 return lobbyTable.workMaxAmount;
             }
         }
         string[] tempArray;
 
         private int m_WorkTimerID = -1;
-
-        private List<FacilityType> m_CurrentShowBubbleFacilityList = new List<FacilityType>();
 
         public void Init()
         {
@@ -66,20 +66,21 @@ namespace GameWish.Game
 
                 StartWork();
             }
-            else {
+            else
+            {
                 EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
-            }            
+            }
         }
 
-        private void StartWork() 
+        private void StartWork()
         {
             Timer.S.Cancel(m_WorkTimerID);
 
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
 
             TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(lobbyLevel);
-            
-            if (lobbyData == null) 
+
+            if (lobbyData == null)
             {
                 lobbyData = TDFacilityLobbyTable.GetData(0);
             }
@@ -91,39 +92,37 @@ namespace GameWish.Game
                 {
                     try
                     {
-                        if ((m_CurrentShowBubbleFacilityList.Count + m_CurrentWorkItem.Count) < m_MaxCanWorkFacilityLimit)
+                        tempList.Clear();
+
+                        for (int i = 0; i < m_UnlockFacilitys.Count; i++)
                         {
-                            tempList.Clear();
-
-                            for (int i = 0; i < m_UnlockFacilitys.Count; i++)
+                            FacilityType tempType = m_UnlockFacilitys[i];
+                            if (m_CurrentWorkItem.ContainsKey(tempType) == false)
                             {
-                                FacilityType tempType = m_UnlockFacilitys[i];
-                                if (m_CurrentWorkItem.ContainsKey(tempType) == false)
-                                {
-                                    tempList.Add(tempType);
-                                }
+                                tempList.Add(tempType);
                             }
-                            if (tempList.Count == 0) return;
+                        }
+                        if (tempList.Count == 0) return;
 
-                            int index = UnityEngine.Random.Range(0, tempList.Count);
+                        int index = UnityEngine.Random.Range(0, tempList.Count);
 
-                            FacilityType type = tempList[index];
+                        FacilityType type = tempList[index];
 
-                            if (m_CurrentWorkItem.ContainsKey(type) == false && m_CurrentShowBubbleFacilityList.Contains(type) == false)
-                            {
-                                m_CurrentShowBubbleFacilityList.Add(type);
-                                EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
-                            }
-                        }                        
+                        if (m_CurrentWorkItem.ContainsKey(type) == false)
+                        {
+                            EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
+                        }
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         UnityEngine.Debug.LogError("error:" + ex.ToString());
-                    }                    
-                },1 /*lobbyData.workInterval*/, -1);
+                    }
+                }, lobbyData.workInterval, -1);
             }
-            else {
+            else
+            {
                 UnityEngine.Debug.LogError("error:");
-            }            
+            }
         }
 
         void BindingEvents()
@@ -144,7 +143,7 @@ namespace GameWish.Game
 
                 FacilityType type = (FacilityType)data.id;
 
-                if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false) 
+                if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false)
                 {
                     m_UnlockFacilitys.Add(type);
                 }
@@ -155,20 +154,21 @@ namespace GameWish.Game
             {
                 var item = m_RewardFacilitys[i];
 
-                if (item != null) 
+                if (item != null)
                 {
                     CharacterController controller = characterMgr.GetCharacterController(item.CharacterID);
 
                     controller.SetState(CharacterStateID.Working, item.GetFacilityType());
 
                     EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType(), controller);
-                }                
+                }
             }
         }
 
-        private bool IsCanShowWorkBubble(FacilityType type) 
+        private bool IsCanShowWorkBubble(FacilityType type)
         {
-            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount || type == FacilityType.PatrolRoom) {
+            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount || type == FacilityType.PatrolRoom)
+            {
                 return false;
             }
             return true;
@@ -186,9 +186,6 @@ namespace GameWish.Game
                 tempArray = cd.stringID.Split(',');
                 FacilityType type = (FacilityType)Enum.Parse(typeof(FacilityType), tempArray[1]);
                 m_CurrentWorkItem.Add(type, characterMgr.GetCharacterItem(cd.ID));
-                if (m_CurrentShowBubbleFacilityList.Contains(type)) {
-                    m_CurrentShowBubbleFacilityList.Remove(type);
-                }
                 //弟子状态更改
                 characterMgr.GetCharacterController(cd.ID).SetState(CharacterStateID.Working, type);
             }
@@ -211,7 +208,7 @@ namespace GameWish.Game
                 tempArray = cd.stringID.Split(',');
                 FacilityType type = (FacilityType)Enum.Parse(typeof(FacilityType), tempArray[1]);
                 //添加至可领取奖励列表
-                AddRewardFacility(type, cd.ID);                
+                AddRewardFacility(type, cd.ID);
             }
         }
 
@@ -219,7 +216,7 @@ namespace GameWish.Game
         {
             FacilityType type = (FacilityType)param[0];
 
-            if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false) 
+            if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false)
             {
                 m_UnlockFacilitys.Add(type);
 

@@ -20,7 +20,6 @@ namespace GameWish.Game
 
         public bool isGuideStart;
 
-        public List<HerbModel> herbModels = new List<HerbModel>();
         public RecruitData recruitData = new RecruitData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
@@ -117,31 +116,7 @@ namespace GameWish.Game
         }
         #endregion
 
-        #region 草药相关
-        /// <summary>
-        /// 获取存档中的草药
-        /// </summary>
-        /// <returns></returns>
-        public List<HerbModel> GetArchiveHerb()
-        {
-            return herbModels;
-        }
 
-        /// <summary>
-        /// 增加药草
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="number"></param>
-        public void AddArchiveHerb(int id, int number)
-        {
-            HerbModel herbModel = herbModels.Where(i => i.ID == id).FirstOrDefault();
-            if (herbModel != null)
-                herbModel.Number += number;
-            else
-                herbModels.Add(new HerbModel(id, number));
-        }
-
-        #endregion
 
         #region 角色章节任务相关
         public void AddNewCheckpoint(int chapterId)

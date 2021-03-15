@@ -4,8 +4,8 @@ using System;
 
 namespace GameWish.Game
 {
-	public class ClickWorkingBubble : MonoBehaviour
-	{
+    public class ClickWorkingBubble : MonoBehaviour
+    {
         public FacilityType Type;
         public GameObject BubbleView;
         public GameObject Tips;
@@ -33,25 +33,25 @@ namespace GameWish.Game
                 WorkSprite.SetActive(true);
                 RewardSprite.SetActive(false);
 
-                EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
+                EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, true);
 
                 m_LastShowBubbleTime = DateTime.Now;
             }
         }
 
-        private void Update()
-        {
-            if (state == 1)
-            {
-                TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
+        // private void Update()
+        // {
+        //     if (state == 1)
+        //     {
+        //         TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
 
-                //if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
-                //{
-                //    AutoSelectCharacter();
-                //}
+        //         //if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
+        //         //{
+        //         //    AutoSelectCharacter();
+        //         //}
 
-            }
-        }
+        //     }
+        // }
 
         private void RewardBubble(int key, object[] param)
         {
@@ -95,13 +95,13 @@ namespace GameWish.Game
                 }
 
             }
-            else if(state == 2)
+            else if (state == 2)
             {
                 state = 0;
                 BubbleView.SetActive(false);
                 WorkSystem.S.GetReward(Type);
             }
         }
-	}
-	
+    }
+
 }

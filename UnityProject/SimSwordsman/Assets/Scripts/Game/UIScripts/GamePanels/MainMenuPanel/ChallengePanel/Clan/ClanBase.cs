@@ -50,7 +50,8 @@ namespace GameWish.Game
                         BtnFunc btnFunc = m_Buttons[i].GetComponent<BtnFunc>();
                         btnFunc.RefreshBtnInfo(ChallengeBtnState.Battle, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                         //TODO scrollview跳转到此处
-                        float range = ScrollViewExtension.GetScrollViewNormalizedPosition(m_ScrollRect, m_ScrollRect.content.GetChild(0).rectTransform(), Mathf.Min(0, m_Buttons.Length - i), 200);
+                        // Debug.LogError("length:" + Mathf.Max(0, m_CurLevel) + "CurLvl:" + m_CurLevel);
+                        float range = ScrollViewExtension.GetScrollViewNormalizedPosition(m_ScrollRect, m_ScrollRect.content.GetChild(0).rectTransform(), Mathf.Max(0, m_CurLevel), 300);
 
                         m_ScrollRect.verticalNormalizedPosition = range;
                     }
