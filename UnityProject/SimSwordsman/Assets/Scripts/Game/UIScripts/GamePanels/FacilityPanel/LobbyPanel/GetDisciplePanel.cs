@@ -121,7 +121,7 @@ namespace GameWish.Game
             }
 
             CloseDependPanel(EngineUI.MaskPanel);
-            CloseSelfPanel();
+            //CloseSelfPanel();
         }
     }
 }

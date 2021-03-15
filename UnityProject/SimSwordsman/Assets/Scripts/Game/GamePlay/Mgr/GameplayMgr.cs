@@ -120,6 +120,17 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerInfoData().SetLoginTime();
         }
 
+        private void FirstLogin()
+        {
+            int num = PlayerPrefs.GetInt("test");
+            if (num != 1)
+            {
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
+                PlayerPrefs.SetInt("test", 1);
+            }
+        }
+
         private void Update()
         {
             if (m_IsLoadingBarFinished == false)
@@ -143,6 +154,9 @@ namespace GameWish.Game
                     VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
                     GameMgr.S.StartGuide();
+
+                    Application.runInBackground = true;
+                    FirstLogin();
                 }
             }
             else
