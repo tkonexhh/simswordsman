@@ -23,6 +23,12 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            foreach (var item in TDFacilityWarehouseTable.GetLevelInfo(1).GetUpgradeResCosts())
+            {
+                if (MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)item.itemId) < item.value)
+                    return;
+            }
+            MainGameMgr.S.FacilityMgr.SetFacilityState(FacilityType.Warehouse, FacilityState.ReadyToUnlock);
             EventSystem.S.Send(EventID.OnCloseAllUIPanel);
 
             m_CanStart = true;
