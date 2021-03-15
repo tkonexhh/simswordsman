@@ -54,6 +54,7 @@ namespace GameWish.Game
         private void ParpareEffectPool()
         {
             var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
+            ourkongfus.Add(KungfuType.Attack);
             foreach (var kongfu in ourkongfus)
             {
                 var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
@@ -290,6 +291,7 @@ namespace GameWish.Game
                         string skillname = (string)param[1];
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
+                        // Debug.LogError(skillname + "--" + animConfig);
                         animConfig?.PlayAttackEffect(controller.CharacterView.Body.transform);
                         animConfig?.PlayFootEffect(controller.CharacterView.BoneFollower_Foot);
                         animConfig?.PlayAttackSound();

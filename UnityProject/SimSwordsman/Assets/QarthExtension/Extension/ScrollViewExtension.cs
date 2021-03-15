@@ -10,25 +10,25 @@ namespace GameWish.Game
     {
 
         /// <summary>
-		/// Ö»ÊÊÓÃ¾ùµÈ·ÖµÄÇé¿ö
-        /// »ñÈ¡ScrollView¶ÔÓ¦VerticalNormalizedPosition»òÕßHorizontalNormalizedPosition
-        /// ²»¿¼ÂÇverticalºÍhorizontalÍ¬Ê±¹´Ñ¡µÄÇé¿ö
+		/// Ö»ï¿½ï¿½ï¿½Ã¾ï¿½ï¿½È·Öµï¿½ï¿½ï¿½ï¿½
+        /// ï¿½ï¿½È¡ScrollViewï¿½ï¿½Ó¦VerticalNormalizedPositionï¿½ï¿½ï¿½ï¿½HorizontalNormalizedPosition
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½verticalï¿½ï¿½horizontalÍ¬Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
-        /// <param name="currentChildIndex">ÎïÌåÔÚÊý×éÖÐµÄindex</param>
-        /// <param name="inverse">ÊÇ·ñ·´×ÅÀ´£¬´ÓÉÏ¶øÏÂ¡¢´ÓÓÒÍù×óÒª·´×ÅÀ´</param>
-        /// <param name="pixelOffset">ÏñËØÆ«ÒÆ£¬ÏòÏÂÏòÓÒÎªÕý</param>
-        /// <returns>0 ~ 1£¬VerticalNormalizedPosition»òÕßHorizontalNormalizedPosition</returns>
+        /// <param name="currentChildIndex">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½index</param>
+        /// <param name="inverse">ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½Â¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+        /// <param name="pixelOffset">ï¿½ï¿½ï¿½ï¿½Æ«ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½</param>
+        /// <returns>0 ~ 1ï¿½ï¿½VerticalNormalizedPositionï¿½ï¿½ï¿½ï¿½HorizontalNormalizedPosition</returns>
         public static float GetScrollViewNormalizedPosition(ScrollRect scrollRect, int currentChildIndex, bool inverse = false, float pixelOffset = 0)
         {
             if (scrollRect.viewport == null || scrollRect.content == null)
             {
-                Debug.LogError("ScrollViewµÄContent»òViewportÎª¿Õ");
+                Debug.LogError("ScrollViewï¿½ï¿½Contentï¿½ï¿½ViewportÎªï¿½ï¿½");
                 return inverse ? 1 : 0;
             }
             var childTrans = scrollRect.content.GetChild(0) as RectTransform;
             if (childTrans == null)
             {
-                Debug.LogError("ContentÏÂÃæÃ»ÓÐÎïÌå»ò²»ÊÇRectTransform");
+                Debug.LogError("Contentï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½RectTransform");
                 return inverse ? 1 : 0;
             }
 
@@ -38,7 +38,7 @@ namespace GameWish.Game
 
             if (scrollRect.vertical && scrollRect.horizontal)
             {
-                Debug.LogError("ÔÝÊ±²»¿¼ÂÇScrollViewµÄvertical¡¢horizontalÍ¬Ê±¹´Ñ¡µÄÇé¿ö");
+                Debug.LogError("ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ScrollViewï¿½ï¿½verticalï¿½ï¿½horizontalÍ¬Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½");
                 return inverse ? 1 : 0;
             }
 
@@ -48,7 +48,7 @@ namespace GameWish.Game
                 VerticalLayoutGroup group = scrollRect.content.GetComponent<VerticalLayoutGroup>();
                 if (group == null)
                 {
-                    Debug.LogError("»ñÈ¡VerticalLayoutGroupÊ§°Ü");
+                    Debug.LogError("ï¿½ï¿½È¡VerticalLayoutGroupÊ§ï¿½ï¿½");
                     return inverse ? 1 : 0;
                 }
 
@@ -69,7 +69,7 @@ namespace GameWish.Game
                 HorizontalLayoutGroup group = scrollRect.content.gameObject.GetComponent<HorizontalLayoutGroup>();
                 if (group == null)
                 {
-                    Debug.LogError("»ñÈ¡HorizontalLayoutGroupÊ§°Ü");
+                    Debug.LogError("ï¿½ï¿½È¡HorizontalLayoutGroupÊ§ï¿½ï¿½");
                     return inverse ? 1 : 0;
                 }
 
@@ -93,13 +93,13 @@ namespace GameWish.Game
         {
             // if (scrollRect.viewport == null || scrollRect.content == null)
             // {
-            //     throw new NullReferenceException("ScrollViewµÄContent»òViewportÎª¿Õ");
+            //     throw new NullReferenceException("ScrollViewï¿½ï¿½Contentï¿½ï¿½ViewportÎªï¿½ï¿½");
             // }
 
             // var childTrans = scrollRect.content.GetChild(currentChildIndex) as RectTransform;
             // if (childTrans == null)
             // {
-            //     throw new NullReferenceException("ContentÏÂÃæÃ»ÓÐÎïÌå»ò²»ÊÇRectTransform");
+            //     throw new NullReferenceException("Contentï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½RectTransform");
             // }
 
             // float range = Mathf.Clamp01(childTrans.localPosition.y / scrollRect.content.sizeDelta.y);
@@ -115,7 +115,7 @@ namespace GameWish.Game
                 // throw new NullReferenceException("ScrollView??Content??Viewport???
                 return 0;
             }
-            if (content.GetChildCount() > currentChildIndex)
+            if (content.childCount > currentChildIndex)
                 return 0;
             var childTrans = content.GetChild(currentChildIndex) as RectTransform;
             if (childTrans == null)

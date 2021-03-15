@@ -25,6 +25,7 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
+            EventSystem.S.Send(EventID.OnShowMaskWithAlphaZeroPanel);
             m_CanStart = true;
 
             if (isReady)

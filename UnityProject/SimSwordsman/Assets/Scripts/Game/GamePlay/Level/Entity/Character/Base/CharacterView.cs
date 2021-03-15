@@ -31,6 +31,8 @@ namespace GameWish.Game
         public BoneFollower BoneFollower_Foot => m_BoneFollower_Foot;
         public GameObject Body => m_Body;
 
+        public CharacterWorkProgressBar WorkProgressBar { get => m_WorkProgressBar;}
+
         public void Init()
         {
             m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();

@@ -35,7 +35,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(EngineUI.MsgBoxPanel, null, "Common/MsgBoxPanel", true, 1);
             UIDataTable.AddPanelData(EngineUI.HighlightMaskPanel, null, "Guide/HighlightMaskPanel", true, 0);
             UIDataTable.AddPanelData(EngineUI.GuideHandPanel, null, "Guide/GuideHandPanel", true, 0);
-            UIDataTable.AddPanelData(EngineUI.MaskPanel, null, "Common/MaskPanel", true, 1);
+            UIDataTable.AddPanelData(EngineUI.MaskPanel, null, "Common/MaskPanel", true, 1);            
             UIDataTable.AddPanelData(EngineUI.ColorFadeTransition, null, "Common/ColorFadeTransition", true, 1);
             UIDataTable.AddPanelData(SDKUI.AdDisplayer, null, "Common/AdDisplayer", false, 1);
             UIDataTable.AddPanelData(SDKUI.OfficialVersionAdPanel, null, "OfficialVersionAdPanel");
@@ -132,6 +132,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.VisitorPanel, null, "GamePanels/VisitorPanel/VisitorPanel");
 
             UIDataTable.AddPanelData(UIID.UserAccountPanel, null, "GamePanels/UserAccountPanel/UserAccountPanel");
+
+            UIDataTable.AddPanelData(UIID.MaskWithAlphaZeroPanel, null, "Common/MaskWithAlphaZeroPanel", true, 1);
 
             RealNameMgr.S.RegisterPanels();
         }

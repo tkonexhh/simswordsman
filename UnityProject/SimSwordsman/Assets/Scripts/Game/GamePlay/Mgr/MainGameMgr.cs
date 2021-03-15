@@ -39,6 +39,7 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
+            EventSystem.S.Register(EventID.OnShowMaskWithAlphaZeroPanel, OnShowMaskWithAlphaZeroPanelCallBack);
             m_CharacterMgr = gameObject.AddComponent<CharacterMgr>();
             m_CharacterMgr.OnInit();
 
@@ -86,7 +87,19 @@ namespace GameWish.Game
             m_IsInited = true;
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
         }
-
+        private int m_TimerID = -1;
+        //TODO:后续修改
+        private void OnShowMaskWithAlphaZeroPanelCallBack(int key, object[] param)
+        {
+            Timer.S.Cancel(m_TimerID);
+            UIMgr.S.ClosePanelAsUIID(UIID.MaskWithAlphaZeroPanel);
+            UIMgr.S.OpenTopPanel(UIID.MaskWithAlphaZeroPanel, null);
+            m_TimerID = Timer.S.Post2Really((x) =>
+            {
+                UIMgr.S.ClosePanelAsUIID(UIID.MaskWithAlphaZeroPanel);
+                m_TimerID = -1;
+            }, 0.4f, 1);
+        }
 
         public void OnUpdate()
         {
