@@ -421,6 +421,11 @@ namespace GameWish.Game
                 }
             }
         }
+
+        public void StopBattleCoroutine()
+        {
+            StopCoroutine("BattleCountdown");
+        }
         public string SplicingTime(int seconds)
         {
             TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));

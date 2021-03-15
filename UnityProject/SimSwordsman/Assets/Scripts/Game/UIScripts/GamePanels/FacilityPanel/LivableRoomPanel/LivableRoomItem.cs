@@ -125,18 +125,21 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                if (!CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems))
-                    return;
-
                 switch (m_LivableRoomState)
                 {
                     case LivableRoomState.ReadyBuilt:
+                        if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems))
+                            return;
+
                         m_LivableRoomState = LivableRoomState.Upgrade;
                         MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
                         ReduceItem(m_CurLivableRoomLevelInfo);
                         GetInformationForNeed();
                         break;
                     case LivableRoomState.Upgrade:
+                        if (!CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems))
+                            return;
+
                         AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                         bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextLivableRoomLevelInfo.upgradeCoinCost);
                         if (isReduceSuccess)
@@ -251,25 +254,24 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            if (CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems, false))
-                m_RedPoint.SetActive(true);
-            else
-                m_RedPoint.SetActive(false);
-        
             switch (m_LivableRoomState)
             {
                 case LivableRoomState.ReadyBuilt:
+                    if (CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems, false))
+                        m_RedPoint.SetActive(true);
+                    else
+                        m_RedPoint.SetActive(false);
                     m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_CurLevel);
                     m_UpperMiddle.SetActive(false);
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTBUILD);
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
                     m_CurPeopleValue.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
-                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.GetNeedLobbyLevel()));
-                    RefreshResInfo(m_NextLivableRoomLevelInfo, GetCostItem(m_NextLivableRoomLevelInfo));
+                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
+                    RefreshResInfo(m_CurLivableRoomLevelInfo, GetCostItem(m_CurLivableRoomLevelInfo));
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
 
-                    if (!CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems, false))
+                    if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems, false))
                     {
                         m_UpgradeBtnImg.sprite = FindSprite("LivableRoomPanel_BgBtn3");
                         m_UpgradeBtn.interactable = false;
@@ -288,6 +290,10 @@ namespace GameWish.Game
                     }
                     break;
                 case LivableRoomState.Upgrade:
+                    if (CommonUIMethod.CheackIsBuild(m_NextLivableRoomLevelInfo, m_NextCostItems, false))
+                        m_RedPoint.SetActive(true);
+                    else
+                        m_RedPoint.SetActive(false);
                     m_LivableRoomLevel.text = CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.level);
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_CURRENTLYHABITABLE);
                     m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetCurCapacity()));
