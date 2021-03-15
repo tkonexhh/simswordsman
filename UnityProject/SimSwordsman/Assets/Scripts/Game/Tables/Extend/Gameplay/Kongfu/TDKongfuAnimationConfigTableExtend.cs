@@ -205,6 +205,7 @@ namespace GameWish.Game
                     effectGo.transform.localPosition = new Vector3(offset.x, offset.y, 10);
                     var com = effectGo.AddMissingComponent<ParticleAutoRecycle>();
                     com.StartCD();
+                    // effectGo.AddMissingComponent<SortingGroup>();
 
                     effectGo.AddMissingComponent<CustomShaderFinder>();
                 }

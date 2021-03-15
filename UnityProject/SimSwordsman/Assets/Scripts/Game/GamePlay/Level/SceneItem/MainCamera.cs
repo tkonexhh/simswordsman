@@ -14,13 +14,13 @@ namespace GameWish.Game
         public Vector2 m_CameraBottomLeft = new Vector2(-3.5f, -4.8f);
         [HideInInspector]
         public Vector2 m_CameraTopRight = new Vector2(12.6f, 9.5f);
-        private float m_MoveSpeed = 0.05f;  
+        private float m_MoveSpeed = 0.05f;
 
         private TouchInputController m_TouchInput;
         private MobileTouchCamera m_MobileTouchCamera;
         private Camera m_Camera;
 
-        private CameraProperty m_BattleProperty;    
+        private CameraProperty m_BattleProperty;
         private CameraProperty m_SimProperty;
 
         private bool m_CameraMoveSwitch = true;
@@ -85,20 +85,20 @@ namespace GameWish.Game
 
         public bool On_TouchDown(Gesture gesture)
         {
-//#if UNITY_EDITOR
-//            if (!m_CameraMoveSwitch)
-//                return false;
+            //#if UNITY_EDITOR
+            //            if (!m_CameraMoveSwitch)
+            //                return false;
 
-//            float x = transform.position.x - gesture.deltaPosition.x * m_MoveSpeed;
-//            float y = transform.position.y - gesture.deltaPosition.y * m_MoveSpeed;
+            //            float x = transform.position.x - gesture.deltaPosition.x * m_MoveSpeed;
+            //            float y = transform.position.y - gesture.deltaPosition.y * m_MoveSpeed;
 
-//            if (x > m_CameraBottomLeft.x && x < m_CameraTopRight.x && y > m_CameraBottomLeft.y && y < m_CameraTopRight.y)
-//            {
-//                transform.position -= m_MoveSpeed * new Vector3(gesture.deltaPosition.x, gesture.deltaPosition.y, 0);
-//            }
+            //            if (x > m_CameraBottomLeft.x && x < m_CameraTopRight.x && y > m_CameraBottomLeft.y && y < m_CameraTopRight.y)
+            //            {
+            //                transform.position -= m_MoveSpeed * new Vector3(gesture.deltaPosition.x, gesture.deltaPosition.y, 0);
+            //            }
 
-//            return true;
-//#endif
+            //            return true;
+            //#endif
             return false;
         }
 
@@ -106,7 +106,7 @@ namespace GameWish.Game
         {
             return false;
         }
-      
+
 
         #endregion
 
@@ -128,9 +128,10 @@ namespace GameWish.Game
         {
             bool isLimitTouch = false;
 
-            if (param.Length > 0) {
+            if (param.Length > 0)
+            {
                 isLimitTouch = bool.Parse(param[0].ToString());
-            }            
+            }
 
             m_TouchInput.enabled = !isLimitTouch;
             m_MobileTouchCamera.enabled = !isLimitTouch;

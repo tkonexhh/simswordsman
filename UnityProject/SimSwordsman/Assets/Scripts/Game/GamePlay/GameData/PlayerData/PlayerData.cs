@@ -90,11 +90,11 @@ namespace GameWish.Game
         }
 
         #region work system
-        public bool IsUnlockWorkSystem() 
+        public bool IsUnlockWorkSystem()
         {
             return UnlockWorkSystem;
         }
-        public void SetWorkSystem(bool isUnlock) 
+        public void SetWorkSystem(bool isUnlock)
         {
             UnlockWorkSystem = isUnlock;
             SetDataDirty();
