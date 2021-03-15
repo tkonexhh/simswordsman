@@ -175,6 +175,9 @@ namespace GameWish.Game
                 case PropType.Kungfu:
                     m_InventoryDataWrapper.RemoveKungfu((KungfuItem)item, delta);
                     break;
+                case PropType.Herb:
+                    m_InventoryDataWrapper.RemoveHerb((HerbItem)item, delta);
+                    break;
                 default:
                     break;
             }

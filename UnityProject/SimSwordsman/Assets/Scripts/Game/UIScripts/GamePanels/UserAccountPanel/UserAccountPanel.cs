@@ -33,7 +33,13 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_MusicOnObj;
         [SerializeField]
-        private Button m_SoundBtn;
+        private Button m_SoundBtn;  
+        [SerializeField]
+        private Button m_MessageBtn;  
+        [SerializeField]
+        private Button m_UserBtn;    
+        [SerializeField]
+        private Image m_MessageImg;
         [SerializeField]
         private GameObject m_SoundOffObj;
         [SerializeField]
@@ -48,10 +54,37 @@ namespace GameWish.Game
 			m_CloseBtn.onClick.AddListener(OnCloseBtnClickCallBack);
             m_LogOutBtn.onClick.AddListener(OnLogOutBtnClickCallBack);
             m_PrivateBtn.onClick.AddListener(OnPrivateBtnClickCallBack);
+            m_UserBtn.onClick.AddListener(OnUserBtnClickCallBack);
+            m_MessageBtn.onClick.AddListener(OnMessageBtnClickCallBack);
 
             m_MusicBtn.onClick.AddListener(() => { UpdateMusic(!isMuiscOn); });
             m_SoundBtn.onClick.AddListener(() => { UpdateSound(!isSoundOn); });
+            RefreshMessageBtn(GameDataMgr.S.GetPlayerData().GetMessagePush());
         }
+
+        private void OnMessageBtnClickCallBack()
+        {
+            GameDataMgr.S.GetPlayerData().SetMessagePush(!GameDataMgr.S.GetPlayerData().GetMessagePush());
+            RefreshMessageBtn(GameDataMgr.S.GetPlayerData().GetMessagePush());
+        }
+
+        private void RefreshMessageBtn(bool msg)
+        {
+            if (msg)
+            {
+                m_MessageImg.sprite = FindSprite("SettingPanel_MessagOn");
+            }
+            else
+            {
+                m_MessageImg.sprite = FindSprite("SettingPanel_MessagOff");
+            }
+        }
+
+        private void OnUserBtnClickCallBack()
+        {
+            PrivacyMgr.S.JumpToUserAgreement();
+        }
+
         private void UpdateMusic(bool ison)
         {
             isMuiscOn = ison;
@@ -106,8 +139,10 @@ namespace GameWish.Game
         private void OnPrivateBtnClickCallBack()
         {
             //https://privacy-policy.modooplay.com/ratel.best.sect/user_agreement.html
-            string url = "https://privacy-policy.modooplay.com/ratel.best.sect/privacy_policy.html";
-            Application.OpenURL(url);
+            //string url = "https://privacy-policy.modooplay.com/ratel.best.sect/privacy_policy.html";
+            //Application.OpenURL(url);
+            PrivacyMgr.S.JumpToPrivacyPolicy();
+            //PrivacyMgr.S.JumpToUserAgreement();
         }
 
         private void OnLogOutBtnClickCallBack()

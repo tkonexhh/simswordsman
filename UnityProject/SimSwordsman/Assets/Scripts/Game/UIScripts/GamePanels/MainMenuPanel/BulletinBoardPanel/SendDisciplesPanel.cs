@@ -309,6 +309,10 @@ namespace GameWish.Game
                             EventSystem.S.Send(EventID.OnEnterBattle, enemiesList, m_SelectedList, m_PlayerDataHerb);
                             UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurTaskInfo, enemiesList);
                         }
+                        for (int i = 0; i < m_PlayerDataHerb.Count; i++)
+                        {
+                            MainGameMgr.S.InventoryMgr.RemoveItem(new HerbItem(m_PlayerDataHerb[i]));
+                        }
                         UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
                         UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
                         break;
@@ -317,6 +321,10 @@ namespace GameWish.Game
                         {
                             FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
                             return;
+                        }
+                        for (int i = 0; i < m_PlayerDataHerb.Count; i++)
+                        {
+                            MainGameMgr.S.InventoryMgr.RemoveItem(new HerbItem(m_PlayerDataHerb[i]));
                         }
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
                         UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo);
@@ -327,6 +335,8 @@ namespace GameWish.Game
                     default:
                         break;
                 }
+               
+
                 CloseSelfPanel();
             });
         }

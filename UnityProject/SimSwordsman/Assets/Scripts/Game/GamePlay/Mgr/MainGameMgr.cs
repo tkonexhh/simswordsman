@@ -96,6 +96,7 @@ namespace GameWish.Game
             m_BattleFieldMgr?.OnUpdate();
             CharacterMgr?.OnUpdate();
             m_RawMatCollectSystem?.OnUpdate();
+            m_CommonTaskMgr?.OnUpdate();
             //if (Input.GetKeyDown(KeyCode.T))
             //{
             //    GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);

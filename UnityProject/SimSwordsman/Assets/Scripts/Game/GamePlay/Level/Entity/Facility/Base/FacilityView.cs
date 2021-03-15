@@ -2,7 +2,7 @@ using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 
 namespace GameWish.Game
 {
@@ -34,6 +34,7 @@ namespace GameWish.Game
 
         }
 
+        // Sequence m_TipsAnim;
         public void SetTips(bool active)
         {
             if ((int)facilityType == 20)
@@ -57,6 +58,20 @@ namespace GameWish.Game
             if (facilityType == FacilityType.Lobby && m_Controller.GetState() == FacilityState.ReadyToUnlock)
                 return;
             tips.transform.parent.gameObject.SetActive(active);
+            // if (active)
+            // {
+            //     m_TipsAnim = DOTween.Sequence()
+            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, 15), 0.5f))
+            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, -15), 1.0f))
+            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.5f))
+            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f))
+            //         // .SetDelay(Random.Range(0.2f, 0.8f))
+            //         .SetLoops(-1);
+            // }
+            // else
+            // {
+            //     m_TipsAnim.Kill();
+            // }
         }
 
         public virtual void OnClicked()

@@ -271,6 +271,7 @@ namespace GameWish.Game
         private void SuccessBtn()
         {
             Time.timeScale = 1;
+            MainGameMgr.S.BattleFieldMgr.StopBattleCoroutine();
             EventSystem.S.Send(EventID.OnExitBattle);
             HideSelfWithAnim();
             switch (m_PanelType)

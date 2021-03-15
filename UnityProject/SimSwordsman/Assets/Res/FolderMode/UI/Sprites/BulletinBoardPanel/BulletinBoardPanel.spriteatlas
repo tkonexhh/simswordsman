@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BulletinBoardPanel
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c54a20a97710cca45979c675d79ef3c2, type: 3}
+    - {fileID: 2800000, guid: 99efccf6afde7e14bacaf913196b8c0d, type: 3}
+    - {fileID: 2800000, guid: 47eea044dda598446b60ca6430f3c265, type: 3}
+    - {fileID: 2800000, guid: 20a12e21e130885458928fed1c834ea5, type: 3}
+    - {fileID: 2800000, guid: 3eea11c591426164cb93593c788c30a2, type: 3}
+    - {fileID: 2800000, guid: d26cb59181823e24b9f65fedb8ab561e, type: 3}
+    - {fileID: 2800000, guid: 8db54227c72ab364488264dc837e06ad, type: 3}
+    - {fileID: 2800000, guid: c4c818a0a357bee4a90497982ef3350b, type: 3}
+    - {fileID: 21300000, guid: c4c818a0a357bee4a90497982ef3350b, type: 3}
+    - {fileID: 2800000, guid: a39ab205d53c0ce44bd5c224c7d3f9e0, type: 3}
+    - {fileID: 2800000, guid: b8bddbf92a6a3b246bcad8aca5d50505, type: 3}
+    - {fileID: 2800000, guid: b5f681425957d504e823caa350fd2e06, type: 3}
+    - {fileID: 2800000, guid: e347598563d33ed448aa2d8c02f12bb0, type: 3}
+    - {fileID: 2800000, guid: ca86ef19102b3504ebe25f9212a1acf0, type: 3}
+    - {fileID: 2800000, guid: af64c2d670a519645add92cf1205f12d, type: 3}
+    - {fileID: 2800000, guid: 1f681bcd48c1a0646ae71944fcd4ba1f, type: 3}
+    - {fileID: 2800000, guid: f8cec51930f276b48aa92b623792bfd2, type: 3}
+    - {fileID: 2800000, guid: b462cd2d223de5c4c96688059b04acc5, type: 3}
+    - {fileID: 2800000, guid: e3cd189525613464e95a0403e0526a1e, type: 3}
+    - {fileID: 2800000, guid: 5d337d80845cbb94180055a54682d82e, type: 3}
+    - {fileID: 2800000, guid: bf387f8fcd51ada4cb5108beb2cf80dc, type: 3}
+    - {fileID: 2800000, guid: e1d97fc3326ae8e418ca7145bfdf8170, type: 3}
+    - {fileID: 2800000, guid: 8572e44d8d0a9d34d874214e476c23b4, type: 3}
+    - {fileID: 2800000, guid: b59e99632a828e84380f17347c624411, type: 3}
+    - {fileID: 2800000, guid: 5a2c720df18790f4389d5cb094a0fb64, type: 3}
+    - {fileID: 2800000, guid: 0e308521dda11a843a45f45a60fa5dbd, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 5d337d80845cbb94180055a54682d82e, type: 3}
+  - {fileID: 21300000, guid: c4c818a0a357bee4a90497982ef3350b, type: 3}
+  - {fileID: 21300000, guid: 0e308521dda11a843a45f45a60fa5dbd, type: 3}
+  - {fileID: 21300000, guid: 20a12e21e130885458928fed1c834ea5, type: 3}
+  - {fileID: 21300000, guid: d26cb59181823e24b9f65fedb8ab561e, type: 3}
+  - {fileID: 21300000, guid: b5f681425957d504e823caa350fd2e06, type: 3}
+  - {fileID: 21300000, guid: b59e99632a828e84380f17347c624411, type: 3}
+  - {fileID: 21300000, guid: e1d97fc3326ae8e418ca7145bfdf8170, type: 3}
+  - {fileID: 21300000, guid: 47eea044dda598446b60ca6430f3c265, type: 3}
+  - {fileID: 21300000, guid: a39ab205d53c0ce44bd5c224c7d3f9e0, type: 3}
+  - {fileID: 21300000, guid: e347598563d33ed448aa2d8c02f12bb0, type: 3}
+  - {fileID: 21300000, guid: e3cd189525613464e95a0403e0526a1e, type: 3}
+  - {fileID: 21300000, guid: 3eea11c591426164cb93593c788c30a2, type: 3}
+  - {fileID: 21300000, guid: af64c2d670a519645add92cf1205f12d, type: 3}
+  - {fileID: 21300000, guid: 99efccf6afde7e14bacaf913196b8c0d, type: 3}
+  - {fileID: 21300000, guid: 8db54227c72ab364488264dc837e06ad, type: 3}
+  - {fileID: 21300000, guid: f8cec51930f276b48aa92b623792bfd2, type: 3}
+  - {fileID: 21300000, guid: ca86ef19102b3504ebe25f9212a1acf0, type: 3}
+  - {fileID: 21300000, guid: c54a20a97710cca45979c675d79ef3c2, type: 3}
+  - {fileID: 21300000, guid: b8bddbf92a6a3b246bcad8aca5d50505, type: 3}
+  - {fileID: 21300000, guid: 5a2c720df18790f4389d5cb094a0fb64, type: 3}
+  - {fileID: 21300000, guid: b462cd2d223de5c4c96688059b04acc5, type: 3}
+  - {fileID: 21300000, guid: 8572e44d8d0a9d34d874214e476c23b4, type: 3}
+  - {fileID: 21300000, guid: 1f681bcd48c1a0646ae71944fcd4ba1f, type: 3}
+  - {fileID: 21300000, guid: bf387f8fcd51ada4cb5108beb2cf80dc, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Line4
+  - BulletinBoardPanel_Bg8
+  - Title
+  - BulletinBoardPanel_Bg4
+  - BulletinBoardPanel_Bg6
+  - BulletinBoardPanel_Bg12
+  - Point
+  - Over
+  - BulletinBoardPanel_Bg3
+  - BulletinBoardPanel_Bg9
+  - BulletinBoardPanel_Bg13
+  - Hook
+  - BulletinBoardPanel_Bg5
+  - BulletinBoardPanel_NoMission
+  - BulletinBoardPanel_Bg2
+  - BulletinBoardPanel_Bg7
+  - GreenArrow
+  - BulletinBoardPanel_Bg14
+  - BulletinBoardPanel_Bg1
+  - BulletinBoardPanel_Bg10
+  - Selected
+  - GreyArrow
+  - Plus1
+  - Footer
+  - Minus
+  m_Tag: BulletinBoardPanel
+  m_IsVariant: 0
