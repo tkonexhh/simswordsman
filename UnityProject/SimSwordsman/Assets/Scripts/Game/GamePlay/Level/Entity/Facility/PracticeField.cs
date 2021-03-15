@@ -17,7 +17,7 @@ namespace GameWish.Game
             InitSlotState(item);
             GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
         }
-        public PracticeField(PracticeSoltDBData item) : base(item)
+        public PracticeField(PracticeSoltDBData item, FacilityView facilityView) : base(item, facilityView)
         {
             if (slotState == SlotState.Practice)
                 InitTimerUpdate();

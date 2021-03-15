@@ -43,11 +43,13 @@ namespace GameWish.Game
 
 		private Vector3 m_SlotPos;
 		private CharacterController m_Character;
+		private FacilityView m_FacilityView;
 		public BaseSlot()
 		{
 		}
-		public BaseSlot(SoltDBDataBase soltDBData)
+		public BaseSlot(SoltDBDataBase soltDBData, FacilityView facilityView)
 		{
+			m_FacilityView = facilityView;
 			FacilityType = soltDBData.facilityType;
 			Index = soltDBData.soltID;
 			UnlockLevel = soltDBData.unlockLevel;
@@ -136,7 +138,7 @@ namespace GameWish.Game
 
 		public Vector3 GetPosition()
 		{
-			return m_SlotPos;
+			return m_FacilityView.GetSlotPos(Index);
 		}
 		public virtual float GetProgress()
 		{

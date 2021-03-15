@@ -76,13 +76,13 @@ namespace GameWish.Game
             }
 
             foreach (var item in practiceFieldDBDatas)
-                m_PracticeSlotList.Add(new PracticeField(item));
+                m_PracticeSlotList.Add(new PracticeField(item,m_View));
 
-            for (int i = 0; i < m_PracticeSlotList.Count; i++)
-            {
-                PracticeFieldView view = (PracticeFieldView)m_View;
-                m_PracticeSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
-            }
+            //for (int i = 0; i < m_PracticeSlotList.Count; i++)
+            //{
+            //    PracticeFieldView view = (PracticeFieldView)m_View;
+            //    m_PracticeSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
+            //}
         }
 
         /// <summary>

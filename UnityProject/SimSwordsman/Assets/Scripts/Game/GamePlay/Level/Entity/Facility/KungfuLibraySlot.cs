@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
     public class KungfuLibraySlot: BaseSlot
     {
-        public KungfuLibraySlot(KungfuSoltDBData soltDBData):base(soltDBData)
+        public KungfuLibraySlot(KungfuSoltDBData soltDBData,FacilityView facilityView) :base(soltDBData, facilityView)
         {
             if (slotState == SlotState.CopyScriptures)
                 InitTimerUpdate();

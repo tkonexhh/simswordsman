@@ -34,6 +34,11 @@ namespace GameWish.Game
 
         }
 
+        public virtual Vector3 GetSlotPos(int index)
+        {
+            return Vector3.zero;
+        }
+
         // Sequence m_TipsAnim;
         public void SetTips(bool active)
         {

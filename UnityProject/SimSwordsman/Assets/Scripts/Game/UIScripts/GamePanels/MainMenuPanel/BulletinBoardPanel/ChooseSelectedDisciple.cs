@@ -56,7 +56,7 @@ namespace GameWish.Game
                     m_ChooseSelectedDisciple.enabled = true;
                     m_SelectedImg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
-                    m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
+                    m_Level.text = m_CharacterItem.level.ToString();
                     break;
                 case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
