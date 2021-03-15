@@ -202,11 +202,11 @@ namespace GameWish.Game
             if (state != m_CurState)
             {
                 m_CurState = state;
-                if (m_CharacterCamp == CharacterCamp.OurCamp)
-                    Debug.LogError("Setstate:" + m_CurState);
+                //if (m_CharacterCamp == CharacterCamp.OurCamp)
+                //    Debug.LogError("Setstate:" + m_CurState);
                 if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state 不存裆
                 {
-                    Debug.LogError("SetstateTODB:" + m_CurState);
+                    //Debug.LogError("SetstateTODB:" + m_CurState);
                     SetStateToDB(m_CurState, targetFacilityType);
 
                     //保护性代码：消除头上没有消失的Progress
