@@ -344,6 +344,8 @@ namespace GameWish.Game
         OnChallengeSystemTrigger_ClickStartChallengeTrigger,//点击开始战斗
         #endregion
 
+        OnShowMaskWithAlphaZeroPanel,//显示一个透明的遮罩面板，防止误触
+
         #endregion
 
 
