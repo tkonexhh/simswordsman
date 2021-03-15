@@ -72,6 +72,7 @@ namespace GameWish.Game
         OnArriveCollectResPos,
         OnCharacterTaskRewardClicked,
         OnAddCharacter,
+        OnAddCharacterPanelClosed,
         //PracticeField
 
         /// <summary>

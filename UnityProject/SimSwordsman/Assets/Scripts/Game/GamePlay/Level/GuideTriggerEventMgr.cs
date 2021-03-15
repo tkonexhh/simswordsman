@@ -27,7 +27,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnAddArms, OnAddArmsCallBack);
 
             EventSystem.S.Register(EventID.OnUpgradeFacility, OnUpgradeFacilityCallBack);
-            EventSystem.S.Register(EventID.OnAddCharacter, OnAddCharacterCallBack);
+            EventSystem.S.Register(EventID.OnAddCharacterPanelClosed, OnAddCharacterPanelClosedCallBack);
 
             EventSystem.S.Register(EventID.OnFinishedClickWuWoodBubbleTrigger, OnFinishedClickWuWoodBubbleTrigger1CallBack);
             EventSystem.S.Register(EventID.OnGuideClickTaskDetailsTrigger1, OnGuidClickTaskDetailsTrigger1CallBack);
@@ -123,7 +123,7 @@ namespace GameWish.Game
             }            
         }
 
-        private void OnAddCharacterCallBack(int key, object[] param)
+        private void OnAddCharacterPanelClosedCallBack(int key, object[] param)
         {
             CheckIsStartChallengeSystemGuide();
         }
@@ -143,6 +143,10 @@ namespace GameWish.Game
         /// </summary>
         private void CheckIsStartChallengeSystemGuide() 
         {
+            if (GuideMgr.S.IsGuideFinish(29))
+            {
+                return;
+            }
             int isOpenChallengePanel = PlayerPrefs.GetInt(Define.Is_Enter_Challenge_Panel, -1);
             //-1  表示未打开挑战面板
             if (isOpenChallengePanel == -1) 
