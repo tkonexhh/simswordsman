@@ -48,17 +48,17 @@ namespace GameWish.Game
             if (m_CharacterController == null)
                 return;
 
-            if (key == (int)EventID.OnCharacterTaskRewardClicked)
-            {
-                int taskId = (int)param[0];
-                if (taskId == m_CharacterController.CurTask?.TaskId)
-                {
-                    m_CharacterController.SetCurTask(null);
-                    m_CharacterController.SetState(CharacterStateID.Wander);
+            //if (key == (int)EventID.OnCharacterTaskRewardClicked)
+            //{
+            //    int taskId = (int)param[0];
+            //    if (taskId == m_CharacterController.CurTask?.TaskId)
+            //    {
+            //        m_CharacterController.SetCurTask(null);
+            //        m_CharacterController.SetState(CharacterStateID.Wander);
 
-                    GameObjectPoolMgr.S.Recycle(gameObject);
-                }
-            }
+            //        GameObjectPoolMgr.S.Recycle(gameObject);
+            //    }
+            //}
         }
 
         #region Input
