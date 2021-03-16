@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7036324144470400028}
   - component: {fileID: 7036324144470400029}
   - component: {fileID: 7036324144470400026}
+  - component: {fileID: 3251789112382060651}
   m_Layer: 0
   m_Name: YiJinJing_Hit_Left
   m_TagString: Untagged
@@ -4755,6 +4756,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &3251789112382060651
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036324144470400027}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &7036324144621441831
 GameObject:
   m_ObjectHideFlags: 0

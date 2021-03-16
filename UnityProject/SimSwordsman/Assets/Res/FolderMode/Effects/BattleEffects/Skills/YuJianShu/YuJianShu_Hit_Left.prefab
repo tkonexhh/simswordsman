@@ -9768,8 +9768,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8aaf2dc0d24af7e498228d94ccc341c0, type: 2}
-  - {fileID: 2100000, guid: 8aaf2dc0d24af7e498228d94ccc341c0, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24161,8 +24161,9 @@ GameObject:
   - component: {fileID: 6356451047897699822}
   - component: {fileID: 6356451047897699820}
   - component: {fileID: 6356451047897699821}
+  - component: {fileID: 4496251794185760442}
   m_Layer: 0
-  m_Name: YuJianShu_Hit_Right
+  m_Name: YuJianShu_Hit_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28905,6 +28906,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &4496251794185760442
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356451047897699823}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &6356451048481990990
 GameObject:
   m_ObjectHideFlags: 0
