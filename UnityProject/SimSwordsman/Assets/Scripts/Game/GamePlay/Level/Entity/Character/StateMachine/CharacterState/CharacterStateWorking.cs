@@ -11,8 +11,18 @@ namespace GameWish.Game
     public class CharacterStateWorking : CharacterState
     {
         private CharacterController m_Controller = null;
+
         private FacilityType m_FacilityType = FacilityType.None;
-        private string m_WorkStringId;
+
+        private FacilityController m_FacilityController;
+
+        private bool m_ReachTargetPos = false;
+
+        private WorkItemData m_WorkItemData = null;
+
+        private float m_CurrentWorkTime = 0;
+
+        private bool m_IsWorkingFinished = false;
 
         public CharacterStateWorking(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -21,36 +31,77 @@ namespace GameWish.Game
 
         public override void Enter(ICharacterStateHander handler)
         {
+            m_IsWorkingFinished = false;
+
             if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
-            m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();  
+            m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
 
-            m_WorkStringId = WorkSystem.GetStringId(m_FacilityType);
+            m_WorkItemData = GameDataMgr.S.GetClanData().GetWorkItemData(m_FacilityType);
+
+            m_CurrentWorkTime = m_WorkItemData.CurrentWorkTime;
+
             m_Controller.SpawnWorkTipWhenWorkInFacility(m_FacilityType);
 
-            FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
-            Vector3 targetPos = facilityController.GetDoorPos();
+            m_FacilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
+            
+            Vector3 targetPos = m_FacilityController.GetDoorPos();
 
             m_Controller.RunTo(targetPos, OnReachDestination);
-
-            EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd); 
         }
 
         public override void Exit(ICharacterStateHander handler)
         {
-            EventSystem.S.UnRegister(EventID.OnAddWorkingRewardFacility, OnFacilityWorkEnd);
+
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
         {
-            Countdowner countDowner = CountdownSystem.S.GetCountdowner(m_WorkStringId, m_Controller.CharacterId);
+            if (m_IsWorkingFinished) return;
 
-            if (countDowner != null)
+            if (m_ReachTargetPos) 
             {
-                float percent = Mathf.Clamp01(countDowner.GetProgress());
-                m_Controller.SetWorkProgressPercent(percent);
+                m_CurrentWorkTime += Time.deltaTime;
+
+                GameDataMgr.S.GetClanData().UpdateWorkTime(m_FacilityType, (int)m_CurrentWorkTime);
+
+                m_Controller.SetWorkProgressPercent(m_CurrentWorkTime / m_WorkItemData.WorkTotalTime);
+
+                if (m_CurrentWorkTime > m_WorkItemData.WorkTotalTime) 
+                {
+                    m_IsWorkingFinished = true;
+
+                    GetReward();
+
+                    GameDataMgr.S.GetClanData().RemoveWorkData(m_FacilityType);
+
+                    m_Controller.ReleaseWorkProgressBar();
+
+                    m_FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Idle);
+
+                    m_Controller.SetState(CharacterStateID.Wander);
+                }
             }
+        }
+
+        private void GetReward()
+        {
+            TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+            
+            if (lobbyData != null)
+            {
+                m_Controller.AddExp(lobbyData.workExp);
+
+                m_Controller.SpawnFacilityWorkRewardPop(m_FacilityType, lobbyData.workPay);
+
+                GameDataMgr.S.GetPlayerData().AddCoinNum(lobbyData.workPay);
+            }
+            else
+            {
+                Debug.LogError("lobby data is null");
+            }
+
         }
 
         private void OnReachDestination()
@@ -58,6 +109,7 @@ namespace GameWish.Game
             m_Controller.ReleaseWorkTip();
 
             string anim = GetAnimName(m_FacilityType);
+
             m_Controller.CharacterView.PlayAnim(anim, true, ()=> {
                 if (IsClean(anim)) 
                 {
@@ -66,6 +118,10 @@ namespace GameWish.Game
             });
 
             m_Controller.SpawnWorkProgressBar();
+
+            m_Controller.SetWorkProgressPercent(0);
+
+            m_ReachTargetPos = true;
         }
         private bool IsClean(string anim)  
         {
@@ -96,38 +152,6 @@ namespace GameWish.Game
             }
 
             return animName;
-        }
-
-        private void OnFacilityWorkEnd(int key, object[] param)
-        {
-            FacilityType type = (FacilityType)param[0];
-
-            CharacterController controller = (CharacterController)param[1];
-
-            if (controller == m_Controller)
-            {
-                ApplyReward(type);
-
-                DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish,"Coin");
-
-                m_Controller.ReleaseWorkProgressBar();
-
-                m_Controller.SetState(CharacterStateID.Wander);
-            }            
-        }
-
-        private void ApplyReward(FacilityType type)
-        {
-            int count = WorkSystem.S.GetWorkPay();
-            m_Controller.SpawnFacilityWorkRewardPop(type, count);
-
-            WorkSystem.S.GetReward(type);
-
-            LobbyLevelInfo lobbyLevelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
-
-
-            //Add exp
-            m_Controller.AddExp(lobbyLevelInfo.workExp);
         }
     }
 }
