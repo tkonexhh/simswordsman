@@ -214,6 +214,7 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
                 GetInformationForNeed();
                 RefreshPanelInfo();
+                DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, FacilityType.Lobby.ToString() + ";" + m_CurLevel);
                 HideSelfWithAnim();
             }
         }

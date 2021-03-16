@@ -73,6 +73,8 @@ namespace GameWish.Game
             });
             m_AcceptBtn.onClick.AddListener(() =>
             {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.food_supply_add, m_CurFoodFreshCount.ToString());
+
                 if (m_CurFoodFreshCount <= 0)
                 {
                     UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "今日食物补充次数已用完。");
@@ -80,6 +82,7 @@ namespace GameWish.Game
                 }
 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
 
                 AdsManager.S.PlayRewardAD("AddFood",LookADSuccessCallBack);
                 HideSelfWithAnim();

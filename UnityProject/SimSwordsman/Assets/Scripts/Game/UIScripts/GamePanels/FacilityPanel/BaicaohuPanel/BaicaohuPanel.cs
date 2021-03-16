@@ -127,6 +127,9 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                     GetInformationForNeed();
                     RefreshPanelInfo();
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
+
                     HideSelfWithAnim();
                 }
             });

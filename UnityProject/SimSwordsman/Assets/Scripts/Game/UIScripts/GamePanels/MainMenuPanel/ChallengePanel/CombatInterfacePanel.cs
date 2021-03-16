@@ -280,6 +280,7 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                     break;
                 case PanelType.Challenge:
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.level_quit, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                     OpenParentChallenge();
                     break;
                 default:
@@ -366,6 +367,7 @@ namespace GameWish.Game
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, true);
                             break;
                         case PanelType.Challenge:
+                            DataAnalysisMgr.S.CustomEvent(DotDefine.level_end_win, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                             MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, true);
                             break;
@@ -383,6 +385,7 @@ namespace GameWish.Game
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurTaskInfo, false);
                             break;
                         case PanelType.Challenge:
+                            DataAnalysisMgr.S.CustomEvent(DotDefine.level_end_fail, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, false);
                             break;
                         default:

@@ -135,6 +135,8 @@ namespace GameWish.Game
                 var list = TDHerbConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_make_medicine, ID.ToString());
+
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
                     CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDHerbConfigTable.GetData(ID).makeTime);
                 }

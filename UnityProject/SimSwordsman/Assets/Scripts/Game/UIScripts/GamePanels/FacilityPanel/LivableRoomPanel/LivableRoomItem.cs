@@ -133,6 +133,9 @@ namespace GameWish.Game
 
                         m_LivableRoomState = LivableRoomState.Upgrade;
                         MainGameMgr.S.FacilityMgr.SetFacilityState(m_CurFacilityType, FacilityState.Unlocked/*, m_SubID*/);
+
+                        DataAnalysisMgr.S.CustomEvent(DotDefine.facility_build, m_CurFacilityType.ToString());
+
                         ReduceItem(m_CurLivableRoomLevelInfo);
                         GetInformationForNeed();
                         break;
@@ -147,6 +150,8 @@ namespace GameWish.Game
                             ReduceItem(m_NextLivableRoomLevelInfo);
                             EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                             GetInformationForNeed();
+
+                            DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                         }
                         break;
                     case LivableRoomState.FullLevel:

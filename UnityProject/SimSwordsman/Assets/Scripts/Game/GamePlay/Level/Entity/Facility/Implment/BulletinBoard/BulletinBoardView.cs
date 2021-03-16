@@ -46,6 +46,7 @@ namespace GameWish.Game
 
             //Debug.Log("BulletinBoard is clicked");
             UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.facility_check, facilityType.ToString());
         }
 
 

@@ -166,7 +166,10 @@ namespace GameWish.Game
 
                     m_Controller.SetState(CharacterStateID.Wander);
 
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish, m_Controller.CollectObjType.ToString());
+
                     m_Controller.CollectObjType = CollectedObjType.None;
+
                 }
             }
         }

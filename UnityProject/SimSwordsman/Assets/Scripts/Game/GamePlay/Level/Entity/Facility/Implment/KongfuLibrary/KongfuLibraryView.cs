@@ -26,6 +26,7 @@ namespace GameWish.Game
         {
             base.OpenUIElement();
             UIMgr.S.OpenPanel(UIID.KongfuLibraryPanel, facilityType);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.facility_check, facilityType.ToString());
         }
 
         public override Vector3 GetSlotPos(int index)

@@ -215,7 +215,8 @@ namespace GameWish.Game
                     state = 2;
                     m_IsCounting = false;
                     m_DisappearTimer = 0;
-                    Debug.LogError("Remove Visitor");
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_overtime, Reward.KeyID.ToString());
+                    //Debug.LogError("Remove Visitor");
                 }
             }
         }

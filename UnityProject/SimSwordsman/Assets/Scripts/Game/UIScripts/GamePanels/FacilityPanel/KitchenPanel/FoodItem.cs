@@ -150,6 +150,7 @@ namespace GameWish.Game
                 {
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
                     FoodBuffSystem.S.StartBuff(ID);
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, ID.ToString()+ ";KuaiChao");
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
@@ -161,7 +162,10 @@ namespace GameWish.Game
                 //ÅÐ¶Ï²ÄÁÏ
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
+                {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, ID.ToString()+ ";JingChao");
                     AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });

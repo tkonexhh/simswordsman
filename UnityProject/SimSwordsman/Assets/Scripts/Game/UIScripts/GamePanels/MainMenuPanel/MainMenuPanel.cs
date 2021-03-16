@@ -94,6 +94,7 @@ namespace GameWish.Game
                     FloatMessage.S.ShowMsg("当前食物已经满了哦。");
                     return;
                 }
+                DataAnalysisMgr.S.CustomEvent(DotDefine.food_supply_open);
                 UIMgr.S.OpenPanel(UIID.SupplementFoodPanel);
             });
 
@@ -117,7 +118,8 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_open);
+
                 UIMgr.S.OpenPanel(UIID.DisciplePanel);
             });
             TrialRunBtn.onClick.AddListener(() =>
@@ -157,11 +159,17 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                Visitor visitor = VisitorSystem.S.CurrentVisitor[0];
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_tap, visitor.Reward.KeyID.ToString());
+
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 0);
             });
             m_VisitorBtn2.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                Visitor visitor = VisitorSystem.S.CurrentVisitor[1];
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_tap, visitor.Reward.KeyID.ToString());
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
@@ -286,11 +294,22 @@ namespace GameWish.Game
                     break;
                 case 1:
                     RefreshVisitorImg(1);
+
+                    Visitor visitor1 = VisitorSystem.S.CurrentVisitor[0];
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor1.Reward.KeyID.ToString());
+
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
                     break;
                 case 2:
                     RefreshVisitorImg(2);
+
+                    Visitor visitor2 = VisitorSystem.S.CurrentVisitor[0];
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor2.Reward.KeyID.ToString());
+
+                    Visitor visitor3 = VisitorSystem.S.CurrentVisitor[1];
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor3.Reward.KeyID.ToString());
+
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(true);
                     break;
@@ -312,9 +331,6 @@ namespace GameWish.Game
                 m_VisitorImg2.sprite = FindSprite(tb1.roleRes);
                 m_VisitorImg2.SetNativeSize();
             }
-
-
-
         }
 
     }

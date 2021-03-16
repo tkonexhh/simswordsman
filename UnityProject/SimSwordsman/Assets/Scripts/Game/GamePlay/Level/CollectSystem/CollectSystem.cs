@@ -158,6 +158,9 @@ namespace GameWish.Game
             }
             List<RewardBase> rewards = new List<RewardBase>();
             rewards.Add(RewardMgr.S.GetRewardBase(RewardItemType.Item, tb.itemId, m_CurrentCollcetCountDic[id]));
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.collect, id.ToString() + ";" + m_CurrentCollcetCountDic[id].ToString());
+
             //¶îÍâ½±Àø(·äÕë)
             if (tb.specialItemId != 0)
             {
@@ -169,10 +172,15 @@ namespace GameWish.Game
                         specialItemCount++;
                 }
                 if (specialItemCount > 0)
+                {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.collect, id.ToString() + ";" + specialItemCount.ToString());
+
                     rewards.Add(RewardMgr.S.GetRewardBase(RewardItemType.Item, tb.specialItemId, specialItemCount));
+                }
             }
             foreach (var item in rewards)
                 item.AcceptReward();
+
 
             //µ¯³ö½±ÀøUI·´À¡
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, rewards);

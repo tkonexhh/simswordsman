@@ -13,72 +13,16 @@ MonoBehaviour:
   m_Name: AssetReferenceDB
   m_EditorClassIdentifier: 
   m_assets:
-  - m_assetDatabaseId: eebbbf07706f91e4285896c38d4ac897
-    m_importFrom: Assets/Res/FolderMode/Effects/GetReward/Prefab/MartialArtsManagement/UI/Loot_Single.prefab
+  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
+    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 00000000000000006100000000000000
-    m_importFrom: ProjectSettings/GraphicsSettings.asset
+  - m_assetDatabaseId: 150832b0723370d4987b3572cb20c9f4
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/MainMenuPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 6ce7acd05659d0f46b14ab23a1f97167
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7053c3f1c3c01fd4b9007b01b19f2de7
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 55576002a6ff8114ea6ff540e903b6e2
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 97dc95d2678877942bb0b9fb09ac914b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1f9939c3a68990349a26160eecc68c37
-    m_importFrom: Assets/StreamingAssets/game/game.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9e435724643ae764ca95076fd4559dad
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 047f32c4b7c41ed4ba1f7df01d2f3775
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal4.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1f9581c5e9934044ea7fd712bd4d2889
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: bc7b73775eac8d34f960c13b9b773c23
-    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 99491238f0d4a4a4da8d12b96b475afb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5699503b452d0dd4082a0e772f9b7867
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal4.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e8eb021f55334554dbf033d0a2d522f7
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 33ee716fefe364b4db9e0475663659df
-    m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3f89ddef334a5e043ab2625baf50533a
-    m_importFrom: Assets/StreamingAssets/game/game
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 17aa2a1972379a54f98093297f3e696c
-    m_importFrom: Assets/Scripts/Game/GamePlay/Level/BattleField/BattleFieldMgr.cs
+  - m_assetDatabaseId: 47b500ad83ef1044186a7bc60e114dac
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/SupplementFoodPanel/SupplementFoodPanel.cs
     m_exportTo: 
     m_variantName: 
   m_version: 2

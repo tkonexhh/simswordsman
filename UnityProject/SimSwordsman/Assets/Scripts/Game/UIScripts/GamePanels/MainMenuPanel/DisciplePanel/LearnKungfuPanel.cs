@@ -111,10 +111,13 @@ namespace GameWish.Game
 
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
+                
                 MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
+
                 UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
             });
         }

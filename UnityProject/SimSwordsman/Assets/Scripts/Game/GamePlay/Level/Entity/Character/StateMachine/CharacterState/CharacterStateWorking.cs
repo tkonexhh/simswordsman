@@ -46,7 +46,6 @@ namespace GameWish.Game
         {
             Countdowner countDowner = CountdownSystem.S.GetCountdowner(m_WorkStringId, m_Controller.CharacterId);
 
-
             if (countDowner != null)
             {
                 float percent = Mathf.Clamp01(countDowner.GetProgress());
@@ -108,6 +107,8 @@ namespace GameWish.Game
             if (controller == m_Controller)
             {
                 ApplyReward(type);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish,"Coin");
 
                 m_Controller.ReleaseWorkProgressBar();
 

@@ -33,6 +33,8 @@ namespace GameWish.Game
                 WorkSprite.SetActive(true);
                 RewardSprite.SetActive(false);
 
+                DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate, "Coin");
+
                 EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, true);
 
                 m_LastShowBubbleTime = DateTime.Now;
@@ -88,6 +90,9 @@ namespace GameWish.Game
                 {
                     state = 0;
                     BubbleView.SetActive(false);
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, "Coin");
+
                     EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, false);
                     EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
 

@@ -105,6 +105,7 @@ namespace GameWish.Game
                     GetInformationForNeed();
                     m_CurPracticeFieldController.RefreshPracticeUnlockInfo(m_CurFacilityType, m_CurLevel);
                     RefreshPanelInfo();
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
                 }
             });
