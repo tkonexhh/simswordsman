@@ -25,6 +25,7 @@ namespace GameWish.Game
         {
             //解锁工作系统
             EventSystem.S.Send(EventID.OnUnlockWorkSystem);
+            EventSystem.S.Send(EventID.OnAddCanWorkFacility, FacilityType.Lobby);
             m_CanStart = true;
 
             if (isReady)
