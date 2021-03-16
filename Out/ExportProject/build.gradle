@@ -209,7 +209,7 @@ dependencies {
 
 
     //自建打点
-    implementation("we.studio.embed:embed-sdk:4.0.31"){
+    implementation("we.studio.embed:embed-sdk:4.0.32"){
         exclude module: 'miit_mdid'
         exclude module:'eventio-openudid'
     }
