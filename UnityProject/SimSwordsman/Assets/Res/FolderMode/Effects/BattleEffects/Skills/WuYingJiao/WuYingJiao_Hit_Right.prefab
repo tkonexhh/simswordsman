@@ -9505,6 +9505,7 @@ GameObject:
   - component: {fileID: 3986823208293866194}
   - component: {fileID: 3986823208293866196}
   - component: {fileID: 3986823208293866197}
+  - component: {fileID: 7675073896961603536}
   m_Layer: 0
   m_Name: WuYingJiao_Hit_Right
   m_TagString: Untagged
@@ -14249,6 +14250,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &7675073896961603536
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986823208293866195}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &3986823209069497721
 GameObject:
   m_ObjectHideFlags: 0

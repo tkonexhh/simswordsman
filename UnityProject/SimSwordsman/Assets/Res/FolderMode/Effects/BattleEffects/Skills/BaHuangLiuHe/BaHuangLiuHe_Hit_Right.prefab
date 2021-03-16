@@ -33355,6 +33355,7 @@ GameObject:
   - component: {fileID: 4786448536296267384}
   - component: {fileID: 2467940471051448844}
   - component: {fileID: 8796040428114920014}
+  - component: {fileID: 6098530355480994110}
   m_Layer: 0
   m_Name: BaHuangLiuHe_Hit_Right
   m_TagString: Untagged
@@ -38099,6 +38100,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &6098530355480994110
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186088713999518209}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &8263770150030088384
 GameObject:
   m_ObjectHideFlags: 0

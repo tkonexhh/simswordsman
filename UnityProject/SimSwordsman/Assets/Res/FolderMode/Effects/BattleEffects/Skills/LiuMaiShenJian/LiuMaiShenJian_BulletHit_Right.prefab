@@ -9686,6 +9686,7 @@ GameObject:
   - component: {fileID: 5163172357052004511}
   - component: {fileID: 5163172357052004504}
   - component: {fileID: 5163172357052004505}
+  - component: {fileID: 4095912856475062199}
   m_Layer: 0
   m_Name: LiuMaiShenJian_BulletHit_Right
   m_TagString: Untagged
@@ -14430,6 +14431,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &4095912856475062199
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163172357052004506}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &5163172357274122146
 GameObject:
   m_ObjectHideFlags: 0

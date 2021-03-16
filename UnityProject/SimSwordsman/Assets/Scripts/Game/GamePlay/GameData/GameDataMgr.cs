@@ -30,6 +30,11 @@ namespace GameWish.Game
             m_GameDataHandler.GetPlayerInfodata().Init();
         }
 
+        public void Reset()
+        {
+            m_GameDataHandler.ResetAsNew();
+        }
+
         public void ResetDailyData()
         {
             Debug.LogError("ResetDailyData");
