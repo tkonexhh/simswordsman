@@ -406,8 +406,16 @@ namespace GameWish.Game
                 second--;
                 if (second == 0)
                 {
-                    m_IsBattleEnd = true;
-                    EventSystem.S.Send(EventID.OnBattleFailed);
+                    if (m_TotalOurAtk > m_TotalEnemyAtk)
+                    {
+                        EventSystem.S.Send(EventID.OnBattleSuccessed);
+                        m_IsBattleEnd = true;
+                    }
+                    else
+                    {
+                        m_IsBattleEnd = true;
+                        EventSystem.S.Send(EventID.OnBattleFailed);
+                    }
 
                     m_OurCharacterList.ForEach(i =>
                     {
