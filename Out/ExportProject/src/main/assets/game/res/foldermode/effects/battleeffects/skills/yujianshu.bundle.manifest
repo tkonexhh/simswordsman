@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1415607683
+CRC: 479789578
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a7e598dcc9407aa5cf2a5947a82c5a2c
+    Hash: a6296f28c5f32b2198bf805ec76c48d9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 66f946aea8d7445bd523659595b2e08d
+    Hash: 7d8eed655d9f7582f69efb3268629ff1
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -21,6 +21,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
+- Class: 210
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/YuJianShu/YuJianShu_Muzzle_Right.prefab
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/YuJianShu/YuJianShu_Hit_Left.prefab
@@ -29,4 +31,5 @@ Assets:
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/YuJianShu/YuJianShu_Muzzle_Left.prefab
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/YuJianShu/YuJianShu_HuaShan_Muzzle_Left.prefab
 Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
