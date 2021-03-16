@@ -18,7 +18,7 @@ namespace GameWish.Game
         public InventoryDbData inventoryData = new InventoryDbData();
         public KongfuData kongfuData = new KongfuData();
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
-
+        public List<WorkItemData> WorkItemDataList = new List<WorkItemData>();
 
         public void SetDefaultValue()
         {
@@ -31,7 +31,6 @@ namespace GameWish.Game
         {
            
         }
-
 
         public void OnReset()
         {
@@ -479,8 +478,48 @@ namespace GameWish.Game
         }
         #endregion
 
+        #region work system
+        public void SetWorkData(FacilityType ft, int characterID, int totalTime)
+        {
+            WorkItemData data = WorkItemDataList.FirstOrDefault(x => x.FacilityType == ft);
+            if (data != null)
+            {
+                data.WorkTotalTime = totalTime;
+            }
+            else
+            {
+                WorkItemDataList.Add(new WorkItemData(ft, characterID, totalTime));
+            }
 
+            SetDataDirty();
+        }
+        public void RemoveWorkData(FacilityType ft)
+        {
+            WorkItemData data = WorkItemDataList.FirstOrDefault(x => x.FacilityType == ft);
+
+            if (data != null)
+            {
+                WorkItemDataList.Remove(data);
+            }
+
+            SetDataDirty();
+        }
+        public void UpdateWorkTime(FacilityType ft, int currentWorkTime)
+        {
+            WorkItemData data = WorkItemDataList.FirstOrDefault(x => x.FacilityType == ft);
+
+            if (data != null)
+            {
+                data.CurrentWorkTime = currentWorkTime;
+            }
+
+            SetDataDirty();
+        }
+        public WorkItemData GetWorkItemData(FacilityType ft)
+        {
+            WorkItemData data = WorkItemDataList.FirstOrDefault(x => x.FacilityType == ft);
+            return data;
+        }
+        #endregion
     }
-
-
 }

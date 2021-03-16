@@ -142,6 +142,8 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
                     VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
+
+                    WorkSystemMgr.S.Init();
 #if TEST_MODE
                     Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
