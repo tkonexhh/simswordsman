@@ -248,6 +248,7 @@ namespace GameWish.Game
             //前往
             m_GoToBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_enter, m_CurTaskInfo.TaskId.ToString());
                 #region 可能还需要的代码
                 //if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                 //{
@@ -291,7 +292,7 @@ namespace GameWish.Game
             //婉拒
             m_DeclinedBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
+                DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_refuse, m_CurTaskInfo.TaskId.ToString());
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示","您确定要放弃任务吗");
             });
             m_Promptly.onClick.AddListener(()=> {
@@ -475,6 +476,7 @@ namespace GameWish.Game
             }
             else//打开
             {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_check,m_CurTaskInfo.TaskId.ToString());
                 m_Arrow.GetComponent<Transform>().localScale = new Vector3(1, -1, 1);
                 m_FuncBtnText.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_PUTAWAY);
                 m_Bottom.SetActive(true);

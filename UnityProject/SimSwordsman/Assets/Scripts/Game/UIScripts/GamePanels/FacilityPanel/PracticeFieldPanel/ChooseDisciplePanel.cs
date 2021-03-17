@@ -41,6 +41,9 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 m_PracticeFieldInfo.SetCharacterItem(m_SelectedDisciple, SlotState.Practice, m_CurFacilityType);
                 EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, m_PracticeFieldInfo);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.f_practice, m_PracticeFieldInfo.Index.ToString());
+
                 HideSelfWithAnim();
             });
         }

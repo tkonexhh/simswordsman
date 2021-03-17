@@ -159,6 +159,16 @@ namespace GameWish.Game
                     VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
 
+                    WorkSystemMgr.S.Init();
+                    Application.runInBackground = true;
+                    int num = PlayerPrefs.GetInt("test");
+                    if (num != 1)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
+                        PlayerPrefs.SetInt("test", 1);
+                    }
+
                     GameMgr.S.StartGuide();
 
                     //Application.runInBackground = true;

@@ -26,6 +26,8 @@ namespace GameWish.Game
         public List<int> unlockFoodItemIDs = new List<int>();//已解锁的伙房食物id
         public List<int> rewardCollectItemIDs = new List<int>();//可以收集最大值的收集物
 
+
+
         private long m_CoinNum = 0;
         public int signInCount;
         //是否是第一次使用金牌招募
@@ -388,6 +390,10 @@ namespace GameWish.Game
         {
             signInCount++;
             SetDataDirty();
+        }
+        public int GetSignInCount()
+        {
+            return signInCount;
         }
 
 

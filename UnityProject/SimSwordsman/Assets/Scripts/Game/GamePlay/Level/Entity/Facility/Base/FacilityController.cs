@@ -2,6 +2,7 @@ using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -218,6 +219,80 @@ namespace GameWish.Game
         {
             return m_View.GetDoorPos();
         }
-    }
 
+        private FacilityWorkingStateEnum m_FacilityWorkingState = FacilityWorkingStateEnum.Idle;
+        public FacilityWorkingStateEnum FacilityWorkingState { get { return m_FacilityWorkingState; } }
+
+        public bool IsIdleState() 
+        {
+            return FacilityWorkingState == FacilityWorkingStateEnum.Idle;
+        }
+        public bool IsWorking() 
+        {
+            return FacilityWorkingState == FacilityWorkingStateEnum.Working;
+        }
+        public bool IsShowBubble() {
+            return FacilityWorkingState == FacilityWorkingStateEnum.Bubble;
+        }
+        public void ChangeFacilityWorkingState(FacilityWorkingStateEnum state) 
+        {
+            this.m_FacilityWorkingState = state;
+        }
+        /// <summary>
+        /// 派遣弟子开始工作
+        /// </summary>
+        /// <returns></returns>
+        public bool DispatchDiscipleStartWork() 
+        {
+            CharacterMgr characterMgr = MainGameMgr.S.CharacterMgr;
+            
+            List<CharacterController> characterControllerList = characterMgr.CharacterControllerList;
+            
+            characterControllerList = characterControllerList.Where(x => x.CurState == CharacterStateID.Wander).ToList();
+
+            if (characterControllerList != null && characterControllerList.Count > 0)
+            {
+                int index = UnityEngine.Random.Range(0, characterControllerList.Count);
+
+                CharacterController m_WorkingCharacterController = characterControllerList[index];
+                
+                TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+                
+                GameDataMgr.S.GetClanData().SetWorkData(GetFacilityType(),m_WorkingCharacterController.CharacterId, lobbyData.workTime);
+
+                ChangeFacilityWorkingState(FacilityWorkingStateEnum.Working);
+
+                m_WorkingCharacterController.SetState(CharacterStateID.Working, GetFacilityType());
+
+                return true;
+            }
+            else 
+            {
+                FloatMessage.S.ShowMsg("没有空闲弟子");
+                return false;
+            }
+        }
+        /// <summary>
+        /// 派遣弟子工作
+        /// </summary>
+        /// <param name="characterID"></param>
+        public void DispatchDiscipleStartWork(int characterID) 
+        {
+            CharacterController controller = MainGameMgr.S.CharacterMgr.GetCharacterController(characterID);
+
+            if (controller != null)
+            {
+                TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+
+                GameDataMgr.S.GetClanData().SetWorkData(GetFacilityType(), controller.CharacterId, lobbyData.workTime);
+
+                ChangeFacilityWorkingState(FacilityWorkingStateEnum.Working);
+
+                controller.SetState(CharacterStateID.Working, GetFacilityType());
+            }
+            else {
+                Debug.LogError("dispatch disciple is null");
+            }
+        }
+    }
 }

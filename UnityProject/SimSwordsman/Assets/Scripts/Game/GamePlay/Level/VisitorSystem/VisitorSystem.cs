@@ -15,7 +15,7 @@ namespace GameWish.Game
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
-        static int AppearVisitorCountdown = 150;
+        static int AppearVisitorCountdown = 20;
         private float m_AppearVisitorTimer = 0;
         private bool m_CanApperaVisitor = false;
         /// <summary>
@@ -215,7 +215,8 @@ namespace GameWish.Game
                     state = 2;
                     m_IsCounting = false;
                     m_DisappearTimer = 0;
-                    Debug.LogError("Remove Visitor");
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_overtime, Reward.KeyID.ToString());
+                    //Debug.LogError("Remove Visitor");
                 }
             }
         }

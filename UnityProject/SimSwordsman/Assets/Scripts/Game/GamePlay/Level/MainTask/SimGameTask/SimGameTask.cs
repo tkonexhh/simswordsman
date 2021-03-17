@@ -172,6 +172,9 @@ namespace GameWish.Game
                     break;
             }
             EventSystem.S.Send(EventID.OnReciveRewardList, rewards);
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_finish, TaskId.ToString());
+
             CharacterIDs.Clear();
         }
 

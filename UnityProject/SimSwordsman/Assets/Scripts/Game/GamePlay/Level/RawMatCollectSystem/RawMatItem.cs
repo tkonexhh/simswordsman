@@ -143,6 +143,8 @@ namespace GameWish.Game
                 m_IsCharacterCollected = true;
                 m_IsWorking = true;
 
+                DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
+
                 GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
             }
 

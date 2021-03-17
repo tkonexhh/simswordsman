@@ -218,6 +218,7 @@ namespace GameWish.Game
                     GetInformationForNeed();
                     m_CurKongfuLibraryController.RefreshSlotInfo(m_CurLevel);
                     RefreshPanelText();
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
                 }
             });

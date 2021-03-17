@@ -186,6 +186,8 @@ namespace GameWish.Game
             CharacterKongfu.dbData.level = Mathf.Min(CharacterKongfu.dbData.level + 1, m_KungfuMaxLevel);
             CharacterKongfu.RefeshKungfuInfo();
             GameDataMgr.S.GetClanData().AddCharacterKongfuLevel(id, kongfuType, CharacterKongfu.dbData.level);
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.students_kongfu_up, CharacterKongfu.dbData.level);
         }
 
         public KungfuType GetKungfuType()

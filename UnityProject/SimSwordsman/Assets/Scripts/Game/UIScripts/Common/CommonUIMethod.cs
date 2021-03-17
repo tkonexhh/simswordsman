@@ -158,10 +158,11 @@ namespace GameWish.Game
         public static bool CheackRecruitmentOrder()
         {
             int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
-            int GoldFreeCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Free);
-            int SilverFreeCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Free);
             int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
-            int allCount = MainGameMgr.S.InventoryMgr.GetAllRecruitmentOrderCount();
+            int GoldFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
+            int SilverFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
+            int allCount = GoldFreeCount + SilverFreeCount;
+
             if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount > 0 || GoldAdvCount > 0)
             {
                 EventSystem.S.Send(EventID.OnSendRecruitable, true);

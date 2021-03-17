@@ -144,6 +144,8 @@ namespace GameWish.Game
                 var list = TDEquipmentConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_forge, ID.ToString());
+
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
                     CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDEquipmentConfigTable.GetData(ID).forgeTime);
                 }
