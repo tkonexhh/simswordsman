@@ -28,7 +28,7 @@ Level	Chapter	EnemyHeadIcon	Enemies	Desc	Reward	RecommendAtkValue	BattleName
 125	1	suhuazi	105|2|536;106|2|536;103|1|536	“不怕挨揍的往前站！”	Item|2002|1;Exp_Role|148;Exp_Kongfu|54	2681	丐帮切磋25
 126	1	gaibang3	104|3|572;106|2|572	日暮时分，弟子们看见了不远处的丐帮总舵.	Coin|50;Exp_Role|150;Exp_Kongfu|55	2860	丐帮切磋26
 127	1	gaibang1	104|3|610;106|2|610	总舵的守卫弟子将我们团团围住，不妙！	Food|20;Exp_Role|152;Exp_Kongfu|56	3051	丐帮切磋27
-128	1	qiaobangzhu	104|3|651;105|2|651	前面一老翁席地而坐，正在树下独酌。	Coin|50;Exp_Role|154;Exp_Kongfu|57	3255	丐帮切磋28
+128	1	qiaobangzhu	104|2|651;105|2|651;101|1|651	前面一老翁席地而坐，正在树下独酌。	Coin|50;Exp_Role|154;Exp_Kongfu|57	3255	丐帮切磋28
 129	1	qiaobangzhu	101|1|695;104|2|695;105|1|695;106|1|695	手持打狗棒，是洪七长老没错了。	Food|20;Exp_Role|156;Exp_Kongfu|58	3473	丐帮切磋29
 130	1	qiaobangzhu	101|1|742;104|2|742;105|1|742;106|1|742	一声龙吟响彻天地，乔帮主终于现身！	Kongfu|2001|1;Exp_Role|158;Exp_Kongfu|59	3708	丐帮切磋30
 201	2	shaolin1	204|5|418	少林名动天下，切不可轻敌。	Coin|100;Exp_Role|160;Exp_Kongfu|60	2090	少林切磋1
@@ -41,9 +41,9 @@ Level	Chapter	EnemyHeadIcon	Enemies	Desc	Reward	RecommendAtkValue	BattleName
 208	2	shaolin1	204|4|678;205|1|678	少林弟子果真招招精妙，不虚此行。	Coin|100;Exp_Role|188;Exp_Kongfu|67	3390	少林切磋8
 209	2	shaolin2	204|3|727;205|2|727	少林七十二绝技，此次不知能见识几招！	Food|20;Exp_Role|192;Exp_Kongfu|68	3633	少林切磋9
 210	2	saodiseng	204|2|779;205|2|779;203|1|779	竟有玄字高僧出来督战，可不能弱了气势。	Item|2001|1;Exp_Role|196;Exp_Kongfu|69	3893	少林切磋10
-211	2	shaolin3	204|3|834;205|2|834	玄字高僧要亲自出手了，却不知是何手段。	Coin|100;Exp_Role|200;Exp_Kongfu|70	4172	少林切磋11
-212	2	shaolin2	206|5|894	玄字高僧和弟子一同结阵，棘手棘手。	Food|20;Exp_Role|208;Exp_Kongfu|71	4471	少林切磋12
-213	2	shaolin1	204|2|958;205|2|958;206|1|958	听说少林藏经阁法藏无数，定不能空手而回。	Coin|100;Exp_Role|216;Exp_Kongfu|72	4791	少林切磋13
+211	2	shaolin2	204|3|834;205|2|834	玄字高僧要亲自出手了，却不知是何手段。	Coin|100;Exp_Role|200;Exp_Kongfu|70	4172	少林切磋11
+212	2	shaolin3	206|5|894	玄字高僧和弟子一同结阵，棘手棘手。	Food|20;Exp_Role|208;Exp_Kongfu|71	4471	少林切磋12
+213	2	shaolin3	204|2|958;205|2|958;206|1|958	听说少林藏经阁法藏无数，定不能空手而回。	Coin|100;Exp_Role|216;Exp_Kongfu|72	4791	少林切磋13
 214	2	shaolin2	204|5|1027	三拳两脚撂倒看管僧，借几本秘籍回去。	Food|20;Exp_Role|224;Exp_Kongfu|73	5134	少林切磋14
 215	2	huotouseng	205|4|1100;202|1|1100	到手，向大雄宝殿去，先解决拦路的。	Kongfu|1004|1;Exp_Role|232;Exp_Kongfu|74	5501	少林切磋15
 216	2	shaolin1	204|5|1179	糟糕，藏经阁里的小和尚追出来了，快走。	Coin|100;Exp_Role|240;Exp_Kongfu|75	5895	少林切磋16
@@ -51,10 +51,10 @@ Level	Chapter	EnemyHeadIcon	Enemies	Desc	Reward	RecommendAtkValue	BattleName
 218	2	shaolin2	205|5|1354	没想藏经阁内居然有玄字僧坐镇，严阵以待。	Coin|100;Exp_Role|256;Exp_Kongfu|77	6769	少林切磋18
 219	2	shaolin3	206|5|1451	咦，长眉须执扫帚，莫非是传说中的...?	Food|20;Exp_Role|264;Exp_Kongfu|78	7253	少林切磋19
 220	2	saodiseng	203|1|1554;204|2|1554;205|1|1554;203|1|1554	扫地僧力未全尽，少林果然深不可测。	Armor|501|1;Exp_Role|272;Exp_Kongfu|79	7772	少林切磋20
-221	2	shaolin3	203|1|1666;205|2|1666;206|2|1666	小和尚们得了扫地僧的教导，强了许多。	Coin|100;Exp_Role|280;Exp_Kongfu|80	8328	少林切磋21
-222	2	huotouseng	204|4|1785;203|1|1785	前面的大和尚背锅带勺，莫不是个厨子？	Food|20;Exp_Role|288;Exp_Kongfu|81	8924	少林切磋22
-223	2	shaolin1	202|2|1913;204|3|1913	兀那和尚，恁的了得，再战过！	Coin|100;Exp_Role|296;Exp_Kongfu|82	9563	少林切磋23
-224	2	shaolin2	202|2|2049;205|3|2049	前方便是大雄宝殿，须记得不要失了礼数。	Food|20;Exp_Role|304;Exp_Kongfu|83	10247	少林切磋24
+221	2	shaolin3	204|1|1666;205|2|1666;206|2|1666	小和尚们得了扫地僧的教导，强了许多。	Coin|100;Exp_Role|280;Exp_Kongfu|80	8328	少林切磋21
+222	2	huotouseng	204|4|1785;202|1|1785	前面的大和尚背锅带勺，莫不是个厨子？	Food|20;Exp_Role|288;Exp_Kongfu|81	8924	少林切磋22
+223	2	shaolin1	205|2|1913;204|3|1913	兀那和尚，恁的了得，再战过！	Coin|100;Exp_Role|296;Exp_Kongfu|82	9563	少林切磋23
+224	2	shaolin2	206|2|2049;205|3|2049	前方便是大雄宝殿，须记得不要失了礼数。	Food|20;Exp_Role|304;Exp_Kongfu|83	10247	少林切磋24
 225	2	huotouseng	204|2|2196;205|1|2196;206|1|2196;202|1|2196	暮鼓擂响，少林晚课时分，好手都在前方。	Item|2002|1;Exp_Role|312;Exp_Kongfu|84	10980	少林切磋25
 226	2	shaolin1	204|2|2353;205|2|2353;206|1|2353	玄字高僧带着小辈翘楚，是一番好战。	Coin|100;Exp_Role|320;Exp_Kongfu|85	11766	少林切磋26
 227	2	shaolin2	204|2|2522;205|2|2522;206|1|2522	试探结束，怕是要现真招了，我们上。	Food|20;Exp_Role|328;Exp_Kongfu|86	12608	少林切磋27

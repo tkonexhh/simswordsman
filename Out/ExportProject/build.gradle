@@ -123,8 +123,8 @@ android {
     productFlavors {
         mobrainsdk {
             dimension "channel"
-            versionCode 2
-            versionName "1.0.2"
+            versionCode 3
+            versionName "1.0.3"
             applicationId "ratel.best.sect"
             resValue "string", "aid", "175548"
             resValue "string", "appName", "ltmnq01"
@@ -137,8 +137,8 @@ android {
 
         mobrainzhanneisdk {
             dimension "channel"
-            versionCode 2
-            versionName "1.0.2"
+            versionCode 3
+            versionName "1.0.3"
             applicationId "ratel.best.sect"
             resValue "string", "aid", "175548"
             resValue "string", "appName", "ltmnq01"

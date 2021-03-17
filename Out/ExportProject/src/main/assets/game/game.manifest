@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 733373512
+CRC: 288092779
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -850,3 +850,8 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/battleeffects/skills/rulaishenzhang.bundle
+    Info_194:
+      Name: res/foldermode/enemy/mojiao/yuelunfawang.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/battleeffects/skills/mojiaodaofa.bundle
