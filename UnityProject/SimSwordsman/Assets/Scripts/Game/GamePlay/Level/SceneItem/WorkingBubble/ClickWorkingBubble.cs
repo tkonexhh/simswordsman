@@ -54,15 +54,16 @@ namespace GameWish.Game
                 if (type == Type && FacilityController.IsIdleState())
                 {
                     FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Bubble);
+                    FacilityController.CoundDownAutoStartWork(OnClicked);
                     BubbleView.SetActive(true);
                     WorkSprite.SetActive(true);
                     RewardSprite.SetActive(false);
 
-                EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
+                    EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
 
                     m_LastShowBubbleTime = DateTime.Now;
                 }
-            }            
+            }
         }
 
         private bool IsFoodEnough()
@@ -73,7 +74,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (FacilityController != null && FacilityController.IsShowBubble()) 
+            if (FacilityController != null) 
             {
                 if (IsFoodEnough() == false)
                 {
@@ -85,6 +86,8 @@ namespace GameWish.Game
                 {
                     BubbleView.SetActive(false);
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
+
+                    EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility,Type,false);
                 }
             }
         }
