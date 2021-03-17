@@ -62,8 +62,7 @@ namespace GameWish.Game
         private int GetDuration()
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-            //TODO Test
-            int duration = 10;//MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
+            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
             return duration;
         }
 

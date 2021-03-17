@@ -13,16 +13,292 @@ MonoBehaviour:
   m_Name: AssetReferenceDB
   m_EditorClassIdentifier: 
   m_assets:
+  - m_assetDatabaseId: d7ac58ccf5e67e849be7dd9d2e219376
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Facility/Base/FacilityController.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 341cfc4d089532f4889232dfdb33497f
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/SceneItem/WorkingBubble/ClickWorkingBubble.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 00000000000000006100000000000000
+    m_importFrom: ProjectSettings/GraphicsSettings.asset
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
     m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 150832b0723370d4987b3572cb20c9f4
-    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/MainMenuPanel.cs
+  - m_assetDatabaseId: 56bbcf206ecd25a4e84def8b5f7337d4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/forgehousepanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 47b500ad83ef1044186a7bc60e114dac
-    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/SupplementFoodPanel/SupplementFoodPanel.cs
+  - m_assetDatabaseId: 655326112657ab649ae9d2f339e3a65a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/visitorpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d0905c21369bb9d4c91c0937c0d44895
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kitchenpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eda51762dfbe9de4ebcac34c8f93550c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ae2b0913918136a49a030c5e002f3762
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/constructionfacilitiespanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f9939c3a68990349a26160eecc68c37
+    m_importFrom: Assets/StreamingAssets/game/game.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b56c9dd33a9e4874c8c623f28154abe7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/supplementfoodpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 34c9fc343ec0bbb45a91f7f64f2eca20
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/bulletinboardpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85ceec1536fb3ed40886d43d3d4bec7b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/useraccountpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 57936525997ae4142ae014e10ece640d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/constructionfacilitiespanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 047c98e5d7214514681e54eba0c057f4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/sectnamepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1b7795567051f974caeda9bf2852c1ef
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/supplementfoodpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f4bdcc070d6aa854580f6b72222bf5f8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/forgehousepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 03470257887558744b1d41523efe45ea
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/visitorpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bc7b73775eac8d34f960c13b9b773c23
+    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b870b348eb72119448cdf44f0da48dea
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d5191619cb1307548bd0f5b80b870345
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/lobbypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cdb2ca39e068423489a8155dea9e398f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/useraccountpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 81bc5749dd2149c4ba613c7e1240560c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kitchenpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c8f3accc75146604595a93acb04958c4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/lobbypanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52d096fc3bbf0ab4ba9f56b701aff3fc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/bulletinboardpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aaa256fd39d286c46a7ed7c8c98175d4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/sectnamepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7a0c4b7e00692b540827e388f85fd451
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 33ee716fefe364b4db9e0475663659df
+    m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fc5eabcf2b8f47c4eb0bd37dcb64ffd4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3f89ddef334a5e043ab2625baf50533a
+    m_importFrom: Assets/StreamingAssets/game/game
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c976116100a223346b1ab6d89b6be392
+    m_importFrom: Assets/StreamingAssets/config/LevelConfig.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c866bc9bbddfa4e469d9a16287218dd3
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 875252172fb1d374b81740e740d58f8b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f714887f4c7fa264e944a9da615cdef2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KitchenPanel/KitchenPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85c4f99910b373345a5ff6633a3f46da
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/ForgeHousePanel/ForgeHousePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 892f0550b4fee0d49b792f61804c3200
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/VisitorPanel/VisitorPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8f3092e02b5dd154a87acad8eb31be96
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f118096123b106f438aeec7696f7aa39
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/SendDisciplesPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 69a03a92f152f2d4b81eddaf4be570a0
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/RecruitmentOrderItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5b4320032c701cb4bae574b970d53a63
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/UserAccountPanel.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2e6ca953c96b0be4da3d49280b47706f
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9338fce46969bd742b3167eaa455595b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 64dc332733d50bc4bb6f44577ed75709
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KitchenPanel/KitchenPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b0ee1f18dc148dd4ea458d1e23ce47ce
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c2b36468bb4b0684f9fecd169306de5a
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 115d4f883d8be954b8acc30b51f871ad
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/SupplementFoodPanel/SupplementFoodPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dbf120895bff4624e8f7320f96b84272
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6cfe239953c75d84193b5b7d125ee432
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/IdentifyChallengesPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 648511c95e06d8d46b5cdadb959b6636
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeTaskItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d3fc51f9cb4842b418b0ce9d1285db94
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 200eedf989ad39a4191c0b517bb34418
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/LobbyPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 392ae5aa8df745a4cba411deaacce078
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/SupplementFoodPanel/SupplementFoodPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5d84f4ba44019cf40938459959b4513d
+    m_importFrom: Assets/3rdAssets/DoozyUI/Editor/Resources/DUI/Data/DUIData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: af7c8fcaaff02d64ab21f0ea8c794442
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/LobbyPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d7b583bdf1417a46bcdcdd6082f25b9
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/SectNamePanel/SectNamePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8400058b75a16a14c886adabe0588796
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedHerb.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 42b7429bab3240d44b7ba2b204d5a205
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/SectNamePanel/SectNamePanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a27ff92d95330e04fb75de1a66bbd4d0
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/VisitorPanel/VisitorPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e314648d18c35f248bbe4a9bc23371b9
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KitchenPanel/FoodItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 321654deb8df3cc439438256da7d404a
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e505dd8f9d2896e4c98ada049df719b0
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cf3349df0f98f3748b5ade05d6d3a444
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/UserAccountPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43e8d1266b1edf448b19f6a2490a25bb
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43e8d1266b1edf448b19f6a2490a25bb
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a1616d1cbcf71f64ba73b2460d24aab2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6174071206a334743bd624b7038e08cc
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3a03c47b973d9d848a909f52135d96bd
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3a03c47b973d9d848a909f52135d96bd
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b9980bf8eb2b8b945bc05a7698271cba
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d89392830391184e9ae107f9c0c413d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/BaicaohuPanel/HerbItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bbd71866445719c4b81af4e1060f9aaf
+    m_importFrom: "Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/ForgeHousePanel/\u953B\u9020\u5C4B.png"
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1a0822081a9261b4ea7194860c35fecf
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/ForgeHousePanel/ForgeHouseItem.prefab
     m_exportTo: 
     m_variantName: 
   m_version: 2
