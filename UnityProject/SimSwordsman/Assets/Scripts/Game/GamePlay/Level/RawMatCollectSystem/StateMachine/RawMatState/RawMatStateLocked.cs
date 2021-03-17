@@ -21,6 +21,8 @@ namespace GameWish.Game
         {
             m_RawMatItem = (RawMatItem)handler.GetRawMatItem();
 
+            m_RawMatItem.HideBubble();
+
             RegisterEvents();
         }
 
