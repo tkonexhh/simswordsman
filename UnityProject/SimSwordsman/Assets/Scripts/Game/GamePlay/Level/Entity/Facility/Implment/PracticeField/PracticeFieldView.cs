@@ -14,7 +14,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_Flag = null;
 
-        private Dictionary<Transform, CharacterController> m_PracticeSlotsTakerDic = new Dictionary<Transform, CharacterController>();
+        // private Dictionary<Transform, CharacterController> m_PracticeSlotsTakerDic = new Dictionary<Transform, CharacterController>();
 
         public override FacilityController GenerateContoller()
         {

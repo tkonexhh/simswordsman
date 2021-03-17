@@ -6,143 +6,115 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public enum SlotState
-	{
-		None,
-		/// <summary>
-		/// ¿ÕÏÐÖÐ
-		/// </summary>
-		Free,
-		/// <summary>
-		/// Î´½âËø
-		/// </summary>
-		NotUnlocked,
-		/// <summary>
-		/// ³­¾­ÖÐ
-		/// </summary>
-		CopyScriptures,
-		/// <summary>
-		/// Ñ²ÂßÖÐ
-		/// </summary>
-		Patrol,
-		/// <summary>
-		/// Á·¹¦ÖÐ
-		/// </summary>
-		Practice,
-	}
+    public enum SlotState
+    {
+        None,
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        Free,
+        /// <summary>
+        /// Î´ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        NotUnlocked,
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        CopyScriptures,
+        /// <summary>
+        /// Ñ²ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        Patrol,
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        Practice,
+    }
 
 
-	public class BaseSlot 
-	{
-		public int Index { set; get; }
-		public int UnlockLevel { set; get; }
-		public CharacterItem CharacterItem { set; get; }
-		public SlotState slotState { set; get; }
-		public FacilityType FacilityType { set; get; }
-		public string StartTime { set; get; }
+    public class BaseSlot
+    {
+        public int Index { set; get; }
+        public int UnlockLevel { set; get; }
+        public CharacterItem CharacterItem { set; get; }
+        public SlotState slotState { set; get; }
+        public FacilityType FacilityType { set; get; }
+        public string StartTime { set; get; }
 
-		private Vector3 m_SlotPos;
-		private CharacterController m_Character;
-		private FacilityView m_FacilityView;
-		public BaseSlot()
-		{
-		}
-		public BaseSlot(SoltDBDataBase soltDBData, FacilityView facilityView)
-		{
-			m_FacilityView = facilityView;
-			FacilityType = soltDBData.facilityType;
-			Index = soltDBData.soltID;
-			UnlockLevel = soltDBData.unlockLevel;
-			slotState = soltDBData.practiceFieldState;
-			if (soltDBData.characterID != -1)
-				CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(soltDBData.characterID);
-			StartTime = soltDBData.startTime;
-		}
+        // private Vector3 m_SlotPos;
+        private CharacterController m_Character;
+        private FacilityView m_FacilityView;
 
-		public bool IsFree()
-		{
-			if (slotState == SlotState.Free)
-				return true;
-			return false;
-		}
-		public bool IsHaveSameCharacterItem(int id)
-		{
-			if (CharacterItem != null && CharacterItem.id == id)
-				return true;
-			return false;
-		}
-		
-		public BaseSlot(int index,int unlock, FacilityView facilityView)
-		{
-			Index = index;
-			UnlockLevel = unlock;
-			m_FacilityView = facilityView;
-			CharacterItem = null;
-			StartTime = string.Empty;
-		}
+        public BaseSlot() { }
 
-		public void InitSlotState(FacilityLevelInfo item)
-		{
-			int Level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-			if (Level >= item.level)
-				slotState = SlotState.Free;
-			else
-				slotState = SlotState.NotUnlocked;
-		}
+        public BaseSlot(SoltDBDataBase soltDBData, FacilityView facilityView)
+        {
+            m_FacilityView = facilityView;
+            FacilityType = soltDBData.facilityType;
+            Index = soltDBData.soltID;
+            UnlockLevel = soltDBData.unlockLevel;
+            slotState = soltDBData.practiceFieldState;
+            if (soltDBData.characterID != -1)
+                CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(soltDBData.characterID);
+            StartTime = soltDBData.startTime;
+        }
 
-		/// <summary>
-		/// ½±Àø¾­Ñé
-		/// </summary>
-		/// <param name="characterItem"></param>
-		public void AddExperience(CharacterItem characterItem)
-		{
-			int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-			int exp = MainGameMgr.S.FacilityMgr.GetExpValue(FacilityType, level);
-			characterItem.AddCharacterExp(exp);
-		}
+        public BaseSlot(int index, int unlock)
+        {
+            Index = index;
+            UnlockLevel = unlock;
 
-		public void RewardKungfu(int kungfuLibraryLevel)
-		{
-			int kungfuID = (int)MainGameMgr.S.FacilityMgr.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
-			RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kongfu, kungfuID,1);
-			List<RewardBase> rewards = new List<RewardBase>();
-			rewards.Add(reward);
-			UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-			reward.AcceptReward();
-		}
+            CharacterItem = null;
+            StartTime = string.Empty;
+        }
 
-		public BaseSlot(Vector3 pos)
-		{
-			m_SlotPos = pos;
-		}
+        public bool IsFree()
+        {
+            if (slotState == SlotState.Free)
+                return true;
+            return false;
+        }
 
-		public void SetSlotPos(Vector3 pos)
-		{
-			m_SlotPos = pos;
-		}
+        public bool IsHaveSameCharacterItem(int id)
+        {
+            if (CharacterItem != null && CharacterItem.id == id)
+                return true;
+            return false;
+        }
 
-		public bool IsEmpty()
-		{
-			return m_Character == null;
-		}
+        public void InitSlotState(FacilityLevelInfo item)
+        {
+            int Level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+            if (Level >= item.level)
+                slotState = SlotState.Free;
+            else
+                slotState = SlotState.NotUnlocked;
+        }
 
-		public void OnCharacterEnter(CharacterController character)
-		{
-			m_Character = character;
-		}
+        public bool IsEmpty()
+        {
+            return m_Character == null;
+        }
 
-		public void OnCharacterLeave()
-		{
-			m_Character = null;
-		}
+        public void OnCharacterEnter(CharacterController character)
+        {
+            m_Character = character;
+        }
 
-		public Vector3 GetPosition()
-		{
-			return m_FacilityView.GetSlotPos(Index);
-		}
-		public virtual float GetProgress()
-		{
-			return 0;
-		}
-	}
+        public void OnCharacterLeave()
+        {
+            StartTime = string.Empty;
+            m_Character = null;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return m_FacilityView.GetSlotPos(Index);
+        }
+
+        public virtual float GetProgress()
+        {
+            return 0;
+        }
+    }
 }

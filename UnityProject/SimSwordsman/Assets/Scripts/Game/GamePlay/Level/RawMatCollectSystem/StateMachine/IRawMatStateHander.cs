@@ -7,7 +7,8 @@ namespace GameWish.Game
 {
 	public interface IRawMatStateHander
     {
-        CharacterController GetCharacterController();
-	}
+        RawMatItem GetRawMatItem();
+
+    }
 	
 }

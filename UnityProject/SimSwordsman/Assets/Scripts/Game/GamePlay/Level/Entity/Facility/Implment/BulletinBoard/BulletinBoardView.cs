@@ -50,11 +50,11 @@ namespace GameWish.Game
         }
 
 
-        protected override void OpenUIElement()
-        {
-            base.OpenUIElement();
-            //UIMgr.S.OpenPanel(UIID.BulletinBoard);
-        }
+        // protected override void OpenUIElement()
+        // {
+        //     base.OpenUIElement();
+        //     //UIMgr.S.OpenPanel(UIID.BulletinBoard);
+        // }
     }
 
 }

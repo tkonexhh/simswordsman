@@ -27,16 +27,16 @@ namespace GameWish.Game
         public CharacterStateID CurState { get => m_CurState; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
         public SimGameTask CurTask { get => m_CurTask; }
-        public CollectedObjType CollectObjType { get { return m_CollectedObjType; } set { m_CollectedObjType = value; m_CharacterModel.SetCollectedObjType(value); GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterId, value); } }
+        public CollectedObjType CollectObjType { get { return m_CharacterModel.GetCollectedObjType(); } set { m_CharacterModel.SetCollectedObjType(value);  } }
         public bool ManualSelectedToCollectObj { get { return m_ManualSelectedToCollectObj; } set { m_ManualSelectedToCollectObj = value; } }
 
         private bool m_ManualSelectedToCollectObj = false;
-        private CollectedObjType m_CollectedObjType;
+        //private CollectedObjType m_CollectedObjType;
         private CharacterStateID m_CurState = CharacterStateID.None;
         private CharacterStateBattle m_StateBattle = null;
         private FightGroup m_FightGroup = null;
 
-        // ÎÒ·½µÄidÎ¨Ò»£¬µÐ·½id²»Î¨Ò» TODO:µÐÎÒ·½Controller·Ö¿ª
+        // ï¿½Ò·ï¿½ï¿½ï¿½idÎ¨Ò»ï¿½ï¿½ï¿½Ð·ï¿½idï¿½ï¿½Î¨Ò» TODO:ï¿½ï¿½ï¿½Ò·ï¿½Controllerï¿½Ö¿ï¿½
         public CharacterController(int id, CharacterView characterView, CharacterStateID initState, CharacterCamp camp = CharacterCamp.OurCamp)
         {
             m_CharacterId = id;
@@ -51,8 +51,6 @@ namespace GameWish.Game
 
             if (m_CharacterCamp == CharacterCamp.OurCamp)
             {
-                m_CollectedObjType = m_CharacterModel.GetCollectedObjType();
-
                 m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
             }
 
@@ -153,11 +151,6 @@ namespace GameWish.Game
         {
             return m_CharacterModel.GetExpLevelUpNeed();
         }
-
-        public void AddKongfuExp(int deltaExp)
-        {
-            m_CharacterModel.AddKongfuExp(deltaExp);
-        }
         #endregion
 
         #region Public Set
@@ -204,12 +197,12 @@ namespace GameWish.Game
                 m_CurState = state;
                 //if (m_CharacterCamp == CharacterCamp.OurCamp)
                 //    Debug.LogError("Setstate:" + m_CurState);
-                if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ²»´æñÉ
+                if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
                     //Debug.LogError("SetstateTODB:" + m_CurState);
                     SetStateToDB(m_CurState, targetFacilityType);
 
-                    //±£»¤ÐÔ´úÂë£ºÏû³ýÍ·ÉÏÃ»ÓÐÏûÊ§µÄProgress
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ë£ºï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Progress
                     if (state == CharacterStateID.Wander)
                     {
                         CharacterWorkProgressBar[] progressList = m_CharacterView.GetComponentsInChildren<CharacterWorkProgressBar>();

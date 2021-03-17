@@ -78,11 +78,13 @@ namespace GameWish.Game
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();
 
-            m_CharacterMgr.ExrInitData();
+            m_CharacterMgr.InitData();
 
             m_CommonTaskMgr.InitTaskList();
 
             m_FacilityMgr.InitFacilityControllers();
+
+            m_RawMatCollectSystem.InitState();
 
             m_IsInited = true;
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
