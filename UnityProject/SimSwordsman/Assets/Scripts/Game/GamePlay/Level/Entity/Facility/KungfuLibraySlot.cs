@@ -56,7 +56,7 @@ namespace GameWish.Game
             UnlockLevel = kongfuLibrary.level;
         }
 
-        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index,int unLock):base( index, unLock)
+        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index,int unLock, FacilityView facilityView) :base( index, unLock, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
             InitSlotState(item);

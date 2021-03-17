@@ -143,10 +143,10 @@ namespace GameWish.Game
                         continue;
                     }
                     else if (delta == 1)
-                        m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1));
+                        m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1,m_View));
                 }
                 else
-                    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1));
+                    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1, m_View));
             }
         }
     }

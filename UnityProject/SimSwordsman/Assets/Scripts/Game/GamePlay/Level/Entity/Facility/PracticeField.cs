@@ -11,7 +11,7 @@ namespace GameWish.Game
     {
         private PracticeFieldLevelInfo practiceFieldLevelInfo;
 
-        public PracticeField(PracticeFieldLevelInfo item, int index, int unlock) : base(index, unlock)
+        public PracticeField(PracticeFieldLevelInfo item, int index, int unlock, FacilityView facilityView) : base(index, unlock, facilityView)
         {
             FacilityType = item.GetHouseID();
             InitSlotState(item);

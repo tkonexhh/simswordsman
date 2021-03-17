@@ -13,7 +13,7 @@ namespace GameWish.Game
         {
       
         }
-        public PatrolRoomSlot(PatrolRoomInfo item, int index, int unLock) : base(index, unLock)
+        public PatrolRoomSlot(PatrolRoomInfo item, int index, int unLock, FacilityView facilityView) : base(index, unLock, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
             InitSlotState(item);
@@ -28,12 +28,6 @@ namespace GameWish.Game
             UnlockLevel = patrolRoomInfo.level;
         }
 
-        public PatrolRoomSlot(KongfuLibraryLevelInfo item, int index, int unLock) : base(index, unLock)
-        {
-            FacilityType = FacilityType.KongfuLibrary;
-            InitSlotState(item);
-            //GameDataMgr.S.GetClanData().AddKungfuLibraryData(this);
-        }
         public PatrolRoomSlot(PatrolRoomInfo patrolRoomInfo)
         {
         }

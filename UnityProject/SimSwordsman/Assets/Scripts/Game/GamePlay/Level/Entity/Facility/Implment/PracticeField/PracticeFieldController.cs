@@ -98,7 +98,7 @@ namespace GameWish.Game
         {
             List<PracticeFieldLevelInfo> eastInfos = GetPracticeFieldLevelInfoList(facilityType);
             for (int i = 0; i < eastInfos.Count; i++)
-                m_PracticeSlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1));
+                m_PracticeSlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1,m_View));
         }
         /// <summary>
         /// Éý¼¶Ë¢ÐÂ¿ÓÎ»×´Ì¬

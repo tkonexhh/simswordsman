@@ -72,11 +72,11 @@ namespace GameWish.Game
 			return false;
 		}
 		
-		public BaseSlot(int index,int unlock)
+		public BaseSlot(int index,int unlock, FacilityView facilityView)
 		{
 			Index = index;
 			UnlockLevel = unlock;
-			
+			m_FacilityView = facilityView;
 			CharacterItem = null;
 			StartTime = string.Empty;
 		}
