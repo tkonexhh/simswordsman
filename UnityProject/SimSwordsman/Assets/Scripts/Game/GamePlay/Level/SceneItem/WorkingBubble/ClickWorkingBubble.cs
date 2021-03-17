@@ -58,7 +58,7 @@ namespace GameWish.Game
                     WorkSprite.SetActive(true);
                     RewardSprite.SetActive(false);
 
-                EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
+                    EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
 
                     m_LastShowBubbleTime = DateTime.Now;
                 }
@@ -85,6 +85,8 @@ namespace GameWish.Game
                 {
                     BubbleView.SetActive(false);
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
+
+                    EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility,Type,false);
                 }
             }
         }
