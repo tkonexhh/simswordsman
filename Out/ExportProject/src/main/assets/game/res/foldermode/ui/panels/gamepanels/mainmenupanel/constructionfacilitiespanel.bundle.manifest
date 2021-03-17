@@ -1,15 +1,17 @@
 ManifestFileVersion: 0
-CRC: 1452450572
+CRC: 825213572
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 018b44b041e5ac5811e76390f1262ccc
+    Hash: eb6722ad87e034d6c100f9c25639140e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0b198e8adc75d006d65a32a634e01b5c
+    Hash: 556d44b05e2f3c5c7067450c27f0b7e1
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 28
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -42,6 +44,7 @@ ClassTypes:
 - Class: 225
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel1.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel.prefab
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle

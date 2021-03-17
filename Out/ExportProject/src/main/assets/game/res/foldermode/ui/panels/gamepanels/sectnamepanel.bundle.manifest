@@ -1,15 +1,17 @@
 ManifestFileVersion: 0
-CRC: 4067894891
+CRC: 3494944964
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bd33f9292fdf7152db7a123ea2faa659
+    Hash: 867d2715893943c83ff2689c63290c0a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1c95ccad7070e1220d4b51436e0770ca
+    Hash: e5947b6885f46c7f03408cb12dc3bcb2
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 28
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -41,6 +43,7 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/SectNamePanel/SectNamePanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/SectNamePanel/SectNamePanel1.png
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/livableroompanel.bundle
