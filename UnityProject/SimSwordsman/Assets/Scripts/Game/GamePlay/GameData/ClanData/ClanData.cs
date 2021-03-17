@@ -29,7 +29,7 @@ namespace GameWish.Game
 
         public void Init()
         {
-           
+
         }
 
         public void OnReset()
@@ -137,7 +137,8 @@ namespace GameWish.Game
 
 
 
-        public FacilityDbData GetFacilityDbData() {
+        public FacilityDbData GetFacilityDbData()
+        {
             return ownedFacilityData;
         }
         public List<FacilityItemDbData> GetAllFacility()
@@ -202,10 +203,11 @@ namespace GameWish.Game
         #endregion
 
         #region Character
-        public CharacterDbData GetOwnedCharacterData() {
+        public CharacterDbData GetOwnedCharacterData()
+        {
             return ownedCharacterData;
         }
-        public void AddEquipment(int characterID,CharaceterEquipment characeterEquipment)
+        public void AddEquipment(int characterID, CharaceterEquipment characeterEquipment)
         {
             ownedCharacterData.AddEquipment(characterID, characeterEquipment);
 
