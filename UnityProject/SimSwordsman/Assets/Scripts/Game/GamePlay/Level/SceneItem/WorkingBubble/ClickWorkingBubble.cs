@@ -54,6 +54,7 @@ namespace GameWish.Game
                 if (type == Type && FacilityController.IsIdleState())
                 {
                     FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Bubble);
+                    FacilityController.CoundDownAutoStartWork(OnClicked);
                     BubbleView.SetActive(true);
                     WorkSprite.SetActive(true);
                     RewardSprite.SetActive(false);
@@ -73,7 +74,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (FacilityController != null && FacilityController.IsShowBubble()) 
+            if (FacilityController != null) 
             {
                 if (IsFoodEnough() == false)
                 {
