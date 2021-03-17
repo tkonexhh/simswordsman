@@ -290,6 +290,14 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            if (m_RecruitDic[type]!= ClickType.Free)
+            {
+                int characterCount =  MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.f_character_recruit, m_RecruitDic[type].ToString() + ";" + type.ToString()+";"+ characterCount);
+
+            }
+
         }
 
         private void LookADSuccessCallBack(bool obj)

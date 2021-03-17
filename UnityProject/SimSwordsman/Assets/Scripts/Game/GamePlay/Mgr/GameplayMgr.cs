@@ -17,6 +17,8 @@ namespace GameWish.Game
         public Transform EntityRoot { get => m_EntityRoot; set => m_EntityRoot = value; }
         public MonoBehaviour Mono { get => m_Mono; set => m_Mono = value; }
 
+        public static DateTime resumeTime = DateTime.Now;
+
         private bool m_IsLoadingBarFinished = false;
         private bool m_IsGameStart = false;
 
@@ -92,9 +94,12 @@ namespace GameWish.Game
         private void OnGamePauseChange(int key, params object[] args)
         {
             bool pause = (bool)args[0];
+
             if (!pause)
             {
                 TimeUpdateMgr.S.Resume();
+
+                resumeTime = DateTime.Now;
             }
             else
             {
@@ -120,6 +125,17 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerInfoData().SetLoginTime();
         }
 
+        private void FirstLogin()
+        {
+            int num = PlayerPrefs.GetInt("test");
+            if (num != 1)
+            {
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
+                PlayerPrefs.SetInt("test", 1);
+            }
+        }
+
         private void Update()
         {
             if (m_IsLoadingBarFinished == false)
@@ -142,7 +158,8 @@ namespace GameWish.Game
                     FoodRecoverySystem.S.Init();
                     VisitorSystem.S.Init();
                     CountdownSystem.S.Init();
-#if TEST_MODE
+
+                    WorkSystemMgr.S.Init();
                     Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
@@ -152,8 +169,10 @@ namespace GameWish.Game
                         PlayerPrefs.SetInt("test", 1);
                     }
 
-#endif
                     GameMgr.S.StartGuide();
+
+                    //Application.runInBackground = true;
+                    FirstLogin();
                 }
             }
             else

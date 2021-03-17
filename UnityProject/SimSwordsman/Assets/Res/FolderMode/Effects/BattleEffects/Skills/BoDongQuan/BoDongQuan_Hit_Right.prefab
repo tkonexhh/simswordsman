@@ -18888,6 +18888,7 @@ GameObject:
   - component: {fileID: 5821290891397015331}
   - component: {fileID: 5821290891397015333}
   - component: {fileID: 5821290891397015332}
+  - component: {fileID: 2101291156920925484}
   m_Layer: 0
   m_Name: BoDongQuan_Hit_Right
   m_TagString: Untagged
@@ -23632,6 +23633,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &2101291156920925484
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821290891397015330}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &5821290891580195561
 GameObject:
   m_ObjectHideFlags: 0

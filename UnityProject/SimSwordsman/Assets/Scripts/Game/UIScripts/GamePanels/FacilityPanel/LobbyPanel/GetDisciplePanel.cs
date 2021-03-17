@@ -108,6 +108,8 @@ namespace GameWish.Game
  
             m_Loader?.Release();
 
+            EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
+
             //Òýµ¼
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
             {
@@ -121,7 +123,13 @@ namespace GameWish.Game
             }
 
             CloseDependPanel(EngineUI.MaskPanel);
-            CloseSelfPanel();
+            try
+            {
+                CloseSelfPanel();
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

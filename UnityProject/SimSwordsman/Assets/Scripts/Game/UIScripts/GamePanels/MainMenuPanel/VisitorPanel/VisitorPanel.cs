@@ -81,11 +81,16 @@ namespace GameWish.Game
             m_AcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_receive, m_visitor.Reward.KeyID.ToString());
+
                 AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_refuse, m_visitor.Reward.KeyID.ToString());
 
                 VisitorSystem.S.Disappear(m_visitor);
                 HideSelfWithAnim();
@@ -93,6 +98,8 @@ namespace GameWish.Game
             m_CloseBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_refuse, m_visitor.Reward.KeyID.ToString());
 
                 VisitorSystem.S.Disappear(m_visitor);
                 HideSelfWithAnim();

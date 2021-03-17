@@ -137,6 +137,9 @@ namespace GameWish.Game
                 }
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
                 EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip, m_SelectedItemBase.PropType.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
+
                 UIMgr.S.ClosePanelAsUIID(UIID.WearableLearningPanel);
             });
 

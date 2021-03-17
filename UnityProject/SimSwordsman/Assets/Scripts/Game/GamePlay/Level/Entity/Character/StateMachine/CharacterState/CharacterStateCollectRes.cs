@@ -166,7 +166,10 @@ namespace GameWish.Game
 
                     m_Controller.SetState(CharacterStateID.Wander);
 
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish, m_Controller.CollectObjType.ToString());
+
                     m_Controller.CollectObjType = CollectedObjType.None;
+
                 }
             }
         }
@@ -236,28 +239,28 @@ namespace GameWish.Game
 
         private void RegisterEvents()
         {
-            EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
+            //EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
-            EventSystem.S.UnRegister(EventID.OnTaskObjCollected, HandleEvent);
+            //EventSystem.S.UnRegister(EventID.OnTaskObjCollected, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
         {
-            if (key == (int)EventID.OnTaskObjCollected)
-            {
-                CollectedObjType taskId = (CollectedObjType)param[0];
-                if (taskId == m_Controller.CollectObjType)
-                {
-                    m_IsCollectResEnd = true;
+            //if (key == (int)EventID.OnTaskObjCollected)
+            //{
+            //    CollectedObjType taskId = (CollectedObjType)param[0];
+            //    if (taskId == m_Controller.CollectObjType)
+            //    {
+            //        m_IsCollectResEnd = true;
 
-                    m_Controller.SetState(CharacterStateID.Wander);
+            //        m_Controller.SetState(CharacterStateID.Wander);
 
-                    m_Controller.CollectObjType = CollectedObjType.None;
-                }
-            }
+            //        m_Controller.CollectObjType = CollectedObjType.None;
+            //    }
+            //}
         }
 
         //private void MoveToBulletinBoard()

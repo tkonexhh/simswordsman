@@ -17,7 +17,7 @@ namespace GameWish.Game
             InitSlotState(item);
             GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
         }
-        public PracticeField(PracticeSoltDBData item) : base(item)
+        public PracticeField(PracticeSoltDBData item, FacilityView facilityView) : base(item, facilityView)
         {
             if (slotState == SlotState.Practice)
                 InitTimerUpdate();
@@ -39,7 +39,7 @@ namespace GameWish.Game
                 TrainingIsOver();
             }
         }
-        public override float GetProgress() 
+        public override float GetProgress()
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
             int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);

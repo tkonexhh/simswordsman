@@ -24,6 +24,8 @@ namespace GameWish.Game
         {
             base.OpenUIElement();
             UIMgr.S.OpenPanel(UIID.LobbyPanel);
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.facility_check,facilityType.ToString());
         }
     }
 }

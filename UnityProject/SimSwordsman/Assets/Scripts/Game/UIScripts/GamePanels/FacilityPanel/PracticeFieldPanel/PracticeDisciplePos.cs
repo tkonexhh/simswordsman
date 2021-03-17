@@ -77,9 +77,29 @@ namespace GameWish.Game
         {
             m_PracticeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo, m_CurFacilityType, m_CurLevel);
+                if (CheckIsEmpty())
+                    UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo, m_CurFacilityType, m_CurLevel);
+                else
+                {
+                    FloatMessage.S.ShowMsg("暂时没有空闲的弟子，等会儿再试试吧");
+                }
+               
             });
+        }
+
+        private bool CheckIsEmpty()
+        {
+            bool isEntry = false;
+            List<CharacterItem> characterItems = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            int maxLevel = TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
+            for (int i = 0; i < characterItems.Count; i++)
+            {
+                if (characterItems[i].IsFreeState() && characterItems[i].level < maxLevel)
+                    isEntry = true;
+            }
+            return isEntry;
         }
 
         public SlotState GetPracticeFieldState()

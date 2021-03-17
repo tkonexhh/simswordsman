@@ -63,16 +63,17 @@ namespace GameWish.Game
         {
 
             m_DiscipleName.text = m_CurCharacterItem.name;
-
             m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
 
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    m_ExpCont.text = Define.PLUS + m_CurTaskInfo.CommonTaskItemInfo.expReward.ToString();
+                    int expTask = (int)FoodBuffSystem.S.Exp(m_CurTaskInfo.CommonTaskItemInfo.expReward);
+                    m_ExpCont.text = Define.PLUS + expTask.ToString();
                     break;
                 case PanelType.Challenge:
-                    m_ExpCont.text = Define.PLUS + m_LevelConfigInfo.GetExpRoleReward();
+                    int expChallenge = (int)FoodBuffSystem.S.Exp(m_LevelConfigInfo.GetExpRoleReward());
+                    m_ExpCont.text = Define.PLUS + expChallenge;
                     break;
                 default:
                     break;

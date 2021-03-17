@@ -33,9 +33,10 @@ namespace GameWish.Game
         {
             base.OpenUIElement();
             UIMgr.S.OpenPanel(UIID.PracticeFieldPanel, facilityType);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.facility_check, facilityType.ToString());
         }
 
-        public Vector3 GetSlotPos(int index)
+        public override Vector3 GetSlotPos(int index)
         {
             index = Mathf.Clamp(index, 0, m_PracticeSlots.Count - 1);
             return m_PracticeSlots[index].position;

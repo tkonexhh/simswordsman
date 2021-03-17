@@ -4,6 +4,21 @@ using System;
 
 namespace GameWish.Game
 {
+    public enum FacilityWorkingStateEnum
+    {         
+        /// <summary>
+        /// 闲置状态
+        /// </summary>
+        Idle = 0,
+        /// <summary>
+        /// 工作状态
+        /// </summary>
+        Working = 1,
+        /// <summary>
+        /// 显示气泡状态
+        /// </summary>
+        Bubble = 2,
+    }
 	public class ClickWorkingBubble : MonoBehaviour
 	{
         public FacilityType Type;
@@ -13,56 +28,41 @@ namespace GameWish.Game
         public GameObject WorkSprite;
         public GameObject RewardSprite;
 
-        short state = 0;//0：不显示气泡 1：可以工作的气泡 2： 可以获得奖励的气泡
+        private FacilityController m_FacilityController = null;
+        public FacilityController FacilityController
+        {
+            get {
+                if (m_FacilityController == null) {
+                    m_FacilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(Type);
+                }
+                return m_FacilityController;
+            }
+        }
 
         private DateTime m_LastShowBubbleTime;
         private void Awake()
         {
-            state = 0;
             EventSystem.S.Register(EventID.OnAddCanWorkFacility, ShowWorkBubble);
-            //EventSystem.S.Register(EventID.OnAddWorkingRewardFacility, RewardBubble);
         }
 
         private void ShowWorkBubble(int key, object[] param)
         {
-            FacilityType type = (FacilityType)param[0];
-            if (type == Type)
+            if (FacilityController != null) 
             {
-                state = 1;
-                BubbleView.SetActive(true);
-                WorkSprite.SetActive(true);
-                RewardSprite.SetActive(false);
+                FacilityType type = (FacilityType)param[0];
+
+                if (type == Type && FacilityController.IsIdleState())
+                {
+                    FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Bubble);
+                    BubbleView.SetActive(true);
+                    WorkSprite.SetActive(true);
+                    RewardSprite.SetActive(false);
 
                 EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
 
-                m_LastShowBubbleTime = DateTime.Now;
-            }
-        }
-
-        private void Update()
-        {
-            if (state == 1)
-            {
-                TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
-
-                //if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime)
-                //{
-                //    AutoSelectCharacter();
-                //}
-
-            }
-        }
-
-        private void RewardBubble(int key, object[] param)
-        {
-            FacilityType type = (FacilityType)param[0];
-            if (type == Type)
-            {
-                state = 2;
-                BubbleView.SetActive(true);
-                WorkSprite.SetActive(false);
-                RewardSprite.SetActive(true);
-            }
+                    m_LastShowBubbleTime = DateTime.Now;
+                }
+            }            
         }
 
         private bool IsFoodEnough()
@@ -73,7 +73,7 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            if (state == 1)
+            if (FacilityController != null && FacilityController.IsShowBubble()) 
             {
                 if (IsFoodEnough() == false)
                 {
@@ -81,27 +81,12 @@ namespace GameWish.Game
                     return;
                 }
 
-                if (!WorkSystem.S.StartWork(Type))
-                    FloatMessage.S.ShowMsg("无空闲弟子");
-                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
-                else
+                if (FacilityController.DispatchDiscipleStartWork()) 
                 {
-                    state = 0;
                     BubbleView.SetActive(false);
-                    EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type, false);
-                    EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
-
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
                 }
-
-            }
-            else if(state == 2)
-            {
-                state = 0;
-                BubbleView.SetActive(false);
-                WorkSystem.S.GetReward(Type);
             }
         }
-	}
-	
+	}	
 }

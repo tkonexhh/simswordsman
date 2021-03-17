@@ -15,18 +15,18 @@ namespace GameWish.Game
 
         private int m_CharacterId;
 
-        private SimGameTask m_CurTask = null;  
+        private SimGameTask m_CurTask = null;
 
         private CharacterStateMachine m_StateMachine;
 
         public CharacterModel CharacterModel { get => m_CharacterModel; }
         public CharacterView CharacterView { get => m_CharacterView; }
         public int CharacterId { get => m_CharacterId; }
-        public CharacterCamp CharacterCamp { get => m_CharacterCamp;}
-        public CharacterController FightTarget { get => m_FightTarget;}
-        public CharacterStateID CurState { get => m_CurState;}
+        public CharacterCamp CharacterCamp { get => m_CharacterCamp; }
+        public CharacterController FightTarget { get => m_FightTarget; }
+        public CharacterStateID CurState { get => m_CurState; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
-        public SimGameTask CurTask { get => m_CurTask;}
+        public SimGameTask CurTask { get => m_CurTask; }
         public CollectedObjType CollectObjType { get { return m_CollectedObjType; } set { m_CollectedObjType = value; m_CharacterModel.SetCollectedObjType(value); GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterId, value); } }
         public bool ManualSelectedToCollectObj { get { return m_ManualSelectedToCollectObj; } set { m_ManualSelectedToCollectObj = value; } }
 
@@ -34,7 +34,7 @@ namespace GameWish.Game
         private CollectedObjType m_CollectedObjType;
         private CharacterStateID m_CurState = CharacterStateID.None;
         private CharacterStateBattle m_StateBattle = null;
-        private FightGroup m_FightGroup = null;                
+        private FightGroup m_FightGroup = null;
 
         // 我方的id唯一，敌方id不唯一 TODO:敌我方Controller分开
         public CharacterController(int id, CharacterView characterView, CharacterStateID initState, CharacterCamp camp = CharacterCamp.OurCamp)
@@ -58,15 +58,8 @@ namespace GameWish.Game
 
             m_StateMachine = new CharacterStateMachine(this);
 
-            if (initState == CharacterStateID.Battle)
-            {
-                initState = CharacterStateID.Wander;
-            }
 
-            if (/*initState != CharacterStateID.CollectRes && */initState != CharacterStateID.GoOutsideForTaskBattle) // CollectRes和goout状态由CommonTaskMgr进行设置
-            {
-                SetState(initState, m_CharacterModel.GetTargetFacilityType());
-            }
+            SetState(initState, m_CharacterModel.GetTargetFacilityType());
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
         }
@@ -209,10 +202,25 @@ namespace GameWish.Game
             if (state != m_CurState)
             {
                 m_CurState = state;
-
+                //if (m_CharacterCamp == CharacterCamp.OurCamp)
+                //    Debug.LogError("Setstate:" + m_CurState);
                 if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state 不存裆
                 {
+                    //Debug.LogError("SetstateTODB:" + m_CurState);
                     SetStateToDB(m_CurState, targetFacilityType);
+
+                    //保护性代码：消除头上没有消失的Progress
+                    if (state == CharacterStateID.Wander)
+                    {
+                        CharacterWorkProgressBar[] progressList = m_CharacterView.GetComponentsInChildren<CharacterWorkProgressBar>();
+                        foreach (var item in progressList)
+                        {
+                            if (item != m_CharacterView.WorkProgressBar)
+                            {
+                                GameObjectPoolMgr.S.Recycle(item.gameObject);
+                            }
+                        }
+                    }
                 }
 
                 m_StateMachine.SetCurrentStateByID(state);
@@ -381,7 +389,7 @@ namespace GameWish.Game
 
         public void SpawnCollectedObjWorkRewardWithDelay(RawMaterial collectedObjType, int count, float delay)
         {
-            m_CharacterView.GetComponent<MonoBehaviour>().CallWithDelay(() => 
+            m_CharacterView.GetComponent<MonoBehaviour>().CallWithDelay(() =>
             {
                 SpawnCollectedObjWorkReward(collectedObjType, count);
             }, delay);

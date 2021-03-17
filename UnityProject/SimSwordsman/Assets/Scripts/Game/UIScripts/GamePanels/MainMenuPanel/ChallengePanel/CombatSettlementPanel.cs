@@ -128,10 +128,7 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
             }
-            else
-            {
-                Debug.LogError("cur task info is null!!!!!!");
-            }
+         
             if (m_PanelType == PanelType.Task)
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 

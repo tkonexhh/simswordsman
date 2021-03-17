@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
 	public class PatrolRoomSlot : BaseSlot
 	{
-        public PatrolRoomSlot(PatrolRoomSoltDBData soltDBData) : base(soltDBData)
+        public PatrolRoomSlot(PatrolRoomSoltDBData soltDBData,FacilityView facilityView) : base(soltDBData, facilityView)
         {
       
         }

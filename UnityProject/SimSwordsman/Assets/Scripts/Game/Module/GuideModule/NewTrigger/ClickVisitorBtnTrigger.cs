@@ -43,7 +43,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnClickVisitorBtnTrigger, OnEventListener);
 
             //EventSystem.S.Send(EventID.OnClickVisitorPanelAcceptBtnTrigger);
-            EventSystem.S.Send(EventID.OnGuideDialog8);
+            //EventSystem.S.Send(EventID.OnGuideDialog8);
         }
     }	
 }
