@@ -63,7 +63,7 @@ namespace GameWish.Game
                 else
                     m_DiscipleState.gameObject.SetActive(false);
                 m_DiscipleName.text = m_CurCharacter.name;
-                m_DiscipleLevel.text = CommonUIMethod.GetGrade(m_CurCharacter.level);
+                m_DiscipleLevel.text = m_CurCharacter.level.ToString();
 
                 switch (m_CurCharacter.quality)
                 {

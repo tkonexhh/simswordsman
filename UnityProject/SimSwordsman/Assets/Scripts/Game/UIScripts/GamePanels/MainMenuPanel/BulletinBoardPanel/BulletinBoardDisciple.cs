@@ -56,7 +56,7 @@ namespace GameWish.Game
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
-                    m_Level.text = CommonUIMethod.GetGrade(m_CharacterItem.level);
+                    m_Level.text = m_CharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     break;
                 case SelectedState.NotSelected:

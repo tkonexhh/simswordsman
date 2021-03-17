@@ -23690,6 +23690,7 @@ GameObject:
   - component: {fileID: 2867354137969127030}
   - component: {fileID: 2867354137969127016}
   - component: {fileID: 2867354137969127017}
+  - component: {fileID: -1259788833559828006}
   m_Layer: 0
   m_Name: ChanZhangGong_Hit_Right
   m_TagString: Untagged
@@ -28436,6 +28437,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-1259788833559828006
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867354137969127031}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &2867354138064592064
 GameObject:
   m_ObjectHideFlags: 0

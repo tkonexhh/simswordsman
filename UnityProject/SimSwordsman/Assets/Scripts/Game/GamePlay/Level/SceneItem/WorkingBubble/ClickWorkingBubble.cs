@@ -62,7 +62,7 @@ namespace GameWish.Game
 
                     m_LastShowBubbleTime = DateTime.Now;
                 }
-            }            
+            }
         }
 
         private bool IsFoodEnough()

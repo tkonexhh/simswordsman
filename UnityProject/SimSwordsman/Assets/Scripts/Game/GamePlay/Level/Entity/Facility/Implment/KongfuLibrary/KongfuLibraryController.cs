@@ -79,14 +79,14 @@ namespace GameWish.Game
             }
 
             foreach (var item in kungfuLibraryDBDatas)
-                m_ReadingSlotList.Add(new KungfuLibraySlot(item));
+                m_ReadingSlotList.Add(new KungfuLibraySlot(item,m_View));
 
 
-            for (int i = 0; i < m_ReadingSlotList.Count; i++)
-            {
-                KongfuLibraryView view = (KongfuLibraryView)m_View;
-                m_ReadingSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
-            }
+            //for (int i = 0; i < m_ReadingSlotList.Count; i++)
+            //{
+            //    KongfuLibraryView view = (KongfuLibraryView)m_View;
+            //    m_ReadingSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
+            //}
         }
         public void RefreshSlotInfo(int facilityLevel)
         {

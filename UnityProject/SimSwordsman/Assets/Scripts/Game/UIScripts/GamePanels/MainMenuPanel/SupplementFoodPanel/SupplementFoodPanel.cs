@@ -91,6 +91,11 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().SetFoodRefreshTimesToday();
             GameDataMgr.S.GetPlayerData().AddFoodNum(m_SupplementFood);
 
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(new FoodsReward(m_SupplementFood));
+            //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+
             GetInformationForNeed();
             RefreshPanelInfo();
         }

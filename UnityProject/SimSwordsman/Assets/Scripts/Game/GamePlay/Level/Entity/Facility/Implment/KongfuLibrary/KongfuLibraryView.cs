@@ -28,7 +28,7 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.KongfuLibraryPanel, facilityType);
         }
 
-        public Vector3 GetSlotPos(int index)
+        public override Vector3 GetSlotPos(int index)
         {
             index = Mathf.Clamp(index, 0, m_KongfuSlots.Count - 1);
             return m_KongfuSlots[index].position;

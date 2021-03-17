@@ -262,11 +262,12 @@ namespace GameWish.Game
 
         #endregion
 
-        public CollectedObjType GetCollectObjType() {
+        public CollectedObjType GetCollectObjType()
+        {
             return collectedObjType;
         }
 
-        public bool IsWoman() 
+        public bool IsWoman()
         {
             return bodyId == 1;
         }
