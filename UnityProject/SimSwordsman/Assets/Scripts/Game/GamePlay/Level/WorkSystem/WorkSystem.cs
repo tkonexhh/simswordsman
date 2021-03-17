@@ -45,8 +45,10 @@ namespace GameWish.Game
 
         List<CharacterItem> characterItemTemp = new List<CharacterItem>();
         List<FacilityType> tempList = new List<FacilityType>();
-        private int m_MaxCanWorkFacilityLimit {
-            get {
+        private int m_MaxCanWorkFacilityLimit
+        {
+            get
+            {
                 return lobbyTable.workMaxAmount;
             }
         }
@@ -64,20 +66,21 @@ namespace GameWish.Game
 
                 StartWork();
             }
-            else {
+            else
+            {
                 EventSystem.S.Register(EventID.OnUnlockWorkSystem, UnlockWorkSystem);
-            }            
+            }
         }
 
-        private void StartWork() 
+        private void StartWork()
         {
             Timer.S.Cancel(m_WorkTimerID);
 
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
 
             TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(lobbyLevel);
-            
-            if (lobbyData == null) 
+
+            if (lobbyData == null)
             {
                 lobbyData = TDFacilityLobbyTable.GetData(0);
             }
@@ -94,7 +97,7 @@ namespace GameWish.Game
                         for (int i = 0; i < m_UnlockFacilitys.Count; i++)
                         {
                             FacilityType tempType = m_UnlockFacilitys[i];
-                            if (m_CurrentWorkItem.ContainsKey(tempType) == false) 
+                            if (m_CurrentWorkItem.ContainsKey(tempType) == false)
                             {
                                 tempList.Add(tempType);
                             }
@@ -102,22 +105,24 @@ namespace GameWish.Game
                         if (tempList.Count == 0) return;
 
                         int index = UnityEngine.Random.Range(0, tempList.Count);
-                        
+
                         FacilityType type = tempList[index];
 
-                        if (m_CurrentWorkItem.ContainsKey(type) == false) 
+                        if (m_CurrentWorkItem.ContainsKey(type) == false)
                         {
                             EventSystem.S.Send(EventID.OnAddCanWorkFacility, type);
-                        }                        
+                        }
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         UnityEngine.Debug.LogError("error:" + ex.ToString());
-                    }                    
+                    }
                 }, lobbyData.workInterval, -1);
             }
-            else {
+            else
+            {
                 UnityEngine.Debug.LogError("error:");
-            }            
+            }
         }
 
         void BindingEvents()
@@ -138,7 +143,7 @@ namespace GameWish.Game
 
                 FacilityType type = (FacilityType)data.id;
 
-                if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false) 
+                if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false)
                 {
                     m_UnlockFacilitys.Add(type);
                 }
@@ -149,20 +154,21 @@ namespace GameWish.Game
             {
                 var item = m_RewardFacilitys[i];
 
-                if (item != null) 
+                if (item != null)
                 {
                     CharacterController controller = characterMgr.GetCharacterController(item.CharacterID);
 
                     controller.SetState(CharacterStateID.Working, item.GetFacilityType());
 
                     EventSystem.S.Send(EventID.OnAddWorkingRewardFacility, item.GetFacilityType(), controller);
-                }                
+                }
             }
         }
 
-        private bool IsCanShowWorkBubble(FacilityType type) 
+        private bool IsCanShowWorkBubble(FacilityType type)
         {
-            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount || type == FacilityType.PatrolRoom) {
+            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount || type == FacilityType.PatrolRoom)
+            {
                 return false;
             }
             return true;
@@ -210,7 +216,7 @@ namespace GameWish.Game
         {
             FacilityType type = (FacilityType)param[0];
 
-            if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false) 
+            if (IsCanShowWorkBubble(type) && m_UnlockFacilitys.Contains(type) == false)
             {
                 m_UnlockFacilitys.Add(type);
 
