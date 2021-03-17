@@ -97,7 +97,7 @@ R-j
   index: -1
 arm_l_1
   rotate: true
-  xy: 399, 41
+  xy: 399, 27
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
@@ -111,7 +111,7 @@ arm_l_2
   index: -1
 arm_r_1
   rotate: true
-  xy: 399, 65
+  xy: 399, 51
   size: 20, 26
   orig: 20, 26
   offset: 0, 0
@@ -132,7 +132,7 @@ body
   index: -1
 hair
   rotate: false
-  xy: 375, 111
+  xy: 375, 97
   size: 29, 28
   orig: 29, 28
   offset: 0, 0
@@ -153,21 +153,21 @@ leg_l_1
   index: -1
 leg_l_2
   rotate: false
-  xy: 369, 57
+  xy: 369, 43
   size: 28, 28
   orig: 28, 29
   offset: 0, 1
   index: -1
 leg_r_1
   rotate: true
-  xy: 375, 87
+  xy: 375, 73
   size: 22, 29
   orig: 22, 29
   offset: 0, 0
   index: -1
 leg_r_2
   rotate: true
-  xy: 369, 32
+  xy: 369, 18
   size: 23, 28
   orig: 23, 28
   offset: 0, 0
@@ -199,4 +199,11 @@ qun_2
   size: 23, 30
   orig: 23, 30
   offset: 0, 0
+  index: -1
+地影
+  rotate: false
+  xy: 375, 127
+  size: 30, 12
+  orig: 32, 12
+  offset: 1, 0
   index: -1
