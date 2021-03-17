@@ -19324,6 +19324,7 @@ GameObject:
   - component: {fileID: 7846661591433118671}
   - component: {fileID: 7846661591433118665}
   - component: {fileID: 7846661591433118670}
+  - component: {fileID: -8731840660784269134}
   m_Layer: 0
   m_Name: QianShouZhang_Hit_Left
   m_TagString: Untagged
@@ -24068,6 +24069,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-8731840660784269134
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846661591433118668}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &7846661591736790456
 GameObject:
   m_ObjectHideFlags: 0
