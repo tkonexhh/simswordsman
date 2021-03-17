@@ -220,9 +220,10 @@ namespace GameWish.Game
             return m_View.GetDoorPos();
         }
 
+        #region work system 相关
         private FacilityWorkingStateEnum m_FacilityWorkingState = FacilityWorkingStateEnum.Idle;
         public FacilityWorkingStateEnum FacilityWorkingState { get { return m_FacilityWorkingState; } }
-
+        private int m_AutoStartWorkTimerID = -1;
         public bool IsIdleState() 
         {
             return FacilityWorkingState == FacilityWorkingStateEnum.Idle;
@@ -237,6 +238,11 @@ namespace GameWish.Game
         public void ChangeFacilityWorkingState(FacilityWorkingStateEnum state) 
         {
             this.m_FacilityWorkingState = state;
+
+            if (IsShowBubble() == false) 
+            {
+                Timer.S.Cancel(m_AutoStartWorkTimerID);
+            }
         }
         /// <summary>
         /// 派遣弟子开始工作
@@ -244,33 +250,40 @@ namespace GameWish.Game
         /// <returns></returns>
         public bool DispatchDiscipleStartWork() 
         {
-            CharacterMgr characterMgr = MainGameMgr.S.CharacterMgr;
-            
-            List<CharacterController> characterControllerList = characterMgr.CharacterControllerList;
-            
-            characterControllerList = characterControllerList.Where(x => x.CurState == CharacterStateID.Wander).ToList();
-
-            if (characterControllerList != null && characterControllerList.Count > 0)
+            if (IsShowBubble())
             {
-                int index = UnityEngine.Random.Range(0, characterControllerList.Count);
+                CharacterMgr characterMgr = MainGameMgr.S.CharacterMgr;
 
-                CharacterController m_WorkingCharacterController = characterControllerList[index];
-                
-                TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
-                
-                GameDataMgr.S.GetClanData().SetWorkData(GetFacilityType(),m_WorkingCharacterController.CharacterId, lobbyData.workTime);
+                List<CharacterController> characterControllerList = characterMgr.CharacterControllerList;
 
-                ChangeFacilityWorkingState(FacilityWorkingStateEnum.Working);
+                characterControllerList = characterControllerList.Where(x => x.CurState == CharacterStateID.Wander).ToList();
 
-                m_WorkingCharacterController.SetState(CharacterStateID.Working, GetFacilityType());
+                if (characterControllerList != null && characterControllerList.Count > 0)
+                {
+                    int index = UnityEngine.Random.Range(0, characterControllerList.Count);
 
-                return true;
+                    CharacterController m_WorkingCharacterController = characterControllerList[index];
+
+                    TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+
+                    GameDataMgr.S.GetClanData().SetWorkData(GetFacilityType(), m_WorkingCharacterController.CharacterId, lobbyData.workTime);
+
+                    ChangeFacilityWorkingState(FacilityWorkingStateEnum.Working);
+
+                    m_WorkingCharacterController.SetState(CharacterStateID.Working, GetFacilityType());
+
+                    return true;
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("没有空闲弟子");
+                    return false;
+                }
             }
-            else 
-            {
-                FloatMessage.S.ShowMsg("没有空闲弟子");
+            else {
+                Debug.LogError("is not show bubble state");
                 return false;
-            }
+            }    
         }
         /// <summary>
         /// 派遣弟子工作
@@ -294,5 +307,26 @@ namespace GameWish.Game
                 Debug.LogError("dispatch disciple is null");
             }
         }
+        /// <summary>
+        /// 倒计时自动开始工作
+        /// </summary>
+        public void CoundDownAutoStartWork(Action endCallBack = null) 
+        {
+            Timer.S.Cancel(m_AutoStartWorkTimerID);
+            
+            TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+
+            //TODO:等后续表格上传修改
+            int autoWorkWaitTime = 2;
+
+            m_AutoStartWorkTimerID = Timer.S.Post2Really((x) =>
+            {
+                if (endCallBack != null) {
+                    endCallBack();
+                }
+                m_AutoStartWorkTimerID = -1;
+            }, autoWorkWaitTime, -1);
+        }
+        #endregion
     }
 }
