@@ -200,6 +200,7 @@ namespace GameWish.Game
                     float scaleX = transform.localScale.x;
                     int index = scaleX > 0 ? 1 : 0;
                     var effectGo = GameObjectPoolMgr.S.Allocate(animConfig.hitSEList[index]);
+                    // Debug.LogError("Hurt:" + animConfig.hitSEList[index]);
                     effectGo.transform.SetParent(transform);
                     effectGo.transform.ResetTrans();
                     effectGo.transform.localPosition = new Vector3(offset.x, offset.y, 10);
