@@ -430,7 +430,7 @@ namespace GameWish.Game
         #endregion
 
         #region RawMatItem
-        public string GetLastShowBubbleTime(CollectedObjType collectedObjType)
+        public string GetLastJobFinishedTime(CollectedObjType collectedObjType)
         {
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)
@@ -441,7 +441,7 @@ namespace GameWish.Game
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLongTimeString();
         }
 
-        public void SetLastShowBubbleTime(CollectedObjType collectedObjType, DateTime time)
+        public void SetLastJobFinishedTime(CollectedObjType collectedObjType, DateTime time)
         {
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)

@@ -143,6 +143,8 @@ namespace GameWish.Game
         public void SetCollectedObjType(CollectedObjType collectedObjType)
         {
             m_CharacterItem.collectedObjType = collectedObjType;
+
+            GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterItem.id, collectedObjType);
         }
 
         public void AddKongfuExp(int deltaExp)
