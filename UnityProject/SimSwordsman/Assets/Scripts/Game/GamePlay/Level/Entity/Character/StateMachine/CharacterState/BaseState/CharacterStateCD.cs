@@ -70,7 +70,7 @@ namespace GameWish.Game
             {
                 m_Progress = m_Slot.GetProgress();
                 m_Controller.SetWorkProgressPercent(m_Progress);
-                Debug.LogError("UpdateProgress:" + m_Progress);
+                //Debug.LogError("UpdateProgress:" + m_Progress);
                 if (m_Progress >= 1)
                 {
                     OnCDOver();

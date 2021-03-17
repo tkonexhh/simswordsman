@@ -20,6 +20,7 @@ namespace GameWish.Game
         private EInt m_WorkInterval = 0;   
         private EInt m_WorkMaxAmount = 0;   
         private EInt m_WorkTime = 0;   
+        private EInt m_AutoWorkWait = 0;   
         private EInt m_WorkPay = 0;   
         private EInt m_WorkExp = 0;   
         private EInt m_DefExp = 0;   
@@ -68,6 +69,11 @@ namespace GameWish.Game
         /// 工作时长，秒
         /// </summary>
         public  int  workTime {get { return m_WorkTime; } }
+       
+        /// <summary>
+        /// 自动工作等待时长，秒
+        /// </summary>
+        public  int  autoWorkWait {get { return m_AutoWorkWait; } }
        
         /// <summary>
         /// 工作报酬
@@ -139,21 +145,24 @@ namespace GameWish.Game
                     m_WorkTime = dataR.ReadInt();
                     break;
                 case 8:
-                    m_WorkPay = dataR.ReadInt();
+                    m_AutoWorkWait = dataR.ReadInt();
                     break;
                 case 9:
-                    m_WorkExp = dataR.ReadInt();
+                    m_WorkPay = dataR.ReadInt();
                     break;
                 case 10:
-                    m_DefExp = dataR.ReadInt();
+                    m_WorkExp = dataR.ReadInt();
                     break;
                 case 11:
-                    m_CommonTaskAmount = dataR.ReadInt();
+                    m_DefExp = dataR.ReadInt();
                     break;
                 case 12:
-                    m_CTDailyMax = dataR.ReadInt();
+                    m_CommonTaskAmount = dataR.ReadInt();
                     break;
                 case 13:
+                    m_CTDailyMax = dataR.ReadInt();
+                    break;
+                case 14:
                     m_PracticeLevelMax = dataR.ReadInt();
                     break;
                 default:
@@ -166,7 +175,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(14);
+          Dictionary<string, int> ret = new Dictionary<string, int>(15);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
@@ -176,12 +185,13 @@ namespace GameWish.Game
           ret.Add("WorkInterval", 5);
           ret.Add("WorkMaxAmount", 6);
           ret.Add("WorkTime", 7);
-          ret.Add("WorkPay", 8);
-          ret.Add("WorkExp", 9);
-          ret.Add("DefExp", 10);
-          ret.Add("CommonTaskAmount", 11);
-          ret.Add("CTDailyMax", 12);
-          ret.Add("PracticeLevelMax", 13);
+          ret.Add("AutoWorkWait", 8);
+          ret.Add("WorkPay", 9);
+          ret.Add("WorkExp", 10);
+          ret.Add("DefExp", 11);
+          ret.Add("CommonTaskAmount", 12);
+          ret.Add("CTDailyMax", 13);
+          ret.Add("PracticeLevelMax", 14);
           return ret;
         }
     } 
