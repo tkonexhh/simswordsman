@@ -32,6 +32,7 @@ namespace GameWish.Game
         public GameObject Body => m_Body;
 
         public CharacterWorkProgressBar WorkProgressBar { get => m_WorkProgressBar;}
+        public PolyNavAgent NavAgent { get => m_NavAgent;}
 
         public void Init()
         {

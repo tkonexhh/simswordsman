@@ -25,6 +25,10 @@ namespace GameWish.Game
         private RawMatItem m_RawMatItem = null;
         private float m_CollectTotalTime;
 
+        private Vector3 m_LastPos;
+        private float m_CheckPosInterval = 1f;
+        private float m_CheckPosTime = 0;
+
         public CharacterStateCollectRes(CharacterStateID stateEnum) : base(stateEnum)
         {
 
@@ -42,6 +46,7 @@ namespace GameWish.Game
             m_CollectedObjType = m_Controller.CollectObjType;//(CollectedObjType)m_Controller.CurTask.CommonTaskItemInfo.subType;
             m_RawMatItem = null;
 
+            m_LastPos = m_Controller.GetPosition();
             m_ReachTargetPos = false;
             m_IsCollectResEnd = false;
 
@@ -59,19 +64,25 @@ namespace GameWish.Game
             {
                 m_RawMatItem.OnCharacterSelected(m_Controller);
 
-                Transform t = m_RawMatItem.GetRandomCollectPos();
+                MoveToTargetPos();
 
-                if (m_Controller.ManualSelectedToCollectObj)
-                {
-                    m_Controller.RunTo(t.position, OnReachDestination);
-                }
-                else
-                {
-                    m_Controller.MoveTo(t.position, OnReachDestination);
-                }
                 m_Controller.ManualSelectedToCollectObj = false;
 
                 m_Time = GameDataMgr.S.GetClanData().GetObjCollectedTime(m_CollectedObjType);
+            }
+        }
+
+        private void MoveToTargetPos()
+        {
+            Transform t = m_RawMatItem.GetRandomCollectPos();
+
+            if (m_Controller.ManualSelectedToCollectObj)
+            {
+                m_Controller.RunTo(t.position, OnReachDestination);
+            }
+            else
+            {
+                m_Controller.MoveTo(t.position, OnReachDestination);
             }
         }
 
@@ -114,6 +125,27 @@ namespace GameWish.Game
 
                     m_Controller.CollectObjType = CollectedObjType.None;
 
+                }
+            }
+
+            // Force character move to target pos, if he does not move
+            if (!m_ReachTargetPos)
+            {
+                m_CheckPosTime += Time.deltaTime;
+                if (m_CheckPosTime > m_CheckPosInterval)
+                {
+                    if (m_Controller.CharacterView.NavAgent.enabled == false)
+                    {
+                        m_Controller.CharacterView.NavAgent.enabled = true;
+                    }
+
+                    m_CheckPosTime = 0;
+                    if (Vector3.Distance(m_LastPos, m_Controller.GetPosition()) < 0.1f)
+                    {
+                        m_LastPos = m_Controller.GetPosition();
+
+                        MoveToTargetPos();
+                    }
                 }
             }
         }
