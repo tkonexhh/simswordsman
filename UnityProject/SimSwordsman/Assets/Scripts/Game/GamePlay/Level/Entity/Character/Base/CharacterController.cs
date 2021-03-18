@@ -259,11 +259,11 @@ namespace GameWish.Game
             SetState(CharacterStateID.Battle);
         }
 
-        public void OnExitBattleField()
-        {
-            m_CharacterView.OnExitBattleField();
-            SetState(CharacterStateID.Wander);
-        }
+        //public void OnExitBattleField()
+        //{
+        //    m_CharacterView.OnExitBattleField();
+        //    SetState(CharacterStateID.Wander);
+        //}
 
         public void HideBody()
         {
