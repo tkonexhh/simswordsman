@@ -38,6 +38,11 @@ namespace GameWish.Game
         private Button m_ConfirmBtn;
         [SerializeField]
         private Text m_ConfirmText;
+
+        private const int Rows = 5;
+        private const float DiscipleHeight = 156f;
+        private const float BtnHeight = 38f;
+
         private LevelConfigInfo m_LevelConfigInfo = null;
         private CommonTaskItemInfo m_CommonTaskItemInfo = null;
         private PanelType m_PanelType;
@@ -55,6 +60,16 @@ namespace GameWish.Game
             BindAddListenerEvent();
 
             GetInformationForNeed();
+        }
+
+        private void CalculateContainerHeight()
+        {
+            int rows = m_DiscipleObjDic.Count / Rows;
+            if ((m_DiscipleObjDic.Count % Rows) != 0)
+                rows += 1;
+
+            float height = DiscipleHeight * rows;
+            m_Cont.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
         }
 
         protected override void OnClose()
@@ -215,6 +230,8 @@ namespace GameWish.Game
                 default:
                     break;
             }
+
+            //CalculateContainerHeight();
         }
         private void RefreshFixedInfo()
         {
