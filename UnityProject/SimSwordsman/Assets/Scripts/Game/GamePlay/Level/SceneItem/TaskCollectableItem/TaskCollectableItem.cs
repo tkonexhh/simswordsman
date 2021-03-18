@@ -6,112 +6,112 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class TaskCollectableItem : MonoBehaviour
-	{
-        public CollectedObjType collectedObjType = CollectedObjType.None;
-        public List<Transform> collectPos = new List<Transform>();
+	//public class TaskCollectableItem : MonoBehaviour
+	//{
+ //       public CollectedObjType collectedObjType = CollectedObjType.None;
+ //       public List<Transform> collectPos = new List<Transform>();
 
-        protected SkeletonAnimation m_SpineAnim;
-        protected bool m_HasSpine = false;
+ //       protected SkeletonAnimation m_SpineAnim;
+ //       protected bool m_HasSpine = false;
 
-        private List<Transform> m_UsedCollectPos = new List<Transform>();
+ //       private List<Transform> m_UsedCollectPos = new List<Transform>();
 
-        private void Start()
-        {
-            m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();
-            if (m_SpineAnim != null)
-            {
-                m_HasSpine = true;
+ //       private void Start()
+ //       {
+ //           m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();
+ //           if (m_SpineAnim != null)
+ //           {
+ //               m_HasSpine = true;
 
-                PlayAnim("idle", true, null);
-            }
+ //               PlayAnim("idle", true, null);
+ //           }
 
-        }
+ //       }
 
-        public virtual void OnStartCollected(Vector3 collecterPos)
-        {
-            m_UsedCollectPos.Clear();
+ //       public virtual void OnStartCollected(Vector3 collecterPos)
+ //       {
+ //           m_UsedCollectPos.Clear();
 
-            if (m_HasSpine)
-            {
-                PlayAnim("attack", true, null);
+ //           if (m_HasSpine)
+ //           {
+ //               PlayAnim("attack", true, null);
 
-                FaceTo(collecterPos.x);
-            }
-        }
+ //               FaceTo(collecterPos.x);
+ //           }
+ //       }
 
-        public virtual void OnEndCollected()
-        {
-            if (m_HasSpine)
-            {
-                PlayAnim("death", false, ()=> 
-                {
-                    RemoveItem();
-                });
-            }
-            else
-            {
-                RemoveItem();
-            }
+ //       public virtual void OnEndCollected()
+ //       {
+ //           if (m_HasSpine)
+ //           {
+ //               PlayAnim("death", false, ()=> 
+ //               {
+ //                   RemoveItem();
+ //               });
+ //           }
+ //           else
+ //           {
+ //               RemoveItem();
+ //           }
 
-            m_UsedCollectPos.Clear();
-        }
+ //           m_UsedCollectPos.Clear();
+ //       }
 
-        protected void RemoveItem()
-        {
-            MainGameMgr.S.CommonTaskMgr.RemoveTaskCollectableItem(collectedObjType);
-        }
+ //       protected void RemoveItem()
+ //       {
+ //           MainGameMgr.S.CommonTaskMgr.RemoveTaskCollectableItem(collectedObjType);
+ //       }
 
-        protected void PlayAnim(string name, bool loop, System.Action onAnimEnd)
-        {
-            if (m_SpineAnim != null)
-            {
-                SpineHelper.PlayAnim(m_SpineAnim, name, loop, onAnimEnd);
-            }
-        }
+ //       protected void PlayAnim(string name, bool loop, System.Action onAnimEnd)
+ //       {
+ //           if (m_SpineAnim != null)
+ //           {
+ //               SpineHelper.PlayAnim(m_SpineAnim, name, loop, onAnimEnd);
+ //           }
+ //       }
 
-        protected void FaceTo(float x)
-        {
-            if (x > transform.position.x)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-        }
+ //       protected void FaceTo(float x)
+ //       {
+ //           if (x > transform.position.x)
+ //           {
+ //               transform.localScale = new Vector3(-1, 1, 1);
+ //           }
+ //           else
+ //           {
+ //               transform.localScale = new Vector3(1, 1, 1);
+ //           }
+ //       }
 
-        public Transform GetRandomCollectPos()
-        {
-            List<Transform> list = new List<Transform>();
-            foreach (Transform t in collectPos)
-            {
-                if (!m_UsedCollectPos.Contains(t))
-                {
-                    list.Add(t);
-                }
-            }
+ //       public Transform GetRandomCollectPos()
+ //       {
+ //           List<Transform> list = new List<Transform>();
+ //           foreach (Transform t in collectPos)
+ //           {
+ //               if (!m_UsedCollectPos.Contains(t))
+ //               {
+ //                   list.Add(t);
+ //               }
+ //           }
 
-            if (list.Count > 0)
-            {
-                int index = Random.Range(0, list.Count);
-                return list[index];
-            }
+ //           if (list.Count > 0)
+ //           {
+ //               int index = Random.Range(0, list.Count);
+ //               return list[index];
+ //           }
 
-            return collectPos[0];
-        }
+ //           return collectPos[0];
+ //       }
 
-        public void OnCollectPosTaken(Transform t)
-        {
-            if(!m_UsedCollectPos.Contains(t))
-                m_UsedCollectPos.Add(t);
-        }
+ //       public void OnCollectPosTaken(Transform t)
+ //       {
+ //           if(!m_UsedCollectPos.Contains(t))
+ //               m_UsedCollectPos.Add(t);
+ //       }
 
-        public void ClearUsedPos()
-        {
-            m_UsedCollectPos.Clear();
-        }
-    }
+ //       public void ClearUsedPos()
+ //       {
+ //           m_UsedCollectPos.Clear();
+ //       }
+ //   }
 	
 }

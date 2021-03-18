@@ -211,20 +211,20 @@ namespace GameWish.Game
 
         public Transform GetRandomCollectPos()
         {
-            List<Transform> list = new List<Transform>();
-            foreach (Transform t in collectPos)
-            {
-                if (!m_UsedCollectPos.Contains(t))
-                {
-                    list.Add(t);
-                }
-            }
+            //List<Transform> list = new List<Transform>();
+            //foreach (Transform t in collectPos)
+            //{
+            //    if (!m_UsedCollectPos.Contains(t))
+            //    {
+            //        list.Add(t);
+            //    }
+            //}
 
-            if (list.Count > 0)
-            {
-                int index = UnityEngine.Random.Range(0, list.Count);
-                return list[index];
-            }
+            //if (list.Count > 0)
+            //{
+            //    int index = UnityEngine.Random.Range(0, list.Count);
+            //    return list[index];
+            //}
 
             return collectPos[0];
         }
