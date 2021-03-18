@@ -9,8 +9,8 @@ using System.Linq;
 
 namespace GameWish.Game
 {
-	public class UserAccountPanel : AbstractAnimPanel
-	{
+    public class UserAccountPanel : AbstractAnimPanel
+    {
         [SerializeField]
         private Text m_SecNameText;
         [SerializeField]
@@ -20,11 +20,11 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ChallengeProgressText;
         [SerializeField]
-		private Button m_CloseBtn;
-		[SerializeField]
-		private Button m_LogOutBtn;
-		[SerializeField]
-		private Button m_PrivateBtn;
+        private Button m_CloseBtn;
+        [SerializeField]
+        private Button m_LogOutBtn;
+        [SerializeField]
+        private Button m_PrivateBtn;
 
         [SerializeField]
         private Button m_MusicBtn;
@@ -33,11 +33,11 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_MusicOnObj;
         [SerializeField]
-        private Button m_SoundBtn;  
+        private Button m_SoundBtn;
         [SerializeField]
-        private Button m_MessageBtn;  
+        private Button m_MessageBtn;
         [SerializeField]
-        private Button m_UserBtn;    
+        private Button m_UserBtn;
         [SerializeField]
         private Image m_MessageImg;
         [SerializeField]
@@ -51,7 +51,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
 
-			m_CloseBtn.onClick.AddListener(OnCloseBtnClickCallBack);
+            m_CloseBtn.onClick.AddListener(OnCloseBtnClickCallBack);
             m_LogOutBtn.onClick.AddListener(OnLogOutBtnClickCallBack);
             m_PrivateBtn.onClick.AddListener(OnPrivateBtnClickCallBack);
             m_UserBtn.onClick.AddListener(OnUserBtnClickCallBack);
@@ -116,7 +116,7 @@ namespace GameWish.Game
             CloseDependPanel(EngineUI.MaskPanel);
             CloseSelfPanel();
         }
-        private void UpdateUseAccountInfo() 
+        private void UpdateUseAccountInfo()
         {
             m_SecNameText.text = GameDataMgr.S.GetClanData().GetClanName();
 
@@ -126,11 +126,12 @@ namespace GameWish.Game
             m_DiscipleCountText.text = discipleCount.ToString();
 
             ChapterMgr chapterMgr = MainGameMgr.S.ChapterMgr;
-            List<ChapterConfigInfo> chapterInfoList = MainGameMgr.S.ChapterMgr.GetAllChapterInfo().Where(x => chapterMgr.JudgeChapterIsUnlock(x.chapterId)).ToList();            
+            List<ChapterConfigInfo> chapterInfoList = MainGameMgr.S.ChapterMgr.GetAllChapterInfo().Where(x => chapterMgr.JudgeChapterIsUnlock(x.chapterId)).ToList();
             int chapterLevel = chapterInfoList.Count;
             int chapterProgressLevel = 1;
             ChapterConfigInfo lastChapterInfo = chapterInfoList.Last();
-            if (lastChapterInfo != null) {
+            if (lastChapterInfo != null)
+            {
                 chapterProgressLevel = chapterMgr.GetLevelProgressNumber(lastChapterInfo.chapterId) + 1;
             }
             m_ChallengeProgressText.text = string.Format("{0}-{1}", chapterLevel, chapterProgressLevel);
@@ -147,7 +148,7 @@ namespace GameWish.Game
 
         private void OnLogOutBtnClickCallBack()
         {
-            UIMgr.S.OpenTopPanel(UIID.LogPanel, LogPanelCallBack,"注销","确认要注销吗？","确认","取消");
+            UIMgr.S.OpenTopPanel(UIID.LogPanel, LogPanelCallBack, "注销", "确认要注销吗？", "确认", "取消");
 
             HideSelfWithAnim();
         }
@@ -155,21 +156,22 @@ namespace GameWish.Game
         private void LogPanelCallBack(AbstractPanel obj)
         {
             LogPanel logPanel = obj as LogPanel;
-            if (logPanel != null) 
+            if (logPanel != null)
             {
                 logPanel.OnSuccessBtnEvent = LogOut;
             }
         }
 
-        private void LogOut() {
+        private void LogOut()
+        {
             PlayerPrefs.DeleteAll();
-
-            string path = GameDataHandler.s_path;
-
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+            GameDataMgr.S.Reset();
+            // string path = GameDataHandler.s_path;
+            // Debug.LogError(path);
+            // if (File.Exists(path))
+            // {
+            //     File.Delete(path);
+            // }
 
             PlayerPrefs.SetInt(Define.LogoutKey, 1);
 #if UNITY_EDITOR
@@ -183,5 +185,5 @@ namespace GameWish.Game
         {
             HideSelfWithAnim();
         }
-    }	
+    }
 }
