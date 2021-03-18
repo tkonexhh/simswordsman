@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3135795779
+CRC: 1183099161
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5426b61db281ae0e725bc115c73c84b8
+    Hash: 94aa6c875d36f0c47a917bcc4593444e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 030521e4bfe56b7c4f3951977e9a0fc5
@@ -62,7 +62,9 @@ ClassTypes:
 - Class: 225
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehousePanel2.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/ItemDetailsPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehousePanel1.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehouseItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehousePanel.prefab
 Dependencies:
