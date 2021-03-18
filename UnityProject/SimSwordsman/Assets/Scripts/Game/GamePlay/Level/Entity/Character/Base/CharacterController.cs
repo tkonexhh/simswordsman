@@ -375,7 +375,7 @@ namespace GameWish.Game
             go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkRewardPop workRewardPop = go.GetComponent<CharacterWorkRewardPop>();
-            workRewardPop.OnGetFacilityWorkReward(facilityType, count);
+            workRewardPop.OnGetFacilityWorkReward(facilityType, (int)FoodBuffSystem.S.Coin(count));
         }
 
         public void SpawnCollectedObjWorkReward(RawMaterial collectedObjType, int count)

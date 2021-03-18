@@ -57,37 +57,80 @@ namespace GameWish.Game
         private Image m_Progress;
 
         [HideInInspector]
-        public int ID;
+        public int m_FoodBufferID;
 
         AbstractAnimPanel m_panel;
+
+        private int m_CountDownTimerID = -1;
+        private FoodBuffData m_FoodBufferData = null;
+
+        private float m_FoodBufferProgres = 0;
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_panel = t as AbstractAnimPanel;
-            BindAddListenerEvent();
-            Init((int)obj[0]);
-        }
 
-        public void StartEffect(float progress, string dur)
-        {
-            SetState(1);
-            m_DurationTxt.text = dur;
-            m_Progress.fillAmount = progress;
+            BindAddListenerEvent();
+
+            m_FoodBufferID = (int)obj[0];
+
+            Init(m_FoodBufferID);
         }
-        public void StopEffect()
+        /// <summary>
+        /// 检测食物buffer数据并开始倒计时
+        /// </summary>
+        private void CheckFoodBuffDataAndCountDown() 
+        {
+            m_FoodBufferData = GameDataMgr.S.GetClanData().GetFoodBuffData(m_FoodBufferID);
+
+            Timer.S.Cancel(m_CountDownTimerID);
+
+            if (m_FoodBufferData != null)
+            {
+                SetState(1);
+
+                m_CountDownTimerID = Timer.S.Post2Really((x) =>
+                {
+                    m_FoodBufferProgres = m_FoodBufferData.GetRemainProgress();
+
+                    UpdateProgress();
+
+                    if (m_FoodBufferProgres <= 0)
+                    {
+                        StopEffect();
+
+                        GameDataMgr.S.GetClanData().RemoveFoodBuffData(m_FoodBufferID);
+
+                        Timer.S.Cancel(m_CountDownTimerID);
+                    }
+                }, 1, -1);
+
+                m_FoodBufferProgres = m_FoodBufferData.GetRemainProgress();
+
+                UpdateProgress();
+            }
+            else {
+                SetState(2);
+            }
+        }
+        public void OnClose()
+        {
+            Timer.S.Cancel(m_CountDownTimerID);
+        }
+        private void StopEffect()
         {
             SetState(2);
         }
-        public void Countdown(float progress, string dur)
+        private void UpdateProgress()
         {
-            m_DurationTxt.text = dur;
-            m_Progress.fillAmount = progress;
+            if (m_FoodBufferData != null) 
+            {
+                m_DurationTxt.text = m_FoodBufferData.GetRemainTime();
+                m_Progress.fillAmount = m_FoodBufferProgres;
+            }
         }
-
-
         void Init(int id)
         {
-            ID = id;
             if (!GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(id))//未解锁
             {
                 SetState(0);
@@ -100,39 +143,42 @@ namespace GameWish.Game
                 m_FoodImg.sprite = m_panel.FindSprite(tb.spriteName);
                 m_FoodNameTxt.text = tb.name;
                 m_FoodContTxt.text = tb.desc;
-                m_FoodEffecTxt.text = FoodBuffSystem.S.GetEffectDesc(tb);
+                m_FoodEffecTxt.text = GetEffectDesc(tb);
                 m_EffectiveTimeTxt.text = GetTimeDesc(tb.buffTime) + "有效";
                 m_ADEffectiveTimeTxt.text = GetTimeDesc(tb.buffTimeAD) + "有效";
 
-                if (FoodBuffSystem.S.IsActive(ID))
-                {
-                    string dur = FoodBuffSystem.S.GetCurrentCountdown(ID);
-                    if (dur != null)
-                    {
-                        SetState(1);
-                        m_DurationTxt.text = dur;
-                        m_Progress.fillAmount = FoodBuffSystem.S.GetCountdowner(ID).GetProgress();
-                    }
-                    else
-                        SetState(2);
-                }
-                else
-                    SetState(2);
+                CheckFoodBuffDataAndCountDown();
             }
         }
-
-        string GetTimeDesc(int minute)
+        private string GetEffectDesc(TDFoodConfig tb)
+        {
+            FoodBuffType type;
+            if (Enum.TryParse(tb.buffType, out type))
+            {
+                switch (type)
+                {
+                    case FoodBuffType.Food_AddExp:
+                        return string.Format("弟子获得经验+<color=#8C343C>{0}%</color>", tb.buffRate);
+                    case FoodBuffType.Food_AddRoleExp:
+                        return string.Format("弟子获得功夫经验+<color=#8C343C>{0}%</color>", tb.buffRate);
+                    case FoodBuffType.Food_AddCoin:
+                        return string.Format("获得铜钱+<color=#8C343C>{0}%</color>", tb.buffRate);
+                    default:
+                        break;
+                }
+            }
+            return null;
+        }
+        private string GetTimeDesc(int minute)
         {
             if (minute >= 60)
                 return minute / 60.0f + "小时";
             else
                 return minute + "分钟";
         }
-
         public void SetButtonEvent(Action<object> action)
         {
         }
-
         private void BindAddListenerEvent()
         {
             //音效
@@ -145,11 +191,14 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 //判断材料
-                var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
+                var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    FoodBuffSystem.S.StartBuff(ID);
+
+                    AddFoodBufferData(m_FoodBufferID);
+
+                    CheckFoodBuffDataAndCountDown();
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
@@ -159,18 +208,32 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 //判断材料
-                var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
+                var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                     AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
         }
+        private void AddFoodBufferData(int foodBufferID,bool isLookAD = false) 
+        {
+            var table = TDFoodConfigTable.GetData(foodBufferID);
+
+            int bufferTime = isLookAD ? table.buffTimeAD : table.buffTime;
+
+            DateTime endTime = DateTime.Now.AddMinutes(bufferTime);
+
+            GameDataMgr.S.GetClanData().AddFoodBuffData(table.id, DateTime.Now, endTime);
+        }
         private void LookADSuccessCallBack(bool obj)
         {
-            var list = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
+            var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
+
             MainGameMgr.S.InventoryMgr.ReduceItems(list);
-            FoodBuffSystem.S.StartBuff(ID, true);
+
+            AddFoodBufferData(m_FoodBufferID, true);
+
+            CheckFoodBuffDataAndCountDown();
         }
         /// <summary>
         /// 0未解锁 1 正在炒制 2 未炒制
@@ -184,7 +247,7 @@ namespace GameWish.Game
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
                     //解锁条件
-                    m_LockConditionTxt.text = string.Format("伙房等级达到<color=#384B76>{0}</color>级", GetUnlockLevel(ID));
+                    m_LockConditionTxt.text = string.Format("伙房等级达到<color=#384B76>{0}</color>级", GetUnlockLevel(m_FoodBufferID));
                     m_FoodNameTxt.text = "未解锁";
                     break;
                 case 1:
@@ -220,7 +283,7 @@ namespace GameWish.Game
         }
         void SetMakeNeedRes()
         {
-            var infos = TDFoodConfigTable.MakeNeedItemIDsDic[ID];
+            var infos = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
             if (infos.Count == 2)
             {
                 m_NeedItem2.gameObject.SetActive(true);
