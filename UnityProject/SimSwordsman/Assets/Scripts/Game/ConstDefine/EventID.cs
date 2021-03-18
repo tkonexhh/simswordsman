@@ -111,11 +111,6 @@ namespace GameWish.Game
         /// 可招募的时候惊叹号
         /// </summary>
         OnSendRecruitable,
-        /// <summary>
-        /// 藏经阁有空位的时候
-        /// </summary>
-        OnKongfuLibraryVacancy,
-        OnPracticeVacancy,
         #endregion
 
         //KungfuLibrary
@@ -306,7 +301,7 @@ namespace GameWish.Game
         OnGuideFirstGetCharacter,
         OnGuideSecondGetCharacter,
 
-        
+
         OnCollectStoneProgressTaskTrigger,
 
         OnCloseFightingPanel,//关闭战斗面板

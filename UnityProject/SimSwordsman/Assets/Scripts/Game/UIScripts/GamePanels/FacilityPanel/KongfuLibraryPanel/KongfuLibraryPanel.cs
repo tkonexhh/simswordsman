@@ -65,7 +65,7 @@ namespace GameWish.Game
         private KongfuLibraryLevelInfo m_CurKongfuLibraryLevelInfo = null;
         private KongfuLibraryLevelInfo m_NextFacilityLevelInfo = null;
         private KongfuLibraryController m_CurKongfuLibraryController = null;
-        private List<KungfuLibraySlot> m_ReadingSlotList = null;
+        private List<CDBaseSlot> m_ReadingSlotList = null;
 
         private Dictionary<int, GameObject> m_KongfuLibrarySoltInfo = new Dictionary<int, GameObject>();
 
@@ -109,7 +109,7 @@ namespace GameWish.Game
 
             for (int i = 0; i < m_ReadingSlotList.Count; i++)
             {
-                CreateCopyScripturesItem(m_ReadingSlotList[i]);
+                CreateCopyScripturesItem(m_ReadingSlotList[i] as KungfuLibraySlot);
             }
         }
 
@@ -151,7 +151,7 @@ namespace GameWish.Game
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CurKongfuLibraryLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_CurKongfuLibraryController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
-            m_ReadingSlotList = m_CurKongfuLibraryController.GetReadingSlotList();
+            m_ReadingSlotList = m_CurKongfuLibraryController.GetSlotList();
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
