@@ -44,6 +44,9 @@ namespace GameWish.Game
         {
             for (int i = 0; i < rewards.Count; i++)
             {
+                if (i>=3)
+                    break;
+
                 if (m_Items.Count < i + 1)
                 {
                     GameObject obj = Instantiate(m_ItemObj, m_RewardTran);
