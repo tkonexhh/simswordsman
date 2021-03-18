@@ -38500,6 +38500,7 @@ GameObject:
   - component: {fileID: 4221157408735563735}
   - component: {fileID: 4221157408735563729}
   - component: {fileID: 4221157408735563728}
+  - component: {fileID: -8402510892413866213}
   m_Layer: 0
   m_Name: YeLuoXingHeJian_Hit_Right
   m_TagString: Untagged
@@ -43244,3 +43245,14 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-8402510892413866213
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221157408735563734}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20

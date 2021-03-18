@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4552328484412120700}
   - component: {fileID: 4552328484412120702}
   - component: {fileID: 4552328484412120701}
+  - component: {fileID: -981386256685722670}
   m_Layer: 0
   m_Name: BaiMangBian_Hit_Left
   m_TagString: Untagged
@@ -4755,6 +4756,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-981386256685722670
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552328484412120699}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &4552328484936546375
 GameObject:
   m_ObjectHideFlags: 0

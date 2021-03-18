@@ -14411,6 +14411,7 @@ GameObject:
   - component: {fileID: 2487172522127854097}
   - component: {fileID: 2487172522127854103}
   - component: {fileID: 2487172522127854096}
+  - component: {fileID: -6143389881371337404}
   m_Layer: 0
   m_Name: JiuYangGong_Hit_Left
   m_TagString: Untagged
@@ -19155,6 +19156,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-6143389881371337404
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487172522127854098}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &2487172522430178388
 GameObject:
   m_ObjectHideFlags: 0
