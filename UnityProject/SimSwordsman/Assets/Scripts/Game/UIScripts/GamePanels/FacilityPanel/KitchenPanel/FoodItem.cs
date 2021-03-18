@@ -213,7 +213,7 @@ namespace GameWish.Game
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, ID.ToString()+ ";JingChao");
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString()+ ";JingChao");
                     AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
                 }
                 else
