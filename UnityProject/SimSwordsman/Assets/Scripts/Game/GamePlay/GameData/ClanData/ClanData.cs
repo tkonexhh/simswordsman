@@ -29,7 +29,7 @@ namespace GameWish.Game
 
         public void Init()
         {
-           
+
         }
 
         public void OnReset()
@@ -137,7 +137,8 @@ namespace GameWish.Game
 
 
 
-        public FacilityDbData GetFacilityDbData() {
+        public FacilityDbData GetFacilityDbData()
+        {
             return ownedFacilityData;
         }
         public List<FacilityItemDbData> GetAllFacility()
@@ -202,10 +203,11 @@ namespace GameWish.Game
         #endregion
 
         #region Character
-        public CharacterDbData GetOwnedCharacterData() {
+        public CharacterDbData GetOwnedCharacterData()
+        {
             return ownedCharacterData;
         }
-        public void AddEquipment(int characterID,CharaceterEquipment characeterEquipment)
+        public void AddEquipment(int characterID, CharaceterEquipment characeterEquipment)
         {
             ownedCharacterData.AddEquipment(characterID, characeterEquipment);
 
@@ -430,7 +432,7 @@ namespace GameWish.Game
         #endregion
 
         #region RawMatItem
-        public string GetLastShowBubbleTime(CollectedObjType collectedObjType)
+        public string GetLastJobFinishedTime(CollectedObjType collectedObjType)
         {
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)
@@ -441,7 +443,7 @@ namespace GameWish.Game
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLongTimeString();
         }
 
-        public void SetLastShowBubbleTime(CollectedObjType collectedObjType, DateTime time)
+        public void SetLastJobFinishedTime(CollectedObjType collectedObjType, DateTime time)
         {
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)

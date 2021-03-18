@@ -153,6 +153,8 @@ namespace GameWish.Game
             m_AllTog.onValueChanged.AddListener((e)=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel,"All");
+
                 foreach (var item in m_DiscipleDic.Values)
                     item.SetActive(true);
 
@@ -161,15 +163,21 @@ namespace GameWish.Game
             m_CivilianTog.onValueChanged.AddListener((e) => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel, "Civilian");
+
                 SwitchDisciple(CharacterQuality.Normal);
             });
             m_EliteTog.onValueChanged.AddListener((e) => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel, "Elite");
+
                 SwitchDisciple(CharacterQuality.Good);
             });
             m_GeniusTog.onValueChanged.AddListener((e) => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel, "Genius");
 
                 SwitchDisciple(CharacterQuality.Perfect);
             });

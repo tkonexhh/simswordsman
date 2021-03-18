@@ -442,6 +442,7 @@ namespace GameWish.Game
                 RefreshArmorInfo();
                 RefreshSkillValue();
                 RefershIntensifyArmorImg();
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArmor.ArmorID.ToString() + ";" + characterArmor.Class.ToString());
             });
             m_EjectValueBtn.onClick.AddListener(() =>
             {
@@ -484,6 +485,8 @@ namespace GameWish.Game
                 RefreshArmsInfo();
                 RefreshSkillValue();
                 RefershIntensifyArmsImg();
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArms.ArmsID.ToString()+";"+ characterArms.Class.ToString());
             });
         }
 
@@ -497,6 +500,8 @@ namespace GameWish.Game
         {
             if (m_CurDisciple.IsFreeState())
             {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_abandon, m_CurDisciple.quality.ToString()+";"+ m_CurDisciple.level.ToString());
+
                 MainGameMgr.S.CommonTaskMgr.TaskRemoveCharacter(m_CurDisciple.id);
                 MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
                 EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
@@ -516,6 +521,8 @@ namespace GameWish.Game
             RefreshPanelInfo();
             RefershIntensifyImg();
             m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.students_detail, m_CurDisciple.quality.ToString()+";"+ m_CurDisciple.level.ToString());
         }
 
         private void GetInformationForNeed()

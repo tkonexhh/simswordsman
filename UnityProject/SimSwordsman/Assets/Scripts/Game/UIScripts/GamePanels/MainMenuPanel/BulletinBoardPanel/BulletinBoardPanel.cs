@@ -30,7 +30,6 @@ namespace GameWish.Game
         private Dictionary<int, GameObject> m_TaskObjDic = new Dictionary<int, GameObject>();
         protected override void OnUIInit()
         {
-
             base.OnUIInit();
             GetInformationForNeed();
 
@@ -71,7 +70,7 @@ namespace GameWish.Game
                 }
             }
 
-            if (MainGameMgr.S.CommonTaskMgr.IsTodayMissionAllClear())
+            if (MainGameMgr.S.CommonTaskMgr.IsTodayMissionAllClear() && m_CommonTaskList.Count == 0)
             {
                 m_NoTaskImg.SetActive(true);
             }

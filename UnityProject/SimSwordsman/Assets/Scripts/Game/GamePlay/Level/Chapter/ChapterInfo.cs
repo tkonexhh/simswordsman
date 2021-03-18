@@ -130,8 +130,6 @@ namespace GameWish.Game
                             levelRewardList.Add(new Exp_KongfuRweard(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, reward.Count));
                     }
                 }
-
-
             }
         }
     }

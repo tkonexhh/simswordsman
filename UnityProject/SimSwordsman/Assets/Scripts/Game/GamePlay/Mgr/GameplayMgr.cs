@@ -160,7 +160,6 @@ namespace GameWish.Game
                     CountdownSystem.S.Init();
 
                     WorkSystemMgr.S.Init();
-#if TEST_MODE
                     Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
@@ -169,8 +168,6 @@ namespace GameWish.Game
                         MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
                         PlayerPrefs.SetInt("test", 1);
                     }
-
-#endif
 
                     GameMgr.S.StartGuide();
 

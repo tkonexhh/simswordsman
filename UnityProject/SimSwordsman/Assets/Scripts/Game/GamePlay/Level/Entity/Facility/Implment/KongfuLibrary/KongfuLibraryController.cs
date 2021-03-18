@@ -11,8 +11,6 @@ namespace GameWish.Game
     {
         public List<KungfuLibraySlot> m_ReadingSlotList = new List<KungfuLibraySlot>();
 
-        public const int MaxSlotCount = 4;
-
         public KongfuLibraryController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
             EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
@@ -29,7 +27,7 @@ namespace GameWish.Game
                 case EventID.DeleteDisciple:
                     foreach (var item in m_ReadingSlotList)
                         if (item.IsHaveSameCharacterItem((int)param[0]))
-                            item.TrainingIsOver();
+                            item.CDIsOver();
                     break;
                 case EventID.OnRefresKungfuSoltInfo:
                     RefreshExclamatoryMark(CheckSlotInfo());
@@ -53,10 +51,10 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnKongfuLibraryVacancy, HandleAddListenerEvent);
         }
 
-        public override void SetState(FacilityState facilityState, bool isFile = false)
-        {
-            base.SetState(facilityState, isFile);
-        }
+        // public override void SetState(FacilityState facilityState, bool isFile = false)
+        // {
+        //     base.SetState(facilityState, isFile);
+        // }
 
         public KungfuLibraySlot GetIdlePracticeSlot()
         {
@@ -79,14 +77,8 @@ namespace GameWish.Game
             }
 
             foreach (var item in kungfuLibraryDBDatas)
-                m_ReadingSlotList.Add(new KungfuLibraySlot(item,m_View));
+                m_ReadingSlotList.Add(new KungfuLibraySlot(item, m_View));
 
-
-            //for (int i = 0; i < m_ReadingSlotList.Count; i++)
-            //{
-            //    KongfuLibraryView view = (KongfuLibraryView)m_View;
-            //    m_ReadingSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
-            //}
         }
         public void RefreshSlotInfo(int facilityLevel)
         {
@@ -143,10 +135,10 @@ namespace GameWish.Game
                         continue;
                     }
                     else if (delta == 1)
-                        m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1));
+                        m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1,m_View));
                 }
                 else
-                    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1));
+                    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1, m_View));
             }
         }
     }

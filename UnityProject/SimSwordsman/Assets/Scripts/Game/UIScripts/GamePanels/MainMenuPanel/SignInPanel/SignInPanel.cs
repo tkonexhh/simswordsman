@@ -22,6 +22,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+
             //��Ч
             AudioMgr.S.PlaySound(Define.INTERFACE);
             m_BackBtn.onClick.AddListener(OnClickClose);
@@ -48,14 +49,22 @@ namespace GameWish.Game
             UpdateSignItemStatus();
 
             //Custom event
-            DateTime now = DateTime.Now;
-            DateTime firstPlayTime = DateTime.Parse(GameDataMgr.S.GetPlayerData().firstPlayTime);
-            TimeSpan timeSpan = now - firstPlayTime;
-            int loginDay = timeSpan.Days;
+
+            int loginDay = CalculationDays();
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("DayCount", loginDay);
 
+            DataAnalysisMgr.S.CustomEvent(DotDefine.signin_open, CalculationDays().ToString());
+
             //DataAnalysisMgr.S.CustomEventDic(Define.CUSTOM_EVENT_OPEN_SIGN_IN, dic);
+        }
+
+        private int  CalculationDays()
+        {
+            DateTime now = DateTime.Now;
+            DateTime firstPlayTime = DateTime.Parse(GameDataMgr.S.GetPlayerData().firstPlayTime);
+            TimeSpan timeSpan = now - firstPlayTime;
+            return timeSpan.Days;
         }
 
         protected override void OnPanelHideComplete()
@@ -88,6 +97,8 @@ namespace GameWish.Game
             {
                 if (item.Status == SignInStatus.SignEnable)
                 {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.signin_open, CalculationDays().ToString()+";"+GameDataMgr.S.GetPlayerData().GetSignInCount().ToString());
+
                     item.ClickSignBtn();
                     return;
                 }

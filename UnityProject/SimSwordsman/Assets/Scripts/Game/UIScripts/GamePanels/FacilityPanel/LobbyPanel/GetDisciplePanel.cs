@@ -123,7 +123,13 @@ namespace GameWish.Game
             }
 
             CloseDependPanel(EngineUI.MaskPanel);
-            //CloseSelfPanel();
+            try
+            {
+                CloseSelfPanel();
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

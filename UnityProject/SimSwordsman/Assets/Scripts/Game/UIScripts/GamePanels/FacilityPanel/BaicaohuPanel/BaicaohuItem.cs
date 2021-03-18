@@ -135,6 +135,8 @@ namespace GameWish.Game
                 var list = TDHerbConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_make_medicine, ID.ToString());
+
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
                     CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDHerbConfigTable.GetData(ID).makeTime);
                 }
@@ -144,10 +146,7 @@ namespace GameWish.Game
             m_CompleteADBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "这里应该显示广告");
                 AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
-                //MainGameMgr.S.MedicinalPowderMgr.AddHerb(ID, 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)ID, 1));
             });
         }
         private void LookADSuccessCallBack(bool obj)

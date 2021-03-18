@@ -13,36 +13,852 @@ MonoBehaviour:
   m_Name: AssetReferenceDB
   m_EditorClassIdentifier: 
   m_assets:
-  - m_assetDatabaseId: 1c0423f1d6e15ca4182fadbeb95fb5e1
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
+  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
+    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 1f9939c3a68990349a26160eecc68c37
-    m_importFrom: Assets/StreamingAssets/game/game.manifest
+  - m_assetDatabaseId: e6741b85dffcbba4a9ff2f2bb2c27bc2
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Facility/KungfuLibraySlot.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 9a53fc56e67ee6049b57cc77a00b826f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+  - m_assetDatabaseId: cbc447033f45a41c2b763196807991b7
+    m_importFrom: Assets/Scripts/Game/UIScripts/Common/Base/CDBaseSlot.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: bc7b73775eac8d34f960c13b9b773c23
-    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
+  - m_assetDatabaseId: 000200fca5cd15b4db1cb937154b019d
+    m_importFrom: Assets/Scripts/Game/UIScripts/Common/Base/BaseSlot.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: fb675cf7022dac840a879b9d3209b557
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle.manifest
+  - m_assetDatabaseId: 4db74a00af4bc1742a07608ed60665fe
+    m_importFrom: Assets/Res/FolderMode/Enemy/Xiaoyao/Xiaoyaozi/XiaoyaoziPrefab.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 8529fc9cef198be49a291a2b7d29faa9
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle.manifest
+  - m_assetDatabaseId: 08d87520dde6e294d9cace491f208522
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/WorldGuideClickPanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 33ee716fefe364b4db9e0475663659df
-    m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
+  - m_assetDatabaseId: 40fcde3055394b241aeee402ddfc2cef
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/ChooseSelectedDisciple.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 3f89ddef334a5e043ab2625baf50533a
-    m_importFrom: Assets/StreamingAssets/game/game
+  - m_assetDatabaseId: c845635081877044d9e61787fb02e64a
+    m_importFrom: Assets/Res/FolderMode/Enemy/Shanzei/ShanzeiBoss/ShanzeiBoss.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 892f0550b4fee0d49b792f61804c3200
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/VisitorPanel/VisitorPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 012b526054a71479db39025c2088b3f9
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNameCommitPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43f98080b50969d4e9712ef76bb440a9
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Honey.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e4c9d2802af089c4aa8c95a40ac79f08
+    m_importFrom: Assets/Resources/UI/Panels/LogoPanel/LogoPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 908d07809ea841b4699e01fabcaad514
+    m_importFrom: Assets/3rdAssets/DoozyUI/Resources/DUI/Prefabs/OrientationManager.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 49befda0406bf0142b91bb6d82495276
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PracticeFieldPanel/PracticeDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52eb2ea0dffb8dd41b7caa0a7483564d
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Lotus.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e9f75ac0124c0524abd210e33e88adc1
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PracticeFieldPanel/PracticeDisciplePos.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c54c35d0dfab7114880bce128b5f450b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/StoryPanel/StoryWithCircleMaskPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8f3092e02b5dd154a87acad8eb31be96
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f118096123b106f438aeec7696f7aa39
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/SendDisciplesPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: de7f2b611ac4ce048924c1ce5c14334e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/CombatInterfacePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 784e2971ca0e0cb49bb0c0fce22d7ece
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNameChildWarningPopPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 55daf78104b230140941f551a0f522c3
+    m_importFrom: Assets/Res/FolderMode/Enemy/Animal/Bear/BearPrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e264c091bad2ab641a90aeacdd3c5a8d
+    m_importFrom: Assets/Prefabs/SceneItem/TaskPos.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 69fb1d91341148b448519d2336fbed75
+    m_importFrom: Assets/Prefabs/SceneItem/Navagation.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9da3bd911027f0f458b87433cb64736c
+    m_importFrom: Assets/Prefabs/Facility/BulletinBoardView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f900a0c1ef04d8b48a273869af9a3575
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/AdDisplayer.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0698d2c16cd589a4da273517632b6ac2
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal2/Character_normal_2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 371df6c134549794f8f83f090715456e
+    m_importFrom: Assets/Prefabs/Facility/KitchenView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: deafbe0276ca5ad468ebeaa86d8ab504
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudang/ZhangZhenRen/ZhangZhenRen.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6174071206a334743bd624b7038e08cc
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fd14891253c5fc541a46950b55278ebb
+    m_importFrom: Assets/Res/FolderMode/Enemy/ShaoLin/Huotouseng/HuotousengPrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b87e6f2213102f14b87d68dc8dcb805d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DisciplePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bd44bd42e72e7c94db25802b71cdaa9e
+    m_importFrom: Assets/Qarth/Resources/UI/UIRoot.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9f7bab82afe46a340a4e3e64a0024ce5
+    m_importFrom: Assets/Prefabs/SceneItem/CollectItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 69a03a92f152f2d4b81eddaf4be570a0
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/RecruitmentOrderItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 746baea24a9224ddd99bd02d48a85f8e
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_002.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 302c34c2bd7a91a42959d702dfb0e42e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/Disciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 684ee5e2fe5ed5d498441320bae54a75
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Perfect/CharacterPerfect3/Character_perfect_3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: af68e703cfe81ec43b2731d8d6474787
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudang/Wudang2/Wudang2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b28e4613afd4f4e64ba619e8f093a169
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_003.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e1b4c2234cb0e1c41afab15e9f95f754
+    m_importFrom: Assets/Res/FolderMode/Enemy/Animal/Snake/SnakePrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 716c0623ac3381149a738be556c95491
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudang/Wudang3/Wudang3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2cc1584384435c54084b3407590f940f
+    m_importFrom: Assets/Prefabs/Facility/LobbyView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a77ed063debb75f4aac4c2c69fce43c4
+    m_importFrom: Assets/Sprites/Plants/RawMatCollectItems.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8203f073566b0fd47812b6630b1aec02
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c0dbe8930d9de0d44a4f34a4392f1046
+    m_importFrom: Assets/Res/FolderMode/Enemy/Gaibang/Gaibang3/Gaibang3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f3ffbb936863c424a875c9871246875c
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 096aebb33b672e0449ee7b47d2a14dfb
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/YueLunFaWang/YueLunFaWang.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c727fdb3c5032e5429f7b390c69aabfb
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkProgressBar/WorkProgressBar.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5d50feb3907ffbc439610f15e051b1f0
+    m_importFrom: Assets/Res/FolderMode/Enemy/ShaoLin/Saodiseng/SaodisengPrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3fa78fb3363cca34eb31de7ad5dbc9f2
+    m_importFrom: Assets/Res/FolderMode/Enemy/ShaoLin/Shaolin2/Shaolin2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f0b850c3f82eb49eb974cd092438fede
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_003.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 22ee86c3640ad6744b84d33f6ffc78ab
+    m_importFrom: Assets/SDKAdapter/Ads/ADVideoPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b22aa8c33f665b946be20362f0f4db30
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/PopRewardCanvas.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ad57b5049d0c3c34fbfcc7e248de85ca
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/NoMaskClickPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a1cbca04014007040833d347e97e08a5
+    m_importFrom: Assets/Prefabs/Facility/PatrolRoomView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8f7b6424a6126ef4da1722ea184db89d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/ColorFadeTransition.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6af98424deb6d4271964d7a56a6dca15
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNamePopPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0aaa9f2430a3e8440b118004eec0ba48
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/OfficialVersionAdPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 36bf913423d149d46bc2dc46bf4cc2f1
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KongfuLibraryPanel/CopyScripturesItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 99d8c5441546c27459193605b0c8492e
+    m_importFrom: Assets/Prefabs/Facility/ForgeHouseView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eddde25405181dd4dbe8ac90054dd29e
+    m_importFrom: Assets/Res/FolderMode/Enemy/Animal/Chick/Chicken.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 58debe549182d284fbca1a1e4487518b
+    m_importFrom: Assets/Sprites/Plants/Ganoderma.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 75ced8b4627d1d84a9c6204f1f44aac0
+    m_importFrom: Assets/Res/FolderMode/Enemy/Cike/Cike1/Cike1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bd0b23c4c0c4e8f40be3fe47a884ad39
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Perfect/CharacterPerfect4/Character_perfect_4.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d82177c4408a2ca49a1949eee3571ad2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeBtn.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4f90b9c40573e60489ce8bc0bcd83851
+    m_importFrom: Assets/Res/FolderMode/Enemy/Huashan/Huashan2/Huashan2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5ff023e407f22194cbfc89ea717ceaab
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Perfect/CharacterPerfect2/Character_perfect_2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4f9d63e48840e7f4ca74e6e7f51b599f
+    m_importFrom: Assets/Prefabs/SceneItem/BattleSection.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0e4a2ff4009bb3047aab9ad35b968f6e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Mojiao/MojiaoPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e6f144055807ab0479ebe15af50e63a8
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/MaskPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f064ec15a91bd804791924a5adb1183e
+    m_importFrom: Assets/Res/FolderMode/Enemy/Xiaoyao/Xiaoyao3/Xiaoyao3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dc249635dbc5f9e4f94ee701c9224554
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/Character_normal_3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5971024550bd2c44e9bb6f345d805d16
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudu/Wudu1/Wudu1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f63152456ca3a9648a6a4c51799be62a
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Good/CharacterGood3/Character_good_3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dd2285554c198d94cb02c2df23f7c6f9
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Good/CharacterGood2/Character_good_2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c4f9e365765371c4cad9faa500900405
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/GetDisciplePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5fbb5c954ac1a0249a5530b6bd6b54e5
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PracticeFieldPanel/ChooseDisciplePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 833eee954e97ba34ab188dff7617c5ca
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomChooseDisciplePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e3339a54cbd0a04b9d8373116a823cf
+    m_importFrom: Assets/Res/FolderMode/Enemy/Animal/Boar/BoarPrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 71a4b9a5f826eab47bd343c47af736eb
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Shaolin/ShaolinPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b1eeb5b5d3121bf48a7d7a8ffda19126
+    m_importFrom: Assets/Sprites/Plants/Vine.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d04febb5009793d4393bf1d5e0a6d915
+    m_importFrom: Assets/Res/FolderMode/Enemy/Gaibang/Suhuazi/Suhuazi.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2b9a03c50c5e744499f6f1dd9e93219f
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: afd1f0d5b1451bb4784c04b031200947
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/RewardPanel/RewardPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c11d47f5498f2ed48aab8d94ba1e7ce6
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/Character_good_1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dc9ff8f5fcf3c2646949cbadf4c7c058
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/RewardIInfoItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 72ceedf5372ac494582df60e52d758df
+    m_importFrom: Assets/SDKAdapter/SDKBOX/iap/IAP.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3f033346c4b4df3418b6de0bac29f74f
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeBattlePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0dfc8e8698d09ea4b83fb355379f4316
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Huashan/HuashanPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a7d5fc6922ae2946bad6cd92a0630f0
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/FloatMessagePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 86bc35d681dff2840b0ff2098f5edcb1
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Gaibang/GaibangPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0bc9c2f692ca840b598494b43245f39b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/WorldUIPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 875252172fb1d374b81740e740d58f8b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a207f21752f56d34c9c546431f6b1d9a
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudang/ZangDaoRen/ZangDaoRen.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4bb8bb375dbab0943b5da8032311a2d6
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PatrolRoomPanel/PatrolRoomItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: add61a77e4429fc4d83f32aed8412971
+    m_importFrom: Assets/Res/FolderMode/Enemy/ShaoLin/Xuankong/Xuankong.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e5d91c874237bfc4db7763da71d426c7
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Good/CharacterGood4/Character_good_4.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c2aa3397be3b75e4ca2209c177010f4c
+    m_importFrom: Assets/Res/FolderMode/Enemy/Animal/Deer/DeerPrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a763b597d03ad6e488c997e8e34e0cd9
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/UIParticalPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 714e0ea7a5e062346b7e617eba2033bf
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KongfuLibraryPanel/KongfuLibraryPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 170b28f78d0facb4fa770052a4a80ce5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PracticeField/Root.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 09f889f7102acc041b814619523628b2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/MainMenuPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 18a1bdf797deb494eb4824f48d540a27
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/ItemDetailsPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1a0822081a9261b4ea7194860c35fecf
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/ForgeHousePanel/ForgeHouseItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c742ee180ba7a5349ac8f97d6a9890c3
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeChooseDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b0ee1f18dc148dd4ea458d1e23ce47ce
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ConstructionFacilitiesPanel/ConstructionFacilitiesPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8d272f18fb5bee142b3be9aff74beef8
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/CombatSettlementPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d89392830391184e9ae107f9c0c413d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/BaicaohuPanel/HerbItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 02be07488c03cdc48977a7f33e1b8856
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Wudu/WuduPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 22444a88e44b77646a876e1a36b1b133
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KongfuLibraryPanel/KungfuChooseDisciplePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 115d4f883d8be954b8acc30b51f871ad
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/SupplementFoodPanel/SupplementFoodPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 91cffdd84035b0a4fa16e9ed6be21849
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/PromotionPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d15f5fe89a439934aa62bb0e4eec2ad8
+    m_importFrom: Assets/Res/FolderMode/Enemy/Emei/Emei3/Emei3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b9980bf8eb2b8b945bc05a7698271cba
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ba4dbb19cfcd13f49b2a17227533b99a
+    m_importFrom: Assets/Res/FolderMode/Enemy/Gaibang/Qiaofeng/Qiaofeng.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cedc6e1995c3ec145bc818667aeeb05b
+    m_importFrom: Assets/Prefabs/Facility/BaicaohuView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f6e98f198ca06c04f988cc04e40c441f
+    m_importFrom: Assets/Prefabs/Facility/KongfuLibraryView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fdcd2129f336fb74d9df7ef8fa8cf060
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 57a108397c80d5b4086d330165d5bc45
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/KungfuPanelItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 269c3559d96c15645a8a4f7f3ab5a1af
+    m_importFrom: Assets/Res/FolderMode/Enemy/Gaibang/Gaibang1/Gaibang1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e4c3db694d627704495b31f54c8ef992
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal1/Character_normal_1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c56d9679073999246a8ae6ec11bbeb8b
+    m_importFrom: Assets/Res/FolderMode/Enemy/Gaibang/Gaibang2/Gaibang2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5b28d7797e748e14d94afb17836d139e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Emei/EmeiPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dbf120895bff4624e8f7320f96b84272
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6cfe239953c75d84193b5b7d125ee432
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/IdentifyChallengesPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fdab36992426e6242a3ad78d98aa2c33
+    m_importFrom: Assets/Sprites/Plants/WuWood.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85c4f99910b373345a5ff6633a3f46da
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/ForgeHousePanel/ForgeHousePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ef6f7b996d574c24799e94aca9060d9b
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNameTipPopPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce49e4b94a3c8fa4a821fb0c4e4f64a1
+    m_importFrom: Assets/Res/FolderMode/Enemy/Shanzei/Shanzei2/Shanzei2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cebf75b9657a2e84ca5c216d8264a294
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/RatePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 38d066b94b30c23438d386d28d77a82e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/MyGuidePanelTwoHighlightTarget.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 648511c95e06d8d46b5cdadb959b6636
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeTaskItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e7cb7bd9cede53a4ca7b0641b4c19ff6
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanelDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d3fc51f9cb4842b418b0ce9d1285db94
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 200eedf989ad39a4191c0b517bb34418
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/LobbyPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5eebd74a9c1247b448925f323c220dc5
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehouseItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ed44046a5e291cf4ba6c66fddc59b6a5
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/RewardPanel/RewardPanelItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e421c86a13ff5a941876f9857c0d98c7
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudu/Wudu2/Wudu2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 92f0a67ac710e5141b026036b3b4903f
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/MaskClickWorldPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4a0acc9a317ee4b6191c57e81b0ddfb7
+    m_importFrom: Assets/SDKAdapter/DataAnalysis/Appsflyer/AppsflyerScripts/AppsFlyerObject.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b28385ead5bd8d44fa982905a345f539
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/MyGuidePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7b962efa04bbda84091646288c82a789
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/LogPanel/LogPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aeb4610b716feda4c8a0c9718f59d808
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudang/Wudang1/Wudang1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 89c2321bcfce0714487fa9e32dc77042
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao2/Mojiao2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a5f2391b20f57af47bbde588d3e21469
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/prefabs/canvas_demo_menu.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2b3d303bfd8c3974e9ddbb2f480c08a7
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/Common/MaskWithAlphaZeroPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 156f843bda4cd9241b28cdde6f3bd881
+    m_importFrom: Assets/Res/FolderMode/Effects/LevelSuccessAndFailedEffect/Prefab/Ani_fail_01.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d7b583bdf1417a46bcdcdd6082f25b9
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/SectNamePanel/SectNamePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6429f24b52e8d4f15acb6493183da777
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_001.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b2eedf4b5f7df9846af6982730659aea
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Leaf.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8cb74e5bc402700418ec476315f2ac01
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wokou/Wokou1/Wokou1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d0212a7b39b4ae949b83c6d6500fbc9d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehousePanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: de95d28b45146f34d80ced1e07525f7f
+    m_importFrom: Assets/Res/FolderMode/Enemy/Huashan/Huashan1/Huashan1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8400058b75a16a14c886adabe0588796
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedHerb.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c866bc9bbddfa4e469d9a16287218dd3
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 81663f9bf432e4ad78e02e0d3e773ccf
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_002.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bce1eeab393e107419395024e30d65c0
+    m_importFrom: Assets/Res/FolderMode/Enemy/Emei/Juejueshitai/Juejueshitai.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1522efab9623e354c9f952b7d757a0a8
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/WorkTip.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 34d906bbb022830459b5bcdf058eee8e
+    m_importFrom: Assets/Res/FolderMode/Enemy/Emei/Emei2/Emei2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bbeecdbbcf4956f45aecb2ee7c0f0415
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/SignInPanel/SignInPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 687d1ccb456b41d4aa903f4036c91517
+    m_importFrom: Assets/Res/FolderMode/Enemy/Emei/Emei1/Emei1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d02f1ddb273e3724ba80d09bb32d175c
+    m_importFrom: Assets/Res/FolderMode/Enemy/Animal/Wolf/WolfPrefab.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f4dc7eb38adcca4aa0ddbf1f1097e13
+    m_importFrom: Assets/Prefabs/Facility/LivableRoomView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a1616d1cbcf71f64ba73b2460d24aab2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 74d5242cdcc41894d8bee9ef566cb12e
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wokou/Wokou3/Wokou3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bd37f72c245e4a348865f6c10b84e593
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/SettingPanel/SettingPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3d14aa3cca3d0464fb452bb72a2e29de
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNameChildProtectedPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8dd41f3c150ae814dbda4dba0754c46f
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Wudang/WudangPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e2a9774c68865f8449ae83d13044b1dd
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1e06715cb82c502458b6b96d147d4556
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal4/Character_normal_4.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2989018c4e2ccdc4fb391d27aecf1e5c
+    m_importFrom: Assets/Prefabs/Facility/PracticeFieldView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4963199c83e8e494980764f979cbbe39
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/StoryPanel/StoryPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f3fa2aacedb482c41a3f4c6163a3c72e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/BulletinBoardChooseDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f00ccbacb529b6f4bb7e7eaaf143cf71
+    m_importFrom: Assets/Res/FolderMode/Characters/Character/Perfect/CharacterPerfect1/Character_perfect_1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 18caa6dcb393521439511b26dc7dff62
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/PracticeFieldPanel/PracticeFieldPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e0f914eca38fdd14aaf3f9b315f57505
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/GuideTipstRoot.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8172621da7f794acaa089827358009d7
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/column_001.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b4fafa3df0adc464c82cb0d46e6bb460
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeSelectedDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1ff02b3da0bf0674fb9d76a9a0fffa86
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wudu/Wudu3/Wudu3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f37cfc3da05acf943a1e5099bc2d475d
+    m_importFrom: Assets/Res/FolderMode/Enemy/Xiaoyao/Xiaoyao2/Xiaoyao2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7672f15de7d815245b23548a2c3f84a4
+    m_importFrom: Assets/Res/FolderMode/Enemy/Shanzei/Shanzei1/Shanzei1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 191c145dc0be4934b9b892ef74625317
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/BulletinBoardPanel/ChoosePanelDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 01584f5d67457484e9181d3999db9be3
+    m_importFrom: Assets/Prefabs/SceneItem/WorkingBubbles.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e314648d18c35f248bbe4a9bc23371b9
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KitchenPanel/FoodItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 939c379d1bf1ef346ad68602d4a1913b
+    m_importFrom: Assets/Sprites/Plants/CloudRock.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b12c0faddf4c570458407a63f135a370
+    m_importFrom: Assets/Prefabs/SceneItem/RandomWayPoints.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5b1de0bd037dd5845ad42a7599bb7c63
+    m_importFrom: Assets/Prefabs/Facility/WarehouseView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5ec556bd55135ff48b3df02a1103f10c
+    m_importFrom: Assets/Res/FolderMode/Characters/CharacterTaskRewardBubble/CharacterTaskRewardBubble.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0ebb53dd553cc054ebd3d96f91511119
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/LotusRoot.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fa91162eaadf99b4db0c6c484dd35fb3
+    m_importFrom: Assets/Res/FolderMode/Enemy/ShaoLin/Shaolin3/Shaolin3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1c0bb46e641e665498313f040936f1bc
+    m_importFrom: Assets/Res/FolderMode/Enemy/Xiaoyao/Xiaoyao1/Xiaoyao1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 81ce5f7eb62e238448d6ce5ac7f37aa2
+    m_importFrom: Assets/Res/FolderMode/Enemy/ShaoLin/Shaolin1/Shaolin1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5032809e9eca52e45bbb3d9513feb3ec
+    m_importFrom: Assets/Sprites/Plants/Iron.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8976119edc72fe542b9f07fa0cd9162d
+    m_importFrom: Assets/Res/FolderMode/Enemy/Huashan/Huashan3/Huashan3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d27ccdae4d15a5944970233e92e1fdda
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Xiaoyao/XiaoyaoPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cac886ce70b6c344ca96a815553d684e
+    m_importFrom: Assets/Sprites/Plants/SilverWood.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f79580dea1ce4cb4ca2512a68dda4632
+    m_importFrom: Assets/Res/FolderMode/Enemy/Wokou/Wokou2/Wokou2.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c965e5de70b82e945935a8a1a4c11732
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/MyGuideTipsPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 658c370f7045fa242a738d8442a1a207
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao3/Mojiao3.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a247c63f8294fe24c95a91b4d29b7938
+    m_importFrom: Assets/Sprites/Plants/QingRock.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 89f9a85f7a50e754a916018475fc0354
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LobbyPanel/RecruitmentPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f714887f4c7fa264e944a9da615cdef2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KitchenPanel/KitchenPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3564948f3dd59b948a9f721737e5e6ab
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNameGuestFinishPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fda0e59f32f71da42a5c75be98fa339b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DicipleDetailsPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4c455c9f992d1fe41bbd8ed9a331736f
+    m_importFrom: Assets/Qarth/Resources/UI/Panels/RealNamePanel/RealNameSkipPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 74ea11cfbe16ed5409faca72692f9ab4
+    m_importFrom: Assets/Resources/IAP.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2083dfcf5abdb7340a24dba64601cf86
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/KongfuLibraryPanel/KungfuLibraryDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 267184dfcf6de5f41852519fe4e04eca
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GuidePanel/GuideMaskPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cf3349df0f98f3748b5ade05d6d3a444
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/UserAccountPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e039feefdd78cd74483b60838ebb010b
+    m_importFrom: Assets/Res/FolderMode/Enemy/Mojiao/Mojiao1/Mojiao1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4d30f7ff9bc4c445980e8162e01e945f
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_001.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: dd52359a239fe684d81c571a3adadaef
@@ -51,6 +867,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 1188003b3abc2e84e97d087d15f29c7a
     m_importFrom: Assets/Res/FolderMode/Audio/BearSound.wav
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2ab83e6d4f954a848b78fd5ed47c99c6
+    m_importFrom: Assets/Res/FolderMode/Audio/Blevelup.mp3
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 85063ca5e5e17a74fa444114bf0ee8a9
@@ -189,8 +1009,8 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BaicaohuPanel/lock_titletext_bg.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: b81d20ad7f4e5cd45a596fe7b186e193
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleField_emei.jpg
+  - m_assetDatabaseId: 44477932c1205cf408705c4450c745d3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleField_emei.jpeg
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: fe54e93c67c7ca44a929e983c4d7789c
@@ -201,8 +1021,8 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleField_huashan.jpg
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 05269b148059b3f4a95cb69ad6b2489a
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleField_mojiao.jpg
+  - m_assetDatabaseId: c380362d42f775c4d85031233ade9ee2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleField_mojiao.jpeg
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 836e16c15f07c574a8b382f59dbb9809
@@ -2389,10 +3209,6 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Warehouse.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 1fe98617f7e081544ac8e7ef35392fc0
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuAltas.spriteatlas
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 8c75b00e9528fd24fbe1ac898044e0ea
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuVisitors.png
     m_exportTo: 
@@ -2661,10 +3477,6 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/Lock2.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: ac9fb2a654fbc3e46bd515c9281cd9cc
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon.spriteatlas
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 596725975fb255547b1c3a64bc571aee
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Bg.png
     m_exportTo: 
@@ -2749,10 +3561,6 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldWest.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 170b28f78d0facb4fa770052a4a80ce5
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PracticeField/Root.prefab
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: d6aa952ae90dbaf479298ce12fa0c30d
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotion_characterbg.png
     m_exportTo: 
@@ -2783,10 +3591,6 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 7575dc26e7f022c44997cec313fff735
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_title.png
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9c70347681261e741bfce8c13acbd3d6
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectNamePanel/sectname_bg.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 8d18c2e2105ff0c439815b7842b0ce14
@@ -2997,200 +3801,1800 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Music/battle_music.mp3
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: faf13549a00c25d4a896cd94060225db
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel.spriteatlas
+  - m_assetDatabaseId: 150832b0723370d4987b3572cb20c9f4
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/MainMenuPanel.cs
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 41a6d203bf7af424a8de15563e1c7a22
-    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Facility/PracticeField.cs
+  - m_assetDatabaseId: 00000000000000006100000000000000
+    m_importFrom: ProjectSettings/GraphicsSettings.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e6741b85dffcbba4a9ff2f2bb2c27bc2
-    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Facility/KungfuLibraySlot.cs
+  - m_assetDatabaseId: ae7029c5c71d1244e998fa81dddd0fb5
+    m_importFrom: Assets/StreamingAssets/game
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 04deeae3b2787ff4db9da93af7b08d7d
-    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/DiscipleDetailsPanel.cs
+  - m_assetDatabaseId: d0b9c000f77a34340a3fb1fba18ffcb1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qinlonggong.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: f4e48dd6b0794fa4b8f70119d8fc44f3
-    m_importFrom: Assets/Scripts/Game/GamePlay/Level/WorkSystem/WorkSystem.cs
+  - m_assetDatabaseId: f24ee0108f54d764ca8c3422bc37776a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/mojiao.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
-    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
+  - m_assetDatabaseId: 02e024100110edf4bbca7a623e26494d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/prefab/env
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: c976116100a223346b1ab6d89b6be392
-    m_importFrom: Assets/StreamingAssets/config/LevelConfig.txt
+  - m_assetDatabaseId: 4761152087769e449a9a333dcb51e364
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/laoyuechanfa.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 43f98080b50969d4e9712ef76bb440a9
-    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Honey.prefab
+  - m_assetDatabaseId: 6857a520c3424294794f55dc566530c2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 908d07809ea841b4699e01fabcaad514
-    m_importFrom: Assets/3rdAssets/DoozyUI/Resources/DUI/Prefabs/OrientationManager.prefab
+  - m_assetDatabaseId: 2149e920bffaa9b439b9f958d06554ae
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader/custom.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 52eb2ea0dffb8dd41b7caa0a7483564d
-    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Lotus.prefab
+  - m_assetDatabaseId: 04b0aa2045d02ac4f88773a3409ab547
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/huashan.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: e264c091bad2ab641a90aeacdd3c5a8d
-    m_importFrom: Assets/Prefabs/SceneItem/TaskPos.prefab
+  - m_assetDatabaseId: 56bbcf206ecd25a4e84def8b5f7337d4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/forgehousepanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 69fb1d91341148b448519d2336fbed75
-    m_importFrom: Assets/Prefabs/SceneItem/Navagation.prefab
+  - m_assetDatabaseId: 6dd820303d9712445835fea780e17054
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/emei.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 9da3bd911027f0f458b87433cb64736c
-    m_importFrom: Assets/Prefabs/Facility/BulletinBoardView.prefab
+  - m_assetDatabaseId: aadb2c30abe4aa046af8dd027b2e3ed4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 371df6c134549794f8f83f090715456e
-    m_importFrom: Assets/Prefabs/Facility/KitchenView.prefab
+  - m_assetDatabaseId: 37af36408f3897645b0a01101f57c71a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kongfulibrarypanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 746baea24a9224ddd99bd02d48a85f8e
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_002.prefab
+  - m_assetDatabaseId: 5b4bec404bf240644a6b20e8f198b504
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin1.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: b28e4613afd4f4e64ba619e8f093a169
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_003.prefab
+  - m_assetDatabaseId: ddbf8960d8409b64ab4c512194c44c3f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei1.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 2cc1584384435c54084b3407590f940f
-    m_importFrom: Assets/Prefabs/Facility/LobbyView.prefab
+  - m_assetDatabaseId: 800bc070e3d3698439546abb4fe98960
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/ge.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: a77ed063debb75f4aac4c2c69fce43c4
-    m_importFrom: Assets/Sprites/Plants/RawMatCollectItems.prefab
+  - m_assetDatabaseId: 375094808662e104ba46ca18e0032506
+    m_importFrom: Assets/StreamingAssets/game/res/filemode/colorconfig/colorconfig.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: c727fdb3c5032e5429f7b390c69aabfb
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkProgressBar/WorkProgressBar.prefab
+  - m_assetDatabaseId: c1837090d51c0e646b61be52b49ff0bf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: f0b850c3f82eb49eb974cd092438fede
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_003.prefab
+  - m_assetDatabaseId: 99dbe59077ee9e94fb5dfab940261e26
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood4.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: a1cbca04014007040833d347e97e08a5
-    m_importFrom: Assets/Prefabs/Facility/PatrolRoomView.prefab
+  - m_assetDatabaseId: df2a9c90da7fdac499389bf5c05cae84
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/liumaishenjian.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 99d8c5441546c27459193605b0c8492e
-    m_importFrom: Assets/Prefabs/Facility/ForgeHouseView.prefab
+  - m_assetDatabaseId: 92119e9005747bf4ba0278d5c9034af3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/settingpanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 58debe549182d284fbca1a1e4487518b
-    m_importFrom: Assets/Sprites/Plants/Ganoderma.prefab
+  - m_assetDatabaseId: 460977b0b851bfe468f1a6f0ef265d5d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/music.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4f9d63e48840e7f4ca74e6e7f51b599f
-    m_importFrom: Assets/Prefabs/SceneItem/BattleSection.prefab
+  - m_assetDatabaseId: af7365c01a22be6498bc8afe65a2ef0e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/boar.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: b1eeb5b5d3121bf48a7d7a8ffda19126
-    m_importFrom: Assets/Sprites/Plants/Vine.prefab
+  - m_assetDatabaseId: f0a0c5c009b2af544be5180868f919a2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood3.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 72ceedf5372ac494582df60e52d758df
-    m_importFrom: Assets/SDKAdapter/SDKBOX/iap/IAP.prefab
+  - m_assetDatabaseId: 5fd556c0b92b60b4bb7e26eeca8062cc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/warehousepanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: cedc6e1995c3ec145bc818667aeeb05b
-    m_importFrom: Assets/Prefabs/Facility/BaicaohuView.prefab
+  - m_assetDatabaseId: 525c47c05225b8e4097fe40c5234279c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/guidepanel/prefab.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: f6e98f198ca06c04f988cc04e40c441f
-    m_importFrom: Assets/Prefabs/Facility/KongfuLibraryView.prefab
+  - m_assetDatabaseId: 6ce7acd05659d0f46b14ab23a1f97167
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal1.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: fdab36992426e6242a3ad78d98aa2c33
-    m_importFrom: Assets/Sprites/Plants/WuWood.prefab
+  - m_assetDatabaseId: 8f80dff0f012d5447b74505572229585
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4a0acc9a317ee4b6191c57e81b0ddfb7
-    m_importFrom: Assets/SDKAdapter/DataAnalysis/Appsflyer/AppsflyerScripts/AppsFlyerObject.prefab
+  - m_assetDatabaseId: 70d64201fba20a24eb9c7ffa8de1bdff
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/shader.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 6429f24b52e8d4f15acb6493183da777
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_001.prefab
+  - m_assetDatabaseId: 22bbf301e49909f4d9d1fcab90ab9576
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao1.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: b2eedf4b5f7df9846af6982730659aea
-    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Leaf.prefab
+  - m_assetDatabaseId: 4a4ee601d6fed8a47a039bcd8d7686d0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei2.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 81663f9bf432e4ad78e02e0d3e773ccf
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_002.prefab
+  - m_assetDatabaseId: d2cbdd013bf0fef4ea1f5d17db1c73c5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 1522efab9623e354c9f952b7d757a0a8
-    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/WorkTip.prefab
+  - m_assetDatabaseId: 5f2ae41104cc4fb408de48ed1c63097e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/qiaofeng.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 1f4dc7eb38adcca4aa0ddbf1f1097e13
-    m_importFrom: Assets/Prefabs/Facility/LivableRoomView.prefab
+  - m_assetDatabaseId: 655326112657ab649ae9d2f339e3a65a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/visitorpanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 2989018c4e2ccdc4fb391d27aecf1e5c
-    m_importFrom: Assets/Prefabs/Facility/PracticeFieldView.prefab
+  - m_assetDatabaseId: f2eaef1197a96254590a6feeeed4a841
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/baimangbian.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 8172621da7f794acaa089827358009d7
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/column_001.prefab
+  - m_assetDatabaseId: 6c53ff1191217364eb80a5599285a24a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/baicaohupanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 01584f5d67457484e9181d3999db9be3
-    m_importFrom: Assets/Prefabs/SceneItem/WorkingBubbles.prefab
+  - m_assetDatabaseId: c3b8e3212e0c7354ea9ce659c8b3fc95
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zangdaoren.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 939c379d1bf1ef346ad68602d4a1913b
-    m_importFrom: Assets/Sprites/Plants/CloudRock.prefab
+  - m_assetDatabaseId: 6afb7a211bc765a40b24404b8ea083a4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/kongfulibrarypanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: b12c0faddf4c570458407a63f135a370
-    m_importFrom: Assets/Prefabs/SceneItem/RandomWayPoints.prefab
+  - m_assetDatabaseId: d0905c21369bb9d4c91c0937c0d44895
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kitchenpanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 5b1de0bd037dd5845ad42a7599bb7c63
-    m_importFrom: Assets/Prefabs/Facility/WarehouseView.prefab
+  - m_assetDatabaseId: 0ea2dd21dd275c4428799c80b8dce9c9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao1.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 5ec556bd55135ff48b3df02a1103f10c
-    m_importFrom: Assets/Res/FolderMode/Characters/CharacterTaskRewardBubble/CharacterTaskRewardBubble.prefab
+  - m_assetDatabaseId: 3f887f21819c37f4a8d4d5b2d8d947e8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei3.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0ebb53dd553cc054ebd3d96f91511119
-    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/LotusRoot.prefab
+  - m_assetDatabaseId: cb8f70418e590d24ca223b9b9b595961
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/jingangbuhuaishen.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 5032809e9eca52e45bbb3d9513feb3ec
-    m_importFrom: Assets/Sprites/Plants/Iron.prefab
+  - m_assetDatabaseId: bb10b1415104da84a917c1065e395dd5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/prefab/env/buildsmoke.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: cac886ce70b6c344ca96a815553d684e
-    m_importFrom: Assets/Sprites/Plants/SilverWood.prefab
+  - m_assetDatabaseId: 2f5dfd41b3ca8e0429ffb7967f4b7ce8
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res/folder_icon.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: a247c63f8294fe24c95a91b4d29b7938
-    m_importFrom: Assets/Sprites/Plants/QingRock.prefab
+  - m_assetDatabaseId: d28a2f416949b7e4b9e1394251c27024
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 74ea11cfbe16ed5409faca72692f9ab4
-    m_importFrom: Assets/Resources/IAP.prefab
+  - m_assetDatabaseId: d80d7f71dc4632d48abd49d54b5b8f31
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/practicefieldpanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4d30f7ff9bc4c445980e8162e01e945f
-    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_001.prefab
+  - m_assetDatabaseId: 3f2ec6819c5123b48abea69408fb848a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yujianshu.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 00000000000000004000000000000000
-    m_importFrom: ProjectSettings/ProjectSettings.asset
+  - m_assetDatabaseId: 36f5e781a04a5dc4f85d94355a128691
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qingmangzhi.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9b8cd391ef3f3774e952a01c03e744f2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture/martialartsmanagement.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a4a159911a4458744ba50b811b44b127
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 691b5f91bac8f584fb7c1f6c690c4859
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/setting.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3ca36ca1d53772441927ad7e948ab7f6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e3557b1cbd81ae4798cc9a88c0c47a7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b4873bb11c2af76408c106953eee9a49
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/signinpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4e861fb1970fca54d858331b063df99b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/wuyingjiao.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0c9cd0d1c6916e043bfed762ed44448a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/forgehousepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d456fad1de7be4748bf43593edc15256
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/tiancanjiao.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1d6301e12b5a6cf438797a16c5ae81c5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4a32b7e1586f2d145be260fda63b3bd4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/supplementfood.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d28d69e180282214c9d1fb873cce14ee
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/luanpifengjianfa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7dd9e9e1175bff340837ae890e8069e8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 06810ee198507c4468046ab2a8960943
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1c0423f1d6e15ca4182fadbeb95fb5e1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7053c3f1c3c01fd4b9007b01b19f2de7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bcb5bdf1359acb64bbaaac984586d718
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/chanzhanggong.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 55576002a6ff8114ea6ff540e903b6e2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 30a94702fd837b74dab4f1cb4b3fa865
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip/rewardpopfont.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e2444d027dbb9af45ba96f260d2acab7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader/guidematerial.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6fd8ef02f96e4d9429a563e5dcb66c0b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/huashan.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04194112635328a4584068d450fce376
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel/logpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cc475a1244b8ca8418813ba54247da74
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/material.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 15531822b6880e24ebc1c807c34baa84
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/icon.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 74cd334253f3e7642947c0cb3315e06b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/lobbypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3782d5426195d914896ef4c21b834e23
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/ge.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ed512e42085649d4e8b258bef0f251fd
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/kongfulibrarypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 68cce952230b7474390bd997a1f10049
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f563ce529e87c97498131e139550e8db
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/patrolroompanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 83da416291570ac4c93e4c4d8dbd39a5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/charactertaskrewardbubble.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eda51762dfbe9de4ebcac34c8f93550c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c193d8627fcfa664ba116a61bb6452ad
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/rulaishenzhang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ab236872f17df3047898d8482a6eebc8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/xuankong.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52088f7223ef3e040a39f48083ccbbe4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/kongfulibrarychoosedisciplepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: df505082ad2162d44924cd418932be50
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 49efa28295027c64bac1beeeb799b479
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 61e8f4821817eeb4caa19d3cfb5327c0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6febeb8238eafa5409a929402e010ce3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/livableroompanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5cc76ca25f80e4848a94c5c196982303
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res/triangle_right.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d9e2c0b276a9bc24c80110d149ab4a6b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/dugujiujian.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9e994db2ffc35d2418ec8aeeb6bbd74b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/prefab/env/buildsmoke.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ae8af8c2568c45c40bb71bcd34f0f63e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/sigiinpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b7380bc2fc9fb7d46b953911ba2a51d9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 13177fc24bc7d4a4abb683bd5d9ebd62
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzeiboss.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 97dc95d2678877942bb0b9fb09ac914b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dce194e219de24049839228a3400a63f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3ba60ce2047cd5f43b346c1e04e4eaf8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/warehousepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ae2230f2d60c94a429e519b3773f4f5a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyaozi.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e2655f2291fe9a499278c509d2194dc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0449fff2a0b769a40ad2200c879bd6d1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d841a403feddcb94f8d705f2200db7bb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/suhuazi.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43ea851384c654e4d9792966db75bcb6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/bodongquan.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ae2b0913918136a49a030c5e002f3762
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/constructionfacilitiespanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9426164300551a74b8fe40a56e3de1a3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e825cf43675b69047aa6a565772acd65
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/lobbypanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 37981453021e71a449e4ccd0f696fdd5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/juejueshitai.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3fd36853abb1ed145b06293c4bdeda35
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 58c488532b7047245af9c53d8b1a7c42
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/gaibang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f511ef53bb4105f4ba429cbe5fbfc370
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/snake.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 908be0733a478054a82c67d8561bbebe
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/prefab/martialartsmanagement/env.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 39d3f3732ad227044b5ecb307b16abeb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fee63573bb834d64dac14c9066f31aed
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/animation/martialartsmanagement.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a9796873bd51fce44bf1e79844432e2e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43f34d7379a660649a00bad313b77b73
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 582ca793d8af0f945809df253ad9a55b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/workprogressbar.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 44dff793ec0a8444abaa5f300cfb09c9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/jiuyanggong.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 24ed29936b9097a489d91ce94e700f17
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9461d0a3611f3d24a8caf3e035a6aff0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 94a48ea399ea2eb498e45358412d692f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9f538bb3b68ddf54399f6a809ddb3842
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 285eedb3f8617de4a816f0b38b4fa6af
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5d8a0fb3b63df8a46b1e9d0d95889273
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/kitchenpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f9939c3a68990349a26160eecc68c37
+    m_importFrom: Assets/StreamingAssets/game/game.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d48553d37770eac4382e5bfb60bbcd25
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7bf778d312d35ba4e8bce26ac37b77fa
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/cike
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b21469d36143956459a807d996b6d2de
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/common.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b56c9dd33a9e4874c8c623f28154abe7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/supplementfoodpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f5c382e3923fe9a44bba78c2d64399cd
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/yuelunfawang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 31f934e378bdb3c4a92a66d4c274c449
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fc944ee32a9235449b61b98063a5d1ab
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterwholebodyicons.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dfcaf1f3d084cd24f8bd7370224650fd
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f9e124f3c4f0536439127cebd787e0e4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3da71814ce6f3d34f9dfc7c507db6765
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d1fb8814448092f43ac6276a7eccddf1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatinterface.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9e435724643ae764ca95076fd4559dad
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 34c9fc343ec0bbb45a91f7f64f2eca20
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/bulletinboardpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7a3cde34292b89f468fb472c8cb3d5ec
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/emei.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d71731443bb37c9478f952b7dd65dfe4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/guidepanel/prefab.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5b5809449348b2340b7887149a0ca950
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/xiaoyao.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a111355476542154f85151427ca143a4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/tanzhishengong.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 200cbe54c3cd2f64fa49ad982443d7a7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cb12fa642f12f6341bba9e045316ea8a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qinglianjianfa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 89a22b64b7ec75e40b2ddebd392cf518
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/pausepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: da26217426f7a084ebbbec8d05772a0b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ef551284d3d3cc54186c08bbfa2a3bcd
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2ed6d78498a449d489c206f07920908f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemdetails.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8db17b94ea0477d4fa0ace11cc188a1b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5225ce94c58f6d341839f5fad48b216d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/battlefield.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 947127b4f07ca424cb16276a224b7044
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/livableroompanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3c8379b4048a30f4da188ee39fe3c2ec
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 95cb3cb4dad9530499e4ba6d480870f4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/popup.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d080eb4c34030c43a8c72f8e544256e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/patrolroompanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 047f32c4b7c41ed4ba1f7df01d2f3775
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal4.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0d4c87d4987ba3b4cbc25832c50d6a4a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/audio.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b4c6e7d43e460974fb17efea2d22a744
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kongfulibrarypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 57976cf41d3394d4e9dd21139c2642e9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 57860df45dbec4f4781bec04d148990a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 869b1ff4cf74b4144b9f43f7962a88a7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/animation.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a319f405897e9bc43a2f71d7b08f4f0f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e15f8615ca7c0564ea8701c81e10a05f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85ceec1536fb3ed40886d43d3d4bec7b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/useraccountpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 57936525997ae4142ae014e10ece640d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/constructionfacilitiespanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 259218250929ba64bb1dc9810e08d1d8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/music.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 992bd145e63250a498b1d6a653b82dd5
+    m_importFrom: Assets/StreamingAssets/game/res/filemode/colorconfig
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 70ff344512055fb49adec49389433e75
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/warehousepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c5153a455480aa841998e8ba758981e4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 78b12655eddf23e4f8b5f36c4eebc6d6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qianshouzhang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3bf2a665d3df5f440bfada0fa982ca88
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/wudu.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 62dfc865766f0fb4398f43cecea57596
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1081ea75ba3a18e46a2f7a1a180718d6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/shaolin.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4579fe756a390f2499bd34348ecd601a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zhangzhenren.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a3d8e3850f9c9184ba00b8271b602c21
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9a2975857ea383345bbc0f1129299b5d
+    m_importFrom: Assets/StreamingAssets/game/qarth
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 556146855c46afd4b8ea79905b26d034
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 810f2295cbada764fab6dea90cd7eac8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/bear.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d1789995c8dc55042b3fa4d8e69156bc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/texture.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7048dd95eeee45c43b49ca7233553af2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/log.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2e00df9587efb62408c5fc269b897625
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/facilityicon.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 30645ca543355aa43b97fbb159e66843
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6faa7ca5fa6cb584da4333d93c60340d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/shaolin.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4a98bea52af9c7040887614742e0920e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 510256b5327ae8347b476a4d5af97899
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7e346db5c77d6b14dba3c43c87d768bf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f9581c5e9934044ea7fd712bd4d2889
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bad0b1d54c12ff94e89a093bc6387feb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/baimangbian.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aa6fb5d5de86e2842998c3cf6b1ab70a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dca709d58b0816548aedd7a52027dc4a
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res/triangle_down.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 047c98e5d7214514681e54eba0c057f4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/sectnamepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fa492ce5f835d534a8fae8989b041111
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/font.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0c82aee54e4527849993ecc9cd7829ed
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/huashanjian.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e5abc8f55ae71154f9b0ce67527d7ffe
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/pausepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cc5469f5f7d99bc4caad914196c10cd9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/charactertaskrewardbubble.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e5aa0606d66bf9541b4c6b244fdf02fe
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood4.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ef38d216972f48b4781c99a365640f97
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 451899161ae335d469e5833a729a4dc7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/material.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f0355368fc344a46ba648daab748f7c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/saodiseng.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 62fd1b361ddf424449f477eedd29e82d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/baicaohupanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04063646785da2b4099d2697bd5eeb78
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader/yg.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1b7795567051f974caeda9bf2852c1ef
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/supplementfoodpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4ed488563a890b04ab361e02fa80145b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/gaibang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9a53fc56e67ee6049b57cc77a00b826f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 98a11376a5972084080ad1ed93c8ea19
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader/yg.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eeddf376b9e5dad499efc7187e0d9eb1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d2f419768ebc44545a67477b5a3ee154
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zangdaoren.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a24809626bf0df48943b45f15f756c3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyaozi.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52d35aa6934fa994289eae6127d89fd8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/wudang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 275cbea669d0e254daf11eac7eff8869
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 03a274b60e6b11d4c87f4c6c4f6c0ac5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/battlefield.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 098dddc6f9b365145b665aa8909af19e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ec3e05d612cdeb44b989f846ff256e6f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/jingangbuhuaishen.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0c4de9e690bd9404abbd8490faf306a6
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res/triangle_down.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 524c62f649ce14a449a0c55a51607a78
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 67226407fa0a2ba4f93b5a4412f517de
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f4bdcc070d6aa854580f6b72222bf5f8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/forgehousepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2ea321174b242b14682f8ad192580903
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/font.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3ece6f1781685c04a948d1d2c92914cc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/practicefieldpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ecd8bf271defa69428eec136b4704cf7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f44503471afa176499cdc196dd7286f6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatsettlement.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fdc8fa47a6646d549a060fd74b58a508
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 88a0de476ab0e5949a897060481b3522
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/wudu.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 03470257887558744b1d41523efe45ea
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/visitorpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e2905577f472974c901d2fc89f86e6c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zhangzhenren.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a3c356674acc7954f88454507d0372e1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/kongfulibrarychoosedisciplepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c8eb8967ce7cbf04d8bc401b61d77be2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/lieyandaofa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: df3522775a1405043b8c89aba21a96af
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/prefab/martialartsmanagement
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bc7b73775eac8d34f960c13b9b773c23
+    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 32b4a8873f24dec4199ac34b90660264
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/texture.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6fae9a87db02f2847aa9385c0dfe56f7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/dugujiujian.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4553e2b7fd9481e4481bf8e2929ef0c1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a341aab707699a54ab6962bf0522bfe0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/xiaoyao.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0f00afb75fd35b444ba0de3df3571289
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1073f3e7d5e99b640a720c24f6bfc442
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/shader.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9a44d9e771ce3c0478e91f67d4080afb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/liumaishenjian.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 18185af770b31e64396eaac1f8f1d4a1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fb675cf7022dac840a879b9d3209b557
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 70c9c5180afb01e488c36ea2ec17038d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/storypanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5277ad289a38f00458dab538e35164a0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 99491238f0d4a4a4da8d12b96b475afb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b870b348eb72119448cdf44f0da48dea
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0f3af448bf7c9cf4eb597fb58132fcef
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel/rewardpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0c49d548f4d62254a83e1abf1d204e99
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/wuyingjiao.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 55996d489df1e3541a77aa0a50dfdba6
+    m_importFrom: Assets/StreamingAssets/game/res/filemode
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 64860668f43134f40a3845391cce02af
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7a681d688ccfd0b46845a0d727931efc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f44879788fb1311418d36afff11c9229
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0d88a3883fd523c43bc574b90e0040ab
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/guidepanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 562874883ecbb6647bf09c3ade0f43ba
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciplepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 026bdf885b0d4f848a06c493ed49a455
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/sigiinpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e4cfa6989da098f4db614cb8c9013e30
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a82780a8fc9c35742a778f7a82eb318d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/tanzhishengong.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a0f6c8c82bf646842a28a4036fb1bfef
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/kitchenpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b40239d86abdf6143b4d5f1150f7293d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/storypanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 556889d89a14d47439c5642bd5f774da
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/material.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b82dc9f8d4e65e24db6fdc462499c991
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b1078109965d99041a00549399e9427d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/chick.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a6c6f6098ea00584f83a3d100615e956
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0caf3b09e79ff6b48b9635112120b33c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qianshouzhang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 98357c098f05a4f41aa1fb67068a7ecb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 15ff3219333185f4584b0d2af4463245
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d5191619cb1307548bd0f5b80b870345
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/lobbypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 11099619b08099547ace2c3d0d498a09
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/bodongquan.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cdb2ca39e068423489a8155dea9e398f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/useraccountpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 81bc5749dd2149c4ba613c7e1240560c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/kitchenpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f83138499f7efdc4599e1c54264983fd
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f14ea859e2e52cf46b957f6cdd95e9ae
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 50934959a3a756342aa5ae2777cbe61c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/common.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 219d4869107ca0e4e95aacbc27a5c122
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/practicefield.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b95acd699266fa3448823021008ab5ff
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/settingpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 75f31279ee58a8446a0c84d05e354580
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/animation/martialartsmanagement.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 535e6479de1b72a45a7d2e8dee32fde2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 288dc479e1493f5478733bd5925107b8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6911ec79e3bbedf4a81a5eabce675e6e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/signinpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f30f0089fb5678b469d07ec25b82a4b8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8174058931039d340b161f2c56329e50
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/texture/martialartsmanagement.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a3545a99ec6fd2946a05ae5a2a0bf1a9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1499bc991f8dee941997b86332dcfebc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/prefab/martialartsmanagement/env.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c87f70b957af25143888afaa1697eec4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatinterface.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9998b5b92d0e4bd4292d2c57efdbc2e0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 49d19db94583fb34d8ef653c1df226cf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/discipledetailspanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 306375c9bab461949a3716dc4c897d01
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/cike/cike1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6585b7c9b5386af4fb50f1644a7e5e1a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7443f7c99140e89419bf7aa1963588b5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/yuelunfawang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 718bccc9147747c44865e5cf62528461
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yujianshu.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c073f2d9a9d901a42af73ecb0087f9b7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 35e493d95a6c4244a829a0d63a508007
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzeiboss.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 709615e970039cc4597c2a2d8d9c063e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/huashanjian.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 094298e963cb2634da2f6fca1d112eec
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d49499f988777ea4f864e03fb3c81aa3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yanhuijianfa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c091880a14687be44a8d2ac2ed7fbb6e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 83ef9b0a46626de4e89b3e013a14f9d5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/xianglongshibazhang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 27af3f0a88d94c942aab25267c9da204
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/storypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1a77281a11be6b54c9cb6150da7a0489
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 39d72a1ab26591049897da5ede336af1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/guidepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b83fff1a38fbe3c46a34bcf9fbdd3103
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d224732aafe26184598100c05bb6ebbf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f77aa82adf81d074dadc6f7772c8c08a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c1f5333a4cb406d4bab2da38ea232349
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e920ea3a16f0b3c4b9e45c515d763cac
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ba414c3ab83a67446a869134c12e02e7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/patrolroompanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 96e6924aca6319143af7d2a0a544bef6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/wolf.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5508915a0e3d00d4dabc07ca35dc0416
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/tiancanjiao.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 71c9b15a9e67385489a03019b2859b8a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6bc5455aa09a4e54eb5e345ffb0a3e07
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/bear.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 62fa665a80ee927419dca61796efb85f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/popup.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0bf9526adcc6e464887a472f656e8d0a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/jiuyanggong.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: adb3826a2f8e53141b77a36792e8e653
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/patrolroompanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6148936af02184241bf294973ca36f6f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/wokoudaofa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1953207a8feec8f4e8bb9b608939ead3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/baicaohupanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d951237a1df0e51499cc31130a4036ed
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general/materials.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 14256e7a05866744182eec19a37206b6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/chick.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6b9e018a73cfb234292764ec1c4b640b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04427a8aa2b04f64fb872ad87076775c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/wudang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ef79a99aa37c288448899c6fe9a60be2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6b1bbcbadd4da6447b57b4c7cc1b43d2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/worktip/rewardpopfont.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6ae5eebaf60565b4a82be5c0af5b93d8
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res/folder_icon.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6a8d62cae381668478d78ee3bf2c9e51
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect4.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 846b04ca56e24ad4ea72d91810de3d2c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/baicaohupanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 94365aca695fbf943be39a6ef5d18630
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 07a8afca0e4cb734d89a6da5ce338b4e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/texture/martialartsmanagement.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2a6fd6eabe59fdb4a878846a7d9f2ea2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatsettlement.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 21d7cbfa2b212cc4797544e8a48bd9ee
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 17479cfa7e034eb4c81152dff36cd318
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 62e1bb0b250ce2f4ba5e449b770be18b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/sectnamepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a7d05a2bb5811314090cb66264a1315c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/texture
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5699503b452d0dd4082a0e772f9b7867
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal4.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 39f2d63b9dfa3e9419d0fe3945b3889b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/icon.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5ebf6d3b4bc0c1e499fd1398aad8ebf9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/xianglongshibazhang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0cd5064b4919aff49a2a9472e1b4bd0e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/buildeffect/animation
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e459db4ba3f603e4aa117d4b9718070b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/saodiseng.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c63c2c5bd675424468c5096cdd027f50
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/material.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 817e476b288c2ba469d4f11a0e06653a
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9b9efd6bf25af6c4b95906c7a73a20d8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/boar.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ac16a07b8b4fe224ba4f793e6f63789f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/mojiaodaofa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3c988e8bbce8b9c4bb88f489469753bb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8aa6b19b90da2774fb2f723c966ad4f9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/promotionpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 80c6969bc4030944f935c77cf3d2d395
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/supplementfood.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f8c5f79b4a27e01498fd7197ff6abd76
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ded7c3ab90a03e242927630723f2c56e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d674f4bbc21b5f04a871f928e3deb7e6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yijinjing.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4ef6dcbb11d4abd4b8556f812c617a08
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4082a0ebbb3d73f4c823e022d4d278ae
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemdetails.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aae885fbcaa400449a67fa6aed9a90b0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/qiaofeng.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3c4195fb27aa1374792970831c1c8902
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8b85041cded45ea419f1d17972940959
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel/rewardpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 642dc71c8ef73814d93f5d6b7d03d1ce
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 55a4032c21666a14baeeed55df14aa30
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/identifychallengespanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 126bd82c9a6ca48498b8fdd71c766fae
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/facilityicon.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 553ff04cc50926e468293631a3b99ff7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/warehousepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 61b0b34caf8987a409a59d2e0dcbebc2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d84bc4cde747bb47984548f9b90c0d5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qinlonggong.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cf01385ca31a9df43bd7707fdd8bbb9c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/rulaishenzhang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6372dc5c8c4bc2a4f93ecc022a5e39d4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/huotouseng.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a312d6c07f85da448536c3482dbb7f8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/livableroompanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6534b68c0995ed349b38a4971d53028b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e40d7e8c6530d8041afc9b039d17852d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/visitorpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4bf8309c4128e1d42984ecd22f1823c0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader/guidematerial.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93a4789c9ad99eb4dad76e789f5a78a8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yanhuijianfa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8529fc9cef198be49a291a2b7d29faa9
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 805caaac116871843b001a406c7595e5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d2893bac31adbc94f8c8c9724b73cd62
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 373213bc77a644045b85c5f8b5080ec3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0df50fbc28a1d43408efd453b618b05c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/animation.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c8f3accc75146604595a93acb04958c4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/lobbypanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52d096fc3bbf0ab4ba9f56b701aff3fc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/bulletinboardpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e1bed11d93eae3746982d56a8fb1cf29
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c406a21d48020a845890e17d224d2743
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: da85251da6b9ad940a7aafe9b75f976a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ea6d071d6cb14a8499b17319f346c826
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: efe12a2d2b20c044eb3f42b2a7908950
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fbd1ad2dd0ee02c4299771d3b9e12cdf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1335984d69f360f48bf1b05baa463a56
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou1.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8abb705da321dc948bb86905d354ac70
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/livableroompanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 173af15d731384049828bb2b07ebcc5b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/animation.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a2af346de366a1940b65119ba9b879e8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qinglianjianfa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cd74b07d02ccb0d4aa637c84577f2f2e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c68a947d5d3eb6e41a8b65b371ca80f3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general/materials.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a4a8908dcbc29ed48bda7ae16da8f8c6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a9d4318dc7d7a184b8e4e61c2a27ddd8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/deer.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c590b19de4e90e746bf78dcb27c30edb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/forgehousepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 68ed339dcc9371242b7ada2b16aa4714
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/workprogressbar.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0519989d117ab3a409ef7332ee580c0b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d8b09f9df40b93845ad614de23816d66
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/chanzhanggong.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 915814ad897ec5d44a543907fb3dc2b5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a416f5ad3de91c540ac2a8f4d655cb0a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/lieyandaofa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a4eff0bd3b5f5464ea0bcfbf076beb75
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/identifychallengespanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: de2d71bdd4bae7f40b6ed511f5715232
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/qingmangzhi.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 889a00cde7e9e3844bf949a61f085b6b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/snake.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 11daa1cdb0089ff43ab2cdef8aec4e1d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/practicefield.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0c49bfcd77dd5ee43a870867c80b7d6c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect4.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 83f1f2dd61edfe647bdfd4f027ada45c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel/logpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 958c3add71a568947815598bebfef09d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 14f05addc18a5d948bff1b540d87041a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/animation.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ab78e4fdea5c7734b8769f53f1934bc3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/luanpifengjianfa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aaa256fd39d286c46a7ed7c8c98175d4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/sectnamepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f69fb7fd7b3c81c4d97d5ab02b13c2a1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciplepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8eeb450e3f2447047accacefa6250c77
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/promotionpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a81eb70e6d52bb946802aa932403757b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/audio.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a0bf2d0efbc8f1840bc4ab2eaf501250
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/guidepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ec414d0ec60a8d1428d9b4e87b9c3fbe
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dcc0f91e34e40274e84cb885d930054f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/suhuazi.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 55d6fc1e16d60cc45b767c2548eb45ac
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/juejueshitai.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fc96bf3eb1bfbe34baded4097bd3b067
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/laoyuechanfa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d5c2c55e966e83343a63df82e76c7a2f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/deer.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6ed0675e178ce96418bb84e04113511e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture/martialartsmanagement.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4949675e83bb7934290fc49abca1a5de
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3a4b836e56bf5db49968ef18bdd52795
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/visitorpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7a0c4b7e00692b540827e388f85fd451
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8417bd7ee955f5b4d9c078f5b1b43355
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/storypanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 17bae5aeb4e04e0478e3a22766375a58
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/xuankong.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a1f31dbef12fedd4aa5078269ff8dc50
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 443831ce3c66899498eeb5c276e7f48a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/sectnamepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c84365ce0ac8c6e4c886e84a47c50291
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d1af1bcefe49e734db0e3c6beb08629b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader/custom.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 45e7dede6ef42fe4ba838b67a03383ef
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c738c6fe61e88804b8ec2e337f1b9d3a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel/mojiao.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f4a4befe52c7bb84587681c312854e06
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/setting.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9150e01f9af750a4c98ff38260a98397
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e8eb021f55334554dbf033d0a2d522f7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6049c31f96d54914a87932385fb94df2
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/challengesubpanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3b45141f48071ef47aa7718f7d2b65bc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 495c4b1fce58c00478ce6c9412949132
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/shader
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e47c5e1f0bb96834999c34f1c850aca4
+    m_importFrom: Assets/StreamingAssets/game/res
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ecc2812f57883084c8c4db7027da1900
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7dd7023ff9495a843b6fa0adb66e9739
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ebb22f3f7b22d5d4cbae9e19afb22aeb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fa364e4f970d2f64dbeb211aa4940d45
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/mojiaodaofa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2a35295f4038e8a4a8f4ac3b6309772b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/log.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 33ee716fefe364b4db9e0475663659df
+    m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9e90446f94669bf4599f4cb9fe326ef4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterwholebodyicons.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8c6ace6fe04752f4abb1d7aca5202862
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 50a1127f5d8a1704fa997c3e13c03655
+    m_importFrom: Assets/StreamingAssets/game/res/filemode/colorconfig/colorconfig.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0246c98f67d1db4498c8dfd9f2452d6e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect3.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ddfa409fea6dec342bd23918ad5ba75d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2ab1889fe4ac74e44aac9a3c95a2616f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 22d620af6c9afe74ab6fae5750b9723b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/cike/cike1.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7782c0aff5d8e83428eb26238fb42bc6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/huotouseng.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7be614af23a6a384c90f315ca8bccbcf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/wolf.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c633acaf2877da14a9b977befddb60b3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/discipledetailspanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d271d1bfc7401484582b4558ac9dabfa
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0f38d2bf380773543a1bb2950ac91d97
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang2.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 982b68cf549450a428e563f79cb7449b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/wokoudaofa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fc5eabcf2b8f47c4eb0bd37dcb64ffd4
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 27225dcf5ab083d46beaff654b858b7d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 917a50df7c4a0b64f8040b9678b311f3
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f9ff1df4028e4d4e8f01a09a988a26c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 902f22ef22d59bc42ae59ddbbc3e8109
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yijinjing.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 428b89ef7e6803649841e3e4923a0c2b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao2.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3f89ddef334a5e043ab2625baf50533a
+    m_importFrom: Assets/StreamingAssets/game/game
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cb6037ff88ff62043a29db0a2ac5392e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect3.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d148b8ff73c0b9044a1557b22e178a56
+    m_importFrom: Assets/StreamingAssets/game/qarth/editor/res/triangle_right.bundle
     m_exportTo: 
     m_variantName: 
   m_version: 2

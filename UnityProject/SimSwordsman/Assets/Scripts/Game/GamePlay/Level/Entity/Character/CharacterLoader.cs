@@ -46,7 +46,7 @@ namespace GameWish.Game
             //{
                 foreach (var item in m_CharacterList)
                 {
-                    LoadCharacterAsync(item.id, item.quality, item.bodyId,  null);
+                    LoadCharactersync(item.id, item.quality, item.bodyId,  null);
                 }
             //}
 
@@ -94,7 +94,7 @@ namespace GameWish.Game
             return go;
         }  
 
-        public void LoadCharacterAsync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
+        public void LoadCharactersync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
         {
             string prefabName = GetPrefabName(characterQuality, bodyId);
 

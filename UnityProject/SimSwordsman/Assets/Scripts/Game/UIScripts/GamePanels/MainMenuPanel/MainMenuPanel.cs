@@ -45,7 +45,7 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ChallengeBtn;
         [SerializeField]
-        private Button m_VoldemortTowerBtn;    
+        private Button m_VoldemortTowerBtn;
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
 
@@ -64,8 +64,10 @@ namespace GameWish.Game
         {
             RegisterEvents();
 
-            m_SettingBtn.onClick.AddListener(()=> {
-                UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
+            m_SettingBtn.onClick.AddListener(() =>
+            {
+                //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
+                UIMgr.S.OpenPanel(UIID.UserAccountPanel);
             });
 
             base.OnUIInit();
@@ -84,71 +86,91 @@ namespace GameWish.Game
                 m_VillaName.text = GameDataMgr.S.GetClanData().GetClanName();
             }
 
-            m_CreateBaoziBtn.onClick.AddListener(()=> {
+            m_CreateBaoziBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                if (GameDataMgr.S.GetPlayerData().GetFoodNum()>= GetFoodUpperLimit())
+                if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= GetFoodUpperLimit())
                 {
                     FloatMessage.S.ShowMsg("当前食物已经满了哦。");
                     return;
                 }
-                UIMgr.S.OpenPanel(UIID.SupplementFoodPanel) ;
+                DataAnalysisMgr.S.CustomEvent(DotDefine.food_supply_open);
+                UIMgr.S.OpenPanel(UIID.SupplementFoodPanel);
             });
 
-            m_VillaBtn.onClick.AddListener(() => {
+            m_VillaBtn.onClick.AddListener(() =>
+            {
 
             });
-            m_BulletinBoardBtn.onClick.AddListener(() => {
+            m_BulletinBoardBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
             });
-            m_WareHouseBtn.onClick.AddListener(() => {
+            m_WareHouseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 UIMgr.S.OpenPanel(UIID.WarehousePanel);
             });
-            m_DiscipleBtn.onClick.AddListener(() => {
+            m_DiscipleBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_open);
+
                 UIMgr.S.OpenPanel(UIID.DisciplePanel);
             });
-            TrialRunBtn.onClick.AddListener(() => {
-         
+            TrialRunBtn.onClick.AddListener(() =>
+            {
+
             });
-            m_SignInBtn.onClick.AddListener(() => {
+            m_SignInBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 UIMgr.S.OpenPanel(UIID.SignInPanel);
             });
-            m_ChallengeBtn.onClick.AddListener(() => {
+            m_ChallengeBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                int needLobbyLevel = TDSystemConfigTable.GetLobbyLevelRequired( GameFunctionSystem.SysChallenge);
+                int needLobbyLevel = TDSystemConfigTable.GetLobbyLevelRequired(GameFunctionSystem.SysChallenge);
 
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
                 if (lobbyLevel >= needLobbyLevel)
                     UIMgr.S.OpenPanel(UIID.ChallengePanel);
                 else
-                    FloatMessage.S.ShowMsg("讲武堂"+ needLobbyLevel + "级后可解锁");
+                    FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
             });
-            m_VoldemortTowerBtn.onClick.AddListener(() => {
+            m_VoldemortTowerBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 FloatMessage.S.ShowMsg("暂未开放，敬请期待");
             });
-            m_CreateCoinBtn.onClick.AddListener(()=> {
+            m_CreateCoinBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
             });
 
-            m_VisitorBtn1.onClick.AddListener(() => {
+            m_VisitorBtn1.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                Visitor visitor = VisitorSystem.S.CurrentVisitor[0];
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_tap, visitor.Reward.KeyID.ToString());
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 0);
             });
-            m_VisitorBtn2.onClick.AddListener(() => {
+            m_VisitorBtn2.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                Visitor visitor = VisitorSystem.S.CurrentVisitor[1];
+                DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_tap, visitor.Reward.KeyID.ToString());
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
@@ -171,7 +193,7 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_CoinValue.text = CommonUIMethod.GetTenThousand((int)GameDataMgr.S.GetPlayerData().GetCoinNum());
-            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum()+ Define.SLASH+ GetFoodUpperLimit().ToString();
+            m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum() + Define.SLASH + GetFoodUpperLimit().ToString();
             m_WareHouseNumber.text = GetWareHouseAllPeopleNumber();
         }
 
@@ -207,7 +229,7 @@ namespace GameWish.Game
             for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
             {
                 FacilityController facility = MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i);
-                if (facility.GetState()== FacilityState.Unlocked)
+                if (facility.GetState() == FacilityState.Unlocked)
                     CurLevelMaxNumber += TDFacilityLivableRoomTable.GetCapability(i, MainGameMgr.S.FacilityMgr.GetFacilityCurLevel((FacilityType)i));
             }
 
@@ -273,11 +295,22 @@ namespace GameWish.Game
                     break;
                 case 1:
                     RefreshVisitorImg(1);
+
+                    Visitor visitor1 = VisitorSystem.S.CurrentVisitor[0];
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor1.Reward.KeyID.ToString());
+
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
                     break;
                 case 2:
                     RefreshVisitorImg(2);
+
+                    Visitor visitor2 = VisitorSystem.S.CurrentVisitor[0];
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor2.Reward.KeyID.ToString());
+
+                    Visitor visitor3 = VisitorSystem.S.CurrentVisitor[1];
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor3.Reward.KeyID.ToString());
+
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(true);
                     break;
@@ -291,15 +324,14 @@ namespace GameWish.Game
             Visitor visitor = VisitorSystem.S.CurrentVisitor[0];
             TDVisitorConfig tb = TDVisitorConfigTable.GetData(visitor.VisitorCfgID);
             m_VisitorImg1.sprite = FindSprite(tb.roleRes);
-            if (numer==2)
+            m_VisitorImg1.SetNativeSize();
+            if (numer == 2)
             {
                 Visitor visitor2 = VisitorSystem.S.CurrentVisitor[1];
                 TDVisitorConfig tb1 = TDVisitorConfigTable.GetData(visitor2.VisitorCfgID);
                 m_VisitorImg2.sprite = FindSprite(tb1.roleRes);
+                m_VisitorImg2.SetNativeSize();
             }
-         
-
-
         }
 
     }

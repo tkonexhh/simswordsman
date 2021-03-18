@@ -7,7 +7,7 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public class RawMatItem : MonoBehaviour
+    public class RawMatItem : MonoBehaviour, IRawMatStateHander
     {
         public CollectedObjType collectedObjType = CollectedObjType.None;
         public List<Transform> collectPos = new List<Transform>();
@@ -20,87 +20,124 @@ namespace GameWish.Game
 
         private List<Transform> m_UsedCollectPos = new List<Transform>();
         private WorkConfigItem m_WorkConfigItem = null;
-        private bool m_IsUnlocked = false;
+
         private bool m_IsWorking = false;
 
-        private CharacterController m_Character = null;
+        private CharacterController m_SelectedCharacter = null;
+
+        private RawMatStateMachine m_StateMachine = null;
+        public RawMatStateID m_CurState = RawMatStateID.None;
+
+        public WorkConfigItem WorkConfigItem { get => m_WorkConfigItem; }
 
         public void OnInit()
         {
-            HideBubble();
+            m_StateMachine = new RawMatStateMachine(this);
 
-            m_LastShowBubbleTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastShowBubbleTime(collectedObjType));
             m_WorkConfigItem = TDWorkTable.GetWorkConfigItem(collectedObjType);
             if (m_WorkConfigItem == null)
             {
                 Log.e("Work config item is null: " + collectedObjType.ToString());
-                return;
             }
-
-            CheckUnlocked();
 
             RegisterEvents();
         }
 
+        public void InitState()
+        {
+            // State may set Working by character before init data
+            if (m_CurState != RawMatStateID.None)
+            {
+                Log.i("RawMatItem state is: " + m_CurState);
+                return;
+            }
+
+            bool isUnlocked = IsUnlocked();
+
+            if (!isUnlocked)
+            {
+                SetState(RawMatStateID.Locked);
+            }
+            else
+            {
+                SetState(RawMatStateID.Idle);
+            }
+
+        }
+
+        private void RegisterEvents()
+        {
+            EventSystem.S.Register(EventID.OnShowWorkBubble, HandleEvent);
+        }
+
+        public void SetState(RawMatStateID state)
+        {
+            if (state != m_CurState)
+            {
+                m_CurState = state;
+
+                m_StateMachine.SetCurrentStateByID(m_CurState);
+            }
+        }
+
         public void OnUpdate()
         {
-
+            m_StateMachine.UpdateState(Time.deltaTime);
         }
 
-        //TODO:改为状态机方式
-        public void Refresh()
-        {
-            CheckUnlocked();
+        //public void Refresh()
+        //{
+        //    CheckUnlocked();
 
-            if (!m_IsUnlocked)
-                return;
-            if (m_IsWorking)
-                return;
+        //    if (!m_IsUnlocked)
+        //        return;
+        //    if (m_IsWorking)
+        //        return;
 
-            TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
+        //    TimeSpan timeSpan = DateTime.Now - m_LastShowBubbleTime;
 
-            //气泡在，角色未选
-            if (m_IsBubbleShowed && !m_IsCharacterCollected)
-            {
-                if (!(KongfuLibraryPanel.isOpened || PracticeFieldPanel.isOpened))
-                {
-                    if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime && (DateTime.Now-GameplayMgr.resumeTime).TotalSeconds > 5)
-                    {
-                        AutoSelectCharacter();
-                    }
-                }
-            }
+        //    ////气泡在，角色未选
+        //    //if (m_IsBubbleShowed && !m_IsCharacterCollected)
+        //    //{
+        //    //    if (!(KongfuLibraryPanel.isOpened || PracticeFieldPanel.isOpened))
+        //    //    {
+        //    //        if (timeSpan.TotalSeconds > m_WorkConfigItem.waitingTime && (DateTime.Now-GameplayMgr.resumeTime).TotalSeconds > 5)
+        //    //        {
+        //    //            AutoSelectCharacter();
+        //    //        }
+        //    //    }
+        //    //}
 
-            //气泡不在，角色未选
-            if (!m_IsBubbleShowed && !m_IsCharacterCollected)
-            {
-                if (timeSpan.TotalSeconds > m_WorkConfigItem.workInterval)
-                {
-                    ShowBubble();
-                }
-            }
+        //    //气泡不在，角色未选
+        //    if (!m_IsBubbleShowed && !m_IsCharacterCollected)
+        //    {
+        //        if (timeSpan.TotalSeconds > m_WorkConfigItem.workInterval)
+        //        {
+        //            ShowBubble();
+        //        }
+        //    }
 
-            //气泡不在，角色已选
-            if (!m_IsBubbleShowed && m_IsCharacterCollected && m_Character != null)
-            {
-                if (m_Character.CollectObjType == collectedObjType)
-                {
-                    if (m_Character.CurState == CharacterStateID.Wander)
-                    {
-                        Log.e("RawMatItem, The selected character state wrong, this should not happen, collectedObjType: " + collectedObjType);
-                        m_Character.SetState(CharacterStateID.CollectRes);
-                    }
-                }
-                else
-                {
-                    Log.e("RawMatItem, The selected character collectedObjType not right, this should not happen, collectedObjType: " + collectedObjType);
+        //    //气泡不在，角色已选
+        //    if (!m_IsBubbleShowed && m_IsCharacterCollected && m_SelectedCharacter != null)
+        //    {
+        //        if (m_SelectedCharacter.CollectObjType == collectedObjType)
+        //        {
+        //            if (m_SelectedCharacter.CurState == CharacterStateID.Wander)
+        //            {
+        //                Log.e("RawMatItem, The selected character state wrong, this should not happen, collectedObjType: " + collectedObjType);
+        //                m_SelectedCharacter.SetState(CharacterStateID.CollectRes);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Log.e("RawMatItem, The selected character collectedObjType not right, this should not happen, collectedObjType: " + collectedObjType);
 
-                    ResetData();
-                }
-            }
-        }
+        //            ResetData();
+        //        }
+        //    }
+        //}
 
-        private bool IsFoodEnough()
+        public bool IsFoodEnough()
         {
             int curFood = GameDataMgr.S.GetPlayerData().GetFoodNum();
             return curFood >= Define.WORK_NEED_FOOD_COUNT;
@@ -120,57 +157,56 @@ namespace GameWish.Game
                 return;
             }
 
-            m_Character = SelectIdleCharacterToCollectRes(true);
-
-            if (m_Character == null)
+            SelectIdleCharacterToCollectRes(true, (character) => 
             {
-                //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
-                FloatMessage.S.ShowMsg("无空闲弟子");
-            }
+                if (character == null)
+                {
+                    FloatMessage.S.ShowMsg("无空闲弟子");
+                }
+                else
+                {
+                    SetState(RawMatStateID.Working);
+                }
+            });
+
         }
 
-        private CharacterController SelectIdleCharacterToCollectRes(bool manual)
+        public void SelectIdleCharacterToCollectRes(bool manual, Action<CharacterController> onCharacterSelected)
         {
             CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CharacterModel.IsIdle());
             if (character != null)
             {
+                m_SelectedCharacter = character;
+
                 character.CollectObjType = collectedObjType;
                 character.ManualSelectedToCollectObj = manual;
                 character.SetState(CharacterStateID.CollectRes);
 
                 HideBubble();
 
-                m_IsCharacterCollected = true;
-                m_IsWorking = true;
+                DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
 
                 GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
             }
 
-            return character;
+            onCharacterSelected?.Invoke(character);
         }
 
         public void ShowBubble()
         {
-            if (m_IsBubbleShowed) return;
-
-            m_IsBubbleShowed = true;
-
             bubble.SetActive(true);
-
-            m_LastShowBubbleTime = DateTime.Now.AddSeconds(m_WorkConfigItem.workTime);
-
-            GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, m_LastShowBubbleTime);
-        }
-
-        public void SetCharacterSelected(bool selected)
-        {
-            m_IsCharacterCollected = selected;
         }
 
         public void HideBubble()
         {
-            m_IsBubbleShowed = false;
             bubble.SetActive(false);
+        }
+
+        public void OnCharacterSelected(CharacterController character)
+        {
+            m_SelectedCharacter = character;
+
+            SetState(RawMatStateID.Working);
         }
 
         public Transform GetRandomCollectPos()
@@ -193,57 +229,23 @@ namespace GameWish.Game
             return collectPos[0];
         }
 
-        private void RegisterEvents()
+        public bool IsUnlocked()
         {
-            EventSystem.S.Register(EventID.OnEndUpgradeFacility, HandleEvent);
-            EventSystem.S.Register(EventID.OnTaskObjCollected, HandleEvent);
-            EventSystem.S.Register(EventID.OnShowWorkBubble, HandleEvent);
-        }
-
-        private void CheckUnlocked()
-        {
-            m_IsUnlocked = MainGameMgr.S.FacilityMgr.GetFacilityState(FacilityType.Lobby) == FacilityState.Unlocked 
+            bool isUnlocked = MainGameMgr.S.FacilityMgr.GetFacilityState(FacilityType.Lobby) == FacilityState.Unlocked 
                 && MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= m_WorkConfigItem.unlockHomeLevel;
-        }
 
-        private void AutoSelectCharacter()
-        {
-            if (IsFoodEnough() == false)
-            {
-                m_LastShowBubbleTime = DateTime.Now.AddSeconds(m_WorkConfigItem.workTime); // Check next interval
-                return;
-            }
-
-            m_Character = SelectIdleCharacterToCollectRes(false);
-            if (m_Character != null)
-            {
-                HideBubble();
-            }
+            return isUnlocked;
         }
 
         private void HandleEvent(int key, object[] param)
         {
             switch (key)
             {
-                case (int)EventID.OnEndUpgradeFacility:
-                    FacilityType facilityType = (FacilityType)param[0];
-                    if (facilityType == FacilityType.Lobby)
-                    {
-                        CheckUnlocked();
-                    }
-                    break;
-                case (int)EventID.OnTaskObjCollected:
-                    CollectedObjType collectedObjType = (CollectedObjType)param[0];
-                    if (collectedObjType == this.collectedObjType)
-                    {
-                        m_LastShowBubbleTime = DateTime.Now;
-                        ResetData();
-                    }
-                    break;
                 case (int)EventID.OnShowWorkBubble:
                     CollectedObjType type = (CollectedObjType)param[0];
                     if (this.collectedObjType == type) {
-                        ShowBubble();
+                        //ShowBubble();
+                        SetState(RawMatStateID.BubbleShowing);
                     }
                     break;
             }
@@ -251,9 +253,14 @@ namespace GameWish.Game
 
         private void ResetData()
         {
-            m_Character = null;
+            m_SelectedCharacter = null;
             m_IsCharacterCollected = false;
             m_IsWorking = false;
+        }
+
+        public RawMatItem GetRawMatItem()
+        {
+            return this;
         }
     }
 	

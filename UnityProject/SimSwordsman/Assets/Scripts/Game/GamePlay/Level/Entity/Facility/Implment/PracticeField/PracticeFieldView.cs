@@ -14,7 +14,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_Flag = null;
 
-        private Dictionary<Transform, CharacterController> m_PracticeSlotsTakerDic = new Dictionary<Transform, CharacterController>();
+        // private Dictionary<Transform, CharacterController> m_PracticeSlotsTakerDic = new Dictionary<Transform, CharacterController>();
 
         public override FacilityController GenerateContoller()
         {
@@ -33,6 +33,7 @@ namespace GameWish.Game
         {
             base.OpenUIElement();
             UIMgr.S.OpenPanel(UIID.PracticeFieldPanel, facilityType);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.facility_check, facilityType.ToString());
         }
 
         public override Vector3 GetSlotPos(int index)

@@ -203,10 +203,10 @@ namespace GameWish.Game
             m_CharacterDataWrapper.AddCharacter(id, quality);
         }
 
-        public void ExrInitData()
-        {
-            InitData();
-        }
+        //public void ExrInitData()
+        //{
+        //    InitData();
+        //}
 
         /// <summary>
         /// Remove a character and save db data
@@ -241,7 +241,7 @@ namespace GameWish.Game
             }
             else
             {
-                CharacterLoader.S.LoadCharacterAsync(id, characterItem.quality, characterItem.bodyId, null);
+                CharacterLoader.S.LoadCharactersync(id, characterItem.quality, characterItem.bodyId, null);
                 GameObject obj = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
                 OnCharacterLoaded(obj, id, initState);
             }
@@ -316,7 +316,6 @@ namespace GameWish.Game
 
         public void InitData()
         {
-
             InitCharacters();
         }
 

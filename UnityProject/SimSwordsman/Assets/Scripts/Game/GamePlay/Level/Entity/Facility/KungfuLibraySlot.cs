@@ -7,47 +7,21 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class KungfuLibraySlot: BaseSlot
+    public class KungfuLibraySlot : CDBaseSlot
     {
-        public KungfuLibraySlot(KungfuSoltDBData soltDBData,FacilityView facilityView) :base(soltDBData, facilityView)
+        public KungfuLibraySlot()
         {
-            if (slotState == SlotState.CopyScriptures)
-                InitTimerUpdate();
-        }
-        public override float GetProgress() 
-        {
-            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
-
-            int remainingTime = duration - ComputingTime(StartTime);
-
-            return  1 - (remainingTime * 1.0f) / duration;
-        }
-        public int GetDurationTime()
-        {
-            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
-            int takeTime = ComputingTime(StartTime);
-            return duration - takeTime;
-        }
-        private int ComputingTime(string time)
-        {
-            DateTime dateTime;
-            DateTime.TryParse(time, out dateTime);
-            if (dateTime != null)
-            {
-                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
-                return (int)timeSpan.TotalSeconds;
-            }
-            return 0;
         }
 
-        private void InitTimerUpdate()
+        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index, int unLock,FacilityView facilityView) : base(index, unLock, facilityView)
         {
-            CountDownItem countDownMgr = new CountDownItem(FacilityType.ToString() + Index, GetDurationTime());
-            countDownMgr.OnCountDownOverEvent = overAction;
+            FacilityType = FacilityType.KongfuLibrary;
+            InitSlotState(item);
+            GameDataMgr.S.GetClanData().AddKungfuLibraryData(this);
+        }
 
-            TimeUpdateMgr.S.AddObserver(countDownMgr);
+        public KungfuLibraySlot(KungfuSoltDBData soltDBData, FacilityView facilityView) : base(soltDBData, facilityView)
+        {
         }
 
         public void Warp(KongfuLibraryLevelInfo kongfuLibrary)
@@ -56,48 +30,20 @@ namespace GameWish.Game
             UnlockLevel = kongfuLibrary.level;
         }
 
-        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index,int unLock):base( index, unLock)
-        {
-            FacilityType = FacilityType.KongfuLibrary;
-            InitSlotState(item);
-            GameDataMgr.S.GetClanData().AddKungfuLibraryData(this);
-        }
-        public KungfuLibraySlot()
-        {
-        }
- 
-        public void SetCharacterItem(CharacterItem characterItem, SlotState slotState, FacilityType targetFacility)
+        public void SelectCharacterItem(CharacterItem characterItem, FacilityType targetFacility)
         {
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
-            switch (slotState)
-            {
-                case SlotState.Free:
-                    characterController.SetState(CharacterStateID.Wander);
-                    CharacterItem = null;
-                    break;
-                case SlotState.CopyScriptures:
-                    StartTime = DateTime.Now.ToString();
-                    CharacterItem = characterItem;
-                    characterController.SetState(CharacterStateID.Reading, targetFacility);
-                    break;
-            }
-            base.slotState = slotState;
+
+            StartTime = DateTime.Now.ToString();
+            CharacterItem = characterItem;
+            characterController.SetState(CharacterStateID.Reading, targetFacility);
+
+            base.slotState = SlotState.CopyScriptures;
             GameDataMgr.S.GetClanData().RefresKungfuDBData(this);
         }
-     
-        public void overAction()
+
+        protected override void OnCDOver()
         {
-            if (CharacterItem != null)
-            {
-                RewardKungfu(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType));
-                TrainingIsOver();
-            }
-        }
-        public void TrainingIsOver()
-        {
-            SetCharacterItem(CharacterItem, SlotState.Free, FacilityType.None);
-            CharacterItem = null;
-            StartTime = string.Empty;
             GameDataMgr.S.GetClanData().KungfuTrainingIsOver(this);
             EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, this);
         }

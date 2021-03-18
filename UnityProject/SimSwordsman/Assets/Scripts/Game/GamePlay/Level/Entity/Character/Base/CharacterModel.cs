@@ -13,7 +13,7 @@ namespace GameWish.Game
         protected int m_Level = 1;
         protected double m_Hp = 0;
         protected double m_Atk = 1;
-        protected float m_MoveSpeed = 1.5f;//ÈËÎïÒÆ¶¯ËÙ¶È
+        protected float m_MoveSpeed = 1.5f;//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
         private CharacterItem m_CharacterItem = null;
 
         public int Id { get => m_Id; }
@@ -94,7 +94,7 @@ namespace GameWish.Game
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
                 float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
-                if (armorAtkEnhanceRatio == 0) // ÔÝÊ±ÕâÃ´½â¾ö£¬ºóÆÚÓÅ»¯´Ó´æµµÖÐ½â¾ö
+                if (armorAtkEnhanceRatio == 0) // ï¿½ï¿½Ê±ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½Ó´æµµï¿½Ð½ï¿½ï¿½
                 {
                     armorAtkEnhanceRatio = 1;
                 }
@@ -143,14 +143,8 @@ namespace GameWish.Game
         public void SetCollectedObjType(CollectedObjType collectedObjType)
         {
             m_CharacterItem.collectedObjType = collectedObjType;
-        }
 
-        public void AddKongfuExp(int deltaExp)
-        {
-            //m_CharacterItem.kongfus.ForEach(i => 
-            //{
-            //    m_CharacterItem.AddKongfuExp(i.dbData.kongfuType, deltaExp);
-            //});
+            GameDataMgr.S.GetClanData().SetCharacterCollectedObjType(m_CharacterItem.id, collectedObjType);
         }
 
         public int GetKongfuCount()
@@ -164,7 +158,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ä³Ò»¹¦·ò¹¦·òµÄÈ¨ÖØ±ÈÀýÔö¼Ó¾­Ñé
+        /// Ä³Ò»ï¿½ï¿½ï¿½ò¹¦·ï¿½ï¿½È¨ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿?
         /// </summary>
         /// <returns></returns>
         public void DistributionKungfuExp(int expValue)

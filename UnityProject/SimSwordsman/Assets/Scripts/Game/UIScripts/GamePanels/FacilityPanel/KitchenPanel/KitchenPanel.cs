@@ -162,6 +162,7 @@ namespace GameWish.Game
                     if (unlockfoodid != -1 && !GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Contains(unlockfoodid))
                         GameDataMgr.S.GetPlayerData().unlockFoodItemIDs.Add(unlockfoodid);
                     RefreshPanelInfo();
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
                 }
             });

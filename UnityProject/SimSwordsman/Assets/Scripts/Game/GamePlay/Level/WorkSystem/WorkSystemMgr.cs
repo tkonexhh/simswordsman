@@ -5,20 +5,6 @@ using System.Linq;
 
 namespace GameWish.Game
 {
-    public class WorkCharacter
-    {
-        public int CharacterID;
-        public int FaciityTypeID;
-
-        private FacilityType facilityType;
-        public FacilityType GetFacilityType()
-        {
-            if (facilityType == 0)
-                facilityType = (FacilityType)FaciityTypeID;
-            return facilityType;
-        }
-    }
-
     public class WorkSystemMgr :TSingleton<WorkSystemMgr>
     {
         /// <summary>

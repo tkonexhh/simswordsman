@@ -340,6 +340,12 @@ namespace GameWish.Game
                     }
                 }
             }
+
+            for (int i = 0; i < m_CurTaskList.Count; i++)
+            {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_generate, m_CurTaskList[i].TaskId.ToString());
+            }
+
             RefreshRedPoint(m_CurTaskList.Count);
         }
 

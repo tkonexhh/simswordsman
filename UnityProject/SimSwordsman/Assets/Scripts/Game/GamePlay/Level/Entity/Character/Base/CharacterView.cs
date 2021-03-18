@@ -108,10 +108,10 @@ namespace GameWish.Game
 
         public void PlayIdleAnim()
         {
-            if (m_NavAgent.enabled)
-            {
-                m_NavAgent.SetDestination(transform.position);
-            }
+            //if (m_NavAgent.enabled)
+            //{
+            //    m_NavAgent.SetDestination(transform.position);
+            //}
             m_SpineAnim.skeleton.SetToSetupPose();
             SpineHelper.PlayAnim(m_SpineAnim, "idle", true, null);
         }
@@ -196,12 +196,12 @@ namespace GameWish.Game
             }
         }
 
-        public void OnExitBattleField()
-        {
-            transform.position = m_SimPos;
-            m_NavAgent.enabled = true;
-            m_NavAgent.SetDestination(m_SimPos);
-        }
+        //public void OnExitBattleField()
+        //{
+        //    transform.position = m_SimPos;
+        //    m_NavAgent.enabled = true;
+        //    m_NavAgent.SetDestination(m_SimPos);
+        //}
 
         public void FaceToLeft()
         {

@@ -199,6 +199,8 @@ namespace GameWish.Game
                     AddFoodBufferData(m_FoodBufferID);
 
                     CheckFoodBuffDataAndCountDown();
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString()+ ";KuaiChao");
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
@@ -210,7 +212,10 @@ namespace GameWish.Game
                 //ÅÐ¶Ï²ÄÁÏ
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
+                {
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, ID.ToString()+ ";JingChao");
                     AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });

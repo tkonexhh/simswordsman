@@ -210,6 +210,9 @@ namespace GameWish.Game
                     facilityController.BuildClosedRedDot(false);
                     EventSystem.S.Send(EventID.OnStartUnlockFacility, m_FacilityType);
                     EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.facility_build, m_FacilityType.ToString());
+
                     HideSelfWithAnim();
                 }
             });

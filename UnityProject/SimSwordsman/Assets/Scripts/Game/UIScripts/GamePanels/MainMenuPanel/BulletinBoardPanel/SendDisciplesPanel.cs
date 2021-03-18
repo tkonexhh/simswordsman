@@ -326,6 +326,9 @@ namespace GameWish.Game
                         {
                             MainGameMgr.S.InventoryMgr.RemoveItem(new HerbItem(m_PlayerDataHerb[i]));
                         }
+
+                        DataAnalysisMgr.S.CustomEvent(DotDefine.level_enter, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
+
                         EventSystem.S.Send(EventID.OnEnterBattle, m_LevelConfigInfo.enemiesList, m_SelectedList, m_PlayerDataHerb);
                         UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo);
                         UIMgr.S.ClosePanelAsUIID(UIID.ChallengePanel);

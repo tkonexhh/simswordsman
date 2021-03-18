@@ -318,12 +318,12 @@ namespace GameWish.Game
             m_UpgradeBtn.onClick.AddListener(() =>
             {
                 #region  新手引导没有时候暂用
-                if (m_FacilityController.GetState() != FacilityState.Unlocked)
-                {
-                    EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Warehouse);
-                    HideSelfWithAnim();
-                    return;
-                }
+                //if (m_FacilityController.GetState() != FacilityState.Unlocked)
+                //{
+                //    EventSystem.S.Send(EventID.OnStartUnlockFacility, FacilityType.Warehouse);
+                //    HideSelfWithAnim();
+                //    return;
+                //}
                 #endregion
                 if (!CommonUIMethod.CheackIsBuild(m_WarehouseNextLevelInfo, m_CostItems))
                     return;
@@ -336,6 +336,7 @@ namespace GameWish.Game
                     GetInformationForNeed();
                     RefreshPanelInfo();
                     RefreshCreateGoods();
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, FacilityType.Warehouse.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
                 }
             });

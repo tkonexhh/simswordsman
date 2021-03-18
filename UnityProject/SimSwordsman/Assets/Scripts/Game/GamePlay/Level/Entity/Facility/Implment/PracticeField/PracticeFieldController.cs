@@ -11,8 +11,6 @@ namespace GameWish.Game
     {
         public List<PracticeField> m_PracticeSlotList = new List<PracticeField>();
 
-        private int m_MaxSlotCount = 6;
-
         public PracticeFieldController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
             EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
@@ -31,10 +29,10 @@ namespace GameWish.Game
         {
             switch ((EventID)key)
             {
-                case EventID.DeleteDisciple:
+                case EventID.DeleteDisciple://åˆ é™¤è§’è‰²
                     foreach (var item in m_PracticeSlotList)
                         if (item.IsHaveSameCharacterItem((int)param[0]))
-                            item.TrainingIsOver();
+                            item.CDIsOver();
                     break;
                 case EventID.OnRefreshPracticeUnlock:
                     RefreshExclamatoryMark(CheckSlotInfo());
@@ -60,7 +58,7 @@ namespace GameWish.Game
                 return false;
             return CheckSlotInfo();
         }
-        public BaseSlot GetIdlePracticeSlot(FacilityType  facilityType)
+        public BaseSlot GetIdlePracticeSlot(FacilityType facilityType)
         {
             return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));
         }
@@ -76,17 +74,11 @@ namespace GameWish.Game
             }
 
             foreach (var item in practiceFieldDBDatas)
-                m_PracticeSlotList.Add(new PracticeField(item,m_View));
-
-            //for (int i = 0; i < m_PracticeSlotList.Count; i++)
-            //{
-            //    PracticeFieldView view = (PracticeFieldView)m_View;
-            //    m_PracticeSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
-            //}
+                m_PracticeSlotList.Add(new PracticeField(item, m_View));
         }
 
         /// <summary>
-        /// »ñÈ¡Ó¦ÓÃ²ãÁ·±ø³¡ÐÅÏ¢
+        /// ï¿½ï¿½È¡Ó¦ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <returns></returns>
         public List<PracticeField> GetPracticeField()
@@ -98,10 +90,10 @@ namespace GameWish.Game
         {
             List<PracticeFieldLevelInfo> eastInfos = GetPracticeFieldLevelInfoList(facilityType);
             for (int i = 0; i < eastInfos.Count; i++)
-                m_PracticeSlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1));
+                m_PracticeSlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1,m_View));
         }
         /// <summary>
-        /// Éý¼¶Ë¢ÐÂ¿ÓÎ»×´Ì¬
+        /// ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â¿ï¿½Î»×´Ì¬
         /// </summary>
         /// <param name="facilityType"></param>
         /// <param name="facilityLevel"></param>
@@ -118,11 +110,11 @@ namespace GameWish.Game
             });
         }
         /// <summary>
-        /// ¸ù¾ÝÀàÐÍ»ñÈ¡ËùÓÐµÄÁ·¹¦·¿ÐÅÏ¢
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <param name="facilityType"></param>
         /// <returns></returns>
-        public List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
+        private List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
         {
             return TDFacilityPracticeFieldTable.GetPracticeFieldLevelInfoList(facilityType);
         }
