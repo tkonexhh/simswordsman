@@ -15,7 +15,7 @@ namespace GameWish.Game
         /// <summary>
         /// 客人出现倒计时
         /// </summary>
-        static int AppearVisitorCountdown = 150;
+        static int AppearVisitorCountdown = 20;
         private float m_AppearVisitorTimer = 0;
         private bool m_CanApperaVisitor = false;
         /// <summary>
