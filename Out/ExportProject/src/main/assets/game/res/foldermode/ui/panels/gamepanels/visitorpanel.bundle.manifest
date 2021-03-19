@@ -1,17 +1,15 @@
 ManifestFileVersion: 0
-CRC: 529202985
+CRC: 1276827613
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 76a6e19943e739f0d5ca7a8302f06fa9
+    Hash: 4ab290ae558561e7495f8012946581d5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 16cac30932f3355e9651cf44acbd473a
+    Hash: e87dfdee80fc5d86ef8c434adf85227e
 HashAppended: 0
 ClassTypes:
 - Class: 1
-  Script: {instanceID: 0}
-- Class: 28
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -45,7 +43,6 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/VisitorPanel/VisitorPanel.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/VisitorPanel/VisitorPanel1.png
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2716293974
+CRC: 2296711322
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bd8add0b89bb75f08ce9b62c9fa51918
+    Hash: 2f47da7159ff729199077c9fd5e25a4b
   TypeTreeHash:
     serializedVersion: 2
     Hash: c03bbcd67ef17a7b0a7f07982d0b6939
@@ -18,9 +18,12 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_bg2.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanelSpritesData.asset
-- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotionpanel_title1.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotion_characterbg.png
-- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotionpanel_title2.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_BreakthroughMartialArts.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_DiscipleAscendingSection.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_bg1.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotionpanel_levelbg.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_icon1.png
 Dependencies: []

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4291517698
+CRC: 3465642126
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -166,11 +166,12 @@ AssetBundleManifest:
         Dependency_10: res/foldermode/ui/sprites/identifychallengespanel.bundle
         Dependency_11: res/foldermode/ui/sprites/promotionpanel.bundle
         Dependency_12: res/foldermode/ui/sprites/disciple.bundle
-        Dependency_13: res/foldermode/ui/sprites/senddisciplepanel.bundle
-        Dependency_14: res/foldermode/ui/sprites/characterheadicons.bundle
-        Dependency_15: res/foldermode/ui/sprites/characterwholebodyicons.bundle
-        Dependency_16: res/foldermode/ui/sprites/enmeyheadicons.bundle
-        Dependency_17: res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle
+        Dependency_13: res/foldermode/ui/sprites/rewardpanel.bundle
+        Dependency_14: res/foldermode/ui/sprites/senddisciplepanel.bundle
+        Dependency_15: res/foldermode/ui/sprites/characterheadicons.bundle
+        Dependency_16: res/foldermode/ui/sprites/characterwholebodyicons.bundle
+        Dependency_17: res/foldermode/ui/sprites/enmeyheadicons.bundle
+        Dependency_18: res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle
     Info_38:
       Name: res/foldermode/ui/sprites/identifychallengespanel.bundle
       Dependencies: {}
@@ -327,7 +328,6 @@ AssetBundleManifest:
         Dependency_6: res/foldermode/ui/sprites/baicaohupanel.bundle
         Dependency_7: res/foldermode/ui/sprites/itemicon.bundle
         Dependency_8: res/foldermode/ui/sprites/forgehousepanel.bundle
-        Dependency_9: res/foldermode/ui/panels/gamepanels/facilitypanel/kitchenpanel.bundle
     Info_60:
       Name: res/foldermode/ui/panels/gamepanels/commonpanel/logpanel.bundle
       Dependencies:
@@ -856,3 +856,31 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/battleeffects/skills/mojiaodaofa.bundle
+    Info_195:
+      Name: res/foldermode/effects/prefab/skills/miejuejianfa.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
+        Dependency_1: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_2: res/foldermode/effects/prefab/general.bundle
+    Info_196:
+      Name: res/foldermode/effects/prefab/skills/jiuhuolianji.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/battleeffects/skills/yijinjing.bundle
+    Info_197:
+      Name: res/foldermode/effects/prefab/skills/zuihuji.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/prefab/general.bundle
+    Info_198:
+      Name: res/foldermode/ui/sprites.bundle
+      Dependencies: {}
+    Info_199:
+      Name: res/foldermode/effects/prefab/skills/ruyijianfa.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
+        Dependency_1: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_2: res/foldermode/effects/prefab/general.bundle
+    Info_200:
+      Name: res/foldermode/effects/prefab/general.bundle
+      Dependencies: {}

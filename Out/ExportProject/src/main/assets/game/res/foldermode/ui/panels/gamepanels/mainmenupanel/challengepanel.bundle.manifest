@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3388783704
+CRC: 2196175400
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f8c1e326063a18297f26c077f3af33ec
+    Hash: a96a6e798d3b65127ac508b5b5d53882
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c51babadd9770193f13c456206cdbcce
+    Hash: 076cbe5debb661baf1ed927ab10389f6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -20,11 +20,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
@@ -91,14 +91,12 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/CombatInterfacePanel.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel2.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeBtn.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/RewardIInfoItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeBattlePanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeChooseDisciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/CombatSettlementPanel.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel1.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/PromotionPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedDisciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/IdentifyChallengesPanel.prefab
@@ -107,7 +105,6 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedHerb.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeSelectedDisciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/MatchRecordItem.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanel3.png
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
@@ -122,6 +119,7 @@ Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/identifychallengespanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/promotionpanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterwholebodyicons.bundle
