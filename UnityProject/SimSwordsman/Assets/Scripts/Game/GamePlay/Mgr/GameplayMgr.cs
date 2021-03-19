@@ -161,6 +161,7 @@ namespace GameWish.Game
 
                     WorkSystemMgr.S.Init();
                     BaiCaoWuSystemMgr.S.Init();
+                    ForgeHouseSystemMgr.S.Init();
                     Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
