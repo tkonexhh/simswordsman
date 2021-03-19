@@ -9,7 +9,6 @@ namespace GameWish.Game
 {
     public class PracticeField : BaseSlot
     {
-        private PracticeFieldLevelInfo practiceFieldLevelInfo;
 
         public PracticeField(PracticeFieldLevelInfo item, int index, int unlock) : base(index, unlock)
         {
@@ -17,6 +16,7 @@ namespace GameWish.Game
             InitSlotState(item);
             GameDataMgr.S.GetClanData().AddPracticeFieldData(this);
         }
+
         public PracticeField(PracticeSoltDBData item, FacilityView facilityView) : base(item, facilityView)
         {
             if (slotState == SlotState.Practice)
@@ -33,27 +33,34 @@ namespace GameWish.Game
 
         public void overAction()
         {
-            if (CharacterItem != null)
-            {
-                AddExperience(CharacterItem);
-                TrainingIsOver();
-            }
+            if (CharacterItem == null)
+                return;
+
+            TrainingIsOver();
         }
+
         public override float GetProgress()
         {
-            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
-
+            int duration = GetDuration();
             int remainingTime = duration - ComputingTime(StartTime);
             return 1 - (remainingTime * 1.0f) / duration;
         }
+
         public int GetDurationTime()
         {
-            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
+            int duration = GetDuration();
             int takeTime = ComputingTime(StartTime);
             return duration - takeTime;
         }
+
+        private int GetDuration()
+        {
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
+            //TODO Test
+            int duration = 10;//MainGameMgr.S.FacilityMgr.GetDurationForLevel(FacilityType, level);
+            return duration;
+        }
+
         private int ComputingTime(string time)
         {
             DateTime dateTime;
@@ -65,38 +72,25 @@ namespace GameWish.Game
             }
             return 0;
         }
+
         public void TrainingIsOver()
         {
-            SetCharacterItem(CharacterItem, SlotState.Free, FacilityType.None);
-            CharacterItem = null;
-            StartTime = string.Empty;
+            this.slotState = SlotState.Free;
+            OnCharacterLeave();
             GameDataMgr.S.GetClanData().PraceTrainingIsOver(this);
             EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, this);
         }
 
-        public void SetCharacterItem(CharacterItem characterItem, SlotState practiceFieldState, FacilityType targetFacility)
+        public void SelectCharacterItem(CharacterItem characterItem, FacilityType targetFacility)
         {
-            //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
-
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
-            switch (practiceFieldState)
-            {
-                case SlotState.Free:
-                    characterController.SetState(CharacterStateID.Wander);
-                    CharacterItem = null;
-                    break;
-                case SlotState.CopyScriptures:
-                    break;
-                case SlotState.Practice:
-                    StartTime = DateTime.Now.ToString();
-                    CharacterItem = characterItem;
-                    characterController.SetState(CharacterStateID.Practice, targetFacility);
-                    break;
-                default:
-                    break;
-            }
-            base.slotState = practiceFieldState;
-            GameDataMgr.S.GetClanData().RefresPracticeDBData(this);
+
+            StartTime = DateTime.Now.ToString();
+            CharacterItem = characterItem;
+            characterController.SetState(CharacterStateID.Practice, targetFacility);
+
+            base.slotState = SlotState.Practice;
+            // GameDataMgr.S.GetClanData().RefresPracticeDBData(this);
         }
     }
 

@@ -31,7 +31,7 @@ namespace GameWish.Game
         {
             switch ((EventID)key)
             {
-                case EventID.DeleteDisciple:
+                case EventID.DeleteDisciple://åˆ é™¤è§’è‰²
                     foreach (var item in m_PracticeSlotList)
                         if (item.IsHaveSameCharacterItem((int)param[0]))
                             item.TrainingIsOver();
@@ -60,7 +60,7 @@ namespace GameWish.Game
                 return false;
             return CheckSlotInfo();
         }
-        public BaseSlot GetIdlePracticeSlot(FacilityType  facilityType)
+        public BaseSlot GetIdlePracticeSlot(FacilityType facilityType)
         {
             return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));
         }
@@ -76,7 +76,7 @@ namespace GameWish.Game
             }
 
             foreach (var item in practiceFieldDBDatas)
-                m_PracticeSlotList.Add(new PracticeField(item,m_View));
+                m_PracticeSlotList.Add(new PracticeField(item, m_View));
 
             //for (int i = 0; i < m_PracticeSlotList.Count; i++)
             //{
@@ -86,7 +86,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡Ó¦ÓÃ²ãÁ·±ø³¡ÐÅÏ¢
+        /// ï¿½ï¿½È¡Ó¦ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <returns></returns>
         public List<PracticeField> GetPracticeField()
@@ -101,7 +101,7 @@ namespace GameWish.Game
                 m_PracticeSlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1));
         }
         /// <summary>
-        /// Éý¼¶Ë¢ÐÂ¿ÓÎ»×´Ì¬
+        /// ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â¿ï¿½Î»×´Ì¬
         /// </summary>
         /// <param name="facilityType"></param>
         /// <param name="facilityLevel"></param>
@@ -118,7 +118,7 @@ namespace GameWish.Game
             });
         }
         /// <summary>
-        /// ¸ù¾ÝÀàÐÍ»ñÈ¡ËùÓÐµÄÁ·¹¦·¿ÐÅÏ¢
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <param name="facilityType"></param>
         /// <returns></returns>

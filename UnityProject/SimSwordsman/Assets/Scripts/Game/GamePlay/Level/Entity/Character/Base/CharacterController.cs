@@ -36,7 +36,7 @@ namespace GameWish.Game
         private CharacterStateBattle m_StateBattle = null;
         private FightGroup m_FightGroup = null;
 
-        // ÎÒ·½µÄidÎ¨Ò»£¬µÐ·½id²»Î¨Ò» TODO:µÐÎÒ·½Controller·Ö¿ª
+        // ï¿½Ò·ï¿½ï¿½ï¿½idÎ¨Ò»ï¿½ï¿½ï¿½Ð·ï¿½idï¿½ï¿½Î¨Ò» TODO:ï¿½ï¿½ï¿½Ò·ï¿½Controllerï¿½Ö¿ï¿½
         public CharacterController(int id, CharacterView characterView, CharacterStateID initState, CharacterCamp camp = CharacterCamp.OurCamp)
         {
             m_CharacterId = id;
@@ -204,12 +204,12 @@ namespace GameWish.Game
                 m_CurState = state;
                 //if (m_CharacterCamp == CharacterCamp.OurCamp)
                 //    Debug.LogError("Setstate:" + m_CurState);
-                if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ²»´æñÉ
+                if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
                     //Debug.LogError("SetstateTODB:" + m_CurState);
                     SetStateToDB(m_CurState, targetFacilityType);
 
-                    //±£»¤ÐÔ´úÂë£ºÏû³ýÍ·ÉÏÃ»ÓÐÏûÊ§µÄProgress
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ë£ºï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Progress
                     if (state == CharacterStateID.Wander)
                     {
                         CharacterWorkProgressBar[] progressList = m_CharacterView.GetComponentsInChildren<CharacterWorkProgressBar>();

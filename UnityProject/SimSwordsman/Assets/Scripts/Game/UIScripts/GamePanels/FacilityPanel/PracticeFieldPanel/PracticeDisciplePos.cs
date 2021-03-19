@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public class PracticeDisciplePos : MonoBehaviour,ItemICom
+    public class PracticeDisciplePos : MonoBehaviour, ItemICom
     {
         [SerializeField]
         private Text m_PracticePos;
@@ -17,7 +17,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CurPractice;
         [SerializeField]
-        private Image m_PracticeImg;      
+        private Image m_PracticeImg;
         [SerializeField]
         private Image m_DiscipleHead;
         [SerializeField]
@@ -29,21 +29,23 @@ namespace GameWish.Game
         private FacilityType m_CurFacilityType;
         private int m_CurLevel;
         private int m_CountDown = 0;
-        private List<Sprite> m_Sprites;
+        // private List<Sprite> m_Sprites;
         private PracticeFieldPanel m_PracticeFieldPanel;
-        private PracticeFieldLevelInfo m_PracticeFieldLevelInfo = null;
-        private FacilityConfigInfo m_FacilityConfigInfo = null;
+        // private PracticeFieldLevelInfo m_PracticeFieldLevelInfo = null;
+        // private FacilityConfigInfo m_FacilityConfigInfo = null;
         private PracticeField m_PracticeFieldInfo = null;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-            EventSystem.S.Register(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
+            // EventSystem.S.Register(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
             m_CurFacilityType = (FacilityType)obj[0];
-            BindAddListenEvent();
-            GetInformationForNeed();
+
+            // GetInformationForNeed();
+            // m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
 
             m_PracticeFieldInfo = t as PracticeField;
             m_PracticeFieldPanel = obj[1] as PracticeFieldPanel;
             RefreshFixedInfo();
+            BindAddListenEvent();
             m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
             RefreshPracticeFieldState();
         }
@@ -61,21 +63,22 @@ namespace GameWish.Game
         {
             return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
         }
-        private void GetInformationForNeed()
-        {
-            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
-            m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
-            m_PracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
+        // private void GetInformationForNeed()
+        // {
+        //     m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
+        //     // m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
+        //     // m_PracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
 
-        }
-        private void HandleAddListenerEvent(int key, object[] param)
-        {
+        // }
+        // private void HandleAddListenerEvent(int key, object[] param)
+        // {
 
-        }
+        // }
 
         private void BindAddListenEvent()
         {
-            m_PracticeBtn.onClick.AddListener(()=> {
+            m_PracticeBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (CheckIsEmpty())
                     UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo, m_CurFacilityType, m_CurLevel);
@@ -83,7 +86,7 @@ namespace GameWish.Game
                 {
                     FloatMessage.S.ShowMsg("暂时没有空闲的弟子，等会儿再试试吧");
                 }
-               
+
             });
         }
 
@@ -143,7 +146,7 @@ namespace GameWish.Game
                     m_Time.enabled = false;
                     m_CurPractice.text = Define.COMMON_DEFAULT_STR;
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
-                    break;   
+                    break;
                 case SlotState.Practice:
                     m_Time.enabled = true;
                     m_DiscipleHead.gameObject.SetActive(true);
@@ -161,7 +164,8 @@ namespace GameWish.Game
                     break;
             }
         }
-        public string SplicingTime(int seconds)
+
+        private string SplicingTime(int seconds)
         {
             TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
             string str = "";
@@ -199,9 +203,7 @@ namespace GameWish.Game
 
         private int GetDuration()
         {
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(m_CurFacilityType, m_CurLevel);
-            int takeTime = ComputingTime(m_PracticeFieldInfo.StartTime);
-            return  duration - takeTime;
+            return m_PracticeFieldInfo.GetDurationTime();
         }
 
         public void OnRefresAction(string obj)
@@ -210,43 +212,31 @@ namespace GameWish.Game
                 m_Time.text = obj;
         }
 
-        private int ComputingTime(string  time)
-        {
-            DateTime dateTime;
-            DateTime.TryParse(time,out dateTime);
-            if (dateTime!=null)
-            {
-                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
-                return (int)timeSpan.TotalSeconds;
-            }
-            return 0;
-        }
-
-        public IEnumerator BattleCountdown()
-        {
-            while (m_CountDown >= 0)
-            {
-                if (m_CountDown == 0)
-                {
-                  //  AddExperience(m_PracticeFieldInfo.CharacterItem);
-                    m_PracticeFieldInfo.TrainingIsOver();
-                    StopCoroutine("BattleCountdown");
-                    break;
-                }
-               // m_Time.text = SplicingTime(m_CountDown);
-                yield return new WaitForSeconds(1);
-                m_CountDown--;
-            }
-        }
+        // public IEnumerator BattleCountdown()
+        // {
+        //     while (m_CountDown >= 0)
+        //     {
+        //         if (m_CountDown == 0)
+        //         {
+        //           //  AddExperience(m_PracticeFieldInfo.CharacterItem);
+        //             m_PracticeFieldInfo.TrainingIsOver();
+        //             StopCoroutine("BattleCountdown");
+        //             break;
+        //         }
+        //        // m_Time.text = SplicingTime(m_CountDown);
+        //         yield return new WaitForSeconds(1);
+        //         m_CountDown--;
+        //     }
+        // }
 
         public void SetButtonEvent(Action<object> action)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        private void OnDisable()
-        {
-            EventSystem.S.UnRegister(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
-        }
+        // private void OnDisable()
+        // {
+        //     EventSystem.S.UnRegister(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
+        // }
     }
 }
