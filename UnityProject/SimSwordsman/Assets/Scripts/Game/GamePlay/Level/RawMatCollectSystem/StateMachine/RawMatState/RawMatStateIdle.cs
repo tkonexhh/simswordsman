@@ -22,6 +22,8 @@ namespace GameWish.Game
         {
             m_RawMatItem = handler.GetRawMatItem();
 
+            m_RawMatItem.HideBubble();
+
             m_LastJobFinishedTime = DateTime.Parse(GameDataMgr.S.GetClanData().GetLastJobFinishedTime(m_RawMatItem.collectedObjType));
 
             RegisterEvents();

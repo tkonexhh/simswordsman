@@ -78,13 +78,15 @@ namespace GameWish.Game
                 return;
             }
 
-            m_RawMatItem.SelectIdleCharacterToCollectRes(false, (character) => 
+            CharacterController character = m_RawMatItem.SelectIdleCharacterToCollectRes(false);
+            if (character != null)
             {
-                if (character != null)
-                {
-                    m_RawMatItem.SetState(RawMatStateID.Working);
-                }
-            });
+                m_RawMatItem.OnCharacterSelected(character, true);
+            }
+        }
+
+        private void OnCharacterSelected(CharacterController character)
+        {
 
         }
     }

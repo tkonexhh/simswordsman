@@ -13,15 +13,15 @@ namespace GameWish.Game
         public List<Transform> collectPos = new List<Transform>();
         public GameObject bubble = null;
 
-        private DateTime m_LastShowBubbleTime;
+        //private DateTime m_LastShowBubbleTime;
 
-        private bool m_IsBubbleShowed = false;
-        private bool m_IsCharacterCollected = false;
+        //private bool m_IsBubbleShowed = false;
+        //private bool m_IsCharacterCollected = false;
 
-        private List<Transform> m_UsedCollectPos = new List<Transform>();
+        //private List<Transform> m_UsedCollectPos = new List<Transform>();
         private WorkConfigItem m_WorkConfigItem = null;
 
-        private bool m_IsWorking = false;
+        //private bool m_IsWorking = false;
 
         private CharacterController m_SelectedCharacter = null;
 
@@ -30,7 +30,7 @@ namespace GameWish.Game
 
         public WorkConfigItem WorkConfigItem { get => m_WorkConfigItem; }
 
-        public void OnInit()
+        public virtual void OnInit()
         {
             m_StateMachine = new RawMatStateMachine(this);
 
@@ -77,10 +77,12 @@ namespace GameWish.Game
                 m_CurState = state;
 
                 m_StateMachine.SetCurrentStateByID(m_CurState);
+
+                OnStateChanged(state);
             }
         }
 
-        public void OnUpdate()
+        public virtual void OnUpdate()
         {
             m_StateMachine.UpdateState(Time.deltaTime);
         }
@@ -157,23 +159,25 @@ namespace GameWish.Game
                 return;
             }
 
-            SelectIdleCharacterToCollectRes(true, (character) => 
+            CharacterController character = SelectIdleCharacterToCollectRes(true);
+            if (character == null)
             {
-                if (character == null)
-                {
-                    FloatMessage.S.ShowMsg("无空闲弟子");
-                }
-                else
-                {
-                    SetState(RawMatStateID.Working);
-                }
-            });
-
+                FloatMessage.S.ShowMsg("无空闲弟子");
+            }
+            else
+            {
+                OnCharacterSelected(character, true);
+            }
         }
 
-        public void SelectIdleCharacterToCollectRes(bool manual, Action<CharacterController> onCharacterSelected)
+        public CharacterController SelectIdleCharacterToCollectRes(bool manual)
         {
             CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CharacterModel.IsIdle());
+            return character;
+        }
+
+        public void OnCharacterSelected(CharacterController character, bool manual)
+        {
             if (character != null)
             {
                 m_SelectedCharacter = character;
@@ -182,14 +186,19 @@ namespace GameWish.Game
                 character.ManualSelectedToCollectObj = manual;
                 character.SetState(CharacterStateID.CollectRes);
 
-                HideBubble();
+                //HideBubble();
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
 
                 GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
-            }
 
-            onCharacterSelected?.Invoke(character);
+                SetState(RawMatStateID.Working);
+            }
+        }
+
+        public virtual void OnStateChanged(RawMatStateID state)
+        {
+
         }
 
         public void ShowBubble()
@@ -251,12 +260,12 @@ namespace GameWish.Game
             }
         }
 
-        private void ResetData()
-        {
-            m_SelectedCharacter = null;
-            m_IsCharacterCollected = false;
-            m_IsWorking = false;
-        }
+        //private void ResetData()
+        //{
+        //    m_SelectedCharacter = null;
+        //    m_IsCharacterCollected = false;
+        //    m_IsWorking = false;
+        //}
 
         public RawMatItem GetRawMatItem()
         {
