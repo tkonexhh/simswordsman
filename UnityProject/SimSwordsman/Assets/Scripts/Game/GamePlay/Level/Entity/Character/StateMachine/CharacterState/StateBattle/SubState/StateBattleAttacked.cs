@@ -20,7 +20,7 @@ namespace GameWish.Game
 
         public override void Enter(IBattleStateHander handler)
         {
-            if(m_Controller == null)
+            if (m_Controller == null)
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             if (m_BattleState == null)
@@ -32,22 +32,23 @@ namespace GameWish.Game
             {
                 m_Controller.CharacterView.PlayAnim(GetHurtAnimName(), false, null);
                 AudioManager.S.PlayCharacterAttackedSound(m_Controller.GetPosition());
+
+                float hitBackDistance = m_BattleState.HitbackDistance;
+                float hurtTime = m_BattleState.NextHurtTime;//0.1f;
+                m_Controller.CharacterView.transform.DOMoveX(-m_Controller.CharacterView.GetFaceDir() * hitBackDistance, hurtTime).SetRelative().
+                    SetEase(Ease.Linear).OnComplete(() =>
+                    {
+                        if (m_BattleState.CurState == BattleStateID.Attacked)
+                            m_BattleState.SetState(BattleStateID.Idle);
+
+                    });
+            }
+            else
+            {
+                m_BattleState.SetState(BattleStateID.Dead);
             }
 
-            float hitBackDistance = m_BattleState.HitbackDistance;
-            m_Controller.CharacterView.transform.DOMoveX(-m_Controller.CharacterView.GetFaceDir() * hitBackDistance, 0.1f).SetRelative().
-                SetEase(Ease.Linear).OnComplete(()=> 
-                {
-                    if (m_Controller.IsDead())
-                    {
-                        m_BattleState.SetState(BattleStateID.Dead);
-                    }
-                    else
-                    {
-                        if(m_BattleState.CurState == BattleStateID.Attacked)
-                            m_BattleState.SetState(BattleStateID.Idle);
-                    }
-                });
+
         }
 
         public override void Exit(IBattleStateHander handler)
@@ -72,7 +73,7 @@ namespace GameWish.Game
             m_BattleState.SetState(BattleStateID.Idle);
 
         }
-        
+
         private string GetHurtAnimName()
         {
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)

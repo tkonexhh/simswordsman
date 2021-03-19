@@ -12,7 +12,7 @@ namespace GameWish.Game
         private InventoryMgr m_InventoryMgr = null;
         private CharacterMgr m_CharacterMgr = null;
         private KongfuLibraryMgr m_KongfuLibraryMgr = null;
-        private MainTaskMgr m_MainTaskMgr = null;
+        // private MainTaskMgr m_MainTaskMgr = null;
         private CommonTaskMgr m_CommonTaskMgr = null;
         private ChapterMgr m_ChapterMgr = null;
         private RecruitDiscipleMgr m_RecruitDisciplerMgr = null;
@@ -25,7 +25,7 @@ namespace GameWish.Game
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
         public InventoryMgr InventoryMgr { get => m_InventoryMgr; }
         public KongfuLibraryMgr KongfuLibraryMgr { get => m_KongfuLibraryMgr; }
-        public MainTaskMgr MainTaskMgr { get => m_MainTaskMgr; }
+        // public MainTaskMgr MainTaskMgr { get => m_MainTaskMgr; }
         public CommonTaskMgr CommonTaskMgr { get => m_CommonTaskMgr; }
         public ChapterMgr ChapterMgr { get => m_ChapterMgr; }
         public RecruitDiscipleMgr RecruitDisciplerMgr { get => m_RecruitDisciplerMgr; }
@@ -54,7 +54,7 @@ namespace GameWish.Game
             m_KongfuLibraryMgr = gameObject.AddComponent<KongfuLibraryMgr>();
             m_KongfuLibraryMgr.OnInit();
 
-            m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ��ʱû��
+            // m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ��ʱû��
             //m_MainTaskMgr.OnInit();
 
             m_CommonTaskMgr = gameObject.AddComponent<CommonTaskMgr>();
