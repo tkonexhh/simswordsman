@@ -43,6 +43,7 @@ namespace GameWish.Game
             else if (state == RawMatStateID.Working)
             {
                 m_IsWorking = true;
+                m_Body.SetActive(true);
                 PlayAnim("idle", true, null);
             }
             else if (state == RawMatStateID.BubbleShowing)
