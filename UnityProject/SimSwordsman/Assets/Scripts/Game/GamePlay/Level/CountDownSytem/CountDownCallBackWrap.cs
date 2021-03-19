@@ -45,7 +45,7 @@ namespace GameWish.Game
                 return false;
             }
 
-            m_CallBackList.AddLast(listener);
+            m_CallBackList.AddFirst(listener);
             return true;
         }
         public void Remove(OnCountDownCallBackDel listener)
