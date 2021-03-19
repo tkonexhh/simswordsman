@@ -62,7 +62,7 @@ namespace GameWish.Game
         }
         private string GetKungfuName(KungfuType kungfuType)
         {
-            return TDKongfuConfigTable.GetIconName(kungfuType);
+            return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).Name;
         }
 
         private void SetKungfuSprite(CharacterKongfuDBData item, Image image, Image kungfuName)
@@ -114,12 +114,14 @@ namespace GameWish.Game
                     break;
                 case UpgradePanelType.BreakthroughMartialArts:
                     SetDifferetState(ShowState.StateBreakthroughMartialArts);
-                    kungfu = promotionModel.ToSubType<WugongBreakthrough>().GetWugongBreakthrough();
+                    WugongBreakthrough wugongBreakthrough = promotionModel.ToSubType<WugongBreakthrough>();
+                    kungfu = wugongBreakthrough.GetWugongBreakthrough();
                     m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_BreakthroughMartialArts");
                     m_InfoParName.text = m_CharacterItem.name + "µÄ";
                     SetKungfuSprite(kungfu, m_InfoParIcon, m_KungfuNameImg);
                     m_KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", GetKungfuName(kungfu.kongfuType));
                     m_Paragraph.text = "ÉýÖÁ" + CommonUIMethod.GetPart(kungfu.level);
+                    CommonUIMethod.TextFlipUpEffect(m_Skill, wugongBreakthrough.GetPreAtk(), m_CharacterItem.atkValue);
                     break;
                 default:
                     break;

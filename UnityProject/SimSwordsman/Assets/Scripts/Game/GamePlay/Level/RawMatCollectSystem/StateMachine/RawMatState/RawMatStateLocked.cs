@@ -62,7 +62,7 @@ namespace GameWish.Game
                         bool isUnlocked = m_RawMatItem.IsUnlocked();
                         if (isUnlocked)
                         {
-                            m_RawMatItem.SetState(RawMatStateID.Working);
+                            m_RawMatItem.SetState(RawMatStateID.Idle);
                         }
                     }
                     break;

@@ -397,7 +397,7 @@ namespace GameWish.Game
                     PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, (int)param[0], (int)param[1], (float)param[2]));
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
-                    PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, (int)param[0], (CharacterKongfuDBData)param[1]));
+                    PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, (int)param[0], (CharacterKongfuDBData)param[1], (float)param[2]));
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];

@@ -43,8 +43,10 @@ namespace GameWish.Game
     {
         private UpgradePanelType m_EventID;
         private int m_ChaID;
-        public PromotionBase(UpgradePanelType eventID, int chaID)
+        protected  float m_PreAtk;
+        public PromotionBase(UpgradePanelType eventID, int chaID, float preAtk)
         {
+            m_PreAtk = preAtk;
             m_EventID = eventID;
             m_ChaID = chaID;
         }
@@ -66,12 +68,10 @@ namespace GameWish.Game
     public class DiscipleRiseStage : PromotionBase
     {
         private int m_Stage;
-        private float m_PreAtk;
 
-        public DiscipleRiseStage(UpgradePanelType eventID, int chaID, int stage,float preAtk) :base(eventID, chaID)
+        public DiscipleRiseStage(UpgradePanelType eventID, int chaID, int stage,float preAtk) :base(eventID, chaID, preAtk)
         {
             m_Stage = stage;
-            m_PreAtk = preAtk;
         }
         public int GetStage()
         {
@@ -85,7 +85,7 @@ namespace GameWish.Game
 
     public class LearnMartialArts : PromotionBase
     {
-        public LearnMartialArts(UpgradePanelType eventID, int ChaID) : base(eventID, ChaID)
+        public LearnMartialArts(UpgradePanelType eventID, int ChaID,float preAtk) : base(eventID, ChaID, preAtk)
         {
         }
     }
@@ -94,13 +94,17 @@ namespace GameWish.Game
     {
         private CharacterKongfuDBData m_CharacterKongfuDBData;
 
-        public WugongBreakthrough(UpgradePanelType eventID, int ChaID, CharacterKongfuDBData characterKongfuDBData) : base(eventID, ChaID)
+        public WugongBreakthrough(UpgradePanelType eventID, int ChaID, CharacterKongfuDBData characterKongfuDBData, float preAtk) : base(eventID, ChaID, preAtk)
         {
             m_CharacterKongfuDBData = characterKongfuDBData;
         }
         public CharacterKongfuDBData GetWugongBreakthrough()
         {
             return m_CharacterKongfuDBData;
+        }
+        public float GetPreAtk()
+        {
+            return m_PreAtk;
         }
     }
 

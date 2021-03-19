@@ -304,6 +304,11 @@ namespace GameWish.Game
                 PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, 0, 2,1212));
                 PanelPool.S.DisplayPanel();
             }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
+                PanelPool.S.DisplayPanel();
+            }
             #endregion
         }
 

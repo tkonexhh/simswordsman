@@ -125,11 +125,12 @@ namespace GameWish.Game
         public int Index { set; get; }
         public KungfuLockState KungfuLockState { set; get; } = KungfuLockState.NotUnlocked;
         public CharacterKongfu CharacterKongfu { set; get; }
-
+        private CharacterItem m_CharacterItem = null;
         private const int m_KungfuMaxLevel = 9;
-        public CharacterKongfuData(int index)
+        public CharacterKongfuData(int index, CharacterItem characterItem)
         {
             Index = index;
+            m_CharacterItem = characterItem;
         }
 
         public string GetIconName()
@@ -175,7 +176,7 @@ namespace GameWish.Game
             }
             int curKungfuLevel = CharacterKongfu.dbData.level;
             if (curKungfuLevel != preKungfuLevel)
-                EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade, id, CharacterKongfu.dbData);
+                EventSystem.S.Send(EventID.OnKongfuLibraryUpgrade, id, CharacterKongfu.dbData, m_CharacterItem.atkValue);
 
             GameDataMgr.S.GetClanData().AddCharacterKongfuExp(id, kongfuType, deltaExp);
             return isUpgrader;
@@ -198,8 +199,9 @@ namespace GameWish.Game
             return CharacterKongfu.dbData.kongfuType;
         }
 
-        internal void Wrap(CharacterKongfuDBData i)
+        internal void Wrap(CharacterKongfuDBData i,CharacterItem characterItem)
         {
+            m_CharacterItem = characterItem;
             Index = i.index;
             KungfuLockState = i.kungfuLockState;
             if (KungfuLockState == KungfuLockState.Learned && CharacterKongfu == null)
@@ -248,7 +250,7 @@ namespace GameWish.Game
         public CharacterItem()
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
-                kongfus.Add(i + 1, new CharacterKongfuData(i + 1));
+                kongfus.Add(i + 1, new CharacterKongfuData(i + 1,this));
         }
 
         #region Get
@@ -324,7 +326,7 @@ namespace GameWish.Game
             itemDbData.kongfuDatas.ForEach(i =>
             {
                 CharacterKongfuData kongfu = new CharacterKongfuData();
-                kongfu.Wrap(i);
+                kongfu.Wrap(i,this);
                 kongfus[i.index] = kongfu;
             });
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
