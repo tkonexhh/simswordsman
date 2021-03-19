@@ -25,7 +25,7 @@ namespace GameWish.Game
             else if(cd.stringID.Equals("BaicaohuPanel"))
             {
                 //MainGameMgr.S.MedicinalPowderMgr.AddHerb(cd.ID, 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)cd.ID, 1));
+                //MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)cd.ID, 1));
             }
             else if (cd.stringID.Equals("ForgeHousePanel"))
             {

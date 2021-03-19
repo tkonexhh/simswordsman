@@ -160,6 +160,7 @@ namespace GameWish.Game
                     CountdownSystem.S.Init();
 
                     WorkSystemMgr.S.Init();
+                    BaiCaoWuSystemMgr.S.Init();
                     Application.runInBackground = true;
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
