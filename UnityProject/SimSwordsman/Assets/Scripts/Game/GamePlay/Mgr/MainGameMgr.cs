@@ -10,7 +10,7 @@ namespace GameWish.Game
     {
         private FacilityMgr m_FacilityMgr = null;
         private InventoryMgr m_InventoryMgr = null;
-        private CharacterMgr m_CharacterMgr = null;     
+        private CharacterMgr m_CharacterMgr = null;
         private KongfuLibraryMgr m_KongfuLibraryMgr = null;
         private MainTaskMgr m_MainTaskMgr = null;
         private CommonTaskMgr m_CommonTaskMgr = null;
@@ -30,7 +30,7 @@ namespace GameWish.Game
         public ChapterMgr ChapterMgr { get => m_ChapterMgr; }
         public RecruitDiscipleMgr RecruitDisciplerMgr { get => m_RecruitDisciplerMgr; }
         public MainCamera MainCamera { get => m_MainCamera; }
-        public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr;}
+        public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr; }
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
         public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
 
@@ -66,9 +66,6 @@ namespace GameWish.Game
             m_RecruitDisciplerMgr = gameObject.AddComponent<RecruitDiscipleMgr>();
             m_RecruitDisciplerMgr.OnInit();
 
-            m_BattleFieldMgr = gameObject.AddComponent<BattleFieldMgr>();
-            m_BattleFieldMgr.OnInit();
-
             m_RawMatCollectSystem = gameObject.AddComponent<RawMatCollectSystem>();
             m_RawMatCollectSystem.OnInit();
 
@@ -77,6 +74,9 @@ namespace GameWish.Game
 
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();
+
+            m_BattleFieldMgr = gameObject.AddComponent<BattleFieldMgr>();
+            m_BattleFieldMgr.OnInit();
 
             m_CharacterMgr.InitData();
 

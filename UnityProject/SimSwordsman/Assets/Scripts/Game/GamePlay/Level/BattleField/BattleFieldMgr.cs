@@ -60,6 +60,12 @@ namespace GameWish.Game
             m_BattleField.Init();
 
             RegisterEvents();
+
+            Vector2 center = new Vector2((m_BattleAreaRightTop.x + m_BattleAreaLeftBottom.x) / 2, (m_BattleAreaRightTop.y + m_BattleAreaLeftBottom.y) / 2);
+            float height = MainGameMgr.S.MainCamera.battleProperty.size;
+            float width = Camera.main.aspect * height;
+            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_BattleAreaRightTop.y);
+            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_BattleAreaLeftBottom.y);
         }
 
         public void OnUpdate()
