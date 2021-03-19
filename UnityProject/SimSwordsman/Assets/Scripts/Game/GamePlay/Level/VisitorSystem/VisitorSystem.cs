@@ -9,23 +9,23 @@ namespace GameWish.Game
     public class VisitorSystem : TSingleton<VisitorSystem>
     {
         /// <summary>
-        /// ¿ª·ÅµÈ¼¶£¨Ö÷³Ç£©
+        /// ï¿½ï¿½ï¿½ÅµÈ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½
         /// </summary>
         int m_UnlockLevel = 2;
         /// <summary>
-        /// ¿ÍÈË³öÏÖµ¹¼ÆÊ±
+        /// ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Öµï¿½ï¿½ï¿½Ê±
         /// </summary>
-        static int AppearVisitorCountdown = 20;
+        static int AppearVisitorCountdown = 50;
         private float m_AppearVisitorTimer = 0;
         private bool m_CanApperaVisitor = false;
         /// <summary>
-        /// ¿ÍÈËÏûÊ§µ¹¼ÆÊ±
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½Ê±
         /// </summary>
 
         /// <summary>
-        /// ¿ÍÈË×î´óÊýÁ¿
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
-        static int MaxVisitorCount = 2;
+        static int MaxVisitorCount = 1;
 
         static int MaxVisitorCountDaily = 12;
 
@@ -50,7 +50,7 @@ namespace GameWish.Game
         {
             if (m_CanApperaVisitor)
             {
-                //´¦Àí´´½¨
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 m_AppearVisitorTimer += Time.deltaTime;
                 if (m_AppearVisitorTimer >= AppearVisitorCountdown)
                 {
@@ -125,7 +125,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ëæ»úÒ»¸ö½±ÀøÎïÆ·
+        /// ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ namespace GameWish.Game
             if (!TDVisitorRewardConfigTable.rewardIDByMainLevelDic.TryGetValue(level, out idList))
                 idList = TDVisitorRewardConfigTable.rewardIDByMainLevelDic[1];
 
-            //¼ÓÈ¨Æ½¾ù
+            //ï¿½ï¿½È¨Æ½ï¿½ï¿½
             int all = 0;
             foreach (var item in idList)
             {
@@ -179,12 +179,14 @@ namespace GameWish.Game
         {
             visitor.ShowInPanel();
             CheckVisitorList();
+            m_AppearVisitorTimer = 0;
         }
 
         public void Disappear(Visitor visitor)
         {
             visitor.Disappear();
             CheckVisitorList();
+            m_AppearVisitorTimer = 0;
         }
 
     }
@@ -222,7 +224,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ×´Ì¬ 0£ºÎ´µã»÷ 1£ºÕýÔÚÁìÈ¡½çÃæ 2£º¹Ø±ÕÏûÊ§
+        /// ×´Ì¬ 0ï¿½ï¿½Î´ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½Ê§
         /// </summary>
         public int state { get; private set; }
         public void Disappear()
