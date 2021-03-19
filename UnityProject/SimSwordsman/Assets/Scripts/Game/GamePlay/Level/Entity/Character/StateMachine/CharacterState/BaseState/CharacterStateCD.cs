@@ -52,8 +52,11 @@ namespace GameWish.Game
 
             m_Controller = null;
 
-            m_Slot.OnCharacterLeave();
-            m_Slot = null;
+            if (m_Slot != null)
+            {
+                m_Slot.OnCharacterLeave();
+                m_Slot = null;
+            }
         }
 
         protected virtual BaseSlot GetTargetSlot()

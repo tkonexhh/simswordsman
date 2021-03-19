@@ -145,14 +145,6 @@ namespace GameWish.Game
             m_CharacterItem.collectedObjType = collectedObjType;
         }
 
-        public void AddKongfuExp(int deltaExp)
-        {
-            //m_CharacterItem.kongfus.ForEach(i => 
-            //{
-            //    m_CharacterItem.AddKongfuExp(i.dbData.kongfuType, deltaExp);
-            //});
-        }
-
         public int GetKongfuCount()
         {
             return m_CharacterItem.kongfus.Count;
@@ -164,7 +156,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ĳһ���򹦷��Ȩ�ر������Ӿ���
+        /// ĳһ���򹦷��Ȩ�ر������Ӿ���?
         /// </summary>
         /// <returns></returns>
         public void DistributionKungfuExp(int expValue)

@@ -29,18 +29,12 @@ namespace GameWish.Game
         private FacilityType m_CurFacilityType;
         private int m_CurLevel;
         private int m_CountDown = 0;
-        // private List<Sprite> m_Sprites;
         private PracticeFieldPanel m_PracticeFieldPanel;
-        // private PracticeFieldLevelInfo m_PracticeFieldLevelInfo = null;
-        // private FacilityConfigInfo m_FacilityConfigInfo = null;
+
         private PracticeField m_PracticeFieldInfo = null;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
-            // EventSystem.S.Register(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
             m_CurFacilityType = (FacilityType)obj[0];
-
-            // GetInformationForNeed();
-            // m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
 
             m_PracticeFieldInfo = t as PracticeField;
             m_PracticeFieldPanel = obj[1] as PracticeFieldPanel;
@@ -49,31 +43,11 @@ namespace GameWish.Game
             m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
             RefreshPracticeFieldState();
         }
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_DiscipleHead.sprite = m_PracticeFieldPanel.FindSprite(prefabsName);
-            //AddressableAssetLoader<Sprite> loader = new AddressableAssetLoader<Sprite>();
-            //loader.LoadAssetAsync(prefabsName, (obj) =>
-            //{
-            //    //Debug.Log(obj);
-            //    m_DiscipleHead.sprite = obj;
-            //});
-        }
+
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
             return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
         }
-        // private void GetInformationForNeed()
-        // {
-        //     m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
-        //     // m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
-        //     // m_PracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-
-        // }
-        // private void HandleAddListenerEvent(int key, object[] param)
-        // {
-
-        // }
 
         private void BindAddListenEvent()
         {
@@ -155,7 +129,7 @@ namespace GameWish.Game
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     RefreshFixedInfo();
                     m_CurPractice.text = "当前训练:" + m_PracticeFieldInfo.CharacterItem.name;
-                    m_Time.text = SplicingTime(GetDuration());
+                    m_Time.text = GameExtensions.SplicingTime(GetDuration());
                     CreateCountDown();
                     LoadClanPrefabs(GetLoadDiscipleName(m_PracticeFieldInfo.CharacterItem));
                     //TimeRemaining(m_PracticeFieldInfo.StartTime);
@@ -165,25 +139,9 @@ namespace GameWish.Game
             }
         }
 
-        private string SplicingTime(int seconds)
+        private void LoadClanPrefabs(string prefabsName)
         {
-            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
-            string str = "";
-
-            if (ts.Hours > 0)
-            {
-                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes > 0)
-            {
-                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes == 0)
-            {
-                str = "00:" + ts.Seconds.ToString("00");
-            }
-
-            return str;
+            m_DiscipleHead.sprite = m_PracticeFieldPanel.FindSprite(prefabsName);
         }
 
         private void CreateCountDown()
@@ -212,31 +170,9 @@ namespace GameWish.Game
                 m_Time.text = obj;
         }
 
-        // public IEnumerator BattleCountdown()
-        // {
-        //     while (m_CountDown >= 0)
-        //     {
-        //         if (m_CountDown == 0)
-        //         {
-        //           //  AddExperience(m_PracticeFieldInfo.CharacterItem);
-        //             m_PracticeFieldInfo.TrainingIsOver();
-        //             StopCoroutine("BattleCountdown");
-        //             break;
-        //         }
-        //        // m_Time.text = SplicingTime(m_CountDown);
-        //         yield return new WaitForSeconds(1);
-        //         m_CountDown--;
-        //     }
-        // }
-
         public void SetButtonEvent(Action<object> action)
         {
             //throw new NotImplementedException();
         }
-
-        // private void OnDisable()
-        // {
-        //     EventSystem.S.UnRegister(EngineEventID.OnAfterApplicationFocusChange, HandleAddListenerEvent);
-        // }
     }
 }

@@ -41,7 +41,7 @@ namespace GameWish.Game
         public FacilityType FacilityType { set; get; }
         public string StartTime { set; get; }
 
-        private Vector3 m_SlotPos;
+        // private Vector3 m_SlotPos;
         private CharacterController m_Character;
         private FacilityView m_FacilityView;
 
@@ -91,27 +91,6 @@ namespace GameWish.Game
                 slotState = SlotState.NotUnlocked;
         }
 
-        // /// <summary>
-        // /// ��������
-        // /// </summary>
-        // /// <param name="characterItem"></param>
-        // public void AddExperience(CharacterItem characterItem)
-        // {
-        // 	int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-        // 	int exp = MainGameMgr.S.FacilityMgr.GetExpValue(FacilityType, level);
-        // 	characterItem.AddCharacterExp(exp);
-        // }
-
-        public void RewardKungfu(int kungfuLibraryLevel)
-        {
-            int kungfuID = (int)MainGameMgr.S.FacilityMgr.GetKungfuForWeightAndLevel(kungfuLibraryLevel);
-            RewardBase reward = RewardMgr.S.GetRewardBase(RewardItemType.Kongfu, kungfuID, 1);
-            List<RewardBase> rewards = new List<RewardBase>();
-            rewards.Add(reward);
-            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-            reward.AcceptReward();
-        }
-
         public bool IsEmpty()
         {
             return m_Character == null;
@@ -132,6 +111,7 @@ namespace GameWish.Game
         {
             return m_FacilityView.GetSlotPos(Index);
         }
+
         public virtual float GetProgress()
         {
             return 0;

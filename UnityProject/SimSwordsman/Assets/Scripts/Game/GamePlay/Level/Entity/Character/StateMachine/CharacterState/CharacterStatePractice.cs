@@ -1,10 +1,6 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Qarth;
-using DG.Tweening;
 
 namespace GameWish.Game
 {
@@ -27,7 +23,6 @@ namespace GameWish.Game
             PracticeFieldController practiceFieldController = MainGameMgr.S.FacilityMgr.GetFacilityController(facilityType) as PracticeFieldController;
             return practiceFieldController.GetIdlePracticeSlot(facilityType);
         }
-
 
         protected override void OnCDOver()
         {

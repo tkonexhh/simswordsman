@@ -11,8 +11,6 @@ namespace GameWish.Game
     {
         public List<PracticeField> m_PracticeSlotList = new List<PracticeField>();
 
-        private int m_MaxSlotCount = 6;
-
         public PracticeFieldController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
             EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
@@ -34,7 +32,7 @@ namespace GameWish.Game
                 case EventID.DeleteDisciple://删除角色
                     foreach (var item in m_PracticeSlotList)
                         if (item.IsHaveSameCharacterItem((int)param[0]))
-                            item.TrainingIsOver();
+                            item.CDIsOver();
                     break;
                 case EventID.OnRefreshPracticeUnlock:
                     RefreshExclamatoryMark(CheckSlotInfo());
@@ -77,12 +75,6 @@ namespace GameWish.Game
 
             foreach (var item in practiceFieldDBDatas)
                 m_PracticeSlotList.Add(new PracticeField(item, m_View));
-
-            //for (int i = 0; i < m_PracticeSlotList.Count; i++)
-            //{
-            //    PracticeFieldView view = (PracticeFieldView)m_View;
-            //    m_PracticeSlotList[i].SetSlotPos(view.GetSlotPos(i)); ;
-            //}
         }
 
         /// <summary>
@@ -122,7 +114,7 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="facilityType"></param>
         /// <returns></returns>
-        public List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
+        private List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
         {
             return TDFacilityPracticeFieldTable.GetPracticeFieldLevelInfoList(facilityType);
         }

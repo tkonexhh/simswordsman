@@ -153,11 +153,6 @@ namespace GameWish.Game
         {
             return m_CharacterModel.GetExpLevelUpNeed();
         }
-
-        public void AddKongfuExp(int deltaExp)
-        {
-            m_CharacterModel.AddKongfuExp(deltaExp);
-        }
         #endregion
 
         #region Public Set
