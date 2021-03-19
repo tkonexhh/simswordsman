@@ -8,8 +8,16 @@ namespace GameWish.Game
     {
         [SerializeField]
         private Image m_PromotionTitleImg;
+
+
         [SerializeField]
         private Text m_Cont;
+
+        [SerializeField]
+        private GameObject m_InfoPar;
+        [SerializeField]
+        private Text m_InfoParName;
+
         [SerializeField]
         private Text m_KongfuName;
         [SerializeField]

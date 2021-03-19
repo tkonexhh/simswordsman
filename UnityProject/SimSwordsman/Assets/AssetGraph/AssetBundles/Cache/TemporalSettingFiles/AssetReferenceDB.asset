@@ -17,8 +17,32 @@ MonoBehaviour:
     m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: ed44046a5e291cf4ba6c66fddc59b6a5
-    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/RewardPanel/RewardPanelItem.prefab
+  - m_assetDatabaseId: 9d71fa75c13f55a4fb1e1a9dfe8be4e1
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/CharacterDataWrapper.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 893dba0eac0e67e4399ff386eb90765d
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Facility/Implment/Challenge/PanelPool.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a940ce3728b6cb8478db8a7500338183
+    m_importFrom: Assets/Scripts/Game/GamePlay/Mgr/GameplayMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93496377bc41c9943a78e198315ef57e
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/CombatInterfacePanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8abd1c897e1ca5c4d8900c5cc731b5a6
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/PromotionPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 91cffdd84035b0a4fa16e9ed6be21849
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/PromotionPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8bdc72795ef1648e68dad5243be4d7ed
+    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetProcessEventRecord.asset
     m_exportTo: 
     m_variantName: 
   m_version: 2
