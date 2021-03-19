@@ -123,30 +123,30 @@ android {
     productFlavors {
         mobrainsdk {
             dimension "channel"
-            versionCode 3
-            versionName "1.0.3"
+            versionCode 4
+            versionName "1.0.4"
             applicationId "ratel.best.sect"
-            resValue "string", "aid", "175548"
-            resValue "string", "appName", "ltmnq01"
+            resValue "string", "aid", "218425"
+            resValue "string", "appName", "best_sect"
             resValue "string", "toutiao_channel", "\"bytedance\""
-            resValue "string", "rangers_app_id", "\"208054\""
+            resValue "string", "rangers_app_id", "\"218425\""
             resValue "string", "rangers_channel_id", "\"bytedance\""
             resValue "string", "wx_app_id", "wx67bea7de0764f123"
-            manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.ltmnq01".toLowerCase()]
+            manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.best_sect".toLowerCase()]
         }
 
         mobrainzhanneisdk {
             dimension "channel"
-            versionCode 3
-            versionName "1.0.3"
+            versionCode 4
+            versionName "1.0.4"
             applicationId "ratel.best.sect"
-            resValue "string", "aid", "175548"
-            resValue "string", "appName", "ltmnq01"
+            resValue "string", "aid", "218425"
+            resValue "string", "appName", "best_sect"
             resValue "string", "toutiao_channel", "\"bytedance\""
-            resValue "string", "rangers_app_id", "\"208054\""
+            resValue "string", "rangers_app_id", "\"218425\""
             resValue "string", "rangers_channel_id", "\"bytedance\""
             resValue "string", "wx_app_id", "wx67bea7de0764f123"
-            manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.ltmnq01".toLowerCase()]
+            manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.best_sect".toLowerCase()]
         }
     }
 

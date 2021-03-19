@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1381339247
+CRC: 618461302
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3f9dc894869fc795f1fbddddbcc5429d
+    Hash: 98b4eca52f4f826afd80184682adcb53
   TypeTreeHash:
     serializedVersion: 2
     Hash: cc8b21206f44bdccc644d1c1e8c4520e
@@ -50,6 +50,7 @@ ClassTypes:
 - Class: 225
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/UserAccountPanel.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/UserAccountPanel.prefab
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
