@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using DG.Tweening;
 
 namespace GameWish.Game
 {

@@ -38,18 +38,26 @@ namespace GameWish.Game
             m_CharacterName.text = m_CharacterItem.name;
             switch (promotionModel.GetEventID())
             {
-                case EventID.OnCharacterUpgrade:
+                case UpgradePanelType.WeaponEnhancement:
+                    break;
+                case UpgradePanelType.ArmorEnhancement:
+                    break;
+                case UpgradePanelType.EquipAmrs:
+                    break;
+                case UpgradePanelType.EquipAmror:
+                    break;
+                case UpgradePanelType.LearnMartialArts:
+                    break;
+                case UpgradePanelType.DiscipleAscendingSection:
                     AudioMgr.S.PlaySound(Define.CLEVELUP);
                     stage = promotionModel.ToSubType<DiscipleRiseStage>().GetStage();
                     m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title2");
-
                     m_KongfuName.gameObject.SetActive(false);
                     m_Level.text = CommonUIMethod.GetTextNumber(stage) + "¶Î";
                     break;
-                case EventID.OnKongfuLibraryUpgrade:
+                case UpgradePanelType.BreakthroughMartialArts:
                     kungfu = promotionModel.ToSubType<WugongBreakthrough>().GetWugongBreakthrough();
                     m_PromotionTitleImg.sprite = FindSprite("promotionpanel_title1");
-
                     m_KongfuName.gameObject.SetActive(true);
                     m_KongfuName.text = TDKongfuConfigTable.GetData((int)kungfu.kongfuType).kongfuName;
                     m_Level.text = CommonUIMethod.GetTextNumber(kungfu.level) + "²ã";
