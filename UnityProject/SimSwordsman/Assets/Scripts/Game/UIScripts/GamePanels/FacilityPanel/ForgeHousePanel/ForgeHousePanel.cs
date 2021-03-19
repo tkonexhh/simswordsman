@@ -82,8 +82,8 @@ namespace GameWish.Game
                     for (int i = 0; i < m_CostItems.Count; i++)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
-                    GetInformationForNeed();
-                    RefreshPanelInfo();
+                    //GetInformationForNeed();
+                    //RefreshPanelInfo();
                     DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
                 }
