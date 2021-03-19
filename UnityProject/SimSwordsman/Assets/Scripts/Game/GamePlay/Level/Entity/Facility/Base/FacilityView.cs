@@ -17,6 +17,7 @@ namespace GameWish.Game
         public GameObject tips;
         public Transform pos1 = null;
         public Transform pos2 = null;
+        public GameObject m_SubItem = null;
 
         [SerializeField]
         protected FacilityType facilityType;
@@ -63,20 +64,6 @@ namespace GameWish.Game
             if (facilityType == FacilityType.Lobby && m_Controller.GetState() == FacilityState.ReadyToUnlock)
                 return;
             tips.transform.parent.gameObject.SetActive(active);
-            // if (active)
-            // {
-            //     m_TipsAnim = DOTween.Sequence()
-            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, 15), 0.5f))
-            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, -15), 1.0f))
-            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.5f))
-            //         .Append(tips.transform.parent.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f))
-            //         // .SetDelay(Random.Range(0.2f, 0.8f))
-            //         .SetLoops(-1);
-            // }
-            // else
-            // {
-            //     m_TipsAnim.Kill();
-            // }
         }
 
         public virtual void OnClicked()
@@ -129,6 +116,8 @@ namespace GameWish.Game
                     //´æµµ¼ÓÔØ½øÀ´
                     if (isFile)
                     {
+                        if (m_SubItem != null)
+                            m_SubItem.SetActive(true);
                         RefreshStateObj(false);
                         ShowRoad(true);
                         return;
@@ -139,7 +128,8 @@ namespace GameWish.Game
                         StartCoroutine(PlayConsParticleEffects(0));
                         return;
                     }
-                    SetTips(false);
+                    if (m_SubItem!=null)
+                        m_SubItem.SetActive(false);
                     CreateEffects();
                     StartCoroutine(PlayConsParticleEffects(PlayParticleEffectsTime));
                     break;
@@ -156,11 +146,9 @@ namespace GameWish.Game
             yield return new WaitForSeconds(second);
             DestroyImmediate(m_ParticleEffects);
             RefreshStateObj(false);
-            //navObstacleObj?.SetActive(true);
-
-            //ReResLoader.Allocate();
-
             ShowRoad(true);
+            if (m_SubItem != null)
+                m_SubItem.SetActive(true);
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
@@ -169,6 +157,8 @@ namespace GameWish.Game
             yield return new WaitForSeconds(second);
             DestroyImmediate(m_ParticleEffects);
             stateObjList[level - 1].SetActive(true);
+            if (m_SubItem != null)
+                m_SubItem.SetActive(true);
             m_ResLoader?.ReleaseRes("BuildSmokeHammer");
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
         }
@@ -187,6 +177,8 @@ namespace GameWish.Game
                 if (!isFile && isUpgrade)
                 {
                     stateObjList.ForEach(i => i.SetActive(false));
+                    if (m_SubItem != null)
+                        m_SubItem.SetActive(false);
                     SetTips(false);
                     CreateEffects();
                     StartCoroutine(PlayUpGradeParticleEffects(PlayParticleEffectsTime, level));

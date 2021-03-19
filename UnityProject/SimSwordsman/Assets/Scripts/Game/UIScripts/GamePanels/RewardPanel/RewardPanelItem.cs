@@ -58,8 +58,8 @@ namespace GameWish.Game
                 m_Icon.sprite = rewardPanel.FindSprite(reward.SpriteName());
 
             m_RewardName.text = reward.RewardName();
-            m_Count.text = "+" + reward.Count;
-            m_CountBg.SetActive(reward.Count > 1);
+            m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", "X" + reward.Count); 
+            //m_CountBg.SetActive(reward.Count > 1);
             Instantiate(m_LootSingle, transform).transform.localPosition = Vector3.zero;
         }
 

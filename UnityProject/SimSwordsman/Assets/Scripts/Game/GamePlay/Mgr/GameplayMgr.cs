@@ -289,7 +289,9 @@ namespace GameWish.Game
             {
                 List<RewardBase> rewards = new List<RewardBase>();
                 rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
-                //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+                rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
+                rewards.Add(new ArmsReward((int)ArmsType.MengGuBaoDao, 1));
+                rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 
