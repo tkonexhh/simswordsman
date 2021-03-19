@@ -129,25 +129,25 @@ namespace GameWish.Game
             }
 
             // Force character move to target pos, if he does not move
-            if (!m_ReachTargetPos)
-            {
-                m_CheckPosTime += Time.deltaTime;
-                if (m_CheckPosTime > m_CheckPosInterval)
-                {
-                    if (m_Controller.CharacterView.NavAgent.enabled == false)
-                    {
-                        m_Controller.CharacterView.NavAgent.enabled = true;
-                    }
+            //if (!m_ReachTargetPos)
+            //{
+            //    m_CheckPosTime += Time.deltaTime;
+            //    if (m_CheckPosTime > m_CheckPosInterval)
+            //    {
+            //        if (m_Controller.CharacterView.NavAgent.enabled == false)
+            //        {
+            //            m_Controller.CharacterView.NavAgent.enabled = true;
+            //        }
 
-                    m_CheckPosTime = 0;
-                    if (Vector3.Distance(m_LastPos, m_Controller.GetPosition()) < 0.1f)
-                    {
-                        m_LastPos = m_Controller.GetPosition();
+            //        m_CheckPosTime = 0;
+            //        if (Vector3.Distance(m_LastPos, m_Controller.GetPosition()) < 0.1f)
+            //        {
+            //            m_LastPos = m_Controller.GetPosition();
 
-                        MoveToTargetPos();
-                    }
-                }
-            }
+            //            MoveToTargetPos();
+            //        }
+            //    }
+            //}
         }
 
         private void OnReachDestination()
@@ -161,6 +161,8 @@ namespace GameWish.Game
 
             if (m_RawMatItem != null)
             {
+                m_RawMatItem.OnCharacterArriveCollectPos();
+
                 string animName = GetCollectResAnim();
                 m_Controller.CharacterView.PlayAnim(animName, true, ()=> 
                 {
