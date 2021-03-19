@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8902891690641377523}
   - component: {fileID: 2878072080857858030}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: KungfuName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,8 +713,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -186.6, y: 52}
-  m_SizeDelta: {x: 150.5, y: 61.9}
+  m_AnchoredPosition: {x: -200, y: 52}
+  m_SizeDelta: {x: 187.05, y: 61.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3821168508492665484
 CanvasRenderer:
@@ -750,7 +750,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1952,6 +1952,12 @@ MonoBehaviour:
   m_SortingOrder: -1
   m_PromotionTitleImg: {fileID: 1996335114777548466}
   m_Cont: {fileID: 4460418761802716608}
+  m_InfoPar: {fileID: 6130722826268400566}
+  m_InfoParName: {fileID: 246094866882777373}
+  m_InfoParIcon: {fileID: 7634852173127892969}
+  m_KungfuNameImg: {fileID: 7951510717402154533}
+  m_KungfuName: {fileID: 2878072080857858030}
+  m_Paragraph: {fileID: 8465780644699655672}
   m_KongfuName: {fileID: 8816070541225142254}
   m_Level: {fileID: 5586690938191576422}
   m_Skill: {fileID: 5051990236053864803}
@@ -2008,7 +2014,7 @@ GameObject:
   - component: {fileID: 1040164925727479070}
   - component: {fileID: 8465780644699655672}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Paragraph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2086,7 +2092,7 @@ GameObject:
   - component: {fileID: 3744597076923824747}
   - component: {fileID: 7951510717402154533}
   m_Layer: 5
-  m_Name: KungfuName
+  m_Name: KungfuNameImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
