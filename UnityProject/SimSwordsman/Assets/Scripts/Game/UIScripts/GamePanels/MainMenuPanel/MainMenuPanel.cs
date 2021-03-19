@@ -295,20 +295,11 @@ namespace GameWish.Game
                 case 1:
                     RefreshVisitorImg(1);
 
-                    Visitor visitor1 = VisitorSystem.S.CurrentVisitor[0];
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor1.Reward.KeyID.ToString());
-
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
                     break;
                 case 2:
                     RefreshVisitorImg(2);
-
-                    Visitor visitor2 = VisitorSystem.S.CurrentVisitor[0];
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor2.Reward.KeyID.ToString());
-
-                    Visitor visitor3 = VisitorSystem.S.CurrentVisitor[1];
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor3.Reward.KeyID.ToString());
 
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(true);

@@ -111,7 +111,7 @@ namespace GameWish.Game
             if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(31) && GuideMgr.S.IsGuideFinish(14))
             {
                 FloatMessage.S.ShowMsg("食物不足");
-
+                DataAnalysisMgr.S.CustomEvent(DotDefine.out_of_food, collectedObjType.ToString());
                 if (GuideMgr.S.IsGuideFinish(32) == false)
                 {
                     EventSystem.S.Send(EventID.OnFoodNotEnoughTrigger_IntroduceTrigger);
@@ -126,6 +126,10 @@ namespace GameWish.Game
             {
                 //UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "无空闲弟子！");
                 FloatMessage.S.ShowMsg("无空闲弟子");
+            }
+            else
+            {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, collectedObjType.ToString());
             }
         }
 
@@ -143,7 +147,6 @@ namespace GameWish.Game
                 m_IsCharacterCollected = true;
                 m_IsWorking = true;
 
-                DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
 
                 GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
             }
@@ -159,6 +162,8 @@ namespace GameWish.Game
 
             bubble.SetActive(true);
 
+            DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate,collectedObjType.ToString());
+
             m_LastShowBubbleTime = DateTime.Now.AddSeconds(m_WorkConfigItem.workTime);
 
             GameDataMgr.S.GetClanData().SetLastShowBubbleTime(collectedObjType, m_LastShowBubbleTime);
@@ -171,6 +176,8 @@ namespace GameWish.Game
 
         public void HideBubble()
         {
+            DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
+
             m_IsBubbleShowed = false;
             bubble.SetActive(false);
         }
@@ -212,6 +219,8 @@ namespace GameWish.Game
         {
             if (IsFoodEnough() == false)
             {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.out_of_food, collectedObjType.ToString());
+
                 m_LastShowBubbleTime = DateTime.Now.AddSeconds(m_WorkConfigItem.workTime); // Check next interval
                 return;
             }

@@ -341,11 +341,6 @@ namespace GameWish.Game
                 }
             }
 
-            for (int i = 0; i < m_CurTaskList.Count; i++)
-            {
-                DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_generate, m_CurTaskList[i].TaskId.ToString());
-            }
-
             RefreshRedPoint(m_CurTaskList.Count);
         }
 
@@ -373,7 +368,7 @@ namespace GameWish.Game
         {
             SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime, recordCharacterID);
             m_CurTaskList.Add(simGameTask);
-
+            DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_generate, simGameTask.TaskId.ToString());
             return simGameTask;
         }
 
