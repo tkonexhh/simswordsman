@@ -299,6 +299,11 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnBattleFailed);
             }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, 0, 2,1212));
+                PanelPool.S.DisplayPanel();
+            }
             #endregion
         }
 

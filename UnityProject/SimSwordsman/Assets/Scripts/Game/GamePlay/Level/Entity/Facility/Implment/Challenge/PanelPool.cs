@@ -11,7 +11,7 @@ namespace GameWish.Game
         /// <summary>
         /// 武器强化
         /// </summary>
-        WeaponEnhancement,
+        WeaponEnhancement = 1,
         /// <summary>
         /// 铠甲强化
         /// </summary>
@@ -66,14 +66,20 @@ namespace GameWish.Game
     public class DiscipleRiseStage : PromotionBase
     {
         private int m_Stage;
+        private float m_PreAtk;
 
-        public DiscipleRiseStage(UpgradePanelType eventID, int chaID, int stage) :base(eventID, chaID)
+        public DiscipleRiseStage(UpgradePanelType eventID, int chaID, int stage,float preAtk) :base(eventID, chaID)
         {
             m_Stage = stage;
+            m_PreAtk = preAtk;
         }
         public int GetStage()
         {
             return m_Stage;
+        }
+        public float GetPreAtk()
+        {
+            return m_PreAtk;
         }
     }
 

@@ -300,6 +300,10 @@ namespace GameWish.Game
         {
             return TDCharacterStageConfigTable.GetAtk(quality, stage, level);
         }
+        private float BasicsAtkValue(int stage)
+        {
+            return TDCharacterStageConfigTable.GetAtk(quality, stage, level);
+        }
 
         public void Wrap(CharacterItemDbData itemDbData)
         {
@@ -448,7 +452,7 @@ namespace GameWish.Game
                     break;
             }
             if (stage != preChracterStage)
-                EventSystem.S.Send(EventID.OnCharacterUpgrade, id, stage);
+                EventSystem.S.Send(EventID.OnCharacterUpgrade, id, stage, CalculateForceValue(preChracterStage));
             GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
         }
 
@@ -473,6 +477,8 @@ namespace GameWish.Game
             characeterEquipmentData.AddEquipment(characeterEquipment);
             CalculateForceValue();
         }
+
+        #region 计算功力
         /// <summary>
         /// 计算武力值
         /// </summary>
@@ -492,6 +498,24 @@ namespace GameWish.Game
 
             GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }
+        public float CalculateForceValue(int stage)
+        {
+            float atk = BasicsAtkValue(stage);
+            //characeterEquipmentData.GetArmorAtkRate
+            if (characeterEquipmentData.GetArmorAtkRate() != -1)
+                atk *= characeterEquipmentData.GetArmorAtkRate();
+            if (characeterEquipmentData.GetArmsAtkRate() != -1)
+                atk *= characeterEquipmentData.GetArmsAtkRate();
+
+            foreach (var item in kongfus.Values)
+            {
+                atk *= item.GetKungfuAtkScale();
+            }
+            return atk;
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 归还装备
