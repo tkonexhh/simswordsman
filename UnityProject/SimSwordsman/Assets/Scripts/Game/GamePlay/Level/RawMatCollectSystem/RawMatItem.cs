@@ -87,6 +87,9 @@ namespace GameWish.Game
             m_StateMachine.UpdateState(Time.deltaTime);
         }
 
+        public virtual void OnCharacterArriveCollectPos()
+        {
+        }
         //public void Refresh()
         //{
         //    CheckUnlocked();

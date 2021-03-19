@@ -161,6 +161,8 @@ namespace GameWish.Game
 
             if (m_RawMatItem != null)
             {
+                m_RawMatItem.OnCharacterArriveCollectPos();
+
                 string animName = GetCollectResAnim();
                 m_Controller.CharacterView.PlayAnim(animName, true, ()=> 
                 {
