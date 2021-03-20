@@ -7,63 +7,34 @@ using System;
 
 namespace GameWish.Game
 {
-    public class KongfuLibraryController : FacilityController
+    public class KongfuLibraryController : FacilityCDController//FacilityController
     {
-        public List<KungfuLibraySlot> m_ReadingSlotList = new List<KungfuLibraySlot>();
-
-        public KongfuLibraryController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
+        public KongfuLibraryController(FacilityType facilityType, FacilityView view) : base(facilityType, view)
         {
-            EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnRefresKungfuSoltInfo, HandleAddListenerEvent);
-            EventSystem.S.Register(EventID.OnKongfuLibraryVacancy, HandleAddListenerEvent);
-
             //InitKungfuField();
+        }
+
+        ~KongfuLibraryController()
+        {
+            EventSystem.S.UnRegister(EventID.OnRefresKungfuSoltInfo, HandleAddListenerEvent);
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)
             {
-                case EventID.DeleteDisciple:
-                    foreach (var item in m_ReadingSlotList)
-                        if (item.IsHaveSameCharacterItem((int)param[0]))
-                            item.CDIsOver();
-                    break;
                 case EventID.OnRefresKungfuSoltInfo:
-                    RefreshExclamatoryMark(CheckSlotInfo());
+                    Refesh();
                     break;
                 default:
                     break;
             }
         }
 
-        protected override bool CheckSubFunc()
+        public BaseSlot GetIdlePracticeSlot()
         {
-            if (m_FacilityState != FacilityState.Unlocked)
-                return false;
-            return CheckSlotInfo();
-        }
-
-        ~KongfuLibraryController()
-        {
-            EventSystem.S.UnRegister(EventID.DeleteDisciple, HandleAddListenerEvent);
-            EventSystem.S.UnRegister(EventID.OnRefresKungfuSoltInfo, HandleAddListenerEvent);
-            EventSystem.S.UnRegister(EventID.OnKongfuLibraryVacancy, HandleAddListenerEvent);
-        }
-
-        // public override void SetState(FacilityState facilityState, bool isFile = false)
-        // {
-        //     base.SetState(facilityState, isFile);
-        // }
-
-        public KungfuLibraySlot GetIdlePracticeSlot()
-        {
-            return m_ReadingSlotList.FirstOrDefault(i => i.IsEmpty());
-        }
-
-        public List<KungfuLibraySlot> GetReadingSlotList()
-        {
-            return m_ReadingSlotList;
+            return m_SlotList.FirstOrDefault(i => i.IsEmpty());
         }
 
         public void InitKungfuField()
@@ -77,39 +48,25 @@ namespace GameWish.Game
             }
 
             foreach (var item in kungfuLibraryDBDatas)
-                m_ReadingSlotList.Add(new KungfuLibraySlot(item, m_View));
+                m_SlotList.Add(new KungfuLibraySlot(item, m_View));
 
         }
         public void RefreshSlotInfo(int facilityLevel)
         {
-            m_ReadingSlotList.ForEach(i =>
+            m_SlotList.ForEach(i =>
             {
-                List<KongfuLibraryLevelInfo> infos = TDFacilityKongfuLibraryTable.GetSameSoltList(i);
+                List<KongfuLibraryLevelInfo> infos = TDFacilityKongfuLibraryTable.GetSameSoltList(i as KungfuLibraySlot);
 
                 foreach (var item in infos)
                 {
                     if (item.level == facilityLevel)
                     {
-                        i.Warp(item);
-                        GameDataMgr.S.GetClanData().RefresKungfuDBData(i);
+                        (i as KungfuLibraySlot).Warp(item);
+                        GameDataMgr.S.GetClanData().RefresKungfuDBData(i as KungfuLibraySlot);
                         EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, i);
                     }
                 }
             });
-        }
-        /// <summary>
-        /// 检测是否有空闲的抄经空位
-        /// </summary>
-        private bool CheckSlotInfo()
-        {
-            foreach (var item in m_ReadingSlotList)
-            {
-                if (item.IsFree())
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         /// <summary>
@@ -135,10 +92,10 @@ namespace GameWish.Game
                         continue;
                     }
                     else if (delta == 1)
-                        m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1,m_View));
+                        m_SlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1, m_View));
                 }
                 else
-                    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1, m_View));
+                    m_SlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1, m_View));
             }
         }
     }

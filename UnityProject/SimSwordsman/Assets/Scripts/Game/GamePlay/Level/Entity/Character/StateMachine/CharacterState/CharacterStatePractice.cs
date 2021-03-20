@@ -28,8 +28,20 @@ namespace GameWish.Game
         {
             //添加经验值
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_Slot.FacilityType);
-            int exp = MainGameMgr.S.FacilityMgr.GetExpValue(m_Slot.FacilityType, level);
+            int exp = GetExpValue(m_Slot.FacilityType, level);
             m_Controller.AddExp(exp);
+        }
+
+
+        /// <summary>
+        /// 根据等级获取练功经验
+        /// </summary>
+        /// <param name="facilityType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        int GetExpValue(FacilityType facilityType, int level)
+        {
+            return TDFacilityPracticeFieldTable.GetExpValue(facilityType, level);
         }
     }
 }
