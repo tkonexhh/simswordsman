@@ -149,7 +149,8 @@ namespace GameWish.Game
                 if (!GameObjectPoolMgr.S.group.HasPool(castSE))
                 {
                     var effectPrefab = m_Loader.LoadSync(castSE) as GameObject;
-                    GameObjectPoolMgr.S.AddPool(castSE, effectPrefab, 10, 3);
+                    if (effectPrefab != null)
+                        GameObjectPoolMgr.S.AddPool(castSE, effectPrefab, 10, 3);
                 }
             }
 
@@ -158,7 +159,8 @@ namespace GameWish.Game
                 if (!GameObjectPoolMgr.S.group.HasPool(hitSE))
                 {
                     var effectPrefab = m_Loader.LoadSync(hitSE) as GameObject;
-                    GameObjectPoolMgr.S.AddPool(hitSE, effectPrefab, 15, 3);
+                    if (effectPrefab != null)
+                        GameObjectPoolMgr.S.AddPool(hitSE, effectPrefab, 15, 3);
                 }
             }
 
@@ -167,7 +169,8 @@ namespace GameWish.Game
                 if (!GameObjectPoolMgr.S.group.HasPool(animConfig.footSE))
                 {
                     var effectPrefab = m_Loader.LoadSync(animConfig.footSE) as GameObject;
-                    GameObjectPoolMgr.S.AddPool(animConfig.footSE, effectPrefab, 5, 3);
+                    if (effectPrefab != null)
+                        GameObjectPoolMgr.S.AddPool(animConfig.footSE, effectPrefab, 5, 3);
                 }
             }
         }
@@ -176,7 +179,8 @@ namespace GameWish.Game
         {
             foreach (var castSE in animConfig.castSEList)
             {
-                GameObjectPoolMgr.S.RemovePool(castSE, true);
+                if (GameObjectPoolMgr.S.group.HasPool(castSE))
+                    GameObjectPoolMgr.S.RemovePool(castSE, true);
             }
             m_Loader.ReleaseAllRes();
             m_Loader = null;
