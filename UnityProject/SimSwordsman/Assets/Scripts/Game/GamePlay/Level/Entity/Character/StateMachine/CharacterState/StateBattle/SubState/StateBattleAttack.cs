@@ -27,8 +27,8 @@ namespace GameWish.Game
                 m_BattleState = (CharacterStateBattle)handler.GetBattleState();
 
             string atkName = m_BattleState.NextAtkAnimName;
-
-            //atkName = "01_taizuchangquan";//"attack";
+            //TODO 测试动画
+            // atkName = "yijinjing";//"attack";
             EventSystem.S.Send(EventID.OnBattleAtkStart, m_Controller, atkName);
             m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
         }
