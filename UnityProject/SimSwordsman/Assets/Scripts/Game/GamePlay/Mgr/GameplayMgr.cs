@@ -160,7 +160,11 @@ namespace GameWish.Game
                     CountdownSystem.S.Init();
 
                     WorkSystemMgr.S.Init();
-                    Application.runInBackground = true;
+                    if (PlatformHelper.isEditor)
+                    {
+                        Application.runInBackground = true;
+                    }
+
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
                     {

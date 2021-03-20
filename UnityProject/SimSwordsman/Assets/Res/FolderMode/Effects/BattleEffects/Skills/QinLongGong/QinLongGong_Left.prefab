@@ -28861,6 +28861,7 @@ GameObject:
   - component: {fileID: 4679342030177164253}
   - component: {fileID: 4679342030177164255}
   - component: {fileID: 4679342030177164252}
+  - component: {fileID: -3638125632898949894}
   m_Layer: 0
   m_Name: QinLongGong_Left
   m_TagString: Untagged
@@ -33605,6 +33606,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-3638125632898949894
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4679342030177164250}
+  m_Enabled: 1
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &4679342030501502734
 GameObject:
   m_ObjectHideFlags: 0
