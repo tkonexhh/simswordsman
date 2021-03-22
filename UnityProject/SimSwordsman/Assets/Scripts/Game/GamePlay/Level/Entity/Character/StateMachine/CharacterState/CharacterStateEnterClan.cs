@@ -44,8 +44,10 @@ namespace GameWish.Game
             m_Controller.CharacterView.PlayIdleAnim();
 
             yield return new WaitForSeconds(2);
+
             if (m_Controller.CurState == CharacterStateID.EnterClan)
             {
+
                 Vector2 deltaPos = UnityEngine.Random.insideUnitCircle;
                 m_Controller.MoveTo(MainGameMgr.S.FacilityMgr.GetDoorPos(FacilityType.Lobby) + new Vector3(deltaPos.x, deltaPos.y, 0), OnReachLobby);
 

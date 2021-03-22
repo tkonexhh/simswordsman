@@ -309,7 +309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2807960780921782559}
   - component: {fileID: 8218924289355539496}
-  - component: {fileID: 2980200618093463278}
   - component: {fileID: 1909966475274169521}
   - component: {fileID: 8496857772396418301}
   - component: {fileID: 1570267285}
@@ -349,24 +348,6 @@ SortingGroup:
   m_SortingLayerID: -1363672637
   m_SortingLayer: 1
   m_SortingOrder: 5
---- !u!114 &2980200618093463278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2807960780921782558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a7120cc81cd804e94c16651bb144d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectedObjType: 8
-  collectPos:
-  - {fileID: 8704538397344552672}
-  - {fileID: 2488185648788886092}
-  - {fileID: 6083456636177753191}
-  - {fileID: 1094358917982323005}
 --- !u!114 &1909966475274169521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +412,7 @@ MonoBehaviour:
   - {fileID: 6083456636177753191}
   - {fileID: 1094358917982323005}
   bubble: {fileID: 1009787407}
+  m_CurState: 0
 --- !u!1 &2825831127544671152
 GameObject:
   m_ObjectHideFlags: 0

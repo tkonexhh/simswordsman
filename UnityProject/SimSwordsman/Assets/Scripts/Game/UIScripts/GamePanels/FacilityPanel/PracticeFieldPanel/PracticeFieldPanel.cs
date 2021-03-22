@@ -51,7 +51,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_UpgradeText;
         [SerializeField]
-        private Button m_UpgradeBtn; 
+        private Button m_UpgradeBtn;
         [SerializeField]
         private GameObject m_RedPoint;
 
@@ -69,7 +69,7 @@ namespace GameWish.Game
         private PracticeFieldLevelInfo m_CurPracticeFieldLevelInfo = null;
         private PracticeFieldLevelInfo m_NextPracticeFieldLevelInfo = null;
 
-        private List<PracticeField> m_AllPracticeFieldInfos = null;
+        private List<CDBaseSlot> m_AllPracticeFieldInfos = null;
         private PracticeFieldController m_CurPracticeFieldController = null;
         private Dictionary<int, GameObject> m_PracticeEntity = new Dictionary<int, GameObject>();
 
@@ -84,7 +84,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
@@ -165,7 +166,7 @@ namespace GameWish.Game
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CurPracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_CurPracticeFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
-            m_AllPracticeFieldInfos = m_CurPracticeFieldController.GetPracticeField();
+            m_AllPracticeFieldInfos = m_CurPracticeFieldController.GetSlotList();
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
@@ -185,7 +186,7 @@ namespace GameWish.Game
 
         private void RefreshFixedPanelInfo()
         {
-            if (CommonUIMethod.CheackIsBuild(m_NextPracticeFieldLevelInfo, m_CostItems,false))
+            if (CommonUIMethod.CheackIsBuild(m_NextPracticeFieldLevelInfo, m_CostItems, false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
@@ -205,7 +206,7 @@ namespace GameWish.Game
             for (int i = 0; i < m_AllPracticeFieldInfos.Count; i++)
             {
                 if (m_AllPracticeFieldInfos[i].FacilityType == m_CurFacilityType)
-                    CreatePracticeDisciple(m_AllPracticeFieldInfos[i]);
+                    CreatePracticeDisciple(m_AllPracticeFieldInfos[i] as PracticeField);
             }
         }
 
@@ -217,8 +218,8 @@ namespace GameWish.Game
             m_CurExpValue.text = CommonUIMethod.GetStrForColor("#365387", m_CurPracticeFieldLevelInfo.GetCurExp().ToString() + "经验");
             if (m_NextPracticeFieldLevelInfo != null)
             {
-                m_NextPracticePos.text = CommonUIMethod.GetStrForColor("#AD7834", Define.PLUS + (m_NextPracticeFieldLevelInfo.GetNextCapacity ()- m_CurPracticeFieldLevelInfo.GetNextCapacity()).ToString());
-                m_NextExpValue.text = CommonUIMethod.GetStrForColor("#365387", Define.PLUS + (m_NextPracticeFieldLevelInfo.GetCurExp()- m_CurPracticeFieldLevelInfo.GetCurExp()).ToString());
+                m_NextPracticePos.text = CommonUIMethod.GetStrForColor("#AD7834", Define.PLUS + (m_NextPracticeFieldLevelInfo.GetNextCapacity() - m_CurPracticeFieldLevelInfo.GetNextCapacity()).ToString());
+                m_NextExpValue.text = CommonUIMethod.GetStrForColor("#365387", Define.PLUS + (m_NextPracticeFieldLevelInfo.GetCurExp() - m_CurPracticeFieldLevelInfo.GetCurExp()).ToString());
                 m_UpgradeNeeds.text = "升级需要讲武堂达到" + CommonUIMethod.GetStrForColor("#8C343C", m_NextPracticeFieldLevelInfo.upgradeNeedLobbyLevel.ToString() + "级");
             }
             RefreshResInfo();

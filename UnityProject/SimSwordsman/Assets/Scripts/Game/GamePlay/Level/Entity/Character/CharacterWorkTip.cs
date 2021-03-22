@@ -120,7 +120,11 @@ namespace GameWish.Game
                     break;
                 case CollectedObjType.Vine:
                 case CollectedObjType.Ganoderma:
+                case CollectedObjType.Chicken:
                     icon = m_FlowerIcon;
+                    break;
+                case CollectedObjType.Well:
+                    icon = m_WellIcon;
                     break;
                 default:
                     icon = m_LobbyIcon;
