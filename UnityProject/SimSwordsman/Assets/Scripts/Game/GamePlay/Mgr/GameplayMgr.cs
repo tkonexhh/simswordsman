@@ -281,7 +281,7 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(1);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
             }
 
 
