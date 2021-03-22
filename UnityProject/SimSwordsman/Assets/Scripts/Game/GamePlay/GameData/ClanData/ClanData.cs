@@ -15,7 +15,7 @@ namespace GameWish.Game
         public PatrolRoomData ownedPatrolRoomData = new PatrolRoomData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
-        public KongfuData kongfuData = new KongfuData();
+        // public KongfuData kongfuData = new KongfuData();
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
         public List<WorkItemData> WorkItemDataList = new List<WorkItemData>();
         public List<FoodBuffData> FoodBufferDataList = new List<FoodBuffData>();
@@ -25,11 +25,6 @@ namespace GameWish.Game
             SetDataDirty();
 
             ownedFacilityData.SetDefaultValue();
-        }
-
-        public void Init()
-        {
-
         }
 
         public void OnReset()
@@ -420,16 +415,16 @@ namespace GameWish.Game
 
         #endregion
 
-        #region Kongfu
+        // #region Kongfu
 
-        public void UnlockKongfu(KungfuType kongfuType)
-        {
-            kongfuData.UnlockKongfu(kongfuType);
+        // public void UnlockKongfu(KungfuType kongfuType)
+        // {
+        //     kongfuData.UnlockKongfu(kongfuType);
 
-            SetDataDirty();
-        }
+        //     SetDataDirty();
+        // }
 
-        #endregion
+        // #endregion
 
         #region RawMatItem
         public string GetLastJobFinishedTime(CollectedObjType collectedObjType)
@@ -525,7 +520,7 @@ namespace GameWish.Game
         #endregion
 
         #region food buffer system
-        public void AddFoodBuffData(int foodBufferID,DateTime startTime,DateTime endTime) 
+        public void AddFoodBuffData(int foodBufferID, DateTime startTime, DateTime endTime)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == foodBufferID);
             if (data != null)
@@ -533,25 +528,27 @@ namespace GameWish.Game
                 data.StartTime = startTime;
                 data.EndTime = endTime;
             }
-            else {
+            else
+            {
                 FoodBufferDataList.Add(new FoodBuffData(foodBufferID, startTime, endTime));
             }
 
             SetDataDirty();
         }
-        public void RemoveFoodBuffData(int foodBufferID) 
+        public void RemoveFoodBuffData(int foodBufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == foodBufferID);
-            if (data != null) {
+            if (data != null)
+            {
                 FoodBufferDataList.Remove(data);
                 SetDataDirty();
             }
         }
-        public FoodBuffData GetFoodBuffData(int bufferID) 
+        public FoodBuffData GetFoodBuffData(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
-            if (data != null && data.IsBufferActive() == false) 
+            if (data != null && data.IsBufferActive() == false)
             {
                 FoodBufferDataList.Remove(data);
                 SetDataDirty();
@@ -559,18 +556,18 @@ namespace GameWish.Game
             }
             return data;
         }
-        public bool IsBuffActiveState(int bufferID) 
+        public bool IsBuffActiveState(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
-            if (data != null) 
+            if (data != null)
             {
                 return data.IsBufferActive();
             }
             return false;
         }
 
-        public string GetBuffRemainTime(int bufferID) 
+        public string GetBuffRemainTime(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
@@ -581,7 +578,7 @@ namespace GameWish.Game
             return string.Empty;
         }
 
-        public float GetBuffRemainProgress(int bufferID) 
+        public float GetBuffRemainProgress(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 

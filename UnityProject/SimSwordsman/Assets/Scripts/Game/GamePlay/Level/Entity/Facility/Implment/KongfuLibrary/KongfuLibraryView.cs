@@ -12,14 +12,12 @@ namespace GameWish.Game
 
         public override FacilityController GenerateContoller()
         {
-            return new KongfuLibraryController(FacilityType.KongfuLibrary, this);
+            return new KongfuLibraryController(this);
         }
 
         public override void OnClicked()
         {
             base.OnClicked();
-
-            Debug.Log("KongfuLibrary is clicked");
         }
 
         protected override void OpenUIElement()
