@@ -28,7 +28,8 @@ namespace GameWish.Game
 
                 m_HeadNode = m_HeadNode.Next;
 
-                m_TempCall();
+                if(m_TempCall!=null)
+                    m_TempCall();
             }
 
             return true;
