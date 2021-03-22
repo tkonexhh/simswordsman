@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using DG.Tweening;
 
 namespace GameWish.Game
 {
@@ -44,6 +45,9 @@ namespace GameWish.Game
         {
             for (int i = 0; i < rewards.Count; i++)
             {
+                if (i>=3)
+                    break;
+
                 if (m_Items.Count < i + 1)
                 {
                     GameObject obj = Instantiate(m_ItemObj, m_RewardTran);

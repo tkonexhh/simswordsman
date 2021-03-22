@@ -66,7 +66,8 @@ namespace GameWish.Game
 
             m_SettingBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
+                //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
+                UIMgr.S.OpenPanel(UIID.UserAccountPanel);
             });
 
             base.OnUIInit();

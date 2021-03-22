@@ -123,6 +123,7 @@ namespace GameWish.Game
                         UnityEngine.Debug.LogError("error:" + ex.ToString());
                     }
                 }, lobbyData.workInterval, -1);
+                //},1, -1);
             }
             else
             {

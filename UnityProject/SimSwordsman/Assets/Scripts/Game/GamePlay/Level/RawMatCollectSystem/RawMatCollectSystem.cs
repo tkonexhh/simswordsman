@@ -24,14 +24,23 @@ namespace GameWish.Game
             });
         }
 
+        public void InitState()
+        {
+            m_RawMatItemDic.Values.ToList().ForEach(i =>
+            {
+                i.InitState();
+            });
+        }
+
         public void OnUpdate()
         {
-            m_RefreshTime += Time.deltaTime;
-            if (m_RefreshTime > m_RefreshInterval)
-            {
-                m_RefreshTime = 0;
-                m_RawMatItemDic.Values.ToList().ForEach(i => i.Refresh());
-            }
+            //m_RefreshTime += Time.deltaTime;
+            //if (m_RefreshTime > m_RefreshInterval)
+            //{
+            //    m_RefreshTime = 0;
+            //    m_RawMatItemDic.Values.ToList().ForEach(i => i.Refresh());
+            //}
+            m_RawMatItemDic.Values.ToList().ForEach(i => i.OnUpdate());
         }
 
         public void OnDestroyed()

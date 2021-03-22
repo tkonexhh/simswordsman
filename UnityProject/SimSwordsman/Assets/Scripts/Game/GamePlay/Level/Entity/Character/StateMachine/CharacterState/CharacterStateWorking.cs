@@ -31,24 +31,32 @@ namespace GameWish.Game
 
         public override void Enter(ICharacterStateHander handler)
         {
-            m_IsWorkingFinished = false;
 
-            if (m_Controller == null)
-                m_Controller = (CharacterController)handler.GetCharacterController();
+            try
+            {
+                m_IsWorkingFinished = false;
 
-            m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
+                if (m_Controller == null)
+                    m_Controller = (CharacterController)handler.GetCharacterController();
 
-            m_WorkItemData = GameDataMgr.S.GetClanData().GetWorkItemData(m_FacilityType);
+                m_FacilityType = m_Controller.CharacterModel.GetTargetFacilityType();
+                m_WorkItemData = GameDataMgr.S.GetClanData().GetWorkItemData(m_FacilityType);
+                if (m_WorkItemData == null)
+                {
+                    m_Controller.SetState(CharacterStateID.Wander);
+                    return;
+                }
+                m_CurrentWorkTime = m_WorkItemData.CurrentWorkTime;
+                m_Controller.SpawnWorkTipWhenWorkInFacility(m_FacilityType);
+                m_FacilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
+                Vector3 targetPos = m_FacilityController.GetDoorPos();
+                m_Controller.RunTo(targetPos, OnReachDestination);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("报错=============" + e.Message + " " + e.StackTrace);
+            }
 
-            m_CurrentWorkTime = m_WorkItemData.CurrentWorkTime;
-
-            m_Controller.SpawnWorkTipWhenWorkInFacility(m_FacilityType);
-
-            m_FacilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(m_FacilityType);
-            
-            Vector3 targetPos = m_FacilityController.GetDoorPos();
-
-            m_Controller.RunTo(targetPos, OnReachDestination);
         }
 
         public override void Exit(ICharacterStateHander handler)
@@ -60,7 +68,7 @@ namespace GameWish.Game
         {
             if (m_IsWorkingFinished) return;
 
-            if (m_ReachTargetPos) 
+            if (m_ReachTargetPos)
             {
                 m_CurrentWorkTime += Time.deltaTime;
 
@@ -68,7 +76,7 @@ namespace GameWish.Game
 
                 m_Controller.SetWorkProgressPercent(m_CurrentWorkTime / m_WorkItemData.WorkTotalTime);
 
-                if (m_CurrentWorkTime > m_WorkItemData.WorkTotalTime) 
+                if (m_CurrentWorkTime > m_WorkItemData.WorkTotalTime)
                 {
                     m_IsWorkingFinished = true;
 
@@ -82,7 +90,7 @@ namespace GameWish.Game
 
                     m_FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Idle);
 
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish,"Coin");
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish, "Coin");
 
                     m_Controller.SetState(CharacterStateID.Wander);
                 }
@@ -92,7 +100,7 @@ namespace GameWish.Game
         private void GetReward()
         {
             TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
-            
+
             if (lobbyData != null)
             {
                 m_Controller.AddExp(lobbyData.workExp);
@@ -114,8 +122,9 @@ namespace GameWish.Game
 
             string anim = GetAnimName(m_FacilityType);
 
-            m_Controller.CharacterView.PlayAnim(anim, true, ()=> {
-                if (IsClean(anim)) 
+            m_Controller.CharacterView.PlayAnim(anim, true, () =>
+            {
+                if (IsClean(anim))
                 {
                     AudioManager.S.PlaySweepSound(m_Controller.GetPosition());
                 }
@@ -127,7 +136,7 @@ namespace GameWish.Game
 
             m_ReachTargetPos = true;
         }
-        private bool IsClean(string anim)  
+        private bool IsClean(string anim)
         {
             return anim.Equals("clean");
         }

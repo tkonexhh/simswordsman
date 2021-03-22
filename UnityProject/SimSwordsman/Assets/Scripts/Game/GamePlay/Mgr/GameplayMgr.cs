@@ -285,7 +285,9 @@ namespace GameWish.Game
             {
                 List<RewardBase> rewards = new List<RewardBase>();
                 rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
-                //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+                rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
+                rewards.Add(new ArmsReward((int)ArmsType.MengGuBaoDao, 1));
+                rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             }
 
@@ -296,6 +298,16 @@ namespace GameWish.Game
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EventSystem.S.Send(EventID.OnBattleFailed);
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, 0, 2,1212));
+                PanelPool.S.DisplayPanel();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
+                PanelPool.S.DisplayPanel();
             }
             #endregion
         }

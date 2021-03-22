@@ -10,8 +10,11 @@ namespace GameWish.Game
     public enum RawMatStateID
     {
         None,
-        NoPop,
-        ShowPop,
+        Idle,
+        Locked,
+        Working,
+        BubbleShowing,
+       
     }
 
     public class RawMatState : FSMState<IRawMatStateHander>

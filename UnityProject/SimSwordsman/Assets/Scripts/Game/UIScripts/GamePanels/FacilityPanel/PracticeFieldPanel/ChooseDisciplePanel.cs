@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class ChooseDisciplePanel : AbstractAnimPanel
-	{
+    public class ChooseDisciplePanel : AbstractAnimPanel
+    {
         [SerializeField]
         private Button m_CloseBtn;
         [SerializeField]
@@ -37,9 +37,10 @@ namespace GameWish.Game
             AudioMgr.S.PlaySound(Define.INTERFACE);
             EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
 
-            m_ArrangeBtn.onClick.AddListener(() => {
+            m_ArrangeBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                m_PracticeFieldInfo.SetCharacterItem(m_SelectedDisciple, SlotState.Practice, m_CurFacilityType);
+                m_PracticeFieldInfo.SelectCharacterItem(m_SelectedDisciple, m_CurFacilityType);
                 EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, m_PracticeFieldInfo);
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.f_practice, m_PracticeFieldInfo.Index.ToString());
@@ -111,7 +112,7 @@ namespace GameWish.Game
             CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
             for (int i = 0; i < m_CharacterItem.Count; i++)
             {
-                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level< maxLevel)
+                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level < maxLevel)
                     CreateDisciple(m_CharacterItem[i]);
             }
             CalculateContainerHeight();
@@ -139,7 +140,7 @@ namespace GameWish.Game
             GameObject disciple = Instantiate(m_Disciple, m_SelectedList);
             PracticeDisciple discipleItem = disciple.GetComponent<PracticeDisciple>();
 
-            discipleItem.OnInit(characterItem,this);
+            discipleItem.OnInit(characterItem, this);
             m_PracticeDisciple.Add(discipleItem);
         }
     }

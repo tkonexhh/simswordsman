@@ -20,10 +20,10 @@ namespace GameWish.Game
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
 
-        private TaskPos m_TaskPos;
+        //private TaskPos m_TaskPos;
 
-        private Dictionary<CollectedObjType, TaskCollectableItem> m_CollectedObjDic = new Dictionary<CollectedObjType, TaskCollectableItem>();
-        private Dictionary<CollectedObjType, AddressableGameObjectLoader> m_TaskObjLoaderDic = new Dictionary<CollectedObjType, AddressableGameObjectLoader>();
+        //private Dictionary<CollectedObjType, TaskCollectableItem> m_CollectedObjDic = new Dictionary<CollectedObjType, TaskCollectableItem>();
+        //private Dictionary<CollectedObjType, AddressableGameObjectLoader> m_TaskObjLoaderDic = new Dictionary<CollectedObjType, AddressableGameObjectLoader>();
 
         public List<SimGameTask> CurTaskList { get => m_CurTaskList; }
 
@@ -33,7 +33,7 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
-            m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
+            //m_TaskPos = GameObject.FindObjectOfType<TaskPos>();
 
             m_CommonTaskData = GameDataMgr.S.GetCommonTaskData();
 
@@ -171,57 +171,57 @@ namespace GameWish.Game
             RefreshRedPoint(m_CurTaskList.Count);
         }
 
-        public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
-        {
-            string prefabName = GetPrefabName(collectedObjType);
+        //public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
+        //{
+        //    string prefabName = GetPrefabName(collectedObjType);
 
-            if (string.IsNullOrEmpty(prefabName))
-                return;
+        //    if (string.IsNullOrEmpty(prefabName))
+        //        return;
 
-            try
-            {
-                AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-                loader.InstantiateAsync(prefabName, (go) =>
-                {
-                    go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
-                    if (!m_CollectedObjDic.ContainsKey(collectedObjType))
-                    {
-                        TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
-                        m_CollectedObjDic.Add(collectedObjType, item);
-                        m_TaskObjLoaderDic.Add(collectedObjType, loader);
-                    }
-                    else
-                    {
-                        Log.e("Task obj has been created before: " + collectedObjType);
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                Log.e("SpawnTaskCollectableItem error: " + prefabName + " " + e.Message.ToString() + " " + e.StackTrace);
-            }
-        }
+        //    try
+        //    {
+        //        AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
+        //        loader.InstantiateAsync(prefabName, (go) =>
+        //        {
+        //            go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
+        //            if (!m_CollectedObjDic.ContainsKey(collectedObjType))
+        //            {
+        //                TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
+        //                m_CollectedObjDic.Add(collectedObjType, item);
+        //                m_TaskObjLoaderDic.Add(collectedObjType, loader);
+        //            }
+        //            else
+        //            {
+        //                Log.e("Task obj has been created before: " + collectedObjType);
+        //            }
+        //        });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Log.e("SpawnTaskCollectableItem error: " + prefabName + " " + e.Message.ToString() + " " + e.StackTrace);
+        //    }
+        //}
 
-        public void RemoveTaskCollectableItem(CollectedObjType collectedObjType)
-        {
-            if (m_CollectedObjDic.ContainsKey(collectedObjType))
-            {
-                m_TaskObjLoaderDic[collectedObjType].Release();
-                m_TaskObjLoaderDic.Remove(collectedObjType);
+        //public void RemoveTaskCollectableItem(CollectedObjType collectedObjType)
+        //{
+        //    if (m_CollectedObjDic.ContainsKey(collectedObjType))
+        //    {
+        //        m_TaskObjLoaderDic[collectedObjType].Release();
+        //        m_TaskObjLoaderDic.Remove(collectedObjType);
 
-                m_CollectedObjDic.Remove(collectedObjType);
-            }
-        }
+        //        m_CollectedObjDic.Remove(collectedObjType);
+        //    }
+        //}
 
-        public TaskCollectableItem GetTaskCollectableItem(CollectedObjType collectedObjType)
-        {
-            if (m_CollectedObjDic.ContainsKey(collectedObjType))
-            {
-                return m_CollectedObjDic[collectedObjType];
-            }
+        //public TaskCollectableItem GetTaskCollectableItem(CollectedObjType collectedObjType)
+        //{
+        //    if (m_CollectedObjDic.ContainsKey(collectedObjType))
+        //    {
+        //        return m_CollectedObjDic[collectedObjType];
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         public static bool IsNotNeedToSpawnTaskItem(CollectedObjType collectedObjType)
         {

@@ -7,12 +7,9 @@ namespace GameWish.Game
 {
 	public class FoodBuffSystem : TSingleton<FoodBuffSystem>
 	{
-        TDFoodConfig m_TempTable;
-
+        private TDFoodConfig m_TempTable;
         public void Init()
         {
-            EventSystem.S.Register(EventID.OnCountdownerStart, OnStart);
-            EventSystem.S.Register(EventID.OnCountdownerTick, OnTick);
             EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
         }
 
@@ -38,105 +35,60 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)cd.ID, Step.One), 1);
             }
         }
-
-        private void OnTick(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals(FoodBuffType.Food_AddExp.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
-            {
-                EventSystem.S.Send(EventID.OnFoodBuffTick, cd, param[1]);
-            }
-        }
-
-        private void OnStart(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals(FoodBuffType.Food_AddExp.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
-            {
-                EventSystem.S.Send(EventID.OnFoodBuffStart, cd, param[1]);
-            }
-        }
-
-        public void StartBuff(int id, bool ad = false)
-        {
-            var table = TDFoodConfigTable.GetData(id);
-            CountdownSystem.S.StartCountdownerWithMin(table.buffType,id, ad ? table.buffTimeAD : table.buffTime);
-        }
-        
-        public string GetEffectDesc(TDFoodConfig tb)
-        {
-            FoodBuffType type;
-            if (Enum.TryParse(tb.buffType, out type))
-            {
-                switch (type)
-                {
-                    case FoodBuffType.Food_AddExp:
-                        return string.Format("弟子获得经验+<color=#8C343C>{0}%</color>", tb.buffRate);
-                    case FoodBuffType.Food_AddRoleExp:
-                        return string.Format("弟子获得功夫经验+<color=#8C343C>{0}%</color>", tb.buffRate);
-                    case FoodBuffType.Food_AddCoin:
-                        return string.Format("获得铜钱+<color=#8C343C>{0}%</color>", tb.buffRate);
-                    default:
-                        break;
-                }
-            }
-            return null;
-        }
-        
+                
         /// <summary>
         /// 是否在激活状态
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool IsActive(int id)
+        public bool IsFoodBuffActive(int id)
         {
-            return CountdownSystem.S.IsActive(TDFoodConfigTable.GetData(id).buffType, id);
-        }
-
-        public string GetCurrentCountdown(int id)
-        {
-            return CountdownSystem.S.GetCurrentCountdownTime(TDFoodConfigTable.GetData(id).buffType, id);
-        }
-        public Countdowner GetCountdowner(int id)
-        {
-            return CountdownSystem.S.GetCountdowner(TDFoodConfigTable.GetData(id).buffType, id);
+            return GameDataMgr.S.GetClanData().IsBuffActiveState(id);
         }
 
         public long Coin(long originalCoin)
         {
             int add = 0;
-            foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
+            List<FoodBuffData> buffDataList = GameDataMgr.S.GetClanData().FoodBufferDataList;
+            for (int i = 0; i < buffDataList.Count; i++)
             {
-                m_TempTable = TDFoodConfigTable.GetData(item);
-                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddCoin.ToString()) && IsActive(item))
+                m_TempTable = TDFoodConfigTable.GetData(buffDataList[i].FoodBufferID);
+                
+                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddCoin.ToString())) 
                 {
-                    add +=  Mathf.RoundToInt(originalCoin * m_TempTable.buffRate * 0.01f);
+                    add += Mathf.RoundToInt(originalCoin * m_TempTable.buffRate * 0.01f);
                 }
             }
+
             return originalCoin + add;
         }
 
         public long KongFuExp(long originalValue)
         {
             int add = 0;
-            foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
+            List<FoodBuffData> buffDataList = GameDataMgr.S.GetClanData().FoodBufferDataList;
+            for (int i = 0; i < buffDataList.Count; i++)
             {
-                m_TempTable = TDFoodConfigTable.GetData(item);
-                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddRoleExp.ToString()) && IsActive(item))
+                m_TempTable = TDFoodConfigTable.GetData(buffDataList[i].FoodBufferID);
+
+                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
                 {
                     add += Mathf.RoundToInt(originalValue * m_TempTable.buffRate * 0.01f);
                 }
             }
+
             return originalValue + add;
         }
 
         public long Exp(long originalValue)
         {
             int add = 0;
-            foreach (var item in GameDataMgr.S.GetPlayerData().unlockFoodItemIDs)
+            List<FoodBuffData> buffDataList = GameDataMgr.S.GetClanData().FoodBufferDataList;
+            for (int i = 0; i < buffDataList.Count; i++)
             {
-                m_TempTable = TDFoodConfigTable.GetData(item);
-                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddExp.ToString()) && IsActive(item))
+                m_TempTable = TDFoodConfigTable.GetData(buffDataList[i].FoodBufferID);
+
+                if (m_TempTable.buffType.Equals(FoodBuffType.Food_AddExp.ToString()))
                 {
                     add += Mathf.RoundToInt(originalValue * m_TempTable.buffRate * 0.01f);
                 }

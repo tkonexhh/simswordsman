@@ -1,7 +1,6 @@
-﻿using System;
-using Qarth;
+﻿using Qarth;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
 namespace GameWish.Game
@@ -19,6 +18,7 @@ namespace GameWish.Game
         public KongfuData kongfuData = new KongfuData();
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
         public List<WorkItemData> WorkItemDataList = new List<WorkItemData>();
+        public List<FoodBuffData> FoodBufferDataList = new List<FoodBuffData>();
 
         public void SetDefaultValue()
         {
@@ -29,7 +29,7 @@ namespace GameWish.Game
 
         public void Init()
         {
-           
+
         }
 
         public void OnReset()
@@ -137,7 +137,8 @@ namespace GameWish.Game
 
 
 
-        public FacilityDbData GetFacilityDbData() {
+        public FacilityDbData GetFacilityDbData()
+        {
             return ownedFacilityData;
         }
         public List<FacilityItemDbData> GetAllFacility()
@@ -202,10 +203,11 @@ namespace GameWish.Game
         #endregion
 
         #region Character
-        public CharacterDbData GetOwnedCharacterData() {
+        public CharacterDbData GetOwnedCharacterData()
+        {
             return ownedCharacterData;
         }
-        public void AddEquipment(int characterID,CharaceterEquipment characeterEquipment)
+        public void AddEquipment(int characterID, CharaceterEquipment characeterEquipment)
         {
             ownedCharacterData.AddEquipment(characterID, characeterEquipment);
 
@@ -430,7 +432,7 @@ namespace GameWish.Game
         #endregion
 
         #region RawMatItem
-        public string GetLastShowBubbleTime(CollectedObjType collectedObjType)
+        public string GetLastJobFinishedTime(CollectedObjType collectedObjType)
         {
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)
@@ -441,7 +443,7 @@ namespace GameWish.Game
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLongTimeString();
         }
 
-        public void SetLastShowBubbleTime(CollectedObjType collectedObjType, DateTime time)
+        public void SetLastJobFinishedTime(CollectedObjType collectedObjType, DateTime time)
         {
             RawMatItemData item = rawMatItemDataList.FirstOrDefault(i => i.collectObjType == collectedObjType);
             if (item != null)
@@ -519,6 +521,75 @@ namespace GameWish.Game
         {
             WorkItemData data = WorkItemDataList.FirstOrDefault(x => x.FacilityType == ft);
             return data;
+        }
+        #endregion
+
+        #region food buffer system
+        public void AddFoodBuffData(int foodBufferID,DateTime startTime,DateTime endTime) 
+        {
+            FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == foodBufferID);
+            if (data != null)
+            {
+                data.StartTime = startTime;
+                data.EndTime = endTime;
+            }
+            else {
+                FoodBufferDataList.Add(new FoodBuffData(foodBufferID, startTime, endTime));
+            }
+
+            SetDataDirty();
+        }
+        public void RemoveFoodBuffData(int foodBufferID) 
+        {
+            FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == foodBufferID);
+            if (data != null) {
+                FoodBufferDataList.Remove(data);
+                SetDataDirty();
+            }
+        }
+        public FoodBuffData GetFoodBuffData(int bufferID) 
+        {
+            FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
+
+            if (data != null && data.IsBufferActive() == false) 
+            {
+                FoodBufferDataList.Remove(data);
+                SetDataDirty();
+                return null;
+            }
+            return data;
+        }
+        public bool IsBuffActiveState(int bufferID) 
+        {
+            FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
+
+            if (data != null) 
+            {
+                return data.IsBufferActive();
+            }
+            return false;
+        }
+
+        public string GetBuffRemainTime(int bufferID) 
+        {
+            FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
+
+            if (data != null)
+            {
+                return data.GetRemainTime();
+            }
+            return string.Empty;
+        }
+
+        public float GetBuffRemainProgress(int bufferID) 
+        {
+            FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
+
+            if (data != null)
+            {
+                return data.GetRemainProgress();
+            }
+            return 0;
         }
         #endregion
     }

@@ -36,15 +36,15 @@ namespace GameWish.Game
         private KungfuLibraySlot m_KungfuLibraySlot = null;
         private AddressableAssetLoader<Sprite> m_Loader;
         private KongfuLibraryPanel m_KongfuLibraryPanel;
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
-        }
+        // public void LoadClanPrefabs(string prefabsName)
+        // {
+        //     m_Loader = new AddressableAssetLoader<Sprite>();
+        //     m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+        //     {
+        //         //Debug.Log(obj);
+        //         m_DiscipleHead.sprite = obj;
+        //     });
+        // }
         private void OnDestroy()
         {
             if (m_Loader != null)
@@ -52,9 +52,9 @@ namespace GameWish.Game
                 m_Loader.Release();
             }
         }
-        private void OnDisable()
-        {
-        }
+        // private void OnDisable()
+        // {
+        // }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
             return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
@@ -147,7 +147,7 @@ namespace GameWish.Game
                     RefreshFixedInfo();
                     m_CurCopyScriptures.text = "µ±Ç°³­¾­:" + m_KungfuLibraySlot.CharacterItem.name;
                     m_Time.gameObject.SetActive(true);
-                    m_Time.text = SplicingTime(GetDuration());
+                    m_Time.text = GameExtensions.SplicingTime(GetDuration());
                     m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
                     m_Free.text = Define.COMMON_DEFAULT_STR;
                     CreateCountDown();
@@ -182,45 +182,10 @@ namespace GameWish.Game
         {
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacility);
         }
+
         private int GetDuration()
         {
-            int duration = MainGameMgr.S.FacilityMgr.GetDurationForLevel(m_CurFacility, m_CurLevel);
-            int takeTime = ComputingTime(m_KungfuLibraySlot.StartTime);
-            if (duration - takeTime <= 0)
-                return 0;
-            return duration - takeTime;
-        }
-
-        private int ComputingTime(string time)
-        {
-            DateTime dateTime;
-            DateTime.TryParse(time, out dateTime);
-            if (dateTime != null)
-            {
-                TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(dateTime.Ticks);
-                return (int)timeSpan.TotalSeconds;
-            }
-            return 0;
-        }
-        public string SplicingTime(int seconds)
-        {
-            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
-            string str = "";
-
-            if (ts.Hours > 0)
-            {
-                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes > 0)
-            {
-                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes == 0)
-            {
-                str = "00:" + ts.Seconds.ToString("00");
-            }
-
-            return str;
+            return m_KungfuLibraySlot.GetDurationTime();
         }
     }
 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Qarth;
 using System;
 using System.Collections;
@@ -38,6 +39,28 @@ namespace GameWish.Game
                     return null;
             }
         }
+        /// <summary>
+        /// 进行Text上翻
+        /// </summary>
+        /// <param name="currentScoreText"></param>
+        /// <param name="curValue"></param>
+        /// <param name="targetValue"></param>
+        public static void TextFlipUpEffect(Text currentScoreText, float curValue, float targetValue)
+        {
+            Sequence mScoreSequence = DOTween.Sequence();
+
+            mScoreSequence.SetAutoKill(false);
+
+            mScoreSequence.Append(DOTween.To(delegate (float value) {
+                //向下取整
+                var temp = Math.Floor(value);
+                //向Text组件赋值
+                currentScoreText.text = temp + "";
+            }, curValue, targetValue, 2.0f));
+            //将更新后的值记录下来, 用于下一次滚动动画
+            curValue = targetValue;
+        }
+
 
         /// <summary>
         /// 获取挑战名称
@@ -54,7 +77,7 @@ namespace GameWish.Game
         {
             if (subTitle.Length == 3)
             {
-                string str = subTitle.Substring(subTitle.Length - 2, subTitle.Length-1);
+                string str = subTitle.Substring(subTitle.Length - 2, subTitle.Length - 1);
                 if (str[0] == '0')
                 {
                     return str[1].ToString();
@@ -66,7 +89,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w("挑战标题ID长度不对 = "+ subTitle);
+                Log.w("挑战标题ID长度不对 = " + subTitle);
                 return "0";
             }
         }
@@ -123,7 +146,7 @@ namespace GameWish.Game
                                     characterItems[j] = temp;
                                 }
                             }
-                          
+
                             break;
                         case SortType.Level:
                             if (orderType == OrderType.FromBigToSmall)
@@ -150,7 +173,7 @@ namespace GameWish.Game
             }
             return characterItems;
         }
-      
+
 
         /// <summary>
         /// 刷新讲武堂招募令红点
@@ -225,20 +248,20 @@ namespace GameWish.Game
             else
                 text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
         }
-        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Text res1Value,Image res1Image, Text res2Value, Image res2Image, Text res3Value, Image res3Image
-            , FacilityLevelInfo facilityLevelInfo,AbstractAnimPanel abstractAnim)
+        public static void RefreshUpgradeResInfo(List<CostItem> costItems, Text res1Value, Image res1Image, Text res2Value, Image res2Image, Text res3Value, Image res3Image
+            , FacilityLevelInfo facilityLevelInfo, AbstractAnimPanel abstractAnim)
         {
-            if (costItems == null || facilityLevelInfo==null)
+            if (costItems == null || facilityLevelInfo == null)
                 return;
-            if (costItems.Count==0)
+            if (costItems.Count == 0)
             {
                 res1Image.gameObject.SetActive(false);
                 res2Image.gameObject.SetActive(false);
                 res3Image.gameObject.SetActive(false);
             }
-            else if (costItems.Count == 1)  
+            else if (costItems.Count == 1)
             {
-               
+
                 CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
                 CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res2Value);
 
@@ -342,7 +365,7 @@ namespace GameWish.Game
             //facilityLevelInfo.upgradeCoinCost
             long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coinNum < facilityLevelInfo.upgradeCoinCost)
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f,1);
+                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
             else
                 text.color = Color.black;
         }
@@ -514,7 +537,7 @@ namespace GameWish.Game
         private static int GetThousand(int number)
         {
             string numStr = number.ToString();
-            return int.Parse(numStr.Substring(numStr.Length-4,1));
+            return int.Parse(numStr.Substring(numStr.Length - 4, 1));
         }
 
     }

@@ -129,49 +129,13 @@ namespace GameWish.Game
             m_CurFacilityType = (FacilityType)args[0];
             GetInformationForNeed();
             RefreshPanelInfo();
+        }
 
-            EventSystem.S.Register(EventID.OnFoodBuffTick, OnFoodBuffTick);
-            EventSystem.S.Register(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
-            EventSystem.S.Register(EventID.OnFoodBuffStart, OnFoodBuffStart);
-        }
-        // 开始buff
-        private void OnFoodBuffStart(int key, object[] param)
+        protected override void OnClose()
         {
-            Countdowner cd = (Countdowner)param[0];
-            foreach (var item in m_Items)
-            {
-                if (item.ID == cd.ID)
-                {
-                    item.StartEffect(cd.GetProgress(), (string)param[1]);
-                    break;
-                }
-            }
-        }
-        // 结束buff
-        private void OnFoodBuffEnd(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            foreach (var item in m_Items)
-            {
-                if (item.ID == cd.ID)
-                {
-                    item.StopEffect();
-                    break;
-                }
-            }
-        }
-        // buff倒计时
-        private void OnFoodBuffTick(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            foreach (var item in m_Items)
-            {
-                if (item.ID == cd.ID)
-                {
-                    item.Countdown(cd.GetProgress(), (string)param[1]);
-                    break;
-                }
-            }
+            base.OnClose();
+
+            m_Items.ForEach(x=>x.OnClose());
         }
         private void BindAddListenerEvent()
         {
@@ -208,10 +172,6 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
-
-            EventSystem.S.UnRegister(EventID.OnFoodBuffTick, OnFoodBuffTick);
-            EventSystem.S.UnRegister(EventID.OnFoodBuffEnd, OnFoodBuffEnd);
-            EventSystem.S.UnRegister(EventID.OnFoodBuffStart, OnFoodBuffStart);
         }
 
         void UpdateFoodItems()

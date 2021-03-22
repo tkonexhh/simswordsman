@@ -87,10 +87,7 @@ namespace GameWish.Game
                 // Debug.LogError(rewards.Length);
                 for (int i = 0; i < rewards.Length; i++)
                 {
-                    // Debug.LogError(rewards[i]);
-                    // string[] reward = rewards[i].Split('|');
-                    // RewardItemType rewardType = EnumUtil.ConvertStringToEnum<RewardItemType>(reward[0]);
-                    RewardBase levelReward = RewardMgr.S.GetRewardBase(rewards[i]);//LevelRewardFactory.SpawnLevelReward(rewardType, reward);
+                    RewardBase levelReward = RewardMgr.S.GetRewardBase(rewards[i]);
                     levelRewardList.Add(levelReward);
                 }
             }
@@ -117,11 +114,12 @@ namespace GameWish.Game
         {
             for (int i = levelRewardList.Count - 1; i >= 0; i--)
             {
+                // Debug.LogError(levelRewardList[i].ToString());
                 if (levelRewardList[i].RewardItem == RewardItemType.Exp_Role || levelRewardList[i].RewardItem == RewardItemType.Exp_Kongfu)
                 {
                     var reward = levelRewardList[i];
                     levelRewardList.RemoveAt(i);
-                    // Debug.LogError("AddEXP:" + i);
+                    // Debug.LogError(reward.RewardItem + ":AddEXP:" + reward.Count);
                     for (int r = 0; r < MainGameMgr.S.BattleFieldMgr.OurCharacterList.Count; r++)
                     {
                         if (reward is Exp_RoleReward)

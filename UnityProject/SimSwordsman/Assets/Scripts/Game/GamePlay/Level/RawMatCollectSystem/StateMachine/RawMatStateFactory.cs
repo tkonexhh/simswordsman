@@ -16,14 +16,11 @@ namespace GameWish.Game
 
         private void InitStateCreator()
         {
-            //RegisterPlayerState(CharacterStateID.Wander, new CharacterStateWander(CharacterStateID.Wander));
-            //RegisterPlayerState(CharacterStateID.EnterClan, new CharacterStateEnterClan(CharacterStateID.EnterClan));
-            //RegisterPlayerState(CharacterStateID.Battle, new CharacterStateBattle(CharacterStateID.Battle));
-            //RegisterPlayerState(CharacterStateID.Practice, new CharacterStatePractice(CharacterStateID.Practice));
-            //RegisterPlayerState(CharacterStateID.CollectRes, new CharacterStateCollectRes(CharacterStateID.CollectRes));
-            //RegisterPlayerState(CharacterStateID.GoOutsideForTaskBattle, new CharacterStateGoOutsideForTaskBattle(CharacterStateID.GoOutsideForTaskBattle));
-            //RegisterPlayerState(CharacterStateID.Reading, new CharacterStateReading(CharacterStateID.Reading));
-            //RegisterPlayerState(CharacterStateID.Working, new CharacterStateWorking(CharacterStateID.Working));
+            RegisterPlayerState(RawMatStateID.Idle, new RawMatStateIdle(RawMatStateID.Idle));
+            RegisterPlayerState(RawMatStateID.Locked, new RawMatStateLocked(RawMatStateID.Locked));
+            RegisterPlayerState(RawMatStateID.Working, new RawMatStateWorking(RawMatStateID.Working));
+            RegisterPlayerState(RawMatStateID.BubbleShowing, new RawMatStateBubbleShowing(RawMatStateID.BubbleShowing));
+
         }
 
         private void RegisterPlayerState(RawMatStateID id, RawMatState state)

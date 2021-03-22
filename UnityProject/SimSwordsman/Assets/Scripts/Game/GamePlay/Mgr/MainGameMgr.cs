@@ -78,11 +78,13 @@ namespace GameWish.Game
             m_MainCamera = FindObjectOfType<MainCamera>();
             m_MainCamera.OnInit();
 
-            m_CharacterMgr.ExrInitData();
+            m_CharacterMgr.InitData();
 
             m_CommonTaskMgr.InitTaskList();
 
             m_FacilityMgr.InitFacilityControllers();
+
+            m_RawMatCollectSystem.InitState();
 
             m_IsInited = true;
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
@@ -98,7 +100,7 @@ namespace GameWish.Game
             {
                 UIMgr.S.ClosePanelAsUIID(UIID.MaskWithAlphaZeroPanel);
                 m_TimerID = -1;
-            }, 0.4f, 1);
+            }, 0.5f, 1);
         }
 
         public void OnUpdate()
