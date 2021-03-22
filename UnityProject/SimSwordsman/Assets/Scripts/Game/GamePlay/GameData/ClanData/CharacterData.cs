@@ -302,6 +302,14 @@ namespace GameWish.Game
         {
 
         }
+        public CharacterKongfuDBData(int index, KungfuLockState kungfuLockState, KungfuType kongfuType, int level, int curExp)
+        {
+            this.index = index;
+            this.kungfuLockState = kungfuLockState;
+            this.kongfuType = kongfuType;
+            this.level = level;
+            this.curExp = curExp;
+        }
         public CharacterKongfuDBData(CharacterKongfuData characterKongfu)
         {
             index = characterKongfu.Index;
