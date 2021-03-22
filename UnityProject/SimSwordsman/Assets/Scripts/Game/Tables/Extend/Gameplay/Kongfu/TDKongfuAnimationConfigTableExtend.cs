@@ -68,6 +68,7 @@ namespace GameWish.Game
         public List<string> castSEList = new List<string>();
         public List<string> hitSEList = new List<string>();
         public string footSE;
+        public float hitDelayTime;
         public string soundName;
 
         private KongfuAnimStrategy m_AnimStrategy;
@@ -77,6 +78,7 @@ namespace GameWish.Game
             castSEList = Helper.String2ListString(tdConfig.castSE, "|");
             hitSEList = Helper.String2ListString(tdConfig.hitSE, "|");
             atkEffectDelayList = Helper.String2ListFloat(tdConfig.atkDelay, ";");
+            hitDelayTime = string.IsNullOrEmpty(tdConfig.sETime) ? 0.1f : Helper.String2Float(tdConfig.sETime);
             footSE = tdConfig.footSE;
             if (castSEList.Count == 2)
             {

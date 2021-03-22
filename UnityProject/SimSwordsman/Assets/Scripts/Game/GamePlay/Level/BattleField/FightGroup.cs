@@ -302,8 +302,8 @@ namespace GameWish.Game
                         }
                         if (targetHurtController != null)
                         {
-                            animConfig?.PlayHurtEffect(MainGameMgr.S.transform, targetHurtController.CharacterView.transform.position);
-                            // animConfig?.PlayHurtEffect(targetHurtController.CharacterView.Body.transform, Vector3.zero);
+                            // animConfig?.PlayHurtEffect(MainGameMgr.S.transform, targetHurtController.CharacterView.transform.position);
+                            animConfig?.PlayHurtEffect(targetHurtController.CharacterView.Body.transform, Vector3.zero);
                         }
 
                     }
@@ -326,7 +326,7 @@ namespace GameWish.Game
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
                         //TODO 改为读表获取硬直时间
-                        float hurtTime = 0.1f;
+                        float hurtTime = animConfig == null ? 0.1f : animConfig.hitDelayTime;
                         if (controller == m_OurCharacter && m_EnemyCharacter.IsDead() == false)
                         {
                             m_AtkEventIndex++;
@@ -334,6 +334,7 @@ namespace GameWish.Game
                             m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
                             m_EnemyCharacter.GetBattleState().NextHurtTime = hurtTime;
                             m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                            HitBack(m_EnemyCharacter, m_EnemyCharacter.GetBattleState().HitbackDistance);
                         }
                         else if (controller == m_EnemyCharacter && m_OurCharacter.IsDead() == false)
                         {
@@ -342,10 +343,16 @@ namespace GameWish.Game
                             m_OurCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_EnemyHitBackDistance[m_AtkEventIndex] - m_EnemyHitBackDistance[0], 0);
                             m_OurCharacter.GetBattleState().NextHurtTime = hurtTime;
                             m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                            HitBack(m_OurCharacter, m_OurCharacter.GetBattleState().HitbackDistance);
                         }
                     }
                     break;
             }
+        }
+
+        private void HitBack(CharacterController controller, float distance)
+        {
+            controller.CharacterView.transform.DOMoveX(-controller.CharacterView.GetFaceDir() * distance, 0.1f).SetRelative().SetEase(Ease.Linear);
         }
 
         private bool IsCharacterInGroup(CharacterController character)

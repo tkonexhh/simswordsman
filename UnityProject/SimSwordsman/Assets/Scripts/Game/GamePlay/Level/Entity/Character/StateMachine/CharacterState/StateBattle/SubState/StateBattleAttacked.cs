@@ -35,13 +35,19 @@ namespace GameWish.Game
 
                 float hitBackDistance = m_BattleState.HitbackDistance;
                 float hurtTime = m_BattleState.NextHurtTime;//0.1f;
-                m_Controller.CharacterView.transform.DOMoveX(-m_Controller.CharacterView.GetFaceDir() * hitBackDistance, hurtTime).SetRelative().
-                    SetEase(Ease.Linear).OnComplete(() =>
-                    {
-                        if (m_BattleState.CurState == BattleStateID.Attacked)
-                            m_BattleState.SetState(BattleStateID.Idle);
+                Timer.S.Post2Scale(i =>
+                {
+                    if (m_BattleState.CurState == BattleStateID.Attacked)
+                        m_BattleState.SetState(BattleStateID.Idle);
+                }, hurtTime);
 
-                    });
+                // m_Controller.CharacterView.transform.DOMoveX(-m_Controller.CharacterView.GetFaceDir() * hitBackDistance, hurtTime).SetRelative().
+                //     SetEase(Ease.Linear).OnComplete(() =>
+                //     {
+                //         if (m_BattleState.CurState == BattleStateID.Attacked)
+                //             m_BattleState.SetState(BattleStateID.Idle);
+
+                //     });
             }
             else
             {
