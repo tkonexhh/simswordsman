@@ -50,7 +50,7 @@ namespace GameWish.Game
             if (m_TaskRefreshTime > m_TaskRefreshInterval)
             {
                 m_TaskRefreshTime = 0;
-                RefreshCommonTask();
+                RefreshTask();
                 EventSystem.S.Send(EventID.OnCommonTaskRefreshed);
             }
         }
