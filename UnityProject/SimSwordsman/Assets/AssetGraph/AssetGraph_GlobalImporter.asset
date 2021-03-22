@@ -253,6 +253,86 @@ MonoBehaviour:
         y: 33
         width: 10
         height: 23
+  - m_name: Load From Directory_EffectTexture
+    m_id: 8c062dbf-bf5e-4761-9f4b-24210db0656c
+    m_x: 264
+    m_y: 708
+    m_nodeInstance:
+      m_className: UnityEngine.AssetGraph.Loader, Unity.AssetGraph.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_instanceData: B64|eyJtX2xvYWRQYXRoIjp7Im1fdmFsdWVzIjpbeyJ0YXJnZXRHcm91cCI6MCwidmFsdWUiOiJSZXMvRm9sZGVyTW9kZS9FZmZlY3RzIn1dfSwibV9sb2FkUGF0aEd1aWQiOnsibV92YWx1ZXMiOlt7InRhcmdldEdyb3VwIjowLCJ2YWx1ZSI6ImY0OWI4OTlhZDEwYzg5YzQwYmNiNDFhYzg1YjBhNDFkIn1dfSwibV9pZ25vcmVQYXR0ZXJucyI6W10sIm1fcmVzcG9uZFRvQXNzZXRDaGFuZ2UiOnRydWV9
+    m_inputPoints: []
+    m_outputPoints:
+    - id: 332edf46-c85d-44b9-a935-9222b783d31a
+      label: +
+      parentId: 8c062dbf-bf5e-4761-9f4b-24210db0656c
+      isInput: 0
+      buttonRect:
+        serializedVersion: 2
+        x: 238
+        y: 33
+        width: 10
+        height: 23
+  - m_name: Split By Filter
+    m_id: 8a62b73b-f7c8-41cc-b9fd-e17981f35bfb
+    m_x: 564
+    m_y: 708
+    m_nodeInstance:
+      m_className: UnityEngine.AssetGraph.Filter, Unity.AssetGraph.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_instanceData: B64|eyJtX2ZpbHRlciI6W3sibV9pbnN0YW5jZSI6eyJtX2NsYXNzTmFtZSI6IlVuaXR5RW5naW5lLkFzc2V0R3JhcGguRmlsdGVyQnlOYW1lQW5kVHlwZSwgVW5pdHkuQXNzZXRHcmFwaC5FZGl0b3IsIFZlcnNpb249MC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1udWxsIiwibV9pbnN0YW5jZURhdGEiOiJCNjR8ZXlKdFgyWnBiSFJsY2t0bGVYZHZjbVFpT2lJaUxDSnRYMlpwYkhSbGNrdGxlWFI1Y0dVaU9pSlVaWGgwZFhKbElpd2liVjkyWlhKemFXOXVJam94ZlE9PSJ9LCJtX3BvaW50SWQiOiI3MjFmOGQ1OC01NzhmLTQ4MmEtYjk0ZS00OTlmMGQ0Y2U3ZTkifV19
+    m_inputPoints:
+    - id: 08dceee9-0b32-4bfd-b740-077cc04f6e2e
+      label: '-'
+      parentId: 8a62b73b-f7c8-41cc-b9fd-e17981f35bfb
+      isInput: 1
+      buttonRect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 21
+        height: 29
+    m_outputPoints:
+    - id: 721f8d58-578f-482a-b94e-499f0d4ce7e9
+      label: '[Texture]'
+      parentId: 8a62b73b-f7c8-41cc-b9fd-e17981f35bfb
+      isInput: 0
+      buttonRect:
+        serializedVersion: 2
+        x: 117
+        y: 33
+        width: 10
+        height: 23
+  - m_name: Overwrite Import Settings
+    m_id: 988660c5-9033-43d1-9030-f786b9be8e9f
+    m_x: 804
+    m_y: 708
+    m_nodeInstance:
+      m_className: UnityEngine.AssetGraph.ImportSetting, Unity.AssetGraph.Editor,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      m_instanceData: B64|eyJtX3Nwcml0ZVBhY2tpbmdUYWdOYW1lVGVtcGxhdGUiOnsibV92YWx1ZXMiOlt7InRhcmdldEdyb3VwIjowLCJ2YWx1ZSI6IioifV19LCJtX292ZXJ3cml0ZVBhY2tpbmdUYWciOmZhbHNlLCJtX3VzZUN1c3RvbVNldHRpbmdBc3NldCI6ZmFsc2UsIm1fb3ZlcndyaXRlU3ByaXRlU2hlZXQiOmZhbHNlLCJtX2N1c3RvbVNldHRpbmdBc3NldEd1aWQiOiIiLCJtX3JlZmVyZW5jZUFzc2V0R3VpZCI6IjBkZmM2NTBhMWM0ODM0OWRkYjc2ZmYzMWI3ZDZiNDE5IiwibV9jb25maWd1cmF0b3JJbnN0YW5jZSI6eyJtX2NsYXNzTmFtZSI6IlVuaXR5RW5naW5lLkFzc2V0R3JhcGguVGV4dHVyZUltcG9ydFNldHRpbmdzQ29uZmlndXJhdG9yLCBVbml0eS5Bc3NldEdyYXBoLkVkaXRvciwgVmVyc2lvbj0wLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGwiLCJtX3ZhbHVlcyI6W3sidGFyZ2V0R3JvdXAiOjAsInZhbHVlIjoiQjY0fGV5SnRYMjkyWlhKM2NtbDBaVkJoWTJ0cGJtZFVZV2NpT21aaGJITmxMQ0p0WDI5MlpYSjNjbWwwWlZOd2NtbDBaVk5vWldWMElqcG1ZV3h6WlN3aWJWOWpkWE4wYjIxUVlXTnJhVzVuVkdGblZHVnRjR3hoZEdVaU9uc2liVjkyWVd4MVpYTWlPbHRkZlgwPSJ9XX19
+    m_inputPoints:
+    - id: a4fdbe9e-11c8-4558-a1e3-d4e09a4546fd
+      label: '-'
+      parentId: 988660c5-9033-43d1-9030-f786b9be8e9f
+      isInput: 1
+      buttonRect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 21
+        height: 29
+    m_outputPoints:
+    - id: 39af8006-c8b8-4591-8abf-0a91676a9b4d
+      label: +
+      parentId: 988660c5-9033-43d1-9030-f786b9be8e9f
+      isInput: 0
+      buttonRect:
+        serializedVersion: 2
+        x: 185
+        y: 33
+        width: 10
+        height: 23
   m_allConnections:
   - m_id: b90a48f9-d5e4-4352-9710-5ea00e131de7
     m_fromNodeId: ba8606ef-fb54-4757-ac8c-c91141b757b7
@@ -290,7 +370,19 @@ MonoBehaviour:
     m_toNodeId: 3b56dc05-b7cc-4eea-8cb2-dc5753706d3a
     m_toNodeConnectionPoiontId: 5758a891-9897-4486-b5a2-87855939c7d4
     m_label: '[Audio]'
-  m_lastModified: 132599224813769940
+  - m_id: 88a5e4f6-1139-411d-b9a2-e05ba0e48a3a
+    m_fromNodeId: 8c062dbf-bf5e-4761-9f4b-24210db0656c
+    m_fromNodeConnectionPointId: 332edf46-c85d-44b9-a935-9222b783d31a
+    m_toNodeId: 8a62b73b-f7c8-41cc-b9fd-e17981f35bfb
+    m_toNodeConnectionPoiontId: 08dceee9-0b32-4bfd-b740-077cc04f6e2e
+    m_label: +
+  - m_id: a6fa5b3c-0c0b-439b-8347-40fa7d744f4f
+    m_fromNodeId: 8a62b73b-f7c8-41cc-b9fd-e17981f35bfb
+    m_fromNodeConnectionPointId: 721f8d58-578f-482a-b94e-499f0d4ce7e9
+    m_toNodeId: 988660c5-9033-43d1-9030-f786b9be8e9f
+    m_toNodeConnectionPoiontId: a4fdbe9e-11c8-4558-a1e3-d4e09a4546fd
+    m_label: '[Texture]'
+  m_lastModified: 132606127535488080
   m_version: 2
   m_graphDescription: 
   m_useAsAssetPostprocessor: 1

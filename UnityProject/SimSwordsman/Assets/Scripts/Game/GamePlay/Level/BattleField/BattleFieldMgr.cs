@@ -62,6 +62,12 @@ namespace GameWish.Game
             m_BattleField.Init();
 
             RegisterEvents();
+
+            Vector2 center = new Vector2((m_BattleAreaRightTop.x + m_BattleAreaLeftBottom.x) / 2, (m_BattleAreaRightTop.y + m_BattleAreaLeftBottom.y) / 2);
+            float height = MainGameMgr.S.MainCamera.battleProperty.size;
+            float width = Camera.main.aspect * height;
+            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_BattleAreaRightTop.y);
+            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_BattleAreaLeftBottom.y);
         }
 
         public void OnUpdate()
@@ -402,7 +408,7 @@ namespace GameWish.Game
                 {
                     //TODO
                 }
-                EventSystem.S.Send(EventID.OnBattleSecondEvent, SplicingTime(second));
+                EventSystem.S.Send(EventID.OnBattleSecondEvent, GameExtensions.SplicingTime(second));
                 //m_CombatTime.text = SplicingTime(second);
                 yield return new WaitForSeconds(1);
                 second--;
@@ -436,26 +442,7 @@ namespace GameWish.Game
         {
             StopCoroutine("BattleCountdown");
         }
-        public string SplicingTime(int seconds)
-        {
-            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
-            string str = "";
 
-            if (ts.Hours > 0)
-            {
-                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes > 0)
-            {
-                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes == 0)
-            {
-                str = "00:" + ts.Seconds.ToString("00");
-            }
-
-            return str;
-        }
         private void RefressProgress()
         {
             double curOurTotalHp = 0;
@@ -490,123 +477,6 @@ namespace GameWish.Game
             }
         }
 
-        List<CharacterController> m_OurCharacterThatHaveNoGroup = new List<CharacterController>();
-        List<CharacterController> m_EnemyCharacterThatHaveNoGroup = new List<CharacterController>();
-
-        //private void RefreshFightGroup()
-        //{
-        //    m_OurCharacterThatHaveNoGroup.Clear();
-        //    m_EnemyCharacterThatHaveNoGroup.Clear();
-
-        //    for (int i = m_FightGroupList.Count - 1; i >= 0; i--)
-        //    {
-        //        FightGroup group = m_FightGroupList[i];
-
-        //        if (group.enemyMainCharacter == null || group.enemyMainCharacter.IsDead())
-        //        {
-        //            if (group.otherEnemyCharacterList.Count > 0) // Set main enemy form otherEnemyList
-        //            {
-        //                group.SetEnemyMainCharacter(group.otherEnemyCharacterList.FirstOrDefault());
-        //            }
-        //            else // There is no character is otherEnemyList
-        //            {
-        //                if (IsCharacterValid(group.ourMainCharacter))
-        //                {
-        //                    m_OurCharacterThatHaveNoGroup.Add(group.ourMainCharacter);
-        //                    group.ourMainCharacter = null;
-        //                }
-
-        //                group.otherOurCharacterList.ForEach(m => 
-        //                {
-        //                    if (IsCharacterValid(m))
-        //                    {
-        //                        m_OurCharacterThatHaveNoGroup.Add(m);
-        //                    }
-        //                });
-        //                group.otherOurCharacterList.Clear();
-        //            }
-        //        }
-
-        //        if (group.ourMainCharacter == null || group.ourMainCharacter.IsDead())
-        //        {
-        //            if (group.otherOurCharacterList.Count > 0) // Set main our character form otherOurList
-        //            {
-        //                group.SetOurMainCharacter(group.otherOurCharacterList.FirstOrDefault());
-        //            }
-        //            else // There is no character is otherOurList
-        //            {
-        //                if (IsCharacterValid(group.enemyMainCharacter))
-        //                {
-        //                    m_EnemyCharacterThatHaveNoGroup.Add(group.enemyMainCharacter);
-        //                    group.enemyMainCharacter = null;
-        //                }
-
-        //                group.otherEnemyCharacterList.ForEach(m =>
-        //                {
-        //                    if (IsCharacterValid(m))
-        //                    {
-        //                        m_EnemyCharacterThatHaveNoGroup.Add(m);
-        //                    }
-        //                });
-        //                group.otherEnemyCharacterList.Clear();
-        //            }
-        //        }
-
-        //        if (group.enemyMainCharacter == null && group.ourMainCharacter == null && group.otherEnemyCharacterList.Count == 0 &&
-        //            group.otherOurCharacterList.Count == 0)
-        //        {
-        //            m_FightGroupList.Remove(group);
-        //        }
-        //    }
-
-        //    // Character that has no group re-spawn group or join other group
-        //    if (m_EnemyCharacterThatHaveNoGroup.Count > 0)
-        //    {
-        //        if (m_OurCharacterThatHaveNoGroup.Count > 0)
-        //        {
-        //            SpawnFightGroup(m_OurCharacterThatHaveNoGroup, m_EnemyCharacterThatHaveNoGroup);
-        //        }
-        //        else
-        //        {
-        //            m_EnemyCharacterThatHaveNoGroup.ForEach(i => 
-        //            {
-        //                JoinNearestEnemyGroup(i);
-        //            });
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (m_OurCharacterThatHaveNoGroup.Count > 0)
-        //        {
-        //            m_OurCharacterThatHaveNoGroup.ForEach(i =>
-        //            {
-        //                JoinNearestOurGroup(i);
-        //            });
-        //        }
-        //    }
-
-        //    m_FightGroupList.ForEach(i => 
-        //    {
-
-        //    });
-        //}
-
-        //private void JoinNearestOurGroup(CharacterController character)
-        //{
-        //    CharacterController randomTarget = GetNearestCharacterAlive(m_EnemyCharacterList, character.GetPosition());
-        //    randomTarget.GetFightGroup().AddOtherOurCharacter(character);
-        //}
-
-        //private void JoinNearestEnemyGroup(CharacterController character)
-        //{
-        //    CharacterController randomTarget = GetNearestCharacterAlive(m_OurCharacterList, character.GetPosition());
-        //    randomTarget.GetFightGroup().AddOtherEnemyCharacter(character);
-        //}
-
-        private bool IsCharacterValid(CharacterController character)
-        {
-            return character != null && character.IsDead() == false;
-        }
         #endregion
     }
 

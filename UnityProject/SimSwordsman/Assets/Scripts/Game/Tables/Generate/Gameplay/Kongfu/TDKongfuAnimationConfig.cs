@@ -19,6 +19,7 @@ namespace GameWish.Game
         private string m_FootSE;   
         private string m_CastSE;   
         private string m_HitSE;   
+        private string m_SETime;   
         private string m_AttackSound;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -57,6 +58,11 @@ namespace GameWish.Game
         /// 受击特效
         /// </summary>
         public  string  hitSE {get { return m_HitSE; } }
+       
+        /// <summary>
+        /// 特效时长
+        /// </summary>
+        public  string  sETime {get { return m_SETime; } }
        
         /// <summary>
         /// 攻击声音
@@ -100,6 +106,9 @@ namespace GameWish.Game
                     m_HitSE = dataR.ReadString();
                     break;
                 case 7:
+                    m_SETime = dataR.ReadString();
+                    break;
+                case 8:
                     m_AttackSound = dataR.ReadString();
                     break;
                 default:
@@ -112,7 +121,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(8);
+          Dictionary<string, int> ret = new Dictionary<string, int>(9);
           
           ret.Add("Id", 0);
           ret.Add("AnimationName", 1);
@@ -121,7 +130,8 @@ namespace GameWish.Game
           ret.Add("FootSE", 4);
           ret.Add("CastSE", 5);
           ret.Add("HitSE", 6);
-          ret.Add("AttackSound", 7);
+          ret.Add("SETime", 7);
+          ret.Add("AttackSound", 8);
           return ret;
         }
     } 

@@ -10,18 +10,17 @@ namespace GameWish.Game
 {
     public class MainCamera : MonoBehaviour, IMgr, IInputObserver
     {
-        [HideInInspector]
-        public Vector2 m_CameraBottomLeft = new Vector2(-3.5f, -4.8f);
-        [HideInInspector]
-        public Vector2 m_CameraTopRight = new Vector2(12.6f, 9.5f);
-        private float m_MoveSpeed = 0.05f;
-
         private TouchInputController m_TouchInput;
         private MobileTouchCamera m_MobileTouchCamera;
         private Camera m_Camera;
 
         private CameraProperty m_BattleProperty;
         private CameraProperty m_SimProperty;
+
+        public CameraProperty battleProperty
+        {
+            get { return m_BattleProperty; }
+        }
 
         private bool m_CameraMoveSwitch = true;
         #region IMgr
@@ -34,11 +33,16 @@ namespace GameWish.Game
             m_MobileTouchCamera = GetComponent<MobileTouchCamera>();
             m_Camera = GetComponent<Camera>();
 
-            m_BattleProperty = new CameraProperty(new Vector3(41, 0.4f, -10), 6);
+            m_BattleProperty = new CameraProperty(new Vector3(41, 0.4f, -10), InitBattleSize());
             m_SimProperty = new CameraProperty(new Vector3(6, 2.2f, -10), 10);
 
             RegisterEvents();
 
+        }
+
+        private float InitBattleSize()
+        {
+            return 6.0f;
         }
 
         public void OnUpdate()
@@ -189,7 +193,7 @@ namespace GameWish.Game
     public class CameraProperty
     {
         public Vector3 pos;
-        private float size;
+        public float size;
 
         public CameraProperty(Vector3 pos, float size)
         {
