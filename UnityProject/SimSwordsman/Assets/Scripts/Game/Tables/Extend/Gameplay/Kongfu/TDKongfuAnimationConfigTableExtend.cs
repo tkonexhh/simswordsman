@@ -68,6 +68,7 @@ namespace GameWish.Game
         public List<string> castSEList = new List<string>();
         public List<string> hitSEList = new List<string>();
         public string footSE;
+        public float hitDelayTime;
         public string soundName;
 
         private KongfuAnimStrategy m_AnimStrategy;
@@ -77,6 +78,7 @@ namespace GameWish.Game
             castSEList = Helper.String2ListString(tdConfig.castSE, "|");
             hitSEList = Helper.String2ListString(tdConfig.hitSE, "|");
             atkEffectDelayList = Helper.String2ListFloat(tdConfig.atkDelay, ";");
+            hitDelayTime = string.IsNullOrEmpty(tdConfig.sETime) ? 0.1f : Helper.String2Float(tdConfig.sETime);
             footSE = tdConfig.footSE;
             if (castSEList.Count == 2)
             {
@@ -204,13 +206,11 @@ namespace GameWish.Game
                     float scaleX = transform.localScale.x;
                     int index = scaleX > 0 ? 1 : 0;
                     var effectGo = GameObjectPoolMgr.S.Allocate(animConfig.hitSEList[index]);
-                    // Debug.LogError("Hurt:" + animConfig.hitSEList[index]);
                     effectGo.transform.SetParent(transform);
                     effectGo.transform.ResetTrans();
                     effectGo.transform.localPosition = new Vector3(offset.x, offset.y, 10);
                     var com = effectGo.AddMissingComponent<ParticleAutoRecycle>();
                     com.StartCD();
-                    // effectGo.AddMissingComponent<SortingGroup>();
 
                     effectGo.AddMissingComponent<CustomShaderFinder>();
                 }
@@ -247,6 +247,7 @@ namespace GameWish.Game
             {
                 float scaleX = transform.localScale.x;
                 int index = scaleX < 0 ? 1 : 0;
+                // Debug.LogError("Attack:" + animConfig.castSEList[index]);
                 var effectGo = GameObjectPoolMgr.S.Allocate(animConfig.castSEList[index]);
                 effectGo.transform.SetParent(transform);
                 effectGo.transform.ResetTrans();

@@ -17,7 +17,6 @@ namespace GameWish.Game
         private int m_ArriveCount = 0;
         private int m_AtkEndCount = 0;
         private bool m_EnemyAttack = false;
-        private float m_AttackRange = 1.5f;
         private int m_AtkEventIndex = 0;
 
         private List<float> m_OurHitBackDistance = new List<float>();
@@ -178,8 +177,6 @@ namespace GameWish.Game
             float maxDeltaX = 1;
             float maxDeltaY = 0.5f;
 
-            //float x1 = Random.Range(MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
-            //float y = Random.Range(MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.y);
             float x1 = Random.Range(m_OurCharacter.GetPosition().x - maxDeltaX, m_OurCharacter.GetPosition().x + maxDeltaX);
             float y = Random.Range(m_OurCharacter.GetPosition().y - maxDeltaY, m_OurCharacter.GetPosition().y + maxDeltaY);
             x1 = Mathf.Clamp(x1, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
@@ -194,7 +191,7 @@ namespace GameWish.Game
             {
                 x2 = x1 - attackRange;
             }
-            Debug.Log("x1 is: " + x1 + " x2 is: " + x2 + " left x is: " + MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x + " right x is: " + MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
+            // Debug.Log("x1 is: " + x1 + " x2 is: " + x2 + " left x is: " + MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x + " right x is: " + MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
 
             m_EnemyCharacter.GetBattleState().MoveTargetPos = new Vector2(x1, y);
             m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Move);
@@ -208,13 +205,11 @@ namespace GameWish.Game
         {
             if (m_EnemyAttack)
             {
-                //Debug.LogError("Enemy play attack animation");
                 //m_EnemyCharacter.CharacterView.PlayAtkAnim("attack1", OnAtkAnimEnd);
                 m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attack);
             }
             else
             {
-                //Debug.LogError("Our play attack animation");
                 //m_OurCharacter.CharacterView.PlayAtkAnim("attack", OnAtkAnimEnd);
                 m_OurCharacter.GetBattleState().SetState(BattleStateID.Attack);
             }
@@ -307,12 +302,13 @@ namespace GameWish.Game
                         }
                         if (targetHurtController != null)
                         {
-                            animConfig?.PlayHurtEffect(MainGameMgr.S.transform, targetHurtController.CharacterView.transform.position);
+                            // animConfig?.PlayHurtEffect(MainGameMgr.S.transform, targetHurtController.CharacterView.transform.position);
+                            animConfig?.PlayHurtEffect(targetHurtController.CharacterView.Body.transform, Vector3.zero);
                         }
 
                     }
                     break;
-                case (int)EventID.OnBattleAtkEnd:
+                case (int)EventID.OnBattleAtkEnd://战斗动画结束
                     {
                         CharacterController controller = (CharacterController)param[0];
                         if (IsCharacterInGroup(controller))
@@ -322,31 +318,41 @@ namespace GameWish.Game
                     }
                     break;
 
-                case (int)EventID.OnBattleAtkEvent:
+                case (int)EventID.OnBattleAtkEvent://战斗伤害事件
                     {
                         CharacterController controller = (CharacterController)param[0];
                         string skillname = (string)param[1];
 
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
-
+                        //TODO 改为读表获取硬直时间
+                        float hurtTime = animConfig == null ? 0.1f : animConfig.hitDelayTime;
                         if (controller == m_OurCharacter && m_EnemyCharacter.IsDead() == false)
                         {
                             m_AtkEventIndex++;
                             m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_OurHitBackDistance.Count - 1);
                             m_EnemyCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_OurHitBackDistance[m_AtkEventIndex] - m_OurHitBackDistance[0], 0);
+                            m_EnemyCharacter.GetBattleState().NextHurtTime = hurtTime;
                             m_EnemyCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                            HitBack(m_EnemyCharacter, m_EnemyCharacter.GetBattleState().HitbackDistance);
                         }
                         else if (controller == m_EnemyCharacter && m_OurCharacter.IsDead() == false)
                         {
                             m_AtkEventIndex++;
                             m_AtkEventIndex = Mathf.Clamp(m_AtkEventIndex, 0, m_EnemyHitBackDistance.Count - 1);
                             m_OurCharacter.GetBattleState().HitbackDistance = Mathf.Max(m_EnemyHitBackDistance[m_AtkEventIndex] - m_EnemyHitBackDistance[0], 0);
+                            m_OurCharacter.GetBattleState().NextHurtTime = hurtTime;
                             m_OurCharacter.GetBattleState().SetState(BattleStateID.Attacked);
+                            HitBack(m_OurCharacter, m_OurCharacter.GetBattleState().HitbackDistance);
                         }
                     }
                     break;
             }
+        }
+
+        private void HitBack(CharacterController controller, float distance)
+        {
+            controller.CharacterView.transform.DOMoveX(-controller.CharacterView.GetFaceDir() * distance, 0.1f).SetRelative().SetEase(Ease.Linear);
         }
 
         private bool IsCharacterInGroup(CharacterController character)
