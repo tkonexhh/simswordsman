@@ -79,6 +79,7 @@ namespace GameWish.Game
         {
             base.OnClose();
             EventSystem.S.UnRegister(EventID.OnSelectedKungfuEvent, HandleAddListenerEvevt);
+            PanelPool.S.DisplayPanel();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -111,9 +112,12 @@ namespace GameWish.Game
 
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                
+
+                PanelPool.S.AddPromotion(new LearnMartialArts(m_CharacterItem.id, m_CharacterItem.atkValue, (KungfuItem)m_SelectedItemBase));
+
                 MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
+
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());

@@ -4,34 +4,40 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum ShowState
-    {
-        StateDiscipleAscendingSection,
-        StateBreakthroughMartialArts,
-        State3,
-    }
-
     public class PromotionPanel : AbstractAnimPanel
     {
         [SerializeField]
         private Image m_PromotionTitleImg;
 
-
+        [Header("Status One")]
         [SerializeField]
         private Text m_Cont;
 
+        [Header("Status Two")]
         [SerializeField]
         private GameObject m_InfoPar;
         [SerializeField]
-        private Text m_InfoParName; 
+        private Text m_InfoParName;
         [SerializeField]
         private Image m_InfoParIcon;
         [SerializeField]
-        private Image m_KungfuNameImg;  
+        private Image m_KungfuNameImg;
         [SerializeField]
-        private Text m_KungfuName;  
+        private Text m_KungfuName;
         [SerializeField]
         private Text m_Paragraph;
+
+        [Header("Status Three")]
+        [SerializeField]
+        private GameObject m_LearnMartialArts;
+        [SerializeField]
+        private Text m_DiscipleLearn;
+        [SerializeField]
+        private Image m_KungfuBgImg;
+        [SerializeField]
+        private Image KungfuNameImg;
+        [SerializeField]
+        private Text KungfuName;
 
         [SerializeField]
         private Text m_KongfuName;
@@ -64,7 +70,25 @@ namespace GameWish.Game
         {
             return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).Name;
         }
-
+        private void SetKungfuSprite(KungfuItem item, Image image, Image kungfuName)
+        {
+            kungfuName.gameObject.SetActive(true);
+            switch (GetKungfuQuality(item.KungfuType))
+            {
+                case KungfuQuality.Normal:
+                    image.sprite = FindSprite("Introduction");
+                    break;
+                case KungfuQuality.Super:
+                    image.sprite = FindSprite("Advanced");
+                    break;
+                case KungfuQuality.Master:
+                    image.sprite = FindSprite("Excellent");
+                    break;
+                default:
+                    break;
+            }
+            kungfuName.sprite = FindSprite(TDKongfuConfigTable.GetIconName(item.KungfuType));
+        }
         private void SetKungfuSprite(CharacterKongfuDBData item, Image image, Image kungfuName)
         {
             kungfuName.gameObject.SetActive(true);
@@ -103,17 +127,22 @@ namespace GameWish.Game
                 case UpgradePanelType.EquipAmror:
                     break;
                 case UpgradePanelType.LearnMartialArts:
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_LearnMartialArts");
+                    m_DiscipleLearn.text = m_CharacterItem.name + "学会了";
+                    LearnMartialArts learnMartialArts = promotionModel.ToSubType<LearnMartialArts>();
+                    SetKungfuSprite(learnMartialArts.GetKungfuItem(), m_KungfuBgImg, KungfuNameImg);
+                    KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", TDKongfuConfigTable.GetKungfuConfigInfo(learnMartialArts.GetKungfuItem().KungfuType).Name);
+                    SetDifferetState(UpgradePanelType.LearnMartialArts);
                     break;
                 case UpgradePanelType.DiscipleAscendingSection:
                     AudioMgr.S.PlaySound(Define.CLEVELUP);
                     DiscipleRiseStage discipleRiseStage = promotionModel.ToSubType<DiscipleRiseStage>();
                     m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_DiscipleAscendingSection");
-                    SetDifferetState(ShowState.StateDiscipleAscendingSection);
-                    m_Cont.text = m_CharacterItem.name+"升至"+ CommonUIMethod.GetTextNumber(discipleRiseStage.GetStage()) + "段弟子";
-                    CommonUIMethod.TextFlipUpEffect(m_Skill, discipleRiseStage.GetPreAtk(), m_CharacterItem.atkValue);
+                    SetDifferetState(UpgradePanelType.DiscipleAscendingSection);
+                    m_Cont.text = m_CharacterItem.name + "升至" + CommonUIMethod.GetTextNumber(discipleRiseStage.GetStage()) + "段弟子";
                     break;
                 case UpgradePanelType.BreakthroughMartialArts:
-                    SetDifferetState(ShowState.StateBreakthroughMartialArts);
+                    SetDifferetState(UpgradePanelType.BreakthroughMartialArts);
                     WugongBreakthrough wugongBreakthrough = promotionModel.ToSubType<WugongBreakthrough>();
                     kungfu = wugongBreakthrough.GetWugongBreakthrough();
                     m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_BreakthroughMartialArts");
@@ -121,24 +150,11 @@ namespace GameWish.Game
                     SetKungfuSprite(kungfu, m_InfoParIcon, m_KungfuNameImg);
                     m_KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", GetKungfuName(kungfu.kongfuType));
                     m_Paragraph.text = "升至" + CommonUIMethod.GetPart(kungfu.level);
-                    CommonUIMethod.TextFlipUpEffect(m_Skill, wugongBreakthrough.GetPreAtk(), m_CharacterItem.atkValue);
                     break;
                 default:
                     break;
             }
-            //[SerializeField]
-            //private GameObject m_InfoPar;
-            //[SerializeField]
-            //private Text m_InfoParName;
-            //[SerializeField]
-            //private Image m_InfoParIcon;
-            //[SerializeField]
-            //private Image m_KungfuNameImg;
-            //[SerializeField]
-            //private Text m_KungfuName;
-            //[SerializeField]
-            //private Text m_Paragraph;
-
+            CommonUIMethod.TextFlipUpEffect(m_Skill, promotionModel.GetPreAtk(), m_CharacterItem.atkValue);
             CharacterQuality quality = m_CharacterItem.quality;
             int headId = m_CharacterItem.headId;
             int bodyId = m_CharacterItem.bodyId;
@@ -146,24 +162,32 @@ namespace GameWish.Game
             m_CharacterImage.sprite = FindSprite(spriteName);
             m_CharacterImage.SetNativeSize();
 
-            Timer.S.Post2Really((i)=> {
+            Timer.S.Post2Really((i) =>
+            {
                 m_ExitBtn.gameObject.SetActive(true);
             }, ExitShowTime);
         }
 
-        private void SetDifferetState(ShowState showState)
+        private void SetDifferetState(UpgradePanelType showState)
         {
             switch (showState)
             {
-                case ShowState.StateDiscipleAscendingSection:
+                case UpgradePanelType.WeaponEnhancement:
+                    break;
+                case UpgradePanelType.ArmorEnhancement:
+                    break;
+                case UpgradePanelType.EquipAmrs:
+                    break;
+                case UpgradePanelType.EquipAmror:
+                    break;
+                case UpgradePanelType.LearnMartialArts:
+                    m_LearnMartialArts.SetActive(true);
+                    break;
+                case UpgradePanelType.DiscipleAscendingSection:
                     m_Cont.gameObject.SetActive(true);
-                    m_InfoPar.SetActive(false);
                     break;
-                case ShowState.StateBreakthroughMartialArts:
-                    m_Cont.gameObject.SetActive(false);
+                case UpgradePanelType.BreakthroughMartialArts:
                     m_InfoPar.SetActive(true);
-                    break;
-                case ShowState.State3:
                     break;
                 default:
                     break;

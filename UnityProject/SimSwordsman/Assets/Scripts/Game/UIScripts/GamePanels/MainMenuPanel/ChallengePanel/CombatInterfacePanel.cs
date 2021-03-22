@@ -232,7 +232,7 @@ namespace GameWish.Game
                     m_RightSchoolNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.enemyClan;
                     m_MatchNameValue.text = m_CurTaskInfo.CommonTaskItemInfo.title;
                     break;
-                case PanelType.Challenge:                    
+                case PanelType.Challenge:
                     m_RightSchoolNameValue.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                     m_MatchNameValue.text = m_LevelConfigInfo.battleName;
                     MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRender(m_CurChapterConfigInfo.clanType);
@@ -240,7 +240,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            
+
         }
         private void BindAddListenerEvent()
         {
@@ -337,7 +337,7 @@ namespace GameWish.Game
         }
         private void Update()
         {
-           
+
         }
         /// <summary>
         /// 打开之前选择的界面
@@ -394,10 +394,10 @@ namespace GameWish.Game
                     CreateBattleOverText(false);
                     break;
                 case EventID.OnCharacterUpgrade:
-                    PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, (int)param[0], (int)param[1], (float)param[2]));
+                    PanelPool.S.AddPromotion(new DiscipleRiseStage((int)param[0], (int)param[1], (float)param[2]));
                     break;
                 case EventID.OnKongfuLibraryUpgrade:
-                    PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, (int)param[0], (CharacterKongfuDBData)param[1], (float)param[2]));
+                    PanelPool.S.AddPromotion(new WugongBreakthrough((int)param[0], (CharacterKongfuDBData)param[1], (float)param[2]));
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
