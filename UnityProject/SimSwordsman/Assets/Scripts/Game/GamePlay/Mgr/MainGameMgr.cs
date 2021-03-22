@@ -100,7 +100,7 @@ namespace GameWish.Game
             {
                 UIMgr.S.ClosePanelAsUIID(UIID.MaskWithAlphaZeroPanel);
                 m_TimerID = -1;
-            }, 0.4f, 1);
+            }, 0.5f, 1);
         }
 
         public void OnUpdate()
