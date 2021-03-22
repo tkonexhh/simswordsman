@@ -35,5 +35,10 @@ namespace GameWish.Game
         public abstract void AcceptReward(int bonus = 1);
 
         public abstract string RewardName();
+
+        public override string ToString()
+        {
+            return RewardItem + ":" + m_KeyID + ":" + Count;
+        }
     }
 }

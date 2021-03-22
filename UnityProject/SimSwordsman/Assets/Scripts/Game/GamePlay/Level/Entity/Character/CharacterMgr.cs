@@ -16,6 +16,8 @@ namespace GameWish.Game
 
         private Vector3 m_CharacterSpawnPos = new Vector3(-5f, -4.7f, 0);
 
+        private RandomWayPoints m_RandomWayPoints = null;
+
         public List<CharacterController> CharacterControllerList { get => m_CharacterControllerList; }
         public CharacterDataWrapper CharacterDataWrapper { get => m_CharacterDataWrapper; }
 
@@ -367,7 +369,12 @@ namespace GameWish.Game
             }
             else
             {
-                spawnPos = GameObject.FindObjectOfType<RandomWayPoints>().GetRandomWayPointPos(Vector3.zero);
+                if (m_RandomWayPoints == null)
+                {
+                    m_RandomWayPoints = GameObject.FindObjectOfType<RandomWayPoints>();
+                }
+
+                spawnPos = m_RandomWayPoints.GetRandomWayPointPos(Vector3.zero);
             }
 
             return spawnPos;

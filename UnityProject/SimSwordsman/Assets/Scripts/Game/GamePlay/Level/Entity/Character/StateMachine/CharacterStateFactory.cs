@@ -21,7 +21,7 @@ namespace GameWish.Game
             RegisterPlayerState(CharacterStateID.Battle, new CharacterStateBattle(CharacterStateID.Battle));
             RegisterPlayerState(CharacterStateID.Practice, new CharacterStatePractice(CharacterStateID.Practice));
             RegisterPlayerState(CharacterStateID.CollectRes, new CharacterStateCollectRes(CharacterStateID.CollectRes));
-            RegisterPlayerState(CharacterStateID.GoOutsideForTaskBattle, new CharacterStateGoOutsideForTaskBattle(CharacterStateID.GoOutsideForTaskBattle));
+            //RegisterPlayerState(CharacterStateID.GoOutsideForTaskBattle, new CharacterStateGoOutsideForTaskBattle(CharacterStateID.GoOutsideForTaskBattle));
             RegisterPlayerState(CharacterStateID.Reading, new CharacterStateReading(CharacterStateID.Reading));
             RegisterPlayerState(CharacterStateID.Working, new CharacterStateWorking(CharacterStateID.Working));
         }

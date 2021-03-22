@@ -269,7 +269,7 @@ namespace GameWish.Game
             return facilityLevelInfo;
         }
 
-        public  List<string> GetUnlockContent(int level)
+        public List<string> GetUnlockContent(int level)
         {
             return TDFacilityLobbyTable.GetUnlockContent(level);
         }
@@ -296,7 +296,7 @@ namespace GameWish.Game
         {
             switch (facilityType)
             {
-            
+
                 case FacilityType.PracticeFieldEast:
                 case FacilityType.PracticeFieldWest:
                     return TDFacilityPracticeFieldTable.GetDurationForLevel(facilityType, level);
@@ -304,26 +304,6 @@ namespace GameWish.Game
                     return TDFacilityKongfuLibraryTable.GetDurationForLevel(level);
             }
             return 0;
-        }
-
-        /// <summary>
-        /// 根据等级获取练功经验
-        /// </summary>
-        /// <param name="facilityType"></param>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        public int GetExpValue(FacilityType facilityType, int level)
-        {
-            return TDFacilityPracticeFieldTable.GetExpValue(facilityType, level);
-        }
-
-        public void StartCountDown(int second, Action<string> refresAction, Action overAction)
-        {
-            CountDownItem countDownMgr = new CountDownItem("PracticeField", second);
-            TimeUpdateMgr.S.AddObserver(countDownMgr);
-            TimeUpdateMgr.S.Start();
-            countDownMgr.OnSecondRefreshEvent = refresAction;
-            countDownMgr.OnCountDownOverEvent = overAction;
         }
 
         #endregion

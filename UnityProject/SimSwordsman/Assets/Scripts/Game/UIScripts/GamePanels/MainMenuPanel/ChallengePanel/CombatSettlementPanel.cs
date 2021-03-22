@@ -128,7 +128,7 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
             }
-         
+
             if (m_PanelType == PanelType.Task)
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
 
@@ -156,13 +156,13 @@ namespace GameWish.Game
                         if (item.RewardItem != RewardItemType.Exp_Kongfu && item.RewardItem != RewardItemType.Exp_Role)
                             m_RewardList.Add(item);
 
-                    m_LevelConfigInfo.levelRewardList.ForEach(i =>
-                    {
-                        if (i.RewardItem == RewardItemType.Exp_Kongfu || i.RewardItem == RewardItemType.Exp_Role)
-                        {
-                            i.SetCount(i.Count / m_SelectedDiscipleList.Count);
-                        }
-                    });
+                    // m_LevelConfigInfo.levelRewardList.ForEach(i =>
+                    // {
+                    //     if (i.RewardItem == RewardItemType.Exp_Kongfu || i.RewardItem == RewardItemType.Exp_Role)
+                    //     {
+                    //         i.SetCount(i.Count / m_SelectedDiscipleList.Count);
+                    //     }
+                    // });
                     m_LevelConfigInfo.PrepareReward();
                     if (m_IsSuccess)
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward());

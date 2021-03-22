@@ -7,61 +7,35 @@ using System;
 
 namespace GameWish.Game
 {
-    public class PracticeFieldController : FacilityController
+    public class PracticeFieldController : FacilityCDController
     {
-        public List<PracticeField> m_PracticeSlotList = new List<PracticeField>();
-
-        public PracticeFieldController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
+        public PracticeFieldController(FacilityType facilityType, FacilityView view) : base(facilityType, view)
         {
-            EventSystem.S.Register(EventID.DeleteDisciple, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
-            EventSystem.S.Register(EventID.OnPracticeVacancy, HandleAddListenerEvent);
 
             InitPracticeField();
         }
+
         ~PracticeFieldController()
         {
-            EventSystem.S.UnRegister(EventID.DeleteDisciple, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
-            EventSystem.S.UnRegister(EventID.OnPracticeVacancy, HandleAddListenerEvent);
         }
+
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)
             {
-                case EventID.DeleteDisciple://删除角色
-                    foreach (var item in m_PracticeSlotList)
-                        if (item.IsHaveSameCharacterItem((int)param[0]))
-                            item.CDIsOver();
-                    break;
                 case EventID.OnRefreshPracticeUnlock:
-                    RefreshExclamatoryMark(CheckSlotInfo());
+                    Refesh();
                     break;
             }
         }
 
-        private bool CheckSlotInfo()
-        {
-            foreach (var item in m_PracticeSlotList)
-            {
-                if (item.IsFree() && m_FacilityType == item.FacilityType)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        protected override bool CheckSubFunc()
-        {
-            if (m_FacilityState != FacilityState.Unlocked)
-                return false;
-            return CheckSlotInfo();
-        }
         public BaseSlot GetIdlePracticeSlot(FacilityType facilityType)
         {
-            return m_PracticeSlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));
+            return m_SlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));
         }
+
         private void InitPracticeField()
         {
             List<PracticeSoltDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
@@ -74,24 +48,16 @@ namespace GameWish.Game
             }
 
             foreach (var item in practiceFieldDBDatas)
-                m_PracticeSlotList.Add(new PracticeField(item, m_View));
-        }
-
-        /// <summary>
-        /// ��ȡӦ�ò���������Ϣ
-        /// </summary>
-        /// <returns></returns>
-        public List<PracticeField> GetPracticeField()
-        {
-            return m_PracticeSlotList;
+                m_SlotList.Add(new PracticeField(item, m_View));
         }
 
         private void LoopInit(FacilityType facilityType)
         {
             List<PracticeFieldLevelInfo> eastInfos = GetPracticeFieldLevelInfoList(facilityType);
             for (int i = 0; i < eastInfos.Count; i++)
-                m_PracticeSlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1,m_View));
+                m_SlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1, m_View));
         }
+
         /// <summary>
         /// ����ˢ�¿�λ״̬
         /// </summary>
@@ -99,12 +65,12 @@ namespace GameWish.Game
         /// <param name="facilityLevel"></param>
         public void RefreshPracticeUnlockInfo(FacilityType facilityType, int facilityLevel)
         {
-            m_PracticeSlotList.ForEach(i =>
+            m_SlotList.ForEach(i =>
             {
                 if (i.FacilityType == facilityType && i.UnlockLevel == facilityLevel)
                 {
                     i.slotState = SlotState.Free;
-                    GameDataMgr.S.GetClanData().RefresPracticeDBData(i);
+                    GameDataMgr.S.GetClanData().RefresPracticeDBData(i as PracticeField);
                     EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, i);
                 }
             });

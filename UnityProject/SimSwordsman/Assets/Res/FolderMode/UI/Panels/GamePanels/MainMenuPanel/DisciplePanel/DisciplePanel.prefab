@@ -896,7 +896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -189}
+  m_AnchoredPosition: {x: -1, y: -175}
   m_SizeDelta: {x: 91, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &506119043842556536
@@ -2121,7 +2121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8847099793203101645}
   m_HandleRect: {fileID: 8847099793203101650}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2200,7 +2200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2, y: -23}
   m_SizeDelta: {x: 708, y: 1092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8847099792002650372
@@ -3108,15 +3108,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
+    m_Left: 23
     m_Right: 0
-    m_Top: 17
+    m_Top: 18
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 170, y: 237.6}
-  m_Spacing: {x: 52.55, y: 27.8}
+  m_Spacing: {x: 52.55, y: 31.28}
   m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!114 &8847099793943286122

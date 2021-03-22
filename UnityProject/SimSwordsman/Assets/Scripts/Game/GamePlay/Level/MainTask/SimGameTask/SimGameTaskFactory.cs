@@ -15,10 +15,10 @@ namespace GameWish.Game
 
             switch (taskType)
             {
-                case SimGameTaskType.Collect:
-                    //CollectedObjType collectedObjType = (CollectedObjType)subType;
-                    task = new TaskCollectRes(taskId, m_MainTaskTableName, taskState, taskTime);
-                    break;
+                //case SimGameTaskType.Collect:
+                //    //CollectedObjType collectedObjType = (CollectedObjType)subType;
+                //    task = new TaskCollectRes(taskId, m_MainTaskTableName, taskState, taskTime);
+                //    break;
                 case SimGameTaskType.Battle:
                     task = new TaskBattle(taskId, m_MainTaskTableName, taskState, taskTime, recordCharacterID);
                     break;

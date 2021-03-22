@@ -39,6 +39,7 @@ namespace GameWish.Game
                 for (int i = 0; i < m_Buttons.Length; i++)
                 {
                     m_Buttons[i].transform.SetAsFirstSibling();
+                    //TODO 修改过关点击
                     if (i < m_CurLevel)
                     {
                         m_Buttons[i].enabled = false;
