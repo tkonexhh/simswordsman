@@ -21,6 +21,7 @@ namespace GameWish.Game
         public List<FoodBuffData> FoodBufferDataList = new List<FoodBuffData>();
         public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
         public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
+        public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
 
         public void SetDefaultValue()
         {
@@ -718,6 +719,51 @@ namespace GameWish.Game
 
                 SetDataDirty();
             }
+        }
+        #endregion
+
+        #region collect System
+        public CollectSystemItemData AddOrUpdateCollectSystemItemData(int collectItemID, DateTime startTime) 
+        {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+
+            if (data == null)
+            {
+                data = new CollectSystemItemData(collectItemID, startTime);
+                CollectSystemItemDataList.Add(data);
+            }
+            else {
+                data.StartTime = startTime;
+            }
+
+            SetDataDirty();
+
+            return data;
+        }
+        public CollectSystemItemData GetCollectItemData(int collectItemID) 
+        {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+            return data;
+        }
+        public CollectSystemItemData RemoveCollectSystemItemData(int collectItemID) 
+        {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+            
+            if (data != null) 
+            {
+                data.Clear();
+
+                SetDataDirty();
+            }
+
+            return data;
+        }
+        public int GetCollectItemDataRewardCount(int collectItemID) {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+            if (data != null) {
+                return data.GetRewardCount();
+            }
+            return 0;
         }
         #endregion
     }

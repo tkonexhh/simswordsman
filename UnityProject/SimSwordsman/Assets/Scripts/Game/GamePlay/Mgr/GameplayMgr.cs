@@ -157,12 +157,12 @@ namespace GameWish.Game
                     MainGameMgr.S.OnInit();
                     FoodRecoverySystem.S.Init();
                     VisitorSystem.S.Init();
-                    CountdownSystem.S.Init();
 
                     WorkSystemMgr.S.Init();
 
                     BaiCaoWuSystemMgr.S.Init();
                     ForgeHouseSystemMgr.S.Init();
+                    CollectSystem.S.Init();
 
                     if (PlatformHelper.isEditor)
                     {
