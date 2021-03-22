@@ -49,6 +49,8 @@ namespace GameWish.Game
         //public List<CharacterController> OurNotFightingCharacterList { get => m_OurNotFightingCharacterList; }
         //public List<CharacterController> EnemyNotFightingCharacterList { get => m_EnemyNotFightingCharacterList; }
 
+        public bool IsBattleing { get { return m_IsBattleBegin; } }
+
         private int m_AllEnemyCount = 0;
         private int m_LoadedEnemyCount = 0;
 
