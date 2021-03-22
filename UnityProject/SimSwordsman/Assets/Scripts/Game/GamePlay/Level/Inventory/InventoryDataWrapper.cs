@@ -645,7 +645,7 @@ namespace GameWish.Game
         {
             HerbID = herbType;
             PropType = PropType.Herb;
-            Number = count;
+            Number = 0;
             RefreshItemInfo();
         }
 

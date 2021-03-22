@@ -19,6 +19,8 @@ namespace GameWish.Game
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
         public List<WorkItemData> WorkItemDataList = new List<WorkItemData>();
         public List<FoodBuffData> FoodBufferDataList = new List<FoodBuffData>();
+        public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
+        public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
 
         public void SetDefaultValue()
         {
@@ -590,6 +592,132 @@ namespace GameWish.Game
                 return data.GetRemainProgress();
             }
             return 0;
+        }
+        #endregion
+
+        #region bai cao wu system
+        public BaiCaoWuData GetBaiCaoWuData(int herbID) {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+            return data;
+        }
+        public BaiCaoWuData AddBaiCaoWuData(int herbID) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+
+            TDHerbConfig herbData = TDHerbConfigTable.GetData(herbID);
+            DateTime endTime = DateTime.Now.AddMinutes(herbData.makeTime);
+
+            if (data == null)
+            {
+                data = new BaiCaoWuData(herbID, DateTime.Now, endTime);
+                BaiCaoWuDataList.Add(data);
+            }
+            else {
+                data.UpdateData(DateTime.Now, endTime);
+            }
+
+            SetDataDirty();
+
+            return data;
+        }
+        public void RemoveBaiCaoWuData(int herbID) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+
+            if (data != null) 
+            {
+                CountDowntMgr.S.StopCountDownItemTest(data.GetCountDownID());
+
+                BaiCaoWuDataList.Remove(data);
+
+                SetDataDirty();
+            }
+        }
+        public void UpdateBaiCaoWuData(int herbID,int reduceTime) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+            
+            if (data != null) 
+            {
+                data.AlreadyPassTime += reduceTime;
+
+                SetDataDirty();
+            }
+        }
+        public void UpdateBaiCaoWuDataCountDownID(int herbID, int countDownID) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+
+            if (data != null) 
+            {
+                data.SetCouontDownID(countDownID);
+
+                SetDataDirty();
+            }
+        }
+        #endregion
+
+        #region forge house system
+        public ForgeHouseItemData GetForgeHouseItemData(int forgeHouseID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+            return data;
+        }
+        public ForgeHouseItemData AddForgeHouseItemData(int forgeHouseID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+
+            TDEquipmentConfig equipmentConfig = TDEquipmentConfigTable.GetData(forgeHouseID);
+            DateTime endTime = DateTime.Now.AddSeconds(equipmentConfig.forgeTime);
+
+            if (data == null)
+            {
+                data = new ForgeHouseItemData(forgeHouseID, DateTime.Now, endTime);
+                ForgeHouseItemDataList.Add(data);
+            }
+            else
+            {
+                data.UpdateData(DateTime.Now, endTime);
+            }
+
+            SetDataDirty();
+
+            return data;
+        }
+        public void UpdateForgeHouseItemData(int forgeHouseID, int reduceTime)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+
+            if (data != null)
+            {
+                data.AlreadyPassTime += reduceTime;
+
+                SetDataDirty();
+            }
+        }
+        public void UpdateForgeHouseItemDataCountDownID(int herbID, int countDownID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == herbID);
+
+            if (data != null)
+            {
+                data.SetCouontDownID(countDownID);
+
+                SetDataDirty();
+            }
+        }
+        public void RemoveForgeHouseItemData(int forgeHouseID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+
+            if (data != null)
+            {
+                CountDowntMgr.S.StopCountDownItemTest(data.GetCountDownID());
+
+                ForgeHouseItemDataList.Remove(data);
+
+                SetDataDirty();
+            }
         }
         #endregion
     }
