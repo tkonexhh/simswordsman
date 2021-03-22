@@ -43,14 +43,14 @@ namespace GameWish.Game
     {
         private UpgradePanelType m_EventID;
         private int m_ChaID;
-        protected  float m_PreAtk;
+        protected float m_PreAtk;
         public PromotionBase(UpgradePanelType eventID, int chaID, float preAtk)
         {
             m_PreAtk = preAtk;
             m_EventID = eventID;
             m_ChaID = chaID;
         }
-    
+
         public UpgradePanelType GetEventID()
         {
             return m_EventID;
@@ -63,13 +63,17 @@ namespace GameWish.Game
         {
             return this as T;
         }
+        public float GetPreAtk()
+        {
+            return m_PreAtk;
+        }
     }
 
     public class DiscipleRiseStage : PromotionBase
     {
         private int m_Stage;
 
-        public DiscipleRiseStage(UpgradePanelType eventID, int chaID, int stage,float preAtk) :base(eventID, chaID, preAtk)
+        public DiscipleRiseStage(int chaID, int stage, float preAtk) : base(UpgradePanelType.DiscipleAscendingSection, chaID, preAtk)
         {
             m_Stage = stage;
         }
@@ -77,16 +81,70 @@ namespace GameWish.Game
         {
             return m_Stage;
         }
-        public float GetPreAtk()
+    }
+    public class WeaponEnhancement : PromotionBase
+    {
+        private CharacterArms m_ArmsItem;
+        public WeaponEnhancement(int ChaID, float preAtk, CharacterArms armsItem) : base(UpgradePanelType.WeaponEnhancement, ChaID, preAtk)
         {
-            return m_PreAtk;
+            m_ArmsItem = armsItem;
+        }
+        public CharacterArms GetArmsItem()
+        {
+            return m_ArmsItem;
+        }
+    }
+    public class ArmorEnhancement : PromotionBase
+    {
+        private CharacterArmor m_ArmorItem;
+        public ArmorEnhancement(int ChaID, float preAtk, CharacterArmor armorItem) : base(UpgradePanelType.ArmorEnhancement, ChaID, preAtk)
+        {
+            m_ArmorItem = armorItem;
+        }
+        public CharacterArmor GetArmorItem()
+        {
+            return m_ArmorItem;
+        }
+    }
+
+    public class EquipAmrs : PromotionBase
+    {
+        private ArmsItem m_ArmsItem;
+        public EquipAmrs(int ChaID, float preAtk, ArmsItem armsItem) : base(UpgradePanelType.EquipAmrs, ChaID, preAtk)
+        {
+            m_ArmsItem = armsItem;
+        }
+
+        public ArmsItem GetArmsItem()
+        {
+            return m_ArmsItem;
+        }
+    }
+    public class EquipAmror : PromotionBase
+    {
+        private ArmorItem m_ArmorItem;
+        public EquipAmror(int ChaID, float preAtk, ArmorItem armorItem) : base(UpgradePanelType.EquipAmror, ChaID, preAtk)
+        {
+            m_ArmorItem = armorItem;
+        }
+
+        public ArmorItem GetArmorItem()
+        {
+            return m_ArmorItem;
         }
     }
 
     public class LearnMartialArts : PromotionBase
     {
-        public LearnMartialArts(UpgradePanelType eventID, int ChaID,float preAtk) : base(eventID, ChaID, preAtk)
+        private KungfuItem m_KungfuItem;
+        public LearnMartialArts(int ChaID, float preAtk, KungfuItem kungfuItem) : base(UpgradePanelType.LearnMartialArts, ChaID, preAtk)
         {
+            m_KungfuItem = kungfuItem;
+        }
+
+        public KungfuItem GetKungfuItem()
+        {
+            return m_KungfuItem;
         }
     }
 
@@ -94,7 +152,7 @@ namespace GameWish.Game
     {
         private CharacterKongfuDBData m_CharacterKongfuDBData;
 
-        public WugongBreakthrough(UpgradePanelType eventID, int ChaID, CharacterKongfuDBData characterKongfuDBData, float preAtk) : base(eventID, ChaID, preAtk)
+        public WugongBreakthrough(int ChaID, CharacterKongfuDBData characterKongfuDBData, float preAtk) : base(UpgradePanelType.BreakthroughMartialArts, ChaID, preAtk)
         {
             m_CharacterKongfuDBData = characterKongfuDBData;
         }
@@ -102,17 +160,10 @@ namespace GameWish.Game
         {
             return m_CharacterKongfuDBData;
         }
-        public float GetPreAtk()
-        {
-            return m_PreAtk;
-        }
     }
 
 
-
-
-
-    public class PanelPool : TSingleton<PanelPool> 
+    public class PanelPool : TSingleton<PanelPool>
     {
         private Queue<PromotionBase> m_Panels;
 
@@ -122,9 +173,9 @@ namespace GameWish.Game
 
         public bool m_CurShowPanelIsOver;
 
-        public bool CurShowPanelIsOver 
+        public bool CurShowPanelIsOver
         {
-            set 
+            set
             {
                 m_CurShowPanelIsOver = value;
                 if (!m_CurShowPanelIsOver)

@@ -284,7 +284,7 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(1);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
             }
 
 
@@ -308,12 +308,12 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, 0, 2,1212));
+                PanelPool.S.AddPromotion(new DiscipleRiseStage( 0, 2,1212));
                 PanelPool.S.DisplayPanel();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
+                PanelPool.S.AddPromotion(new WugongBreakthrough( 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
                 PanelPool.S.DisplayPanel();
             }
             #endregion
