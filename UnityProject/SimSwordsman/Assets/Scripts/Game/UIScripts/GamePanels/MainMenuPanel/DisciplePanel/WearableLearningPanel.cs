@@ -89,6 +89,12 @@ namespace GameWish.Game
             m_ItemBaseList = MainGameMgr.S.InventoryMgr.GetAllEquipmentForType(m_CurPropType);
         }
 
+        protected override void OnClose()
+        {
+            base.OnClose();
+            PanelPool.S.DisplayPanel();
+        }
+
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -123,13 +129,13 @@ namespace GameWish.Game
                 switch (m_SelectedItemBase.PropType)
                 {
                     case PropType.Arms:
-                        //MainGameMgr.S.InventoryMgr.AddItem((ArmsItem)m_SelectedItemBase);
+                        PanelPool.S.AddPromotion(new EquipAmrs(m_CurDisciple.id, m_CurDisciple.atkValue,(ArmsItem)m_SelectedItemBase));
                         MainGameMgr.S.InventoryMgr.AddItem((ArmsItem)m_CurDisciple.GetEquipmentForType(PropType.Arms));
                         MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArms(m_SelectedItemBase));
                         break;
                     case PropType.Armor:
+                        PanelPool.S.AddPromotion(new EquipAmror(m_CurDisciple.id, m_CurDisciple.atkValue, (ArmorItem)m_SelectedItemBase));
                         MainGameMgr.S.InventoryMgr.AddItem((ArmorItem)m_CurDisciple.GetEquipmentForType(PropType.Armor));
-                        //MainGameMgr.S.InventoryMgr.AddItem((ArmorItem)m_SelectedItemBase);
                         MainGameMgr.S.CharacterMgr.AddEquipment(m_CurDisciple.id, new CharacterArmor(m_SelectedItemBase));
                         break;
                     default:

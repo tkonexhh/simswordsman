@@ -56,7 +56,7 @@ namespace GameWish.Game
                 var temp = Math.Floor(value);
                 //向Text组件赋值
                 currentScoreText.text = temp + "";
-            }, curValue, targetValue, 2.0f));
+            }, curValue, targetValue, 1.0f));
             //将更新后的值记录下来, 用于下一次滚动动画
             curValue = targetValue;
         }

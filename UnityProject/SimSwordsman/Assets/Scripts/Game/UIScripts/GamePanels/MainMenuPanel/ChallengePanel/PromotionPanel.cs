@@ -109,6 +109,19 @@ namespace GameWish.Game
             kungfuName.sprite = FindSprite(TDKongfuConfigTable.GetIconName(item.kongfuType));
         }
 
+        //[SerializeField]
+        //private GameObject m_InfoPar;
+        //[SerializeField]
+        //private Text m_InfoParName;
+        //[SerializeField]
+        //private Image m_InfoParIcon;
+        //[SerializeField]
+        //private Image m_KungfuNameImg;
+        //[SerializeField]
+        //private Text m_KungfuName;
+        //[SerializeField]
+        //private Text m_Paragraph;
+
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -119,12 +132,43 @@ namespace GameWish.Game
             switch (promotionModel.GetEventID())
             {
                 case UpgradePanelType.WeaponEnhancement:
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_WeaponEnhancement");
+                    WeaponEnhancement weaponEnhancement = promotionModel.ToSubType<WeaponEnhancement>();
+                    m_InfoParName.text = m_CharacterItem.name + "的";
+                    m_InfoParIcon.sprite = FindSprite(TDEquipmentConfigTable.GetIconName((int)weaponEnhancement.GetArmsItem().ArmsID));
+                    m_KungfuNameImg.gameObject.SetActive(false);
+                    m_KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", weaponEnhancement.GetArmsItem().Name);
+                    m_Paragraph.text = "强化到了" + CommonUIMethod.GetStrForColor("#96463E", CommonUIMethod.GetItemClass(weaponEnhancement.GetArmsItem().Class));
+                    SetDifferetState(UpgradePanelType.WeaponEnhancement);
                     break;
                 case UpgradePanelType.ArmorEnhancement:
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_ArmorEnhancement");
+                    ArmorEnhancement armorEnhancement = promotionModel.ToSubType<ArmorEnhancement>();
+                    m_InfoParName.text = m_CharacterItem.name + "的";
+                    m_InfoParIcon.sprite = FindSprite(TDEquipmentConfigTable.GetIconName((int)armorEnhancement.GetArmorItem().ArmorID));
+                    m_KungfuNameImg.gameObject.SetActive(false);
+                    m_KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", armorEnhancement.GetArmorItem().Name);
+                    m_Paragraph.text = "强化到了" + CommonUIMethod.GetStrForColor("#96463E", CommonUIMethod.GetGrade(armorEnhancement.GetArmorItem().Class));
+                    SetDifferetState(UpgradePanelType.ArmorEnhancement);
                     break;
                 case UpgradePanelType.EquipAmrs:
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_EquipAmrs");
+                    m_DiscipleLearn.text = m_CharacterItem.name + "装备了";
+                    EquipAmrs equipAmrs = promotionModel.ToSubType<EquipAmrs>();
+                    m_KungfuBgImg.sprite = FindSprite(TDEquipmentConfigTable.GetIconName(equipAmrs.GetArmsItem().GetSubName()));
+                    KungfuNameImg.gameObject.SetActive(false);
+                    KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", equipAmrs.GetArmsItem().Name);
+
+                    SetDifferetState(UpgradePanelType.EquipAmrs);
                     break;
                 case UpgradePanelType.EquipAmror:
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_EquipAmror");
+                    m_DiscipleLearn.text = m_CharacterItem.name + "装备了";
+                    EquipAmror equipAmror = promotionModel.ToSubType<EquipAmror>();
+                    m_KungfuBgImg.sprite = FindSprite(TDEquipmentConfigTable.GetIconName(equipAmror.GetArmorItem().GetSubName()));
+                    KungfuNameImg.gameObject.SetActive(false);
+                    KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", equipAmror.GetArmorItem().Name);
+                    SetDifferetState(UpgradePanelType.EquipAmror);
                     break;
                 case UpgradePanelType.LearnMartialArts:
                     m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_LearnMartialArts");
@@ -172,20 +216,17 @@ namespace GameWish.Game
         {
             switch (showState)
             {
-                case UpgradePanelType.WeaponEnhancement:
-                    break;
-                case UpgradePanelType.ArmorEnhancement:
-                    break;
+ 
                 case UpgradePanelType.EquipAmrs:
-                    break;
                 case UpgradePanelType.EquipAmror:
-                    break;
                 case UpgradePanelType.LearnMartialArts:
                     m_LearnMartialArts.SetActive(true);
                     break;
                 case UpgradePanelType.DiscipleAscendingSection:
                     m_Cont.gameObject.SetActive(true);
                     break;
+                case UpgradePanelType.WeaponEnhancement:
+                case UpgradePanelType.ArmorEnhancement:
                 case UpgradePanelType.BreakthroughMartialArts:
                     m_InfoPar.SetActive(true);
                     break;

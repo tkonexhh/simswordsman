@@ -436,12 +436,17 @@ namespace GameWish.Game
                     return;
                 }
 
+                PanelPool.S.AddPromotion(new ArmorEnhancement(m_CurDisciple.id, m_CurDisciple.atkValue, characterArmor));
+
                 MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)upgrade.PropID), upgrade.Number);
                 characterArmor.UpGradeClass(m_CurDisciple.id);
                 m_CurDisciple.CalculateForceValue();
                 RefreshArmorInfo();
                 RefreshSkillValue();
                 RefershIntensifyArmorImg();
+
+                PanelPool.S.DisplayPanel();
+
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArmor.ArmorID.ToString() + ";" + characterArmor.Class.ToString());
             });
             m_EjectValueBtn.onClick.AddListener(() =>
@@ -479,12 +484,16 @@ namespace GameWish.Game
                     return;
                 }
 
+                PanelPool.S.AddPromotion(new WeaponEnhancement(m_CurDisciple.id, m_CurDisciple.atkValue, characterArms));
+
                 MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)upgrade.PropID), upgrade.Number);
                 characterArms.UpGradeClass(m_CurDisciple.id);
                 m_CurDisciple.CalculateForceValue();
                 RefreshArmsInfo();
                 RefreshSkillValue();
                 RefershIntensifyArmsImg();
+
+                PanelPool.S.DisplayPanel();
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArms.ArmsID.ToString()+";"+ characterArms.Class.ToString());
             });

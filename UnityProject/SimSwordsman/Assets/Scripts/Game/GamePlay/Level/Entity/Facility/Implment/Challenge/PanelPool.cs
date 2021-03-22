@@ -82,6 +82,57 @@ namespace GameWish.Game
             return m_Stage;
         }
     }
+    public class WeaponEnhancement : PromotionBase
+    {
+        private CharacterArms m_ArmsItem;
+        public WeaponEnhancement(int ChaID, float preAtk, CharacterArms armsItem) : base(UpgradePanelType.WeaponEnhancement, ChaID, preAtk)
+        {
+            m_ArmsItem = armsItem;
+        }
+        public CharacterArms GetArmsItem()
+        {
+            return m_ArmsItem;
+        }
+    }
+    public class ArmorEnhancement : PromotionBase
+    {
+        private CharacterArmor m_ArmorItem;
+        public ArmorEnhancement(int ChaID, float preAtk, CharacterArmor armorItem) : base(UpgradePanelType.ArmorEnhancement, ChaID, preAtk)
+        {
+            m_ArmorItem = armorItem;
+        }
+        public CharacterArmor GetArmorItem()
+        {
+            return m_ArmorItem;
+        }
+    }
+
+    public class EquipAmrs : PromotionBase
+    {
+        private ArmsItem m_ArmsItem;
+        public EquipAmrs(int ChaID, float preAtk, ArmsItem armsItem) : base(UpgradePanelType.EquipAmrs, ChaID, preAtk)
+        {
+            m_ArmsItem = armsItem;
+        }
+
+        public ArmsItem GetArmsItem()
+        {
+            return m_ArmsItem;
+        }
+    }
+    public class EquipAmror : PromotionBase
+    {
+        private ArmorItem m_ArmorItem;
+        public EquipAmror(int ChaID, float preAtk, ArmorItem armorItem) : base(UpgradePanelType.EquipAmror, ChaID, preAtk)
+        {
+            m_ArmorItem = armorItem;
+        }
+
+        public ArmorItem GetArmorItem()
+        {
+            return m_ArmorItem;
+        }
+    }
 
     public class LearnMartialArts : PromotionBase
     {
@@ -143,8 +194,6 @@ namespace GameWish.Game
         {
             m_Panels.Enqueue(promotionPanel);
         }
-
-
 
         /// <summary>
         /// ¿ªÊ¼ÏÔÊ¾
