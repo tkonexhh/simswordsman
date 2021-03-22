@@ -27,7 +27,7 @@ namespace GameWish.Game
         public CharacterStateID CurState { get => m_CurState; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
         public SimGameTask CurTask { get => m_CurTask; }
-        public CollectedObjType CollectObjType { get { return m_CharacterModel.GetCollectedObjType(); } set { m_CharacterModel.SetCollectedObjType(value);  } }
+        public CollectedObjType CollectObjType { get { return m_CharacterModel.GetCollectedObjType(); } set { m_CharacterModel.SetCollectedObjType(value); } }
         public bool ManualSelectedToCollectObj { get { return m_ManualSelectedToCollectObj; } set { m_ManualSelectedToCollectObj = value; } }
 
         private bool m_ManualSelectedToCollectObj = false;
@@ -56,8 +56,8 @@ namespace GameWish.Game
 
             m_StateMachine = new CharacterStateMachine(this);
 
-
-            SetState(initState, m_CharacterModel.GetTargetFacilityType());
+            if (initState != CharacterStateID.Reading)
+                SetState(initState, m_CharacterModel.GetTargetFacilityType());
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
         }
