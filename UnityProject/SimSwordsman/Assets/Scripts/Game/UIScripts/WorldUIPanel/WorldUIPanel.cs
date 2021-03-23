@@ -34,7 +34,6 @@ namespace GameWish.Game
         {
             if (m_IsBattle) return;
 
-            //TODO issue 战斗的时候也能看到工作气泡
             var workTalkGo = GameObjectPoolMgr.S.Allocate("WalkTalk");
             workTalkGo.transform.SetParent(transform);
             workTalkGo.transform.localPosition = Vector3.zero;

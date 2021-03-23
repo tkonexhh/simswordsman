@@ -78,9 +78,9 @@ namespace GameWish.Game
             item.stage = stage;
         }
 
-        public void AddExp(CharacterItemDbData item, int deltaExp)
+        public void RefreshCurExp(CharacterItemDbData item, int deltaExp)
         {
-            item.AddExp(deltaExp);
+            item.RefreshCurExp(deltaExp);
         }
         /// <summary>
         /// 增加功夫经验
@@ -278,7 +278,7 @@ namespace GameWish.Game
         //    return null;
         //}
 
-        public void AddExp(int delta)
+        public void RefreshCurExp(int delta)
         {
             curExp = delta;
             //curExp = Math.Max(0, curExp);

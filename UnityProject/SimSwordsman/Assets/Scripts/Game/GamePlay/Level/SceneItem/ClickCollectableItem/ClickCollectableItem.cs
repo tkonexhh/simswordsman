@@ -24,27 +24,7 @@ namespace GameWish.Game
             int _id = (int)param[0];
             if (_id == id)
             {
-                var tb = TDCollectConfigTable.dataList[id];
-                int count = (int)param[1];
-                if (param.Length > 2)
-                {
-                    //Òýµ¼
-                    isGuide = true;
-                }
-                if (isGuide)
-                {
-                    CollectView.gameObject.SetActive(true);
-                }
-                else
-                {
-                    if (count >= tb.collectMin)
-                    {
-                        if (!CollectView.gameObject.activeSelf)
-                            CollectView.gameObject.SetActive(true);
-                    }
-                    else if (CollectView.gameObject.activeSelf)
-                        CollectView.gameObject.SetActive(false);
-                }
+                CollectView.SetActive(true);
             }
         }
 

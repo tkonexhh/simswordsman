@@ -150,7 +150,8 @@ namespace GameWish.Game
             if (m_SubItem != null)
                 m_SubItem.SetActive(true);
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
-            m_ResLoader?.ReleaseRes("BuildSmokeHammer");
+            m_ResLoader?.ReleaseAllRes();
+            //m_ResLoader?.ReleaseRes("BuildSmokeHammer");
         }
         private IEnumerator PlayUpGradeParticleEffects(int second, int level)
         {
@@ -159,7 +160,7 @@ namespace GameWish.Game
             stateObjList[level - 1].SetActive(true);
             if (m_SubItem != null)
                 m_SubItem.SetActive(true);
-            m_ResLoader?.ReleaseRes("BuildSmokeHammer");
+            m_ResLoader?.ReleaseAllRes();
             EventSystem.S.Send(EventID.OnRawMaterialChangeEvent);
         }
         private void OnDestroy()
@@ -176,6 +177,9 @@ namespace GameWish.Game
             {
                 if (!isFile && isUpgrade)
                 {
+                    if (m_ParticleEffects != null)
+                        return;
+
                     stateObjList.ForEach(i => i.SetActive(false));
                     if (m_SubItem != null)
                         m_SubItem.SetActive(false);

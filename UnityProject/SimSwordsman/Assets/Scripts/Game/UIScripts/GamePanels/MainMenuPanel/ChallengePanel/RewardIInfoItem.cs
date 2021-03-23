@@ -65,6 +65,12 @@ namespace GameWish.Game
             m_DiscipleName.text = m_CurCharacterItem.name;
             m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
 
+            if (!m_IsSuccess)
+            {
+                m_ExpCont.text = Define.PLUS + "0";
+                return;
+            }
+
             switch (m_PanelType)
             {
                 case PanelType.Task:

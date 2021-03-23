@@ -281,7 +281,8 @@ namespace GameWish.Game
                 }
             }
             else {
-                Debug.LogError("is not show bubble state");
+                Debug.LogError("is not show bubble state:");
+                Timer.S.Cancel(m_AutoStartWorkTimerID);
                 return false;
             }    
         }
@@ -312,20 +313,20 @@ namespace GameWish.Game
         /// </summary>
         public void CoundDownAutoStartWork(Action endCallBack = null) 
         {
-            //Timer.S.Cancel(m_AutoStartWorkTimerID);
-            
-            //TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
+            Timer.S.Cancel(m_AutoStartWorkTimerID);
 
-            //TODO:等后续表格上传修改
-            //int autoWorkWaitTime = 2;
+            TDFacilityLobby lobbyData = TDFacilityLobbyTable.GetData(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
 
-            //m_AutoStartWorkTimerID = Timer.S.Post2Really((x) =>
-            //{
-            //    if (endCallBack != null) {
-            //        endCallBack();
-            //    }
-            //    m_AutoStartWorkTimerID = -1;
-            //}, autoWorkWaitTime, -1);
+            int autoWorkWaitTime = lobbyData.autoWorkWait;
+
+            m_AutoStartWorkTimerID = Timer.S.Post2Really((x) =>
+            {
+                if (endCallBack != null)
+                {
+                    endCallBack();
+                }
+                m_AutoStartWorkTimerID = -1;
+            }, autoWorkWaitTime, -1);
         }
         #endregion
     }

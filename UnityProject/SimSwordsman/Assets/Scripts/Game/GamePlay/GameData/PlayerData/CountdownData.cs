@@ -9,12 +9,7 @@ namespace GameWish.Game
 {
 	public class CountdownData : DataDirtyHandler, IResetHandler
     {
-
-        public List<Countdowner> countdownerData = new List<Countdowner>();
-
-        public List<WorkCharacter> workCharacters = new List<WorkCharacter>();
-
-       
+        public List<WorkCharacter> workCharacters = new List<WorkCharacter>();       
 
         public void OnReset()
         {
@@ -23,11 +18,7 @@ namespace GameWish.Game
 
         public void SetDefaultValue()
         {
-            countdownerData.Clear();
             workCharacters.Clear();
-
         }
-
     }
-
 }

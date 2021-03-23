@@ -88,7 +88,24 @@ namespace GameWish.Game
 
             m_IsLoadingBarFinished = true;
 
+            SendSplitChannelData();
+
             yield return null;
+        }
+
+        private void SendSplitChannelData()
+        {
+            string channelName = CustomExtensions.GetSDKChannel();
+            Debug.LogError("split channel:" + channelName);
+#if UNITY_ANDROID
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("channel", channelName);
+            DataAnalysisMgr.S.CustomEventDic("split_channel", dic);
+#else
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("channel", channelName);
+            DataAnalysisMgr.S.CustomEventDic("split_channel", dic);
+#endif
         }
 
         private void OnGamePauseChange(int key, params object[] args)
@@ -157,10 +174,17 @@ namespace GameWish.Game
                     MainGameMgr.S.OnInit();
                     FoodRecoverySystem.S.Init();
                     VisitorSystem.S.Init();
-                    CountdownSystem.S.Init();
 
                     WorkSystemMgr.S.Init();
-                    Application.runInBackground = true;
+
+                    BaiCaoWuSystemMgr.S.Init();
+                    ForgeHouseSystemMgr.S.Init();
+                    CollectSystem.S.Init();
+
+                    if (PlatformHelper.isEditor)
+                    {
+                        Application.runInBackground = true;
+                    }
                     int num = PlayerPrefs.GetInt("test");
                     if (num != 1)
                     {
@@ -277,7 +301,7 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(1);
+                GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
             }
 
 
@@ -301,12 +325,12 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                PanelPool.S.AddPromotion(new DiscipleRiseStage(UpgradePanelType.DiscipleAscendingSection, 0, 2,1212));
+                PanelPool.S.AddPromotion(new DiscipleRiseStage( 0, 2,1212));
                 PanelPool.S.DisplayPanel();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                PanelPool.S.AddPromotion(new WugongBreakthrough(UpgradePanelType.BreakthroughMartialArts, 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
+                PanelPool.S.AddPromotion(new WugongBreakthrough( 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
                 PanelPool.S.DisplayPanel();
             }
             #endregion

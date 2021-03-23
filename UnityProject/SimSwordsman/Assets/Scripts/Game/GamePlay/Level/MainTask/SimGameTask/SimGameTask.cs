@@ -116,7 +116,10 @@ namespace GameWish.Game
         {
             List<CharacterController> characters = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_TaskId);
             float ratio = isSucess ? 1 : 0.5f;
+            //int allWeight = 0;
 
+            if (!isSucess)
+                return;
             // Add exp
             characters.ForEach(i =>
             {
@@ -128,12 +131,7 @@ namespace GameWish.Game
             {
                 i.CharacterModel.DistributionKungfuExp((int)(CommonTaskItemInfo.kongfuReward * ratio));
             });
-            //int allWeight = 0;
 
-            if (!isSucess)
-                return;
-
-          
             RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
             foreach (var item in m_TaskDetailInfo.itemRewards)
             {

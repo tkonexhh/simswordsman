@@ -23,7 +23,7 @@ namespace GameWish.Game
         /// </summary>
 
         /// <summary>
-        /// �����������
+        /// �����������?
         /// </summary>
         static int MaxVisitorCount = 1;
 
@@ -128,7 +128,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ���һ��������Ʒ
+        /// ���һ���������?
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
@@ -137,12 +137,11 @@ namespace GameWish.Game
             List<int> idList = null;
             if (!TDVisitorRewardConfigTable.rewardIDByMainLevelDic.TryGetValue(level, out idList))
                 idList = TDVisitorRewardConfigTable.rewardIDByMainLevelDic[1];
-
             //��Ȩƽ��
             int all = 0;
             foreach (var item in idList)
             {
-                all += TDVisitorRewardConfigTable.dataList[item].weight;
+                all += TDVisitorRewardConfigTable.GetData(item).weight;
             }
 
             int value = RandomHelper.Range(0, all + 1);
@@ -150,7 +149,7 @@ namespace GameWish.Game
             int temp = 0;
             for (int i = 0; i < idList.Count; i++)
             {
-                temp += TDVisitorRewardConfigTable.dataList[idList[i]].weight;
+                temp += TDVisitorRewardConfigTable.GetData(idList[i]).weight;
                 if (value <= temp)
                 {
                     resultindex = i;
@@ -158,7 +157,7 @@ namespace GameWish.Game
                 }
             }
             //Debug.LogError(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
-            var reward = RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.dataList[idList[resultindex]].reward);
+            var reward = RewardMgr.S.GetRewardBase(TDVisitorRewardConfigTable.GetData(idList[resultindex]).reward);
             if (reward.RewardItem == RewardItemType.Item)
             {
                 // Debug.LogError(reward.KeyID);
@@ -227,7 +226,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ״̬ 0��δ��� 1��������ȡ���� 2���ر���ʧ
+        /// ״̬ 0��δ���? 1��������ȡ���� 2���ر���ʧ
         /// </summary>
         public int state { get; private set; }
         public void Disappear()

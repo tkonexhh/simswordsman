@@ -50,7 +50,7 @@ namespace GameWish.Game
             if (m_TaskRefreshTime > m_TaskRefreshInterval)
             {
                 m_TaskRefreshTime = 0;
-                RefreshCommonTask();
+                RefreshTask();
                 EventSystem.S.Send(EventID.OnCommonTaskRefreshed);
             }
         }
@@ -369,6 +369,7 @@ namespace GameWish.Game
             SimGameTask simGameTask = SimGameTaskFactory.SpawnTask(taskId, taskType, taskState, taskTime, recordCharacterID);
             m_CurTaskList.Add(simGameTask);
             DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_generate, simGameTask.TaskId.ToString());
+
             return simGameTask;
         }
 
