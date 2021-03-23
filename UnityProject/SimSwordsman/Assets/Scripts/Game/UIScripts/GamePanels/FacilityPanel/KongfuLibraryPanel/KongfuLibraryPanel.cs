@@ -64,7 +64,6 @@ namespace GameWish.Game
         private FacilityConfigInfo m_FacilityConfigInfo = null;
         private KongfuLibraryLevelInfo m_CurKongfuLibraryLevelInfo = null;
         private KongfuLibraryLevelInfo m_NextFacilityLevelInfo = null;
-        private KongfuLibraryController m_CurKongfuLibraryController = null;
 
         private Dictionary<int, CopyScripturesItem> m_KongfuLibrarySoltInfo = new Dictionary<int, CopyScripturesItem>();
 
@@ -92,8 +91,6 @@ namespace GameWish.Game
 
         private void HandleAddListenEvent(int key, object[] param)
         {
-            // int index = (int)param[0];
-            // GetSlotByIndex(index).RefreshPracticeFieldState();
             var slot = ((KungfuLibraySlot)param[0]);
             GetPracticeDiscipleForID(slot).RefreshPracticeFieldState();
         }
@@ -106,7 +103,7 @@ namespace GameWish.Game
         private CopyScripturesItem GetPracticeDiscipleForID(KungfuLibraySlot kungfuLibraySlot)
         {
             if (m_KongfuLibrarySoltInfo.ContainsKey(kungfuLibraySlot.Index))
-                return m_KongfuLibrarySoltInfo[kungfuLibraySlot.Index];//.GetComponent<CopyScripturesItem>();
+                return m_KongfuLibrarySoltInfo[kungfuLibraySlot.Index];
             return null;
         }
 
@@ -118,7 +115,6 @@ namespace GameWish.Game
                 m_RedPoint.SetActive(false);
 
             RefreshFixedInfo();
-
             RefreshPanelText();
 
             // for (int i = 0; i < m_ReadingSlotList.Count; i++)
@@ -166,8 +162,6 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CurKongfuLibraryLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
-            m_CurKongfuLibraryController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
-            // m_ReadingSlotList = m_CurKongfuLibraryController.GetSlotList();
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
@@ -232,7 +226,6 @@ namespace GameWish.Game
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                     GetInformationForNeed();
-                    m_CurKongfuLibraryController.RefreshSlotInfo(m_CurLevel);
                     RefreshPanelText();
                     DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
@@ -249,13 +242,11 @@ namespace GameWish.Game
                 foreach (var item in m_KongfuLibrarySoltInfo.Values)
                 {
                     CopyScripturesItem copyScripturesItem = item.GetComponent<CopyScripturesItem>();
-                    if (copyScripturesItem.GetPracticeFieldState() == SlotState.CopyScriptures)
+                    if (copyScripturesItem.GetSlotState() == SlotState.Busy)
                         copyScripturesItem.IncreaseCountDown(nextTime - curTime);
                 }
             }
         }
-
-
 
         protected override void OnPanelHideComplete()
         {
@@ -268,9 +259,6 @@ namespace GameWish.Game
             GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
             CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
             itemICom.Init(index, this);
-            // m_LstCopyScripturesItem.Add(itemICom);
-            // itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType, this);
-            // m_KongfuLibrarySoltInfo.Add(kungfuLibraySlot.Index, game);
             m_KongfuLibrarySoltInfo.Add(index, itemICom);
         }
 

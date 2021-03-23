@@ -10,9 +10,6 @@ namespace GameWish.Game
         public string clanName = string.Empty;
 
         public FacilityDbData ownedFacilityData = new FacilityDbData();
-        public PracticeFieldData ownedPracticeFieldData = new PracticeFieldData();
-        // public KungfuLibraryData ownedKungfuLibraryData = new KungfuLibraryData();
-        public PatrolRoomData ownedPatrolRoomData = new PatrolRoomData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
@@ -58,74 +55,6 @@ namespace GameWish.Game
         #endregion
 
         #region Facility
-
-
-        #region Practice
-        public List<PracticeSoltDBData> GetPracticeFieldData()
-        {
-            return ownedPracticeFieldData.GetPracticeFieldData();
-        }
-
-        public void AddPracticeFieldData(PracticeField practiceField)
-        {
-            ownedPracticeFieldData.AddPracticeFieldData(practiceField);
-
-            SetDataDirty();
-        }
-        public void RefresPracticeDBData(PracticeField practiceField)
-        {
-            ownedPracticeFieldData.RefresDBData(practiceField);
-
-            SetDataDirty();
-        }
-        public void PraceTrainingIsOver(PracticeField practiceField)
-        {
-            ownedPracticeFieldData.TrainingIsOver(practiceField);
-
-            SetDataDirty();
-        }
-        #endregion
-
-        // #region KungfuLibrary
-        // public void RefresKungfuDBData(KungfuLibraySlot kungfuLibraySlot)
-        // {
-        //     ownedKungfuLibraryData.RefresDBData(kungfuLibraySlot);
-
-        //     SetDataDirty();
-        // }
-        // public void KungfuTrainingIsOver(KungfuLibraySlot kungfuLibraySlot)
-        // {
-        //     ownedKungfuLibraryData.TrainingIsOver(kungfuLibraySlot);
-
-        //     SetDataDirty();
-        // }
-        // #endregion
-        #region PatrolRoom
-        public List<PatrolRoomSoltDBData> GetPatrolRoomData()
-        {
-            return ownedPatrolRoomData.GetPatrolRoomData();
-        }
-        public void AddPatrolRoomData(PatrolRoomSlot patrolRoomSlot)
-        {
-            ownedPatrolRoomData.AddPatrolRoomData(patrolRoomSlot);
-
-            SetDataDirty();
-        }
-        public void RefresPatrolRoomDBData(PatrolRoomSlot patrolRoomSlot)
-        {
-            ownedPatrolRoomData.RefresDBData(patrolRoomSlot);
-
-            SetDataDirty();
-        }
-        public void PatrolRoomTrainingIsOver(PatrolRoomSlot patrolRoomSlot)
-        {
-            ownedPatrolRoomData.TrainingIsOver(patrolRoomSlot);
-
-            SetDataDirty();
-        }
-        #endregion
-
-
 
         public FacilityDbData GetFacilityDbData()
         {
@@ -173,13 +102,6 @@ namespace GameWish.Game
 
             return facilityItemDbData;
         }
-
-        //public void RemoveFacility(FacilityType facilityType)
-        //{
-        //    ownedFacilityData.RemoveFacility(facilityType);
-
-        //    SetDataDirty();
-        //}
 
         public void UpgradeFacility(FacilityType facilityType, int deltaLevel/*, int subId = 1*/)
         {

@@ -25,6 +25,7 @@ namespace GameWish.Game
             rewards.Add(reward);
             UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             reward.AcceptReward();
+
         }
     }
 }

@@ -41,11 +41,6 @@ namespace GameWish.Game
             }
         }
 
-        public BaseSlot GetIdlePracticeSlot()
-        {
-            return m_SlotList.FirstOrDefault(i => i.IsEmpty());
-        }
-
         private void InitSolt()
         {
             int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary);
@@ -61,25 +56,6 @@ namespace GameWish.Game
                     m_SlotList.Add(new KungfuLibraySlot(levelInfo, i, 1, m_View));
                 }
             }
-        }
-
-        public void RefreshSlotInfo(int facilityLevel)
-        {
-            m_SlotList.ForEach(i =>
-            {
-                List<KongfuLibraryLevelInfo> infos = TDFacilityKongfuLibraryTable.GetSameSoltList(i as KungfuLibraySlot);
-
-                foreach (var item in infos)
-                {
-                    if (item.level == facilityLevel)
-                    {
-                        Debug.LogError(item.level);
-                        (i as KungfuLibraySlot).Warp(item);
-                        // GameDataMgr.S.GetClanData().ownedKungfuLibraryData.RefresDBData(i as KungfuLibraySlot);
-                        EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, i);
-                    }
-                }
-            });
         }
     }
 }

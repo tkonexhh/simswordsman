@@ -8,14 +8,7 @@ namespace GameWish.Game
 {
     public class CDBaseSlot : BaseSlot
     {
-        protected virtual SlotState SlotState => SlotState.CopyScriptures;
-        // public CDBaseSlot() { }
         public CDBaseSlot(int index, int unlock, FacilityView facilityView) : base(index, unlock, facilityView) { }
-        public CDBaseSlot(SoltDBDataBase soltDBData, FacilityView facilityView) : base(soltDBData, facilityView)
-        {
-            if (slotState == SlotState)
-                InitTimerUpdate();
-        }
 
         private void InitTimerUpdate()
         {

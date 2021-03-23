@@ -17,18 +17,7 @@ namespace GameWish.Game
         /// δ����
         /// </summary>
         NotUnlocked,
-        /// <summary>
-        /// ������
-        /// </summary>
-        CopyScriptures,
-        /// <summary>
-        /// Ѳ����
-        /// </summary>
-        Patrol,
-        /// <summary>
-        /// ������
-        /// </summary>
-        Practice,
+        Busy,
     }
 
 
@@ -54,20 +43,6 @@ namespace GameWish.Game
         private CharacterController m_Character;
         private FacilityView m_FacilityView;
 
-        public BaseSlot() { }
-
-        public BaseSlot(SoltDBDataBase soltDBData, FacilityView facilityView)
-        {
-            m_FacilityView = facilityView;
-            FacilityType = facilityView.FacilityType;//soltDBData.facilityType;
-            Index = soltDBData.soltID;
-            UnlockLevel = soltDBData.unlockLevel;
-            slotState = soltDBData.practiceFieldState;
-            if (soltDBData.characterID != -1)
-                CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(soltDBData.characterID);
-            // StartTime = soltDBData.startTime;
-        }
-
         public BaseSlot(int index, int unlock, FacilityView facilityView)
         {
             Index = index;
@@ -87,20 +62,6 @@ namespace GameWish.Game
             if (CharacterItem != null && CharacterItem.id == id)
                 return true;
             return false;
-        }
-
-        public void InitSlotState(FacilityLevelInfo item)
-        {
-            // int Level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType);
-            // if (Level >= item.level)
-            //     slotState = SlotState.Free;
-            // else
-            //     slotState = SlotState.NotUnlocked;
-        }
-
-        public bool IsEmpty()
-        {
-            return m_Character == null;
         }
 
         public void OnCharacterEnter(CharacterController character)

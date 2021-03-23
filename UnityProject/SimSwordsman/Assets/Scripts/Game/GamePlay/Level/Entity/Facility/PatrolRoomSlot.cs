@@ -7,20 +7,11 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class PatrolRoomSlot : BaseSlot
-	{
-        public PatrolRoomSlot(PatrolRoomSoltDBData soltDBData,FacilityView facilityView) : base(soltDBData, facilityView)
-        {
-      
-        }
+    public class PatrolRoomSlot : BaseSlot
+    {
         public PatrolRoomSlot(PatrolRoomInfo item, int index, int unLock, FacilityView facilityView) : base(index, unLock, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
-            InitSlotState(item);
-            GameDataMgr.S.GetClanData().AddPatrolRoomData(this);
-        }
-        public PatrolRoomSlot()
-        {
         }
         public void Warp(PatrolRoomInfo patrolRoomInfo)
         {
@@ -28,29 +19,22 @@ namespace GameWish.Game
             UnlockLevel = patrolRoomInfo.level;
         }
 
-        public PatrolRoomSlot(PatrolRoomInfo patrolRoomInfo)
-        {
-        }
-
         public void SetCharacterItem(CharacterItem characterItem, SlotState slotState, FacilityType targetFacility)
         {
-
             //StartTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(curFacilityType, curLevel);
-
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
             switch (slotState)
             {
                 case SlotState.Free:
                     characterController.SetState(CharacterStateID.Wander);
                     break;
-                case SlotState.Patrol:
+                case SlotState.Busy:
                     ReturnDisciple();
                     CharacterItem = characterItem;
                     characterController.SetState(CharacterStateID.Patrol, targetFacility);
                     break;
             }
             base.slotState = slotState;
-            GameDataMgr.S.GetClanData().RefresPatrolRoomDBData(this);
         }
 
         /// <summary>
@@ -58,7 +42,7 @@ namespace GameWish.Game
         /// </summary>
         private void ReturnDisciple()
         {
-            if (CharacterItem!=null && slotState== SlotState.Patrol)
+            if (CharacterItem != null && slotState == SlotState.Busy)
             {
                 CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(CharacterItem.id);
                 characterController.SetState(CharacterStateID.Wander);

@@ -22,7 +22,6 @@ namespace GameWish.Game
         // private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
         private KungfuLibraySlot m_KungfuLibraySlotInfo = null;
-        private int m_Index;
         private CharacterItem m_SelectedDisciple = null;
         private List<KungfuLibraryDisciple> m_KungfuLibraryDisciple = new List<KungfuLibraryDisciple>();
 
@@ -31,17 +30,16 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            AudioMgr.S.PlaySound(Define.INTERFACE);
             m_ArrangeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 m_KungfuLibraySlotInfo.SelectCharacterItem(m_SelectedDisciple, FacilityType.KongfuLibrary);
-                CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(m_SelectedDisciple.id);
-                characterController.SetState(CharacterStateID.Reading, FacilityType.KongfuLibrary, DateTime.Now.ToString(), m_Index);
+                // CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(m_SelectedDisciple.id);
+                // characterController.SetState(CharacterStateID.Reading, FacilityType.KongfuLibrary, DateTime.Now.ToString(), m_KungfuLibraySlotInfo.Index);
                 // m_SelectedDisciple.SetCharacterStateData(CharacterStateID.Reading, FacilityType.KongfuLibrary, DateTime.Now.ToString(), m_Index);
                 EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, m_KungfuLibraySlotInfo);
                 //TODO ÐÞ¸´´òµã
-                DataAnalysisMgr.S.CustomEvent(DotDefine.f_copy_book, m_Index);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.f_copy_book, m_KungfuLibraySlotInfo.Index);
 
                 HideSelfWithAnim();
             });
@@ -54,13 +52,11 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            AudioMgr.S.PlaySound(Define.INTERFACE);
             BindAddListenerEvent();
             EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
-            // m_Index = (int)args[0];
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_KungfuLibraySlotInfo = (KungfuLibraySlot)args[0];
-            // m_CurFacilityType = (FacilityType)args[1];
-            // m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary);
             GetInformationForNeed();
 
             CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
@@ -113,12 +109,6 @@ namespace GameWish.Game
             }
         }
 
-        // private void CalculatePositon(Transform transform)
-        // {
-        //     m_ArrangeBtn.transform.position = transform.position;
-        // }
-
-
         private void Update()
         {
             if (IsSelected)
@@ -150,11 +140,5 @@ namespace GameWish.Game
             discipleItem.OnInit(characterItem, this);
             m_KungfuLibraryDisciple.Add(discipleItem);
         }
-
-        // private void AddListenerBtn(object obj)
-        // {
-        //     CharacterItem characterItem = obj as CharacterItem;
-        //     OnPanelHideComplete();
-        // }
     }
 }

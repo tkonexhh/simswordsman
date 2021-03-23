@@ -68,10 +68,8 @@ namespace GameWish.Game
         private FacilityConfigInfo m_FacilityConfigInfo = null;
         private PracticeFieldLevelInfo m_CurPracticeFieldLevelInfo = null;
         private PracticeFieldLevelInfo m_NextPracticeFieldLevelInfo = null;
-
-        private List<CDBaseSlot> m_AllPracticeFieldInfos = null;
         private PracticeFieldController m_CurPracticeFieldController = null;
-        private Dictionary<int, GameObject> m_PracticeEntity = new Dictionary<int, GameObject>();
+        private Dictionary<int, PracticeDisciplePos> m_PracticeEntity = new Dictionary<int, PracticeDisciplePos>();
 
         public static bool isOpened = false;
 
@@ -80,6 +78,16 @@ namespace GameWish.Game
             base.OnUIInit();
             EventSystem.S.Register(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
             BindAddListenerEvent();
+        }
+
+        protected override void OnPanelOpen(params object[] args)
+        {
+            base.OnPanelOpen(args);
+
+            isOpened = true;
+            m_CurFacilityType = (FacilityType)args[0];
+            GetInformationForNeed();
+            RefreshFixedPanelInfo();
         }
 
         private void BindAddListenerEvent()
@@ -104,7 +112,6 @@ namespace GameWish.Game
                     AddPracticeTime();
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
                     GetInformationForNeed();
-                    m_CurPracticeFieldController.RefreshPracticeUnlockInfo(m_CurFacilityType, m_CurLevel);
                     RefreshPanelInfo();
                     DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
@@ -124,7 +131,7 @@ namespace GameWish.Game
                 foreach (var item in m_PracticeEntity.Values)
                 {
                     PracticeDisciplePos practice = item.GetComponent<PracticeDisciplePos>();
-                    if (practice.GetPracticeFieldState() == SlotState.Practice)
+                    if (practice.GetSlotState() == SlotState.Busy)
                         practice.IncreaseCountDown(nextTime - curTime);
                 }
             }
@@ -142,22 +149,11 @@ namespace GameWish.Game
         private PracticeDisciplePos GetPracticeDiscipleForID(PracticeField practiceField)
         {
             if (m_PracticeEntity.ContainsKey(practiceField.Index))
-                return m_PracticeEntity[practiceField.Index].GetComponent<PracticeDisciplePos>();
+                return m_PracticeEntity[practiceField.Index];
             return null;
         }
 
-        protected override void OnPanelOpen(params object[] args)
-        {
-            base.OnPanelOpen(args);
 
-            isOpened = true;
-
-            m_CurFacilityType = (FacilityType)args[0];
-
-            GetInformationForNeed();
-
-            RefreshFixedPanelInfo();
-        }
 
         private void GetInformationForNeed()
         {
@@ -166,7 +162,6 @@ namespace GameWish.Game
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CurPracticeFieldLevelInfo = (PracticeFieldLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_CurPracticeFieldController = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
-            m_AllPracticeFieldInfos = m_CurPracticeFieldController.GetSlotList();
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
@@ -203,10 +198,12 @@ namespace GameWish.Game
 
             RefreshPanelInfo();
 
-            for (int i = 0; i < m_AllPracticeFieldInfos.Count; i++)
+            // for (int i = 0; i < m_AllPracticeFieldInfos.Count; i++)
+            //TODO 改为配置最大值
+            for (int i = 0; i < 6; i++)
             {
-                if (m_AllPracticeFieldInfos[i].FacilityType == m_CurFacilityType)
-                    CreatePracticeDisciple(m_AllPracticeFieldInfos[i] as PracticeField);
+                // if (m_AllPracticeFieldInfos[i].FacilityType == m_CurFacilityType)
+                CreatePracticeDisciple(i);
             }
         }
 
@@ -225,15 +222,16 @@ namespace GameWish.Game
             RefreshResInfo();
         }
 
-        private void CreatePracticeDisciple(PracticeField PracticeField)
+        private void CreatePracticeDisciple(int index)
         {
             GameObject obj = Instantiate(m_PracticeDisciplePos, m_PracticeDiscipleContTra);
 
             PracticeDisciplePos itemICom = obj.GetComponent<PracticeDisciplePos>();
-            itemICom.OnInit(PracticeField, null, m_CurFacilityType, this);
+            itemICom.Init(index, m_CurFacilityType, this);
+            // itemICom.OnInit(PracticeField, null, m_CurFacilityType, this);
 
-            if (!m_PracticeEntity.ContainsKey(PracticeField.Index))
-                m_PracticeEntity.Add(PracticeField.Index, obj);
+            if (!m_PracticeEntity.ContainsKey(index))
+                m_PracticeEntity.Add(index, itemICom);
         }
 
         protected override void OnPanelHideComplete()

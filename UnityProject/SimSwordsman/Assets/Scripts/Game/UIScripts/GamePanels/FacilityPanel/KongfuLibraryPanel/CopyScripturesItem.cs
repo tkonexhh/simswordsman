@@ -22,10 +22,8 @@ namespace GameWish.Game
 
         private int m_CountDown = 0;
 
-        private CDBaseSlot m_KungfuLibraySlot = null;
+        private CDBaseSlot m_Slot = null;
         private KongfuLibraryPanel m_KongfuLibraryPanel;
-        private int m_Index;
-
 
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
@@ -35,33 +33,23 @@ namespace GameWish.Game
         public void Init(int index, KongfuLibraryPanel panel)
         {
             BindAddListenerEvent();
-            m_Index = index;
             m_CopyScripturesPos.text = "抄经位:" + index;
             m_KongfuLibraryPanel = panel;
-            KongfuLibraryController kongFuController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
-            m_KungfuLibraySlot = kongFuController.GetSlotByIndex(m_Index);
+            KongfuLibraryController controller = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
+            m_Slot = controller.GetSlotByIndex(index);
 
             RefreshPracticeFieldState();
         }
 
-        // private bool CheckUnlock()
-        // {
-        //     int kongfuLibraryLvl = GameDataMgr.S.GetClanData().ownedFacilityData.GetFacilityData(FacilityType.KongfuLibrary).level;
-        //     int unlockSeat = TDFacilityKongfuLibraryTable.GetData(kongfuLibraryLvl).seat;
-        //     bool isUnlock = m_Index < unlockSeat;
-        //     return isUnlock;
-        // }
-
-        public SlotState GetPracticeFieldState()
+        public SlotState GetSlotState()
         {
-            if (m_KungfuLibraySlot != null)
-                return m_KungfuLibraySlot.slotState;
+            if (m_Slot != null)
+                return m_Slot.slotState;
             return SlotState.NotUnlocked;
         }
         public void IncreaseCountDown(int time)
         {
             CountDownItem countDown = null;
-            // countDown = TimeUpdateMgr.S.IsHavaITimeObserver(m_KungfuLibraySlot.FacilityType.ToString() + m_KungfuLibraySlot.Index);
             countDown = TimeUpdateMgr.S.IsHavaITimeObserver(GetCountDownKey());
             if (countDown != null)
                 countDown.IncreasTickTime(time);
@@ -73,7 +61,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (CheckIsEmpty())
                 {
-                    UIMgr.S.OpenPanel(UIID.KungfuChooseDisciplePanel, m_KungfuLibraySlot);
+                    UIMgr.S.OpenPanel(UIID.KungfuChooseDisciplePanel, m_Slot);
                 }
                 else
                 {
@@ -99,27 +87,19 @@ namespace GameWish.Game
 
         public void RefreshPracticeFieldState()
         {
-            if (m_KungfuLibraySlot == null)
+            if (m_Slot == null)
             {
                 UILocked();
                 return;
             }
-
-            // if (!CheckUnlock())
-            // {
-            //     UILocked();
-            //     return;
-            // }
 
             //看看有没有人在这个index上reading
             var allCharacter = MainGameMgr.S.CharacterMgr.CharacterControllerList;
             CharacterItem characterModel = null;
             for (int i = 0; i < allCharacter.Count; i++)
             {
-                // Debug.LogError(allCharacter[i].CharacterModel.CharacterItem.GetTargetFacilityType() + "--" + allCharacter[i].CharacterModel.CharacterItem.GetTargetFacilityIndex());
-                if (allCharacter[i].CharacterModel.IsAtSlot(FacilityType.KongfuLibrary, m_KungfuLibraySlot.Index))
+                if (allCharacter[i].CharacterModel.IsAtSlot(FacilityType.KongfuLibrary, m_Slot.Index))
                 {
-                    Debug.LogError("Select");
                     characterModel = allCharacter[i].CharacterModel.CharacterItem;
                     break;
                 }
@@ -143,7 +123,7 @@ namespace GameWish.Game
             m_CopyScripturesBtn.enabled = false;
             m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
             //FIXME 解锁等级
-            // m_Free.text = "抄经位" + m_Data.unlockLevel + "级后解锁";
+            m_Free.text = "抄经位" + m_Slot.UnlockLevel + "级后解锁";
             m_Time.gameObject.SetActive(false);
             m_DiscipleHead.gameObject.SetActive(false);
         }
@@ -172,7 +152,6 @@ namespace GameWish.Game
             m_Free.text = Define.COMMON_DEFAULT_STR;
             CreateCountDown();
             m_DiscipleHead.sprite = m_KongfuLibraryPanel.FindSprite(GetLoadDiscipleName(characterItem));
-            //(m_PracticeFieldInfo.StartTime);
             m_CopyScripturesBtn.enabled = false;
         }
 
@@ -189,13 +168,13 @@ namespace GameWish.Game
             TimeUpdateMgr.S.AddObserver(countDownMgr);
             countDownMgr.OnSecondRefreshEvent = refresAction;
             if (countDownMgr.OnCountDownOverEvent == null)
-                countDownMgr.OnCountDownOverEvent = m_KungfuLibraySlot.overAction;
+                countDownMgr.OnCountDownOverEvent = m_Slot.overAction;
         }
 
         private string GetCountDownKey()
         {
-            if (m_KungfuLibraySlot != null)
-                return FacilityType.KongfuLibrary.ToString() + m_KungfuLibraySlot.Index;
+            if (m_Slot != null)
+                return FacilityType.KongfuLibrary.ToString() + m_Slot.Index;
 
             throw new ArgumentNullException("m_KungfuLibraySlot");
         }
@@ -209,7 +188,7 @@ namespace GameWish.Game
 
         private int GetDuration()
         {
-            return m_KungfuLibraySlot.GetDurationTime();
+            return m_Slot.GetDurationTime();
         }
     }
 
