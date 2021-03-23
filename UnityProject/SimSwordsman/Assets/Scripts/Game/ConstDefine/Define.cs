@@ -292,5 +292,9 @@ namespace GameWish.Game
         public const string Bubble = "Bubble";
         public const string Facility = "Facility";
         #endregion
+
+        #region collect system
+        public const string IsClickCollectSytemBubble = "IsClickCollectSytemBubble";
+        #endregion
     }
 }
