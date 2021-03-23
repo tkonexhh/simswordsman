@@ -11,6 +11,8 @@ namespace GameWish.Game
         private TDCollectConfig m_TempCollectConfigDataTable;
         private CollectSystemItemData m_TempCollectItemData;
 
+        private int m_GuideTimerID = -1;
+
         private int GetLobbyFacilityCurLevel
         {
             get {
@@ -23,7 +25,33 @@ namespace GameWish.Game
             CheckData();
 
             OnCollectItemTypeCountChangedCallBack();
+
+            CheckCollectSystemGuideIsFinished();
         }
+        /// <summary>
+        /// 检测收集系统引导是否完成
+        /// </summary>
+        private void CheckCollectSystemGuideIsFinished()
+        {
+            if (PlayerPrefs.GetInt(Define.IsClickCollectSytemBubble, -1) < 0) 
+            {
+                if (GuideMgr.S.IsGuideFinish(26) == false)
+                {
+                    m_TempCollectConfigDataTable = TDCollectConfigTable.GetData(1);
+
+                    m_GuideTimerID = Timer.S.Post2Really((x) =>
+                    {
+                        if (GameDataMgr.S.GetClanData().GetCollectItemDataRewardCount(1) >= 5)
+                        {
+                            EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
+
+                            Timer.S.Cancel(m_GuideTimerID);
+                        }
+                    }, m_TempCollectConfigDataTable.productTime, -1);
+                }
+            }                        
+        }
+
         private void OnCollectItemTypeCountChangedCallBack()
         {
             int typeCount = 0;
@@ -78,7 +106,7 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnCollectCountChange, collectID);
 
-                EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
+                //EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
                 
                 OnCollectItemTypeCountChangedCallBack();
             });

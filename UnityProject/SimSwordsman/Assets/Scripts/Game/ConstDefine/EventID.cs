@@ -251,7 +251,7 @@ namespace GameWish.Game
         OnVisitorBtnNormalTipTrigger = 11901,//访客系统
         OnGuideUnlockWarehouse = 12001,
         OnGuideClickTaskTrigger2,
-        OnGuideReceiveTaskRewardClickBtnTrigger2 = 11601,
+        OnGuideReceiveTaskRewardClickBtnTrigger2,
 
         OnGuideDialog8,
 
@@ -339,6 +339,22 @@ namespace GameWish.Game
         OnChallengeSystemTrigger_ClickAKeyChoiceTrigger,//点击一键选择
         OnChallengeSystemTrigger_ClickStartChallengeTrigger,//点击开始战斗
         #endregion
+
+        #region 招募系统
+        OnRecruitmentSystem_IntroduceTrigger1 = 13301,
+        OnRecruitmentSystem_IntroduceTrigger2,
+        OnRecruitmentSystem_ClickLobbyFacilityTrigger,
+        OnRecruitmentSystem_ClickGetCharacterTrigger,
+        #endregion
+
+        #region 签到系统
+        OnSignInSystem_IntroduceTrigger = 13401,
+        OnSignInSystem_ClickSignBtnTrigger,
+        OnSignInSystem_ClickSignReceiveBtnTrigger,        
+        #endregion
+
+        OnRecruitmentSystem_FinishedTrigger = 13501,
+        OnSignInSystem_FinishedTrigger = 13601,
 
         OnShowMaskWithAlphaZeroPanel,//显示一个透明的遮罩面板，防止误触
 

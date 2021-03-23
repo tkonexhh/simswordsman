@@ -138,6 +138,17 @@ namespace GameWish.Game
 
             GuideMgr.S.RegisterGuideTrigger(typeof(FoodNotEnoughTrigger_IntroduceTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(FoodNotEnoughTrigger_ClickFoodBtnBrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(RecruitmentSystem_IntroduceTrigger1));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RecruitmentSystem_IntroduceTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RecruitmentSystem_ClickLobbyFacilityTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RecruitmentSystem_ClickGetCharacterTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RecruitmentSystem_FinishedTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_ClickSignBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_ClickSignReceiveBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_FinishedTrigger));
         }
 
         protected void InitCustomCommand()

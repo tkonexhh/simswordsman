@@ -40,10 +40,10 @@ namespace GameWish.Game
 
         private void OnCloseAllUIPanelCallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuiding())
-            {
-                return;
-            }
+            //if (GuideMgr.S.IsGuiding())
+            //{
+            //    return;
+            //}
             UIMgr.S.ClosePanelAsUIID(UIID.SignInPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardChooseDisciple);
@@ -196,10 +196,23 @@ namespace GameWish.Game
             }
 
             bool isHaveDiscipleLevelGreate30 = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsHaveCharacterLevelGreaterNumber(30);
-            if (isHaveDiscipleLevelGreate30) {
+            
+            if (isHaveDiscipleLevelGreate30) 
+            {                
                 bool isHaveArms = GameDataMgr.S.GetClanData().inventoryData.IsHaveFreeArms();
-                if (isHaveArms) {
-                    EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
+                
+                if (isHaveArms) 
+                {
+                    Timer.S.Post2Really((x) =>
+                    {
+                        if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                        {
+                            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                            OnCloseAllUIPanelCallBack(0, null);
+                        }
+
+                        EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
+                    }, .3f, 1);
                 }
             }
         }
@@ -214,14 +227,25 @@ namespace GameWish.Game
             {
                 return;
             }
+            
             bool isHaveDiscipleLevelGreate10 = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsHaveCharacterLevelGreaterNumber(10);
 
             if (isHaveDiscipleLevelGreate10)
             {
                 bool isHaveKungFu = GameDataMgr.S.GetClanData().inventoryData.IsHaveFreeKungFu();
 
-                if (isHaveKungFu) {
-                    EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
+                if (isHaveKungFu) 
+                {
+                    Timer.S.Post2Really((x)=> 
+                    {
+                        if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                        {
+                            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                            OnCloseAllUIPanelCallBack(0, null);
+                        }
+
+                        EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
+                    },.3f,1);                    
                 }                
             }
         }

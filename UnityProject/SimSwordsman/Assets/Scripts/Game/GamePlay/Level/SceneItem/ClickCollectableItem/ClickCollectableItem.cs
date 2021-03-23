@@ -33,7 +33,8 @@ namespace GameWish.Game
             CollectSystem.S.Collect(id);
             isGuide = false;
             CollectView.gameObject.SetActive(false);
+
+            PlayerPrefs.SetInt(Define.IsClickCollectSytemBubble, 1);
         }
-	}
-	
+	}	
 }
