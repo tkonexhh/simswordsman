@@ -32,6 +32,8 @@ namespace GameWish.Game
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
         public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
 
+        public bool IsMainMenuPanelOpen = false;
+
         private bool m_IsInited = false;
 
         #region IMgr

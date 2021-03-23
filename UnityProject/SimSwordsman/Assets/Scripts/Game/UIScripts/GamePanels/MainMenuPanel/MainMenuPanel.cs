@@ -192,6 +192,7 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             base.OnOpen();
+            MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             //GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
             RefreshPanelInfo();
@@ -199,8 +200,10 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-
+            
             UnregisterEvents();
+
+            MainGameMgr.S.IsMainMenuPanelOpen = false;
         }
 
         private void RefreshPanelInfo()
