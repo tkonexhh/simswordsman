@@ -88,7 +88,24 @@ namespace GameWish.Game
 
             m_IsLoadingBarFinished = true;
 
+            SendSplitChannelData();
+
             yield return null;
+        }
+
+        private void SendSplitChannelData()
+        {
+            string channelName = CustomExtensions.GetSDKChannel();
+            Debug.LogError("split channel:" + channelName);
+#if UNITY_ANDROID
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("channel", channelName);
+            DataAnalysisMgr.S.CustomEventDic("split_channel", dic);
+#else
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("channel", channelName);
+            DataAnalysisMgr.S.CustomEventDic("split_channel", dic);
+#endif
         }
 
         private void OnGamePauseChange(int key, params object[] args)
