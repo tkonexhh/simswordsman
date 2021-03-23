@@ -65,9 +65,8 @@ namespace GameWish.Game
         private KongfuLibraryLevelInfo m_CurKongfuLibraryLevelInfo = null;
         private KongfuLibraryLevelInfo m_NextFacilityLevelInfo = null;
         private KongfuLibraryController m_CurKongfuLibraryController = null;
-        private List<CDBaseSlot> m_ReadingSlotList = null;
 
-        private Dictionary<int, GameObject> m_KongfuLibrarySoltInfo = new Dictionary<int, GameObject>();
+        private Dictionary<int, CopyScripturesItem> m_KongfuLibrarySoltInfo = new Dictionary<int, CopyScripturesItem>();
 
         public static bool isOpened = false;
 
@@ -80,10 +79,25 @@ namespace GameWish.Game
             BindAddListenerEvent();
         }
 
+        protected override void OnPanelOpen(params object[] args)
+        {
+            isOpened = true;
+
+            base.OnPanelOpen(args);
+            m_CurFacilityType = (FacilityType)args[0];
+            GetInformationForNeed();
+
+            RefreshPanelInfo();
+        }
+
         private void HandleAddListenEvent(int key, object[] param)
         {
-            GetPracticeDiscipleForID((KungfuLibraySlot)param[0]).RefreshPracticeFieldState();
+            // int index = (int)param[0];
+            // GetSlotByIndex(index).RefreshPracticeFieldState();
+            var slot = ((KungfuLibraySlot)param[0]);
+            GetPracticeDiscipleForID(slot).RefreshPracticeFieldState();
         }
+
         /// <summary>
         /// 获取具体的坑位
         /// </summary>
@@ -92,7 +106,7 @@ namespace GameWish.Game
         private CopyScripturesItem GetPracticeDiscipleForID(KungfuLibraySlot kungfuLibraySlot)
         {
             if (m_KongfuLibrarySoltInfo.ContainsKey(kungfuLibraySlot.Index))
-                return m_KongfuLibrarySoltInfo[kungfuLibraySlot.Index].GetComponent<CopyScripturesItem>();
+                return m_KongfuLibrarySoltInfo[kungfuLibraySlot.Index];//.GetComponent<CopyScripturesItem>();
             return null;
         }
 
@@ -107,9 +121,11 @@ namespace GameWish.Game
 
             RefreshPanelText();
 
-            for (int i = 0; i < m_ReadingSlotList.Count; i++)
+            // for (int i = 0; i < m_ReadingSlotList.Count; i++)
+            //TODO 改为配置最大值
+            for (int i = 0; i < 4; i++)
             {
-                CreateCopyScripturesItem(m_ReadingSlotList[i] as KungfuLibraySlot);
+                CreateCopyScripturesItem(i);
             }
         }
 
@@ -151,7 +167,7 @@ namespace GameWish.Game
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             m_CurKongfuLibraryLevelInfo = (KongfuLibraryLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
             m_CurKongfuLibraryController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
-            m_ReadingSlotList = m_CurKongfuLibraryController.GetSlotList();
+            // m_ReadingSlotList = m_CurKongfuLibraryController.GetSlotList();
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
@@ -239,16 +255,7 @@ namespace GameWish.Game
             }
         }
 
-        protected override void OnPanelOpen(params object[] args)
-        {
-            isOpened = true;
 
-            base.OnPanelOpen(args);
-            m_CurFacilityType = (FacilityType)args[0];
-            GetInformationForNeed();
-
-            RefreshPanelInfo();
-        }
 
         protected override void OnPanelHideComplete()
         {
@@ -256,12 +263,15 @@ namespace GameWish.Game
             CloseSelfPanel();
         }
 
-        private void CreateCopyScripturesItem(KungfuLibraySlot kungfuLibraySlot)
+        private void CreateCopyScripturesItem(int index)
         {
             GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
             CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
-            itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType, this);
-            m_KongfuLibrarySoltInfo.Add(kungfuLibraySlot.Index, game);
+            itemICom.Init(index, this);
+            // m_LstCopyScripturesItem.Add(itemICom);
+            // itemICom.OnInit(kungfuLibraySlot, null, m_CurFacilityType, this);
+            // m_KongfuLibrarySoltInfo.Add(kungfuLibraySlot.Index, game);
+            m_KongfuLibrarySoltInfo.Add(index, itemICom);
         }
 
         protected override void OnClose()

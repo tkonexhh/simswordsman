@@ -199,7 +199,7 @@ namespace GameWish.Game
             return CharacterKongfu.dbData.kongfuType;
         }
 
-        internal void Wrap(CharacterKongfuDBData i,CharacterItem characterItem)
+        internal void Wrap(CharacterKongfuDBData i, CharacterItem characterItem)
         {
             m_CharacterItem = characterItem;
             Index = i.index;
@@ -232,8 +232,6 @@ namespace GameWish.Game
         public int headId;
         public CollectedObjType collectedObjType;
 
-        private CharacterStageInfoItem stageInfo;
-
 
         private CharacterItemDbData m_ItemDbData = null;
 
@@ -250,7 +248,7 @@ namespace GameWish.Game
         public CharacterItem()
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
-                kongfus.Add(i + 1, new CharacterKongfuData(i + 1,this));
+                kongfus.Add(i + 1, new CharacterKongfuData(i + 1, this));
         }
 
         #region Get
@@ -280,10 +278,10 @@ namespace GameWish.Game
         /// 设置人物的状态
         /// </summary>
         /// <param name="stateId"></param>
-        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType)
+        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
         {
             this.characterStateId = stateId;
-            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType);
+            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index);
         }
 
         public void SetCurTask(SimGameTask task)
@@ -326,12 +324,12 @@ namespace GameWish.Game
             itemDbData.kongfuDatas.ForEach(i =>
             {
                 CharacterKongfuData kongfu = new CharacterKongfuData();
-                kongfu.Wrap(i,this);
+                kongfu.Wrap(i, this);
                 kongfus[i.index] = kongfu;
             });
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
-            stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
+            // stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
             CalculateForceValue();
         }
 
@@ -556,7 +554,17 @@ namespace GameWish.Game
 
         public FacilityType GetTargetFacilityType()
         {
-            return m_ItemDbData.targetFacility;
+            return m_ItemDbData.facilityData.targetFacility;
+        }
+
+        public int GetTargetFacilityIndex()
+        {
+            return m_ItemDbData.facilityData.id;
+        }
+
+        public string GetTargetFacilityStartTime()
+        {
+            return m_ItemDbData.facilityData.startTime;
         }
 
         public int CompareTo(object obj)

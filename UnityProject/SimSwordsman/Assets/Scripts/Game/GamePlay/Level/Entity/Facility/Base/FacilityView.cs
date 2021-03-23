@@ -26,6 +26,9 @@ namespace GameWish.Game
         private ResLoader m_ResLoader;
         private int PlayParticleEffectsTime = 1;
         private GameObject m_ParticleEffects;
+
+        public FacilityType FacilityType => facilityType;
+
         private void Awake()
         {
             Init();
@@ -128,7 +131,7 @@ namespace GameWish.Game
                         StartCoroutine(PlayConsParticleEffects(0));
                         return;
                     }
-                    if (m_SubItem!=null)
+                    if (m_SubItem != null)
                         m_SubItem.SetActive(false);
                     CreateEffects();
                     StartCoroutine(PlayConsParticleEffects(PlayParticleEffectsTime));

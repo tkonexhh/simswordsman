@@ -85,6 +85,10 @@ namespace GameWish.Game
 
         private void AddKongfuToPool(KongfuAnimConfig kongfu)
         {
+            KongfuAnimConfig config;
+            if (m_KongfuAnimMap.TryGetValue(kongfu.animName, out config))//已经添加过了
+                return;
+
             if (kongfu == null)
                 return;
             kongfu.ParpareEffectPool();

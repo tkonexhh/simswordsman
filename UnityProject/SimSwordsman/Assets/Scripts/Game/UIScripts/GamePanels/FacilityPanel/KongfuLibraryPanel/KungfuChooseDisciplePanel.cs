@@ -9,23 +9,20 @@ namespace GameWish.Game
 {
     public class KungfuChooseDisciplePanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Button m_CloseBtn;
-        [SerializeField]
-        private Transform m_SelectedList;
-        [SerializeField]
-        private GameObject m_Disciple;
-        [SerializeField]
-        private Button m_ArrangeBtn;
+        [SerializeField] private Button m_CloseBtn;
+        [SerializeField] private Transform m_SelectedList;
+        [SerializeField] private GameObject m_Disciple;
+        [SerializeField] private Button m_ArrangeBtn;
 
         private const int Rows = 5;
         private const float DiscipleHeight = 153.5f;
         private const float BtnHeight = 38f;
 
-        private FacilityType m_CurFacilityType;
-        private int m_CurLevel;
+        // private FacilityType m_CurFacilityType;
+        // private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
         private KungfuLibraySlot m_KungfuLibraySlotInfo = null;
+        private int m_Index;
         private CharacterItem m_SelectedDisciple = null;
         private List<KungfuLibraryDisciple> m_KungfuLibraryDisciple = new List<KungfuLibraryDisciple>();
 
@@ -38,10 +35,13 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                m_KungfuLibraySlotInfo.SelectCharacterItem(m_SelectedDisciple, m_CurFacilityType);
+                m_KungfuLibraySlotInfo.SelectCharacterItem(m_SelectedDisciple, FacilityType.KongfuLibrary);
+                CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(m_SelectedDisciple.id);
+                characterController.SetState(CharacterStateID.Reading, FacilityType.KongfuLibrary, DateTime.Now.ToString(), m_Index);
+                // m_SelectedDisciple.SetCharacterStateData(CharacterStateID.Reading, FacilityType.KongfuLibrary, DateTime.Now.ToString(), m_Index);
                 EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, m_KungfuLibraySlotInfo);
-
-                DataAnalysisMgr.S.CustomEvent(DotDefine.f_copy_book, m_KungfuLibraySlotInfo.Index.ToString());
+                //TODO ÐÞ¸´´òµã
+                DataAnalysisMgr.S.CustomEvent(DotDefine.f_copy_book, m_Index);
 
                 HideSelfWithAnim();
             });
@@ -56,11 +56,11 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             BindAddListenerEvent();
             EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
-
+            // m_Index = (int)args[0];
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_KungfuLibraySlotInfo = (KungfuLibraySlot)args[0];
-            m_CurFacilityType = (FacilityType)args[1];
-            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
+            // m_CurFacilityType = (FacilityType)args[1];
+            // m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary);
             GetInformationForNeed();
 
             CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
@@ -113,15 +113,11 @@ namespace GameWish.Game
             }
         }
 
-        private void CalculatePositon(Transform transform)
-        {
-            m_ArrangeBtn.transform.position = transform.position;
-        }
+        // private void CalculatePositon(Transform transform)
+        // {
+        //     m_ArrangeBtn.transform.position = transform.position;
+        // }
 
-        private void LateUpdate()
-        {
-
-        }
 
         private void Update()
         {
@@ -155,10 +151,10 @@ namespace GameWish.Game
             m_KungfuLibraryDisciple.Add(discipleItem);
         }
 
-        private void AddListenerBtn(object obj)
-        {
-            CharacterItem characterItem = obj as CharacterItem;
-            OnPanelHideComplete();
-        }
+        // private void AddListenerBtn(object obj)
+        // {
+        //     CharacterItem characterItem = obj as CharacterItem;
+        //     OnPanelHideComplete();
+        // }
     }
 }

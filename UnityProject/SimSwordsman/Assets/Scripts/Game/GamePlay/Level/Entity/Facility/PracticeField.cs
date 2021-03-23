@@ -24,7 +24,7 @@ namespace GameWish.Game
         {
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
 
-            StartTime = DateTime.Now.ToString();
+            // StartTime = DateTime.Now.ToString();
             CharacterItem = characterItem;
             characterController.SetState(CharacterStateID.Practice, targetFacility);
 

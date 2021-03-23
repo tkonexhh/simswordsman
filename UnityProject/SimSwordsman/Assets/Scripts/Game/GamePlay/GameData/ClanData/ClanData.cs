@@ -11,11 +11,10 @@ namespace GameWish.Game
 
         public FacilityDbData ownedFacilityData = new FacilityDbData();
         public PracticeFieldData ownedPracticeFieldData = new PracticeFieldData();
-        public KungfuLibraryData ownedKungfuLibraryData = new KungfuLibraryData();
+        // public KungfuLibraryData ownedKungfuLibraryData = new KungfuLibraryData();
         public PatrolRoomData ownedPatrolRoomData = new PatrolRoomData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
-        // public KongfuData kongfuData = new KongfuData();
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
         public List<WorkItemData> WorkItemDataList = new List<WorkItemData>();
         public List<FoodBuffData> FoodBufferDataList = new List<FoodBuffData>();
@@ -27,6 +26,10 @@ namespace GameWish.Game
             SetDataDirty();
 
             ownedFacilityData.SetDefaultValue();
+        }
+
+        public void OnDataLoadFinish()
+        {
         }
 
         public void OnReset()
@@ -83,30 +86,20 @@ namespace GameWish.Game
         }
         #endregion
 
-        #region KungfuLibrary
-        public List<KungfuSoltDBData> GetKungfuLibraryData()
-        {
-            return ownedKungfuLibraryData.GetKungfuLibrayData();
-        }
-        public void AddKungfuLibraryData(KungfuLibraySlot kungfuLibraySlot)
-        {
-            ownedKungfuLibraryData.AddKungfuLibrayData(kungfuLibraySlot);
+        // #region KungfuLibrary
+        // public void RefresKungfuDBData(KungfuLibraySlot kungfuLibraySlot)
+        // {
+        //     ownedKungfuLibraryData.RefresDBData(kungfuLibraySlot);
 
-            SetDataDirty();
-        }
-        public void RefresKungfuDBData(KungfuLibraySlot kungfuLibraySlot)
-        {
-            ownedKungfuLibraryData.RefresDBData(kungfuLibraySlot);
+        //     SetDataDirty();
+        // }
+        // public void KungfuTrainingIsOver(KungfuLibraySlot kungfuLibraySlot)
+        // {
+        //     ownedKungfuLibraryData.TrainingIsOver(kungfuLibraySlot);
 
-            SetDataDirty();
-        }
-        public void KungfuTrainingIsOver(KungfuLibraySlot kungfuLibraySlot)
-        {
-            ownedKungfuLibraryData.TrainingIsOver(kungfuLibraySlot);
-
-            SetDataDirty();
-        }
-        #endregion
+        //     SetDataDirty();
+        // }
+        // #endregion
         #region PatrolRoom
         public List<PatrolRoomSoltDBData> GetPatrolRoomData()
         {
@@ -245,9 +238,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType)
+        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
         {
-            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType);
+            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index);
 
             SetDataDirty();
         }
@@ -593,11 +586,12 @@ namespace GameWish.Game
         #endregion
 
         #region bai cao wu system
-        public BaiCaoWuData GetBaiCaoWuData(int herbID) {
+        public BaiCaoWuData GetBaiCaoWuData(int herbID)
+        {
             BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
             return data;
         }
-        public BaiCaoWuData AddBaiCaoWuData(int herbID) 
+        public BaiCaoWuData AddBaiCaoWuData(int herbID)
         {
             BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
 
@@ -609,7 +603,8 @@ namespace GameWish.Game
                 data = new BaiCaoWuData(herbID, DateTime.Now, endTime);
                 BaiCaoWuDataList.Add(data);
             }
-            else {
+            else
+            {
                 data.UpdateData(DateTime.Now, endTime);
             }
 
@@ -617,11 +612,11 @@ namespace GameWish.Game
 
             return data;
         }
-        public void RemoveBaiCaoWuData(int herbID) 
+        public void RemoveBaiCaoWuData(int herbID)
         {
             BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
 
-            if (data != null) 
+            if (data != null)
             {
                 CountDowntMgr.S.StopCountDownItemTest(data.GetCountDownID());
 
@@ -630,22 +625,22 @@ namespace GameWish.Game
                 SetDataDirty();
             }
         }
-        public void UpdateBaiCaoWuData(int herbID,int reduceTime) 
+        public void UpdateBaiCaoWuData(int herbID, int reduceTime)
         {
             BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
-            
-            if (data != null) 
+
+            if (data != null)
             {
                 data.AlreadyPassTime += reduceTime;
 
                 SetDataDirty();
             }
         }
-        public void UpdateBaiCaoWuDataCountDownID(int herbID, int countDownID) 
+        public void UpdateBaiCaoWuDataCountDownID(int herbID, int countDownID)
         {
             BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
 
-            if (data != null) 
+            if (data != null)
             {
                 data.SetCouontDownID(countDownID);
 
