@@ -40,7 +40,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_KungfuAddition;
         [SerializeField]
-        private Text m_RestrictionsValue;
+        private Text m_RestrictionsValue;        
+        [SerializeField]
+        private GameObject m_KungfuRedPoint;
 
         private int m_CurIndex;
         private CharacterKongfu m_CharacterKongfu = null;

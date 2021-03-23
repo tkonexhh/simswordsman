@@ -77,6 +77,8 @@ namespace GameWish.Game
         private Button m_IntensifyArmorBtn;
         [SerializeField]
         private Text m_IntensifyArmorValue;
+        [SerializeField]
+        private GameObject m_ArmorRedPoint;
 
         [Header("RightLowerMiddle")]
         [SerializeField]
@@ -101,6 +103,8 @@ namespace GameWish.Game
         private Button m_IntensifyArmsBtn;
         [SerializeField]
         private Text m_IntensifyArmsValue;
+        [SerializeField]
+        private GameObject m_ArmsRedPoint;
 
         [Header("Bottom")]
         [SerializeField]

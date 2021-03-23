@@ -288,9 +288,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void AddCharacterExp(CharacterItemDbData item, int deltaExp)
+        public void RefreshCurExp(CharacterItemDbData item, int deltaExp)
         {
-            ownedCharacterData.AddExp(item, deltaExp);
+            ownedCharacterData.RefreshCurExp(item, deltaExp);
 
             SetDataDirty();
         }
