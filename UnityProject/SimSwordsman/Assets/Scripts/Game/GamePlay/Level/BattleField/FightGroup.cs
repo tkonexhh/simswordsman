@@ -147,7 +147,7 @@ namespace GameWish.Game
 
             float attackRange = 1f;
 
-            if (atkRangeList != null)
+            if (atkRangeList != null && atkRangeList.Count > 0)
             {
                 attackRange = atkRangeList[0];
             }
