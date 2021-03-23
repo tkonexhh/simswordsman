@@ -213,6 +213,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
         }
 
         /// <summary>

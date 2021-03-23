@@ -41,6 +41,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
+        private GameObject m_DiscipleRedPoint;
+        [SerializeField]
         private Button TrialRunBtn;
         [SerializeField]
         private Button m_ChallengeBtn;
@@ -63,7 +65,6 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             RegisterEvents();
-
             m_SettingBtn.onClick.AddListener(() =>
             {
                 //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
@@ -189,6 +190,23 @@ namespace GameWish.Game
             });
         }
 
+        private void HandListenerEvent(int key, object[] param)
+        {
+            if ((EventID)key == EventID.OnMainMenuOrDiscipleRedPoint)
+            {
+                List<CharacterItem> characterItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+                foreach (var item in characterItemList)
+                {
+                    if (item.CheckDiscipelPanel())
+                    {
+                        m_DiscipleRedPoint.SetActive(true);
+                        return;
+                    }
+                }
+                m_DiscipleRedPoint.SetActive(false);
+            }
+        }
+
         protected override void OnOpen()
         {
             base.OnOpen();
@@ -256,6 +274,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.Register(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.Register(EventID.OnFoodRefreshEvent, HandleEvent);
+            EventSystem.S.Register(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
         }
 
         private void UnregisterEvents()
@@ -265,6 +284,8 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.UnRegister(EventID.OnFoodRefreshEvent, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
+
         }
 
         private void HandleEvent(int key, params object[] param)

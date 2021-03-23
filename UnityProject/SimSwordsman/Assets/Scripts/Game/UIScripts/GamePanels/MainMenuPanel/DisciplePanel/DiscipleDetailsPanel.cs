@@ -159,6 +159,7 @@ namespace GameWish.Game
             //m_WorkValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_WORK);
             m_EjectValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_EJECT);
 
+          
         }
 
         private string GetLoadDiscipleName(CharacterItem characterItem)
@@ -255,6 +256,8 @@ namespace GameWish.Game
 
         private void RefreshArmsInfo()
         {
+            m_ArmsRedPoint.SetActive(m_CurDisciple.CheckArms());
+
             if (m_CurDisciple.characeterEquipmentData.IsArmsUnlock)
             {
                 m_ArmsState = EquipBtnState.UnLock;
@@ -301,6 +304,7 @@ namespace GameWish.Game
         }
         private void RefreshArmorInfo()
         {
+            m_ArmorRedPoint.SetActive(m_CurDisciple.CheckArmor());
             if (m_CurDisciple.characeterEquipmentData.IsArmorUnlock)
             {
                 m_ArmorState = EquipBtnState.UnLock;
@@ -450,6 +454,7 @@ namespace GameWish.Game
                 RefershIntensifyArmorImg();
 
                 PanelPool.S.DisplayPanel();
+                EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArmor.ArmorID.ToString() + ";" + characterArmor.Class.ToString());
             });
@@ -498,7 +503,7 @@ namespace GameWish.Game
                 RefershIntensifyArmsImg();
 
                 PanelPool.S.DisplayPanel();
-
+                EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArms.ArmsID.ToString()+";"+ characterArms.Class.ToString());
             });
         }
@@ -553,6 +558,7 @@ namespace GameWish.Game
                     RefreshArmorInfo();
                     RefreshSkillValue();
                     RefershIntensifyImg();
+                    EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
                     break;
                 case EventID.OnRefreshDisciple:
                     break;
