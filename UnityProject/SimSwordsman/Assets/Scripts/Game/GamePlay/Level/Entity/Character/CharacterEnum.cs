@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public enum CharacterQuality
-	{
+    public enum CharacterQuality
+    {
         /// <summary>
         /// Æ½Ãñ¼¶
         /// </summary>
@@ -20,7 +20,7 @@ namespace GameWish.Game
         /// </summary>
         Perfect = 3,
         //Excellent = 4,
-	}
+    }
 
     public enum UnlockContent
     {
@@ -34,10 +34,5 @@ namespace GameWish.Game
     {
         OurCamp,
         EnemyCamp,
-    }
-    public enum CharacterBehavior
-    {
-        Free,
-        Working,
     }
 }

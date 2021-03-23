@@ -15,21 +15,19 @@ namespace GameWish.Game
         public PatrolRoomData ownedPatrolRoomData = new PatrolRoomData();
         public CharacterDbData ownedCharacterData = new CharacterDbData();
         public InventoryDbData inventoryData = new InventoryDbData();
-        public KongfuData kongfuData = new KongfuData();
+        // public KongfuData kongfuData = new KongfuData();
         public List<RawMatItemData> rawMatItemDataList = new List<RawMatItemData>();
         public List<WorkItemData> WorkItemDataList = new List<WorkItemData>();
         public List<FoodBuffData> FoodBufferDataList = new List<FoodBuffData>();
+        public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
+        public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
+        public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
 
         public void SetDefaultValue()
         {
             SetDataDirty();
 
             ownedFacilityData.SetDefaultValue();
-        }
-
-        public void Init()
-        {
-
         }
 
         public void OnReset()
@@ -420,16 +418,16 @@ namespace GameWish.Game
 
         #endregion
 
-        #region Kongfu
+        // #region Kongfu
 
-        public void UnlockKongfu(KungfuType kongfuType)
-        {
-            kongfuData.UnlockKongfu(kongfuType);
+        // public void UnlockKongfu(KungfuType kongfuType)
+        // {
+        //     kongfuData.UnlockKongfu(kongfuType);
 
-            SetDataDirty();
-        }
+        //     SetDataDirty();
+        // }
 
-        #endregion
+        // #endregion
 
         #region RawMatItem
         public string GetLastJobFinishedTime(CollectedObjType collectedObjType)
@@ -525,7 +523,7 @@ namespace GameWish.Game
         #endregion
 
         #region food buffer system
-        public void AddFoodBuffData(int foodBufferID,DateTime startTime,DateTime endTime) 
+        public void AddFoodBuffData(int foodBufferID, DateTime startTime, DateTime endTime)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == foodBufferID);
             if (data != null)
@@ -533,25 +531,27 @@ namespace GameWish.Game
                 data.StartTime = startTime;
                 data.EndTime = endTime;
             }
-            else {
+            else
+            {
                 FoodBufferDataList.Add(new FoodBuffData(foodBufferID, startTime, endTime));
             }
 
             SetDataDirty();
         }
-        public void RemoveFoodBuffData(int foodBufferID) 
+        public void RemoveFoodBuffData(int foodBufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == foodBufferID);
-            if (data != null) {
+            if (data != null)
+            {
                 FoodBufferDataList.Remove(data);
                 SetDataDirty();
             }
         }
-        public FoodBuffData GetFoodBuffData(int bufferID) 
+        public FoodBuffData GetFoodBuffData(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
-            if (data != null && data.IsBufferActive() == false) 
+            if (data != null && data.IsBufferActive() == false)
             {
                 FoodBufferDataList.Remove(data);
                 SetDataDirty();
@@ -559,18 +559,18 @@ namespace GameWish.Game
             }
             return data;
         }
-        public bool IsBuffActiveState(int bufferID) 
+        public bool IsBuffActiveState(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
-            if (data != null) 
+            if (data != null)
             {
                 return data.IsBufferActive();
             }
             return false;
         }
 
-        public string GetBuffRemainTime(int bufferID) 
+        public string GetBuffRemainTime(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
@@ -581,13 +581,184 @@ namespace GameWish.Game
             return string.Empty;
         }
 
-        public float GetBuffRemainProgress(int bufferID) 
+        public float GetBuffRemainProgress(int bufferID)
         {
             FoodBuffData data = FoodBufferDataList.FirstOrDefault(x => x.FoodBufferID == bufferID);
 
             if (data != null)
             {
                 return data.GetRemainProgress();
+            }
+            return 0;
+        }
+        #endregion
+
+        #region bai cao wu system
+        public BaiCaoWuData GetBaiCaoWuData(int herbID) {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+            return data;
+        }
+        public BaiCaoWuData AddBaiCaoWuData(int herbID) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+
+            TDHerbConfig herbData = TDHerbConfigTable.GetData(herbID);
+            DateTime endTime = DateTime.Now.AddMinutes(herbData.makeTime);
+
+            if (data == null)
+            {
+                data = new BaiCaoWuData(herbID, DateTime.Now, endTime);
+                BaiCaoWuDataList.Add(data);
+            }
+            else {
+                data.UpdateData(DateTime.Now, endTime);
+            }
+
+            SetDataDirty();
+
+            return data;
+        }
+        public void RemoveBaiCaoWuData(int herbID) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+
+            if (data != null) 
+            {
+                CountDowntMgr.S.StopCountDownItemTest(data.GetCountDownID());
+
+                BaiCaoWuDataList.Remove(data);
+
+                SetDataDirty();
+            }
+        }
+        public void UpdateBaiCaoWuData(int herbID,int reduceTime) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+            
+            if (data != null) 
+            {
+                data.AlreadyPassTime += reduceTime;
+
+                SetDataDirty();
+            }
+        }
+        public void UpdateBaiCaoWuDataCountDownID(int herbID, int countDownID) 
+        {
+            BaiCaoWuData data = BaiCaoWuDataList.FirstOrDefault(x => x.HerbID == herbID);
+
+            if (data != null) 
+            {
+                data.SetCouontDownID(countDownID);
+
+                SetDataDirty();
+            }
+        }
+        #endregion
+
+        #region forge house system
+        public ForgeHouseItemData GetForgeHouseItemData(int forgeHouseID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+            return data;
+        }
+        public ForgeHouseItemData AddForgeHouseItemData(int forgeHouseID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+
+            TDEquipmentConfig equipmentConfig = TDEquipmentConfigTable.GetData(forgeHouseID);
+            DateTime endTime = DateTime.Now.AddSeconds(equipmentConfig.forgeTime);
+
+            if (data == null)
+            {
+                data = new ForgeHouseItemData(forgeHouseID, DateTime.Now, endTime);
+                ForgeHouseItemDataList.Add(data);
+            }
+            else
+            {
+                data.UpdateData(DateTime.Now, endTime);
+            }
+
+            SetDataDirty();
+
+            return data;
+        }
+        public void UpdateForgeHouseItemData(int forgeHouseID, int reduceTime)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+
+            if (data != null)
+            {
+                data.AlreadyPassTime += reduceTime;
+
+                SetDataDirty();
+            }
+        }
+        public void UpdateForgeHouseItemDataCountDownID(int herbID, int countDownID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == herbID);
+
+            if (data != null)
+            {
+                data.SetCouontDownID(countDownID);
+
+                SetDataDirty();
+            }
+        }
+        public void RemoveForgeHouseItemData(int forgeHouseID)
+        {
+            ForgeHouseItemData data = ForgeHouseItemDataList.FirstOrDefault(x => x.ForgeHouseItemID == forgeHouseID);
+
+            if (data != null)
+            {
+                CountDowntMgr.S.StopCountDownItemTest(data.GetCountDownID());
+
+                ForgeHouseItemDataList.Remove(data);
+
+                SetDataDirty();
+            }
+        }
+        #endregion
+
+        #region collect System
+        public CollectSystemItemData AddOrUpdateCollectSystemItemData(int collectItemID, DateTime startTime) 
+        {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+
+            if (data == null)
+            {
+                data = new CollectSystemItemData(collectItemID, startTime);
+                CollectSystemItemDataList.Add(data);
+            }
+            else {
+                data.StartTime = startTime;
+            }
+
+            SetDataDirty();
+
+            return data;
+        }
+        public CollectSystemItemData GetCollectItemData(int collectItemID) 
+        {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+            return data;
+        }
+        public CollectSystemItemData RemoveCollectSystemItemData(int collectItemID) 
+        {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+            
+            if (data != null) 
+            {
+                data.Clear();
+
+                SetDataDirty();
+            }
+
+            return data;
+        }
+        public int GetCollectItemDataRewardCount(int collectItemID) {
+            CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
+            if (data != null) {
+                return data.GetRewardCount();
             }
             return 0;
         }

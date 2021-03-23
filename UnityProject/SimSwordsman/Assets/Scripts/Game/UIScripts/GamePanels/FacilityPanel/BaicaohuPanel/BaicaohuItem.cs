@@ -57,6 +57,10 @@ namespace GameWish.Game
 
         string m_StringID = "BaicaohuPanel";
 
+        private BaiCaoWuData m_BaiCaoWuData = null;
+
+        private CountDownItemTest m_CountDownItem = null;
+
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             m_panel = t as AbstractAnimPanel;
@@ -101,20 +105,46 @@ namespace GameWish.Game
                 m_DescTxt.text = tb.desc;
                 m_EffecTxt.text = tb.effectDesc;
 
-                if (CountdownSystem.S.IsActive(m_StringID, ID))
+                m_BaiCaoWuData = GameDataMgr.S.GetClanData().GetBaiCaoWuData(ID);
+                if (m_BaiCaoWuData == null)
                 {
-                    string dur = CountdownSystem.S.GetCurrentCountdownTime(m_StringID, ID);
-                    if (dur != null)
-                    {
-                        SetState(1);
-                        m_DurationTxt.text = dur;
-                        m_Progress.fillAmount = CountdownSystem.S.GetCountdowner(m_StringID, ID).GetProgress();
-                    }
-                    else
-                        SetState(2);
-                }
-                else
                     SetState(2);
+                }
+                else {
+                    SetState(1);
+                    UpdateProgress();
+                }
+            }
+        }
+
+        private void UpdateProgress() 
+        {
+            m_CountDownItem = CountDowntMgr.S.GetCountDownItemByID(m_BaiCaoWuData.GetCountDownID());
+            
+            if (m_CountDownItem != null) 
+            {
+                m_CountDownItem.RegisterUpdateCallBack(OnUpdateCountDownCallBack);
+                m_CountDownItem.RegisterEndCallBack(OnEndCountDownCallBack);
+            }
+            OnUpdateCountDownCallBack();
+        }
+
+        private void OnEndCountDownCallBack()
+        {
+            SetState(2);
+        }
+
+        private void OnUpdateCountDownCallBack()
+        {
+            Countdown(m_BaiCaoWuData.GetProgress(), m_BaiCaoWuData.GetRemainTimeStr());
+        }
+
+        public void OnClose()
+        {
+            if (m_CountDownItem != null) 
+            {
+                m_CountDownItem.UnRegisterUpdateCallBack(OnUpdateCountDownCallBack);
+                m_CountDownItem.UnRegisterEndCallBack(OnEndCountDownCallBack);
             }
         }
         bool IsUnlock(HerbType id)
@@ -138,7 +168,10 @@ namespace GameWish.Game
                     DataAnalysisMgr.S.CustomEvent(DotDefine.f_make_medicine, ID.ToString());
 
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDHerbConfigTable.GetData(ID).makeTime);
+
+                    m_BaiCaoWuData = BaiCaoWuSystemMgr.S.AddBaiCaoWuItemData(ID);
+                    SetState(1);
+                    UpdateProgress();
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
@@ -151,7 +184,7 @@ namespace GameWish.Game
         }
         private void LookADSuccessCallBack(bool obj)
         {
-            CountdownSystem.S.Cancel(m_StringID, ID);
+            BaiCaoWuSystemMgr.S.ImmediatelyCompleteBaiCaoWuCountDown(ID);
 
             List<RewardBase> rewards = new List<RewardBase>();
             rewards.Add(new MedicineReward(ID, 1));

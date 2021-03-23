@@ -49,13 +49,16 @@ namespace GameWish.Game
         private Image m_Progress;
 
         [HideInInspector]
-        public int ID;
+        public int m_ForgeHouseID;
         [HideInInspector]
         public int UnlockLevel;//解锁等级
 
         AbstractAnimPanel m_panel;
 
         string m_StringID = "ForgeHousePanel";
+
+        private ForgeHouseItemData m_ForgeHouseItemData = null;
+        private CountDownItemTest m_CountDownItem = null;
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -85,7 +88,7 @@ namespace GameWish.Game
 
         void Init()
         {
-            if (!IsUnlock((EquipmentType)ID))
+            if (!IsUnlock((EquipmentType)m_ForgeHouseID))
             {
                 SetState(0);
             }
@@ -93,28 +96,51 @@ namespace GameWish.Game
             {
                 transform.SetAsFirstSibling();
 
-                var tb = TDEquipmentConfigTable.GetData(ID);
+                var tb = TDEquipmentConfigTable.GetData(m_ForgeHouseID);
                 m_ItemIcon.sprite = m_panel.FindSprite(tb.iconName);
                 m_NameTxt.text = tb.name;
                 m_DescTxt.text = tb.desc;
-                var equ = TDEquipmentConfigTable.m_EquipDic[ID];
+                var equ = TDEquipmentConfigTable.m_EquipDic[m_ForgeHouseID];
                 float num = 100 * (equ.GetAtkBonusForClassID(1) - 1);
                 m_EffecTxt.text = string.Format("功力+<color=#8C343C>{0}%</color>", (int)num);
 
-                if (CountdownSystem.S.IsActive(m_StringID, ID))
+                m_ForgeHouseItemData = GameDataMgr.S.GetClanData().GetForgeHouseItemData(m_ForgeHouseID);
+                if (m_ForgeHouseItemData == null)
                 {
-                    string dur = CountdownSystem.S.GetCurrentCountdownTime(m_StringID, ID);
-                    if (dur != null)
-                    {
-                        SetState(1);
-                        m_DurationTxt.text = dur;
-                        m_Progress.fillAmount = CountdownSystem.S.GetCountdowner(m_StringID, ID).GetProgress();
-                    }
-                    else
-                        SetState(2);
-                }
-                else
                     SetState(2);
+                }
+                else {
+                    SetState(1);
+                    UpdateProgress();
+                }
+            }
+        }
+
+        private void UpdateProgress() 
+        {
+            m_CountDownItem = CountDowntMgr.S.GetCountDownItemByID(m_ForgeHouseItemData.GetCountDownID());
+            if (m_CountDownItem != null) {
+                m_CountDownItem.RegisterUpdateCallBack(OnUpdateCountDownCallBack);
+                m_CountDownItem.RegisterEndCallBack(OnEndCountDownCallBack);
+            }
+            OnUpdateCountDownCallBack();
+        }
+
+        private void OnEndCountDownCallBack()
+        {
+            SetState(2);
+        }
+
+        private void OnUpdateCountDownCallBack()
+        {
+            Countdown(m_ForgeHouseItemData.GetProgress(), m_ForgeHouseItemData.GetRemainTimeStr());
+        }
+        public void OnClose() 
+        {
+            if (m_CountDownItem != null)
+            {
+                m_CountDownItem.UnRegisterUpdateCallBack(OnUpdateCountDownCallBack);
+                m_CountDownItem.UnRegisterEndCallBack(OnEndCountDownCallBack);
             }
         }
         bool IsUnlock(EquipmentType id)
@@ -141,13 +167,16 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 //判断材料
-                var list = TDEquipmentConfigTable.MakeNeedItemIDsDic[ID];
+                var list = TDEquipmentConfigTable.MakeNeedItemIDsDic[m_ForgeHouseID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_forge, ID.ToString());
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_forge, m_ForgeHouseID.ToString());
 
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
-                    CountdownSystem.S.StartCountdownerWithMin(m_StringID, ID, TDEquipmentConfigTable.GetData(ID).forgeTime);
+
+                    m_ForgeHouseItemData = ForgeHouseSystemMgr.S.AddForgeHouseItemData(m_ForgeHouseID);
+                    SetState(1);
+                    UpdateProgress();
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
@@ -157,27 +186,27 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
-
             });
         }
         private void LookADSuccessCallBack(bool obj)
         {
-            if (ID > 500)
+            ForgeHouseSystemMgr.S.ImmediatelyCompleteBaiCaoWuCountDown(m_ForgeHouseID);
+
+            if (m_ForgeHouseID > 500)
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new ArmorReward(ID, 1));
+                rewards.Add(new ArmorReward(m_ForgeHouseID, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)ID, Step.One), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)m_ForgeHouseID, Step.One), 1);
             }
             else
             {
                 List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new ArmsReward(ID, 1));
+                rewards.Add(new ArmsReward(m_ForgeHouseID, 1));
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)ID, Step.One), 1);
+                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)m_ForgeHouseID, Step.One), 1);
             }
             SetState(2);
-            CountdownSystem.S.Cancel(m_StringID, ID);
         }
 
         /// <summary>
@@ -201,7 +230,7 @@ namespace GameWish.Game
                     m_MakingTra.gameObject.SetActive(true);
                     m_DontMakeTra.gameObject.SetActive(false);
                     //设置材料
-                    SetMakeNeedRes(TDEquipmentConfigTable.MakeNeedItemIDsDic[ID]);
+                    SetMakeNeedRes(TDEquipmentConfigTable.MakeNeedItemIDsDic[m_ForgeHouseID]);
                     break;
                 case 2:
                     UnLock.SetActive(true);
@@ -209,7 +238,7 @@ namespace GameWish.Game
                     m_MakingTra.gameObject.SetActive(false);
                     m_DontMakeTra.gameObject.SetActive(true);
                     //设置材料
-                    SetMakeNeedRes(TDEquipmentConfigTable.MakeNeedItemIDsDic[ID]);
+                    SetMakeNeedRes(TDEquipmentConfigTable.MakeNeedItemIDsDic[m_ForgeHouseID]);
                     break;
                 default:
                     break;

@@ -8,33 +8,6 @@ namespace GameWish.Game
 	public class FoodBuffSystem : TSingleton<FoodBuffSystem>
 	{
         private TDFoodConfig m_TempTable;
-        public void Init()
-        {
-            EventSystem.S.Register(EventID.OnCountdownerEnd, OnEnd);
-        }
-
-        private void OnEnd(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            //食物buff
-            if (cd.stringID.Equals(FoodBuffType.Food_AddExp.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddCoin.ToString()) || cd.stringID.Equals(FoodBuffType.Food_AddRoleExp.ToString()))
-            {
-                EventSystem.S.Send(EventID.OnFoodBuffEnd, cd);
-            }
-            //药品，锻造物品增加
-            else if(cd.stringID.Equals("BaicaohuPanel"))
-            {
-                //MainGameMgr.S.MedicinalPowderMgr.AddHerb(cd.ID, 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)cd.ID, 1));
-            }
-            else if (cd.stringID.Equals("ForgeHousePanel"))
-            {
-                if (cd.ID > 500)
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem((ArmorType)cd.ID, Step.One), 1);
-                else
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)cd.ID, Step.One), 1);
-            }
-        }
                 
         /// <summary>
         /// 是否在激活状态

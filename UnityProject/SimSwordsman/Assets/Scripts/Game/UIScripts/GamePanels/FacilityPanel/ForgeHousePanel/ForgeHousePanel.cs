@@ -59,53 +59,6 @@ namespace GameWish.Game
             base.OnUIInit();
             BindAddListenerEvent();
         }
-        private void OnTick(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals("ForgeHousePanel"))
-            {
-                foreach (var item in m_Items)
-                {
-                    if (item.ID == cd.ID)
-                    {
-                        item.Countdown(cd.GetProgress(), (string)param[1]);
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void OnEnd(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals("ForgeHousePanel"))
-            {
-                foreach (var item in m_Items)
-                {
-                    if (item.ID == cd.ID)
-                    {
-                        item.StopEffect();
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void OnStart(int key, object[] param)
-        {
-            Countdowner cd = (Countdowner)param[0];
-            if (cd.stringID.Equals("ForgeHousePanel"))
-            {
-                foreach (var item in m_Items)
-                {
-                    if (item.ID == cd.ID)
-                    {
-                        item.StartEffect(cd.GetProgress(), (string)param[1]);
-                        break;
-                    }
-                }
-            }
-        }
         private void BindAddListenerEvent()
         {
             m_CloseBtn.onClick.AddListener(()=>{
@@ -129,8 +82,8 @@ namespace GameWish.Game
                     for (int i = 0; i < m_CostItems.Count; i++)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                     EventSystem.S.Send(EventID.OnStartUpgradeFacility, m_CurFacilityType, 1, 1);
-                    GetInformationForNeed();
-                    RefreshPanelInfo();
+                    //GetInformationForNeed();
+                    //RefreshPanelInfo();
                     DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, m_CurFacilityType.ToString() + ";" + m_CurLevel);
                     HideSelfWithAnim();
                 }
@@ -175,9 +128,6 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            RegisterEvent(EventID.OnCountdownerEnd, OnEnd);
-            RegisterEvent(EventID.OnCountdownerStart, OnStart);
-            RegisterEvent(EventID.OnCountdownerTick, OnTick);
 
             m_CurFacilityType = (FacilityType)args[0];
             GetInformationForNeed();
@@ -191,9 +141,8 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            EventSystem.S.UnRegister(EventID.OnCountdownerEnd, OnEnd);
-            EventSystem.S.UnRegister(EventID.OnCountdownerStart, OnStart);
-            EventSystem.S.UnRegister(EventID.OnCountdownerTick, OnTick);
+
+            m_Items.ForEach(x => x.OnClose());
 
             CloseSelfPanel();
         }
@@ -210,7 +159,7 @@ namespace GameWish.Game
                     {
                         GameObject obj = Instantiate(m_ItemPrefab, m_ItemTra);
                         ForgeHouseItem item = obj.GetComponent<ForgeHouseItem>();
-                        item.ID = int.Parse(id);
+                        item.m_ForgeHouseID = int.Parse(id);
                         item.UnlockLevel = TDFacilityForgeHouseTable.dataList[i].level;
                         m_Items.Add(item);
                     }

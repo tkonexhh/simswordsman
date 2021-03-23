@@ -13,7 +13,7 @@ namespace GameWish.Game
         {
         }
 
-        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index, int unLock,FacilityView facilityView) : base(index, unLock, facilityView)
+        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index, int unLock, FacilityView facilityView) : base(index, unLock, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
             InitSlotState(item);
