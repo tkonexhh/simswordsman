@@ -155,19 +155,9 @@ namespace GameWish.Game
                     foreach (var item in m_LevelConfigInfo.levelRewardList)
                         if (item.RewardItem != RewardItemType.Exp_Kongfu && item.RewardItem != RewardItemType.Exp_Role)
                             m_RewardList.Add(item);
-
-                    // m_LevelConfigInfo.levelRewardList.ForEach(i =>
-                    // {
-                    //     if (i.RewardItem == RewardItemType.Exp_Kongfu || i.RewardItem == RewardItemType.Exp_Role)
-                    //     {
-                    //         i.SetCount(i.Count / m_SelectedDiscipleList.Count);
-                    //     }
-                    // });
-                    m_LevelConfigInfo.PrepareReward();
+                    //m_LevelConfigInfo.PrepareReward();
                     if (m_IsSuccess)
                         m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward());
-                    // else
-                    //     m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward(1));
                     break;
                 default:
                     break;

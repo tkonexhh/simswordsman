@@ -16,11 +16,13 @@ namespace GameWish.Game
         private Vector2 m_MoveTargetPos = Vector2.zero;
         private float m_HitbackDistance = 0;
         private string m_NextAtkAnimName = string.Empty;
+        private float m_NextHurtTime = 0.1f;
 
         public BattleStateID CurState { get => m_CurState; }
         public Vector2 MoveTargetPos { get => m_MoveTargetPos; set => m_MoveTargetPos = value; }
         public float HitbackDistance { get => m_HitbackDistance; set => m_HitbackDistance = value; }
         public string NextAtkAnimName { get => m_NextAtkAnimName; }
+        public float NextHurtTime { get => m_NextHurtTime; set => m_NextHurtTime = value; }
 
         public CharacterStateBattle(CharacterStateID stateEnum) : base(stateEnum)
         {
@@ -112,22 +114,5 @@ namespace GameWish.Game
                 }
             }
         }
-        //public void RefreshTarget()
-        //{
-        //    if (m_Controller.FightTarget == null || m_Controller.FightTarget.IsDead())
-        //    {
-        //        m_Controller.SetFightTarget(FindTarget());
-        //    }
-        //}
-
-        #region Private
-
-        private CharacterController FindTarget()
-        {
-            CharacterController target = MainGameMgr.S.BattleFieldMgr.GetNearestCharacterAlive(m_Controller.CharacterCamp, m_Controller.GetPosition());
-            return target;
-        }
-
-        #endregion
     }
 }

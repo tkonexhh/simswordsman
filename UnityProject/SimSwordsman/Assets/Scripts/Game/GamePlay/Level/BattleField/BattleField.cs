@@ -5,8 +5,8 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public class BattleField : MonoBehaviour
-	{
+    public class BattleField : MonoBehaviour
+    {
         public List<Transform> ourSlots = new List<Transform>();
         public List<Transform> enemySlots = new List<Transform>();
 
@@ -62,49 +62,37 @@ namespace GameWish.Game
         /// ¸Ä±ä±³¾°Í¼Æ¬
         /// </summary>
         /// <param name="clanType"></param>
-        public void ChangeBgSpriteRender(ClanType clanType) 
+        public void ChangeBgSpriteRender(ClanType clanType)
         {
             Sprite sr = null;
 
-            string spriteName = string.Empty;
+            string spriteName = GetBattleBgName(clanType);
 
-            switch (clanType)
-            {
-                case ClanType.Gaibang:
-                    spriteName = "BattleField_gaibang";
-                    break;
-                case ClanType.Shaolin:
-                    spriteName = "BattleField_shaolin";
-                    break;
-                case ClanType.Wudang:
-                    spriteName = "BattleField_wudang";
-                    break;
-                case ClanType.Emei:
-                    spriteName = "BattleField_emei";
-                    break;
-                case ClanType.Huashan:
-                    spriteName = "BattleField_huashan";
-                    break;
-                case ClanType.Wudu:
-                    spriteName = "BattleField_wudu";
-                    break;
-                case ClanType.Mojiao:
-                    spriteName = "BattleField_mojiao";
-                    break;
-                case ClanType.Xiaoyao:
-                    spriteName = "BattleField_xiaoyao";
-                    break;
-            }
-
-            if (string.IsNullOrEmpty(spriteName) == false) 
+            if (!string.IsNullOrEmpty(spriteName))
             {
                 sr = SpriteLoader.S.GetSpriteByName(spriteName);
-            }            
-            
-            if (sr != null) 
+            }
+
+            if (sr != null)
             {
                 m_BgSpriteRender.sprite = sr;
             }
         }
-    }	
+
+        private string GetBattleBgName(ClanType clanType)
+        {
+            switch (clanType)
+            {
+                case ClanType.Gaibang: return "BattleField_gaibang";
+                case ClanType.Shaolin: return "BattleField_shaolin";
+                case ClanType.Wudang: return "BattleField_wudang";
+                case ClanType.Emei: return "BattleField_emei";
+                case ClanType.Huashan: return "BattleField_huashan";
+                case ClanType.Wudu: return "BattleField_wudu";
+                case ClanType.Mojiao: return "BattleField_mojiao";
+                case ClanType.Xiaoyao: return "BattleField_xiaoyao";
+                default: return string.Empty;
+            }
+        }
+    }
 }

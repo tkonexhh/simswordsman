@@ -33,7 +33,7 @@ Shader "Shader Forge/SF_Dissolution"
             #pragma multi_compile_fwdbase
             #pragma multi_compile_fog
             // #pragma only_renderers d3d9 d3d11 glcore gles
-            // #pragma target 3.0
+            #pragma target 3.0
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform float4 _TintColor;
             uniform sampler2D _Mask; uniform float4 _Mask_ST;
@@ -50,7 +50,7 @@ Shader "Shader Forge/SF_Dissolution"
                 float4 pos: SV_POSITION;
                 float2 uv0: TEXCOORD0;
                 float4 vertexColor: COLOR;
-                // UNITY_FOG_COORDS(1)
+                UNITY_FOG_COORDS(1)
             };
             VertexOutput vert(VertexInput v)
             {
@@ -58,7 +58,7 @@ Shader "Shader Forge/SF_Dissolution"
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                // UNITY_TRANSFER_FOG(o,o.pos);
+                UNITY_TRANSFER_FOG(o, o.pos);
                 return o;
             }
             float4 frag(VertexOutput i, float facing: VFACE): COLOR
@@ -75,7 +75,7 @@ Shader "Shader Forge/SF_Dissolution"
                 float3 emissive = (_MainTex_var.rgb * i.vertexColor.rgb * _TintColor.rgb * 2.0);
                 float3 finalColor = emissive;
                 fixed4 finalRGBA = fixed4(finalColor, lerp(1.0, node_798, _IsSmooth));
-                // UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
+                UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
             ENDCG

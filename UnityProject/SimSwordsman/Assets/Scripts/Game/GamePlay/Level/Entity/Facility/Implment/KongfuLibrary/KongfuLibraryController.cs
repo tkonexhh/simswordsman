@@ -9,10 +9,10 @@ namespace GameWish.Game
 {
     public class KongfuLibraryController : FacilityCDController//FacilityController
     {
-        public KongfuLibraryController(FacilityType facilityType, FacilityView view) : base(facilityType, view)
+        public KongfuLibraryController(FacilityView view) : base(FacilityType.KongfuLibrary, view)
         {
             EventSystem.S.Register(EventID.OnRefresKungfuSoltInfo, HandleAddListenerEvent);
-            //InitKungfuField();
+            // InitKungfuField();
         }
 
         ~KongfuLibraryController()
@@ -39,7 +39,7 @@ namespace GameWish.Game
 
         public void InitKungfuField()
         {
-            List<KungfuSoltDBData> kungfuLibraryDBDatas = GameDataMgr.S.GetClanData().GetKungfuLibraryData();
+            List<KungfuSoltDBData> kungfuLibraryDBDatas = GameDataMgr.S.GetClanData().ownedKungfuLibraryData.kungfuLibraryDBDatas;
 
             if (kungfuLibraryDBDatas.Count == 0)
             {
@@ -48,7 +48,15 @@ namespace GameWish.Game
             }
 
             foreach (var item in kungfuLibraryDBDatas)
+            {
                 m_SlotList.Add(new KungfuLibraySlot(item, m_View));
+                // Debug.LogError(item.practiceFieldState + "--" + item.characterID);
+                if (item.practiceFieldState == SlotState.CopyScriptures && item.characterID != -1)
+                {
+                    // Debug.LogError("SetState");
+                    MainGameMgr.S.CharacterMgr.GetCharacterController(item.characterID).SetState(CharacterStateID.Reading, FacilityType.KongfuLibrary);
+                }
+            }
 
         }
         public void RefreshSlotInfo(int facilityLevel)
@@ -61,8 +69,9 @@ namespace GameWish.Game
                 {
                     if (item.level == facilityLevel)
                     {
+                        Debug.LogError(item.level);
                         (i as KungfuLibraySlot).Warp(item);
-                        GameDataMgr.S.GetClanData().RefresKungfuDBData(i as KungfuLibraySlot);
+                        GameDataMgr.S.GetClanData().ownedKungfuLibraryData.RefresDBData(i as KungfuLibraySlot);
                         EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, i);
                     }
                 }
@@ -98,5 +107,7 @@ namespace GameWish.Game
                     m_SlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1, i + 1, m_View));
             }
         }
+
+
     }
 }
