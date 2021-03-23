@@ -31,8 +31,19 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 11707	17	SelectCharacterSureTrigger2	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:ChallengeChooseDisciple,ConfirmBtn	0	
 11708	17	SendCharacterOnTaskTrigger2	NormalTipsCommand:StoryPanel_Text_39,13|79,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
 11801	18	BuildPracticeFieldEastTrigger	DialogCommand:StoryPanel_Text_45,StoryPanel_Text_46;MyDelayCommand:0.4;		0	
+13301	33	RecruitmentSystem_IntroduceTrigger1	DialogCommand:StoryPanel_Text_70,StoryPanel_Text_71;MyDelayCommand:0.3;		0	
+13302	33	RecruitmentSystem_IntroduceTrigger2	DialogCommand:StoryPanel_Text_72;MyDelayCommand:0.3;		0	
+13303	33	RecruitmentSystem_ClickLobbyFacilityTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_73;MyDelayCommand:0.3;	EntityRoot/SimSection/Facility/LobbyView	0	
+13304	33	RecruitmentSystem_ClickGetCharacterTrigger	NormalTipsCommand:StoryPanel_Text_74,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:LobbyPanel,Bottom/RecruitmentOrderItem1/RecruitmentBtn	0	1
+13501	35	RecruitmentSystem_FinishedTrigger	DialogCommand:StoryPanel_Text_75,StoryPanel_Text_76;MyDelayCommand:0.3;		0	
+13001	30	DialogTrigger8	DialogCommand:StoryPanel_Text_57;MyDelayCommand:0.4;		0	
+13002	30	SendCharacterWorkTrigger	GuideClickBubbleCommand:#0,38|-8,StoryPanel_Text_58;MyDelayCommand:0.4;	EntityRoot/SimSection/WorkingBubbles/bubble5/workingbubble	0	1
+13401	34	SignInSystem_IntroduceTrigger	DialogCommand:StoryPanel_Text_77;MyDelayCommand:0.3;		0	
+13402	34	SignInSystem_ClickSignBtnTrigger	NormalTipsCommand:StoryPanel_Text_78,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:MainMenuPanel,SignInBtn	0	
+13403	34	SignInSystem_ClickSignReceiveBtnTrigger	NormalTipsCommand:StoryPanel_Text_79,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SignInPanel,SignPanel_BG/AcceptBtn	0	
+13601	36	SignInSystem_FinishedTrigger	DialogCommand:StoryPanel_Text_80;MyDelayCommand:0.3;		0	1
 11901	19	VisitotBtnNormalTipTrigger	DialogCommand:StoryPanel_Text_41;MyDelayCommand:0.4;		0	
-11902	19	ClickVisitorBtnTrigger	NormalTipsCommand:StoryPanel_Text_42,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,VisitorsList/VisitorsBtn/Button	0	
+11902	19	ClickVisitorBtnTrigger	NormalTipsCommand:StoryPanel_Text_42,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,VisitorsList/VisitorsBtn/Button	0	1
 12001	20	WarehouseDialogTrigger	DialogCommand:StoryPanel_Text_30;MyDelayCommand:0.4;		0	
 12002	20	BuildFacility_WarehouseTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/WarehouseView	0	
 12003	20	BuildFacilityPanel_WarehouseTrigger	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
@@ -44,26 +55,24 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 12601	26	CollectSystemTrigger	DialogCommand:StoryPanel_Text_36;MyDelayCommand:0.2;		0	
 12602	26	CollectSystem_ClickLotusrootTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_59;MyDelayCommand:0.4;	EntityRoot/SimSection/CollectItem/LotusRoot/Bubble	0	1
 12701	27	KungFuTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_44;MyDelayCommand:0.2;		0	
-12702	27	KungFuTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
-12703	27	KungFuTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	
-12704	27	KungFuTrigger_ClickStudyKungFuTrigger	NormalTipsCommand:StoryPanel_Text_62,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:DicipleDetailsPanel,Bg/UpperMiddle/KungfuTra/KungfuPanelItem(Clone)	0	
-12705	27	KungFuTrigger_ChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_64,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:LearnKungfuPanel,Bg/Image/Scroll View/Viewport/KungfuLearningList/LearnKungfuItem(Clone)	0	
-12706	27	KungFuTrigger_ConfirmChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_63,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:LearnKungfuPanel,Bg/Image/Scroll View/Viewport/Arrange	0	1
+12702	27	KungFuTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
+12703	27	KungFuTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	
+12704	27	KungFuTrigger_ClickStudyKungFuTrigger	NormalTipsCommand:StoryPanel_Text_62,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DicipleDetailsPanel,Bg/UpperMiddle/KungfuTra/KungfuPanelItem(Clone)	0	
+12705	27	KungFuTrigger_ChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_64,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LearnKungfuPanel,Bg/Image/Scroll View/Viewport/KungfuLearningList/LearnKungfuItem(Clone)	0	
+12706	27	KungFuTrigger_ConfirmChoiceKungFuTrigger	NormalTipsCommand:StoryPanel_Text_63,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:LearnKungfuPanel,Bg/Image/Scroll View/Viewport/Arrange	0	1
 12801	28	ArmsTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_47;MyDelayCommand:0.2;		0	
-12802	28	ArmsTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
-12803	28	ArmsTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	
-12804	28	ArmsTrigger_ClickArmsBtnTrigger	NormalTipsCommand:StoryPanel_Text_67,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:DicipleDetailsPanel,Bg/RightLowerMiddle/ArmsBg	0	
-12805	28	ArmsTrigger_ChoiceArmsTrigger	NormalTipsCommand:StoryPanel_Text_65,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:WearableLearningPanel,Bg/Scroll View/Viewport/WearableLearningList/WearableLearningItem(Clone)	0	
-12806	28	ArmsTrigger_ConfirmChoiceArmsTrigger	NormalTipsCommand:StoryPanel_Text_66,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:WearableLearningPanel,Bg/Arrange	0	1
+12802	28	ArmsTrigger_ClickOpenDisciplePanelTrigger	NormalTipsCommand:StoryPanel_Text_60,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/DiscipleBtn	0	
+12803	28	ArmsTrigger_ChoiceTargetDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_61,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DisciplePanel,Bg/Right/Scroll View/Viewport/DiscipleList/Disciple(Clone)	0	
+12804	28	ArmsTrigger_ClickArmsBtnTrigger	NormalTipsCommand:StoryPanel_Text_67,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:DicipleDetailsPanel,Bg/RightLowerMiddle/ArmsBg	0	
+12805	28	ArmsTrigger_ChoiceArmsTrigger	NormalTipsCommand:StoryPanel_Text_65,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:WearableLearningPanel,Bg/Scroll View/Viewport/WearableLearningList/WearableLearningItem(Clone)	0	
+12806	28	ArmsTrigger_ConfirmChoiceArmsTrigger	NormalTipsCommand:StoryPanel_Text_66,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:WearableLearningPanel,Bg/Scroll View/Viewport/Arrange	0	1
 12901	29	ChallengeSystemTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_48;MyDelayCommand:0.2;		0	
-12902	29	ChallengeSystemTrigger_ClickChallengeBtnTrigger1	NormalTipsCommand:ClickChallenge,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:MainMenuPanel,MenuList/ChallengeBtn	0	
-12903	29	ChallengeSystemTrigger_ChoiceChallengeObjTrigger	NormalTipsCommand:StoryPanel_Text_49,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:ChallengePanel,Bottom/Scroll View/Viewport/ChallengeList/ChallengeTaskItem(Clone)/Right/ChallengeBtn	0	
-12904	29	ChallengeSystemTrigger_ChoiceChallengeLevelTrigger	NormalTipsCommand:StoryPanel_Text_39,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:ChallengeBattlePanel,GaibangPanel(Clone)/Scroll View/Viewport/CheckpointTra/Bg/ChallengeBtn	0	
-12905	29	ChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger	NormalTipsCommand:StoryPanel_Text_50,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:IdentifyChallengesPanel,Bg/ChallengesBtn	0	
-12906	29	ChallengeSystemTrigger_ClickAKeyChoiceTrigger	NormalTipsCommand:StoryPanel_Text_51,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:SendDisciplesPanel,Bg/Down/AutoSelectedBtn	0	
-12907	29	ChallengeSystemTrigger_ClickStartChallengeTrigger	NormalTipsCommand:StoryPanel_Text_52,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
-13001	30	DialogTrigger8	DialogCommand:StoryPanel_Text_57;MyDelayCommand:0.4;		0	
-13002	30	SendCharacterWorkTrigger	GuideClickBubbleCommand:#0,38|-8,StoryPanel_Text_58;MyDelayCommand:0.4;	EntityRoot/SimSection/WorkingBubbles/bubble5/workingbubble	0	1
+12902	29	ChallengeSystemTrigger_ClickChallengeBtnTrigger1	NormalTipsCommand:ClickChallenge,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/ChallengeBtn	0	
+12903	29	ChallengeSystemTrigger_ChoiceChallengeObjTrigger	NormalTipsCommand:StoryPanel_Text_49,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.5;	UINodeFinder:ChallengePanel,Bottom/Scroll View/Viewport/ChallengeList/ChallengeTaskItem(Clone)/Right/ChallengeBtn	0	
+12904	29	ChallengeSystemTrigger_ChoiceChallengeLevelTrigger	NormalTipsCommand:StoryPanel_Text_39,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.6;	UINodeFinder:ChallengeBattlePanel,GaibangPanel(Clone)/Scroll View/Viewport/CheckpointTra/Bg/ChallengeBtn	0	
+12905	29	ChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger	NormalTipsCommand:StoryPanel_Text_50,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.7;	UINodeFinder:IdentifyChallengesPanel,Bg/ChallengesBtn	0	
+12906	29	ChallengeSystemTrigger_ClickAKeyChoiceTrigger	NormalTipsCommand:StoryPanel_Text_51,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.8;	UINodeFinder:SendDisciplesPanel,Bg/Down/AutoSelectedBtn	0	
+12907	29	ChallengeSystemTrigger_ClickStartChallengeTrigger	NormalTipsCommand:StoryPanel_Text_52,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.9;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
 13101	31	DiscipleAutoWorkTrigger	DialogCommand:StoryPanel_Text_56;MyDelayCommand:0.4;		0	
 13102	31	ClickTaskDetailsTrigger1	DialogWithCircleMaskCommand:#0,StoryPanel_Text_40;MyDelayCommand:0.4;	EntityRoot/Character_normal_1/WorkProgressBar	0	1
 13201	32	FoodNotEnoughTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_68;MyDelayCommand:0.4;		0	

@@ -1,6 +1,6 @@
-﻿ID	名称	贴图	说明	制作材料	增益效果	增益效率	维持时长	看广告维持时长
+﻿ID	名称	贴图	说明	制作材料	增益效果	增益效率	维持时长，分钟	看广告维持时长，分钟
 int	string	string	string	string	string	int	int	int
 Id	Name	SpriteName	Desc	MakeRes	BuffType	BuffRate	BuffTime	BuffTimeAD
-1	红烧狮子头	rootporkball	肉和藕烹制的美味肉圆。吃了之后，弟子获得经验+100%。	1009|10;1010|20	Food_AddExp	100	20	360
-2	叫花鸡	beggarschicken	用荷叶包裹鸡烹饪的叫花鸡。吃了之后，获得铜钱+100%。	1014|10;1013|20	Food_AddCoin	100	20	360
-3	掌上明珠	fishbearspaw	用熊掌和鱼丸一起烹饪的极品菜肴。吃了之后，弟子获得功夫经验+100%。	1011|5;1012|10	Food_AddRoleExp	100	20	360
+1	红烧狮子头	rootporkball	肉和藕烹制的美味肉圆。	1009|10;1010|20	Food_AddExp	100	20	360
+2	叫花鸡	beggarschicken	用荷叶包裹鸡烹饪的叫花鸡。	1014|10;1013|20	Food_AddCoin	100	20	360
+3	掌上明珠	fishbearspaw	用熊掌和鱼丸一起烹饪的极品菜肴。	1011|5;1012|10	Food_AddRoleExp	100	20	360

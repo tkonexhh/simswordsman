@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4209658203
+CRC: 3215661171
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6ee32545e4c30e967e0fcc205bbf8d6f
+    Hash: 5b6b54c22c4e6691ca0df3a17f48fc0d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 147735015db035f1710925b8240e05fc
+    Hash: 270f25423afd840f1831696af0a2df6c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,8 +25,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
-- Class: 210
-  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/QingLianJianFa/QingLianJianFa_Right.prefab
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/QingLianJianFa/Eff_glow_00147_T.png
@@ -40,3 +38,4 @@ Assets:
 - Assets/Res/FolderMode/Effects/BattleEffects/Skills/QingLianJianFa/QingLianJianFa_Left.prefab
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/general.bundle

@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3059465526
+CRC: 429183113
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -801,6 +801,7 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
         Dependency_1: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_2: res/foldermode/effects/prefab/general.bundle
     Info_181:
       Name: res/foldermode/effects/battleeffects/skills/lieyandaofa.bundle
       Dependencies:
@@ -818,11 +819,13 @@ AssetBundleManifest:
       Name: res/foldermode/effects/battleeffects/skills/baimangbian.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/prefab/general.bundle
     Info_186:
       Name: res/foldermode/effects/battleeffects/skills/wokoudaofa.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle
         Dependency_1: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_2: res/foldermode/effects/prefab/general.bundle
     Info_187:
       Name: res/foldermode/enemy/mojiao/mojiao2.bundle
       Dependencies: {}
@@ -833,6 +836,7 @@ AssetBundleManifest:
       Name: res/foldermode/effects/battleeffects/skills/qinglianjianfa.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/prefab/general.bundle
     Info_190:
       Name: res/foldermode/enemy/mojiao/mojiao3.bundle
       Dependencies:
@@ -843,6 +847,7 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle
         Dependency_1: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_2: res/foldermode/effects/prefab/general.bundle
     Info_192:
       Name: res/foldermode/music.bundle
       Dependencies: {}
@@ -873,14 +878,24 @@ AssetBundleManifest:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/prefab/general.bundle
     Info_198:
-      Name: res/foldermode/ui/sprites.bundle
-      Dependencies: {}
-    Info_199:
       Name: res/foldermode/effects/prefab/skills/ruyijianfa.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
         Dependency_1: res/foldermode/effects/battleeffects/general.bundle
         Dependency_2: res/foldermode/effects/prefab/general.bundle
-    Info_200:
+    Info_199:
       Name: res/foldermode/effects/prefab/general.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+        Dependency_1: res/foldermode/effects/prefab/general/materials.bundle
+    Info_200:
+      Name: res/foldermode/item/well.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/ui/sprites/itemicon.bundle
+    Info_201:
+      Name: res/foldermode/effects/prefab/skills/taizuchangquan.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/effects/battleeffects/general.bundle
+    Info_202:
+      Name: res/foldermode/effects/prefab/general/materials.bundle
       Dependencies: {}

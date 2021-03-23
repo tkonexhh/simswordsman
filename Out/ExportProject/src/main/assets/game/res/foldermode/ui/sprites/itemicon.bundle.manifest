@@ -1,19 +1,29 @@
 ManifestFileVersion: 0
-CRC: 1282350221
+CRC: 1494793461
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 648ba14dfe31664e9186273c5a0f52e7
+    Hash: 3a7f384ac08faa484443de882ef2b9a3
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 1fd7fc75603bbbda4048c3aa47f935e7
 HashAppended: 0
 ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 48
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -25,6 +35,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/silverolder.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/blackiron.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/GoldOrderImg.png
+- Assets/Res/FolderMode/UI/Sprites/ItemIcon/itemsprite.prefab
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/bearspaw.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/antler.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/goldenthread.png
@@ -36,9 +47,10 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/poisonfang.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/lingzhi.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/iron.png
-- Assets/Res/FolderMode/UI/Sprites/ItemIcon/lotus.png
+- Assets/Sprites/Collect/lotus.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/agate.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/dragondcales.png
+- Assets/Res/FolderMode/UI/Sprites/ItemIcon/lotus.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/blackwood.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/rootporkball.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/moirerock.png
@@ -46,16 +58,19 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/beeneedle.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/chicken.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/toxicmaru.png
+- Assets/Res/FolderMode/UI/Sprites/ItemIcon/lotusleaf.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/beggarschicken.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/silverwood.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/goldolder.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/charoite.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/pork.png
-- Assets/Res/FolderMode/UI/Sprites/ItemIcon/lotusleaf.png
+- Assets/Sprites/Collect/lotusleaf.png
+- Assets/Res/FolderMode/UI/Sprites/ItemIcon/royaljelly.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/sobermaru.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/fish.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/malachite.png
-- Assets/Res/FolderMode/UI/Sprites/ItemIcon/silverleaf.png
-- Assets/Res/FolderMode/UI/Sprites/ItemIcon/royaljelly.png
 - Assets/Res/FolderMode/UI/Sprites/ItemIcon/lotusroot.png
+- Assets/Res/FolderMode/UI/Sprites/ItemIcon/silverleaf.png
+- Assets/Sprites/Collect/royaljelly.png
+- Assets/Sprites/Collect/lotusroot.png
 Dependencies: []

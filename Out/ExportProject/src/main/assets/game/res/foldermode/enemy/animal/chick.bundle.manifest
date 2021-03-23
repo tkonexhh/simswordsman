@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 230530688
+CRC: 2977033865
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 38fdb8fcd5adaf9ad1cacdecf6f0aea0
+    Hash: 24f1a6c3c1d846385146c531ce6a3ace
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 243d583996742dae10f385a68c3bf887
+    Hash: c28cec5b0c44b2df8e1f78de9d50d94c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +25,10 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 49
   Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5bbdc3928a0787048a12e5a662f32bac, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 450ff2b2d5255404d951a9a58a5f33cc, type: 3}
 - Class: 114
@@ -36,10 +40,14 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 7d23026a04219814ebef4d83a9ee2616, type: 3}
+  Script: {fileID: 11500000, guid: 92080f2ea4d42864baf8c32d707ccff9, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 210
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_SkeletonData.asset

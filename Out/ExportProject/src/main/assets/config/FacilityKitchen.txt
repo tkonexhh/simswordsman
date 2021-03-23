@@ -1,4 +1,4 @@
-﻿ID	升级资源	升级花费	升级条件	食物上限	多少秒恢复一个	解锁菜品
+﻿ID	升级资源	升级花费	升级条件	食物上限	多少秒恢复一个，秒	解锁菜品
 int	string	int	int	int	int	int
 Level	UpgradeRes	UpgradeCost	UpgradePreconditions	FoodLimit	FoodAddSpeed	UnlockRecipe
 1	1001|5;1002|5	10	1	100	150	-1
