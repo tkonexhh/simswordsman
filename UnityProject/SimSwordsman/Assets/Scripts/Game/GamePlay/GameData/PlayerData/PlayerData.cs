@@ -12,7 +12,6 @@ namespace GameWish.Game
 
         public string coinNumStr;
 
-        public int coinNum;
         public int foodNum;
 
         public string firstPlayTime;
@@ -21,6 +20,7 @@ namespace GameWish.Game
         public bool isGuideStart;
 
         public RecruitData recruitData = new RecruitData();
+        public RecordData recordData = new RecordData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();//已解锁的伙房食物id
@@ -59,7 +59,6 @@ namespace GameWish.Game
             m_CoinNum = Define.DEFAULT_COIN_NUM;
             coinNumStr = m_CoinNum.ToString();
 
-            coinNum = Define.DEFAULT_COIN_NUM;
             foodNum = Define.DEFAULT_FOOD_NUM;
 
             lastPlayTime = "0";
@@ -81,6 +80,7 @@ namespace GameWish.Game
         public void ResetDailyData()
         {
             visitorCount = 0;
+            recordData.ResetDailyData();
             SetDataDirty();
         }
 
