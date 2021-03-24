@@ -14,20 +14,20 @@ namespace GameWish.Game
 
         static void CompleteRowAdd(TDMainTask tdData)
         {
-            MainTaskItemInfo taskInfo = new MainTaskItemInfo(tdData);
+            //MainTaskItemInfo taskInfo = new MainTaskItemInfo(tdData);
             
-            taskInfoDic.Add(tdData.taskID, taskInfo);
+            //taskInfoDic.Add(tdData.taskID, taskInfo);
         }
 
-        public static MainTaskItemInfo GetMainTaskItemInfo(int taskId)
-        {
-            if (taskInfoDic.ContainsKey(taskId))
-            {
-                return taskInfoDic[taskId];
-            }
+        //public static MainTaskItemInfo GetMainTaskItemInfo(int taskId)
+        //{
+        //    if (taskInfoDic.ContainsKey(taskId))
+        //    {
+        //        return taskInfoDic[taskId];
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         //public static List<MainTaskItemInfo> GetAllDailyTaskByLobbyLevel(int lobbyLevel)
         //{
