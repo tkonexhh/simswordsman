@@ -374,8 +374,8 @@ namespace GameWish.Game
         {
             long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coin >= livableRoomLevel.upgradeCoinCost)
-                return CommonUIMethod.GetTenThousand(livableRoomLevel.upgradeCoinCost);
-            return CommonUIMethod.GetTenThousand((int)coin);
+                return CommonUIMethod.GetTenThousandOrMillion(livableRoomLevel.upgradeCoinCost);
+            return CommonUIMethod.GetTenThousandOrMillion((int)coin);
         }
         private string GetIconName(int id)
         {

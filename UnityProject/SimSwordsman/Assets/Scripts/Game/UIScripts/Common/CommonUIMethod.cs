@@ -266,9 +266,9 @@ namespace GameWish.Game
                 CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res2Value);
 
                 int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
-                res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItem, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
+                res1Value.text = CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value);
                 res1Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[0].itemId));
-                res2Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousand(facilityLevelInfo.upgradeCoinCost);
+                res2Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
                 res2Image.sprite = abstractAnim.FindSprite("Coin");
                 res3Image.gameObject.SetActive(false);
                 res1Image.gameObject.SetActive(true);
@@ -281,11 +281,11 @@ namespace GameWish.Game
                 CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res3Value);
                 int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
                 int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[1].itemId);
-                res1Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemFirst, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[0].value);
+                res1Value.text = CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemFirst, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value);
                 res1Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[0].itemId));
-                res2Value.text = CommonUIMethod.GetTenThousand(GetCurItem(havaItemSec, costItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousand(costItems[1].value);
+                res2Value.text = CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value);
                 res2Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[1].itemId));
-                res3Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousand(facilityLevelInfo.upgradeCoinCost);
+                res3Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
                 res3Image.sprite = abstractAnim.FindSprite("Coin");
                 res3Image.gameObject.SetActive(true);
                 res1Image.gameObject.SetActive(true);
@@ -296,8 +296,8 @@ namespace GameWish.Game
         {
             long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coin >= facilityLevelInfo.upgradeCoinCost)
-                return GetTenThousand(facilityLevelInfo.upgradeCoinCost);
-            return GetTenThousand((int)coin);
+                return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+            return GetTenThousandOrMillion((int)coin);
         }
 
         private static int GetCurItem(int hava, int number)
@@ -518,26 +518,32 @@ namespace GameWish.Game
             return "<color=#FFFFFF00>--</color>";
         }
         /// <summary>
-        /// 获取万
+        /// 获取万or亿
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        public static string GetTenThousand(int number)
+        public static string GetTenThousandOrMillion(long number)
         {
-            int fifth = number / 10000;
+            //if (number.ToString().Length>12)
+            //{
+
+            //}
+            //else if(number.ToString().Length > 12)
+
+            long fifth = number / 10000;
             if (fifth == 0)
                 return number.ToString();
             else
             {
-                int fourth = GetThousand(number);
+                long fourth = GetThousand(number);
                 return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
             }
         }
 
-        private static int GetThousand(int number)
+        private static long GetThousand(long number)
         {
             string numStr = number.ToString();
-            return int.Parse(numStr.Substring(numStr.Length - 4, 1));
+            return long.Parse(numStr.Substring(numStr.Length - 4, 1));
         }
 
     }

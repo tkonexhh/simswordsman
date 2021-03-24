@@ -15,6 +15,8 @@ namespace GameWish.Game
         private EInt m_WorkID = 0;   
         private EInt m_HomeLevel = 0;   
         private string m_CollectObjType;   
+        private string m_UnlockDesc;   
+        private string m_FunctionDesc;   
         private string m_WorkName;   
         private string m_WorkTalk;   
         private string m_Reward;   
@@ -41,6 +43,16 @@ namespace GameWish.Game
         /// 收集资源的类型
         /// </summary>
         public  string  collectObjType {get { return m_CollectObjType; } }
+       
+        /// <summary>
+        /// 解锁文本
+        /// </summary>
+        public  string  unlockDesc {get { return m_UnlockDesc; } }
+       
+        /// <summary>
+        /// 功能文本
+        /// </summary>
+        public  string  functionDesc {get { return m_FunctionDesc; } }
        
         /// <summary>
         /// 工作名称
@@ -112,30 +124,36 @@ namespace GameWish.Game
                     m_CollectObjType = dataR.ReadString();
                     break;
                 case 3:
-                    m_WorkName = dataR.ReadString();
+                    m_UnlockDesc = dataR.ReadString();
                     break;
                 case 4:
-                    m_WorkTalk = dataR.ReadString();
+                    m_FunctionDesc = dataR.ReadString();
                     break;
                 case 5:
-                    m_Reward = dataR.ReadString();
+                    m_WorkName = dataR.ReadString();
                     break;
                 case 6:
-                    m_SpeReward = dataR.ReadString();
+                    m_WorkTalk = dataR.ReadString();
                     break;
                 case 7:
-                    m_WorkTime = dataR.ReadInt();
+                    m_Reward = dataR.ReadString();
                     break;
                 case 8:
-                    m_WorkInterval = dataR.ReadInt();
+                    m_SpeReward = dataR.ReadString();
                     break;
                 case 9:
-                    m_WaitingTime = dataR.ReadInt();
+                    m_WorkTime = dataR.ReadInt();
                     break;
                 case 10:
-                    m_StoreAmount = dataR.ReadInt();
+                    m_WorkInterval = dataR.ReadInt();
                     break;
                 case 11:
+                    m_WaitingTime = dataR.ReadInt();
+                    break;
+                case 12:
+                    m_StoreAmount = dataR.ReadInt();
+                    break;
+                case 13:
                     m_MeanWhileWorkman = dataR.ReadInt();
                     break;
                 default:
@@ -148,20 +166,22 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(12);
+          Dictionary<string, int> ret = new Dictionary<string, int>(14);
           
           ret.Add("WorkID", 0);
           ret.Add("HomeLevel", 1);
           ret.Add("CollectObjType", 2);
-          ret.Add("WorkName", 3);
-          ret.Add("WorkTalk", 4);
-          ret.Add("Reward", 5);
-          ret.Add("SpeReward", 6);
-          ret.Add("WorkTime", 7);
-          ret.Add("WorkInterval", 8);
-          ret.Add("WaitingTime", 9);
-          ret.Add("StoreAmount", 10);
-          ret.Add("MeanWhileWorkman", 11);
+          ret.Add("UnlockDesc", 3);
+          ret.Add("FunctionDesc", 4);
+          ret.Add("WorkName", 5);
+          ret.Add("WorkTalk", 6);
+          ret.Add("Reward", 7);
+          ret.Add("SpeReward", 8);
+          ret.Add("WorkTime", 9);
+          ret.Add("WorkInterval", 10);
+          ret.Add("WaitingTime", 11);
+          ret.Add("StoreAmount", 12);
+          ret.Add("MeanWhileWorkman", 13);
           return ret;
         }
     } 
