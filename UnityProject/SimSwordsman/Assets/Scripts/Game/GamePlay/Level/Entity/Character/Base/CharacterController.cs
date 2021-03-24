@@ -49,19 +49,13 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
-            m_StateMachine = new CharacterStateMachine(this);
             if (m_CharacterCamp == CharacterCamp.OurCamp)
             {
                 m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
-                SetState(initState, m_CharacterModel.GetTargetFacilityType(), m_CharacterModel.GetTargetFacilityStartTime(), m_CharacterModel.GetTargetFacilityIndex());
-            }
-            else
-            {
-                SetState(initState, m_CharacterModel.GetTargetFacilityType());
             }
 
-
-
+            m_StateMachine = new CharacterStateMachine(this);
+            SetState(initState, m_CharacterModel.GetTargetFacilityType(), m_CharacterModel.GetTargetFacilityStartTime(), m_CharacterModel.GetTargetFacilityIndex());
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
         }
@@ -166,7 +160,7 @@ namespace GameWish.Game
                 m_StateMachine.UpdateState(Time.deltaTime);
             }
         }
-
+                                 
         public void MoveTo(Vector2 pos, System.Action callback)
         {
             m_CharacterView.MoveTo(pos, callback);
