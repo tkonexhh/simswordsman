@@ -28,7 +28,7 @@ namespace GameWish.Game
             List<KungFuPoolConfig> kungFuPoolConfig = new List<KungFuPoolConfig>();
             foreach (string item in kongfuListStrs)
             {
-                string[] kungfuPoolStr =  item.Split('|');
+                string[] kungfuPoolStr = item.Split('|');
                 KungfuType kongfuType = (KungfuType)(int.Parse(kungfuPoolStr[0]));
                 kungFuPoolConfig.Add(new KungFuPoolConfig(kongfuType, int.Parse(kungfuPoolStr[1])));
             }
@@ -75,7 +75,7 @@ namespace GameWish.Game
                 foreach (var item in kungFuPools)
                     allWeight += item.Weight;
 
-                int random = UnityEngine.Random.Range(1, allWeight+1);
+                int random = UnityEngine.Random.Range(1, allWeight + 1);
                 foreach (var item in kungFuPools)
                 {
                     boundaryWeight += item.Weight;
@@ -93,7 +93,7 @@ namespace GameWish.Game
         /// <param name="facilityType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static int GetDurationForLevel( int level)
+        public static int GetDurationForLevel(int level)
         {
             if (levelInfoDic.ContainsKey(level))
                 return levelInfoDic[level].GetDurationOfCopying();
@@ -121,6 +121,12 @@ namespace GameWish.Game
             }
 
             return levelInfo;
+        }
+
+        private static int GetSeatNeedLevel(int seat)
+        {
+
+            return 0;
         }
     }
 }
