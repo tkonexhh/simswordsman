@@ -84,9 +84,6 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 AdsManager.S.PlayRewardAD("AddFood",LookADSuccessCallBack);
-
-
-                HideSelfWithAnim();
             });
         }
 
@@ -102,6 +99,8 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshPanelInfo();
+
+            HideSelfWithAnim();
         }
 
         protected override void OnOpen()

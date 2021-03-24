@@ -27,7 +27,6 @@ namespace GameWish.Game
             base.OnUIInit();
             BindAddListenerEvent();
         }
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -40,7 +39,6 @@ namespace GameWish.Game
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
-
         void InitItems(List<RewardBase> rewards)
         {
             for (int i = 0; i < rewards.Count; i++)
@@ -69,7 +67,6 @@ namespace GameWish.Game
 
             Instantiate(m_LootFirework, transform).transform.localPosition = Vector3.zero;
         }
-
         private void BindAddListenerEvent()
         {
             //ÒôÐ§
@@ -84,14 +81,22 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
         }
-
-
-
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
             CloseDependPanel(EngineUI.MaskPanel);
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
+            if (GuideMgr.S.IsGuideFinish(34) && GuideMgr.S.IsGuideFinish(36) == false)
+            //if (GuideMgr.S.IsGuiding(34) && GuideMgr.S.IsGuideFinish(19) == false)
+            {
+                EventSystem.S.Send(EventID.OnSignInSystem_FinishedTrigger);
+            }
         }
     }
 }
