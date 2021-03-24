@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public interface IMgr
-	{
+    public interface IMgr
+    {
         void OnInit();
         void OnUpdate();
         void OnDestroyed();
-	}
-	
+    }
+
 }
