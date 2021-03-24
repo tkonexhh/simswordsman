@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class GetDisciplePanel : AbstractAnimPanel
-	{
+    public class GetDisciplePanel : AbstractAnimPanel
+    {
         [SerializeField]
         private Image m_DiscipleImg;
         [SerializeField]
@@ -16,7 +16,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CharacterName;
         [SerializeField]
-        private Button m_BlackBtn;  
+        private Button m_BlackBtn;
         [SerializeField]
         private GameObject m_NewSkillHeroUnlock;
 
@@ -27,7 +27,8 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            m_BlackBtn.onClick.AddListener(()=> {
+            m_BlackBtn.onClick.AddListener(() =>
+            {
                 EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
@@ -36,7 +37,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            OpenDependPanel(EngineUI.MaskPanel,-1,null);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CharacterItem = args[0] as CharacterItem;
 
             m_DiscipleImg.enabled = true;
@@ -60,7 +61,8 @@ namespace GameWish.Game
                     break;
             }
             m_CharacterName.text = m_CharacterItem.name;
-            Instantiate(m_NewSkillHeroUnlock, m_DiscipleImg.transform).transform.localPosition = Vector3.zero;
+            m_NewSkillHeroUnlock.SetActive(true);
+            //Instantiate(m_NewSkillHeroUnlock, m_DiscipleImg.transform).transform.localPosition = Vector3.zero;
             RecruitDisciple();
         }
 
@@ -71,7 +73,7 @@ namespace GameWish.Game
                 case ClickType.Free:
                     break;
                 case ClickType.RecruitmentOrder:
-                    if (m_RecruitType== RecruitType.SilverMedal)
+                    if (m_RecruitType == RecruitType.SilverMedal)
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem(RawMaterial.SilverToken));
                     else
                         MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem(RawMaterial.GoldenToken));
@@ -80,7 +82,7 @@ namespace GameWish.Game
                 case ClickType.LookAdvertisement:
                     MainGameMgr.S.RecruitDisciplerMgr.SetAdvertisementCount(m_RecruitType);
                     break;
-                default:              
+                default:
                     break;
             }
             //EventSystem.S.Send(EventID.OnRefreshRecruitmentOrder, m_RecruitType);
@@ -89,15 +91,6 @@ namespace GameWish.Game
             MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
             EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
         }
-  
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-              
-            });
-        }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
             return characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
@@ -105,7 +98,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
- 
+
             m_Loader?.Release();
 
             EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
@@ -122,19 +115,13 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
             }
 
-            if (GuideMgr.S.IsGuideFinish(33) && GuideMgr.S.IsGuideFinish(35) == false) 
+            if (GuideMgr.S.IsGuideFinish(33) && GuideMgr.S.IsGuideFinish(35) == false)
             {
                 EventSystem.S.Send(EventID.OnRecruitmentSystem_FinishedTrigger);
             }
 
             CloseDependPanel(EngineUI.MaskPanel);
-            try
-            {
-                CloseSelfPanel();
-            }
-            catch (Exception)
-            {
-            }
+            CloseSelfPanel();
         }
     }
 }
