@@ -455,7 +455,7 @@ namespace GameWish.Game
             }
             if (stage != preChracterStage)
                 EventSystem.S.Send(EventID.OnCharacterUpgrade, id, stage, CalculateForceValue(preChracterStage));
-            GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
+            GameDataMgr.S.GetClanData().RefreshCurExp(m_ItemDbData, curExp);
         }
 
         public void AddKongfuExp(CharacterKongfuData kongfuType, int deltaExp)

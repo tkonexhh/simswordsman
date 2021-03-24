@@ -55,7 +55,7 @@ namespace GameWish.Game
         public  int  specialItemId {get { return m_SpecialItemId; } }
        
         /// <summary>
-        /// 生产时间，分钟
+        /// 生产时间，秒
         /// </summary>
         public  int  productTime {get { return m_ProductTime; } }
        

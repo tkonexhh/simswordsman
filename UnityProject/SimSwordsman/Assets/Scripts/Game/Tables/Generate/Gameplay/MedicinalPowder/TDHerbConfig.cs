@@ -51,7 +51,7 @@ namespace GameWish.Game
         public  string  makeRes {get { return m_MakeRes; } }
        
         /// <summary>
-        /// 制作时长(分钟)
+        /// 制作时长，分钟
         /// </summary>
         public  int  makeTime {get { return m_MakeTime; } }
        
