@@ -19,7 +19,7 @@ namespace GameWish.Game
         public GameData()
         {
             SetDirtyRecorder(GameDataHandler.s_DataDirtyRecorder);
-        }  
+        }
 
         public override void InitWithEmptyData()
         {
@@ -30,7 +30,7 @@ namespace GameWish.Game
             clanData.SetDefaultValue();
             //shopData = new ShopData();
             //shopData.SetDefaultValue();
-            
+
             mainTaskData = new MainTaskData();
             mainTaskData.SetDefaultValue();
 
@@ -48,6 +48,8 @@ namespace GameWish.Game
             mainTaskData.SetDirtyRecorder(m_Recorder);
             commonTaskData.SetDirtyRecorder(m_Recorder);
             countdownData.SetDirtyRecorder(m_Recorder);
-        }       
+
+            clanData.OnDataLoadFinish();
+        }
     }
 }

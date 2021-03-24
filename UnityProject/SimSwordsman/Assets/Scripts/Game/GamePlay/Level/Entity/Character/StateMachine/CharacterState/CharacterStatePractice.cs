@@ -21,7 +21,8 @@ namespace GameWish.Game
             }
 
             PracticeFieldController practiceFieldController = MainGameMgr.S.FacilityMgr.GetFacilityController(facilityType) as PracticeFieldController;
-            return practiceFieldController.GetIdlePracticeSlot(facilityType);
+            // return practiceFieldController.GetIdlePracticeSlot(facilityType);
+            return practiceFieldController.GetSlotByIndex(m_Controller.CharacterModel.CharacterItem.GetTargetFacilityIndex());
         }
 
         protected override void OnCDOver()

@@ -70,7 +70,7 @@ namespace GameWish.Game
                     m_PatrolRoomBtn.enabled = false;
                     m_CurPatrolRoom.text = "巡逻位" + m_PatrolRoomSlot.UnlockLevel + "级后解锁";
                     break;
-                case SlotState.Patrol:
+                case SlotState.Busy:
                     RefreshFixedInfo();
                     m_CurPatrolRoom.text = m_PatrolRoomSlot.CharacterItem.name + "正在巡逻";
                     //(m_PracticeFieldInfo.StartTime);

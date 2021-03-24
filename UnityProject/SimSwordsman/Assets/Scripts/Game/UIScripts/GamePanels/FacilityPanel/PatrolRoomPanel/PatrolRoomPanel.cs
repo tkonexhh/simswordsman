@@ -31,7 +31,7 @@ namespace GameWish.Game
 
         private int m_CurLevel;
         private FacilityConfigInfo m_PatrolRoomInfo = null;
-        private PatrolRoomInfo m_CurPatrolRoomLevelInfo =    null;
+        private PatrolRoomInfo m_CurPatrolRoomLevelInfo = null;
         private PatrolRoomInfo m_NextPatrolRoomLevelInfo = null;
         private PatrolRoomController m_CurPatrolRoomController = null;
         private List<PatrolRoomSlot> m_PatrolRoomSlotList = null;
@@ -134,12 +134,12 @@ namespace GameWish.Game
             int nextTime = MainGameMgr.S.FacilityMgr.GetDurationForLevel(m_CurFacilityType, Mathf.Min(m_CurLevel + 1, 6));
             if (nextTime - curTime > 0)
             {
-                foreach (var item in m_PatrolRoomSlotInfo.Values)
-                {
-                    CopyScripturesItem copyScripturesItem = item.GetComponent<CopyScripturesItem>();
-                    if (copyScripturesItem.GetPracticeFieldState() == SlotState.CopyScriptures)
-                        copyScripturesItem.IncreaseCountDown(nextTime - curTime);
-                }
+                // foreach (var item in m_PatrolRoomSlotInfo.Values)
+                // {
+                //     CopyScripturesItem copyScripturesItem = item.GetComponent<CopyScripturesItem>();
+                //     if (copyScripturesItem.GetPracticeFieldState() == SlotState.Busy)
+                //         copyScripturesItem.IncreaseCountDown(nextTime - curTime);
+                // }
             }
         }
 

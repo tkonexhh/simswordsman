@@ -18,16 +18,16 @@ namespace GameWish.Game
 
         private void InitPatrolRoom()
         {
-            List<PatrolRoomSoltDBData> patrolRoomSoltDBData = GameDataMgr.S.GetClanData().GetPatrolRoomData();
+            // List<PatrolRoomSoltDBData> patrolRoomSoltDBData = GameDataMgr.S.GetClanData().GetPatrolRoomData();
 
-            if (patrolRoomSoltDBData.Count == 0)
-            {
-                LoopInit(FacilityType.PatrolRoom);
-                return;
-            }
+            // if (patrolRoomSoltDBData.Count == 0)
+            // {
+            //     LoopInit(FacilityType.PatrolRoom);
+            //     return;
+            // }
 
-            foreach (var item in patrolRoomSoltDBData)
-                m_PatrolRoomSlotList.Add(new PatrolRoomSlot(item,m_View));
+            // foreach (var item in patrolRoomSoltDBData)
+            //     m_PatrolRoomSlotList.Add(new PatrolRoomSlot(item,m_View));
         }
 
         public List<PatrolRoomSlot> GetReadingSlotList()
@@ -36,21 +36,21 @@ namespace GameWish.Game
         }
         public void RefreshSlotInfo(int facilityLevel)
         {
-            m_PatrolRoomSlotList.ForEach(i =>
-            {
+            // m_PatrolRoomSlotList.ForEach(i =>
+            // {
 
-                List<PatrolRoomInfo> infos = TDFacilityPatrolRoomTable.GetSameSoltList(i);
+            //     List<PatrolRoomInfo> infos = TDFacilityPatrolRoomTable.GetSameSoltList(i);
 
-                foreach (var item in infos)
-                {
-                    if (item.level == facilityLevel)
-                    {
-                        i.Warp(item);
-                        GameDataMgr.S.GetClanData().RefresPatrolRoomDBData(i);
-                        EventSystem.S.Send(EventID.OnRefresPatrolSoltInfo, i);
-                    }
-                }
-            });
+            //     foreach (var item in infos)
+            //     {
+            //         if (item.level == facilityLevel)
+            //         {
+            //             i.Warp(item);
+            //             GameDataMgr.S.GetClanData().RefresPatrolRoomDBData(i);
+            //             EventSystem.S.Send(EventID.OnRefresPatrolSoltInfo, i);
+            //         }
+            //     }
+            // });
         }
         private void LoopInit(FacilityType facilityType)
         {
@@ -86,7 +86,7 @@ namespace GameWish.Game
                     //    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1));
                 }
                 else
-                    m_PatrolRoomSlotList.Add(new PatrolRoomSlot(eastInfos[i], i + 1, i + 1,m_View));
+                    m_PatrolRoomSlotList.Add(new PatrolRoomSlot(eastInfos[i], i + 1, i + 1, m_View));
             }
         }
 

@@ -53,19 +53,21 @@ namespace GameWish.Game
             characterList = characterList.Except(characterList.Where(i => i.id == id)).ToList();
         }
 
-        public bool IsHaveCharacterLevelGreaterNumber(int number) 
+        public bool IsHaveCharacterLevelGreaterNumber(int number)
         {
             for (int i = 0; i < characterList.Count; i++)
             {
                 CharacterItemDbData data = characterList[i];
-                if (data != null && data.level >= number) {
+                if (data != null && data.level >= number)
+                {
                     return true;
                 }
             }
 
             return false;
         }
-        public int GetCharacterCount() {
+        public int GetCharacterCount()
+        {
             return characterList.Count;
         }
         public void SetLevel(CharacterItemDbData item, int level)
@@ -91,7 +93,7 @@ namespace GameWish.Game
         public void AddKonfuExp(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
-            if (characterItemDb!=null)
+            if (characterItemDb != null)
             {
                 CharacterKongfuDBData characterKongfuDBData = characterItemDb.kongfuDatas.Where(i => i.kongfuType == kongfuType.GetKungfuType()).FirstOrDefault();
                 characterKongfuDBData.AddExp(deltaExp);
@@ -138,12 +140,12 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType)
+        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType, string startTime, int index)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
             {
-                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType);
+                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType, startTime, index);
             }
         }
 
@@ -155,7 +157,7 @@ namespace GameWish.Game
                 int taskId = task == null ? -1 : task.TaskId;
                 characterItemDb.SetTask(taskId);
             }
-        }     
+        }
         public void ClearCharacterTaskDBData(int id, SimGameTask task)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
@@ -197,7 +199,7 @@ namespace GameWish.Game
         public string name;
         public int taskId = -1;
         public CharacterStateID characterStateId = CharacterStateID.Wander; //当前状态
-        public FacilityType targetFacility = FacilityType.None; //当前所在的设施
+        public CharacterFacilityData facilityData = new CharacterFacilityData();
         public CharaceterDBEquipmentData characeterDBEquipmentData = new CharaceterDBEquipmentData();
         public List<CharacterKongfuDBData> kongfuDatas = new List<CharacterKongfuDBData>();
         public int curExp;
@@ -208,17 +210,19 @@ namespace GameWish.Game
 
         public void SetAtkValue(float _atkValue)
         {
-            atkValue =(int)_atkValue;
+            atkValue = (int)_atkValue;
         }
         public CharacterItemDbData()
         {
 
         }
 
-        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType)
+        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id)
         {
             characterStateId = stateId;
-            targetFacility = targetFacilityType;
+            this.facilityData.targetFacility = targetFacilityType;
+            this.facilityData.startTime = startTime;
+            this.facilityData.id = id;
         }
 
         public CharacterItemDbData(CharacterItem item)
@@ -232,7 +236,7 @@ namespace GameWish.Game
             bodyId = item.bodyId;
             headId = item.headId;
         }
-      
+
         public CharacterItemDbData(int id, CharacterQuality quality)
         {
             this.id = id;
@@ -249,7 +253,7 @@ namespace GameWish.Game
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
         {
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
-        }  
+        }
         public void UpGradeEquipment(CharaceterEquipment characeterEquipment)
         {
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
@@ -288,6 +292,14 @@ namespace GameWish.Game
         {
             this.collectedObjType = collectedObjType;
         }
+    }
+
+    [Serializable]
+    public class CharacterFacilityData
+    {
+        public FacilityType targetFacility = FacilityType.None;
+        public string startTime = string.Empty;
+        public int id;
     }
 
     [Serializable]
