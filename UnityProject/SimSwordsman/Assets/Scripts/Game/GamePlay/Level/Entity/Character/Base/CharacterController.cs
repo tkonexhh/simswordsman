@@ -49,15 +49,19 @@ namespace GameWish.Game
 
             m_CharacterModel = new CharacterModel(id, this);
 
+            m_StateMachine = new CharacterStateMachine(this);
             if (m_CharacterCamp == CharacterCamp.OurCamp)
             {
                 m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
+                SetState(initState, m_CharacterModel.GetTargetFacilityType(), m_CharacterModel.GetTargetFacilityStartTime(), m_CharacterModel.GetTargetFacilityIndex());
+            }
+            else
+            {
+                SetState(initState, m_CharacterModel.GetTargetFacilityType());
             }
 
-            m_StateMachine = new CharacterStateMachine(this);
 
-            if (initState != CharacterStateID.Reading)
-                SetState(initState, m_CharacterModel.GetTargetFacilityType());
+
 
             m_StateBattle = (CharacterStateBattle)GetState(CharacterStateID.Battle);
         }
@@ -190,7 +194,7 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None)
+        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = 0)
         {
             if (state != m_CurState)
             {
@@ -200,7 +204,7 @@ namespace GameWish.Game
                 if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ������
                 {
                     //Debug.LogError("SetstateTODB:" + m_CurState);
-                    SetStateToDB(m_CurState, targetFacilityType);
+                    SetStateToDB(m_CurState, targetFacilityType, startTime, index);
 
                     //�����Դ��룺����ͷ��û����ʧ��Progress
                     if (state == CharacterStateID.Wander)
@@ -390,9 +394,9 @@ namespace GameWish.Game
         #endregion
 
         #region Private
-        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType)
+        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType, string startTime, int index)
         {
-            m_CharacterModel.SetDataState(characterStateID, targetFacilityType);
+            m_CharacterModel.SetDataState(characterStateID, targetFacilityType, startTime, index);
         }
 
         //private void SetTaskIfNeed(CharacterStateID initState)

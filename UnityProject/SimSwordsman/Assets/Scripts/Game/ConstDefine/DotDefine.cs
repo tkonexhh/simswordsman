@@ -19,6 +19,7 @@ namespace GameWish.Game
 		public const string signin_get = "signin_get";
 		public const string work_generate = "work_generate";
 		public const string work_enter = "work_enter";
+		public const string out_of_food = "out_of_food";
 		public const string work_auto_enter = "work_auto_enter";
 		public const string work_finish = "work_finish";
 		public const string visitor_popout = "visitor_popout";

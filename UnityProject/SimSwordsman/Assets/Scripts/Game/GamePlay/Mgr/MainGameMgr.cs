@@ -19,6 +19,7 @@ namespace GameWish.Game
         private BattleFieldMgr m_BattleFieldMgr = null;
         private RawMatCollectSystem m_RawMatCollectSystem = null;
         //private MedicinalPowderMgr m_MedicinalPowderMgr = null;
+        private TaskMgr m_TaskMgr = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
@@ -31,6 +32,7 @@ namespace GameWish.Game
         public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr; }
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
         public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
+        public TaskMgr TaskMgr { get => m_TaskMgr; }
 
         public bool IsMainMenuPanelOpen = false;
 
@@ -51,9 +53,6 @@ namespace GameWish.Game
             m_InventoryMgr = gameObject.AddComponent<InventoryMgr>();
             m_InventoryMgr.OnInit();
 
-            // m_KongfuLibraryMgr = gameObject.AddComponent<KongfuLibraryMgr>();
-            // m_KongfuLibraryMgr.OnInit();
-
             // m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ��ʱû��
             //m_MainTaskMgr.OnInit();
 
@@ -69,6 +68,9 @@ namespace GameWish.Game
             m_RawMatCollectSystem = gameObject.AddComponent<RawMatCollectSystem>();
             m_RawMatCollectSystem.OnInit();
 
+            m_TaskMgr = gameObject.AddComponent<TaskMgr>();
+            m_TaskMgr.OnInit();
+
             //m_MedicinalPowderMgr = gameObject.AddComponent<MedicinalPowderMgr>();
             //m_MedicinalPowderMgr.OnInit();
 
@@ -81,8 +83,6 @@ namespace GameWish.Game
             m_CharacterMgr.InitData();
 
             m_CommonTaskMgr.InitTaskList();
-
-            m_FacilityMgr.InitFacilityControllers();
 
             m_RawMatCollectSystem.InitState();
 
@@ -124,11 +124,6 @@ namespace GameWish.Game
 
         }
         #endregion
-
-        //private void Update()
-        //{
-        //    OnUpdate();
-        //}
     }
 
 }

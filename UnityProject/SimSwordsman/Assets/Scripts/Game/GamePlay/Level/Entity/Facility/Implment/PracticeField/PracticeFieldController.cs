@@ -12,13 +12,14 @@ namespace GameWish.Game
         public PracticeFieldController(FacilityType facilityType, FacilityView view) : base(facilityType, view)
         {
             EventSystem.S.Register(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
-
-            InitPracticeField();
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleAddListenerEvent);
+            InitSolt();
         }
 
         ~PracticeFieldController()
         {
             EventSystem.S.UnRegister(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnStartUpgradeFacility, HandleAddListenerEvent);
         }
 
         private void HandleAddListenerEvent(int key, object[] param)
@@ -28,61 +29,30 @@ namespace GameWish.Game
                 case EventID.OnRefreshPracticeUnlock:
                     Refesh();
                     break;
+                case EventID.OnStartUpgradeFacility:
+                    FacilityType facilityType = (FacilityType)param[0];
+                    if (facilityType == this.facilityType)//Éý¼¶µÄÊ±ºòÖØÐÂÉú³Éslot
+                    {
+                        InitSolt();
+                    }
+                    break;
             }
         }
 
-        public BaseSlot GetIdlePracticeSlot(FacilityType facilityType)
+        private void InitSolt()
         {
-            return m_SlotList.FirstOrDefault(i => i.IsEmpty() && i.FacilityType.Equals(facilityType));
-        }
-
-        private void InitPracticeField()
-        {
-            List<PracticeSoltDBData> practiceFieldDBDatas = GameDataMgr.S.GetClanData().GetPracticeFieldData();
-
-            if (practiceFieldDBDatas.Count == 0)
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType);
+            PracticeFieldLevelInfo info = MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(facilityType, level) as PracticeFieldLevelInfo;
+            int seat = info.GetCurCapacity();
+            int nowSeat = m_SlotList.Count;
+            int delta = seat - nowSeat;
+            if (delta > 0)
             {
-                LoopInit(FacilityType.PracticeFieldEast);
-                LoopInit(FacilityType.PracticeFieldWest);
-                return;
-            }
-
-            foreach (var item in practiceFieldDBDatas)
-                m_SlotList.Add(new PracticeField(item, m_View));
-        }
-
-        private void LoopInit(FacilityType facilityType)
-        {
-            List<PracticeFieldLevelInfo> eastInfos = GetPracticeFieldLevelInfoList(facilityType);
-            for (int i = 0; i < eastInfos.Count; i++)
-                m_SlotList.Add(new PracticeField(eastInfos[i], i + 1, i + 1, m_View));
-        }
-
-        /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â¿ï¿½Î»×´Ì¬
-        /// </summary>
-        /// <param name="facilityType"></param>
-        /// <param name="facilityLevel"></param>
-        public void RefreshPracticeUnlockInfo(FacilityType facilityType, int facilityLevel)
-        {
-            m_SlotList.ForEach(i =>
-            {
-                if (i.FacilityType == facilityType && i.UnlockLevel == facilityLevel)
+                for (int i = nowSeat; i < seat; i++)
                 {
-                    i.slotState = SlotState.Free;
-                    GameDataMgr.S.GetClanData().RefresPracticeDBData(i as PracticeField);
-                    EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, i);
+                    m_SlotList.Add(new PracticeField(info, i, m_View));
                 }
-            });
-        }
-        /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
-        /// </summary>
-        /// <param name="facilityType"></param>
-        /// <returns></returns>
-        private List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList(FacilityType facilityType)
-        {
-            return TDFacilityPracticeFieldTable.GetPracticeFieldLevelInfoList(facilityType);
+            }
         }
     }
 }

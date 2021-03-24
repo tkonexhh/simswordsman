@@ -47,11 +47,6 @@ namespace GameWish.Game
             }
         }
 
-        public void InitFacilityControllers()
-        {
-            ((KongfuLibraryController)GetFacilityController(FacilityType.KongfuLibrary)).InitKungfuField();
-        }
-
         #endregion
 
         #region InputObserver
@@ -448,7 +443,7 @@ namespace GameWish.Game
                 return false;
 
             bool isPrefacilityUnlocked = configInfo.prefacilityType == FacilityType.None ? true : IsFacilityUnlocked(configInfo.prefacilityType, 1);
-            bool isSatisfied = GetFacilityCurLevel(FacilityType.Lobby) >= configInfo.GetNeedLobbyLevel() && isPrefacilityUnlocked;
+            bool isSatisfied = /*GetFacilityCurLevel(FacilityType.Lobby) >= configInfo.GetNeedLobbyLevel() &&*/ isPrefacilityUnlocked;
             return isSatisfied;
         }
 

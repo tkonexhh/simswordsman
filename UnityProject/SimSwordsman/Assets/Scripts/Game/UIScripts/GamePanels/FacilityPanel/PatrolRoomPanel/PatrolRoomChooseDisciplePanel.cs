@@ -72,7 +72,7 @@ namespace GameWish.Game
         private void AddListenerBtn(object obj)
         {
             CharacterItem characterItem = obj as CharacterItem;
-            m_PatrolRoomSlotInfo.SetCharacterItem(characterItem, SlotState.Patrol, m_CurFacilityType);
+            m_PatrolRoomSlotInfo.SetCharacterItem(characterItem, SlotState.Busy, m_CurFacilityType);
             EventSystem.S.Send(EventID.OnRefresPatrolSoltInfo, m_PatrolRoomSlotInfo);
             OnPanelHideComplete();
         }

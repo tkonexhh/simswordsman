@@ -100,6 +100,9 @@ namespace GameWish.Game
             visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);
             visitor.Reward = GetRandomReward(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
             CurrentVisitor.Add(visitor);
+            
+            DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor.Reward.KeyID.ToString());
+
             CheckMainPanelBtn(CurrentVisitor.Count);
 
         }

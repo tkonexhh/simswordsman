@@ -14,7 +14,6 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_Flag = null;
 
-        // private Dictionary<Transform, CharacterController> m_PracticeSlotsTakerDic = new Dictionary<Transform, CharacterController>();
 
         public override FacilityController GenerateContoller()
         {
@@ -24,9 +23,6 @@ namespace GameWish.Game
         public override void OnClicked()
         {
             base.OnClicked();
-
-            Debug.Log("PracticeField is clicked");
-
         }
 
         protected override void OpenUIElement()

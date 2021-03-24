@@ -21,6 +21,7 @@ namespace GameWish.Game
         //public float Hp { get => m_Hp; }
         //public float Atk { get => m_Atk; }
         public float MoveSpeed { get => m_MoveSpeed; }
+        public CharacterItem CharacterItem { get => m_CharacterItem; }
 
         public CharacterModel(int id, CharacterController character)
         {
@@ -28,7 +29,6 @@ namespace GameWish.Game
             m_Id = id;
 
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_Id);
-
             //SetAtk(GetAtk());
             //SetHp(GetAtk());
         }
@@ -50,9 +50,9 @@ namespace GameWish.Game
             m_Atk = atk;
         }
 
-        public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType)
+        public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
         {
-            m_CharacterItem?.SetCharacterStateData(stateId, targetFacilityType);
+            m_CharacterItem?.SetCharacterStateData(stateId, targetFacilityType, startTime, index);
         }
 
         public void SetCurTask(SimGameTask simGameTask)
@@ -133,6 +133,29 @@ namespace GameWish.Game
             if (m_CharacterItem == null)
                 return FacilityType.None;
             return m_CharacterItem.GetTargetFacilityType();
+        }
+
+        public int GetTargetFacilityIndex()
+        {
+            if (m_CharacterItem == null)
+                return 0;
+            return m_CharacterItem.GetTargetFacilityIndex();
+        }
+
+        public string GetTargetFacilityStartTime()
+        {
+            if (m_CharacterItem == null)
+                return string.Empty;
+            return m_CharacterItem.GetTargetFacilityStartTime();
+        }
+
+        public bool IsAtSlot(FacilityType type, int index)
+        {
+            if (type == m_CharacterItem.GetTargetFacilityType() && index == m_CharacterItem.GetTargetFacilityIndex())
+            {
+                return true;
+            }
+            return false;
         }
 
         public CollectedObjType GetCollectedObjType()

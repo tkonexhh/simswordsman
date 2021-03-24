@@ -40,7 +40,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_KungfuAddition;
         [SerializeField]
-        private Text m_RestrictionsValue;
+        private Text m_RestrictionsValue;        
+        [SerializeField]
+        private GameObject m_KungfuRedPoint;
 
         private int m_CurIndex;
         private CharacterKongfu m_CharacterKongfu = null;
@@ -50,6 +52,8 @@ namespace GameWish.Game
         private int m_UnLockLevel = -1;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
+            EventSystem.S.Register(EventID.OnKungfuRedPoint, HandAddlistenerEvent);
+
             m_KungfuLockState = (KungfuLockState)obj[0];
             m_CharacterKongfu = t as CharacterKongfu;
             m_KungfuSprite.AddRange((List<Sprite>)obj[1]);
@@ -72,7 +76,21 @@ namespace GameWish.Game
                         break;
                 }
             });
+            m_CurDisciple.CheckKungfuRedPoint();
             RefreshPanelInfo();
+        }
+
+        private void HandAddlistenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnKungfuRedPoint:
+                    if (m_CurIndex == ((int)param[0]))
+                        m_KungfuRedPoint.SetActive((bool)param[1]);
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -85,6 +103,8 @@ namespace GameWish.Game
             m_KungfuLockState = item.KungfuLockState;
             m_KungfuSprite.AddRange(sprite);
             RefreshPanelInfo();
+            m_CurDisciple.CheckKungfuRedPoint();
+            EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
         }
         private string GetIconName(KungfuType kungfuType)
         {
@@ -147,6 +167,12 @@ namespace GameWish.Game
                     break;
             }
         }
+
+        private void OnDestroy()
+        {
+            EventSystem.S.UnRegister(EventID.OnKungfuRedPoint, HandAddlistenerEvent);
+        }
+
         private Sprite GetSprite(string name)
         {
             return m_KungfuSprite.Where(i => i.name.Equals(name)).FirstOrDefault();

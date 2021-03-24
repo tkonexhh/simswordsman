@@ -41,6 +41,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
+        private GameObject m_DiscipleRedPoint;
+        [SerializeField]
         private Button TrialRunBtn;
         [SerializeField]
         private Button m_ChallengeBtn;
@@ -63,7 +65,6 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             RegisterEvents();
-
             m_SettingBtn.onClick.AddListener(() =>
             {
                 //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
@@ -189,6 +190,23 @@ namespace GameWish.Game
             });
         }
 
+        private void HandListenerEvent(int key, object[] param)
+        {
+            if ((EventID)key == EventID.OnMainMenuOrDiscipleRedPoint)
+            {
+                List<CharacterItem> characterItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+                foreach (var item in characterItemList)
+                {
+                    if (item.CheckDiscipelPanel())
+                    {
+                        m_DiscipleRedPoint.SetActive(true);
+                        return;
+                    }
+                }
+                m_DiscipleRedPoint.SetActive(false);
+            }
+        }
+
         protected override void OnOpen()
         {
             base.OnOpen();
@@ -259,6 +277,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.Register(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.Register(EventID.OnFoodRefreshEvent, HandleEvent);
+            EventSystem.S.Register(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
         }
 
         private void UnregisterEvents()
@@ -268,6 +287,8 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.UnRegister(EventID.OnFoodRefreshEvent, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
+
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -312,20 +333,11 @@ namespace GameWish.Game
                 case 1:
                     RefreshVisitorImg(1);
 
-                    Visitor visitor1 = VisitorSystem.S.CurrentVisitor[0];
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor1.Reward.KeyID.ToString());
-
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(false);
                     break;
                 case 2:
                     RefreshVisitorImg(2);
-
-                    Visitor visitor2 = VisitorSystem.S.CurrentVisitor[0];
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor2.Reward.KeyID.ToString());
-
-                    Visitor visitor3 = VisitorSystem.S.CurrentVisitor[1];
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor3.Reward.KeyID.ToString());
 
                     m_VisitorBtn1.transform.parent.gameObject.SetActive(true);
                     m_VisitorBtn2.transform.parent.gameObject.SetActive(true);

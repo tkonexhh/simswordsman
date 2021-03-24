@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public class PracticeDisciplePos : MonoBehaviour, ItemICom
+    public class PracticeDisciplePos : MonoBehaviour
     {
         [SerializeField]
         private Text m_PracticePos;
@@ -27,20 +27,21 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_PracticeBtn;
         private FacilityType m_CurFacilityType;
-        private int m_CurLevel;
         private int m_CountDown = 0;
         private PracticeFieldPanel m_PracticeFieldPanel;
 
-        private PracticeField m_PracticeFieldInfo = null;
-        public void OnInit<T>(T t, Action action = null, params object[] obj)
-        {
-            m_CurFacilityType = (FacilityType)obj[0];
+        private CDBaseSlot m_Slot = null;
+        private int m_Index;
 
-            m_PracticeFieldInfo = t as PracticeField;
-            m_PracticeFieldPanel = obj[1] as PracticeFieldPanel;
-            RefreshFixedInfo();
+        public void Init(int index, FacilityType type, PracticeFieldPanel panel)
+        {
+            m_Index = index;
             BindAddListenEvent();
-            m_PracticePos.text = "练功位:" + m_PracticeFieldInfo.Index;
+            m_CurFacilityType = type;
+            m_PracticeFieldPanel = panel;
+            m_PracticePos.text = "练功位:" + index;
+            PracticeFieldController controller = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
+            m_Slot = controller.GetSlotByIndex(index);
             RefreshPracticeFieldState();
         }
 
@@ -55,12 +56,11 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (CheckIsEmpty())
-                    UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_PracticeFieldInfo, m_CurFacilityType, m_CurLevel);
+                    UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_Slot, m_CurFacilityType);
                 else
                 {
                     FloatMessage.S.ShowMsg("暂时没有空闲的弟子，等会儿再试试吧");
                 }
-
             });
         }
 
@@ -79,64 +79,89 @@ namespace GameWish.Game
             return isEntry;
         }
 
-        public SlotState GetPracticeFieldState()
+        public SlotState GetSlotState()
         {
-            return m_PracticeFieldInfo.slotState;
+            if (m_Slot != null)
+                return m_Slot.slotState;
+
+            return SlotState.NotUnlocked;
         }
 
         public void IncreaseCountDown(int time)
         {
+            if (m_Slot == null)
+                return;
+
             CountDownItem countDown = null;
-            countDown = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
+            countDown = TimeUpdateMgr.S.IsHavaITimeObserver(m_Slot.FacilityType.ToString() + m_Slot.Index);
             if (countDown != null)
                 countDown.IncreasTickTime(time);
         }
 
-        private void RefreshFixedInfo()
-        {
-            m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType);
-        }
-
         public void RefreshPracticeFieldState()
         {
-            switch (m_PracticeFieldInfo.slotState)
+            if (m_Slot == null)
             {
-                case SlotState.None:
-                    break;
-                case SlotState.Free:
-                    m_PracticeBtn.enabled = true;
-                    m_DiscipleHead.gameObject.SetActive(false);
-                    m_CurPractice.text = Define.COMMON_DEFAULT_STR;
-                    m_Time.enabled = false;
-                    //m_PracticeImg.sprite = ""
-                    m_ArrangeDisciple.text = "安排弟子";
-                    m_State.text = "空闲";
-                    break;
-                case SlotState.NotUnlocked:
-                    m_PracticeBtn.enabled = false;
-                    m_DiscipleHead.gameObject.SetActive(false);
-                    m_State.text = "练功场" + m_PracticeFieldInfo.UnlockLevel + "级后解锁";
-                    m_PracticeImg.sprite = m_PracticeFieldPanel.FindSprite("Lock2");
-                    m_Time.enabled = false;
-                    m_CurPractice.text = Define.COMMON_DEFAULT_STR;
-                    m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
-                    break;
-                case SlotState.Practice:
-                    m_Time.enabled = true;
-                    m_DiscipleHead.gameObject.SetActive(true);
-                    m_PracticeBtn.enabled = false;
-                    m_State.text = Define.COMMON_DEFAULT_STR;
-                    m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
-                    RefreshFixedInfo();
-                    m_CurPractice.text = "当前训练:" + m_PracticeFieldInfo.CharacterItem.name;
-                    m_Time.text = GameExtensions.SplicingTime(GetDuration());
-                    CreateCountDown();
-                    LoadClanPrefabs(GetLoadDiscipleName(m_PracticeFieldInfo.CharacterItem));
-                    //TimeRemaining(m_PracticeFieldInfo.StartTime);
-                    break;
-                default:
-                    break;
+                UILocked();
+                return;
             }
+
+            //看看有没有人在这个index上reading
+            var allCharacter = MainGameMgr.S.CharacterMgr.CharacterControllerList;
+            CharacterItem characterModel = null;
+            for (int i = 0; i < allCharacter.Count; i++)
+            {
+                // Debug.LogError(allCharacter[i].CharacterModel.CharacterItem.GetTargetFacilityType() + "--" + allCharacter[i].CharacterModel.CharacterItem.GetTargetFacilityIndex());
+                if (allCharacter[i].CharacterModel.IsAtSlot(m_CurFacilityType, m_Slot.Index))
+                {
+                    characterModel = allCharacter[i].CharacterModel.CharacterItem;
+                    break;
+                }
+            }
+
+            if (characterModel != null)
+            {
+                UIDuring(characterModel);
+            }
+            else
+            {
+                UIFree();
+            }
+        }
+
+        private void UILocked()
+        {
+            m_PracticeBtn.enabled = false;
+            m_DiscipleHead.gameObject.SetActive(false);
+            m_State.text = "练功场" + TDFacilityPracticeFieldTable.GetSeatNeedLevel(m_Index + 1) + "级后解锁";
+            m_PracticeImg.sprite = m_PracticeFieldPanel.FindSprite("Lock2");
+            m_Time.enabled = false;
+            m_CurPractice.text = Define.COMMON_DEFAULT_STR;
+            m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
+        }
+
+        private void UIFree()
+        {
+            m_PracticeBtn.enabled = true;
+            m_DiscipleHead.gameObject.SetActive(false);
+            m_CurPractice.text = Define.COMMON_DEFAULT_STR;
+            m_Time.enabled = false;
+            //m_PracticeImg.sprite = ""
+            m_ArrangeDisciple.text = "安排弟子";
+            m_State.text = "空闲";
+        }
+
+        private void UIDuring(CharacterItem characterItem)
+        {
+            m_Time.enabled = true;
+            m_DiscipleHead.gameObject.SetActive(true);
+            m_PracticeBtn.enabled = false;
+            m_State.text = Define.COMMON_DEFAULT_STR;
+            m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
+            m_CurPractice.text = "当前训练:" + characterItem.name;
+            m_Time.text = GameExtensions.SplicingTime(GetDuration());
+            CreateCountDown();
+            LoadClanPrefabs(GetLoadDiscipleName(characterItem));
         }
 
         private void LoadClanPrefabs(string prefabsName)
@@ -147,32 +172,27 @@ namespace GameWish.Game
         private void CreateCountDown()
         {
             CountDownItem countDownMgr = null;
-            countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index);
+            countDownMgr = TimeUpdateMgr.S.IsHavaITimeObserver(m_Slot.FacilityType.ToString() + m_Slot.Index);
             if (countDownMgr == null)
             {
                 m_CountDown = GetDuration();
-                countDownMgr = new CountDownItem(m_PracticeFieldInfo.FacilityType.ToString() + m_PracticeFieldInfo.Index, m_CountDown);
+                countDownMgr = new CountDownItem(m_Slot.FacilityType.ToString() + m_Slot.Index, m_CountDown);
             }
             TimeUpdateMgr.S.AddObserver(countDownMgr);
             countDownMgr.OnSecondRefreshEvent = OnRefresAction;
             if (countDownMgr.OnCountDownOverEvent == null)
-                countDownMgr.OnCountDownOverEvent = m_PracticeFieldInfo.overAction;
+                countDownMgr.OnCountDownOverEvent = m_Slot.overAction;
         }
 
         private int GetDuration()
         {
-            return m_PracticeFieldInfo.GetDurationTime();
+            return m_Slot.GetDurationTime();
         }
 
         public void OnRefresAction(string obj)
         {
             if (m_Time != null)
                 m_Time.text = obj;
-        }
-
-        public void SetButtonEvent(Action<object> action)
-        {
-            //throw new NotImplementedException();
         }
     }
 }

@@ -49,6 +49,13 @@ namespace GameWish.Game
             return m_SlotList;
         }
 
+        public CDBaseSlot GetSlotByIndex(int index)
+        {
+            if (index >= m_SlotList.Count)
+                return null;
+            return m_SlotList[index];
+        }
+
         protected override bool CheckSubFunc()
         {
             if (m_FacilityState != FacilityState.Unlocked)

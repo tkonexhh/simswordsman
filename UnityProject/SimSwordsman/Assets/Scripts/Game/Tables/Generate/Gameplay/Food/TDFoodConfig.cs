@@ -60,12 +60,12 @@ namespace GameWish.Game
         public  int  buffRate {get { return m_BuffRate; } }
        
         /// <summary>
-        /// 维持时长
+        /// 维持时长，分钟
         /// </summary>
         public  int  buffTime {get { return m_BuffTime; } }
        
         /// <summary>
-        /// 看广告维持时长
+        /// 看广告维持时长，分钟
         /// </summary>
         public  int  buffTimeAD {get { return m_BuffTimeAD; } }
        

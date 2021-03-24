@@ -199,7 +199,7 @@ namespace GameWish.Game
             return CharacterKongfu.dbData.kongfuType;
         }
 
-        internal void Wrap(CharacterKongfuDBData i,CharacterItem characterItem)
+        internal void Wrap(CharacterKongfuDBData i, CharacterItem characterItem)
         {
             m_CharacterItem = characterItem;
             Index = i.index;
@@ -232,8 +232,6 @@ namespace GameWish.Game
         public int headId;
         public CollectedObjType collectedObjType;
 
-        private CharacterStageInfoItem stageInfo;
-
 
         private CharacterItemDbData m_ItemDbData = null;
 
@@ -250,7 +248,7 @@ namespace GameWish.Game
         public CharacterItem()
         {
             for (int i = 0; i < MaxKungfuNumber; i++)
-                kongfus.Add(i + 1, new CharacterKongfuData(i + 1,this));
+                kongfus.Add(i + 1, new CharacterKongfuData(i + 1, this));
         }
 
         #region Get
@@ -280,10 +278,10 @@ namespace GameWish.Game
         /// 设置人物的状态
         /// </summary>
         /// <param name="stateId"></param>
-        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType)
+        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
         {
             this.characterStateId = stateId;
-            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType);
+            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index);
         }
 
         public void SetCurTask(SimGameTask task)
@@ -326,12 +324,12 @@ namespace GameWish.Game
             itemDbData.kongfuDatas.ForEach(i =>
             {
                 CharacterKongfuData kongfu = new CharacterKongfuData();
-                kongfu.Wrap(i,this);
+                kongfu.Wrap(i, this);
                 kongfus[i.index] = kongfu;
             });
             characeterEquipmentData.Wrap(itemDbData.characeterDBEquipmentData);
 
-            stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
+            // stageInfo = TDCharacterStageConfigTable.GetStageInfo(quality, stage);
             CalculateForceValue();
         }
 
@@ -393,6 +391,7 @@ namespace GameWish.Game
                         }
                     }
                 }
+                EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
                 CalculateForceValue();
             }
         }
@@ -455,7 +454,7 @@ namespace GameWish.Game
             }
             if (stage != preChracterStage)
                 EventSystem.S.Send(EventID.OnCharacterUpgrade, id, stage, CalculateForceValue(preChracterStage));
-            GameDataMgr.S.GetClanData().AddCharacterExp(m_ItemDbData, deltaExp);
+            GameDataMgr.S.GetClanData().RefreshCurExp(m_ItemDbData, curExp);
         }
 
         public void AddKongfuExp(CharacterKongfuData kongfuType, int deltaExp)
@@ -518,22 +517,99 @@ namespace GameWish.Game
 
         #endregion
 
+        #region 弟子面板红点相关
 
-        /// <summary>
-        /// 归还装备
-        /// </summary>
-        /// <param name="equipType"></param>
-        //public EquipmentItem ReturnEquipment(PropType equipType)
-        //{
-        //    EquipmentItem equipment = characterEquipment.Where(i => i.PropType == equipType).FirstOrDefault();
-        //    if (equipment != null)
-        //    {
-        //        characterEquipment.Remove(equipment);
-        //        return equipment;
-        //    }
-        //    return null;
+        public bool CheckDiscipelPanel()
+        {
+            if (CheckEquipRedPoint() || CheckKungfuRedPoint() || CheckEquipStrengthenRedPoint())
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool CheckArmor()
+        {
+            if (CheckEquip(characeterEquipmentData.CharacterArmor, characeterEquipmentData.IsArmorUnlock))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool CheckArms()
+        {
+            if (CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock))
+            {
+                return true;
+            }
+            return false;
+        }
 
-        //}
+        public bool CheckKungfuRedPoint()
+        {
+            bool isHava = false;
+            foreach (var item in kongfus.Values)
+            {
+                if (item.KungfuLockState == KungfuLockState.NotLearning)
+                {
+                    EventSystem.S.Send(EventID.OnKungfuRedPoint, item.Index,true);
+                    isHava = true;
+                }
+                else
+                {
+                    EventSystem.S.Send(EventID.OnKungfuRedPoint, item.Index, false);
+                }
+            }
+            return isHava;
+        }
+
+        private bool CheckEquipRedPoint()
+        {
+            return CheckEquip(characeterEquipmentData.CharacterArmor, characeterEquipmentData.IsArmorUnlock) || CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock);
+        }
+
+        private bool CheckEquip(CharaceterEquipment characeterEquipment, bool isUnlock)
+        {
+            if (isUnlock && characeterEquipment.GetSubID() == 0)
+            {
+                EventSystem.S.Send(EventID.OnSubPanelRedPoint, true);
+                return true;
+            }
+            else
+            {
+                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                return false;
+            }
+        }
+
+        private bool CheckEquipStrengthenRedPoint()
+        {
+            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms);
+        }
+
+        private bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment)
+        {
+            UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume(characeterEquipment.GetSubID(), characeterEquipment.Class + 1);
+
+            if (upgrade == null)
+            {
+                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                return false;
+            }
+
+            bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
+            if (isHave)
+            {
+                EventSystem.S.Send(EventID.OnSubPanelRedPoint, true);
+                return true;
+            }
+            else
+            {
+                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                return false;
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Get atk enhance ratio of all equipments
@@ -556,7 +632,17 @@ namespace GameWish.Game
 
         public FacilityType GetTargetFacilityType()
         {
-            return m_ItemDbData.targetFacility;
+            return m_ItemDbData.facilityData.targetFacility;
+        }
+
+        public int GetTargetFacilityIndex()
+        {
+            return m_ItemDbData.facilityData.id;
+        }
+
+        public string GetTargetFacilityStartTime()
+        {
+            return m_ItemDbData.facilityData.startTime;
         }
 
         public int CompareTo(object obj)
@@ -647,12 +733,14 @@ namespace GameWish.Game
         public abstract void RefreshInfo();
         public abstract bool IsHaveEquip();
         public abstract string GetIconName();
+
+        public abstract int  GetSubID(); 
     }
 
     public class CharacterArms : CharaceterEquipment
     {
         public const string DefaultArmsIconName = "DefaultArms";
-        public ArmsType ArmsID { set; get; }
+        public ArmsType ArmsID { set; get; } = ArmsType.None;
         public CharacterArms() { AtkAddition = -1; }
         public CharacterArms(ArmsType arms)
         {
@@ -719,12 +807,17 @@ namespace GameWish.Game
         {
             return TDEquipmentConfigTable.GetIconName((int)ArmsID);
         }
+
+        public override int GetSubID()
+        {
+            return (int)ArmsID;
+        }
     }
     public class CharacterArmor : CharaceterEquipment
     {
         public const string DefaultArmorIconName = "DefaultArmor";
 
-        public ArmorType ArmorID { set; get; }
+        public ArmorType ArmorID { set; get; } = ArmorType.None;
         public CharacterArmor() { AtkAddition = -1; }
         public CharacterArmor(ArmorType armor)
         {
@@ -790,6 +883,10 @@ namespace GameWish.Game
         public override string GetIconName()
         {
             return TDEquipmentConfigTable.GetIconName((int)ArmorID);
+        }
+        public override int GetSubID()
+        {
+            return (int)ArmorID;
         }
     }
 

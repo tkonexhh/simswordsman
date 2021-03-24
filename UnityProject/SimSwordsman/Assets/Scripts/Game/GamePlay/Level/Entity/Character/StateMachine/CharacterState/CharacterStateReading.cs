@@ -14,7 +14,7 @@ namespace GameWish.Game
         protected override BaseSlot GetTargetSlot()
         {
             KongfuLibraryController kongFuController = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
-            return kongFuController.GetIdlePracticeSlot();
+            return kongFuController.GetSlotByIndex(m_Controller.CharacterModel.CharacterItem.GetTargetFacilityIndex());
         }
 
         protected override void OnCDOver()
@@ -25,6 +25,7 @@ namespace GameWish.Game
             rewards.Add(reward);
             UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             reward.AcceptReward();
+
         }
     }
 }

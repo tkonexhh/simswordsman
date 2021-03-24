@@ -113,6 +113,13 @@ namespace GameWish.Game
         OnSendRecruitable,
         #endregion
 
+        #region 弟子红点相关
+        OnSubPanelRedPoint,
+        OnKungfuRedPoint,
+        OnMainMenuOrDiscipleRedPoint,
+        #endregion
+
+
         //KungfuLibrary
         /// <summary>
         /// 刷新功夫坑位的信息

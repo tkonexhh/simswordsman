@@ -20,6 +20,8 @@ namespace GameWish.Game
         private bool UpGradeRedPoint = false;
         private bool SubRedPoint = false;
 
+        public FacilityType facilityType => m_FacilityType;
+
         #region IEntityController
         public virtual void Init()
         {
@@ -45,18 +47,17 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnRawMaterialChangeEvent, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
         }
-        public FacilityController(FacilityType facilityType/*, int subId*/, FacilityView view)
+        public FacilityController(FacilityType facilityType, FacilityView view)
         {
             EventSystem.S.Register(EventID.OnRawMaterialChangeEvent, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnSendWorkingBubbleFacility, HandleAddListenerEvent);
 
             m_FacilityType = facilityType;
-            //m_SubId = subId;
 
             m_View = view;
             m_View.SetController(this);
 
-            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(m_FacilityType/*, subId*/);
+            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(m_FacilityType);
             m_Model = new FacilityModel(this, dbItem);
 
             SetState(dbItem.facilityState, true);
@@ -142,7 +143,7 @@ namespace GameWish.Game
                     UpGradeRedPoint = false;
                 }
             }
-           
+
             SubRedPoint = CheckSubFunc();
             RefreshRedPoint();
         }
@@ -224,22 +225,23 @@ namespace GameWish.Game
         private FacilityWorkingStateEnum m_FacilityWorkingState = FacilityWorkingStateEnum.Idle;
         public FacilityWorkingStateEnum FacilityWorkingState { get { return m_FacilityWorkingState; } }
         private int m_AutoStartWorkTimerID = -1;
-        public bool IsIdleState() 
+        public bool IsIdleState()
         {
             return FacilityWorkingState == FacilityWorkingStateEnum.Idle;
         }
-        public bool IsWorking() 
+        public bool IsWorking()
         {
             return FacilityWorkingState == FacilityWorkingStateEnum.Working;
         }
-        public bool IsShowBubble() {
+        public bool IsShowBubble()
+        {
             return FacilityWorkingState == FacilityWorkingStateEnum.Bubble;
         }
-        public void ChangeFacilityWorkingState(FacilityWorkingStateEnum state) 
+        public void ChangeFacilityWorkingState(FacilityWorkingStateEnum state)
         {
             this.m_FacilityWorkingState = state;
 
-            if (IsShowBubble() == false) 
+            if (IsShowBubble() == false)
             {
                 Timer.S.Cancel(m_AutoStartWorkTimerID);
             }
@@ -248,7 +250,7 @@ namespace GameWish.Game
         /// 派遣弟子开始工作
         /// </summary>
         /// <returns></returns>
-        public bool DispatchDiscipleStartWork() 
+        public bool DispatchDiscipleStartWork()
         {
             if (IsShowBubble())
             {
@@ -284,13 +286,13 @@ namespace GameWish.Game
                 Debug.LogError("is not show bubble state:");
                 Timer.S.Cancel(m_AutoStartWorkTimerID);
                 return false;
-            }    
+            }
         }
         /// <summary>
         /// 派遣弟子工作
         /// </summary>
         /// <param name="characterID"></param>
-        public void DispatchDiscipleStartWork(int characterID) 
+        public void DispatchDiscipleStartWork(int characterID)
         {
             CharacterController controller = MainGameMgr.S.CharacterMgr.GetCharacterController(characterID);
 
@@ -304,14 +306,15 @@ namespace GameWish.Game
 
                 controller.SetState(CharacterStateID.Working, GetFacilityType());
             }
-            else {
+            else
+            {
                 Debug.LogError("dispatch disciple is null");
             }
         }
         /// <summary>
         /// 倒计时自动开始工作
         /// </summary>
-        public void CoundDownAutoStartWork(Action endCallBack = null) 
+        public void CoundDownAutoStartWork(Action endCallBack = null)
         {
             Timer.S.Cancel(m_AutoStartWorkTimerID);
 

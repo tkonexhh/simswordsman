@@ -29,13 +29,26 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
-        private Transform m_DiscipleState;
+        private Transform m_DiscipleState;    
+        [SerializeField]
+        private GameObject m_DiscipleRedPoint;
 
         private CharacterItem m_CurCharacter = null;
         private DisciplePanel m_ParentPanel;
         private void Start()
         {
+            EventSystem.S.Register(EventID.OnMainMenuOrDiscipleRedPoint, HandAddListenerEvent);
             BindAddListenerEvent();
+        }
+
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnMainMenuOrDiscipleRedPoint:
+                    m_DiscipleRedPoint.SetActive(m_CurCharacter.CheckDiscipelPanel());
+                    break;
+            }
         }
 
         public void SetShowLine(int num)
@@ -56,6 +69,9 @@ namespace GameWish.Game
         {
             m_CurCharacter = characterItem;
             m_ParentPanel = disciple;
+
+            m_DiscipleRedPoint.SetActive(characterItem.CheckDiscipelPanel());
+
             if (m_CurCharacter != null)
             {
                 if (m_CurCharacter.IsFreeState())
@@ -121,6 +137,7 @@ namespace GameWish.Game
 
         private void OnDestroy()
         {
+            EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandAddListenerEvent);
         }
         private void OnDisable()
         {
