@@ -80,8 +80,6 @@ namespace GameWish.Game
 
             m_CommonTaskMgr.InitTaskList();
 
-            m_FacilityMgr.InitFacilityControllers();
-
             m_RawMatCollectSystem.InitState();
 
             m_IsInited = true;

@@ -18,7 +18,6 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ArrangeBtn;
         private FacilityType m_CurFacilityType;
-        private int m_CurLevel;
         private List<CharacterItem> m_CharacterItem = null;
         private CharacterItem m_SelectedDisciple = null;
         private PracticeField m_PracticeFieldInfo = null;
@@ -34,7 +33,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            AudioMgr.S.PlaySound(Define.INTERFACE);
+
             EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
 
             m_ArrangeBtn.onClick.AddListener(() =>
@@ -47,6 +46,28 @@ namespace GameWish.Game
 
                 HideSelfWithAnim();
             });
+        }
+
+        protected override void OnPanelOpen(params object[] args)
+        {
+            base.OnPanelOpen(args);
+            AudioMgr.S.PlaySound(Define.INTERFACE);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
+            m_PracticeFieldInfo = (PracticeField)args[0];
+            m_CurFacilityType = (FacilityType)args[1];
+            GetInformationForNeed();
+
+            BindAddListenerEvent();
+
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            int maxLevel = TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
+            CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+            for (int i = 0; i < m_CharacterItem.Count; i++)
+            {
+                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level < maxLevel)
+                    CreateDisciple(m_CharacterItem[i]);
+            }
+            CalculateContainerHeight();
         }
 
         protected override void OnClose()
@@ -96,27 +117,7 @@ namespace GameWish.Game
             if (IsSelected)
                 m_ArrangeBtn.transform.position = m_Pos.position;
         }
-        protected override void OnPanelOpen(params object[] args)
-        {
-            base.OnPanelOpen(args);
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_PracticeFieldInfo = (PracticeField)args[0];
-            m_CurFacilityType = (FacilityType)args[1];
-            m_CurLevel = (int)args[2];
-            GetInformationForNeed();
 
-            BindAddListenerEvent();
-
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
-            int maxLevel = TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
-            CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
-            for (int i = 0; i < m_CharacterItem.Count; i++)
-            {
-                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level < maxLevel)
-                    CreateDisciple(m_CharacterItem[i]);
-            }
-            CalculateContainerHeight();
-        }
 
         private void GetInformationForNeed()
         {
