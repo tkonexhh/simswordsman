@@ -50,7 +50,7 @@ namespace GameWish.Game
             {
                 for (int i = nowSeat; i < seat; i++)
                 {
-                    m_SlotList.Add(new PracticeField(info, i, 1, m_View));
+                    m_SlotList.Add(new PracticeField(info, i, m_View));
                 }
             }
         }

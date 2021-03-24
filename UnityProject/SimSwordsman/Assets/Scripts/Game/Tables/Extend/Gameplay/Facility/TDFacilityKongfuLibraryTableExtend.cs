@@ -123,9 +123,15 @@ namespace GameWish.Game
             return levelInfo;
         }
 
-        private static int GetSeatNeedLevel(int seat)
+        public static int GetSeatNeedLevel(int seat)
         {
-
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                if (dataList[i].seat == seat)
+                {
+                    return dataList[i].level;
+                }
+            }
             return 0;
         }
     }

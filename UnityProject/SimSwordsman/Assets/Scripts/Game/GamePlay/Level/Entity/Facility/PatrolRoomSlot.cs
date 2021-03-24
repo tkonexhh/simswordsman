@@ -9,14 +9,9 @@ namespace GameWish.Game
 {
     public class PatrolRoomSlot : BaseSlot
     {
-        public PatrolRoomSlot(PatrolRoomInfo item, int index, int unLock, FacilityView facilityView) : base(index, unLock, facilityView)
+        public PatrolRoomSlot(PatrolRoomInfo item, int index, FacilityView facilityView) : base(index, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
-        }
-        public void Warp(PatrolRoomInfo patrolRoomInfo)
-        {
-            slotState = SlotState.Free;
-            UnlockLevel = patrolRoomInfo.level;
         }
 
         public void SetCharacterItem(CharacterItem characterItem, SlotState slotState, FacilityType targetFacility)

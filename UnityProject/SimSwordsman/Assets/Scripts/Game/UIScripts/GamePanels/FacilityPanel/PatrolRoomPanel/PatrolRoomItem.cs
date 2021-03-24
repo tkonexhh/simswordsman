@@ -68,7 +68,7 @@ namespace GameWish.Game
                     break;
                 case SlotState.NotUnlocked:
                     m_PatrolRoomBtn.enabled = false;
-                    m_CurPatrolRoom.text = "巡逻位" + m_PatrolRoomSlot.UnlockLevel + "级后解锁";
+                    // m_CurPatrolRoom.text = "巡逻位" + m_PatrolRoomSlot.UnlockLevel + "级后解锁";
                     break;
                 case SlotState.Busy:
                     RefreshFixedInfo();
