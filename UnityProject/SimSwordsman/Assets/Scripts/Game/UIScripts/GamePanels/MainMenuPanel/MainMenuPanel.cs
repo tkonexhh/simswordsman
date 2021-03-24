@@ -51,6 +51,22 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
 
+        [Header("战斗任务")]
+        [SerializeField]
+        private GameObject m_TacticalFunctionBtn1; 
+        [SerializeField]
+        private Image m_TacticalImg1;
+        [SerializeField]
+        private Text m_TacticalName1;
+
+        [SerializeField]
+        private GameObject m_TacticalFunctionBtn2;
+        [SerializeField]
+        private Image m_TacticalImg2;
+        [SerializeField]
+        private Text m_TacticalName2;
+
+        [Header("访客")]
         [SerializeField]
         private Button m_VisitorBtn1;
         [SerializeField]
@@ -61,6 +77,9 @@ namespace GameWish.Game
         private Image m_VisitorImg2;
         [SerializeField]
         private Button m_SettingBtn;
+
+        private SimGameTask m_TacticalTask1 = null;
+        private SimGameTask m_TacticalTask2 = null;
 
         protected override void OnUIInit()
         {
@@ -273,6 +292,7 @@ namespace GameWish.Game
         private void RegisterEvents()
         {
             EventSystem.S.Register(EventID.OnRefreshMainMenuPanel, HandleEvent);
+            EventSystem.S.Register(EventID.OnSendBulletinBoardFacility, HandleEvent);
             EventSystem.S.Register(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.Register(EventID.OnClanNameChange, ChangeClanName);
@@ -283,6 +303,7 @@ namespace GameWish.Game
         private void UnregisterEvents()
         {
             EventSystem.S.UnRegister(EventID.OnRefreshMainMenuPanel, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnSendBulletinBoardFacility, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnCheckVisitorBtn, CheckVisitorBtn);
             EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
@@ -300,6 +321,10 @@ namespace GameWish.Game
                     break;
                 case EventID.OnCloseParentPanel:
                     CloseSelfPanel();
+                    break; 
+                case EventID.OnSendBulletinBoardFacility:
+                    RefreshTacticalInfo();
+
                     break;
                 case EventID.OnFoodRefreshEvent:
                     if ((bool)param[1])
@@ -315,6 +340,8 @@ namespace GameWish.Game
 
             }
         }
+
+
         private void ChangeClanName(int key, object[] param)
         {
             if (!m_VillaName.transform.parent.gameObject.activeSelf)
@@ -361,6 +388,16 @@ namespace GameWish.Game
                 m_VisitorImg2.SetNativeSize();
             }
         }
+
+
+        #region 战斗任务相关
+
+        private void RefreshTacticalInfo()
+        {
+            List<SimGameTask>  curTaskList = MainGameMgr.S.CommonTaskMgr.CurTaskList;
+        
+        }
+        #endregion
 
     }
 }
