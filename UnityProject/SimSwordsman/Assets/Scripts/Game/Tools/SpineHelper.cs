@@ -5,12 +5,12 @@ using Spine.Unity;
 
 namespace GameWish.Game
 {
-	public class SpineHelper
-	{
+    public class SpineHelper
+    {
         public static void PlayAnim(SkeletonAnimation spine, string name, bool loop, System.Action callback)
         {
             Spine.TrackEntry trackEntry = spine.AnimationState.SetAnimation(0, name, loop);
-            trackEntry.Complete += (Spine.TrackEntry entry) => 
+            trackEntry.Complete += (Spine.TrackEntry entry) =>
             {
                 if (callback != null)
                 {
@@ -18,6 +18,11 @@ namespace GameWish.Game
                 }
             };
         }
-	}
-	
+
+        public static bool HasAnimation(SkeletonAnimation spine, string name, string animationName)
+        {
+            Spine.Animation anim = spine.Skeleton.Data.FindAnimation(name);
+            return anim != null;
+        }
+    }
 }
