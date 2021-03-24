@@ -12,6 +12,7 @@ namespace GameWish.Game
         public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index, int unLock, FacilityView facilityView) : base(index, unLock, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
+            UnlockLevel = CalcUnlockLvl();
         }
 
         public void SelectCharacterItem(CharacterItem characterItem, FacilityType targetFacility)
@@ -26,6 +27,11 @@ namespace GameWish.Game
         protected override void OnCDOver()
         {
             EventSystem.S.Send(EventID.OnRefresKungfuSoltInfo, this);
+        }
+
+        private int CalcUnlockLvl()
+        {
+            return 1;
         }
     }
 }

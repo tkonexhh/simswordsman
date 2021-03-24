@@ -137,11 +137,15 @@ namespace GameWish.Game
 
         public int GetTargetFacilityIndex()
         {
+            if (m_CharacterItem == null)
+                return 0;
             return m_CharacterItem.GetTargetFacilityIndex();
         }
 
         public string GetTargetFacilityStartTime()
         {
+            if (m_CharacterItem == null)
+                return string.Empty;
             return m_CharacterItem.GetTargetFacilityStartTime();
         }
 

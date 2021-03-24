@@ -109,6 +109,15 @@ namespace Qarth
                     return "null";
             }
         }
+
+
+        public static bool isTestMode
+        {
+            get
+            {
+                return isEditor;
+            }
+        }
     }
 
 }
