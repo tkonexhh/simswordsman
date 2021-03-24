@@ -8,12 +8,12 @@ namespace GameWish.Game
 	{
         public override void OnRewardClaimed()
         {
-            base.OnRewardClaimed();
+            //base.OnRewardClaimed();
 
-            MainTaskItemInfo item = TDMainTaskTable.GetMainTaskItemInfo(m_TaskId);
-            int itemId = item.GetRewardId(0);
-            int count = item.GetRewardValue(0);
-            MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+            //MainTaskItemInfo item = TDMainTaskTable.GetMainTaskItemInfo(m_TaskId);
+            //int itemId = item.GetRewardId(0);
+            //int count = item.GetRewardValue(0);
+            //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
         }
     }
 	
