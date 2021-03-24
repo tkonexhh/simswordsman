@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Qarth;
 using System;
 using static UnityEngine.Application;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -78,8 +79,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_SettingBtn;
 
-        private SimGameTask m_TacticalTask1 = null;
-        private SimGameTask m_TacticalTask2 = null;
+        //private SimGameTask m_TacticalTask1 = null;
+        //private SimGameTask m_TacticalTask2 = null;
+        //private List<SimGameTaskPop> m_CommonTaskList = new List<SimGameTaskPop>();
 
         protected override void OnUIInit()
         {
@@ -394,8 +396,16 @@ namespace GameWish.Game
 
         private void RefreshTacticalInfo()
         {
-            List<SimGameTask>  curTaskList = MainGameMgr.S.CommonTaskMgr.CurTaskList;
-        
+            List<SimGameTask> curTaskList = MainGameMgr.S.CommonTaskMgr.CurTaskList;
+            curTaskList.ForEach(i => 
+            {
+                //if (!m_CommonTaskList.Any(j => j.TaskId == i.TaskId))
+                //{
+                //    // Spawn new pop
+                //    SimGameTaskPop x = ...;
+                //    m_CommonTaskList.Add(x);
+                //}
+            });
         }
         #endregion
 
