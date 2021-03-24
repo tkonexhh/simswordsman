@@ -61,6 +61,11 @@ namespace GameWish.Game
                         m_Buttons[i].enabled = false;
                         m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Lock, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
+
+                    if (PlatformHelper.isTestMode)
+                    {
+                        m_Buttons[i].enabled = true;
+                    }
                 }
             }
         }

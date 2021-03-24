@@ -21,6 +21,7 @@ namespace GameWish.Game
         [SerializeField] private Button m_CopyScripturesBtn;
 
         private int m_CountDown = 0;
+        private int m_Index;
 
         private CDBaseSlot m_Slot = null;
         private KongfuLibraryPanel m_KongfuLibraryPanel;
@@ -32,6 +33,7 @@ namespace GameWish.Game
 
         public void Init(int index, KongfuLibraryPanel panel)
         {
+            m_Index = index;
             BindAddListenerEvent();
             m_CopyScripturesPos.text = "抄经位:" + index;
             m_KongfuLibraryPanel = panel;
@@ -122,8 +124,7 @@ namespace GameWish.Game
             m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
             m_CopyScripturesBtn.enabled = false;
             m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
-            //FIXME 解锁等级
-            m_Free.text = "抄经位" + m_Slot.UnlockLevel + "级后解锁";
+            m_Free.text = "抄经位" + TDFacilityKongfuLibraryTable.GetSeatNeedLevel(m_Index + 1) + "级后解锁";
             m_Time.gameObject.SetActive(false);
             m_DiscipleHead.gameObject.SetActive(false);
         }

@@ -24,7 +24,6 @@ namespace GameWish.Game
     public class BaseSlot
     {
         public int Index { set; get; }
-        public int UnlockLevel { set; get; }
         public CharacterItem CharacterItem { set; get; }
         public SlotState slotState { set; get; }
         public FacilityType FacilityType { set; get; }
@@ -43,10 +42,9 @@ namespace GameWish.Game
         private CharacterController m_Character;
         private FacilityView m_FacilityView;
 
-        public BaseSlot(int index, int unlock, FacilityView facilityView)
+        public BaseSlot(int index, FacilityView facilityView)
         {
             Index = index;
-            UnlockLevel = unlock;
             m_FacilityView = facilityView;
 
             CharacterItem = null;

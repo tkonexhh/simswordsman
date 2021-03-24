@@ -31,9 +31,11 @@ namespace GameWish.Game
         private PracticeFieldPanel m_PracticeFieldPanel;
 
         private CDBaseSlot m_Slot = null;
+        private int m_Index;
 
         public void Init(int index, FacilityType type, PracticeFieldPanel panel)
         {
+            m_Index = index;
             BindAddListenEvent();
             m_CurFacilityType = type;
             m_PracticeFieldPanel = panel;
@@ -131,8 +133,7 @@ namespace GameWish.Game
         {
             m_PracticeBtn.enabled = false;
             m_DiscipleHead.gameObject.SetActive(false);
-            //FIXME 解锁等级
-            m_State.text = "练功场" + m_Slot.UnlockLevel + "级后解锁";
+            m_State.text = "练功场" + TDFacilityPracticeFieldTable.GetSeatNeedLevel(m_Index + 1) + "级后解锁";
             m_PracticeImg.sprite = m_PracticeFieldPanel.FindSprite("Lock2");
             m_Time.enabled = false;
             m_CurPractice.text = Define.COMMON_DEFAULT_STR;

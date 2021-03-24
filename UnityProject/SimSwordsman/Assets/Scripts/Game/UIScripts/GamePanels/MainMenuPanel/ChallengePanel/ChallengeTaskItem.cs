@@ -190,6 +190,11 @@ namespace GameWish.Game
                 default:
                     break;
             }
+
+            if (PlatformHelper.isTestMode)
+            {
+                m_ChallengeBtn.gameObject.SetActive(true);
+            }
         }
 
         public void SetButtonEvent(Action<object> action)

@@ -9,10 +9,9 @@ namespace GameWish.Game
 {
     public class KungfuLibraySlot : CDBaseSlot
     {
-        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index, int unLock, FacilityView facilityView) : base(index, unLock, facilityView)
+        public KungfuLibraySlot(KongfuLibraryLevelInfo item, int index, FacilityView facilityView) : base(index, facilityView)
         {
             FacilityType = FacilityType.KongfuLibrary;
-            UnlockLevel = CalcUnlockLvl();
         }
 
         public void SelectCharacterItem(CharacterItem characterItem, FacilityType targetFacility)
@@ -31,7 +30,7 @@ namespace GameWish.Game
 
         private int CalcUnlockLvl()
         {
-            return 1;
+            return TDFacilityKongfuLibraryTable.GetSeatNeedLevel(Index + 1);
         }
     }
 }
