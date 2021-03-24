@@ -10,7 +10,6 @@ namespace GameWish.Game
     {
         public PlayerData playerInfoData = null;
         public ClanData clanData = null;
-        //public ShopData shopData = null;
         public MainTaskData mainTaskData = null;
         public CommonTaskData commonTaskData = null;
 
@@ -28,8 +27,6 @@ namespace GameWish.Game
 
             clanData = new ClanData();
             clanData.SetDefaultValue();
-            //shopData = new ShopData();
-            //shopData.SetDefaultValue();
 
             mainTaskData = new MainTaskData();
             mainTaskData.SetDefaultValue();
