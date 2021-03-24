@@ -34,6 +34,8 @@ namespace GameWish.Game
                 TDRemoteConfigTable.metaData,
                 TDPurchaseTable.metaData,
 
+                TDAdNativeViewTable.metaData,
+
                 // Game play table        
                 TDLevelConfigTable.metaData,
                 TDCharacterConfigTable.metaData,
@@ -85,6 +87,7 @@ namespace GameWish.Game
                 TDVisitorRewardConfigTable.metaData,
                 TDFoodConfigTable.metaData,
                 TDCollectConfigTable.metaData,
+                TDAdSceneConfigTable.metaData,
             };
         }
     }
