@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
     public class CDBaseSlot : BaseSlot
     {
-        public CDBaseSlot(int index, int unlock, FacilityView facilityView) : base(index, unlock, facilityView) { }
+        public CDBaseSlot(int index, FacilityView facilityView) : base(index, facilityView) { }
 
         private void InitTimerUpdate()
         {

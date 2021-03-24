@@ -9,7 +9,7 @@ namespace GameWish.Game
 {
     public class PracticeField : CDBaseSlot
     {
-        public PracticeField(PracticeFieldLevelInfo item, int index, int unlock, FacilityView facilityView) : base(index, unlock, facilityView)
+        public PracticeField(PracticeFieldLevelInfo item, int index, FacilityView facilityView) : base(index, facilityView)
         {
             FacilityType = item.GetHouseID();
         }

@@ -52,43 +52,7 @@ namespace GameWish.Game
             //     }
             // });
         }
-        private void LoopInit(FacilityType facilityType)
-        {
-            int count = 0;
-            List<PatrolRoomInfo> eastInfos = MainGameMgr.S.FacilityMgr.GetPatrolRoomLevelInfoList(facilityType);
-            for (int i = 0; i < eastInfos.Count; i++)
-            {
-                if (i - 1 >= 0)
-                {
 
-                    int lastPracticePosCount = eastInfos[i - 1].GetCurCapacity();
-                    int curPracticePosCount = eastInfos[i].GetCurCapacity();
-
-                    int delta = curPracticePosCount - lastPracticePosCount;
-                    if (delta == 0)
-                    {
-                        count++;
-                        continue;
-                    }
-                    else if (delta == 1)
-                        m_PatrolRoomSlotList.Add(new PatrolRoomSlot(eastInfos[i], i + 1 - count, i + 1, m_View));
-
-                    //int lastPracticePosCount = eastInfos[i - 1].GetCurCapacity();
-                    //int curPracticePosCount = eastInfos[i].GetCurCapacity();
-
-                    //int delta = curPracticePosCount - lastPracticePosCount;
-                    //if (delta == 0)
-                    //{
-                    //    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i, i + 1));
-                    //    count++;
-                    //}
-                    //else if (delta == 1)
-                    //    m_ReadingSlotList.Add(new KungfuLibraySlot(eastInfos[i], i + 1 - count, i + 1));
-                }
-                else
-                    m_PatrolRoomSlotList.Add(new PatrolRoomSlot(eastInfos[i], i + 1, i + 1, m_View));
-            }
-        }
 
     }
 }
