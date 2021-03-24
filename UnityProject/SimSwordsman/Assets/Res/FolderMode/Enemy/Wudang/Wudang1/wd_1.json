@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "Gq1gRTjGQJEUo8uRYGfWCbISVUw",
+	"hash": "WoQj9FwABZ3iwINdtKkLk/SH5m0",
 	"spine": "3.8.95",
 	"x": -45.41,
-	"y": -7.15,
+	"y": -5.55,
 	"width": 73.89,
-	"height": 146.24,
+	"height": 144.64,
 	"images": "./images/",
 	"audio": ""
 },
@@ -211,7 +211,7 @@
 				"右鞋子": { "x": 3.99, "y": 1.17, "rotation": -47.11, "width": 13, "height": 13 }
 			},
 			"地影": {
-				"地影": { "x": -0.42, "y": -0.71, "scaleX": 0.9995, "scaleY": 0.9995, "width": 34, "height": 15 }
+				"地影": { "x": -0.42, "y": -0.71, "scaleX": 0.9995, "scaleY": 0.9995, "width": 32, "height": 12 }
 			},
 			"头": {
 				"头": {
@@ -279,6 +279,9 @@
 		}
 	}
 ],
+"events": {
+	"attack": {}
+},
 "animations": {
 	"hurt": {
 		"bones": {
@@ -1962,6 +1965,10 @@
 					{ "slot": "头", "offset": -3 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 0.5, "name": "attack" },
+			{ "time": 1.1667, "name": "attack" }
 		]
 	},
 	"taijiquan": {
@@ -2803,6 +2810,12 @@
 					{ "slot": "头", "offset": -3 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 0.1333, "name": "attack" },
+			{ "time": 0.8333, "name": "attack" },
+			{ "time": 0.9333, "name": "attack" },
+			{ "time": 1.6667, "name": "attack" }
 		]
 	},
 	"tumble": {

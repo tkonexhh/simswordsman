@@ -55,7 +55,7 @@ namespace GameWish.Game
                 {
 
                     FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Bubble);
-                    FacilityController.CoundDownAutoStartWork(OnClicked);
+                    FacilityController.CoundDownAutoStartWork(OnClicked,true);
                     BubbleView.SetActive(true);
                     WorkSprite.SetActive(true);
                     RewardSprite.SetActive(false);
@@ -74,17 +74,18 @@ namespace GameWish.Game
             return curFood >= Define.WORK_NEED_FOOD_COUNT;
         }
 
-        public void OnClicked()
+        public void OnClicked(bool isAuto = false)
         {
             if (FacilityController != null) 
             {
                 if (IsFoodEnough() == false)
                 {
-                    FloatMessage.S.ShowMsg("食物不足");
+                    if (!isAuto)
+                        FloatMessage.S.ShowMsg("食物不足");
                     return;
                 }
 
-                if (FacilityController.DispatchDiscipleStartWork()) 
+                if (FacilityController.DispatchDiscipleStartWork(isAuto)) 
                 {
                     BubbleView.SetActive(false);
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
