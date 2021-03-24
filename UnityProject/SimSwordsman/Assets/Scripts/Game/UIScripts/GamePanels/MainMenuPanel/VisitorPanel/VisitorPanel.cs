@@ -84,7 +84,7 @@ namespace GameWish.Game
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_receive, m_visitor.Reward.KeyID.ToString());
 
-                AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                AdsManager.S.PlayRewardAD("ReceiveVisitor", LookADSuccessCallBack);
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
             {

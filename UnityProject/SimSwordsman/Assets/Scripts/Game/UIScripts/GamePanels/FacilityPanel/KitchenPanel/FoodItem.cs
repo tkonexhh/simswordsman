@@ -214,7 +214,7 @@ namespace GameWish.Game
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
                     DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString()+ ";JingChao");
-                    AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                    AdsManager.S.PlayRewardAD("GoodRecipe", LookADSuccessCallBack);
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
