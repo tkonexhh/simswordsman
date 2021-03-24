@@ -10,7 +10,7 @@ namespace GameWish.Game
 {
     public partial class TDMainTaskTable
     {
-        public static Dictionary<int, MainTaskItemInfo> taskInfoDic = new Dictionary<int, MainTaskItemInfo>();
+        //public static Dictionary<int, MainTaskItemInfo> taskInfoDic = new Dictionary<int, MainTaskItemInfo>();
 
         static void CompleteRowAdd(TDMainTask tdData)
         {

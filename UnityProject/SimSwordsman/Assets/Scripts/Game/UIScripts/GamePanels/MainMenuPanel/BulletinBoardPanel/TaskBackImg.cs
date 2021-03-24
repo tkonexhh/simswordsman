@@ -45,9 +45,9 @@ namespace GameWish.Game
 	        
 	    }
 
-		public void InitItem(MainTaskItemInfo mainTask) {
+		//public void InitItem(MainTaskItemInfo mainTask) {
 		
-		}
+		//}
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
