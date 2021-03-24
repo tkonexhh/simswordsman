@@ -122,6 +122,11 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnGuideFirstGetCharacter);
             }
 
+            if (GuideMgr.S.IsGuideFinish(33) && GuideMgr.S.IsGuideFinish(35) == false) 
+            {
+                EventSystem.S.Send(EventID.OnRecruitmentSystem_FinishedTrigger);
+            }
+
             CloseDependPanel(EngineUI.MaskPanel);
             try
             {

@@ -168,7 +168,7 @@ namespace GameWish.Game
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
                     UIMgr.S.OpenPanel(UIID.WorldUIPanel);
-                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallback);
 
                     MusicMgr.S.PlayMenuMusic();
                     MainGameMgr.S.OnInit();
@@ -185,14 +185,6 @@ namespace GameWish.Game
                     {
                         Application.runInBackground = true;
                     }
-                    int num = PlayerPrefs.GetInt("test");
-                    if (num != 1)
-                    {
-                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1001), 20);
-                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)1002), 20);
-                        PlayerPrefs.SetInt("test", 1);
-                    }
-
                     GameMgr.S.StartGuide();
 
                     //Application.runInBackground = true;
@@ -335,6 +327,12 @@ namespace GameWish.Game
             }
             #endregion
         }
+
+        private void MainMenuPanelCallback(AbstractPanel obj)
+        {
+            EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
+        }
+
 
         /// <summary>
         /// 检查是否是第一次启动游戏，直接开启剧情
