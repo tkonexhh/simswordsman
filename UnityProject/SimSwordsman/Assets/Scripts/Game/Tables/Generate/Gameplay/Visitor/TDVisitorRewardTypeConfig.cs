@@ -13,7 +13,7 @@ namespace GameWish.Game
         
        
         private EInt m_LobbyLevel = 0;   
-        private EInt m_RewardTypeOrder = 0;   
+        private string m_RewardTypeOrder;   
         private string m_BuildResBase;   
         private string m_BuildResAmout;   
         private string m_RecruitOrder;   
@@ -30,7 +30,7 @@ namespace GameWish.Game
         /// <summary>
         /// 循环序列，1建材、2招募令、3强化材料、4制作材料
         /// </summary>
-        public  int  rewardTypeOrder {get { return m_RewardTypeOrder; } }
+        public  string  rewardTypeOrder {get { return m_RewardTypeOrder; } }
        
         /// <summary>
         /// 建材进度比例基数，格式为木材1、石材1、铜钱、木材2、石材2
@@ -76,7 +76,7 @@ namespace GameWish.Game
                     m_LobbyLevel = dataR.ReadInt();
                     break;
                 case 1:
-                    m_RewardTypeOrder = dataR.ReadInt();
+                    m_RewardTypeOrder = dataR.ReadString();
                     break;
                 case 2:
                     m_BuildResBase = dataR.ReadString();
