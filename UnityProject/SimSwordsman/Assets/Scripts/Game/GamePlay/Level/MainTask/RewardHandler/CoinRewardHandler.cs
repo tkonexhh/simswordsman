@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class CoinRewardHandler : RewardHandlerBase
-	{
-        public override void OnRewardClaimed()
-        {
-            base.OnRewardClaimed();
+	//public class CoinRewardHandler : RewardHandlerBase
+	//{
+ //       public override void OnRewardClaimed()
+ //       {
+ //           base.OnRewardClaimed();
 
-            MainTaskItemInfo item = TDMainTaskTable.GetMainTaskItemInfo(m_TaskId);
-            GameDataMgr.S.GetPlayerData().AddCoinNum(item.GetRewardValue(0));
-        }
-    }
+ //           MainTaskItemInfo item = TDMainTaskTable.GetMainTaskItemInfo(m_TaskId);
+ //           GameDataMgr.S.GetPlayerData().AddCoinNum(item.GetRewardValue(0));
+ //       }
+ //   }
 	
 }

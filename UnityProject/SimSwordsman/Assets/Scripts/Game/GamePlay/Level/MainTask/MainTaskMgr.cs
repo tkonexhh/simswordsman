@@ -91,33 +91,33 @@ namespace GameWish.Game
         //    }
         //}
 
-        public void AddMainTaskObserver(IMainTaskObserver ob)
-        {
-            if (!m_MainTaskObserverList.Contains(ob))
-            {
-                m_MainTaskObserverList.Add(ob);
-            }
-        }
+        //public void AddMainTaskObserver(IMainTaskObserver ob)
+        //{
+        //    if (!m_MainTaskObserverList.Contains(ob))
+        //    {
+        //        m_MainTaskObserverList.Add(ob);
+        //    }
+        //}
 
-        public void RemoveMainTaskObserver(IMainTaskObserver ob)
-        {
-            if (m_MainTaskObserverList.Contains(ob))
-            {
-                m_MainTaskObserverList.Remove(ob);
-            }
-        }
+        //public void RemoveMainTaskObserver(IMainTaskObserver ob)
+        //{
+        //    if (m_MainTaskObserverList.Contains(ob))
+        //    {
+        //        m_MainTaskObserverList.Remove(ob);
+        //    }
+        //}
 
-        public void OnTaskStateChanged(TaskItem taskItem)
-        {
-            NotifyObserver(taskItem);
+        //public void OnTaskStateChanged(TaskItem taskItem)
+        //{
+        //    NotifyObserver(taskItem);
 
-            bool isFinished = taskItem.IsFinished();
+        //    bool isFinished = taskItem.IsFinished();
 
-            if (isFinished)
-            {
-                GameDataMgr.S.GetMainTaskData().OnTaskFinished(taskItem.GetId());
-            }
-        }
+        //    if (isFinished)
+        //    {
+        //        GameDataMgr.S.GetMainTaskData().OnTaskFinished(taskItem.GetId());
+        //    }
+        //}
 
         #endregion
 

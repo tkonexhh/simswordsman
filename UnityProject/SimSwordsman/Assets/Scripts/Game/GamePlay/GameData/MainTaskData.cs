@@ -12,8 +12,8 @@ namespace GameWish.Game
         public void SetDefaultValue()
         {
             int id = 10010;
-            int time = TDMainTaskTable.GetMainTaskItemInfo(id).taskTime;
-            taskList.Add(new MainTaskItemData(id, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart, time));
+            //int time = TDMainTaskTable.GetMainTaskItemInfo(id).taskTime;
+            //taskList.Add(new MainTaskItemData(id, SimGameTaskType.Collect, (int)CollectedObjType.WuWood, TaskState.NotStart, time));
         }
 
         public void Init()
@@ -31,19 +31,19 @@ namespace GameWish.Game
             }
         }
 
-        public void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
-        {
-            MainTaskItemData mainTaskItem = GetMainTaskItemData(taskId);
-            if (mainTaskItem != null)
-            {
-                Log.e("Task already exists, taskId: " + taskId + " task subId: " + subType);
-                return;
-            }
+        //public void AddTask(int taskId, SimGameTaskType taskType, int subType, TaskState taskState)
+        //{
+        //    MainTaskItemData mainTaskItem = GetMainTaskItemData(taskId);
+        //    if (mainTaskItem != null)
+        //    {
+        //        Log.e("Task already exists, taskId: " + taskId + " task subId: " + subType);
+        //        return;
+        //    }
 
-            int time = TDMainTaskTable.GetMainTaskItemInfo(taskId).taskTime;
-            MainTaskItemData item = new MainTaskItemData(taskId, taskType, subType, taskState, time);
-            taskList.Add(item);
-        }
+        //    //int time = TDMainTaskTable.GetMainTaskItemInfo(taskId).taskTime;
+        //    //MainTaskItemData item = new MainTaskItemData(taskId, taskType, subType, taskState, time);
+        //    //taskList.Add(item);
+        //}
 
         public void OnTaskFinished(int taskId)
         {
