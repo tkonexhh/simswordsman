@@ -94,8 +94,8 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshTask(bool immediately = false)
         {
-            if (m_IsSystemUnlocked == false)
-                return;
+            //if (m_IsSystemUnlocked == false)
+            //    return;
 
             int lastRefreshDay = GameDataMgr.S.GetCommonTaskData().lastRefreshTaskDay;
             if (lastRefreshDay != DateTime.Today.DayOfYear)
