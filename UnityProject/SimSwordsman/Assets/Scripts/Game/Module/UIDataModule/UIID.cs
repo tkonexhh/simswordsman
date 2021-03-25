@@ -64,6 +64,7 @@ namespace GameWish.Game
         KongfuLibraryPanel,
         KungfuChooseDisciplePanel,
         LivableRoomPanel,
+        TacticalFunctionPanel,
         PatrolRoomPanel,
         PracticeFieldPanel,
         PatrolRoomChooseDisciplePanel,

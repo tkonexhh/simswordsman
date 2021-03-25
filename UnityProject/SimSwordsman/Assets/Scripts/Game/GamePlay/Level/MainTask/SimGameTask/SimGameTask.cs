@@ -11,7 +11,7 @@ namespace GameWish.Game
         protected int m_TaskId;
         protected CommonTaskItemInfo m_TaskDetailInfo = null;
         //protected string m_TaskStartTime = string.Empty;
-
+        private TaskReward m_TaskReward;
         public CommonTaskItemInfo CommonTaskItemInfo { get { return m_TaskDetailInfo; } }
 
         //public string TaskStartTime { get => m_TaskStartTime;}
@@ -45,6 +45,17 @@ namespace GameWish.Game
 
             m_TaskDetailInfo.taskState = taskState;
             m_TaskDetailInfo.taskTime = taskTime;
+            RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
+            foreach (var item in m_TaskDetailInfo.itemRewards)
+            {
+                randomWeightHelpe.AddWeightItem(item, item.weight);
+            }
+            m_TaskReward  = randomWeightHelpe.GetRandomWeightValue();
+        }
+
+        public TaskReward GetTaskReward()
+        {
+            return m_TaskReward;
         }
 
         /// <summary>
@@ -132,12 +143,12 @@ namespace GameWish.Game
                 i.CharacterModel.DistributionKungfuExp((int)(CommonTaskItemInfo.kongfuReward * ratio));
             });
 
-            RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
-            foreach (var item in m_TaskDetailInfo.itemRewards)
-            {
-                randomWeightHelpe.AddWeightItem(item, item.weight);
-            }
-            TaskReward taskReward = randomWeightHelpe.GetRandomWeightValue();
+            //RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
+            //foreach (var item in m_TaskDetailInfo.itemRewards)
+            //{
+            //    randomWeightHelpe.AddWeightItem(item, item.weight);
+            //}
+            TaskReward taskReward = m_TaskReward;//randomWeightHelpe.GetRandomWeightValue();
             List<RewardBase> rewards = new List<RewardBase>();
             if (taskReward==null)
                 taskReward = m_TaskDetailInfo.itemRewards[0];

@@ -203,8 +203,6 @@ namespace GameWish.Game
             m_LevelConfigInfo = args[0] as LevelConfigInfo;
             m_PanelType = (PanelType)args[1];
             m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
-
-
             switch (m_PanelType)
             {
                 case PanelType.Task:

@@ -249,44 +249,6 @@ namespace GameWish.Game
             m_GoToBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_enter, m_CurTaskInfo.TaskId.ToString());
-                #region 可能还需要的代码
-                //if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
-                //{
-                //    FloatMessage.S.ShowMsg("人数不足!");
-                //    return;
-                //}
-
-                //int baoz = int.Parse(m_Baozi.text);
-                //if (baoz > GameDataMgr.S.GetPlayerData().GetFoodNum())
-                //{
-                //    FloatMessage.S.ShowMsg("食物不足，过会儿再来吧");
-                //    return;
-                //}
-                //else
-                //{
-                //    if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
-                //    {
-                //        m_Line.enabled = false;
-                //        m_ChooseDisciple.enabled = false;
-                //        StartCoroutine(CountDown());
-                //    }
-
-                //    //RefreshBtnInfo();
-                //    GameDataMgr.S.GetPlayerData().ReduceFoodNum(baoz);
-
-                //    List<CharacterController> selectedControllerList = new List<CharacterController>();
-                //    foreach (var item in m_SelectedDiscipleDic.Values)
-                //    {
-                //        CharacterController controller = MainGameMgr.S.CharacterMgr.GetCharacterController(item.id);
-                //        if (controller != null)
-                //        {
-                //            selectedControllerList.Add(controller);
-                //        }
-                //    }
-                //    m_CurTaskInfo.ExecuteTask(selectedControllerList);
-                //}
-                //RefreshTaskState();
-                #endregion
                 UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, OpenCallback, PanelType.Task, m_CurTaskInfo);
             });
             //婉拒
@@ -296,38 +258,6 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示","您确定要放弃任务吗");
             });
             m_Promptly.onClick.AddListener(()=> {
-                #region 可能还需要的代码
-                //AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                //if (m_CurTaskInfo.GetCurTaskState() == TaskState.Unclaimed)
-                //{
-                //    // Set character in this task to idle
-                //    List<CharacterController> allCharacterInThisTask = MainGameMgr.S.CharacterMgr.GetAllCharacterInTask(m_CurTaskInfo.TaskId);
-                //    allCharacterInThisTask.ForEach(i => 
-                //    {
-                //        i.SetCurTask(null);
-                //        i.SetState(CharacterStateID.Wander);
-                //        i.HideTaskRewardBubble();
-                //    });
-
-                //    MainGameMgr.S.CommonTaskMgr.ClaimReward(m_CurTaskInfo.TaskId);
-                //    if (GuideMgr.S.IsGuideFinish(20)/*m_CurTaskInfo.TaskId != 9001 && m_CurTaskInfo.TaskId != 9002*/)
-                //        UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { RewardMgr.S.GetRewardBase(TDCommonTaskTable.GetData(m_CurTaskInfo.TaskId).reward) });
-
-                //    DestroyImmediate(this.gameObject);
-                //    return;
-                //}
-                //if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)
-                //{
-                //    if (!IsStartBattle)
-                //        FloatMessage.S.ShowMsg("看广告");
-                //    else
-                //    {   
-                //        UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Task, m_CurTaskInfo, m_SelectedDiscipleDic);
-                //        UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
-                //    }
-                //}
-                #endregion
             });
         }
         private void LogCallBack(AbstractPanel abstractPanel)
@@ -346,23 +276,6 @@ namespace GameWish.Game
                 int totalTime = m_CommonTaskItemInfo.taskTime;
 
                 second = totalTime - executedTime;
-                #region 可能还需要的代码
-                //switch (m_CommonTaskItemInfo.taskType)
-                //{
-                //    case SimGameTaskType.None:
-                //        break;
-                //    case SimGameTaskType.Collect:
-                //        m_Time.text = "弟子们正在任务,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "完成";
-                //        break;
-                //    case SimGameTaskType.Battle:
-                //        m_Time.text = "弟子们正在路上,还有" + CommonUIMethod.GetStrForColor("#A44740", SplicingTime(totalTime - executedTime)) + "到达";
-                //        break;
-                //    case SimGameTaskType.Progress:
-                //        break;
-                //    default:
-                //        break;
-                //}
-                #endregion
                 if (totalTime - executedTime <= 0)
                 {
                     if (m_CommonTaskItemInfo.taskType == SimGameTaskType.Battle)

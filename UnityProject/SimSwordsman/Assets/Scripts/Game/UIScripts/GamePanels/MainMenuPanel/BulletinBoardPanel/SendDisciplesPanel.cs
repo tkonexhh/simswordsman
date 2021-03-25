@@ -338,7 +338,7 @@ namespace GameWish.Game
                     default:
                         break;
                 }
-               
+
 
                 CloseSelfPanel();
             });
