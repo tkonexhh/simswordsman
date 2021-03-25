@@ -60,10 +60,9 @@ namespace GameWish.Game
 
         private void OnClickF3()
         {
-
-            UIMgr.S.OpenPanel(UIID.SignInPanel);
+            UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
         }
-        int add = 1;
+
         private void OnClickF4()
         {
             //UIMgrExtend.S.OpenAdDynamicShowPanel(AdType.SummonReinforcements,2,10);

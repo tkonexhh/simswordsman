@@ -96,7 +96,7 @@ namespace GameWish.Game
         private void SendSplitChannelData()
         {
             string channelName = CustomExtensions.GetSDKChannel();
-            Debug.LogError("split channel:" + channelName);
+            //Debug.LogError("split channel:" + channelName);
 #if UNITY_ANDROID
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("channel", channelName);

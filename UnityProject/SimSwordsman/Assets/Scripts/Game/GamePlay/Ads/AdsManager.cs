@@ -12,5 +12,10 @@ namespace GameWish.Game
 		{
 			CustomExtensions.PlayAd(tag, LookADSuccessCallBack);
 		}
-	}	
+
+        public void PlayInterAD(string tag, Action<bool> LookInterADCallBackMethod)
+        {
+            CustomExtensions.PlayAd(tag, LookInterADCallBackMethod,null, "Inter0", "MainInter");
+        }
+    }	
 }

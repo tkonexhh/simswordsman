@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
     public interface ITask
     {
-        // void GetReward();
+        void GetReward();
     }
 
 }

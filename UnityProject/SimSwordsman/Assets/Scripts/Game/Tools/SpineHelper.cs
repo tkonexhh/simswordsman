@@ -19,9 +19,9 @@ namespace GameWish.Game
             };
         }
 
-        public static bool HasAnimation(SkeletonAnimation spine, string name, string animationName)
+        public static bool HasAnimation(SkeletonAnimation spine, string animationName)
         {
-            Spine.Animation anim = spine.Skeleton.Data.FindAnimation(name);
+            Spine.Animation anim = spine.Skeleton.Data.FindAnimation(animationName);
             return anim != null;
         }
     }

@@ -24,9 +24,6 @@ namespace GameWish.Game
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();//已解锁的伙房食物id
-        public List<int> rewardCollectItemIDs = new List<int>();//可以收集最大值的收集物
-
-
 
         private long m_CoinNum = 0;
         public int signInCount;
@@ -36,7 +33,6 @@ namespace GameWish.Game
         public bool firstSilverRecruit;
 
         public bool UnlockVisitor;
-        public int visitorCount;
         public bool UnlockWorkSystem;
 
         #region 食物倒计时
@@ -68,7 +64,6 @@ namespace GameWish.Game
 
             UnlockWorkSystem = false;
             UnlockVisitor = false;
-            visitorCount = 0;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
             FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
@@ -79,7 +74,6 @@ namespace GameWish.Game
 
         public void ResetDailyData()
         {
-            visitorCount = 0;
             recordData.ResetDailyData();
             SetDataDirty();
         }
@@ -396,28 +390,6 @@ namespace GameWish.Game
             return signInCount;
         }
 
-
-        #region Chapter
-
-
-
-
-        #endregion
-
-
-        #region Visitor
-        public void AddVisitorCount(int count = 1)
-        {
-            visitorCount += count;
-            SetDataDirty();
-        }
-
-        public void ResetVisitorCount()
-        {
-            visitorCount = 0;
-            SetDataDirty();
-        }
-        #endregion
         public void OnReset()
         {
             m_CoinNum = 0;

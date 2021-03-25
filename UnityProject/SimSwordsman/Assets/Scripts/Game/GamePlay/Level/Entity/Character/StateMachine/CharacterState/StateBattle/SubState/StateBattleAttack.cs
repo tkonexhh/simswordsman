@@ -30,7 +30,17 @@ namespace GameWish.Game
             //TODO 测试动画
             // atkName = "yijinjing";//"attack";
             EventSystem.S.Send(EventID.OnBattleAtkStart, m_Controller, atkName);
-            m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
+
+            bool hasAnim = m_Controller.CharacterView.HasAnim(atkName);
+            if (hasAnim)
+            {
+                m_Controller.CharacterView.PlayAnim(atkName, false, OnAtkAnimEnd);
+            }
+            else
+            {
+                Log.e("Atk animation not found: " + atkName);
+                OnAtkAnimEnd();
+            }
         }
 
         public override void Exit(IBattleStateHander handler)

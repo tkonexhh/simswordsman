@@ -143,12 +143,12 @@ namespace GameWish.Game
                 i.CharacterModel.DistributionKungfuExp((int)(CommonTaskItemInfo.kongfuReward * ratio));
             });
 
-            RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
-            foreach (var item in m_TaskDetailInfo.itemRewards)
-            {
-                randomWeightHelpe.AddWeightItem(item, item.weight);
-            }
-            TaskReward taskReward = randomWeightHelpe.GetRandomWeightValue();
+            //RandomWeightHelper<TaskReward> randomWeightHelpe = new RandomWeightHelper<TaskReward>();
+            //foreach (var item in m_TaskDetailInfo.itemRewards)
+            //{
+            //    randomWeightHelpe.AddWeightItem(item, item.weight);
+            //}
+            TaskReward taskReward = m_TaskReward;//randomWeightHelpe.GetRandomWeightValue();
             List<RewardBase> rewards = new List<RewardBase>();
             if (taskReward==null)
                 taskReward = m_TaskDetailInfo.itemRewards[0];

@@ -70,7 +70,7 @@ namespace GameWish.Game
         private void LookADSuccessCallBack(bool obj)
         {
             m_visitor.Reward.AcceptReward();
-            GameDataMgr.S.GetPlayerData().AddVisitorCount();
+            GameDataMgr.S.GetPlayerData().recordData.AddVisitor();
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
             VisitorSystem.S.Disappear(m_visitor);
 
@@ -84,7 +84,7 @@ namespace GameWish.Game
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_receive, m_visitor.Reward.KeyID.ToString());
 
-                AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                AdsManager.S.PlayRewardAD("ReceiveVisitor", LookADSuccessCallBack);
             });
             m_NotAcceptBtn.onClick.AddListener(() =>
             {
