@@ -12,7 +12,7 @@ using UnityEngine;
 using TMPro;
 
 
-namespace GFrame
+namespace Qarth
 {
     [System.Serializable]
     public class TextMeshProConfig
