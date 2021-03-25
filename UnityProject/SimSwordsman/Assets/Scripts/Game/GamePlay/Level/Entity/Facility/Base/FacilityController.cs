@@ -325,11 +325,17 @@ namespace GameWish.Game
 
             m_AutoStartWorkTimerID = Timer.S.Post2Really((x) =>
             {
-                if (endCallBack != null)
+                if (!(KongfuLibraryPanel.isOpened || PracticeFieldPanel.isOpened))
                 {
-                    endCallBack(isAuto);
+                    if ((DateTime.Now - GameplayMgr.resumeTime).TotalSeconds > 5)
+                    {
+                        if (endCallBack != null)
+                        {
+                            endCallBack(isAuto);
+                        }
+                        m_AutoStartWorkTimerID = -1;
+                    }
                 }
-                m_AutoStartWorkTimerID = -1;
             }, autoWorkWaitTime, -1);
         }
         #endregion
