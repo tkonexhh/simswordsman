@@ -16,7 +16,7 @@ namespace GameWish.Game
         private string m_TaskTitle;   
         private string m_Reward;   
         private string m_Type;   
-        private string m_CountP;  
+        private EInt m_CountP = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -43,7 +43,7 @@ namespace GameWish.Game
         /// <summary>
         /// 数量参数
         /// </summary>
-        public  string  countP {get { return m_CountP; } }
+        public  int  countP {get { return m_CountP; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -73,7 +73,7 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 4:
-                    m_CountP = dataR.ReadString();
+                    m_CountP = dataR.ReadInt();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
