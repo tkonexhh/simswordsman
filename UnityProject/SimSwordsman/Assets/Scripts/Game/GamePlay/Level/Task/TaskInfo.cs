@@ -32,7 +32,7 @@ namespace GameWish.Game
             //Daily
             taskHandlerMap.Add("Daily_Food", (value) => { return new TaskHandler_DailyFood(); });
             taskHandlerMap.Add("Daily_Visitor", (value) => { return new TaskHandler_DailyVisitor(); });
-            taskHandlerMap.Add("Daily_Cruise", (value) => { return new TaskHandler_DailyCruise(); });
+            taskHandlerMap.Add("Daily_Recruit", (value) => { return new TaskHandler_DailyRecruit(); });
             taskHandlerMap.Add("Daily_Job", (value) => { return new TaskHandler_DailyJob(); });
             taskHandlerMap.Add("Daily_Practice", (value) => { return new TaskHandler_DailyPractice(); });
             taskHandlerMap.Add("Daily_Copy", (value) => { return new TaskHandler_DailyCopy(); });

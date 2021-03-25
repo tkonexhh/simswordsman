@@ -111,10 +111,10 @@ namespace GameWish.Game
         public override int count => GameDataMgr.S.GetPlayerData().recordData.visitor.dailyCount;
     }
 
-    public class TaskHandler_DailyCruise : TaskHandler
+    public class TaskHandler_DailyRecruit : TaskHandler
     {
-        public TaskHandler_DailyCruise() { }
-        public override int count => GameDataMgr.S.GetPlayerData().recordData.cruise.dailyCount;
+        public TaskHandler_DailyRecruit() { }
+        public override int count => GameDataMgr.S.GetPlayerData().recordData.goldRecruit.dailyCount + GameDataMgr.S.GetPlayerData().recordData.silverRecruit.dailyCount;
     }
     public class TaskHandler_DailyJob : TaskHandler
     {
@@ -144,7 +144,7 @@ namespace GameWish.Game
     public class TaskHandler_DailyChanllenge : TaskHandler
     {
         public TaskHandler_DailyChanllenge() { }
-        public override int count => GameDataMgr.S.GetPlayerData().recordData.food.dailyCount;
+        public override int count => GameDataMgr.S.GetPlayerData().recordData.chanllenge.dailyCount;
     }
 
     public class TaskHandler_DailyForge : TaskHandler
