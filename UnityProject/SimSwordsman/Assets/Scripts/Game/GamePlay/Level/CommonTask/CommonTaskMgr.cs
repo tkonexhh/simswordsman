@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
 
-        private float m_CommonTaskRefreshInterval = 2.5f; // 1分钟刷新一次
+        private float m_CommonTaskRefreshInterval = 40f; // 40秒刷新一次
         private int m_CommonTaskCount = 2;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
@@ -30,6 +30,8 @@ namespace GameWish.Game
         private float m_TaskRefreshInterval = 10;
         private float m_TaskRefreshTime = 0;
 
+        private bool m_IsSystemUnlocked = false;
+
         #region IMgr
         public void OnInit()
         {
@@ -42,6 +44,11 @@ namespace GameWish.Game
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
 
             //EventSystem.S.Register(EngineEventID.OnDateUpdate, OnPassDayEvent);
+            m_IsSystemUnlocked = GuideMgr.S.IsGuideFinish(10);
+            if (m_IsSystemUnlocked == false)
+            {
+                EventSystem.S.Register(EventID.OnUnlockCommonTaskSystem, HandleEvent);
+            }
         }
 
         public void OnUpdate()
@@ -85,8 +92,11 @@ namespace GameWish.Game
         /// <summary>
         /// 打开UI界面时调用
         /// </summary>
-        public void RefreshTask()
+        public void RefreshTask(bool immediately = false)
         {
+            if (m_IsSystemUnlocked == false)
+                return;
+
             int lastRefreshDay = GameDataMgr.S.GetCommonTaskData().lastRefreshTaskDay;
             if (lastRefreshDay != DateTime.Today.DayOfYear)
             {
@@ -102,7 +112,7 @@ namespace GameWish.Game
 
             m_CommonTaskCount = levelInfo.commonTaskCount;
 
-            RefreshCommonTask();
+            RefreshCommonTask(immediately);
         }
 
         public SimGameTask GetSimGameTask(int taskID)
@@ -171,58 +181,6 @@ namespace GameWish.Game
             RefreshRedPoint(m_CurTaskList.Count);
         }
 
-        //public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
-        //{
-        //    string prefabName = GetPrefabName(collectedObjType);
-
-        //    if (string.IsNullOrEmpty(prefabName))
-        //        return;
-
-        //    try
-        //    {
-        //        AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-        //        loader.InstantiateAsync(prefabName, (go) =>
-        //        {
-        //            go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
-        //            if (!m_CollectedObjDic.ContainsKey(collectedObjType))
-        //            {
-        //                TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
-        //                m_CollectedObjDic.Add(collectedObjType, item);
-        //                m_TaskObjLoaderDic.Add(collectedObjType, loader);
-        //            }
-        //            else
-        //            {
-        //                Log.e("Task obj has been created before: " + collectedObjType);
-        //            }
-        //        });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Log.e("SpawnTaskCollectableItem error: " + prefabName + " " + e.Message.ToString() + " " + e.StackTrace);
-        //    }
-        //}
-
-        //public void RemoveTaskCollectableItem(CollectedObjType collectedObjType)
-        //{
-        //    if (m_CollectedObjDic.ContainsKey(collectedObjType))
-        //    {
-        //        m_TaskObjLoaderDic[collectedObjType].Release();
-        //        m_TaskObjLoaderDic.Remove(collectedObjType);
-
-        //        m_CollectedObjDic.Remove(collectedObjType);
-        //    }
-        //}
-
-        //public TaskCollectableItem GetTaskCollectableItem(CollectedObjType collectedObjType)
-        //{
-        //    if (m_CollectedObjDic.ContainsKey(collectedObjType))
-        //    {
-        //        return m_CollectedObjDic[collectedObjType];
-        //    }
-
-        //    return null;
-        //}
-
         public static bool IsNotNeedToSpawnTaskItem(CollectedObjType collectedObjType)
         {
             return collectedObjType == CollectedObjType.Well || collectedObjType == CollectedObjType.Fish;
@@ -249,8 +207,9 @@ namespace GameWish.Game
         {
             switch (key)
             {
-                case (int)EventID.OnStartUpgradeFacility:
-
+                case (int)EventID.OnUnlockCommonTaskSystem:
+                    m_IsSystemUnlocked = true;
+                    RefreshTask(true);
                     break;
 
             }
@@ -299,10 +258,10 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnSendBulletinBoardFacility, false);
         }
 
-        private void RefreshCommonTask()
+        private void RefreshCommonTask(bool immediately = false)
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
-            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            if (timeSpan.TotalSeconds > m_CommonTaskRefreshInterval || immediately)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 
@@ -324,20 +283,19 @@ namespace GameWish.Game
                             allCommonTask.Remove(task);
                         }
                     });
-                    for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
-                    {
-                        if (allCommonTask.Count > 0)
-                        {
-                            int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
-                            CommonTaskItemInfo task = allCommonTask[randomIndex];
 
-                            if (!IsTaskExist(task.id))
-                            {
-                                GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
-                                allCommonTask.Remove(task);
-                            }
+                    if (allCommonTask.Count > 0)
+                    {
+                        int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
+                        CommonTaskItemInfo task = allCommonTask[randomIndex];
+
+                        if (!IsTaskExist(task.id))
+                        {
+                            GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+                            allCommonTask.Remove(task);
                         }
                     }
+                    
                 }
             }
 

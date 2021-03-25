@@ -59,12 +59,12 @@ namespace GameWish.Game
         WarehousePanel,
         ItemDetailsPanel,
         BaicaohuPanel,
-        BartizanPanel,
         ForgeHousePanel,
         KitchenPanel,
         KongfuLibraryPanel,
         KungfuChooseDisciplePanel,
         LivableRoomPanel,
+        TacticalFunctionPanel,
         PatrolRoomPanel,
         PracticeFieldPanel,
         PatrolRoomChooseDisciplePanel,
@@ -75,5 +75,6 @@ namespace GameWish.Game
         VisitorPanel,
         UserAccountPanel,
         MaskWithAlphaZeroPanel,
+        DailyTaskPanel,//每日任务
     }
 }

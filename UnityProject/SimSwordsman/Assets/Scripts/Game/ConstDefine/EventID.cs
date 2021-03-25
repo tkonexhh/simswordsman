@@ -63,6 +63,7 @@ namespace GameWish.Game
         OnUpgradeRefreshEvent,
 
         // MainTask
+        OnUnlockCommonTaskSystem,
         OnCommonTaskRefreshed,
         OnTaskManualFinished,
         //OnTaskFinished,
@@ -229,6 +230,9 @@ namespace GameWish.Game
         /// </summary>
         DeleteDisciple,
         OnSendHerbEvent,
+        #endregion
+        #region TacticalFunction
+        OnDiscipleButtonOnClick,
         #endregion
 
 

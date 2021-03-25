@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 3632351355693373283}
   - component: {fileID: 5240090948948900091}
   m_Layer: 0
-  m_Name: Well
+  m_Name: WellPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,11 +406,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.17355996, y: 0.54414487}
-      - {x: -0.2240771, y: 0.5407449}
+    - - {x: 0.21863991, y: 0.574198}
+      - {x: -0.26164353, y: 0.7511178}
       - {x: -0.33024323, y: 0.17371762}
       - {x: 0.5028713, y: -0.06929606}
-      - {x: 0.65024096, y: 0.27167284}
+      - {x: 0.68780786, y: 0.39188588}
 --- !u!114 &5240090948948900091
 MonoBehaviour:
   m_ObjectHideFlags: 0

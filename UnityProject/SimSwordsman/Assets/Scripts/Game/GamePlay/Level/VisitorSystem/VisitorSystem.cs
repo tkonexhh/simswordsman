@@ -89,7 +89,7 @@ namespace GameWish.Game
         void CreateVisitor()
         {
             // Debug.LogError("CreateVisitor");
-            if (GameDataMgr.S.GetPlayerData().visitorCount >= MaxVisitorCountDaily)
+            if (GameDataMgr.S.GetPlayerData().recordData.visitor.dailyCount >= MaxVisitorCountDaily)
                 return;
 
             if (CurrentVisitor.Count >= MaxVisitorCount)
@@ -100,7 +100,7 @@ namespace GameWish.Game
             visitor.VisitorCfgID = RandomHelper.Range(1, TDVisitorConfigTable.dataList.Count + 1);
             visitor.Reward = GetRandomReward(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby));
             CurrentVisitor.Add(visitor);
-            
+
             DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_popout, visitor.Reward.KeyID.ToString());
 
             CheckMainPanelBtn(CurrentVisitor.Count);
