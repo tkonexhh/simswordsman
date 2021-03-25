@@ -152,11 +152,21 @@ namespace GameWish.Game
         {
             if (IsFoodEnough() == false && GuideMgr.S.IsGuideFinish(31) && GuideMgr.S.IsGuideFinish(14))
             {
-                FloatMessage.S.ShowMsg("食物不足");
-
                 if (GuideMgr.S.IsGuideFinish(32) == false)
                 {
                     EventSystem.S.Send(EventID.OnFoodNotEnoughTrigger_IntroduceTrigger);
+                }
+                else 
+                {
+                    int remaintCount = GameDataMgr.S.GetPlayerData().GetFoodRefreshTimesToday();
+                    if (remaintCount > 0)
+                    {
+                        UIMgr.S.OpenPanel(UIID.SupplementFoodPanel);
+                    }
+                    else
+                    {
+                        FloatMessage.S.ShowMsg("食物不足");
+                    }
                 }
 
                 return;

@@ -41,8 +41,12 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnGuideBuildWarehousePanel, OnEventListener);
 
             //EventSystem.S.Send(EventID.OnGuideBuildWarehousePanel);
-        }
 
+            Timer.S.Post2Really((x) =>
+            {
+                EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
+            }, .5f, 1);
+        }
 	}
 	
 }

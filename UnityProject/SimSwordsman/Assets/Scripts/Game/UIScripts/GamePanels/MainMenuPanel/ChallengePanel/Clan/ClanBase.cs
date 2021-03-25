@@ -9,11 +9,11 @@ namespace GameWish.Game
     public class ClanBase : MonoBehaviour
     {
         [SerializeField]
-        private ScrollRect m_ScrollRect;
+        protected ScrollRect m_ScrollRect;
         [SerializeField]
-        private Button[] m_Buttons;
-        private int m_CurLevel = -1;
-        private ChapterConfigInfo m_CurChapterConfigInfo = null;
+        protected Button[] m_Buttons;
+        protected int m_CurLevel = -1;
+        protected ChapterConfigInfo m_CurChapterConfigInfo = null;
         private Dictionary<int, LevelConfigInfo> m_CurChapterAllLevelConfigInfo = null;
         // Start is called before the first frame update
         public virtual void Start()

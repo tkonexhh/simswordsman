@@ -58,7 +58,9 @@ namespace GameWish.Game
             rectTransform.offsetMin = Vector2.zero;
 
             obj.transform.localScale = new Vector3(1.01f, 1.01f, 1);
-            obj.GetComponent<ClanBase>().SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
+            Gaibang _GaiBang = obj.GetComponent<Gaibang>();
+            _GaiBang.SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
+            _GaiBang.UpdateScrollRectValue();
         }
 
         protected override void OnClose()

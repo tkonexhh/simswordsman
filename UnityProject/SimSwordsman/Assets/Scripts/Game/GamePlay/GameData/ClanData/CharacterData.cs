@@ -66,6 +66,13 @@ namespace GameWish.Game
 
             return false;
         }
+        public bool IsEquipmentArms() {
+            return characterList.Find(x => x.IsEquipmentArms()) != null;
+        }
+        public bool IsStudyKungFu() {
+            return characterList.Find(x => x.IsStudyKungFu()) != null;
+        }
+
         public int GetCharacterCount()
         {
             return characterList.Count;
@@ -216,7 +223,6 @@ namespace GameWish.Game
         {
 
         }
-
         public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id)
         {
             characterStateId = stateId;
@@ -224,7 +230,6 @@ namespace GameWish.Game
             this.facilityData.startTime = startTime;
             this.facilityData.id = id;
         }
-
         public CharacterItemDbData(CharacterItem item)
         {
             this.startTime = DateTime.Now.ToString();
@@ -236,7 +241,6 @@ namespace GameWish.Game
             bodyId = item.bodyId;
             headId = item.headId;
         }
-
         public CharacterItemDbData(int id, CharacterQuality quality)
         {
             this.id = id;
@@ -244,12 +248,10 @@ namespace GameWish.Game
             this.quality = quality;
             this.stage = 1;
         }
-
         public void LearnKungfu(CharacterKongfuData characterKongfu)
         {
             kongfuDatas.Add(new CharacterKongfuDBData(characterKongfu));
         }
-
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
         {
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
@@ -258,7 +260,6 @@ namespace GameWish.Game
         {
             characeterDBEquipmentData.AddEquipment(characeterEquipment);
         }
-
         public void SetTask(int taskId)
         {
             this.taskId = taskId;
@@ -281,16 +282,22 @@ namespace GameWish.Game
         //    }
         //    return null;
         //}
-
         public void RefreshCurExp(int delta)
         {
             curExp = delta;
             //curExp = Math.Max(0, curExp);
         }
-
         public void SetCollectObjType(CollectedObjType collectedObjType)
         {
             this.collectedObjType = collectedObjType;
+        }
+
+        public bool IsEquipmentArms() {
+            return characeterDBEquipmentData.CharacterDBArms.IsEquipmentArms();
+        }
+        public bool IsStudyKungFu() 
+        {
+            return kongfuDatas.Find(x => x.IsStudyKungFu()) != null;
         }
     }
 
@@ -340,6 +347,10 @@ namespace GameWish.Game
         public void AddLevel(int deltaLevel)
         {
             level = deltaLevel;
+        }
+
+        public bool IsStudyKungFu() {
+            return kongfuType != KungfuType.None;
         }
     }
 
@@ -406,6 +417,9 @@ namespace GameWish.Game
         {
             Class = Mathf.Min(CharaceterEquipment.MaxLevel, Class + 1);
         }
+        public bool IsEquipmentArms() {
+            return ArmsID != ArmsType.None;
+        }
     }
 
     [Serializable]
@@ -423,6 +437,10 @@ namespace GameWish.Game
         public void UpGradeArmor()
         {
             Class = Mathf.Min(CharaceterEquipment.MaxLevel, Class + 1);
+        }
+
+        public bool IsEquipmentArmor() {
+            return ArmorID != ArmorType.None;
         }
     }
 

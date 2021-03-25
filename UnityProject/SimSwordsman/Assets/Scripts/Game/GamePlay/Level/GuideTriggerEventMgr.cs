@@ -203,16 +203,21 @@ namespace GameWish.Game
                 
                 if (isHaveArms) 
                 {
-                    Timer.S.Post2Really((x) =>
+                    bool isEquipArms = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsEquipmentArms();
+                    //如果用户没装备过武器，才引导
+                    if (isEquipArms == false) 
                     {
-                        if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                        Timer.S.Post2Really((x) =>
                         {
-                            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-                            OnCloseAllUIPanelCallBack(0, null);
-                        }
+                            if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                            {
+                                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                                OnCloseAllUIPanelCallBack(0, null);
+                            }
 
-                        EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
-                    }, .3f, 1);
+                            EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
+                        }, .3f, 1);
+                    }                    
                 }
             }
         }
@@ -236,16 +241,19 @@ namespace GameWish.Game
 
                 if (isHaveKungFu) 
                 {
-                    Timer.S.Post2Really((x)=> 
-                    {
-                        if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                    bool isStudyKungFu = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsStudyKungFu();
+                    if (isStudyKungFu == false) {
+                        Timer.S.Post2Really((x) =>
                         {
-                            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-                            OnCloseAllUIPanelCallBack(0, null);
-                        }
+                            if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                            {
+                                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                                OnCloseAllUIPanelCallBack(0, null);
+                            }
 
-                        EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
-                    },.3f,1);                    
+                            EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
+                        }, .3f, 1);
+                    }                                
                 }                
             }
         }
