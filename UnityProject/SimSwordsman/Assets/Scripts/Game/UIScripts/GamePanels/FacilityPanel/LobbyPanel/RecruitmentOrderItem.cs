@@ -285,7 +285,7 @@ namespace GameWish.Game
                         UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
                     break;
                 case ClickType.LookAdvertisement:
-                    AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                    AdsManager.S.PlayRewardAD("SummonStudent", LookADSuccessCallBack);
                     break;
                 default:
                     break;

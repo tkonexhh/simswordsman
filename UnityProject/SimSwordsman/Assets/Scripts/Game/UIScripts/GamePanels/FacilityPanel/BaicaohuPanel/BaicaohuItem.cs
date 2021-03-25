@@ -179,7 +179,7 @@ namespace GameWish.Game
             m_CompleteADBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                AdsManager.S.PlayRewardAD("AddFood", LookADSuccessCallBack);
+                AdsManager.S.PlayRewardAD("FinishNow", LookADSuccessCallBack);
             });
         }
         private void LookADSuccessCallBack(bool obj)
