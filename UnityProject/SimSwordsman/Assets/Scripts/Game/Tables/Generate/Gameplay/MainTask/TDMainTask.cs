@@ -16,8 +16,7 @@ namespace GameWish.Game
         private string m_TaskTitle;   
         private string m_Reward;   
         private string m_Type;   
-        private string m_ContentP;   
-        private EInt m_CountP = 0;  
+        private string m_CountP;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -42,14 +41,9 @@ namespace GameWish.Game
         public  string  type {get { return m_Type; } }
        
         /// <summary>
-        /// 内容参数
-        /// </summary>
-        public  string  contentP {get { return m_ContentP; } }
-       
-        /// <summary>
         /// 数量参数
         /// </summary>
-        public  int  countP {get { return m_CountP; } }
+        public  string  countP {get { return m_CountP; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -79,10 +73,7 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 4:
-                    m_ContentP = dataR.ReadString();
-                    break;
-                case 5:
-                    m_CountP = dataR.ReadInt();
+                    m_CountP = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -94,14 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("TaskID", 0);
           ret.Add("TaskTitle", 1);
           ret.Add("Reward", 2);
           ret.Add("Type", 3);
-          ret.Add("ContentP", 4);
-          ret.Add("CountP", 5);
+          ret.Add("CountP", 4);
           return ret;
         }
     } 
