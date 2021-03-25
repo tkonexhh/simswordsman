@@ -203,16 +203,21 @@ namespace GameWish.Game
                 
                 if (isHaveArms) 
                 {
-                    Timer.S.Post2Really((x) =>
+                    bool isEquipArms = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsEquipmentArms();
+                    //如果用户没装备过武器，才引导
+                    if (isEquipArms == false) 
                     {
-                        if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                        Timer.S.Post2Really((x) =>
                         {
-                            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-                            OnCloseAllUIPanelCallBack(0, null);
-                        }
+                            if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                            {
+                                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                                OnCloseAllUIPanelCallBack(0, null);
+                            }
 
-                        EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
-                    }, .3f, 1);
+                            EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
+                        }, .3f, 1);
+                    }                    
                 }
             }
         }
@@ -236,16 +241,19 @@ namespace GameWish.Game
 
                 if (isHaveKungFu) 
                 {
-                    Timer.S.Post2Really((x)=> 
-                    {
-                        if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                    bool isStudyKungFu = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsStudyKungFu();
+                    if (isStudyKungFu == false) {
+                        Timer.S.Post2Really((x) =>
                         {
-                            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-                            OnCloseAllUIPanelCallBack(0, null);
-                        }
+                            if (MainGameMgr.S.IsMainMenuPanelOpen == false)
+                            {
+                                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                                OnCloseAllUIPanelCallBack(0, null);
+                            }
 
-                        EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
-                    },.3f,1);                    
+                            EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
+                        }, .3f, 1);
+                    }                                
                 }                
             }
         }
@@ -253,16 +261,20 @@ namespace GameWish.Game
         private void OnCloseFightingPanelCallBack(int key, object[] param)
         {
             int id = (int)param[0];
+
             if (id == 9001) 
             {
-                Timer.S.Post2Really(x =>
+                if (GuideMgr.S.IsGuideFinish(37) == false)
                 {
-                    EventSystem.S.Send(EventID.InGuideProgress, true);
+                    Timer.S.Post2Really(x =>
+                    {
+                        EventSystem.S.Send(EventID.InGuideProgress, true);
 
-                    UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
+                        UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 
-                    EventSystem.S.Send(EventID.BuildPracticeFieldEastTrigger);
-                }, 0.5f);
+                        EventSystem.S.Send(EventID.RandomFightTrigger_FinishedIntroduce);
+                    }, 0.5f);
+                }
             }
         }
 

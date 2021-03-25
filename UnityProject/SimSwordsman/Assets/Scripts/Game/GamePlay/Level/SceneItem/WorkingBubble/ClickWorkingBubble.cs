@@ -80,8 +80,17 @@ namespace GameWish.Game
             {
                 if (IsFoodEnough() == false)
                 {
-                    if (!isAuto)
-                        FloatMessage.S.ShowMsg("食物不足");
+                    if (!isAuto) 
+                    {
+                        int remaintCount = GameDataMgr.S.GetPlayerData().GetFoodRefreshTimesToday();
+                        if (remaintCount > 0)
+                        {
+                            UIMgr.S.OpenPanel(UIID.SupplementFoodPanel);
+                        }
+                        else {
+                            FloatMessage.S.ShowMsg("食物不足");
+                        }                        
+                    }                    
                     return;
                 }
 

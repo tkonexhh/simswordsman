@@ -1,10 +1,10 @@
-using System;
 using Qarth;
+using System;
 
 
 namespace GameWish.Game
 {
-	public class ClickTaskDetailsTrigger2 : ITrigger
+    public class RandomFightTrigger_FinishedIntroduce : ITrigger
 	{
         bool m_CanStart = false;
         public bool isReady { get { return m_CanStart;  } }
@@ -19,7 +19,7 @@ namespace GameWish.Game
         public void Start(Action<bool, ITrigger> l)
         {
             m_Listener = l;
-            EventSystem.S.Register(EventID.OnGuideClickTaskDetailsTrigger2, OnEventListener);
+            EventSystem.S.Register(EventID.RandomFightTrigger_FinishedIntroduce, OnEventListener);
         }
         void OnEventListener(int key, object[] param)
         {
@@ -40,11 +40,9 @@ namespace GameWish.Game
         {
             m_CanStart = false;
             m_Listener = null;
-            EventSystem.S.UnRegister(EventID.OnGuideClickTaskDetailsTrigger2, OnEventListener);
+            EventSystem.S.UnRegister(EventID.RandomFightTrigger_FinishedIntroduce, OnEventListener);
 
-            EventSystem.S.Send(EventID.OnGuideSelectCharacterTrigger2);
+            //EventSystem.S.Send(EventID.OnGuideSelectCharacterPanelTrigger2_1);
         }
-
-    }
-	
+    }	
 }

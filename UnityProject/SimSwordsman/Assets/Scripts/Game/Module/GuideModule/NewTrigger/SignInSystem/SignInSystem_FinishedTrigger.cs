@@ -43,11 +43,6 @@ namespace GameWish.Game
             m_CanStart = false;
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnSignInSystem_FinishedTrigger, OnEventListener);
-            Timer.S.Post2Really((x) =>
-            {
-                EventSystem.S.Send(EventID.OnVisitorBtnNormalTipTrigger);
-            }, .5f, 1);
-
         }
     }
 }
