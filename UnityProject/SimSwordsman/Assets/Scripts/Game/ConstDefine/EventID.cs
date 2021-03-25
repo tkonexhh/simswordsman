@@ -230,6 +230,9 @@ namespace GameWish.Game
         DeleteDisciple,
         OnSendHerbEvent,
         #endregion
+        #region TacticalFunction
+        OnDiscipleButtonOnClick,
+        #endregion
 
 
         #region 新手引导

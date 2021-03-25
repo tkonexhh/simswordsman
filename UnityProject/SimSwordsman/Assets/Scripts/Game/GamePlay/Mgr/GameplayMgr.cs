@@ -262,7 +262,7 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
+                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000000000000);
             }
             if (Input.GetKeyDown(KeyCode.F))
             {

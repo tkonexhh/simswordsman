@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
 
-        private float m_CommonTaskRefreshInterval = 2.5f; // 1分钟刷新一次
+        private float m_CommonTaskRefreshInterval = 40f; // 40秒刷新一次
         private int m_CommonTaskCount = 2;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
@@ -171,58 +171,6 @@ namespace GameWish.Game
             RefreshRedPoint(m_CurTaskList.Count);
         }
 
-        //public void SpawnTaskCollectableItem(CollectedObjType collectedObjType)
-        //{
-        //    string prefabName = GetPrefabName(collectedObjType);
-
-        //    if (string.IsNullOrEmpty(prefabName))
-        //        return;
-
-        //    try
-        //    {
-        //        AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-        //        loader.InstantiateAsync(prefabName, (go) =>
-        //        {
-        //            go.transform.position = m_TaskPos.GetTaskPos(collectedObjType);
-        //            if (!m_CollectedObjDic.ContainsKey(collectedObjType))
-        //            {
-        //                TaskCollectableItem item = go.GetComponent<TaskCollectableItem>();
-        //                m_CollectedObjDic.Add(collectedObjType, item);
-        //                m_TaskObjLoaderDic.Add(collectedObjType, loader);
-        //            }
-        //            else
-        //            {
-        //                Log.e("Task obj has been created before: " + collectedObjType);
-        //            }
-        //        });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Log.e("SpawnTaskCollectableItem error: " + prefabName + " " + e.Message.ToString() + " " + e.StackTrace);
-        //    }
-        //}
-
-        //public void RemoveTaskCollectableItem(CollectedObjType collectedObjType)
-        //{
-        //    if (m_CollectedObjDic.ContainsKey(collectedObjType))
-        //    {
-        //        m_TaskObjLoaderDic[collectedObjType].Release();
-        //        m_TaskObjLoaderDic.Remove(collectedObjType);
-
-        //        m_CollectedObjDic.Remove(collectedObjType);
-        //    }
-        //}
-
-        //public TaskCollectableItem GetTaskCollectableItem(CollectedObjType collectedObjType)
-        //{
-        //    if (m_CollectedObjDic.ContainsKey(collectedObjType))
-        //    {
-        //        return m_CollectedObjDic[collectedObjType];
-        //    }
-
-        //    return null;
-        //}
-
         public static bool IsNotNeedToSpawnTaskItem(CollectedObjType collectedObjType)
         {
             return collectedObjType == CollectedObjType.Well || collectedObjType == CollectedObjType.Fish;
@@ -302,7 +250,7 @@ namespace GameWish.Game
         private void RefreshCommonTask()
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
-            if (timeSpan.TotalMinutes > m_CommonTaskRefreshInterval)
+            if (timeSpan.TotalSeconds > m_CommonTaskRefreshInterval)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 
@@ -324,20 +272,19 @@ namespace GameWish.Game
                             allCommonTask.Remove(task);
                         }
                     });
-                    for (int i = 0; i < m_CommonTaskCount - curCommonTaskCount; i++)
-                    {
-                        if (allCommonTask.Count > 0)
-                        {
-                            int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
-                            CommonTaskItemInfo task = allCommonTask[randomIndex];
 
-                            if (!IsTaskExist(task.id))
-                            {
-                                GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
-                                allCommonTask.Remove(task);
-                            }
+                    if (allCommonTask.Count > 0)
+                    {
+                        int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
+                        CommonTaskItemInfo task = allCommonTask[randomIndex];
+
+                        if (!IsTaskExist(task.id))
+                        {
+                            GenerateTask(task.id, task.taskType, task.subType, task.taskTime);
+                            allCommonTask.Remove(task);
                         }
                     }
+                    
                 }
             }
 

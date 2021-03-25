@@ -54,19 +54,10 @@ namespace GameWish.Game
 
         [Header("战斗任务")]
         [SerializeField]
-        private GameObject m_TacticalFunctionBtn1; 
+        private GameObject m_TacticalFunctionBtn;   
         [SerializeField]
-        private Image m_TacticalImg1;
-        [SerializeField]
-        private Text m_TacticalName1;
-
-        [SerializeField]
-        private GameObject m_TacticalFunctionBtn2;
-        [SerializeField]
-        private Image m_TacticalImg2;
-        [SerializeField]
-        private Text m_TacticalName2;
-
+        private Transform m_TacticalFunctionTra; 
+ 
         [Header("访客")]
         [SerializeField]
         private Button m_VisitorBtn1;
@@ -79,9 +70,7 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_SettingBtn;
 
-        //private SimGameTask m_TacticalTask1 = null;
-        //private SimGameTask m_TacticalTask2 = null;
-        //private List<SimGameTaskPop> m_CommonTaskList = new List<SimGameTaskPop>();
+        private List<TacticalFunctionBtn> m_CommonTaskList = new List<TacticalFunctionBtn>();
 
         protected override void OnUIInit()
         {
@@ -247,7 +236,7 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_CoinValue.text = CommonUIMethod.GetTenThousandOrMillion((int)GameDataMgr.S.GetPlayerData().GetCoinNum());
+            m_CoinValue.text = CommonUIMethod.GetTenThousandOrMillion(GameDataMgr.S.GetPlayerData().GetCoinNum());
             m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum() + Define.SLASH + GetFoodUpperLimit().ToString();
             m_WareHouseNumber.text = GetWareHouseAllPeopleNumber();
         }
@@ -399,12 +388,13 @@ namespace GameWish.Game
             List<SimGameTask> curTaskList = MainGameMgr.S.CommonTaskMgr.CurTaskList;
             curTaskList.ForEach(i => 
             {
-                //if (!m_CommonTaskList.Any(j => j.TaskId == i.TaskId))
-                //{
-                //    // Spawn new pop
-                //    SimGameTaskPop x = ...;
-                //    m_CommonTaskList.Add(x);
-                //}
+                if (!m_CommonTaskList.Any(j => j.SimGameTask.TaskId == i.TaskId))
+                {
+                    // Spawn new pop
+                    TacticalFunctionBtn tacticalFunctionBtn = Instantiate(m_TacticalFunctionBtn, m_TacticalFunctionTra).GetComponent<TacticalFunctionBtn>();
+                    tacticalFunctionBtn.OnInit(this,i);
+                    m_CommonTaskList.Add(tacticalFunctionBtn);
+                }
             });
         }
         #endregion
