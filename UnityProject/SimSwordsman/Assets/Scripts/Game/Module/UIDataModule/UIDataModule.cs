@@ -119,6 +119,8 @@ namespace GameWish.Game
 
             UIDataTable.AddPanelData(UIID.LivableRoomPanel, null, "GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel");
 
+            UIDataTable.AddPanelData(UIID.TacticalFunctionPanel, null, "GamePanels/MainMenuPanel/TacticalFunctionPanel/TacticalFunctionPanel");
+
             UIDataTable.AddPanelData(UIID.ForgeHousePanel, null, "GamePanels/FacilityPanel/ForgeHousePanel/ForgeHousePanel");
 
             UIDataTable.AddPanelData(UIID.BaicaohuPanel, null, "GamePanels/FacilityPanel/BaicaohuPanel/BaicaohuPanel");
