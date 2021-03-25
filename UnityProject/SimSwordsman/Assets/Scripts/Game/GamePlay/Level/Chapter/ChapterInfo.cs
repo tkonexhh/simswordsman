@@ -52,6 +52,9 @@ namespace GameWish.Game
             this.recommendAtkValue = recommendAtk;
         }
 
+        private List<RewardBase> m_AcceptRewardList = new List<RewardBase>();
+        private RewardBase m_TempRewardBase = null;
+
         public int GetExpRoleReward()
         {
             foreach (var item in levelRewardList)
@@ -109,26 +112,60 @@ namespace GameWish.Game
                 enemiesList.Add(new EnemyConfig(enemie));
             }
         }
-
+        public void AcceptReward() 
+        {
+            if (m_AcceptRewardList != null && m_AcceptRewardList.Count > 0) 
+            {
+                m_AcceptRewardList.ForEach(i => i.AcceptReward());
+            }
+        }
         public void PrepareReward()
         {
+            m_AcceptRewardList.Clear();
             for (int i = levelRewardList.Count - 1; i >= 0; i--)
             {
-                // Debug.LogError(levelRewardList[i].ToString());
-                if (levelRewardList[i].RewardItem == RewardItemType.Exp_Role || levelRewardList[i].RewardItem == RewardItemType.Exp_Kongfu)
+                m_TempRewardBase = levelRewardList[i];
+
+                if (m_TempRewardBase.RewardItem == RewardItemType.Exp_Role || m_TempRewardBase.RewardItem == RewardItemType.Exp_Kongfu)
                 {
-                    var reward = levelRewardList[i];
-                    levelRewardList.RemoveAt(i);
-                    // Debug.LogError(reward.RewardItem + ":AddEXP:" + reward.Count);
                     for (int r = 0; r < MainGameMgr.S.BattleFieldMgr.OurCharacterList.Count; r++)
                     {
-                        if (reward is Exp_RoleReward)
-                            levelRewardList.Add(new Exp_RoleReward(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, reward.Count));
-                        else if (reward is Exp_KongfuRweard)
-                            levelRewardList.Add(new Exp_KongfuRweard(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, reward.Count));
+                        if (m_TempRewardBase is Exp_RoleReward)
+                            m_AcceptRewardList.Add(new Exp_RoleReward(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, m_TempRewardBase.Count));
+                        else if (m_TempRewardBase is Exp_KongfuRweard)
+                            m_AcceptRewardList.Add(new Exp_KongfuRweard(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, m_TempRewardBase.Count));
                     }
                 }
+                else
+                {
+                    m_AcceptRewardList.Add(m_TempRewardBase);
+                }
+
+
+
+
+
+                //// Debug.LogError(levelRewardList[i].ToString());
+                //if (m_TempRewardBase.RewardItem == RewardItemType.Exp_Role || m_TempRewardBase.RewardItem == RewardItemType.Exp_Kongfu)
+                //{
+                //    levelRewardList.RemoveAt(i);
+                //    // Debug.LogError(reward.RewardItem + ":AddEXP:" + reward.Count);
+                //    for (int r = 0; r < MainGameMgr.S.BattleFieldMgr.OurCharacterList.Count; r++)
+                //    {
+                //        if (m_TempRewardBase is Exp_RoleReward)
+                //            levelRewardList.Add(new Exp_RoleReward(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, m_TempRewardBase.Count));
+                //        else if (m_TempRewardBase is Exp_KongfuRweard)
+                //            levelRewardList.Add(new Exp_KongfuRweard(MainGameMgr.S.BattleFieldMgr.OurCharacterList[r].CharacterModel.Id, m_TempRewardBase.Count));
+                //    }
+                //}
+                //else {
+                //    m_AcceptRewardList.Add(m_TempRewardBase);
+                //}
             }
+        }
+
+        public void OnClear() {
+            levelRewardList.Clear();
         }
     }
 
