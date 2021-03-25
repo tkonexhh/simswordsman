@@ -110,18 +110,19 @@ namespace GameWish.Game
                 {
                     SetState(2);
                 }
-                else {
+                else
+                {
                     SetState(1);
                     UpdateProgress();
                 }
             }
         }
 
-        private void UpdateProgress() 
+        private void UpdateProgress()
         {
             m_CountDownItem = CountDowntMgr.S.GetCountDownItemByID(m_BaiCaoWuData.GetCountDownID());
-            
-            if (m_CountDownItem != null) 
+
+            if (m_CountDownItem != null)
             {
                 m_CountDownItem.RegisterUpdateCallBack(OnUpdateCountDownCallBack);
                 m_CountDownItem.RegisterEndCallBack(OnEndCountDownCallBack);
@@ -141,7 +142,7 @@ namespace GameWish.Game
 
         public void OnClose()
         {
-            if (m_CountDownItem != null) 
+            if (m_CountDownItem != null)
             {
                 m_CountDownItem.UnRegisterUpdateCallBack(OnUpdateCountDownCallBack);
                 m_CountDownItem.UnRegisterEndCallBack(OnEndCountDownCallBack);
@@ -170,6 +171,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
 
                     m_BaiCaoWuData = BaiCaoWuSystemMgr.S.AddBaiCaoWuItemData(ID);
+                    GameDataMgr.S.GetPlayerData().recordData.AddMedicine();
                     SetState(1);
                     UpdateProgress();
                 }

@@ -43,6 +43,7 @@ namespace GameWish.Game
                 {
                     GameDataMgr.S.GetPlayerData().ResetFoodRefreshTimesToday();
                     GameDataMgr.S.GetPlayerData().SetFoodRefreshCount(count);
+                    GameDataMgr.S.GetPlayerData().recordData.AddFood();
                 }
             }
             RefreshPanelInfo();

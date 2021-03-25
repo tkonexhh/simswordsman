@@ -10,6 +10,9 @@ namespace GameWish.Game
         private TaskState m_TaskState;
         private TaskInfo m_TaskInfo;
 
+        public string taskTitle => m_TaskInfo.taskTitle;
+        public string taskSubTitle => m_TaskInfo.taskSubTitle;
+
         public TaskBase(TaskInfo info)
         {
             m_TaskInfo = info;
