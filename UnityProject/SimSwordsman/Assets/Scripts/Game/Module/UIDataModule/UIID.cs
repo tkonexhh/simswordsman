@@ -74,5 +74,6 @@ namespace GameWish.Game
         VisitorPanel,
         UserAccountPanel,
         MaskWithAlphaZeroPanel,
+        DailyTaskPanel,//每日任务
     }
 }
