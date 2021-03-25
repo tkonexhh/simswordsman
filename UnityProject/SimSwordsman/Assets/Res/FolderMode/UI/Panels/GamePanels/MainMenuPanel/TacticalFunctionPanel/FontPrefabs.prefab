@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 399159097369254465}
   - component: {fileID: 399159097369254467}
   - component: {fileID: 399159097369254466}
+  - component: {fileID: 1313434058292402096}
   m_Layer: 5
   m_Name: FontPrefabs
   m_TagString: Untagged
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1313434058292402096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399159097369254464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca209605a8021944a391bcc7926d08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FontText: {fileID: 399159097431445643}
 --- !u!1 &399159097431445641
 GameObject:
   m_ObjectHideFlags: 0

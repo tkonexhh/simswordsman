@@ -1068,12 +1068,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ParentPage: {fileID: 0}
-  m_SpritesData: []
+  m_SpritesData:
+  - {fileID: 11400000, guid: 47950af7b0a2cb94183e314277407b66, type: 2}
+  - {fileID: 11400000, guid: b6b2e79a6285ce94687905b634872cc6, type: 2}
+  - {fileID: 11400000, guid: 95dde2f735f8ca94d8c200358c220801, type: 2}
+  - {fileID: 11400000, guid: 4091c3f104e5acb459140950f06fb514, type: 2}
+  - {fileID: 11400000, guid: 97a7544b7f15a2d47becf55042e4a66a, type: 2}
+  - {fileID: 11400000, guid: 3c09f25b174352b4bbdbf141ac1789d1, type: 2}
+  - {fileID: 11400000, guid: 872a043633cf4d04f905dc00b258b631, type: 2}
   m_PanelEventLogType: 0
   m_HideMask: 0
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
-  m_FontPrefabs: {fileID: 0}
+  m_Upper: {fileID: 3392347324801717835}
+  m_FontPrefabs: {fileID: 399159097369254464, guid: 64b29d6ebeeac5347bfa9c3a78d65253,
+    type: 3}
+  m_TaskImg: {fileID: 3392347325053886479}
+  m_TaskDesc: {fileID: 3392347324645691538}
+  m_DiscipleTra: {fileID: 3392347325710589870}
+  m_TacticalFunctionDisciple: {fileID: 7607157138595450274, guid: 8edee4d21e2aa9b40a5f52bec0771d2e,
+    type: 3}
+  m_RewardTra: {fileID: 3392347325731720165}
+  m_Reward: {fileID: 4768508425817229855, guid: 54f500c7d03a18e41882794993ee1e27,
+    type: 3}
+  m_Accept: {fileID: 3392347324714515919}
+  m_Refuse: {fileID: 3392347325782396829}
+  m_BlackExit: {fileID: 3392347325639666167}
 --- !u!1 &3392347325123645574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,13 +1414,14 @@ GameObject:
   - component: {fileID: 3392347325639666166}
   - component: {fileID: 3392347325639666164}
   - component: {fileID: 3392347325639666167}
+  - component: {fileID: 5437652356220054136}
   m_Layer: 5
   m_Name: BlackExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3392347325639666166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1467,10 +1488,39 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 5437652356220054136}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5437652356220054136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392347325639666169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3392347325710589841
 GameObject:
   m_ObjectHideFlags: 0

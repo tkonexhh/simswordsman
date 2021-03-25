@@ -391,8 +391,8 @@ GameObject:
   - component: {fileID: 1454465712530279743}
   - component: {fileID: 4428771421696998502}
   - component: {fileID: 1922542139488916591}
-  - component: {fileID: 7472034561780879692}
   - component: {fileID: 6721021305948772483}
+  - component: {fileID: 3051306654004459826}
   m_Layer: 5
   m_Name: TacticalFunctionDisciple
   m_TagString: Untagged
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c4c818a0a357bee4a90497982ef3350b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d342181c9d62b7d47a94c47882cd46b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -459,26 +459,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7472034561780879692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7607157138595450274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523bc8f2cacfa2344a90e6874772f4a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Btn: {fileID: 6721021305948772483}
-  m_LevelBg: {fileID: 5148820515915104072}
-  m_Level: {fileID: 157428560031780684}
-  m_DiscipleHead: {fileID: 632033055326784734}
-  m_DiscipleName: {fileID: 0}
-  m_Plus: {fileID: 367844700482609648}
-  m_DiscipleLevelBg: {fileID: 5148820515915104072}
-  m_Line: {fileID: 0}
 --- !u!114 &6721021305948772483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,3 +502,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3051306654004459826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607157138595450274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfc1a785567e5444a968511347057ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LevelBg: {fileID: 5148820515915104072}
+  m_HeadImg: {fileID: 632033055326784734}
+  m_Level: {fileID: 157428560031780684}
+  m_Btn: {fileID: 6721021305948772483}
+  m_Plus: {fileID: 5985462852933262630}

@@ -1,3 +1,4 @@
+using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace GameWish.Game
 		public SimGameTask SimGameTask { get { return m_SimGameTask; } }
 
 		void Start()
-	    {
-			m_TacticalFunctionBtn.onClick.AddListener(()=> { 
-				
+	    {  
+			m_TacticalFunctionBtn.onClick.AddListener(()=> {
+				UIMgr.S.OpenPanel(UIID.TacticalFunctionPanel, m_SimGameTask);
 			});
         }
 	
