@@ -10,7 +10,6 @@ namespace GameWish.Game
     {
         public PlayerData playerInfoData = null;
         public ClanData clanData = null;
-        public MainTaskData mainTaskData = null;
         public CommonTaskData commonTaskData = null;
 
         public CountdownData countdownData = null;
@@ -28,9 +27,6 @@ namespace GameWish.Game
             clanData = new ClanData();
             clanData.SetDefaultValue();
 
-            mainTaskData = new MainTaskData();
-            mainTaskData.SetDefaultValue();
-
             commonTaskData = new CommonTaskData();
             commonTaskData.SetDefaultValue();
 
@@ -42,7 +38,6 @@ namespace GameWish.Game
         {
             playerInfoData.SetDirtyRecorder(m_Recorder);
             clanData.SetDirtyRecorder(m_Recorder);
-            mainTaskData.SetDirtyRecorder(m_Recorder);
             commonTaskData.SetDirtyRecorder(m_Recorder);
             countdownData.SetDirtyRecorder(m_Recorder);
 

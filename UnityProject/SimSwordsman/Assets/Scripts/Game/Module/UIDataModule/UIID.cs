@@ -59,7 +59,6 @@ namespace GameWish.Game
         WarehousePanel,
         ItemDetailsPanel,
         BaicaohuPanel,
-        BartizanPanel,
         ForgeHousePanel,
         KitchenPanel,
         KongfuLibraryPanel,

@@ -37,15 +37,6 @@ namespace GameWish.Game
         {
             return m_Data.clanData;
         }
-        //public ShopData GetShopData()
-        //{
-        //    return m_Data.shopData;
-        //}
-
-        public MainTaskData GetMainTaskData()
-        {
-            return m_Data.mainTaskData;
-        }
 
         public CommonTaskData GetCommonTaskData()
         {

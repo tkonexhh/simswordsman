@@ -24,9 +24,6 @@ namespace GameWish.Game
         public void Init()
         {
             m_GameDataHandler = new GameDataHandler();
-
-            RegisterEvents();
-
             m_GameDataHandler.GetPlayerInfodata().Init();
         }
 
@@ -39,28 +36,6 @@ namespace GameWish.Game
         {
             Debug.LogError("ResetDailyData");
             GetPlayerData().ResetDailyData();
-        }
-
-        private void RegisterEvents()
-        {
-            //EventSystem.S.Register(EventID.OnLevelCompleted, HandleEvent);
-            EventSystem.S.Register(EventID.OnRefreshMainMenuPanel, HandleEvent);
-        }
-
-        private void HandleEvent(int eventId, params object[] param)
-        {
-            //if (eventId == (int)EventID.OnLevelCompleted)
-            //{
-            //    int levelIndex = (int)param[0];
-            //    int starNum = (int)param[1];
-
-            //    m_GameDataHandler.GetPlayerInfodata().OnLevelCompleted(levelIndex, starNum);
-            //}
-            //if (eventId == (int)EventID.OnRefreshMainMenuPanel)
-            //{
-            //    int delta = (int)param[0];
-            //    m_GameDataHandler.GetPlayerInfodata().AddCoinNum(delta);
-            //}
         }
 
         public void Save()
@@ -85,15 +60,6 @@ namespace GameWish.Game
         public ClanData GetClanData()
         {
             return m_GameDataHandler.GetClanData();
-        }
-        //public ShopData GetShopData()
-        //{
-        //    return m_GameDataHandler.GetShopData();
-        //}
-
-        public MainTaskData GetMainTaskData()
-        {
-            return m_GameDataHandler.GetMainTaskData();
         }
 
         public CommonTaskData GetCommonTaskData()

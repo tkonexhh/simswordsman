@@ -1,0 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Qarth;
+using System;
+
+namespace GameWish.Game
+{
+    public class TaskInfo
+    {
+        private string m_TaskTitle;
+        private RewardBase m_Reward;
+        private TaskHandler m_TaskHandler;
+        private int m_Target;
+
+        public RewardBase Reward => m_Reward;
+
+        //-----------Static Block----------//
+        public delegate TaskHandler CreateTaskHandlerDelegate(int? value);
+        private static Dictionary<string, CreateTaskHandlerDelegate> taskHandlerMap = new Dictionary<string, CreateTaskHandlerDelegate>();
+        static TaskInfo()
+        {
+            Debug.LogError("Static TaskInfo");
+            taskHandlerMap.Add("Main_BuildLivableRoom", (value) => { return new TaskHandler_BuildLivableRoom(value.Value); });
+            taskHandlerMap.Add("Main_OwnStudents", (value) => { return new TaskHandler_OwnStudents(); });
+            taskHandlerMap.Add("Main_BuildPracticeField", (value) => { return new TaskHandler_BuildPracticeField(value.Value); });
+            taskHandlerMap.Add("Main_BuildLobby", (value) => { return new TaskHandler_BuildLobby(value.Value); });
+            taskHandlerMap.Add("Main_Chanllenge", (value) => { return new TaskHandler_Chanllenge(value.Value); });
+            taskHandlerMap.Add("Main_BuildLibrary", (value) => { return new TaskHandler_BuildLibrary(value.Value); });
+            taskHandlerMap.Add("Main_BuildForgeHouse", (value) => { return new TaskHandler_BuildForgeHouse(value.Value); });
+            taskHandlerMap.Add("Main_BuildBaicaohu", (value) => { return new TaskHandler_BuildBaicaohu(value.Value); });
+            //Daily
+            taskHandlerMap.Add("Daily_Food", (value) => { return new TaskHandler_DailyFood(); });
+            taskHandlerMap.Add("Daily_Visitor", (value) => { return new TaskHandler_DailyVisitor(); });
+            taskHandlerMap.Add("Daily_Cruise", (value) => { return new TaskHandler_DailyCruise(); });
+            taskHandlerMap.Add("Daily_Job", (value) => { return new TaskHandler_DailyJob(); });
+            taskHandlerMap.Add("Daily_Practice", (value) => { return new TaskHandler_DailyPractice(); });
+            taskHandlerMap.Add("Daily_Copy", (value) => { return new TaskHandler_DailyCopy(); });
+            taskHandlerMap.Add("Daily_Collect", (value) => { return new TaskHandler_DailyCollect(); });
+            taskHandlerMap.Add("Daily_Chanllenge", (value) => { return new TaskHandler_DailyChanllenge(); });
+            taskHandlerMap.Add("Daily_Forge", (value) => { return new TaskHandler_DailyForge(); });
+            taskHandlerMap.Add("Daily_Medicine", (value) => { return new TaskHandler_DailyMedicine(); });
+        }
+        private static TaskHandler CreateTaskHandler(string taskType)
+        {
+            var taskInfos = Helper.String2ListString(taskType, "|");
+            string taskMainStr = taskInfos[0];
+            int? subID = null;
+            if (taskInfos.Count > 1)
+            {
+                subID = int.Parse(taskInfos[1]);
+            }
+            CreateTaskHandlerDelegate createTaskHandlerDelegate;
+            taskHandlerMap.TryGetValue(taskType, out createTaskHandlerDelegate);
+            if (createTaskHandlerDelegate != null)
+            {
+                return createTaskHandlerDelegate(subID);
+            }
+
+            throw new ArgumentException(taskType);
+        }
+        //-----------Static Block----------//
+
+
+        public TaskInfo(TDMainTask mainTask)
+        {
+            m_Reward = RewardMgr.S.GetRewardBase(mainTask.reward);
+            m_Target = mainTask.countP;
+            m_TaskHandler = CreateTaskHandler(mainTask.type);
+            m_TaskTitle = m_TaskHandler.taskTitle;
+        }
+
+        public TaskInfo(TDDailyTask dailyTask)
+        {
+            m_Reward = RewardMgr.S.GetRewardBase(dailyTask.reward);
+            m_Target = dailyTask.taskCount;
+            m_TaskHandler = CreateTaskHandler(dailyTask.type);
+            m_TaskTitle = dailyTask.taskTitle;
+        }
+
+        public bool IsComplete()
+        {
+            return m_TaskHandler.count >= m_Target;
+        }
+
+
+
+    }
+
+
+
+}
