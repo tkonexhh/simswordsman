@@ -107,6 +107,12 @@ namespace GameWish.Game
             m_Controller = controller;
         }
 
+        public bool HasAnim(string animName)
+        {
+            bool hasAnim = SpineHelper.HasAnimation(m_SpineAnim, animName);
+            return hasAnim;
+        }
+
         public void PlayIdleAnim()
         {
             //if (m_NavAgent.enabled)
