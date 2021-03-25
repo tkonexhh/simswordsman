@@ -236,7 +236,7 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_CoinValue.text = CommonUIMethod.GetTenThousandOrMillion((int)GameDataMgr.S.GetPlayerData().GetCoinNum());
+            m_CoinValue.text = CommonUIMethod.GetTenThousandOrMillion(GameDataMgr.S.GetPlayerData().GetCoinNum());
             m_BaoziValue.text = GameDataMgr.S.GetPlayerData().GetFoodNum() + Define.SLASH + GetFoodUpperLimit().ToString();
             m_WareHouseNumber.text = GetWareHouseAllPeopleNumber();
         }

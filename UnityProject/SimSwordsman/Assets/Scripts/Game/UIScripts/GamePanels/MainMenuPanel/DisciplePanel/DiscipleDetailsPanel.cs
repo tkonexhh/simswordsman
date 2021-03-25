@@ -171,7 +171,7 @@ namespace GameWish.Game
         {
             m_DiscipleNameValue.text = m_CurDisciple.name;
             m_LevelValue.text = CommonUIMethod.GetGrade(m_CurDisciple.level);
-            m_SkillValue.text = ((int)m_CurDisciple.atkValue).ToString();
+            m_SkillValue.text = CommonUIMethod.GetTenThousandOrMillion((long)m_CurDisciple.atkValue);
             m_EntryTimeValue.text = GetEntryTime(m_CurDisciple.GetEntryTime());
             m_RankValue.text = CommonUIMethod.GetPart(m_CurDisciple.stage);
             switch (m_CurDisciple.quality)
@@ -574,7 +574,7 @@ namespace GameWish.Game
         private void RefreshSkillValue()
         {
             GetInformationForNeed();
-            m_SkillValue.text = ((int)m_CurDisciple.atkValue).ToString();
+            m_SkillValue.text = CommonUIMethod.GetTenThousandOrMillion((long)m_CurDisciple.atkValue);
         }
 
         private void RefreshPanelKungfuInfo(int index)
