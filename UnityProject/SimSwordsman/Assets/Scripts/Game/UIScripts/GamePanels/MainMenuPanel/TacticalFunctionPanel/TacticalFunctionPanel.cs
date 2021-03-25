@@ -184,6 +184,7 @@ namespace GameWish.Game
         {
             m_Accept.onClick.AddListener(() =>
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (m_SelectedList == null)
                     return;
                 if (m_DiscipleList.Count != m_CommonTaskItemInfo.GetCharacterAmount())
@@ -191,7 +192,7 @@ namespace GameWish.Game
                     FloatMessage.S.ShowMsg("请选择满弟子 !");
                     return;
                 }
-                m_SimGameTask.ExecuteTask(m_SelectedList);
+                //m_SimGameTask.ExecuteTask(m_SelectedList);
                 List<EnemyConfig> enemiesList = new List<EnemyConfig>();
                 List<TaskEnemy> taskEnemies = m_SimGameTask.CommonTaskItemInfo.taskEnemies;
                 for (int i = 0; i < taskEnemies.Count; i++)
@@ -205,12 +206,27 @@ namespace GameWish.Game
             });
             m_Refuse.onClick.AddListener(() =>
             {
-                HideSelfWithAnim();
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_refuse, m_SimGameTask.TaskId.ToString());
+                UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示", "您确定要放弃任务吗");
             });
             m_BlackExit.onClick.AddListener(() =>
             {
-                HideSelfWithAnim();
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();  
             });
+        }
+
+        private void LogCallBack(AbstractPanel abstractPanel)
+        {
+            LogPanel logPanel = abstractPanel as LogPanel;
+            logPanel.OnSuccessBtnEvent += OnSucessEvent;
+        }
+        private void OnSucessEvent()
+        {
+            MainGameMgr.S.CommonTaskMgr.RemoveTask(m_SimGameTask.TaskId);
+            EventSystem.S.Send(EventID.OnDeleteTaskBtn, m_SimGameTask.TaskId);
+            HideSelfWithAnim();
         }
         #endregion
     }
