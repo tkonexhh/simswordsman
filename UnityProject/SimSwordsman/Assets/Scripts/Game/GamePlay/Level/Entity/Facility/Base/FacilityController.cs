@@ -250,7 +250,7 @@ namespace GameWish.Game
         /// 派遣弟子开始工作
         /// </summary>
         /// <returns></returns>
-        public bool DispatchDiscipleStartWork()
+        public bool DispatchDiscipleStartWork(bool isAuto = false)
         {
             if (IsShowBubble())
             {
@@ -278,7 +278,8 @@ namespace GameWish.Game
                 }
                 else
                 {
-                    FloatMessage.S.ShowMsg("没有空闲弟子");
+                    if (!isAuto)
+                        FloatMessage.S.ShowMsg("没有空闲弟子");
                     return false;
                 }
             }
@@ -314,7 +315,7 @@ namespace GameWish.Game
         /// <summary>
         /// 倒计时自动开始工作
         /// </summary>
-        public void CoundDownAutoStartWork(Action endCallBack = null)
+        public void CoundDownAutoStartWork(Action<bool> endCallBack = null,bool isAuto = false)
         {
             Timer.S.Cancel(m_AutoStartWorkTimerID);
 
@@ -326,7 +327,7 @@ namespace GameWish.Game
             {
                 if (endCallBack != null)
                 {
-                    endCallBack();
+                    endCallBack(isAuto);
                 }
                 m_AutoStartWorkTimerID = -1;
             }, autoWorkWaitTime, -1);

@@ -50,6 +50,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ExitBtn;
 
+        private int TimerID;
+
         private const float ExitShowTime = 0.5f;
 
         private CharacterItem m_CharacterItem = null;
@@ -206,7 +208,7 @@ namespace GameWish.Game
             m_CharacterImage.sprite = FindSprite(spriteName);
             m_CharacterImage.SetNativeSize();
 
-            Timer.S.Post2Really((i) =>
+            TimerID = Timer.S.Post2Really((i) =>
             {
                 m_ExitBtn.gameObject.SetActive(true);
             }, ExitShowTime);
@@ -248,6 +250,7 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
+            Timer.S.Cancel(TimerID);
             CloseSelfPanel();
             PanelPool.S.CurShowPanelIsOver = false;
         }
