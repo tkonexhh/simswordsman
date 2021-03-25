@@ -36,7 +36,6 @@ namespace GameWish.Game
         public bool firstSilverRecruit;
 
         public bool UnlockVisitor;
-        public int visitorCount;
         public bool UnlockWorkSystem;
 
         #region 食物倒计时
@@ -68,7 +67,6 @@ namespace GameWish.Game
 
             UnlockWorkSystem = false;
             UnlockVisitor = false;
-            visitorCount = 0;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
             FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 8) + ' ' + "06:00:00";
@@ -79,7 +77,6 @@ namespace GameWish.Game
 
         public void ResetDailyData()
         {
-            visitorCount = 0;
             recordData.ResetDailyData();
             SetDataDirty();
         }
@@ -396,28 +393,6 @@ namespace GameWish.Game
             return signInCount;
         }
 
-
-        #region Chapter
-
-
-
-
-        #endregion
-
-
-        #region Visitor
-        public void AddVisitorCount(int count = 1)
-        {
-            visitorCount += count;
-            SetDataDirty();
-        }
-
-        public void ResetVisitorCount()
-        {
-            visitorCount = 0;
-            SetDataDirty();
-        }
-        #endregion
         public void OnReset()
         {
             m_CoinNum = 0;

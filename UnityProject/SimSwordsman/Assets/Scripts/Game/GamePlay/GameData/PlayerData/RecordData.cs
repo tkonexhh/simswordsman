@@ -7,17 +7,27 @@ namespace GameWish.Game
 {
     public class RecordData : IDataClass, IDailyResetData
     {
-        public RecordItemData food;
-        public RecordItemData visitor;
-        public RecordItemData cruise;
-        public RecordItemData job;
-        public RecordItemData practice;
-        public RecordItemData copy;
-        public RecordItemData cook;
-        public RecordItemData collect;
-        public RecordItemData chanllenge;
-        public RecordItemData forge;
-        public RecordItemData medicine;
+        public RecordItemData food = new RecordItemData();
+        public RecordItemData visitor = new RecordItemData();
+        public RecordItemData cruise = new RecordItemData();
+        public RecordItemData job = new RecordItemData();
+        public RecordItemData practice = new RecordItemData();
+        public RecordItemData copy = new RecordItemData();
+        public RecordItemData cook = new RecordItemData();
+        public RecordItemData collect = new RecordItemData();
+        public RecordItemData chanllenge = new RecordItemData();
+        public RecordItemData forge = new RecordItemData();
+        public RecordItemData medicine = new RecordItemData();
+
+        public override void InitWithEmptyData()
+        {
+
+        }
+
+        public override void OnDataLoadFinish()
+        {
+
+        }
 
         public void ResetDailyData()
         {
