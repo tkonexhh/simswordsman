@@ -84,11 +84,11 @@ namespace GameWish.Game
 
         private void AddKongfuToPool(KongfuAnimConfig kongfu)
         {
+            if (kongfu == null)
+                return;
             if (m_KongfuAnimMap.ContainsKey(kongfu.animName))//已经添加过了
                 return;
 
-            if (kongfu == null)
-                return;
             kongfu.ParpareEffectPool();
             m_KongfuAnimMap.Add(kongfu.animName, kongfu);
         }
