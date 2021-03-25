@@ -63,6 +63,7 @@ namespace GameWish.Game
         OnUpgradeRefreshEvent,
 
         // MainTask
+        OnUnlockCommonTaskSystem,
         OnCommonTaskRefreshed,
         OnTaskManualFinished,
         //OnTaskFinished,
