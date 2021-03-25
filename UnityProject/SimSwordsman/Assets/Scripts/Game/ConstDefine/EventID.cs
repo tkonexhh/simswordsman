@@ -256,12 +256,12 @@ namespace GameWish.Game
         OnGuideUnlockKitchen = 11501,
         OnGuideBuildKitchen = 11601,
         #region 任务面板
-        OnTaskPanelTrigger_IntroduceTrigger = 11701,//任务面板介绍
+        OnRandomFightTrigger_IntroduceTrigger = 11701,//任务面板介绍
         #endregion
         BuildPracticeFieldEastTrigger = 11801,//建造练功房
         OnVisitorBtnNormalTipTrigger = 11901,//访客系统
         OnGuideUnlockWarehouse = 12001,
-        OnGuideClickTaskTrigger2,
+        OnRandomFightTrigger_ClickTaskBtnTrigger2,
         OnGuideReceiveTaskRewardClickBtnTrigger2,
 
         OnGuideDialog8,
@@ -293,8 +293,7 @@ namespace GameWish.Game
         OnGuideSendCharacterOnTaskTrigger1,
         OnGuideBuildFacilityPanelTrigger2,
         OnGuideClickRecruitTrigger2,
-        OnGuideClickTaskDetailsTrigger2,
-        OnGuideSelectCharacterTrigger2,
+        OnRandomFightTrigger_ClickAcceptBtn,
 
         OnGuideSelectCharacterPanelTrigger2_1,
         OnGuideSelectCharacterPanelTrigger2_2,
@@ -367,6 +366,7 @@ namespace GameWish.Game
         OnRecruitmentSystem_FinishedTrigger = 13501,
         OnSignInSystem_FinishedTrigger = 13601,
 
+        RandomFightTrigger_FinishedIntroduce = 13701,
         OnShowMaskWithAlphaZeroPanel,//显示一个透明的遮罩面板，防止误触
 
         #endregion
