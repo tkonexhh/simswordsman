@@ -32,6 +32,8 @@ namespace GameWish.Game
 
         private bool m_IsSystemUnlocked = false;
 
+        private int m_GuideStep = 37;
+
         #region IMgr
         public void OnInit()
         {
@@ -44,7 +46,7 @@ namespace GameWish.Game
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
 
             //EventSystem.S.Register(EngineEventID.OnDateUpdate, OnPassDayEvent);
-            m_IsSystemUnlocked = GuideMgr.S.IsGuideFinish(10);
+            m_IsSystemUnlocked = GuideMgr.S.IsGuideFinish(m_GuideStep);
             if (m_IsSystemUnlocked == false)
             {
                 EventSystem.S.Register(EventID.OnUnlockCommonTaskSystem, HandleEvent);
@@ -270,7 +272,7 @@ namespace GameWish.Game
                 if (curCommonTaskCount < m_CommonTaskCount)
                 {
                     int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
-                    if (GuideMgr.S.IsGuideFinish(17) == false)
+                    if (GuideMgr.S.IsGuideFinish(m_GuideStep) == false)
                     {
                         lobbyLevel = 0;
                     }
@@ -286,7 +288,8 @@ namespace GameWish.Game
 
                     if (allCommonTask.Count > 0)
                     {
-                        int randomIndex = UnityEngine.Random.Range(0, allCommonTask.Count);
+                        bool isFirstTask = GuideMgr.S.IsGuideFinish(m_GuideStep) == false && m_CurTaskList.Count == 0;
+                        int randomIndex = isFirstTask ? 0 : UnityEngine.Random.Range(0, allCommonTask.Count);
                         CommonTaskItemInfo task = allCommonTask[randomIndex];
 
                         if (!IsTaskExist(task.id))
