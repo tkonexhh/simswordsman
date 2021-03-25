@@ -331,6 +331,7 @@ namespace GameWish.Game
         private void MainMenuPanelCallback(AbstractPanel obj)
         {
             EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
+            EventSystem.S.Send(EventID.OnSendBulletinBoardFacility);
         }
 
 

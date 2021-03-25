@@ -30,6 +30,8 @@ namespace GameWish.Game
         private float m_TaskRefreshInterval = 10;
         private float m_TaskRefreshTime = 0;
 
+        private bool m_IsSystemUnlocked = false;
+
         #region IMgr
         public void OnInit()
         {
@@ -42,6 +44,11 @@ namespace GameWish.Game
             m_LastRefreshCommonTaskTime = DateTime.Parse(m_CommonTaskData.lastRefreshTime);
 
             //EventSystem.S.Register(EngineEventID.OnDateUpdate, OnPassDayEvent);
+            m_IsSystemUnlocked = GuideMgr.S.IsGuideFinish(10);
+            if (m_IsSystemUnlocked == false)
+            {
+                EventSystem.S.Register(EventID.OnUnlockCommonTaskSystem, HandleEvent);
+            }
         }
 
         public void OnUpdate()
@@ -85,8 +92,11 @@ namespace GameWish.Game
         /// <summary>
         /// 打开UI界面时调用
         /// </summary>
-        public void RefreshTask()
+        public void RefreshTask(bool immediately = false)
         {
+            if (m_IsSystemUnlocked == false)
+                return;
+
             int lastRefreshDay = GameDataMgr.S.GetCommonTaskData().lastRefreshTaskDay;
             if (lastRefreshDay != DateTime.Today.DayOfYear)
             {
@@ -102,7 +112,7 @@ namespace GameWish.Game
 
             m_CommonTaskCount = levelInfo.commonTaskCount;
 
-            RefreshCommonTask();
+            RefreshCommonTask(immediately);
         }
 
         public SimGameTask GetSimGameTask(int taskID)
@@ -197,8 +207,9 @@ namespace GameWish.Game
         {
             switch (key)
             {
-                case (int)EventID.OnStartUpgradeFacility:
-
+                case (int)EventID.OnUnlockCommonTaskSystem:
+                    m_IsSystemUnlocked = true;
+                    RefreshTask(true);
                     break;
 
             }
@@ -247,10 +258,10 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnSendBulletinBoardFacility, false);
         }
 
-        private void RefreshCommonTask()
+        private void RefreshCommonTask(bool immediately = false)
         {
             TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(m_LastRefreshCommonTaskTime.Ticks);
-            if (timeSpan.TotalSeconds > m_CommonTaskRefreshInterval)
+            if (timeSpan.TotalSeconds > m_CommonTaskRefreshInterval || immediately)
             {
                 m_LastRefreshCommonTaskTime = DateTime.Now;
 

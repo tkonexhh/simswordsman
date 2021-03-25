@@ -137,7 +137,7 @@ namespace GameWish.Game
             }
             else
             {
-                transform.SetAsFirstSibling();
+                //transform.SetAsFirstSibling();
 
                 TDFoodConfig tb = TDFoodConfigTable.GetData(id);
                 m_FoodImg.sprite = m_panel.FindSprite(tb.spriteName);

@@ -30,21 +30,20 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             BindAddListenerEvent();
-            GetInformationForNeed();
             m_Cont.text = "弟子没饭吃，就没力气干活了，看一段广告补充" + m_SupplementFood + "食物吧";
             m_BaoziNum.text = m_SupplementFood.ToString();
-            if (m_CurFoodFreshCount <= 0)
+
+            string recordTime = GameDataMgr.S.GetPlayerData().GetFoodRefreshRecordingTime();
+            int house = CommonUIMethod.GetDeltaTime(recordTime);
+            house = 100;
+            int count = house / _24House;
+            int refreshCount = GameDataMgr.S.GetPlayerData().GetFoodRefreshCount();
+            if (count > refreshCount)
             {
-                string recordTime = GameDataMgr.S.GetPlayerData().GetFoodRefreshRecordingTime();
-                int house = CommonUIMethod.GetDeltaTime(recordTime);
-                int count = house / _24House;
-                int refreshCount = GameDataMgr.S.GetPlayerData().GetFoodRefreshCount();
-                if (count > refreshCount)
-                {
-                    GameDataMgr.S.GetPlayerData().ResetFoodRefreshTimesToday();
-                    GameDataMgr.S.GetPlayerData().SetFoodRefreshCount(count);
-                }
+                GameDataMgr.S.GetPlayerData().ResetFoodRefreshTimesToday();
+                GameDataMgr.S.GetPlayerData().SetFoodRefreshCount(count);
             }
+            GetInformationForNeed();
             RefreshPanelInfo();
         }
 

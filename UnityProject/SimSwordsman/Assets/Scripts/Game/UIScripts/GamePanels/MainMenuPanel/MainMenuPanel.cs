@@ -289,6 +289,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.Register(EventID.OnFoodRefreshEvent, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
+            EventSystem.S.Register(EventID.OnDeleteTaskBtn, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -300,6 +301,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnClanNameChange, ChangeClanName);
             EventSystem.S.UnRegister(EventID.OnFoodRefreshEvent, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnDeleteTaskBtn, HandleEvent);
 
         }
 
@@ -309,13 +311,20 @@ namespace GameWish.Game
             {
                 case EventID.OnRefreshMainMenuPanel:
                     RefreshPanelInfo();
+                    break;  
+                case EventID.OnDeleteTaskBtn:
+                    TacticalFunctionBtn tacticalFunctionBtn = m_CommonTaskList.Where(i => i.TaskID == (int)param[0]).FirstOrDefault();
+                    if (tacticalFunctionBtn!=null)
+                    {
+                        m_CommonTaskList.Remove(tacticalFunctionBtn);
+                        DestroyImmediate(tacticalFunctionBtn.gameObject);
+                    }
                     break;
                 case EventID.OnCloseParentPanel:
                     CloseSelfPanel();
                     break; 
                 case EventID.OnSendBulletinBoardFacility:
                     RefreshTacticalInfo();
-
                     break;
                 case EventID.OnFoodRefreshEvent:
                     if ((bool)param[1])
