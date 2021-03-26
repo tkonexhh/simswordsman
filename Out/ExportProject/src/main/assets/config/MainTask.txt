@@ -1,104 +1,32 @@
-﻿任务ID	触发类型	触发参数	后置任务	讲武堂等级	任务标题	任务描述	任务类型	任务参数	任务时长（秒）	奖励	特殊奖励概率（基数10000）	特殊奖励	经验奖励	功夫经验奖励	事件(刷新任务状态)	完成条件类型	敌人配置	可派弟子数量	弟子等级要求
-int	string	string	string	int	string	string	string	string	int	string	int	string	int	int	string	string	string	int	int
-TaskID	TriggerType	TriggerParam	NextTask	HomeLevel	TaskTitle	TaskDescription	Type	ConditionValue	Time	Reward	SpecialRewardRate	SpecialReward	ExpReward	KongfuExpReward	TaskEvent	ConditionType	Enemy	RoleAmount	RoleLevelRequired
-10010	Main		10020	0	砍树	盖房子当然要有木材，先去砍树吧。	Collect_WuWood		3	Item|1002|20	0		50	0	OnTaskManualFinished	ManualFinish		1	1
-10020	Main		10030	0	采石	石材也是必不可少的建材，后山有不少。	Collect_QingRock		3	Item|1001|20	0		50	0	OnTaskManualFinished	ManualFinish		1	1
-10030	Main		10040	0	盖宿舍	壮大门派的第一步，先盖三间屋舍。	Progress_BuildCount	LivableRoomEast1;LivableRoomEast2;LivableRoomWest1	0	Item|2002|1	0		0	0	OnTaskManualFinished	ManualFinish		0	0
-10040	Main		10050	0	招募弟子	壮大门派最重要的是人才，招满五个弟子。	Progress_StudentAmount	5	0	Coin|100	0		0	0	OnTaskManualFinished	ManualFinish		0	0
-10050	Main			0	讲武堂升级	小破庙实在有点寒酸，该装修装修了。	Progress_BuildLevel	Lobby|2	0	Coin|100	0		0	0	OnTaskManualFinished	ManualFinish		0	0
-10051	Main			0					0	Coin|100	0		0	0	OnTaskManualFinished	ManualFinish	104|80;105|80;105|80;105|80;101|150	0	0
-20101	Common			1	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		60	Item|1002|20	0		50	0	OnTaskManualFinished	ManualFinish		1	1
-20102	Common			1	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		60	Item|1001|20	0		50	0	OnTaskManualFinished	ManualFinish		1	1
-20201	Common			2	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		180	Item|1002|100	0		80	0	OnTaskManualFinished	ManualFinish		1	1
-20202	Common			2	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		180	Item|1001|100	0		80	0	OnTaskManualFinished	ManualFinish		1	1
-20203	Common			2	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		180	Item|1009|5_8	0		80	0	OnTaskManualFinished	ManualFinish		1	10
-20204	Common			2	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		180	Item|1006|5_8	0		80	0	OnTaskManualFinished	ManualFinish		1	10
-20205	Common			2	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		80	80	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20301	Common			3	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		300	Item|1002|250	0		150	0	OnTaskManualFinished	ManualFinish		1	1
-20302	Common			3	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		300	Item|1001|250	0		150	0	OnTaskManualFinished	ManualFinish		1	1
-20303	Common			3	砍伐银木	银木是高级木材，要很久才能长成一棵。	Collect_SilverWood		300	Item|1004|20	6000	Item|1007|1_2	150	0	OnTaskManualFinished	ManualFinish		2	10
-20304	Common			3	开采云岩	云岩的表面有一种像云一样的花纹，故名云岩。	Collect_CloudRock		300	Item|1003|20	6000	Item|1008|1_2	150	0	OnTaskManualFinished	ManualFinish		2	10
-20305	Common			3	捕捉鸡	庄上散养了很多鸡，想吃就直接去抓。	Collect_Chicken		300	Item|1014|2_3	0		150	0	OnTaskManualFinished	ManualFinish		1	40
-20306	Common			3	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		300	Item|1009|8_12	0		150	0	OnTaskManualFinished	ManualFinish		2	40
-20307	Common			3	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		300	Item|1006|8_12	0		150	0	OnTaskManualFinished	ManualFinish		1	40
-20308	Common			3	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		150	120	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20309	Common			3	抓刺客	听说昨晚村长被行刺了，在来福酒店可以找到这帮人。	Battle		0	Item|3002|1	0		150	120	OnTaskManualFinished	ManualFinish	9904|20;9904|20;9904|20;9904|20;9904|20	5	1
-20401	Common			4	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		600	Item|1002|800	0		250	0	OnTaskManualFinished	ManualFinish		2	1
-20402	Common			4	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		600	Item|1001|800	0		250	0	OnTaskManualFinished	ManualFinish		2	1
-20403	Common			4	砍伐银木	银木是高级木材，要很久才能长成一棵。	Collect_SilverWood		600	Item|1004|100	7000	Item|1007|2_3	250	0	OnTaskManualFinished	ManualFinish		2	10
-20404	Common			4	开采云岩	云岩的表面有一种像云一样的花纹，故名云岩。	Collect_CloudRock		600	Item|1003|100	7000	Item|1008|2_3	250	0	OnTaskManualFinished	ManualFinish		2	10
-20405	Common			4	捕捉青蛇	师娘特别怕蛇，看到了就一定要打死。	Collect_Snake		480	Item|1015|2_3	6000	Item|1022|1_2	250	0	OnTaskManualFinished	ManualFinish		1	40
-20406	Common			4	捕捉鸡	庄上散养了很多鸡，想吃就直接去抓。	Collect_Chicken		300	Item|1014|2_3	0		250	0	OnTaskManualFinished	ManualFinish		1	40
-20407	Common			4	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		300	Item|1009|8_12	0		250	0	OnTaskManualFinished	ManualFinish		2	40
-20408	Common			4	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		300	Item|1006|8_12	0		250	0	OnTaskManualFinished	ManualFinish		1	40
-20409	Common			4	采集紫藤	悬崖边上有很多紫藤，多采一些回来做藤甲。	Collect_Vine		300	Item|1005|8_12	0		250	0	OnTaskManualFinished	ManualFinish		2	100
-20410	Common			4	钓鱼	荷花池里的鱼很美味，有空可以钓几条上来做菜。	Collect_Fish		480	Item|1012|5	0		250	0	OnTaskManualFinished	ManualFinish		1	40
-20411	Common			4	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		250	200	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20412	Common			4	抓刺客	听说昨晚村长被行刺了，在来福酒店可以找到这帮人。	Battle		0	Item|3002|1	3000	Item|3102|1	250	200	OnTaskManualFinished	ManualFinish	9904|20;9904|20;9904|20;9904|20;9904|20	5	1
-20413	Common			4	战倭寇	倭人犯我村民久已，卧榻之侧岂容他人猖狂。	Battle		0	Item|3003|1	3000	Item|3101|1	250	200	OnTaskManualFinished	ManualFinish	9905|20;9906|20;9906|20;9907|20;9907|20	5	1
-20501	Common			5	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		900	Item|1002|1500	0		450	0	OnTaskManualFinished	ManualFinish		2	1
-20502	Common			5	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		900	Item|1001|1500	0		450	0	OnTaskManualFinished	ManualFinish		2	1
-20503	Common			5	砍伐银木	银木是高级木材，要很久才能长成一棵。	Collect_SilverWood		900	Item|1004|250	8000	Item|1007|3_5	450	0	OnTaskManualFinished	ManualFinish		2	10
-20504	Common			5	开采云岩	云岩的表面有一种像云一样的花纹，故名云岩。	Collect_CloudRock		900	Item|1003|250	8000	Item|1008|3_5	450	0	OnTaskManualFinished	ManualFinish		2	10
-20505	Common			5	捕捉青蛇	师娘特别怕蛇，看到了就一定要打死。	Collect_Snake		720	Item|1015|3_5	8000	Item|1022|2_3	450	0	OnTaskManualFinished	ManualFinish		1	40
-20506	Common			5	捕捉鸡	庄上散养了很多鸡，想吃就直接去抓。	Collect_Chicken		600	Item|1014|3_5	0		450	0	OnTaskManualFinished	ManualFinish		1	40
-20507	Common			5	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		480	Item|1009|12_20	0		450	0	OnTaskManualFinished	ManualFinish		2	40
-20508	Common			5	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		480	Item|1006|12_20	0		450	0	OnTaskManualFinished	ManualFinish		1	40
-20509	Common			5	打古井水	吃水不忘挖井人，不过这井太古老了，也不知道谁挖的。	Collect_Well		600	Item|1018|1_2	0		450	0	OnTaskManualFinished	ManualFinish		1	100
-20510	Common			5	采集紫藤	悬崖边上有很多紫藤，多采一些回来做藤甲。	Collect_Vine		480	Item|1005|12_20	0		450	0	OnTaskManualFinished	ManualFinish		2	100
-20511	Common			5	钓鱼	荷花池里的鱼很美味，有空可以钓几条上来做菜。	Collect_Fish		480	Item|1012|5	0		450	0	OnTaskManualFinished	ManualFinish		1	40
-20512	Common			5	狩猎熊	最近黑瞎子经常到附近村里伤人，咱们不能放任不管。	Collect_Bear		1080	Item|1009|12_18	8000	Item|1011|1_2	450	0	OnTaskManualFinished	ManualFinish		2	100
-20513	Common			5	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		450	350	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20514	Common			5	抓刺客	听说昨晚村长被行刺了，在来福酒店可以找到这帮人。	Battle		0	Item|3002|1	4000	Item|3102|1	450	350	OnTaskManualFinished	ManualFinish	9904|20;9904|20;9904|20;9904|20;9904|20	5	1
-20515	Common			5	战倭寇	倭人犯我村民久已，卧榻之侧岂容他人猖狂。	Battle		0	Item|3003|1	4000	Item|3101|1	450	350	OnTaskManualFinished	ManualFinish	9905|20;9906|20;9906|20;9907|20;9907|20	5	1
-20601	Common			6	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		1200	Item|1002|2500	0		800	0	OnTaskManualFinished	ManualFinish		2	1
-20602	Common			6	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		1200	Item|1001|2500	0		800	0	OnTaskManualFinished	ManualFinish		2	1
-20603	Common			6	砍伐银木	银木是高级木材，要很久才能长成一棵。	Collect_SilverWood		1200	Item|1004|800	9000	Item|1007|5_8	800	0	OnTaskManualFinished	ManualFinish		2	10
-20604	Common			6	开采云岩	云岩的表面有一种像云一样的花纹，故名云岩。	Collect_CloudRock		1200	Item|1003|800	9000	Item|1008|5_8	800	0	OnTaskManualFinished	ManualFinish		2	10
-20605	Common			6	捕捉青蛇	师娘特别怕蛇，看到了就一定要打死。	Collect_Snake		720	Item|1015|3_5	8000	Item|1022|2_3	800	0	OnTaskManualFinished	ManualFinish		1	40
-20606	Common			6	捕捉鸡	庄上散养了很多鸡，想吃就直接去抓。	Collect_Chicken		600	Item|1014|3_5	0		800	0	OnTaskManualFinished	ManualFinish		1	40
-20607	Common			6	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		480	Item|1009|12_20	0		800	0	OnTaskManualFinished	ManualFinish		2	40
-20608	Common			6	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		600	Item|1006|18_30	0		800	0	OnTaskManualFinished	ManualFinish		1	40
-20609	Common			6	打古井水	吃水不忘挖井人，不过这井太古老了，也不知道谁挖的。	Collect_Well		600	Item|1018|1_2	0		800	0	OnTaskManualFinished	ManualFinish		1	100
-20610	Common			6	采集紫藤	悬崖边上有很多紫藤，多采一些回来做藤甲。	Collect_Vine		600	Item|1005|18_30	0		800	0	OnTaskManualFinished	ManualFinish		2	100
-20611	Common			6	采集灵芝	灵芝是极品药材，采的时候一定要小心翼翼。	Collect_Ganoderma		1200	Item|1020|2_3	0		800	0	OnTaskManualFinished	ManualFinish		1	150
-20612	Common			6	狩猎鹿	鹿肉不是重点，鹿茸才是真正的好东西。	Collect_Deer		1080	Item|1009|10_15	8000	Item|1019|1_2	800	0	OnTaskManualFinished	ManualFinish		2	150
-20613	Common			6	钓鱼	荷花池里的鱼很美味，有空可以钓几条上来做菜。	Collect_Fish		480	Item|1012|5	0		800	0	OnTaskManualFinished	ManualFinish		1	40
-20614	Common			6	狩猎熊	最近黑瞎子经常到附近村里伤人，咱们不能放任不管。	Collect_Bear		1080	Item|1009|12_18	8000	Item|1011|1_2	800	0	OnTaskManualFinished	ManualFinish		2	100
-20615	Common			6	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		800	600	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20616	Common			6	抓刺客	听说昨晚村长被行刺了，在来福酒店可以找到这帮人。	Battle		0	Item|3002|1	5000	Item|3102|1	800	600	OnTaskManualFinished	ManualFinish	9904|20;9904|20;9904|20;9904|20;9904|20	5	1
-20617	Common			6	战倭寇	倭人犯我村民久已，卧榻之侧岂容他人猖狂。	Battle		0	Item|3003|1	5000	Item|3101|1	800	600	OnTaskManualFinished	ManualFinish	9905|20;9906|20;9906|20;9907|20;9907|20	5	1
-20701	Common			7	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		1200	Item|1002|2500	0		2000	0	OnTaskManualFinished	ManualFinish		2	1
-20702	Common			7	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		1200	Item|1001|2500	0		2000	0	OnTaskManualFinished	ManualFinish		2	1
-20703	Common			7	砍伐银木	银木是高级木材，要很久才能长成一棵。	Collect_SilverWood		1500	Item|1004|1500	9500	Item|1007|8_12	2000	0	OnTaskManualFinished	ManualFinish		3	10
-20704	Common			7	开采云岩	云岩的表面有一种像云一样的花纹，故名云岩。	Collect_CloudRock		1500	Item|1003|1500	9500	Item|1008|8_12	2000	0	OnTaskManualFinished	ManualFinish		3	10
-20705	Common			7	捕捉青蛇	师娘特别怕蛇，看到了就一定要打死。	Collect_Snake		720	Item|1015|3_5	9000	Item|1022|2_3	2000	0	OnTaskManualFinished	ManualFinish		1	40
-20706	Common			7	捕捉鸡	庄上散养了很多鸡，想吃就直接去抓。	Collect_Chicken		600	Item|1014|3_5	0		2000	0	OnTaskManualFinished	ManualFinish		1	40
-20707	Common			7	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		480	Item|1009|12_20	0		2000	0	OnTaskManualFinished	ManualFinish		2	40
-20708	Common			7	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		600	Item|1006|18_30	0		2000	0	OnTaskManualFinished	ManualFinish		1	40
-20709	Common			7	打古井水	吃水不忘挖井人，不过这井太古老了，也不知道谁挖的。	Collect_Well		600	Item|1018|1_2	0		2000	0	OnTaskManualFinished	ManualFinish		1	100
-20710	Common			7	采集紫藤	悬崖边上有很多紫藤，多采一些回来做藤甲。	Collect_Vine		600	Item|1005|18_30	0		2000	0	OnTaskManualFinished	ManualFinish		2	100
-20711	Common			7	采集灵芝	灵芝是极品药材，采的时候一定要小心翼翼。	Collect_Ganoderma		1200	Item|1020|2_3	0		2000	0	OnTaskManualFinished	ManualFinish		1	150
-20712	Common			7	狩猎鹿	鹿肉不是重点，鹿茸才是真正的好东西。	Collect_Deer		1080	Item|1009|10_15	8000	Item|1019|1_2	2000	0	OnTaskManualFinished	ManualFinish		2	150
-20713	Common			7	钓鱼	荷花池里的鱼很美味，有空可以钓几条上来做菜。	Collect_Fish		480	Item|1012|5	0		2000	0	OnTaskManualFinished	ManualFinish		1	40
-20714	Common			7	狩猎熊	最近黑瞎子经常到附近村里伤人，咱们不能放任不管。	Collect_Bear		1080	Item|1009|12_18	8000	Item|1011|1_2	2000	0	OnTaskManualFinished	ManualFinish		2	100
-20715	Common			7	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		2000	1200	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20716	Common			7	抓刺客	听说昨晚村长被行刺了，在来福酒店可以找到这帮人。	Battle		0	Item|3002|1	6000	Item|3102|1	2000	1200	OnTaskManualFinished	ManualFinish	9904|20;9904|20;9904|20;9904|20;9904|20	5	1
-20717	Common			7	战倭寇	倭人犯我村民久已，卧榻之侧岂容他人猖狂。	Battle		0	Item|3003|1	6000	Item|3101|1	2000	1200	OnTaskManualFinished	ManualFinish	9905|20;9906|20;9906|20;9907|20;9907|20	5	1
-20801	Common			8	砍伐乌木	村西边的乌木长得快，木质好，盖房子最合适。	Collect_WuWood		1200	Item|1002|2500	0		4500	0	OnTaskManualFinished	ManualFinish		2	1
-20802	Common			8	开采青石	山脚下的青石遍地都是，可以挖来做基地或者砌墙。	Collect_QingRock		1200	Item|1001|2500	0		4500	0	OnTaskManualFinished	ManualFinish		2	1
-20803	Common			8	砍伐银木	银木是高级木材，要很久才能长成一棵。	Collect_SilverWood		1800	Item|1004|2500	9500	Item|1007|12_20	4500	0	OnTaskManualFinished	ManualFinish		3	10
-20804	Common			8	开采云岩	云岩的表面有一种像云一样的花纹，故名云岩。	Collect_CloudRock		1800	Item|1003|2500	9500	Item|1008|12_20	4500	0	OnTaskManualFinished	ManualFinish		3	10
-20805	Common			8	捕捉青蛇	师娘特别怕蛇，看到了就一定要打死。	Collect_Snake		720	Item|1015|3_5	9000	Item|1022|2_3	4500	0	OnTaskManualFinished	ManualFinish		1	40
-20806	Common			8	捕捉鸡	庄上散养了很多鸡，想吃就直接去抓。	Collect_Chicken		600	Item|1014|3_5	0		4500	0	OnTaskManualFinished	ManualFinish		1	40
-20807	Common			8	狩猎野猪	池塘边总有野猪出没伤人，去宰了它给兄弟们加餐。	Collect_Boar		480	Item|1009|12_20	0		4500	0	OnTaskManualFinished	ManualFinish		2	40
-20808	Common			8	开采黑铁	打铁当然先要有铁，可以去后山找找看。	Collect_Iron		600	Item|1006|18_30	0		4500	0	OnTaskManualFinished	ManualFinish		1	40
-20809	Common			8	打古井水	吃水不忘挖井人，不过这井太古老了，也不知道谁挖的。	Collect_Well		600	Item|1018|1_2	0		4500	0	OnTaskManualFinished	ManualFinish		1	100
-20810	Common			8	采集紫藤	悬崖边上有很多紫藤，多采一些回来做藤甲。	Collect_Vine		600	Item|1005|18_30	0		4500	0	OnTaskManualFinished	ManualFinish		2	100
-20811	Common			8	采集灵芝	灵芝是极品药材，采的时候一定要小心翼翼。	Collect_Ganoderma		1200	Item|1020|2_3	0		4500	0	OnTaskManualFinished	ManualFinish		1	150
-20812	Common			8	狩猎鹿	鹿肉不是重点，鹿茸才是真正的好东西。	Collect_Deer		1080	Item|1009|10_15	8000	Item|1019|1_2	4500	0	OnTaskManualFinished	ManualFinish		2	150
-20813	Common			8	钓鱼	荷花池里的鱼很美味，有空可以钓几条上来做菜。	Collect_Fish		480	Item|1012|5	0		4500	0	OnTaskManualFinished	ManualFinish		1	40
-20814	Common			8	狩猎熊	最近黑瞎子经常到附近村里伤人，咱们不能放任不管。	Collect_Bear		1080	Item|1009|12_18	8000	Item|1011|1_2	4500	0	OnTaskManualFinished	ManualFinish		2	100
-20815	Common			8	剿匪徒	最近隔壁村闹山贼，村长请我们去剿匪。	Battle		0	Item|3001|1	0		4500	2500	OnTaskManualFinished	ManualFinish	9901|20;9902|20;9902|20;9903|20;9903|20	5	1
-20816	Common			8	抓刺客	听说昨晚村长被行刺了，在来福酒店可以找到这帮人。	Battle		0	Item|3002|1	6000	Item|3102|1	4500	2500	OnTaskManualFinished	ManualFinish	9904|20;9904|20;9904|20;9904|20;9904|20	5	1
-20817	Common			8	战倭寇	倭人犯我村民久已，卧榻之侧岂容他人猖狂。	Battle		0	Item|3003|1	6000	Item|3101|1	4500	2500	OnTaskManualFinished	ManualFinish	9905|20;9906|20;9906|20;9907|20;9907|20	5	1
+﻿任务ID	任务标题	任务奖励	任务类型	数量参数
+int	string	string	string	int
+TaskID	TaskTitle	Reward	Type	CountP
+101	建造1间屋舍	Coin|100	Main_BuildLivableRoom|1	1
+102	拥有3名弟子	Item|2001|1	Main_OwnStudents	3
+103	建造1处练功场	Food|25	Main_BuildPracticeField	1
+104	拥有1间2级屋舍	Item|2001|1	Main_BuildLivableRoom|2	1
+105	建造3间屋舍	Food|25	Main_BuildLivableRoom|1	3
+106	讲武堂升至2级	Item|2002|1	Main_BuildLobby	2
+107	完成挑战1-1	Coin|250	Main_Chanllenge|10	1
+108	建造藏经阁	Food|25	Main_BuildLibrary|1	1
+109	建造4间屋舍	Food|25	Main_BuildLivableRoom|1	4
+110	拥有1间4级屋舍	Food|25	Main_BuildLivableRoom|4	1
+111	拥有12名弟子	Kongfu|3002	Main_OwnStudents	12
+112	讲武堂升至3级	Item|2002|1	Main_BuildLobby	3
+113	建造锻造屋	Food|25	Main_BuildForgeHouse	1
+114	建造5间屋舍	Food|25	Main_BuildLivableRoom|1	5
+115	拥有1间5级屋舍	Food|25	Main_BuildLivableRoom|5	1
+116	拥有20名弟子	Arms|306	Main_OwnStudents	20
+117	讲武堂升至4级	Item|2002|1	Main_BuildLobby	4
+118	建造百草屋	Food|25	Main_BuildBaicaohu	1
+119	建造2处练功场	Food|25	Main_BuildPracticeField|1	2
+120	建造6间屋舍	Food|25	Main_BuildLivableRoom|1	6
+121	拥有30名弟子	Armor|601	Main_OwnStudents	30
+122	讲武堂升至5级	Item|2002|1	Main_BuildLobby	5
+123	建造7间屋舍	Food|25	Main_BuildLivableRoom|1	7
+124	拥有1间6级屋舍	Food|25	Main_BuildLivableRoom|6	1
+125	拥有40名弟子	Arms|305	Main_OwnStudents	40
+126	讲武堂升至6级	Item|2002|1	Main_BuildLobby	6
+127	建造8间屋舍	Food|25	Main_BuildLivableRoom|1	8
+128	拥有3间6级屋舍	Food|25	Main_BuildLivableRoom|6	3
+129	拥有50名弟子	Arms|303	Main_OwnStudents	50

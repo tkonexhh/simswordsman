@@ -123,8 +123,8 @@ android {
     productFlavors {
         mobrainsdk {
             dimension "channel"
-            versionCode 5
-            versionName "1.0.5"
+            versionCode 6
+            versionName "1.0.6"
             applicationId "ratel.best.sect"
             resValue "string", "aid", "218425"
             resValue "string", "appName", "best_sect"
@@ -137,8 +137,8 @@ android {
 
         mobrainzhanneisdk {
             dimension "channel"
-            versionCode 5
-            versionName "1.0.5"
+            versionCode 6
+            versionName "1.0.6"
             applicationId "ratel.best.sect"
             resValue "string", "aid", "218425"
             resValue "string", "appName", "best_sect"
@@ -225,7 +225,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation group: 'org.ccil.cowan.tagsoup', name: 'tagsoup', version: '1.2.1'
-
+	//推送
+    implementation(name: 'androidnotifications-release', ext:'aar')
     //privacy
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation("com.squareup.okhttp3:okhttp:4.6.0")

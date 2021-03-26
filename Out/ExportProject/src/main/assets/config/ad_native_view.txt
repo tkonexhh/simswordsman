@@ -1,4 +1,8 @@
-﻿ID	布局文件	宽度类型	宽度	可点击区
-string	string	string	float	string
-Id	LayoutName	WidthType	Width	InteractiveArea
-MixView0	taurusx_native_layout	Ratio	0.900000	root|action|choice|store
+﻿ID	布局文件	宽度类型	宽度	可点击区	高度类型	高度
+string	string	string	float	string	string	float
+Id	LayoutName	WidthType	Width	InteractiveArea	HeightType	Height
+MixView0	taurusx_native_layout.xml	Ratio	0.900000	root|action|choice|store		0.000000
+MixView1	taurusx_native_layout.xml	Ratio	0.900000	root|action|choice|store		0.000000
+MixView3	taurusx_native_layout1.xml	Ratio	0.900000	root|action|choice|store		0.000000
+MixFull0	taurusx_ads_activity_mixfullad.xml	Ratio	0.900000	root|action|choice|store		0.000000
+FullscreenMixView1	taurusx_ads_activity_mixfullad.xml	Ratio	0.900000	root|action|choice|store		0.000000

@@ -22,14 +22,10 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 11501	15	KitchenDialogTrigger	DialogCommand:StoryPanel_Text_25,StoryPanel_Text_26;MyDelayCommand:0.4;		0	
 11601	16	BuildFacility_KitchenTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/KitchenView	0	
 11602	16	BuildFacilityPanel_KitchenTrigger	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
-11701	17	TaskPanelTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_55;MyDelayCommand:0.4;		0	
-11702	17	ClickTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_13,22|108,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,BulletinBoardBtn	0	
-11703	17	ClickTaskDetailsTrigger2	NormalTipsCommand:StoryPanel_Text_14,-78|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Top/FuncBtn	0	
-11704	17	SelectCharacterOnTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:BulletinBoardPanel,Bottom/TaskCont/Viewport/TaskContParent/BulletinBoardItem9001/Bottom/MiddleDown/BulletinBoardDisciple(Clone)	0	
-11705	17	SelectCharacterPanelTrigger2_1	NormalTipsCommand:StoryPanel_Text_38,103|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Midlle/UnselectedList/SendSelectedDisciple(Clone)	0	
-11706	17	SelectCharacterPanelTrigger2_2	NormalTipsCommand:StoryPanel_Text_38,103|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:ChallengeChooseDisciple,Bottom/Scroll View/Viewport/Cont/ChallengePanelDisciple(Clone)	0	
-11707	17	SelectCharacterSureTrigger2	NormalTipsCommand:StoryPanel_Text_38,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.2;	UINodeFinder:ChallengeChooseDisciple,ConfirmBtn	0	
-11708	17	SendCharacterOnTaskTrigger2	NormalTipsCommand:StoryPanel_Text_39,13|79,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
+11701	17	RandomFightTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_55;MyDelayCommand:0.4;		0	
+11702	17	RandomFightTrigger_ClickTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_13,22|108,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,TacticalFunction/TacticalFunctionBtn(Clone)	0	
+11703	17	RandomFightTrigger_ClickAcceptBtn	NormalTipsCommand:StoryPanel_Text_14,-78|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:TacticalFunctionPanel,Bg/Down/Accept	0	1
+13701	37	RandomFightTrigger_FinishedIntroduce	DialogCommand:StoryPanel_Text_81,StoryPanel_Text_82;MyDelayCommand:0.4;		0	
 11801	18	BuildPracticeFieldEastTrigger	DialogCommand:StoryPanel_Text_45,StoryPanel_Text_46;MyDelayCommand:0.4;		0	
 13301	33	RecruitmentSystem_IntroduceTrigger1	DialogCommand:StoryPanel_Text_70,StoryPanel_Text_71;MyDelayCommand:0.3;		0	
 13302	33	RecruitmentSystem_IntroduceTrigger2	DialogCommand:StoryPanel_Text_72;MyDelayCommand:0.3;		0	
@@ -42,11 +38,11 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 13402	34	SignInSystem_ClickSignBtnTrigger	NormalTipsCommand:StoryPanel_Text_78,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:MainMenuPanel,SignInBtn	0	
 13403	34	SignInSystem_ClickSignReceiveBtnTrigger	NormalTipsCommand:StoryPanel_Text_79,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SignInPanel,SignPanel_BG/AcceptBtn	0	
 13601	36	SignInSystem_FinishedTrigger	DialogCommand:StoryPanel_Text_80;MyDelayCommand:0.3;		0	1
-11901	19	VisitotBtnNormalTipTrigger	DialogCommand:StoryPanel_Text_41;MyDelayCommand:0.4;		0	
-11902	19	ClickVisitorBtnTrigger	NormalTipsCommand:StoryPanel_Text_42,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,VisitorsList/VisitorsBtn/Button	0	1
 12001	20	WarehouseDialogTrigger	DialogCommand:StoryPanel_Text_30;MyDelayCommand:0.4;		0	
 12002	20	BuildFacility_WarehouseTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/WarehouseView	0	
 12003	20	BuildFacilityPanel_WarehouseTrigger	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
+11901	19	VisitotBtnNormalTipTrigger	DialogCommand:StoryPanel_Text_41;MyDelayCommand:0.4;		0	
+11902	19	ClickVisitorBtnTrigger	NormalTipsCommand:StoryPanel_Text_42,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,VisitorsList/VisitorsBtn/Button	0	1
 12101	21	BuildBaicaohuTrigger	DialogCommand:StoryPanel_Text_31;MyDelayCommand:0.2;		0	
 12201	22	BuildPracticeFieldTrigger	DialogCommand:StoryPanel_Text_32;MyDelayCommand:0.2;		0	
 12301	23	BuildKungfuLibraryTrigger	DialogCommand:StoryPanel_Text_33;MyDelayCommand:0.2;		0	

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 911830448
+CRC: 3848790962
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9855238eaea858f5ccd0b5e43a1ff919
+    Hash: 374b36a337dc02dad13db485fc7df608
   TypeTreeHash:
     serializedVersion: 2
     Hash: 80d68d46fdfbc3d35968b4be5948883d
@@ -72,6 +72,7 @@ ClassTypes:
 - Class: 225
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Panels/Common/Handle.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/AdDisplayer.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/ColorFadeTransition.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/OfficialVersionAdPanel.prefab
@@ -84,3 +85,4 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/Common/Tip.prefab
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle

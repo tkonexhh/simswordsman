@@ -29,9 +29,9 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	SETime	AttackSound
 3007	tiancanjiao	2;2;2;2	0.2	TianCanJiao_Smoke		TianCanJiao_Bullets_Left|TianCanJiao_Bullets_Right	1.5	
 3008	tianshanzhemeishou	0.5;0.5;0.5	1.1;1.5;1.6			Hit_Light_Left|Hit_Light_Right		
 3009	yijinjing	0.5;0.5;1;2	1.3		YiJinJing_Pre_Left|YiJinJing_Pre_Right	YiJinJing_Hit_Left|YiJinJing_Hit_Right	2.1	
-4001	dagoubangfa	1.5;1.1;1.4	1.05;1.2;1.9			Hit_Light_Left|Hit_Light_Right		
-4002	diaoyugunfa	2.1;2.2	0.5;1.4			Hit_Light_Left|Hit_Light_Right		
-4003	luohanfumoquan	1;1	0					
+4001	dagoubangfa	1.5;1.1;1.4	0.9;1.3;1.8		DaGouBangFa_Left|DaGouBangFa_Right	DaGouBangFa_Hit_Left|DaGouBangFa_Hit_Right	1.75	
+4002	diaoyugunfa	2.1;2.2	0.39;1.56		DiaoYuGunFa_Left|DiaoYuGunFa_Right	DiaoYuGunFa_Hit_Left|DiaoYuGunFa_Hit_Right	3	
+4003	luohanfumoquan	1;1	0.7;1.15		LuoHanFuMoQuan_Left|LuoHanFuMoQuan_Right		2.2000000000000002	
 4004	qianshouzhang	1;1;1;1;1;1;1	1			QianShouZhang_Hit_Right|QianShouZhang_Hit_Left	1.4	
 4005	taijijianfa	0.8;2	0					
 4006	taijiquan	0.8;0.6;0.6;1.1	0					
@@ -70,13 +70,13 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	SETime	AttackSound
 5010	jiuhuolianji	2.35	0.3;1.7		JiuHuoLianJi	JiuHuoLianJi_Hit_Left|JiuHuoLianJi_Hit_Right	2.35	
 5011	dagoubangfa_hongqi							
 5012	lianhualuo							
-5013	taijijianfa_zhangzhenren	1;2						
-5014	taijiquan_zhangzhenren	0.8;0.6;0.6;1.2						
-5015	taijijianfa_zangdaoren	0.4;0.9;0.9						
-5016	taijiquan_zangdaoren	0.8;0.4;0.4						
+5013	taijijianfa_zhangzhenren	1;2	0.37;1.35		TaiJiJianFa_ZZR_Left|TaiJiJianFa_ZZR_Right	TaiJiJianFa_Hit_ZZR_Left|TaiJiJianFa_Hit_ZZR_Right	1.95	
+5014	taijiquan_zhangzhenren	0.8;0.6;0.6;1.2	0.2;0.95;1.65		TaiJiQuan_ZZR_Left|TaiJiQuan_ZZR_Right		2.65	
+5015	taijijianfa_zangdaoren	0.4;0.9;0.9	0.75;1.66		TaiJiJianFa_ZDR_Left|TaiJiJianFa_ZDR_Right		3.1	
+5016	taijiquan_zangdaoren	0.8;0.4;0.4	0.2;0.65;1.45		TaiJiQuan_ZDR_Left|TaiJiQuan_ZDR_Right		2.4500000000000002	
 5017	yanling							
 5018	qiankunyizhi							
-5019	pugong	2	0.6;0.95;1.2		RuYiJianFa_Hit_Left|RuYiJianFa_Hit_Right		1.5	
+5019	pugong	2	0.6;0.95;1.2			RuYiJianFa_Hit_Left|RuYiJianFa_Hit_Right	1.5	
 5020	skill	2	0.65		MieJueJianFa_Left|MieJueJianFa_Left	MieJueJianFa_Hit_Left|MieJueJianFa_Hit_Right	1.58	
 5021	xiuliqiankun							
 5022	qingliannvshenjian_dubi							

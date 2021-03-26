@@ -1,15 +1,19 @@
 ManifestFileVersion: 0
-CRC: 2220134327
+CRC: 2587431621
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b486204a184913b4a159b89bf4a439e5
+    Hash: daf61a7e1e135b32226926c9d497530f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9de9978db515cf17492ab5cdc6beb46a
+    Hash: 1cd18967e5716f055a64efb2b65771aa
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
@@ -39,6 +43,10 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 - Class: 222
@@ -64,4 +72,6 @@ Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/icon.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/promotionpanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterwholebodyicons.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/material.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture.bundle

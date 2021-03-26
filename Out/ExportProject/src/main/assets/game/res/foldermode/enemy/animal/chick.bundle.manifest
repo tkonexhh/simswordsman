@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2977033865
+CRC: 4266891153
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 24f1a6c3c1d846385146c531ce6a3ace
+    Hash: 3aeaab12f5a02f34db47ed7e85d03858
   TypeTreeHash:
     serializedVersion: 2
     Hash: c28cec5b0c44b2df8e1f78de9d50d94c
@@ -50,11 +50,11 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_SkeletonData.asset
+- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken.atlas.txt
+- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_json_SkeletonData.asset
+- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_Material.mat
 - Assets/Res/FolderMode/Enemy/Animal/Chick/Chicken.prefab
+- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_Atlas.asset
 - Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_json.json
 - Assets/Res/FolderMode/Enemy/Animal/Chick/chicken.png
-- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken.atlas.txt
-- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_Atlas.asset
-- Assets/Res/FolderMode/Enemy/Animal/Chick/chicken_Material.mat
 Dependencies: []

@@ -1,13 +1,14 @@
-﻿任务ID	讲武堂等级	任务标题	任务描述	任务类型	奖励
-int	int	string	string	string	string
-TaskID	HomeLevel	TaskTitle	TaskDescription	Type	Reward
-101	1	再来一碗	补充2次食物。	Daily_Food	Item|2002|1
-102	1	接待访客	接待任意2位访客。	Daily_Visitor	Item|2002|1
-103	1	招兵买马	招募3次弟子。	Daily_Cruise	Food|25
-104	1	认真工作	派遣弟子完成任意5次工作。	Daily_Job	Food|25
-105	1	努力练功	派遣弟子在练功场完成3次练功。	Daily_Exercise	Food|25
-106	2	专心抄经	派遣弟子在藏经阁完成3次抄经。	Daily_Copy	Food|25
-107	2	美味佳肴	在伙房烹饪1次菜品。	Daily_Cook	Food|25
-108	2	开心采集	在池塘边完成任意3次采集。	Daily_Collect	Food|25
-109	3	勇敢挑战	派遣弟子完成1次挑战。	Daily_Chanllenge	Food|25
-110	3	天天打铁	在锻造屋完成1次装备打造。	Daily_Forge	Food|25
+﻿任务ID	讲武堂等级	任务icon	任务标题	任务描述	任务类型	数量参数	奖励
+int	int	string	string	string	string	int	string
+TaskID	HomeLevel	IconRes	TaskTitle	TaskDescription	Type	TaskCount	Reward
+101	1	dt_food	再来一碗	补充2次食物。	Daily_Food	2	Item|2002|1
+102	1	dt_gift	礼尚往来	接受任意2位访客的礼物。	Daily_Visitor	2	Item|2002|1
+103	1	dt_summon	招兵买马	招募3次弟子。	Daily_Recruit	3	Food|25
+104	1	dt_work	劳动模范	派遣弟子完成任意5次工作。	Daily_Job	5	Food|25
+105	1	dt_practice	勤学苦练	派遣弟子在练功场完成3次练功。	Daily_Practice	3	Food|25
+106	2	dt_book	饱读经书	派遣弟子在藏经阁完成3次抄经。	Daily_Copy	3	Food|25
+107	2	dt_recipe	美味佳肴	在伙房烹饪1次菜品。	Daily_Cook	1	Food|25
+108	2	dt_collect	开心田园	在池塘边完成任意3次采集。	Daily_Collect	3	Food|25
+109	3	dt_battle	切磋武艺	派遣弟子完成1次挑战。	Daily_Chanllenge	1	Food|25
+110	3	dt_forge	趁热打铁	在锻造屋完成1次装备打造。	Daily_Forge	1	Food|25
+111	4	dt_medicine	灵丹妙药	在百草屋完成1次草药炼制。	Daily_Medicine	1	Food|25
