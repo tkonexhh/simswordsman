@@ -129,20 +129,24 @@ namespace GameWish.Game
         }
         private void AutoSelectedAndAddTo()
         {
-            if (m_CharacterAllItemList.Count <= m_CommonTaskItemInfo.GetCharacterAmount())
+            List<CharacterItem> allCharacterList = new List<CharacterItem>();
+            foreach (var item in m_CharacterAllItemList)
+                if (item.level >= m_CommonTaskItemInfo.characterLevelRequired)
+                    allCharacterList.Add(item);
+            if (allCharacterList.Count <= m_CommonTaskItemInfo.GetCharacterAmount())
             {
-                for (int i = 0; i < m_CharacterAllItemList.Count; i++)
+                for (int i = 0; i < allCharacterList.Count; i++)
                 {
-                    m_DiscipleList[i].SelectedDisciple(m_CharacterAllItemList[i]);
-                    m_SelectedDiscipleDic.Add(m_CharacterAllItemList[i].id, m_CharacterAllItemList[i]);
+                    m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
+                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
                 }
             }
             else
             {
                 for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
                 {
-                    m_SelectedDiscipleDic.Add(m_CharacterAllItemList[i].id, m_CharacterAllItemList[i]);
-                    m_DiscipleList[i].SelectedDisciple(m_CharacterAllItemList[i]);
+                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                    m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
                 }
             }
         }
