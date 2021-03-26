@@ -34,7 +34,8 @@ namespace GameWish.Game
             {
                 List<TDDailyTask> tempLst;
                 m_DailyTaskLvlMap.TryGetValue(i, out tempLst);
-                lst.AddRange(tempLst);
+                if (tempLst != null)
+                    lst.AddRange(tempLst);
             }
             return lst;
         }

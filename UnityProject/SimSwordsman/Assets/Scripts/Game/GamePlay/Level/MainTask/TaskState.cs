@@ -11,20 +11,21 @@ namespace GameWish.Game
     {
         None,
         /// <summary>
-        /// Î´¿ªÊ¼
+        /// Î´ï¿½ï¿½Ê¼
         /// </summary>
         NotStart,
         /// <summary>
-        /// ÕýÔÚÖ´ÐÐ
-        /// </summary>
-        Running,
-        /// <summary>
-        /// ÒÑÍê³É£¬´ýÁìÈ¡
+        /// ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½ï¿½È¡
         /// </summary>
         Unclaimed,
         /// <summary>
-        /// ÒÑ½áÊø
+        /// ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
         /// </summary>
-        Finished,            
+        Running,
+
+        /// <summary>
+        /// ï¿½Ñ½ï¿½ï¿½ï¿½
+        /// </summary>
+        Finished,
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,9 +67,24 @@ namespace GameWish.Game
 
     }
 
-    public class Task : TaskBase
+    public class Task : TaskBase//, IComparable<Task>
     {
         public Task(TaskInfo info) : base(info) { }
+
+        public int CompareTo(Task other)
+        {
+            //返回值：1 -> 大于、 0 -> 等于、 -1 -> 小于
+            if (other.taskState > other.taskState)
+            {
+                Debug.LogError(other);
+                return 1;
+            }
+            else if (other.taskState == other.taskState)
+                return 0;
+            else
+                return -1;
+        }
+
     }
 
 
