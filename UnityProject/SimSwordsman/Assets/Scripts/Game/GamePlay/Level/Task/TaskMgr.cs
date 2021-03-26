@@ -25,7 +25,6 @@ namespace GameWish.Game
 
     public abstract class TaskBaseController
     {
-
         public abstract void Init();
     }
 
@@ -44,7 +43,7 @@ namespace GameWish.Game
 
         public override void Init()
         {
-            var tasks = TDDailyTaskTable.dataList;
+            var tasks = TDDailyTaskTable.GetDailyTasksByLvl(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
             for (int i = 0; i < tasks.Count; i++)
             {
                 Task task = new Task(new TaskInfo(tasks[i]));
