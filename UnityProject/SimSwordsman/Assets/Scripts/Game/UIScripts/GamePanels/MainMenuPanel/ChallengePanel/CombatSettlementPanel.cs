@@ -159,7 +159,11 @@ namespace GameWish.Game
                     //if (m_IsSuccess)
                     //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward());
                     if (m_IsSuccess)
+                    {
                         m_LevelConfigInfo.AcceptReward();
+
+                        GameDataMgr.S.GetPlayerData().recordData.AddChanllenge();
+                    }
                     break;
                 default:
                     break;
