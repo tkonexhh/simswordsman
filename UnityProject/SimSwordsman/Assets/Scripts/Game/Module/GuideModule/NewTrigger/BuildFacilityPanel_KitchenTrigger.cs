@@ -41,7 +41,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnGuideBuildKitchenPanel, OnEventListener);
 
             Timer.S.Post2Really((x)=> {
-                EventSystem.S.Send(EventID.OnTaskPanelTrigger_IntroduceTrigger);
+                EventSystem.S.Send(EventID.OnRandomFightTrigger_IntroduceTrigger);
             },2.0f);
         }
 
