@@ -191,7 +191,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 ////if (m_SelectedList != null)
                     //return;
-                if (m_SelectedDiscipleDic.Count < m_CommonTaskItemInfo.GetCharacterAmount())
+                if (m_SelectedList.Count < m_CommonTaskItemInfo.GetCharacterAmount())
                 {
                     FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
                     return;
