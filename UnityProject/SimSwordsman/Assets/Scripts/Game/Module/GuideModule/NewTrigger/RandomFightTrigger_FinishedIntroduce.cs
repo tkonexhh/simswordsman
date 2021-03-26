@@ -42,7 +42,7 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.RandomFightTrigger_FinishedIntroduce, OnEventListener);
 
-            //EventSystem.S.Send(EventID.OnGuideSelectCharacterPanelTrigger2_1);
+            EventSystem.S.Send(EventID.OnRecruitmentSystem_IntroduceTrigger1);
         }
     }	
 }

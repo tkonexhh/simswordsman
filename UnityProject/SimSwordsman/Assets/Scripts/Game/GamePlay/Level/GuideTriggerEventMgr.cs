@@ -327,8 +327,7 @@ namespace GameWish.Game
 
         private void WareHouseGuide(int key, object[] param)
         {
-            //第18步结束才能出现建造仓库的引导
-            if (!GuideMgr.S.IsGuideFinish(18))
+            if (!GuideMgr.S.IsGuideFinish(36))
                 return;
             //第20步结束不出现建造仓库的引导
             if (GuideMgr.S.IsGuideFinish(20))
