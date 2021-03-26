@@ -149,7 +149,7 @@ namespace GameWish.Game
 
             DateTime nowTime = DateTime.Now;
             DateTime notifiTime = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day, 12, 0, 0);
-            NotificationMgr.S.SendNotification("最强门派", str, nowTime.AddSeconds(5), true);
+            NotificationMgr.S.SendNotification("最强门派", str, notifiTime, true);
 
             DateTime notifiTimeSecond = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day, 20, 0, 0);
             NotificationMgr.S.SendNotification("最强门派", str, notifiTime, true);
