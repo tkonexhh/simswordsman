@@ -53,7 +53,6 @@ namespace GameWish.Game
 
                 if (type == Type && FacilityController.IsIdleState())
                 {
-
                     FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Bubble);
                     FacilityController.CoundDownAutoStartWork(OnClicked,true);
                     BubbleView.SetActive(true);
@@ -87,7 +86,9 @@ namespace GameWish.Game
                         {
                             UIMgr.S.OpenPanel(UIID.SupplementFoodPanel);
                         }
-                        else {
+                        else 
+                        {
+                            DataAnalysisMgr.S.CustomEvent(DotDefine.out_of_food);
                             FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
                         }                        
                     }                    

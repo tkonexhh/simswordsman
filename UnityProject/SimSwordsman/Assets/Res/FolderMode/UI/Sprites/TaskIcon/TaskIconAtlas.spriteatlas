@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TaskIconAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 551920eda5d5d4bbb96e40085ecddae6, type: 3}
+    - {fileID: 2800000, guid: 48e82193659fe41c2807f43df34d9a98, type: 3}
+    - {fileID: 2800000, guid: 6f836d0a21ed2418899c94b2f8cae4f5, type: 3}
+    - {fileID: 2800000, guid: 76391e3a7c96a464e8f4a106c4b2460d, type: 3}
+    - {fileID: 2800000, guid: bc9c8ddbc129a4380b0957fcf9ce5fc9, type: 3}
+    - {fileID: 2800000, guid: 2af7b9e77d33948fc810f40f448a5e29, type: 3}
+    - {fileID: 2800000, guid: 4a931e49496a543f2b5a5cb701f4dbc7, type: 3}
+    - {fileID: 2800000, guid: 40df9d347504e48bea62ae89d3fc2036, type: 3}
+    - {fileID: 2800000, guid: 4d82918ba8b1d410790c3272b2034c77, type: 3}
+    - {fileID: 2800000, guid: 1f953571ed42a444ba86b99cf435383b, type: 3}
+    - {fileID: 2800000, guid: fc226a3f02c9d4f299ef68a78cee73cc, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1f953571ed42a444ba86b99cf435383b, type: 3}
+  - {fileID: 21300000, guid: 48e82193659fe41c2807f43df34d9a98, type: 3}
+  - {fileID: 21300000, guid: 40df9d347504e48bea62ae89d3fc2036, type: 3}
+  - {fileID: 21300000, guid: 2af7b9e77d33948fc810f40f448a5e29, type: 3}
+  - {fileID: 21300000, guid: 4a931e49496a543f2b5a5cb701f4dbc7, type: 3}
+  - {fileID: 21300000, guid: 6f836d0a21ed2418899c94b2f8cae4f5, type: 3}
+  - {fileID: 21300000, guid: 76391e3a7c96a464e8f4a106c4b2460d, type: 3}
+  - {fileID: 21300000, guid: 4d82918ba8b1d410790c3272b2034c77, type: 3}
+  - {fileID: 21300000, guid: bc9c8ddbc129a4380b0957fcf9ce5fc9, type: 3}
+  - {fileID: 21300000, guid: 551920eda5d5d4bbb96e40085ecddae6, type: 3}
+  - {fileID: 21300000, guid: fc226a3f02c9d4f299ef68a78cee73cc, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - dt_summon
+  - dt_book
+  - dt_practice
+  - dt_gift
+  - dt_medicine
+  - dt_collect
+  - dt_food
+  - dt_recipe
+  - dt_forge
+  - dt_battle
+  - dt_work
+  m_Tag: TaskIconAtlas
+  m_IsVariant: 0

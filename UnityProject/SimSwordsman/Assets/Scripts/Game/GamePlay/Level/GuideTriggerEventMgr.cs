@@ -261,16 +261,20 @@ namespace GameWish.Game
         private void OnCloseFightingPanelCallBack(int key, object[] param)
         {
             int id = (int)param[0];
+
             if (id == 9001) 
             {
-                Timer.S.Post2Really(x =>
+                if (GuideMgr.S.IsGuideFinish(37) == false)
                 {
-                    EventSystem.S.Send(EventID.InGuideProgress, true);
+                    Timer.S.Post2Really(x =>
+                    {
+                        EventSystem.S.Send(EventID.InGuideProgress, true);
 
-                    UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
+                        UIMgr.S.ClosePanelAsUIID(UIID.GuideMaskPanel);
 
-                    EventSystem.S.Send(EventID.BuildPracticeFieldEastTrigger);
-                }, 0.5f);
+                        EventSystem.S.Send(EventID.RandomFightTrigger_FinishedIntroduce);
+                    }, 0.5f);
+                }
             }
         }
 
@@ -323,8 +327,7 @@ namespace GameWish.Game
 
         private void WareHouseGuide(int key, object[] param)
         {
-            //第18步结束才能出现建造仓库的引导
-            if (!GuideMgr.S.IsGuideFinish(18))
+            if (!GuideMgr.S.IsGuideFinish(36))
                 return;
             //第20步结束不出现建造仓库的引导
             if (GuideMgr.S.IsGuideFinish(20))

@@ -51,11 +51,13 @@ namespace GameWish.Game
                     m_Level.text = m_CurCharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     m_Plus.SetActive(false);
+                    m_HeadImg.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     break;
                 case SelectedState.NotSelected:
                     m_Plus.SetActive(true);
                     m_LevelBg.gameObject.SetActive(false);
+                    m_HeadImg.gameObject.SetActive(false);
                     break;
                 default:
                     break;

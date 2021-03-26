@@ -79,9 +79,9 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(ClickLobbyTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(LobbyPanelGetCharacterTrigger2));
             GuideMgr.S.RegisterGuideTrigger(typeof(DialogTrigger7));
-            GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskBtnTrigger2));
-            GuideMgr.S.RegisterGuideTrigger(typeof(ClickTaskDetailsTrigger2));
-            GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterOnTaskBtnTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RandomFightTrigger_ClickTaskBtnTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RandomFightTrigger_ClickAcceptBtn));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RandomFightTrigger_FinishedIntroduce));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger2_1));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterPanelTrigger2_2));
             GuideMgr.S.RegisterGuideTrigger(typeof(SelectCharacterSureTrigger2));
@@ -133,7 +133,7 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(ChallengeSystemTrigger_ClickStartChallengeTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(DiscipleAutoWorkTrigger));
 
-            GuideMgr.S.RegisterGuideTrigger(typeof(TaskPanelTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(RandomFightTrigger_IntroduceTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(CollectSystem_ClickLotusrootTrigger));
 
             GuideMgr.S.RegisterGuideTrigger(typeof(FoodNotEnoughTrigger_IntroduceTrigger));

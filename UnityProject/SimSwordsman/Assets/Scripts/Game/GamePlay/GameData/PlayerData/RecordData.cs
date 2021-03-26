@@ -9,8 +9,7 @@ namespace GameWish.Game
     {
         public RecordItemData food = new RecordItemData();
         public RecordItemData visitor = new RecordItemData();
-        public RecordItemData goldRecruit = new RecordItemData();//½ðÅÆÕÐÄ¼
-        public RecordItemData silverRecruit = new RecordItemData();//ÒøÅÆÕÐÄ¼
+        public RecordItemData recruit = new RecordItemData();//ÕÐÄ¼
         public RecordItemData job = new RecordItemData();
         public RecordItemData practice = new RecordItemData();
         public RecordItemData copy = new RecordItemData();
@@ -34,8 +33,7 @@ namespace GameWish.Game
         {
             food.ResetDailyCount();
             visitor.ResetDailyCount();
-            goldRecruit.ResetDailyCount();
-            silverRecruit.ResetDailyCount();
+            recruit.ResetDailyCount();
             job.ResetDailyCount();
             practice.ResetDailyCount();
             copy.ResetDailyCount();
@@ -60,15 +58,10 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void AddGoldRecruit()
+        public void AddRecruit()
         {
-            goldRecruit.AddCount();
-            SetDataDirty();
-        }
-
-        public void AddSilverRecruit()
-        {
-            silverRecruit.AddCount();
+            Debug.LogError("AddRecruit");
+            recruit.AddCount();
             SetDataDirty();
         }
 

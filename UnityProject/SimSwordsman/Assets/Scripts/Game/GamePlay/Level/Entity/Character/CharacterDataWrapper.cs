@@ -529,7 +529,7 @@ namespace GameWish.Game
         }
         public bool CheckArmor()
         {
-            if (CheckEquip(characeterEquipmentData.CharacterArmor, characeterEquipmentData.IsArmorUnlock))
+            if (CheckEquip(characeterEquipmentData.CharacterArmor, characeterEquipmentData.IsArmorUnlock, PropType.Armor))
             {
                 return true;
             }
@@ -537,7 +537,7 @@ namespace GameWish.Game
         }
         public bool CheckArms()
         {
-            if (CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock))
+            if (CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock,PropType.Arms))
             {
                 return true;
             }
@@ -549,7 +549,7 @@ namespace GameWish.Game
             bool isHava = false;
             foreach (var item in kongfus.Values)
             {
-                if (item.KungfuLockState == KungfuLockState.NotLearning)
+                if (item.KungfuLockState == KungfuLockState.NotLearning && CheckIsHavaItem(PropType.Kungfu))
                 {
                     EventSystem.S.Send(EventID.OnKungfuRedPoint, item.Index,true);
                     isHava = true;
@@ -562,14 +562,19 @@ namespace GameWish.Game
             return isHava;
         }
 
-        private bool CheckEquipRedPoint()
+        private bool CheckIsHavaItem(PropType propType)
         {
-            return CheckEquip(characeterEquipmentData.CharacterArmor, characeterEquipmentData.IsArmorUnlock) || CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock);
+            return MainGameMgr.S.InventoryMgr.GetAllInventoryItemList().Any(i => i.PropType == propType);
         }
 
-        private bool CheckEquip(CharaceterEquipment characeterEquipment, bool isUnlock)
+        private bool CheckEquipRedPoint()
         {
-            if (isUnlock && characeterEquipment.GetSubID() == 0)
+            return CheckEquip(characeterEquipmentData.CharacterArmor, characeterEquipmentData.IsArmorUnlock, PropType.Armor) || CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock, PropType.Arms);
+        }
+
+        private bool CheckEquip(CharaceterEquipment characeterEquipment, bool isUnlock, PropType propType)
+        {
+            if (isUnlock && characeterEquipment.GetSubID() == 0 && CheckIsHavaItem(propType))
             {
                 EventSystem.S.Send(EventID.OnSubPanelRedPoint, true);
                 return true;

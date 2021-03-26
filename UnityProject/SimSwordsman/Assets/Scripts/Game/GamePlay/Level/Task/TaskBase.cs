@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -10,9 +10,29 @@ namespace GameWish.Game
         private TaskState m_TaskState;
         private TaskInfo m_TaskInfo;
 
+        public string taskTitle => m_TaskInfo.taskTitle;
+        public string taskSubTitle => m_TaskInfo.taskSubTitle;
+        public int id => m_TaskInfo.id;
+        public TaskState taskState => m_TaskState;
+        public RewardBase reward => m_TaskInfo.Reward;
+        public string taskIcon => m_TaskInfo.taskIcon;
+
         public TaskBase(TaskInfo info)
         {
             m_TaskInfo = info;
+            if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.HasCompleteID(id))
+            {
+                m_TaskState = TaskState.Finished;
+            }
+            else if (IsComplete())
+            {
+                m_TaskState = TaskState.Unclaimed;
+            }
+            else
+            {
+                m_TaskState = TaskState.Running;
+            }
+
         }
 
         public bool IsComplete()
@@ -21,8 +41,12 @@ namespace GameWish.Game
                 return false;
 
 
-            return m_TaskInfo.IsComplete();
+            bool isComplete = m_TaskInfo.IsComplete();
+            if (isComplete)
+                m_TaskState = TaskState.Unclaimed;
+            return isComplete;
         }
+
 
 
         public void GetReward()
@@ -34,6 +58,9 @@ namespace GameWish.Game
                 return;
 
             m_TaskState = TaskState.Finished;
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(reward);
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             m_TaskInfo.Reward.AcceptReward();
         }
 

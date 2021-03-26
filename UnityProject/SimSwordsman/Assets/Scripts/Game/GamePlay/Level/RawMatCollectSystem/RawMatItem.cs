@@ -165,6 +165,7 @@ namespace GameWish.Game
                     }
                     else
                     {
+                        DataAnalysisMgr.S.CustomEvent(DotDefine.out_of_food);
                         FloatMessage.S.ShowMsg("Ê³Îï²»×ã");
                     }
                 }
@@ -180,6 +181,7 @@ namespace GameWish.Game
             else
             {
                 OnCharacterSelected(character, true);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, collectedObjType.ToString());
             }
         }
 
