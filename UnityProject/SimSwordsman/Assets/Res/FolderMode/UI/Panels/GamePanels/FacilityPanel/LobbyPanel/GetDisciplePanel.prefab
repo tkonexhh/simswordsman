@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 8205883248173821470}
   - component: {fileID: 3817779179167069405}
   - component: {fileID: 7314386446875714376}
+  - component: {fileID: 1398986120}
   m_Layer: 5
   m_Name: CharacterBg
   m_TagString: Untagged
@@ -269,6 +270,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &1398986120
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105526019223722886}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 46
+  m_TargetDisplay: 0
 --- !u!1 &3796074721378993100
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +454,7 @@ GameObject:
   - component: {fileID: 2351708311180836120}
   - component: {fileID: 8890944350352027254}
   - component: {fileID: 7579227146903871863}
+  - component: {fileID: 1398986119}
   m_Layer: 5
   m_Name: CharacterImage
   m_TagString: Untagged
@@ -496,6 +519,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &1398986119
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280607622304833988}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 48
+  m_TargetDisplay: 0
 --- !u!1 &8175023140412453982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1084,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8205883248173821470}
     m_Modifications:
+    - target: {fileID: 4323409224621519439, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409224621519439, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409224621519439, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225303598195, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225303598195, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225303598195, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225465151959, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225465151959, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225465151959, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 47
+      objectReference: {fileID: 0}
     - target: {fileID: 4323409225653425440, guid: ee53edf5203e4db4aa3e58a96d5accac,
         type: 3}
       propertyPath: m_Name
@@ -1049,6 +1138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409225653425442, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 4323409225653425443, guid: ee53edf5203e4db4aa3e58a96d5accac,
         type: 3}
@@ -1108,7 +1202,7 @@ PrefabInstance:
     - target: {fileID: 4323409225653425443, guid: ee53edf5203e4db4aa3e58a96d5accac,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4323409225653425443, guid: ee53edf5203e4db4aa3e58a96d5accac,
         type: 3}
@@ -1154,6 +1248,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409226364362625, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409226364362625, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409226364362625, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409226500140695, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409226500140695, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323409226500140695, guid: ee53edf5203e4db4aa3e58a96d5accac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee53edf5203e4db4aa3e58a96d5accac, type: 3}
