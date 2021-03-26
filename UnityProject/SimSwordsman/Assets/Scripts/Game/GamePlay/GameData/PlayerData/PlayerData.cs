@@ -38,8 +38,6 @@ namespace GameWish.Game
 
         #region 食物倒计时
         public string FoodCoundDownTime = string.Empty;
-        #endregion
-
         /// <summary>
         /// 辅助记录刷新了食物的次数
         /// </summary>
@@ -49,6 +47,36 @@ namespace GameWish.Game
         /// </summary>
         public int FoodRefreshTimesToday;
         public string FoodRefreshRecordingTime;
+        #endregion
+
+        #region 插屏广告
+        /// <summary>
+        /// 是否是新用户啊
+        /// </summary>
+        public  bool IsNewUser;
+        /// <summary>
+        /// 免播广告次数
+        /// </summary>
+        public int NoBroadcastTimes;
+        /// <summary>
+        /// 战斗次数
+        /// </summary>
+        public int BattleTimes;
+        /// <summary>
+        /// 播放了插屏广告的次数
+        /// </summary>
+        public int PlayInterADTimes;
+
+        /// <summary>
+        ///  插屏广告刷新时间
+        /// </summary>
+        public string NoBroadcastTimesTime;
+        /// <summary>
+        /// 插屏广告刷新的次数
+        /// </summary>
+        public int RefreshInterTimes;
+
+        #endregion
 
         public void SetDefaultValue()
         {
@@ -63,11 +91,14 @@ namespace GameWish.Game
 
             isGuideStart = false;
 
+            IsNewUser = true;
             UnlockWorkSystem = false;
             UnlockVisitor = false;
             firstGoldRecruit = false;
             firstSilverRecruit = false;
+
             FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
+            NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
             FoodRefreshTimesToday = 5;
             FoodRefreshCount = 0;
             SetDataDirty();
@@ -88,6 +119,67 @@ namespace GameWish.Game
         {
             return recruitData;
         }
+
+        #region 插屏广告
+
+        public void RefreshInterAdData()
+        {
+            NoBroadcastTimes = 0;
+            PlayInterADTimes = 0;
+        }
+
+        public bool isPlayMaxTimes()
+        {
+            return PlayInterADTimes >= 20;
+        }
+
+        public void SetPlayInterADTimes()
+        {
+            PlayInterADTimes++;
+        }
+
+        public bool GetIsNewUser()
+        {
+            return IsNewUser;
+        } 
+        public void SetRefreshInterTimes(int count)
+        {
+            RefreshInterTimes = count;
+        }
+
+        public int GetRefreshInterTimes()
+        {
+            return RefreshInterTimes;
+        }
+        public string GetNoBroadcastTimesTime()
+        {
+            return NoBroadcastTimesTime;
+        }
+        public void SetIsNewUser()
+        {
+            IsNewUser = false; ;
+        }
+        public int GetBattleTimes()
+        {
+            return BattleTimes;
+        }
+        public int GetNoBroadcastTimes()
+        {
+            return NoBroadcastTimes;
+        }
+        public void SetNoBroadcastTimes(int delta=1)
+        {
+            NoBroadcastTimes += delta;
+            if (NoBroadcastTimes < 0)
+                NoBroadcastTimes = 0;
+        }
+        public void SetBattleTimes(int delta = 1)
+        {
+            BattleTimes+=delta;
+            if (BattleTimes < 0)
+                BattleTimes = 0;
+        }
+        #endregion
 
         #region 消息推送
         public bool GetMessagePush()

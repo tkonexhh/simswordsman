@@ -375,6 +375,11 @@ namespace GameWish.Game
 
         OnAddArmor,//获取新装备护甲
         OnAddArms,//获取信装备武器
+
+
+        #region 定点计时
+        OnFixedPointRefreshEvent,
+        #endregion
     }
 
 }

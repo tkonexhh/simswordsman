@@ -186,6 +186,8 @@ namespace GameWish.Game
         }
         private void LookADSuccessCallBack(bool obj)
         {
+            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
+
             BaiCaoWuSystemMgr.S.ImmediatelyCompleteBaiCaoWuCountDown(ID);
 
             List<RewardBase> rewards = new List<RewardBase>();

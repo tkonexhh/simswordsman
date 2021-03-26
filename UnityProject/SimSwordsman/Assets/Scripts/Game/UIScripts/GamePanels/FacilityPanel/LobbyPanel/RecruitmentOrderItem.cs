@@ -304,6 +304,7 @@ namespace GameWish.Game
 
         private void LookADSuccessCallBack(bool obj)
         {
+            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
             UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(m_CurRecruitType), ClickType.LookAdvertisement, m_CurRecruitType);
         }
 

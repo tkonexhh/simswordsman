@@ -15,6 +15,7 @@ namespace GameWish.Game
         public int id => m_TaskInfo.id;
         public TaskState taskState => m_TaskState;
         public RewardBase reward => m_TaskInfo.Reward;
+        public string taskIcon => m_TaskInfo.taskIcon;
 
         public TaskBase(TaskInfo info)
         {
