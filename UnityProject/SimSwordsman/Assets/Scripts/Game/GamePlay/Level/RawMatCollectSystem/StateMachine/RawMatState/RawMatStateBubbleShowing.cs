@@ -23,6 +23,8 @@ namespace GameWish.Game
             m_RawMatItem = handler.GetRawMatItem();
             m_ShowBubbleTime = DateTime.Now;
 
+            DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate, m_RawMatItem.collectedObjType.ToString());
+
             m_RawMatItem.ShowBubble();
 
             RegisterEvents();
@@ -75,6 +77,7 @@ namespace GameWish.Game
             if (m_RawMatItem.IsFoodEnough() == false)
             {
                 m_ShowBubbleTime = DateTime.Now; // Check next interval
+                DataAnalysisMgr.S.CustomEvent(DotDefine.out_of_food);
                 return;
             }
 

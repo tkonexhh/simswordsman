@@ -104,9 +104,7 @@ namespace GameWish.Game
             if (lobbyData != null)
             {
                 m_Controller.AddExp(lobbyData.workExp);
-
                 m_Controller.SpawnFacilityWorkRewardPop(m_FacilityType, lobbyData.workPay);
-
                 GameDataMgr.S.GetPlayerData().AddCoinNum(lobbyData.workPay);
             }
             else

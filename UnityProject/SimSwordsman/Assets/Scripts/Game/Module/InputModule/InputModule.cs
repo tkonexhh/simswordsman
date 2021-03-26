@@ -65,17 +65,7 @@ namespace GameWish.Game
 
         private void OnClickF4()
         {
-            //UIMgrExtend.S.OpenAdDynamicShowPanel(AdType.SummonReinforcements,2,10);
-            // UIMgrExtend.S.OpenOccupyOverPanel(TDStageTable.GetData(101));
-            //UIMgrExtend.S.OpenMissionCompletePanel("AAAA", "任务完成信息");
-            //  MagicCloudMgr.S.Init();
-            //   SoldierMgr.S.ResumeAllSoldierBehave();
-            //UIMgr.S.OpenPanel(UIID.MilestonePanel, add++);
-            //if(add > 5)
-            //{
-            //    add = 5;
-            //}
-
+            EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
         }
 
         private void OnSceneLoadResult(string sceneName, bool result)

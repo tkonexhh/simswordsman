@@ -45,10 +45,13 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().SetFoodCoundDownTime(DateTime.Now.ToString());
             if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= limit)
                 return;
-            if (GameDataMgr.S.GetPlayerData().GetFoodNum()+ foodNumber >= limit)
+            if (GameDataMgr.S.GetPlayerData().GetFoodNum() + foodNumber >= limit)
                 GameDataMgr.S.GetPlayerData().SetFoodNum(limit);
             else
-                GameDataMgr.S.GetPlayerData().AddFoodNum(foodNumber);
+            {
+                if (foodNumber>=0)
+                    GameDataMgr.S.GetPlayerData().AddFoodNum(foodNumber);
+            }
 
             EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
         }

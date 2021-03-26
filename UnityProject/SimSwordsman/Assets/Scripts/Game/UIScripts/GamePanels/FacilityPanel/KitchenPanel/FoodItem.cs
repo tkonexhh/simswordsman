@@ -79,7 +79,7 @@ namespace GameWish.Game
         /// <summary>
         /// 检测食物buffer数据并开始倒计时
         /// </summary>
-        private void CheckFoodBuffDataAndCountDown() 
+        private void CheckFoodBuffDataAndCountDown()
         {
             m_FoodBufferData = GameDataMgr.S.GetClanData().GetFoodBuffData(m_FoodBufferID);
 
@@ -109,7 +109,8 @@ namespace GameWish.Game
 
                 UpdateProgress();
             }
-            else {
+            else
+            {
                 SetState(2);
             }
         }
@@ -123,7 +124,7 @@ namespace GameWish.Game
         }
         private void UpdateProgress()
         {
-            if (m_FoodBufferData != null) 
+            if (m_FoodBufferData != null)
             {
                 m_DurationTxt.text = m_FoodBufferData.GetRemainTime();
                 m_Progress.fillAmount = m_FoodBufferProgres;
@@ -200,7 +201,7 @@ namespace GameWish.Game
 
                     CheckFoodBuffDataAndCountDown();
 
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString()+ ";KuaiChao");
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString() + ";KuaiChao");
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
@@ -213,14 +214,14 @@ namespace GameWish.Game
                 var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString()+ ";JingChao");
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.f_cook, m_FoodBufferID.ToString() + ";JingChao");
                     AdsManager.S.PlayRewardAD("GoodRecipe", LookADSuccessCallBack);
                 }
                 else
                     FloatMessage.S.ShowMsg(CommonUIMethod.GetStringForTableKey(Define.COMMON_POPUP_MATERIALS));
             });
         }
-        private void AddFoodBufferData(int foodBufferID,bool isLookAD = false) 
+        private void AddFoodBufferData(int foodBufferID, bool isLookAD = false)
         {
             var table = TDFoodConfigTable.GetData(foodBufferID);
 
@@ -229,9 +230,12 @@ namespace GameWish.Game
             DateTime endTime = DateTime.Now.AddMinutes(bufferTime);
 
             GameDataMgr.S.GetClanData().AddFoodBuffData(table.id, DateTime.Now, endTime);
+            GameDataMgr.S.GetPlayerData().recordData.AddCook();
         }
         private void LookADSuccessCallBack(bool obj)
         {
+            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
+
             var list = TDFoodConfigTable.MakeNeedItemIDsDic[m_FoodBufferID];
 
             MainGameMgr.S.InventoryMgr.ReduceItems(list);

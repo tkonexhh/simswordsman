@@ -128,12 +128,64 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
             }
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    EventSystem.S.Send(EventID.OnSendBulletinBoardFacility);
+                    RefreshInterAdTimes();
+                    if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
+                        return;
 
-            if (m_PanelType == PanelType.Task)
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    if (GameDataMgr.S.GetPlayerData().GetIsNewUser())
+                    {
+                        PlayerInterAD(5);
+                    }
+                    else
+                        PlayerInterAD(3);
+                    break;
+                case PanelType.Challenge:
+                    OpenParentChallenge();
+                    break;
+            }
+        }
 
-            if (m_PanelType == PanelType.Challenge)
-                OpenParentChallenge();
+        private void RefreshInterAdTimes()
+        {
+            string recordTime = GameDataMgr.S.GetPlayerData().GetNoBroadcastTimesTime();
+            int house = CommonUIMethod.GetDeltaTime(recordTime);
+            int count = house / 24;
+            int refreshCount = GameDataMgr.S.GetPlayerData().GetRefreshInterTimes();
+            if (count > refreshCount)
+            {
+                GameDataMgr.S.GetPlayerData().RefreshInterAdData();
+                GameDataMgr.S.GetPlayerData().SetRefreshInterTimes(count);
+            }
+        }
+
+        private void PlayerInterAD(int number)
+        {
+            if (GameDataMgr.S.GetPlayerData().GetBattleTimes() > number)
+            {
+                GameDataMgr.S.GetPlayerData().SetBattleTimes(-(number + 1));
+                if (number == 5)
+                    GameDataMgr.S.GetPlayerData().SetIsNewUser();
+                if (GameDataMgr.S.GetPlayerData().GetNoBroadcastTimes() > 0)
+                {
+                    ///ÓÐÃâ²¥´ÎÊý
+                    GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(-1);
+                    return;
+                }
+                else
+                {
+                    AdsManager.S.PlayInterAD("BattleMask", LookInterADSuccessCallBack);
+                    GameDataMgr.S.GetPlayerData().SetPlayInterADTimes();
+                }
+            }
+        }
+
+        private void LookInterADSuccessCallBack(bool obj)
+        {
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -141,9 +193,11 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_PanelType = (PanelType)args[0];
+
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    GameDataMgr.S.GetPlayerData().SetBattleTimes();
                     m_CurTaskInfo = (SimGameTask)args[1];
                     m_IsSuccess = (bool)args[2];
                     m_CurTaskInfo.ClaimReward(m_IsSuccess);
@@ -159,7 +213,11 @@ namespace GameWish.Game
                     //if (m_IsSuccess)
                     //    m_LevelConfigInfo.levelRewardList.ForEach(i => i.AcceptReward());
                     if (m_IsSuccess)
+                    {
                         m_LevelConfigInfo.AcceptReward();
+
+                        GameDataMgr.S.GetPlayerData().recordData.AddChanllenge();
+                    }
                     break;
                 default:
                     break;

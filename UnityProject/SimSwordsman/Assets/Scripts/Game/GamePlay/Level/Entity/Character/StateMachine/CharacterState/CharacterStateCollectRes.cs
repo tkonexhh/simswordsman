@@ -94,7 +94,7 @@ namespace GameWish.Game
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)
-        {          
+        {
             if (m_IsCollectResEnd)
                 return;
 
@@ -164,7 +164,7 @@ namespace GameWish.Game
                 m_RawMatItem.OnCharacterArriveCollectPos();
 
                 string animName = GetCollectResAnim();
-                m_Controller.CharacterView.PlayAnim(animName, true, ()=> 
+                m_Controller.CharacterView.PlayAnim(animName, true, () =>
                 {
                     AudioManager.S.PlayCollectWuwoodOrRockSound(m_CollectedObjType, m_Controller.GetPosition());
                 });
@@ -259,6 +259,7 @@ namespace GameWish.Game
 
         private void ClaimReward()
         {
+            GameDataMgr.S.GetPlayerData().recordData.AddJob();
             WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
             // Item reward
             for (int i = 0; i < workConfigItem.itemRewards.Count; i++)
