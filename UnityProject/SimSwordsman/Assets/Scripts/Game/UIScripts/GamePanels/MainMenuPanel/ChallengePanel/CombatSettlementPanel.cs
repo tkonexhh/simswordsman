@@ -132,6 +132,7 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    EventSystem.S.Send(EventID.OnSendBulletinBoardFacility);
                     RefreshInterAdTimes();
                     if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
                         return;
