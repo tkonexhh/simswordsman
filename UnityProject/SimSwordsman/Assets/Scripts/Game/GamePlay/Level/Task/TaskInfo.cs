@@ -12,7 +12,9 @@ namespace GameWish.Game
         private RewardBase m_Reward;
         private TaskHandler m_TaskHandler;
         private int m_Target;
+        private int m_ID;
 
+        public int id => m_ID;
         public RewardBase Reward => m_Reward;
         public string taskTitle => m_TaskTitle;
         public string taskSubTitle => string.Format(m_TaskHandler.taskSubTitle + "({1}/{0})", m_Target, Mathf.Min(m_Target, m_TaskHandler.count));
@@ -67,6 +69,7 @@ namespace GameWish.Game
 
         public TaskInfo(TDMainTask mainTask)
         {
+            m_ID = mainTask.taskID;
             m_Reward = RewardMgr.S.GetRewardBase(mainTask.reward);
             m_Target = mainTask.countP;
             m_TaskHandler = CreateTaskHandler(mainTask.type);
@@ -75,6 +78,7 @@ namespace GameWish.Game
 
         public TaskInfo(TDDailyTask dailyTask)
         {
+            m_ID = dailyTask.taskID;
             m_Reward = RewardMgr.S.GetRewardBase(dailyTask.reward);
             m_Target = dailyTask.taskCount;
             m_TaskHandler = CreateTaskHandler(dailyTask.type);
