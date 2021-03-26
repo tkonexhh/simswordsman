@@ -30,7 +30,7 @@ namespace GameWish.Game
         public static List<TDDailyTask> GetDailyTasksByLvl(int level)
         {
             List<TDDailyTask> lst = new List<TDDailyTask>();
-            for (int i = 1; i < level; i++)
+            for (int i = 1; i <= level; i++)
             {
                 List<TDDailyTask> tempLst;
                 m_DailyTaskLvlMap.TryGetValue(i, out tempLst);
