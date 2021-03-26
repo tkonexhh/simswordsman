@@ -109,17 +109,19 @@ namespace GameWish.Game
                 {
                     SetState(2);
                 }
-                else {
+                else
+                {
                     SetState(1);
                     UpdateProgress();
                 }
             }
         }
 
-        private void UpdateProgress() 
+        private void UpdateProgress()
         {
             m_CountDownItem = CountDowntMgr.S.GetCountDownItemByID(m_ForgeHouseItemData.GetCountDownID());
-            if (m_CountDownItem != null) {
+            if (m_CountDownItem != null)
+            {
                 m_CountDownItem.RegisterUpdateCallBack(OnUpdateCountDownCallBack);
                 m_CountDownItem.RegisterEndCallBack(OnEndCountDownCallBack);
             }
@@ -135,7 +137,7 @@ namespace GameWish.Game
         {
             Countdown(m_ForgeHouseItemData.GetProgress(), m_ForgeHouseItemData.GetRemainTimeStr());
         }
-        public void OnClose() 
+        public void OnClose()
         {
             if (m_CountDownItem != null)
             {
@@ -175,6 +177,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.ReduceItems(list);
 
                     m_ForgeHouseItemData = ForgeHouseSystemMgr.S.AddForgeHouseItemData(m_ForgeHouseID);
+                    GameDataMgr.S.GetPlayerData().recordData.AddForge();
                     SetState(1);
                     UpdateProgress();
                 }

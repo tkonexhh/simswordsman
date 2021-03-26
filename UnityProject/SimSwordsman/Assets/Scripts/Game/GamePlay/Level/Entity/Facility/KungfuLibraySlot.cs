@@ -19,8 +19,8 @@ namespace GameWish.Game
             CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
             CharacterItem = characterItem;
             characterController.SetState(CharacterStateID.Reading, targetFacility, System.DateTime.Now.ToString(), Index);
-
             base.slotState = SlotState.Busy;
+            GameDataMgr.S.GetPlayerData().recordData.AddCopy();
         }
 
         protected override void OnCDOver()

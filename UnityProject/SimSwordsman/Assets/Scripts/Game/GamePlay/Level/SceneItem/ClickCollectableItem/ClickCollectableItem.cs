@@ -7,8 +7,8 @@ using System;
 
 namespace GameWish.Game
 {
-	public class ClickCollectableItem : MonoBehaviour
-	{
+    public class ClickCollectableItem : MonoBehaviour
+    {
         public int id;
         public GameObject CollectView;
 
@@ -33,8 +33,8 @@ namespace GameWish.Game
             CollectSystem.S.Collect(id);
             isGuide = false;
             CollectView.gameObject.SetActive(false);
-
+            GameDataMgr.S.GetPlayerData().recordData.AddCollect();
             PlayerPrefs.SetInt(Define.IsClickCollectSytemBubble, 1);
         }
-	}	
+    }
 }

@@ -20,6 +20,7 @@ namespace GameWish.Game
             CharacterItem = characterItem;
             characterController.SetState(CharacterStateID.Practice, targetFacility, System.DateTime.Now.ToString(), Index);
             base.slotState = SlotState.Busy;
+            GameDataMgr.S.GetPlayerData().recordData.AddPractice();
         }
 
         protected override void OnCDOver()

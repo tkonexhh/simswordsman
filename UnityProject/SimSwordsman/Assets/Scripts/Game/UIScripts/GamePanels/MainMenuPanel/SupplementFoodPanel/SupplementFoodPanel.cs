@@ -35,13 +35,13 @@ namespace GameWish.Game
 
             string recordTime = GameDataMgr.S.GetPlayerData().GetFoodRefreshRecordingTime();
             int house = CommonUIMethod.GetDeltaTime(recordTime);
-            house = 100;
             int count = house / _24House;
             int refreshCount = GameDataMgr.S.GetPlayerData().GetFoodRefreshCount();
             if (count > refreshCount)
             {
                 GameDataMgr.S.GetPlayerData().ResetFoodRefreshTimesToday();
                 GameDataMgr.S.GetPlayerData().SetFoodRefreshCount(count);
+                GameDataMgr.S.GetPlayerData().recordData.AddFood();
             }
             GetInformationForNeed();
             RefreshPanelInfo();
