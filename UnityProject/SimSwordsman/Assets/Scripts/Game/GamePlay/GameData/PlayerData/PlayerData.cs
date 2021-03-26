@@ -152,6 +152,8 @@ namespace GameWish.Game
         }
         public string GetNoBroadcastTimesTime()
         {
+            if (NoBroadcastTimesTime==null)
+                NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00"; ;
             return NoBroadcastTimesTime;
         }
         public void SetIsNewUser()
