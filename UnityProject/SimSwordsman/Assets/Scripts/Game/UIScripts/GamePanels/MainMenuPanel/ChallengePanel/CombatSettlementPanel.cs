@@ -128,12 +128,62 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnCloseFightingPanel, m_CurTaskInfo.TaskId);
             }
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    RefreshInterAdTimes();
+                    if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
+                        return;
 
-            if (m_PanelType == PanelType.Task)
-                UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    if (GameDataMgr.S.GetPlayerData().GetIsNewUser())
+                    {
+                        PlayerInterAD(5);
+                        GameDataMgr.S.GetPlayerData().SetIsNewUser();
+                    }
+                    else
+                        PlayerInterAD(3);
+                    break;
+                case PanelType.Challenge:
+                    OpenParentChallenge();
+                    break;
+            }
+        }
 
-            if (m_PanelType == PanelType.Challenge)
-                OpenParentChallenge();
+        private void RefreshInterAdTimes()
+        {
+            string recordTime = GameDataMgr.S.GetPlayerData().GetNoBroadcastTimesTime();
+            int house = CommonUIMethod.GetDeltaTime(recordTime);
+            int count = house / 24;
+            int refreshCount = GameDataMgr.S.GetPlayerData().GetRefreshInterTimes();
+            if (count > refreshCount)
+            {
+                GameDataMgr.S.GetPlayerData().RefreshInterAdData();
+                GameDataMgr.S.GetPlayerData().SetRefreshInterTimes(count);
+            }
+        }
+
+        private void PlayerInterAD(int number)
+        {
+            if (GameDataMgr.S.GetPlayerData().GetBattleTimes() > number)
+            {
+                GameDataMgr.S.GetPlayerData().SetBattleTimes(-(number + 1));
+                if (GameDataMgr.S.GetPlayerData().GetNoBroadcastTimes() > 0)
+                {
+                    ///ÓÐÃâ²¥´ÎÊý
+                    GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(-1);
+                    return;
+                }
+                else
+                {
+                    AdsManager.S.PlayInterAD("BattleMask", LookInterADSuccessCallBack);
+                    GameDataMgr.S.GetPlayerData().SetPlayInterADTimes();
+                }
+            }
+        }
+
+        private void LookInterADSuccessCallBack(bool obj)
+        {
         }
 
         protected override void OnPanelOpen(params object[] args)

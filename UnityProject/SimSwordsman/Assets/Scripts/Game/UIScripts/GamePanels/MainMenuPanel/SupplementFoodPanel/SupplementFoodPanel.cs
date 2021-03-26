@@ -97,6 +97,7 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshPanelInfo();
+            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
 
             HideSelfWithAnim();
         }
