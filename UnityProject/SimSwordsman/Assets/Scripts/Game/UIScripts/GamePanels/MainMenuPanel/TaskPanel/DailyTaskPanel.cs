@@ -19,6 +19,7 @@ namespace GameWish.Game
             m_BtnClose.onClick.AddListener(HideSelfWithAnim);
             m_ListView.SetCellRenderer(OnCellRenderer);
             m_TaskController = MainGameMgr.S.TaskMgr.dailyTaskController;
+            RegisterEvent(EventID.OnRefeshDailyTaskPanel, Refesh);
         }
 
         protected override void OnOpen()
@@ -40,6 +41,11 @@ namespace GameWish.Game
         private void OnCellRenderer(Transform root, int index)
         {
             root.GetComponent<DailyTaskItem>().SetTask(this, m_TaskController[index]);
+        }
+
+        private void Refesh(int key, params object[] args)
+        {
+            m_ListView.SetDataCount(m_TaskController.count);
         }
     }
 

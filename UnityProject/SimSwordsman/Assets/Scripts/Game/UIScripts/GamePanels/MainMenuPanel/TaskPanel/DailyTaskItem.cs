@@ -30,7 +30,11 @@ namespace GameWish.Game
 
         public void SetTask(DailyTaskPanel panel, Task task)
         {
+            if (task == null)
+                return;
+
             m_Task = task;
+
             if (m_Panel == null)
                 m_Panel = panel;
             m_TxtTitle.text = task.taskTitle;
@@ -62,7 +66,10 @@ namespace GameWish.Game
 
             //存档
             if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.AddCompleteID(m_Task.id))
+            {
                 m_Task.GetReward();
+                EventSystem.S.Send(EventID.OnRefeshDailyTaskPanel);
+            }
             Refesh();
         }
     }
