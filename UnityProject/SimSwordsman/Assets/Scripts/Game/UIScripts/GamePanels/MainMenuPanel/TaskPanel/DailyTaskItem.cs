@@ -21,22 +21,28 @@ namespace GameWish.Game
 
 
         private Task m_Task;
+        private DailyTaskPanel m_Panel;
 
         private void Awake()
         {
             m_BtnComplete.onClick.AddListener(OnClickComplete);
         }
 
-        public void SetTask(Task task)
+        public void SetTask(DailyTaskPanel panel, Task task)
         {
             m_Task = task;
+            if (m_Panel == null)
+                m_Panel = panel;
             m_TxtTitle.text = task.taskTitle;
             m_TxtSubTitle.text = task.taskSubTitle;
+            m_ImgRewardIcon.sprite = m_Panel.FindSprite(task.reward.SpriteName());
+            m_TxtRewardNum.text = task.reward.Count.ToString();
             Refesh();
         }
 
         private void Refesh()
         {
+            m_Task.IsComplete();
             m_ObjUnComplete.SetActive(m_Task.taskState == TaskState.Running);
             m_ObjComplete.SetActive(m_Task.taskState == TaskState.Unclaimed);
             m_ObjRewarded.SetActive(m_Task.taskState == TaskState.Finished);
@@ -50,10 +56,11 @@ namespace GameWish.Game
             if (!m_Task.IsComplete())
                 return;
 
-            Debug.LogError("GetReward");
+
             //存档
-            GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.AddCompleteID(m_Task.id);
-            m_Task.GetReward();
+            if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.AddCompleteID(m_Task.id))
+                m_Task.GetReward();
+            Refesh();
         }
     }
 

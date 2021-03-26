@@ -39,7 +39,7 @@ namespace GameWish.Game
 
         private void OnCellRenderer(Transform root, int index)
         {
-            root.GetComponent<DailyTaskItem>().SetTask(m_TaskController[index]);
+            root.GetComponent<DailyTaskItem>().SetTask(this, m_TaskController[index]);
         }
     }
 
