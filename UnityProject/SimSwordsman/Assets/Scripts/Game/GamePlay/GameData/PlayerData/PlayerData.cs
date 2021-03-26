@@ -66,7 +66,6 @@ namespace GameWish.Game
         /// 播放了插屏广告的次数
         /// </summary>
         public int PlayInterADTimes;
-
         /// <summary>
         ///  插屏广告刷新时间
         /// </summary>
@@ -153,6 +152,8 @@ namespace GameWish.Game
         }
         public string GetNoBroadcastTimesTime()
         {
+            if (NoBroadcastTimesTime==null)
+                NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00"; ;
             return NoBroadcastTimesTime;
         }
         public void SetIsNewUser()
@@ -162,6 +163,10 @@ namespace GameWish.Game
         public int GetBattleTimes()
         {
             return BattleTimes;
+        }
+        public void SetBattleTimes()
+        {
+             BattleTimes++;
         }
         public int GetNoBroadcastTimes()
         {
@@ -383,6 +388,8 @@ namespace GameWish.Game
 
         public int GetFoodNum()
         {
+            if (foodNum<0)
+                foodNum = 0;
             return foodNum;
         }
         public void SetFoodNum(int food)
@@ -444,6 +451,7 @@ namespace GameWish.Game
             if (delta == 0)
                 return;
             foodNum -= delta;
+
             if (foodNum < 0)
             {
                 foodNum = 0;

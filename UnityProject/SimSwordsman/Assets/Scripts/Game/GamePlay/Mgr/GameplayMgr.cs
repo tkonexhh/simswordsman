@@ -7,6 +7,7 @@ using BitBenderGames;
 using UnityEngine.SceneManagement;
 using Int64 = System.Int64;
 using Random = UnityEngine.Random;
+using Unity.Notifications.Android;
 
 namespace GameWish.Game
 {
@@ -135,6 +136,23 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().SetLastPlayTime(GameExtensions.GetTimeStamp());
 
             GameDataMgr.S.Save();
+
+            string[] strList = new string[] 
+            {
+                "师父，又有人上门挑战我们了，快来带我们迎战吧！",
+                "掌门，有位年轻貌美的女子想来拜师，您不来看看吗？",
+                "不好了师父，师娘在后山挖野菜被蛇咬了，快来救救她吧！",
+                "报告掌门，弟子们都已经吃饱喝足了，快来给我们安排任务吧！",
+                "好消息！大师兄在后山打猎捡到一件宝贝，师父快来看看是什么"
+            };
+            string str = strList[Random.Range(0, strList.Length)];
+
+            DateTime nowTime = DateTime.Now;
+            DateTime notifiTime = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day, 12, 0, 0);
+            NotificationMgr.S.SendNotification("最强门派", str, notifiTime, true);
+
+            DateTime notifiTimeSecond = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day, 20, 0, 0);
+            NotificationMgr.S.SendNotification("最强门派", str, notifiTime, true);
         }
 
         private void ApplicationQuit(int key, params object[] args)

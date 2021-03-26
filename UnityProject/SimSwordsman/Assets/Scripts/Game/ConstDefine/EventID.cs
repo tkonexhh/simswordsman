@@ -361,7 +361,7 @@ namespace GameWish.Game
         #region 签到系统
         OnSignInSystem_IntroduceTrigger = 13401,
         OnSignInSystem_ClickSignBtnTrigger,
-        OnSignInSystem_ClickSignReceiveBtnTrigger,        
+        OnSignInSystem_ClickSignReceiveBtnTrigger,
         #endregion
 
         OnRecruitmentSystem_FinishedTrigger = 13501,
@@ -380,6 +380,9 @@ namespace GameWish.Game
         #region 定点计时
         OnFixedPointRefreshEvent,
         #endregion
+
+
+        OnRefeshDailyTaskPanel,
     }
 
 }

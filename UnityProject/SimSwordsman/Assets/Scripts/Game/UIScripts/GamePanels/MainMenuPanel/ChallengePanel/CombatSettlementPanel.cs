@@ -132,6 +132,7 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    EventSystem.S.Send(EventID.OnSendBulletinBoardFacility);
                     RefreshInterAdTimes();
                     if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
                         return;
@@ -139,7 +140,6 @@ namespace GameWish.Game
                     if (GameDataMgr.S.GetPlayerData().GetIsNewUser())
                     {
                         PlayerInterAD(5);
-                        GameDataMgr.S.GetPlayerData().SetIsNewUser();
                     }
                     else
                         PlayerInterAD(3);
@@ -168,6 +168,8 @@ namespace GameWish.Game
             if (GameDataMgr.S.GetPlayerData().GetBattleTimes() > number)
             {
                 GameDataMgr.S.GetPlayerData().SetBattleTimes(-(number + 1));
+                if (number == 5)
+                    GameDataMgr.S.GetPlayerData().SetIsNewUser();
                 if (GameDataMgr.S.GetPlayerData().GetNoBroadcastTimes() > 0)
                 {
                     ///ÓÐÃâ²¥´ÎÊý
@@ -191,9 +193,11 @@ namespace GameWish.Game
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_PanelType = (PanelType)args[0];
+
             switch (m_PanelType)
             {
                 case PanelType.Task:
+                    GameDataMgr.S.GetPlayerData().SetBattleTimes();
                     m_CurTaskInfo = (SimGameTask)args[1];
                     m_IsSuccess = (bool)args[2];
                     m_CurTaskInfo.ClaimReward(m_IsSuccess);

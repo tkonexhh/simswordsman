@@ -28,8 +28,8 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnSendBulletinBoardFacility:
-                    if (param.Length>0)
-                        SetBulletinBoardTip((bool)param[0]);
+                    //if (param.Length>0)
+                    //    SetBulletinBoardTip((bool)param[0]);
                     break;
             }
         }
@@ -46,7 +46,7 @@ namespace GameWish.Game
             base.OnClicked();
 
             //Debug.Log("BulletinBoard is clicked");
-            UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
+            UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
             DataAnalysisMgr.S.CustomEvent(DotDefine.facility_check, facilityType.ToString());
         }
 
