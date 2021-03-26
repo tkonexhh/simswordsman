@@ -518,26 +518,45 @@ namespace GameWish.Game
             return "<color=#FFFFFF00>--</color>";
         }
         /// <summary>
-        /// 获取万or亿
+        /// 获取万or亿or万亿
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
         public static string GetTenThousandOrMillion(long number)
         {
-            //if (number.ToString().Length>12)
-            //{
+            if (number.ToString().Length > 12)
+            {
+                long MainNumber = number / 1000000000000;
+                long remainder = number % 1000000000000;
 
-            //}
-            //else if(number.ToString().Length > 12)
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "万亿";
+            }
+            else if (number.ToString().Length > 8)
+            {   
+                long MainNumber = number / 100000000;
+                long remainder = number % 100000000;
 
-            long fifth = number / 10000;
-            if (fifth == 0)
-                return number.ToString();
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "亿";
+            }
+            else if(number.ToString().Length > 4)
+            {
+                long MainNumber = number / 10000;
+                long remainder = number % 10000;
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "万";
+            }
             else
             {
-                long fourth = GetThousand(number);
-                return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
+                return number.ToString();
             }
+
+            //long MainNumber = number / 10000;
+            //if (MainNumber == 0)
+            //    return number.ToString();
+            //else
+            //{
+            //    long fourth = GetThousand(number);
+            //    return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
+            //}
         }
 
         private static long GetThousand(long number)

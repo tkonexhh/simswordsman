@@ -177,7 +177,7 @@ namespace GameWish.Game
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
                     m_AcceptText.text = "¿ªÊ¼Õ½¶·";
                     CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
-                    m_RecommendedSkillsValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
+                    m_RecommendedSkillsValue.text = CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue);
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -203,7 +203,7 @@ namespace GameWish.Game
             float atkValue = 0;
             foreach (var item in m_SelectedDiscipleDic.Values)
                 atkValue += item.atkValue;
-            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString("0"));
+            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", CommonUIMethod.GetTenThousandOrMillion((long)atkValue));
 
             int selected = (int)atkValue;
 

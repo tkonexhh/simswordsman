@@ -262,7 +262,7 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
+                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000000000000);
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -331,6 +331,7 @@ namespace GameWish.Game
         private void MainMenuPanelCallback(AbstractPanel obj)
         {
             EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
+            EventSystem.S.Send(EventID.OnSendBulletinBoardFacility);
         }
 
 

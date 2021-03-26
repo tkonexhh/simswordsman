@@ -28,7 +28,8 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnSendBulletinBoardFacility:
-                    SetBulletinBoardTip((bool)param[0]);
+                    if (param.Length>0)
+                        SetBulletinBoardTip((bool)param[0]);
                     break;
             }
         }

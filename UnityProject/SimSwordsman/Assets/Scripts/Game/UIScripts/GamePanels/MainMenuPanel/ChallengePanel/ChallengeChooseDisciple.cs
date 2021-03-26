@@ -169,7 +169,7 @@ namespace GameWish.Game
             float atkValue = 0;
             foreach (var item in m_SelectedDiscipleDic.Values)
                 atkValue += item.atkValue;
-            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", atkValue.ToString("0"));
+            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", CommonUIMethod.GetTenThousandOrMillion((long)atkValue));
 
             int selected = (int)atkValue;
             long recommended = m_LevelConfigInfo.recommendAtkValue;
@@ -222,7 +222,7 @@ namespace GameWish.Game
 
                     for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
                         CreateSelectedDisciple();
-                    m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
+                    m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue));
                     RefreshDisicipleSkill();
                     break;
                 default:

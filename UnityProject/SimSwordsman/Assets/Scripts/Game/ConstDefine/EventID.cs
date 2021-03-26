@@ -233,6 +233,7 @@ namespace GameWish.Game
         #endregion
         #region TacticalFunction
         OnDiscipleButtonOnClick,
+        OnDeleteTaskBtn,
         #endregion
 
 
