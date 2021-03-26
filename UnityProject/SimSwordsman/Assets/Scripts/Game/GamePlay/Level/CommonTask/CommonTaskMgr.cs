@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
 
-        private float m_CommonTaskRefreshInterval = 40f; // 40秒刷新一次
+        private float m_CommonTaskRefreshInterval = 60f; // 60秒刷新一次
         private int m_CommonTaskCount = 2;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
