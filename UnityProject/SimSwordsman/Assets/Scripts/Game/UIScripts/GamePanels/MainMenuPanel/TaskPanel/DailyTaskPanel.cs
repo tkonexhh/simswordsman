@@ -9,16 +9,22 @@ namespace GameWish.Game
     public class DailyTaskPanel : AbstractAnimPanel
     {
         [SerializeField] private Button m_BtnClose;
+        [SerializeField] private IUListView m_ListView;
+
+        private TaskDailyController m_TaskController;
 
         protected override void OnUIInit()
         {
             base.OnUIInit();
             m_BtnClose.onClick.AddListener(HideSelfWithAnim);
+            m_ListView.SetCellRenderer(OnCellRenderer);
+            m_TaskController = MainGameMgr.S.TaskMgr.dailyTaskController;
         }
 
         protected override void OnOpen()
         {
             base.OnOpen();
+            m_ListView.SetDataCount(m_TaskController.count);
         }
 
         protected override void OnPanelHideComplete()
@@ -29,6 +35,11 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+        }
+
+        private void OnCellRenderer(Transform root, int index)
+        {
+            root.GetComponent<DailyTaskItem>().SetTask(this, m_TaskController[index]);
         }
     }
 

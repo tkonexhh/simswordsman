@@ -20,7 +20,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_RecruitValue;
         [SerializeField]
-        private Text m_RecruitmentBtnValue;  
+        private Text m_RecruitmentBtnValue;
         [SerializeField]
         private Text m_RecruitOrderValue;
         [SerializeField]
@@ -108,8 +108,8 @@ namespace GameWish.Game
                             break;
                     }
                     m_RecruitOrderValue.gameObject.SetActive(true);
-                    if (m_CurRecruitType == RecruitType.GoldMedal )
-                        m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType( RawMaterial.GoldenToken);
+                    if (m_CurRecruitType == RecruitType.GoldMedal)
+                        m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
                     else
                         m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
@@ -199,7 +199,7 @@ namespace GameWish.Game
         private void JudgeRecruitmentConditions()
         {
             int adverRecruitCount = m_RecruitDiscipleMgr.GetAdvertisementCount(m_CurRecruitType);
-            if (adverRecruitCount<=0)
+            if (adverRecruitCount <= 0)
                 m_RecruitDic[m_CurRecruitType] = ClickType.RecruitmentOrder;
         }
 
@@ -254,7 +254,7 @@ namespace GameWish.Game
                 return true;
             return false;
         }
-    
+
         /// <summary>
         /// ÕÐÄ¼µã»÷ÊÂ¼þ
         /// </summary>
@@ -270,7 +270,8 @@ namespace GameWish.Game
             {
                 case ClickType.Free:
                     CharacterItem itemData = GetRandomDisciples(type);
-                    if (GuideMgr.S.IsGuideFinish(8) == false) {
+                    if (GuideMgr.S.IsGuideFinish(8) == false)
+                    {
                         itemData.quality = CharacterQuality.Normal;
                         itemData.bodyId = 1;
                     }
@@ -290,11 +291,12 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            if (m_RecruitDic[type]!= ClickType.Free)
+            GameDataMgr.S.GetPlayerData().recordData.AddRecruit();
+            if (m_RecruitDic[type] != ClickType.Free)
             {
-                int characterCount =  MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
+                int characterCount = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
 
-                DataAnalysisMgr.S.CustomEvent(DotDefine.f_character_recruit, m_RecruitDic[type].ToString() + ";" + type.ToString()+";"+ characterCount);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.f_character_recruit, m_RecruitDic[type].ToString() + ";" + type.ToString() + ";" + characterCount);
 
             }
 

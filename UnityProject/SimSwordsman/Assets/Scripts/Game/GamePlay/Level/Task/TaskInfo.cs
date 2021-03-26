@@ -12,19 +12,23 @@ namespace GameWish.Game
         private RewardBase m_Reward;
         private TaskHandler m_TaskHandler;
         private int m_Target;
+        private int m_ID;
 
+        public int id => m_ID;
         public RewardBase Reward => m_Reward;
+        public string taskTitle => m_TaskTitle;
+        public string taskSubTitle => string.Format(m_TaskHandler.taskSubTitle + "({1}/{0})", m_Target, Mathf.Min(m_Target, m_TaskHandler.count));
+
 
         //-----------Static Block----------//
         public delegate TaskHandler CreateTaskHandlerDelegate(int? value);
         private static Dictionary<string, CreateTaskHandlerDelegate> taskHandlerMap = new Dictionary<string, CreateTaskHandlerDelegate>();
         static TaskInfo()
         {
-            Debug.LogError("Static TaskInfo");
             taskHandlerMap.Add("Main_BuildLivableRoom", (value) => { return new TaskHandler_BuildLivableRoom(value.Value); });
             taskHandlerMap.Add("Main_OwnStudents", (value) => { return new TaskHandler_OwnStudents(); });
             taskHandlerMap.Add("Main_BuildPracticeField", (value) => { return new TaskHandler_BuildPracticeField(value.Value); });
-            taskHandlerMap.Add("Main_BuildLobby", (value) => { return new TaskHandler_BuildLobby(value.Value); });
+            taskHandlerMap.Add("Main_BuildLobby", (value) => { return new TaskHandler_BuildLobby(); });
             taskHandlerMap.Add("Main_Chanllenge", (value) => { return new TaskHandler_Chanllenge(value.Value); });
             taskHandlerMap.Add("Main_BuildLibrary", (value) => { return new TaskHandler_BuildLibrary(value.Value); });
             taskHandlerMap.Add("Main_BuildForgeHouse", (value) => { return new TaskHandler_BuildForgeHouse(value.Value); });
@@ -36,6 +40,7 @@ namespace GameWish.Game
             taskHandlerMap.Add("Daily_Job", (value) => { return new TaskHandler_DailyJob(); });
             taskHandlerMap.Add("Daily_Practice", (value) => { return new TaskHandler_DailyPractice(); });
             taskHandlerMap.Add("Daily_Copy", (value) => { return new TaskHandler_DailyCopy(); });
+            taskHandlerMap.Add("Daily_Cook", (value) => { return new TaskHandler_DailyCook(); });
             taskHandlerMap.Add("Daily_Collect", (value) => { return new TaskHandler_DailyCollect(); });
             taskHandlerMap.Add("Daily_Chanllenge", (value) => { return new TaskHandler_DailyChanllenge(); });
             taskHandlerMap.Add("Daily_Forge", (value) => { return new TaskHandler_DailyForge(); });
@@ -64,6 +69,7 @@ namespace GameWish.Game
 
         public TaskInfo(TDMainTask mainTask)
         {
+            m_ID = mainTask.taskID;
             m_Reward = RewardMgr.S.GetRewardBase(mainTask.reward);
             m_Target = mainTask.countP;
             m_TaskHandler = CreateTaskHandler(mainTask.type);
@@ -72,6 +78,7 @@ namespace GameWish.Game
 
         public TaskInfo(TDDailyTask dailyTask)
         {
+            m_ID = dailyTask.taskID;
             m_Reward = RewardMgr.S.GetRewardBase(dailyTask.reward);
             m_Target = dailyTask.taskCount;
             m_TaskHandler = CreateTaskHandler(dailyTask.type);

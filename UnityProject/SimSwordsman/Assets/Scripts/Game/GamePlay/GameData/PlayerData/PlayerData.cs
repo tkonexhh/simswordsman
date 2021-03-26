@@ -21,6 +21,7 @@ namespace GameWish.Game
 
         public RecruitData recruitData = new RecruitData();
         public RecordData recordData = new RecordData();
+        public TaskData taskData = new TaskData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
 
         public List<int> unlockFoodItemIDs = new List<int>();//已解锁的伙房食物id
@@ -106,6 +107,7 @@ namespace GameWish.Game
         public void ResetDailyData()
         {
             recordData.ResetDailyData();
+            taskData.ResetDailyData();
             SetDataDirty();
         }
 

@@ -43,7 +43,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.BuildPracticeFieldEastTrigger, OnEventListener);
 
             //EventSystem.S.Send(EventID.OnGuideDialog8);
-            EventSystem.S.Send(EventID.OnRecruitmentSystem_IntroduceTrigger1);
+            //EventSystem.S.Send(EventID.OnRecruitmentSystem_IntroduceTrigger1);
         }
     }	
 }
