@@ -13,11 +13,13 @@ namespace GameWish.Game
         private TaskHandler m_TaskHandler;
         private int m_Target;
         private int m_ID;
+        private string m_TaskIcon;
 
         public int id => m_ID;
         public RewardBase Reward => m_Reward;
         public string taskTitle => m_TaskTitle;
         public string taskSubTitle => string.Format(m_TaskHandler.taskSubTitle + "({1}/{0})", m_Target, Mathf.Min(m_Target, m_TaskHandler.count));
+        public string taskIcon => m_TaskIcon;
 
 
         //-----------Static Block----------//
@@ -83,6 +85,7 @@ namespace GameWish.Game
             m_Target = dailyTask.taskCount;
             m_TaskHandler = CreateTaskHandler(dailyTask.type);
             m_TaskTitle = dailyTask.taskTitle;
+            m_TaskIcon = dailyTask.iconRes;
         }
 
         public bool IsComplete()
