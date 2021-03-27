@@ -54,10 +54,10 @@ namespace GameWish.Game
 
         [Header("战斗任务")]
         [SerializeField]
-        private GameObject m_TacticalFunctionBtn;   
+        private GameObject m_TacticalFunctionBtn;
         [SerializeField]
-        private Transform m_TacticalFunctionTra; 
- 
+        private Transform m_TacticalFunctionTra;
+
         [Header("访客")]
         [SerializeField]
         private Button m_VisitorBtn1;
@@ -130,8 +130,8 @@ namespace GameWish.Game
             m_BulletinBoardBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
+                UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
+                // UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
             });
             m_WareHouseBtn.onClick.AddListener(() =>
             {
@@ -228,7 +228,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-            
+
             UnregisterEvents();
 
             MainGameMgr.S.IsMainMenuPanelOpen = false;
@@ -311,10 +311,10 @@ namespace GameWish.Game
             {
                 case EventID.OnRefreshMainMenuPanel:
                     RefreshPanelInfo();
-                    break;  
+                    break;
                 case EventID.OnDeleteTaskBtn:
                     TacticalFunctionBtn tacticalFunctionBtn = m_CommonTaskList.Where(i => i.TaskID == (int)param[0]).FirstOrDefault();
-                    if (tacticalFunctionBtn!=null)
+                    if (tacticalFunctionBtn != null)
                     {
                         m_CommonTaskList.Remove(tacticalFunctionBtn);
                         DestroyImmediate(tacticalFunctionBtn.gameObject);
@@ -322,7 +322,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnCloseParentPanel:
                     CloseSelfPanel();
-                    break; 
+                    break;
                 case EventID.OnSendBulletinBoardFacility:
                     RefreshTacticalInfo();
                     break;
@@ -395,13 +395,13 @@ namespace GameWish.Game
         private void RefreshTacticalInfo()
         {
             List<SimGameTask> curTaskList = MainGameMgr.S.CommonTaskMgr.CurTaskList;
-            curTaskList.ForEach(i => 
+            curTaskList.ForEach(i =>
             {
                 if (!m_CommonTaskList.Any(j => j.SimGameTask.TaskId == i.TaskId))
                 {
                     // Spawn new pop
                     TacticalFunctionBtn tacticalFunctionBtn = Instantiate(m_TacticalFunctionBtn, m_TacticalFunctionTra).GetComponent<TacticalFunctionBtn>();
-                    tacticalFunctionBtn.OnInit(this,i);
+                    tacticalFunctionBtn.OnInit(this, i);
                     m_CommonTaskList.Add(tacticalFunctionBtn);
                 }
             });
