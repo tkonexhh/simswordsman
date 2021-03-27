@@ -152,71 +152,71 @@ namespace GameWish.Game
     {
         public TaskHandler_DailyFood() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.food.dailyCount;
-        public override string taskSubTitle => "补充{0}次食物。";
+        public override string taskSubTitle => "补充{0}次食物";
     }
 
     public class TaskHandler_DailyVisitor : TaskHandler
     {
         public TaskHandler_DailyVisitor() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.visitor.dailyCount;
-        public override string taskSubTitle => "接待任意{0}位访客。";
+        public override string taskSubTitle => "接待任意{0}位访客";
     }
 
     public class TaskHandler_DailyRecruit : TaskHandler
     {
         public TaskHandler_DailyRecruit() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.recruit.dailyCount;
-        public override string taskSubTitle => "招募{0}次弟子。";
+        public override string taskSubTitle => "招募{0}次弟子";
     }
     public class TaskHandler_DailyJob : TaskHandler
     {
         public TaskHandler_DailyJob() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.job.dailyCount;
-        public override string taskSubTitle => "派遣弟子完成任意{0}次工作。";
+        public override string taskSubTitle => "派遣弟子完成任意{0}次工作";
     }
     public class TaskHandler_DailyPractice : TaskHandler
     {
         public TaskHandler_DailyPractice() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.practice.dailyCount;
-        public override string taskSubTitle => "派遣弟子在练功场完成{0}次练功。";
+        public override string taskSubTitle => "派遣弟子在练功场完成{0}次练功";
     }
     public class TaskHandler_DailyCopy : TaskHandler
     {
         public TaskHandler_DailyCopy() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.copy.dailyCount;
-        public override string taskSubTitle => "派遣弟子在藏经阁完成{0}次抄经。";
+        public override string taskSubTitle => "派遣弟子在藏经阁完成{0}次抄经";
     }
     public class TaskHandler_DailyCook : TaskHandler
     {
         public TaskHandler_DailyCook() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.cook.dailyCount;
-        public override string taskSubTitle => "在伙房烹饪{0}次菜品。";
+        public override string taskSubTitle => "在伙房烹饪{0}次菜品";
     }
     public class TaskHandler_DailyCollect : TaskHandler
     {
         public TaskHandler_DailyCollect() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.collect.dailyCount;
-        public override string taskSubTitle => "在池塘边完成任意{0}次采集。";
+        public override string taskSubTitle => "在池塘边完成任意{0}次采集";
     }
     public class TaskHandler_DailyChanllenge : TaskHandler
     {
         public TaskHandler_DailyChanllenge() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.chanllenge.dailyCount;
-        public override string taskSubTitle => "派遣弟子完成{0}次挑战。";
+        public override string taskSubTitle => "派遣弟子完成{0}次挑战";
     }
 
     public class TaskHandler_DailyForge : TaskHandler
     {
         public TaskHandler_DailyForge() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.forge.dailyCount;
-        public override string taskSubTitle => "在锻造屋完成{0}次装备打造。";
+        public override string taskSubTitle => "在锻造屋完成{0}次装备打造";
     }
 
     public class TaskHandler_DailyMedicine : TaskHandler
     {
         public TaskHandler_DailyMedicine() { }
         public override int count => GameDataMgr.S.GetPlayerData().recordData.medicine.dailyCount;
-        public override string taskSubTitle => "在百草屋完成{0}次草药炼制。";
+        public override string taskSubTitle => "在百草屋完成{0}次草药炼制";
     }
 
 }

@@ -31,7 +31,7 @@ namespace GameWish.Game
             base.OnUIInit();
             BindAddListenerEvent();
             GetInformationForNeed();
-            m_Cont.text = "µÜ×ÓÃ»·¹³Ô£¬¾ÍÃ»Á¦Æø¸É»îÁË£¬¿´Ò»¶Î¹ã¸æ²¹³ä" + m_SupplementFood + "Ê³Îï°É";
+            m_Cont.text = "ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½É»ï¿½ï¿½Ë£ï¿½ï¿½ï¿½Ò»ï¿½Î¹ï¿½æ²¹ï¿½ï¿½" + m_SupplementFood + "Ê³ï¿½ï¿½ï¿½";
             m_BaoziNum.text = m_SupplementFood.ToString();
             if (m_CurFoodFreshCount <= 0)
             {
@@ -43,7 +43,6 @@ namespace GameWish.Game
                 {
                     GameDataMgr.S.GetPlayerData().ResetFoodRefreshTimesToday();
                     GameDataMgr.S.GetPlayerData().SetFoodRefreshCount(count);
-                    GameDataMgr.S.GetPlayerData().recordData.AddFood();
                 }
             }
             RefreshPanelInfo();
@@ -56,7 +55,7 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_TimesToday.text = "½ñÈÕ´ÎÊý£º" + m_CurFoodFreshCount + Define.SLASH + FOODFRESHCOUNT;
+            m_TimesToday.text = "ï¿½ï¿½ï¿½Õ´ï¿½ï¿½ï¿½ï¿½ï¿½" + m_CurFoodFreshCount + Define.SLASH + FOODFRESHCOUNT;
         }
 
         private void BindAddListenerEvent()
@@ -78,7 +77,7 @@ namespace GameWish.Game
 
                 if (m_CurFoodFreshCount <= 0)
                 {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "ÌáÊ¾", "½ñÈÕÊ³Îï²¹³ä´ÎÊýÒÑÓÃÍê¡£");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "ï¿½ï¿½Ê¾", "ï¿½ï¿½ï¿½ï¿½Ê³ï¿½ï²¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê¡£");
                     return;
                 }
 
@@ -92,7 +91,7 @@ namespace GameWish.Game
         {
             GameDataMgr.S.GetPlayerData().SetFoodRefreshTimesToday();
             GameDataMgr.S.GetPlayerData().AddFoodNum(m_SupplementFood);
-
+            GameDataMgr.S.GetPlayerData().recordData.AddFood();
             List<RewardBase> rewards = new List<RewardBase>();
             rewards.Add(new FoodsReward(m_SupplementFood));
             //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));

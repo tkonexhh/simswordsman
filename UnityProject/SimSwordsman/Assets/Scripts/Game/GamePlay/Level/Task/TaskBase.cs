@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -14,17 +14,18 @@ namespace GameWish.Game
         public string taskSubTitle => m_TaskInfo.taskSubTitle;
         public int id => m_TaskInfo.id;
         public TaskState taskState => m_TaskState;
+        public RewardBase reward => m_TaskInfo.Reward;
 
         public TaskBase(TaskInfo info)
         {
             m_TaskInfo = info;
-            if (IsComplete())
-            {
-                m_TaskState = TaskState.Unclaimed;
-            }
-            else if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.HasCompleteID(id))
+            if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.HasCompleteID(id))
             {
                 m_TaskState = TaskState.Finished;
+            }
+            else if (IsComplete())
+            {
+                m_TaskState = TaskState.Unclaimed;
             }
             else
             {
@@ -39,7 +40,10 @@ namespace GameWish.Game
                 return false;
 
 
-            return m_TaskInfo.IsComplete();
+            bool isComplete = m_TaskInfo.IsComplete();
+            if (isComplete)
+                m_TaskState = TaskState.Unclaimed;
+            return isComplete;
         }
 
 
@@ -53,6 +57,9 @@ namespace GameWish.Game
                 return;
 
             m_TaskState = TaskState.Finished;
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(reward);
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             m_TaskInfo.Reward.AcceptReward();
         }
 

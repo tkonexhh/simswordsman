@@ -34,14 +34,15 @@ namespace GameWish.Game
             completeTaskIdLst.Clear();
         }
 
-        public void AddCompleteID(int id)
+        public bool AddCompleteID(int id)
         {
             if (completeTaskIdLst.Contains(id))
             {
-                return;
+                return false;
             }
             completeTaskIdLst.Add(id);
             SetDataDirty();
+            return true;
         }
 
         public bool HasCompleteID(int id)
