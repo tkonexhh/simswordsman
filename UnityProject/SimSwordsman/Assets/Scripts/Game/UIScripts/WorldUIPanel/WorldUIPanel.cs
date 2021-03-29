@@ -12,6 +12,7 @@ namespace GameWish.Game
         // private static WorldUIPanel instance;
         public static WorldUIPanel S;
         public WorldUI_WorkTalk m_WalkTalk;
+        public ItemTips m_ItemTips;
 
 
         private bool m_IsBattle = false;
@@ -21,6 +22,7 @@ namespace GameWish.Game
             S = this;
 
             GameObjectPoolMgr.S.AddPool("WalkTalk", m_WalkTalk.gameObject, -1, 5);
+            GameObjectPoolMgr.S.AddPool("ItemTips", m_ItemTips.gameObject, -1, 5);
         }
 
         protected override void OnOpen()
@@ -45,6 +47,21 @@ namespace GameWish.Game
             Timer.S.Post2Scale(i =>
             {
                 GameObjectPoolMgr.S.Recycle(workTalkGo);
+            }, 3.0f);
+        }
+        public void ShowWorkText(Transform character,string name, string cont,Sprite icom)
+        {
+            var itemTipsGo = GameObjectPoolMgr.S.Allocate("ItemTips");
+            itemTipsGo.transform.SetParent(transform);
+            itemTipsGo.transform.localPosition = Vector3.zero;
+            itemTipsGo.transform.localScale = Vector3.one;
+
+            ItemTips itemTips = itemTipsGo.GetComponent<ItemTips>();
+            itemTips.followTransform = character;
+            itemTips.SetText(name, cont, icom);
+            Timer.S.Post2Scale(i =>
+            {
+                GameObjectPoolMgr.S.Recycle(itemTipsGo);
             }, 3.0f);
         }
 

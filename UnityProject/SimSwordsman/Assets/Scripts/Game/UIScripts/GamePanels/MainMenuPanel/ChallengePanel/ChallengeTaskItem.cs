@@ -14,7 +14,7 @@ namespace GameWish.Game
         Challenge,      //可挑战
         Passed,         //已完成
     }
-    public class ChallengeTaskItem : MonoBehaviour, ItemICom
+    public class ChallengeTaskItem : MonoBehaviour
     {
         [SerializeField]
         private Text m_ChallengeSectsName;
@@ -35,7 +35,6 @@ namespace GameWish.Game
 
         [SerializeField]
         private Button m_ChallengeBtn;
-        private List<Sprite> m_Sprites;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private ChallengeType m_CurChallengeType = ChallengeType.Unlocked;
         private int m_CurLevel = -1;
@@ -84,12 +83,11 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnUnlockNewChapter, HandlingListeningEvents);
         }
 
-        public void OnInit<T>(T t, Action action = null, params object[] obj)
+        public void OnInit<T>(T t, ChallengePanel challengePanel )
         {
             EventSystem.S.Register(EventID.OnChanllengeSuccess, HandlingListeningEvents);
             EventSystem.S.Register(EventID.OnUnlockNewChapter, HandlingListeningEvents);
-            m_Sprites = (List<Sprite>)obj[0];
-            m_ChallengePanel = (ChallengePanel)obj[1]; ;
+            m_ChallengePanel = challengePanel;
             m_CurChapterConfigInfo = t as ChapterConfigInfo;
             if (m_CurChapterConfigInfo != null)
             {

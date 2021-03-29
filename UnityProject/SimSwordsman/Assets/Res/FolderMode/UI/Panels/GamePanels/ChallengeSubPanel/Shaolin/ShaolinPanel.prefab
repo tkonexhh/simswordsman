@@ -385,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3537259785010304552}
-  - component: {fileID: 3272577068700146588}
+  - component: {fileID: 8513893402697992518}
   m_Layer: 5
   m_Name: ShaolinPanel
   m_TagString: Untagged
@@ -413,7 +413,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3272577068700146588
+--- !u!114 &8513893402697992518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7814739950058470067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5df8613aeb74b4aa5b032b3f3e4c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 8786f468c87df444b8d77a6b5a16ec85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScrollRect: {fileID: 4998384615544883819}
@@ -457,6 +457,8 @@ MonoBehaviour:
   - {fileID: 1982606168744274569}
   - {fileID: 4984146422351595604}
   - {fileID: 7013323313209189025}
+  bg: {fileID: 0}
+  m_ViewPortRT: {fileID: 0}
 --- !u!1001 &63916332171553642
 PrefabInstance:
   m_ObjectHideFlags: 0
