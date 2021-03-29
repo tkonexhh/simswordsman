@@ -70,6 +70,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_SettingBtn;
 
+        [SerializeField] private MainTaskUIHandler m_MainTaskUIHandler;
+
         private List<TacticalFunctionBtn> m_CommonTaskList = new List<TacticalFunctionBtn>();
 
         protected override void OnUIInit()
@@ -198,6 +200,8 @@ namespace GameWish.Game
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
+
+            m_MainTaskUIHandler.Init();
         }
 
         private void HandListenerEvent(int key, object[] param)
