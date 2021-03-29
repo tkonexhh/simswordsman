@@ -131,8 +131,8 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Task:
-                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
-                    RefreshInterAdTimes();
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallBack);
+                    RefreshInterAdTimes(); 
                     if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
                         return;
 
@@ -147,6 +147,11 @@ namespace GameWish.Game
                     OpenParentChallenge();
                     break;
             }
+        }
+
+        private void MainMenuPanelCallBack(AbstractPanel obj)
+        {
+            EventSystem.S.Send(EventID.OnSendBulletinBoardFacility);
         }
 
         private void RefreshInterAdTimes()

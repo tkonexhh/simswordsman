@@ -15,7 +15,7 @@ namespace GameWish.Game
 
         private List<SimGameTask> m_CurTaskList = new List<SimGameTask>();
 
-        private float m_CommonTaskRefreshInterval = 40f; // 40秒刷新一次
+        private float m_CommonTaskRefreshInterval = 60f; // 60秒刷新一次
         private int m_CommonTaskCount = 2;
 
         private DateTime m_LastRefreshCommonTaskTime = DateTime.Now;
@@ -96,8 +96,8 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshTask(bool immediately = false)
         {
-            //if (m_IsSystemUnlocked == false)
-            //    return;
+            if (m_IsSystemUnlocked == false)
+                return;
 
             int lastRefreshDay = GameDataMgr.S.GetCommonTaskData().lastRefreshTaskDay;
             if (lastRefreshDay != DateTime.Today.DayOfYear)
