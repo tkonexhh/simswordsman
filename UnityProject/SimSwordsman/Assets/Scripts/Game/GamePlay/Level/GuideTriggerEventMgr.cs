@@ -40,10 +40,10 @@ namespace GameWish.Game
 
         private void OnCloseAllUIPanelCallBack(int key, object[] param)
         {
-            //if (GuideMgr.S.IsGuiding())
-            //{
-            //    return;
-            //}
+            if (GuideMgr.S.IsGuiding())
+            {
+                return;
+            }
             UIMgr.S.ClosePanelAsUIID(UIID.SignInPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.BulletinBoardChooseDisciple);
