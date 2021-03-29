@@ -343,6 +343,11 @@ namespace GameWish.Game
                 PanelPool.S.AddPromotion(new WugongBreakthrough( 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
                 PanelPool.S.DisplayPanel();
             }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                PanelPool.S.AddPromotion(new EquipAmror(1, 2000, new ArmorItem(ArmorType.MingGuangKai,Step.Five)));
+                PanelPool.S.DisplayPanel();
+            }
             #endregion
         }
 
