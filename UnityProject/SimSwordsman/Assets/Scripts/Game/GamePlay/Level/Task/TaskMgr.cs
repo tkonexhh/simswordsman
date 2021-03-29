@@ -10,6 +10,7 @@ namespace GameWish.Game
         private TaskMainController m_MainController;
         private TaskDailyController m_DailyController;
 
+        public TaskMainController mainTaskController => m_MainController;
         public TaskDailyController dailyTaskController => m_DailyController;
 
         public void OnInit()
@@ -35,14 +36,43 @@ namespace GameWish.Game
 
     public class TaskMainController : TaskBaseController
     {
+        private int m_CurIndex;
+        private Task m_CurTask;
+
+
+        public Task curTask => m_CurTask;
+
         public override void Init()
         {
-
+            m_CurIndex = GameDataMgr.S.GetPlayerData().taskData.mainTaskData.curIndex;
+            RefeshCurTask();
         }
 
         public override void Destroy()
         {
 
+        }
+
+        private void RefeshCurTask()
+        {
+            var mainTaskConf = TDMainTaskTable.GetData(m_CurIndex);
+            if (mainTaskConf != null)
+            {
+                m_CurTask = new Task(new TaskInfo(mainTaskConf));
+            }
+        }
+
+
+        public void FinishCurTask()
+        {
+            if (m_CurTask == null)
+                return;
+
+            m_CurTask.GetReward();
+            GameDataMgr.S.GetPlayerData().taskData.mainTaskData.FinishMainTask();
+            m_CurIndex = GameDataMgr.S.GetPlayerData().taskData.mainTaskData.curIndex;
+            RefeshCurTask();
+            EventSystem.S.Send(EventID.OnRefeshMainTask);
         }
     }
 
