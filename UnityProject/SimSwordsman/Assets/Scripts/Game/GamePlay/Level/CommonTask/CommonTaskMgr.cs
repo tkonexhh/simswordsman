@@ -113,6 +113,8 @@ namespace GameWish.Game
             LobbyLevelInfo levelInfo = (LobbyLevelInfo)TDFacilityLobbyTable.GetLevelInfo(lobbyLevel);
 
             m_CommonTaskCount = levelInfo.commonTaskCount;
+            if (GuideMgr.S.IsGuideFinish(m_GuideStep) == false)
+                m_CommonTaskCount = 1;
 
             RefreshCommonTask(immediately);
         }
