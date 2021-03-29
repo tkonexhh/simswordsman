@@ -137,7 +137,7 @@ namespace GameWish.Game
 
             GameDataMgr.S.Save();
 
-            string[] strList = new string[] 
+            string[] strList = new string[]
             {
                 "师父，又有人上门挑战我们了，快来带我们迎战吧！",
                 "掌门，有位年轻貌美的女子想来拜师，您不来看看吗？",
@@ -335,12 +335,12 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                PanelPool.S.AddPromotion(new DiscipleRiseStage( 0, 2,1212));
+                PanelPool.S.AddPromotion(new DiscipleRiseStage(0, 2, 1212));
                 PanelPool.S.DisplayPanel();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                PanelPool.S.AddPromotion(new WugongBreakthrough( 0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian,10,1), 1212)) ;
+                PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 1212));
                 PanelPool.S.DisplayPanel();
             }
             if (Input.GetKeyDown(KeyCode.A))

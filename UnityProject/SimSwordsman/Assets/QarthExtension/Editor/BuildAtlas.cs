@@ -1,4 +1,3 @@
-
 using System.IO;
 using Qarth;
 using Qarth.Editor;
@@ -12,7 +11,7 @@ namespace GameWish.Game
 {
     public class BulidAtlas
     {
-        [MenuItem("Assets/Qarth Builder/Build SpritesAtlas")]
+        [MenuItem("Assets/Qarth Builder/Build SpritesAtlasFolders")]
         static void BuidSpritesAtlas()
         {
             string folderPath = EditorUtils.GetSelectedDirAssetsPath();
@@ -30,7 +29,27 @@ namespace GameWish.Game
                 }
             }
         }
-        public static void BuildSpritesAtlas(string folderPath)
+
+        [MenuItem("Assets/Qarth Builder/Build SpritesAtlasItems")]
+        static void BuidSpritesAtlasItems()
+        {
+            string folderPath = EditorUtils.GetSelectedDirAssetsPath();
+            DirectoryInfo dInfo = new DirectoryInfo(EditorUtils.AssetsPath2ABSPath(folderPath));
+            DirectoryInfo[] subFolders = dInfo.GetDirectories();
+            if (subFolders == null || subFolders.Length == 0)
+            {
+                BuildSpritesAtlas(folderPath, true);
+            }
+            else
+            {
+                for (int i = 0; i < subFolders.Length; ++i)
+                {
+                    BuildSpritesAtlas(EditorUtils.ABSPath2AssetsPath(subFolders[i].FullName), true);
+                }
+            }
+        }
+
+        public static void BuildSpritesAtlas(string folderPath, bool isItefalse = false)
         {
             SpritesData data = null;
 
@@ -57,12 +76,35 @@ namespace GameWish.Game
                 };
                 atlas.SetPlatformSettings(platform);
                 AssetDatabase.CreateAsset(atlas, spriteDataPath);
-                UnityEngine.Object texture = AssetDatabase.LoadMainAssetAtPath(folderPath);
-                SpriteAtlasExtensions.Add(atlas, new UnityEngine.Object[] { texture });
-                AssetDatabase.SaveAssets();
+                if (isItefalse)
+                {
+                    string workPath = EditorUtils.AssetsPath2ABSPath(folderPath);
+                    var filePaths = Directory.GetFiles(workPath);
+                    for (int i = 0; i < filePaths.Length; i++)
+                    {
+                        string relPath = EditorUtils.ABSPath2AssetsPath(filePaths[i]);
+                        UnityEngine.Object objs = AssetDatabase.LoadMainAssetAtPath(relPath);
+                        if (objs != null)
+                        {
+                            if (objs is Sprite || objs is Texture2D)
+                            {
+                                SpriteAtlasExtensions.Add(atlas, new UnityEngine.Object[] { objs });
+
+                            }
+                        }
+                    }
+                    AssetDatabase.SaveAssets();
+                }
+                else
+                {
+                    UnityEngine.Object texture = AssetDatabase.LoadMainAssetAtPath(folderPath);
+                    SpriteAtlasExtensions.Add(atlas, new UnityEngine.Object[] { texture });
+                    AssetDatabase.SaveAssets();
+                }
+                
             }
 
         }
     }
-
+    
 }

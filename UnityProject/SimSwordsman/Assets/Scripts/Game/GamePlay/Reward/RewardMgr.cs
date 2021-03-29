@@ -43,7 +43,7 @@ namespace GameWish.Game
                 case RewardItemType.Exp_Kongfu:
                     return new Exp_KongfuRweard(id, count);
                 default:
-                   
+
                     return null;
             }
         }
