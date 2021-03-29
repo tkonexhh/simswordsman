@@ -23,11 +23,11 @@ namespace GameWish.Game
             GetSprite(taskReward, m_RewardImg, m_KungFuName);
             if (taskReward.count1==-1)
             {
-                m_RewardText.text = taskReward.count1.ToString();
+                m_RewardText.text = CommonUIMethod.GetTenThousandOrMillion(taskReward.count1);
             }
             else
             {
-                m_RewardText.text = Random.Range(taskReward.count1, taskReward.count2+1).ToString();
+                m_RewardText.text = CommonUIMethod.GetTenThousandOrMillion(Random.Range(taskReward.count1, taskReward.count2 + 1));
             }
 
         }
@@ -45,7 +45,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
-            m_RewardText.text = value.ToString();
+            m_RewardText.text = CommonUIMethod.GetTenThousandOrMillion(value);
         }
         #endregion
         #region Private
