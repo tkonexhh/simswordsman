@@ -201,7 +201,7 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
 
-            m_MainTaskUIHandler.Init();
+            m_MainTaskUIHandler.Init(this);
         }
 
         private void HandListenerEvent(int key, object[] param)

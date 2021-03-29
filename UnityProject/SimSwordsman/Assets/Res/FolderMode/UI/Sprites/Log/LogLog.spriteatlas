@@ -51,7 +51,21 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 59e2b753c20137143a129029878823fa, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 59e2b753c20137143a129029878823fa, type: 3}
+  - {fileID: 21300000, guid: 2fed27759fde06b43b207a8fee232d82, type: 3}
+  - {fileID: 21300000, guid: 2f72bdc8d585c9148a5cbeb47da72be6, type: 3}
+  - {fileID: 21300000, guid: eb79c349e770d8f40ba61b59b79c4d20, type: 3}
+  - {fileID: 21300000, guid: cacd907baee458c4ca98a502db06ac0f, type: 3}
+  - {fileID: 21300000, guid: d64df93c6545ae541902526383af42c2, type: 3}
+  - {fileID: 21300000, guid: 7db0708dba96a5242a356b7931f9839b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - title_bg
+  - btn_close
+  - Zt-1
+  - Zt-4
+  - Zt-5
+  - Zt-2
+  - Zt-3
   m_Tag: LogLog
   m_IsVariant: 0
