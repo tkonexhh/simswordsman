@@ -174,7 +174,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñµÃÖ÷³ÇµÈ¼¶
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÈ¼ï¿½
         /// </summary>
         /// <returns></returns>
         public int GetLobbyCurLevel()
@@ -273,7 +273,7 @@ namespace GameWish.Game
         #region PracticeField
 
         /// <summary>
-        /// »ñÈ¡ÅäÖÃÎÄ¼þÖÐËùÓÐµÄÁ·±ø³¡ÐÅÏ¢
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <returns></returns>
         public List<PracticeFieldLevelInfo> GetPracticeFieldLevelInfoList()
@@ -282,7 +282,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡ÑµÁ·Ê±¼ä
+        /// ï¿½ï¿½È¡Ñµï¿½ï¿½Ê±ï¿½ï¿½
         /// </summary>
         /// <param name="facilityType"></param>
         /// <param name="level"></param>
@@ -310,7 +310,7 @@ namespace GameWish.Game
             return TDFacilityKongfuLibraryTable.GetKongfuLibraryLevelInfoList(facilityType);
         }
         /// <summary>
-        /// ¸ù¾Ý²Ø¾­¸óµÈ¼¶»ñÈ¡ÏàÓ¦µÄ¹¦·ò
+        /// ï¿½ï¿½ï¿½Ý²Ø¾ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½Ä¹ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="kungfuLibraryLevel"></param>
         /// <returns></returns>
@@ -438,18 +438,18 @@ namespace GameWish.Game
 
         private bool IsUnlockPreconditionSatisfied(FacilityConfigInfo configInfo)
         {
-            //²Ö¿â±ØÐëÍ¨¹ýÒýµ¼À´½¨Ôì£¬·ñÔò²»ÄÜ±äÎª¿É½¨Ôì×´Ì¬
+            //ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ü±ï¿½Îªï¿½É½ï¿½ï¿½ï¿½×´Ì¬
             if (configInfo.facilityType == FacilityType.Warehouse)
                 return false;
 
-            bool isPrefacilityUnlocked = configInfo.prefacilityType == FacilityType.None ? true : IsFacilityUnlocked(configInfo.prefacilityType, 1);
+            bool isPrefacilityUnlocked = configInfo.prefacilityType == FacilityType.None ? true : IsFacilityUnlocked(configInfo.prefacilityType);
             bool isSatisfied = /*GetFacilityCurLevel(FacilityType.Lobby) >= configInfo.GetNeedLobbyLevel() &&*/ isPrefacilityUnlocked;
             return isSatisfied;
         }
 
-        private bool IsFacilityUnlocked(FacilityType facilityType, int subId)
+        public bool IsFacilityUnlocked(FacilityType facilityType)
         {
-            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(facilityType/*, subId*/);
+            FacilityItemDbData dbItem = GameDataMgr.S.GetClanData().GetFacilityItem(facilityType);
             if (dbItem != null)
             {
                 FacilityState facilityState = dbItem.facilityState;
@@ -459,7 +459,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.e("GetFacilityItem return null, facility type: " + facilityType.ToString() + " sub id: " + subId);
+                Log.e("GetFacilityItem return null, facility type: " + facilityType.ToString());
                 return false;
             }
         }

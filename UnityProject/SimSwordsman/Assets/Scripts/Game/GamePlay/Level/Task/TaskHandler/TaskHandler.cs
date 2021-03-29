@@ -28,6 +28,7 @@ namespace GameWish.Game
         public TaskHandler_BuildLivableRoom(int level) : base(level)
         {
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] args)
@@ -48,6 +49,9 @@ namespace GameWish.Game
                 int count = 0;
                 for (int i = (int)FacilityType.LivableRoomEast1; i < (int)FacilityType.LivableRoomWest4; i++)
                 {
+                    if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked((FacilityType)i))
+                        continue;
+
                     int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel((FacilityType)i);
                     if (level >= m_Level)
                     {
@@ -93,6 +97,7 @@ namespace GameWish.Game
         public TaskHandler_BuildPracticeField(int level) : base(level)
         {
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
         }
         private void HandleEvent(int key, params object[] args)
         {
@@ -110,13 +115,25 @@ namespace GameWish.Game
             get
             {
                 int count = 0;
-                int levelEast = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.PracticeFieldEast);
-                int levelWest = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.PracticeFieldWest);
+                int levelEast = 0;
+                int levelWest = 0;
+
+                if (MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.PracticeFieldEast))
+                {
+                    levelEast = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.PracticeFieldEast);
+                }
+
+                if (MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.PracticeFieldWest))
+                {
+                    levelWest = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.PracticeFieldWest);
+                }
+
                 if (levelEast >= m_Level)
                     count++;
 
                 if (levelWest >= m_Level)
                     count++;
+
                 return count;
             }
         }
@@ -172,7 +189,11 @@ namespace GameWish.Game
             get
             {
                 var dataLst = GameDataMgr.S.GetPlayerData().chapterDataList;
-                var chapterData = dataLst[dataLst.Count - 1];
+                int index = Mathf.Clamp(dataLst.Count - 1, 0, dataLst.Count - 1);
+                var chapterData = dataLst[index];
+                if (chapterData == null)
+                    return 0;
+
                 return chapterData.level;
             }
         }
@@ -192,6 +213,7 @@ namespace GameWish.Game
         public TaskHandler_BuildLibrary(int level) : base(level)
         {
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] args)
@@ -205,7 +227,17 @@ namespace GameWish.Game
             }
         }
 
-        public override int count => MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary);
+        public override int count
+        {
+            get
+            {
+                if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.KongfuLibrary))
+                    return 0;
+
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary);
+            }
+        }
+
 
         public override string taskSubTitle
         {
@@ -224,6 +256,7 @@ namespace GameWish.Game
         public TaskHandler_BuildForgeHouse(int level) : base(level)
         {
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] args)
@@ -237,7 +270,17 @@ namespace GameWish.Game
             }
         }
 
-        public override int count => MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse);
+        public override int count
+        {
+            get
+            {
+                if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.ForgeHouse))
+                    return 0;
+
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse);
+            }
+        }
+
 
         public override string taskSubTitle
         {
@@ -269,7 +312,16 @@ namespace GameWish.Game
             }
         }
 
-        public override int count => MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu);
+        public override int count
+        {
+            get
+            {
+                if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Baicaohu))
+                    return 0;
+
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu);
+            }
+        }
 
         public override string taskSubTitle
         {

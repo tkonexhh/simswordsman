@@ -36,7 +36,6 @@ namespace GameWish.Game
 
     public class TaskMainController : TaskBaseController
     {
-        private int m_CurIndex;
         private Task m_CurTask;
 
 
@@ -44,7 +43,6 @@ namespace GameWish.Game
 
         public override void Init()
         {
-            m_CurIndex = GameDataMgr.S.GetPlayerData().taskData.mainTaskData.curIndex;
             RefeshCurTask();
         }
 
@@ -55,7 +53,8 @@ namespace GameWish.Game
 
         private void RefeshCurTask()
         {
-            var mainTaskConf = TDMainTaskTable.GetData(m_CurIndex);
+            int index = GameDataMgr.S.GetPlayerData().taskData.mainTaskData.curIndex;
+            var mainTaskConf = TDMainTaskTable.GetData(index);
             if (mainTaskConf != null)
             {
                 m_CurTask = new Task(new TaskInfo(mainTaskConf));
@@ -69,8 +68,9 @@ namespace GameWish.Game
                 return;
 
             m_CurTask.GetReward();
+            m_CurTask = null;
             GameDataMgr.S.GetPlayerData().taskData.mainTaskData.FinishMainTask();
-            m_CurIndex = GameDataMgr.S.GetPlayerData().taskData.mainTaskData.curIndex;
+
             RefeshCurTask();
             EventSystem.S.Send(EventID.OnRefeshMainTask);
         }

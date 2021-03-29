@@ -25,10 +25,6 @@ namespace GameWish.Game
         private const string ANIMNAME_Hide = "Hide";
         private int m_AnimHash_Show;
         private int m_AnimHash_Hide;
-
-
-
-        private int m_UIStatus = 0;//0 原始 1 展开
         private bool m_Animing = false;
 
         private AbstractPanel m_Panel;
@@ -39,11 +35,16 @@ namespace GameWish.Game
             m_AnimHash_Show = Animator.StringToHash(ANIMNAME_SHOW);
             m_AnimHash_Hide = Animator.StringToHash(ANIMNAME_Hide);
             m_BtnReward.onClick.AddListener(OnClickReward);
-            m_BtnHide.onClick.AddListener(OnClickBG);
-            m_BtnShow.onClick.AddListener(OnClickBG);
-            RefeshTask();
+            m_BtnHide.onClick.AddListener(OnClickHide);
+            m_BtnShow.onClick.AddListener(OnClickShow);
             EventSystem.S.Register(EventID.OnRefeshMainTask, Refesh);
             m_AnimCtrl.Play(m_AnimHash_Hide);
+            RefeshTask();
+        }
+
+        private void OnDestroy()
+        {
+            EventSystem.S.UnRegister(EventID.OnRefeshMainTask, Refesh);
         }
 
         private void Refesh(int key, params object[] args)
@@ -55,7 +56,7 @@ namespace GameWish.Game
         {
             //主线任务是否全部做完 做完全部隐藏
             var task = MainGameMgr.S.TaskMgr.mainTaskController.curTask;
-            if (task == null)
+            if (task == null || task.reward == null)
             {
                 gameObject.SetActive(false);
                 return;
@@ -71,7 +72,7 @@ namespace GameWish.Game
             m_ObjCompleted.SetActive(isComplete);
             m_TxtTaskTitle.text = task.taskSubTitle;
 
-            if (reward.RewardItem == RewardItemType.Kongfu)
+            if (reward.RewardItem == RewardItemType.Kongfu && reward.KeyID.HasValue)
             {
                 KungfuQuality kungfuQuality = TDKongfuConfigTable.GetKungfuConfigInfo((KungfuType)reward.KeyID).KungfuQuality;
 
@@ -89,7 +90,7 @@ namespace GameWish.Game
                     default:
                         break;
                 }
-                m_ImgRewardIcon.SetNativeSize();
+
                 m_ImgKongfuNameIcon.sprite = m_Panel.FindSprite(reward.SpriteName());
                 m_ImgKongfuNameIcon.gameObject.SetActive(true);
             }
@@ -97,27 +98,27 @@ namespace GameWish.Game
             {
                 m_ImgKongfuNameIcon.gameObject.SetActive(false);
                 m_ImgRewardIcon.sprite = m_Panel.FindSprite(reward.SpriteName());
-                m_ImgRewardIcon.SetNativeSize();
             }
 
+            m_ImgRewardIcon.SetNativeSize();
         }
 
-        private void OnClickBG()
+        private void OnClickShow()
         {
             if (m_Animing)
                 return;
 
             m_Animing = true;
-            if (m_UIStatus == 0)
-            {
-                m_UIStatus = 1;
-                m_AnimCtrl.Play(m_AnimHash_Show);
-            }
-            else
-            {
-                m_UIStatus = 0;
-                m_AnimCtrl.Play(m_AnimHash_Hide);
-            }
+            m_AnimCtrl.Play(m_AnimHash_Show);
+        }
+
+        private void OnClickHide()
+        {
+            if (m_Animing)
+                return;
+
+            m_Animing = true;
+            m_AnimCtrl.Play(m_AnimHash_Hide);
         }
 
         private void OnClickReward()
