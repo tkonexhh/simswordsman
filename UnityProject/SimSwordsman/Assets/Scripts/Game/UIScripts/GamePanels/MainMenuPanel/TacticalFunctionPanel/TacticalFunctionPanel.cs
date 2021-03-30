@@ -212,7 +212,9 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_refuse, m_SimGameTask.TaskId.ToString());
-                UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示", "您确定要放弃任务吗");
+                //UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "提示", "您确定要放弃任务吗");
+                RefuseTask();
+                HideSelfWithAnim();
             });
             m_BlackExit.onClick.AddListener(() =>
             {
@@ -221,16 +223,16 @@ namespace GameWish.Game
             });
         }
 
-        private void LogCallBack(AbstractPanel abstractPanel)
-        {
-            LogPanel logPanel = abstractPanel as LogPanel;
-            logPanel.OnSuccessBtnEvent += OnSucessEvent;
-        }
-        private void OnSucessEvent()
+        //private void LogCallBack(AbstractPanel abstractPanel)
+        //{
+        //    LogPanel logPanel = abstractPanel as LogPanel;
+        //    logPanel.OnSuccessBtnEvent += RefuseTask;
+        //}
+
+        private void RefuseTask()
         {
             MainGameMgr.S.CommonTaskMgr.RemoveTask(m_SimGameTask.TaskId);
             EventSystem.S.Send(EventID.OnDeleteTaskBtn, m_SimGameTask.TaskId);
-            HideSelfWithAnim();
         }
         #endregion
     }
