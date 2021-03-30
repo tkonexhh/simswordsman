@@ -77,7 +77,7 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_CurChapterConfigInfo.chapterId);
             List<LevelConfigInfo> levelConfigInfo = new List<LevelConfigInfo>();
             levelConfigInfo.AddRange(m_CurChapterAllLevelConfigInfo.Values);
-            if (m_Buttons.Length == 24/*levelConfigInfo.Count*/)
+            if (m_Buttons.Length == levelConfigInfo.Count)
             {
                 for (int i = 0; i < m_Buttons.Length; i++)
                 {
