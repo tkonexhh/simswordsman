@@ -189,11 +189,10 @@ namespace GameWish.Game
             get
             {
                 var dataLst = GameDataMgr.S.GetPlayerData().chapterDataList;
-                int index = Mathf.Clamp(dataLst.Count - 1, 0, dataLst.Count - 1);
-                var chapterData = dataLst[index];
-                if (chapterData == null)
+                if (dataLst.Count <= 0)
                     return 0;
-
+                int index = Mathf.Max(0, dataLst.Count - 1);
+                var chapterData = dataLst[index];
                 return chapterData.level;
             }
         }
