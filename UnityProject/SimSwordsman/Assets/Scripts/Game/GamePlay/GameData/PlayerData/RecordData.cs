@@ -50,66 +50,77 @@ namespace GameWish.Game
         {
             food.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddVisitor()
         {
             visitor.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddRecruit()
         {
             recruit.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddJob()
         {
             job.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddPractice()
         {
             practice.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddCopy()
         {
             copy.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddCook()
         {
             cook.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddCollect()
         {
             collect.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddChanllenge()
         {
             chanllenge.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddForge()
         {
             forge.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
 
         public void AddMedicine()
         {
             medicine.AddCount();
             SetDataDirty();
+            EventSystem.S.Send(EventID.OnRefeshDailyTask);
         }
     }
 

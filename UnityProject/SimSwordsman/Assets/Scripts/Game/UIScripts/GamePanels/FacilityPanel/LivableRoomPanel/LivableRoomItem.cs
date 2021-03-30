@@ -255,7 +255,8 @@ namespace GameWish.Game
             switch (m_LivableRoomState)
             {
                 case LivableRoomState.ReadyBuilt:
-                    if (CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems, false))
+                    List<CostItem> costItemList = GetCostItem(m_CurLivableRoomLevelInfo);
+                    if (CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, costItemList, false))
                         m_RedPoint.SetActive(true);
                     else
                         m_RedPoint.SetActive(false);
@@ -266,10 +267,10 @@ namespace GameWish.Game
                     m_CurPeopleValue.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
                         + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
-                    RefreshResInfo(m_CurLivableRoomLevelInfo, GetCostItem(m_CurLivableRoomLevelInfo));
+                    RefreshResInfo(m_CurLivableRoomLevelInfo, costItemList);
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
 
-                    if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems, false))
+                    if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, costItemList, false))
                     {
                         m_UpgradeBtnImg.sprite = FindSprite("LivableRoomPanel_BgBtn3");
                         m_UpgradeBtn.interactable = false;

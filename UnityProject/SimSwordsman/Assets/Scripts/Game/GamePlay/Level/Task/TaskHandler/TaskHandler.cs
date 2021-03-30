@@ -47,7 +47,7 @@ namespace GameWish.Game
             get
             {
                 int count = 0;
-                for (int i = (int)FacilityType.LivableRoomEast1; i < (int)FacilityType.LivableRoomWest4; i++)
+                for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
                 {
                     if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked((FacilityType)i))
                         continue;
@@ -298,6 +298,7 @@ namespace GameWish.Game
         public TaskHandler_BuildBaicaohu(int level) : base(level)
         {
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] args)

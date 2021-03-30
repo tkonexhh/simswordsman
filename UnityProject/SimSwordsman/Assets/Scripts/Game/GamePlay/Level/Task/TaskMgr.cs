@@ -86,12 +86,14 @@ namespace GameWish.Game
             RefeshTaskLst();
             EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
             EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.Register(EventID.OnRefeshDailyTask, CheckDailyTask);
         }
 
         public override void Destroy()
         {
             EventSystem.S.UnRegister(EventID.OnStartUpgradeFacility, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnRefeshDailyTask, CheckDailyTask);
         }
 
         private void HandleEvent(int key, params object[] args)
@@ -108,9 +110,40 @@ namespace GameWish.Game
             {
                 RefeshTaskLst();
             }
+
+            FirstCheck();
         }
 
-        private void RefeshTaskLst()
+        public void FirstCheck()
+        {
+            for (int i = 0; i < m_TaskLst.Count; i++)
+            {
+                m_TaskLst[i].IsComplete();
+                if (m_TaskLst[i].taskState == TaskState.Unclaimed)
+                {
+                    EventSystem.S.Send(EventID.OnMainMenuDailyTaskRedPoint);
+                    break;
+                }
+            }
+        }
+
+        private void CheckDailyTask(int key, params object[] args)
+        {
+            for (int i = 0; i < m_TaskLst.Count; i++)
+            {
+                var oldState = m_TaskLst[i].taskState;
+                m_TaskLst[i].IsComplete();
+                var newState = m_TaskLst[i].taskState;
+                if (oldState == TaskState.Running && newState == TaskState.Unclaimed)
+                {
+                    //完成了一个新任务
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.d_task_finish);
+                    EventSystem.S.Send(EventID.OnMainMenuDailyTaskRedPoint);
+                }
+            }
+        }
+
+        public void RefeshTaskLst()
         {
             var tasks = TDDailyTaskTable.GetDailyTasksByLvl(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel());
             m_TaskLst.Clear();
@@ -135,6 +168,17 @@ namespace GameWish.Game
         public Task this[int index]
         {
             get => m_TaskLst[index];
+        }
+
+        public void FinishTask(Task task)
+        {
+            //存档
+            if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.AddCompleteID(task.id))
+            {
+                task.GetReward();
+                DataAnalysisMgr.S.CustomEvent(DotDefine.d_task_receive, task.id.ToString());
+                EventSystem.S.Send(EventID.OnRefeshDailyTaskPanel);
+            }
         }
 
 

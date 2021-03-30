@@ -24,6 +24,8 @@ namespace GameWish.Game
         private ResLoader m_ResLoader;
         private GameObject obj;
 
+        private RewardBase m_RewardBaseData = null;
+
 
         private void OnDisable()
         {
@@ -31,6 +33,8 @@ namespace GameWish.Game
 
         public void Init(RewardPanel rewardPanel, RewardBase reward)
         {
+            m_RewardBaseData = reward;
+
             m_ResLoader = ResLoader.Allocate();
 
             if (reward.RewardItem == RewardItemType.Kongfu)
@@ -63,5 +67,13 @@ namespace GameWish.Game
             Instantiate(m_LootSingle, transform).transform.localPosition = Vector3.zero;
         }
 
+        public void UpdateDoubleRewardCount() 
+        {
+            if (m_RewardBaseData != null) 
+            {
+                int doubleRewadCount = m_RewardBaseData.Count * 2;
+                m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", string.Format("X{0}", doubleRewadCount));
+            }        
+        }
     }
 }

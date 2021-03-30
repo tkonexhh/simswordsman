@@ -11,7 +11,7 @@ namespace GameWish.Game
         [SerializeField]
         protected ScrollRect m_ScrollRect;
         [SerializeField]
-        protected Button[] m_Buttons;
+        protected ChallengeBtn[] m_Buttons;
 
         [HideInInspector]
         public RectTransform bg;
@@ -77,22 +77,23 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_CurChapterConfigInfo.chapterId);
             List<LevelConfigInfo> levelConfigInfo = new List<LevelConfigInfo>();
             levelConfigInfo.AddRange(m_CurChapterAllLevelConfigInfo.Values);
-            if (m_Buttons.Length == levelConfigInfo.Count)
+            if (m_Buttons.Length == 24/*levelConfigInfo.Count*/)
             {
                 for (int i = 0; i < m_Buttons.Length; i++)
                 {
+                    bool isBossLevel = TDLevelConfigTable.IsBossLevel(levelConfigInfo[i].level);
+                    m_Buttons[i].Init(isBossLevel);
                     m_Buttons[i].transform.SetAsFirstSibling();
                     //HACK 修改过关点击
                     if (i < m_CurLevel)
                     {
-                        m_Buttons[i].enabled = false;
-                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Over, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
+                        m_Buttons[i].SetEnabled(false);
+                        m_Buttons[i].RefreshBtnInfo(ChallengeBtnState.Over, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
                     else if (i == m_CurLevel)
                     {
-                        m_Buttons[i].enabled = true;
-                        BtnFunc btnFunc = m_Buttons[i].GetComponent<BtnFunc>();
-                        btnFunc.RefreshBtnInfo(ChallengeBtnState.Battle, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
+                        m_Buttons[i].SetEnabled(true);
+                        m_Buttons[i].RefreshBtnInfo(ChallengeBtnState.Battle, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                         //TODO scrollview跳转到此处
                         // Debug.LogError("length:" + Mathf.Max(0, m_CurLevel) + "CurLvl:" + m_CurLevel);
                         float range = ScrollViewExtension.GetScrollViewNormalizedPosition(m_ScrollRect, m_ScrollRect.content.GetChild(0).rectTransform(), Mathf.Max(0, m_CurLevel), 300);
@@ -101,8 +102,8 @@ namespace GameWish.Game
                     }
                     else
                     {
-                        m_Buttons[i].enabled = false;
-                        m_Buttons[i].GetComponent<BtnFunc>().RefreshBtnInfo(ChallengeBtnState.Lock, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
+                        m_Buttons[i].SetEnabled(false);
+                        m_Buttons[i].RefreshBtnInfo(ChallengeBtnState.Lock, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
 
                     if (PlatformHelper.isTestMode)
