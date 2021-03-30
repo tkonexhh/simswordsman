@@ -44,7 +44,6 @@ namespace GameWish.Game
         public long recommendAtkValue;
         public List<RewardBase> levelRewardList = new List<RewardBase>();
         public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
-        public bool isBoosLevel;
 
         public LevelConfigInfo(int chapterId, int level, string desc, int recommendAtk)
         {
