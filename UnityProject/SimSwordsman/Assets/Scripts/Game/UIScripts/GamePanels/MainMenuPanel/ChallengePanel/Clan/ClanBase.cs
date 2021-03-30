@@ -77,11 +77,12 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_CurChapterConfigInfo.chapterId);
             List<LevelConfigInfo> levelConfigInfo = new List<LevelConfigInfo>();
             levelConfigInfo.AddRange(m_CurChapterAllLevelConfigInfo.Values);
-            //if (m_Buttons.Length == levelConfigInfo.Count)
+            if (m_Buttons.Length == 24/*levelConfigInfo.Count*/)
             {
                 for (int i = 0; i < m_Buttons.Length; i++)
                 {
-                    m_Buttons[i].Init(levelConfigInfo[i].isBoosLevel);
+                    bool isBossLevel = TDLevelConfigTable.IsBossLevel(levelConfigInfo[i].level);
+                    m_Buttons[i].Init(isBossLevel);
                     m_Buttons[i].transform.SetAsFirstSibling();
                     //HACK 修改过关点击
                     if (i < m_CurLevel)

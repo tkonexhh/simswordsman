@@ -74,6 +74,17 @@ namespace GameWish.Game
                 return m_AllChapter[chapter].GetLevelId(index);
             return -1;
         }
+
+        public static bool IsBossLevel(int key)
+        {
+            TDLevelConfig data = GetData(key);
+            if (data != null && data.type.ToLower().Equals("boss"))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 
     public class EnemyConfig

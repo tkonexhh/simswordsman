@@ -16,7 +16,7 @@ namespace GameWish.Game
 
         public void Init(bool isBossLevel)
         {
-            bool isBoss = false;
+            bool isBoss = isBossLevel;
 
             if (isBoss)
             {
