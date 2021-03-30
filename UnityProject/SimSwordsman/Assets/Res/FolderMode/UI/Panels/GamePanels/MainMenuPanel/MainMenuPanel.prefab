@@ -166,6 +166,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47950af7b0a2cb94183e314277407b66, type: 2}
   - {fileID: 11400000, guid: 872a043633cf4d04f905dc00b258b631, type: 2}
   - {fileID: 11400000, guid: 97a7544b7f15a2d47becf55042e4a66a, type: 2}
+  - {fileID: 11400000, guid: 3c09f25b174352b4bbdbf141ac1789d1, type: 2}
   m_PanelEventLogType: 0
   m_HideMask: 0
   m_CustomVisibleFlag: 1
@@ -181,6 +182,7 @@ MonoBehaviour:
   m_CreateBaoziBtn: {fileID: 3348731360067719068}
   m_SignInBtn: {fileID: 3535156118368359105}
   m_BulletinBoardBtn: {fileID: 6393296509596374948}
+  m_ObjBulletinBoardRed: {fileID: 5313118262257637836}
   m_WareHouseBtn: {fileID: 1273935760969894817}
   m_DiscipleBtn: {fileID: 7551220982848616827}
   m_DiscipleRedPoint: {fileID: 5264034111612547324}
@@ -2000,7 +2002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 15.6, y: 0}
+  m_AnchoredPosition: {x: 15.599976, y: 0}
   m_SizeDelta: {x: 7, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1585486975409232693
@@ -5368,7 +5370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.7354993}
   m_AnchorMax: {x: 0.39866668, y: 0.87950224}
-  m_AnchoredPosition: {x: -0.2999878, y: 13.09}
+  m_AnchoredPosition: {x: -0.30004883, y: 13.089966}
   m_SizeDelta: {x: -0.5925598, y: -26.155823}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3494958291936540325

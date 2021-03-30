@@ -383,7 +383,9 @@ namespace GameWish.Game
 
 
         OnRefeshDailyTaskPanel,
+        OnRefeshDailyTask,
         OnRefeshMainTask,
+        OnMainMenuDailyTaskRedPoint,
     }
 
 }

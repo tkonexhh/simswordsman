@@ -35,6 +35,7 @@ namespace GameWish.Game
         private Button m_SignInBtn;
         [SerializeField]
         private Button m_BulletinBoardBtn;
+        [SerializeField] private GameObject m_ObjBulletinBoardRed;
         [SerializeField]
         private Button m_WareHouseBtn;
 
@@ -77,6 +78,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             RegisterEvents();
+            MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
             m_SettingBtn.onClick.AddListener(() =>
             {
                 //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
@@ -133,6 +135,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
+                m_ObjBulletinBoardRed.SetActive(false);
                 // UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
             });
             m_WareHouseBtn.onClick.AddListener(() =>
@@ -294,6 +297,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnFoodRefreshEvent, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
             EventSystem.S.Register(EventID.OnDeleteTaskBtn, HandleEvent);
+            EventSystem.S.Register(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -306,6 +310,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnFoodRefreshEvent, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
             EventSystem.S.UnRegister(EventID.OnDeleteTaskBtn, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
 
         }
 
@@ -340,6 +345,9 @@ namespace GameWish.Game
                         m_BaoziCountDown.text = (string)param[0];
                         m_BaoziCountDownObj.gameObject.SetActive(true);
                     }
+                    break;
+                case EventID.OnMainMenuDailyTaskRedPoint:
+                    m_ObjBulletinBoardRed.SetActive(true);
                     break;
 
             }
