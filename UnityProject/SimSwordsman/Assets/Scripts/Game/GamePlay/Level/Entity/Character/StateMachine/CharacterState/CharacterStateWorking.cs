@@ -35,6 +35,7 @@ namespace GameWish.Game
             try
             {
                 m_IsWorkingFinished = false;
+                m_ReachTargetPos = false;
 
                 if (m_Controller == null)
                     m_Controller = (CharacterController)handler.GetCharacterController();

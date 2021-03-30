@@ -203,6 +203,8 @@ namespace GameWish.Game
             {
                 if (animConfig.hitSEList.Count > 1)
                 {
+                    if (transform == null)
+                        return;
                     float scaleX = transform.localScale.x;
                     int index = scaleX > 0 ? 1 : 0;
                     var effectGo = GameObjectPoolMgr.S.Allocate(animConfig.hitSEList[index]);

@@ -160,7 +160,7 @@ namespace GameWish.Game
                 m_StateMachine.UpdateState(Time.deltaTime);
             }
         }
-                                 
+
         public void MoveTo(Vector2 pos, System.Action callback)
         {
             m_CharacterView.MoveTo(pos, callback);
@@ -188,7 +188,7 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = 0)
+        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = -1)
         {
             if (state != m_CurState)
             {

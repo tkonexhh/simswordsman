@@ -87,7 +87,7 @@ namespace GameWish.Game
                 TDVisitorRewardConfigTable.metaData,
                 TDFoodConfigTable.metaData,
                 TDCollectConfigTable.metaData,
-                TDAdSceneConfigTable.metaData,
+                Qarth.TDAdSceneConfigTable.metaData,
                 //Task
                 TDDailyTaskTable.metaData,
                 TDMainTaskTable.metaData,
