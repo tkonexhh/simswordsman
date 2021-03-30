@@ -93,7 +93,7 @@ namespace GameWish.Game
 
         public void Share() 
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+//#if UNITY_ANDROID && !UNITY_EDITOR
             if (IsInstallWeChat())
             {
                 try
@@ -122,12 +122,12 @@ namespace GameWish.Game
                     Debug.LogError("微信分享失败:" + ex.ToString());
                     FloatMessage.S.ShowMsg("分享错误，请检查微信是否登录！");
                 }
-                }
-                else
-                {
-                    FloatMessage.S.ShowMsg("未安装微信，分享失败！");
-                }
-#endif
+            }
+            else
+            {
+                FloatMessage.S.ShowMsg("未安装微信，分享失败！");
+            }
+//#endif
         }
     }
 }
