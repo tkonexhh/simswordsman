@@ -279,9 +279,9 @@ namespace GameWish.Game
             }
         }
 
-        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo)
+        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo = null)
         {
-            if (costItems == null || facilityLevelInfo == null)
+            if (costItems == null)
                 return;
             if (costItems.Count == 0)
             {
@@ -291,8 +291,6 @@ namespace GameWish.Game
             }
             else if (costItems.Count == 1)
             {
-                //CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
-                //CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res2Value);
                 int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
 
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj,transform).GetComponent<UpgradeResItem>();
@@ -300,26 +298,16 @@ namespace GameWish.Game
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
                     SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
 
-                UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
-                upgradeResItem2.OnInit(facilityLevelInfo);
-                upgradeResItem2.ShowResItem(GetCurCoin(facilityLevelInfo) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                   SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
-                //CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
-                //CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res2Value);
-
-                //res1Value.text = CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value);
-                //res1Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[0].itemId));
-                //res2Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
-                //res2Image.sprite = abstractAnim.FindSprite("Coin");
-                //res3Image.gameObject.SetActive(false);
-                //res1Image.gameObject.SetActive(true);
-                //res2Image.gameObject.SetActive(true);
+                if (facilityLevelInfo!=null)
+                {
+                    UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
+                    upgradeResItem2.OnInit(facilityLevelInfo);
+                    upgradeResItem2.ShowResItem(GetCurCoin(facilityLevelInfo) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                }
             }
             else if (costItems.Count == 2)
             {
-                //CommonUIMethod.CheckResFontColor(costItems[0], res1Value);
-                //CommonUIMethod.CheckResFontColor(costItems[1], res2Value);
-                //CommonUIMethod.CheckCoinFontColor(facilityLevelInfo, res3Value);
                 int havaItemFirst = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
                 int havaItemSec = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[1].itemId);
 
@@ -332,20 +320,13 @@ namespace GameWish.Game
                 upgradeResItem2.OnInit(costItems[1], transform);
                 upgradeResItem2.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value)*/,
                     SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[1].itemId)));
-
-                UpgradeResItem upgradeResItem3 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
-                upgradeResItem3.OnInit(facilityLevelInfo);
-                upgradeResItem3.ShowResItem(GetCurCoin(facilityLevelInfo)/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                   SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
-                //res1Value.text = CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemFirst, costItems[0].value)) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value);
-                //res1Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[0].itemId));
-                //res2Value.text = CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value);
-                //res2Image.sprite = abstractAnim.FindSprite(GetIconName(costItems[1].itemId));
-                //res3Value.text = GetCurCoin(facilityLevelInfo) + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
-                //res3Image.sprite = abstractAnim.FindSprite("Coin");
-                //res3Image.gameObject.SetActive(true);
-                //res1Image.gameObject.SetActive(true);
-                //res2Image.gameObject.SetActive(true);
+                if (facilityLevelInfo != null)
+                {
+                    UpgradeResItem upgradeResItem3 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
+                    upgradeResItem3.OnInit(facilityLevelInfo);
+                    upgradeResItem3.ShowResItem(GetCurCoin(facilityLevelInfo)/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                }
             }
         }
         private static string GetCurCoin(FacilityLevelInfo facilityLevelInfo)
