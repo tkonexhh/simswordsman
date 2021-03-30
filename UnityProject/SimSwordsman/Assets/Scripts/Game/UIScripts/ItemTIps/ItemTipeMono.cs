@@ -1,4 +1,5 @@
 using HedgehogTeam.EasyTouch;
+using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,14 +33,19 @@ namespace GameWish.Game
         public void OnClicked()
         {
             WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_ItemTipsType);
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
-            if (workConfigItem.unlockHomeLevel >= lobbyLevel)//½âËø
+            if (workConfigItem==null)
             {
-                WorldUIPanel.S.ShowWorkText(transform, workConfigItem.unlockDesc.name, workConfigItem.unlockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon,GetIconName()));
+                Log.w("ItemTipsType is not find , ItemTipsType = " + m_ItemTipsType);
+                return;
+            }
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            if (workConfigItem.unlockHomeLevel <= lobbyLevel)//½âËø
+            {
+                WorldUIPanel.S.ShowWorkText(transform, workConfigItem.functionDesc.name, workConfigItem.functionDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
             }
             else//Î´½âËø
             {
-                WorldUIPanel.S.ShowWorkText(transform, workConfigItem.functionDesc.name, workConfigItem.functionDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                WorldUIPanel.S.ShowWorkText(transform, workConfigItem.unlockDesc.name, workConfigItem.unlockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
             }
         }
 
@@ -47,49 +53,30 @@ namespace GameWish.Game
         {
             switch (m_ItemTipsType)
             {
-                case CollectedObjType.None:
-                    break;
-                case CollectedObjType.Fish:
-                    break;
-                case CollectedObjType.Chicken:
-                    break;
-                case CollectedObjType.Bear:
-                    break;
-                case CollectedObjType.Boar:
-                    break;
-                case CollectedObjType.Snake:
-                    break;
-                case CollectedObjType.Deer:
-                    break;
                 case CollectedObjType.WuWood:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.WuWood);
                 case CollectedObjType.SilverWood:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.SilverWood);
                 case CollectedObjType.QingRock:
                     return TDItemConfigTable.GetIconName((int)RawMaterial.QingRock);
                 case CollectedObjType.CloudRock:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.CloudRock);
                 case CollectedObjType.Vine:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Vine);
                 case CollectedObjType.Iron:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Iron);
                 case CollectedObjType.Ganoderma:
-                    break;
-                case CollectedObjType.Well:
-                    break;
-                case CollectedObjType.Wolf:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Ganoderma);
                 case CollectedObjType.RoyalJelly:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Honey);
                 case CollectedObjType.LotusRoot:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.LotusRoot);
                 case CollectedObjType.Lotus:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Lotus);
                 case CollectedObjType.LotusLeaf:
-                    break;
-                default:
-                    break;
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.LotusLeaf);
             }
+            Log.w("Type is not find "+ m_ItemTipsType);
             return "";
         }
 
