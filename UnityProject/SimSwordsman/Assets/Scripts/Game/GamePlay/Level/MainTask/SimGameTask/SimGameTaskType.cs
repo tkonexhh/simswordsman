@@ -38,5 +38,12 @@ namespace GameWish.Game
         Ganoderma, // 灵芝
         Well, // 井水
         Wolf,
+
+        ///用于Item的提示
+        RoyalJelly,//蜂王浆
+        LotusRoot,//莲藕
+        Lotus,//莲花
+        LotusLeaf,//荷叶
+
     }
 }

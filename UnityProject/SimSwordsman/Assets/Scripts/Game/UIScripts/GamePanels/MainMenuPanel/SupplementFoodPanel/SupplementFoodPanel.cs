@@ -75,7 +75,7 @@ namespace GameWish.Game
 
                 if (m_CurFoodFreshCount <= 0)
                 {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "��ʾ", "����ʳ�ﲹ����������ꡣ");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "今日次数已用完1");
                     return;
                 }
 

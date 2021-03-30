@@ -26,6 +26,22 @@ namespace GameWish.Game
         }
     }
 
+    public class ItemTipsConfig
+    {
+        public string name = string.Empty;
+        public string desc = string.Empty;
+
+        public ItemTipsConfig()
+        {
+           
+        }
+        public void AddCont(string name, string desc)
+        {
+            this.name = name;
+            this.desc = desc;
+        }
+    }
+
     public class WorkConfigItem
     {
         public int workId;
@@ -35,6 +51,8 @@ namespace GameWish.Game
         public List<string> workTalk;
         public List<TaskReward> itemRewards = new List<TaskReward>();
         public List<TaskReward> specialRewards = new List<TaskReward>();
+        public ItemTipsConfig unlockDesc = new ItemTipsConfig ();
+        public ItemTipsConfig functionDesc = new ItemTipsConfig ();
         public int workTime;
         public int workInterval;
         public int waitingTime;
@@ -50,11 +68,24 @@ namespace GameWish.Game
             this.workTalk = tdData.workTalkLst;
             ParseReward(tdData.reward);
             ParseSpecialReward(tdData.speReward);
+            ParseItemTipsDesc(tdData.unlockDesc);
+            ParseItemTipsDesc(tdData.functionDesc);
             this.workTime = tdData.workTime;
             this.workInterval = tdData.workInterval;
             this.waitingTime = tdData.waitingTime;
             this.storeAmount = tdData.storeAmount;
             this.maxWorkManCount = tdData.meanWhileWorkman;
+        }
+
+        private void ParseItemTipsDesc(string functionDesc)
+        {
+            string[] cont = functionDesc.Split(',');
+            if (cont.Length == 2)
+            {
+                unlockDesc.AddCont(cont[0], cont[1]);
+            }
+            else
+                Log.w("cont.Length is error : " + cont);
         }
 
         private void ParseReward(string reward)
