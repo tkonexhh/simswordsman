@@ -94,7 +94,7 @@ namespace GameWish.Game
         public void Share() 
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            if (WeChatShareMgr.S.IsInstallWeChat())
+            if (IsInstallWeChat())
             {
                 try
                 {
@@ -111,7 +111,7 @@ namespace GameWish.Game
                         var code = pic != null ?
                             QRCodeHelper.GenNestedQRCodeTexture(pic, shareText, QRCodeHelper.QRCodeNestPosEnum.RightBottom, 34, 34) :
                             QRCodeHelper.GenQRCodeTexture(shareText);
-                        img.texture = code;
+
                         WeShareUtils.SharePicByWXSession(code, true);
 
                         //DataAnalysisMgr.S.CustomEvent(Define.ShareBtnClick, "1");
