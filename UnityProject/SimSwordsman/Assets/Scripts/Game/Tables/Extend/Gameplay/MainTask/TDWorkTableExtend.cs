@@ -68,8 +68,8 @@ namespace GameWish.Game
             this.workTalk = tdData.workTalkLst;
             ParseReward(tdData.reward);
             ParseSpecialReward(tdData.speReward);
-            ParseItemTipsDesc(tdData.unlockDesc);
-            ParseItemTipsDesc(tdData.functionDesc);
+            ParseItemTipsDesc(unlockDesc, tdData.unlockDesc);
+            ParseItemTipsDesc(functionDesc,tdData.functionDesc);
             this.workTime = tdData.workTime;
             this.workInterval = tdData.workInterval;
             this.waitingTime = tdData.waitingTime;
@@ -77,12 +77,12 @@ namespace GameWish.Game
             this.maxWorkManCount = tdData.meanWhileWorkman;
         }
 
-        private void ParseItemTipsDesc(string functionDesc)
+        private void ParseItemTipsDesc(ItemTipsConfig itemTipsConfig, string functionDesc)
         {
-            string[] cont = functionDesc.Split(',');
+            string[] cont = functionDesc.Split(';');
             if (cont.Length == 2)
             {
-                unlockDesc.AddCont(cont[0], cont[1]);
+                itemTipsConfig.AddCont(cont[0], cont[1]);
             }
             else
                 Log.w("cont.Length is error : " + cont);
