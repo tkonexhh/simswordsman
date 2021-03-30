@@ -91,6 +91,8 @@ namespace GameWish.Game
 
             SendSplitChannelData();
 
+            WeChatShareMgr.S.Init();
+
             yield return null;
         }
 
