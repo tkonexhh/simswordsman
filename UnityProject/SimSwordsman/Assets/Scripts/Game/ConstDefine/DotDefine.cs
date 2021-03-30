@@ -12,7 +12,9 @@ namespace GameWish.Game
 		public const string c_task_enter = "c_task_enter";
 		public const string c_task_refuse = "c_task_refuse";
 		public const string c_task_finish = "c_task_finish";
-		public const string collect = "collect";
+        public const string d_task_finish = "d_task_finish";
+        public const string d_task_receive = "d_task_receive";
+        public const string collect = "collect";
 		public const string food_supply_open = "food_supply_open";
 		public const string food_supply_add = "food_supply_add";
 		public const string signin_open = "signin_open";

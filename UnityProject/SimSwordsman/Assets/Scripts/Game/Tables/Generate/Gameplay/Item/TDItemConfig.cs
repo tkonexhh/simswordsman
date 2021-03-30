@@ -17,7 +17,8 @@ namespace GameWish.Game
         private string m_IconName;   
         private string m_Desc;   
         private EInt m_Price = 0;   
-        private string m_UnlockDesc;  
+        private string m_UnlockDesc;   
+        private string m_FunctionDesc;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -50,6 +51,11 @@ namespace GameWish.Game
         /// 解锁文本
         /// </summary>
         public  string  unlockDesc {get { return m_UnlockDesc; } }
+       
+        /// <summary>
+        /// 功能文本
+        /// </summary>
+        public  string  functionDesc {get { return m_FunctionDesc; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -84,6 +90,9 @@ namespace GameWish.Game
                 case 5:
                     m_UnlockDesc = dataR.ReadString();
                     break;
+                case 6:
+                    m_FunctionDesc = dataR.ReadString();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -94,7 +103,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(6);
+          Dictionary<string, int> ret = new Dictionary<string, int>(7);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -102,6 +111,7 @@ namespace GameWish.Game
           ret.Add("Desc", 3);
           ret.Add("Price", 4);
           ret.Add("UnlockDesc", 5);
+          ret.Add("FunctionDesc", 6);
           return ret;
         }
     } 
