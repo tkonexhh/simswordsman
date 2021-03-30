@@ -105,18 +105,18 @@ namespace GameWish.Game
 
         private void OnClickShow()
         {
-            if (m_Animing)
-                return;
-
+            //if (m_Animing)
+            //    return;
+            Debug.Log("OnClickShow");
             m_Animing = true;
             m_AnimCtrl.Play(m_AnimHash_Show);
         }
 
         private void OnClickHide()
         {
-            if (m_Animing)
-                return;
-
+            //if (m_Animing)
+            //    return;
+            Debug.Log("OnClickHide");
             m_Animing = true;
             m_AnimCtrl.Play(m_AnimHash_Hide);
         }

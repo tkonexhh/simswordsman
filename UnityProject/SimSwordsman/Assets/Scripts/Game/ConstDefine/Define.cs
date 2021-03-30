@@ -296,5 +296,9 @@ namespace GameWish.Game
         #region collect system
         public const string IsClickCollectSytemBubble = "IsClickCollectSytemBubble";
         #endregion
+
+        #region 微信相关
+        public const string WeChatKey = "m_WeChatKey";
+        #endregion
     }
 }
