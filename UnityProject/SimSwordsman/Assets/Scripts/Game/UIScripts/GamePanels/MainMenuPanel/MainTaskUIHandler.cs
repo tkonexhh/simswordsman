@@ -107,7 +107,7 @@ namespace GameWish.Game
         {
             if (m_Animing)
                 return;
-
+            Debug.Log("OnClickShow");
             m_Animing = true;
             m_AnimCtrl.Play(m_AnimHash_Show);
         }
@@ -116,7 +116,7 @@ namespace GameWish.Game
         {
             if (m_Animing)
                 return;
-
+            Debug.Log("OnClickHide");
             m_Animing = true;
             m_AnimCtrl.Play(m_AnimHash_Hide);
         }
