@@ -72,7 +72,31 @@ namespace GameWish.Game
                 + chapterConfig.chapterId.ToString() + "-"
                 + GetChallengeSubTitle(level.ToString());
         }
+        /// <summary>
+        /// Æ´½Ó00£º00£º00
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
+        public static string SplicingTime(int seconds)
+        {
+            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
+            string str = "";
 
+            if (ts.Hours > 0)
+            {
+                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes > 0)
+            {
+                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+            }
+            if (ts.Hours == 0 && ts.Minutes == 0)
+            {
+                str = "00:" + ts.Seconds.ToString("00");
+            }
+
+            return str;
+        }
         private static string GetChallengeSubTitle(string subTitle)
         {
             if (subTitle.Length == 3)
@@ -369,9 +393,17 @@ namespace GameWish.Game
             else
                 text.color = Color.black;
         }
-        public static string GetStrForColor(string color, string cont)
+        public static string GetStrForColor(string color, string cont,bool table = false)
         {
-            return "<color=" + color + ">" + GetStringForTableKey(cont) + "</color>";
+            if (!table)
+            {
+                return "<color=" + color + ">" + cont + "</color>";
+            }
+            else
+            {
+                return "<color=" + color + ">" + GetStringForTableKey(cont) + "</color>";
+
+            }
         }
 
         /// <summary>

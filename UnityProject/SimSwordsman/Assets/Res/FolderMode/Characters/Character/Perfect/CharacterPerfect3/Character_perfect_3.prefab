@@ -52,6 +52,7 @@ MonoBehaviour:
   battleState: 
   m_Body: {fileID: 3845809599068655259}
   m_HeadPos: {fileID: 5585369804306889574}
+  m_BoneFollower_Foot: {fileID: 0}
 --- !u!114 &7696235984069948748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 36945543652988544b08b8d3cf58c6f1, type: 2}
+  - {fileID: 2100000, guid: fc210a7ab330a9c4f8ea8a3b1cca1868, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 6ddaceb5e0b190c40ad96983631e639e, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: ef85b17ea4edfbc47a41d792219da4bb, type: 2}
   initialSkinName: tou_1
   initialFlipX: 0
   initialFlipY: 0

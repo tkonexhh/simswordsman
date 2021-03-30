@@ -120,6 +120,8 @@ namespace GameWish.Game
 
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
 
+                m_CharacterItem.CheckKungfuRedPoint();
+
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
 
                 UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);

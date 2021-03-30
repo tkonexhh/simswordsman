@@ -58,9 +58,11 @@ namespace GameWish.Game
                 subID = int.Parse(taskInfos[1]);
             }
             CreateTaskHandlerDelegate createTaskHandlerDelegate;
-            taskHandlerMap.TryGetValue(taskType, out createTaskHandlerDelegate);
+            taskHandlerMap.TryGetValue(taskMainStr, out createTaskHandlerDelegate);
             if (createTaskHandlerDelegate != null)
             {
+                if (!subID.HasValue)
+                    subID = 1;
                 return createTaskHandlerDelegate(subID);
             }
 

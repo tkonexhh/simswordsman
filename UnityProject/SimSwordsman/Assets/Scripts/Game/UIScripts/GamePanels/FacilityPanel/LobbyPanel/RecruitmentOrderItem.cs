@@ -107,11 +107,8 @@ namespace GameWish.Game
                         default:
                             break;
                     }
+                    ShowRecruitOrderOrTime();
                     m_RecruitOrderValue.gameObject.SetActive(true);
-                    if (m_CurRecruitType == RecruitType.GoldMedal)
-                        m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
-                    else
-                        m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 case ClickType.LookAdvertisement:
@@ -123,6 +120,46 @@ namespace GameWish.Game
                 default:
                     break;
             }
+        }
+
+        private void ShowRecruitOrderOrTime()
+        {
+            int number = 0;
+            int count = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Advertisement);
+            switch (m_CurRecruitType)
+            {
+                case RecruitType.GoldMedal:
+                    number = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
+                    break;
+                case RecruitType.SilverMedal:
+                    number = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
+                    break;
+                default:
+                    break;
+            }
+           
+            if (number==0)
+            {
+                //TODO 
+                //int silverAdverCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Advertisement);
+
+                //Timer.S.Post2Really((i)=> {
+                //    switch (m_CurRecruitType)
+                //    {
+                //        case RecruitType.GoldMedal:
+                //            m_RecruitOrderValue.text = CommonUIMethod.SplicingTime(((48-(m_Hours - (count-1) * 48)) * 3600)-i);
+                //            break;
+                //        case RecruitType.SilverMedal:
+                //            m_RecruitOrderValue.text = CommonUIMethod.SplicingTime(((24-(m_Hours - (count - 1) * 24))*3600)-i);
+                //            break;
+                //        default:
+                //            break;
+                //    }
+                //},1,-1);
+            }
+            else
+                m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + number;
+
         }
 
         private void RefreshAdvertiseInfo()
@@ -396,12 +433,12 @@ namespace GameWish.Game
             {
                 case RecruitType.GoldMedal:
                     return CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_POSSIBLERECRUITMENT) +
-                        CommonUIMethod.GetStrForColor("#69471E", Define.FACILITY_LOBBY_ELITE) + Define.COMMA +
-                        CommonUIMethod.GetStrForColor("#69471E", Define.FACILITY_LOBBY_GENEIUS);
+                        CommonUIMethod.GetStrForColor("#69471E", Define.FACILITY_LOBBY_ELITE, true) + Define.COMMA +
+                        CommonUIMethod.GetStrForColor("#69471E", Define.FACILITY_LOBBY_GENEIUS, true);
                 case RecruitType.SilverMedal:
                     return CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_POSSIBLERECRUITMENT) +
-                        CommonUIMethod.GetStrForColor("#384B76", Define.FACILITY_LOBBY_APPRENTICE) + Define.COMMA +
-                        CommonUIMethod.GetStrForColor("#69471E", Define.FACILITY_LOBBY_ELITE); ;
+                        CommonUIMethod.GetStrForColor("#384B76", Define.FACILITY_LOBBY_APPRENTICE, true) + Define.COMMA +
+                        CommonUIMethod.GetStrForColor("#69471E", Define.FACILITY_LOBBY_ELITE, true); ;
             }
             return "";
         }

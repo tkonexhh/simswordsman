@@ -20,7 +20,6 @@ namespace GameWish.Game
 
         [SerializeField]
         private GameObject m_ChallengeTaskItem;
-        private List<Sprite> m_Sprites = new List<Sprite>();
         private List<ChapterConfigInfo> m_CurChapterInfo = null;
         private List<ChallengeTaskItem> m_ChallengeTaskItemList = new List<ChallengeTaskItem>();
         protected override void OnUIInit()
@@ -77,9 +76,6 @@ namespace GameWish.Game
             m_ChallengeCont.text = TDLanguageTable.Get(Define.CHALLENGE_DESCRIBE);
 
             foreach (var item in m_CurChapterInfo)
-                m_Sprites.Add(FindSprite("ChallengePanel_" + item.clanType.ToString()));
-
-            foreach (var item in m_CurChapterInfo)
                 CreateChallengeTask(item);
         }
 
@@ -106,7 +102,7 @@ namespace GameWish.Game
         private void CreateChallengeTask(ChapterConfigInfo configInfo)
         {
             ChallengeTaskItem challengeTask = Instantiate(m_ChallengeTaskItem, m_ChallengeTrans).GetComponent<ChallengeTaskItem>();
-            challengeTask.OnInit(configInfo,null, m_Sprites,this);
+            challengeTask.OnInit(configInfo,this);
             m_ChallengeTaskItemList.Add(challengeTask);
         }
     }

@@ -30,7 +30,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             BindAddListenerEvent();
-            m_Cont.text = "����û���ԣ���û�����ɻ��ˣ���һ�ι�油��" + m_SupplementFood + "ʳ���";
+            m_Cont.text = "弟子没饭吃，就没力气干活了。看一段广告补充" + m_SupplementFood + "食物吧";
             m_BaoziNum.text = m_SupplementFood.ToString();
 
             string recordTime = GameDataMgr.S.GetPlayerData().GetFoodRefreshRecordingTime();
@@ -53,7 +53,7 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            m_TimesToday.text = "���մ�����" + m_CurFoodFreshCount + Define.SLASH + FOODFRESHCOUNT;
+            m_TimesToday.text = "今日次数:" + m_CurFoodFreshCount + Define.SLASH + FOODFRESHCOUNT;
         }
 
         private void BindAddListenerEvent()
@@ -75,7 +75,7 @@ namespace GameWish.Game
 
                 if (m_CurFoodFreshCount <= 0)
                 {
-                    UIMgr.S.OpenPanel(UIID.LogPanel, "��ʾ", "����ʳ�ﲹ����������ꡣ");
+                    UIMgr.S.OpenPanel(UIID.LogPanel, "提示", "今日次数已用完1");
                     return;
                 }
 

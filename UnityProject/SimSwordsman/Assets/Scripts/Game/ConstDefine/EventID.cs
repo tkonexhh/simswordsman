@@ -383,7 +383,11 @@ namespace GameWish.Game
 
 
         OnRefeshDailyTaskPanel,
+
         OnLoginWeChatSuccess,
+
+        OnRefeshMainTask,
+
     }
 
 }

@@ -170,7 +170,7 @@ namespace GameWish.Game
             for (int i = 0; i < title.Length; i++)
                 CreateFontPrefabs(title[i].ToString());
             m_TaskImg.sprite = FindSprite("enemy_icon_" + m_CommonTaskItemInfo.iconRes);
-            m_TaskDesc.text = m_CommonTaskItemInfo.desc;
+            m_TaskDesc.text = m_CommonTaskItemInfo.taskTxt;
         }
 
         private void RewardItem()
@@ -191,7 +191,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 ////if (m_SelectedList != null)
                     //return;
-                if (m_SelectedDiscipleDic.Count < m_CommonTaskItemInfo.GetCharacterAmount())
+                if (m_SelectedList.Count < m_CommonTaskItemInfo.GetCharacterAmount())
                 {
                     FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
                     return;

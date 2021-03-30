@@ -165,11 +165,8 @@ namespace GameWish.Game
                 case PanelType.Task:
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
-                    //m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[2];
                     HandConfirmBtnEvent();
                     m_AcceptText.text = "发起战斗";
-                    //m_RecommendedSkillsTitle.gameObject.SetActive(false);
-                    //m_RecommendedSkillsValue.gameObject.SetActive(false);
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
@@ -189,14 +186,10 @@ namespace GameWish.Game
         {
             m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
             m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
-            //m_RefuseBtn.gameObject.SetActive(false);
-            //m_AutoSelectedBtn.gameObject.SetActive(false);
             m_StateBg.gameObject.SetActive(false);
             m_State.gameObject.SetActive(false);
             m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
             m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
-            //m_SelectedDiscipleSkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_SELECTEDDISCIPLEYSKILLS);
-            //m_RecommendedSkillsValue.text = 
         }
         private void RefreshDisicipleSkill()
         {
@@ -211,12 +204,22 @@ namespace GameWish.Game
             float result = (float)selected / recommended;
 
             if (result < 0.75)
+            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
+                m_StateBg.sprite = SpriteHandler.S.GetSprite("SendDisciplePanelSendDisciplePanel", "SendDisciplePanel_Danger");
+            }
             else if (result > 1.1f)
+            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-            //m_StateBg.text = CommonUIMethod.GetStrForColor("#A35953", Define.BULLETINBOARD_DANGER);
+                m_StateBg.sprite = SpriteHandler.S.GetSprite("SendDisciplePanelSendDisciplePanel", "SendDisciplePanel_Rleaxed");
+            }
             else
+            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
+                m_StateBg.sprite = SpriteHandler.S.GetSprite("SendDisciplePanelSendDisciplePanel", "SendDisciplePanel_Autions");
+
+
+            }
         }
         private void GetInformationForNeed()
         {
@@ -347,7 +350,6 @@ namespace GameWish.Game
         private void AutoSelectedDisciple()
         {
             //TODO  按照弟子战力从高到底排序
-
             m_SelectedDiscipleDic.Clear();
 
             switch (m_PanelType)
