@@ -31,18 +31,6 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_UpgradeCondition;
         [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
-        [SerializeField]
         private Button m_UpgradeBtn;
         [SerializeField]
         private Text m_UpgradeText;
@@ -53,7 +41,11 @@ namespace GameWish.Game
         private Transform m_MartialArtsContTra;
         [SerializeField]
         private GameObject m_CopyScripturesItem;
-
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
 
         private FacilityType m_CurFacilityType = FacilityType.None;
 
@@ -165,9 +157,6 @@ namespace GameWish.Game
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
-                m_Res1Img.gameObject.SetActive(false);
-                m_Res2Img.gameObject.SetActive(false);
-                m_Res3Img.gameObject.SetActive(false);
                 m_UpgradeCondition.text = Define.COMMON_DEFAULT_STR;
                 m_MartialArtsContTxt.text = Define.COMMON_DEFAULT_STR;
             }
@@ -195,7 +184,7 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
-            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_NextFacilityLevelInfo, this);
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_NextFacilityLevelInfo );
         }
 
         private void BindAddListenerEvent()

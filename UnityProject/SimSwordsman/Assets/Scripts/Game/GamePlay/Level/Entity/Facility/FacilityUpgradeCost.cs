@@ -32,7 +32,7 @@ namespace GameWish.Game
         }
 	}
 
-    public struct CostItem
+    public class CostItem
     {
         public int itemId;
         public int value;

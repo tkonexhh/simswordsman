@@ -64,6 +64,7 @@ namespace GameWish.Game
 
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
             UIDataTable.AddPanelData(UIID.WorldUIPanel, null, "Common/WorldUIPanel", true, 1);
+            UIDataTable.AddPanelData(UIID.UITipsPanel, null, "Common/UITipsPanel", true, 1);
             UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
 
             UIDataTable.AddPanelData(UIID.LobbyPanel, null, "GamePanels/FacilityPanel/LobbyPanel/LobbyPanel");

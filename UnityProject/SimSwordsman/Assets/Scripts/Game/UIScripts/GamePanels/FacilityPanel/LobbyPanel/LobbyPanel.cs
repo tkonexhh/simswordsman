@@ -57,24 +57,18 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_RedPoint;
 
-        [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
+    
 
         [Header("Buttom")]
         [SerializeField]
         private Transform m_Bottom;
         [SerializeField]
-        private GameObject m_RecruitmentOrderItem; 
+        private GameObject m_RecruitmentOrderItem;
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem; 
     
 
         private int m_CurLevel = 1;
@@ -115,9 +109,6 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
             m_UpgradeBtn.onClick.AddListener(() => { OnClickUpgradeBtn(); });
-
-            //m_SilverRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.SilverMedal); });
-            //m_GoldRecruitBtn.onClick.AddListener(() => { OnClickRecruitBtn(RecruitType.GoldMedal); });
         }
 
         protected override void OnOpen()
@@ -187,7 +178,7 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
-            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_NextFacilityLevelInfo, this);
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_NextFacilityLevelInfo);
         }
 
         protected override void OnPanelHideComplete()
@@ -230,9 +221,6 @@ namespace GameWish.Game
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
-                m_Res1Img.gameObject.SetActive(false);
-                m_Res2Img.gameObject.SetActive(false);
-                m_Res3Img.gameObject.SetActive(false);
                 m_UnlockContentValue.text = "无";
             }
             else
