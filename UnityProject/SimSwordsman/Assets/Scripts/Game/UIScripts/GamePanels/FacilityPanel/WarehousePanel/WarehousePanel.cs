@@ -32,29 +32,22 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_UpgradeCondition;
         [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
-        [SerializeField]
         private Button m_UpgradeBtn;
         [SerializeField]
         private Text m_UpgradeText;
         [SerializeField]
         private GameObject m_RedPoint;
         [Header("Bottom")]
-
         [SerializeField]
         private Transform m_GoodsTrans;
         [SerializeField]
         private GameObject m_WarehouseItem;
+
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
 
         private const int m_NotUnlockMaxCapacity = 10;
 
@@ -107,9 +100,6 @@ namespace GameWish.Game
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
-                m_Res1Img.gameObject.SetActive(false);
-                m_Res2Img.gameObject.SetActive(false);
-                m_Res3Img.gameObject.SetActive(false);
                 m_NextReservesIcon.gameObject.SetActive(false);
                 m_NextReservesValue.text = Define.COMMON_DEFAULT_STR;
                 m_UpgradeCondition.text = Define.COMMON_DEFAULT_STR; ;
@@ -143,7 +133,7 @@ namespace GameWish.Game
       
         private void RefreshResInfo()
         {
-            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_WarehouseNextLevelInfo, this);
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_WarehouseNextLevelInfo);
         }
        
         private string GetIconName(int id)

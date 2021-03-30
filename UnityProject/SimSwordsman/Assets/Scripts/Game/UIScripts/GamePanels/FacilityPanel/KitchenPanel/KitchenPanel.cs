@@ -33,20 +33,6 @@ namespace GameWish.Game
         private Button m_CloseBtn;
         [SerializeField]
         private Button m_UpgradeBtn;
-
-        [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
-
         [SerializeField]
         private Transform m_KitchenContTra;
 
@@ -55,12 +41,18 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_RedPoint;
 
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
+
+
         private FacilityType m_CurFacilityType = FacilityType.None;
         private List<CostItem> m_CostItems;
         private int m_CurLevel;
         private KitchLevelInfo m_CurKitchLevelInfo = null;
         private KitchLevelInfo m_NextKitchLevelInfo = null;
-
 
         private List<FoodItem> m_Items = new List<FoodItem>();
 
@@ -78,9 +70,6 @@ namespace GameWish.Game
             if (m_CurLevel == maxLevel)
             {
                 m_UpgradeBtn.gameObject.SetActive(false);
-                m_Res1Img.gameObject.SetActive(false);
-                m_Res2Img.gameObject.SetActive(false);
-                m_Res3Img.gameObject.SetActive(false);
                 m_NextFoodLimitTxt.text = Define.COMMON_DEFAULT_STR;
                 m_NextRecoverySpeedTxt.text = Define.COMMON_DEFAULT_STR;
                 m_NextRecoverySpeedTxt.text = Define.COMMON_DEFAULT_STR;
@@ -121,7 +110,7 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
-            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_NextKitchLevelInfo, this);
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_NextKitchLevelInfo);
         }
         protected override void OnPanelOpen(params object[] args)
         {

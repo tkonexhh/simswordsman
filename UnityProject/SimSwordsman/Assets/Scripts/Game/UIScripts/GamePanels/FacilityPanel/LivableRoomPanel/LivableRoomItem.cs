@@ -38,18 +38,6 @@ namespace GameWish.Game
         private Text m_UpgradeConditions;
         [Header("Bottom")]
         [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
         private Button m_UpgradeBtn;
         [SerializeField]
         private Text m_UpgradeBtnValue;
@@ -74,6 +62,11 @@ namespace GameWish.Game
         private GameObject m_UpperMiddle; 
         [SerializeField]
         private GameObject m_RedPoint;
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
 
         private LivableRoomLevelInfo m_CurLivableRoomLevelInfo = null;
         private LivableRoomLevelInfo m_NextLivableRoomLevelInfo = null;
@@ -322,9 +315,6 @@ namespace GameWish.Game
                     m_FullScale.text = CommonUIMethod.GetStrForColor("#AD7834", Define.COMMON_FULLEDLEVEL);
                     m_UpgradeConditions.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeBtn.gameObject.SetActive(false);
-                    m_Res3Img.gameObject.SetActive(false);
-                    m_Res1Img.gameObject.SetActive(false);
-                    m_Res2Img.gameObject.SetActive(false);
                     m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);
                     m_LivableRoomImg.gameObject.SetActive(true);
                     m_LivableRoomImgLock.gameObject.SetActive(false);
@@ -337,7 +327,7 @@ namespace GameWish.Game
 
         private void RefreshResInfo(LivableRoomLevelInfo livableRoomLevel, List<CostItem> costItems)
         {
-            CommonUIMethod.RefreshUpgradeResInfo(costItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, livableRoomLevel, m_ParentPanel);
+            CommonUIMethod.RefreshUpgradeResInfo(costItems, m_UpgradeResItemTra, m_UpgradeResItem, livableRoomLevel);
 
             //if (costItems == null)
             //    return;

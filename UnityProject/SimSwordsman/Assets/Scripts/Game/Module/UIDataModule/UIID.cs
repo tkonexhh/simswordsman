@@ -18,6 +18,7 @@ namespace GameWish.Game
         /// </summary>
         MyFloatMessagePanel,
         WorldUIPanel,
+        UITipsPanel,
         RewardPanel,
         /// <summary>
         /// 新手引导

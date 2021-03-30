@@ -33,7 +33,17 @@ namespace GameWish.Game
 
         public ItemTipsConfig()
         {
-           
+         
+        }
+        public ItemTipsConfig(string functionDesc)
+        {
+            string[] cont = functionDesc.Split(';');
+            if (cont.Length == 2)
+            {
+                AddCont(cont[0], cont[1]);
+            }
+            else
+                Log.w("cont.Length is error : " + cont);
         }
         public void AddCont(string name, string desc)
         {

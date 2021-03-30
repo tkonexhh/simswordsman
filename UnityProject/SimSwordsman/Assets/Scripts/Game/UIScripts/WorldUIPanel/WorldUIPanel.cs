@@ -64,7 +64,6 @@ namespace GameWish.Game
                 GameObjectPoolMgr.S.Recycle(itemTipsGo);
             }, 3.0f);
         }
-
         private void HandleEvent(int key, params object[] args)
         {
             switch (key)

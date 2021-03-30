@@ -19,20 +19,6 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ConstructionConditionValue;
         [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
-
-
-        [SerializeField]
         private Image m_FacilityPhotoImg;
 
         [SerializeField]
@@ -41,7 +27,11 @@ namespace GameWish.Game
         private Button m_CloseBtn;   
         [SerializeField]
         private GameObject m_RedPoint;
-
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
         private FacilityType m_FacilityType;
         private int m_SubId;
 
@@ -176,7 +166,7 @@ namespace GameWish.Game
    
         private void RefreshResInfo()
         {
-            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, m_FacilityLevelInfo,this);
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_FacilityLevelInfo);
         }
         private void BindAddListenerEvent()
         {

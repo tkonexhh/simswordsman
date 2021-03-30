@@ -77,6 +77,8 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             RegisterEvents();
+
+
             m_SettingBtn.onClick.AddListener(() =>
             {
                 //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);

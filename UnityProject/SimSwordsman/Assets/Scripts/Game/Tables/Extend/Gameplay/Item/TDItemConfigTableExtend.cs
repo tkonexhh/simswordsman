@@ -21,6 +21,9 @@ namespace GameWish.Game
                 propConfigInfo.iconName = tdData.iconName;
                 propConfigInfo.desc = tdData.desc;
                 propConfigInfo.price = tdData.price;
+                propConfigInfo.unlockHomeLevel = tdData.homeLevel;
+                propConfigInfo.unlockDesc = tdData.unlockDesc;
+                propConfigInfo.itemTipsConfig = new ItemTipsConfig(tdData.functionDesc); 
 
                 propConfigInfoDic.Add(tdData.id, propConfigInfo);
             }
@@ -49,6 +52,9 @@ namespace GameWish.Game
         public string name;
         public string desc;
         public int price;
+        public int unlockHomeLevel;
         public string iconName;
+        public string unlockDesc;
+        public ItemTipsConfig itemTipsConfig;
     }
 }
