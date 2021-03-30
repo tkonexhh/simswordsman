@@ -34,7 +34,7 @@ namespace GameWish.Game
 
         public void ResetDailyData()
         {
-            Debug.LogError("ResetDailyData");
+            //Debug.LogError("ResetDailyData");
             GetPlayerData().ResetDailyData();
         }
 
