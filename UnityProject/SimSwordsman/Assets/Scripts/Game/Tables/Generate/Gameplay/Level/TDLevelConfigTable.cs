@@ -87,5 +87,15 @@ namespace GameWish.Game
                 return null;
             }
         }
+
+        public static bool IsBossLevel(int key) 
+        {
+            TDLevelConfig data = GetData(key);
+            if (data != null && data.type.ToLower().Equals("boss")) {
+                return true;
+            }
+
+            return false;
+        }
     }
 }//namespace LR

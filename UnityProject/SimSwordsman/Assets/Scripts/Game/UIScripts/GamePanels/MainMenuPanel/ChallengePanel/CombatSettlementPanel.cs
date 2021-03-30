@@ -35,6 +35,7 @@ namespace GameWish.Game
         private PanelType m_PanelType;
         private SimGameTask m_CurTaskInfo = null;
         private List<RewardBase> m_RewardList = new List<RewardBase>();
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -104,7 +105,23 @@ namespace GameWish.Game
                 {
                     if (m_RewardList.Count > 0)
                     {
-                        UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true);
+                        bool isBossLevel = false;
+                        if (m_PanelType == PanelType.Challenge)
+                        {
+                            if (m_LevelConfigInfo != null) 
+                            {
+                                isBossLevel = TDLevelConfigTable.IsBossLevel(m_LevelConfigInfo.level);
+                            }
+                        }
+
+                        if (isBossLevel)
+                        {
+                            UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true);
+                        }
+                        else
+                        {
+                            UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
+                        }
                         return;
                     }
                 }

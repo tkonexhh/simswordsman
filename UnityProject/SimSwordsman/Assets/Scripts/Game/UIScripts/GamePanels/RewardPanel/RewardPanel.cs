@@ -50,6 +50,10 @@ namespace GameWish.Game
             m_DoubleRewardBtn.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// args[1]:代表是否显示双倍按钮
+        /// </summary>
+        /// <param name="args"></param>
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
