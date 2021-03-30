@@ -395,7 +395,7 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            if (PlatformHelper.isEditor)
+            if (PlatformHelper.isTestMode)
             {
                 m_EditerDisciple.onClick.AddListener(()=> {
                     MainGameMgr.S.CharacterMgr.AddCharacterLevel(m_CurDisciple.id,20);

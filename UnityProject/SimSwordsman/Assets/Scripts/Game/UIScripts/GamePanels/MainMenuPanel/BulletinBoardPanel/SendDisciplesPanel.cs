@@ -191,20 +191,26 @@ namespace GameWish.Game
             m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
             m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
         }
-        private void RefreshDisicipleSkill(bool herb = false)
+        private void RefreshDisicipleSkill()
         {
              float atkValue = 0;
             foreach (var item in m_SelectedDiscipleDic.Values)
                 atkValue += item.atkValue;
           
             int selected = (int)atkValue;
-            if (m_PlayerDataHerb.Count>=1)
+            for (int i = 0; i < m_PlayerDataHerb.Count; i++)
             {
-                HerbConfig herbConfig = TDHerbConfigTable.GetHerbById((int)m_PlayerDataHerb[0]);
-                float addition = herbConfig.EffectParam;
-                selected = (int)(herb ? (int)atkValue * (addition) : atkValue);
+                HerbConfig herbConfig = TDHerbConfigTable.GetHerbById((int)m_PlayerDataHerb[i]);
+                float addition = herbConfig.PowerRatio;
+                selected = (int)(selected * addition);
             }
-            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", CommonUIMethod.GetTenThousandOrMillion((long)atkValue));
+            //if (m_PlayerDataHerb.Count>=1)
+            //{
+            //    HerbConfig herbConfig = TDHerbConfigTable.GetHerbById((int)m_PlayerDataHerb[0]);
+            //    float addition = herbConfig.PowerRatio;
+            //    selected = (int)(herb ? (int)atkValue * (addition) : atkValue);
+            //}
+            m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", CommonUIMethod.GetTenThousandOrMillion((long)selected));
             long recommended = m_LevelConfigInfo.recommendAtkValue;
             float result = (float)selected / recommended;
 
@@ -453,7 +459,7 @@ namespace GameWish.Game
                 if (m_PlayerDataHerb.Contains(herbItem.HerbID))
                     m_PlayerDataHerb.Remove(herbItem.HerbID);
             }
-            RefreshDisicipleSkill(obj);
+            RefreshDisicipleSkill();
         }
     }
 }

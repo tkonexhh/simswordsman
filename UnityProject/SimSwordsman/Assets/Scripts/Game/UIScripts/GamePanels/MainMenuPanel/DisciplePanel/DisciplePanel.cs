@@ -147,7 +147,7 @@ namespace GameWish.Game
         private void BindAddListenerEvevnt()
         {
 
-            if (PlatformHelper.isEditor)
+            if (PlatformHelper.isTestMode)
             {
                 m_Disciple.onClick.AddListener(() =>
                 {
