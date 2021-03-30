@@ -57,10 +57,12 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+
             m_RewardsDataList.Clear();
             m_DoubleRewardBtn.gameObject.SetActive(false);
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
+
             if (args != null)
             {
                 m_RewardsDataList = (List<RewardBase>)args[0];

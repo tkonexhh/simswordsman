@@ -35,7 +35,9 @@ namespace GameWish.Game
         public void Init(RewardPanel rewardPanel, RewardBase reward, int sortOrder)
         {
             m_RewardBaseData = reward;
+
             m_SortOrder = sortOrder;
+
             m_ResLoader = ResLoader.Allocate();
 
             if (reward.RewardItem == RewardItemType.Kongfu)
