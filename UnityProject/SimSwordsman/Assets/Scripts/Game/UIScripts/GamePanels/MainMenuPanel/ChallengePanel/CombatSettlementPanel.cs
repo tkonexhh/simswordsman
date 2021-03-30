@@ -104,7 +104,7 @@ namespace GameWish.Game
                 {
                     if (m_RewardList.Count > 0)
                     {
-                        UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
+                        UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true);
                         return;
                     }
                 }

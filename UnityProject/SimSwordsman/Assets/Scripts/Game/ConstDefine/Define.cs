@@ -300,5 +300,10 @@ namespace GameWish.Game
         #region 微信相关
         public const string WeChatKey = "m_WeChatKey";
         #endregion
+
+
+        #region 广告相关
+        public const string DoubleGetBossRewardADName = "DoubleReward";
+        #endregion
     }
 }

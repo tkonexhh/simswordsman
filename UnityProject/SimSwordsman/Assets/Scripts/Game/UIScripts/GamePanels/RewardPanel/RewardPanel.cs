@@ -18,23 +18,53 @@ namespace GameWish.Game
 
         [SerializeField]
         private GameObject m_ItemObj;
-
+        [SerializeField]
+        private Button m_DoubleRewardBtn;
         public Action OnBtnCloseEvent = null;
         List<RewardPanelItem> m_Items = new List<RewardPanelItem>();
+
+        private List<RewardBase> m_RewardsDataList = new List<RewardBase>();
 
         protected override void OnUIInit()
         {
             base.OnUIInit();
             BindAddListenerEvent();
+
+            m_DoubleRewardBtn.onClick.AddListener(()=> 
+            {
+                AdsManager.S.PlayRewardAD(Define.DoubleGetBossRewardADName, LookRewardADSuccessCallBack);
+            });
         }
+
+        private void LookRewardADSuccessCallBack(bool obj)
+        {
+            if (m_RewardsDataList.Count > 0) 
+            {
+                m_RewardsDataList.ForEach(x => x.AcceptReward());
+
+                for (int i = 0; i < m_Items.Count; i++)
+                {
+                    m_Items[i].UpdateDoubleRewardCount();
+                }
+            }
+            m_DoubleRewardBtn.gameObject.SetActive(false);
+        }
+
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            m_RewardsDataList.Clear();
+            m_DoubleRewardBtn.gameObject.SetActive(false);
 
             if (args != null)
             {
-                List<RewardBase> rewards = (List<RewardBase>)args[0];
-                InitItems(rewards);
+                m_RewardsDataList = (List<RewardBase>)args[0];
+                InitItems(m_RewardsDataList);
+
+                if (args.Length > 1) {
+                    bool isShowDoubleRewardBtn = (bool)args[1];
+                    m_DoubleRewardBtn.gameObject.SetActive(isShowDoubleRewardBtn);
+                }
             }
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
