@@ -20,7 +20,6 @@ namespace GameWish.Game
         public SignClickDele SignItemCallBack;//点击按钮回调
 
         private Image m_NormalImage;
-        private Image m_GlowImage;
         private Image m_ReadyImage;
 
         public Image m_IconImage;
@@ -102,7 +101,6 @@ namespace GameWish.Game
         private void FindChildObject(Transform trans)
         {
             m_NormalImage = trans.Find("NormalBG").GetComponent<Image>();
-            m_GlowImage = trans.Find("GlowBG").GetComponent<Image>();
             m_ReadyImage = trans.Find("AlreadyBG").GetComponent<Image>();
             m_IconImage = trans.Find("Icon").GetComponent<Image>();
 
@@ -135,7 +133,6 @@ namespace GameWish.Game
             {
                 case SignInStatus.SignEnable:
                     m_NormalImage.gameObject.SetActive(true);
-                    m_GlowImage.gameObject.SetActive(true);
                     m_ReadyImage.gameObject.SetActive(true);
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
@@ -148,7 +145,6 @@ namespace GameWish.Game
                     break;
                 case SignInStatus.SignDisable:
                     m_NormalImage.gameObject.SetActive(true);
-                    m_GlowImage.gameObject.SetActive(false);
                     m_ReadyImage.gameObject.SetActive(false);
                     m_GouImage.gameObject.SetActive(false);
                     m_DayText.gameObject.SetActive(true);
@@ -161,7 +157,6 @@ namespace GameWish.Game
                     break;
                 case SignInStatus.SignAlready:
                     m_NormalImage.gameObject.SetActive(true);
-                    m_GlowImage.gameObject.SetActive(false);
                     m_ReadyImage.gameObject.SetActive(false);
                     m_GouImage.gameObject.SetActive(true);
                     m_DayText.gameObject.SetActive(true);

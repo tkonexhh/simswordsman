@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SupplementFoodAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 49083dbb14b877e458dae64a7b35efe8, type: 3}
+    - {fileID: 2800000, guid: b07b8a21936daa945a6eb393dcfe4411, type: 3}
+    - {fileID: 2800000, guid: b462abfa2a2fcee4e9e5a4f5515b94ce, type: 3}
+    - {fileID: 2800000, guid: 18908d8cecf843240b616e33f1b1807e, type: 3}
+    - {fileID: 2800000, guid: 08a4b688cb6cc8c4fbaa4ae10a6e1804, type: 3}
+    - {fileID: 2800000, guid: 215e51d93c117a4429c16f78a30baba8, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b07b8a21936daa945a6eb393dcfe4411, type: 3}
+  - {fileID: 21300000, guid: 08a4b688cb6cc8c4fbaa4ae10a6e1804, type: 3}
+  - {fileID: 21300000, guid: 215e51d93c117a4429c16f78a30baba8, type: 3}
+  - {fileID: 21300000, guid: b462abfa2a2fcee4e9e5a4f5515b94ce, type: 3}
+  - {fileID: 21300000, guid: 49083dbb14b877e458dae64a7b35efe8, type: 3}
+  - {fileID: 21300000, guid: 18908d8cecf843240b616e33f1b1807e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - SupplementFood_Bg1
+  - SupplementFood_Circular
+  - SupplementFood_title
+  - SupplementFood_Bg2
+  - SupplementFood_Advertisement
+  - SupplementFood_Bg3
+  m_Tag: SupplementFoodAtlas
+  m_IsVariant: 0

@@ -54,7 +54,7 @@ namespace GameWish.Game
             SpritesData data = null;
 
             string folderName = PathHelper.FullAssetPath2Name(folderPath);
-            string spriteDataPath = folderPath + "/" + folderName + folderName + ".spriteatlas";
+            string spriteDataPath = folderPath + "/" + folderName + "Atlas" + ".spriteatlas";
 
             if (!File.Exists(spriteDataPath))
             {
@@ -101,10 +101,10 @@ namespace GameWish.Game
                     SpriteAtlasExtensions.Add(atlas, new UnityEngine.Object[] { texture });
                     AssetDatabase.SaveAssets();
                 }
-                
+
             }
 
         }
     }
-    
+
 }

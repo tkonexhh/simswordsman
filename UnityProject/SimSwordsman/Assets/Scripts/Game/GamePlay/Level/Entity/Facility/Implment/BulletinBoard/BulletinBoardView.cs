@@ -34,12 +34,12 @@ namespace GameWish.Game
             }
         }
 
-        private void SetBulletinBoardTip(bool isActive)
-        {
-            FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Lobby);
-            if (facilityController.GetState() == FacilityState.Unlocked)
-                tips.transform.parent.gameObject.SetActive(isActive);
-        }
+        // private void SetBulletinBoardTip(bool isActive)
+        // {
+        //     FacilityController facilityController = MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Lobby);
+        //     if (facilityController.GetState() == FacilityState.Unlocked)
+        //         tips.transform.parent.gameObject.SetActive(isActive);
+        // }
 
         public override void OnClicked()
         {

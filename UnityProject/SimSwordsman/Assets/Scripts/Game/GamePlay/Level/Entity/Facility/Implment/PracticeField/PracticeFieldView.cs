@@ -13,6 +13,8 @@ namespace GameWish.Game
         private List<Transform> m_FlagPos = new List<Transform>();
         [SerializeField]
         private GameObject m_Flag = null;
+        [SerializeField] private GameObject m_ObjFast;
+
 
 
         public override FacilityController GenerateContoller()

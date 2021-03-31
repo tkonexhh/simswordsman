@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TacticalFunctionPanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 1c0b225908b341f4b83b1943634aabb2, type: 3}
+    - {fileID: 2800000, guid: 5ffff5fe1eb29c640808b58a33ffd1d6, type: 3}
+    - {fileID: 2800000, guid: 67f3368c8c1b212488a12ab5de67534a, type: 3}
+    - {fileID: 2800000, guid: d342181c9d62b7d47a94c47882cd46b3, type: 3}
+    - {fileID: 2800000, guid: dbe442364d346244db74f8a64d86443d, type: 3}
+    - {fileID: 2800000, guid: 33b76c6a92deaae47892fe71912c9355, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: dbe442364d346244db74f8a64d86443d, type: 3}
+  - {fileID: 21300000, guid: 1c0b225908b341f4b83b1943634aabb2, type: 3}
+  - {fileID: 21300000, guid: 33b76c6a92deaae47892fe71912c9355, type: 3}
+  - {fileID: 21300000, guid: d342181c9d62b7d47a94c47882cd46b3, type: 3}
+  - {fileID: 21300000, guid: 67f3368c8c1b212488a12ab5de67534a, type: 3}
+  - {fileID: 21300000, guid: 5ffff5fe1eb29c640808b58a33ffd1d6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - TacticalFunction_Bg1
+  - TacticalFunctionPanel_Bg1
+  - TacticalFunction_Icon1
+  - TacticalFunctionPanel_Bg4
+  - TacticalFunctionPanel_Bg3
+  - TacticalFunctionPanel_Bg2
+  m_Tag: TacticalFunctionPanelAtlas
+  m_IsVariant: 0
