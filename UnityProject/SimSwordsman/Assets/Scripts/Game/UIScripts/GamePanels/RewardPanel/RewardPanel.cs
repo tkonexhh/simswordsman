@@ -28,6 +28,8 @@ namespace GameWish.Game
         private bool m_IsBossLevel = false;
         private bool m_IsLookAD = false;
 
+        private int m_CloseBtnTimerID = -1;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -54,7 +56,6 @@ namespace GameWish.Game
             }
             m_DoubleRewardBtn.gameObject.SetActive(false);
         }
-
         /// <summary>
         /// args[1]:代表是否是boss关卡
         /// </summary>
@@ -80,6 +81,18 @@ namespace GameWish.Game
                 }
             }
 
+            if (m_IsBossLevel)
+            {
+                m_CloseBtn.gameObject.SetActive(false);
+                m_CloseBtnTimerID = Timer.S.Post2Really((x) =>
+                {
+                    m_CloseBtn.gameObject.SetActive(true);
+                    m_CloseBtnTimerID = -1;
+                }, 1, 1);
+            }
+            else {
+                m_CloseBtn.gameObject.SetActive(true);
+            }
         }
 
         void InitItems(List<RewardBase> rewards)
@@ -147,7 +160,11 @@ namespace GameWish.Game
             }
             else {
                 GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(false);
-            }            
+            }
+
+            if (m_CloseBtnTimerID != -1) {
+                Timer.S.Cancel(m_CloseBtnTimerID);
+            }
         }
     }
 }
