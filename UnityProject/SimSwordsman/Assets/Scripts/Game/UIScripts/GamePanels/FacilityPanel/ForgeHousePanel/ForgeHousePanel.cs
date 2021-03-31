@@ -166,12 +166,5 @@ namespace GameWish.Game
                 itemICom.OnInit(this, null);
             }
         }
-
-        protected override void OnClose()
-        {
-            base.OnClose();
-
-            m_Items.ForEach(x => x.OnClose());
-        }
     }
 }
