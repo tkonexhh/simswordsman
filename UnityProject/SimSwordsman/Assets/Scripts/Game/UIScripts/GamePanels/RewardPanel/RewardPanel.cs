@@ -91,7 +91,7 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(this, rewards[i], m_SortingOrder + 10);
+                m_Items[i].Init(this, rewards[i]);
             }
 
 
