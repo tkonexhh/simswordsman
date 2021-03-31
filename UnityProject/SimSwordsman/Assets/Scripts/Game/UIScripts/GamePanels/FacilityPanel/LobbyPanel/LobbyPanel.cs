@@ -88,6 +88,7 @@ namespace GameWish.Game
         private RecruitDiscipleMgr m_RecruitDiscipleMgr = null;
         private FacilityMgr m_FacilityMgr = null;
 
+        private List<RecruitmentOrderItem> m_RecruitmentItemList = new List<RecruitmentOrderItem>();
 
         private void InitFixedInfo()
         {
@@ -131,19 +132,28 @@ namespace GameWish.Game
 
             RefreshPanelInfo();
 
+            m_RecruitmentItemList.Clear();
             CreateRecruitmentOrder(RecruitType.SilverMedal, FindSprite("SilverOrderImg"));
             CreateRecruitmentOrder(RecruitType.GoldMedal, FindSprite("GoldOrderImg"));
         }
 
         private void CreateRecruitmentOrder(RecruitType Medal, Sprite sprite)
         {
-            ItemICom itemICom = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<ItemICom>();
-            itemICom.OnInit(this, null, Medal, sprite);
+            RecruitmentOrderItem item = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<RecruitmentOrderItem>();
+            if (item != null) {
+                m_RecruitmentItemList.Add(item);
+                item.OnInit(this, null, Medal, sprite);
+            }
+
+            //ItemICom itemICom = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<ItemICom>();
+            //itemICom.OnInit(this, null, Medal, sprite);
         }
 
         protected override void OnClose()
         {
             base.OnClose();
+
+            m_RecruitmentItemList.ForEach(x => x.OnClose());
         }
 
         /// <summary>

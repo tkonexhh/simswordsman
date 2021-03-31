@@ -2,6 +2,7 @@ using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,8 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_RecruitOrderValue;
         [SerializeField]
+        private Text m_RecruitCountText;
+        [SerializeField]
         private Image m_RecruitOrderImg;
         [SerializeField]
         private Button m_RecruitmentBtn;
@@ -42,6 +45,9 @@ namespace GameWish.Game
         private bool m_IsFirstRecruitment = false;
         private Dictionary<RecruitType, ClickType> m_RecruitDic = new Dictionary<RecruitType, ClickType>();
         private int m_Hours;
+        private int m_CountDownTimeHours;
+        private CountDownItemTest m_CountDownItem = null;
+        private StringBuilder m_TempStringBuild = new StringBuilder();
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -52,6 +58,7 @@ namespace GameWish.Game
 
             m_RecruitDiscipleMgr = MainGameMgr.S.RecruitDisciplerMgr;
             m_CurRecruitType = (RecruitType)obj[0];
+            m_CountDownTimeHours = m_CurRecruitType == RecruitType.GoldMedal ? _48Hours : _24Hours;
             m_CurSprite = (Sprite)obj[1];
             m_RecruitDic[RecruitType.SilverMedal] = ClickType.Free;
             m_RecruitDic[RecruitType.GoldMedal] = ClickType.Free;
@@ -77,6 +84,8 @@ namespace GameWish.Game
             }
 
             BindAddListenerEvent();
+
+            UpdateADCoolingTime();
         }
 
         private void RefreshPanelInfo()
@@ -90,12 +99,12 @@ namespace GameWish.Game
                 case ClickType.Free:
                     m_RecruitmentImg.gameObject.SetActive(false);
                     m_RecruitOrderValue.gameObject.SetActive(false);
-                    m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
+                    //m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_FREE);
                     break;
                 case ClickType.RecruitmentOrder:
                     m_RecruitmentImg.gameObject.SetActive(false);
-                    m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
+                    //m_RecruitValue.text = Define.COMMON_DEFAULT_STR;
                     switch (m_CurRecruitType)
                     {
                         case RecruitType.GoldMedal:
@@ -137,29 +146,18 @@ namespace GameWish.Game
                 default:
                     break;
             }
-           
-            if (number==0)
+
+            if (number == 0)
             {
-                //TODO 
-                //int silverAdverCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Advertisement);
 
-                //Timer.S.Post2Really((i)=> {
-                //    switch (m_CurRecruitType)
-                //    {
-                //        case RecruitType.GoldMedal:
-                //            m_RecruitOrderValue.text = CommonUIMethod.SplicingTime(((48-(m_Hours - (count-1) * 48)) * 3600)-i);
-                //            break;
-                //        case RecruitType.SilverMedal:
-                //            m_RecruitOrderValue.text = CommonUIMethod.SplicingTime(((24-(m_Hours - (count - 1) * 24))*3600)-i);
-                //            break;
-                //        default:
-                //            break;
-                //    }
-                //},1,-1);
             }
-            else
-                m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT) + number;
-
+            else 
+            {
+                //m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT);
+                //m_RecruitCountText.text = number.ToString();
+            }
+            m_RecruitOrderValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_CURCOUNT);
+            m_RecruitCountText.text = number.ToString();
         }
 
         private void RefreshAdvertiseInfo()
@@ -215,19 +213,74 @@ namespace GameWish.Game
             m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
             int silverAdverCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(m_CurRecruitType, RecruitTimeType.Advertisement);
 
-            int count;
-            if (m_CurRecruitType == RecruitType.GoldMedal)
-                count = m_Hours / _48Hours;
-            else
-                count = m_Hours / _24Hours;
-            if (count > silverAdverCount)
-            {
-                MainGameMgr.S.RecruitDisciplerMgr.ResetAdvertisementCount(m_CurRecruitType);
-            }
+            //int count;
+            //if (m_CurRecruitType == RecruitType.GoldMedal)
+            //    count = m_Hours / _48Hours;
+            //else
+            //    count = m_Hours / _24Hours;
+            //if (count > silverAdverCount)
+            //{
+            //    MainGameMgr.S.RecruitDisciplerMgr.ResetAdvertisementCount(m_CurRecruitType);
+            //}
 
             JudgeRecruitmentConditions();
 
             RefreshPanelInfo();
+        }
+
+        private void UpdateADCoolingTime() 
+        {
+            if (m_CountDownItem != null) 
+            {
+                CountDowntMgr.S.StopCountDownItemTest(m_CountDownItem.GetCountDownID());
+            }
+
+            bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType, m_CountDownTimeHours);
+
+            if (isCanLookADRecruit)
+            {
+                m_RecruitValue.text = string.Format("今日次数:1/1");
+                m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
+            }
+            else
+            {
+                DateTime lastClickTime = GameDataMgr.S.GetPlayerData().GetRecruitLastClickTime(m_CurRecruitType);
+
+                DateTime endTime = lastClickTime.AddHours(m_CountDownTimeHours);
+
+                TimeSpan ts = endTime - DateTime.Now;
+
+                m_CountDownItem = CountDowntMgr.S.SpawnCountDownItemTest((int)ts.TotalSeconds, () =>
+                {
+                    UpdateRecruitValueText(ts, endTime);
+                }, ()=> {
+                    m_RecruitValue.text = string.Format("今日次数:1/1");
+                    m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
+                    m_CountDownItem = null;
+                });
+                UpdateRecruitValueText(ts, endTime);
+            }
+            m_RecruitValue.fontSize = 20;
+        }
+
+        private void UpdateRecruitValueText(TimeSpan ts, DateTime endTime) 
+        {
+            ts = endTime - DateTime.Now;
+            m_TempStringBuild.Clear();
+            m_TempStringBuild.Append(((int)ts.TotalHours).ToString("00"));
+            m_TempStringBuild.Append(":");
+            m_TempStringBuild.Append(ts.Minutes.ToString("00"));
+            m_TempStringBuild.Append(":");
+            m_TempStringBuild.Append(ts.Seconds.ToString("00"));
+            m_RecruitValue.text = string.Format("下次免费 {0}", m_TempStringBuild.ToString());
+        }
+
+        public void OnClose() 
+        {
+            if (m_CountDownItem != null) 
+            {
+                CountDowntMgr.S.StopCountDownItemTest(m_CountDownItem.GetCountDownID());
+            }            
         }
 
         /// <summary>
@@ -328,19 +381,21 @@ namespace GameWish.Game
                 default:
                     break;
             }
+
             GameDataMgr.S.GetPlayerData().recordData.AddRecruit();
+
             if (m_RecruitDic[type] != ClickType.Free)
             {
                 int characterCount = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.f_character_recruit, m_RecruitDic[type].ToString() + ";" + type.ToString() + ";" + characterCount);
-
             }
-
         }
 
         private void LookADSuccessCallBack(bool obj)
         {
+            GameDataMgr.S.GetPlayerData().UpdateRecruitLastClickTime(m_CurRecruitType);
+            UpdateADCoolingTime();
             GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
             UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(m_CurRecruitType), ClickType.LookAdvertisement, m_CurRecruitType);
         }

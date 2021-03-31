@@ -36,6 +36,15 @@ namespace GameWish.Game
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
 
+        /// <summary>
+        /// 点击金牌招募的时间
+        /// </summary>
+        public DateTime m_LookADClickGoldRecruitDate;
+        /// <summary>
+        /// 点击银牌招募的时间
+        /// </summary>
+        public DateTime m_LookADClickSilverRecruitDate;
+
         #region 食物倒计时
         public string FoodCoundDownTime = string.Empty;
         /// <summary>
@@ -381,6 +390,20 @@ namespace GameWish.Game
             return 0;
         }
 
+        #region 招募相关
+        public DateTime GetRecruitLastClickTime(RecruitType rt) 
+        {
+            return recruitData.GetLastRecruitDateTime(rt);
+        }
+        public void UpdateRecruitLastClickTime(RecruitType rt) {
+            recruitData.UpdateLastLookADRecruitDateTime(rt);
+            SetDataDirty();
+        }
+        public bool IsCanLookADRecruit(RecruitType rt,int intervalTimeHours) {
+            return recruitData.IsCanLookADRecruit(rt, intervalTimeHours);
+        }
+        #endregion
+
         public long GetCoinNum()
         {
             return m_CoinNum;
@@ -545,9 +568,12 @@ namespace GameWish.Game
         public int silverMedalGood = 6;
         public int silverMedalPerfect = 1;
 
+        public bool IsRecodeGoldRecruitDate = false;
+        public bool IsRecodeSilverRecruitDate = false;
+        public DateTime GoldRecruitDateTime;
+        public DateTime SilverRecruitDateTime;
+
         public RecruitData() { }
-
-
         public void IncreaseCurRecruitCount(RecruitType recruitType, int delta)
         {
             switch (recruitType)
@@ -613,7 +639,6 @@ namespace GameWish.Game
             return 0;
 
         }
-
         public int GetGoldRecruitTimeType(RecruitTimeType recruitTimeType)
         {
             switch (recruitTimeType)
@@ -625,17 +650,14 @@ namespace GameWish.Game
             }
             return 0;
         }
-
         public void SetLobbyBuildTime()
         {
             lobbyBuildTime = DateTime.Now.ToString();
         }
-
         public string GetLobbyBuildTime()
         {
             return lobbyBuildTime;
         }
-
         public void SetIsFirstValue(RecruitType recruitType)
         {
             switch (recruitType)
@@ -650,7 +672,6 @@ namespace GameWish.Game
                     break;
             }
         }
-
         /// <summary>
         /// 重新设置内部数据
         /// </summary>
@@ -662,7 +683,6 @@ namespace GameWish.Game
             goldMedalGood = recruitModel.goldMedalGood;
             goldMedalPerfect = recruitModel.goldMedalPerfect;
         }
-
         public void SetRecruitSilverData(RecruitModel recruitModel)
         {
             silverRecruitCount = recruitModel.GetCurRecruitCount();
@@ -672,6 +692,63 @@ namespace GameWish.Game
             silverMedalGood = recruitModel.silverMedalGood;
             silverMedalPerfect = recruitModel.silverMedalPerfect;
         }
+        public bool IsCanLookADRecruit(RecruitType rt, int intervalTimeHours) 
+        {
+            if (rt == RecruitType.GoldMedal)
+            {
+                if (IsRecodeGoldRecruitDate == false) 
+                {
+                    return true;
+                }else if (GoldRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now)
+                {
+                    return true;
+                }
+            }
+            else {
+                if (IsRecodeSilverRecruitDate == false)
+                {
+                    return true;
+                }
+                else if (SilverRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public DateTime GetLastRecruitDateTime(RecruitType rt) 
+        {
+            if (rt == RecruitType.GoldMedal)
+            {
+                if (IsRecodeGoldRecruitDate == false) 
+                {
+                    GoldRecruitDateTime = DateTime.Now;
+                    IsRecodeGoldRecruitDate = true;
+                }                
+                return GoldRecruitDateTime;
+            }
+            else {
+                if (IsRecodeSilverRecruitDate == false) 
+                {
+                    SilverRecruitDateTime = DateTime.Now;
+                    IsRecodeSilverRecruitDate = true;
+                }
+                
+                return SilverRecruitDateTime;
+            }
+        }
+        public void UpdateLastLookADRecruitDateTime(RecruitType rt) 
+        {
+            if (rt == RecruitType.GoldMedal)
+            {
+                GoldRecruitDateTime = DateTime.Now;
+                IsRecodeGoldRecruitDate = true;
+            }
+            else {
+                SilverRecruitDateTime = DateTime.Now;
+                IsRecodeSilverRecruitDate = true;
+            }
+        }       
     }
 
     [Serializable]
