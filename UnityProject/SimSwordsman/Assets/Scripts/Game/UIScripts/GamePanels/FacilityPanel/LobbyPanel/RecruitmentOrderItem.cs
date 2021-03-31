@@ -33,7 +33,7 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_RecruitmentImg;
 
-        private const int _24Hours = 1;
+        private const int _24Hours = 24;
         private const int _48Hours = 48;
         //private const string SilverAdvertiseCount = "3";
         private const string AdvertiseCount = "1";
@@ -174,7 +174,7 @@ namespace GameWish.Game
                 CountDowntMgr.S.StopCountDownItemTest(m_CountDownItem.GetCountDownID());
             }
 
-            bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType,5 /*m_CountDownTimeHours*/);
+            bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType, m_CountDownTimeHours);
 
             if (isCanLookADRecruit)
             {
@@ -185,8 +185,8 @@ namespace GameWish.Game
             {
                 DateTime lastClickTime = GameDataMgr.S.GetPlayerData().GetRecruitLastClickTime(m_CurRecruitType);
 
-                //DateTime endTime = lastClickTime.AddHours(m_CountDownTimeHours);
-                DateTime endTime = lastClickTime.AddSeconds(5);
+                DateTime endTime = lastClickTime.AddHours(m_CountDownTimeHours);
+                //DateTime endTime = lastClickTime.AddSeconds(5);
 
                 TimeSpan ts = endTime - DateTime.Now;
 

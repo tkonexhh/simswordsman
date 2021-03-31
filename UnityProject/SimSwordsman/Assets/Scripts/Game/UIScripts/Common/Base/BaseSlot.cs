@@ -46,7 +46,7 @@ namespace GameWish.Game
         {
             Index = index;
             m_FacilityView = facilityView;
-
+            slotState = SlotState.Free;
             CharacterItem = null;
         }
 
