@@ -41,7 +41,8 @@ namespace GameWish.Game
 
                     m_GuideTimerID = Timer.S.Post2Really((x) =>
                     {
-                        if (GameDataMgr.S.GetClanData().GetCollectItemDataRewardCount(1) >= 5)
+                        if (GameDataMgr.S.GetClanData().GetCollectItemDataRewardCount(1) >= 5 &&
+                        MainGameMgr.S.IsMainMenuPanelOpen && MainGameMgr.S.BattleFieldMgr.IsBattleing == false)
                         {
                             EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
 
