@@ -314,7 +314,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
             EventSystem.S.UnRegister(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
-            EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
