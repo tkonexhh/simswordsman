@@ -80,8 +80,8 @@ namespace GameWish.Game
                 }
             }
 
-
         }
+
         void InitItems(List<RewardBase> rewards)
         {
             for (int i = 0; i < rewards.Count; i++)
@@ -96,7 +96,7 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(this, rewards[i], maxSortingOrder);
+                m_Items[i].Init(this, rewards[i], m_SortingOrder + 10);
             }
 
 
