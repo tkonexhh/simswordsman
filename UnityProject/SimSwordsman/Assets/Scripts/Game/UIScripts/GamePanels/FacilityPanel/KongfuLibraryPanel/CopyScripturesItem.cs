@@ -35,7 +35,7 @@ namespace GameWish.Game
         {
             m_Index = index;
             BindAddListenerEvent();
-            m_CopyScripturesPos.text = "抄经位:" + index;
+            m_CopyScripturesPos.text = "抄经位:" + (index + 1);
             m_KongfuLibraryPanel = panel;
             KongfuLibraryController controller = (KongfuLibraryController)MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary);
             m_Slot = controller.GetSlotByIndex(index);
