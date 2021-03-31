@@ -133,9 +133,15 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
 
+            CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
             m_Items.ForEach(x => x.OnClose());
 
-            CloseSelfPanel();
         }
 
         private void UpdateItems()

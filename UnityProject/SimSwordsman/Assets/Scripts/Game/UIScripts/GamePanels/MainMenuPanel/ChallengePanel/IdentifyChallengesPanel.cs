@@ -71,7 +71,6 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-
             try
             {
                 m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
@@ -156,6 +155,11 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
             CloseDependPanel(EngineUI.MaskPanel);
         }
     }

@@ -64,14 +64,15 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
-            m_NextButton.onClick.RemoveAllListeners();
-            m_SkipButton.onClick.RemoveAllListeners();
         }
 
         protected override void OnClose()
         {
             base.OnClose();
-            
+
+            m_NextButton.onClick.RemoveAllListeners();
+            m_SkipButton.onClick.RemoveAllListeners();
+
             m_NowStoryIDList.Clear();
             StoryEndedCallBack = null;
             //UIMgrExtend.S.RemoveAction(m_UIID);

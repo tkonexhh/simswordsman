@@ -154,6 +154,7 @@ namespace GameWish.Game
         /// <param name="lobbyTime"></param>
         private void RefreshFreeRecruit()
         {
+            m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
             UpdateADCoolingTime();
 
             int curRecruitCount = GetRecruitCount();
@@ -314,8 +315,9 @@ namespace GameWish.Game
                     break;
                 default:
                     break;
-            }
 
+            }
+            //RefreshFreeRecruit();
             GameDataMgr.S.GetPlayerData().recordData.AddRecruit();
 
             if (m_RecruitDic[type] != ClickType.Free)
@@ -367,6 +369,7 @@ namespace GameWish.Game
                     if (m_CurRecruitType == (RecruitType)param[0])
                         SetRecruitCount((ClickType)param[1]);
                     CommonUIMethod.CheackRecruitmentOrder();
+                    RefreshFreeRecruit();
                     break;
                 case EventID.OnRefreshRecruitmentOrder:
                     //RefreshRecruitmentOrder((RecruitType)param[0]);

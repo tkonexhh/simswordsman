@@ -68,6 +68,9 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+
+            EventSystem.S.UnRegister(EventID.OnChanllengeSuccess, HandlingListeningEvents);
+
             m_ResLoader?.ReleaseRes(m_CurChapterConfigInfo.clanType.ToString() + "Panel");
         }
 
@@ -111,8 +114,9 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            EventSystem.S.UnRegister(EventID.OnChanllengeSuccess, HandlingListeningEvents);
+
             CloseSelfPanel();
         }
+
     }
 }
