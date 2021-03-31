@@ -98,7 +98,6 @@ MonoBehaviour:
   m_SortingOrder: -1
   m_WalkTalk: {fileID: 2102586874123832182}
   m_ItemTips: {fileID: 3824620676225937634}
-  m_ItemTipsTo: {fileID: 0}
 --- !u!1 &502612105893828470
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +664,7 @@ GameObject:
   - component: {fileID: 1685607037221868856}
   - component: {fileID: 6729364640286284518}
   - component: {fileID: 2102586874123832182}
+  - component: {fileID: 2627439796555790561}
   m_Layer: 5
   m_Name: workTalk
   m_TagString: Untagged
@@ -717,3 +717,24 @@ MonoBehaviour:
   m_UIOffset: {x: 0, y: 0, z: 0}
   m_FollowObject: {fileID: 0}
   m_TxtTalk: {fileID: 995030132129809279}
+--- !u!223 &2627439796555790561
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095256741725219914}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
