@@ -210,7 +210,10 @@ namespace GameWish.Game
 
             TimerID = Timer.S.Post2Really((i) =>
             {
-                m_ExitBtn.gameObject.SetActive(true);
+                if (m_ExitBtn != null)
+                {
+                    m_ExitBtn.gameObject.SetActive(true);
+                }
             }, ExitShowTime);
         }
 
