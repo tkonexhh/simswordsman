@@ -5,15 +5,15 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 p_2_bi
-  rotate: true
-  xy: 289, 198
+  rotate: false
+  xy: 224, 69
   size: 34, 25
   orig: 34, 25
   offset: 0, 0
   index: -1
 p_2_bing
   rotate: false
-  xy: 151, 2
+  xy: 166, 5
   size: 37, 15
   orig: 39, 18
   offset: 1, 1
@@ -40,15 +40,15 @@ p_2_chan
   offset: 1, 1
   index: -1
 p_2_cz
-  rotate: true
-  xy: 221, 146
+  rotate: false
+  xy: 177, 62
   size: 45, 32
   orig: 45, 33
   offset: 0, 0
   index: -1
 p_2_dao
-  rotate: false
-  xy: 276, 79
+  rotate: true
+  xy: 205, 22
   size: 38, 30
   orig: 40, 35
   offset: 2, 2
@@ -62,7 +62,7 @@ p_2_fishgan
   index: -1
 p_2_ft
   rotate: true
-  xy: 177, 71
+  xy: 220, 96
   size: 23, 35
   orig: 27, 39
   offset: 2, 2
@@ -75,8 +75,8 @@ p_2_gun
   offset: 2, 2
   index: -1
 p_2_guo_h
-  rotate: true
-  xy: 220, 94
+  rotate: false
+  xy: 118, 2
   size: 46, 18
   orig: 49, 20
   offset: 2, 1
@@ -90,14 +90,14 @@ p_2_guo_q
   index: -1
 p_2_jian
   rotate: true
-  xy: 245, 194
+  xy: 161, 22
   size: 38, 42
   orig: 43, 44
   offset: 2, 0
   index: -1
 p_2_kg
-  rotate: false
-  xy: 276, 111
+  rotate: true
+  xy: 280, 121
   size: 38, 34
   orig: 42, 39
   offset: 3, 3
@@ -125,7 +125,7 @@ p_2_sb
   index: -1
 p_2_shadow
   rotate: false
-  xy: 276, 65
+  xy: 238, 8
   size: 30, 12
   orig: 32, 12
   offset: 1, 0
@@ -138,8 +138,8 @@ p_2_shu
   offset: 0, 0
   index: -1
 p_2_st_lm
-  rotate: false
-  xy: 163, 19
+  rotate: true
+  xy: 241, 205
   size: 27, 50
   orig: 27, 50
   offset: 0, 0
@@ -153,7 +153,7 @@ p_2_st_yf_2
   index: -1
 p_2_st_yf_s
   rotate: false
-  xy: 255, 104
+  xy: 267, 162
   size: 19, 41
   orig: 19, 41
   offset: 0, 0
@@ -174,14 +174,14 @@ p_2_tclz
   index: -1
 p_2_tou
   rotate: false
-  xy: 118, 21
-  size: 43, 48
+  xy: 118, 22
+  size: 41, 47
   orig: 68, 78
-  offset: 13, 15
+  offset: 14, 16
   index: -1
 p_2_tou_2
-  rotate: false
-  xy: 192, 20
+  rotate: true
+  xy: 221, 121
   size: 36, 49
   orig: 68, 78
   offset: 17, 17
@@ -195,7 +195,7 @@ p_2_tou_3
   index: -1
 p_2_tou_4
   rotate: false
-  xy: 255, 147
+  xy: 237, 22
   size: 41, 45
   orig: 68, 78
   offset: 13, 14
@@ -209,14 +209,14 @@ p_2_tou_5
   index: -1
 p_2_yaoc
   rotate: false
-  xy: 207, 193
+  xy: 257, 97
   size: 36, 22
   orig: 39, 24
   offset: 2, 1
   index: -1
 p_2_yaogh
   rotate: false
-  xy: 118, 2
+  xy: 205, 3
   size: 31, 17
   orig: 34, 19
   offset: 2, 1
@@ -229,71 +229,71 @@ p_2_yaogq
   offset: 1, 1
   index: -1
 p_2_ys_lm
-  rotate: true
-  xy: 251, 2
+  rotate: false
+  xy: 161, 62
   size: 8, 7
   orig: 10, 9
   offset: 1, 1
   index: -1
 p_2_yss_lm
   rotate: false
-  xy: 265, 82
+  xy: 289, 75
   size: 9, 20
   orig: 11, 22
   offset: 1, 1
   index: -1
 p_2_yss_yf_2
   rotate: false
-  xy: 290, 43
+  xy: 207, 195
   size: 12, 20
   orig: 14, 22
   offset: 1, 1
   index: -1
 p_2_ysx_lm
-  rotate: false
-  xy: 218, 4
+  rotate: true
+  xy: 295, 97
   size: 9, 14
   orig: 11, 16
   offset: 1, 1
   index: -1
 p_2_ysx_yf_2
-  rotate: true
-  xy: 240, 105
+  rotate: false
+  xy: 270, 7
   size: 12, 13
   orig: 14, 15
   offset: 1, 1
   index: -1
 p_2_yt_lm
   rotate: false
-  xy: 229, 2
+  xy: 284, 2
   size: 9, 8
   orig: 11, 10
   offset: 1, 1
   index: -1
 p_2_yt_yf_2
-  rotate: false
-  xy: 252, 71
+  rotate: true
+  xy: 284, 12
   size: 10, 8
   orig: 12, 10
   offset: 1, 1
   index: -1
 p_2_yts_lm
   rotate: false
-  xy: 276, 37
+  xy: 260, 69
   size: 12, 26
   orig: 14, 28
   offset: 1, 1
   index: -1
 p_2_yts_yf_2
   rotate: false
-  xy: 240, 119
+  xy: 274, 70
   size: 13, 25
   orig: 15, 27
   offset: 1, 1
   index: -1
 p_2_yts_yf_h
   rotate: false
-  xy: 230, 25
+  xy: 221, 159
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
@@ -307,7 +307,7 @@ p_2_ytx_lm
   index: -1
 p_2_ytx_yf_2
   rotate: true
-  xy: 252, 12
+  xy: 295, 108
   size: 11, 19
   orig: 13, 21
   offset: 1, 1
@@ -321,14 +321,14 @@ p_2_zs_lm
   index: -1
 p_2_zss_lm
   rotate: false
-  xy: 298, 147
+  xy: 280, 47
   size: 13, 21
   orig: 15, 23
   offset: 1, 1
   index: -1
 p_2_zss_yf_2
-  rotate: false
-  xy: 304, 45
+  rotate: true
+  xy: 221, 205
   size: 10, 18
   orig: 12, 20
   offset: 1, 1
@@ -349,49 +349,49 @@ p_2_zsx_yf_2
   index: -1
 p_2_zt_lm
   rotate: false
-  xy: 240, 2
+  xy: 295, 65
   size: 9, 8
   orig: 11, 10
   offset: 1, 1
   index: -1
 p_2_zt_yf_2
   rotate: true
-  xy: 240, 94
+  xy: 304, 237
   size: 9, 10
   orig: 11, 12
   offset: 1, 1
   index: -1
 p_2_zts_lm
-  rotate: false
-  xy: 298, 170
+  rotate: true
+  xy: 288, 178
   size: 16, 26
   orig: 18, 28
   offset: 1, 1
   index: -1
 p_2_zts_yf_2
   rotate: true
-  xy: 190, 2
+  xy: 288, 161
   size: 15, 26
   orig: 17, 28
   offset: 1, 1
   index: -1
 p_2_zts_yf_z_1
-  rotate: true
-  xy: 214, 71
+  rotate: false
+  xy: 293, 196
   size: 21, 36
   orig: 21, 36
   offset: 0, 0
   index: -1
 p_2_ztx_lm
-  rotate: true
-  xy: 230, 12
+  rotate: false
+  xy: 300, 75
   size: 11, 20
   orig: 13, 22
   offset: 1, 1
   index: -1
 p_2_ztx_yf_2
   rotate: false
-  xy: 252, 81
+  xy: 280, 24
   size: 11, 21
   orig: 13, 23
   offset: 1, 1
