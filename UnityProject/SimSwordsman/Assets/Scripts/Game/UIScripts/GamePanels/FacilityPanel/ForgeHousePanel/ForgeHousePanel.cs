@@ -132,8 +132,6 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
 
-            m_Items.ForEach(x => x.OnClose());
-
             CloseSelfPanel();
         }
 
@@ -160,6 +158,13 @@ namespace GameWish.Game
                 ItemICom itemICom = m_Items[i].GetComponent<ItemICom>();
                 itemICom.OnInit(this, null);
             }
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
+            m_Items.ForEach(x => x.OnClose());
         }
     }
 }
