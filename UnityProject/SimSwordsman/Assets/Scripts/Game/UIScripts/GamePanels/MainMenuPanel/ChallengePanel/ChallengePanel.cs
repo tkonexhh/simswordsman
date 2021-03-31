@@ -91,10 +91,16 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandlingEventListening);
+
             CloseSelfPanel();
         }
 
+        protected override void OnClose()
+        {
+            base.OnClose();
+
+            EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandlingEventListening);
+        }
         /// <summary>
         /// 创建挑战任务
         /// </summary>

@@ -75,6 +75,9 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+
+            CloseDependPanel(EngineUI.MaskPanel);
+
             EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
         }
 
@@ -295,7 +298,7 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            CloseDependPanel(EngineUI.MaskPanel);
+
             CloseSelfPanel();
         }
 

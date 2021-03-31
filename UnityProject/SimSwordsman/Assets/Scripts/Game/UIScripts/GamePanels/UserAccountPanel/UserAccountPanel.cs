@@ -113,9 +113,16 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            CloseDependPanel(EngineUI.MaskPanel);
+
             CloseSelfPanel();
         }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+            CloseDependPanel(EngineUI.MaskPanel);
+        }
+
         private void UpdateUseAccountInfo()
         {
             m_SecNameText.text = GameDataMgr.S.GetClanData().GetClanName();
