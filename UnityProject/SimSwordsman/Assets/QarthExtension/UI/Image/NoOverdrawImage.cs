@@ -19,6 +19,19 @@ namespace GFrame
         {
 
         }
+
+
+        protected override void Reset()
+        {
+            var button = gameObject.GetComponent<Button>();
+            if (button != null)
+            {
+                if (button.targetGraphic == null)
+                    button.targetGraphic = this;
+            }
+        }
+
+
     }
 
 }
