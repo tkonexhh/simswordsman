@@ -69,16 +69,16 @@ namespace GameWish.Game
             //m_CountBg.SetActive(reward.Count > 1);
             var effectGo = Instantiate(m_LootSingle, transform);
             effectGo.transform.localPosition = Vector3.zero;
-            effectGo.GetComponent<SortingGroup>().sortingOrder = m_SortOrder + 1;
+            effectGo.GetComponent<SortingGroup>().sortingOrder = m_SortOrder - 1;
         }
 
-        public void UpdateDoubleRewardCount() 
+        public void UpdateDoubleRewardCount()
         {
-            if (m_RewardBaseData != null) 
+            if (m_RewardBaseData != null)
             {
                 int doubleRewadCount = m_RewardBaseData.Count * 2;
                 m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", string.Format("X{0}", doubleRewadCount));
-            }        
+            }
         }
     }
 }

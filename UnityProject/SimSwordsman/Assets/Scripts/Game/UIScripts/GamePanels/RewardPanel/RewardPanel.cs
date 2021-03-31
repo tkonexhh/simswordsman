@@ -30,7 +30,7 @@ namespace GameWish.Game
             base.OnUIInit();
             BindAddListenerEvent();
 
-            m_DoubleRewardBtn.onClick.AddListener(()=> 
+            m_DoubleRewardBtn.onClick.AddListener(() =>
             {
                 AdsManager.S.PlayRewardAD(Define.DoubleGetBossRewardADName, LookRewardADSuccessCallBack);
             });
@@ -38,7 +38,7 @@ namespace GameWish.Game
 
         private void LookRewardADSuccessCallBack(bool obj)
         {
-            if (m_RewardsDataList.Count > 0) 
+            if (m_RewardsDataList.Count > 0)
             {
                 m_RewardsDataList.ForEach(x => x.AcceptReward());
 
@@ -51,7 +51,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// args[1]:´ú±íÊÇ·ñÏÔÊ¾Ë«±¶°´Å¥
+        /// args[1]:ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ê¾Ë«ï¿½ï¿½ï¿½ï¿½Å¥
         /// </summary>
         /// <param name="args"></param>
         protected override void OnPanelOpen(params object[] args)
@@ -68,7 +68,8 @@ namespace GameWish.Game
                 m_RewardsDataList = (List<RewardBase>)args[0];
                 InitItems(m_RewardsDataList);
 
-                if (args.Length > 1) {
+                if (args.Length > 1)
+                {
                     bool isShowDoubleRewardBtn = (bool)args[1];
                     m_DoubleRewardBtn.gameObject.SetActive(isShowDoubleRewardBtn);
                 }
@@ -90,7 +91,7 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(this, rewards[i], m_SortingOrder + 10);
+                m_Items[i].Init(this, rewards[i], m_SortingOrder);
             }
 
 
