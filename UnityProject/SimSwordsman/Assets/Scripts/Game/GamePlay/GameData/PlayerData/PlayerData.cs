@@ -720,7 +720,7 @@ namespace GameWish.Game
                 if (IsRecodeGoldRecruitDate == false) 
                 {
                     return true;
-                }else if (GoldRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now)
+                }else if (GoldRecruitDateTime.AddSeconds(intervalTimeHours) <= DateTime.Now)
                 {
                     return true;
                 }
@@ -730,7 +730,7 @@ namespace GameWish.Game
                 {
                     return true;
                 }
-                else if (SilverRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now) {
+                else if (SilverRecruitDateTime.AddSeconds(intervalTimeHours) <= DateTime.Now) {
                     return true;
                 }
             }

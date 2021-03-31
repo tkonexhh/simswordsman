@@ -281,7 +281,7 @@ namespace GameWish.Game
 
         public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo = null)
         {
-            if (costItems == null)
+            if (costItems == null || obj == null)
                 return;
             if (costItems.Count == 0)
             {
