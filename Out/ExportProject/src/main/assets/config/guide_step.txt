@@ -23,7 +23,7 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 11601	16	BuildFacility_KitchenTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_8;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/KitchenView	0	
 11602	16	BuildFacilityPanel_KitchenTrigger	NormalTipsCommand:StoryPanel_Text_19,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:ConstructionFacilitiesPanel,Bg/AcceptBtn	0	1
 11701	17	RandomFightTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_55;MyDelayCommand:0.4;		0	
-11702	17	RandomFightTrigger_ClickTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_13,22|108,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,TacticalFunction/TacticalFunctionBtn(Clone)	0	
+11702	17	RandomFightTrigger_ClickTaskBtnTrigger2	NormalTipsCommand:StoryPanel_Text_13,117|108,TRUE;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,TacticalFunction/TacticalFunctionBtn(Clone)	0	
 11703	17	RandomFightTrigger_ClickAcceptBtn	NormalTipsCommand:StoryPanel_Text_14,-78|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:TacticalFunctionPanel,Bg/Down/Accept	0	1
 13701	37	RandomFightTrigger_FinishedIntroduce	DialogCommand:StoryPanel_Text_81,StoryPanel_Text_82;MyDelayCommand:0.4;		0	
 11801	18	BuildPracticeFieldEastTrigger	DialogCommand:StoryPanel_Text_45,StoryPanel_Text_46;MyDelayCommand:0.4;		0	
@@ -33,7 +33,7 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 13304	33	RecruitmentSystem_ClickGetCharacterTrigger	NormalTipsCommand:StoryPanel_Text_74,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:LobbyPanel,Bottom/RecruitmentOrderItem1/RecruitmentBtn	0	1
 13501	35	RecruitmentSystem_FinishedTrigger	DialogCommand:StoryPanel_Text_75,StoryPanel_Text_76;MyDelayCommand:0.3;		0	
 13001	30	DialogTrigger8	DialogCommand:StoryPanel_Text_57;MyDelayCommand:0.4;		0	
-13002	30	SendCharacterWorkTrigger	GuideClickBubbleCommand:#0,38|-8,StoryPanel_Text_58;MyDelayCommand:0.4;	EntityRoot/SimSection/WorkingBubbles/bubble5/workingbubble	0	1
+13002	30	SendCharacterWorkTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_58;MyDelayCommand:0.4;	EntityRoot/SimSection/WorkingBubbles/bubble5/workingbubble	0	1
 13401	34	SignInSystem_IntroduceTrigger	DialogCommand:StoryPanel_Text_77;MyDelayCommand:0.3;		0	
 13402	34	SignInSystem_ClickSignBtnTrigger	NormalTipsCommand:StoryPanel_Text_78,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:MainMenuPanel,SignInBtn	0	
 13403	34	SignInSystem_ClickSignReceiveBtnTrigger	NormalTipsCommand:StoryPanel_Text_79,11|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SignInPanel,SignPanel_BG/AcceptBtn	0	
@@ -63,12 +63,12 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 12805	28	ArmsTrigger_ChoiceArmsTrigger	NormalTipsCommand:StoryPanel_Text_65,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:WearableLearningPanel,Bg/Scroll View/Viewport/WearableLearningList/WearableLearningItem(Clone)	0	
 12806	28	ArmsTrigger_ConfirmChoiceArmsTrigger	NormalTipsCommand:StoryPanel_Text_66,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:WearableLearningPanel,Bg/Scroll View/Viewport/Arrange	0	1
 12901	29	ChallengeSystemTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_48;MyDelayCommand:0.2;		0	
-12902	29	ChallengeSystemTrigger_ClickChallengeBtnTrigger1	NormalTipsCommand:ClickChallenge,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,MenuList/ChallengeBtn	0	
-12903	29	ChallengeSystemTrigger_ChoiceChallengeObjTrigger	NormalTipsCommand:StoryPanel_Text_49,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.5;	UINodeFinder:ChallengePanel,Bottom/Scroll View/Viewport/ChallengeList/ChallengeTaskItem(Clone)/Right/ChallengeBtn	0	
-12904	29	ChallengeSystemTrigger_ChoiceChallengeLevelTrigger	NormalTipsCommand:StoryPanel_Text_39,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.6;	UINodeFinder:ChallengeBattlePanel,GaibangPanel(Clone)/Scroll View/Viewport/CheckpointTra/Bg/ChallengeBtn	0	
-12905	29	ChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger	NormalTipsCommand:StoryPanel_Text_50,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.7;	UINodeFinder:IdentifyChallengesPanel,Bg/ChallengesBtn	0	
-12906	29	ChallengeSystemTrigger_ClickAKeyChoiceTrigger	NormalTipsCommand:StoryPanel_Text_51,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.8;	UINodeFinder:SendDisciplesPanel,Bg/Down/AutoSelectedBtn	0	
-12907	29	ChallengeSystemTrigger_ClickStartChallengeTrigger	NormalTipsCommand:StoryPanel_Text_52,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.9;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
+12902	29	ChallengeSystemTrigger_ClickChallengeBtnTrigger1	NormalTipsCommand:ClickChallenge,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:MainMenuPanel,MenuList/ChallengeBtn	0	
+12903	29	ChallengeSystemTrigger_ChoiceChallengeObjTrigger	NormalTipsCommand:StoryPanel_Text_49,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:ChallengePanel,Bottom/Scroll View/Viewport/ChallengeList/ChallengeTaskItem(Clone)/Right/ChallengeBtn	0	
+12904	29	ChallengeSystemTrigger_ChoiceChallengeLevelTrigger	NormalTipsCommand:StoryPanel_Text_39,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:ChallengeBattlePanel,GaibangPanel(Clone)/Scroll View/Viewport/CheckpointTra/Bg/ChallengeBtn/NormalState	0	
+12905	29	ChallengeSystemTrigger_ClickAcceptChallengeBtnTrigger	NormalTipsCommand:StoryPanel_Text_50,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:IdentifyChallengesPanel,Bg/ChallengesBtn	0	
+12906	29	ChallengeSystemTrigger_ClickAKeyChoiceTrigger	NormalTipsCommand:StoryPanel_Text_51,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Down/AutoSelectedBtn	0	
+12907	29	ChallengeSystemTrigger_ClickStartChallengeTrigger	NormalTipsCommand:StoryPanel_Text_52,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
 13101	31	DiscipleAutoWorkTrigger	DialogCommand:StoryPanel_Text_56;MyDelayCommand:0.4;		0	
 13102	31	ClickTaskDetailsTrigger1	DialogWithCircleMaskCommand:#0,StoryPanel_Text_40;MyDelayCommand:0.4;	EntityRoot/Character_normal_1/WorkProgressBar	0	1
 13201	32	FoodNotEnoughTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_68;MyDelayCommand:0.4;		0	

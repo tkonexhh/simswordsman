@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3832656783
+CRC: 2920488723
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -13,6 +13,7 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/font.bundle
         Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
+        Dependency_2: res/foldermode/ui/sprites/itemicon.bundle
     Info_3:
       Name: res/foldermode/font.bundle
       Dependencies: {}
@@ -115,9 +116,10 @@ AssetBundleManifest:
         Dependency_5: res/foldermode/ui/sprites/facilityicon.bundle
         Dependency_6: res/foldermode/ui/sprites/icon.bundle
         Dependency_7: res/foldermode/ui/sprites/promotionpanel.bundle
-        Dependency_8: res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
-        Dependency_9: res/foldermode/effects/getreward/material.bundle
-        Dependency_10: res/foldermode/effects/getreward/texture.bundle
+        Dependency_8: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
+        Dependency_9: res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
+        Dependency_10: res/foldermode/effects/getreward/material.bundle
+        Dependency_11: res/foldermode/effects/getreward/texture.bundle
     Info_30:
       Name: res/foldermode/ui/sprites/visitorpanel.bundle
       Dependencies: {}
@@ -208,6 +210,7 @@ AssetBundleManifest:
         Dependency_6: res/foldermode/ui/sprites/practicefield.bundle
         Dependency_7: res/foldermode/ui/sprites/disciple.bundle
         Dependency_8: res/foldermode/ui/sprites/icon.bundle
+        Dependency_9: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_44:
       Name: res/foldermode/ui/panels/gamepanels/challengesubpanel/wudang.bundle
       Dependencies:
@@ -270,6 +273,7 @@ AssetBundleManifest:
         Dependency_6: res/foldermode/ui/sprites/itemdetails.bundle
         Dependency_7: res/foldermode/ui/sprites/warehousepanel.bundle
         Dependency_8: res/foldermode/ui/sprites/icon.bundle
+        Dependency_9: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_55:
       Name: res/foldermode/ui/sprites/warehousepanel.bundle
       Dependencies: {}
@@ -284,6 +288,7 @@ AssetBundleManifest:
         Dependency_5: res/foldermode/ui/sprites/facilityicon.bundle
         Dependency_6: res/foldermode/ui/sprites/kongfulibrarypanel.bundle
         Dependency_7: res/foldermode/ui/sprites/disciple.bundle
+        Dependency_8: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_57:
       Name: res/foldermode/ui/sprites/sigiinpanel.bundle
       Dependencies: {}
@@ -305,6 +310,7 @@ AssetBundleManifest:
         Dependency_3: res/foldermode/ui/sprites/itemicon.bundle
         Dependency_4: res/foldermode/ui/sprites/facilityicon.bundle
         Dependency_5: res/foldermode/ui/sprites/kitchenpanel.bundle
+        Dependency_6: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_61:
       Name: res/foldermode/ui/sprites/icon.bundle
       Dependencies: {}
@@ -354,6 +360,7 @@ AssetBundleManifest:
         Dependency_4: res/foldermode/ui/sprites/facilityicon.bundle
         Dependency_5: res/foldermode/ui/sprites/kitchenpanel.bundle
         Dependency_6: res/foldermode/ui/sprites/baicaohupanel.bundle
+        Dependency_7: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_69:
       Name: res/foldermode/ui/sprites/patrolroompanel.bundle
       Dependencies: {}
@@ -369,6 +376,7 @@ AssetBundleManifest:
         Dependency_6: res/foldermode/ui/sprites/forgehousepanel.bundle
         Dependency_7: res/foldermode/ui/sprites/kitchenpanel.bundle
         Dependency_8: res/foldermode/ui/sprites/baicaohupanel.bundle
+        Dependency_9: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_71:
       Name: res/foldermode/ui/panels/gamepanels/facilitypanel/kitchenpanel.bundle
       Dependencies:
@@ -378,6 +386,7 @@ AssetBundleManifest:
         Dependency_3: res/foldermode/ui/sprites/itemicon.bundle
         Dependency_4: res/foldermode/ui/sprites/facilityicon.bundle
         Dependency_5: res/foldermode/ui/sprites/kitchenpanel.bundle
+        Dependency_6: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_72:
       Name: res/foldermode/ui/sprites/senddisciplepanel.bundle
       Dependencies: {}
@@ -385,13 +394,17 @@ AssetBundleManifest:
       Name: res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle
       Dependencies:
         Dependency_0: res/foldermode/font.bundle
-        Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
-        Dependency_2: res/foldermode/ui/sprites/martialarts.bundle
-        Dependency_3: res/foldermode/ui/sprites/enmeyheadicons.bundle
-        Dependency_4: res/foldermode/ui/sprites/mainmenu.bundle
-        Dependency_5: res/foldermode/ui/sprites/visitorpanel.bundle
-        Dependency_6: res/foldermode/ui/sprites/sigiinpanel.bundle
-        Dependency_7: res/foldermode/ui/panels/gamepanels/mainmenupanel/tacticalfunctionpanel.bundle
+        Dependency_1: res/foldermode/ui/animation.bundle
+        Dependency_2: res/foldermode/ui/sprites/panelcommon.bundle
+        Dependency_3: res/foldermode/ui/sprites/equipment.bundle
+        Dependency_4: res/foldermode/ui/sprites/martialarts.bundle
+        Dependency_5: res/foldermode/ui/sprites/enmeyheadicons.bundle
+        Dependency_6: res/foldermode/ui/sprites/mainmenu.bundle
+        Dependency_7: res/foldermode/ui/sprites/itemicon.bundle
+        Dependency_8: res/foldermode/ui/sprites/visitorpanel.bundle
+        Dependency_9: res/foldermode/ui/sprites/sigiinpanel.bundle
+        Dependency_10: res/foldermode/ui/panels/gamepanels/mainmenupanel/tacticalfunctionpanel.bundle
+        Dependency_11: res/foldermode/ui/sprites/mainmenu/maintask.bundle
     Info_74:
       Name: res/foldermode/ui/panels/gamepanels/challengesubpanel/emei.bundle
       Dependencies:
@@ -434,6 +447,7 @@ AssetBundleManifest:
         Dependency_5: res/foldermode/ui/sprites/popup.bundle
         Dependency_6: res/foldermode/ui/sprites/log.bundle
         Dependency_7: res/foldermode/ui/sprites/kitchenpanel.bundle
+        Dependency_8: res/foldermode/ui/panels/gamepanels/commonpanel.bundle
     Info_80:
       Name: res/foldermode/ui/panels/gamepanels/mainmenupanel/signinpanel.bundle
       Dependencies:
@@ -543,8 +557,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_107:
       Name: res/foldermode/characters/character/perfect/characterperfect2.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal2.bundle
+      Dependencies: {}
     Info_108:
       Name: res/foldermode/enemy/emei/emei1.bundle
       Dependencies: {}
@@ -571,8 +584,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_116:
       Name: res/foldermode/characters/character/good/charactergood1.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal1.bundle
+      Dependencies: {}
     Info_117:
       Name: res/foldermode/enemy/animal/chick.bundle
       Dependencies: {}
@@ -629,31 +641,25 @@ AssetBundleManifest:
         Dependency_0: res/foldermode/ui/sprites/mainmenu.bundle
     Info_134:
       Name: res/foldermode/characters/character/good/charactergood4.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal4.bundle
+      Dependencies: {}
     Info_135:
       Name: res/foldermode/characters/character/perfect/characterperfect3.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal3.bundle
+      Dependencies: {}
     Info_136:
       Name: res/foldermode/characters/character/good/charactergood2.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal2.bundle
+      Dependencies: {}
     Info_137:
       Name: res/foldermode/enemy/wudu/wudu2.bundle
       Dependencies: {}
     Info_138:
       Name: res/foldermode/characters/character/perfect/characterperfect1.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal1.bundle
+      Dependencies: {}
     Info_139:
       Name: res/foldermode/characters/character/perfect/characterperfect4.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal4.bundle
+      Dependencies: {}
     Info_140:
       Name: res/foldermode/characters/character/good/charactergood3.bundle
-      Dependencies:
-        Dependency_0: res/foldermode/characters/character/normal/characternormal3.bundle
+      Dependencies: {}
     Info_141:
       Name: res/foldermode/ui/panels/gamepanels/mainmenupanel/supplementfoodpanel.bundle
       Dependencies:
@@ -976,3 +982,6 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/prefab/skills/taizuchangquan.bundle
+    Info_215:
+      Name: res/foldermode/ui/sprites/mainmenu/maintask.bundle
+      Dependencies: {}

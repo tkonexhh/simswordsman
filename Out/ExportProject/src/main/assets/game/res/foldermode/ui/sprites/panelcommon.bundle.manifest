@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3029130801
+CRC: 432442241
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 18ebbc854a08614f0e0ba02869665028
+    Hash: 5587ebea9fc301723f7df814ed1f81ca
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -16,6 +16,8 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/BgFont1.png
@@ -31,6 +33,8 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Herb.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_line2.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Ellipse.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Mark.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/button_normal_blue.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/button_normal_red.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Line3.png
@@ -58,9 +62,11 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/scrollbar.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/effect_bg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/unlock_textbg.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonPanelCommon.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Advertise.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_bg_large.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_bg_middle.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_GreenHook.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_RoleExp.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_line1.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Lock2.png

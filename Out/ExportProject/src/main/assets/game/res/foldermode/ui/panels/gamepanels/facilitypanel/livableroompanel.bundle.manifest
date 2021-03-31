@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3070387767
+CRC: 1792524096
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ed422252fa00dbabc8e625ebef87da71
+    Hash: bca22dbb8cfa84ab17e23e22a655af84
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a3c516cf7ada160f63cb23086cceff05
+    Hash: 1b065255cf5a28e62452f7fe251f8f26
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -18,8 +18,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -28,11 +26,15 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 114
@@ -55,7 +57,6 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomItem.prefab
-- Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel1.png
 - Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/LivableRoomPanel/LivableRoomPanel.prefab
 Dependencies:
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
@@ -64,3 +65,4 @@ Dependencies:
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/facilityicon.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/kitchenpanel.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel.bundle

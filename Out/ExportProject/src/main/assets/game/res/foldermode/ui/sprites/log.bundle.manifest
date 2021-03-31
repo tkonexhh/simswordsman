@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 98683614
+CRC: 517290340
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 48afa89aeb897c99e042b93bd5a11508
+    Hash: bd8ee904f2dfe3bf0fc9e123e18f4d41
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c4d5dee85f6c263eb0adbea350984ae1
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/Log/title_bg.png
@@ -21,4 +23,5 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/Log/Zt-5.png
 - Assets/Res/FolderMode/UI/Sprites/Log/Zt-2.png
 - Assets/Res/FolderMode/UI/Sprites/Log/Zt-3.png
+- Assets/Res/FolderMode/UI/Sprites/Log/LogLog.spriteatlas
 Dependencies: []

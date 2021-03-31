@@ -1,16 +1,23 @@
 ManifestFileVersion: 0
-CRC: 481849393
+CRC: 1442160286
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ca3866a74c6958b5f384eb05ae007a9f
+    Hash: 7c25081df097721aea1655939677eae6
   TypeTreeHash:
     serializedVersion: 2
-    Hash: af57576da81d5d3ce45807ac11234de6
+    Hash: 31a8e35008e8aab720d0136425be6fad
 HashAppended: 0
 ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Animation/Mainment_MainTask_AnimCtrl.controller
+- Assets/Res/FolderMode/UI/Animation/Mainment_MainTask_Hide.anim
 - Assets/Res/FolderMode/UI/Animation/AdBGFloat.anim
+- Assets/Res/FolderMode/UI/Animation/Mainment_MainTask_Show.anim
 Dependencies: []

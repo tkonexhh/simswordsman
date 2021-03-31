@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1677016993
+CRC: 3533661303
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5ffbfd4f8bdb857dbbb2ccaeb756d592
+    Hash: fa0ed9c7082e76b10fd911c420ca9c9e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b0ff63000e3f85bf47a6c9655c4d4b14
+    Hash: 74322a54c04fe758dda2d7ce46f7f47b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,6 +27,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f9aa557e48351c044a183f2fc53e9039, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3183dfa4ded70b44db12074f6cf989b0, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -43,6 +45,8 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/SendDisciplesPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/SmallUpgradeResItem.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/UpgradeResItem.prefab
 Dependencies:
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle

@@ -1,17 +1,21 @@
 ManifestFileVersion: 0
-CRC: 4140360131
+CRC: 367572826
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4302af71c3338d95cc7f78b4c865adf4
+    Hash: 2cba20ece55136c569d1a4fc7b26e135
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6948e2e581ad8b185a17505cd974e58e
+    Hash: fd26d6458a5501f3ee8e5b4ea5b073c9
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -24,11 +28,17 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 150832b0723370d4987b3572cb20c9f4, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3989c817ca7aa48c48efd7556a2c4fce, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8c1b25fc162374e17b7772531e39e280, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -46,10 +56,14 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/MainMenuPanel.prefab
 Dependencies:
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/animation.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/visitorpanel.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/sigiinpanel.bundle
 - E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/tacticalfunctionpanel.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu/maintask.bundle

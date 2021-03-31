@@ -131,7 +131,7 @@ android {
             resValue "string", "toutiao_channel", "\"bytedance\""
             resValue "string", "rangers_app_id", "\"218425\""
             resValue "string", "rangers_channel_id", "\"bytedance\""
-            resValue "string", "wx_app_id", "wx67bea7de0764f123"
+            resValue "string", "wx_app_id", "wx66807448a080c796"
             manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.best_sect".toLowerCase()]
         }
 
@@ -145,7 +145,7 @@ android {
             resValue "string", "toutiao_channel", "\"bytedance\""
             resValue "string", "rangers_app_id", "\"218425\""
             resValue "string", "rangers_channel_id", "\"bytedance\""
-            resValue "string", "wx_app_id", "wx67bea7de0764f123"
+            resValue "string", "wx_app_id", "wx66807448a080c796"
             manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.best_sect".toLowerCase()]
         }
     }

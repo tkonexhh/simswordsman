@@ -1,22 +1,25 @@
 ManifestFileVersion: 0
-CRC: 3919527956
+CRC: 3957228080
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3097f8e3fad38b840f0daafb3658ee64
+    Hash: dad680d995f4304bd02031988c98a6fc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c4d5dee85f6c263eb0adbea350984ae1
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/SectNamePanel/sectname_bg_1.png
 - Assets/Res/FolderMode/UI/Sprites/SectNamePanel/sectname_bg_2.png
 - Assets/Res/FolderMode/UI/Sprites/SectNamePanel/sectname_text_bg.png
-- Assets/Res/FolderMode/UI/Sprites/SectNamePanel/sectname_bg.png
+- Assets/sectname_bg.png
 - Assets/Res/FolderMode/UI/Sprites/SectNamePanel/sectname_random.png
+- Assets/Res/FolderMode/UI/Sprites/SectNamePanel/SectNamePanelAtlas.spriteatlas
 Dependencies: []

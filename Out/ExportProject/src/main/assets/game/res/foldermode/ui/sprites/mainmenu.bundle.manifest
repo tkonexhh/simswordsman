@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 2327019469
+CRC: 3350921787
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 033f53ec1938b348caabdde84150a3c1
+    Hash: 6abfcb633153ba48083d4c1c77226ef3
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c4d5dee85f6c263eb0adbea350984ae1
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_TitleBg.png
@@ -24,6 +26,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Warehouse.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_FuDevil.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Officials.png
+- Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Challenge.png
 - Assets/Sprites/WorkingBubble/bubble_coin.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_m-13.png
