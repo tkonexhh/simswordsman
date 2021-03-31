@@ -30,7 +30,7 @@ namespace GameWish.Game
                 {
 					PropConfigInfo propConfigInfo = TDItemConfigTable.GetPropConfigInfo(costItem.itemId);
 					
-					UIMgr.S.OpenDependPanel(animPanel.panelID, UIID.UITipsPanel, null,m_ResImg.transform.position, propConfigInfo.name, GetNeedDesc(), propConfigInfo.unlockDesc, animPanel);
+					UIMgr.S.OpenDependPanel(animPanel.panelID, UIID.UITipsPanel, null,m_ResImg.transform.position, propConfigInfo.name, GetNeedDesc(), propConfigInfo.unlockDesc);
                 }
 			});
 		}
@@ -39,7 +39,7 @@ namespace GameWish.Game
         private string GetNeedDesc()
         {
 			int number = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)costItem.itemId);
-			return "当前：" + number + "  需要：" + costItem.value;
+			return "当前:" + CommonUIMethod.GetTenThousandOrMillion(number)  + "需要:" + CommonUIMethod.GetTenThousandOrMillion(costItem.value);
 
 		}
 

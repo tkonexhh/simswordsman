@@ -42,6 +42,11 @@ namespace GameWish.Game
             {
                 AddCont(cont[0], cont[1]);
             }
+            else if (cont.Length == 1)
+            {
+                name = string.Empty;
+                desc = cont[0];
+            }
             else
                 Log.w("cont.Length is error : " + cont);
         }

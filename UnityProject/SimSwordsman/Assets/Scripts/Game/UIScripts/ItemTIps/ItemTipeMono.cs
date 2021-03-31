@@ -43,7 +43,7 @@ namespace GameWish.Game
                 }
                 else//½âËø
                 {
-                    WorldUIPanel.S.ShowWorkText(transform, "", propConfigInfo.unlockDesc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                    WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.unlockDesc.name, propConfigInfo.unlockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
                 }
             }
             else

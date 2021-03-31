@@ -313,7 +313,7 @@ namespace GameWish.Game
                     m_LivableRoomLevel.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_FULLLEVEL);
                     m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetCurCapacity()));
                     m_UpperMiddle.SetActive(false);
-                    m_FullScale.text = CommonUIMethod.GetStrForColor("#AD7834", Define.COMMON_FULLEDLEVEL);
+                    m_FullScale.text = CommonUIMethod.GetStrForColor("#AD7834", Define.COMMON_FULLEDLEVEL,true);
                     m_UpgradeConditions.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeBtn.gameObject.SetActive(false);
                     m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);

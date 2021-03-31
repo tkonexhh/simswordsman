@@ -25,7 +25,7 @@ namespace GameWish.Game
             m_ImgBg.transform.position = (Vector3)args[0] + new Vector3(0.5f,0.8f, 0);
             m_TipName.text = (string)args[1];
             m_Need.text = (string)args[2];
-            m_Desc.text = (string)args[3];
+            m_Desc.text = ((ItemTipsConfig)args[3]).desc;
 
             Timer.S.Cancel(TimerID);
             TimerID = Timer.S.Post2Really((i) => {
