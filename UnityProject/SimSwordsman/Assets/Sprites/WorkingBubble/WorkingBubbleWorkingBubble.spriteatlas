@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WorkingBubbleWorkingBubble
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 1fd04b41596cfcc4585bb0dc66613dd5, type: 3}
+    - {fileID: 2800000, guid: 48f0ce7a58b30134891737cef62509b1, type: 3}
+    - {fileID: 2800000, guid: 4a5b599a3c844fe4f89d207fae4fdd11, type: 3}
+    - {fileID: 2800000, guid: 9a30deb6feab1304eaecef6f47263143, type: 3}
+    - {fileID: 2800000, guid: ed46c110f1f0710459f8c73086ce866d, type: 3}
+    - {fileID: 2800000, guid: 22d708cd228544949868415963c0665e, type: 3}
+    - {fileID: 2800000, guid: e6421fbd6f99a324688e25d14d243763, type: 3}
+    - {fileID: 2800000, guid: e2a3ac2d4527e3d44859d03c2baab612, type: 3}
+    - {fileID: 2800000, guid: e0dd0becbe8c4e445806f6814b2dacfd, type: 3}
+    - {fileID: 2800000, guid: dcb5441e67c19da499376079d49b30af, type: 3}
+    - {fileID: 2800000, guid: 985d0ba978f9cf14ba4cc2f1d6a8dc71, type: 3}
+    - {fileID: 2800000, guid: 7ea06816854d6a6489d9cfb601d2bad0, type: 3}
+    - {fileID: 2800000, guid: 439203bb59a3cbc478378ea0a66e0687, type: 3}
+    - {fileID: 2800000, guid: 4826bebf25d60f045a3528e5430f5a28, type: 3}
+    - {fileID: 2800000, guid: 638606002af1848c0bbae9b05d5d913b, type: 3}
+    - {fileID: 2800000, guid: 616d7089fdf5d424a96f625ad2b92889, type: 3}
+    - {fileID: 2800000, guid: b201d2b660f144cd1b7dc46a1c84397a, type: 3}
+    - {fileID: 2800000, guid: e667a8040c14d4c13bdf235a4d5e0ca0, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 638606002af1848c0bbae9b05d5d913b, type: 3}
+  - {fileID: 21300000, guid: ed46c110f1f0710459f8c73086ce866d, type: 3}
+  - {fileID: 21300000, guid: 1fd04b41596cfcc4585bb0dc66613dd5, type: 3}
+  - {fileID: 21300000, guid: e667a8040c14d4c13bdf235a4d5e0ca0, type: 3}
+  - {fileID: 21300000, guid: 7ea06816854d6a6489d9cfb601d2bad0, type: 3}
+  - {fileID: 21300000, guid: b201d2b660f144cd1b7dc46a1c84397a, type: 3}
+  - {fileID: 21300000, guid: 9a30deb6feab1304eaecef6f47263143, type: 3}
+  - {fileID: 21300000, guid: 616d7089fdf5d424a96f625ad2b92889, type: 3}
+  - {fileID: 21300000, guid: 985d0ba978f9cf14ba4cc2f1d6a8dc71, type: 3}
+  - {fileID: 21300000, guid: 48f0ce7a58b30134891737cef62509b1, type: 3}
+  - {fileID: 21300000, guid: 4a5b599a3c844fe4f89d207fae4fdd11, type: 3}
+  - {fileID: 21300000, guid: 439203bb59a3cbc478378ea0a66e0687, type: 3}
+  - {fileID: 21300000, guid: e0dd0becbe8c4e445806f6814b2dacfd, type: 3}
+  - {fileID: 21300000, guid: e2a3ac2d4527e3d44859d03c2baab612, type: 3}
+  - {fileID: 21300000, guid: e6421fbd6f99a324688e25d14d243763, type: 3}
+  - {fileID: 21300000, guid: 22d708cd228544949868415963c0665e, type: 3}
+  - {fileID: 21300000, guid: dcb5441e67c19da499376079d49b30af, type: 3}
+  - {fileID: 21300000, guid: 4826bebf25d60f045a3528e5430f5a28, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - workingTalkBubble_bg
+  - bubble_flower
+  - bubble_baicaohu
+  - bubble_quick_paractice
+  - bubble_well
+  - bubble_quick_copy
+  - bubble_fish
+  - workingbubble_bg
+  - bubble_warehouse
+  - bubble_coin
+  - bubble_exclamatorymark
+  - workingTalkBubbleScene_Bg
+  - bubble_rock
+  - bubble_lobby
+  - bubble_kitchen
+  - bubble_forgehouse
+  - bubble_tree
+  - workingTalkBubbleScene_Bg2
+  m_Tag: WorkingBubbleWorkingBubble
+  m_IsVariant: 0

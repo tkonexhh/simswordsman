@@ -25,6 +25,11 @@ namespace GameWish.Game
 
         private List<RewardBase> m_RewardsDataList = new List<RewardBase>();
 
+        private bool m_IsBossLevel = false;
+        private bool m_IsLookAD = false;
+
+        private int m_CloseBtnTimerID = -1;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -38,6 +43,8 @@ namespace GameWish.Game
 
         private void LookRewardADSuccessCallBack(bool obj)
         {
+            m_IsLookAD = true;   
+            
             if (m_RewardsDataList.Count > 0)
             {
                 m_RewardsDataList.ForEach(x => x.AcceptReward());
@@ -49,9 +56,8 @@ namespace GameWish.Game
             }
             m_DoubleRewardBtn.gameObject.SetActive(false);
         }
-
         /// <summary>
-        /// args[1]:ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ê¾Ë«ï¿½ï¿½ï¿½ï¿½Å¥
+        /// args[1]:´ú±íÊÇ·ñÊÇboss¹Ø¿¨
         /// </summary>
         /// <param name="args"></param>
         protected override void OnPanelOpen(params object[] args)
@@ -68,15 +74,27 @@ namespace GameWish.Game
                 m_RewardsDataList = (List<RewardBase>)args[0];
                 InitItems(m_RewardsDataList);
 
-                if (args.Length > 1)
+                if (args.Length > 1) 
                 {
-                    bool isShowDoubleRewardBtn = (bool)args[1];
-                    m_DoubleRewardBtn.gameObject.SetActive(isShowDoubleRewardBtn);
+                    m_IsBossLevel = (bool)args[1];
+                    m_DoubleRewardBtn.gameObject.SetActive(m_IsBossLevel);
                 }
             }
 
-
+            if (m_IsBossLevel)
+            {
+                m_CloseBtn.gameObject.SetActive(false);
+                m_CloseBtnTimerID = Timer.S.Post2Really((x) =>
+                {
+                    m_CloseBtn.gameObject.SetActive(true);
+                    m_CloseBtnTimerID = -1;
+                }, 1, 1);
+            }
+            else {
+                m_CloseBtn.gameObject.SetActive(true);
+            }
         }
+
         void InitItems(List<RewardBase> rewards)
         {
             for (int i = 0; i < rewards.Count; i++)
@@ -91,7 +109,7 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(this, rewards[i], maxSortingOrder);
+                m_Items[i].Init(this, rewards[i], m_SortingOrder + 10);
             }
 
 
@@ -134,6 +152,18 @@ namespace GameWish.Game
             //if (GuideMgr.S.IsGuiding(34) && GuideMgr.S.IsGuideFinish(19) == false)
             {
                 EventSystem.S.Send(EventID.OnSignInSystem_FinishedTrigger);
+            }
+
+            if (m_IsLookAD && m_IsBossLevel)
+            {
+                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(true);
+            }
+            else {
+                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(false);
+            }
+
+            if (m_CloseBtnTimerID != -1) {
+                Timer.S.Cancel(m_CloseBtnTimerID);
             }
         }
     }

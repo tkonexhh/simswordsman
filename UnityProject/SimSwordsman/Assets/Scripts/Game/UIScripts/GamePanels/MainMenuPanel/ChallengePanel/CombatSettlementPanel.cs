@@ -116,10 +116,12 @@ namespace GameWish.Game
 
                         if (isBossLevel)
                         {
+                            GameDataMgr.S.GetPlayerData().UpdateLastChallengeIsBossLevel(true);
                             UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true);
                         }
                         else
                         {
+                            GameDataMgr.S.GetPlayerData().UpdateLastChallengeIsBossLevel(false);
                             UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
                         }
                         return;
@@ -238,6 +240,11 @@ namespace GameWish.Game
                         m_LevelConfigInfo.AcceptReward();
 
                         GameDataMgr.S.GetPlayerData().recordData.AddChanllenge();
+
+                        if (GameDataMgr.S.GetPlayerData().CurrentChallengeLevelIsPlayInterAD()) 
+                        {
+                            AdsManager.S.PlayInterAD("ChallengePlayInterAD", (x) => { });
+                        }
                     }
                     break;
                 default:
