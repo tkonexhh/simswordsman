@@ -71,19 +71,27 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
-            m_LevelConfigInfo = (LevelConfigInfo)args[1];
-            RefreshPanelInfo();
 
-            RandomAccess(m_LevelConfigInfo.enemyHeadIcon);
-            m_ChallengePhoto.enabled = true;
-            m_ChallengePhoto.sprite = FindSprite("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
+            try
+            {
+                m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
+                m_LevelConfigInfo = (LevelConfigInfo)args[1];
+                RefreshPanelInfo();
+
+                //RandomAccess(m_LevelConfigInfo.enemyHeadIcon);
+                m_ChallengePhoto.enabled = true;
+                m_ChallengePhoto.sprite = FindSprite("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
+            }
+            catch (Exception e)
+            {
+                Log.e("IdentifyChallengesPanel error: " + e.Message + " " + e.StackTrace);
+            }
         }
 
-        private void RandomAccess(string iconName)
-        {
-            iconName.Split(';');
-        }
+        //private void RandomAccess(string iconName)
+        //{
+        //    iconName.Split(';');
+        //}
         public void LoadClanPrefabs(string prefabsName)
         {
             m_Loader = new AddressableAssetLoader<Sprite>();
