@@ -88,20 +88,6 @@ namespace GameWish.Game
             }
         }
 
-        //private void RandomAccess(string iconName)
-        //{
-        //    iconName.Split(';');
-        //}
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_ChallengePhoto.enabled = true;
-                m_ChallengePhoto.sprite = obj;
-            });
-        }
         private void RefreshPanelInfo()
         {
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);

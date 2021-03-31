@@ -9,15 +9,9 @@ namespace GameWish.Game
 {
     public class ChallengeBattlePanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Image m_ChallengeBattleTitle;
-
-        [SerializeField]
-        private Button m_CloseBtn;
-
-
-        [SerializeField]
-        private Transform m_Parent;
+        [SerializeField] private Image m_ChallengeBattleTitle;
+        [SerializeField] private Button m_CloseBtn;
+        [SerializeField] private Transform m_Parent;
         //private List<Button> m_CheckpointBtns = null;
         private ResLoader m_ResLoader;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
@@ -38,29 +32,37 @@ namespace GameWish.Game
             m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
             m_CurChapterAllLevelConfigInfo = MainGameMgr.S.ChapterMgr.GetAllLevelConfigInfo(m_CurChapterConfigInfo.chapterId);
             InitPanelInfo();
-            LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString()+"Panel");
+            LoadClanPrefabs(m_CurChapterConfigInfo.clanType.ToString() + "Panel");
         }
 
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_ResLoader = ResLoader.Allocate();
+            if (m_ResLoader == null)
+                m_ResLoader = ResLoader.Allocate();
 
-            GameObject obj = Instantiate(m_ResLoader.LoadSync(prefabsName)) as GameObject;
+            var prefab = m_ResLoader.LoadSync(prefabsName);
+            if (prefab == null)
+            {
+                Log.e("LoadClanPrefabs: Not found prefabsName:" + prefabsName);
+                return;
+            }
 
-            //GameObject obj = resLoader.LoadSync(prefabsName) as GameObject;
-            //m_CharacterLoaderDic.Add(id, loader);
+            GameObject obj = Instantiate(prefab) as GameObject;
             obj.transform.SetParent(m_Parent);
             RectTransform rectTransform = ((RectTransform)obj.transform);
             rectTransform.SetSiblingIndex(0);
-            //¼ÇÂ¼
+            //ï¿½ï¿½Â¼
             rectTransform.localPosition = Vector3.zero;
             rectTransform.offsetMax = Vector2.zero;
             rectTransform.offsetMin = Vector2.zero;
 
             obj.transform.localScale = new Vector3(1.01f, 1.01f, 1);
             ClanBase _ClanBase = obj.GetComponent<ClanBase>();
-            _ClanBase.SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
-            _ClanBase.UpdateScrollRectValue();
+            if (_ClanBase != null)
+            {
+                _ClanBase.SetPanelInfo(m_CurChapterConfigInfo, m_CurChapterAllLevelConfigInfo);
+                _ClanBase.UpdateScrollRectValue();
+            }
         }
 
         protected override void OnClose()
@@ -70,7 +72,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ´¦ÀíÊÂ¼þ»úº¯Êý
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="key"></param>
         /// <param name="param"></param>
@@ -79,7 +81,7 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnChanllengeSuccess:
-                    int  level = (int)param[0];
+                    int level = (int)param[0];
                     if (m_LevelBtnDic.ContainsKey(level))
                     {
                         Button levelBtn = m_LevelBtnDic[level];
@@ -99,7 +101,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(()=>{
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 HideSelfWithAnim();
