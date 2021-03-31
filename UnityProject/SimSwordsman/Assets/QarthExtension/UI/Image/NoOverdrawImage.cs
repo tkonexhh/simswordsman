@@ -21,7 +21,7 @@ namespace GFrame
         }
 
 
-        protected override void Reset()
+        private void Reset()
         {
             var button = gameObject.GetComponent<Button>();
             if (button != null)
