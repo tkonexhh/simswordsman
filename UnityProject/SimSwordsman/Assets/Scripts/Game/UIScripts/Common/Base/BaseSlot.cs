@@ -65,11 +65,13 @@ namespace GameWish.Game
         public void OnCharacterEnter(CharacterController character)
         {
             m_Character = character;
+            slotState = SlotState.Busy;
         }
 
         public void OnCharacterLeave()
         {
             m_Character = null;
+            slotState = SlotState.Free;
         }
 
         public Vector3 GetPosition()

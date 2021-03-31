@@ -95,8 +95,15 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            EventSystem.S.UnRegister(EventID.OnTaskManualFinished, HandleAddListenerEvent);
+
             CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
+            EventSystem.S.UnRegister(EventID.OnTaskManualFinished, HandleAddListenerEvent);
         }
 
         public void CreateTask(SimGameTask simGameTask)

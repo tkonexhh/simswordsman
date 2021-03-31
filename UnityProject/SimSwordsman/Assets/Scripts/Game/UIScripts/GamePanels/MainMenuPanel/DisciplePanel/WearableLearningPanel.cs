@@ -92,6 +92,9 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+
+            CloseDependPanel(EngineUI.MaskPanel);
+
             PanelPool.S.DisplayPanel();
         }
 
@@ -180,7 +183,6 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
-            CloseDependPanel(EngineUI.MaskPanel);
         }
     }
 }

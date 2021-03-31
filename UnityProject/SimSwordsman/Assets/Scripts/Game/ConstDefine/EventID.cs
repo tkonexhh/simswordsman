@@ -81,10 +81,6 @@ namespace GameWish.Game
         /// </summary>
         OnRefreshPracticeUnlock,
         /// <summary>
-        /// 练功场倒计时刷新
-        /// </summary>
-        OnPracticeFieldTimeRefresh,
-        /// <summary>
         /// 限制相机的触摸移动
         /// </summary>
         OnLimitCameraTouchMove,
