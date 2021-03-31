@@ -86,6 +86,12 @@ namespace GameWish.Game
                     return TDItemConfigTable.GetIconName((int)RawMaterial.Lotus);
                 case CollectedObjType.LotusLeaf:
                     return TDItemConfigTable.GetIconName((int)RawMaterial.LotusLeaf);
+                case CollectedObjType.Fish:
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Fish);      
+                case CollectedObjType.Well:
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.WellWater);  
+                case CollectedObjType.Chicken:
+                    return TDItemConfigTable.GetIconName((int)RawMaterial.Chicken);
             }
             Log.w("Type is not find "+ m_ItemTipsType);
             return "";
