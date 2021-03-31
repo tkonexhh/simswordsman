@@ -288,11 +288,20 @@ namespace GameWish.Game
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 50);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 50);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 50);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 50);
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(4, 50);
+                for (int i = 0; i < 100; i++)
+                {
+                    MainGameMgr.S.CharacterMgr.AddCharacterLevel(i, 500);
+                }
+              
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(4, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(5, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(6, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(7, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(8, 50);
+                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(9, 50);
             }
 
             if (Input.GetKeyDown(KeyCode.G))

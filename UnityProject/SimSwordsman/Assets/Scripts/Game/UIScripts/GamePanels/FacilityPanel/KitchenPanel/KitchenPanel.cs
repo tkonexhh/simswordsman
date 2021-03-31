@@ -105,7 +105,8 @@ namespace GameWish.Game
                 m_NextFoodLimitTxt.text = string.Format("+{0}", m_NextKitchLevelInfo.GetCurFoodLimit() - m_CurKitchLevelInfo.GetCurFoodLimit());
                 m_NextRecoverySpeedTxt.text = string.Format("{0}", m_NextKitchLevelInfo.GetCurFoodAddSpeed() - m_CurKitchLevelInfo.GetCurFoodAddSpeed());
             }
-            m_UpgradeTitle.text = "升级需要讲武堂达到" + CommonUIMethod.GetGrade(m_NextKitchLevelInfo.upgradeNeedLobbyLevel);
+            if (m_NextKitchLevelInfo != null)
+                m_UpgradeTitle.text = "升级需要讲武堂达到" + CommonUIMethod.GetGrade(m_NextKitchLevelInfo.upgradeNeedLobbyLevel);
             RefreshResInfo();
 
         }

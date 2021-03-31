@@ -46,6 +46,7 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnMainMenuOrDiscipleRedPoint:
+                    m_CurCharacter = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CurCharacter.id);
                     m_DiscipleRedPoint.SetActive(m_CurCharacter.CheckDiscipelPanel());
                     break;
             }
