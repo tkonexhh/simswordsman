@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2105644465
+CRC: 1794107941
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 64fce5ea52cebfeb8101f1fd1aac05a7
+    Hash: 9cc84f727260947583dc9dde5ba755b1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a256e6ff3ec8373db54d46f363774375
+    Hash: 2939c910ec753384e0500b59b206a9db
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -54,6 +54,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 7bf797d614b09704a830a9174af262a8, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 1fda1307415e9a8459f2393edc04f1e5, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 5556d4272ca37354f9b832ad2012d49f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c750be57494562441bd285a0ba212272, type: 3}
@@ -77,8 +79,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: db5fc54f9823b1644bae1863f988a81b, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: aa9263af843f90f40af0e3923bdf51b7, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 1fda1307415e9a8459f2393edc04f1e5, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -110,22 +110,22 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeSelectedDisciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/MatchRecordItem.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengepanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatinterface.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterwholebodyicons.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/identifychallengespanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatsettlement.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/promotionpanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatsettlement.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/combatinterface.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/identifychallengespanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/promotionpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterwholebodyicons.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle

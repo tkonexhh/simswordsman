@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3533661303
+CRC: 548927073
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fa0ed9c7082e76b10fd911c420ca9c9e
+    Hash: 434ab7c7cab61f42a61239fae265465d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 74322a54c04fe758dda2d7ce46f7f47b
+    Hash: 56f208ddc2784d0132485d5e22f09861
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -22,13 +22,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: abb5c4702c7d6e344b9832a97ae1264d, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3183dfa4ded70b44db12074f6cf989b0, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f9aa557e48351c044a183f2fc53e9039, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 3183dfa4ded70b44db12074f6cf989b0, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -48,10 +48,10 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/SmallUpgradeResItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/UpgradeResItem.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/senddisciplepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle

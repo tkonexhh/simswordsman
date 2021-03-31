@@ -1,15 +1,19 @@
 ManifestFileVersion: 0
-CRC: 896741674
+CRC: 3780810017
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 451af19abd0918508f323d54b554190a
+    Hash: f9cdbeb1920b35ba96442af011181552
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7438c158eebca808fb32604132dd520d
+    Hash: de035bfd7e1e7694aae4f0a253ebe2e0
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -24,6 +28,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: abb5c4702c7d6e344b9832a97ae1264d, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: a97511c46d389f74fb1b6b1ca03f0818, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 35fb374c33d556546853feb1830b5405, type: 3}
@@ -32,6 +38,12 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 210
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -47,10 +59,12 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/RewardPanel/RewardPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/CommonPanel/RewardPanel/RewardPanelItem.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/material.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/prefab/martialartsmanagement/ui.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/getreward/texture.bundle

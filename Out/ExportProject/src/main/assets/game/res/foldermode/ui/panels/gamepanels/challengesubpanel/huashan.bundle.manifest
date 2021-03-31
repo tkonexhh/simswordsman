@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 921485323
+CRC: 1091141822
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d26c52a6b595200d687afc41a539240f
+    Hash: 86329121765ad5320243f27e15aa15bd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0861c49943832e9c68b00baae34eb15c
+    Hash: 332b5be9b47396a727f1aeb4c9ec2e60
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -26,13 +26,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 1fda1307415e9a8459f2393edc04f1e5, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 8786f468c87df444b8d77a6b5a16ec85, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: db5fc54f9823b1644bae1863f988a81b, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 1fda1307415e9a8459f2393edc04f1e5, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -47,6 +47,6 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Huashan/HuashanPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/ChallengeSubPanel/Huashan/Huashan.jpg
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/challengebattlepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle

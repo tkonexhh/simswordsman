@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4009816637
+CRC: 3472209505
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9c953f127a48fab5b163874663c5fa78
+    Hash: 24d0b37fa135e8b7d93cf13c7a463f6c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 863a613199580a0430ac6c73038ee734
+    Hash: c7bf741d650821874e63235c2fdd55e5
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -56,11 +56,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: af75ad8fa86d99b488a893d9b96f1268, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: bf0121af6b430474da55d2c930710fd5, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8717b5ef48f74b847b681b671afad6a9, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: af75ad8fa86d99b488a893d9b96f1268, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -93,6 +93,6 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/Common/MaskWithAlphaZeroPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/Tip.prefab
 Dependencies:
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
