@@ -25,6 +25,9 @@ namespace GameWish.Game
 
         private List<RewardBase> m_RewardsDataList = new List<RewardBase>();
 
+        private bool m_IsBossLevel = false;
+        private bool m_IsLookAD = false;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -38,6 +41,8 @@ namespace GameWish.Game
 
         private void LookRewardADSuccessCallBack(bool obj)
         {
+            m_IsLookAD = true;            
+
             if (m_RewardsDataList.Count > 0) 
             {
                 m_RewardsDataList.ForEach(x => x.AcceptReward());
@@ -51,7 +56,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// args[1]:代表是否显示双倍按钮
+        /// args[1]:代表是否是boss关卡
         /// </summary>
         /// <param name="args"></param>
         protected override void OnPanelOpen(params object[] args)
@@ -65,9 +70,10 @@ namespace GameWish.Game
                 m_RewardsDataList = (List<RewardBase>)args[0];
                 InitItems(m_RewardsDataList);
 
-                if (args.Length > 1) {
-                    bool isShowDoubleRewardBtn = (bool)args[1];
-                    m_DoubleRewardBtn.gameObject.SetActive(isShowDoubleRewardBtn);
+                if (args.Length > 1) 
+                {
+                    m_IsBossLevel = (bool)args[1];
+                    m_DoubleRewardBtn.gameObject.SetActive(m_IsBossLevel);
                 }
             }
 
@@ -131,6 +137,14 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnSignInSystem_FinishedTrigger);
             }
+
+            if (m_IsLookAD && m_IsBossLevel)
+            {
+                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(true);
+            }
+            else {
+                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(false);
+            }            
         }
     }
 }

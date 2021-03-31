@@ -23,6 +23,8 @@ namespace GameWish.Game
         public RecordData recordData = new RecordData();
         public TaskData taskData = new TaskData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
+        public bool IsLookADInLastChallengeBossLevel = true;
+        public bool LastChallengeIsBossLevel = false;
 
         public List<int> unlockFoodItemIDs = new List<int>();//已解锁的伙房食物id
 
@@ -84,6 +86,25 @@ namespace GameWish.Game
         /// </summary>
         public int RefreshInterTimes;
 
+        #endregion
+
+        #region 挑战 广告相关
+        public void UpdateIsLookADInLastChallengeBossLevel(bool value) 
+        {
+            IsLookADInLastChallengeBossLevel = value;
+            SetDataDirty();
+        }
+        public void UpdateLastChallengeIsBossLevel(bool value) {
+            LastChallengeIsBossLevel = value;
+            SetDataDirty();
+        }
+        public bool CurrentChallengeLevelIsPlayInterAD() 
+        {
+            if (LastChallengeIsBossLevel && IsLookADInLastChallengeBossLevel == false) {
+                return true;
+            }
+            return false;
+        }
         #endregion
 
         public void SetDefaultValue()
