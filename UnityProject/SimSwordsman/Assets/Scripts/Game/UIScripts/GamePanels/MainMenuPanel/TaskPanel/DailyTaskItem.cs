@@ -63,13 +63,8 @@ namespace GameWish.Game
             if (!m_Task.IsComplete())
                 return;
 
+            MainGameMgr.S.TaskMgr.dailyTaskController.FinishTask(m_Task);
 
-            //存档
-            if (GameDataMgr.S.GetPlayerData().taskData.dailyTaskData.AddCompleteID(m_Task.id))
-            {
-                m_Task.GetReward();
-                EventSystem.S.Send(EventID.OnRefeshDailyTaskPanel);
-            }
             Refesh();
         }
     }

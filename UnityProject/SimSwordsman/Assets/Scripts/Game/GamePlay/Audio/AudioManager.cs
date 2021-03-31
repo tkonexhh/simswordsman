@@ -42,7 +42,7 @@ namespace GameWish.Game
         }
         private void OnBattleFaildCallBack(int key, object[] param)
         {
-            AudioMgr.S.PlaySound(Define.SOUND_BATTLE_LOSE);
+            //AudioMgr.S.PlaySound(Define.SOUND_BATTLE_LOSE);
         }
         private void OnBattleSuccessCallBack(int key, object[] param)
         {

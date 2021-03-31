@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RoadAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 230a03634be89724ebb9f3f4ad7529b8, type: 3}
+    - {fileID: 2800000, guid: f3911f3b323f6c34291e5091647ba690, type: 3}
+    - {fileID: 2800000, guid: 4d4cc52c43adbdc439eff8269a5f5a94, type: 3}
+    - {fileID: 2800000, guid: e6a6bea380a972644867665f802f29b7, type: 3}
+    - {fileID: 2800000, guid: a3916ad0a4985c74da05f46965875af5, type: 3}
+    - {fileID: 2800000, guid: a0820f66b383c964598d01b47cdda77f, type: 3}
+    - {fileID: 2800000, guid: 210a705e0ba8a1147b19756ba32eefc1, type: 3}
+    - {fileID: 2800000, guid: 8c3f9e937aedf1b4da6ccdef4a0753b5, type: 3}
+    - {fileID: 2800000, guid: fa5721c9f63eac44ba47e7d61a2573cd, type: 3}
+    - {fileID: 2800000, guid: 222c1971a2da0144ebd6a34b809b2435, type: 3}
+    - {fileID: 2800000, guid: ebe68aa7857fd1e4d83593978ba644c2, type: 3}
+    - {fileID: 2800000, guid: 9368913646429684d85cc243c83ae16f, type: 3}
+    - {fileID: 2800000, guid: 5770d18fe23264343baebf07171157db, type: 3}
+    - {fileID: 2800000, guid: d47811fb90c1c6f4f816d9ad2b155386, type: 3}
+    - {fileID: 2800000, guid: 6cf76150c4e21aa4c88263d8905aca93, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6cf76150c4e21aa4c88263d8905aca93, type: 3}
+  - {fileID: 21300000, guid: a3916ad0a4985c74da05f46965875af5, type: 3}
+  - {fileID: 21300000, guid: 222c1971a2da0144ebd6a34b809b2435, type: 3}
+  - {fileID: 21300000, guid: 230a03634be89724ebb9f3f4ad7529b8, type: 3}
+  - {fileID: 21300000, guid: 8c3f9e937aedf1b4da6ccdef4a0753b5, type: 3}
+  - {fileID: 21300000, guid: e6a6bea380a972644867665f802f29b7, type: 3}
+  - {fileID: 21300000, guid: 9368913646429684d85cc243c83ae16f, type: 3}
+  - {fileID: 21300000, guid: a0820f66b383c964598d01b47cdda77f, type: 3}
+  - {fileID: 21300000, guid: ebe68aa7857fd1e4d83593978ba644c2, type: 3}
+  - {fileID: 21300000, guid: fa5721c9f63eac44ba47e7d61a2573cd, type: 3}
+  - {fileID: 21300000, guid: f3911f3b323f6c34291e5091647ba690, type: 3}
+  - {fileID: 21300000, guid: d47811fb90c1c6f4f816d9ad2b155386, type: 3}
+  - {fileID: 21300000, guid: 4d4cc52c43adbdc439eff8269a5f5a94, type: 3}
+  - {fileID: 21300000, guid: 210a705e0ba8a1147b19756ba32eefc1, type: 3}
+  - {fileID: 21300000, guid: 5770d18fe23264343baebf07171157db, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - road_zc
+  - road_4
+  - road_9
+  - building_tjp
+  - road_7
+  - road_3
+  - road_mj_01
+  - road_5
+  - road_gc
+  - road_8
+  - road_1
+  - road_yp
+  - road_2
+  - road_6
+  - road_mj_02
+  m_Tag: RoadAtlas
+  m_IsVariant: 0

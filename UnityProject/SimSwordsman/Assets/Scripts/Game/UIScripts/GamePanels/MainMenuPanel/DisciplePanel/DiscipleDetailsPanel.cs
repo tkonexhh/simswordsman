@@ -130,6 +130,11 @@ namespace GameWish.Game
         private EquipBtnState m_ArmsState = EquipBtnState.None;
         //private EquipmentItem m_CurArmor = null;
         //private EquipmentItem m_CurArms = null;
+
+        #region ²âÊÔÊ¹ÓÃ 
+        [SerializeField]
+        private Button m_EditerDisciple;
+        #endregion
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -390,6 +395,13 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
+            if (PlatformHelper.isTestMode)
+            {
+                m_EditerDisciple.onClick.AddListener(()=> {
+                    MainGameMgr.S.CharacterMgr.AddCharacterLevel(m_CurDisciple.id,20);
+                });
+            }
+
             m_ArmorBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);

@@ -88,6 +88,7 @@ namespace GameWish.Game
         public int MakeTime { set; get; }
         public float EffectParam { set; get; }
         public int UseLevelRequire { set; get; }
+        public float PowerRatio { set; get; }
 
         public HerbConfig(TDHerbConfig tDHerb)
         {
@@ -99,6 +100,7 @@ namespace GameWish.Game
             MakeTime = tDHerb.makeTime;
             EffectParam = tDHerb.effectParam;
             UseLevelRequire = tDHerb.useLevelRequire;
+            PowerRatio = tDHerb.powerRatio;
         }
 
         //public HerbConfig(HerbConfig herb)

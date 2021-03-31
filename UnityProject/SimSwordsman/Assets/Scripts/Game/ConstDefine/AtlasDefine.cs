@@ -8,6 +8,7 @@ namespace GameWish.Game
 	public class AtlasDefine 
 	{
 		public const string ItemIconItemIcon = "ItemIconItemIcon";
+		public const string PanelCommonPanelCommon = "PanelCommonPanelCommon";
 	}
 	
 }

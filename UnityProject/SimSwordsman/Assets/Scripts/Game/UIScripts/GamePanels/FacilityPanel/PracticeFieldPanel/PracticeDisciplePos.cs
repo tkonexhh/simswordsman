@@ -39,7 +39,7 @@ namespace GameWish.Game
             BindAddListenEvent();
             m_CurFacilityType = type;
             m_PracticeFieldPanel = panel;
-            m_PracticePos.text = "练功位:" + index;
+            m_PracticePos.text = "练功位:" + (index + 1);
             PracticeFieldController controller = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
             m_Slot = controller.GetSlotByIndex(index);
             RefreshPracticeFieldState();

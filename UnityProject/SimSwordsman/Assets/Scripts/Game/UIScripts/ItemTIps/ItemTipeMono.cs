@@ -33,20 +33,31 @@ namespace GameWish.Game
         public void OnClicked()
         {
             WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_ItemTipsType);
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
             if (workConfigItem==null)
             {
-                Log.w("ItemTipsType is not find , ItemTipsType = " + m_ItemTipsType);
-                return;
+                PropConfigInfo propConfigInfo = TDItemConfigTable.GetPropConfigInfo(GetRawMaterial());
+                if (propConfigInfo.unlockHomeLevel <= lobbyLevel)//未解锁
+                {
+                    WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.itemTipsConfig.name, propConfigInfo.itemTipsConfig.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                }
+                else//解锁
+                {
+                    WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.unlockDesc.name, propConfigInfo.unlockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                }
             }
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
-            if (workConfigItem.unlockHomeLevel <= lobbyLevel)//解锁
+            else
             {
-                WorldUIPanel.S.ShowWorkText(transform, workConfigItem.functionDesc.name, workConfigItem.functionDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                if (workConfigItem.unlockHomeLevel <= lobbyLevel)//未解锁
+                {
+                    WorldUIPanel.S.ShowWorkText(transform, workConfigItem.functionDesc.name, workConfigItem.functionDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                }
+                else//解锁
+                {
+                    WorldUIPanel.S.ShowWorkText(transform, workConfigItem.unlockDesc.name, workConfigItem.unlockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
+                }
             }
-            else//未解锁
-            {
-                WorldUIPanel.S.ShowWorkText(transform, workConfigItem.unlockDesc.name, workConfigItem.unlockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName()));
-            }
+         
         }
 
         private string GetIconName()
@@ -78,6 +89,36 @@ namespace GameWish.Game
             }
             Log.w("Type is not find "+ m_ItemTipsType);
             return "";
+        }
+        private int GetRawMaterial()
+        {
+            switch (m_ItemTipsType)
+            {
+                case CollectedObjType.WuWood:
+                    return (int)RawMaterial.WuWood;
+                case CollectedObjType.SilverWood:
+                    return (int)RawMaterial.SilverWood;
+                case CollectedObjType.QingRock:
+                    return (int)RawMaterial.QingRock;
+                case CollectedObjType.CloudRock:
+                    return (int)RawMaterial.CloudRock;
+                case CollectedObjType.Vine:
+                    return (int)RawMaterial.Vine;
+                case CollectedObjType.Iron:
+                    return (int)RawMaterial.Iron;
+                case CollectedObjType.Ganoderma:
+                    return (int)RawMaterial.Ganoderma;
+                case CollectedObjType.RoyalJelly:
+                    return (int)RawMaterial.Honey;
+                case CollectedObjType.LotusRoot:
+                    return (int)RawMaterial.LotusRoot;
+                case CollectedObjType.Lotus:
+                    return (int)RawMaterial.Lotus;
+                case CollectedObjType.LotusLeaf:
+                    return (int)RawMaterial.LotusLeaf;
+            }
+            Log.w("Type is not find " + m_ItemTipsType);
+            return 1007;
         }
 
         public bool On_Drag(Gesture gesture, bool isTouchStartFromUI)

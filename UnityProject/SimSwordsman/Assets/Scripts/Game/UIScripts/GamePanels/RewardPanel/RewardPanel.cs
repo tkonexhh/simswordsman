@@ -12,7 +12,7 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_RewardTran;
         [SerializeField]
-        private Button m_CloseBtn; 
+        private Button m_CloseBtn;
         [SerializeField]
         private GameObject m_LootFirework;
 
@@ -33,7 +33,7 @@ namespace GameWish.Game
             base.OnUIInit();
             BindAddListenerEvent();
 
-            m_DoubleRewardBtn.onClick.AddListener(()=> 
+            m_DoubleRewardBtn.onClick.AddListener(() =>
             {
                 AdsManager.S.PlayRewardAD(Define.DoubleGetBossRewardADName, LookRewardADSuccessCallBack);
             });
@@ -41,9 +41,9 @@ namespace GameWish.Game
 
         private void LookRewardADSuccessCallBack(bool obj)
         {
-            m_IsLookAD = true;            
-
-            if (m_RewardsDataList.Count > 0) 
+            m_IsLookAD = true;   
+            
+            if (m_RewardsDataList.Count > 0)
             {
                 m_RewardsDataList.ForEach(x => x.AcceptReward());
 
@@ -62,8 +62,11 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+
             m_RewardsDataList.Clear();
             m_DoubleRewardBtn.gameObject.SetActive(false);
+
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
             if (args != null)
             {
@@ -77,13 +80,13 @@ namespace GameWish.Game
                 }
             }
 
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
+
         }
         void InitItems(List<RewardBase> rewards)
         {
             for (int i = 0; i < rewards.Count; i++)
             {
-                if (i>=3)
+                if (i >= 3)
                     break;
 
                 if (m_Items.Count < i + 1)
@@ -93,7 +96,7 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(this, rewards[i]);
+                m_Items[i].Init(this, rewards[i], maxSortingOrder);
             }
 
 
@@ -109,7 +112,7 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            //ÒôÐ§
+            //ï¿½ï¿½Ð§
             foreach (var item in transform.GetComponentsInChildren<Button>(true))
             {
                 item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));

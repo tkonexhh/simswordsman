@@ -38,18 +38,6 @@ namespace GameWish.Game
         private Text m_UpgradeConditions;
         [Header("Bottom")]
         [SerializeField]
-        private Image m_Res3Img;
-        [SerializeField]
-        private Text m_Res3Value;
-        [SerializeField]
-        private Text m_Res1Value;
-        [SerializeField]
-        private Image m_Res1Img;
-        [SerializeField]
-        private Text m_Res2Value;
-        [SerializeField]
-        private Image m_Res2Img;
-        [SerializeField]
         private Button m_UpgradeBtn;
         [SerializeField]
         private Text m_UpgradeBtnValue;
@@ -74,6 +62,11 @@ namespace GameWish.Game
         private GameObject m_UpperMiddle; 
         [SerializeField]
         private GameObject m_RedPoint;
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
 
         private LivableRoomLevelInfo m_CurLivableRoomLevelInfo = null;
         private LivableRoomLevelInfo m_NextLivableRoomLevelInfo = null;
@@ -262,7 +255,8 @@ namespace GameWish.Game
             switch (m_LivableRoomState)
             {
                 case LivableRoomState.ReadyBuilt:
-                    if (CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems, false))
+                    List<CostItem> costItemList = GetCostItem(m_CurLivableRoomLevelInfo);
+                    if (CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, costItemList, false))
                         m_RedPoint.SetActive(true);
                     else
                         m_RedPoint.SetActive(false);
@@ -273,10 +267,10 @@ namespace GameWish.Game
                     m_CurPeopleValue.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
                         + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
-                    RefreshResInfo(m_CurLivableRoomLevelInfo, GetCostItem(m_CurLivableRoomLevelInfo));
+                    RefreshResInfo(m_CurLivableRoomLevelInfo, costItemList);
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
 
-                    if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems, false))
+                    if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, costItemList, false))
                     {
                         m_UpgradeBtnImg.sprite = FindSprite("LivableRoomPanel_BgBtn3");
                         m_UpgradeBtn.interactable = false;
@@ -319,12 +313,9 @@ namespace GameWish.Game
                     m_LivableRoomLevel.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_FULLLEVEL);
                     m_CurPeopleValue.text = CommonUIMethod.GetStrForColor("#365387", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetCurCapacity()));
                     m_UpperMiddle.SetActive(false);
-                    m_FullScale.text = CommonUIMethod.GetStrForColor("#AD7834", Define.COMMON_FULLEDLEVEL);
+                    m_FullScale.text = CommonUIMethod.GetStrForColor("#AD7834", Define.COMMON_FULLEDLEVEL,true);
                     m_UpgradeConditions.text = Define.COMMON_DEFAULT_STR;
                     m_UpgradeBtn.gameObject.SetActive(false);
-                    m_Res3Img.gameObject.SetActive(false);
-                    m_Res1Img.gameObject.SetActive(false);
-                    m_Res2Img.gameObject.SetActive(false);
                     m_LivableRoomImg.sprite = m_ParentPanel.FindSprite("LivableRoom" + m_CurLevel);
                     m_LivableRoomImg.gameObject.SetActive(true);
                     m_LivableRoomImgLock.gameObject.SetActive(false);
@@ -337,7 +328,7 @@ namespace GameWish.Game
 
         private void RefreshResInfo(LivableRoomLevelInfo livableRoomLevel, List<CostItem> costItems)
         {
-            CommonUIMethod.RefreshUpgradeResInfo(costItems, m_Res1Value, m_Res1Img, m_Res2Value, m_Res2Img, m_Res3Value, m_Res3Img, livableRoomLevel, m_ParentPanel);
+            CommonUIMethod.RefreshUpgradeResInfo(costItems, m_UpgradeResItemTra, m_UpgradeResItem, livableRoomLevel);
 
             //if (costItems == null)
             //    return;

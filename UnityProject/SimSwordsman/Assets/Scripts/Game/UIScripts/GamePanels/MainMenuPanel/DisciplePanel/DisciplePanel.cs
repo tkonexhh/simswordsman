@@ -43,6 +43,10 @@ namespace GameWish.Game
 
         private Dictionary<CharacterItem, GameObject> m_DiscipleDic = new Dictionary<CharacterItem, GameObject>();
 
+        #region ×÷±×Ê¹ÓÃ
+        [SerializeField]
+        private Button m_Disciple;
+        #endregion
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -142,6 +146,18 @@ namespace GameWish.Game
 
         private void BindAddListenerEvevnt()
         {
+
+            if (PlatformHelper.isTestMode)
+            {
+                m_Disciple.onClick.AddListener(() =>
+                {
+                    for (int i = 0; i < 10000; i++)
+                    {
+                        MainGameMgr.S.CharacterMgr.AddCharacterLevel(i, 20);
+                    }
+                });
+            }
+
             m_CloseBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();

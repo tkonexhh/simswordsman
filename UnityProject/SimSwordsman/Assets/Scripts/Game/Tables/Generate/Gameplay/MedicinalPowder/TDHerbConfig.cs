@@ -21,7 +21,8 @@ namespace GameWish.Game
         private string m_EffectDesc;   
         private EFloat m_EffectParam = 0.0f;   
         private EInt m_Price = 0;   
-        private string m_Icon;  
+        private string m_Icon;   
+        private EFloat m_PowerRatio = 0.0f;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -75,6 +76,11 @@ namespace GameWish.Game
         /// </summary>
         public  string  icon {get { return m_Icon; } }
        
+        /// <summary>
+        /// 界面上功力加成系数
+        /// </summary>
+        public  float  powerRatio {get { return m_PowerRatio; } }
+       
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
         {
@@ -120,6 +126,9 @@ namespace GameWish.Game
                 case 9:
                     m_Icon = dataR.ReadString();
                     break;
+                case 10:
+                    m_PowerRatio = dataR.ReadFloat();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -130,7 +139,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(10);
+          Dictionary<string, int> ret = new Dictionary<string, int>(11);
           
           ret.Add("Id", 0);
           ret.Add("Name", 1);
@@ -142,6 +151,7 @@ namespace GameWish.Game
           ret.Add("EffectParam", 7);
           ret.Add("Price", 8);
           ret.Add("Icon", 9);
+          ret.Add("PowerRatio", 10);
           return ret;
         }
     } 

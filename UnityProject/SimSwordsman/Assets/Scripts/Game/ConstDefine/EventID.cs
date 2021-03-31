@@ -381,13 +381,11 @@ namespace GameWish.Game
         OnFixedPointRefreshEvent,
         #endregion
 
-
-        OnRefeshDailyTaskPanel,
-
         OnLoginWeChatSuccess,
-
+        OnRefeshDailyTaskPanel,
         OnRefeshMainTask,
-
+        OnRefeshDailyTask,
+        OnMainMenuDailyTaskRedPoint,
     }
 
 }

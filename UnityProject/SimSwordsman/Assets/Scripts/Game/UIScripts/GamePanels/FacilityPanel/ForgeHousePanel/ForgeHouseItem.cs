@@ -24,15 +24,6 @@ namespace GameWish.Game
         private Text m_EffecTxt;
 
         [SerializeField]
-        private Image m_NeedItem1;
-        [SerializeField]
-        private Image m_NeedItem2;
-        [SerializeField]
-        private Text m_NeedItemCount1Txt;
-        [SerializeField]
-        private Text m_NeedItemCount2Txt;
-
-        [SerializeField]
         private Button m_MakeBtn;
         [SerializeField]
         private Button m_CompleteADBtn;
@@ -47,7 +38,11 @@ namespace GameWish.Game
 
         [SerializeField]
         private Image m_Progress;
-
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
         [HideInInspector]
         public int m_ForgeHouseID;
         [HideInInspector]
@@ -251,21 +246,22 @@ namespace GameWish.Game
         }
         void SetMakeNeedRes(List<CostItem> infos)
         {
-            if (infos.Count == 2)
-            {
-                m_NeedItem2.gameObject.SetActive(true);
-                m_NeedItemCount2Txt.gameObject.SetActive(true);
+            CommonUIMethod.RefreshUpgradeResInfo(infos, m_UpgradeResItemTra, m_UpgradeResItem);
+            //if (infos.Count == 2)
+            //{
+            //    m_NeedItem2.gameObject.SetActive(true);
+            //    m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
-                m_NeedItemCount2Txt.text = infos[1].value.ToString();
-            }
-            else
-            {
-                m_NeedItem2.gameObject.SetActive(false);
-                m_NeedItemCount2Txt.gameObject.SetActive(false);
-            }
-            m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
-            m_NeedItemCount1Txt.text = infos[0].value.ToString();
+            //    m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
+            //    m_NeedItemCount2Txt.text = infos[1].value.ToString();
+            //}
+            //else
+            //{
+            //    m_NeedItem2.gameObject.SetActive(false);
+            //    m_NeedItemCount2Txt.gameObject.SetActive(false);
+            //}
+            //m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            //m_NeedItemCount1Txt.text = infos[0].value.ToString();
         }
     }
 }

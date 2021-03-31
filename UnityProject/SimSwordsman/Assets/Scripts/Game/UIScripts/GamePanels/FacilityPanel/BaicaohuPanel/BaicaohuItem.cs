@@ -47,7 +47,11 @@ namespace GameWish.Game
 
         [SerializeField]
         private Image m_Progress;
-
+        [Header("Res")]
+        [SerializeField]
+        private Transform m_UpgradeResItemTra;
+        [SerializeField]
+        private GameObject m_UpgradeResItem;
         [HideInInspector]
         public int ID;
         [HideInInspector]
@@ -233,34 +237,35 @@ namespace GameWish.Game
                     break;
             }
         }
-
+    
         void SetMakeNeedRes(List<CostItem> infos)
         {
-            if (infos.Count == 2)
-            {
-                m_NeedItem2.gameObject.SetActive(true);
-                m_NeedItemCount2Txt.gameObject.SetActive(true);
+            CommonUIMethod.RefreshUpgradeResInfo(infos, m_UpgradeResItemTra, m_UpgradeResItem);
+            //if (infos.Count == 2)
+            //{
+            //    m_NeedItem2.gameObject.SetActive(true);
+            //    m_NeedItemCount2Txt.gameObject.SetActive(true);
 
-                m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
-                int Cost2 = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)infos[1].itemId);
-                if (Cost2 > infos[1].value)
-                    m_NeedItemCount2Txt.text = infos[1].value.ToString() + Define.SLASH + infos[1].value.ToString();
-                else
-                    m_NeedItemCount2Txt.text = CommonUIMethod.GetStrForColor("#A35953", Cost2.ToString()) + Define.SLASH + infos[1].value.ToString();
+            //    m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
+            //    int Cost2 = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)infos[1].itemId);
+            //    if (Cost2 > infos[1].value)
+            //        m_NeedItemCount2Txt.text = infos[1].value.ToString() + Define.SLASH + infos[1].value.ToString();
+            //    else
+            //        m_NeedItemCount2Txt.text = CommonUIMethod.GetStrForColor("#A35953", Cost2.ToString()) + Define.SLASH + infos[1].value.ToString();
 
-            }
-            else
-            {
-                m_NeedItem2.gameObject.SetActive(false);
-                m_NeedItemCount2Txt.gameObject.SetActive(false);
-            }
-            m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
-            int Cost1 = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)infos[0].itemId);
+            //}
+            //else
+            //{
+            //    m_NeedItem2.gameObject.SetActive(false);
+            //    m_NeedItemCount2Txt.gameObject.SetActive(false);
+            //}
+            //m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
+            //int Cost1 = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)infos[0].itemId);
 
-            if (Cost1 > infos[0].value)
-                m_NeedItemCount1Txt.text = infos[0].value.ToString() + Define.SLASH + infos[0].value.ToString();
-            else
-                m_NeedItemCount1Txt.text = CommonUIMethod.GetStrForColor("#A35953", Cost1.ToString()) + Define.SLASH + infos[0].value.ToString();
+            //if (Cost1 > infos[0].value)
+            //    m_NeedItemCount1Txt.text = infos[0].value.ToString() + Define.SLASH + infos[0].value.ToString();
+            //else
+            //    m_NeedItemCount1Txt.text = CommonUIMethod.GetStrForColor("#A35953", Cost1.ToString()) + Define.SLASH + infos[0].value.ToString();
         }
     }
 }

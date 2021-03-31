@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SmallItemAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 4fc1b58e8f3ad424990b13eff9b4500e, type: 3}
+    - {fileID: 2800000, guid: 10658d85cde44954fa13f799853e21df, type: 3}
+    - {fileID: 2800000, guid: f5cc861f8a2c44b44bfa235ed1b470fd, type: 3}
+    - {fileID: 2800000, guid: 0a874715e9e24d943b5c5d15ba493840, type: 3}
+    - {fileID: 2800000, guid: 44e9331363ff7f046bac45acd3280dc2, type: 3}
+    - {fileID: 2800000, guid: 4d4e2bc8e03721c42884365dd180aaed, type: 3}
+    - {fileID: 2800000, guid: 9e5e4ef751ecf02408940b6928d671a6, type: 3}
+    - {fileID: 2800000, guid: 978fdcacbaf46be42b9c1c62dd9509b9, type: 3}
+    - {fileID: 2800000, guid: d2bd08bfbcba0db4bbcdfb05c2b89058, type: 3}
+    - {fileID: 2800000, guid: 85c1f4bffd0f1f840a98e531593234ed, type: 3}
+    - {fileID: 2800000, guid: 89451f91d73850c459abf81a9a8372f6, type: 3}
+    - {fileID: 2800000, guid: 52e3dc7f14d54c149b6714fadafe2273, type: 3}
+    - {fileID: 2800000, guid: 9491b2107c110f34c8ce70f14ad60fc2, type: 3}
+    - {fileID: 2800000, guid: 3c9d97ada614ffc4abdef50641fdc312, type: 3}
+    - {fileID: 2800000, guid: a3b3e5b7f82fe6e4b84848d319df61ab, type: 3}
+    - {fileID: 2800000, guid: 869125ef3ab9a144ca66b8fff31a5236, type: 3}
+    - {fileID: 2800000, guid: 6c2acf5a8f01a9043bf86255b61333a6, type: 3}
+    - {fileID: 2800000, guid: 6987a0cba7d2b914c88055f817c8caae, type: 3}
+    - {fileID: 2800000, guid: ac6d6820cfaf3104eab3491ece026093, type: 3}
+    - {fileID: 2800000, guid: 826fabcc6b4888342bd1913bf2d45953, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9491b2107c110f34c8ce70f14ad60fc2, type: 3}
+  - {fileID: 21300000, guid: ac6d6820cfaf3104eab3491ece026093, type: 3}
+  - {fileID: 21300000, guid: 89451f91d73850c459abf81a9a8372f6, type: 3}
+  - {fileID: 21300000, guid: 44e9331363ff7f046bac45acd3280dc2, type: 3}
+  - {fileID: 21300000, guid: 0a874715e9e24d943b5c5d15ba493840, type: 3}
+  - {fileID: 21300000, guid: 10658d85cde44954fa13f799853e21df, type: 3}
+  - {fileID: 21300000, guid: a3b3e5b7f82fe6e4b84848d319df61ab, type: 3}
+  - {fileID: 21300000, guid: 9e5e4ef751ecf02408940b6928d671a6, type: 3}
+  - {fileID: 21300000, guid: 4d4e2bc8e03721c42884365dd180aaed, type: 3}
+  - {fileID: 21300000, guid: 6c2acf5a8f01a9043bf86255b61333a6, type: 3}
+  - {fileID: 21300000, guid: 6987a0cba7d2b914c88055f817c8caae, type: 3}
+  - {fileID: 21300000, guid: 978fdcacbaf46be42b9c1c62dd9509b9, type: 3}
+  - {fileID: 21300000, guid: 826fabcc6b4888342bd1913bf2d45953, type: 3}
+  - {fileID: 21300000, guid: 3c9d97ada614ffc4abdef50641fdc312, type: 3}
+  - {fileID: 21300000, guid: 4fc1b58e8f3ad424990b13eff9b4500e, type: 3}
+  - {fileID: 21300000, guid: f5cc861f8a2c44b44bfa235ed1b470fd, type: 3}
+  - {fileID: 21300000, guid: 52e3dc7f14d54c149b6714fadafe2273, type: 3}
+  - {fileID: 21300000, guid: 85c1f4bffd0f1f840a98e531593234ed, type: 3}
+  - {fileID: 21300000, guid: d2bd08bfbcba0db4bbcdfb05c2b89058, type: 3}
+  - {fileID: 21300000, guid: 869125ef3ab9a144ca66b8fff31a5236, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ganoderma
+  - vine
+  - cloud_rock
+  - Cloud02
+  - Cloud01
+  - Collect_lotus1
+  - qing_rock
+  - scene_lotus
+  - Cloud03
+  - silver_wood2
+  - silver_wood3
+  - scene_lotusleaf
+  - wu_wood
+  - iron
+  - Collect_honey
+  - Collect_lotus2
+  - cloud_rock2
+  - scene_royaljelly
+  - scene_lotusroot
+  - silver_wood
+  m_Tag: SmallItemAtlas
+  m_IsVariant: 0
