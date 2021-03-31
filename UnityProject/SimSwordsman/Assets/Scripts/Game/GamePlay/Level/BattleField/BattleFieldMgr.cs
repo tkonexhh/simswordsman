@@ -26,7 +26,7 @@ namespace GameWish.Game
         private double m_OurDamagePersecond = 1;
         private int m_InitOurCharacterCount;
         private int m_InitEnemeyCharacterCount;
-        private int m_Const = 15;
+        private int m_Const = 10;
 
         private float m_ApplyDamageTime = 0f;
         private float m_ApplyDamageInterval = 1f;
