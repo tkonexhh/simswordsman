@@ -54,6 +54,7 @@ namespace GameWish.Game
 
         private ForgeHouseItemData m_ForgeHouseItemData = null;
         private CountDownItemTest m_CountDownItem = null;
+        private List<UpgradeResItem> m_UpgradeResItemList = new List<UpgradeResItem>();
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -246,22 +247,10 @@ namespace GameWish.Game
         }
         void SetMakeNeedRes(List<CostItem> infos)
         {
-            CommonUIMethod.RefreshUpgradeResInfo(infos, m_UpgradeResItemTra, m_UpgradeResItem);
-            //if (infos.Count == 2)
-            //{
-            //    m_NeedItem2.gameObject.SetActive(true);
-            //    m_NeedItemCount2Txt.gameObject.SetActive(true);
-
-            //    m_NeedItem2.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[1].itemId).iconName);
-            //    m_NeedItemCount2Txt.text = infos[1].value.ToString();
-            //}
-            //else
-            //{
-            //    m_NeedItem2.gameObject.SetActive(false);
-            //    m_NeedItemCount2Txt.gameObject.SetActive(false);
-            //}
-            //m_NeedItem1.sprite = m_panel.FindSprite(TDItemConfigTable.GetData(infos[0].itemId).iconName);
-            //m_NeedItemCount1Txt.text = infos[0].value.ToString();
+            for (int i = 0; i < m_UpgradeResItemList.Count; i++)
+                DestroyImmediate(m_UpgradeResItemList[i].gameObject);
+            m_UpgradeResItemList.Clear();
+            CommonUIMethod.RefreshUpgradeResInfo(infos, m_UpgradeResItemTra, m_UpgradeResItem, null, m_UpgradeResItemList);
         }
     }
 }

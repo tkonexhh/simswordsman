@@ -279,7 +279,7 @@ namespace GameWish.Game
             }
         }
 
-        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo = null)
+        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo = null, List<UpgradeResItem> list = null)
         {
             if (costItems == null || obj == null)
                 return;
@@ -298,10 +298,11 @@ namespace GameWish.Game
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
                     SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
 
+                list?.Add(upgradeResItem1);
                 if (facilityLevelInfo!=null)
                 {
                     UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
-                    upgradeResItem2.OnInit(facilityLevelInfo);
+                    upgradeResItem2.OnInit(facilityLevelInfo, transform);
                     upgradeResItem2.ShowResItem(GetCurCoin(facilityLevelInfo) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
                        SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
                 }
@@ -320,10 +321,13 @@ namespace GameWish.Game
                 upgradeResItem2.OnInit(costItems[1], transform);
                 upgradeResItem2.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value)*/,
                     SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[1].itemId)));
+
+                list?.Add(upgradeResItem1);
+                list?.Add(upgradeResItem2);
                 if (facilityLevelInfo != null)
                 {
                     UpgradeResItem upgradeResItem3 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
-                    upgradeResItem3.OnInit(facilityLevelInfo);
+                    upgradeResItem3.OnInit(facilityLevelInfo, transform);
                     upgradeResItem3.ShowResItem(GetCurCoin(facilityLevelInfo)/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
                        SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
                 }
