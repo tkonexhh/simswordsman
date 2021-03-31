@@ -160,7 +160,7 @@ namespace GameWish.Game
                         PlayerInterAD(5);
                     }
                     else
-                        PlayerInterAD(2);
+                        PlayerInterAD(RandomBattleAdIntervalRemoteMgr.S.InterADInterval);
                     break;
                 case PanelType.Challenge:
                     OpenParentChallenge();
