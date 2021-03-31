@@ -93,6 +93,8 @@ namespace GameWish.Game
 
             WeChatShareMgr.S.Init();
 
+            RandomBattleAdIntervalRemoteMgr.S.Init();
+
             yield return null;
         }
 
