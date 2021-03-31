@@ -94,6 +94,17 @@ namespace GameWish.Game
             m_Self.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                if (m_CurChapterConfigInfo == null)
+                {
+                    Log.e("Not fount m_CurChapterConfigInfo");
+                    return;
+                }
+
+                if (m_CurChapterLevelConfigInfo == null)
+                {
+                    Log.e("Not fount m_CurChapterLevelConfigInfo");
+                    return;
+                }
 
                 UIMgr.S.OpenPanel(UIID.IdentifyChallengesPanel, m_CurChapterConfigInfo, m_CurChapterLevelConfigInfo);
             });

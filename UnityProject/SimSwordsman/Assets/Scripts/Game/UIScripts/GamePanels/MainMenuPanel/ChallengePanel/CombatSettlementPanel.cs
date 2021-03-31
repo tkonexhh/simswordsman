@@ -160,7 +160,7 @@ namespace GameWish.Game
                         PlayerInterAD(5);
                     }
                     else
-                        PlayerInterAD(3);
+                        PlayerInterAD(2);
                     break;
                 case PanelType.Challenge:
                     OpenParentChallenge();
