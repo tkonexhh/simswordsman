@@ -1,5 +1,6 @@
 using Qarth;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace GameWish.Game
@@ -17,20 +18,21 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_CountBg;
         [SerializeField]
-        private GameObject m_LootSingle;  
+        private GameObject m_LootSingle;
         //[SerializeField]
         //private GameObject m_NewSkillHeroUnlock;
 
         private ResLoader m_ResLoader;
-        private GameObject obj;
+        private int m_SortOrder;
 
 
         private void OnDisable()
         {
         }
 
-        public void Init(RewardPanel rewardPanel, RewardBase reward)
+        public void Init(RewardPanel rewardPanel, RewardBase reward, int sortOrder)
         {
+            m_SortOrder = sortOrder;
             m_ResLoader = ResLoader.Allocate();
 
             if (reward.RewardItem == RewardItemType.Kongfu)
@@ -58,9 +60,11 @@ namespace GameWish.Game
                 m_Icon.sprite = rewardPanel.FindSprite(reward.SpriteName());
 
             m_RewardName.text = reward.RewardName();
-            m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", "X" + reward.Count); 
+            m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", "X" + reward.Count);
             //m_CountBg.SetActive(reward.Count > 1);
-            Instantiate(m_LootSingle, transform).transform.localPosition = Vector3.zero;
+            var effectGo = Instantiate(m_LootSingle, transform);
+            effectGo.transform.localPosition = Vector3.zero;
+            effectGo.GetComponent<SortingGroup>().sortingOrder = m_SortOrder + 1;
         }
 
     }
