@@ -89,7 +89,12 @@ namespace GameWish.Game
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 case ClickType.LookAdvertisement:
-                    m_RecruitmentImg.gameObject.SetActive(true);
+
+                    bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType, m_CountDownTimeHours);
+                    if (isCanLookADRecruit)
+                        m_RecruitmentImg.gameObject.SetActive(true);
+                    else
+                        m_RecruitmentImg.gameObject.SetActive(false);
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 default:

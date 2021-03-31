@@ -307,7 +307,8 @@ namespace GameWish.Game
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-               MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)2002), 2);
+               //MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)2002), 2);
+                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
 
                 //GameDataMgr.S.GetPlayerData().AddFoodNum(1);
             }
