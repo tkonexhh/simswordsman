@@ -199,7 +199,7 @@ dependencies {
     implementation 'com.appsflyer:oaid:6.1.2'
     //implementation 'com.huawei.hms:hms-ads-identifier:3.4.26.303'
 
-    implementation 'com.fodlab.probe:probesdk:2.0.4'
+    implementation 'com.fodlab.probe:probesdk:2.0.8'
     implementation(name: 'unityandroidpermissions', ext:'aar')
 
     implementation("com.coala.statisticscore:core:1.0.12") {
