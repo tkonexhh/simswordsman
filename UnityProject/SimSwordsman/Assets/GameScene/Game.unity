@@ -14852,6 +14852,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForgeHouseView
       objectReference: {fileID: 0}
+    - target: {fileID: 4439497512999535692, guid: 99d8c5441546c27459193605b0c8492e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459666506887956908, guid: 99d8c5441546c27459193605b0c8492e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.147
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092636999161547611, guid: 99d8c5441546c27459193605b0c8492e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d8c5441546c27459193605b0c8492e, type: 3}
 --- !u!1001 &1351891704744963818
@@ -15210,15 +15225,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4745886015194972321, guid: 371df6c134549794f8f83f090715456e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851548607768165501, guid: 371df6c134549794f8f83f090715456e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.172
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851548607768165501, guid: 371df6c134549794f8f83f090715456e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.156
+      objectReference: {fileID: 0}
     - target: {fileID: 6496720723842157648, guid: 371df6c134549794f8f83f090715456e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.19
+      value: -1.172
       objectReference: {fileID: 0}
     - target: {fileID: 6496720723842157648, guid: 371df6c134549794f8f83f090715456e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.176
+      value: 0.156
       objectReference: {fileID: 0}
     - target: {fileID: 6496720723842157648, guid: 371df6c134549794f8f83f090715456e,
         type: 3}
@@ -15229,6 +15259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252404552105681242, guid: 371df6c134549794f8f83f090715456e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7374614444573205939, guid: 371df6c134549794f8f83f090715456e,
         type: 3}

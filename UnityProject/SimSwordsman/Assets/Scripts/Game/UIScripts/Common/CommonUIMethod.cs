@@ -274,7 +274,8 @@ namespace GameWish.Game
             }
             else
             {
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                //text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                text.color = Color.black;
                 return false;
             }
         }
@@ -335,17 +336,21 @@ namespace GameWish.Game
         }
         private static string GetCurCoin(FacilityLevelInfo facilityLevelInfo)
         {
-            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            if (coin >= facilityLevelInfo.upgradeCoinCost)
-                return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
-            return GetTenThousandOrMillion((int)coin);
+            //long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            //if (coin >= facilityLevelInfo.upgradeCoinCost)
+            //    return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+            //return GetTenThousandOrMillion((int)coin);
+            return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+
         }
 
         private static int GetCurItem(int hava, int number)
         {
-            if (hava >= number)
-                return number;
-            return hava;
+            //if (hava >= number)
+            //    return number;
+            //return hava;
+            return number;
+
         }
         private static string GetIconName(int id)
         {
@@ -407,7 +412,8 @@ namespace GameWish.Game
             long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coinNum < facilityLevelInfo.upgradeCoinCost)
             {
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                //text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                text.color = Color.black;
                 return false;
             }
             else
