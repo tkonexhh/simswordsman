@@ -50,5 +50,8 @@ namespace GameWish.Game
 		public const string students_kongfu_up = "students_kongfu_up";
 		public const string students_equip_up = "students_equip_up";
 		public const string students_abandon = "students_abandon";
+
+		public const string Open_WeChatShare_Panel = "w_open_share";
+		public const string Click_WeChatShare_Btn = "w_start_share";
 	}
 }
