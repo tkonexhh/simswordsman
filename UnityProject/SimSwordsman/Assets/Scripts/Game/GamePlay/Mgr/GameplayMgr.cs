@@ -95,6 +95,8 @@ namespace GameWish.Game
 
             RandomBattleAdIntervalRemoteMgr.S.Init();
 
+            AdsManager.S.Init();
+
             yield return null;
         }
 
