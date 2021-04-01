@@ -226,143 +226,145 @@ namespace GameWish.Game
             //}
 
             #region 测试代码
-            if (Input.GetKeyDown(KeyCode.W))
+            if (PlatformHelper.isTestMode)
             {
-                //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)101, Step.One), 10);
-
-                EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
-            }
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                for (int i = (int)RawMaterial.SilverToken; i <= (int)RawMaterial.GoldenToken; i++)
+                if (Input.GetKeyDown(KeyCode.W))
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem((ArmsType)101, Step.One), 10);
+
+                    EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                for (int i = (int)HerbType.ChiDanZhuangQiWan; i <= (int)HerbType.HuanHunDan; i++)
+                if (Input.GetKeyDown(KeyCode.R))
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 1);
+                    for (int i = (int)RawMaterial.SilverToken; i <= (int)RawMaterial.GoldenToken; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 1);
+                    }
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                if (Input.GetKeyDown(KeyCode.A))
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                    for (int i = (int)HerbType.ChiDanZhuangQiWan; i <= (int)HerbType.HuanHunDan; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new HerbItem((HerbType)i), 1);
+                    }
                 }
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Four), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Seven), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Nine), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Four), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Seven), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Nine), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Four), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Seven), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Nine), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Four), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Seven), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Nine), 1);
-                MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
-            }
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000000000000);
-            }
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                for (int i = 0; i < 100; i++)
+                if (Input.GetKeyDown(KeyCode.T))
                 {
-                    MainGameMgr.S.CharacterMgr.AddCharacterLevel(i, 500);
+                    for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                    }
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
                 }
-              
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(4, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(5, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(6, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(7, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(8, 50);
-                //MainGameMgr.S.CharacterMgr.AddCharacterLevel(9, 50);
-            }
-
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 500);
-                for (int i = (int)KungfuType.TaiZuChangQuan; i < (int)KungfuType.ZuiQuan; i++)
+                if (Input.GetKeyDown(KeyCode.H))
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Four), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Seven), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Nine), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Four), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Seven), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Nine), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Four), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Seven), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Nine), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Four), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Seven), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Nine), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
                 }
-            }
+                if (Input.GetKeyDown(KeyCode.Y))
+                {
+                    GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000000000000);
+                }
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        MainGameMgr.S.CharacterMgr.AddCharacterLevel(i, 500);
+                    }
+
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(1, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(2, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(3, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(4, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(5, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(6, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(7, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(8, 50);
+                    //MainGameMgr.S.CharacterMgr.AddCharacterLevel(9, 50);
+                }
+
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    MainGameMgr.S.CharacterMgr.AddCharacterLevel(0, 500);
+                    for (int i = (int)KungfuType.TaiZuChangQuan; i < (int)KungfuType.ZuiQuan; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)2002), 2);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
+
+                    //GameDataMgr.S.GetPlayerData().AddFoodNum(1);
+                }
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    GameDataMgr.S.GetPlayerData().ReduceFoodNum(2);
+                }
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
+                }
 
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-               //MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)2002), 2);
-                MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
+                if (Input.GetKeyDown(KeyCode.V))
+                {
+                    List<RewardBase> rewards = new List<RewardBase>();
+                    rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
+                    rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
+                    rewards.Add(new ArmsReward((int)ArmsType.MengGuBaoDao, 1));
+                    rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+                    UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+                }
 
-                //GameDataMgr.S.GetPlayerData().AddFoodNum(1);
-            }
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(2);
-            }
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                GameDataMgr.S.GetPlayerData().ReduceFoodNum(100);
-            }
-
-
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                List<RewardBase> rewards = new List<RewardBase>();
-                rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
-                rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
-                rewards.Add(new ArmsReward((int)ArmsType.MengGuBaoDao, 1));
-                rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
-                UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                EventSystem.S.Send(EventID.OnBattleSuccessed);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                EventSystem.S.Send(EventID.OnBattleFailed);
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                PanelPool.S.AddPromotion(new DiscipleRiseStage(0, 2, 1212));
-                PanelPool.S.DisplayPanel();
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 1212));
-                PanelPool.S.DisplayPanel();
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                PanelPool.S.AddPromotion(new EquipAmror(1, 2000, new ArmorItem(ArmorType.MingGuangKai,Step.Five)));
-                PanelPool.S.DisplayPanel();
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    EventSystem.S.Send(EventID.OnBattleSuccessed);
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    EventSystem.S.Send(EventID.OnBattleFailed);
+                }
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    PanelPool.S.AddPromotion(new DiscipleRiseStage(0, 2, 1212));
+                    PanelPool.S.DisplayPanel();
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 1212));
+                    PanelPool.S.DisplayPanel();
+                }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    PanelPool.S.AddPromotion(new EquipAmror(1, 2000, new ArmorItem(ArmorType.MingGuangKai, Step.Five)));
+                    PanelPool.S.DisplayPanel();
+                }
             }
             #endregion
         }
