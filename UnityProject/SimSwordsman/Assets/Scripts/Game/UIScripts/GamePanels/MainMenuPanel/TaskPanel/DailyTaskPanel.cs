@@ -25,6 +25,7 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             base.OnOpen();
+            m_TaskController.FirstCheck();
             m_TaskController.RefeshTaskLst();
             m_ListView.SetDataCount(m_TaskController.count);
         }
