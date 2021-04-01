@@ -7,6 +7,10 @@ namespace GameWish.Game
 {
     public class KitchenView : FacilityView
     {
+        [SerializeField]
+        private List<Transform> m_FlagPos = new List<Transform>();
+        [SerializeField]
+        private GameObject m_Flag = null;
         public override FacilityController GenerateContoller()
         {
             return new KitchenController( FacilityType.Kitchen, this);
@@ -19,7 +23,20 @@ namespace GameWish.Game
             Debug.Log("Kitchen is clicked");
 
         }
-
+        public override void SetTips(bool active)
+        {
+            base.SetTips(active);
+            if (m_Controller.GetState() == FacilityState.Unlocked)
+                m_Flag.SetActive(true);
+        }
+        public override void SetViewByLevel(bool isFile = false)
+        {
+            base.SetViewByLevel(isFile);
+            m_Flag.SetActive(false);
+            int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(facilityType);
+            int index = Mathf.Clamp(level - 1, 0, m_FlagPos.Count - 1);
+            m_Flag.transform.position = m_FlagPos[index].position;
+        }
         protected override void OpenUIElement()
         {
             base.OpenUIElement();
