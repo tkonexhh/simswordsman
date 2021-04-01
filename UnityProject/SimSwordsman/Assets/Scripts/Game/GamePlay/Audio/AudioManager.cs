@@ -9,6 +9,9 @@ namespace GameWish.Game
 {
 	public class AudioManager : TSingleton<AudioManager>,IMgr
 	{
+        private float m_CharacterLevelUpSoundInterval = 3;
+        private bool m_IsPlayingCharacterLevelUpSound = false;
+
         #region imgr
         public void OnInit()
         {
@@ -34,6 +37,18 @@ namespace GameWish.Game
         #region call back
         private void OnCharacterUpLevelCallBack(int key, object[] param)
         {
+            if (MainGameMgr.S.BattleFieldMgr.IsBattleing) 
+            {
+                return;
+            }
+
+            if (m_IsPlayingCharacterLevelUpSound) 
+                return;
+
+            m_IsPlayingCharacterLevelUpSound = true;
+            Timer.S.Post2Really((x) => {
+                m_IsPlayingCharacterLevelUpSound = false;
+            }, m_CharacterLevelUpSoundInterval, 1);
             AudioMgr.S.PlaySound(Define.SOUND_CHARACTER_LEVEL_UP);
         }
         private void OnUpgradeFacilityCallBack(int key, object[] param)
@@ -141,6 +156,7 @@ namespace GameWish.Game
                     break;
                 case CollectedObjType.CloudRock:
                 case CollectedObjType.QingRock:
+                case CollectedObjType.Iron:
                     AudioMgr.S.PlaySound3D(Define.SOUND_MINE, pos);
                     break;
             }

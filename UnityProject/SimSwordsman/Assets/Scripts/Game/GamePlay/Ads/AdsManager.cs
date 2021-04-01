@@ -17,23 +17,38 @@ namespace GameWish.Game
 		}
 		private void UpdateLookADCount(bool isClick)
 		{
-			int lookADCount = PlayerPrefs.GetInt(m_LookADKey, 0);
+			int lookADCount = GetLookADCount();
 			lookADCount++;
 			PlayerPrefs.SetInt(m_LookADKey, lookADCount);
 
-			if (lookADCount <= 24) 
+			if (lookADCount == 3)
 			{
-				if (lookADCount % 3 == 0) 
-				{
-					int keyCount = lookADCount / 3 + 1;
-
-					DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, keyCount));
-				}			
+				DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 2));
 			}
 		}
 		#endregion
 
-		public void PlayRewardAD(string tag,Action<bool> LookADSuccessCallBack) 
+		public void Init() 
+		{
+			EventSystem.S.Register(EventID.OnUpgradeFacility, OnUpgradeFacilityCallBack);
+		}
+
+        private void OnUpgradeFacilityCallBack(int key, object[] param)
+        {
+			int LobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+
+			if (LobbyLevel == 2) 
+			{
+				FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(param[0].ToString());
+
+				if (facilityType == FacilityType.Lobby)
+				{
+					DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 3));
+				}
+			}			
+		}
+
+        public void PlayRewardAD(string tag,Action<bool> LookADSuccessCallBack) 
 		{
 			LookADSuccessCallBack += UpdateLookADCount;
 
