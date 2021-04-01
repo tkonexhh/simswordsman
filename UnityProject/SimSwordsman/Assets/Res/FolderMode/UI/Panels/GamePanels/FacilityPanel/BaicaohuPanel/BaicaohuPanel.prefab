@@ -64,8 +64,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7a7c1f2a26b2eaf4b9ad9f00708c2e92, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 0979682bf09dd1846a0ce0dfcaab4205, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -7, y: -30}
-  m_SizeDelta: {x: 251.19543, y: 52}
+  m_SizeDelta: {x: 361.6, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4699781899759877817
 CanvasRenderer:
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5347\u7EA7\u9700\u8981"
+  m_Text: "\u5347\u7EA7\u9700\u8981\u8BB2\u6B66\u5802\u8FBE\u52305\u7EA7"
 --- !u!1 &533295838735908842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_FacilityIcon: {fileID: 548967263321465412}
   m_NextUnlockName: {fileID: 5952322050109721957}
   m_UpGradeCondition: {fileID: 9084494189964974682}
+  m_UpgradeTitle: {fileID: 2810134520239655366}
   m_CloseBtn: {fileID: 8519037410675569241}
   m_UpgradeBtn: {fileID: 1448067437784216521}
   m_ItemTra: {fileID: 5618606821824273302}
@@ -1728,7 +1729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 122.4, y: -77.5}
+  m_AnchoredPosition: {x: 74, y: -77.5}
   m_SizeDelta: {x: 188, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8865293813836765614

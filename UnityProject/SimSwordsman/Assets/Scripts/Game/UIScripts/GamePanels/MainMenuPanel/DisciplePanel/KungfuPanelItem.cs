@@ -85,8 +85,8 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnKungfuRedPoint:
-                    if (m_CurIndex == ((int)param[0]))
-                        m_KungfuRedPoint.SetActive((bool)param[1]);
+                    if ((int)param[0]== m_CurDisciple.id && m_CurIndex == ((int)param[1]))
+                        m_KungfuRedPoint.SetActive((bool)param[2]);
                     break;
                 default:
                     break;

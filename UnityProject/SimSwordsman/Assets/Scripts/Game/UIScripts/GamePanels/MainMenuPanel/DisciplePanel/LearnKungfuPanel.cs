@@ -119,6 +119,7 @@ namespace GameWish.Game
                 PanelPool.S.AddPromotion(new LearnMartialArts(m_CharacterItem.id, m_CharacterItem.atkValue, (KungfuItem)m_SelectedItemBase));
 
                 MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
+               
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
 
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);

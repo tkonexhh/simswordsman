@@ -4742,9 +4742,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 1000
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 47
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9558,9 +9558,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 1000
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 47
   m_RenderMode: 0
   m_SortMode: 3
   m_MinParticleSize: 0
@@ -14316,9 +14316,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 1000
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 47
   m_RenderMode: 0
   m_SortMode: 3
   m_MinParticleSize: 0
@@ -14353,6 +14353,7 @@ GameObject:
   - component: {fileID: 4323409225653425443}
   - component: {fileID: 4323409225653425373}
   - component: {fileID: 4323409225653425442}
+  - component: {fileID: 5041172931172686401}
   m_Layer: 5
   m_Name: NewSkillHeroUnlock
   m_TagString: Untagged
@@ -19078,7 +19079,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 45
+  m_SortingOrder: 47
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -19102,6 +19103,21 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5041172931172686401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323409225653425440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087b719f43e44bf46891b2c6a2bc1dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TargetCanvas: {fileID: 0}
+  m_OrderOffset: -1
+  m_Renderer: {fileID: 4323409225653425442}
 --- !u!1 &4323409226364362631
 GameObject:
   m_ObjectHideFlags: 0
@@ -23892,9 +23908,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 1000
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 47
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -28659,9 +28675,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 1000
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 47
   m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0

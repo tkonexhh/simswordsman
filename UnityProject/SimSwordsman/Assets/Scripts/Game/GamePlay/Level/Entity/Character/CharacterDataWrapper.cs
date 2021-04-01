@@ -551,12 +551,12 @@ namespace GameWish.Game
             {
                 if (item.KungfuLockState == KungfuLockState.NotLearning && CheckIsHavaItem(PropType.Kungfu))
                 {
-                    EventSystem.S.Send(EventID.OnKungfuRedPoint, item.Index,true);
+                    EventSystem.S.Send(EventID.OnKungfuRedPoint,id, item.Index,true);
                     isHava = true;
                 }
                 else
                 {
-                    EventSystem.S.Send(EventID.OnKungfuRedPoint, item.Index, false);
+                    EventSystem.S.Send(EventID.OnKungfuRedPoint,id, item.Index, false);
                 }
             }
             return isHava;
