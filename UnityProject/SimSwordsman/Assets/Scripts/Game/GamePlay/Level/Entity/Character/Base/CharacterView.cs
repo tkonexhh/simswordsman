@@ -14,7 +14,8 @@ namespace GameWish.Game
 
         [SerializeField] private GameObject m_Body = null;
         [SerializeField] private GameObject m_HeadPos = null;
-        [SerializeField] private BoneFollower m_BoneFollower_Foot;
+        [SerializeField] private BoneFollower m_BoneFollower_Foot; 
+        [SerializeField] private GameObject m_Clean_DragSmoke;
 
         private CharacterController m_Controller = null;
         private SkeletonAnimation m_SpineAnim;
@@ -58,6 +59,11 @@ namespace GameWish.Game
             {
                 Log.e("Spine state is null: " + transform.name);
             }
+        }
+
+        public void SetSweepingSmoke(bool play)
+        {
+            m_Clean_DragSmoke?.SetActive(play);
         }
 
         public void SetSkin(int headId)

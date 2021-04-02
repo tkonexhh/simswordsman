@@ -68,6 +68,8 @@ namespace GameWish.Game
             bool isComplete = task.IsComplete();
             m_ImgTaskStatus.sprite = SpriteHandler.S.GetSprite("MainTaskAtlas", isComplete ? "MainTask_tip2" : "MainTask_tip1");
             m_ImgTaskStatus.SetNativeSize();
+            if (isComplete)
+                DataAnalysisMgr.S.CustomEvent(DotDefine.m_task_finish, task.id.ToString());
             m_ObjUncomplete.SetActive(!isComplete);
             m_ObjCompleted.SetActive(isComplete);
             m_TxtTaskTitle.text = task.taskSubTitle;
@@ -123,6 +125,8 @@ namespace GameWish.Game
 
         private void OnClickReward()
         {
+            var task = MainGameMgr.S.TaskMgr.mainTaskController.curTask;
+            DataAnalysisMgr.S.CustomEvent(DotDefine.m_task_receive, task.id.ToString());
             MainGameMgr.S.TaskMgr.mainTaskController.FinishCurTask();
         }
 

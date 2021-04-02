@@ -29,7 +29,7 @@ namespace GameWish.Game
         private bool m_IsLookAD = false;
 
         private int m_CloseBtnTimerID = -1;
-
+        private int levelID;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -37,8 +37,13 @@ namespace GameWish.Game
 
             m_DoubleRewardBtn.onClick.AddListener(() =>
             {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.level_double_reward, levelID);
                 AdsManager.S.PlayRewardAD(Define.DoubleGetBossRewardADName, LookRewardADSuccessCallBack);
             });
+        }
+        public void SetLevelID(int id)
+        {
+            levelID = id;
         }
 
         private void LookRewardADSuccessCallBack(bool obj)
