@@ -23,11 +23,11 @@ namespace GameWish.Game
         /// </summary>
 
         /// <summary>
-        /// �����������?
+        /// �����������?
         /// </summary>
         static int MaxVisitorCount = 1;
 
-        static int MaxVisitorCountDaily = 12;
+        static int MaxVisitorCountDaily = 20;
 
         public List<Visitor> CurrentVisitor = new List<Visitor>();
 
@@ -128,7 +128,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ���һ���������?
+        /// ���һ���������?
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
@@ -226,7 +226,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ״̬ 0��δ���? 1��������ȡ���� 2���ر���ʧ
+        /// ״̬ 0��δ���? 1��������ȡ���� 2���ر���ʧ
         /// </summary>
         public int state { get; private set; }
         public void Disappear()
