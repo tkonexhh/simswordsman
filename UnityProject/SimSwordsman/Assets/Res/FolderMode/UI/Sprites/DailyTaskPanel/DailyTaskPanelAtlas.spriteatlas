@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DailyTaskPanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: aba68d5ba421945959df40a60da43a4e, type: 3}
+    - {fileID: 2800000, guid: 13d562b08b93e4f0eb1252523d98cde4, type: 3}
+    - {fileID: 2800000, guid: 0b280933c8dd84f1f8b46f9be65a84ab, type: 3}
+    - {fileID: 2800000, guid: 32d66be49ffe346f8a54e30a143665b4, type: 3}
+    - {fileID: 2800000, guid: 019a6e7c436b34cd6b07684edf20a0c0, type: 3}
+    - {fileID: 2800000, guid: 35ffedd8dd4e2450da11c03735f75d01, type: 3}
+    - {fileID: 2800000, guid: 551920eda5d5d4bbb96e40085ecddae6, type: 3}
+    - {fileID: 2800000, guid: 48e82193659fe41c2807f43df34d9a98, type: 3}
+    - {fileID: 2800000, guid: 6f836d0a21ed2418899c94b2f8cae4f5, type: 3}
+    - {fileID: 2800000, guid: 76391e3a7c96a464e8f4a106c4b2460d, type: 3}
+    - {fileID: 2800000, guid: bc9c8ddbc129a4380b0957fcf9ce5fc9, type: 3}
+    - {fileID: 2800000, guid: 2af7b9e77d33948fc810f40f448a5e29, type: 3}
+    - {fileID: 2800000, guid: 4a931e49496a543f2b5a5cb701f4dbc7, type: 3}
+    - {fileID: 2800000, guid: 40df9d347504e48bea62ae89d3fc2036, type: 3}
+    - {fileID: 2800000, guid: 4d82918ba8b1d410790c3272b2034c77, type: 3}
+    - {fileID: 2800000, guid: 1f953571ed42a444ba86b99cf435383b, type: 3}
+    - {fileID: 2800000, guid: fc226a3f02c9d4f299ef68a78cee73cc, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 13d562b08b93e4f0eb1252523d98cde4, type: 3}
+  - {fileID: 21300000, guid: 1f953571ed42a444ba86b99cf435383b, type: 3}
+  - {fileID: 21300000, guid: 0b280933c8dd84f1f8b46f9be65a84ab, type: 3}
+  - {fileID: 21300000, guid: 48e82193659fe41c2807f43df34d9a98, type: 3}
+  - {fileID: 21300000, guid: 40df9d347504e48bea62ae89d3fc2036, type: 3}
+  - {fileID: 21300000, guid: 32d66be49ffe346f8a54e30a143665b4, type: 3}
+  - {fileID: 21300000, guid: 2af7b9e77d33948fc810f40f448a5e29, type: 3}
+  - {fileID: 21300000, guid: 35ffedd8dd4e2450da11c03735f75d01, type: 3}
+  - {fileID: 21300000, guid: 4a931e49496a543f2b5a5cb701f4dbc7, type: 3}
+  - {fileID: 21300000, guid: 6f836d0a21ed2418899c94b2f8cae4f5, type: 3}
+  - {fileID: 21300000, guid: 76391e3a7c96a464e8f4a106c4b2460d, type: 3}
+  - {fileID: 21300000, guid: aba68d5ba421945959df40a60da43a4e, type: 3}
+  - {fileID: 21300000, guid: 4d82918ba8b1d410790c3272b2034c77, type: 3}
+  - {fileID: 21300000, guid: bc9c8ddbc129a4380b0957fcf9ce5fc9, type: 3}
+  - {fileID: 21300000, guid: 019a6e7c436b34cd6b07684edf20a0c0, type: 3}
+  - {fileID: 21300000, guid: 551920eda5d5d4bbb96e40085ecddae6, type: 3}
+  - {fileID: 21300000, guid: fc226a3f02c9d4f299ef68a78cee73cc, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - DailyTaskItemBg
+  - dt_summon
+  - DailyTask_Complete
+  - dt_book
+  - dt_practice
+  - DailyTask_Title
+  - dt_gift
+  - DailyTask_uncomplete
+  - dt_medicine
+  - dt_collect
+  - dt_food
+  - DailyTaskItem
+  - dt_recipe
+  - dt_forge
+  - DailyTask_rewarded
+  - dt_battle
+  - dt_work
+  m_Tag: DailyTaskPanelAtlas
+  m_IsVariant: 0
