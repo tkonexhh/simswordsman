@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: KitchenPanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 98e2a57dc85e6a0468826855b7848b9c, type: 3}
+    - {fileID: 2800000, guid: fbe4925bd991a4942aafca3cdb0f4846, type: 3}
+    - {fileID: 2800000, guid: 6782aea585629eb438033cf8ec18998a, type: 3}
+    - {fileID: 2800000, guid: 77e95261da850fb4ea1945776296e8bd, type: 3}
+    - {fileID: 2800000, guid: 31384d9934763af4fa2396aa51b710cd, type: 3}
+    - {fileID: 2800000, guid: 1acda1ed807f81b4993cd3c34e3cf09c, type: 3}
+    - {fileID: 2800000, guid: d84c3cead5d02d94987b9715c00a3cb5, type: 3}
+    - {fileID: 2800000, guid: ceb674e70d426464ebf79e6c9f4823ff, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 77e95261da850fb4ea1945776296e8bd, type: 3}
+  - {fileID: 21300000, guid: 6782aea585629eb438033cf8ec18998a, type: 3}
+  - {fileID: 21300000, guid: ceb674e70d426464ebf79e6c9f4823ff, type: 3}
+  - {fileID: 21300000, guid: 31384d9934763af4fa2396aa51b710cd, type: 3}
+  - {fileID: 21300000, guid: d84c3cead5d02d94987b9715c00a3cb5, type: 3}
+  - {fileID: 21300000, guid: fbe4925bd991a4942aafca3cdb0f4846, type: 3}
+  - {fileID: 21300000, guid: 98e2a57dc85e6a0468826855b7848b9c, type: 3}
+  - {fileID: 21300000, guid: 1acda1ed807f81b4993cd3c34e3cf09c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - fooditem_progress_bg
+  - fooditem_progress
+  - upgrade_need_desc_bg
+  - kitchen_title
+  - progress_over
+  - food_lock
+  - food_icon_small_2
+  - level_bg1
+  m_Tag: KitchenPanelAtlas
+  m_IsVariant: 0

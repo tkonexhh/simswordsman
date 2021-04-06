@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: IconAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: d7851a914d2bf7347959b8faa8e1cd74, type: 3}
+    - {fileID: 2800000, guid: 75d62757f6bc5f74c82b1dd54f46a291, type: 3}
+    - {fileID: 2800000, guid: b66df29dc67a78c4b9bcdd7454891016, type: 3}
+    - {fileID: 2800000, guid: a576971d7ad9aae44a0d1e23c212e6c7, type: 3}
+    - {fileID: 2800000, guid: af4280c452e56e0428ba9c2bbf917d87, type: 3}
+    - {fileID: 2800000, guid: db4e68fc67322ee4fb52995568f181d5, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d7851a914d2bf7347959b8faa8e1cd74, type: 3}
+  - {fileID: 21300000, guid: af4280c452e56e0428ba9c2bbf917d87, type: 3}
+  - {fileID: 21300000, guid: 75d62757f6bc5f74c82b1dd54f46a291, type: 3}
+  - {fileID: 21300000, guid: db4e68fc67322ee4fb52995568f181d5, type: 3}
+  - {fileID: 21300000, guid: a576971d7ad9aae44a0d1e23c212e6c7, type: 3}
+  - {fileID: 21300000, guid: b66df29dc67a78c4b9bcdd7454891016, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - IconArms
+  - IconHome
+  - IconArmsBg
+  - IconHomeBg
+  - IconFoodBg
+  - IconFood
+  m_Tag: IconAtlas
+  m_IsVariant: 0

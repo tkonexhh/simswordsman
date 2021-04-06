@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class AtlasDefine 
-	{
-		public const string ItemIconItemIcon = "ItemIconItemIcon";
-		public const string PanelCommonPanelCommon = "PanelCommonPanelCommon";
-	}
-	
+    public class AtlasDefine
+    {
+        public const string ItemIconItemIcon = "ItemIconAtlas";
+        public const string PanelCommonPanelCommon = "PanelCommonPanelCommon";
+        public const string SendDisciplePanel = "SendDisciplePanelAtlas";
+    }
+
 }

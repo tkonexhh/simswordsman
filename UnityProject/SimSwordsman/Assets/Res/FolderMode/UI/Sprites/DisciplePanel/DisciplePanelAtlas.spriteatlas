@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DisciplePanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: dc287ce22086d0b42be194c55a6ff884, type: 3}
+    - {fileID: 2800000, guid: 6f99a316788d18e44992c0d42b0d8e92, type: 3}
+    - {fileID: 2800000, guid: 3be5daa4b4dcad9468e5f380332a6fc9, type: 3}
+    - {fileID: 2800000, guid: f4e4ad162e0ab9f4da32257895396157, type: 3}
+    - {fileID: 2800000, guid: 2d6401fb0ead6b3439246964b9f2a96e, type: 3}
+    - {fileID: 2800000, guid: c548a7794c44cb3469984b06e412293b, type: 3}
+    - {fileID: 2800000, guid: 0aa43d1e7810f5f4dbe7d53d1289ec37, type: 3}
+    - {fileID: 2800000, guid: 094a9798f377666438246bbfe83122dd, type: 3}
+    - {fileID: 2800000, guid: 3c7c63c53a8cc104d81d034f6882bff8, type: 3}
+    - {fileID: 2800000, guid: 7059133cd2958ed4fa5153dc5817f463, type: 3}
+    - {fileID: 2800000, guid: 14d5e94853a97da479139f452b7b9e57, type: 3}
+    - {fileID: 2800000, guid: 92ea112631977f34b9057d36dc60f2f7, type: 3}
+    - {fileID: 2800000, guid: 9602f8a3e319e30409b44582f4de90b3, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: dc287ce22086d0b42be194c55a6ff884, type: 3}
+  - {fileID: 21300000, guid: 9602f8a3e319e30409b44582f4de90b3, type: 3}
+  - {fileID: 21300000, guid: 3be5daa4b4dcad9468e5f380332a6fc9, type: 3}
+  - {fileID: 21300000, guid: 3c7c63c53a8cc104d81d034f6882bff8, type: 3}
+  - {fileID: 21300000, guid: 6f99a316788d18e44992c0d42b0d8e92, type: 3}
+  - {fileID: 21300000, guid: f4e4ad162e0ab9f4da32257895396157, type: 3}
+  - {fileID: 21300000, guid: 92ea112631977f34b9057d36dc60f2f7, type: 3}
+  - {fileID: 21300000, guid: 14d5e94853a97da479139f452b7b9e57, type: 3}
+  - {fileID: 21300000, guid: 094a9798f377666438246bbfe83122dd, type: 3}
+  - {fileID: 21300000, guid: c548a7794c44cb3469984b06e412293b, type: 3}
+  - {fileID: 21300000, guid: 2d6401fb0ead6b3439246964b9f2a96e, type: 3}
+  - {fileID: 21300000, guid: 7059133cd2958ed4fa5153dc5817f463, type: 3}
+  - {fileID: 21300000, guid: 0aa43d1e7810f5f4dbe7d53d1289ec37, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - DisciplePanel_Arc1
+  - DisciplePanel_Title
+  - DisciplePanel_Bg1
+  - DisciplePanel_Icon
+  - DisciplePanel_Bar1
+  - DisciplePanel_Bg2
+  - DisciplePanel_Line3
+  - DisciplePanel_Line2
+  - DisciplePanel_CloseBtn
+  - DisciplePanel_Bg4
+  - DisciplePanel_Bg3
+  - DisciplePanel_Line1
+  - DisciplePanel_Bg5
+  m_Tag: DisciplePanelAtlas
+  m_IsVariant: 0

@@ -66,7 +66,7 @@ namespace GameWish.Game
 
             m_TxtRewardNum.text = reward.Count.ToString();
             bool isComplete = task.IsComplete();
-            m_ImgTaskStatus.sprite = SpriteHandler.S.GetSprite("MainTaskAtlas", isComplete ? "MainTask_tip2" : "MainTask_tip1");
+            m_ImgTaskStatus.sprite = SpriteHandler.S.GetSprite("MainMenuAtlas", isComplete ? "MainTask_tip2" : "MainTask_tip1");
             m_ImgTaskStatus.SetNativeSize();
             m_ObjUncomplete.SetActive(!isComplete);
             m_ObjCompleted.SetActive(isComplete);
