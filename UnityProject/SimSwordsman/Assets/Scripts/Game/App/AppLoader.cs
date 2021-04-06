@@ -13,7 +13,7 @@ namespace GameWish.Game
             bool isKeystoreRight = SecurityVerify.IsCorrect();
             if (isKeystoreRight == false)
             {
-                Application.Quit();
+                //Application.Quit();
             }
 
             Log.i("Init[{0}]", ApplicationMgr.S.GetType().Name);            
