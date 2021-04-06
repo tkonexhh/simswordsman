@@ -147,12 +147,12 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType, string startTime, int index)
+        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
             {
-                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType, startTime, index);
+                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType, startTime, index,isFindPathToTargetPos);
             }
         }
 
@@ -213,7 +213,12 @@ namespace GameWish.Game
         public int bodyId = 1; // Which body used
         public int headId = 1; // Which head used
         public CollectedObjType collectedObjType = CollectedObjType.None;
-
+        /// <summary>
+        /// 是否寻路到目标地点，
+        /// true:正常寻路到目标地点
+        /// false:不寻路，做其他操作
+        /// </summary>
+        private bool m_IsFindPathToTargetPos = true;
 
         public void SetAtkValue(float _atkValue)
         {
@@ -223,12 +228,17 @@ namespace GameWish.Game
         {
 
         }
-        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id)
+        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id,bool isFindPathToTargetPos = true)
         {
             characterStateId = stateId;
             this.facilityData.targetFacility = targetFacilityType;
             this.facilityData.startTime = startTime;
             this.facilityData.id = id;
+            m_IsFindPathToTargetPos = isFindPathToTargetPos;
+        }
+        public bool IsFindPathToTargetPos() 
+        {
+            return m_IsFindPathToTargetPos;
         }
         public CharacterItemDbData(CharacterItem item)
         {

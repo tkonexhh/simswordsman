@@ -91,6 +91,8 @@ namespace GameWish.Game
                 //Task
                 TDDailyTaskTable.metaData,
                 TDMainTaskTable.metaData,
+
+                TDDeliverTable.metaData,
             };
         }
     }

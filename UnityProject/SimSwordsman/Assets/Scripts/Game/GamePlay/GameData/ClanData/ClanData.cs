@@ -18,6 +18,7 @@ namespace GameWish.Game
         public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
         public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
         public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
+        public DeliverData DeliverData = new DeliverData();
 
         public void SetDefaultValue()
         {
@@ -161,9 +162,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
+        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
         {
-            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index);
+            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index,isFindPathToTargetPos);
 
             SetDataDirty();
         }
@@ -678,6 +679,26 @@ namespace GameWish.Game
                 return data.GetRewardCount();
             }
             return 0;
+        }
+        #endregion
+
+        #region daliver system
+        public void RemoveDeliverDataByID(int daliverID) 
+        {
+            DeliverData.RemoveDeliverData(daliverID);
+            SetDataDirty();
+        }
+
+        public SingleDeliverDetailData AddOrUpdateDeliverData(int daliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+        {
+            SingleDeliverDetailData data = DeliverData.AddOrUpdateDeliverData(daliverID, state, rewardDataList, characterIDList);
+            SetDataDirty();
+
+            return data;
+        }
+        public List<SingleDeliverDetailData> GetDaliverData() 
+        {
+            return DeliverData.DaliverDetailDataList;
         }
         #endregion
     }

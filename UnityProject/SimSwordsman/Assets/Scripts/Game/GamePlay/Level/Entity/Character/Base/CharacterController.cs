@@ -176,6 +176,10 @@ namespace GameWish.Game
             m_CharacterView.Move(deltaPos);
         }
 
+        public void SetPosition(Vector3 targetPos) {
+            m_CharacterView.SetPosition(targetPos);
+        }
+
         public void FaceTo(float x)
         {
             if (x > GetPosition().x)
@@ -188,7 +192,7 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = -1)
+        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = -1, bool isFindPathToTargetPos = true)
         {
             if (state != m_CurState)
             {
@@ -198,7 +202,7 @@ namespace GameWish.Game
                 if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ������
                 {
                     //Debug.LogError("SetstateTODB:" + m_CurState);
-                    SetStateToDB(m_CurState, targetFacilityType, startTime, index);
+                    SetStateToDB(m_CurState, targetFacilityType, startTime, index,isFindPathToTargetPos);
 
                     //�����Դ��룺����ͷ��û����ʧ��Progress
                     if (state == CharacterStateID.Wander)
@@ -388,9 +392,9 @@ namespace GameWish.Game
         #endregion
 
         #region Private
-        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType, string startTime, int index)
+        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
         {
-            m_CharacterModel.SetDataState(characterStateID, targetFacilityType, startTime, index);
+            m_CharacterModel.SetDataState(characterStateID, targetFacilityType, startTime, index,isFindPathToTargetPos);
         }
 
         //private void SetTaskIfNeed(CharacterStateID initState)
