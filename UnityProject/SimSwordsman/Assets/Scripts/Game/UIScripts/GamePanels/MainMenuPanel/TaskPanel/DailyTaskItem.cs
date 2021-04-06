@@ -41,7 +41,7 @@ namespace GameWish.Game
             m_TxtSubTitle.text = task.taskSubTitle;
             m_ImgRewardIcon.sprite = m_Panel.FindSprite(task.reward.SpriteName());
             m_ImgRewardIcon.SetNativeSize();
-            m_ImgTaskIcon.sprite = SpriteHandler.S.GetSprite("TaskIconAtlas", task.taskIcon);
+            m_ImgTaskIcon.sprite = SpriteHandler.S.GetSprite("DailyTaskPanelAtlas", task.taskIcon);
             m_ImgTaskIcon.SetNativeSize();
             m_TxtRewardNum.text = task.reward.Count.ToString();
             Refesh();

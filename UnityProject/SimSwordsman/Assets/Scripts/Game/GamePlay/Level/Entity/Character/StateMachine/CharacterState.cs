@@ -46,6 +46,10 @@ namespace GameWish.Game
         /// 巡逻
         /// </summary>
         Patrol,
+        /// <summary>
+        /// 押镖
+        /// </summary>
+        Deliver,
     }
 
 

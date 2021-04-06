@@ -30,6 +30,6 @@ namespace GameWish.Game
         //BartizanWest                    = 19,       //西箭塔
         BulletinBoard                   = 18,       //公告榜
         TotalCount,
-    }
-	
+        Deliver                         =20,        //镖局
+    }	
 }

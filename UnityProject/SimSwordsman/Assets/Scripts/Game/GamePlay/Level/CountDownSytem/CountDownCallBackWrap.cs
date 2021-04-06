@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-    public delegate void OnCountDownCallBackDel();
+    public delegate void OnCountDownCallBackDel(int remaintTimeSeconds);
     public class CountDownCallBackWrap
     {
         private LinkedList<OnCountDownCallBackDel> m_CallBackList = null;
         private OnCountDownCallBackDel m_TempCall = null;
         private LinkedListNode<OnCountDownCallBackDel> m_HeadNode = null;
-        public bool Fire()
+        public bool Fire(int remainTime)
         {
             if (m_CallBackList == null)
             {
@@ -29,7 +29,7 @@ namespace GameWish.Game
                 m_HeadNode = m_HeadNode.Next;
 
                 if(m_TempCall!=null)
-                    m_TempCall();
+                    m_TempCall(remainTime);
             }
 
             return true;

@@ -19,10 +19,10 @@ namespace GameWish.Game
 					ForgeHouseItemData data = dataList[i];
 
 					CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(),
-					() => {
+					(remainTime) => {
 						GameDataMgr.S.GetClanData().UpdateForgeHouseItemData(data.ForgeHouseItemID, 1);
 					},
-					() =>
+					(remainTime) =>
 					{
 						OnForgeHouseItemDataCountDownFinished(data.ForgeHouseItemID);
 					});
@@ -65,10 +65,10 @@ namespace GameWish.Game
 		{
 			ForgeHouseItemData data = GameDataMgr.S.GetClanData().AddForgeHouseItemData(forgeHouseID);
 
-			CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(), () =>
+			CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(), (remainTime) =>
 			{
 				GameDataMgr.S.GetClanData().UpdateForgeHouseItemData(data.ForgeHouseItemID, 1);
-			}, () =>
+			}, (remainTime) =>
 			{
 				OnForgeHouseItemDataCountDownFinished(data.ForgeHouseItemID);
 			});

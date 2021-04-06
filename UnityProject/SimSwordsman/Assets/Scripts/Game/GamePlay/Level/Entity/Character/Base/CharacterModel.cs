@@ -50,9 +50,9 @@ namespace GameWish.Game
             m_Atk = atk;
         }
 
-        public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
+        public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
         {
-            m_CharacterItem?.SetCharacterStateData(stateId, targetFacilityType, startTime, index);
+            m_CharacterItem?.SetCharacterStateData(stateId, targetFacilityType, startTime, index,isFindPathToTargetPos);
         }
 
         public void SetCurTask(SimGameTask simGameTask)
@@ -133,6 +133,13 @@ namespace GameWish.Game
             if (m_CharacterItem == null)
                 return FacilityType.None;
             return m_CharacterItem.GetTargetFacilityType();
+        }
+
+        public bool IsFindPathToTargetPos() 
+        {
+            if (m_CharacterItem == null) return true;
+
+            return m_CharacterItem.IsFindPathToTargetPos();
         }
 
         public int GetTargetFacilityIndex()

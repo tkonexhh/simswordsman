@@ -53,5 +53,7 @@ namespace GameWish.Game
 		public const string m_task_finish = "m_task_finish";
 		public const string m_task_receive = "m_task_receive";
 		public const string level_double_reward = "level_double_reward";
+		public const string Open_WeChatShare_Panel = "w_open_share";
+		public const string Click_WeChatShare_Btn = "w_start_share";
 	}
 }

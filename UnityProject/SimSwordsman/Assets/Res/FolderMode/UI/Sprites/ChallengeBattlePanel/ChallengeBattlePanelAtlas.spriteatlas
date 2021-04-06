@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChallengeBattlePanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: f28820e5e138bd0418dd9abd8484da4a, type: 3}
+    - {fileID: 2800000, guid: 7d1a7b48b3e14b940839a789a8735147, type: 3}
+    - {fileID: 2800000, guid: 4186847821f0a674392d6b58a2d2339f, type: 3}
+    - {fileID: 2800000, guid: 21a99cf791db9db47bf2c6a970310fa3, type: 3}
+    - {fileID: 2800000, guid: 3b50763e05b87b242b36a4c7df1902fd, type: 3}
+    - {fileID: 2800000, guid: 1ea855ff91ff91347a8e9894d7604ac8, type: 3}
+    - {fileID: 2800000, guid: 6ba7daea9e9ab2243a18b6bc88080d34, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f28820e5e138bd0418dd9abd8484da4a, type: 3}
+  - {fileID: 21300000, guid: 21a99cf791db9db47bf2c6a970310fa3, type: 3}
+  - {fileID: 21300000, guid: 7d1a7b48b3e14b940839a789a8735147, type: 3}
+  - {fileID: 21300000, guid: 4186847821f0a674392d6b58a2d2339f, type: 3}
+  - {fileID: 21300000, guid: 6ba7daea9e9ab2243a18b6bc88080d34, type: 3}
+  - {fileID: 21300000, guid: 3b50763e05b87b242b36a4c7df1902fd, type: 3}
+  - {fileID: 21300000, guid: 1ea855ff91ff91347a8e9894d7604ac8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ChallengeBattle_Battle
+  - ChallengeBattle_Current
+  - ChallengeBattle_ChallengeBtnImg
+  - ChallengeBattle_CloseBtn
+  - ChallengeBattle_Over
+  - ChallengeBattle_Lock
+  - ChallengeBattle_Name
+  m_Tag: ChallengeBattlePanelAtlas
+  m_IsVariant: 0

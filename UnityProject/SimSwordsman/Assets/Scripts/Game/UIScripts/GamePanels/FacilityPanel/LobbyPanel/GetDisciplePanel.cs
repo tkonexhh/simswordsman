@@ -19,6 +19,8 @@ namespace GameWish.Game
         private Button m_BlackBtn;
         [SerializeField]
         private GameObject m_NewSkillHeroUnlock;
+        [SerializeField]
+        private Button m_WeChatShareBtn;
 
         private CharacterItem m_CharacterItem;
         private ClickType m_CurrentClickType = ClickType.None;
@@ -33,12 +35,20 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
+
+            m_WeChatShareBtn.onClick.AddListener(()=> 
+            {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.Click_WeChatShare_Btn);
+                WeChatShareMgr.S.Share(WeChatTex.PrefectCharacter);
+            });
         }
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CharacterItem = args[0] as CharacterItem;
+
+            m_WeChatShareBtn.gameObject.SetActive(false);
 
             m_DiscipleImg.enabled = true;
             m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
@@ -56,6 +66,10 @@ namespace GameWish.Game
                     break;
                 case CharacterQuality.Perfect:
                     m_DiscipleGrade.sprite = FindSprite("LobbyPanel_Grade_Genius");
+
+                    m_WeChatShareBtn.gameObject.SetActive(true);
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.Open_WeChatShare_Panel);
                     break;
                 default:
                     break;

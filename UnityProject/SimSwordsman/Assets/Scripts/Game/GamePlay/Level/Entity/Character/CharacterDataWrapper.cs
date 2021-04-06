@@ -278,10 +278,10 @@ namespace GameWish.Game
         /// 设置人物的状态
         /// </summary>
         /// <param name="stateId"></param>
-        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
+        public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
         {
             this.characterStateId = stateId;
-            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index);
+            GameDataMgr.S.GetClanData().SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index,isFindPathToTargetPos);
         }
 
         public void SetCurTask(SimGameTask task)
@@ -635,7 +635,9 @@ namespace GameWish.Game
         {
             return m_ItemDbData.taskId;
         }
-
+        public bool IsFindPathToTargetPos() {
+            return m_ItemDbData.IsFindPathToTargetPos();
+        }
         public FacilityType GetTargetFacilityType()
         {
             return m_ItemDbData.facilityData.targetFacility;

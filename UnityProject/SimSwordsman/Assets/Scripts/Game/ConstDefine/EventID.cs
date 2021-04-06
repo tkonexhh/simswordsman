@@ -385,6 +385,10 @@ namespace GameWish.Game
         OnRefeshMainTask,
         OnRefeshDailyTask,
         OnMainMenuDailyTaskRedPoint,
+
+        #region deliver system
+        OnCharacterReachDeliverPos,
+        #endregion
     }
 
 }
