@@ -17,8 +17,14 @@ namespace GameWish.Game
 
         public void SetLobbyChallenging(bool active)
         {
-            m_LobbyChallenging.SetActive(active);
-        }    
+            if (m_Controller.GetState() == FacilityState.Unlocked)
+                m_LobbyChallenging.SetActive(active);
+        }
+
+        public override void SetViewByState(bool isFile = false)
+        {
+            base.SetViewByState(isFile);
+        }
 
         public override void OnClicked()
         {

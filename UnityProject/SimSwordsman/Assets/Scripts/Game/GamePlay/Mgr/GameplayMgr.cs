@@ -254,14 +254,14 @@ namespace GameWish.Game
                 {
                     for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
                     {
-                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 10);
                     }
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 10);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 10);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 10);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 10);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 10);
                 }
                 if (Input.GetKeyDown(KeyCode.H))
                 {
@@ -328,7 +328,8 @@ namespace GameWish.Game
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
                     //MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)2002), 2);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 1);
 
                     //GameDataMgr.S.GetPlayerData().AddFoodNum(1);
                 }
