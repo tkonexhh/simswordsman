@@ -119,5 +119,26 @@ namespace GameWish.Game
         //    return reward;
         //}
 
+
+        public long GetOwnRewardCount(RewardBase reward)
+        {
+            switch (reward.RewardItem)
+            {
+                case RewardItemType.Coin:
+                    return GameDataMgr.S.GetPlayerData().GetCoinNum();
+                case RewardItemType.Food:
+                    return GameDataMgr.S.GetPlayerData().GetFoodNum();
+                case RewardItemType.Armor:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new ArmorItem((ArmorType)reward.KeyID.Value, Step.One));
+                case RewardItemType.Arms:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new ArmsItem((ArmsType)reward.KeyID.Value, Step.One));
+                case RewardItemType.Kongfu:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new KungfuItem((KungfuType)reward.KeyID.Value));
+                case RewardItemType.Item:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new PropItem((RawMaterial)reward.KeyID.Value));
+            }
+            return 0;
+        }
+
     }
 }

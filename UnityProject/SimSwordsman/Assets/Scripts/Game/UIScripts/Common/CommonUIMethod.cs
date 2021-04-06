@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class CommonUIMethod
     {
         /// <summary>
-        /// ¸ù¾Ý°ïÅÉÀàÐÍ»ñÈ¡°ïÅÉÃû³Æ
+        /// ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="clanType"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ½øÐÐTextÉÏ·­
+        /// ï¿½ï¿½ï¿½ï¿½Textï¿½Ï·ï¿½
         /// </summary>
         /// <param name="currentScoreText"></param>
         /// <param name="curValue"></param>
@@ -51,19 +51,20 @@ namespace GameWish.Game
 
             mScoreSequence.SetAutoKill(false);
 
-            mScoreSequence.Append(DOTween.To(delegate (float value) {
-                //ÏòÏÂÈ¡Õû
+            mScoreSequence.Append(DOTween.To(delegate (float value)
+            {
+                //ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½
                 var temp = Math.Floor(value);
-                //ÏòText×é¼þ¸³Öµ
+                //ï¿½ï¿½Textï¿½ï¿½ï¿½ï¿½ï¿½Öµ
                 currentScoreText.text = temp + "";
             }, curValue, targetValue, 1.0f));
-            //½«¸üÐÂºóµÄÖµ¼ÇÂ¼ÏÂÀ´, ÓÃÓÚÏÂÒ»´Î¹ö¶¯¶¯»­
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Âºï¿½ï¿½Öµï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             curValue = targetValue;
         }
 
 
         /// <summary>
-        /// »ñÈ¡ÌôÕ½Ãû³Æ
+        /// ï¿½ï¿½È¡ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public static string GetChallengeTitle(ChapterConfigInfo chapterConfig, int level)
@@ -73,7 +74,7 @@ namespace GameWish.Game
                 + GetChallengeSubTitle(level.ToString());
         }
         /// <summary>
-        /// Æ´½Ó00£º00£º00
+        /// Æ´ï¿½ï¿½00ï¿½ï¿½00ï¿½ï¿½00
         /// </summary>
         /// <param name="seconds"></param>
         /// <returns></returns>
@@ -113,7 +114,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w("ÌôÕ½±êÌâID³¤¶È²»¶Ô = " + subTitle);
+                Log.w("ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½È²ï¿½ï¿½ï¿½ = " + subTitle);
                 return "0";
             }
         }
@@ -124,21 +125,21 @@ namespace GameWish.Game
             Level,
         }
         /// <summary>
-        /// Ë³ÐòÀàÐÍ
+        /// Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public enum OrderType
         {
             /// <summary>
-            /// ´Ó´óµ½Ð¡
+            /// ï¿½Ó´ï¿½Ð¡
             /// </summary>
             FromBigToSmall,
             /// <summary>
-            /// ´ÓÐ¡µ½´ï
+            /// ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
             /// </summary>
             FromSmallToBig,
         }
         /// <summary>
-        /// ¶ÔµÜ×ÓÅÅÐò°´ÕÕÎäÁ¦Öµ
+        /// ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
         /// </summary>
         /// <param name="characterItems"></param>
         /// <returns></returns>
@@ -200,7 +201,7 @@ namespace GameWish.Game
 
 
         /// <summary>
-        /// Ë¢ÐÂ½²ÎäÌÃÕÐÄ¼Áîºìµã
+        /// Ë¢ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public static bool CheackRecruitmentOrder()
         {
@@ -222,7 +223,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ¼ÆËãÐ¡Ê±²î
+        /// ï¿½ï¿½ï¿½ï¿½Ð¡Ê±ï¿½ï¿½
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
@@ -238,9 +239,9 @@ namespace GameWish.Game
             return 0;
         }
         /// <summary>
-        /// ÉèÖÃÃÅÅÉÇ°×º
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°×º
         /// </summary>
-        /// <param name="clanType">ÃÅÅÉÀàÐÍ</param>
+        /// <param name="clanType">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
         /// <returns></returns>
         public static string SetClanPrefix(ClanType clanType)
         {
@@ -248,7 +249,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¸ù¾Ý±íÖÐµÄKey£¬»ñÈ¡ÏàÓ¦µÄÄÚÈÝ
+        /// ï¿½ï¿½ï¿½Ý±ï¿½ï¿½Ðµï¿½Keyï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -257,10 +258,10 @@ namespace GameWish.Game
             return TDLanguageTable.Get(key);
         }
 
-        #region ÉèÖÃÃæ°å×ÊÔ´
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 
         /// <summary>
-        /// ¼ì²é×ÊÔ´ÊÇ·ñ×ã¹»
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ç·ï¿½ï¿½ã¹»
         /// </summary>
         /// <param name="costItem"></param>
         /// <param name="text"></param>
@@ -279,7 +280,7 @@ namespace GameWish.Game
             }
         }
 
-        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo = null, List<UpgradeResItem> list = null)
+        public static void RefreshUpgradeResInfo(List<CostItem> costItems, Transform transform, GameObject obj, FacilityLevelInfo facilityLevelInfo = null, List<UpgradeResItem> list = null)
         {
             if (costItems == null || obj == null)
                 return;
@@ -293,13 +294,13 @@ namespace GameWish.Game
             {
                 int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
 
-                UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj,transform).GetComponent<UpgradeResItem>();
-                upgradeResItem1.OnInit(costItems[0],transform);
+                UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
+                upgradeResItem1.OnInit(costItems[0], transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
                     SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
 
                 list?.Add(upgradeResItem1);
-                if (facilityLevelInfo!=null)
+                if (facilityLevelInfo != null)
                 {
                     UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem2.OnInit(facilityLevelInfo, transform);
@@ -354,7 +355,7 @@ namespace GameWish.Game
         #endregion
 
 
-        #region ¼ì²é×ÊÔ´ÊÇ·ñ×ã¹»
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ç·ï¿½ï¿½ã¹»
         public static bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems, bool floatMessage = true)
         {
             if (facilityLevelInfo == null)
@@ -397,7 +398,7 @@ namespace GameWish.Game
         #endregion
 
         /// <summary>
-        /// ¼ì²éÇ®ÊÇ·ñ×ã¹»
+        /// ï¿½ï¿½ï¿½Ç®ï¿½Ç·ï¿½ï¿½ã¹»
         /// </summary>
         /// <param name="facilityLevelInfo"></param>
         /// <param name="text"></param>
@@ -416,7 +417,7 @@ namespace GameWish.Game
                 return true;
             }
         }
-        public static string GetStrForColor(string color, string cont,bool table = false)
+        public static string GetStrForColor(string color, string cont, bool table = false)
         {
             if (!table)
             {
@@ -430,7 +431,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¸ù¾ÝµÜ×ÓÆ·ÖÊ»ñÈ¡ÏàÓ¦µÄstr
+        /// ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½Æ·ï¿½Ê»ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½str
         /// </summary>
         /// <param name="characterQuality"></param>
         /// <returns></returns>
@@ -449,7 +450,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// »ñÈ¡ÎïÆ·µÄÊýÁ¿
+        /// ï¿½ï¿½È¡ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -458,7 +459,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.FACILITY_WAREHOUSE_INDIVIDUAL);
         }
         /// <summary>
-        /// »ñÈ¡×°±¸µÄ½×¼¶
+        /// ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½Ä½×¼ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -467,7 +468,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_CLASS);
         }
         /// <summary>
-        /// »ñÈ¡µÈ¼¶
+        /// ï¿½ï¿½È¡ï¿½È¼ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -476,7 +477,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_GRADE);
         }
         /// <summary>
-        /// »ñÈ¡ÌìÊý
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -485,7 +486,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_DAY);
         }
         /// <summary>
-        /// »ñµÃÈË
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -494,7 +495,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_PEOPLE);
         }
         /// <summary>
-        /// »ñµÃ¶Î
+        /// ï¿½ï¿½Ã¶ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -503,7 +504,7 @@ namespace GameWish.Game
             return GetTextNumber(number) + TDLanguageTable.Get(Define.COMMON_UNIT_PAET);
         }
         /// <summary>
-        /// »ñµÃ½×
+        /// ï¿½ï¿½Ã½ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -548,7 +549,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Éý¼¶ÐèÒª½²ÎäÌÃ´ïµ½
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã´ïµ½
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
@@ -557,7 +558,7 @@ namespace GameWish.Game
             return GetStringForTableKey(Define.COMMON_UPGRADEINFODESC) + GetGrade(level);
         }
         /// <summary>
-        /// ¿Õ¸ñ
+        /// ï¿½Õ¸ï¿½
         /// </summary>
         /// <returns></returns>
         public static string TextIndent()
@@ -565,7 +566,7 @@ namespace GameWish.Game
             return "<color=#FFFFFF00>----</color>";
         }
         /// <summary>
-        /// ¿Õ¸ñ
+        /// ï¿½Õ¸ï¿½
         /// </summary>
         /// <returns></returns>
         public static string TextEmptyOne()
@@ -573,7 +574,7 @@ namespace GameWish.Game
             return "<color=#FFFFFF00>--</color>";
         }
         /// <summary>
-        /// »ñÈ¡ÍòorÒÚorÍòÒÚ
+        /// ï¿½ï¿½È¡ï¿½ï¿½orï¿½ï¿½orï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -582,22 +583,22 @@ namespace GameWish.Game
             if (number.ToString().Length > 12)
             {
                 long MainNumber = number / 1000000000000;
-                long remainder = number % 1000000000000;
+                long remainder = (number - 1000000000000 * MainNumber) / 100000000000;
 
-                return MainNumber.ToString() + "." + remainder.ToString()[0] + "ÍòÒÚ";
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "äº¿äº¿";
             }
             else if (number.ToString().Length > 8)
-            {   
+            {
                 long MainNumber = number / 100000000;
-                long remainder = number % 100000000;
+                long remainder = (number - 100000000 * MainNumber) / 10000000;
 
-                return MainNumber.ToString() + "." + remainder.ToString()[0] + "ÒÚ";
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "äº¿";
             }
-            else if(number.ToString().Length > 4)
+            else if (number.ToString().Length > 4)
             {
                 long MainNumber = number / 10000;
-                long remainder = number % 10000;
-                return MainNumber.ToString() + "." + remainder.ToString()[0] + "Íò";
+                long remainder = (number - 10000 * MainNumber) / 1000;
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "ä¸‡";
             }
             else
             {
