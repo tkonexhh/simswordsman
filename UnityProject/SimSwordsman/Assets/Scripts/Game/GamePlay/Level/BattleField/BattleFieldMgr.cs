@@ -385,8 +385,8 @@ namespace GameWish.Game
         }
         private void ApplyDamage()
         {
-            m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * UnityEngine.Random.Range(0.8f, 1.2f);
-            m_EnemeyDamagePersecond = m_TotalOurAtk / m_InitEnemeyCharacterCount / m_Const * UnityEngine.Random.Range(0.8f, 1.2f);
+            m_OurDamagePersecond = m_TotalEnemyAtk / m_InitOurCharacterCount / m_Const * UnityEngine.Random.Range(0.9f, 1.1f);
+            m_EnemeyDamagePersecond = m_TotalOurAtk / m_InitEnemeyCharacterCount / m_Const * UnityEngine.Random.Range(0.9f, 1.1f);
 
             m_OurCharacterList.ForEach(i =>
             {
