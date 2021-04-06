@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 2311980967
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: dfe5f8405dd65b67806f47744a79eb83
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: dc725f098198011344befcda79884720
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/FolderMode/Characters/CommonPrefabs/BoneFollower.prefab
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/saodi.bundle

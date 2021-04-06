@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 89212222
+CRC: 1418412259
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -985,12 +985,12 @@ AssetBundleManifest:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/prefab/skills/taizuchangquan.bundle
     Info_215:
-      Name: res/foldermode/ui/sprites/mainmenu/maintask.bundle
-      Dependencies: {}
-    Info_216:
       Name: res/foldermode/effects/prefab/env/blacksmith.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
-    Info_217:
+    Info_216:
       Name: res/foldermode/item/flag.bundle
+      Dependencies: {}
+    Info_217:
+      Name: res/foldermode/ui/sprites/mainmenu/maintask.bundle
       Dependencies: {}
