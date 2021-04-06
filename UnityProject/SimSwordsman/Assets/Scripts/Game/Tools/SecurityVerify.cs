@@ -13,9 +13,9 @@ namespace GameWish.Game
             **/
         public static bool IsCorrect()
         {
-//#if UNITY_EDITOR
-//            return true;
-//#endif
+#if UNITY_EDITOR
+            return true;
+#endif
 
             // »ñÈ¡AndroidµÄPackageManager    
             AndroidJavaClass Player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
