@@ -48,7 +48,7 @@ namespace GameWish.Game
 
         public override void Exit(IBattleStateHander handler)
         {
-            Log.i("Character exit idle state");
+            //Log.i("Character exit idle state");
             m_TimeCounter = 0;
         }
 
