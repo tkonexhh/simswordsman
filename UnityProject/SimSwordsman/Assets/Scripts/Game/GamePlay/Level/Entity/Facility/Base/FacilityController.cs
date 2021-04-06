@@ -21,6 +21,7 @@ namespace GameWish.Game
         private bool SubRedPoint = false;
 
         public FacilityType facilityType => m_FacilityType;
+        public FacilityView view => m_View;
 
         #region IEntityController
         public virtual void Init()
@@ -157,7 +158,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 检测子类红点功能
+        /// ???????????
         /// </summary>
         protected virtual bool CheckSubFunc()
         {
@@ -221,7 +222,7 @@ namespace GameWish.Game
             return m_View.GetDoorPos();
         }
 
-        #region work system 相关
+        #region work system ???
         private FacilityWorkingStateEnum m_FacilityWorkingState = FacilityWorkingStateEnum.Idle;
         public FacilityWorkingStateEnum FacilityWorkingState { get { return m_FacilityWorkingState; } }
         private int m_AutoStartWorkTimerID = -1;
@@ -247,7 +248,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// 派遣弟子开始工作
+        /// ?????????????
         /// </summary>
         /// <returns></returns>
         public bool DispatchDiscipleStartWork(bool isAuto = false)
@@ -279,18 +280,19 @@ namespace GameWish.Game
                 else
                 {
                     if (!isAuto)
-                        FloatMessage.S.ShowMsg("没有空闲弟子");
+                        FloatMessage.S.ShowMsg("娌℃湁绌洪棽寮熷瓙");
                     return false;
                 }
             }
-            else {
+            else
+            {
                 Debug.LogError("is not show bubble state:");
                 Timer.S.Cancel(m_AutoStartWorkTimerID);
                 return false;
             }
         }
         /// <summary>
-        /// 派遣弟子工作
+        /// ??????????
         /// </summary>
         /// <param name="characterID"></param>
         public void DispatchDiscipleStartWork(int characterID)
@@ -313,9 +315,9 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// 倒计时自动开始工作
+        /// ???????????????
         /// </summary>
-        public void CoundDownAutoStartWork(Action<bool> endCallBack = null,bool isAuto = false)
+        public void CoundDownAutoStartWork(Action<bool> endCallBack = null, bool isAuto = false)
         {
             Timer.S.Cancel(m_AutoStartWorkTimerID);
 

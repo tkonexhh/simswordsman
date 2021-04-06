@@ -9,7 +9,7 @@ namespace GameWish.Game
     public abstract class TaskBase : ITask
     {
         private TaskState m_TaskState;
-        private TaskInfo m_TaskInfo;
+        protected TaskInfo m_TaskInfo;
 
         public string taskTitle => m_TaskInfo.taskTitle;
         public string taskSubTitle => m_TaskInfo.taskSubTitle;
@@ -83,6 +83,20 @@ namespace GameWish.Game
                 return 0;
             else
                 return -1;
+        }
+
+        public void FocusTask()
+        {
+            var targetTransform = m_TaskInfo.taskTransform;
+            if (targetTransform == null)
+                return;
+
+            WorldUIPanel.S.ShowHandTips(targetTransform);
+            if (targetTransform.gameObject.layer != LayerDefine.LAYER_UI)
+            {
+                MainGameMgr.S.MainCamera.LookAtTarget(targetTransform);
+            }
+
         }
 
     }
