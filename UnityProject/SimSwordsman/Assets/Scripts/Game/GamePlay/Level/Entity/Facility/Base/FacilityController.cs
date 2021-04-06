@@ -121,7 +121,8 @@ namespace GameWish.Game
 
             if (m_HavaWorkingBubbleFacility.Contains(m_FacilityType))
             {
-
+                if (m_FacilityType == FacilityType.Lobby)
+                    EventSystem.S.Send(EventID.OnSendRecruitable, false);
                 UpGradeRedPoint = false;
                 SubRedPoint = false;
                 RefreshRedPoint();

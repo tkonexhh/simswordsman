@@ -345,9 +345,9 @@ namespace GameWish.Game
                 if (Input.GetKeyDown(KeyCode.V))
                 {
                     List<RewardBase> rewards = new List<RewardBase>();
-                    rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
-                    rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
-                    rewards.Add(new ArmorReward((int)ArmorType.MingGuangKai, 1));
+                    rewards.Add(new ItemReward((int)RawMaterial.Agate, 1));
+                    //rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
+                    //rewards.Add(new ArmorReward((int)ArmorType.MingGuangKai, 1));
                     //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
                     //rewards.Add(new KongfuReward((int)KungfuType.FoShanWuYingJiao, 1));
                     UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);

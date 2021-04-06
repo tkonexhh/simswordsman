@@ -111,19 +111,6 @@ namespace GameWish.Game
             kungfuName.sprite = FindSprite(TDKongfuConfigTable.GetIconName(item.kongfuType));
         }
 
-        //[SerializeField]
-        //private GameObject m_InfoPar;
-        //[SerializeField]
-        //private Text m_InfoParName;
-        //[SerializeField]
-        //private Image m_InfoParIcon;
-        //[SerializeField]
-        //private Image m_KungfuNameImg;
-        //[SerializeField]
-        //private Text m_KungfuName;
-        //[SerializeField]
-        //private Text m_Paragraph;
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
