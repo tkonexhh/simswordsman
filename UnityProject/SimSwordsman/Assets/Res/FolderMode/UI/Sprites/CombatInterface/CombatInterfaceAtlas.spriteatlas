@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CombatInterfaceAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: a87fd33082f2043438713234bd89232b, type: 3}
+    - {fileID: 2800000, guid: 0c5c6a0ff5e2d4640805e848142e04f3, type: 3}
+    - {fileID: 2800000, guid: 1292e7f28fa668c4cb501f8bc305e6fa, type: 3}
+    - {fileID: 2800000, guid: 85a5b50012003a147a445fff030347e6, type: 3}
+    - {fileID: 2800000, guid: 15e8eb2d299897d4597e278250c42d19, type: 3}
+    - {fileID: 2800000, guid: c43561e02e2f3ed4884ad2961599371a, type: 3}
+    - {fileID: 2800000, guid: 393ab39b534c43a4c9b463e7b85ffb89, type: 3}
+    - {fileID: 2800000, guid: f95e9ed0bf56c964da4b45537536c97a, type: 3}
+    - {fileID: 2800000, guid: 87cb8a137681cdb4586ccc3ec7f977a0, type: 3}
+    - {fileID: 2800000, guid: a937ffdd5a288c04687ddd3fbab9d2a6, type: 3}
+    - {fileID: 2800000, guid: f15696d109c103749a4ced28b27368b4, type: 3}
+    - {fileID: 2800000, guid: b6c2172b462a585488ccdc0b12532940, type: 3}
+    - {fileID: 2800000, guid: 14d800ab9c175fe4b87419ee11a2a03a, type: 3}
+    - {fileID: 2800000, guid: efef6d65f00788844b1b531eb4103632, type: 3}
+    - {fileID: 2800000, guid: dc7bba6d728329b4c9e2488345e52ec7, type: 3}
+    - {fileID: 2800000, guid: 16757c5303a810548b51887d498f1099, type: 3}
+    - {fileID: 2800000, guid: 27777577f15b5554d862005e993a1e36, type: 3}
+    - {fileID: 2800000, guid: ed32b841473cc9546b0c67cb9e83ed5b, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 85a5b50012003a147a445fff030347e6, type: 3}
+  - {fileID: 21300000, guid: a87fd33082f2043438713234bd89232b, type: 3}
+  - {fileID: 21300000, guid: f95e9ed0bf56c964da4b45537536c97a, type: 3}
+  - {fileID: 21300000, guid: c43561e02e2f3ed4884ad2961599371a, type: 3}
+  - {fileID: 21300000, guid: ed32b841473cc9546b0c67cb9e83ed5b, type: 3}
+  - {fileID: 21300000, guid: f15696d109c103749a4ced28b27368b4, type: 3}
+  - {fileID: 21300000, guid: 1292e7f28fa668c4cb501f8bc305e6fa, type: 3}
+  - {fileID: 21300000, guid: 87cb8a137681cdb4586ccc3ec7f977a0, type: 3}
+  - {fileID: 21300000, guid: 16757c5303a810548b51887d498f1099, type: 3}
+  - {fileID: 21300000, guid: efef6d65f00788844b1b531eb4103632, type: 3}
+  - {fileID: 21300000, guid: 27777577f15b5554d862005e993a1e36, type: 3}
+  - {fileID: 21300000, guid: b6c2172b462a585488ccdc0b12532940, type: 3}
+  - {fileID: 21300000, guid: 393ab39b534c43a4c9b463e7b85ffb89, type: 3}
+  - {fileID: 21300000, guid: 14d800ab9c175fe4b87419ee11a2a03a, type: 3}
+  - {fileID: 21300000, guid: 15e8eb2d299897d4597e278250c42d19, type: 3}
+  - {fileID: 21300000, guid: dc7bba6d728329b4c9e2488345e52ec7, type: 3}
+  - {fileID: 21300000, guid: a937ffdd5a288c04687ddd3fbab9d2a6, type: 3}
+  - {fileID: 21300000, guid: 0c5c6a0ff5e2d4640805e848142e04f3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - CombatInterface_Zd-10
+  - CombatInterface_BgBottom
+  - CombatInterface_Zd-4
+  - CombatInterface_Zd-2
+  - z-8
+  - CombatInterface_Zd-7
+  - CombatInterface_Zd-1
+  - CombatInterface_Zd-5
+  - z-6
+  - Lark20210207-163626
+  - z-7
+  - CombatInterface_Zd-8
+  - CombatInterface_Zd-3
+  - CombatInterface_Zd-9
+  - CombatInterface_Zd-11
+  - z-5
+  - CombatInterface_Zd-6
+  - CombatInterface_BgTop
+  m_Tag: CombatInterfaceAtlas
+  m_IsVariant: 0
