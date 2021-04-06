@@ -113,6 +113,13 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
 
+            CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
             m_Loader?.Release();
 
             EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
@@ -135,7 +142,6 @@ namespace GameWish.Game
             }
 
             CloseDependPanel(EngineUI.MaskPanel);
-            CloseSelfPanel();
         }
     }
 }

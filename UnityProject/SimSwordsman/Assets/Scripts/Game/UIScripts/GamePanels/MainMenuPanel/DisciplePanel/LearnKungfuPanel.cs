@@ -78,6 +78,9 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+
+            CloseDependPanel(EngineUI.MaskPanel);
+
             EventSystem.S.UnRegister(EventID.OnSelectedKungfuEvent, HandleAddListenerEvevt);
             PanelPool.S.DisplayPanel();
         }
@@ -116,6 +119,7 @@ namespace GameWish.Game
                 PanelPool.S.AddPromotion(new LearnMartialArts(m_CharacterItem.id, m_CharacterItem.atkValue, (KungfuItem)m_SelectedItemBase));
 
                 MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
+               
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
 
                 EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
@@ -137,7 +141,6 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
-            CloseDependPanel(EngineUI.MaskPanel);
         }
 
         private void CreateKungfu(ItemBase itemBase)

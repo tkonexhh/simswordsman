@@ -25,7 +25,7 @@ namespace GameWish.Game
         private int m_SupplementFood = 100;
         private int m_CurFoodFreshCount;
         private const int _24House = 24;
-        private const int FOODFRESHCOUNT = 5;
+        private const int FOODFRESHCOUNT = 10;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -113,6 +113,12 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
             CloseDependPanel(EngineUI.MaskPanel);
         }
     }

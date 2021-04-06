@@ -135,9 +135,9 @@ namespace GameWish.Game
             });
             m_BulletinBoardBtn.onClick.AddListener(() =>
             {
+                m_ObjBulletinBoardRed.SetActive(false);
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
-                m_ObjBulletinBoardRed.SetActive(false);
                 // UIMgr.S.OpenPanel(UIID.BulletinBoardPanel);
             });
             m_WareHouseBtn.onClick.AddListener(() =>
@@ -300,6 +300,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
             EventSystem.S.Register(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
+            EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -313,7 +314,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnMainMenuOrDiscipleRedPoint, HandListenerEvent);
             EventSystem.S.UnRegister(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
-
+            EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -351,7 +352,9 @@ namespace GameWish.Game
                 case EventID.OnMainMenuDailyTaskRedPoint:
                     m_ObjBulletinBoardRed.SetActive(true);
                     break;
-
+                case EventID.OnRefeshDailyTaskPanel:
+                    m_ObjBulletinBoardRed.SetActive(false);
+                    break;
             }
         }
 

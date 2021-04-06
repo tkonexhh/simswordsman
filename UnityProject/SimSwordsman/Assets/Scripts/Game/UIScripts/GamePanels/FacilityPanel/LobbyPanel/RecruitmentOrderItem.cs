@@ -33,7 +33,7 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_RecruitmentImg;
 
-        private const int _24Hours = 1;
+        private const int _24Hours = 24;
         private const int _48Hours = 48;
         //private const string SilverAdvertiseCount = "3";
         private const string AdvertiseCount = "1";
@@ -89,7 +89,12 @@ namespace GameWish.Game
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 case ClickType.LookAdvertisement:
-                    m_RecruitmentImg.gameObject.SetActive(true);
+
+                    bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType, m_CountDownTimeHours);
+                    if (isCanLookADRecruit)
+                        m_RecruitmentImg.gameObject.SetActive(true);
+                    else
+                        m_RecruitmentImg.gameObject.SetActive(false);
                     m_RecruitmentBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LOBBY_RECRUIT);
                     break;
                 default:
@@ -154,6 +159,7 @@ namespace GameWish.Game
         /// <param name="lobbyTime"></param>
         private void RefreshFreeRecruit()
         {
+            m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
             UpdateADCoolingTime();
 
             int curRecruitCount = GetRecruitCount();
@@ -174,7 +180,7 @@ namespace GameWish.Game
                 CountDowntMgr.S.StopCountDownItemTest(m_CountDownItem.GetCountDownID());
             }
 
-            bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType,5 /*m_CountDownTimeHours*/);
+            bool isCanLookADRecruit = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(m_CurRecruitType, m_CountDownTimeHours);
 
             if (isCanLookADRecruit)
             {
@@ -185,8 +191,8 @@ namespace GameWish.Game
             {
                 DateTime lastClickTime = GameDataMgr.S.GetPlayerData().GetRecruitLastClickTime(m_CurRecruitType);
 
-                //DateTime endTime = lastClickTime.AddHours(m_CountDownTimeHours);
-                DateTime endTime = lastClickTime.AddSeconds(5);
+                DateTime endTime = lastClickTime.AddHours(m_CountDownTimeHours);
+                //DateTime endTime = lastClickTime.AddSeconds(5);
 
                 TimeSpan ts = endTime - DateTime.Now;
 
@@ -314,8 +320,9 @@ namespace GameWish.Game
                     break;
                 default:
                     break;
-            }
 
+            }
+            //RefreshFreeRecruit();
             GameDataMgr.S.GetPlayerData().recordData.AddRecruit();
 
             if (m_RecruitDic[type] != ClickType.Free)
@@ -367,6 +374,7 @@ namespace GameWish.Game
                     if (m_CurRecruitType == (RecruitType)param[0])
                         SetRecruitCount((ClickType)param[1]);
                     CommonUIMethod.CheackRecruitmentOrder();
+                    RefreshFreeRecruit();
                     break;
                 case EventID.OnRefreshRecruitmentOrder:
                     //RefreshRecruitmentOrder((RecruitType)param[0]);

@@ -44,7 +44,7 @@ namespace GameWish.Game
         }
 
         // Sequence m_TipsAnim;
-        public void SetTips(bool active)
+        public virtual void SetTips(bool active)
         {
             if ((int)facilityType == 20)
                 return;
@@ -90,6 +90,8 @@ namespace GameWish.Game
         {
 
         }
+
+         
 
         public virtual FacilityController GenerateContoller()
         {

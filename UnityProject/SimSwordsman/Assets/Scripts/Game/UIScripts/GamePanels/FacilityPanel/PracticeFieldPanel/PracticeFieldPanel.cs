@@ -228,11 +228,16 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+            CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
 
             isOpened = false;
 
             EventSystem.S.UnRegister(EventID.OnRefreshPracticeUnlock, HandleAddListenerEvent);
-            CloseSelfPanel();
         }
     }
 }

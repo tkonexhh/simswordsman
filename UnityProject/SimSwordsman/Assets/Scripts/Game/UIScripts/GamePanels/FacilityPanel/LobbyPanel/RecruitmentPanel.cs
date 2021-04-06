@@ -162,12 +162,19 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+
+            CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
             if (m_Loader != null)
             {
                 m_Loader.Release();
             }
             CloseDependPanel(EngineUI.MaskPanel);
-            CloseSelfPanel();
         }
     }
 }

@@ -44,19 +44,25 @@ namespace GameWish.Game
         {
             base.SetViewByState(isFile);
 
-            m_Flag.SetActive(false);
             switch (m_Controller.GetState())
             {
                 case FacilityState.Unlocked:
-                    m_Flag.SetActive(true);
                     RefreshFlagPos();
                     break;
             }
         }
 
+        public override void SetTips(bool active)
+        {
+            base.SetTips(active);
+            if (m_Controller.GetState() == FacilityState.Unlocked)
+                m_Flag.SetActive(true);
+        }
+
         public override void SetViewByLevel(bool isFile = false)
         {
             base.SetViewByLevel(isFile);
+            m_Flag.SetActive(false);
 
             RefreshFlagPos();
         }

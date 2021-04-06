@@ -109,7 +109,7 @@ namespace GameWish.Game
                     m_Items.Add(item);
                 }
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].Init(this, rewards[i], m_SortingOrder + 10);
+                m_Items[i].Init(this, rewards[i]);
             }
 
 
@@ -141,12 +141,13 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
-            CloseDependPanel(EngineUI.MaskPanel);
         }
 
         protected override void OnClose()
         {
             base.OnClose();
+
+            CloseDependPanel(EngineUI.MaskPanel);
 
             if (GuideMgr.S.IsGuideFinish(34) && GuideMgr.S.IsGuideFinish(36) == false)
             //if (GuideMgr.S.IsGuiding(34) && GuideMgr.S.IsGuideFinish(19) == false)

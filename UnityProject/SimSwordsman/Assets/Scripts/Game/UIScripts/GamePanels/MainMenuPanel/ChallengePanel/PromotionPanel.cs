@@ -210,7 +210,10 @@ namespace GameWish.Game
 
             TimerID = Timer.S.Post2Really((i) =>
             {
-                m_ExitBtn.gameObject.SetActive(true);
+                if (m_ExitBtn != null)
+                {
+                    m_ExitBtn.gameObject.SetActive(true);
+                }
             }, ExitShowTime);
         }
 
@@ -249,9 +252,17 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+
+            CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
+
             CloseDependPanel(EngineUI.MaskPanel);
             Timer.S.Cancel(TimerID);
-            CloseSelfPanel();
+
             PanelPool.S.CurShowPanelIsOver = false;
         }
     }

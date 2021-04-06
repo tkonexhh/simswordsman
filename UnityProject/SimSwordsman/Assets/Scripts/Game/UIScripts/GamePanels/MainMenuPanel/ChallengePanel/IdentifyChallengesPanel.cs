@@ -71,29 +71,22 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
-            m_LevelConfigInfo = (LevelConfigInfo)args[1];
-            RefreshPanelInfo();
-
-            RandomAccess(m_LevelConfigInfo.enemyHeadIcon);
-            m_ChallengePhoto.enabled = true;
-            m_ChallengePhoto.sprite = FindSprite("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
-        }
-
-        private void RandomAccess(string iconName)
-        {
-            iconName.Split(';');
-        }
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
+            try
             {
-                //Debug.Log(obj);
+                m_CurChapterConfigInfo = args[0] as ChapterConfigInfo;
+                m_LevelConfigInfo = (LevelConfigInfo)args[1];
+                RefreshPanelInfo();
+
+                //RandomAccess(m_LevelConfigInfo.enemyHeadIcon);
                 m_ChallengePhoto.enabled = true;
-                m_ChallengePhoto.sprite = obj;
-            });
+                m_ChallengePhoto.sprite = FindSprite("enemy_icon_" + m_LevelConfigInfo.enemyHeadIcon);
+            }
+            catch (Exception e)
+            {
+                Log.e("IdentifyChallengesPanel error: " + e.Message + " " + e.StackTrace);
+            }
         }
+
         private void RefreshPanelInfo()
         {
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);
@@ -162,6 +155,11 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseSelfPanel();
+        }
+
+        protected override void OnClose()
+        {
+            base.OnClose();
             CloseDependPanel(EngineUI.MaskPanel);
         }
     }

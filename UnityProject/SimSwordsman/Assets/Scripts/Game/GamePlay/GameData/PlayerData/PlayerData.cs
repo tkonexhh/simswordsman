@@ -128,7 +128,7 @@ namespace GameWish.Game
 
             FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
             NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
-            FoodRefreshTimesToday = 5;
+            FoodRefreshTimesToday = 10;
             FoodRefreshCount = 0;
             SetDataDirty();
         }
@@ -309,7 +309,7 @@ namespace GameWish.Game
         }
         public void ResetFoodRefreshTimesToday()
         {
-            FoodRefreshTimesToday = 5;
+            FoodRefreshTimesToday = 10;
         }
         public string GetFoodRefreshRecordingTime()
         {
@@ -720,7 +720,7 @@ namespace GameWish.Game
                 if (IsRecodeGoldRecruitDate == false) 
                 {
                     return true;
-                }else if (GoldRecruitDateTime.AddSeconds(intervalTimeHours) <= DateTime.Now)
+                }else if (GoldRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now)
                 {
                     return true;
                 }
@@ -730,7 +730,7 @@ namespace GameWish.Game
                 {
                     return true;
                 }
-                else if (SilverRecruitDateTime.AddSeconds(intervalTimeHours) <= DateTime.Now) {
+                else if (SilverRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now) {
                     return true;
                 }
             }

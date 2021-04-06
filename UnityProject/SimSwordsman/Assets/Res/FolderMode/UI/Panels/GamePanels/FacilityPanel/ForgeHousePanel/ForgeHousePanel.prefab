@@ -213,7 +213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6892392951395771566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 5, y: -358}
-  m_SizeDelta: {x: 251.19543, y: 52}
+  m_SizeDelta: {x: 480.7, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6725335728073531820
 CanvasRenderer:
@@ -580,7 +580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5347\u7EA7\u9700\u8981"
+  m_Text: "\u5347\u7EA7\u9700\u8981\u8BB2\u6B66\u5802\u8FBE\u52305\u7EA7"
 --- !u!1 &2390001764631143153
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +739,7 @@ MonoBehaviour:
   m_FacilityIcon: {fileID: 2014122078117543249}
   m_NextUnlockName: {fileID: 5690068145267298928}
   m_UpGradeCondition: {fileID: 4220525958641030867}
+  m_UpGradeTitle: {fileID: 4220525958641030867}
   m_CloseBtn: {fileID: 7661881809134366028}
   m_UpgradeBtn: {fileID: 609492431152327900}
   m_ItemTra: {fileID: 5878471471222981763}
@@ -1657,8 +1658,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -190, y: -16.3}
-  m_SizeDelta: {x: 230, y: 7}
+  m_AnchoredPosition: {x: 8, y: -16.3}
+  m_SizeDelta: {x: 605, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1321531429336854953
 CanvasRenderer:
@@ -1687,7 +1688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e05f9c1315f48f42a111b358f62806e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0979682bf09dd1846a0ce0dfcaab4205, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2110,7 +2111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 114, y: -77.5}
+  m_AnchoredPosition: {x: 6, y: -77.5}
   m_SizeDelta: {x: 188, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7451788643562866363
