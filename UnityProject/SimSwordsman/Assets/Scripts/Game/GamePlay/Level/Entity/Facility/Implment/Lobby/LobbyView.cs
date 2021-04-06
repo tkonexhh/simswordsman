@@ -7,10 +7,18 @@ namespace GameWish.Game
 {
     public class LobbyView : FacilityView
     {
+        [SerializeField]
+        private GameObject m_LobbyChallenging;
+
         public override FacilityController GenerateContoller()
         {
             return new LobbyController( FacilityType.Lobby, this);
         }
+
+        public void SetLobbyChallenging(bool active)
+        {
+            m_LobbyChallenging.SetActive(active);
+        }    
 
         public override void OnClicked()
         {

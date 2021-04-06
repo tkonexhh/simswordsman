@@ -497,6 +497,7 @@ namespace GameWish.Game
                 atkValue *= item.GetKungfuAtkScale();
             }
 
+            EventSystem.S.Send(EventID.OnMainMenuChallenging);
             GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }
         public float CalculateForceValue(int stage)

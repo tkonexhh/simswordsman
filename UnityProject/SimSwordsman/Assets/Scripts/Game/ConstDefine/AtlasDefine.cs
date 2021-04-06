@@ -9,6 +9,7 @@ namespace GameWish.Game
 	{
 		public const string ItemIconItemIcon = "ItemIconItemIcon";
 		public const string PanelCommonPanelCommon = "PanelCommonPanelCommon";
+		public const string RewardPanelAtlas = "RewardPanelAtlas";
 	}
 	
 }

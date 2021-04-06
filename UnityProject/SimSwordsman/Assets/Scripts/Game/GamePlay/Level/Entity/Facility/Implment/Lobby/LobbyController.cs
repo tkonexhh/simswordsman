@@ -26,6 +26,7 @@ namespace GameWish.Game
         }
         protected override bool CheckSubFunc()
         {
+            ((LobbyView)m_View).SetLobbyChallenging(CommonUIMethod.CheackRecruitmentOrder());
             return CheackRecruitmentOrder();
         }
 

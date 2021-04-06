@@ -80,10 +80,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     image.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     image.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     image.sprite = FindSprite("Excellent");
                     break;
                 default:
@@ -99,10 +99,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     image.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     image.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     image.sprite = FindSprite("Excellent");
                     break;
                 default:
@@ -200,7 +200,9 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            //CommonUIMethod.GetTenThousandOrMillionNumber((long)m_CharacterItem.atkValue)
             CommonUIMethod.TextFlipUpEffect(m_Skill, promotionModel.GetPreAtk(), m_CharacterItem.atkValue);
+
             CharacterQuality quality = m_CharacterItem.quality;
             int headId = m_CharacterItem.headId;
             int bodyId = m_CharacterItem.bodyId;

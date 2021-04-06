@@ -49,6 +49,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ChallengeBtn;
         [SerializeField]
+        private GameObject m_Challenging;
+        [SerializeField]
         private Button m_VoldemortTowerBtn;
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
@@ -207,6 +209,7 @@ namespace GameWish.Game
             });
 
             m_MainTaskUIHandler.Init(this);
+            RefreshChallenging();
         }
 
         private void HandListenerEvent(int key, object[] param)
@@ -301,6 +304,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.Register(EventID.OnMainMenuChallenging, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -315,6 +319,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnMainMenuChallenging, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -355,9 +360,33 @@ namespace GameWish.Game
                 case EventID.OnRefeshDailyTaskPanel:
                     m_ObjBulletinBoardRed.SetActive(false);
                     break;
+                case EventID.OnMainMenuChallenging:
+                    RefreshChallenging();
+                    break;
             }
         }
 
+        private void RefreshChallenging()
+        {
+            List<CharacterItem> characterItems = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            if (characterItems.Count >= 5)
+            {
+                CommonUIMethod.BubbleSortForType(characterItems, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+                float allAtkValue = 0;
+                for (int i = 0; i < 5; i++)
+                    allAtkValue += characterItems[i].atkValue;
+
+                ChapterDbItem chapterDbItem = MainGameMgr.S.ChapterMgr.GetLatestChapter();
+                if (chapterDbItem != null)
+                {
+                    LevelConfigInfo levelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(chapterDbItem.chapter, chapterDbItem.level);
+                    if (allAtkValue >= levelConfigInfo.recommendAtkValue)
+                        m_Challenging.SetActive(true);
+                    else
+                        m_Challenging.SetActive(false);
+                }
+            }
+        }
 
         private void ChangeClanName(int key, object[] param)
         {

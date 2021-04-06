@@ -150,10 +150,20 @@ namespace GameWish.Game
 
         private void RefreshRedPoint()
         {
-            if (SubRedPoint || UpGradeRedPoint)
-                m_View.SetTips(true);
+            if (m_FacilityType == FacilityType.Lobby)
+            {
+                if (!SubRedPoint && UpGradeRedPoint)
+                    m_View.SetTips(true);
+                else
+                    m_View.SetTips(false);
+            }
             else
-                m_View.SetTips(false);
+            {
+                if (SubRedPoint || UpGradeRedPoint)
+                    m_View.SetTips(true);
+                else
+                    m_View.SetTips(false);
+            }
         }
 
         /// <summary>

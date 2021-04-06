@@ -55,7 +55,7 @@ namespace GameWish.Game
                 //向下取整
                 var temp = Math.Floor(value);
                 //向Text组件赋值
-                currentScoreText.text = temp + "";
+                currentScoreText.text = CommonUIMethod.GetTenThousandOrMillion((long)temp)/* temp + ""*/;
             }, curValue, targetValue, 1.0f));
             //将更新后的值记录下来, 用于下一次滚动动画
             curValue = targetValue;
@@ -204,13 +204,15 @@ namespace GameWish.Game
         /// </summary>
         public static bool CheackRecruitmentOrder()
         {
-            int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
-            int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
+            //int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
+            //int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
+            bool SilverAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit( RecruitType.SilverMedal, 24);
+            bool GoldAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit( RecruitType.GoldMedal, 48);
             int GoldFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
             int SilverFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
             int allCount = GoldFreeCount + SilverFreeCount;
 
-            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount > 0 || GoldAdvCount > 0)
+            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount  || GoldAdvCount )
             {
                 EventSystem.S.Send(EventID.OnSendRecruitable, true);
                 return true;
@@ -609,15 +611,6 @@ namespace GameWish.Game
             {
                 return number.ToString();
             }
-
-            //long MainNumber = number / 10000;
-            //if (MainNumber == 0)
-            //    return number.ToString();
-            //else
-            //{
-            //    long fourth = GetThousand(number);
-            //    return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
-            //}
         }
 
         private static long GetThousand(long number)

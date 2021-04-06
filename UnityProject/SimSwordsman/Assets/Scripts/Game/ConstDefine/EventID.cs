@@ -201,7 +201,10 @@ namespace GameWish.Game
         /// 获取到功夫秘籍
         /// </summary>
         OnGetKungFu,
-
+        /// <summary>
+        /// 主菜单可挑战信息显示
+        /// </summary>
+        OnMainMenuChallenging,
         /// <summary>
         /// 收起公告榜其他面板
         /// </summary>
