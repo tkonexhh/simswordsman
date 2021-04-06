@@ -70,14 +70,7 @@ namespace GameWish.Game
 
         private void RefreshMessageBtn(bool msg)
         {
-            if (msg)
-            {
-                m_MessageImg.sprite = FindSprite("SettingPanel_MessagOn");
-            }
-            else
-            {
-                m_MessageImg.sprite = FindSprite("SettingPanel_MessagOff");
-            }
+            m_MessageImg.sprite = SpriteHandler.S.GetSprite("SettingAtlas", msg ? "SettingPanel_MessagOn" : "SettingPanel_MessagOff");
         }
 
         private void OnUserBtnClickCallBack()

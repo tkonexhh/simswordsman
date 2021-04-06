@@ -169,13 +169,13 @@ namespace GameWish.Game
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
                     HandConfirmBtnEvent();
-                    m_AcceptText.text = "·¢ÆðÕ½¶·";
+                    m_AcceptText.text = "ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½";
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
-                    m_AcceptText.text = "¿ªÊ¼Õ½¶·";
+                    m_AcceptText.text = "ï¿½ï¿½Ê¼Õ½ï¿½ï¿½";
                     CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue);
                     RefreshDisicipleSkill();
@@ -196,10 +196,10 @@ namespace GameWish.Game
         }
         private void RefreshDisicipleSkill()
         {
-             float atkValue = 0;
+            float atkValue = 0;
             foreach (var item in m_SelectedDiscipleDic.Values)
                 atkValue += item.atkValue;
-          
+
             int selected = (int)atkValue;
             for (int i = 0; i < m_PlayerDataHerb.Count; i++)
             {
@@ -220,17 +220,17 @@ namespace GameWish.Game
             if (result < 0.75)
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite("SendDisciplePanelSendDisciplePanel", "SendDisciplePanel_Danger");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Danger");
             }
             else if (result > 1.1f)
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite("SendDisciplePanelSendDisciplePanel", "SendDisciplePanel_Rleaxed");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Rleaxed");
             }
             else
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite("SendDisciplePanelSendDisciplePanel", "SendDisciplePanel_Autions");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Autions");
             }
         }
         private void GetInformationForNeed()
@@ -289,7 +289,7 @@ namespace GameWish.Game
             });
             m_AutoSelectedBtn.onClick.AddListener(() =>
             {
-                ///Ö»ÓÐÌôÕ½ÓÐ
+                ///Ö»ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 AutoSelectedDisciple();
                 if (m_PanelType == PanelType.Challenge)
@@ -309,7 +309,7 @@ namespace GameWish.Game
                     case PanelType.Task:
                         if (m_SelectedList.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                         {
-                            FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
+                            FloatMessage.S.ShowMsg("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ !");
                             return;
                         }
                         m_CurTaskInfo.ExecuteTask(m_SelectedList);
@@ -334,7 +334,7 @@ namespace GameWish.Game
                     case PanelType.Challenge:
                         if (m_SelectedList.Count != MaxDiscipleNumber)
                         {
-                            FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
+                            FloatMessage.S.ShowMsg("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ !");
                             return;
                         }
                         for (int i = 0; i < m_PlayerDataHerb.Count; i++)
@@ -361,7 +361,7 @@ namespace GameWish.Game
 
         private void AutoSelectedDisciple()
         {
-            //TODO  °´ÕÕµÜ×ÓÕ½Á¦´Ó¸ßµ½µ×ÅÅÐò
+            //TODO  ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ó¸ßµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             m_SelectedDiscipleDic.Clear();
 
             switch (m_PanelType)
@@ -430,11 +430,11 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ´´½¨µÜ×Ó
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
-        /// <param name="parent">¸¸ÎïÌå</param>
-        /// <param name="characterItem">µÜ×ÓÐÅÏ¢</param>
-        /// <param name="action">°´Å¥¼àÌý»Øµ÷</param>
+        /// <param name="parent">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+        /// <param name="characterItem">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢</param>
+        /// <param name="action">ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½</param>
         /// <returns></returns>
         private void CreateDisciple(Transform parent)
         {
@@ -444,7 +444,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ²ÝÒ©°´Å¥¼àÌý»Øµ÷
+        /// ï¿½ï¿½Ò©ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½
         /// </summary>
         /// <param name="obj"></param>
         private void HandHerbEvent(bool obj, HerbItem herbItem)
@@ -458,7 +458,7 @@ namespace GameWish.Game
             }
             else
             {
-                //È¡Ïû
+                //È¡ï¿½ï¿½
                 if (m_PlayerDataHerb.Contains(herbItem.HerbID))
                     m_PlayerDataHerb.Remove(herbItem.HerbID);
             }
