@@ -39,14 +39,20 @@ namespace GameWish.Game
 		[SerializeField]
 		private Text m_StateLock;
 
+		private DeliverConfig m_DeliverConfig;
+
 		// Start is called before the first frame update
 		void Start()
 		{
 
 		}
 
-		public void OnInt() { }	
-	    // Update is called once per frame
+		public void OnInt(DeliverConfig item) 
+		{
+			m_DeliverConfig = item;
+
+
+		}	
 	    void Update()
 	    {
 	        

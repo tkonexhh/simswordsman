@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameWish.Game.TDDeliverTable;
 
 namespace GameWish.Game
 {
@@ -43,6 +44,8 @@ namespace GameWish.Game
         private DeliverLevelInfo m_CurDeliverInfo = null;
         private List<CostItem> m_CostItems;
         private FacilityLevelInfo m_NextFacilityLevelInfo = null;
+
+        private List<DeliverConfig> m_DeliverConfigList = new List<DeliverConfig>();
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -63,6 +66,11 @@ namespace GameWish.Game
             base.OnOpen();
          
             RefreshPanelInfo();
+
+            foreach (var item in m_DeliverConfigList)
+            {
+                CreateDeliverItem(item);
+            }
         }
 
         private void RefreshPanelInfo()
@@ -109,9 +117,9 @@ namespace GameWish.Game
             });
         }
 
-        private void CreateDeliverItem()
+        private void CreateDeliverItem(DeliverConfig item)
         {
-            
+            DeliverItem deliverItem = Instantiate(m_DeliverItem, m_DeliverTra).GetComponent<DeliverItem>();
         }
 
         private void GetInformationForNeed()
@@ -130,6 +138,7 @@ namespace GameWish.Game
                 m_NextFacilityLevelInfo = (DeliverLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel + 1);
                 m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
             }
+            m_DeliverConfigList.AddRange(GetDeliverConfigList());
         }
     }
 }

@@ -165,7 +165,7 @@ namespace GameWish.Game
 
         #endregion
 
-        #region Private
+         #region Private
 
         private void RegisterEvents()
         {
