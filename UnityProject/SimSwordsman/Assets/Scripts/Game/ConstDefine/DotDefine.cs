@@ -50,5 +50,6 @@ namespace GameWish.Game
 		public const string students_kongfu_up = "students_kongfu_up";
 		public const string students_equip_up = "students_equip_up";
 		public const string students_abandon = "students_abandon";
+		public const string w_register = "w_register";
 	}
 }

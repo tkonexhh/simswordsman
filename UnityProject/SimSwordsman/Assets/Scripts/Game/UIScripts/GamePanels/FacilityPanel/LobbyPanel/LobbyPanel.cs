@@ -57,7 +57,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_RedPoint;
 
-    
+
 
         [Header("Buttom")]
         [SerializeField]
@@ -68,8 +68,8 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_UpgradeResItemTra;
         [SerializeField]
-        private GameObject m_UpgradeResItem; 
-    
+        private GameObject m_UpgradeResItem;
+
 
         private int m_CurLevel = 1;
         private const int NextFontSize = 20;
@@ -131,7 +131,8 @@ namespace GameWish.Game
         private void CreateRecruitmentOrder(RecruitType Medal, Sprite sprite)
         {
             RecruitmentOrderItem item = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<RecruitmentOrderItem>();
-            if (item != null) {
+            if (item != null)
+            {
                 m_RecruitmentItemList.Add(item);
                 item.OnInit(this, null, Medal, sprite);
             }
@@ -152,7 +153,7 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshPanelInfo()
         {
-            if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo,m_CostItems,false))
+            if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems, false))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
@@ -213,13 +214,15 @@ namespace GameWish.Game
                 for (int i = 0; i < m_CostItems.Count; i++)
                     MainGameMgr.S.InventoryMgr.RemoveItem(new PropItem((RawMaterial)m_CostItems[i].itemId), m_CostItems[i].value);
                 EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
+                if (m_CurLevel == 1)
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.w_register);
                 GetInformationForNeed();
                 RefreshPanelInfo();
                 DataAnalysisMgr.S.CustomEvent(DotDefine.facility_upgrade, FacilityType.Lobby.ToString() + ";" + m_CurLevel);
                 HideSelfWithAnim();
             }
         }
-     
+
         /// <summary>
         /// 刷新等级信息
         /// </summary>

@@ -29,7 +29,7 @@ namespace GameWish.Game
         private int m_Const = 10;
 
         private float m_ApplyDamageTime = 0f;
-        private float m_ApplyDamageInterval = 1f;
+        private float m_ApplyDamageInterval = 0.1f;
 
         private bool m_IsBattleBegin = false;
         private bool m_IsBattleEnd = false;
@@ -390,12 +390,12 @@ namespace GameWish.Game
 
             m_OurCharacterList.ForEach(i =>
             {
-                i.CacheDamage(m_OurDamagePersecond);
+                i.CacheDamage(m_OurDamagePersecond * m_ApplyDamageInterval);
             });
 
             m_EnemyCharacterList.ForEach(i =>
             {
-                i.CacheDamage(m_EnemeyDamagePersecond);
+                i.CacheDamage(m_EnemeyDamagePersecond * m_ApplyDamageInterval);
             });
 
             RefressProgress();
