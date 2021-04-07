@@ -52,6 +52,7 @@ namespace GameWish.Game
                 TDFacilityPracticeFieldTable.metaData,
                 TDFacilityKitchenTable.metaData,
                 TDFacilityForgeHouseTable.metaData,
+                TDFacilityDeliverTable.metaData,
                 TDFacilityBaicaohuTable.metaData,
                 TDFacilityPatrolRoomTable.metaData,
 

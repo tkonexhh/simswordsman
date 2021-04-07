@@ -160,6 +160,9 @@ namespace GameWish.Game
                 case FacilityType.PracticeFieldWest:
                     spritename = "PracticeField1";
                     break;
+                case FacilityType.Deliver:
+                    spritename = "Deliver1";
+                    break;
             }
             return FindSprite(spritename);
         }

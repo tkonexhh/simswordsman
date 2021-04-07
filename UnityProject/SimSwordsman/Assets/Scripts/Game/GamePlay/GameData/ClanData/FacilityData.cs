@@ -22,7 +22,7 @@ namespace GameWish.Game
             AddFacility(FacilityType.Lobby, 1, FacilityState.ReadyToUnlock);
             for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.Deliver; i++)
             {
-                if (i == 17 || i==19)
+                if (i == 19)
                     continue;
                 FacilityType facilityType = (FacilityType)i;
                 AddFacility(facilityType, 1, FacilityState.Locked);
@@ -113,10 +113,10 @@ namespace GameWish.Game
         public FacilityItemDbData GetFacilityData(FacilityType facilityType/*, int subId*/)
         {
             FacilityItemDbData facilityDbData = facilityList.Where(i => i.id == (int)facilityType/* && i.subId == subId*/).FirstOrDefault();
-            
-            if (facilityDbData == null) 
+
+            if (facilityDbData == null)
             {
-                facilityDbData = AddFacility(facilityType, 1, FacilityState.Locked);                
+                facilityDbData = AddFacility(facilityType, 1, FacilityState.Locked);
             }
             return facilityDbData;
         }

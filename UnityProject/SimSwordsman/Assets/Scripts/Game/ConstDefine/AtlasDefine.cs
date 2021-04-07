@@ -7,9 +7,10 @@ namespace GameWish.Game
 {
 	public class AtlasDefine 
 	{
-		public const string ItemIconItemIcon = "ItemIconAtlas";
-		public const string PanelCommonPanelCommon = "PromotionPanelAtlas";
+		public const string ItemIconAtlas = "ItemIconAtlas";
+		public const string PanelCommonAtlas = "PanelCommonAtlas";
 		public const string RewardPanelAtlas = "RewardPanelAtlas";
-		public const string SendDisciplePanel = "SendDisciplePanelAtlas";
+		public const string SendDisciplePanelAtlas = "SendDisciplePanelAtlas";
+		public const string FacilityIconAtlas = "FacilityIconAtlas";
 	}
 }

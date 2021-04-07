@@ -161,8 +161,8 @@ namespace GameWish.Game
                     return Mathf.Min(level, Define.FACILITY_MAX_FORGEHOUSE);
                 case FacilityType.Baicaohu:
                     return Mathf.Min(level, Define.FACILITY_MAX_BAICAOHU);
-                //case FacilityType.PatrolRoom:
-                //    return Mathf.Min(level, Define.FACILITY_MAX_PATROLROOM);
+                case FacilityType.Deliver:
+                    return Mathf.Min(level, Define.FACILITY_MAX_DELIVER);
                 case FacilityType.BulletinBoard:
                     return Mathf.Min(level, Define.FACILITY_MAX_BULLETInBOARD);
                 case FacilityType.TotalCount:
@@ -210,8 +210,8 @@ namespace GameWish.Game
                     return Define.FACILITY_MAX_FORGEHOUSE;
                 case FacilityType.Baicaohu:
                     return Define.FACILITY_MAX_BAICAOHU;
-                //case FacilityType.PatrolRoom:
-                //    return Define.FACILITY_MAX_PATROLROOM;
+                case FacilityType.Deliver:
+                    return Define.FACILITY_MAX_DELIVER;
             }
             return -1;
         }
@@ -257,7 +257,7 @@ namespace GameWish.Game
                     facilityLevelInfo = TDFacilityBaicaohuTable.GetLevelInfo(level);
                     break;
                 case FacilityType.Deliver:
-                    //facilityLevelInfo = TDFacilityDeliverTable.GetLevelInfo(level);
+                    facilityLevelInfo = TDFacilityDeliverTable.GetLevelInfo(level);
                     break;
                     //case FacilityType.PatrolRoom:
                     //    facilityLevelInfo = TDFacilityPatrolRoomTable.GetLevelInfo(level);

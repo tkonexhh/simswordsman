@@ -299,7 +299,7 @@ namespace GameWish.Game
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj,transform).GetComponent<UpgradeResItem>();
                 upgradeResItem1.OnInit(costItems[0],transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 list?.Add(upgradeResItem1);
                 if (facilityLevelInfo!=null)
@@ -307,7 +307,7 @@ namespace GameWish.Game
                     UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem2.OnInit(facilityLevelInfo, transform);
                     upgradeResItem2.ShowResItem(GetCurCoin(facilityLevelInfo) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Coin"));
                 }
             }
             else if (costItems.Count == 2)
@@ -318,12 +318,12 @@ namespace GameWish.Game
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem1.OnInit(costItems[0], transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemFirst, costItems[0].value))/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem2.OnInit(costItems[1], transform);
                 upgradeResItem2.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[1].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[1].itemId)));
 
                 list?.Add(upgradeResItem1);
                 list?.Add(upgradeResItem2);
@@ -332,7 +332,7 @@ namespace GameWish.Game
                     UpgradeResItem upgradeResItem3 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem3.OnInit(facilityLevelInfo, transform);
                     upgradeResItem3.ShowResItem(GetCurCoin(facilityLevelInfo)/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Coin"));
                 }
             }
         }

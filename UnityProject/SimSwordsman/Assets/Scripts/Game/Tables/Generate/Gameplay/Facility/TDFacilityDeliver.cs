@@ -14,6 +14,7 @@ namespace GameWish.Game
        
         private EInt m_Level = 0;   
         private string m_UpgradeRes;   
+        private EInt m_UpgradeCost = 0;   
         private EInt m_UpgradePreconditions = 0;   
         private EInt m_TeamUnlock = 0;  
         
@@ -28,6 +29,11 @@ namespace GameWish.Game
         /// 升级材料
         /// </summary>
         public  string  upgradeRes {get { return m_UpgradeRes; } }
+       
+        /// <summary>
+        /// 升级花费
+        /// </summary>
+        public  int  upgradeCost {get { return m_UpgradeCost; } }
        
         /// <summary>
         /// 升级条件
@@ -61,9 +67,12 @@ namespace GameWish.Game
                     m_UpgradeRes = dataR.ReadString();
                     break;
                 case 2:
-                    m_UpgradePreconditions = dataR.ReadInt();
+                    m_UpgradeCost = dataR.ReadInt();
                     break;
                 case 3:
+                    m_UpgradePreconditions = dataR.ReadInt();
+                    break;
+                case 4:
                     m_TeamUnlock = dataR.ReadInt();
                     break;
                 default:
@@ -76,12 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(4);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("Level", 0);
           ret.Add("UpgradeRes", 1);
-          ret.Add("UpgradePreconditions", 2);
-          ret.Add("TeamUnlock", 3);
+          ret.Add("UpgradeCost", 2);
+          ret.Add("UpgradePreconditions", 3);
+          ret.Add("TeamUnlock", 4);
           return ret;
         }
     } 

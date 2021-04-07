@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PanelCommonPanelCommon
+  m_Name: PanelCommonAtlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -58,9 +58,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0d08ea82accf631459ecf3ea62bd3f0d, type: 3}
   - {fileID: 21300000, guid: bd4d32f2852faf24e95eb112a7753464, type: 3}
   - {fileID: 21300000, guid: 74244433aff4e1048927c30e31dfca97, type: 3}
+  - {fileID: 21300000, guid: f9456c9373129924985efcff90099591, type: 3}
   - {fileID: 21300000, guid: ce460ff3811270949ab94c547765b744, type: 3}
   - {fileID: 21300000, guid: 380f3c04cada78641a42a2f1a7e29b7e, type: 3}
   - {fileID: 21300000, guid: 9f4ab5d4c4c15ee43a36d33774518253, type: 3}
+  - {fileID: 21300000, guid: dbd1a4f48a341664fad78d7bc7d06fc0, type: 3}
   - {fileID: 21300000, guid: 742987051de70a7418fa50543632aaa1, type: 3}
   - {fileID: 21300000, guid: df626d0592eda224d8f57bb446f32f09, type: 3}
   - {fileID: 21300000, guid: 7f5aef35923f1724bb5aa8f9ed8732e0, type: 3}
@@ -113,9 +115,11 @@ SpriteAtlas:
   - PanelCommon_Icon1
   - Herb
   - item_line2
+  - PanelCommon_Icon3
   - Ellipse
   - PanelCommon_Mark
   - PanelCommon_ItemTipsBg
+  - Lock3
   - button_normal_blue
   - button_normal_red
   - Line3
@@ -155,5 +159,5 @@ SpriteAtlas:
   - Bg
   - PanelCommon_Bg2
   - PanelCommon_Bg4
-  m_Tag: PanelCommonPanelCommon
+  m_Tag: PanelCommonAtlas
   m_IsVariant: 0

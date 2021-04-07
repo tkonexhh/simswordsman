@@ -254,14 +254,14 @@ namespace GameWish.Game
                 {
                     for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
                     {
-                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 10);
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 200);
                     }
                     //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 10);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 10);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 10);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 10);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 10);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 200);
                 }
                 if (Input.GetKeyDown(KeyCode.H))
                 {
