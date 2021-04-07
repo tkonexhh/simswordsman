@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public override FacilityController GenerateContoller()
         {
-            return new PatrolRoomController( FacilityType.PatrolRoom, this);
+            return new PatrolRoomController( FacilityType.Deliver, this);
         }
 
         public override void OnClicked()

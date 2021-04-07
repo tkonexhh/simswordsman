@@ -20,8 +20,10 @@ namespace GameWish.Game
         public void SetDefaultValue()
         {
             AddFacility(FacilityType.Lobby, 1, FacilityState.ReadyToUnlock);
-            for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.TotalCount; i++)
+            for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.Deliver; i++)
             {
+                if (i == 17 || i==19)
+                    continue;
                 FacilityType facilityType = (FacilityType)i;
                 AddFacility(facilityType, 1, FacilityState.Locked);
             }

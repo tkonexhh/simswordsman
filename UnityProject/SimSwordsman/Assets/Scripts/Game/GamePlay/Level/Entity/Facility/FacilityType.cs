@@ -25,7 +25,7 @@ namespace GameWish.Game
         Kitchen                         = 14,       //伙房
         ForgeHouse                      = 15,       //锻造屋
         Baicaohu                        = 16,       //百草屋
-        PatrolRoom                      = 17,       //巡逻房
+        //PatrolRoom = 17,       //巡逻房
         //BartizanEast                    = 18,       //东箭塔
         //BartizanWest                    = 19,       //西箭塔
         BulletinBoard                   = 18,       //公告榜

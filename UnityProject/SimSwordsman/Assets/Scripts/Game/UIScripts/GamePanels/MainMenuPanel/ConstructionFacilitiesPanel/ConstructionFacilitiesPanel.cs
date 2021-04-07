@@ -125,8 +125,8 @@ namespace GameWish.Game
                 case FacilityType.Baicaohu:
                     spritename = "baicaohu_title";
                     break;
-                case FacilityType.PatrolRoom:
-                    spritename = "patrolroom_title";
+                //case FacilityType.PatrolRoom:
+                //    spritename = "patrolroom_title";
                     break;
             }
             return FindSprite(spritename);
@@ -143,7 +143,7 @@ namespace GameWish.Game
                 case FacilityType.Kitchen:
                 case FacilityType.ForgeHouse:
                 case FacilityType.Baicaohu:
-                case FacilityType.PatrolRoom:
+                //case FacilityType.PatrolRoom:
                     spritename = type.ToString() + 1;
                     break;
                 case FacilityType.LivableRoomEast1:

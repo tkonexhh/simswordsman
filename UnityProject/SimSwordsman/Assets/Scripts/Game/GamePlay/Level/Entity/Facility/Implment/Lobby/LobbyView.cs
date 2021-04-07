@@ -31,7 +31,6 @@ namespace GameWish.Game
             base.OnClicked();
 
             Debug.Log("Lobby is clicked");
-
         }
 
         protected override void OpenUIElement()
