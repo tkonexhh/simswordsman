@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3413222786
+CRC: 1782751504
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -949,22 +949,19 @@ AssetBundleManifest:
       Name: res/foldermode/ui/sprites/dailytaskpanel.bundle
       Dependencies: {}
     Info_209:
-      Name: res/foldermode/ui/sprites/taskicon.bundle
-      Dependencies: {}
-    Info_210:
       Name: res/foldermode/effects/prefab/skills/taijiquan.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/prefab/general.bundle
         Dependency_2: res/foldermode/effects/prefab/skills/taizuchangquan.bundle
-    Info_211:
+    Info_210:
       Name: res/foldermode/effects/prefab/skills/diaoyugunfa.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
         Dependency_1: res/foldermode/effects/battleeffects/general.bundle
         Dependency_2: res/foldermode/effects/prefab/skills/ruyijianfa.bundle
         Dependency_3: res/foldermode/effects/prefab/general.bundle
-    Info_212:
+    Info_211:
       Name: res/foldermode/effects/prefab/skills/taijijianfa.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/xianglongshibazhang.bundle
@@ -972,25 +969,28 @@ AssetBundleManifest:
         Dependency_2: res/foldermode/effects/prefab/general.bundle
         Dependency_3: res/foldermode/effects/prefab/skills/taizuchangquan.bundle
         Dependency_4: res/foldermode/effects/prefab/skills/dagoubangfa.bundle
-    Info_213:
+    Info_212:
       Name: res/foldermode/effects/prefab/skills/dagoubangfa.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/skills/yeluoxinghejian.bundle
         Dependency_1: res/foldermode/effects/battleeffects/general.bundle
         Dependency_2: res/foldermode/effects/prefab/skills/ruyijianfa.bundle
         Dependency_3: res/foldermode/effects/prefab/general.bundle
-    Info_214:
+    Info_213:
       Name: res/foldermode/effects/prefab/skills/luohanfumoquan.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/effects/prefab/skills/taizuchangquan.bundle
-    Info_215:
+    Info_214:
       Name: res/foldermode/effects/prefab/env/blacksmith.bundle
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
-    Info_216:
+    Info_215:
       Name: res/foldermode/item/flag.bundle
       Dependencies: {}
-    Info_217:
+    Info_216:
       Name: res/foldermode/ui/sprites/mainmenu/maintask.bundle
+      Dependencies: {}
+    Info_217:
+      Name: res/foldermode/ui/sprites/taskicon.bundle
       Dependencies: {}

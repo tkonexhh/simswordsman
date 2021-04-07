@@ -1,0 +1,7 @@
+﻿ID	升级材料	升级花费	升级条件	解锁车队
+int	string	int	int	int
+Level	UpgradeRes	UpgradeCost	UpgradePreconditions	TeamUnlock
+1	1001|20;1002|10	500	4	101
+2	1001|100;1002|60	2000	5	102
+3	1003|200;1002|200	10000	6	103
+4	1003|800;1002|600	20000	7	104
