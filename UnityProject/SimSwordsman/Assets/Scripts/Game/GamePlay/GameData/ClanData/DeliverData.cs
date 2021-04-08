@@ -66,6 +66,10 @@ namespace GameWish.Game
 		/// </summary>
 		public DateTime EndTimeWithReally;
 		/// <summary>
+		/// 总时长
+		/// </summary>
+		public int TotalTimeSeconds = 1;
+		/// <summary>
 		/// 加速倍数
 		/// </summary>
 		public int SpeedUpMultiple = 1;
@@ -87,11 +91,8 @@ namespace GameWish.Game
 			EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
 			StartTimeWithScal = StartTimeWithReally;
 
+			TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
 			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
-		}
-		public bool IsDeliverFinished() 
-		{
-			return StartTimeWithScal <= DateTime.Now;
 		}
 		public int GetRemainTimeSeconds() 
 		{
@@ -107,12 +108,13 @@ namespace GameWish.Game
 				return totalTime - passTime - speedUpMultipleTime * SpeedUpMultiple;
 			}
 		}
-
 		public void UpdateSpeedUpMultiple(int speedUpMultiple) 
 		{
 			this.SpeedUpMultiple = speedUpMultiple;
 		}
-
+		public int GetTotalTime() {
+			return TotalTimeSeconds;
+		}
 		public void UpdateSpeedUpMultipleStartTime() 
 		{
 			StartTimeWithScal = DateTime.Now;

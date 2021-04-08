@@ -25,9 +25,11 @@ namespace GameWish.Game
             }
         }
 
-        public List<DeliverCar> AllDeliverCarList = new List<DeliverCar>();
+        private List<DeliverCar> m_AllDeliverCarList = new List<DeliverCar>();
 
         public Vector3 GoOutSidePos = new Vector3(-11f, -5f);
+
+        private Vector2 m_DeliverCarOriginPos = new Vector3(0, -3.6f, 0);
 
         #endregion
 
@@ -77,10 +79,10 @@ namespace GameWish.Game
         /// <param name="deliverCar">镖车</param>
         public void AddDeliverCarToList(DeliverCar deliverCar)
         {
-            DeliverCar car = AllDeliverCarList.Find(x => x.DeliverID == deliverCar.DeliverID);
+            DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverCar.DeliverID);
             if (car == null)
             {
-                AllDeliverCarList.Add(deliverCar);
+                m_AllDeliverCarList.Add(deliverCar);
             }
         }
         /// <summary>
@@ -89,10 +91,10 @@ namespace GameWish.Game
         /// <param name="deliverID"></param>
         public void RemoveDeliverCar(int deliverID)
         {
-            DeliverCar car = AllDeliverCarList.Find(x => x.DeliverID == deliverID);
+            DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             if (car != null)
             {
-                AllDeliverCarList.Remove(car);
+                m_AllDeliverCarList.Remove(car);
             }
         }
         /// <summary>
@@ -110,7 +112,7 @@ namespace GameWish.Game
             {
                 DeliverCar car = SpawnDeliverCar();
                 AddDeliverCarToList(car);
-                car.Init(deliverID, data.CharacterIDList, new Vector3(0, -3.6f, 0));
+                car.Init(deliverID, data.CharacterIDList, m_DeliverCarOriginPos);
 
                 SetCharacterStateDeliver(data.CharacterIDList, data.DeliverID);
 
@@ -122,6 +124,7 @@ namespace GameWish.Game
                 data.SetCountDownID(countDownItem.GetCountDownID());
             }
         }
+
         /// <summary>
         /// 通过镖物ID获取镖车物体
         /// </summary>
@@ -129,7 +132,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public DeliverCar GetDeliverCarByDeliverID(int deliverID)
         {
-            DeliverCar car = AllDeliverCarList.Find(x => x.DeliverID == deliverID);
+            DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             return car;
         }
         #endregion
@@ -176,8 +179,6 @@ namespace GameWish.Game
         /// <param name="data">镖物的数据类</param>
         private void GetDeliverReward(SingleDeliverDetailData data)
         {
-            GameDataMgr.S.GetClanData().RemoveDeliverDataByID(data.DeliverID);
-
             List<int> characterIDList = data.CharacterIDList;
             for (int i = 0; i < characterIDList.Count; i++)
             {
@@ -185,6 +186,7 @@ namespace GameWish.Game
                 CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterID);
                 if (characterController != null)
                 {
+                    characterController.SetDeliverID(-1);
                     characterController.StopNavAgent();
                     characterController.SetState(CharacterStateID.Wander);
                 }
