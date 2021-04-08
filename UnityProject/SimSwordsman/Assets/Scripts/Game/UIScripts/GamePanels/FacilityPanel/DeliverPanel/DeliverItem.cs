@@ -61,7 +61,12 @@ namespace GameWish.Game
 
         private void DeliverCountDownItemUpdateCallBack(int remaintTimeSeconds)
         {
-			Debug.LogError("deliver update");
+            if (remaintTimeSeconds<=0)
+            {
+				m_CountDown.text = CommonUIMethod.SplicingTime(0);
+				m_CountDownSlider.value = 0;
+				return;
+			}
 			m_CountDown.text = CommonUIMethod.SplicingTime(remaintTimeSeconds);
 			m_CountDownSlider.value = (float)remaintTimeSeconds / m_SingleDeliverDetailData.GetTotalTimeSeconds();
 			////m_SingleDeliverDetailData.GetTotalTimeSeconds();
@@ -77,10 +82,7 @@ namespace GameWish.Game
 					break;
 				case (int)EventID.OnDeliverCarArrive:
                     if ((int)args[0] == m_SingleDeliverDetailData.DeliverID)
-                    {
-						m_SingleDeliverDetailData.ResetData();
 						RefreshPanelInfo();
-					}
 					break;
 				case (int)EventID.OnSelectedConfirmEvent:
 					if ((int)args[1] == m_SingleDeliverDetailData.DeliverID)
@@ -138,6 +140,13 @@ namespace GameWish.Game
 
 		void Start()
 		{
+            if (m_SingleDeliverDetailData.DaliverState == DeliverState.HasBeenSetOut)
+            {
+				DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
+				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
+				m_CountDownItemTest?.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+			}
+			
 			m_QuickStart.onClick.AddListener(()=> { 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 if (m_SelectedDiscipleDic.Count!=4)
@@ -145,14 +154,19 @@ namespace GameWish.Game
 					FloatMessage.S.ShowMsg("ÇëÑ¡ÂúÈË!");
 					return;
                 }
-				RefreshPanelInfo();
 				DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID,null,null);
-				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
-				m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
-				Debug.LogError("start count down ");
+				RefreshPanelInfo();
+				if (m_CountDownItemTest==null)
+                {
+					m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
+					DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
+					m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+				}
 			});
 			m_DoubleSpeedBtn.onClick.AddListener(()=> { 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+				DeliverSystemMgr.S.UpdateDeliverSpeedUpMultiple(m_SingleDeliverDetailData.DeliverID);
 				//m_SingleDeliverDetailData.DaliverState = DeliverState.DidNotSetOut;
 				//m_SelectedDiscipleDic.Clear();
 				//RefreshPanelInfo();

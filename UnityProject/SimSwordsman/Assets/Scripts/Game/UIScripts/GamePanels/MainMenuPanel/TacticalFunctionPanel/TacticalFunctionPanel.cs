@@ -105,7 +105,7 @@ namespace GameWish.Game
             {
                 case EventID.OnDiscipleButtonOnClick:
                     UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, PanelType.Task, m_CommonTaskItemInfo); ;
-                    break; 
+                    break;
                 case EventID.OnSelectedConfirmEvent:
                     m_SelectedDiscipleDic.Clear();
                     m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)param[0];
@@ -116,7 +116,6 @@ namespace GameWish.Game
 
                     m_SimGameTask.RecordDiscipleID(m_SelectedDiscipleDic);
                     break;
-
             }
         }
         private void OpenCallback(AbstractPanel obj)
@@ -191,8 +190,9 @@ namespace GameWish.Game
             m_Accept.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                SwitchCharacterController();
                 ////if (m_SelectedList != null)
-                    //return;
+                //return;
                 if (m_SelectedList.Count < m_CommonTaskItemInfo.GetCharacterAmount())
                 {
                     FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
@@ -221,8 +221,12 @@ namespace GameWish.Game
             m_BlackExit.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                HideSelfWithAnim();  
+                HideSelfWithAnim();
             });
+        }
+
+        private void SwitchCharacterController()
+        {
         }
 
         //private void LogCallBack(AbstractPanel abstractPanel)

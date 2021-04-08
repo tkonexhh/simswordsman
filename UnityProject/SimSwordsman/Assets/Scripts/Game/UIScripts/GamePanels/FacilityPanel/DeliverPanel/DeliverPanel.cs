@@ -139,7 +139,7 @@ namespace GameWish.Game
             else
             {
                 m_NextFacilityLevelInfo = (DeliverLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel + 1);
-                m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
+                m_CostItems = m_NextFacilityLevelInfo?.GetUpgradeResCosts();
             }
             m_DeliverConfigList.AddRange(GetDeliverConfigList());
             DaliverDetailDataList = GameDataMgr.S.GetClanData().DeliverData.GetSingleDeliverDetailDataList();
