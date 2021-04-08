@@ -23,7 +23,7 @@ namespace GameWish.Game
                 deliverConfigs.AddRange(TDDeliverTable.GetDeliverConfigList());
                 for (int i = 0; i < deliverConfigs.Count; i++)
                 {
-                    GameDataMgr.S.GetClanData().DeliverData.AddOrUpdateDeliverData(deliverConfigs[i].level, DeliverState.Unlock, GetRandomReward(deliverConfigs[i]),new  List<int>());
+                    GameDataMgr.S.GetClanData().DeliverData.AddDeliverData(deliverConfigs[i].level, DeliverState.Unlock, GetRandomReward(deliverConfigs[i]),new  List<int>());
                 }
             }
         }

@@ -35,7 +35,7 @@ namespace GameWish.Game
         {
             m_Btn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                EventSystem.S.Send(EventID.OnOpenChallengChoosePanel, m_SingleDeliverDetailData.DaliverID);
+                EventSystem.S.Send(EventID.OnOpenChallengChoosePanel, m_SingleDeliverDetailData.DeliverID);
             });
         }
 

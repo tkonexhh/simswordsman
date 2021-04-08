@@ -11,9 +11,9 @@ namespace GameWish.Game
 	public class DeliverData
 	{
 		public List<SingleDeliverDetailData> DaliverDetailDataList = new List<SingleDeliverDetailData>();
-		public void RemoveDeliverData(int daliverID) 
+		public void RemoveDeliverData(int DeliverID) 
 		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == daliverID);
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
 
 			if (data != null) 
 			{
@@ -26,29 +26,29 @@ namespace GameWish.Game
 			return DaliverDetailDataList;
 		}
 
-		public SingleDeliverDetailData GetSingleDeliverDetailData(int daliverID)
+		public SingleDeliverDetailData GetSingleDeliverDetailData(int DeliverID)
 		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == daliverID);
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
 			if (data != null)
 			{
 				return data;
 			}
             else
             {
-				Log.e("车队ID未找到，ID = " + daliverID);
+				Log.e("车队ID未找到，ID = " + DeliverID);
 				return null;
             }
 		}
 
-		public void AddDeliverDisciple(int daliverID, List<int> characterIDList)
+		public void AddDeliverDisciple(int DeliverID, List<int> characterIDList)
 		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == daliverID);
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
             if (data!=null)
 				data.CharacterIDList = characterIDList;
 		}
-		public List<int> GetDeliverDisciple(int daliverID)
+		public List<int> GetDeliverDisciple(int DeliverID)
 		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == daliverID);
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
 			if (data != null)
 				return data.CharacterIDList;
 			return null;
@@ -84,7 +84,13 @@ namespace GameWish.Game
 			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
 			return data;
 		}
-	}
+
+		public void ResetData(int deliverID)
+        {
+
+
+        }
+    }
 	public class SingleDeliverDetailData
 	{
 		public int DeliverID;
@@ -96,10 +102,13 @@ namespace GameWish.Game
 		/// 加速后结束时间
 		/// </summary>
 		public DateTime StartTimeWithScal;
-		/// <summary>
-		/// 实际结束时间
-		/// </summary>
-		public DateTime EndTimeWithReally;
+
+		
+
+        /// <summary>
+        /// 实际结束时间
+        /// </summary>
+        public DateTime EndTimeWithReally;
 		/// <summary>
 		/// 加速倍数
 		/// </summary>
@@ -143,6 +152,15 @@ namespace GameWish.Game
 			}
 		}
 
+		public int GetTotalTimeSeconds() {
+			return (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+		}
+		public void ResetData()
+		{
+			DaliverState = DeliverState.DidNotSetOut;
+			CharacterIDList?.Clear();
+			RewadDataList = DeliverSystemMgr.S.GetRandomReward(TDDeliverTable.GetDeliverConfig(DeliverID));
+		}
 		public void UpdateSpeedUpMultiple(int speedUpMultiple) 
 		{
 			this.SpeedUpMultiple = speedUpMultiple;

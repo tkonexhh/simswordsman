@@ -49,31 +49,47 @@ namespace GameWish.Game
 		private List<DeliverRes> m_DeliverResList = new List<DeliverRes>();
 		private List<int> m_DeliverDBLsst = null;
 		private const int DiscipleNumber = 4;
+		private CountDownItemTest m_CountDownItemTest;
 		// Start is called before the first frame update
 		private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem> ();
 		private void Awake()
 		{
 			EventSystem.S.Register(EventID.OnOpenChallengChoosePanel, HandleAddListenerEvent);
 			EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandleAddListenerEvent);
+			EventSystem.S.Register(EventID.OnDeliverCarArrive, HandleAddListenerEvent);
 		}
 
+        private void DeliverCountDownItemUpdateCallBack(int remaintTimeSeconds)
+        {
+			Debug.LogError("deliver update");
+			m_CountDown.text = CommonUIMethod.SplicingTime(remaintTimeSeconds);
+			m_CountDownSlider.value = (float)remaintTimeSeconds / m_SingleDeliverDetailData.GetTotalTimeSeconds();
+			////m_SingleDeliverDetailData.GetTotalTimeSeconds();
+		}
 
-		private void HandleAddListenerEvent(int key, params object[] args)
+        private void HandleAddListenerEvent(int key, params object[] args)
 		{
             switch (key)
             {
 				case (int)EventID.OnOpenChallengChoosePanel:
-					if ((int)args[0] == m_SingleDeliverDetailData.DaliverID)
+					if ((int)args[0] == m_SingleDeliverDetailData.DeliverID)
 						UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, PanelType.Deliver, m_SingleDeliverDetailData);
 					break;
+				case (int)EventID.OnDeliverCarArrive:
+                    if ((int)args[0] == m_SingleDeliverDetailData.DeliverID)
+                    {
+						m_SingleDeliverDetailData.ResetData();
+						RefreshPanelInfo();
+					}
+					break;
 				case (int)EventID.OnSelectedConfirmEvent:
-					if ((int)args[1] == m_SingleDeliverDetailData.DaliverID)
+					if ((int)args[1] == m_SingleDeliverDetailData.DeliverID)
 					{
 						m_SelectedDiscipleDic = (Dictionary<int, CharacterItem>)args[0];
 						List<int> characterList = new List<int>();
                         foreach (var item in m_SelectedDiscipleDic.Values)
 							characterList.Add(item.id);
-						GameDataMgr.S.GetClanData().DeliverData.AddDeliverDisciple(m_SingleDeliverDetailData.DaliverID, characterList);
+						GameDataMgr.S.GetClanData().DeliverData.AddDeliverDisciple(m_SingleDeliverDetailData.DeliverID, characterList);
 						FillingDisciple();
 					}
 					break;
@@ -104,7 +120,7 @@ namespace GameWish.Game
         private void OpenCallback(AbstractPanel obj)
         {
 			m_SelectedDiscipleDic.Clear();
-			m_DeliverDBLsst = GameDataMgr.S.GetClanData().DeliverData.GetDeliverDisciple(m_SingleDeliverDetailData.DaliverID);
+			m_DeliverDBLsst = GameDataMgr.S.GetClanData().DeliverData.GetDeliverDisciple(m_SingleDeliverDetailData.DeliverID);
 			for (int i = 0; i < m_DeliverDBLsst.Count; i++)
 				m_SelectedDiscipleDic.Add(m_DeliverDBLsst[i],MainGameMgr.S.CharacterMgr.GetCharacterItem(m_DeliverDBLsst[i]));
 
@@ -116,6 +132,8 @@ namespace GameWish.Game
         {
 			EventSystem.S.UnRegister(EventID.OnOpenChallengChoosePanel, HandleAddListenerEvent);
 			EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandleAddListenerEvent);
+			EventSystem.S.UnRegister(EventID.OnDeliverCarArrive, HandleAddListenerEvent);
+			m_CountDownItemTest?.UnRegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
 		}
 
 		void Start()
@@ -129,21 +147,25 @@ namespace GameWish.Game
                 }
 				m_SingleDeliverDetailData.DaliverState = DeliverState.HasBeenSetOut;
 				RefreshPanelInfo();
+				DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID,null,null);
+				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
+				m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+				Debug.LogError("start count down ");
 			});
 			m_DoubleSpeedBtn.onClick.AddListener(()=> { 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-				m_SingleDeliverDetailData.DaliverState = DeliverState.DidNotSetOut;
-				m_SelectedDiscipleDic.Clear();
-				RefreshPanelInfo();
+				//m_SingleDeliverDetailData.DaliverState = DeliverState.DidNotSetOut;
+				//m_SelectedDiscipleDic.Clear();
+				//RefreshPanelInfo();
 			});
 		}
 
 		public void OnInit(SingleDeliverDetailData item) 
 		{
 			m_SingleDeliverDetailData = item;
-			m_DeliverConfig = TDDeliverTable.GetDeliverConfig(m_SingleDeliverDetailData.DaliverID);
+			m_DeliverConfig = TDDeliverTable.GetDeliverConfig(m_SingleDeliverDetailData.DeliverID);
 			m_DeliverLevelInfo = TDFacilityDeliverTable.GetDeliverLevelInfoForTeamUnlock(m_DeliverConfig.level);
-			m_DeliverDBLsst = GameDataMgr.S.GetClanData().DeliverData.GetDeliverDisciple(m_SingleDeliverDetailData.DaliverID);
+			m_DeliverDBLsst = GameDataMgr.S.GetClanData().DeliverData.GetDeliverDisciple(m_SingleDeliverDetailData.DeliverID);
 			CheckDeliverState();
 
 			for (int i = 0; i < DiscipleNumber; i++)
