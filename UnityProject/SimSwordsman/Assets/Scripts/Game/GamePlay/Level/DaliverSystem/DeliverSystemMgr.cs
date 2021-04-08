@@ -103,7 +103,8 @@ namespace GameWish.Game
         /// <param name="characterIDList">ÑºïÚµÜ×ÓIDÁÐ±í</param>
         public void StartDeliver(int deliverID, List<DeliverRewadData> rewardDataList, List<int> characterIDList)
         {
-            SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
+            //SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
+            SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
 
             if (data != null) 
             {

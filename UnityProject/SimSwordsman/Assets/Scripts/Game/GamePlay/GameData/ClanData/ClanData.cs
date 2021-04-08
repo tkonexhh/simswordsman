@@ -691,6 +691,7 @@ namespace GameWish.Game
         public SingleDeliverDetailData AddDeliverData(int daliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
         {
             SingleDeliverDetailData data = DeliverData.AddDeliverData(daliverID, state, rewardDataList, characterIDList);
+
             SetDataDirty();
 
             return data;
