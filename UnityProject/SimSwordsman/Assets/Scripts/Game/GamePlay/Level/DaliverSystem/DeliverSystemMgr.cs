@@ -139,17 +139,19 @@ namespace GameWish.Game
             //SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
             SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
 
-            if (data != null) 
+            if (data != null && data.DaliverState != DeliverState.HasBeenSetOut) 
             {
+                data.DaliverState = DeliverState.HasBeenSetOut;
+
+                data.UpdateStartTime();
+
                 DeliverCar car = SpawnDeliverCar();
                 AddDeliverCarToList(car);
                 car.Init(deliverID, data.CharacterIDList, m_DeliverCarOriginPos);
 
                 SetCharacterStateDeliver(data.CharacterIDList, data.DeliverID);
 
-                CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), (x)=> {
-                    Debug.LogError("x:"+x);
-                }, (remainTime) =>
+                CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
                 {
                     car.StartMoveComeBack();
                 });

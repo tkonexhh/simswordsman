@@ -101,10 +101,7 @@ namespace GameWish.Game
 		/// <summary>
 		/// 加速后结束时间
 		/// </summary>
-		public DateTime StartTimeWithScal;
-
-		
-
+		public DateTime StartTimeWithScal;	
         /// <summary>
         /// 实际结束时间
         /// </summary>
@@ -128,7 +125,10 @@ namespace GameWish.Game
 			this.DaliverState = state;
 			this.RewadDataList = rewatdDataList;
 			this.CharacterIDList = characterList;
+		}
 
+		public void UpdateStartTime() 
+		{
 			TDDeliver data = TDDeliverTable.GetData(DeliverID);
 			StartTimeWithReally = DateTime.Now;
 			//EndTimeWithReally = StartTime.AddMinutes(data.duration);
@@ -138,6 +138,7 @@ namespace GameWish.Game
 			TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
 			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
 		}
+
 		public int GetRemainTimeSeconds() 
 		{
 			if (SpeedUpMultiple == 1)

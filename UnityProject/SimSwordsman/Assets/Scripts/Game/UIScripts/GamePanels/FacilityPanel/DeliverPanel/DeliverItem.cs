@@ -145,7 +145,6 @@ namespace GameWish.Game
 					FloatMessage.S.ShowMsg("«Î—°¬˙»À!");
 					return;
                 }
-				m_SingleDeliverDetailData.DaliverState = DeliverState.HasBeenSetOut;
 				RefreshPanelInfo();
 				DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID,null,null);
 				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
