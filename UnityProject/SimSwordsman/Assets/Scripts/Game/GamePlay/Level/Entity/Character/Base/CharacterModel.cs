@@ -93,21 +93,22 @@ namespace GameWish.Game
 
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
-                float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
-                if (armorAtkEnhanceRatio == 0) // ��ʱ��ô����������Ż��Ӵ浵�н��
-                {
-                    armorAtkEnhanceRatio = 1;
-                }
+                //float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
+                //if (armorAtkEnhanceRatio == 0) // ��ʱ��ô����������Ż��Ӵ浵�н��
+                //{
+                //    armorAtkEnhanceRatio = 1;
+                //}
 
-                float armsAtkEnhanceRatio = m_CharacterItem.GetArmsAtkEnhanceRatio();
-                if (armsAtkEnhanceRatio == 0)
-                {
-                    armsAtkEnhanceRatio = 1;
-                }
+                //float armsAtkEnhanceRatio = m_CharacterItem.GetArmsAtkEnhanceRatio();
+                //if (armsAtkEnhanceRatio == 0)
+                //{
+                //    armsAtkEnhanceRatio = 1;
+                //}
 
-                Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
-                float value = m_CharacterItem.atkValue * armorAtkEnhanceRatio * armorAtkEnhanceRatio;
-                return value;
+                //Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
+                //float value = m_CharacterItem.atkValue * armorAtkEnhanceRatio * armorAtkEnhanceRatio;
+                //return value;
+                return m_CharacterItem.atkValue;
             }
             else
                 return 0;
