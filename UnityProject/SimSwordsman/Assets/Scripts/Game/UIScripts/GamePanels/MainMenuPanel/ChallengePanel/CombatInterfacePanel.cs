@@ -370,6 +370,7 @@ namespace GameWish.Game
                             DataAnalysisMgr.S.CustomEvent(DotDefine.level_end_win, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                             MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, true);
+                            EventSystem.S.Send(EventID.OnMainMenuChallenging);
                             break;
                         default:
                             break;
@@ -387,6 +388,7 @@ namespace GameWish.Game
                         case PanelType.Challenge:
                             DataAnalysisMgr.S.CustomEvent(DotDefine.level_end_fail, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, false);
+                            EventSystem.S.Send(EventID.OnMainMenuChallenging);
                             break;
                         default:
                             break;

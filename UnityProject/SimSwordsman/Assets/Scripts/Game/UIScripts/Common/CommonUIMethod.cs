@@ -55,7 +55,7 @@ namespace GameWish.Game
                 //向下取整
                 var temp = Math.Floor(value);
                 //向Text组件赋值
-                currentScoreText.text = temp + "";
+                currentScoreText.text = CommonUIMethod.GetTenThousandOrMillion((long)temp)/* temp + ""*/;
             }, curValue, targetValue, 1.0f));
             //将更新后的值记录下来, 用于下一次滚动动画
             curValue = targetValue;
@@ -204,13 +204,15 @@ namespace GameWish.Game
         /// </summary>
         public static bool CheackRecruitmentOrder()
         {
-            int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
-            int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
+            //int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
+            //int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
+            bool SilverAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit( RecruitType.SilverMedal, 24);
+            bool GoldAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit( RecruitType.GoldMedal, 48);
             int GoldFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
             int SilverFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
             int allCount = GoldFreeCount + SilverFreeCount;
 
-            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount > 0 || GoldAdvCount > 0)
+            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount  || GoldAdvCount )
             {
                 EventSystem.S.Send(EventID.OnSendRecruitable, true);
                 return true;
@@ -274,7 +276,8 @@ namespace GameWish.Game
             }
             else
             {
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                //text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                text.color = Color.black;
                 return false;
             }
         }
@@ -296,7 +299,7 @@ namespace GameWish.Game
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj,transform).GetComponent<UpgradeResItem>();
                 upgradeResItem1.OnInit(costItems[0],transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 list?.Add(upgradeResItem1);
                 if (facilityLevelInfo!=null)
@@ -304,7 +307,7 @@ namespace GameWish.Game
                     UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem2.OnInit(facilityLevelInfo, transform);
                     upgradeResItem2.ShowResItem(GetCurCoin(facilityLevelInfo) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Coin"));
                 }
             }
             else if (costItems.Count == 2)
@@ -315,12 +318,12 @@ namespace GameWish.Game
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem1.OnInit(costItems[0], transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemFirst, costItems[0].value))/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem2.OnInit(costItems[1], transform);
                 upgradeResItem2.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[1].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[1].itemId)));
 
                 list?.Add(upgradeResItem1);
                 list?.Add(upgradeResItem2);
@@ -329,26 +332,38 @@ namespace GameWish.Game
                     UpgradeResItem upgradeResItem3 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem3.OnInit(facilityLevelInfo, transform);
                     upgradeResItem3.ShowResItem(GetCurCoin(facilityLevelInfo)/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Coin"));
                 }
             }
         }
         private static string GetCurCoin(FacilityLevelInfo facilityLevelInfo)
         {
-            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            if (coin >= facilityLevelInfo.upgradeCoinCost)
-                return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
-            return GetTenThousandOrMillion((int)coin);
+            //long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            //if (coin >= facilityLevelInfo.upgradeCoinCost)
+            //    return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+            //return GetTenThousandOrMillion((int)coin);
+            return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+
         }
 
         private static int GetCurItem(int hava, int number)
         {
-            if (hava >= number)
-                return number;
-            return hava;
+            //if (hava >= number)
+            //    return number;
+            //return hava;
+            return number;
+
         }
         private static string GetIconName(int id)
         {
+            if (id == -1)
+            {
+                return "Coin";
+            }
+            else if (id == -2)
+            {
+                return "Baozi";
+            }
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
         #endregion
@@ -407,7 +422,8 @@ namespace GameWish.Game
             long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coinNum < facilityLevelInfo.upgradeCoinCost)
             {
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                //text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                text.color = Color.black;
                 return false;
             }
             else
@@ -603,15 +619,6 @@ namespace GameWish.Game
             {
                 return number.ToString();
             }
-
-            //long MainNumber = number / 10000;
-            //if (MainNumber == 0)
-            //    return number.ToString();
-            //else
-            //{
-            //    long fourth = GetThousand(number);
-            //    return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
-            //}
         }
 
         private static long GetThousand(long number)

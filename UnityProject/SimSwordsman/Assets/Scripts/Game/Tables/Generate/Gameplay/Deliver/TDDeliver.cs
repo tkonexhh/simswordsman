@@ -13,6 +13,7 @@ namespace GameWish.Game
         
        
         private EInt m_Level = 0;   
+        private string m_Name;   
         private string m_NormalReward;   
         private string m_RareReward;   
         private EInt m_Duration = 0;  
@@ -23,6 +24,11 @@ namespace GameWish.Game
         /// ID
         /// </summary>
         public  int  level {get { return m_Level; } }
+       
+        /// <summary>
+        /// 车队名字
+        /// </summary>
+        public  string  name {get { return m_Name; } }
        
         /// <summary>
         /// 普通奖励池
@@ -58,12 +64,15 @@ namespace GameWish.Game
                     m_Level = dataR.ReadInt();
                     break;
                 case 1:
-                    m_NormalReward = dataR.ReadString();
+                    m_Name = dataR.ReadString();
                     break;
                 case 2:
-                    m_RareReward = dataR.ReadString();
+                    m_NormalReward = dataR.ReadString();
                     break;
                 case 3:
+                    m_RareReward = dataR.ReadString();
+                    break;
+                case 4:
                     m_Duration = dataR.ReadInt();
                     break;
                 default:
@@ -76,12 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(4);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("Level", 0);
-          ret.Add("NormalReward", 1);
-          ret.Add("RareReward", 2);
-          ret.Add("Duration", 3);
+          ret.Add("Name", 1);
+          ret.Add("NormalReward", 2);
+          ret.Add("RareReward", 3);
+          ret.Add("Duration", 4);
           return ret;
         }
     } 

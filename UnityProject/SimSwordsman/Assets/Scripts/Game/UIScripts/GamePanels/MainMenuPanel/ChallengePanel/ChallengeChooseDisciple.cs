@@ -52,6 +52,9 @@ namespace GameWish.Game
         private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
         private List<ChallengeSelectedDisciple> m_SelectedDiscipleObjList = new List<ChallengeSelectedDisciple>();
         private Dictionary<int, ChallengePanelDisciple> m_DiscipleObjDic = new Dictionary<int, ChallengePanelDisciple>();
+       
+        private const int DeliverDiscipleNumber = 4;
+        private SingleDeliverDetailData m_SingleDeliverDetailData;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -98,21 +101,31 @@ namespace GameWish.Game
             //选中
             if (seleted)
             {
-                if (m_PanelType == PanelType.Challenge)
+                switch (m_PanelType)
                 {
-                    if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
-                    {
-                        FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
-                        return;
-                    }
-                }
-                else
-                {
-                    if (m_SelectedDiscipleDic.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
-                    {
-                        FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
-                        return;
-                    }
+                    case PanelType.Task:
+                        if (m_SelectedDiscipleDic.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
+                        {
+                            FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                            return;
+                        }
+                        break;
+                    case PanelType.Challenge:
+                        if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                            return;
+                        }
+                        break;
+                    case PanelType.Deliver:
+                        if (m_SelectedDiscipleDic.Count >= DeliverDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
                 }
 
                 if (!m_SelectedDiscipleDic.ContainsKey(characterItem.id))
@@ -186,10 +199,13 @@ namespace GameWish.Game
         }
         public void AddDiscipleDicDic(Dictionary<int, CharacterItem> keyValuePairs)
         {
-            foreach (var item in keyValuePairs.Values)
-                EventSystem.S.Send(EventID.OnSelectedEvent, item, true);
+            if (keyValuePairs!=null)
+            {
+                foreach (var item in keyValuePairs.Values)
+                    EventSystem.S.Send(EventID.OnSelectedEvent, item, true);
 
-            RefreshPanelInfo();
+                RefreshPanelInfo();
+            }
         }
         private void RefreshPanelInfo()
         {
@@ -203,12 +219,21 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_LevelConfigInfo = args[0] as LevelConfigInfo;
-            m_PanelType = (PanelType)args[1];
-            m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
+            m_PanelType = (PanelType)args[0];
             switch (m_PanelType)
             {
+                case PanelType.Deliver:
+                    m_SingleDeliverDetailData = args[1] as SingleDeliverDetailData;
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        CreateDisciple(m_AllDiscipleList[i]);
+
+                    for (int i = 0; i < DeliverDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+                    RefreshFixedInfo(PanelType.Deliver);
+                    break;
                 case PanelType.Task:
+                    m_CommonTaskItemInfo = args[1] as CommonTaskItemInfo;
                     CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
@@ -216,9 +241,11 @@ namespace GameWish.Game
 
                     for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
                         CreateSelectedDisciple();
-                    RefreshFixedInfo();
+                    RefreshFixedInfo(PanelType.Task);
                     break;
                 case PanelType.Challenge:
+                    m_LevelConfigInfo = args[1] as LevelConfigInfo;
+                    m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
                     CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         CreateDisciple(m_AllDiscipleList[i]);
@@ -234,16 +261,22 @@ namespace GameWish.Game
 
             //CalculateContainerHeight();
         }
-        private void RefreshFixedInfo()
+        private void RefreshFixedInfo(PanelType panelType)
         {
             m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
             m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
             m_StateBg.gameObject.SetActive(false);
             m_State.gameObject.SetActive(false);
-            m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
-            m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
-            //m_SelectedDiscipleSkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_SELECTEDDISCIPLEYSKILLS);
-            //m_RecommendedSkillsValue.text = 
+            if (panelType == PanelType.Deliver)
+            {
+                m_RecommendedSkillsTitle.gameObject.SetActive(false);
+                m_RecommendedSkillsValue.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
+                m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
+            }
         }
         private void GetInformationForNeed()
         {
@@ -275,11 +308,18 @@ namespace GameWish.Game
                             return;
                         }
                         break;
+                    case PanelType.Deliver:
+                        if (m_SelectedDiscipleDic.Count != DeliverDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("人数不足4人，请选满");
+                            return;
+                        }
+                        break;
                     default:
                         break;
                 }
                
-                EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic);
+                EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic, m_SingleDeliverDetailData.DeliverID);
                 HideSelfWithAnim();
             });
         }

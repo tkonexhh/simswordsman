@@ -11,6 +11,7 @@ namespace GameWish.Game
     {
         Task,
         Challenge,
+        Deliver,
     }
 
     public class SendDisciplesPanel : AbstractAnimPanel
@@ -123,7 +124,7 @@ namespace GameWish.Game
                     }
                     break;
                 case EventID.OnSendDiscipleDicEvent:
-                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, m_LevelConfigInfo, (PanelType)param[0], m_CommonTaskItemInfo);
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, (PanelType)param[0], m_LevelConfigInfo, m_CommonTaskItemInfo);
                     break;
                 case EventID.OnSendHerbEvent:
                     HandHerbEvent((bool)param[0], (HerbItem)param[1]);
@@ -220,17 +221,17 @@ namespace GameWish.Game
             if (result < 0.75)
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Danger");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanelAtlas, "SendDisciplePanel_Danger");
             }
             else if (result > 1.1f)
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Rleaxed");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanelAtlas, "SendDisciplePanel_Rleaxed");
             }
             else
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Autions");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanelAtlas, "SendDisciplePanel_Autions");
             }
         }
         private void GetInformationForNeed()

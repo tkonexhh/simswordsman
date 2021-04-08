@@ -13,7 +13,8 @@ namespace GameWish.Game
         private ResLoader m_DeliverCarLoader = null;
 
         private const string DeliverCarPrefabName = "DeliverCar";
-        /// <summary>
+
+        private List<SingleDeliverDetailData> m_DaliverDetailDataList = null;
         /// 镖车路径
         /// </summary>
         private DeliverPath m_DeliverPath;
@@ -36,6 +37,17 @@ namespace GameWish.Game
         #region public
         public void OnInit()
         {
+            m_DaliverDetailDataList = GameDataMgr.S.GetClanData().DeliverData.GetSingleDeliverDetailDataList();
+            if (m_DaliverDetailDataList != null && m_DaliverDetailDataList.Count == 0)
+            {
+                List<DeliverConfig> deliverConfigs = new List<DeliverConfig>();
+                deliverConfigs.AddRange(TDDeliverTable.GetDeliverConfigList());
+                for (int i = 0; i < deliverConfigs.Count; i++)
+                {
+                    GameDataMgr.S.GetClanData().DeliverData.AddDeliverData(deliverConfigs[i].level, DeliverState.Unlock, GetRandomReward(deliverConfigs[i]), new List<int>());
+                }
+            }
+
             EventSystem.S.Register(EventID.OnDeliverCarArrive, OnDeliverCarArriveCallBack);
 
             m_DeliverPath = GameObject.FindObjectOfType<DeliverPath>();
@@ -64,6 +76,25 @@ namespace GameWish.Game
                 }
             }
         }
+        public List<DeliverRewadData> GetRandomReward(DeliverConfig deliverConfig)
+        {
+            List<DeliverRewadData> deliverRewadDatas = new List<DeliverRewadData>();
+            RandomWeightHelper<RewardBase> randomWeightHelper = new Game.RandomWeightHelper<RewardBase>();
+            foreach (var item in deliverConfig.normalReward)
+                randomWeightHelper.AddWeightItem(item);
+
+            deliverRewadDatas.Add(new DeliverRewadData(randomWeightHelper.GetRandomWeightDeleteValue()));
+            deliverRewadDatas.Add(new DeliverRewadData(randomWeightHelper.GetRandomWeightDeleteValue()));
+            randomWeightHelper.ClearAll();
+
+            foreach (var item in deliverConfig.RareReward)
+                randomWeightHelper.AddWeightItem(item);
+            deliverRewadDatas.Add(new DeliverRewadData(randomWeightHelper.GetRandomWeightDeleteValue()));
+            randomWeightHelper.ClearAll();
+
+            return deliverRewadDatas;
+        }
+
         public DeliverCar SpawnDeliverCar()
         {
             GameObject go = GameObjectPoolMgr.S.Allocate(DeliverCarPrefabName);
@@ -116,7 +147,9 @@ namespace GameWish.Game
 
                 SetCharacterStateDeliver(data.CharacterIDList, data.DeliverID);
 
-                CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
+                CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), (x)=> {
+                    Debug.LogError("x:"+x);
+                }, (remainTime) =>
                 {
                     car.StartMoveComeBack();
                 });
@@ -179,6 +212,7 @@ namespace GameWish.Game
         /// <param name="data">镖物的数据类</param>
         private void GetDeliverReward(SingleDeliverDetailData data)
         {
+            //GameDataMgr.S.GetClanData().RemoveDeliverDataByID(data.DeliverID);
             List<int> characterIDList = data.CharacterIDList;
             for (int i = 0; i < characterIDList.Count; i++)
             {

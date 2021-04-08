@@ -683,14 +683,14 @@ namespace GameWish.Game
         #endregion
 
         #region daliver system
-        public void RemoveDeliverDataByID(int daliverID) 
+        public void RemoveDeliverDataByID(int DeliverID) 
         {
-            DeliverData.RemoveDeliverData(daliverID);
+            DeliverData.RemoveDeliverData(DeliverID);
             SetDataDirty();
         }
-        public SingleDeliverDetailData AddDeliverData(int daliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+        public SingleDeliverDetailData AddDeliverData(int DeliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
         {
-            SingleDeliverDetailData data = DeliverData.AddDeliverData(daliverID, state, rewardDataList, characterIDList);
+            SingleDeliverDetailData data = DeliverData.AddDeliverData(DeliverID, state, rewardDataList, characterIDList);
 
             SetDataDirty();
 

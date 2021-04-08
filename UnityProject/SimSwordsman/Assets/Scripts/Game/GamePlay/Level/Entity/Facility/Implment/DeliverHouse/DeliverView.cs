@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,14 @@ namespace GameWish.Game
 
         protected override void OpenUIElement()
         {
-            base.OpenUIElement();            
+            base.OpenUIElement();
+            UIMgr.S.OpenPanel(UIID.DeliverPanel);
+        }
+
+
+        public override void SetViewByState(bool isFile = false)
+        {
+            base.SetViewByState(isFile);
         }
     }	
 }

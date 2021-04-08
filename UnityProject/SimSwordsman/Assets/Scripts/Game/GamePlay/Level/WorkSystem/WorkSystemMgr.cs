@@ -190,7 +190,7 @@ namespace GameWish.Game
         /// <returns></returns>
         private bool IsCanShowWorkBubble(FacilityType type)
         {
-            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount || type == FacilityType.PatrolRoom)
+            if (type == FacilityType.None || type == FacilityType.BulletinBoard || type == FacilityType.TotalCount /*|| type == FacilityType.PatrolRoom*/)
             {
                 return false;
             }

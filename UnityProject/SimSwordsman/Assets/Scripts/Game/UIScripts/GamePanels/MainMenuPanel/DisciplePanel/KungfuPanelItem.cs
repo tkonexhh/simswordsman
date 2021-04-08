@@ -131,10 +131,10 @@ namespace GameWish.Game
                         case KungfuQuality.Normal:
                             m_LearnBg.sprite = GetSprite("Introduction");
                             break;
-                        case KungfuQuality.Super:
+                        case KungfuQuality.Master:
                             m_LearnBg.sprite = GetSprite("Advanced");
                             break;
-                        case KungfuQuality.Master:
+                        case KungfuQuality.Super:
                             m_LearnBg.sprite = GetSprite("Excellent");
                             break;
                         default:

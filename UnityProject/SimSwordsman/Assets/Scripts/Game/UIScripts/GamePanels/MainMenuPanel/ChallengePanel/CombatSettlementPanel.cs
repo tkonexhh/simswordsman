@@ -137,6 +137,8 @@ namespace GameWish.Game
         private void RewardPanelCallback(AbstractPanel obj)
         {
             RewardPanel rewardPanel = obj as RewardPanel;
+            if (m_LevelConfigInfo!=null)
+                rewardPanel.SetLevelID(m_LevelConfigInfo.level);
             rewardPanel.OnBtnCloseEvent += CloseEvent;
         }
 

@@ -104,7 +104,7 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnDiscipleButtonOnClick:
-                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, null, PanelType.Task, m_CommonTaskItemInfo); ;
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, PanelType.Task, m_CommonTaskItemInfo); ;
                     break; 
                 case EventID.OnSelectedConfirmEvent:
                     m_SelectedDiscipleDic.Clear();

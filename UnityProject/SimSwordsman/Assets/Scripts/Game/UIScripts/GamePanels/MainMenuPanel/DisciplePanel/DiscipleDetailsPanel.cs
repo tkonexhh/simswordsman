@@ -613,10 +613,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     sprites.Add(FindSprite("Introduction"));
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     sprites.Add(FindSprite("Advanced"));
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     sprites.Add(FindSprite("Excellent"));
                     break;
                 default:

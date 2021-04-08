@@ -16,7 +16,7 @@ namespace GameWish.Game
         //public List<CharacterController> otherEnemyCharacterList = new List<CharacterController>();
         private int m_ArriveCount = 0;
         private int m_AtkEndCount = 0;
-        private bool m_EnemyAttack = false;
+        private bool m_EnemyAttack = true;
         private int m_AtkEventIndex = 0;
 
         private List<float> m_OurHitBackDistance = new List<float>();
@@ -103,13 +103,13 @@ namespace GameWish.Game
             m_AtkEventIndex = 0;
 
             // Who will attack
-            if (m_OurCharacter.WillBeDead())
-            {
-                m_EnemyAttack = true;
-            }
-            else if (m_EnemyCharacter.WillBeDead())
+            if (m_EnemyCharacter.WillBeDead())
             {
                 m_EnemyAttack = false;
+            }
+            else if(m_OurCharacter.WillBeDead())
+            {
+                m_EnemyAttack = true;
             }
             else
             {

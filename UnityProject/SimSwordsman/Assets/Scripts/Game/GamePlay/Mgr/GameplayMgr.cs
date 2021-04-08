@@ -255,14 +255,14 @@ namespace GameWish.Game
                 {
                     for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
                     {
-                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 200);
                     }
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 200);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 200);
                 }
                 if (Input.GetKeyDown(KeyCode.H))
                 {
@@ -316,16 +316,25 @@ namespace GameWish.Game
                     {
                         MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
                     }
+                    for (int i = (int)KungfuType.SuiYuQuan; i < (int)KungfuType.KaiBeiShou; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
+                    }  
+                    for (int i = (int)KungfuType.RuLaiShenZhang; i < (int)KungfuType.YiJinJing; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
+                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
                     //MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)2002), 2);
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2001), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 1);
 
                     //GameDataMgr.S.GetPlayerData().AddFoodNum(1);
                 }
-                if (Input.GetKeyDown(KeyCode.C))
+                if (Input.GetKeyDown(KeyCode.C)) 
                 {
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(2);
                 }
@@ -338,10 +347,11 @@ namespace GameWish.Game
                 if (Input.GetKeyDown(KeyCode.V))
                 {
                     List<RewardBase> rewards = new List<RewardBase>();
-                    rewards.Add(new ArmsReward((int)ArmsType.ShaZhuDao, 1));
-                    rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
-                    rewards.Add(new ArmsReward((int)ArmsType.MengGuBaoDao, 1));
-                    rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+                    rewards.Add(new ItemReward((int)RawMaterial.Agate, 1));
+                    //rewards.Add(new ArmsReward((int)ArmsType.DaHuanDao, 1));
+                    //rewards.Add(new ArmorReward((int)ArmorType.MingGuangKai, 1));
+                    //rewards.Add(new KongfuReward((int)KungfuType.DuGuJiuJian, 1));
+                    //rewards.Add(new KongfuReward((int)KungfuType.FoShanWuYingJiao, 1));
                     UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
                 }
 
@@ -360,12 +370,12 @@ namespace GameWish.Game
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                    PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 1212));
+                    PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 200000));
                     PanelPool.S.DisplayPanel();
                 }
                 if (Input.GetKeyDown(KeyCode.A))
                 {
-                    PanelPool.S.AddPromotion(new EquipAmror(1, 2000, new ArmorItem(ArmorType.MingGuangKai, Step.Five)));
+                    PanelPool.S.AddPromotion(new EquipAmror(1, 2000000, new ArmorItem(ArmorType.MingGuangKai, Step.Five)));
                     PanelPool.S.DisplayPanel();
                 }
             }
