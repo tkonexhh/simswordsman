@@ -11,6 +11,7 @@ namespace GameWish.Game
     {
         Task,
         Challenge,
+        Tower,
     }
 
     public class SendDisciplesPanel : AbstractAnimPanel
@@ -169,13 +170,13 @@ namespace GameWish.Game
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
                     HandConfirmBtnEvent();
-                    m_AcceptText.text = "����ս��";
+                    m_AcceptText.text = "发起战斗";
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
-                    m_AcceptText.text = "��ʼս��";
+                    m_AcceptText.text = "开始战斗";
                     CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue);
                     RefreshDisicipleSkill();
@@ -309,7 +310,7 @@ namespace GameWish.Game
                     case PanelType.Task:
                         if (m_SelectedList.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                         {
-                            FloatMessage.S.ShowMsg("��ѡ�������� !");
+                            FloatMessage.S.ShowMsg("请选择满弟子 !");
                             return;
                         }
                         m_CurTaskInfo.ExecuteTask(m_SelectedList);
@@ -334,7 +335,7 @@ namespace GameWish.Game
                     case PanelType.Challenge:
                         if (m_SelectedList.Count != MaxDiscipleNumber)
                         {
-                            FloatMessage.S.ShowMsg("��ѡ�������� !");
+                            FloatMessage.S.ShowMsg("请选择满弟子 !");
                             return;
                         }
                         for (int i = 0; i < m_PlayerDataHerb.Count; i++)
