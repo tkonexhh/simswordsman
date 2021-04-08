@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Qarth;
+using static Sdkbox.IAP;
 
 namespace GameWish.Game
 {
@@ -10,7 +11,7 @@ namespace GameWish.Game
     {
         //For debug
         public string state;
-        public string battleState;
+        public string battleState;        
 
         [SerializeField] private GameObject m_Body = null;
         [SerializeField] private GameObject m_HeadPos = null;
@@ -159,7 +160,11 @@ namespace GameWish.Game
             m_OnReachDestinationCallback = callback;
 
             m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
-            m_NavAgent.SetDestination(targetPos);
+            m_NavAgent.SetDestination(targetPos);            
+        }
+
+        public void StopNavAgent() {
+            m_NavAgent.Stop();
         }
 
         public void RunTo(Vector2 targetPos, System.Action callback)
@@ -171,6 +176,14 @@ namespace GameWish.Game
             m_OnReachDestinationCallback = callback;
 
             m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed * 1.5f;
+            m_NavAgent.SetDestination(targetPos);
+        }
+
+        public void FollowDeliver(Vector2 targetPos) 
+        {
+            m_IsMoving = true;
+
+            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
             m_NavAgent.SetDestination(targetPos);
         }
 
@@ -292,6 +305,7 @@ namespace GameWish.Game
             if (m_OnReachDestinationCallback != null)
             {
                 m_OnReachDestinationCallback.Invoke();
+                m_OnReachDestinationCallback = null;
             }
         }
 

@@ -60,12 +60,17 @@ namespace GameWish.Game
                 }
                 else
                 {
-                    if (OnUpdateCallBackWrap != null) {
+                    if (OnUpdateCallBackWrap != null)
+                    {
                         OnUpdateCallBackWrap.Fire((int)(TotalSecondsTime - tempTime));
                     }
                 }
             }, 1, -1);
         }
+        /// <summary>
+        /// 设置加速倍数
+        /// </summary>
+        /// <param name="speedUpMultiple"></param>
         public void SetSpeedUpMultiply(int speedUpMultiple) 
         {
             this.m_SpeedUpMultiply = speedUpMultiple;

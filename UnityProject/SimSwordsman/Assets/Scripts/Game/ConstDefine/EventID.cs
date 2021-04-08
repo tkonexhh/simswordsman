@@ -384,7 +384,22 @@ namespace GameWish.Game
         OnMainMenuDailyTaskRedPoint,
 
         #region deliver system
-        OnCharacterReachDeliverPos,
+        /// <summary>
+        /// 角色到达镖车集合点
+        /// </summary>
+        OnCharacterReachDeliverCarGatherPoint,
+        /// <summary>
+        /// 镖车开始向外出发
+        /// </summary>
+        OnDeliverCarStartGoOut,
+        /// <summary>
+        /// 镖车开始回来
+        /// </summary>
+        OnDeliverCarStartComeBack,
+        /// <summary>
+        /// 镖车到达镖局时
+        /// </summary>
+        OnDeliverCarArrive,
         #endregion
     }
 

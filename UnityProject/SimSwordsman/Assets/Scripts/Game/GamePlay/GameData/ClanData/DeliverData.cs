@@ -10,48 +10,61 @@ namespace GameWish.Game
 	public class DeliverData
 	{
 		public List<SingleDeliverDetailData> DaliverDetailDataList = new List<SingleDeliverDetailData>();
-
 		public void RemoveDeliverData(int daliverID) 
 		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DaliverID == daliverID);
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == daliverID);
 
 			if (data != null) 
 			{
 				DaliverDetailDataList.Remove(data);
 			}
 		}
-
-		public SingleDeliverDetailData AddOrUpdateDeliverData(int daliverID,DeliverState state,List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+		public bool IsGoOutSide(int deliverID) 
 		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DaliverID == daliverID);
-			if (data != null)
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
+			if (data != null && data.DaliverState == DeliverState.HasBeenSetOut) 
 			{
-				data.DaliverState = state;
-				data.RewadDataList = rewardDataList;
-				data.StartTime = DateTime.Now;
-				data.CharacterIDList = characterIDList;
+				return true;
 			}
-			else {
-				data = new SingleDeliverDetailData();
-				data.DaliverID = daliverID;
-				data.DaliverState = state;
-				data.RewadDataList = rewardDataList;
-				data.StartTime = DateTime.Now;
-				data.CharacterIDList = characterIDList;
+			return false;
+		}
+		public SingleDeliverDetailData AddDeliverData(int deliverID,DeliverState state,List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+		{
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
 
-				DaliverDetailDataList.Add(data);
+			if (data != null) 
+			{
+				Debug.LogError("已经有相同镖物ID出发了：" + deliverID);
+				return null;
 			}
+
+			data = new SingleDeliverDetailData(deliverID, state, rewardDataList, characterIDList);
+
+			DaliverDetailDataList.Add(data);			
 
 			return data;
 		}
+		public SingleDeliverDetailData GetDeliverDataByID(int deliverID) 
+		{
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
+			return data;
+		}
 	}
-	public class SingleDeliverDetailData 
+	public class SingleDeliverDetailData
 	{
-		public int DaliverID;
+		public int DeliverID;
 		public DeliverState DaliverState;
 		public List<DeliverRewadData> RewadDataList;
 		public List<int> CharacterIDList;
-		public DateTime StartTime;
+		public DateTime StartTimeWithReally;
+		/// <summary>
+		/// 加速后结束时间
+		/// </summary>
+		public DateTime StartTimeWithScal;
+		/// <summary>
+		/// 实际结束时间
+		/// </summary>
+		public DateTime EndTimeWithReally;
 		/// <summary>
 		/// 加速倍数
 		/// </summary>
@@ -59,36 +72,68 @@ namespace GameWish.Game
 
 		private int m_CountDownID = -1;
 
-		private DateTime EndTime;
+		public SingleDeliverDetailData() { }
 
-		public int GetTotalTimeSeconds() 
+		public SingleDeliverDetailData(int deliverID,DeliverState state,List<DeliverRewadData> rewatdDataList,List<int> characterList) 
 		{
-			TDDeliver data = TDDeliverTable.GetData(DaliverID);
-            //DateTime endTime = StartTime.AddMinutes(data.duration);
-            DateTime endTime = StartTime.AddSeconds(30);
-			EndTime = endTime;
+			this.DeliverID = deliverID;
+			this.DaliverState = state;
+			this.RewadDataList = rewatdDataList;
+			this.CharacterIDList = characterList;
 
-			return (int)((endTime - StartTime).TotalSeconds / SpeedUpMultiple);
+			TDDeliver data = TDDeliverTable.GetData(DeliverID);
+			StartTimeWithReally = DateTime.Now;
+			//EndTimeWithReally = StartTime.AddMinutes(data.duration);
+			EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
+			StartTimeWithScal = StartTimeWithReally;
+
+			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
 		}
-
+		public bool IsDeliverFinished() 
+		{
+			return StartTimeWithScal <= DateTime.Now;
+		}
 		public int GetRemainTimeSeconds() 
 		{
-			return (int)(EndTime - DateTime.Now).TotalSeconds;
+			if (SpeedUpMultiple == 1)
+			{
+				return (int)(EndTimeWithReally - DateTime.Now).TotalSeconds;
+			}
+			else {
+				int passTime = (int)(StartTimeWithScal - StartTimeWithReally).TotalSeconds;
+				int totalTime = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+				int speedUpMultipleTime = (int)(DateTime.Now - StartTimeWithScal).TotalSeconds;
+
+				return totalTime - passTime - speedUpMultipleTime * SpeedUpMultiple;
+			}
 		}
 
 		public void UpdateSpeedUpMultiple(int speedUpMultiple) 
 		{
 			this.SpeedUpMultiple = speedUpMultiple;
+		}
+
+		public void UpdateSpeedUpMultipleStartTime() 
+		{
+			StartTimeWithScal = DateTime.Now;
+
+			//int passTime = (int)(StartTimeWithScal - StartTimeWithReally).TotalSeconds;
+			//int totalTime = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+			//DateTime endTime = DateTime.Now.AddSeconds((totalTime - passTime) * .5f);
+			//Debug.LogError("start time scal:" + StartTimeWithScal + "     endTime:" + endTime);
+		}
+		public void UpdateCountDownSpeedUpMultiple() 
+		{
 			if (m_CountDownID != -1) 
 			{
 				CountDownItemTest item = CountDowntMgr.S.GetCountDownItemByID(m_CountDownID);
+
 				if (item != null) 
 				{
 					item.SetSpeedUpMultiply(this.SpeedUpMultiple);
 				}
 			}
 		}
-
 		public void SetCountDownID(int countDownID) 
 		{
 			this.m_CountDownID = countDownID;

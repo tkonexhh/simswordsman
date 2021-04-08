@@ -162,9 +162,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
+        public void SetCharacterStateDBData(int id, CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
         {
-            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index,isFindPathToTargetPos);
+            ownedCharacterData.SetCharacterStateDBData(id, stateId, targetFacilityType, startTime, index);
 
             SetDataDirty();
         }
@@ -688,17 +688,35 @@ namespace GameWish.Game
             DeliverData.RemoveDeliverData(daliverID);
             SetDataDirty();
         }
-
-        public SingleDeliverDetailData AddOrUpdateDeliverData(int daliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+        public SingleDeliverDetailData AddDeliverData(int daliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
         {
-            SingleDeliverDetailData data = DeliverData.AddOrUpdateDeliverData(daliverID, state, rewardDataList, characterIDList);
+            SingleDeliverDetailData data = DeliverData.AddDeliverData(daliverID, state, rewardDataList, characterIDList);
             SetDataDirty();
 
             return data;
         }
-        public List<SingleDeliverDetailData> GetDaliverData() 
+        public List<SingleDeliverDetailData> GetAllDaliverData() 
         {
             return DeliverData.DaliverDetailDataList;
+        }
+        public void SetSpeedUpMultipleByDeliverID(int deliverID,int speedUpMultiple = 2) 
+        {
+            SingleDeliverDetailData data = GetAllDaliverData().Find(x => x.DeliverID == deliverID);
+            if (data != null)
+            {
+                data.UpdateSpeedUpMultiple(speedUpMultiple);
+                data.UpdateSpeedUpMultipleStartTime();
+                data.UpdateCountDownSpeedUpMultiple();
+                SetDataDirty();
+            }
+        }
+        public bool IsGoOutSide(int deliverID) 
+        {
+            return DeliverData.IsGoOutSide(deliverID);
+        }
+        public SingleDeliverDetailData GetDeliverDataByDeliverID(int deliverID) 
+        {
+            return DeliverData.GetDeliverDataByID(deliverID);
         }
         #endregion
     }

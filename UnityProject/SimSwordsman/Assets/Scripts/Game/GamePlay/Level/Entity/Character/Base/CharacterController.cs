@@ -18,7 +18,6 @@ namespace GameWish.Game
         private SimGameTask m_CurTask = null;
 
         private CharacterStateMachine m_StateMachine;
-
         public CharacterModel CharacterModel { get => m_CharacterModel; }
         public CharacterView CharacterView { get => m_CharacterView; }
         public int CharacterId { get => m_CharacterId; }
@@ -89,6 +88,10 @@ namespace GameWish.Game
         #endregion
 
         #region Public Get
+        public int GetDeliverID() 
+        {
+            return m_CharacterModel.GetDeliverID();
+        }
         public Vector2 GetPosition()
         {
             return m_CharacterView.transform.position;
@@ -165,12 +168,17 @@ namespace GameWish.Game
         {
             m_CharacterView.MoveTo(pos, callback);
         }
-
+        public void FollowDeliver(Vector2 deliverPos) 
+        {
+            m_CharacterView.FollowDeliver(deliverPos);
+        }
         public void RunTo(Vector2 pos, System.Action callback)
         {
             m_CharacterView.RunTo(pos, callback);
         }
-
+        public void StopNavAgent() {
+            m_CharacterView.StopNavAgent();
+        }
         public void Move(Vector2 deltaPos)
         {
             m_CharacterView.Move(deltaPos);
@@ -192,7 +200,7 @@ namespace GameWish.Game
             }
         }
 
-        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = -1, bool isFindPathToTargetPos = true)
+        public void SetState(CharacterStateID state, FacilityType targetFacilityType = FacilityType.None, string startTime = "", int index = -1)
         {
             if (state != m_CurState)
             {
@@ -202,7 +210,7 @@ namespace GameWish.Game
                 if (m_CharacterCamp == CharacterCamp.OurCamp && m_CurState != CharacterStateID.Battle) //Battle state ������
                 {
                     //Debug.LogError("SetstateTODB:" + m_CurState);
-                    SetStateToDB(m_CurState, targetFacilityType, startTime, index,isFindPathToTargetPos);
+                    SetStateToDB(m_CurState, targetFacilityType, startTime, index);
 
                     //�����Դ��룺����ͷ��û����ʧ��Progress
                     if (state == CharacterStateID.Wander)
@@ -227,34 +235,32 @@ namespace GameWish.Game
                 //}
             }
         }
-
+        public void SetDeliverID(int deliverID) 
+        {
+            m_CharacterModel.SetDeliverID(deliverID);
+        }
         public void SetFightTarget(CharacterController target)
         {
             m_FightTarget = target;
         }
-
         public void SetFightGroup(FightGroup fightGroup)
         {
             m_FightGroup = fightGroup;
         }
-
         public void OnDamaged(double damage)
         {
             m_CharacterModel.AddHp(-damage);
         }
-
         private double m_CachedDamage = 0;
         public void CacheDamage(double damage)
         {
             m_CachedDamage += damage;
         }
-
         public void TriggerCachedDamage()
         {
             OnDamaged(m_CachedDamage);
             m_CachedDamage = 0;
         }
-
         public void OnEnterBattleField(Vector3 pos)
         {
             m_CharacterView.OnEnterBattleField(pos, m_CharacterCamp);
@@ -392,9 +398,9 @@ namespace GameWish.Game
         #endregion
 
         #region Private
-        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
+        private void SetStateToDB(CharacterStateID characterStateID, FacilityType targetFacilityType, string startTime, int index)
         {
-            m_CharacterModel.SetDataState(characterStateID, targetFacilityType, startTime, index,isFindPathToTargetPos);
+            m_CharacterModel.SetDataState(characterStateID, targetFacilityType, startTime, index);
         }
 
         //private void SetTaskIfNeed(CharacterStateID initState)
