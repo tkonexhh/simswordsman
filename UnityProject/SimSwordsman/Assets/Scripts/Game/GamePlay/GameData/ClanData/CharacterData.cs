@@ -147,12 +147,12 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType, string startTime, int index, bool isFindPathToTargetPos = true)
+        public void SetCharacterStateDBData(int id, CharacterStateID characterStateData, FacilityType targetFacilityType, string startTime, int index)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
             {
-                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType, startTime, index,isFindPathToTargetPos);
+                characterItemDb.SetCharacterStateDBData(characterStateData, targetFacilityType, startTime, index);
             }
         }
 
@@ -213,12 +213,8 @@ namespace GameWish.Game
         public int bodyId = 1; // Which body used
         public int headId = 1; // Which head used
         public CollectedObjType collectedObjType = CollectedObjType.None;
-        /// <summary>
-        /// 是否寻路到目标地点，
-        /// true:正常寻路到目标地点
-        /// false:不寻路，做其他操作
-        /// </summary>
-        private bool m_IsFindPathToTargetPos = true;
+
+        public int m_DeliverID = -1;
 
         public void SetAtkValue(float _atkValue)
         {
@@ -234,11 +230,12 @@ namespace GameWish.Game
             this.facilityData.targetFacility = targetFacilityType;
             this.facilityData.startTime = startTime;
             this.facilityData.id = id;
-            m_IsFindPathToTargetPos = isFindPathToTargetPos;
         }
-        public bool IsFindPathToTargetPos() 
-        {
-            return m_IsFindPathToTargetPos;
+        public void SetDeliverID(int deliverID) {
+            m_DeliverID = deliverID;
+        }
+        public int GetDeliverID() {
+            return m_DeliverID;
         }
         public CharacterItemDbData(CharacterItem item)
         {

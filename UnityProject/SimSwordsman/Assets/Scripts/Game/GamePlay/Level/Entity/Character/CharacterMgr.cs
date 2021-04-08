@@ -367,6 +367,9 @@ namespace GameWish.Game
             {
                 spawnPos = m_CharacterSpawnPos;
             }
+            else if (initState == CharacterStateID.Deliver) {
+                spawnPos = DeliverSystemMgr.S.GoOutSidePos;
+            }
             else
             {
                 if (m_RandomWayPoints == null)

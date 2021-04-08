@@ -9,33 +9,152 @@ namespace GameWish.Game
 {
     public class DeliverSystemMgr : TSingleton<DeliverSystemMgr>,IAssetPreloader
     {
+        #region 字段
         private ResLoader m_DeliverCarLoader = null;
 
         private const string DeliverCarPrefabName = "DeliverCar";
+        /// <summary>
+        /// 镖车路径
+        /// </summary>
+        private DeliverPath m_DeliverPath;
+        public DeliverPath DeliverPath
+        {
+            get 
+            {
+                return m_DeliverPath;
+            }
+        }
 
+        public List<DeliverCar> AllDeliverCarList = new List<DeliverCar>();
+
+        public Vector3 GoOutSidePos = new Vector3(-11f, -5f);
+
+        #endregion
+
+        #region public
         public void OnInit()
         {
+            EventSystem.S.Register(EventID.OnDeliverCarArrive, OnDeliverCarArriveCallBack);
+
+            m_DeliverPath = GameObject.FindObjectOfType<DeliverPath>();
+
             //检测押镖任务
-            List<SingleDeliverDetailData> dataList = GameDataMgr.S.GetClanData().GetDaliverData();
+            List<SingleDeliverDetailData> dataList = GameDataMgr.S.GetClanData().GetAllDaliverData();
             var tmpDataList = dataList.Where(x => x.DaliverState == DeliverState.HasBeenSetOut).ToList();
-            if (tmpDataList != null && tmpDataList.Count > 0) 
+            if (tmpDataList != null && tmpDataList.Count > 0)
             {
                 for (int i = 0; i < tmpDataList.Count; i++)
                 {
                     SingleDeliverDetailData data = tmpDataList[i];
 
-                    SetCharacterStateDeliver(data.CharacterIDList, false);
-
-                    CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetTotalTimeSeconds(), null, (remainTime) => 
+                    if (data.DaliverState == DeliverState.HasBeenSetOut)
                     {
-                        GetDeliverReward(data);
-                    });
-
-                    data.SetCountDownID(countDownItem.GetCountDownID());
+                        CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
+                        {
+                            DeliverCar car = SpawnDeliverCar();
+                            AddDeliverCarToList(car);
+                            car.Init(data.DeliverID, data.CharacterIDList, GoOutSidePos);
+                            car.StartMoveComeBack();
+                        });
+                        data.SetCountDownID(countDownItem.GetCountDownID());
+                        countDownItem.SetSpeedUpMultiply(data.SpeedUpMultiple);
+                    }
                 }
             }
         }
-        private void SetCharacterStateDeliver(List<int> characterIDList,bool isFindPathToTargetPos = true) 
+        public DeliverCar SpawnDeliverCar()
+        {
+            GameObject go = GameObjectPoolMgr.S.Allocate(DeliverCarPrefabName);
+            go.transform.SetParent(null);
+
+            DeliverCar car = go.GetComponent<DeliverCar>();
+
+            return car;
+        }
+        /// <summary>
+        /// 添加镖车到缓存列表中
+        /// </summary>
+        /// <param name="deliverCar">镖车</param>
+        public void AddDeliverCarToList(DeliverCar deliverCar)
+        {
+            DeliverCar car = AllDeliverCarList.Find(x => x.DeliverID == deliverCar.DeliverID);
+            if (car == null)
+            {
+                AllDeliverCarList.Add(deliverCar);
+            }
+        }
+        /// <summary>
+        /// 缓存列表中移除镖车
+        /// </summary>
+        /// <param name="deliverID"></param>
+        public void RemoveDeliverCar(int deliverID)
+        {
+            DeliverCar car = AllDeliverCarList.Find(x => x.DeliverID == deliverID);
+            if (car != null)
+            {
+                AllDeliverCarList.Remove(car);
+            }
+        }
+        /// <summary>
+        /// 开始押镖
+        /// </summary>
+        /// <param name="deliverID">镖物id</param>
+        /// <param name="rewardDataList">奖励列表</param>
+        /// <param name="characterIDList">押镖弟子ID列表</param>
+        public void StartDeliver(int deliverID, List<DeliverRewadData> rewardDataList, List<int> characterIDList)
+        {
+            //SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
+            SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
+
+            if (data != null) 
+            {
+                DeliverCar car = SpawnDeliverCar();
+                AddDeliverCarToList(car);
+                car.Init(deliverID, data.CharacterIDList, new Vector3(0, -3.6f, 0));
+
+                SetCharacterStateDeliver(data.CharacterIDList, data.DeliverID);
+
+                CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
+                {
+                    car.StartMoveComeBack();
+                });
+
+                data.SetCountDownID(countDownItem.GetCountDownID());
+            }
+        }
+        /// <summary>
+        /// 通过镖物ID获取镖车物体
+        /// </summary>
+        /// <param name="deliverID">镖物id</param>
+        /// <returns></returns>
+        public DeliverCar GetDeliverCarByDeliverID(int deliverID)
+        {
+            DeliverCar car = AllDeliverCarList.Find(x => x.DeliverID == deliverID);
+            return car;
+        }
+        #endregion
+
+        #region private
+        private void OnDeliverCarArriveCallBack(int key, object[] param)
+        {
+            if (param != null && param.Length > 0) 
+            {
+                int deliverID = int.Parse(param[0].ToString());
+
+                SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
+
+                if (data != null) 
+                {
+                    GetDeliverReward(data);
+                }
+            }
+        }
+        /// <summary>
+        /// 将角色设置为押镖状态
+        /// </summary>
+        /// <param name="characterIDList">角色ID列表</param>
+        /// <param name="deliverID">镖物ID</param>
+        private void SetCharacterStateDeliver(List<int> characterIDList,int deliverID) 
         {
             if (characterIDList != null) 
             {
@@ -43,15 +162,21 @@ namespace GameWish.Game
                 {
                     int characterID = characterIDList[i];
                     CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterID);
-                    if (characterController != null) {
-                        characterController.SetState(CharacterStateID.Deliver, FacilityType.Deliver, string.Empty, -1, isFindPathToTargetPos);                        
+                    if (characterController != null) 
+                    {
+                        characterController.SetDeliverID(deliverID);
+                        characterController.SetState(CharacterStateID.Deliver, FacilityType.Deliver, string.Empty, -1);                        
                     }
                 }
             }
         }
+        /// <summary>
+        /// 获取押镖的奖励
+        /// </summary>
+        /// <param name="data">镖物的数据类</param>
         private void GetDeliverReward(SingleDeliverDetailData data)
         {
-            GameDataMgr.S.GetClanData().RemoveDeliverDataByID(data.DaliverID);
+            GameDataMgr.S.GetClanData().RemoveDeliverDataByID(data.DeliverID);
 
             List<int> characterIDList = data.CharacterIDList;
             for (int i = 0; i < characterIDList.Count; i++)
@@ -60,6 +185,7 @@ namespace GameWish.Game
                 CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterID);
                 if (characterController != null)
                 {
+                    characterController.StopNavAgent();
                     characterController.SetState(CharacterStateID.Wander);
                 }
             }
@@ -73,27 +199,12 @@ namespace GameWish.Game
             }
             UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewardList);
         }
-        public void StartDeliver(int deliverID,List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
-        {
-            SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddOrUpdateDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
-
-            DeliverCar car = SpawnDeliverCar();
-            car.Init(deliverID, data.CharacterIDList, new Vector3(0, -3.6f, 0));
-
-            SetCharacterStateDeliver(data.CharacterIDList);
-
-            CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetTotalTimeSeconds(), null, (remainTime) => 
-            {
-                GetDeliverReward(data);
-            });
-
-            data.SetCountDownID(countDownItem.GetCountDownID());
-        }
+        #endregion
 
         #region preload
         public void StartPreload()
         {
-            if (m_DeliverCarLoader == null) 
+            if (m_DeliverCarLoader == null)
             {
                 m_DeliverCarLoader = ResLoader.Allocate("DeliverCarLoader");
             }
@@ -105,15 +216,5 @@ namespace GameWish.Game
             AssetPreloaderMgr.S.OnLoadDone();
         }
         #endregion
-
-        public DeliverCar SpawnDeliverCar() 
-        {
-            GameObject go = GameObjectPoolMgr.S.Allocate(DeliverCarPrefabName);
-            go.transform.SetParent(null);
-
-            DeliverCar car = go.GetComponent<DeliverCar>();
-
-            return car;
-        }
     }
 }

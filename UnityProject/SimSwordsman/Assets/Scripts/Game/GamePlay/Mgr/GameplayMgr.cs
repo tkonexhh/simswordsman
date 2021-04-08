@@ -204,6 +204,7 @@ namespace GameWish.Game
                     BaiCaoWuSystemMgr.S.Init();
                     ForgeHouseSystemMgr.S.Init();
                     CollectSystem.S.Init();
+                    DeliverSystemMgr.S.OnInit();
 
                     if (PlatformHelper.isEditor)
                     {
