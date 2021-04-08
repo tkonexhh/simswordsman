@@ -207,8 +207,8 @@ namespace GameWish.Game
                 KungfuWeightConfig config = TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
                 if (config != null && config.Weight != 0)
                 {
-                    int ratio = config.Weight / allWeight;
-                    m_CharacterItem.AddKongfuExp(item, ratio * expValue);
+                    float ratio = ((float)config.Weight / allWeight)+1;
+                    m_CharacterItem.AddKongfuExp(item, (int)ratio * expValue);
                 }
             }
         }
