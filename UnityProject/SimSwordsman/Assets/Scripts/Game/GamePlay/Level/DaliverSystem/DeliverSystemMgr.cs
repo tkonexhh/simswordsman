@@ -139,7 +139,7 @@ namespace GameWish.Game
             //SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
             SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
 
-            if (data != null && data.DaliverState != DeliverState.HasBeenSetOut) 
+            if (data != null && data.DaliverState != DeliverState.HasBeenSetOut)
             {
                 data.DaliverState = DeliverState.HasBeenSetOut;
 
@@ -158,8 +158,10 @@ namespace GameWish.Game
 
                 data.SetCountDownID(countDownItem.GetCountDownID());
             }
+            else {
+                Debug.LogError("镖物数据为null或者已经出发 ：" + (data == null ? "null" : data.DaliverState.ToString()));
+            }
         }
-
         /// <summary>
         /// 通过镖物ID获取镖车物体
         /// </summary>
@@ -169,6 +171,11 @@ namespace GameWish.Game
         {
             DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             return car;
+        }
+
+        public void UpdateDeliverSpeedUpMultiple(int deliverID,int speedUpMultiple = 2)
+        {
+            GameDataMgr.S.GetClanData().SetSpeedUpMultipleByDeliverID(deliverID, speedUpMultiple);
         }
         #endregion
 
@@ -183,6 +190,7 @@ namespace GameWish.Game
 
                 if (data != null) 
                 {
+                    data.ResetData();
                     GetDeliverReward(data);
                 }
             }
