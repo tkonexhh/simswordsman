@@ -116,6 +116,12 @@ namespace GameWish.Game
         OnMainMenuOrDiscipleRedPoint,
         #endregion
 
+        #region Deliver
+        /// <summary>
+        /// 打开选择弟子界面
+        /// </summary>
+        OnOpenChallengChoosePanel,
+        #endregion
 
         //KungfuLibrary
         /// <summary>

@@ -356,6 +356,14 @@ namespace GameWish.Game
         }
         private static string GetIconName(int id)
         {
+            if (id == -1)
+            {
+                return "Coin";
+            }
+            else if (id == -2)
+            {
+                return "Baozi";
+            }
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
         #endregion

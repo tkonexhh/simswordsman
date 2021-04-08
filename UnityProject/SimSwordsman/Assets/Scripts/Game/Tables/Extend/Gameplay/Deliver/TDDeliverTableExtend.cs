@@ -19,7 +19,15 @@ namespace GameWish.Game
         {
             return DeliverConfigDic.Values;
         }
-
+        public static DeliverConfig GetDeliverConfig(int deliverID)
+        {
+            if (DeliverConfigDic.ContainsKey(deliverID))
+            {
+                return DeliverConfigDic[deliverID];
+            }
+            Log.e("Œ¥’“µΩ≥µ∂”ID,ID = " + deliverID);
+            return null;
+        }
 
     }
     public class DeliverConfig
@@ -28,6 +36,7 @@ namespace GameWish.Game
         public List<RewardBase> normalReward = new List<RewardBase>();
         public List<RewardBase> RareReward = new List<RewardBase>();
         public int duration;
+        public string name;
 
         public DeliverConfig(TDDeliver tdData)
         {
@@ -48,6 +57,7 @@ namespace GameWish.Game
             }
 
             duration = tdData.duration;
+            name = tdData.name;
         }
     }
 }

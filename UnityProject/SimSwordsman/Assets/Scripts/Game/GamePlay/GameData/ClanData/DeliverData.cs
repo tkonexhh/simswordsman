@@ -1,3 +1,4 @@
+using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,38 @@ namespace GameWish.Game
 			}
 		}
 
+		public List<SingleDeliverDetailData> GetSingleDeliverDetailDataList()
+		{
+			return DaliverDetailDataList;
+		}
+
+		public SingleDeliverDetailData GetSingleDeliverDetailData(int daliverID)
+		{
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DaliverID == daliverID);
+			if (data != null)
+			{
+				return data;
+			}
+            else
+            {
+				Log.e("≥µ∂”IDŒ¥’“µΩ£¨ID = " + daliverID);
+				return null;
+            }
+		}
+
+		public void AddDeliverDisciple(int daliverID, List<int> characterIDList)
+		{
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DaliverID == daliverID);
+            if (data!=null)
+				data.CharacterIDList = characterIDList;
+		}
+		public List<int> GetDeliverDisciple(int daliverID)
+		{
+			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DaliverID == daliverID);
+			if (data != null)
+				return data.CharacterIDList;
+			return null;
+		}
 		public SingleDeliverDetailData AddOrUpdateDeliverData(int daliverID,DeliverState state,List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
 		{
 			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DaliverID == daliverID);
@@ -104,9 +137,19 @@ namespace GameWish.Game
 		public int RewardID;
 		public int RewardCount;
 
-		public DeliverRewadData() { }
+        public DeliverRewadData() { }
 
-		public DeliverRewadData(RewardItemType rewardType,int rewardID,int rewardCount) {
+        public DeliverRewadData(RewardBase rewardBase)
+        {
+			RewardType = rewardBase.RewardItem;
+            if (rewardBase.KeyID==null)
+				RewardID = 0;
+            else
+				RewardID = (int)rewardBase.KeyID;
+			RewardCount = rewardBase.Count;
+		}
+
+        public DeliverRewadData(RewardItemType rewardType,int rewardID,int rewardCount) {
 			this.RewardType = rewardType;
 			this.RewardID = rewardID;
 			this.RewardCount = rewardCount;

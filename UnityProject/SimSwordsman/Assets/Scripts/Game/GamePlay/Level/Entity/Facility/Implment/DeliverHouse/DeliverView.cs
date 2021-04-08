@@ -24,6 +24,7 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.DeliverPanel);
         }
 
+
         public override void SetViewByState(bool isFile = false)
         {
             base.SetViewByState(isFile);

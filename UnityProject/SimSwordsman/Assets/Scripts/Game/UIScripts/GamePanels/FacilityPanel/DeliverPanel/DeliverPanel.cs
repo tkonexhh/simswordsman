@@ -44,8 +44,9 @@ namespace GameWish.Game
         private DeliverLevelInfo m_CurDeliverInfo = null;
         private List<CostItem> m_CostItems;
         private FacilityLevelInfo m_NextFacilityLevelInfo = null;
-
+        public List<SingleDeliverDetailData> DaliverDetailDataList = null;
         private List<DeliverConfig> m_DeliverConfigList = new List<DeliverConfig>();
+        private List<DeliverItem> m_DeliverItemList = new List<DeliverItem>();
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -67,7 +68,7 @@ namespace GameWish.Game
          
             RefreshPanelInfo();
 
-            foreach (var item in m_DeliverConfigList)
+            foreach (var item in DaliverDetailDataList)
             {
                 CreateDeliverItem(item);
             }
@@ -117,9 +118,11 @@ namespace GameWish.Game
             });
         }
 
-        private void CreateDeliverItem(DeliverConfig item)
+        private void CreateDeliverItem(SingleDeliverDetailData item)
         {
             DeliverItem deliverItem = Instantiate(m_DeliverItem, m_DeliverTra).GetComponent<DeliverItem>();
+            deliverItem.OnInit(item);
+            m_DeliverItemList.Add(deliverItem);
         }
 
         private void GetInformationForNeed()
@@ -139,6 +142,7 @@ namespace GameWish.Game
                 m_CostItems = m_NextFacilityLevelInfo.GetUpgradeResCosts();
             }
             m_DeliverConfigList.AddRange(GetDeliverConfigList());
+            DaliverDetailDataList = GameDataMgr.S.GetClanData().DeliverData.GetSingleDeliverDetailDataList();
         }
     }
 }

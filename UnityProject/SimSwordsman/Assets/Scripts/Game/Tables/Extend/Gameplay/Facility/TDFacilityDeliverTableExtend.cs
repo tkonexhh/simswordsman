@@ -33,6 +33,19 @@ namespace GameWish.Game
             return levelInfo;
         }
 
+        public static DeliverLevelInfo GetDeliverLevelInfoForTeamUnlock(int teamUnlock)
+        {
+            foreach (var item in DeliverConfigConfigDic.Values)
+            {
+                if (item.teamUnlock == teamUnlock)
+                {
+                    return item;
+                }
+            }
+            Log.e("解锁车队id未找到, id = {0}", teamUnlock);
+            return null;
+        }
+
         internal static FacilityLevelInfo GetLevelInfo(int level)
         {
             if (DeliverConfigConfigDic.ContainsKey(level))

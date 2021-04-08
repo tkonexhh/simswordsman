@@ -125,8 +125,8 @@ namespace GameWish.Game
                 case FacilityType.Baicaohu:
                     spritename = "baicaohu_title";
                     break;
-                //case FacilityType.PatrolRoom:
-                //    spritename = "patrolroom_title";
+                case FacilityType.Deliver:
+                    spritename = "deliver_title";
                     break;
             }
             return FindSprite(spritename);

@@ -12,5 +12,9 @@ namespace GameWish.Game
 		public const string RewardPanelAtlas = "RewardPanelAtlas";
 		public const string SendDisciplePanelAtlas = "SendDisciplePanelAtlas";
 		public const string FacilityIconAtlas = "FacilityIconAtlas";
+		public const string EquipmentAtlas = "EquipmentAtlas";
+		public const string DeliverAtlas = "DeliverAtlas";
+		public const string MartialArtsAtlas = "MartialArtsAtlas";
+		public const string CharacterHeadIconsAtlas = "CharacterHeadIconsAtlas";
 	}
 }

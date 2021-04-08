@@ -11,6 +11,7 @@ namespace GameWish.Game
     {
         Task,
         Challenge,
+        Deliver,
     }
 
     public class SendDisciplesPanel : AbstractAnimPanel
@@ -123,7 +124,7 @@ namespace GameWish.Game
                     }
                     break;
                 case EventID.OnSendDiscipleDicEvent:
-                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, m_LevelConfigInfo, (PanelType)param[0], m_CommonTaskItemInfo);
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, (PanelType)param[0], m_LevelConfigInfo, m_CommonTaskItemInfo);
                     break;
                 case EventID.OnSendHerbEvent:
                     HandHerbEvent((bool)param[0], (HerbItem)param[1]);
