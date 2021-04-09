@@ -55,7 +55,7 @@ namespace GameWish.Game
                     {
                         this.OnEndCallBackWrap.Fire(0);
                     }
-
+                    SetSpeedUpMultiply(1);
                     CountDowntMgr.S.StopCountDownItemTest(CountDownIndex);
                 }
                 else
