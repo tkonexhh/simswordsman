@@ -53,6 +53,10 @@ namespace GameWish.Game
 
         private int m_AllEnemyCount = 0;
         private int m_LoadedEnemyCount = 0;
+        public delegate void OnSpawnCharacterComplete(List<CharacterController> owrControllers, List<CharacterController> enemyControllers);
+        public delegate void OnBattleExit(List<CharacterController> owrControllers, List<CharacterController> enemyControllers);
+        public OnSpawnCharacterComplete onSpawnOwerCharacterComplete;
+        public OnBattleExit onBattleExit;
 
         #region IMgr
 
@@ -213,11 +217,15 @@ namespace GameWish.Game
             m_LoadedEnemyCount = 0;
 
             SpawnOurCharacter(ourSelectedCharacters);
+
             enemies.ForEach(i =>
             {
                 SpawnEnemyCharacter(i.ConfigId, i.Number, i.Atk);
             });
             MusicMgr.S.PlayBattleMusic();
+
+            if (onSpawnOwerCharacterComplete != null)
+                onSpawnOwerCharacterComplete.Invoke(m_OurCharacterList, m_EnemyCharacterList);
         }
 
         private void OnAllEnemyLoaded()
@@ -240,6 +248,9 @@ namespace GameWish.Game
 
         private void OnExitBattle()
         {
+            if (onBattleExit != null)
+                onBattleExit.Invoke(m_OurCharacterList, m_EnemyCharacterList);
+
             m_IsBattleBegin = false;
             m_OurCharacterList.ForEach(i =>
             {
@@ -283,6 +294,7 @@ namespace GameWish.Game
                 float atkEnhance = m_SelectedHerbList.Any(j => j == HerbType.ChiDanZhuangQiWan) ? TDHerbConfigTable.GetEffectParam((int)HerbType.ChiDanZhuangQiWan) : 0;
                 float hpEnhance = m_SelectedHerbList.Any(j => j == HerbType.LianHuaQingShenLu) ? TDHerbConfigTable.GetEffectParam((int)HerbType.LianHuaQingShenLu) : 0;
                 i.CharacterModel.SetHp(baseAtk * (1 + hpEnhance));
+                i.CharacterModel.SetMaxHp(baseAtk * (1 + hpEnhance));
                 i.CharacterModel.SetAtk(baseAtk * (1 + atkEnhance));
                 m_TotalOurAtk += i.CharacterModel.GetAtk();
                 m_TotalOurHp += i.CharacterModel.GetHp();
@@ -320,6 +332,7 @@ namespace GameWish.Game
                     float debuff = m_SelectedHerbList.Any(j => j == HerbType.JinZhenQingCheGao) ? TDHerbConfigTable.GetEffectParam((int)HerbType.JinZhenQingCheGao) : 0;
 
                     controller.CharacterModel.SetHp(atk * (1 - debuff));
+                    controller.CharacterModel.SetMaxHp(atk * (1 - debuff));
                     controller.CharacterModel.SetAtk(atk * (1 - debuff));
 
                     m_TotalEnemyAtk += controller.CharacterModel.GetAtk();

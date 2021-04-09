@@ -382,6 +382,10 @@ namespace GameWish.Game
         OnRefeshMainTask,
         OnRefeshDailyTask,
         OnMainMenuDailyTaskRedPoint,
+
+        #region Tower
+        OnRefeshTowerCoin,
+        #endregion
     }
 
 }

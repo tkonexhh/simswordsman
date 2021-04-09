@@ -12,6 +12,7 @@ namespace GameWish.Game
         protected int m_Id = 0;
         protected int m_Level = 1;
         protected double m_Hp = 0;
+        protected double m_MaxHp = 0;
         protected double m_Atk = 1;
         protected float m_MoveSpeed = 1.5f;//�����ƶ��ٶ�
         private CharacterItem m_CharacterItem = null;
@@ -71,6 +72,16 @@ namespace GameWish.Game
         public void AddExp(int deltaExp)
         {
             m_CharacterItem?.AddCharacterExp(deltaExp);
+        }
+
+        public void SetMaxHp(double hp)
+        {
+            m_MaxHp = hp;
+        }
+
+        public double GetMaxHp()
+        {
+            return m_MaxHp;
         }
 
         public void SetHp(double hp)
@@ -181,7 +192,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ĳһ���򹦷��Ȩ�ر������Ӿ���?
+        /// ĳһ���򹦷��Ȩ�ر������Ӿ���?
         /// </summary>
         /// <returns></returns>
         public void DistributionKungfuExp(int expValue)

@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class RewardIInfoItem : MonoBehaviour,ItemICom
-	{
+    public class RewardIInfoItem : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
@@ -22,6 +22,7 @@ namespace GameWish.Game
         private bool m_IsSuccess;
 
         private LevelConfigInfo m_LevelConfigInfo = null;
+        private TowerLevelConfig m_TowerLevelConfig = null;
         private CharacterItem m_CurCharacterItem = null;
         private CharacterController m_CharacterController = null;
         private PanelType m_PanelType;
@@ -42,6 +43,10 @@ namespace GameWish.Game
                     m_LevelConfigInfo = (LevelConfigInfo)obj[1];
                     m_CharacterController = t as CharacterController;
                     break;
+                case PanelType.Tower:
+                    m_TowerLevelConfig = (TowerLevelConfig)obj[1];
+                    m_CharacterController = t as CharacterController;
+                    break;
                 default:
                     break;
             }
@@ -58,12 +63,12 @@ namespace GameWish.Game
         public void SetButtonEvent(Action<object> action)
         {
         }
-    
+
         private void RefreshPanelInfo()
         {
 
             m_DiscipleName.text = m_CurCharacterItem.name;
-            m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
+            m_ExpProportion.value = ((float)m_CharacterController.GetCurExp() / m_CharacterController.GetExpLevelUpNeed());
 
             if (!m_IsSuccess)
             {
@@ -81,9 +86,13 @@ namespace GameWish.Game
                     int expChallenge = (int)FoodBuffSystem.S.Exp(m_LevelConfigInfo.GetExpRoleReward());
                     m_ExpCont.text = Define.PLUS + expChallenge;
                     break;
+                case PanelType.Tower:
+                    int exp = (int)FoodBuffSystem.S.Exp(m_TowerLevelConfig.rewardExp);
+                    m_ExpCont.text = Define.PLUS + exp;
+                    break;
                 default:
                     break;
             }
         }
-	}
+    }
 }

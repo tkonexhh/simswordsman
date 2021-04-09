@@ -20,7 +20,7 @@ namespace GameWish.Game
         public override void InitWithEmptyData()
         {
             playerInfoData = new PlayerData();
-            playerInfoData.SetDefaultValue();
+            playerInfoData.InitWithEmptyData();
 
             clanData = new ClanData();
             clanData.SetDefaultValue();

@@ -30,6 +30,7 @@ namespace GameWish.Game
         private bool m_IsSuccess;
         private LevelConfigInfo m_LevelConfigInfo = null;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
+        private TowerLevelConfig m_TowerLevelConfig = null;
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
@@ -69,6 +70,7 @@ namespace GameWish.Game
                     break;
             }
         }
+
 
         private void HandChallengeReward(object[] param)
         {
@@ -111,7 +113,7 @@ namespace GameWish.Game
                         bool isBossLevel = false;
                         if (m_PanelType == PanelType.Challenge)
                         {
-                            if (m_LevelConfigInfo != null) 
+                            if (m_LevelConfigInfo != null)
                             {
                                 isBossLevel = TDLevelConfigTable.IsBossLevel(m_LevelConfigInfo.level);
                             }
@@ -154,7 +156,7 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallBack);
-                    RefreshInterAdTimes(); 
+                    RefreshInterAdTimes();
                     if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
                         return;
 
@@ -167,6 +169,10 @@ namespace GameWish.Game
                     break;
                 case PanelType.Challenge:
                     OpenParentChallenge();
+                    break;
+                case PanelType.Tower:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.TowerPanel);
                     break;
             }
         }
@@ -198,7 +204,7 @@ namespace GameWish.Game
                     GameDataMgr.S.GetPlayerData().SetIsNewUser();
                 if (GameDataMgr.S.GetPlayerData().GetNoBroadcastTimes() > 0)
                 {
-                    ///ÓÐÃâ²¥´ÎÊý
+                    ///ï¿½ï¿½ï¿½â²¥ï¿½ï¿½ï¿½ï¿½
                     GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(-1);
                     return;
                 }
@@ -244,10 +250,20 @@ namespace GameWish.Game
 
                         GameDataMgr.S.GetPlayerData().recordData.AddChanllenge();
 
-                        if (GameDataMgr.S.GetPlayerData().CurrentChallengeLevelIsPlayInterAD()) 
+                        if (GameDataMgr.S.GetPlayerData().CurrentChallengeLevelIsPlayInterAD())
                         {
                             AdsManager.S.PlayInterAD("ChallengePlayInterAD", (x) => { });
                         }
+                    }
+                    break;
+                case PanelType.Tower:
+                    m_TowerLevelConfig = (TowerLevelConfig)args[1];
+
+                    m_IsSuccess = (bool)args[2];
+                    if (m_IsSuccess)
+                    {
+                        m_TowerLevelConfig.PrepareReward();
+                        MainGameMgr.S.TowerSystem.PassLevel();
                     }
                     break;
                 default:
@@ -286,6 +302,10 @@ namespace GameWish.Game
                 case PanelType.Challenge:
                     ItemICom ChaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
                     ChaRewardItemICom.OnInit(item, null, m_PanelType, m_LevelConfigInfo, m_IsSuccess, this);
+                    break;
+                case PanelType.Tower:
+                    ItemICom towerRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                    towerRewardItemICom.OnInit(item, null, m_PanelType, m_TowerLevelConfig, m_IsSuccess, this);
                     break;
                 default:
                     break;

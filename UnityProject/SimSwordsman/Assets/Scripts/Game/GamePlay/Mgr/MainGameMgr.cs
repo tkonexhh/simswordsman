@@ -20,6 +20,7 @@ namespace GameWish.Game
         private RawMatCollectSystem m_RawMatCollectSystem = null;
         //private MedicinalPowderMgr m_MedicinalPowderMgr = null;
         private TaskMgr m_TaskMgr = null;
+        private TowerSystem m_TowerSystem = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
@@ -33,6 +34,7 @@ namespace GameWish.Game
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
         public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
         public TaskMgr TaskMgr { get => m_TaskMgr; }
+        public TowerSystem TowerSystem { get => m_TowerSystem; }
 
         public bool IsMainMenuPanelOpen = false;
 
@@ -52,9 +54,6 @@ namespace GameWish.Game
 
             m_InventoryMgr = gameObject.AddComponent<InventoryMgr>();
             m_InventoryMgr.OnInit();
-
-            // m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ��ʱû��
-            //m_MainTaskMgr.OnInit();
 
             m_CommonTaskMgr = gameObject.AddComponent<CommonTaskMgr>();
             m_CommonTaskMgr.OnInit();
@@ -79,6 +78,9 @@ namespace GameWish.Game
 
             m_BattleFieldMgr = gameObject.AddComponent<BattleFieldMgr>();
             m_BattleFieldMgr.OnInit();
+
+            m_TowerSystem = gameObject.AddComponent<TowerSystem>();//必须要在BattleFieldMgr之后初始化
+            m_TowerSystem.OnInit();
 
             m_CharacterMgr.InitData();
 
@@ -122,7 +124,7 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
-
+            m_TowerSystem.OnDestroyed();
         }
         #endregion
     }

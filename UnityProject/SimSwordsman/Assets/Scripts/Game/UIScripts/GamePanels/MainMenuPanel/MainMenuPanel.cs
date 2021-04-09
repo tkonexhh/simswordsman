@@ -180,6 +180,12 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 FloatMessage.S.ShowMsg("暂未开放，敬请期待");
+                //TODO 添加解锁等级限制
+                if (PlatformHelper.isTestMode)
+                {
+                    UIMgr.S.OpenPanel(UIID.TowerPanel);
+                }
+
             });
             m_CreateCoinBtn.onClick.AddListener(() =>
             {
