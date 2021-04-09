@@ -77,5 +77,14 @@ namespace GameWish.Game
         UserAccountPanel,
         MaskWithAlphaZeroPanel,
         DailyTaskPanel,//每日任务
+
+        #region 伏魔塔
+        TowerPanel,
+        TowerRulePanel,
+        TowerShopPanel,
+        TowerADRefeshPanel,
+        TowerSelectCharacterPanel,
+        TowerRevivePanel,
+        #endregion
     }
 }

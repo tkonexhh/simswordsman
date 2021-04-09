@@ -91,6 +91,12 @@ namespace GameWish.Game
                 //Task
                 TDDailyTaskTable.metaData,
                 TDMainTaskTable.metaData,
+
+                //Tower
+                TDTowerConfigTable.metaData,
+                TDTowerEnemyConfigTable.metaData,
+                TDTowerRewardConfigTable.metaData,
+                TDTowerShopTable.metaData,
             };
         }
     }

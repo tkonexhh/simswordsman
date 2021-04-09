@@ -116,6 +116,24 @@ namespace GameWish.Game
 
         #region Public
 
+        public void LookAtTarget(Transform target)
+        {
+            //TODO 修改实现方式
+            var followCamera = gameObject.AddMissingComponent<FixedFollowCamera>();
+            followCamera.SetTarget(target);
+            Timer.S.Post2Scale(i => followCamera.DestorySelf(), 0.5f);
+        }
+
+        public void OpenGameCamera()
+        {
+            m_Camera.enabled = true;
+        }
+
+        public void CloseGameCamera()
+        {
+            m_Camera.enabled = false;
+        }
+
         #endregion
 
         #region Private

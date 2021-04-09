@@ -9,11 +9,13 @@ namespace GameWish.Game
 
     public class WorldUIPanel : AbstractPanel
     {
-        // private static WorldUIPanel instance;
         public static WorldUIPanel S;
         public WorldUI_WorkTalk m_WalkTalk;
+        public WorldUI_HandTips m_HandTips;
         public ItemTips m_ItemTips;
 
+
+        private int m_TimerHandTips = -1;
 
         private bool m_IsBattle = false;
 
@@ -23,6 +25,7 @@ namespace GameWish.Game
 
             GameObjectPoolMgr.S.AddPool("WalkTalk", m_WalkTalk.gameObject, -1, 5);
             GameObjectPoolMgr.S.AddPool("ItemTips", m_ItemTips.gameObject, -1, 5);
+            GameObjectPoolMgr.S.AddPool("HandTips", m_HandTips.gameObject, -1, 2);
         }
 
         protected override void OnOpen()
@@ -49,7 +52,8 @@ namespace GameWish.Game
                 GameObjectPoolMgr.S.Recycle(workTalkGo);
             }, 3.0f);
         }
-        public void ShowWorkText(Transform character,string name, string cont,Sprite icom)
+
+        public void ShowWorkText(Transform character, string name, string cont, Sprite icom)
         {
             var itemTipsGo = GameObjectPoolMgr.S.Allocate("ItemTips");
             itemTipsGo.transform.SetParent(transform);
@@ -64,6 +68,27 @@ namespace GameWish.Game
                 GameObjectPoolMgr.S.Recycle(itemTipsGo);
             }, 3.0f);
         }
+
+        public void ShowHandTips(Transform target)
+        {
+            if (m_TimerHandTips != -1)
+            {
+                Timer.S.Cancel(m_TimerHandTips);
+            }
+
+            m_HandTips.followTransform = target;
+
+            m_HandTips.gameObject.SetActive(true);
+
+            m_TimerHandTips = Timer.S.Post2Scale(i =>
+                {
+                    m_HandTips.gameObject.SetActive(false);
+                    m_HandTips.followTransform = null;
+                    m_HandTips.transform.localPosition = new Vector3(5000, 5000, 0);
+                    m_HandTips.transform.localScale = Vector3.one;
+                }, 2.0f);
+        }
+
         private void HandleEvent(int key, params object[] args)
         {
             switch (key)

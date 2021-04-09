@@ -30,7 +30,7 @@ namespace GameWish.Game
         #region Public Methods      
 
         /// <summary>
-        /// ¸ù¾ÝÀàÐÍ·µ»ØËùÒÔ×°±¸
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
         /// </summary>
         /// <param name="equipType"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace GameWish.Game
         //    return m_InventoryDataWrapper.GetAllEquipmentForType(equipType);
         //}
         /// <summary>
-        /// »ñÈ¡ËùÓÐ²Ö¿âÖÐÎïÆ· 
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð²Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ· 
         /// </summary>
         /// <returns></returns>
         public List<ItemBase> GetAllInventoryItemList()
@@ -48,7 +48,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// µÃµ½Ä³¸öitemµÄµ±Ç°³ÖÓÐÊýÁ¿
+        /// ï¿½Ãµï¿½Ä³ï¿½ï¿½itemï¿½Äµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Í¨¹ýitemÀàÐÍµÃµ½itembase
+        /// Í¨ï¿½ï¿½itemï¿½ï¿½ï¿½ÍµÃµï¿½itembase
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡ÎïÆ·µÄÍ¼±êÃû³Æ
+        /// ï¿½ï¿½È¡ï¿½ï¿½Æ·ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -125,7 +125,7 @@ namespace GameWish.Game
             return list;
         }
         /// <summary>
-        /// ¸ù¾ÝID»ñÈ¡Herb
+        /// ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½È¡Herb
         /// </summary>
         /// <param name="herbID"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡ËùÓÐ²Ö¿âÖÐ×°±¸ÐÅÏ¢
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð²Ö¿ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <returns></returns>
         public List<ItemBase> GetAllEquipmentItemList()
@@ -143,7 +143,7 @@ namespace GameWish.Game
             return m_InventoryDataWrapper.WarehouseItems;
         }
         /// <summary>
-        /// »ñÈ¡×°±¸µÄ³öÊÛ¼Û¸ñ
+        /// ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Û¼Û¸ï¿½
         /// </summary>
         /// <param name="equipmentItem"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace GameWish.Game
         //}
 
         /// <summary>
-        /// ´Ó²Ö¿âÖÐ¼õÉÙ×°±¸
+        /// ï¿½Ó²Ö¿ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½×°ï¿½ï¿½
         /// </summary>
         /// <param name="equipmentItem"></param>
         /// <param name="delta"></param>
@@ -183,7 +183,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// Íù²Ö¿âÖÐÌí¼Ó×°±¸
+        /// ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
         /// </summary>
         /// <param name="itemBase"></param>
         /// <param name="delta"></param>
@@ -216,8 +216,50 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
         }
 
+        public int GetItemCount(ItemBase item)
+        {
+            if (item == null)
+                return 0;
+            switch (item.PropType)
+            {
+                case PropType.None:
+                    break;
+                case PropType.Armor:
+                    {
+                        var data = GameDataMgr.S.GetClanData().inventoryData.armorDBDataList.Find(x => x.ArmorID == (item as ArmorItem).ArmorID);
+                        if (data == null)
+                            return 0;
+
+                        return data.Number;
+                    }
+                case PropType.Arms:
+                    {
+                        var data = GameDataMgr.S.GetClanData().inventoryData.armsDBDataList.Find(x => x.ArmsID == (item as ArmsItem).ArmsID);
+                        if (data == null)
+                            return 0;
+
+                        return data.Number;
+                    }
+                case PropType.RawMaterial:
+                    {
+                        return m_InventoryDataWrapper.GetRawMaterialNumberForID((item as PropItem).PropSubType);
+                    }
+
+                case PropType.Kungfu:
+                    {
+                        var data = GameDataMgr.S.GetClanData().inventoryData.kungfuList.Find(x => x.KungfuType == (item as KungfuItem).KungfuType);
+                        if (data == null)
+                            return 0;
+
+                        return data.Number;
+                    }
+            }
+
+            return 0;
+        }
+
         /// <summary>
-        /// »ñÈ¡ÕÐÄ¼ÁîÊýÁ¿
+        /// ï¿½ï¿½È¡ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="recruitType"></param>
         public int GetRecruitmentOrderCount(RecruitType recruitType)
@@ -226,19 +268,19 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡ËùÓÐÕÐÄ¼ÁîµÄÊýÁ¿
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public int GetAllRecruitmentOrderCount()
         {
-            return GetRecruitmentOrderCount(RecruitType.GoldMedal)+ GetRecruitmentOrderCount(RecruitType.SilverMedal);
+            return GetRecruitmentOrderCount(RecruitType.GoldMedal) + GetRecruitmentOrderCount(RecruitType.SilverMedal);
         }
 
         /// <summary>
-        /// ÅÐ¶Ï²ÄÁÏÊÇ·ñ×ã¹»
+        /// ï¿½Ð¶Ï²ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ã¹»
         /// </summary>
         /// <returns></returns>
-        public bool HaveEnoughItem(List<CostItem> items,bool isShow = true)
+        public bool HaveEnoughItem(List<CostItem> items, bool isShow = true)
         {
             foreach (var item in items)
             {
@@ -250,7 +292,7 @@ namespace GameWish.Game
             return true;
         }
         /// <summary>
-        /// ¼õÉÙ²Ö¿â²ÄÁÏ
+        /// ï¿½ï¿½ï¿½Ù²Ö¿ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="id"></param>
         public void ReduceItems(List<CostItem> items)

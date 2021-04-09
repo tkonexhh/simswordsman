@@ -39,8 +39,11 @@ namespace GameWish.Game
             }
         }
 
+        private bool m_EnableInput = true;
+
         public void Init()
         {
+            m_EnableInput = true;
             EasyTouch.On_TouchStart += On_TouchStart;
             EasyTouch.On_TouchDown += On_TouchDown;
             EasyTouch.On_TouchUp += On_TouchUp;
@@ -69,19 +72,24 @@ namespace GameWish.Game
 
         private void On_TouchStart(Gesture gesture)
         {
-            {
-                foreach (var ob in m_TouchObservers)
-                {
-                    bool touched = ob.On_TouchStart(gesture);
+            if (!m_EnableInput)
+                return;
 
-                    if (touched && ob.BlockInput())
-                        break;
-                }
+            foreach (var ob in m_TouchObservers)
+            {
+                bool touched = ob.On_TouchStart(gesture);
+
+                if (touched && ob.BlockInput())
+                    break;
             }
+
         }
 
         private void On_TouchDown(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             m_Time = DateTime.Now;
             //HideTouchTip();
 
@@ -96,6 +104,9 @@ namespace GameWish.Game
 
         private void On_TouchUp(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             //start check
             //if (AbTestActor.IsShowHandTip())
             //{
@@ -114,6 +125,9 @@ namespace GameWish.Game
 
         private void On_Drag(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             if (IsDragEnabled == false)
                 return;
 
@@ -130,6 +144,9 @@ namespace GameWish.Game
 
         private void On_Swipe(Gesture gesture)
         {
+            if (!m_EnableInput)
+                return;
+
             foreach (var ob in m_TouchObservers)
             {
                 bool touched = ob.On_Swipe(gesture);
@@ -167,5 +184,15 @@ namespace GameWish.Game
         //        EffectMgr.S.HideTouchTip();
         //    }
         //}
+
+        public void EnableInput()
+        {
+            m_EnableInput = true;
+        }
+
+        public void DisableInput()
+        {
+            m_EnableInput = false;
+        }
     }
 }
