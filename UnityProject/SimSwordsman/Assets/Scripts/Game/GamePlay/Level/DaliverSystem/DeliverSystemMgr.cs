@@ -38,6 +38,7 @@ namespace GameWish.Game
         private float m_DeliverCarComeBackIntervalTime = 5.0f;
 
         private Queue<DeliverCar> m_DeliverCarComeBackQueue = new Queue<DeliverCar>();
+        private Queue<DeliverCar> m_DeliverCarGoOutQueue = new Queue<DeliverCar>();
         #endregion
 
         #region public
@@ -182,10 +183,16 @@ namespace GameWish.Game
             DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             return car;
         }
-
         public void UpdateDeliverSpeedUpMultiple(int deliverID,int speedUpMultiple = 2)
         {
             GameDataMgr.S.GetClanData().SetSpeedUpMultipleByDeliverID(deliverID, speedUpMultiple);
+        }
+        public void AddDeliverCarGoOut(DeliverCar car) 
+        {
+            if (m_DeliverCarGoOutQueue.Contains(car) == false) 
+            {
+                m_DeliverCarGoOutQueue.Enqueue(car);
+            }            
         }
         #endregion
 
@@ -210,7 +217,21 @@ namespace GameWish.Game
                 }
                 else {
                     yield return null;
-                }                
+                }
+
+                if (m_DeliverCarGoOutQueue.Count > 0)
+                {
+                    DeliverCar car = m_DeliverCarGoOutQueue.Dequeue();
+                    if (car != null)
+                    {
+                        car.StartMoveGoOut();
+                    }
+                    yield return new WaitForSeconds(m_DeliverCarComeBackIntervalTime);
+                }
+                else
+                {
+                    yield return null;
+                }
             }
         }
         /// <summary>
@@ -282,6 +303,8 @@ namespace GameWish.Game
                 DeliverRewadData tmpData = RewadDataList[i];
                 rewardList.Add(RewardMgr.S.GetRewardBase(tmpData.RewardType, tmpData.RewardID, tmpData.RewardCount));
             }
+            rewardList.ForEach(x => x.AcceptReward());
+
             UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewardList);
         }
         #endregion

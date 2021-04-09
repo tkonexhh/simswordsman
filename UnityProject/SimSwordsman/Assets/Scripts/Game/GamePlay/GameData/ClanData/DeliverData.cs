@@ -131,9 +131,9 @@ namespace GameWish.Game
 		{
 			TDDeliver data = TDDeliverTable.GetData(DeliverID);
 			StartTimeWithReally = DateTime.Now;
-			//EndTimeWithReally = StartTime.AddMinutes(data.duration);
-			EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
-			StartTimeWithScal = StartTimeWithReally;
+            EndTimeWithReally = StartTimeWithReally.AddMinutes(data.duration);
+            //EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
+            StartTimeWithScal = StartTimeWithReally;
 
 			TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
 			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
