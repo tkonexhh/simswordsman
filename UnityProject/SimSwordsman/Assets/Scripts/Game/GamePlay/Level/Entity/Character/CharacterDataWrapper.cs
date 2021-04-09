@@ -636,7 +636,7 @@ namespace GameWish.Game
         }
         public void SetDeliverID(int deliverID) 
         {
-            m_ItemDbData.SetDeliverID(deliverID);
+            m_ItemDbData.SetDeliverID(deliverID);            
         }
         public int GetDeliverID() {
             return m_ItemDbData.m_DeliverID;

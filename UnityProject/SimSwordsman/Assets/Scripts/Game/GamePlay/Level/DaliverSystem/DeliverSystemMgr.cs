@@ -15,6 +15,7 @@ namespace GameWish.Game
         private const string DeliverCarPrefabName = "DeliverCar";
 
         private List<SingleDeliverDetailData> m_DaliverDetailDataList = null;
+        /// <summary>
         /// 镖车路径
         /// </summary>
         private DeliverPath m_DeliverPath;
@@ -31,7 +32,12 @@ namespace GameWish.Game
         public Vector3 GoOutSidePos = new Vector3(-11f, -5f);
 
         private Vector2 m_DeliverCarOriginPos = new Vector3(0, -3.6f, 0);
+        /// <summary>
+        /// 镖车回来时的间隔时间，若同时回来，则间隔一段时间分别回来
+        /// </summary>
+        private float m_DeliverCarComeBackIntervalTime = 5.0f;
 
+        private Queue<DeliverCar> m_DeliverCarComeBackQueue = new Queue<DeliverCar>();
         #endregion
 
         #region public
@@ -54,27 +60,32 @@ namespace GameWish.Game
 
             //检测押镖任务
             List<SingleDeliverDetailData> dataList = GameDataMgr.S.GetClanData().GetAllDaliverData();
-            var tmpDataList = dataList.Where(x => x.DaliverState == DeliverState.HasBeenSetOut).ToList();
+            var tmpDataList = dataList.Where(x => x.DaliverState == DeliverState.HasBeenGoOut).ToList();
             if (tmpDataList != null && tmpDataList.Count > 0)
             {
+                var alreadyFinishedDeliverDataList = new List<SingleDeliverDetailData>();
                 for (int i = 0; i < tmpDataList.Count; i++)
                 {
-                    SingleDeliverDetailData data = tmpDataList[i];
+                    SingleDeliverDetailData deliverData = tmpDataList[i];
 
-                    if (data.DaliverState == DeliverState.HasBeenSetOut)
+                    if (deliverData.DaliverState == DeliverState.HasBeenGoOut)
                     {
-                        CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
+                        CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(deliverData.GetRemainTimeSeconds(), null, (remainTime) =>
                         {
                             DeliverCar car = SpawnDeliverCar();
+                            car.Init(deliverData.DeliverID, deliverData.CharacterIDList, GoOutSidePos);
                             AddDeliverCarToList(car);
-                            car.Init(data.DeliverID, data.CharacterIDList, GoOutSidePos);
-                            car.StartMoveComeBack();
+                            //car.StartMoveComeBack();
+
+                            m_DeliverCarComeBackQueue.Enqueue(car);
                         });
-                        data.SetCountDownID(countDownItem.GetCountDownID());
-                        countDownItem.SetSpeedUpMultiply(data.SpeedUpMultiple);
+                        deliverData.SetCountDownID(countDownItem.GetCountDownID());
+                        countDownItem.SetSpeedUpMultiply(deliverData.SpeedUpMultiple);                   
                     }
                 }
             }
+
+            MainGameMgr.S.StartCoroutine(DeliverCarWaitIntervalTimeComeBack());
         }
         public List<DeliverRewadData> GetRandomReward(DeliverConfig deliverConfig)
         {
@@ -94,7 +105,6 @@ namespace GameWish.Game
 
             return deliverRewadDatas;
         }
-
         public DeliverCar SpawnDeliverCar()
         {
             GameObject go = GameObjectPoolMgr.S.Allocate(DeliverCarPrefabName);
@@ -115,6 +125,13 @@ namespace GameWish.Game
             {
                 m_AllDeliverCarList.Add(deliverCar);
             }
+
+            Debug.LogError("-------------------");
+            for (int i = 0; i < m_AllDeliverCarList.Count; i++)
+            {
+                Debug.LogError("add :" + m_AllDeliverCarList[i].DeliverID);
+            }
+            Debug.LogError("-------------------");
         }
         /// <summary>
         /// 缓存列表中移除镖车
@@ -132,28 +149,28 @@ namespace GameWish.Game
         /// 开始押镖
         /// </summary>
         /// <param name="deliverID">镖物id</param>
-        /// <param name="rewardDataList">奖励列表</param>
-        /// <param name="characterIDList">押镖弟子ID列表</param>
-        public void StartDeliver(int deliverID, List<DeliverRewadData> rewardDataList, List<int> characterIDList)
+        public void StartDeliver(int deliverID)
         {
             //SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
             SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
 
-            if (data != null && data.DaliverState != DeliverState.HasBeenSetOut)
+            if (data != null && data.DaliverState != DeliverState.HasBeenGoOut)
             {
-                data.DaliverState = DeliverState.HasBeenSetOut;
+                data.DaliverState = DeliverState.HasBeenGoOut;
 
                 data.UpdateStartTime();
 
                 DeliverCar car = SpawnDeliverCar();
-                AddDeliverCarToList(car);
                 car.Init(deliverID, data.CharacterIDList, m_DeliverCarOriginPos);
+                AddDeliverCarToList(car);
 
                 SetCharacterStateDeliver(data.CharacterIDList, data.DeliverID);
 
                 CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
                 {
-                    car.StartMoveComeBack();
+                    //car.StartMoveComeBack();
+
+                    m_DeliverCarComeBackQueue.Enqueue(car);
                 });
 
                 data.SetCountDownID(countDownItem.GetCountDownID());
@@ -169,6 +186,10 @@ namespace GameWish.Game
         /// <returns></returns>
         public DeliverCar GetDeliverCarByDeliverID(int deliverID)
         {
+            for (int i = 0; i < m_AllDeliverCarList.Count; i++)
+            {
+                Debug.LogError("get:" + m_AllDeliverCarList[i].DeliverID);
+            }
             DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             return car;
         }
@@ -180,6 +201,35 @@ namespace GameWish.Game
         #endregion
 
         #region private
+        /// <summary>
+        /// 镖车间隔回来
+        /// </summary>
+        /// <param name="dataList">镖车数据</param>
+        /// <returns></returns>
+        private IEnumerator DeliverCarWaitIntervalTimeComeBack()
+        {
+            while (true) 
+            {
+                if (m_DeliverCarComeBackQueue.Count > 0)
+                {
+                    DeliverCar car = m_DeliverCarComeBackQueue.Dequeue();
+                    if (car != null)
+                    {
+                        Debug.LogError("执行");
+                        car.StartMoveComeBack();
+                    }
+                    yield return new WaitForSeconds(m_DeliverCarComeBackIntervalTime);
+                }
+                else {
+                    yield return null;
+                }                
+            }
+        }
+        /// <summary>
+        /// 镖车到达后
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="param"></param>
         private void OnDeliverCarArriveCallBack(int key, object[] param)
         {
             if (param != null && param.Length > 0) 

@@ -57,7 +57,7 @@ namespace GameWish.Game
 		public bool IsGoOutSide(int deliverID) 
 		{
 			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
-			if (data != null && data.DaliverState == DeliverState.HasBeenSetOut) 
+			if (data != null && data.DaliverState == DeliverState.HasBeenGoOut) 
 			{
 				return true;
 			}
@@ -156,7 +156,7 @@ namespace GameWish.Game
 		public void ResetData()
 		{
 			this.SpeedUpMultiple = 1;
-			DaliverState = DeliverState.DidNotSetOut;
+			DaliverState = DeliverState.DidNotGoOut;
 			CharacterIDList?.Clear();
 			RewadDataList = DeliverSystemMgr.S.GetRandomReward(TDDeliverTable.GetDeliverConfig(DeliverID));
 		}
@@ -230,10 +230,10 @@ namespace GameWish.Game
 		/// <summary>
 		/// 已出发
 		/// </summary>
-		HasBeenSetOut,  
+		HasBeenGoOut,  
 		/// <summary>
 		/// 未出发
 		/// </summary>
-		DidNotSetOut,	
+		DidNotGoOut,	
 	}
 }
