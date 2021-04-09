@@ -77,7 +77,6 @@ namespace GameWish.Game
         {
             m_Hp = hp;
         }
-
         public double GetHp()
         {
             return m_Hp;

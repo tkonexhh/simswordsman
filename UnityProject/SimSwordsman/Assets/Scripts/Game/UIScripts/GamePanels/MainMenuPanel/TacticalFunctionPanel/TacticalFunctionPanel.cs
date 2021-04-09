@@ -190,7 +190,7 @@ namespace GameWish.Game
             m_Accept.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                SwitchCharacterController();
+                m_SelectedList = Transformation(m_SelectedDiscipleDic);
                 ////if (m_SelectedList != null)
                 //return;
                 if (m_SelectedList.Count < m_CommonTaskItemInfo.GetCharacterAmount())
@@ -223,10 +223,6 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-        }
-
-        private void SwitchCharacterController()
-        {
         }
 
         //private void LogCallBack(AbstractPanel abstractPanel)

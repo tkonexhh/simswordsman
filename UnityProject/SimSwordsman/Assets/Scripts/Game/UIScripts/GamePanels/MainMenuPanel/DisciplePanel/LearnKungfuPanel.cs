@@ -116,19 +116,24 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                PanelPool.S.AddPromotion(new LearnMartialArts(m_CharacterItem.id, m_CharacterItem.atkValue, (KungfuItem)m_SelectedItemBase));
+                float oldCharacterAtkValue = m_CharacterItem.atkValue;
 
-                MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
-               
-                MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
+                bool learn = MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
 
-                EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
+                if (learn)
+                {
+                    PanelPool.S.AddPromotion(new LearnMartialArts(m_CharacterItem.id, oldCharacterAtkValue, (KungfuItem)m_SelectedItemBase));
 
-                m_CharacterItem.CheckKungfuRedPoint();
+                    MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
 
-                DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
+                    EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
 
-                UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
+                    m_CharacterItem.CheckKungfuRedPoint();
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
+
+                    UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
+                }
             });
         }
         private void Update()
