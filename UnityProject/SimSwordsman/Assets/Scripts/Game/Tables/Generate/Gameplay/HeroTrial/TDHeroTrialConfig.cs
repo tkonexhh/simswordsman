@@ -8,42 +8,48 @@ using Qarth;
 
 namespace GameWish.Game
 {
-    public partial class TDDeliver
+    public partial class TDHeroTrialConfig
     {
         
        
-        private EInt m_Level = 0;   
-        private string m_Name;   
-        private string m_NormalReward;   
-        private string m_RareReward;   
-        private EInt m_Duration = 0;  
+        private EInt m_Id = 0;   
+        private string m_Clan;   
+        private string m_NameDes;   
+        private string m_JobName;   
+        private string m_OrdinaryEnemy;   
+        private string m_EliteEnemy;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
         /// <summary>
         /// ID
         /// </summary>
-        public  int  level {get { return m_Level; } }
+        public  int  id {get { return m_Id; } }
        
         /// <summary>
-        /// 车队名字
+        /// 门派
         /// </summary>
-        public  string  name {get { return m_Name; } }
+        public  string  clan {get { return m_Clan; } }
        
         /// <summary>
-        /// 普通奖励池
+        /// 帮派名称
         /// </summary>
-        public  string  normalReward {get { return m_NormalReward; } }
+        public  string  nameDes {get { return m_NameDes; } }
        
         /// <summary>
-        /// 稀有奖励池
+        /// 职位
         /// </summary>
-        public  string  rareReward {get { return m_RareReward; } }
+        public  string  jobName {get { return m_JobName; } }
        
         /// <summary>
-        /// 押镖时长，分钟
+        /// 敌方刷新-普通敌方
         /// </summary>
-        public  int  duration {get { return m_Duration; } }
+        public  string  ordinaryEnemy {get { return m_OrdinaryEnemy; } }
+       
+        /// <summary>
+        /// 敌方刷新-精英敌方
+        /// </summary>
+        public  string  eliteEnemy {get { return m_EliteEnemy; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -61,19 +67,22 @@ namespace GameWish.Game
             { 
             
                 case 0:
-                    m_Level = dataR.ReadInt();
+                    m_Id = dataR.ReadInt();
                     break;
                 case 1:
-                    m_Name = dataR.ReadString();
+                    m_Clan = dataR.ReadString();
                     break;
                 case 2:
-                    m_NormalReward = dataR.ReadString();
+                    m_NameDes = dataR.ReadString();
                     break;
                 case 3:
-                    m_RareReward = dataR.ReadString();
+                    m_JobName = dataR.ReadString();
                     break;
                 case 4:
-                    m_Duration = dataR.ReadInt();
+                    m_OrdinaryEnemy = dataR.ReadString();
+                    break;
+                case 5:
+                    m_EliteEnemy = dataR.ReadString();
                     break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
@@ -85,13 +94,14 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(5);
+          Dictionary<string, int> ret = new Dictionary<string, int>(6);
           
-          ret.Add("Level", 0);
-          ret.Add("Name", 1);
-          ret.Add("NormalReward", 2);
-          ret.Add("RareReward", 3);
-          ret.Add("Duration", 4);
+          ret.Add("Id", 0);
+          ret.Add("Clan", 1);
+          ret.Add("NameDes", 2);
+          ret.Add("JobName", 3);
+          ret.Add("OrdinaryEnemy", 4);
+          ret.Add("EliteEnemy", 5);
           return ret;
         }
     } 
