@@ -18,6 +18,7 @@ namespace GameWish.Game
         public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
         public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
         public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
+        public HeroTrialData heroTrialData = new HeroTrialData();
 
         public void SetDefaultValue()
         {
@@ -680,5 +681,14 @@ namespace GameWish.Game
             return 0;
         }
         #endregion
+
+        //#region HeroTrial
+        //public void OnHeroTrialStart(int day, int characterId)
+        //{
+        //    heroTrialData.OnTrialStart(day, characterId);
+
+        //    SetDataDirty();
+        //}
+        //#endregion
     }
 }

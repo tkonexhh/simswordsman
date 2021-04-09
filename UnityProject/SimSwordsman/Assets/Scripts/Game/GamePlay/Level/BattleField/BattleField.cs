@@ -20,8 +20,15 @@ namespace GameWish.Game
 
         private ResLoader m_ResLoader;
 
+        private bool m_IsInited = false;
+
         public void Init()
         {
+            if (m_IsInited)
+                return;
+
+            m_IsInited = true;
+
             m_ResLoader = ResLoader.Allocate("BattleField");
 
             m_OurCurSlots = new List<Transform>(ourSlots);
