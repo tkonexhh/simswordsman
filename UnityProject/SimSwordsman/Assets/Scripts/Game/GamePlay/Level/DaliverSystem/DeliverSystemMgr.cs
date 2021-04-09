@@ -125,13 +125,6 @@ namespace GameWish.Game
             {
                 m_AllDeliverCarList.Add(deliverCar);
             }
-
-            Debug.LogError("-------------------");
-            for (int i = 0; i < m_AllDeliverCarList.Count; i++)
-            {
-                Debug.LogError("add :" + m_AllDeliverCarList[i].DeliverID);
-            }
-            Debug.LogError("-------------------");
         }
         /// <summary>
         /// 缓存列表中移除镖车
@@ -186,10 +179,6 @@ namespace GameWish.Game
         /// <returns></returns>
         public DeliverCar GetDeliverCarByDeliverID(int deliverID)
         {
-            for (int i = 0; i < m_AllDeliverCarList.Count; i++)
-            {
-                Debug.LogError("get:" + m_AllDeliverCarList[i].DeliverID);
-            }
             DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             return car;
         }
@@ -215,7 +204,6 @@ namespace GameWish.Game
                     DeliverCar car = m_DeliverCarComeBackQueue.Dequeue();
                     if (car != null)
                     {
-                        Debug.LogError("执行");
                         car.StartMoveComeBack();
                     }
                     yield return new WaitForSeconds(m_DeliverCarComeBackIntervalTime);
