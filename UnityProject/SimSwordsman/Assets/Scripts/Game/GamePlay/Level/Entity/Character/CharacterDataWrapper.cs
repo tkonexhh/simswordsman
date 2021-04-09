@@ -25,6 +25,20 @@ namespace GameWish.Game
                 characterList.Add(item);
             });
         }
+
+        public List<CharacterItem> GetCharacterForQuality(CharacterQuality characterQuality)
+        {
+            List<CharacterItem> characterItems = new List<CharacterItem>();
+            characterList.ForEach(i =>
+            {
+                if (i.quality == characterQuality)
+                {
+                    characterItems.Add(i);
+                }
+            });
+            return characterItems;
+        }
+
         /// <summary>
         /// 给弟子增加装备
         /// </summary>

@@ -50,6 +50,8 @@ namespace GameWish.Game
 		private List<int> m_DeliverDBLsst = null;
 		private const int DiscipleNumber = 4;
 		private CountDownItemTest m_CountDownItemTest;
+
+		private List<CharacterItem> m_AllDiscipleList;
 		// Start is called before the first frame update
 		private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem> ();
 		private void Awake()
@@ -93,6 +95,16 @@ namespace GameWish.Game
 							characterList.Add(item.id);
 						GameDataMgr.S.GetClanData().DeliverData.AddDeliverDisciple(m_SingleDeliverDetailData.DeliverID, characterList);
 						FillingDisciple();
+
+						DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID, null, null);
+						RefreshPanelInfo();
+						if (m_CountDownItemTest == null)
+						{
+							m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
+							DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
+							m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+							m_CountDownItemTest.RegisterEndCallBack(DeliverCountDownItemEndCallBack);
+						}
 					}
 					break;
 				default:
@@ -136,44 +148,104 @@ namespace GameWish.Game
 			EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandleAddListenerEvent);
 			EventSystem.S.UnRegister(EventID.OnDeliverCarArrive, HandleAddListenerEvent);
 			m_CountDownItemTest?.UnRegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+			m_CountDownItemTest?.UnRegisterEndCallBack(DeliverCountDownItemEndCallBack);
+		}
+
+		public void QuickStartAddDisciple(CharacterQuality quality,int surplus, List<CharacterItem> characterItems)
+		{
+            if (characterItems.Count == DiscipleNumber)
+				return;
+
+			List<CharacterItem> normalList = MainGameMgr.S.CharacterMgr.GetCharacterForQuality(quality);
+			CommonUIMethod.BubbleSortForType(normalList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+			if (normalList.Count >= surplus)
+			{
+				int number = 0;
+				for (int i = 0; i < normalList.Count; i++)
+				{
+                    if (number == surplus)
+						break;
+					if (normalList[i].IsFreeState())
+					{
+						number++;
+						characterItems.Add(normalList[i]);
+					}
+				}
+			}
+			else
+			{
+                for (int i = 0; i < normalList.Count; i++)
+					if (normalList[i].IsFreeState())
+						characterItems.Add(normalList[i]);
+
+				surplus = surplus - characterItems.Count;
+			}
+			if ((int)quality <= 3)
+			{
+				QuickStartAddDisciple(quality + 1, surplus, characterItems);
+			}
 		}
 
 		void Start()
 		{
-            if (m_SingleDeliverDetailData.DaliverState == DeliverState.HasBeenSetOut)
+			if (m_SingleDeliverDetailData.DaliverState == DeliverState.HasBeenSetOut)
             {
 				DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
 				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
 				m_CountDownItemTest?.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
 			}
 			
-			m_QuickStart.onClick.AddListener(()=> { 
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                if (m_SelectedDiscipleDic.Count!=4)
+			m_QuickStart.onClick.AddListener(()=> {
+				AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+				if (m_SelectedDiscipleDic.Count==0)
                 {
-					FloatMessage.S.ShowMsg("请选满人!");
-					return;
-                }
-				DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID,null,null);
-				RefreshPanelInfo();
-				if (m_CountDownItemTest==null)
-                {
-					m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
-					DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
-					m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+					List<CharacterItem> characterItems = new List<CharacterItem>();
+					QuickStartAddDisciple(CharacterQuality.Normal, DiscipleNumber, characterItems);
+
+                    if (characterItems.Count != DiscipleNumber)
+                    {
+						FloatMessage.S.ShowMsg("人数不足");
+						return;
+                    }
+
+					List<int> characterList = new List<int>();
+					foreach (var item in characterItems)
+						characterList.Add(item.id);
+					GameDataMgr.S.GetClanData().DeliverData.AddDeliverDisciple(m_SingleDeliverDetailData.DeliverID, characterList);
+
+					for (int i = 0; i < characterItems.Count; i++)
+					{
+						m_DeliverDiscipleList[i].OnFillDisciple(characterItems[i]);
+					}
+
+					DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID, null, null);
+					RefreshPanelInfo();
+					if (m_CountDownItemTest == null)
+					{
+						m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
+						DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
+						m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+						m_CountDownItemTest.RegisterEndCallBack(DeliverCountDownItemEndCallBack);
+					}
 				}
 			});
 			m_DoubleSpeedBtn.onClick.AddListener(()=> { 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
 				DeliverSystemMgr.S.UpdateDeliverSpeedUpMultiple(m_SingleDeliverDetailData.DeliverID);
-				//m_SingleDeliverDetailData.DaliverState = DeliverState.DidNotSetOut;
-				//m_SelectedDiscipleDic.Clear();
-				//RefreshPanelInfo();
+
+
 			});
 		}
 
-		public void OnInit(SingleDeliverDetailData item) 
+        private void DeliverCountDownItemEndCallBack(int remaintTimeSeconds)
+        {
+			m_CountDown.text = CommonUIMethod.SplicingTime(0);
+			m_CountDownSlider.value = 0;
+		}
+
+        public void OnInit(SingleDeliverDetailData item) 
 		{
 			m_SingleDeliverDetailData = item;
 			m_DeliverConfig = TDDeliverTable.GetDeliverConfig(m_SingleDeliverDetailData.DeliverID);

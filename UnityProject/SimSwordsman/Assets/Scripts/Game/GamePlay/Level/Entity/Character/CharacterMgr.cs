@@ -126,6 +126,10 @@ namespace GameWish.Game
         {
             return m_CharacterDataWrapper.characterList;
         }
+        public List<CharacterItem> GetCharacterForQuality(CharacterQuality characterQuality)
+        {
+            return m_CharacterDataWrapper.GetCharacterForQuality(characterQuality);
+        }
 
         public List<CharacterController> GetAllCharacterInTask(int taskId)
         {

@@ -86,7 +86,7 @@ namespace GameWish.Game
             if (m_NextFacilityLevelInfo != null)
                 m_UpgradeCondition.text = "升级需要讲武堂达到" + CommonUIMethod.GetGrade(m_NextFacilityLevelInfo.upgradeNeedLobbyLevel);
             if (m_NextFacilityLevelInfo != null)
-                m_NextUnlockCont.text = /*m_CurDeliverInfo.GetCurMedicinalPowderName();*/"";
+                m_NextUnlockCont.text = GetDeliverConfig(m_NextFacilityLevelInfo.level).name;
             else
                 m_NextUnlockCont.text = "无";
 

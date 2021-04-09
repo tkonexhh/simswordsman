@@ -226,11 +226,12 @@ namespace GameWish.Game
                     m_SingleDeliverDetailData = args[1] as SingleDeliverDetailData;
                     CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        CreateDisciple(m_AllDiscipleList[i]);
-
+                        if (m_AllDiscipleList[i].IsFreeState())
+                            CreateDisciple(m_AllDiscipleList[i]);
                     for (int i = 0; i < DeliverDiscipleNumber; i++)
                         CreateSelectedDisciple();
                     RefreshFixedInfo(PanelType.Deliver);
+                    m_ConfirmText.text = "³ö·¢";
                     break;
                 case PanelType.Task:
                     m_CommonTaskItemInfo = args[1] as CommonTaskItemInfo;
