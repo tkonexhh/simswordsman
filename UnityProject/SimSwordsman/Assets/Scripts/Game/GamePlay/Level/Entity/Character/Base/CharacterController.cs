@@ -88,7 +88,7 @@ namespace GameWish.Game
         #endregion
 
         #region Public Get
-        public int GetDeliverID() 
+        public int GetDeliverID()
         {
             return m_CharacterModel.GetDeliverID();
         }
@@ -168,7 +168,7 @@ namespace GameWish.Game
         {
             m_CharacterView.MoveTo(pos, callback);
         }
-        public void FollowDeliver(Vector2 deliverPos) 
+        public void FollowDeliver(Vector2 deliverPos)
         {
             m_CharacterView.FollowDeliver(deliverPos);
         }
@@ -176,7 +176,8 @@ namespace GameWish.Game
         {
             m_CharacterView.RunTo(pos, callback);
         }
-        public void StopNavAgent() {
+        public void StopNavAgent()
+        {
             m_CharacterView.StopNavAgent();
         }
         public void Move(Vector2 deltaPos)
@@ -184,7 +185,8 @@ namespace GameWish.Game
             m_CharacterView.Move(deltaPos);
         }
 
-        public void SetPosition(Vector3 targetPos) {
+        public void SetPosition(Vector3 targetPos)
+        {
             m_CharacterView.SetPosition(targetPos);
         }
 
@@ -235,7 +237,7 @@ namespace GameWish.Game
                 //}
             }
         }
-        public void SetDeliverID(int deliverID) 
+        public void SetDeliverID(int deliverID)
         {
             m_CharacterModel.SetDeliverID(deliverID);
         }

@@ -150,9 +150,9 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="id"></param>
         /// <param name="kungfuItem"></param>
-        public void LearnKungfu(int id, int index, KungfuItem kungfuItem)
+        public bool LearnKungfu(int id, int index, KungfuItem kungfuItem)
         {
-            m_CharacterDataWrapper.LearnKungfu(id, index, kungfuItem);
+            return m_CharacterDataWrapper.LearnKungfu(id, index, kungfuItem);
         }
         /// <summary>
         /// µÜ×ÓÉý¼¶

@@ -319,7 +319,7 @@ namespace GameWish.Game
                         break;
                 }
                
-                EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic, m_SingleDeliverDetailData.DeliverID);
+                EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic, m_SingleDeliverDetailData?.DeliverID);
                 HideSelfWithAnim();
             });
         }

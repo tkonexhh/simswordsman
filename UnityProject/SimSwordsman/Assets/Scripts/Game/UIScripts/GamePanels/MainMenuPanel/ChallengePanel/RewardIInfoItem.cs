@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 namespace GameWish.Game
 {
-	public class RewardIInfoItem : MonoBehaviour,ItemICom
-	{
+    public class RewardIInfoItem : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
@@ -27,7 +27,7 @@ namespace GameWish.Game
         private PanelType m_PanelType;
         private SimGameTask m_CurTaskInfo = null;
         private CombatSettlementPanel m_ParentPanel;
-
+        private Coroutine m_Coroutine;
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -58,12 +58,65 @@ namespace GameWish.Game
         public void SetButtonEvent(Action<object> action)
         {
         }
-    
-        private void RefreshPanelInfo()
+        /// <summary>
+        /// 记录
+        /// </summary>
+        /// <param name="last"></param>
+        /// <param name="next"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        private IEnumerator InterpolationGrowth(float last, float next, Action action = null)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(0.05f);
+                last += 0.05f;
+                //last = Mathf.Lerp(last, next, 4 * Time.deltaTime);
+                m_ExpProportion.value = last;
+                if (next - last < 0.1f)
+                {
+                    action?.Invoke();
+                    break;
+                }
+            }
+        }
+        private void OnDestroy()
         {
 
+        }
+
+        private void RefreshPanelInfo()
+        {
             m_DiscipleName.text = m_CurCharacterItem.name;
-            m_ExpProportion.value = ((float)m_CharacterController.GetCurExp()/ m_CharacterController.GetExpLevelUpNeed());
+            m_ExpProportion.value = ((float)m_CurCharacterItem.lastExp / m_CharacterController.GetExpLevelUpNeed());
+
+            //有升级的情况
+            if (m_CurCharacterItem.level > m_CurCharacterItem.lastLevel)
+            {
+                int levelDelta = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
+                float lastRatio = ((float)m_CurCharacterItem.lastExp / m_CharacterController.GetExpLevelUpNeed());
+                float curRatio = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+
+                m_Coroutine = StartCoroutine(InterpolationGrowth(lastRatio, 1, () =>
+                {
+                    for (int i = 0; i < levelDelta - 1; i++)
+                    {
+                        m_Coroutine = StartCoroutine(InterpolationGrowth(0, 1, () =>
+                        {
+                            lastRatio = 0;
+                            m_Coroutine = StartCoroutine(InterpolationGrowth(0, curRatio));
+                        }));
+
+                    }
+                }));
+            }
+            //没有升级的情况
+            else if (m_CurCharacterItem.level == m_CurCharacterItem.lastLevel)
+            {
+                float lastRatio = ((float)m_CurCharacterItem.lastExp / m_CharacterController.GetExpLevelUpNeed());
+                float curRatio = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+                m_Coroutine = StartCoroutine(InterpolationGrowth(lastRatio, curRatio));
+            }
 
             if (!m_IsSuccess)
             {
@@ -85,5 +138,5 @@ namespace GameWish.Game
                     break;
             }
         }
-	}
+    }
 }
