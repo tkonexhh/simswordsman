@@ -45,12 +45,17 @@ namespace GameWish.Game
         public void OnInit()
         {
             m_DaliverDetailDataList = GameDataMgr.S.GetClanData().DeliverData.GetSingleDeliverDetailDataList();
-            if (m_DaliverDetailDataList != null && m_DaliverDetailDataList.Count == 0)
+            if (m_DaliverDetailDataList != null && m_DaliverDetailDataList.Count <= TDDeliverTable.GetDeliverConfigList().Count)
             {
                 List<DeliverConfig> deliverConfigs = new List<DeliverConfig>();
                 deliverConfigs.AddRange(TDDeliverTable.GetDeliverConfigList());
                 for (int i = 0; i < deliverConfigs.Count; i++)
                 {
+                    if (i< m_DaliverDetailDataList.Count)
+                    {
+                        if (m_DaliverDetailDataList[i].DeliverID == deliverConfigs[i].level)
+                            continue;
+                    }
                     GameDataMgr.S.GetClanData().DeliverData.AddDeliverData(deliverConfigs[i].level, DeliverState.Unlock, GetRandomReward(deliverConfigs[i]), new List<int>());
                 }
             }
