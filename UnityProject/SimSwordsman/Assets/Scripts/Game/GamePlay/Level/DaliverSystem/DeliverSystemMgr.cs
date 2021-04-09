@@ -190,8 +190,9 @@ namespace GameWish.Game
 
                 if (data != null) 
                 {
-                    data.ResetData();
                     GetDeliverReward(data);
+
+                    data.ResetData();
                 }
             }
         }

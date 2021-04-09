@@ -146,15 +146,16 @@ namespace GameWish.Game
 				return (int)(EndTimeWithReally - DateTime.Now).TotalSeconds;
 			}
 			else {
-				int passTime = (int)(StartTimeWithScal - StartTimeWithReally).TotalSeconds;
-				int totalTime = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
-				int speedUpMultipleTime = (int)(DateTime.Now - StartTimeWithScal).TotalSeconds;
+				double passTime = (StartTimeWithScal - StartTimeWithReally).TotalSeconds;
+				double totalTime = (EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+				double speedUpMultipleTime = (DateTime.Now - StartTimeWithScal).TotalSeconds;
 
-				return totalTime - passTime - speedUpMultipleTime * SpeedUpMultiple;
+				return (int)(totalTime - passTime - speedUpMultipleTime * SpeedUpMultiple);
 			}
 		}
 		public void ResetData()
 		{
+			this.SpeedUpMultiple = 1;
 			DaliverState = DeliverState.DidNotSetOut;
 			CharacterIDList?.Clear();
 			RewadDataList = DeliverSystemMgr.S.GetRandomReward(TDDeliverTable.GetDeliverConfig(DeliverID));
