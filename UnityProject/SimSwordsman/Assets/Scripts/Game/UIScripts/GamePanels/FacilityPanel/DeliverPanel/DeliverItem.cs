@@ -193,6 +193,7 @@ namespace GameWish.Game
 				DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
 				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
 				m_CountDownItemTest?.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
+				m_CountDownItemTest?.RegisterEndCallBack(DeliverCountDownItemEndCallBack);
 			}
 			
 			m_QuickStart.onClick.AddListener(()=> {
