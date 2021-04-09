@@ -284,7 +284,7 @@ namespace GameWish.Game
                 }
             }
             else {
-                Debug.LogError("is not show bubble state:");
+                //Debug.LogError("is not show bubble state:");
                 Timer.S.Cancel(m_AutoStartWorkTimerID);
                 return false;
             }
