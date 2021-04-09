@@ -96,6 +96,7 @@ namespace GameWish.Game
                 TDTowerConfigTable.metaData,
                 TDTowerEnemyConfigTable.metaData,
                 TDTowerRewardConfigTable.metaData,
+                TDTowerShopTable.metaData,
             };
         }
     }

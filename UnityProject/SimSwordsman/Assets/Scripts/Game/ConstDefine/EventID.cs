@@ -385,6 +385,7 @@ namespace GameWish.Game
 
         #region Tower
         OnRefeshTowerCoin,
+        OnRefeshTowerShop,
         #endregion
     }
 

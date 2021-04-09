@@ -144,6 +144,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
             UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
             UIDataTable.AddPanelData(UIID.TowerSelectCharacterPanel, null, "GamePanels/TowerPanel/TowerSelectCharacterPanel");
+            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
 
             RealNameMgr.S.RegisterPanels();
         }

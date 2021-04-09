@@ -20,6 +20,9 @@ namespace GameWish.Game
         //奖励保存
         public List<int> rewardedLst = new List<int>();
 
+        //商店信息
+        public List<TowerShopItemDB> shopInfoLst = new List<TowerShopItemDB>();
+
         public override void InitWithEmptyData()
         {
             coin = 0;
@@ -46,6 +49,8 @@ namespace GameWish.Game
 
             KnuthDurstenfeldShuffle(enemyPoolLst);
             rewardedLst.Clear();
+
+            RandomShopData();
 
             SetDataDirty();
         }
@@ -194,6 +199,41 @@ namespace GameWish.Game
             return rewardedLst.Contains(level);
         }
         #endregion
+
+
+        #region 商店相关
+        public TowerShopItemDB GetShopDataByIndex(int index)
+        {
+            if (index < 0 || index >= shopInfoLst.Count)
+                return null;
+
+            return shopInfoLst[index];
+        }
+
+        public void RandomShopData()
+        {
+            shopInfoLst.Clear();
+            List<TowerShopItemInfo> itemInfos = TDTowerShopTable.GetRandomShopItem();
+            for (int i = 0; i < itemInfos.Count; i++)
+            {
+                TowerShopItemDB shopItemDB = new TowerShopItemDB();
+                shopItemDB.id = itemInfos[i].id;
+                shopItemDB.buyed = false;
+                shopInfoLst.Add(shopItemDB);
+            }
+            EventSystem.S.Send(EventID.OnRefeshTowerShop);
+            SetDataDirty();
+        }
+
+        public void BuyShopData(int index)
+        {
+            if (index < 0 || index >= shopInfoLst.Count)
+                return;
+
+            shopInfoLst[index].buyed = true;
+            SetDataDirty();
+        }
+        #endregion
     }
 
 
@@ -214,6 +254,12 @@ namespace GameWish.Game
             hpRate = rate;
             hpRate = Mathf.Clamp01((float)hpRate);
         }
+    }
+
+    public class TowerShopItemDB
+    {
+        public int id;
+        public bool buyed;
     }
 
 }

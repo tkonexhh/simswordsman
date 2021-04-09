@@ -151,6 +151,18 @@ namespace GameWish.Game
                 m_TowerData.SetEnemyHpRate(i, rate);
             }
         }
+
+
+        #region 处理商店相关
+        public void BuyShopItem(int index, TowerShopItemInfo itemInfo)
+        {
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(itemInfo.reward);
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+            itemInfo.reward.AcceptReward();
+            GameDataMgr.S.GetPlayerData().towerData.BuyShopData(index);
+        }
+        #endregion
     }
 
 
