@@ -23,6 +23,9 @@ namespace GameWish.Game
         //商店信息
         public List<TowerShopItemDB> shopInfoLst = new List<TowerShopItemDB>();
 
+        //已经复活的关卡保存
+        public List<int> revivedLvlLst = new List<int>();
+
         public override void InitWithEmptyData()
         {
             coin = 0;
@@ -33,7 +36,8 @@ namespace GameWish.Game
         {
             towerCharacterLst.ForEach(c =>
             {
-                m_TowerCharacterMap.Add(c.id, c);
+                if (!m_TowerCharacterMap.ContainsKey(c.id))
+                    m_TowerCharacterMap.Add(c.id, c);
             });
         }
 
@@ -234,6 +238,43 @@ namespace GameWish.Game
             SetDataDirty();
         }
         #endregion
+
+        #region 复活相关
+        public void ReviveTowerCharacter(int id)
+        {
+            var data = GetTowerCharacterByID(id);
+            if (data == null)
+            {
+                return;
+            }
+
+            if (data.revive)
+            {
+                Log.w("Already Revive Tower Character");
+                return;
+            }
+            data.hpRate = 1;
+            data.revive = true;
+            SetDataDirty();
+        }
+
+        public void LevelRevived(int level)
+        {
+            if (revivedLvlLst.Contains(level))
+            {
+                Log.w("Already Cointains Tower Revive Level");
+                return;
+            }
+
+            revivedLvlLst.Add(level);
+            SetDataDirty();
+        }
+
+        public bool HasLevelRevived(int level)
+        {
+            return revivedLvlLst.Contains(level);
+        }
+        #endregion
     }
 
 
@@ -261,5 +302,6 @@ namespace GameWish.Game
         public int id;
         public bool buyed;
     }
+
 
 }

@@ -35,6 +35,7 @@ namespace GameWish.Game
             clanData.SetDirtyRecorder(m_Recorder);
             commonTaskData.SetDirtyRecorder(m_Recorder);
 
+            playerInfoData.OnDataLoadFinish();
             clanData.OnDataLoadFinish();
         }
     }

@@ -10,6 +10,10 @@ namespace GameWish.Game
         private TowerData m_TowerData;
         private bool m_IsTowerBattle = false;
 
+
+        public int maxLevel => m_TowerData.maxLevel;
+
+
         public void OnInit()
         {
             MainGameMgr.S.BattleFieldMgr.onSpawnOwerCharacterComplete += HandleBattleCharacterHp;
@@ -35,10 +39,10 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.TowerPanel);
 
-            int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
+            int maxLvl = m_TowerData.maxLevel;
             TowerLevelConfig levelConfig = new TowerLevelConfig(maxLvl);
 
-            int enemyPoolID = GameDataMgr.S.GetPlayerData().towerData.GetEnemyPoolIDByIndex(maxLvl);
+            int enemyPoolID = m_TowerData.GetEnemyPoolIDByIndex(maxLvl - 1);
             if (m_TowerData.enemyCharacterLst.Count == 0)
             {
                 // Debug.LogError("New Enemy");
@@ -99,7 +103,8 @@ namespace GameWish.Game
                     var towerCharacterDB = m_TowerData.GetTowerCharacterByID(id);
                     if (towerCharacterDB != null)
                     {
-                        // character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
+                        Debug.LogError(towerCharacterDB.hpRate);
+                        character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
                     }
                 }
                 else

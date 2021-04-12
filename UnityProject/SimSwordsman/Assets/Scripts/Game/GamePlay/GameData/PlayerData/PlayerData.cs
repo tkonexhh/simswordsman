@@ -139,7 +139,8 @@ namespace GameWish.Game
 
         public override void OnDataLoadFinish()
         {
-
+            towerData.SetDirtyRecorder(m_Recorder);
+            towerData.OnDataLoadFinish();
         }
 
         public void ResetDailyData()
