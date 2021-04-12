@@ -63,8 +63,20 @@ namespace GameWish.Game
         public int unlockHomeLevel;
         public CollectedObjType collectedObjType;
         public string workName;
-        public List<string> workTalk;
+        public List<string> workTalk;        
         public List<TaskReward> itemRewards = new List<TaskReward>();
+        private int m_SpecialRate = 1000;
+        public bool IsHaveSpecialReward
+        {
+            get {
+                int randomValue = UnityEngine.Random.Range(0, 10000);
+                if (randomValue <= m_SpecialRate) {
+                    return true;
+                }
+
+                return false;
+            }
+        }
         public List<TaskReward> specialRewards = new List<TaskReward>();
         public ItemTipsConfig unlockDesc = new ItemTipsConfig ();
         public ItemTipsConfig functionDesc = new ItemTipsConfig ();
@@ -82,7 +94,8 @@ namespace GameWish.Game
             this.workName = tdData.workName;
             this.workTalk = tdData.workTalkLst;
             ParseReward(tdData.reward);
-            ParseSpecialReward(tdData.speRewardRate, tdData.speReward);
+            m_SpecialRate = tdData.speRewardRate;
+            ParseSpecialReward(tdData.speReward);           
             ParseItemTipsDesc(unlockDesc, tdData.unlockDesc);
             ParseItemTipsDesc(functionDesc,tdData.functionDesc);
             this.workTime = tdData.workTime;
@@ -116,15 +129,10 @@ namespace GameWish.Game
             }
         }
 
-        private void ParseSpecialReward(int rate,string reward)
+        private void ParseSpecialReward(string reward)
         {
             if (string.IsNullOrEmpty(reward))
                 return;
-
-            int randomValue = UnityEngine.Random.Range(0, 10000);
-            if (randomValue > rate) {
-                return;
-            }
 
             string[] rewardStrs = reward.Split(';');
             foreach (string item in rewardStrs)
