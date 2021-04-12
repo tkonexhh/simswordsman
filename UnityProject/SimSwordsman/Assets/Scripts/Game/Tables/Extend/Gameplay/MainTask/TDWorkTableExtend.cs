@@ -82,7 +82,7 @@ namespace GameWish.Game
             this.workName = tdData.workName;
             this.workTalk = tdData.workTalkLst;
             ParseReward(tdData.reward);
-            ParseSpecialReward(tdData.speReward);
+            ParseSpecialReward(tdData.speRewardRate, tdData.speReward);
             ParseItemTipsDesc(unlockDesc, tdData.unlockDesc);
             ParseItemTipsDesc(functionDesc,tdData.functionDesc);
             this.workTime = tdData.workTime;
@@ -116,10 +116,15 @@ namespace GameWish.Game
             }
         }
 
-        private void ParseSpecialReward(string reward)
+        private void ParseSpecialReward(int rate,string reward)
         {
             if (string.IsNullOrEmpty(reward))
                 return;
+
+            int randomValue = UnityEngine.Random.Range(0, 10000);
+            if (randomValue > rate) {
+                return;
+            }
 
             string[] rewardStrs = reward.Split(';');
             foreach (string item in rewardStrs)
