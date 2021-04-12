@@ -5,120 +5,141 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Qarth;
+using Spine;
 
 namespace GameWish.Game
 {
-	public enum AnimName
-	{
-		move = 0,
-		idle
-	}
+    public enum AnimName
+    {
+        move = 0,
+        idle
+    }
 
-	public class Frog : MonoBehaviour
-	{
-		[SerializeField]
-		private SkeletonAnimation m_SkeletonAnimation;
-		[SerializeField]
-		private Transform[] m_PointArray;
-		[SerializeField]
-		private Rigidbody2D m_Rigidbody2D;
-		[SerializeField]
-		private int m_TimeRange;
-		private Transform m_Target;
+    public class Frog : MonoBehaviour
+    {
+        [SerializeField]
+        private List<Transform> m_PointArray;
+        [SerializeField]
+        private Rigidbody2D m_Rigidbody2D;
 
-		// Start is called before the first frame update
-		void Start()
-	    {
-			//SpineHelper.PlayAnim(m_SkeletonAnimation, "move", true, onAnimEnd);
-			//m_Rigidbody2D.velocity = new Vector2();
-			//transform.DOMove(m_PointArray[2].position, 5f, false).SetEase(Ease.Flash);
-			//transform.DOMove(m_PointArray[2].position, 0.1f, false).SetEase(Ease.Flash);
-			//int index = UnityEngine.Random.Range(0, m_PointArray.Length - 1);
-			//Transform target = m_PointArray[index];
-			//if (target.position.x - transform.position.x < 0)
-			//	transform.localScale = new Vector3(1, 1, 1);
-			//else
-			//	transform.localScale = new Vector3(-1, 1, 1);
-			////transform.DOMove(target.position, 5f, false).SetEase(Ease.Linear);
-			//TimeRange = UnityEngine.Random.Range(5, 5);
-			//SpineHelper.PlayAnim(m_SkeletonAnimation, "move", true, onAnimEnd);
+        private Transform m_Target;
+        private SkeletonAnimation m_SkeletonAnimation;
+        private MeshRenderer m_MeshRenderer;
+        private Vector3 m_Vector;
 
-			RandomAnimation();
-			//SpineHelper.PlayAnim(m_SkeletonAnimation, aniName[aniIndex], true, onAnimEnd);
-		}
+        private int m_ResidenceTime = 3;
+        private float m_CheckRang = 1.2f;
 
-		private void RandomAnimation()
-		{
-			int aniIndex = UnityEngine.Random.Range(0, 2);
+        private void Awake()
+        {
+            m_SkeletonAnimation = GetComponent<SkeletonAnimation>();
+            m_MeshRenderer = GetComponent<MeshRenderer>();
+        }
+        void Start()
+        {
+            m_SkeletonAnimation.state.Event += state_Event;
 
-			switch ((AnimName)aniIndex)
-			{
-				case AnimName.move:
-					int index = UnityEngine.Random.Range(0, m_PointArray.Length);
-					m_Target = m_PointArray[index];
-					MoveToTarget();
-					break;
-				case AnimName.idle:
-					m_TimeRange = UnityEngine.Random.Range(5, 5);
-					SetAnimationForTime(m_TimeRange);
-					break;
-				default:
-					break;
-			}
-		}
+            RandomAnimation();
+        }
+
+        private void state_Event(TrackEntry trackEntry, Spine.Event e)
+        {
+            if (e.Data.Name == "jump_start")
+            {
+                transform.DOMove(transform.position+m_Vector, 1f, false).SetEase(Ease.Linear);
+            }
+            else if (e.Data.Name == "jump_end")
+            {
+                transform.DOMove(transform.position, 1f, false).SetEase(Ease.Linear);
+                //Debug.LogError("¾àÀë= "+ Vector2.Distance(m_Target.position, transform.position));
+            }
+        }
+
+        private void RandomAnimation()
+        {
+            int aniIndex = UnityEngine.Random.Range(0, 2);
+
+            switch ((AnimName)aniIndex)
+            {
+                case AnimName.move:
+                    int index = UnityEngine.Random.Range(0, m_PointArray.Count);
+                    m_Target = m_PointArray[index];
+                    float dis = Vector2.Distance(m_Target.position, transform.position);
+                    m_Vector = (m_Target.position - transform.position).normalized * 2;
+                    MoveToTarget();
+                    break;
+                case AnimName.idle:
+                    m_Target = null;
+                    int timeRange = UnityEngine.Random.Range(1, m_ResidenceTime+1);
+                    SetAnimationForTime(timeRange);
+                    break;
+                default:
+                    break;
+            }
+        
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.name.Contains("Disappear"))
+            {
+                m_MeshRenderer.enabled = true;
+            }
+            else if(collision.gameObject.name.Contains("FrogBound"))
+            {
+                //Destroy(gameObject);
+                m_MeshRenderer.enabled = false;
+                RandomAnimation();
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.name.Contains("Disappear"))
+            {
+                m_MeshRenderer.enabled = false;
+            }
+            else if (collision.gameObject.name.Contains("FrogBound"))
+            {
+                m_MeshRenderer.enabled = true;
+            }
+        }
+
+        private void SetAnimationForTime(int time)
+        {
+            SpineHelper.PlayAnim(m_SkeletonAnimation, "idle", true);
+            Timer.S.Post2Really((i) =>
+            {
+                if (i == time)
+                {
+                    RandomAnimation();
+                }
+            }, 1, time);
+        }
 
 
-		private void SetAnimationForTime(int time)
-		{
-			SpineHelper.PlayAnim(m_SkeletonAnimation, "idle", true);
-			Timer.S.Post2Really((i) => {
-				if (i == time)
-				{
-					RandomAnimation();
-				}
-			}, 1, time);
-		}
-		
-
-		private void MoveToTarget()
-		{
-			SpineHelper.PlayAnim(m_SkeletonAnimation, "move", true,AnimEnd);
-			if (m_Target.position.x - transform.position.x < 0)
-				transform.localScale = new Vector3(1, 1, 1);
-			else
-				transform.localScale = new Vector3(-1, 1, 1);
-			transform.DOMove(m_Target.position, 25f, false).SetEase(Ease.Linear);
-   //         if (Vector2.Distance(target.position, transform.position)<0.1f)
-   //         {
-			//	RandomAnimation(); 
-			//}
-		}
+        private void MoveToTarget()
+        {
+            SpineHelper.PlayAnim(m_SkeletonAnimation, "move", true, AnimEnd);
+            if (m_Target.position.x - transform.position.x < 0)
+                transform.localScale = new Vector3(1, 1, 1);
+            else
+                transform.localScale = new Vector3(-1, 1, 1);
+            //transform.DOMove(m_Target.position.normalized/**0.5f*/, 25f, false).SetEase(Ease.Linear);
+        }
 
         private void AnimEnd()
         {
-			if (Vector2.Distance(m_Target.position, transform.position) < 0.1f)
-			{
-				RandomAnimation();
-			}
-		}
+            if (Vector2.Distance(m_Target.position, transform.position) < m_CheckRang)
+            {
+                RandomAnimation();
+            }
+        }
 
         // Update is called once per frame
         void Update()
-	    {
+        {
+        }
+    }
 
-			//int index = UnityEngine.Random.Range(0, m_PointArray.Length - 1);
-			//Transform target = m_PointArray[index];
-   //         if (target.position.x-transform.position.x<0)
-   //         {
-			//	transform.localScale = new Vector3(1,1,1);
-			//}
-   //         else
-   //         {
-			//	transform.localScale = new Vector3(-1, 1, 1);
-			//}
-			//transform.DOMove(m_PointArray[2].position, 5f, false).SetEase(Ease.Flash);
-			//transform.Translate(m_PointArray[3].localPosition);
-		}
-	}
-	
 }
