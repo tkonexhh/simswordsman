@@ -598,21 +598,21 @@ namespace GameWish.Game
             if (number.ToString().Length > 12)
             {
                 long MainNumber = number / 1000000000000;
-                long remainder = number % 1000000000000;
-
+                //long remainder = number % 1000000000000;
+                string remainder = number.ToString().Substring(number.ToString().Length - 12, number.ToString().Length - 1);
                 return MainNumber.ToString() + "." + remainder.ToString()[0] + "万亿";
             }
             else if (number.ToString().Length > 8)
             {   
                 long MainNumber = number / 100000000;
-                long remainder = number % 100000000;
-
+                //long remainder = number % 100000000;
+                string remainder = number.ToString().Substring(number.ToString().Length - 8, number.ToString().Length - 1);
                 return MainNumber.ToString() + "." + remainder.ToString()[0] + "亿";
             }
             else if(number.ToString().Length > 4)
             {
                 long MainNumber = number / 10000;
-                long remainder = number % 10000;
+                string remainder = number.ToString().Substring(number.ToString().Length - 4, number.ToString().Length-1 );
                 return MainNumber.ToString() + "." + remainder.ToString()[0] + "万";
             }
             else
