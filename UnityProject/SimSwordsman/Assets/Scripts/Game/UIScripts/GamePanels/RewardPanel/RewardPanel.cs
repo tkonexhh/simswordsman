@@ -27,6 +27,10 @@ namespace GameWish.Game
 
         private bool m_IsBossLevel = false;
         private bool m_IsLookAD = false;
+        /// <summary>
+        /// 是否是挑战奖励
+        /// </summary>
+        private bool m_IsChallengeReward = false;
 
         private int m_CloseBtnTimerID = -1;
         private int levelID;
@@ -62,7 +66,8 @@ namespace GameWish.Game
             m_DoubleRewardBtn.gameObject.SetActive(false);
         }
         /// <summary>
-        /// args[1]:代表是否是boss关卡
+        /// args[1]:是否是挑战奖励
+        /// args[2]:代表是否是boss关卡
         /// </summary>
         /// <param name="args"></param>
         protected override void OnPanelOpen(params object[] args)
@@ -71,6 +76,8 @@ namespace GameWish.Game
 
             m_RewardsDataList.Clear();
             m_DoubleRewardBtn.gameObject.SetActive(false);
+
+            m_IsChallengeReward = false;
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
@@ -81,7 +88,12 @@ namespace GameWish.Game
 
                 if (args.Length > 1) 
                 {
-                    m_IsBossLevel = (bool)args[1];
+                    m_IsChallengeReward = (bool)args[1];
+                }
+
+                if (args.Length > 2) 
+                {
+                    m_IsBossLevel = (bool)args[2];
                     m_DoubleRewardBtn.gameObject.SetActive(m_IsBossLevel);
                 }
             }
@@ -168,8 +180,17 @@ namespace GameWish.Game
                 GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(false);
             }
 
-            if (m_CloseBtnTimerID != -1) {
+            if (m_CloseBtnTimerID != -1) 
+            {
                 Timer.S.Cancel(m_CloseBtnTimerID);
+            }
+
+            if (m_IsChallengeReward && m_IsBossLevel == false) 
+            {
+                if (GameDataMgr.S.GetPlayerData().CurrentChallengeLevelIsPlayInterAD())
+                {
+                    AdsManager.S.PlayInterAD("ChallengePlayInterAD", (x) => { });
+                }
             }
         }
     }
