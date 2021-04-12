@@ -51,7 +51,8 @@ namespace GameWish.Game
 
             mScoreSequence.SetAutoKill(false);
 
-            mScoreSequence.Append(DOTween.To(delegate (float value) {
+            mScoreSequence.Append(DOTween.To(delegate (float value)
+            {
                 //向下取整
                 var temp = Math.Floor(value);
                 //向Text组件赋值
@@ -206,13 +207,13 @@ namespace GameWish.Game
         {
             //int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
             //int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
-            bool SilverAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit( RecruitType.SilverMedal, 24);
-            bool GoldAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit( RecruitType.GoldMedal, 48);
+            bool SilverAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(RecruitType.SilverMedal, 24);
+            bool GoldAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(RecruitType.GoldMedal, 48);
             int GoldFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
             int SilverFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
             int allCount = GoldFreeCount + SilverFreeCount;
 
-            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount  || GoldAdvCount )
+            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount || GoldAdvCount)
             {
                 EventSystem.S.Send(EventID.OnSendRecruitable, true);
                 return true;
@@ -282,7 +283,7 @@ namespace GameWish.Game
             }
         }
 
-        public static void RefreshUpgradeResInfo(List<CostItem> costItems,Transform transform,GameObject obj , FacilityLevelInfo facilityLevelInfo = null, List<UpgradeResItem> list = null)
+        public static void RefreshUpgradeResInfo(List<CostItem> costItems, Transform transform, GameObject obj, FacilityLevelInfo facilityLevelInfo = null, List<UpgradeResItem> list = null)
         {
             if (costItems == null || obj == null)
                 return;
@@ -296,13 +297,13 @@ namespace GameWish.Game
             {
                 int havaItem = MainGameMgr.S.InventoryMgr.GetRawMaterialNumberForID(costItems[0].itemId);
 
-                UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj,transform).GetComponent<UpgradeResItem>();
-                upgradeResItem1.OnInit(costItems[0],transform);
+                UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
+                upgradeResItem1.OnInit(costItems[0], transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
                     SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 list?.Add(upgradeResItem1);
-                if (facilityLevelInfo!=null)
+                if (facilityLevelInfo != null)
                 {
                     UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem2.OnInit(facilityLevelInfo, transform);
@@ -432,7 +433,7 @@ namespace GameWish.Game
                 return true;
             }
         }
-        public static string GetStrForColor(string color, string cont,bool table = false)
+        public static string GetStrForColor(string color, string cont, bool table = false)
         {
             if (!table)
             {
@@ -599,20 +600,20 @@ namespace GameWish.Game
             {
                 long MainNumber = number / 1000000000000;
                 //long remainder = number % 1000000000000;
-                string remainder = number.ToString().Substring(number.ToString().Length - 12, number.ToString().Length - 1);
+                string remainder = number.ToString().Substring(number.ToString().Length - 12, 12);
                 return MainNumber.ToString() + "." + remainder.ToString()[0] + "万亿";
             }
             else if (number.ToString().Length > 8)
-            {   
+            {
                 long MainNumber = number / 100000000;
                 //long remainder = number % 100000000;
-                string remainder = number.ToString().Substring(number.ToString().Length - 8, number.ToString().Length - 1);
+                string remainder = number.ToString().Substring(number.ToString().Length - 8, 8);
                 return MainNumber.ToString() + "." + remainder.ToString()[0] + "亿";
             }
-            else if(number.ToString().Length > 4)
+            else if (number.ToString().Length > 4)
             {
                 long MainNumber = number / 10000;
-                string remainder = number.ToString().Substring(number.ToString().Length - 4, number.ToString().Length-1 );
+                string remainder = number.ToString().Substring(number.ToString().Length - 4, 4);
                 return MainNumber.ToString() + "." + remainder.ToString()[0] + "万";
             }
             else
