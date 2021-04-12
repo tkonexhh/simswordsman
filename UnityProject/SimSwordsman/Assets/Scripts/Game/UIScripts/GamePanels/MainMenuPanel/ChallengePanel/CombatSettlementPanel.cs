@@ -108,24 +108,17 @@ namespace GameWish.Game
                 {
                     if (m_RewardList.Count > 0)
                     {
-                        bool isBossLevel = false;
                         if (m_PanelType == PanelType.Challenge)
                         {
-                            if (m_LevelConfigInfo != null) 
+                            if (m_LevelConfigInfo != null)
                             {
-                                isBossLevel = TDLevelConfigTable.IsBossLevel(m_LevelConfigInfo.level);
+                                bool isBossLevel = TDLevelConfigTable.IsBossLevel(m_LevelConfigInfo.level);
+
+                                UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, m_LevelConfigInfo.level);
                             }
                         }
-
-                        if (isBossLevel)
-                        {
-                            GameDataMgr.S.GetPlayerData().UpdateLastChallengeIsBossLevel(true);
-                            UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true, true);
-                        }
-                        else
-                        {
-                            GameDataMgr.S.GetPlayerData().UpdateLastChallengeIsBossLevel(false);
-                            UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true);
+                        else {
+                            UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
                         }
                         return;
                     }
