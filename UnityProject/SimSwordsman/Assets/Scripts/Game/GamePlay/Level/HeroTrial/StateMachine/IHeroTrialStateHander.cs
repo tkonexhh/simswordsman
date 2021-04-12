@@ -7,7 +7,7 @@ namespace GameWish.Game
 {
 	public interface IHeroTrialStateHander
     {
-        RawMatItem GetRawMatItem();
+        HeroTrialMgr GetHeroTrialMgr();
 
     }
 	

@@ -136,6 +136,7 @@ namespace GameWish.Game
         OnBattleAtkStart,
         OnBattleAtkEnd,
         OnBattleAtkEvent,
+        OnOneRoundEnd,
         /// <summary>
         /// 战斗描述刷新
         /// </summary>

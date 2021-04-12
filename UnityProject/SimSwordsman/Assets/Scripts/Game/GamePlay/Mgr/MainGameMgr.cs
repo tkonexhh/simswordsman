@@ -121,6 +121,7 @@ namespace GameWish.Game
             m_RawMatCollectSystem?.OnUpdate();
             m_CommonTaskMgr?.OnUpdate();
             m_MainCamera?.OnUpdate();
+            m_HeroTrialMgr?.OnUpdate();
             //if (Input.GetKeyDown(KeyCode.T))
             //{
             //    GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);
