@@ -52,6 +52,8 @@ namespace GameWish.Game
         private Button m_VoldemortTowerBtn;
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
+        [SerializeField]
+        private Button m_HeroTrialBtn;
 
         [Header("战斗任务")]
         [SerializeField]
@@ -210,6 +212,10 @@ namespace GameWish.Game
                 DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_tap, visitor.Reward.KeyID.ToString());
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
+            });
+
+            m_HeroTrialBtn.onClick.AddListener(()=> {
+
             });
 
             m_MainTaskUIHandler.Init(this);
