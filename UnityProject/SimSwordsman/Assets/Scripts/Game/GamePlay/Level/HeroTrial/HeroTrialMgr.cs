@@ -53,6 +53,16 @@ namespace GameWish.Game
         #endregion
 
         #region Public Set
+        public void OnEnterHeroTrial()
+        {
+            EventSystem.S.Send(EventID.OnEnterHeroTrial);
+        }
+
+        public void OnExitHeroTrial()
+        {
+            EventSystem.S.Send(EventID.OnExitHeroTrial);
+        }
+
         public void StartTrial(int trialStartDay, int characterId)
         {
             ClanType clanType = GetNextClanType(m_DbData.clanType);

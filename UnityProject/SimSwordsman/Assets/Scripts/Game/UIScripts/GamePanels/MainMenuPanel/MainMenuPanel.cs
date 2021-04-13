@@ -214,8 +214,12 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
 
-            m_HeroTrialBtn.onClick.AddListener(()=> {
+            m_HeroTrialBtn.onClick.AddListener(()=> 
+            {
+                UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
+                UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
 
+                MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
 
             m_MainTaskUIHandler.Init(this);

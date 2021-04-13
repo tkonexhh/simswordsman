@@ -86,5 +86,10 @@ namespace GameWish.Game
         TowerSelectCharacterPanel,
         TowerRevivePanel,
         #endregion
+
+        #region 英雄试炼
+        HeroTrialPanel,
+        HeroTrialTipPanel,
+        #endregion
     }
 }

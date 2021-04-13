@@ -388,6 +388,11 @@ namespace GameWish.Game
         OnRefeshTowerCoin,
         OnRefeshTowerShop,
         #endregion
+
+        #region HeroTrial
+        OnEnterHeroTrial,
+        OnExitHeroTrial,
+        #endregion
     }
 
 }

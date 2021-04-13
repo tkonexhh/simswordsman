@@ -146,6 +146,10 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.TowerSelectCharacterPanel, null, "GamePanels/TowerPanel/TowerSelectCharacterPanel");
             UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
 
+            //英雄试炼
+            UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");
+            UIDataTable.AddPanelData(UIID.HeroTrialTipPanel, null, "GamePanels/HeroTrialPanels/HeroTrialTipPanel/HeroTrialTipPanel");
+
             RealNameMgr.S.RegisterPanels();
         }
     }
