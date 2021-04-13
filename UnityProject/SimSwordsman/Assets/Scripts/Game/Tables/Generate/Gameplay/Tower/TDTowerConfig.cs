@@ -15,7 +15,7 @@ namespace GameWish.Game
         private EInt m_FloorNum = 0;   
         private string m_Rwardtype;   
         private EInt m_FcoinNum = 0;   
-        private EInt m_AtkNum = 0;   
+        private EFloat m_AtkNum = 0.0f;   
         private EInt m_CanRevive = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
@@ -38,7 +38,7 @@ namespace GameWish.Game
         /// <summary>
         /// 功力系数
         /// </summary>
-        public  int  atkNum {get { return m_AtkNum; } }
+        public  float  atkNum {get { return m_AtkNum; } }
        
         /// <summary>
         /// 是否可以复活
@@ -70,7 +70,7 @@ namespace GameWish.Game
                     m_FcoinNum = dataR.ReadInt();
                     break;
                 case 3:
-                    m_AtkNum = dataR.ReadInt();
+                    m_AtkNum = dataR.ReadFloat();
                     break;
                 case 4:
                     m_CanRevive = dataR.ReadInt();
