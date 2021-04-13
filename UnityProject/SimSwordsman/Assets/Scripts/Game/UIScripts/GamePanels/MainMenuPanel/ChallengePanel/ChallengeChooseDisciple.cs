@@ -55,6 +55,9 @@ namespace GameWish.Game
        
         private const int DeliverDiscipleNumber = 4;
         private SingleDeliverDetailData m_SingleDeliverDetailData;
+
+        private const int HeroTrialDiscipleNumber = 1;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -119,6 +122,13 @@ namespace GameWish.Game
                         break;
                     case PanelType.Deliver:
                         if (m_SelectedDiscipleDic.Count >= DeliverDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                            return;
+                        }
+                        break;
+                    case PanelType.HeroTrial:
+                        if (m_SelectedDiscipleDic.Count >= HeroTrialDiscipleNumber)
                         {
                             FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
                             return;
@@ -256,6 +266,16 @@ namespace GameWish.Game
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue));
                     RefreshDisicipleSkill();
                     break;
+                case PanelType.HeroTrial:
+                    //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect || m_AllDiscipleList[0].level>=200)
+                            CreateDisciple(m_AllDiscipleList[i]);
+                    for (int i = 0; i < HeroTrialDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+                    RefreshFixedInfo(PanelType.HeroTrial);
+                    m_ConfirmText.text = "出发";
+                    break;
                 default:
                     break;
             }
@@ -268,7 +288,7 @@ namespace GameWish.Game
             m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
             m_StateBg.gameObject.SetActive(false);
             m_State.gameObject.SetActive(false);
-            if (panelType == PanelType.Deliver)
+            if (panelType == PanelType.Deliver || panelType == PanelType.HeroTrial)
             {
                 m_RecommendedSkillsTitle.gameObject.SetActive(false);
                 m_RecommendedSkillsValue.gameObject.SetActive(false);
@@ -313,6 +333,13 @@ namespace GameWish.Game
                         if (m_SelectedDiscipleDic.Count != DeliverDiscipleNumber)
                         {
                             FloatMessage.S.ShowMsg("人数不足4人，请选满");
+                            return;
+                        }
+                        break;
+                    case PanelType.HeroTrial:
+                        if (m_SelectedDiscipleDic.Count != HeroTrialDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("人数不足1人，请选满");
                             return;
                         }
                         break;
