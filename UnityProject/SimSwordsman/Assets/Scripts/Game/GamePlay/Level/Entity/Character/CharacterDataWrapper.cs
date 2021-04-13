@@ -248,8 +248,8 @@ namespace GameWish.Game
         public CollectedObjType collectedObjType;
 
         #region ¹¦ÄÜ×Ö¶Î
-        public int lastExp;
-        public int lastLevel;
+        public int lastExp = 1;
+        public int lastLevel = 1;
         #endregion
 
         private CharacterItemDbData m_ItemDbData = null;

@@ -338,7 +338,6 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().UpdateRecruitLastClickTime(m_CurRecruitType);
             UpdateADCoolingTime();
 
-            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
             UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(m_CurRecruitType), ClickType.LookAdvertisement, m_CurRecruitType);
         }
 

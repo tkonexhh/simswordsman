@@ -310,9 +310,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3460177828631556548}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 20
 --- !u!1 &6394282721778402456
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 181390824637438990}
   - component: {fileID: 4969823110822934026}
   - component: {fileID: 2083715056641888178}
+  - component: {fileID: 7561413414223255965}
   m_Layer: 5
   m_Name: KungfuName
   m_TagString: Untagged
@@ -387,6 +388,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &7561413414223255965
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394282721778402456}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 20
+  m_TargetDisplay: 0
 --- !u!1 &7106967278920091007
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +420,7 @@ GameObject:
   - component: {fileID: 1287523836754961317}
   - component: {fileID: 6998496780940771161}
   - component: {fileID: 6301339139305701193}
+  - component: {fileID: 8524563201531843347}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -462,6 +485,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &8524563201531843347
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7106967278920091007}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 20
+  m_TargetDisplay: 0
 --- !u!1 &7258707826710632311
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539623496775616939, guid: eebbbf07706f91e4285896c38d4ac897,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eebbbf07706f91e4285896c38d4ac897, type: 3}

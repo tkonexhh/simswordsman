@@ -64,11 +64,55 @@ namespace GameWish.Game
         {
         }
 
+        public IEnumerator ExperienceGrowthBar(float start, float targit, Action action = null)
+        {
+            m_ExpProportion.value = start;
+            while (true)
+            {
+                yield return new WaitForSeconds(0.05f);
+                m_ExpProportion.value += 0.08f;
+                if (m_ExpProportion.value >= targit)
+                {
+                    action?.Invoke();
+                    break;
+                }
+            }
+        }
+
         private void RefreshPanelInfo()
         {
-
             m_DiscipleName.text = m_CurCharacterItem.name;
-            m_ExpProportion.value = ((float)m_CharacterController.GetCurExp() / m_CharacterController.GetExpLevelUpNeed());
+            //m_ExpProportion.value = ((float)m_CurCharacterItem.lastExp / m_CharacterController.GetExpLevelUpNeed());
+
+            int deltaLevle = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
+            float start = ((float)m_CurCharacterItem.lastExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
+            float ratio = ((float)m_CurCharacterItem.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
+            if (deltaLevle == 0)
+            {
+                StartCoroutine(ExperienceGrowthBar(start, ratio));
+            }
+            else if (deltaLevle == 1)
+            {
+       
+                StartCoroutine(ExperienceGrowthBar(start, 1, () =>
+                {
+                    StartCoroutine(ExperienceGrowthBar(0,ratio));
+                }));
+            }
+            else if (deltaLevle > 1)
+            {
+         
+                StartCoroutine(ExperienceGrowthBar(start, 1, () =>
+                {
+                    for (int i = 0; i < deltaLevle - 1; i++)
+                    {
+                        StartCoroutine(ExperienceGrowthBar(0,1, () =>
+                        {
+                            StartCoroutine(ExperienceGrowthBar(0,ratio));
+                        }));
+                    }
+                }));
+            }
 
             if (!m_IsSuccess)
             {

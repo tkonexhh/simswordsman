@@ -189,8 +189,6 @@ namespace GameWish.Game
         }
         private void LookADSuccessCallBack(bool obj)
         {
-            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
-
             ForgeHouseSystemMgr.S.ImmediatelyCompleteBaiCaoWuCountDown(m_ForgeHouseID);
 
             if (m_ForgeHouseID > 500)

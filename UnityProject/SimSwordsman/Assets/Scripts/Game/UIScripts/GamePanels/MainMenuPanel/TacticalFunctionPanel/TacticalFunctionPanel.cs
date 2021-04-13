@@ -198,6 +198,7 @@ namespace GameWish.Game
                     FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
                     return;
                 }
+                m_SimGameTask.ExecuteTask(m_SelectedList);
                 //m_SimGameTask.ExecuteTask(m_SelectedList);
                 List<EnemyConfig> enemiesList = new List<EnemyConfig>();
                 List<TaskEnemy> taskEnemies = m_SimGameTask.CommonTaskItemInfo.taskEnemies;

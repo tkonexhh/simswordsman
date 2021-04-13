@@ -6,60 +6,66 @@ using System;
 
 namespace GameWish.Game
 {
-	public class AdsManager : TSingleton<AdsManager>
-	{
-		#region 热云相关
-		private const string m_LookADKey = "m_LookADKey";
-		private const string m_KeyBehavior = "w_key_behavior{0}";
-		private int GetLookADCount()
-		{
-			return PlayerPrefs.GetInt(m_LookADKey, 0);
-		}
-		private void UpdateLookADCount(bool isClick)
-		{
-			int lookADCount = GetLookADCount();
-			lookADCount++;
-			PlayerPrefs.SetInt(m_LookADKey, lookADCount);
+    public class AdsManager : TSingleton<AdsManager>
+    {
+        #region 热云相关
+        private const string m_LookADKey = "m_LookADKey";
+        private const string m_KeyBehavior = "w_key_behavior{0}";
+        private int GetLookADCount()
+        {
+            return PlayerPrefs.GetInt(m_LookADKey, 0);
+        }
+        private void UpdateLookADCount(bool isClick)
+        {
+            int lookADCount = GetLookADCount();
+            lookADCount++;
+            PlayerPrefs.SetInt(m_LookADKey, lookADCount);
 
-			if (lookADCount == 3)
-			{
-				DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 2));
-			}
-		}
-		#endregion
+            if (lookADCount == 3)
+            {
+                DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 2));
+            }
+        }
+        #endregion
 
-		public void Init() 
-		{
-			EventSystem.S.Register(EventID.OnUpgradeFacility, OnUpgradeFacilityCallBack);
-		}
+        public void Init()
+        {
+            EventSystem.S.Register(EventID.OnUpgradeFacility, OnUpgradeFacilityCallBack);
+        }
 
         private void OnUpgradeFacilityCallBack(int key, object[] param)
         {
-			int LobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+            int LobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
 
-			if (LobbyLevel == 2) 
-			{
-				FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(param[0].ToString());
+            if (LobbyLevel == 2)
+            {
+                FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(param[0].ToString());
 
-				if (facilityType == FacilityType.Lobby)
-				{
-					DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 3));
-				}
-			}			
-		}
+                if (facilityType == FacilityType.Lobby)
+                {
+                    DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 3));
+                }
+            }
+        }
 
-        public void PlayRewardAD(string tag,Action<bool> LookADSuccessCallBack) 
-		{
-			LookADSuccessCallBack += UpdateLookADCount;
+        public void PlayRewardAD(string tag, Action<bool> LookADSuccessCallBack)
+        {
+            LookADSuccessCallBack += UpdateLookADCount;
+            LookADSuccessCallBack += UpdateNoBroadcastTimes;
 
-			CustomExtensions.PlayAd(tag, LookADSuccessCallBack);
-		}
+            CustomExtensions.PlayAd(tag, LookADSuccessCallBack);
+        }
+
+        private void UpdateNoBroadcastTimes(bool obj)
+        {
+            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
+        }
 
         public void PlayInterAD(string tag, Action<bool> LookInterADCallBackMethod)
         {
-			LookInterADCallBackMethod += UpdateLookADCount;
+            LookInterADCallBackMethod += UpdateLookADCount;
 
-            CustomExtensions.PlayAd(tag, LookInterADCallBackMethod,null, "Inter0", "MainInter");
+            CustomExtensions.PlayAd(tag, LookInterADCallBackMethod, null, "Inter0", "MainInter");
         }
     }
 }
