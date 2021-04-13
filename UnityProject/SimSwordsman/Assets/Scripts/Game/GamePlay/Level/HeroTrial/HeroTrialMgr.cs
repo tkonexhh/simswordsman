@@ -30,10 +30,6 @@ namespace GameWish.Game
             m_BattleField.Init();
 
             m_StateMachine = new HeroTrialStateMachine(this);
-
-            SetState(m_DbData.state);
- 
-            RegisterEvents();
         }
 
         public void OnUpdate()
@@ -55,16 +51,23 @@ namespace GameWish.Game
         #region Public Set
         public void OnEnterHeroTrial()
         {
+            SetState(m_DbData.state);
+
+            RegisterEvents();
+
             EventSystem.S.Send(EventID.OnEnterHeroTrial);
         }
 
         public void OnExitHeroTrial()
         {
+            UnregisterEvents();
+
             EventSystem.S.Send(EventID.OnExitHeroTrial);
         }
 
-        public void StartTrial(int trialStartDay, int characterId)
+        public void StartTrial(int characterId)
         {
+            int trialStartDay = DateTime.Today.DayOfYear;
             ClanType clanType = GetNextClanType(m_DbData.clanType);
             m_DbData.OnTrialStart(trialStartDay, characterId, clanType);
             SetState(m_DbData.state);
@@ -109,11 +112,13 @@ namespace GameWish.Game
         private void RegisterEvents()
         {
             EventSystem.S.Register(EngineEventID.OnDateUpdate, HandleEvent);
+            EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
             EventSystem.S.UnRegister(EngineEventID.OnDateUpdate, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandleEvent);
         }
 
         private void SetState(HeroTrialStateID state)
@@ -142,9 +147,19 @@ namespace GameWish.Game
 
         private void HandleEvent(int key, params object[] param)
         {
-            if (key == (int)EngineEventID.OnDateUpdate)
+            switch (key)
             {
-                bool needRefresh = CheckIsTrialReady();
+                case (int)EngineEventID.OnDateUpdate:            
+                    bool needRefresh = CheckIsTrialReady();
+                    break;
+                case (int)EventID.OnSelectedConfirmEvent:
+                    Debug.Assert(param.Length > 0, "OnSelectedConfirmEvent param pattern error");
+                    Dictionary<int, CharacterItem> selectedCharacterDic = (Dictionary<int, CharacterItem>)param[0];
+                    Debug.Assert(selectedCharacterDic.Count > 0, "OnSelectedConfirmEvent selectedCharacterDic count = 0");
+                    CharacterItem[] items = selectedCharacterDic.Values.ToArray();
+
+                    StartTrial(items[0].id);
+                    break;
             }
         }
 

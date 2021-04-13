@@ -22,6 +22,8 @@ namespace GameWish.Game
                 config.icon = tdData.jobName;
                 config.ordinaryEnemies = ParseEnemy(tdData.ordinaryEnemy);
                 config.eliteEnemies = ParseEnemy(tdData.eliteEnemy);
+
+                heroTrialConfigDic.Add(clan, config);
             }
         }
 
@@ -38,7 +40,7 @@ namespace GameWish.Game
 
         private static int[] ParseEnemy(string str)
         {
-            string[] idStrArray = str.Split(',');
+            string[] idStrArray = str.Split(';');
 
             int[] ids = new int[idStrArray.Length];
 

@@ -39,6 +39,8 @@ namespace GameWish.Game
             m_OrdinaryEnemyKilledCount = 0;
             m_OrdinaryEnemyCount = 3;
             m_ShouldSpawnOrdinaryEnemy = true;
+            m_OurInitPos = m_HeroTialMgr.BattleField.GetOurCharacterPos();
+            m_EnemyInitPos = m_HeroTialMgr.BattleField.GetEnemyCharacterPos();
 
             // Spawn Characters
             CharacterController ourCharacter = SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
@@ -94,8 +96,10 @@ namespace GameWish.Game
             GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
             if (go != null)
             {
+                go.transform.SetParent(m_HeroTialMgr.BattleField.transform);
                 CharacterView characterView = go.GetComponent<CharacterView>();
                 controller = new CharacterController(id, characterView, CharacterStateID.Battle);
+                controller.OnEnterBattleField(m_OurInitPos);
             }
             else
             {
