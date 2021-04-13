@@ -143,6 +143,7 @@ namespace GameWish.Game
         OnBattleAtkEnd,
         OnBattleAtkEvent,
         OnOneRoundEnd,
+        OnCharacterInFightGroupDead,
         /// <summary>
         /// 战斗描述刷新
         /// </summary>

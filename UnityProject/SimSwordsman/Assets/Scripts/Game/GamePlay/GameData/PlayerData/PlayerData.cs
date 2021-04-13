@@ -102,7 +102,7 @@ namespace GameWish.Game
         }
         public bool CurrentChallengeLevelIsPlayInterAD()
         {
-            if (LastChallengeIsBossLevel && IsLookADInLastChallengeBossLevel == false)
+            if (IsLookADInLastChallengeBossLevel == false)
             {
                 return true;
             }
@@ -139,7 +139,8 @@ namespace GameWish.Game
 
         public override void OnDataLoadFinish()
         {
-
+            towerData.SetDirtyRecorder(m_Recorder);
+            towerData.OnDataLoadFinish();
         }
 
         public void ResetDailyData()

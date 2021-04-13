@@ -13,5 +13,10 @@ namespace GameWish.Game
         {
 
         }
+
+        public bool CanRevive()
+        {
+            return m_CanRevive == 1;
+        }
     }
 }

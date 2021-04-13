@@ -15,7 +15,8 @@ namespace GameWish.Game
         private EInt m_FloorNum = 0;   
         private string m_Rwardtype;   
         private EInt m_FcoinNum = 0;   
-        private EInt m_AtkNum = 0;  
+        private EInt m_AtkNum = 0;   
+        private EInt m_CanRevive = 0;  
         
         //private Dictionary<string, TDUniversally.FieldData> m_DataCacheNoGenerate = new Dictionary<string, TDUniversally.FieldData>();
       
@@ -38,6 +39,11 @@ namespace GameWish.Game
         /// 功力系数
         /// </summary>
         public  int  atkNum {get { return m_AtkNum; } }
+       
+        /// <summary>
+        /// 是否可以复活
+        /// </summary>
+        public  int  canRevive {get { return m_CanRevive; } }
        
 
         public void ReadRow(DataStreamReader dataR, int[] filedIndex)
@@ -66,6 +72,9 @@ namespace GameWish.Game
                 case 3:
                     m_AtkNum = dataR.ReadInt();
                     break;
+                case 4:
+                    m_CanRevive = dataR.ReadInt();
+                    break;
                 default:
                     //TableHelper.CacheNewField(dataR, schemeNames[col], m_DataCacheNoGenerate);
                     break;
@@ -76,12 +85,13 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(4);
+          Dictionary<string, int> ret = new Dictionary<string, int>(5);
           
           ret.Add("FloorNum", 0);
           ret.Add("Rwardtype", 1);
           ret.Add("FcoinNum", 2);
           ret.Add("AtkNum", 3);
+          ret.Add("CanRevive", 4);
           return ret;
         }
     } 

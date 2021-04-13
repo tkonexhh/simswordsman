@@ -149,6 +149,9 @@ namespace GameWish.Game
             m_CharacterItem.SetDeliverID(deliverID);
         }
         public int GetDeliverID() {
+            if (m_CharacterItem == null) {
+                return -1;
+            }
             return m_CharacterItem.GetDeliverID();
         }
 

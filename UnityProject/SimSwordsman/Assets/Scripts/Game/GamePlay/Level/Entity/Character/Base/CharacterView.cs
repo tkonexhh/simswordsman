@@ -11,7 +11,8 @@ namespace GameWish.Game
     {
         //For debug
         public string state;
-        public string battleState;        
+        public string battleState;
+        public int deliverID;
 
         [SerializeField] private GameObject m_Body = null;
         [SerializeField] private GameObject m_HeadPos = null;
@@ -104,6 +105,7 @@ namespace GameWish.Game
 #if UNITY_EDITOR
             state = m_Controller.CurState.ToString();
             battleState = ((CharacterStateBattle)(m_Controller.GetState(CharacterStateID.Battle))).CurState.ToString();
+            deliverID = m_Controller.GetDeliverID();
 #endif
         }
 

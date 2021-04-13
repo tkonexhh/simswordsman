@@ -17,7 +17,9 @@ namespace GameWish.Game
         private void InitStateCreator()
         {
             RegisterPlayerState(HeroTrialStateID.Idle, new HeroTrialStateIdle(HeroTrialStateID.Idle));
-
+            RegisterPlayerState(HeroTrialStateID.Runing, new HeroTrialStateRuning(HeroTrialStateID.Runing));
+            RegisterPlayerState(HeroTrialStateID.Finished, new HeroTrialStateFinished(HeroTrialStateID.Finished));
+            RegisterPlayerState(HeroTrialStateID.None, new HeroTrialStateNone(HeroTrialStateID.None));
         }
 
         private void RegisterPlayerState(HeroTrialStateID id, HeroTrialState state)

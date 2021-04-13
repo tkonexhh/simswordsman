@@ -51,6 +51,10 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+            m_LevelConfigInfo = null;
+            m_CurChapterConfigInfo = null;
+            m_TowerLevelConfig = null;
+            m_CurTaskInfo = null;
 
             CloseDependPanel(EngineUI.MaskPanel);
 
@@ -110,23 +114,16 @@ namespace GameWish.Game
                 {
                     if (m_RewardList.Count > 0)
                     {
-                        bool isBossLevel = false;
                         if (m_PanelType == PanelType.Challenge)
                         {
                             if (m_LevelConfigInfo != null)
                             {
-                                isBossLevel = TDLevelConfigTable.IsBossLevel(m_LevelConfigInfo.level);
+                                bool isBossLevel = TDLevelConfigTable.IsBossLevel(m_LevelConfigInfo.level);
+
+                                UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, m_LevelConfigInfo.level);
                             }
                         }
-
-                        if (isBossLevel)
-                        {
-                            GameDataMgr.S.GetPlayerData().UpdateLastChallengeIsBossLevel(true);
-                            UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, true);
-                        }
-                        else
-                        {
-                            GameDataMgr.S.GetPlayerData().UpdateLastChallengeIsBossLevel(false);
+                        else {
                             UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
                         }
                         return;
@@ -175,6 +172,34 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
+                    if (!m_IsSuccess)
+                    {
+                        //是否是revive关卡
+                        var towerConf = TDTowerConfigTable.GetData(MainGameMgr.S.TowerSystem.maxLevel);
+                        if (towerConf != null)
+                        {
+                            if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().towerData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
+                            {
+                                //TODO 在判断是否可以有被复活的角色
+                                var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
+                                bool canRevive = false;
+                                for (int i = 0; i < characterLst.Count; i++)
+                                {
+                                    if (characterLst[i].IsDead() && characterLst[i].revive == false)
+                                    {
+                                        canRevive = true;
+                                        break;
+                                    }
+                                }
+
+                                if (canRevive)
+                                {
+                                    GameDataMgr.S.GetPlayerData().towerData.LevelRevived(MainGameMgr.S.TowerSystem.maxLevel);
+                                    UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
+                                }
+                            }
+                        }
+                    }
                     break;
             }
         }
@@ -251,11 +276,6 @@ namespace GameWish.Game
                         m_LevelConfigInfo.AcceptReward();
 
                         GameDataMgr.S.GetPlayerData().recordData.AddChanllenge();
-
-                        if (GameDataMgr.S.GetPlayerData().CurrentChallengeLevelIsPlayInterAD())
-                        {
-                            AdsManager.S.PlayInterAD("ChallengePlayInterAD", (x) => { });
-                        }
                     }
                     break;
                 case PanelType.Tower:

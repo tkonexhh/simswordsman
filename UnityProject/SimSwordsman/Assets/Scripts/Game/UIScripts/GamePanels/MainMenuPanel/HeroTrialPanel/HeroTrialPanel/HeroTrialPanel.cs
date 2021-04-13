@@ -42,6 +42,9 @@ namespace GameWish.Game
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
+
+            UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+
             CloseSelfPanel();
         }
 

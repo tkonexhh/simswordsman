@@ -65,7 +65,7 @@ namespace GameWish.Game
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
             UIDataTable.AddPanelData(UIID.WorldUIPanel, null, "Common/WorldUIPanel", true, 1);
             UIDataTable.AddPanelData(UIID.UITipsPanel, null, "Common/UITipsPanel", true, 1);
-            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
+            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel", true, 1);
 
             UIDataTable.AddPanelData(UIID.LobbyPanel, null, "GamePanels/FacilityPanel/LobbyPanel/LobbyPanel");
             UIDataTable.AddPanelData(UIID.RecruitmentPanel, null, "GamePanels/FacilityPanel/LobbyPanel/RecruitmentPanel");
@@ -146,6 +146,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
             UIDataTable.AddPanelData(UIID.TowerSelectCharacterPanel, null, "GamePanels/TowerPanel/TowerSelectCharacterPanel");
             UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel");
 
             //英雄试炼
             UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");

@@ -272,16 +272,19 @@ namespace GameWish.Game
             }
 
             // Special reward
-            for (int i = 0; i < workConfigItem.specialRewards.Count; i++)
+            if (workConfigItem.IsHaveSpecialReward) 
             {
-                int itemId = workConfigItem.specialRewards[i].id;
-                int count = workConfigItem.specialRewards[i].GetRewardValue();
-
-                if (count > 0)
+                for (int i = 0; i < workConfigItem.specialRewards.Count; i++)
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+                    int itemId = workConfigItem.specialRewards[i].id;
+                    int count = workConfigItem.specialRewards[i].GetRewardValue();
 
-                    m_Controller.SpawnCollectedObjWorkRewardWithDelay((RawMaterial)itemId, count, 1f);
+                    if (count > 0)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
+
+                        m_Controller.SpawnCollectedObjWorkRewardWithDelay((RawMaterial)itemId, count, 1f);
+                    }
                 }
             }
 
