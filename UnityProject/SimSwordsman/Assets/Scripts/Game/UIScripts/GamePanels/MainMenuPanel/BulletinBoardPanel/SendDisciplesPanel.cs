@@ -11,7 +11,18 @@ namespace GameWish.Game
     {
         Task,
         Challenge,
+        /// <summary>
+        /// 镖局
+        /// </summary>
         Deliver,
+        /// <summary>
+        /// 伏魔塔
+        /// </summary>
+        Tower,
+        /// <summary>
+        /// 英雄试炼
+        /// </summary>
+        HeroTrial,
     }
 
     public class SendDisciplesPanel : AbstractAnimPanel

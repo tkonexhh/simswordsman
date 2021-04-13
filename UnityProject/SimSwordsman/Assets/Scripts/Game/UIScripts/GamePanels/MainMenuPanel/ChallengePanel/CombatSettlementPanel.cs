@@ -30,6 +30,7 @@ namespace GameWish.Game
         private bool m_IsSuccess;
         private LevelConfigInfo m_LevelConfigInfo = null;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
+        private TowerLevelConfig m_TowerLevelConfig = null;
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
@@ -50,6 +51,10 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+            m_LevelConfigInfo = null;
+            m_CurChapterConfigInfo = null;
+            m_TowerLevelConfig = null;
+            m_CurTaskInfo = null;
 
             CloseDependPanel(EngineUI.MaskPanel);
 
@@ -69,6 +74,7 @@ namespace GameWish.Game
                     break;
             }
         }
+
 
         private void HandChallengeReward(object[] param)
         {
@@ -149,7 +155,7 @@ namespace GameWish.Game
             {
                 case PanelType.Task:
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallBack);
-                    RefreshInterAdTimes(); 
+                    RefreshInterAdTimes();
                     if (GameDataMgr.S.GetPlayerData().isPlayMaxTimes())
                         return;
 
@@ -162,6 +168,38 @@ namespace GameWish.Game
                     break;
                 case PanelType.Challenge:
                     OpenParentChallenge();
+                    break;
+                case PanelType.Tower:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.TowerPanel);
+                    if (!m_IsSuccess)
+                    {
+                        //是否是revive关卡
+                        var towerConf = TDTowerConfigTable.GetData(MainGameMgr.S.TowerSystem.maxLevel);
+                        if (towerConf != null)
+                        {
+                            if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().towerData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
+                            {
+                                //TODO 在判断是否可以有被复活的角色
+                                var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
+                                bool canRevive = false;
+                                for (int i = 0; i < characterLst.Count; i++)
+                                {
+                                    if (characterLst[i].IsDead() && characterLst[i].revive == false)
+                                    {
+                                        canRevive = true;
+                                        break;
+                                    }
+                                }
+
+                                if (canRevive)
+                                {
+                                    GameDataMgr.S.GetPlayerData().towerData.LevelRevived(MainGameMgr.S.TowerSystem.maxLevel);
+                                    UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
+                                }
+                            }
+                        }
+                    }
                     break;
             }
         }
@@ -193,7 +231,7 @@ namespace GameWish.Game
                     GameDataMgr.S.GetPlayerData().SetIsNewUser();
                 if (GameDataMgr.S.GetPlayerData().GetNoBroadcastTimes() > 0)
                 {
-                    ///���ⲥ����
+                    ///���ⲥ����
                     GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(-1);
                     return;
                 }
@@ -240,6 +278,16 @@ namespace GameWish.Game
                         GameDataMgr.S.GetPlayerData().recordData.AddChanllenge();
                     }
                     break;
+                case PanelType.Tower:
+                    m_TowerLevelConfig = (TowerLevelConfig)args[1];
+
+                    m_IsSuccess = (bool)args[2];
+                    if (m_IsSuccess)
+                    {
+                        m_TowerLevelConfig.PrepareReward();
+                        MainGameMgr.S.TowerSystem.PassLevel();
+                    }
+                    break;
                 default:
                     break;
             }
@@ -276,6 +324,10 @@ namespace GameWish.Game
                 case PanelType.Challenge:
                     ItemICom ChaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
                     ChaRewardItemICom.OnInit(item, null, m_PanelType, m_LevelConfigInfo, m_IsSuccess, this);
+                    break;
+                case PanelType.Tower:
+                    ItemICom towerRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                    towerRewardItemICom.OnInit(item, null, m_PanelType, m_TowerLevelConfig, m_IsSuccess, this);
                     break;
                 default:
                     break;

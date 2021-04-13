@@ -20,7 +20,7 @@ namespace GameWish.Game
         public override void InitWithEmptyData()
         {
             playerInfoData = new PlayerData();
-            playerInfoData.SetDefaultValue();
+            playerInfoData.InitWithEmptyData();
 
             clanData = new ClanData();
             clanData.SetDefaultValue();
@@ -35,6 +35,7 @@ namespace GameWish.Game
             clanData.SetDirtyRecorder(m_Recorder);
             commonTaskData.SetDirtyRecorder(m_Recorder);
 
+            playerInfoData.OnDataLoadFinish();
             clanData.OnDataLoadFinish();
         }
     }

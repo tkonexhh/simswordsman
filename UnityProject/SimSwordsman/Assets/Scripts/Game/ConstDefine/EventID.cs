@@ -142,6 +142,8 @@ namespace GameWish.Game
         OnBattleAtkStart,
         OnBattleAtkEnd,
         OnBattleAtkEvent,
+        OnOneRoundEnd,
+        OnCharacterInFightGroupDead,
         /// <summary>
         /// 战斗描述刷新
         /// </summary>
@@ -240,8 +242,6 @@ namespace GameWish.Game
         OnDiscipleButtonOnClick,
         OnDeleteTaskBtn,
         #endregion
-
-
         #region 新手引导
         OnGuideDialog1 = 10101,
         OnGuideTakeName = 10201,
@@ -377,11 +377,8 @@ namespace GameWish.Game
 
         #endregion
 
-
         OnAddArmor,//获取新装备护甲
         OnAddArms,//获取信装备武器
-
-
         #region 定点计时
         OnFixedPointRefreshEvent,
         #endregion
@@ -410,6 +407,17 @@ namespace GameWish.Game
         /// </summary>
         OnDeliverCarArrive,
         #endregion
-    }
 
+        #region Tower
+        OnRefeshTowerCoin,
+        OnRefeshTowerShop,
+        #endregion
+
+        #region HeroTrial
+        OnEnterHeroTrial,
+        OnExitHeroTrial,
+
+        #endregion
+
+    }
 }

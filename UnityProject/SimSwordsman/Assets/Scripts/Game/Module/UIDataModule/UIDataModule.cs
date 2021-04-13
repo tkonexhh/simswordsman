@@ -65,7 +65,7 @@ namespace GameWish.Game
             //UIDataTable.AddPanelData(UIID.MyFloatMessagePanel, null, "GamePanels/MyFloatMessagePanel/MyFloatMessagePanel");
             UIDataTable.AddPanelData(UIID.WorldUIPanel, null, "Common/WorldUIPanel", true, 1);
             UIDataTable.AddPanelData(UIID.UITipsPanel, null, "Common/UITipsPanel", true, 1);
-            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel");
+            UIDataTable.AddPanelData(UIID.MainMenuPanel, null, "GamePanels/MainMenuPanel/MainMenuPanel", true, 1);
 
             UIDataTable.AddPanelData(UIID.LobbyPanel, null, "GamePanels/FacilityPanel/LobbyPanel/LobbyPanel");
             UIDataTable.AddPanelData(UIID.RecruitmentPanel, null, "GamePanels/FacilityPanel/LobbyPanel/RecruitmentPanel");
@@ -140,6 +140,17 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/MainMenuPanel/TaskPanel/DailyTaskPanel");
 
             UIDataTable.AddPanelData(UIID.DeliverPanel, null, "GamePanels/FacilityPanel/DeliverPanel/DeliverPanel");
+            //伏魔塔
+            UIDataTable.AddPanelData(UIID.TowerPanel, null, "GamePanels/TowerPanel/TowerPanel");
+            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
+            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
+            UIDataTable.AddPanelData(UIID.TowerSelectCharacterPanel, null, "GamePanels/TowerPanel/TowerSelectCharacterPanel");
+            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel");
+
+            //英雄试炼
+            UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");
+            UIDataTable.AddPanelData(UIID.HeroTrialTipPanel, null, "GamePanels/HeroTrialPanels/HeroTrialTipPanel/HeroTrialTipPanel");
 
             RealNameMgr.S.RegisterPanels();
         }

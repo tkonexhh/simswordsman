@@ -22,7 +22,7 @@ namespace GameWish.Game
         private List<float> m_OurHitBackDistance = new List<float>();
         private List<float> m_EnemyHitBackDistance = new List<float>();
 
-        public CharacterController OurCharacter { get => m_OurCharacter; }
+        public CharacterController OurCharacter { get => m_OurCharacter;}
         public CharacterController EnemyCharacter { get => m_EnemyCharacter; }
         public Dictionary<string, KongfuAnimConfig> m_KongfuAnimMap = new Dictionary<string, KongfuAnimConfig>();
         public FightGroup(int id, CharacterController ourCharacter, CharacterController enemyCharacter)
@@ -48,6 +48,14 @@ namespace GameWish.Game
 
             UnregisterEvents();
             // ReleaseEffectPool();
+        }
+
+        public void ChangeEnemyCharacter(CharacterController enemy)
+        {
+            m_EnemyCharacter.FightGroup = null;
+            m_EnemyCharacter = enemy;
+            m_EnemyCharacter.SetFightGroup(this);
+            m_EnemyCharacter.SetFightTarget(m_OurCharacter);
         }
 
         private void ParpareEffectPool()
@@ -245,12 +253,16 @@ namespace GameWish.Game
                 if (m_EnemyCharacter.IsDead() || m_OurCharacter.IsDead())
                 {
                     //Debug.LogError("someone is dead");
-                    MainGameMgr.S.BattleFieldMgr.OnFightGroupCharacterDead(this);
+                    //MainGameMgr.S.BattleFieldMgr.OnFightGroupCharacterDead(this);
+                    EventSystem.S.Send(EventID.OnCharacterInFightGroupDead, this);
                 }
                 else
                 {
                     NextRound();
                 }
+
+                EventSystem.S.Send(EventID.OnOneRoundEnd);
+
             }
         }
 

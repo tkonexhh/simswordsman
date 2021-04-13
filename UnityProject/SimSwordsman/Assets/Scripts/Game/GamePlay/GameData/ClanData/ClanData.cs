@@ -19,6 +19,7 @@ namespace GameWish.Game
         public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
         public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
         public DeliverData DeliverData = new DeliverData();
+        public HeroTrialData heroTrialData = new HeroTrialData();
 
         public void SetDefaultValue()
         {
@@ -682,6 +683,7 @@ namespace GameWish.Game
         }
         #endregion
 
+
         #region daliver system
         public void RemoveDeliverDataByID(int DeliverID) 
         {
@@ -720,5 +722,15 @@ namespace GameWish.Game
             return DeliverData.GetDeliverDataByID(deliverID);
         }
         #endregion
+
+        //#region HeroTrial
+        //public void OnHeroTrialStart(int day, int characterId)
+        //{
+        //    heroTrialData.OnTrialStart(day, characterId);
+
+        //    SetDataDirty();
+        //}
+        //#endregion
+
     }
 }

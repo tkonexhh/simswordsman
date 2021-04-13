@@ -54,6 +54,8 @@ namespace GameWish.Game
         private Button m_VoldemortTowerBtn;
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
+        [SerializeField]
+        private Button m_HeroTrialBtn;
 
         [Header("战斗任务")]
         [SerializeField]
@@ -182,6 +184,12 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 FloatMessage.S.ShowMsg("暂未开放，敬请期待");
+                //TODO 添加解锁等级限制
+                if (PlatformHelper.isTestMode)
+                {
+                    UIMgr.S.OpenPanel(UIID.TowerPanel);
+                }
+
             });
             m_CreateCoinBtn.onClick.AddListener(() =>
             {
@@ -206,6 +214,19 @@ namespace GameWish.Game
                 DataAnalysisMgr.S.CustomEvent(DotDefine.visitor_tap, visitor.Reward.KeyID.ToString());
 
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
+            });
+
+            m_HeroTrialBtn.onClick.AddListener(()=> 
+            {
+                UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
+                UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
+
+                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle)
+                {
+                    UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
+                }
+
+                MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
 
             m_MainTaskUIHandler.Init(this);

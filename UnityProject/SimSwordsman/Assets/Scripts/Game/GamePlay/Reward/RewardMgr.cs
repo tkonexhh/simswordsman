@@ -15,6 +15,7 @@ namespace GameWish.Game
         Medicine,//ҩ
         Food,//ʳ��
         Coin,//ͭǮ
+        TowerCoin,//伏魔币
         Exp_Role,//���Ӿ���
         Exp_Kongfu,//������
     }
@@ -42,6 +43,8 @@ namespace GameWish.Game
                     return new Exp_RoleReward(id, count);
                 case RewardItemType.Exp_Kongfu:
                     return new Exp_KongfuRweard(id, count);
+                case RewardItemType.TowerCoin:
+                    return new TowerCoinReward(count);
                 default:
 
                     return null;
@@ -80,6 +83,7 @@ namespace GameWish.Game
                     return CreateReward(rewardItemType, int.Parse(sp[1]), GetRewardCount(sp[2]));
                 case RewardItemType.Food:
                 case RewardItemType.Coin:
+                case RewardItemType.TowerCoin:
                     return CreateReward(rewardItemType, 0, int.Parse(sp[1]));
                 case RewardItemType.Exp_Role:
                 case RewardItemType.Exp_Kongfu:
@@ -118,6 +122,27 @@ namespace GameWish.Game
         //    reward.AcceptReward();
         //    return reward;
         //}
+
+
+        public long GetOwnRewardCount(RewardBase reward)
+        {
+            switch (reward.RewardItem)
+            {
+                case RewardItemType.Coin:
+                    return GameDataMgr.S.GetPlayerData().GetCoinNum();
+                case RewardItemType.Food:
+                    return GameDataMgr.S.GetPlayerData().GetFoodNum();
+                case RewardItemType.Armor:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new ArmorItem((ArmorType)reward.KeyID.Value, Step.One));
+                case RewardItemType.Arms:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new ArmsItem((ArmsType)reward.KeyID.Value, Step.One));
+                case RewardItemType.Kongfu:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new KungfuItem((KungfuType)reward.KeyID.Value));
+                case RewardItemType.Item:
+                    return MainGameMgr.S.InventoryMgr.GetItemCount(new PropItem((RawMaterial)reward.KeyID.Value));
+            }
+            return 0;
+        }
 
     }
 }

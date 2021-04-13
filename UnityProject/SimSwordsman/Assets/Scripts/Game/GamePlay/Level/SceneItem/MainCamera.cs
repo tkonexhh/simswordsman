@@ -116,6 +116,24 @@ namespace GameWish.Game
 
         #region Public
 
+        public void LookAtTarget(Transform target)
+        {
+            //TODO 修改实现方式
+            var followCamera = gameObject.AddMissingComponent<FixedFollowCamera>();
+            followCamera.SetTarget(target);
+            Timer.S.Post2Scale(i => followCamera.DestorySelf(), 0.5f);
+        }
+
+        public void OpenGameCamera()
+        {
+            m_Camera.enabled = true;
+        }
+
+        public void CloseGameCamera()
+        {
+            m_Camera.enabled = false;
+        }
+
         #endregion
 
         #region Private
@@ -124,6 +142,8 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EventID.OnEnterBattle, HandleEvent);
             EventSystem.S.Register(EventID.OnExitBattle, HandleEvent);
+            EventSystem.S.Register(EventID.OnEnterHeroTrial, HandleEvent);
+            EventSystem.S.Register(EventID.OnExitHeroTrial, HandleEvent);
             EventSystem.S.Register(EventID.InGuideProgress, CameraMoveWwitch);
             EventSystem.S.Register(EventID.OnLimitCameraTouchMove, OnLimitCameraTouchMove);
         }
@@ -168,17 +188,21 @@ namespace GameWish.Game
         {
             EventSystem.S.UnRegister(EventID.OnEnterBattle, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnExitBattle, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnEnterHeroTrial, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnExitHeroTrial, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
         {
             switch (key)
             {
+                case (int)EventID.OnEnterHeroTrial:
                 case (int)EventID.OnEnterBattle:
                     m_TouchInput.enabled = false;
                     m_MobileTouchCamera.enabled = false;
                     m_BattleProperty.Apply(m_Camera);
                     break;
+                case (int)EventID.OnExitHeroTrial:
                 case (int)EventID.OnExitBattle:
                     m_TouchInput.enabled = true;
                     m_MobileTouchCamera.enabled = true;

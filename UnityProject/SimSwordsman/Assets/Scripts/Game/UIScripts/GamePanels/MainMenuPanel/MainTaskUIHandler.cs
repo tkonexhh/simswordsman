@@ -18,6 +18,7 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnShow;
 
         [SerializeField, Header("Uncomplete")] private GameObject m_ObjUncomplete;
+        [SerializeField] private Button m_BtnUncomplete;
         [SerializeField, Header("Completed")] private GameObject m_ObjCompleted;
         [SerializeField] private Button m_BtnReward;
 
@@ -35,6 +36,7 @@ namespace GameWish.Game
             m_AnimHash_Show = Animator.StringToHash(ANIMNAME_SHOW);
             m_AnimHash_Hide = Animator.StringToHash(ANIMNAME_Hide);
             m_BtnReward.onClick.AddListener(OnClickReward);
+            m_BtnUncomplete.onClick.AddListener(OnClickUncomplete);
             m_BtnHide.onClick.AddListener(OnClickHide);
             m_BtnShow.onClick.AddListener(OnClickShow);
             EventSystem.S.Register(EventID.OnRefeshMainTask, Refesh);
@@ -128,6 +130,15 @@ namespace GameWish.Game
             var task = MainGameMgr.S.TaskMgr.mainTaskController.curTask;
             DataAnalysisMgr.S.CustomEvent(DotDefine.m_task_receive, task.id.ToString());
             MainGameMgr.S.TaskMgr.mainTaskController.FinishCurTask();
+        }
+
+        private void OnClickUncomplete()
+        {
+            var task = MainGameMgr.S.TaskMgr.mainTaskController.curTask;
+            if (task == null)
+                return;
+
+            task.FocusTask();
         }
 
         #region  Anim Event

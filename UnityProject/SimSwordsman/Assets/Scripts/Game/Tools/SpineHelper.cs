@@ -7,15 +7,12 @@ namespace GameWish.Game
 {
     public class SpineHelper
     {
-        public static void PlayAnim(SkeletonAnimation spine, string name, bool loop, System.Action callback)
+        public static void PlayAnim(SkeletonAnimation spine, string name, bool loop, System.Action callback = null)
         {
             Spine.TrackEntry trackEntry = spine.AnimationState.SetAnimation(0, name, loop);
             trackEntry.Complete += (Spine.TrackEntry entry) =>
             {
-                if (callback != null)
-                {
-                    callback.Invoke();
-                }
+                callback?.Invoke();
             };
         }
 
