@@ -196,10 +196,10 @@ namespace GameWish.Game
 
                 TimeSpan ts = endTime - DateTime.Now;
 
-                m_CountDownItem = CountDowntMgr.S.SpawnCountDownItemTest((int)ts.TotalSeconds, () =>
+                m_CountDownItem = CountDowntMgr.S.SpawnCountDownItemTest((int)ts.TotalSeconds, (remainTime) =>
                 {
                     UpdateRecruitValueText(ts, endTime);
-                }, ()=> {
+                }, (remainTime) => {
                     m_RecruitValue.text = string.Format("今日次数:1/1");
                     m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
                     m_CountDownItem = null;

@@ -90,10 +90,10 @@ namespace GameWish.Game
 						case KungfuQuality.Normal:
 							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Introduction");
 							break;
-						case KungfuQuality.Super:
+						case KungfuQuality.Master:
 							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Advanced");
 							break;
-						case KungfuQuality.Master:
+						case KungfuQuality.Super:
 							m_GoodsImg.sprite = m_WarehousePanel.FindSprite("Excellent");
 							break;
 						default:

@@ -6,6 +6,10 @@ using System;
 
 namespace GameWish.Game
 {
+    public enum WeChatTex { 
+        PrefectCharacter,
+        Challenge30Level,
+    }
 	public class WeChatShareMgr : TSingleton<WeChatShareMgr>
 	{
 		public void Init()
@@ -91,9 +95,9 @@ namespace GameWish.Game
             return false;
         }
 
-        public void Share() 
+        public void Share(WeChatTex weChatTex) 
         {
-//#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
             if (IsInstallWeChat())
             {
                 try
@@ -102,14 +106,14 @@ namespace GameWish.Game
                     {
                         Debug.LogError("share texture");
 
-                        var url = "http://share.msgcarry.cn/share/202102071711.html";
+                        var url = "http://fission.ewxmax.com/fission/zuiqiangmenpai.html";
 
                         var shareText = string.Format("{0}", url);
-                        int index = UnityEngine.Random.Range(1, 3);
+                        int index = weChatTex == WeChatTex.PrefectCharacter ? 2 : 1;
                         var pic = Resources.Load(string.Format("ShareTex/Img{0}", index)) as Texture2D;
 
                         var code = pic != null ?
-                            QRCodeHelper.GenNestedQRCodeTexture(pic, shareText, QRCodeHelper.QRCodeNestPosEnum.RightBottom, 34, 34) :
+                            QRCodeHelper.GenNestedQRCodeTexture(pic, shareText, QRCodeHelper.QRCodeNestPosEnum.RightBottom, 20, 20) :
                             QRCodeHelper.GenQRCodeTexture(shareText);
 
                         WeShareUtils.SharePicByWXSession(code, true);
@@ -127,7 +131,7 @@ namespace GameWish.Game
             {
                 FloatMessage.S.ShowMsg("未安装微信，分享失败！");
             }
-//#endif
+#endif
         }
     }
 }

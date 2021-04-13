@@ -25,6 +25,20 @@ namespace GameWish.Game
                 characterList.Add(item);
             });
         }
+
+        public List<CharacterItem> GetCharacterForQuality(CharacterQuality characterQuality)
+        {
+            List<CharacterItem> characterItems = new List<CharacterItem>();
+            characterList.ForEach(i =>
+            {
+                if (i.quality == characterQuality)
+                {
+                    characterItems.Add(i);
+                }
+            });
+            return characterItems;
+        }
+
         /// <summary>
         /// 给弟子增加装备
         /// </summary>
@@ -104,11 +118,12 @@ namespace GameWish.Game
             return item;
         }
 
-        public void LearnKungfu(int id, int index, KungfuItem kungfuItem)
+        public bool LearnKungfu(int id, int index, KungfuItem kungfuItem)
         {
             CharacterItem characterItem = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItem != null)
-                characterItem.LearnKungfu(index, kungfuItem);
+                return characterItem.LearnKungfu(index, kungfuItem);
+            return false;
 
         }
         public void AddCharacterLevel(int id, int level)
@@ -232,6 +247,10 @@ namespace GameWish.Game
         public int headId;
         public CollectedObjType collectedObjType;
 
+        #region 功能字段
+        public int lastExp;
+        public int lastLevel;
+        #endregion
 
         private CharacterItemDbData m_ItemDbData = null;
 
@@ -408,8 +427,14 @@ namespace GameWish.Game
             return 1;
         }
 
-        public void LearnKungfu(int index, KungfuItem kungfuItem)
+        public bool LearnKungfu(int index, KungfuItem kungfuItem)
         {
+            if (ChecklearnedKungfu(kungfuItem))
+            {
+                FloatMessage.S.ShowMsg("该功夫已学习");
+                return false;
+            }
+
             foreach (var item in kongfus.Values)
             {
                 if (index == item.Index)
@@ -429,6 +454,19 @@ namespace GameWish.Game
                     }
                 }
             }
+            return true;
+        }
+
+        private bool ChecklearnedKungfu(KungfuItem kungfuItem)
+        {
+            foreach (var item in kongfus.Values)
+            {
+                if (item.GetKungfuType() == kungfuItem.KungfuType)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -437,6 +475,8 @@ namespace GameWish.Game
         /// <param name="deltaExp"></param>
         public void AddCharacterExp(int deltaExp)
         {
+            lastExp = curExp;
+            lastLevel = level;
             deltaExp = (int)FoodBuffSystem.S.Exp(deltaExp);
             curExp += deltaExp;
             int preChracterStage = stage;
@@ -497,6 +537,7 @@ namespace GameWish.Game
                 atkValue *= item.GetKungfuAtkScale();
             }
 
+            EventSystem.S.Send(EventID.OnMainMenuChallenging);
             GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }
         public float CalculateForceValue(int stage)
@@ -629,10 +670,16 @@ namespace GameWish.Game
         {
             return characeterEquipmentData.GetArmsAtkRate();
         }
-
         public int GetCurTaskId()
         {
             return m_ItemDbData.taskId;
+        }
+        public void SetDeliverID(int deliverID) 
+        {
+            m_ItemDbData.SetDeliverID(deliverID);
+        }
+        public int GetDeliverID() {
+            return m_ItemDbData.m_DeliverID;
         }
 
         public FacilityType GetTargetFacilityType()

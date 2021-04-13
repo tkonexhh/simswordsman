@@ -52,6 +52,7 @@ namespace GameWish.Game
                 TDFacilityPracticeFieldTable.metaData,
                 TDFacilityKitchenTable.metaData,
                 TDFacilityForgeHouseTable.metaData,
+                TDFacilityDeliverTable.metaData,
                 TDFacilityBaicaohuTable.metaData,
                 TDFacilityPatrolRoomTable.metaData,
 
@@ -92,6 +93,7 @@ namespace GameWish.Game
                 TDDailyTaskTable.metaData,
                 TDMainTaskTable.metaData,
 
+                TDDeliverTable.metaData,
                 //Tower
                 TDTowerConfigTable.metaData,
                 TDTowerEnemyConfigTable.metaData,

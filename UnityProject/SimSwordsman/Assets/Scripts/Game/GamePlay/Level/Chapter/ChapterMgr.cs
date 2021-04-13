@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
 using System;
+using System.Linq;
 
 namespace GameWish.Game
 {
@@ -83,6 +84,13 @@ namespace GameWish.Game
             if ((unlockLevel)>= unlockInfo.level)
                 return true;
             return false;
+        }
+
+        public ChapterDbItem GetLatestChapter()
+        {
+            if (ChapterInfoDic.Values.Count>0)
+              return ChapterInfoDic.Values.Last();
+            return null;
         }
 
         /// <summary>

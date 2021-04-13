@@ -103,7 +103,7 @@ namespace GameWish.Game
         }
         private void StartCountDown(int collectID,int remaintTime) 
         {
-            CountDowntMgr.S.SpawnCountDownItemTest(remaintTime, null, () =>
+            CountDowntMgr.S.SpawnCountDownItemTest(remaintTime, null, (remainTime) =>
             {
                 EventSystem.S.Send(EventID.OnCollectCountChange, collectID);
 

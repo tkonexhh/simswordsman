@@ -7,9 +7,31 @@ namespace Qarth
 {
 	public partial class AudioMgr 
     {
+
+
         public partial class AudioUnit
         {
             private GameObject m_Root;
+            private void SetAudioSource2D()
+            {
+                if (m_Source.spatialBlend > 0) {
+                    m_Source.spatialBlend = 0;
+                    m_Source.rolloffMode = AudioRolloffMode.Logarithmic;
+                    m_Source.minDistance = 1;
+                    m_Source.maxDistance = 500;
+                }                
+            }
+
+            private void SetAudioSource3D()
+            {
+                if (m_Source.spatialBlend < 1) {
+                    m_Source.spatialBlend = 1;
+
+                    m_Source.rolloffMode = AudioRolloffMode.Linear;
+                    m_Source.minDistance = 8f;
+                    m_Source.maxDistance = 16;//暂定自己项目中的参数
+                }                
+            }
 
             public void SetAudio3D(GameObject root, Vector3 worldPos, string name, bool loop, bool isEnable, bool is3DSound)
             {
@@ -40,20 +62,11 @@ namespace Qarth
 
                 if (is3DSound)
                 {
-                    m_Source.spatialBlend = 1;
-                    //m_Source.minDistance = 0.7f;
-                    //m_Source.maxDistance = 10;//暂定自己项目中的参数
-
-                    m_Source.rolloffMode = AudioRolloffMode.Linear;
-                    m_Source.minDistance = 8f;
-                    m_Source.maxDistance = 16;//暂定自己项目中的参数
+                    SetAudioSource3D();
                 }
                 else
                 {
-                    m_Source.spatialBlend = 0;
-                    m_Source.rolloffMode = AudioRolloffMode.Logarithmic;
-                    m_Source.minDistance = 1;
-                    m_Source.maxDistance = 500;
+                    SetAudioSource2D();
                 }
 
                 SetRootPos(worldPos, root.transform);

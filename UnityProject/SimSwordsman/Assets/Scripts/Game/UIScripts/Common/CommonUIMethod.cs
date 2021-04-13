@@ -11,7 +11,7 @@ namespace GameWish.Game
     public class CommonUIMethod
     {
         /// <summary>
-        /// ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// ¸ù¾Ý°ïÅÉÀàÐÍ»ñÈ¡°ïÅÉÃû³Æ
         /// </summary>
         /// <param name="clanType"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½Textï¿½Ï·ï¿½
+        /// ½øÐÐTextÉÏ·­
         /// </summary>
         /// <param name="currentScoreText"></param>
         /// <param name="curValue"></param>
@@ -53,18 +53,18 @@ namespace GameWish.Game
 
             mScoreSequence.Append(DOTween.To(delegate (float value)
             {
-                //ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½
+                //ÏòÏÂÈ¡Õû
                 var temp = Math.Floor(value);
-                //ï¿½ï¿½Textï¿½ï¿½ï¿½ï¿½ï¿½Öµ
-                currentScoreText.text = temp + "";
+                //ÏòText×é¼þ¸³Öµ
+                currentScoreText.text = CommonUIMethod.GetTenThousandOrMillion((long)temp)/* temp + ""*/;
             }, curValue, targetValue, 1.0f));
-            //ï¿½ï¿½ï¿½ï¿½ï¿½Âºï¿½ï¿½Öµï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            //½«¸üÐÂºóµÄÖµ¼ÇÂ¼ÏÂÀ´, ÓÃÓÚÏÂÒ»´Î¹ö¶¯¶¯»­
             curValue = targetValue;
         }
 
 
         /// <summary>
-        /// ï¿½ï¿½È¡ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
+        /// »ñÈ¡ÌôÕ½Ãû³Æ
         /// </summary>
         /// <returns></returns>
         public static string GetChallengeTitle(ChapterConfigInfo chapterConfig, int level)
@@ -74,7 +74,7 @@ namespace GameWish.Game
                 + GetChallengeSubTitle(level.ToString());
         }
         /// <summary>
-        /// Æ´ï¿½ï¿½00ï¿½ï¿½00ï¿½ï¿½00
+        /// Æ´½Ó00£º00£º00
         /// </summary>
         /// <param name="seconds"></param>
         /// <returns></returns>
@@ -114,7 +114,7 @@ namespace GameWish.Game
             }
             else
             {
-                Log.w("ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½È²ï¿½ï¿½ï¿½ = " + subTitle);
+                Log.w("ÌôÕ½±êÌâID³¤¶È²»¶Ô = " + subTitle);
                 return "0";
             }
         }
@@ -125,21 +125,21 @@ namespace GameWish.Game
             Level,
         }
         /// <summary>
-        /// Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Ë³ÐòÀàÐÍ
         /// </summary>
         public enum OrderType
         {
             /// <summary>
-            /// ï¿½Ó´ï¿½Ð¡
+            /// ´Ó´óµ½Ð¡
             /// </summary>
             FromBigToSmall,
             /// <summary>
-            /// ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
+            /// ´ÓÐ¡µ½´ï
             /// </summary>
             FromSmallToBig,
         }
         /// <summary>
-        /// ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+        /// ¶ÔµÜ×ÓÅÅÐò°´ÕÕÎäÁ¦Öµ
         /// </summary>
         /// <param name="characterItems"></param>
         /// <returns></returns>
@@ -201,17 +201,19 @@ namespace GameWish.Game
 
 
         /// <summary>
-        /// Ë¢ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
+        /// Ë¢ÐÂ½²ÎäÌÃÕÐÄ¼Áîºìµã
         /// </summary>
         public static bool CheackRecruitmentOrder()
         {
-            int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
-            int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
+            //int GoldAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.GoldMedal, RecruitTimeType.Advertisement);
+            //int SilverAdvCount = GameDataMgr.S.GetPlayerData().GetRecruitTimeType(RecruitType.SilverMedal, RecruitTimeType.Advertisement);
+            bool SilverAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(RecruitType.SilverMedal, 24);
+            bool GoldAdvCount = GameDataMgr.S.GetPlayerData().IsCanLookADRecruit(RecruitType.GoldMedal, 48);
             int GoldFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.GoldenToken);
             int SilverFreeCount = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverToken);
             int allCount = GoldFreeCount + SilverFreeCount;
 
-            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount > 0 || GoldAdvCount > 0)
+            if (allCount > 0 || GoldFreeCount > 0 || SilverFreeCount > 0 || SilverAdvCount || GoldAdvCount)
             {
                 EventSystem.S.Send(EventID.OnSendRecruitable, true);
                 return true;
@@ -223,7 +225,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½Ð¡Ê±ï¿½ï¿½
+        /// ¼ÆËãÐ¡Ê±²î
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
@@ -239,9 +241,9 @@ namespace GameWish.Game
             return 0;
         }
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°×º
+        /// ÉèÖÃÃÅÅÉÇ°×º
         /// </summary>
-        /// <param name="clanType">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+        /// <param name="clanType">ÃÅÅÉÀàÐÍ</param>
         /// <returns></returns>
         public static string SetClanPrefix(ClanType clanType)
         {
@@ -249,7 +251,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½Ý±ï¿½ï¿½Ðµï¿½Keyï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// ¸ù¾Ý±íÖÐµÄKey£¬»ñÈ¡ÏàÓ¦µÄÄÚÈÝ
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -258,10 +260,10 @@ namespace GameWish.Game
             return TDLanguageTable.Get(key);
         }
 
-        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
+        #region ÉèÖÃÃæ°å×ÊÔ´
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ç·ï¿½ï¿½ã¹»
+        /// ¼ì²é×ÊÔ´ÊÇ·ñ×ã¹»
         /// </summary>
         /// <param name="costItem"></param>
         /// <param name="text"></param>
@@ -275,7 +277,8 @@ namespace GameWish.Game
             }
             else
             {
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                //text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                text.color = Color.black;
                 return false;
             }
         }
@@ -297,7 +300,7 @@ namespace GameWish.Game
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem1.OnInit(costItems[0], transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItem, costItems[0].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 list?.Add(upgradeResItem1);
                 if (facilityLevelInfo != null)
@@ -305,7 +308,7 @@ namespace GameWish.Game
                     UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem2.OnInit(facilityLevelInfo, transform);
                     upgradeResItem2.ShowResItem(GetCurCoin(facilityLevelInfo) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Coin"));
                 }
             }
             else if (costItems.Count == 2)
@@ -316,12 +319,12 @@ namespace GameWish.Game
                 UpgradeResItem upgradeResItem1 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem1.OnInit(costItems[0], transform);
                 upgradeResItem1.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemFirst, costItems[0].value))/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[0].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[0].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[0].itemId)));
 
                 UpgradeResItem upgradeResItem2 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                 upgradeResItem2.OnInit(costItems[1], transform);
                 upgradeResItem2.ShowResItem(CommonUIMethod.GetTenThousandOrMillion(GetCurItem(havaItemSec, costItems[1].value)) /*+ Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(costItems[1].value)*/,
-                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconItemIcon, GetIconName(costItems[1].itemId)));
+                    SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName(costItems[1].itemId)));
 
                 list?.Add(upgradeResItem1);
                 list?.Add(upgradeResItem2);
@@ -330,32 +333,44 @@ namespace GameWish.Game
                     UpgradeResItem upgradeResItem3 = GameObject.Instantiate(obj, transform).GetComponent<UpgradeResItem>();
                     upgradeResItem3.OnInit(facilityLevelInfo, transform);
                     upgradeResItem3.ShowResItem(GetCurCoin(facilityLevelInfo)/* + Define.SLASH + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost)*/,
-                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonPanelCommon, "Coin"));
+                       SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Coin"));
                 }
             }
         }
         private static string GetCurCoin(FacilityLevelInfo facilityLevelInfo)
         {
-            long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            if (coin >= facilityLevelInfo.upgradeCoinCost)
-                return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
-            return GetTenThousandOrMillion((int)coin);
+            //long coin = GameDataMgr.S.GetPlayerData().GetCoinNum();
+            //if (coin >= facilityLevelInfo.upgradeCoinCost)
+            //    return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+            //return GetTenThousandOrMillion((int)coin);
+            return GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+
         }
 
         private static int GetCurItem(int hava, int number)
         {
-            if (hava >= number)
-                return number;
-            return hava;
+            //if (hava >= number)
+            //    return number;
+            //return hava;
+            return number;
+
         }
         private static string GetIconName(int id)
         {
+            if (id == -1)
+            {
+                return "Coin";
+            }
+            else if (id == -2)
+            {
+                return "Baozi";
+            }
             return MainGameMgr.S.InventoryMgr.GetIconName(id);
         }
         #endregion
 
 
-        #region ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ç·ï¿½ï¿½ã¹»
+        #region ¼ì²é×ÊÔ´ÊÇ·ñ×ã¹»
         public static bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems, bool floatMessage = true)
         {
             if (facilityLevelInfo == null)
@@ -398,7 +413,7 @@ namespace GameWish.Game
         #endregion
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½Ç®ï¿½Ç·ï¿½ï¿½ã¹»
+        /// ¼ì²éÇ®ÊÇ·ñ×ã¹»
         /// </summary>
         /// <param name="facilityLevelInfo"></param>
         /// <param name="text"></param>
@@ -408,7 +423,8 @@ namespace GameWish.Game
             long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
             if (coinNum < facilityLevelInfo.upgradeCoinCost)
             {
-                text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                //text.color = new Color(0.5647f, 0.2431f, 0.2666f, 1);
+                text.color = Color.black;
                 return false;
             }
             else
@@ -431,7 +447,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½Æ·ï¿½Ê»ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½str
+        /// ¸ù¾ÝµÜ×ÓÆ·ÖÊ»ñÈ¡ÏàÓ¦µÄstr
         /// </summary>
         /// <param name="characterQuality"></param>
         /// <returns></returns>
@@ -450,7 +466,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ï¿½ï¿½È¡ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// »ñÈ¡ÎïÆ·µÄÊýÁ¿
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -459,7 +475,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.FACILITY_WAREHOUSE_INDIVIDUAL);
         }
         /// <summary>
-        /// ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½Ä½×¼ï¿½
+        /// »ñÈ¡×°±¸µÄ½×¼¶
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -468,7 +484,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_CLASS);
         }
         /// <summary>
-        /// ï¿½ï¿½È¡ï¿½È¼ï¿½
+        /// »ñÈ¡µÈ¼¶
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -477,7 +493,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_GRADE);
         }
         /// <summary>
-        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+        /// »ñÈ¡ÌìÊý
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -486,7 +502,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_DAY);
         }
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// »ñµÃÈË
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -495,7 +511,7 @@ namespace GameWish.Game
             return number.ToString() + TDLanguageTable.Get(Define.COMMON_UNIT_PEOPLE);
         }
         /// <summary>
-        /// ï¿½ï¿½Ã¶ï¿½
+        /// »ñµÃ¶Î
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -504,7 +520,7 @@ namespace GameWish.Game
             return GetTextNumber(number) + TDLanguageTable.Get(Define.COMMON_UNIT_PAET);
         }
         /// <summary>
-        /// ï¿½ï¿½Ã½ï¿½
+        /// »ñµÃ½×
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -549,7 +565,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã´ïµ½
+        /// Éý¼¶ÐèÒª½²ÎäÌÃ´ïµ½
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
@@ -558,7 +574,7 @@ namespace GameWish.Game
             return GetStringForTableKey(Define.COMMON_UPGRADEINFODESC) + GetGrade(level);
         }
         /// <summary>
-        /// ï¿½Õ¸ï¿½
+        /// ¿Õ¸ñ
         /// </summary>
         /// <returns></returns>
         public static string TextIndent()
@@ -566,7 +582,7 @@ namespace GameWish.Game
             return "<color=#FFFFFF00>----</color>";
         }
         /// <summary>
-        /// ï¿½Õ¸ï¿½
+        /// ¿Õ¸ñ
         /// </summary>
         /// <returns></returns>
         public static string TextEmptyOne()
@@ -574,7 +590,7 @@ namespace GameWish.Game
             return "<color=#FFFFFF00>--</color>";
         }
         /// <summary>
-        /// ï¿½ï¿½È¡ï¿½ï¿½orï¿½ï¿½orï¿½ï¿½ï¿½ï¿½
+        /// »ñÈ¡ÍòorÒÚorÍòÒÚ
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
@@ -583,36 +599,27 @@ namespace GameWish.Game
             if (number.ToString().Length > 12)
             {
                 long MainNumber = number / 1000000000000;
-                long remainder = (number - 1000000000000 * MainNumber) / 100000000000;
-
-                return MainNumber.ToString() + "." + remainder.ToString()[0] + "äº¿äº¿";
+                //long remainder = number % 1000000000000;
+                string remainder = number.ToString().Substring(number.ToString().Length - 12, 12);
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "ÍòÒÚ";
             }
             else if (number.ToString().Length > 8)
             {
                 long MainNumber = number / 100000000;
-                long remainder = (number - 100000000 * MainNumber) / 10000000;
-
-                return MainNumber.ToString() + "." + remainder.ToString()[0] + "äº¿";
+                //long remainder = number % 100000000;
+                string remainder = number.ToString().Substring(number.ToString().Length - 8, 8);
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "ÒÚ";
             }
             else if (number.ToString().Length > 4)
             {
                 long MainNumber = number / 10000;
-                long remainder = (number - 10000 * MainNumber) / 1000;
-                return MainNumber.ToString() + "." + remainder.ToString()[0] + "ä¸‡";
+                string remainder = number.ToString().Substring(number.ToString().Length - 4, 4);
+                return MainNumber.ToString() + "." + remainder.ToString()[0] + "Íò";
             }
             else
             {
                 return number.ToString();
             }
-
-            //long MainNumber = number / 10000;
-            //if (MainNumber == 0)
-            //    return number.ToString();
-            //else
-            //{
-            //    long fourth = GetThousand(number);
-            //    return fifth + "." + fourth + TDLanguageTable.Get(Define.COMMON_UNIT_TENTHOUSAND);
-            //}
         }
 
         private static long GetThousand(long number)

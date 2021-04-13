@@ -35,7 +35,7 @@ namespace GameWish.Game
             {
                 int hashCode = Signatures[0].Call<int>("hashCode");
                 Debug.Log("----------------hashCode is: " + hashCode);
-                return hashCode == -222340700;//我们签名的哈希值
+                return hashCode == 527153405;//我们签名的哈希值
 
             }
             return false;

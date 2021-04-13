@@ -11,6 +11,7 @@ namespace GameWish.Game
     {
         Task,
         Challenge,
+        Deliver,
         Tower,
     }
 
@@ -124,7 +125,7 @@ namespace GameWish.Game
                     }
                     break;
                 case EventID.OnSendDiscipleDicEvent:
-                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, m_LevelConfigInfo, (PanelType)param[0], m_CommonTaskItemInfo);
+                    UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, (PanelType)param[0], m_LevelConfigInfo, m_CommonTaskItemInfo);
                     break;
                 case EventID.OnSendHerbEvent:
                     HandHerbEvent((bool)param[0], (HerbItem)param[1]);
@@ -170,13 +171,13 @@ namespace GameWish.Game
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
                     HandConfirmBtnEvent();
-                    m_AcceptText.text = "发起战斗";
+                    m_AcceptText.text = "����ս��";
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
-                    m_AcceptText.text = "开始战斗";
+                    m_AcceptText.text = "��ʼս��";
                     CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue);
                     RefreshDisicipleSkill();
@@ -221,17 +222,17 @@ namespace GameWish.Game
             if (result < 0.75)
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Danger");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanelAtlas, "SendDisciplePanel_Danger");
             }
             else if (result > 1.1f)
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Rleaxed");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanelAtlas, "SendDisciplePanel_Rleaxed");
             }
             else
             {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
-                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanel, "SendDisciplePanel_Autions");
+                m_StateBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.SendDisciplePanelAtlas, "SendDisciplePanel_Autions");
             }
         }
         private void GetInformationForNeed()
@@ -310,7 +311,7 @@ namespace GameWish.Game
                     case PanelType.Task:
                         if (m_SelectedList.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                         {
-                            FloatMessage.S.ShowMsg("请选择满弟子 !");
+                            FloatMessage.S.ShowMsg("��ѡ�������� !");
                             return;
                         }
                         m_CurTaskInfo.ExecuteTask(m_SelectedList);
@@ -335,7 +336,7 @@ namespace GameWish.Game
                     case PanelType.Challenge:
                         if (m_SelectedList.Count != MaxDiscipleNumber)
                         {
-                            FloatMessage.S.ShowMsg("请选择满弟子 !");
+                            FloatMessage.S.ShowMsg("��ѡ�������� !");
                             return;
                         }
                         for (int i = 0; i < m_PlayerDataHerb.Count; i++)

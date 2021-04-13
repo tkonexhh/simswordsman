@@ -87,13 +87,13 @@ namespace GameWish.Game
 
                     m_Controller.ReleaseWorkProgressBar();
 
-
-
                     m_FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Idle);
 
                     DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish, "Coin");
 
                     m_Controller.SetState(CharacterStateID.Wander);
+
+                    m_Controller.CharacterView.SetSweepingSmoke(false);
                 }
             }
         }
@@ -125,6 +125,7 @@ namespace GameWish.Game
             {
                 if (IsClean(anim))
                 {
+                    m_Controller.CharacterView.SetSweepingSmoke(true);
                     AudioManager.S.PlaySweepSound(m_Controller.GetPosition());
                 }
             });

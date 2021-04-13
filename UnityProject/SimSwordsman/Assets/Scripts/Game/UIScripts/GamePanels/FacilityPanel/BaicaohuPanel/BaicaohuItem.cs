@@ -133,15 +133,15 @@ namespace GameWish.Game
                 m_CountDownItem.RegisterUpdateCallBack(OnUpdateCountDownCallBack);
                 m_CountDownItem.RegisterEndCallBack(OnEndCountDownCallBack);
             }
-            OnUpdateCountDownCallBack();
+            OnUpdateCountDownCallBack(0);
         }
 
-        private void OnEndCountDownCallBack()
+        private void OnEndCountDownCallBack(int remainTime)
         {
             SetState(2);
         }
 
-        private void OnUpdateCountDownCallBack()
+        private void OnUpdateCountDownCallBack(int remainTime)
         {
             Countdown(m_BaiCaoWuData.GetProgress(), m_BaiCaoWuData.GetRemainTimeStr());
         }

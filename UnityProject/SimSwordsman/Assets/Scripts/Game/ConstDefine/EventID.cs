@@ -116,6 +116,12 @@ namespace GameWish.Game
         OnMainMenuOrDiscipleRedPoint,
         #endregion
 
+        #region Deliver
+        /// <summary>
+        /// 打开选择弟子界面
+        /// </summary>
+        OnOpenChallengChoosePanel,
+        #endregion
 
         //KungfuLibrary
         /// <summary>
@@ -202,7 +208,10 @@ namespace GameWish.Game
         /// 获取到功夫秘籍
         /// </summary>
         OnGetKungFu,
-
+        /// <summary>
+        /// 主菜单可挑战信息显示
+        /// </summary>
+        OnMainMenuChallenging,
         /// <summary>
         /// 收起公告榜其他面板
         /// </summary>
@@ -232,8 +241,6 @@ namespace GameWish.Game
         OnDiscipleButtonOnClick,
         OnDeleteTaskBtn,
         #endregion
-
-
         #region 新手引导
         OnGuideDialog1 = 10101,
         OnGuideTakeName = 10201,
@@ -369,11 +376,8 @@ namespace GameWish.Game
 
         #endregion
 
-
         OnAddArmor,//获取新装备护甲
         OnAddArms,//获取信装备武器
-
-
         #region 定点计时
         OnFixedPointRefreshEvent,
         #endregion
@@ -384,6 +388,25 @@ namespace GameWish.Game
         OnRefeshDailyTask,
         OnMainMenuDailyTaskRedPoint,
 
+        #region deliver system
+        /// <summary>
+        /// 角色到达镖车集合点
+        /// </summary>
+        OnCharacterReachDeliverCarGatherPoint,
+        /// <summary>
+        /// 镖车开始向外出发
+        /// </summary>
+        OnDeliverCarStartGoOut,
+        /// <summary>
+        /// 镖车开始回来
+        /// </summary>
+        OnDeliverCarStartComeBack,
+        /// <summary>
+        /// 镖车到达镖局时
+        /// </summary>
+        OnDeliverCarArrive,
+        #endregion
+
         #region Tower
         OnRefeshTowerCoin,
         OnRefeshTowerShop,
@@ -392,7 +415,8 @@ namespace GameWish.Game
         #region HeroTrial
         OnEnterHeroTrial,
         OnExitHeroTrial,
-        #endregion
-    }
 
+        #endregion
+
+    }
 }

@@ -20,8 +20,10 @@ namespace GameWish.Game
         public void SetDefaultValue()
         {
             AddFacility(FacilityType.Lobby, 1, FacilityState.ReadyToUnlock);
-            for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.TotalCount; i++)
+            for (int i = (int)FacilityType.Lobby + 1; i < (int)FacilityType.Deliver; i++)
             {
+                if (i == 19)
+                    continue;
                 FacilityType facilityType = (FacilityType)i;
                 AddFacility(facilityType, 1, FacilityState.Locked);
             }
@@ -79,15 +81,17 @@ namespace GameWish.Game
             return true;
         }
 
-        public void AddFacility(FacilityType facilityType, int subId, FacilityState state)
+        public FacilityItemDbData AddFacility(FacilityType facilityType, int subId, FacilityState state)
         {
             int id = (int)facilityType;
 
-            bool isOwned = facilityList.Any(i => i.id == id && i.subId == subId);
-            if (!isOwned)
+            FacilityItemDbData data = facilityList.Find(i => i.id == id && i.subId == subId);
+            if (data == null)
             {
-                facilityList.Add(new FacilityItemDbData(id, subId, 1, state));
+                data = new FacilityItemDbData(id, subId, 1, state);
+                facilityList.Add(data);
             }
+            return data;
         }
 
         public void SetFacilityState(FacilityType facilityType, FacilityState state/*, int subId*/)
@@ -109,6 +113,11 @@ namespace GameWish.Game
         public FacilityItemDbData GetFacilityData(FacilityType facilityType/*, int subId*/)
         {
             FacilityItemDbData facilityDbData = facilityList.Where(i => i.id == (int)facilityType/* && i.subId == subId*/).FirstOrDefault();
+
+            if (facilityDbData == null)
+            {
+                facilityDbData = AddFacility(facilityType, 1, FacilityState.Locked);
+            }
             return facilityDbData;
         }
     }

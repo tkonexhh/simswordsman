@@ -84,6 +84,7 @@ namespace GameWish.Game
                 if (isHaveCoin)
                     m_GreenHook.SetActive(true);
             }
+            //m_ResTxt.color = Color.black;
             m_ResTxt.text = cont;
             m_ResImg.sprite = sprite;
 

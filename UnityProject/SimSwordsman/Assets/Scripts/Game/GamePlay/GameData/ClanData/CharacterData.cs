@@ -214,6 +214,7 @@ namespace GameWish.Game
         public int headId = 1; // Which head used
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
+        public int m_DeliverID = -1;
 
         public void SetAtkValue(float _atkValue)
         {
@@ -223,12 +224,18 @@ namespace GameWish.Game
         {
 
         }
-        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id)
+        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id,bool isFindPathToTargetPos = true)
         {
             characterStateId = stateId;
             this.facilityData.targetFacility = targetFacilityType;
             this.facilityData.startTime = startTime;
             this.facilityData.id = id;
+        }
+        public void SetDeliverID(int deliverID) {
+            m_DeliverID = deliverID;
+        }
+        public int GetDeliverID() {
+            return m_DeliverID;
         }
         public CharacterItemDbData(CharacterItem item)
         {

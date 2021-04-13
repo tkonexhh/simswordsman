@@ -80,10 +80,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     image.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     image.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     image.sprite = FindSprite("Excellent");
                     break;
                 default:
@@ -99,10 +99,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     image.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     image.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     image.sprite = FindSprite("Excellent");
                     break;
                 default:
@@ -110,19 +110,6 @@ namespace GameWish.Game
             }
             kungfuName.sprite = FindSprite(TDKongfuConfigTable.GetIconName(item.kongfuType));
         }
-
-        //[SerializeField]
-        //private GameObject m_InfoPar;
-        //[SerializeField]
-        //private Text m_InfoParName;
-        //[SerializeField]
-        //private Image m_InfoParIcon;
-        //[SerializeField]
-        //private Image m_KungfuNameImg;
-        //[SerializeField]
-        //private Text m_KungfuName;
-        //[SerializeField]
-        //private Text m_Paragraph;
 
         protected override void OnPanelOpen(params object[] args)
         {
@@ -200,7 +187,9 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            //CommonUIMethod.GetTenThousandOrMillionNumber((long)m_CharacterItem.atkValue)
             CommonUIMethod.TextFlipUpEffect(m_Skill, promotionModel.GetPreAtk(), m_CharacterItem.atkValue);
+
             CharacterQuality quality = m_CharacterItem.quality;
             int headId = m_CharacterItem.headId;
             int bodyId = m_CharacterItem.bodyId;

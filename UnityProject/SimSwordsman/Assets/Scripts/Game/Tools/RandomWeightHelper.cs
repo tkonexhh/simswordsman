@@ -34,7 +34,7 @@ namespace GameWish.Game
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="weight"></param>
-		public void AddWeightItem(T id, int weight)
+		public void AddWeightItem(T id, int weight = 1)
 		{
 			if (!m_WeightItemDic.ContainsKey(id))
 			{
@@ -42,7 +42,7 @@ namespace GameWish.Game
 			}
 		}
 		/// <summary>
-		/// 获取随机key
+		/// 获取随机key,不删除
 		/// </summary>
 		/// <returns></returns>
 		public T GetRandomWeightValue()
@@ -58,6 +58,36 @@ namespace GameWish.Game
 				Debug.Log("随机池中无种子");
 				return default;
 			}
+		}
+		/// <summary>
+		/// 获取随机值（删除）
+		/// </summary>
+		/// <returns></returns>
+		public T GetRandomWeightDeleteValue()
+		{
+			if (m_WeightItemDic.Count > 0)
+			{
+				GetWeightItemSectionDic();
+				int randomNumber = Random.Range(0, GetAllWeight());
+				T cont = GetRandomKey(randomNumber);
+
+				if (m_WeightItemDic.ContainsKey(cont))
+					m_WeightItemDic.Remove(cont);
+                else
+					Debug.LogError("未找到值,cont = " + cont);
+				return cont;
+			}
+			else
+			{
+				Debug.Log("随机池中无种子");
+				return default;
+			}
+		}
+
+		public void ClearAll()
+		{
+			m_WeightItemDic.Clear();
+			m_WeightItemSectionDic.Clear();
 		}
 		#endregion
 
@@ -99,6 +129,7 @@ namespace GameWish.Game
 		/// </summary>
 		private void GetWeightItemSectionDic()
 		{
+			m_WeightItemSectionDic.Clear();
 			List<T> keys = new List<T>();
 			keys.AddRange(m_WeightItemDic.Keys);
 			List<int> values = new List<int>();

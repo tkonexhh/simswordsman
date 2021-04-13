@@ -18,7 +18,6 @@ namespace GameWish.Game
         private SimGameTask m_CurTask = null;
 
         private CharacterStateMachine m_StateMachine;
-
         public CharacterModel CharacterModel { get => m_CharacterModel; }
         public CharacterView CharacterView { get => m_CharacterView; }
         public int CharacterId { get => m_CharacterId; }
@@ -89,6 +88,10 @@ namespace GameWish.Game
         #endregion
 
         #region Public Get
+        public int GetDeliverID()
+        {
+            return m_CharacterModel.GetDeliverID();
+        }
         public Vector2 GetPosition()
         {
             return m_CharacterView.transform.position;
@@ -165,15 +168,26 @@ namespace GameWish.Game
         {
             m_CharacterView.MoveTo(pos, callback);
         }
-
+        public void FollowDeliver(Vector2 deliverPos)
+        {
+            m_CharacterView.FollowDeliver(deliverPos);
+        }
         public void RunTo(Vector2 pos, System.Action callback)
         {
             m_CharacterView.RunTo(pos, callback);
         }
-
+        public void StopNavAgent()
+        {
+            m_CharacterView.StopNavAgent();
+        }
         public void Move(Vector2 deltaPos)
         {
             m_CharacterView.Move(deltaPos);
+        }
+
+        public void SetPosition(Vector3 targetPos)
+        {
+            m_CharacterView.SetPosition(targetPos);
         }
 
         public void FaceTo(float x)
@@ -223,34 +237,32 @@ namespace GameWish.Game
                 //}
             }
         }
-
+        public void SetDeliverID(int deliverID)
+        {
+            m_CharacterModel.SetDeliverID(deliverID);
+        }
         public void SetFightTarget(CharacterController target)
         {
             m_FightTarget = target;
         }
-
         public void SetFightGroup(FightGroup fightGroup)
         {
             m_FightGroup = fightGroup;
         }
-
         public void OnDamaged(double damage)
         {
             m_CharacterModel.AddHp(-damage);
         }
-
         private double m_CachedDamage = 0;
         public void CacheDamage(double damage)
         {
             m_CachedDamage += damage;
         }
-
         public void TriggerCachedDamage()
         {
             OnDamaged(m_CachedDamage);
             m_CachedDamage = 0;
         }
-
         public void OnEnterBattleField(Vector3 pos)
         {
             m_CharacterView.OnEnterBattleField(pos, m_CharacterCamp);
