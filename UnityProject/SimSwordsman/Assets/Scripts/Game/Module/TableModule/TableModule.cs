@@ -99,6 +99,10 @@ namespace GameWish.Game
                 TDTowerEnemyConfigTable.metaData,
                 TDTowerRewardConfigTable.metaData,
                 TDTowerShopTable.metaData,
+
+                //Trial
+                TDHeroTrialConfigTable.metaData,
+
             };
         }
     }
