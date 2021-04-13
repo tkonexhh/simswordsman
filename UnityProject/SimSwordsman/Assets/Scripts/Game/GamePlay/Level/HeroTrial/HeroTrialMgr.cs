@@ -17,6 +17,8 @@ namespace GameWish.Game
 
         private FightGroup m_FightGroup;
 
+        private bool m_IsInTrial = false;
+
         public HeroTrialData DbData { get => m_DbData;}
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
@@ -34,7 +36,10 @@ namespace GameWish.Game
 
         public void OnUpdate()
         {
-            m_StateMachine.UpdateState(Time.deltaTime);
+            if (m_IsInTrial)
+            {
+                m_StateMachine.UpdateState(Time.deltaTime);
+            }
         }
 
         public void OnDestroyed()
@@ -56,13 +61,25 @@ namespace GameWish.Game
             RegisterEvents();
 
             EventSystem.S.Send(EventID.OnEnterHeroTrial);
+
+            m_IsInTrial = true;
         }
 
         public void OnExitHeroTrial()
         {
             UnregisterEvents();
 
+            SetState(HeroTrialStateID.None);
+
+            GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
+            GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
+            m_FightGroup = null;
+
+            m_BattleField.OnBattleEnd();
+
             EventSystem.S.Send(EventID.OnExitHeroTrial);
+
+            m_IsInTrial = false;
         }
 
         public void StartTrial(int characterId)
@@ -73,7 +90,7 @@ namespace GameWish.Game
             SetState(m_DbData.state);
         }
 
-        public void EndTrial()
+        public void FinishTrial()
         {
             m_DbData.OnTrialEnd();
             SetState(m_DbData.state);
@@ -113,12 +130,14 @@ namespace GameWish.Game
         {
             EventSystem.S.Register(EngineEventID.OnDateUpdate, HandleEvent);
             EventSystem.S.Register(EventID.OnSelectedConfirmEvent, HandleEvent);
+            EventSystem.S.Register(EventID.OnCharacterInFightGroupDead, HandleEvent);
         }
 
         private void UnregisterEvents()
         {
             EventSystem.S.UnRegister(EngineEventID.OnDateUpdate, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnSelectedConfirmEvent, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnCharacterInFightGroupDead, HandleEvent);
         }
 
         private void SetState(HeroTrialStateID state)
@@ -160,6 +179,7 @@ namespace GameWish.Game
 
                     StartTrial(items[0].id);
                     break;
+
             }
         }
 

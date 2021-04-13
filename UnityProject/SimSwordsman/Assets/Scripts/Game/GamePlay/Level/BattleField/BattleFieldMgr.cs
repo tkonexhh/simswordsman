@@ -183,6 +183,16 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnExitBattle, HandleEvent);
         }
 
+        private void RegisterEventsWhenEnter()
+        {
+            EventSystem.S.Register(EventID.OnCharacterInFightGroupDead, HandleEvent);
+        }
+
+        private void UnregisterEventsWhenExit()
+        {
+            EventSystem.S.UnRegister(EventID.OnCharacterInFightGroupDead, HandleEvent);
+        }
+
         private void HandleEvent(int key, params object[] param)
         {
             switch (key)
@@ -199,6 +209,11 @@ namespace GameWish.Game
                     break;
                 case (int)EventID.OnExitBattle:
                     OnExitBattle();
+                    break;
+                case (int)EventID.OnCharacterInFightGroupDead:
+                    FightGroup fightGroup = (FightGroup)param[0];
+                    Debug.Assert(fightGroup != null, "Fight group is null");
+                    OnFightGroupCharacterDead(fightGroup);
                     break;
             }
         }
@@ -226,6 +241,8 @@ namespace GameWish.Game
 
             if (onSpawnOwerCharacterComplete != null)
                 onSpawnOwerCharacterComplete.Invoke(m_OurCharacterList, m_EnemyCharacterList);
+
+            RegisterEventsWhenEnter();
         }
 
         private void OnAllEnemyLoaded()
@@ -269,6 +286,8 @@ namespace GameWish.Game
             m_BattleField.OnBattleEnd();
 
             MusicMgr.S.PlayMenuMusic();
+
+            UnregisterEventsWhenExit();
         }
 
         private void SpawnOurCharacter(List<CharacterController> characters)

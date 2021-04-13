@@ -13,17 +13,22 @@ namespace GameWish.Game
         private HeroTrialMgr m_HeroTialMgr = null;
 
         private CharacterController m_OurCharacter = null;
-        private CharacterController m_EnemyController = null;
-
+        private CharacterController m_EnemyCharacter = null;
+        private CharacterController m_CachedEnemyCharacter = null;
         private FightGroup m_FightGroup = null;
+
+        private int m_EnemyHP = 100;
 
         private int m_RoundCount = 0;
 
         private int m_OrdinaryEnemyKilledCount = 0;
         private int m_OrdinaryEnemyCount = 3;
-        private bool m_ShouldSpawnOrdinaryEnemy = true;
+        private bool m_SpawnOrdinaryEnemy = true;
 
         private Vector3 m_OurInitPos, m_EnemyInitPos;
+
+        private float m_EnemyCachedTime = 0;
+        private float m_EnemyCachedMaxTime = 1f;
 
         public HeroTrialStateRuning(HeroTrialStateID stateEnum) : base(stateEnum)
         {
@@ -38,19 +43,18 @@ namespace GameWish.Game
             m_RoundCount = 0;
             m_OrdinaryEnemyKilledCount = 0;
             m_OrdinaryEnemyCount = 3;
-            m_ShouldSpawnOrdinaryEnemy = true;
+            m_SpawnOrdinaryEnemy = true;
             m_OurInitPos = m_HeroTialMgr.BattleField.GetOurCharacterPos();
             m_EnemyInitPos = m_HeroTialMgr.BattleField.GetEnemyCharacterPos();
 
             // Spawn Characters
-            CharacterController ourCharacter = SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
-            ourCharacter.CharacterModel.SetHp(ourCharacter.CharacterModel.GetBaseAtkValue());
+            m_OurCharacter = SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
+            m_OurCharacter.CharacterModel.SetHp(m_OurCharacter.CharacterModel.GetBaseAtkValue());
 
-            int enemyId = GetEnemyId(m_RoundCount);
-            CharacterController enemyCharacter = SpawnEnemyCharacter(enemyId);
-            enemyCharacter.CharacterModel.SetHp(100);
+            int enemyId = GetEnemyId();
+            m_EnemyCharacter = SpawnEnemyCharacter(enemyId);
 
-            m_HeroTialMgr.FightGroup = new FightGroup(1, ourCharacter, enemyCharacter);
+            m_HeroTialMgr.FightGroup = new FightGroup(1, m_OurCharacter, m_EnemyCharacter);
             m_HeroTialMgr.FightGroup.StartFight();
 
             RegisterEvent();
@@ -63,8 +67,24 @@ namespace GameWish.Game
 
         public override void Execute(IHeroTrialStateHander handler, float dt)
         {
+            m_OurCharacter?.RefreshBattleState();
+            m_EnemyCharacter?.RefreshBattleState();
 
-            
+            if (m_CachedEnemyCharacter != null)
+            {
+                m_EnemyCachedTime += Time.deltaTime;
+                if (m_EnemyCachedTime > m_EnemyCachedMaxTime)
+                {
+                    m_EnemyCachedTime = 0;
+                    ReleaseCachedEnemy();
+                }
+            }
+        }
+
+        private void ReleaseCachedEnemy()
+        {
+            GameObject.Destroy(m_CachedEnemyCharacter.CharacterView.gameObject);
+            m_CachedEnemyCharacter = null;
         }
 
         private CharacterController SpawnEnemyCharacter(int id)
@@ -79,6 +99,7 @@ namespace GameWish.Game
                 CharacterView characterView = obj.GetComponent<CharacterView>();
                 CharacterController controller = new CharacterController(id, characterView, CharacterStateID.Battle, CharacterCamp.EnemyCamp);
                 controller.OnEnterBattleField(m_EnemyInitPos);
+                controller.CharacterModel.SetHp(m_EnemyHP);
 
                 enemy = controller;
 
@@ -109,11 +130,11 @@ namespace GameWish.Game
             return controller;
         }
 
-        private int GetEnemyId(int roundCount)
+        private int GetEnemyId()
         {
             HeroTrialConfig config = TDHeroTrialConfigTable.GetConfig(m_HeroTialMgr.DbData.clanType);
             int[] enemyIds;
-            if (m_ShouldSpawnOrdinaryEnemy)
+            if (m_SpawnOrdinaryEnemy)
             {
                 enemyIds = config.ordinaryEnemies;
             }
@@ -130,29 +151,50 @@ namespace GameWish.Game
         private void RegisterEvent()
         {
             EventSystem.S.Register(EventID.OnOneRoundEnd, HandleEvent);
+            EventSystem.S.Register(EventID.OnCharacterInFightGroupDead, HandleEvent);
         }
 
         private void UnregisterEvent()
         {
             EventSystem.S.UnRegister(EventID.OnOneRoundEnd, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnCharacterInFightGroupDead, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
         {
-            if (key == (int)EventID.OnOneRoundEnd)
+            switch (key)
             {
-                m_RoundCount++;
+                case (int)EventID.OnOneRoundEnd:            
+                    m_RoundCount++;
+                    if (m_RoundCount > 2) // This enemy should be killed
+                    {
+                        Log.i("Enemy should be dead");
 
-                if (m_RoundCount > 2) // This enemy should be killed
-                {
-                    m_RoundCount = 0;
+                        m_RoundCount = 0;
 
-                    m_HeroTialMgr.FightGroup.EnemyCharacter.CharacterModel.SetHp(0);
+                        m_HeroTialMgr.FightGroup.EnemyCharacter.CacheDamage(m_EnemyHP);
 
-                    m_OrdinaryEnemyKilledCount++;
+                        m_OrdinaryEnemyKilledCount++;
 
-                    m_ShouldSpawnOrdinaryEnemy = m_OrdinaryEnemyKilledCount <= m_OrdinaryEnemyCount;
-                }
+                        m_SpawnOrdinaryEnemy = m_OrdinaryEnemyKilledCount <= m_OrdinaryEnemyCount;
+                    }
+                    break;
+
+                case (int)EventID.OnCharacterInFightGroupDead:
+                    m_CachedEnemyCharacter = m_EnemyCharacter;
+
+                    int nextEnemyId = GetEnemyId();
+                    m_EnemyCharacter = SpawnEnemyCharacter(nextEnemyId);
+                    m_HeroTialMgr.FightGroup.ChangeEnemyCharacter(m_EnemyCharacter);
+                    m_HeroTialMgr.FightGroup.StartFight();
+
+                    if (m_SpawnOrdinaryEnemy == false)
+                    {
+                        m_SpawnOrdinaryEnemy = true;
+                        m_OrdinaryEnemyKilledCount = 0;
+                    }
+                    break;
+
             }
         }
 

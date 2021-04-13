@@ -219,7 +219,12 @@ namespace GameWish.Game
             m_HeroTrialBtn.onClick.AddListener(()=> 
             {
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
-                UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
+                UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
+
+                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle)
+                {
+                    UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
+                }
 
                 MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
