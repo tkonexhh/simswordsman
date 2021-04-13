@@ -26,7 +26,7 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
-                
+                UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple,PanelType.HeroTrial);
             });
         }
 
