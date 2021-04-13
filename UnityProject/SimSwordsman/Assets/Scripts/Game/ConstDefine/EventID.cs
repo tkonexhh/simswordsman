@@ -142,6 +142,7 @@ namespace GameWish.Game
         OnBattleAtkStart,
         OnBattleAtkEnd,
         OnBattleAtkEvent,
+        OnOneRoundEnd,
         /// <summary>
         /// 战斗描述刷新
         /// </summary>
@@ -392,6 +393,7 @@ namespace GameWish.Game
         OnRefeshDailyTask,
         OnMainMenuDailyTaskRedPoint,
 
+
         #region deliver system
         /// <summary>
         /// 角色到达镖车集合点
@@ -409,6 +411,16 @@ namespace GameWish.Game
         /// 镖车到达镖局时
         /// </summary>
         OnDeliverCarArrive,
+
+        #region Tower
+        OnRefeshTowerCoin,
+        OnRefeshTowerShop,
+        #endregion
+
+        #region HeroTrial
+        OnEnterHeroTrial,
+        OnExitHeroTrial,
+
         #endregion
     }
 

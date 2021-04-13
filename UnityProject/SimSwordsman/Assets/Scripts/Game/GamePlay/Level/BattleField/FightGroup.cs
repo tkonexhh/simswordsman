@@ -240,6 +240,8 @@ namespace GameWish.Game
 
             if (m_AtkEndCount >= 1)
             {
+                EventSystem.S.Send(EventID.OnOneRoundEnd);
+
                 m_AtkEndCount = 0;
 
                 if (m_EnemyCharacter.IsDead() || m_OurCharacter.IsDead())

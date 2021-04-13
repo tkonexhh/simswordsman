@@ -140,6 +140,16 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/MainMenuPanel/TaskPanel/DailyTaskPanel");
 
             UIDataTable.AddPanelData(UIID.DeliverPanel, null, "GamePanels/FacilityPanel/DeliverPanel/DeliverPanel");
+            //伏魔塔
+            UIDataTable.AddPanelData(UIID.TowerPanel, null, "GamePanels/TowerPanel/TowerPanel");
+            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
+            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
+            UIDataTable.AddPanelData(UIID.TowerSelectCharacterPanel, null, "GamePanels/TowerPanel/TowerSelectCharacterPanel");
+            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
+
+            //英雄试炼
+            UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");
+            UIDataTable.AddPanelData(UIID.HeroTrialTipPanel, null, "GamePanels/HeroTrialPanels/HeroTrialTipPanel/HeroTrialTipPanel");
 
             RealNameMgr.S.RegisterPanels();
         }

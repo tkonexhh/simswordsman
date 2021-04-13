@@ -20,6 +20,7 @@ namespace GameWish.Game
         public string taskTitle => m_TaskTitle;
         public string taskSubTitle => string.Format(m_TaskHandler.taskSubTitle + "({1}/{0})", m_Target, Mathf.Min(m_Target, m_TaskHandler.count));
         public string taskIcon => m_TaskIcon;
+        public Transform taskTransform => m_TaskHandler.targetTransform;
 
 
         //-----------Static Block----------//
