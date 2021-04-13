@@ -12,6 +12,7 @@ namespace GameWish.Game
         Task,
         Challenge,
         Deliver,
+        Tower,
     }
 
     public class SendDisciplesPanel : AbstractAnimPanel

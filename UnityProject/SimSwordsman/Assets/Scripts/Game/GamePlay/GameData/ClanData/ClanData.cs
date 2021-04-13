@@ -18,11 +18,8 @@ namespace GameWish.Game
         public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
         public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
         public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
-<<<<<<< HEAD
         public DeliverData DeliverData = new DeliverData();
-=======
         public HeroTrialData heroTrialData = new HeroTrialData();
->>>>>>> origin/master
 
         public void SetDefaultValue()
         {

@@ -241,8 +241,6 @@ namespace GameWish.Game
         OnDiscipleButtonOnClick,
         OnDeleteTaskBtn,
         #endregion
-
-
         #region 新手引导
         OnGuideDialog1 = 10101,
         OnGuideTakeName = 10201,
@@ -378,11 +376,8 @@ namespace GameWish.Game
 
         #endregion
 
-
         OnAddArmor,//获取新装备护甲
         OnAddArms,//获取信装备武器
-
-
         #region 定点计时
         OnFixedPointRefreshEvent,
         #endregion
@@ -392,7 +387,6 @@ namespace GameWish.Game
         OnRefeshMainTask,
         OnRefeshDailyTask,
         OnMainMenuDailyTaskRedPoint,
-
 
         #region deliver system
         /// <summary>
@@ -411,6 +405,7 @@ namespace GameWish.Game
         /// 镖车到达镖局时
         /// </summary>
         OnDeliverCarArrive,
+        #endregion
 
         #region Tower
         OnRefeshTowerCoin,
@@ -422,6 +417,6 @@ namespace GameWish.Game
         OnExitHeroTrial,
 
         #endregion
-    }
 
+    }
 }
