@@ -100,10 +100,10 @@ namespace GameWish.Game
 		/// <summary>
 		/// 开始向外出发
 		/// </summary>
-		public void StartMoveGoOutSide()
+		public void StartMoveGoOut()
 		{
-			if (IsAllCharacterReachGatherPoint() && m_IsMoving == false)
-			{
+			//if (IsAllCharacterReachGatherPoint() && m_IsMoving == false)
+			//{
 				m_IsMoving = true;
 
 				m_DeliverCarDir = DeliverCarDir.GoOut;
@@ -113,7 +113,7 @@ namespace GameWish.Game
 				EventSystem.S.Send(EventID.OnDeliverCarStartGoOut, DeliverID);
 
 				Move();
-			}
+			//}
 		}
 		/// <summary>
 		/// 镖车开始回来
@@ -243,7 +243,12 @@ namespace GameWish.Game
 				{
 					CharacterReachGatherPointDic[characterID] = true;
 
-					StartMoveGoOutSide();
+					//StartMoveGoOutSide();
+
+					if (IsAllCharacterReachGatherPoint() && m_IsMoving == false) 
+					{
+						DeliverSystemMgr.S.AddDeliverCarGoOut(this);
+					}
 				}
 			}			
         }

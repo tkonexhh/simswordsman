@@ -102,7 +102,7 @@ namespace GameWish.Game
         }
         public bool CurrentChallengeLevelIsPlayInterAD()
         {
-            if (LastChallengeIsBossLevel && IsLookADInLastChallengeBossLevel == false)
+            if (IsLookADInLastChallengeBossLevel == false)
             {
                 return true;
             }

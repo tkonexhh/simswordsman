@@ -96,7 +96,7 @@ namespace GameWish.Game
 						GameDataMgr.S.GetClanData().DeliverData.AddDeliverDisciple(m_SingleDeliverDetailData.DeliverID, characterList);
 						FillingDisciple();
 
-						DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID, null, null);
+						DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID);
 						RefreshPanelInfo();
 						if (m_CountDownItemTest == null)
 						{
@@ -188,7 +188,7 @@ namespace GameWish.Game
 
 		void Start()
 		{
-			if (m_SingleDeliverDetailData.DaliverState == DeliverState.HasBeenSetOut)
+            if (m_SingleDeliverDetailData.DaliverState == DeliverState.HasBeenGoOut)
             {
 				DeliverCountDownItemUpdateCallBack(m_SingleDeliverDetailData.GetRemainTimeSeconds());
 				m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
@@ -196,6 +196,7 @@ namespace GameWish.Game
 				m_CountDownItemTest?.RegisterEndCallBack(DeliverCountDownItemEndCallBack);
 			}
 			
+
 			m_QuickStart.onClick.AddListener(()=> {
 				AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -220,7 +221,7 @@ namespace GameWish.Game
 						m_DeliverDiscipleList[i].OnFillDisciple(characterItems[i]);
 					}
 
-					DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID, null, null);
+					DeliverSystemMgr.S.StartDeliver(m_SingleDeliverDetailData.DeliverID);
 					RefreshPanelInfo();
 					if (m_CountDownItemTest == null)
 					{
@@ -277,7 +278,7 @@ namespace GameWish.Game
 				int deliverLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Deliver);
 				if (deliverLevel >= m_DeliverLevelInfo.level)
 				{
-					m_SingleDeliverDetailData.DaliverState = DeliverState.DidNotSetOut;
+					m_SingleDeliverDetailData.DaliverState = DeliverState.DidNotGoOut;
 				}
 			}
         }
@@ -300,15 +301,15 @@ namespace GameWish.Game
 					m_DeliverTitle.text = "???";
 					m_DeliverPhoto.sprite = SpriteHandler.S.GetSprite(AtlasDefine.PanelCommonAtlas, "Lock3");
 					break;
-                case DeliverState.HasBeenSetOut:
+                case DeliverState.HasBeenGoOut:
 					SetDiscipleBtnState(false);
-					SwitchState(DeliverState.HasBeenSetOut);
+					SwitchState(DeliverState.HasBeenGoOut);
 					m_DeliverPhoto.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DeliverAtlas, "Deliver_definephoto");
                     m_DeliverTitle.text = m_DeliverConfig.name;
                     break;
-                case DeliverState.DidNotSetOut:
+                case DeliverState.DidNotGoOut:
 					SetDiscipleBtnState(true);
-					SwitchState(DeliverState.DidNotSetOut);
+					SwitchState(DeliverState.DidNotGoOut);
 					m_DeliverPhoto.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DeliverAtlas, "Deliver_definephoto");
                     m_DeliverTitle.text = m_DeliverConfig.name;
 					CreateDeliverRes();
@@ -351,12 +352,12 @@ namespace GameWish.Game
 					m_StateStarting.SetActive(false);
 					m_StateLock.gameObject.SetActive(true);
 					break;
-                case DeliverState.HasBeenSetOut:
+                case DeliverState.HasBeenGoOut:
 					m_StateStart.SetActive(false);
 					m_StateStarting.SetActive(true);
 					m_StateLock.gameObject.SetActive(false);
 					break;
-                case DeliverState.DidNotSetOut:
+                case DeliverState.DidNotGoOut:
 					foreach (var item in m_DeliverDiscipleList)
 						item.SetDeliverDiscipleStateFree();
 					m_StateStart.SetActive(true);

@@ -57,7 +57,7 @@ namespace GameWish.Game
 		public bool IsGoOutSide(int deliverID) 
 		{
 			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
-			if (data != null && data.DaliverState == DeliverState.HasBeenSetOut) 
+			if (data != null && data.DaliverState == DeliverState.HasBeenGoOut) 
 			{
 				return true;
 			}
@@ -131,9 +131,9 @@ namespace GameWish.Game
 		{
 			TDDeliver data = TDDeliverTable.GetData(DeliverID);
 			StartTimeWithReally = DateTime.Now;
-			//EndTimeWithReally = StartTime.AddMinutes(data.duration);
-			EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
-			StartTimeWithScal = StartTimeWithReally;
+            EndTimeWithReally = StartTimeWithReally.AddMinutes(data.duration);
+            //EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
+            StartTimeWithScal = StartTimeWithReally;
 
 			TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
 			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
@@ -156,7 +156,7 @@ namespace GameWish.Game
 		public void ResetData()
 		{
 			this.SpeedUpMultiple = 1;
-			DaliverState = DeliverState.DidNotSetOut;
+			DaliverState = DeliverState.DidNotGoOut;
 			CharacterIDList?.Clear();
 			RewadDataList = DeliverSystemMgr.S.GetRandomReward(TDDeliverTable.GetDeliverConfig(DeliverID));
 		}
@@ -230,10 +230,10 @@ namespace GameWish.Game
 		/// <summary>
 		/// 已出发
 		/// </summary>
-		HasBeenSetOut,  
+		HasBeenGoOut,  
 		/// <summary>
 		/// 未出发
 		/// </summary>
-		DidNotSetOut,	
+		DidNotGoOut,	
 	}
 }

@@ -25,6 +25,7 @@ namespace GameWish.Game
 
         private List<RewardBase> m_RewardsDataList = new List<RewardBase>();
 
+        private int m_CurrentChallengeLevel = -1;
         private bool m_IsBossLevel = false;
         private bool m_IsLookAD = false;
 
@@ -62,7 +63,7 @@ namespace GameWish.Game
             m_DoubleRewardBtn.gameObject.SetActive(false);
         }
         /// <summary>
-        /// args[1]:代表是否是boss关卡
+        /// args[1]:当前挑战的关卡  ，如果不是挑战，则为null
         /// </summary>
         /// <param name="args"></param>
         protected override void OnPanelOpen(params object[] args)
@@ -71,6 +72,8 @@ namespace GameWish.Game
 
             m_RewardsDataList.Clear();
             m_DoubleRewardBtn.gameObject.SetActive(false);
+
+            m_CurrentChallengeLevel = -1;
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
@@ -81,7 +84,8 @@ namespace GameWish.Game
 
                 if (args.Length > 1) 
                 {
-                    m_IsBossLevel = (bool)args[1];
+                    m_CurrentChallengeLevel = (int)args[1];
+                    m_IsBossLevel = TDLevelConfigTable.IsBossLevel(m_CurrentChallengeLevel);
                     m_DoubleRewardBtn.gameObject.SetActive(m_IsBossLevel);
                 }
             }
@@ -160,16 +164,22 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnSignInSystem_FinishedTrigger);
             }
 
-            if (m_IsLookAD && m_IsBossLevel)
+            if (m_IsBossLevel)
             {
-                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(true);
-            }
-            else {
-                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(false);
+                GameDataMgr.S.GetPlayerData().UpdateIsLookADInLastChallengeBossLevel(m_IsLookAD);
+            }   
+
+            if (m_CloseBtnTimerID != -1) 
+            {
+                Timer.S.Cancel(m_CloseBtnTimerID);
             }
 
-            if (m_CloseBtnTimerID != -1) {
-                Timer.S.Cancel(m_CloseBtnTimerID);
+            if (m_CurrentChallengeLevel != -1 && m_IsBossLevel == false && TDLevelConfigTable.IsBossLevel(m_CurrentChallengeLevel - 1)) 
+            {
+                if (GameDataMgr.S.GetPlayerData().CurrentChallengeLevelIsPlayInterAD())
+                {
+                    AdsManager.S.PlayInterAD("ChallengePlayInterAD", (x) => { });
+                }
             }
         }
     }
