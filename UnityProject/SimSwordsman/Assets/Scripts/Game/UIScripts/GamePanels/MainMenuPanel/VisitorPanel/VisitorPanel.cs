@@ -76,7 +76,6 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().recordData.AddVisitor();
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
             VisitorSystem.S.Disappear(m_visitor);
-            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
 
             HideSelfWithAnim();
         }

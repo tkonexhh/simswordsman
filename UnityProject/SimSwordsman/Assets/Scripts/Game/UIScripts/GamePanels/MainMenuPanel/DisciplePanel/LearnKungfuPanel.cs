@@ -17,6 +17,8 @@ namespace GameWish.Game
         private Transform m_SelectedList;
         [SerializeField]
         private GameObject m_Kungfu;
+        [SerializeField]
+        private GameObject m_NotStudy;
         private int m_CurIndex;
         private ItemBase m_SelectedItemBase;
         private bool IsSelected = false;
@@ -93,6 +95,9 @@ namespace GameWish.Game
             m_CharacterItem = (CharacterItem)args[0];
             m_CurIndex = (int)args[1];
             GetInformationForNeed();
+
+            if (m_ItemBaseList.Count == 0)
+                m_NotStudy.SetActive(true);
 
             for (int i = 0; i < m_ItemBaseList.Count; i++)
             {
