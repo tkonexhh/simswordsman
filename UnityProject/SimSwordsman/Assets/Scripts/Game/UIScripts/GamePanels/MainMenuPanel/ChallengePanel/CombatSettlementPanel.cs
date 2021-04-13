@@ -52,7 +52,7 @@ namespace GameWish.Game
         {
             base.OnClose();
             m_LevelConfigInfo = null;
-            m_CurChapterConfigInfo = null;
+            //m_CurChapterConfigInfo = null;
             m_TowerLevelConfig = null;
             m_CurTaskInfo = null;
 
@@ -191,7 +191,6 @@ namespace GameWish.Game
                                         break;
                                     }
                                 }
-
                                 if (canRevive)
                                 {
                                     GameDataMgr.S.GetPlayerData().towerData.LevelRevived(MainGameMgr.S.TowerSystem.maxLevel);
