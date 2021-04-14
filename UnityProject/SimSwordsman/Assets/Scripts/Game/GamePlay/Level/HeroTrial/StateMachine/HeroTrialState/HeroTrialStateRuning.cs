@@ -63,6 +63,14 @@ namespace GameWish.Game
         public override void Exit(IHeroTrialStateHander handler)
         {
             UnregisterEvent();
+
+            //m_EnemyCharacter.CharacterView.PlayDeadAnim();
+            //m_EnemyCharacter.CharacterView.PlayIdleAnim();
+
+            if (m_CachedEnemyCharacter != null)
+            {
+                ReleaseCachedEnemy();
+            }
         }
 
         public override void Execute(IHeroTrialStateHander handler, float dt)
@@ -181,17 +189,28 @@ namespace GameWish.Game
                     break;
 
                 case (int)EventID.OnCharacterInFightGroupDead:
-                    m_CachedEnemyCharacter = m_EnemyCharacter;
 
-                    int nextEnemyId = GetEnemyId();
-                    m_EnemyCharacter = SpawnEnemyCharacter(nextEnemyId);
-                    m_HeroTialMgr.FightGroup.ChangeEnemyCharacter(m_EnemyCharacter);
-                    m_HeroTialMgr.FightGroup.StartFight();
-
-                    if (m_SpawnOrdinaryEnemy == false)
+                    if (m_HeroTialMgr.GetLeftTime() <= 0)
                     {
-                        m_SpawnOrdinaryEnemy = true;
-                        m_OrdinaryEnemyKilledCount = 0;
+                        Log.i("Time over, finish trial");
+                        m_HeroTialMgr.FinishTrial();
+                    }
+                    else
+                    {
+                        Log.i("Spawn a new enemy");
+                        m_CachedEnemyCharacter = m_EnemyCharacter;
+
+                        int nextEnemyId = GetEnemyId();
+                        m_EnemyCharacter = SpawnEnemyCharacter(nextEnemyId);
+                        m_HeroTialMgr.FightGroup.ChangeEnemyCharacter(m_EnemyCharacter);
+                        m_HeroTialMgr.FightGroup.StartFight();
+
+                        if (m_SpawnOrdinaryEnemy == false)
+                        {
+                            m_SpawnOrdinaryEnemy = true;
+                            m_OrdinaryEnemyKilledCount = 0;
+                        }
+
                     }
                     break;
 

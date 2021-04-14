@@ -33,7 +33,10 @@ namespace GameWish.Game
 
             m_FinishBtn.onClick.AddListener(() =>
             {
-                //MainGameMgr.S.HeroTrialMgr.
+                MainGameMgr.S.HeroTrialMgr.Reset();
+                MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
+
+                HideSelfWithAnim();
             });
         }
 
