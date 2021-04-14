@@ -35,7 +35,14 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().SetDataDirty();
         }
 
-        public void OnTrialEnd()
+        public void OnTrialFinished()
+        {
+            state = HeroTrialStateID.Finished;
+
+            GameDataMgr.S.GetClanData().SetDataDirty();
+        }
+
+        public void Reset()
         {
             state = HeroTrialStateID.Idle;
             trialStartTime = string.Empty;

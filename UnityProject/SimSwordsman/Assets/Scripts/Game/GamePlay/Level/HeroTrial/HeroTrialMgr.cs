@@ -21,6 +21,11 @@ namespace GameWish.Game
 
         private DateTime m_TrialStartTime;
 
+        private float m_LeftTimeUpdateInterval = 1;
+        private float m_LeftTimeUpdateTime = 0;
+
+        private double m_TrialTotalTime = 10;
+
         public HeroTrialData DbData { get => m_DbData;}
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
@@ -41,6 +46,20 @@ namespace GameWish.Game
             if (m_IsInTrial)
             {
                 m_StateMachine.UpdateState(Time.deltaTime);
+
+                if (m_CurState == HeroTrialStateID.Runing)
+                {
+                    m_LeftTimeUpdateTime += Time.deltaTime;
+                    if (m_LeftTimeUpdateTime >= m_LeftTimeUpdateInterval)
+                    {
+                        m_LeftTimeUpdateTime = 0;
+
+                        if (GetLeftTime() <= 0)
+                        {
+                            FinishTrial();
+                        }
+                    }
+                }
             }
         }
 
@@ -99,7 +118,13 @@ namespace GameWish.Game
 
         public void FinishTrial()
         {
-            m_DbData.OnTrialEnd();
+            m_DbData.OnTrialFinished();
+            SetState(m_DbData.state);
+        }
+
+        public void Reset()
+        {
+            m_DbData.Reset();
             SetState(m_DbData.state);
         }
         #endregion
@@ -205,7 +230,9 @@ namespace GameWish.Game
         private double GetLeftTime()
         {
             TimeSpan time = DateTime.Now - m_TrialStartTime;
-            return time.TotalSeconds;
+            double leftTime = m_TrialTotalTime - time.TotalSeconds;
+            Log.i("Left time: " + leftTime);
+            return leftTime;
         }
         #endregion
     }
