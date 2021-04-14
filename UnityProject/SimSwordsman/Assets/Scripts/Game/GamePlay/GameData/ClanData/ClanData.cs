@@ -219,6 +219,8 @@ namespace GameWish.Game
         public void AddCharacterKongfuExp(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
             ownedCharacterData.AddKonfuExp(id, kongfuType, deltaExp);
+
+            SetDataDirty();
         }
 
         public List<CharacterItemDbData> GetAllCharacterList()
@@ -234,6 +236,15 @@ namespace GameWish.Game
         public void AddCharacterKongfuLevel(int id, CharacterKongfuData kongfuType, int deltaLevel)
         {
             ownedCharacterData.AddCharacterKongfuLevel(id, kongfuType, deltaLevel);
+
+            SetDataDirty();
+        }
+
+        public void SetIsHero(int id, bool isHero)
+        {
+            ownedCharacterData.SetCharacterIsHero(id, isHero);
+
+            SetDataDirty();
         }
         #endregion
 

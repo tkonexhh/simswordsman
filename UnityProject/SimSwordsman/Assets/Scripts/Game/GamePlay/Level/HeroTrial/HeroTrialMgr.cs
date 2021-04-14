@@ -118,6 +118,8 @@ namespace GameWish.Game
 
         public void FinishTrial()
         {
+            m_FightGroup.OurCharacter.CharacterModel.SetIsHero(true);
+
             m_DbData.OnTrialFinished();
             SetState(m_DbData.state);
         }
