@@ -5,21 +5,34 @@ using System;
 
 namespace GameWish.Game
 {
-   
+
     public class HeroTrialPanel : AbstractAnimPanel
-	{
+    {
         [SerializeField]
         private Button m_SelectCharacterBtn;
         [SerializeField]
         private Button m_FinishBtn;
         [SerializeField]
         private Button m_CloseBtn;
+        [SerializeField]
+        private Button m_RuleBtn;
 
         protected override void OnUIInit()
-	    {
+        {
             base.OnUIInit();
 
-            m_CloseBtn.onClick.AddListener(()=> 
+            BindAddListenerEvent();
+
+        }
+
+        private void BindAddListenerEvent()
+        {
+            m_RuleBtn.onClick.AddListener(() =>
+            {
+                UIMgr.S.OpenPanel(UIID.IntroductionRulesPanel);
+            });
+
+            m_CloseBtn.onClick.AddListener(() =>
             {
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
 
@@ -28,7 +41,7 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple,PanelType.HeroTrial);
+                UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, PanelType.HeroTrial);
             });
 
             m_FinishBtn.onClick.AddListener(() =>

@@ -10,14 +10,26 @@ namespace GameWish.Game
 	{
 
         [SerializeField]
-        private Button m_CloseBtn;
+        private Button m_CloseBtn;      
+        [SerializeField]
+        private Button m_BlackBtn;       
+        [SerializeField]
+        private Text m_ClanType;
 
         protected override void OnUIInit()
 	    {
             base.OnUIInit();
 
+            //m_ClanType.text = MainGameMgr.S.HeroTrialMgr.GetClanType().ToString();
+
             m_CloseBtn.onClick.AddListener(()=> 
             {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_BlackBtn.onClick.AddListener(()=> 
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
         }

@@ -91,6 +91,7 @@ namespace GameWish.Game
         #region 英雄试炼
         HeroTrialPanel,
         HeroTrialTipPanel,
+        IntroductionRulesPanel,
         #endregion
     }
 }
