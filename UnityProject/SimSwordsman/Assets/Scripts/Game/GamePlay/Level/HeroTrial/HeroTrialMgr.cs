@@ -19,6 +19,8 @@ namespace GameWish.Game
 
         private bool m_IsInTrial = false;
 
+        private DateTime m_TrialStartTime;
+
         public HeroTrialData DbData { get => m_DbData;}
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
@@ -63,6 +65,11 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnEnterHeroTrial);
 
             m_IsInTrial = true;
+
+            if (!string.IsNullOrEmpty(m_DbData.trialStartTime))
+            {
+                m_TrialStartTime = m_DbData.GetStartTime();
+            }
         }
 
         public void OnExitHeroTrial()
@@ -84,9 +91,9 @@ namespace GameWish.Game
 
         public void StartTrial(int characterId)
         {
-            int trialStartDay = DateTime.Today.DayOfYear;
             ClanType clanType = GetNextClanType(m_DbData.clanType);
-            m_DbData.OnTrialStart(trialStartDay, characterId, clanType);
+            m_TrialStartTime = DateTime.Now;
+            m_DbData.OnTrialStart(DateTime.Now, characterId, clanType);
             SetState(m_DbData.state);
         }
 
@@ -155,8 +162,8 @@ namespace GameWish.Game
             if (m_DbData.state != HeroTrialStateID.Idle)
                 return false;
 
-            int trialStartDay = GameDataMgr.S.GetClanData().heroTrialData.trialStartDay;
-            if (trialStartDay != DateTime.Today.DayOfYear)
+            DateTime trialStartDay = GameDataMgr.S.GetClanData().heroTrialData.GetStartTime();
+            if (trialStartDay.Day != DateTime.Today.DayOfYear)
             {
                 return true;
             }
@@ -193,6 +200,12 @@ namespace GameWish.Game
             ClanType result = (ClanType)value;
 
             return result;
+        }
+
+        private double GetLeftTime()
+        {
+            TimeSpan time = DateTime.Now - m_TrialStartTime;
+            return time.TotalSeconds;
         }
         #endregion
     }

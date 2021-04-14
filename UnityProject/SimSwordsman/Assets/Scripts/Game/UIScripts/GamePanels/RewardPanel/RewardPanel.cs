@@ -60,6 +60,7 @@ namespace GameWish.Game
                     m_Items[i].UpdateDoubleRewardCount();
                 }
             }
+
             m_DoubleRewardBtn.gameObject.SetActive(false);
         }
         /// <summary>

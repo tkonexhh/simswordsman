@@ -68,16 +68,6 @@ namespace GameWish.Game
             GetInformationForNeed();
         }
 
-        private void CalculateContainerHeight()
-        {
-            int rows = m_DiscipleObjDic.Count / Rows;
-            if ((m_DiscipleObjDic.Count % Rows) != 0)
-                rows += 1;
-
-            float height = DiscipleHeight * rows;
-            m_Cont.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
-        }
-
         protected override void OnClose()
         {
             base.OnClose();

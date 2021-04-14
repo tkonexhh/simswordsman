@@ -161,18 +161,40 @@ namespace GameWish.Game
             if (reward.RewardItem == RewardItemType.Item)
             {
                 // Debug.LogError(reward.KeyID);
-                if (reward.KeyID == (int)RawMaterial.QingRock || reward.KeyID == (int)RawMaterial.WuWood)
+                if (level < 3)
                 {
-                    int nowQingRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.QingRock);
-                    int nowWuWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.WuWood);
-                    reward = new ItemReward(nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
+                    if (reward.KeyID == (int)RawMaterial.QingRock || reward.KeyID == (int)RawMaterial.WuWood)
+                    {
+                        int nowQingRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.QingRock);
+                        int nowWuWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.WuWood);
+                        reward = new ItemReward(nowQingRock < nowWuWood ? (int)RawMaterial.QingRock : (int)RawMaterial.WuWood, reward.Count);
+                    }
+                    else if (reward.KeyID == (int)RawMaterial.CloudRock || reward.KeyID == (int)RawMaterial.SilverWood)
+                    {
+                        int nowCloudRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.CloudRock);
+                        int nowSliverWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverWood);
+                        reward = new ItemReward(nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
+                    }
                 }
-                else if (reward.KeyID == (int)RawMaterial.CloudRock || reward.KeyID == (int)RawMaterial.SilverWood)
+                else
                 {
-                    int nowCloudRock = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.CloudRock);
-                    int nowSliverWood = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType(RawMaterial.SilverWood);
-                    reward = new ItemReward(nowCloudRock < nowSliverWood ? (int)RawMaterial.CloudRock : (int)RawMaterial.SilverWood, reward.Count);
+                    if (reward.KeyID == (int)RawMaterial.QingRock || reward.KeyID == (int)RawMaterial.WuWood || reward.KeyID == (int)RawMaterial.CloudRock || reward.KeyID == (int)RawMaterial.SilverWood)
+                    {
+                        int minCount = 9999;
+                        int keyID = (int)RawMaterial.QingRock;
+                        for (int i = (int)RawMaterial.QingRock; i <= (int)RawMaterial.SilverWood; i++)
+                        {
+                            int num = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)i);
+                            if (num < minCount)
+                            {
+                                minCount = num;
+                                keyID = i;
+                            }
+                        }
+                        reward = new ItemReward(keyID, reward.Count);
+                    }
                 }
+
             }
             return reward;
         }
