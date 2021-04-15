@@ -355,6 +355,12 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
                 }
 
+                if (Input.GetKeyDown(KeyCode.B))
+                {
+                    PanelPool.S.AddPromotion(new HeroTrial(0, ClanType.Gaibang, 200000));
+                    PanelPool.S.DisplayPanel();
+                }
+
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     EventSystem.S.Send(EventID.OnBattleSuccessed);

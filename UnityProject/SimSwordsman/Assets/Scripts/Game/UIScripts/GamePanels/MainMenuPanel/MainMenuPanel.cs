@@ -218,6 +218,13 @@ namespace GameWish.Game
 
             m_HeroTrialBtn.onClick.AddListener(()=> 
             {
+                //string msg = string.Empty;
+                //if (MainGameMgr.S.HeroTrialMgr.IsUnlocked(ref msg))
+                //{
+                //    FloatMessage.S.ShowMsg(msg);
+                //    return;
+                //}
+
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
                 UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
 

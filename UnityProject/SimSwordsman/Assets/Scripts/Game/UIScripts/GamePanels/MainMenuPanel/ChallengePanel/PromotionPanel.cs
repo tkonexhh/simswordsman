@@ -1,4 +1,5 @@
 using Qarth;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +39,16 @@ namespace GameWish.Game
         private Image KungfuNameImg;
         [SerializeField]
         private Text KungfuName;
+
+        [Header("Status Four")]
+        [SerializeField]
+        private GameObject m_NameObj;  
+        [SerializeField]
+        private Text m_NameValue;    
+        [SerializeField]
+        private Text m_Appellation;  
+        [SerializeField]
+        private Image m_Quality;
 
         [SerializeField]
         private Text m_KongfuName;
@@ -184,6 +195,13 @@ namespace GameWish.Game
                     m_KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", GetKungfuName(kungfu.kongfuType));
                     m_Paragraph.text = "ÉýÖÁ" + CommonUIMethod.GetPart(kungfu.level);
                     break;
+                case UpgradePanelType.HeroTrial:
+                    SetDifferetState(UpgradePanelType.HeroTrial);
+                    HeroTrial heroTrial = promotionModel.ToSubType<HeroTrial>();
+                    m_NameValue.text = m_CharacterItem.name;
+                    m_Appellation.text = CommonMethod.GetAppellation(heroTrial.GetClanType());
+                    m_Quality.sprite = GetQualitySprite();
+                    break;
                 default:
                     break;
             }
@@ -206,6 +224,22 @@ namespace GameWish.Game
             }, ExitShowTime);
         }
 
+        private Sprite GetQualitySprite()
+        {
+            switch (m_CharacterItem.quality)
+            {
+                case CharacterQuality.Normal:
+                    return  SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Normal");
+                case CharacterQuality.Good:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Good");
+                case CharacterQuality.Perfect:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Perfect");
+                case CharacterQuality.Hero:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Hero");
+            }
+            return null;
+        }
+
         private void SetDifferetState(UpgradePanelType showState)
         {
             switch (showState)
@@ -223,6 +257,9 @@ namespace GameWish.Game
                 case UpgradePanelType.ArmorEnhancement:
                 case UpgradePanelType.BreakthroughMartialArts:
                     m_InfoPar.SetActive(true);
+                    break;
+                case UpgradePanelType.HeroTrial:
+                    m_NameObj.SetActive(true);
                     break;
                 default:
                     break;

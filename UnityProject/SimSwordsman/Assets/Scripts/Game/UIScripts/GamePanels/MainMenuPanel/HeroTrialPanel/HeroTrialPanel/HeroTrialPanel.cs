@@ -11,18 +11,70 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_SelectCharacterBtn;
         [SerializeField]
-        private Button m_FinishBtn;
-        [SerializeField]
         private Button m_CloseBtn;
         [SerializeField]
         private Button m_RuleBtn;
 
+        [SerializeField]
+        private Text m_CountDownNumber;
+        [SerializeField]
+        private Button m_FinishTrialBtn;     
+        [SerializeField]
+        private Slider m_CountDownSlider;      
+        [SerializeField]
+        private Image m_CharacterIconBefore;   
+        [SerializeField]
+        private Text m_CharacterNameBefore;    
+        [SerializeField]
+        private Image m_CharacterIconAfter;   
+        [SerializeField]
+        private Text m_CharacterNameAfter;
+        [SerializeField]
+        private Text m_Appellation;
+
+        private CharacterItem TrialDisciple;
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            EventSystem.S.Register(EventID.OnRefreshTrialPanel,HandAdListenerEvent);
 
+            GetInfomationForNeed();
+            RefreshPanelInfo();
             BindAddListenerEvent();
 
+        }
+
+        private void GetInfomationForNeed()
+        {
+            TrialDisciple = MainGameMgr.S.CharacterMgr.GetCharacterItem(MainGameMgr.S.HeroTrialMgr.TrialDiscipleID);
+        }
+
+        private void HandAdListenerEvent(int key, object[] param)
+        {
+            switch (key)
+            {
+                case (int)EventID.OnRefreshTrialPanel:
+                    GetInfomationForNeed();
+                    RefreshPanelInfo();
+                    break;
+            }
+        }
+
+        private void RefreshPanelInfo()
+        {
+            if (TrialDisciple == null)
+                return;
+            m_CharacterIconBefore.sprite = CommonMethod.GetDiscipleSprite(TrialDisciple);
+            m_CharacterNameBefore.text = TrialDisciple.name;
+            m_CharacterIconAfter.sprite = CommonMethod.GetDiscipleSprite(TrialDisciple);
+            m_CharacterNameAfter.text = TrialDisciple.name;
+            m_Appellation.text = CommonMethod.GetAppellation(MainGameMgr.S.HeroTrialMgr.TrialClan);
+        }
+
+        public override void OnBecomeHide()
+        {
+            base.OnBecomeHide();
+            EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
         }
 
         private void BindAddListenerEvent()
@@ -44,7 +96,7 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, PanelType.HeroTrial);
             });
 
-            m_FinishBtn.onClick.AddListener(() =>
+            m_FinishTrialBtn.onClick.AddListener(() =>
             {
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();

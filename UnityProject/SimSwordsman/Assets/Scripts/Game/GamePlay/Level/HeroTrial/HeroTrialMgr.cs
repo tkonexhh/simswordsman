@@ -15,6 +15,7 @@ namespace GameWish.Game
         private HeroTrialStateMachine m_StateMachine = null;
         private HeroTrialStateID m_CurState = HeroTrialStateID.None;
 
+
         private FightGroup m_FightGroup;
 
         private bool m_IsInTrial = false;
@@ -24,9 +25,11 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
-        private double m_TrialTotalTime = 10;
+        private double m_TrialTotalTime = 10 * 60 * 60;
 
         public HeroTrialData DbData { get => m_DbData;}
+        public int TrialDiscipleID { get => m_DbData.characterId; }
+        public ClanType TrialClan { get => m_DbData.clanType; }
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
 
@@ -85,11 +88,15 @@ namespace GameWish.Game
 
             m_IsInTrial = true;
 
+
+
             if (!string.IsNullOrEmpty(m_DbData.trialStartTime))
             {
                 m_TrialStartTime = m_DbData.GetStartTime();
             }
         }
+
+        
 
         public void OnExitHeroTrial()
         {
@@ -118,7 +125,7 @@ namespace GameWish.Game
 
         public void FinishTrial()
         {
-            m_FightGroup.OurCharacter.CharacterModel.SetIsHero(true);
+            m_FightGroup.OurCharacter.CharacterModel.SetIsHero();
 
             m_DbData.OnTrialFinished();
             SetState(m_DbData.state);
@@ -210,8 +217,8 @@ namespace GameWish.Game
                     Dictionary<int, CharacterItem> selectedCharacterDic = (Dictionary<int, CharacterItem>)param[0];
                     Debug.Assert(selectedCharacterDic.Count > 0, "OnSelectedConfirmEvent selectedCharacterDic count = 0");
                     CharacterItem[] items = selectedCharacterDic.Values.ToArray();
-
                     StartTrial(items[0].id);
+                    EventSystem.S.Send(EventID.OnRefreshTrialPanel);
                     break;
 
             }
