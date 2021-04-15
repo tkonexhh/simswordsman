@@ -417,6 +417,7 @@ namespace GameWish.Game
         OnEnterHeroTrial,
         OnExitHeroTrial,
         OnRefreshTrialPanel,
+        OnCountDownRefresh,
         #endregion
 
     }

@@ -29,11 +29,16 @@ namespace GameWish.Game
 
         private ClanType m_TrialClanType = ClanType.None;
 
+        private Coroutine m_Coroutine;
+
         public HeroTrialData DbData { get => m_DbData;}
         public int TrialDiscipleID { get => m_DbData.characterId; }
+        public double TrialTotalTime { get => m_TrialTotalTime; }
         public ClanType TrialClan { get => m_DbData.clanType; }
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
+
+        
 
         #region IMgr
         public void OnInit()
@@ -83,7 +88,13 @@ namespace GameWish.Game
 
             m_IsInTrial = true;
 
-
+            if (m_DbData.state == HeroTrialStateID.Runing)
+            {
+                m_Coroutine = StartCoroutine(CommonMethod.CountDown(() =>
+                {
+                    EventSystem.S.Send(EventID.OnCountDownRefresh,GetLeftTime());
+                }));
+            }
 
             if (!string.IsNullOrEmpty(m_DbData.trialStartTime))
             {
@@ -109,6 +120,8 @@ namespace GameWish.Game
             m_BattleField.OnBattleEnd();
 
             EventSystem.S.Send(EventID.OnExitHeroTrial);
+
+            StopCoroutine(m_Coroutine);
 
             m_IsInTrial = false;
         }

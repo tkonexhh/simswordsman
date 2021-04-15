@@ -37,6 +37,7 @@ namespace GameWish.Game
         {
             base.OnUIInit();
             EventSystem.S.Register(EventID.OnRefreshTrialPanel,HandAdListenerEvent);
+            EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
 
             GetInfomationForNeed();
             RefreshPanelInfo();
@@ -56,8 +57,17 @@ namespace GameWish.Game
                 case (int)EventID.OnRefreshTrialPanel:
                     GetInfomationForNeed();
                     RefreshPanelInfo();
+                    break;  
+                case (int)EventID.OnCountDownRefresh:
+                    RefreshProgress((double)param[0]);
                     break;
             }
+        }
+
+        private void RefreshProgress(double second)
+        {
+            m_CountDownSlider.value = (float)second / (float)MainGameMgr.S.HeroTrialMgr.TrialTotalTime;
+            m_CountDownNumber.text = CommonMethod.SplicingTime(second);
         }
 
         private void RefreshPanelInfo()
@@ -75,6 +85,7 @@ namespace GameWish.Game
         {
             base.OnBecomeHide();
             EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnCountDownRefresh, HandAdListenerEvent);
         }
 
         private void BindAddListenerEvent()
