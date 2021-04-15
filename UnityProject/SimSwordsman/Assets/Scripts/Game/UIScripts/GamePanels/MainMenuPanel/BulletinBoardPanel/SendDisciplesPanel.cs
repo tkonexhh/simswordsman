@@ -33,8 +33,6 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ClsseBtn;
         [SerializeField]
-        private Text m_SendDisciplesTitle;
-        [SerializeField]
         private Text m_RecommendedSkillsTitle;
         [SerializeField]
         private Text m_RecommendedSkillsValue;
@@ -65,15 +63,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_AutoSelectedBtn;
         [SerializeField]
-        private Text m_AutoSelectedText;
-        [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
         private Text m_AcceptText;
         [SerializeField]
         private Button m_RefuseBtn;
-        [SerializeField]
-        private Text m_RefuseText;
 
         private PanelType m_PanelType;
 
@@ -87,7 +81,6 @@ namespace GameWish.Game
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private LevelConfigInfo m_LevelConfigInfo = null;
 
-        private Dictionary<int, DiscipleItem> m_SelectedDic = new Dictionary<int, DiscipleItem>();
         private Dictionary<int, HerbalMedicineItem> m_PlayerDataHerbDic = new Dictionary<int, HerbalMedicineItem>();
 
         private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
@@ -181,13 +174,13 @@ namespace GameWish.Game
                     m_CurTaskInfo = args[1] as SimGameTask;
                     m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
                     HandConfirmBtnEvent();
-                    m_AcceptText.text = "����ս��";
+                    m_AcceptText.text = "发起战斗";
                     RefreshFixedInfo();
                     break;
                 case PanelType.Challenge:
                     m_CurChapterConfigInfo = args[1] as ChapterConfigInfo;
                     m_LevelConfigInfo = args[2] as LevelConfigInfo;
-                    m_AcceptText.text = "��ʼս��";
+                    m_AcceptText.text = "开始战斗";
                     CommonUIMethod.GetStrForColor("#405787", m_LevelConfigInfo.recommendAtkValue.ToString());
                     m_RecommendedSkillsValue.text = CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue);
                     RefreshDisicipleSkill();
@@ -321,7 +314,7 @@ namespace GameWish.Game
                     case PanelType.Task:
                         if (m_SelectedList.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                         {
-                            FloatMessage.S.ShowMsg("��ѡ�������� !");
+                            FloatMessage.S.ShowMsg("请选择满弟子 !");
                             return;
                         }
                         m_CurTaskInfo.ExecuteTask(m_SelectedList);
@@ -346,7 +339,7 @@ namespace GameWish.Game
                     case PanelType.Challenge:
                         if (m_SelectedList.Count != MaxDiscipleNumber)
                         {
-                            FloatMessage.S.ShowMsg("��ѡ�������� !");
+                            FloatMessage.S.ShowMsg("请选择满弟子 !");
                             return;
                         }
                         for (int i = 0; i < m_PlayerDataHerb.Count; i++)

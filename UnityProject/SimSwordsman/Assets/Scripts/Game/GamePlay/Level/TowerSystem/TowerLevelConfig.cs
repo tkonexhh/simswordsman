@@ -8,7 +8,7 @@ namespace GameWish.Game
     public class TowerLevelConfig
     {
         public int level;
-        // public int enemyPoolID;
+
         public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
         public int rewardExp = 100;
 
@@ -17,11 +17,22 @@ namespace GameWish.Game
             this.level = level;
         }
 
-        public void CreateEnemy(int enemyPoolID)
+        public void CreateEnemy(List<int> enemys)
         {
-            var enemyConfig = TDTowerEnemyConfigTable.GetData(enemyPoolID);
-            enemiesList = enemyConfig.GetRandomEnemys();
+            enemiesList = CreateEnemysByConfig(enemys);
             GameDataMgr.S.GetPlayerData().towerData.SetEnemy(enemiesList);
+        }
+
+        private List<EnemyConfig> CreateEnemysByConfig(List<int> enemyIDs)
+        {
+            List<EnemyConfig> enemys = new List<EnemyConfig>();
+
+            for (int i = 0; i < enemyIDs.Count; i++)
+            {
+                EnemyConfig enemy = new EnemyConfig(enemyIDs[i], 1, 10);
+                enemys.Add(enemy);
+            }
+            return enemys;
         }
 
         public void SetEnemyFormDB()
@@ -31,15 +42,30 @@ namespace GameWish.Game
 
         public void PrepareReward()
         {
-            int lobbyLvl = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
-            var conf = TDTowerRewardConfigTable.GetData(lobbyLvl);
-            if (conf == null)
+            //判断是什么奖励
+            var towerConf = TDTowerConfigTable.GetData(level);
+            if (towerConf == null)
                 return;
 
-            var reward = conf.GetRandomReward();
-            List<RewardBase> rewardLst = new List<RewardBase>() { reward };
-            rewardLst.ForEach(r => r.AcceptReward());
-            EventSystem.S.Send(EventID.OnReciveRewardList, rewardLst);
+            if (towerConf.rwardtype.Equals("Fcoin"))
+            {
+                List<RewardBase> rewardLst = new List<RewardBase>() { new TowerCoinReward(towerConf.fcoinNum) };
+                rewardLst.ForEach(r => r.AcceptReward());
+                EventSystem.S.Send(EventID.OnReciveRewardList, rewardLst);
+            }
+            else
+            {
+                int lobbyLvl = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                var conf = TDTowerRewardConfigTable.GetData(lobbyLvl);
+                if (conf == null)
+                    return;
+
+                var reward = conf.GetRandomReward();
+                List<RewardBase> rewardLst = new List<RewardBase>() { reward };
+                rewardLst.ForEach(r => r.AcceptReward());
+                EventSystem.S.Send(EventID.OnReciveRewardList, rewardLst);
+            }
+
         }
     }
 

@@ -9,16 +9,13 @@ namespace GameWish.Game
     {
         public int coin;
         public int maxLevel;
-        public List<int> enemyPoolLst = new List<int>();
+        public List<TowerLevelEnemyDB> enemyPoolLst = new List<TowerLevelEnemyDB>();
 
         //自身状态保存
         public List<TowerCharacterDB> towerCharacterLst = new List<TowerCharacterDB>();
         private Dictionary<int, TowerCharacterDB> m_TowerCharacterMap = new Dictionary<int, TowerCharacterDB>();
         //Enemy状态保存
         public List<TowerCharacterDB> enemyCharacterLst = new List<TowerCharacterDB>();
-
-        //奖励保存
-        public List<int> rewardedLst = new List<int>();
 
         //商店信息
         public List<TowerShopItemDB> shopInfoLst = new List<TowerShopItemDB>();
@@ -47,23 +44,31 @@ namespace GameWish.Game
             enemyPoolLst.Clear();
             for (int i = 0; i < TowerDefine.MAXLEVEL; i++)
             {
-                int poolNum = TDTowerEnemyConfigTable.dataList[i].poolNum;
-                enemyPoolLst.Add(poolNum);
+                var config = TDTowerEnemyConfigTable.dataList[i];
+                int poolNum = config.poolNum;
+                TowerLevelEnemyDB levelEnemyDB = new TowerLevelEnemyDB();
+                levelEnemyDB.id = poolNum;
+                levelEnemyDB.enemyIDLst.Add(int.Parse(config.boss));
+                //随机添加四个敌人
+                for (int e = 0; e < 4; e++)
+                {
+                    levelEnemyDB.enemyIDLst.Add(config.enemyIDs[RandomHelper.Range(0, config.enemyIDs.Count)]);
+                }
+                enemyPoolLst.Add(levelEnemyDB);
             }
 
             KnuthDurstenfeldShuffle(enemyPoolLst);
-            rewardedLst.Clear();
 
             RandomShopData();
 
             SetDataDirty();
         }
 
-        public int GetEnemyPoolIDByIndex(int index)
+        public TowerLevelEnemyDB GetEnemyPoolIDByIndex(int index)
         {
             if (index < 0 && index >= enemyPoolLst.Count)
             {
-                return 1;
+                return enemyPoolLst[0];
             }
 
             return enemyPoolLst[index];
@@ -190,21 +195,6 @@ namespace GameWish.Game
         }
         #endregion
 
-
-        #region 获得奖励
-        public void GetReward(int level)
-        {
-            rewardedLst.Add(level);
-            SetDataDirty();
-        }
-
-        public bool HasReward(int level)
-        {
-            return rewardedLst.Contains(level);
-        }
-        #endregion
-
-
         #region 商店相关
         public TowerShopItemDB GetShopDataByIndex(int index)
         {
@@ -295,6 +285,12 @@ namespace GameWish.Game
             hpRate = rate;
             hpRate = Mathf.Clamp01((float)hpRate);
         }
+    }
+
+    public class TowerLevelEnemyDB
+    {
+        public int id;
+        public List<int> enemyIDLst = new List<int>();
     }
 
     public class TowerShopItemDB

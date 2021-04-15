@@ -42,11 +42,11 @@ namespace GameWish.Game
             int maxLvl = m_TowerData.maxLevel;
             TowerLevelConfig levelConfig = new TowerLevelConfig(maxLvl);
 
-            int enemyPoolID = m_TowerData.GetEnemyPoolIDByIndex(maxLvl - 1);
+            var enemyPool = m_TowerData.GetEnemyPoolIDByIndex(maxLvl - 1);
             if (m_TowerData.enemyCharacterLst.Count == 0)
             {
                 // Debug.LogError("New Enemy");
-                levelConfig.CreateEnemy(enemyPoolID);
+                levelConfig.CreateEnemy(enemyPool.enemyIDLst);
             }
             else
             {
@@ -73,22 +73,6 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().towerData.ClearEnemyDB();
         }
 
-        public void GetLevelReward(int level)
-        {
-            var conf = TDTowerConfigTable.GetData(level);
-            if (conf == null)
-                return;
-
-            int coin = conf.fcoinNum;
-            List<RewardBase> rewards = new List<RewardBase>();
-            rewards.Add(new TowerCoinReward(coin));
-            rewards.ForEach(r => r.AcceptReward());
-            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-            //得到伏魔币奖励
-            GameDataMgr.S.GetPlayerData().towerData.GetReward(level);
-        }
-
-
         private void HandleBattleCharacterHp(List<CharacterController> owrControllers, List<CharacterController> enemyControllers)
         {
             if (!m_IsTowerBattle) return;
@@ -104,7 +88,7 @@ namespace GameWish.Game
                     if (towerCharacterDB != null)
                     {
                         Debug.LogError(towerCharacterDB.hpRate);
-                        character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
+                        // character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
                     }
                 }
                 else
