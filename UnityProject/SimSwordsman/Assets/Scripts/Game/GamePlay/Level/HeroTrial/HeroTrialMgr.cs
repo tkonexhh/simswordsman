@@ -47,19 +47,19 @@ namespace GameWish.Game
             {
                 m_StateMachine.UpdateState(Time.deltaTime);
 
-                if (m_CurState == HeroTrialStateID.Runing)
-                {
-                    m_LeftTimeUpdateTime += Time.deltaTime;
-                    if (m_LeftTimeUpdateTime >= m_LeftTimeUpdateInterval)
-                    {
-                        m_LeftTimeUpdateTime = 0;
+                //if (m_CurState == HeroTrialStateID.Runing)
+                //{
+                //    m_LeftTimeUpdateTime += Time.deltaTime;
+                //    if (m_LeftTimeUpdateTime >= m_LeftTimeUpdateInterval)
+                //    {
+                //        m_LeftTimeUpdateTime = 0;
 
-                        if (GetLeftTime() <= 0)
-                        {
-                            FinishTrial();
-                        }
-                    }
-                }
+                //        if (GetLeftTime() <= 0)
+                //        {
+                //            FinishTrial();
+                //        }
+                //    }
+                //}
             }
         }
 
@@ -118,6 +118,8 @@ namespace GameWish.Game
 
         public void FinishTrial()
         {
+            m_FightGroup.OurCharacter.CharacterModel.SetIsHero(true);
+
             m_DbData.OnTrialFinished();
             SetState(m_DbData.state);
         }
@@ -227,7 +229,7 @@ namespace GameWish.Game
             return result;
         }
 
-        private double GetLeftTime()
+        public double GetLeftTime()
         {
             TimeSpan time = DateTime.Now - m_TrialStartTime;
             double leftTime = m_TrialTotalTime - time.TotalSeconds;

@@ -149,7 +149,7 @@ namespace GameWish.Game
                 atkRangeList = GetAtkRangeList(atkAnimName);
                 m_OurHitBackDistance = atkRangeList;
             }
-            Log.i("Test--------------, atk anim name is: " + atkAnimName);
+            //Log.i("Test--------------, atk anim name is: " + atkAnimName);
             if (string.IsNullOrEmpty(atkAnimName))
             {
                 Log.e("Atk anim name is empty: " + atkAnimName);

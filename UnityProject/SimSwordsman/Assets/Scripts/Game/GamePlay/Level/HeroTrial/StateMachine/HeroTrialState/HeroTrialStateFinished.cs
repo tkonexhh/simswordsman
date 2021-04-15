@@ -10,6 +10,7 @@ namespace GameWish.Game
 {
     public class HeroTrialStateFinished : HeroTrialState
     {
+        private HeroTrialMgr m_HeroTialMgr = null;
 
         public HeroTrialStateFinished(HeroTrialStateID stateEnum) : base(stateEnum)
         {
@@ -18,6 +19,7 @@ namespace GameWish.Game
 
         public override void Enter(IHeroTrialStateHander handler)
         {
+            m_HeroTialMgr = handler.GetHeroTrialMgr();
 
         }
 
