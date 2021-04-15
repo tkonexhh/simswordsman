@@ -26,6 +26,8 @@ namespace GameWish.Game
 
         private double m_TrialTotalTime = 10;
 
+        private ClanType m_TrialClanType = ClanType.None;
+
         public HeroTrialData DbData { get => m_DbData;}
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
@@ -34,11 +36,17 @@ namespace GameWish.Game
         public void OnInit()
         {
             m_DbData = GameDataMgr.S.GetClanData().heroTrialData;
+            m_TrialClanType = m_DbData.clanType;
 
             m_BattleField = FindObjectOfType<BattleField>();
             m_BattleField.Init();
 
             m_StateMachine = new HeroTrialStateMachine(this);
+
+            if (CheckIsTrialReady() && m_TrialClanType == ClanType.None)
+            {
+                m_TrialClanType = GetNextClanType(ClanType.None);
+            }
         }
 
         public void OnUpdate()
@@ -47,19 +55,6 @@ namespace GameWish.Game
             {
                 m_StateMachine.UpdateState(Time.deltaTime);
 
-                //if (m_CurState == HeroTrialStateID.Runing)
-                //{
-                //    m_LeftTimeUpdateTime += Time.deltaTime;
-                //    if (m_LeftTimeUpdateTime >= m_LeftTimeUpdateInterval)
-                //    {
-                //        m_LeftTimeUpdateTime = 0;
-
-                //        if (GetLeftTime() <= 0)
-                //        {
-                //            FinishTrial();
-                //        }
-                //    }
-                //}
             }
         }
 
@@ -186,7 +181,7 @@ namespace GameWish.Game
 
         private bool CheckIsTrialReady()
         {
-            if (m_DbData.state != HeroTrialStateID.Idle)
+            if (m_DbData.state == HeroTrialStateID.Runing || m_DbData.state == HeroTrialStateID.Finished)
                 return false;
 
             DateTime trialStartDay = GameDataMgr.S.GetClanData().heroTrialData.GetStartTime();
