@@ -813,7 +813,6 @@ MonoBehaviour:
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
   m_CloseBtn: {fileID: 1587067935836713414}
-  m_ChoiceDiscipleTitle: {fileID: 3667707527193455451}
   m_RecommendedSkillsTitle: {fileID: 6209688081967903286}
   m_RecommendedSkillsValue: {fileID: 6484826056986157576}
   m_SelectedDiscipleSkillTitle: {fileID: 3519845963924622480}
@@ -1973,7 +1972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

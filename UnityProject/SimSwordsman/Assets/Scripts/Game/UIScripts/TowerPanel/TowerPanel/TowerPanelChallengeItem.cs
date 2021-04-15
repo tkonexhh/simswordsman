@@ -55,16 +55,18 @@ namespace GameWish.Game
 
         private void OnClickFight()
         {
-            TowerPanelChallenge arg = new TowerPanelChallenge();
+            TowerPanelChallengeToSelect arg = new TowerPanelChallengeToSelect();
             arg.level = m_Level;
-            UIMgr.S.OpenPanel(UIID.TowerSelectCharacterPanel, arg);
+            UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Tower, arg);
+            // UIMgr.S.OpenPanel(UIID.TowerSelectCharacterPanel, arg);
         }
     }
 
 
-    public struct TowerPanelChallenge
+    public struct TowerPanelChallengeToSelect
     {
         public int level;
+        public long recommendATK;
     }
 
     public enum TowerItemState

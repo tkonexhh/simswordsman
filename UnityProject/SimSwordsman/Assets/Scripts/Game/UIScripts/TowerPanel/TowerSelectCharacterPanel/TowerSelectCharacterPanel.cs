@@ -35,7 +35,7 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
 
-            TowerPanelChallenge conf = (TowerPanelChallenge)args[0];
+            TowerPanelChallengeToSelect conf = (TowerPanelChallengeToSelect)args[0];
             int level = conf.level;
             m_AllCharacterLst = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
             m_ListView.SetDataCount(m_AllCharacterLst.Count);
