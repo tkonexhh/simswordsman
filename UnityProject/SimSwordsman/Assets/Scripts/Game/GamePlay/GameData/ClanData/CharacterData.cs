@@ -192,6 +192,15 @@ namespace GameWish.Game
                 characterItemDb.SetCollectObjType(collectedObjType);
             }
         }
+
+        public void SetCharacterIsHero(int id, bool isHero)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                characterItemDb.SetIsHero(isHero);
+            }
+        }
     }
 
     [Serializable]
@@ -215,6 +224,7 @@ namespace GameWish.Game
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
         public int m_DeliverID = -1;
+        public bool isHero = false;
 
         public void SetAtkValue(float _atkValue)
         {
@@ -305,6 +315,11 @@ namespace GameWish.Game
         public bool IsStudyKungFu() 
         {
             return kongfuDatas.Find(x => x.IsStudyKungFu()) != null;
+        }
+
+        public void SetIsHero(bool isHero)
+        {
+            this.isHero = isHero;
         }
     }
 

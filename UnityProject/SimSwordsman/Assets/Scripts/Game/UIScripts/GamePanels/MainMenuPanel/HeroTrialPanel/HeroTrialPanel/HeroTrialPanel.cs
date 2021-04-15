@@ -11,6 +11,8 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_SelectCharacterBtn;
         [SerializeField]
+        private Button m_FinishBtn;
+        [SerializeField]
         private Button m_CloseBtn;
 
         protected override void OnUIInit()
@@ -27,6 +29,14 @@ namespace GameWish.Game
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
                 UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple,PanelType.HeroTrial);
+            });
+
+            m_FinishBtn.onClick.AddListener(() =>
+            {
+                MainGameMgr.S.HeroTrialMgr.Reset();
+                MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
+
+                HideSelfWithAnim();
             });
         }
 

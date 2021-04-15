@@ -281,7 +281,10 @@ namespace GameWish.Game
             return quality.ToString().ToLower() + "_" + bodyId + "_" + headId;
         }
 
-        #endregion
+        public bool IsHero()
+        {
+            return m_ItemDbData.isHero;
+        }
 
         public CollectedObjType GetCollectObjType()
         {
@@ -292,6 +295,7 @@ namespace GameWish.Game
         {
             return bodyId == 1;
         }
+        #endregion
 
         /// <summary>
         /// 设置人物的状态
@@ -310,6 +314,11 @@ namespace GameWish.Game
         public void ClearCurTask(SimGameTask task)
         {
             GameDataMgr.S.GetClanData().ClearCharacterTaskDBData(id, task);
+        }
+
+        public void SetIsHero(bool isHero)
+        {
+            GameDataMgr.S.GetClanData().SetIsHero(id, isHero);
         }
         /// <summary>
         /// 获取没有任何加成的武力值

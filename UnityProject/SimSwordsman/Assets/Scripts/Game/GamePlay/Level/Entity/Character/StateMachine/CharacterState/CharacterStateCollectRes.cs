@@ -88,7 +88,7 @@ namespace GameWish.Game
 
         public override void Exit(ICharacterStateHander handler)
         {
-            Qarth.Log.i("Exit State collect res: " + m_Controller.CharacterView.name);
+            //Qarth.Log.i("Exit State collect res: " + m_Controller.CharacterView.name);
 
             UnregisterEvents();
         }

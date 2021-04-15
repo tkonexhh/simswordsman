@@ -35,7 +35,14 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().SetDataDirty();
         }
 
-        public void OnTrialEnd()
+        public void OnTrialFinished()
+        {
+            state = HeroTrialStateID.Finished;
+
+            GameDataMgr.S.GetClanData().SetDataDirty();
+        }
+
+        public void Reset()
         {
             state = HeroTrialStateID.Idle;
             trialStartTime = string.Empty;
@@ -47,6 +54,11 @@ namespace GameWish.Game
 
         public DateTime GetStartTime()
         {
+            if (string.IsNullOrEmpty(trialStartTime))
+            {
+                return new DateTime(1970,1,1);
+            }
+
             DateTime dateTime = DateTime.Parse(trialStartTime);
             return dateTime;
         }
