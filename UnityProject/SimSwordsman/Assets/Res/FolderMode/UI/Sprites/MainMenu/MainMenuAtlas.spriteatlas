@@ -47,15 +47,21 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 35337d50edca72e41b3a22ab7293d9f9, type: 3}
+  - {fileID: 21300000, guid: 4ccec3f0b50d847bea4c95abab86ef1f, type: 3}
+  - {fileID: 21300000, guid: 4bd1e022048ec4aef8bf21350e4b79cc, type: 3}
   - {fileID: 21300000, guid: 3946ed62db16096459818fae7bce8c0b, type: 3}
   - {fileID: 21300000, guid: 10c3faf27725e4646ab4c085a7d97232, type: 3}
   - {fileID: 21300000, guid: 5faaf9533ddfbda47999b7a52d46b257, type: 3}
   - {fileID: 21300000, guid: 86cc70c40c9519249b18d5a519960725, type: 3}
+  - {fileID: 21300000, guid: e2bf55750bfd54721bafdf6f3c8a7051, type: 3}
   - {fileID: 21300000, guid: 954314e50f113534989f89f486c35476, type: 3}
+  - {fileID: 21300000, guid: db3834e535a8b4dd2945a459b7349015, type: 3}
   - {fileID: 21300000, guid: 1b2043176b1733c439c4e2f9274cb2fe, type: 3}
   - {fileID: 21300000, guid: 8abfd077c72a8cb44b86154f6688458b, type: 3}
   - {fileID: 21300000, guid: bfc0d8e7f389098449b654150741e057, type: 3}
   - {fileID: 21300000, guid: c3b8bfe7e723c164ab459e018372ef0e, type: 3}
+  - {fileID: 21300000, guid: b12382182e435485e915a49b35cc9b8f, type: 3}
+  - {fileID: 21300000, guid: 24649b29b1b9247bf8a7ff910364e0ce, type: 3}
   - {fileID: 21300000, guid: 68c46de9240f15846bc75692ab165489, type: 3}
   - {fileID: 21300000, guid: 072bf23ba372b7a409eb769d96a7dafc, type: 3}
   - {fileID: 21300000, guid: c4309b4beb52a704bbc249d8c318537a, type: 3}
@@ -63,21 +69,29 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 86c4bbcbee9efb44880d06c799525b8d, type: 3}
   - {fileID: 21300000, guid: 2ae34d3c68522d24fa3ef4b854cf16d7, type: 3}
   - {fileID: 21300000, guid: 2f073fdc3805d5846bfcca2ff50bc2f7, type: 3}
+  - {fileID: 21300000, guid: aa7e813de09b04b0a8a106832f74de12, type: 3}
+  - {fileID: 21300000, guid: 2e6af95d8dffa4e3e9bb117d523751a8, type: 3}
   - {fileID: 21300000, guid: 704b50add176b4740ad15a6a34d01a68, type: 3}
   - {fileID: 21300000, guid: 8c75b00e9528fd24fbe1ac898044e0ea, type: 3}
   - {fileID: 21300000, guid: b46864fe50a7fc04eaccdcd0242560ba, type: 3}
   - {fileID: 21300000, guid: 48e75ebff5dcbb4449ff9c24bf418bbe, type: 3}
   m_PackedSpriteNamesToIndex:
   - MainMenu_TitleBg
+  - MainTask_RewardNumBG
+  - MainTask_tip2
   - MainMenu_BaoTImeBg
   - MainMenu_TitleBtn
   - MainMenu_Plus
   - MainMenu_Bg01
+  - MainTask_RewardBG
   - MainMenu_IconTable
+  - MainTask_Slider2
   - MainMenu_TrialRun
   - MainMenu_Warehouse
   - MainMenu_FuDevil
   - MainMenu_Officials
+  - MainTask_bgBtn
+  - MainTask_tip1
   - MainMenu_Challenge
   - MainMenu_Challenging
   - MainMenu_m-13
@@ -85,6 +99,8 @@ SpriteAtlas:
   - MainMenu_Disiciple
   - MainMenu_Head
   - MainMenu_d-3
+  - MainTask_Slider
+  - MainTask_bgBtn2
   - MainMenu_Bg02
   - MainMenuVisitors
   - btn@2x
