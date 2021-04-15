@@ -24,7 +24,7 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
-        private double m_TrialTotalTime = 10;
+        private double m_TrialTotalTime = 20;
 
         private ClanType m_TrialClanType = ClanType.None;
 
@@ -92,9 +92,12 @@ namespace GameWish.Game
 
             SetState(HeroTrialStateID.None);
 
-            GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
-            GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
-            m_FightGroup = null;
+            if (m_FightGroup != null)
+            {
+                GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
+                GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
+                m_FightGroup = null;
+            }
 
             m_BattleField.OnBattleEnd();
 
