@@ -37,6 +37,14 @@ namespace GameWish.Game
         {
             base.OnUIInit();
 
+            if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Finished)
+            {
+                m_FinishTrialBtn.interactable = true;
+            }
+            else
+            {
+                m_FinishTrialBtn.interactable = false;
+            }
 
             GetInfomationForNeed();
             RefreshPanelInfo();
@@ -64,11 +72,16 @@ namespace GameWish.Game
 
         private void RefreshProgress(double second)
         {
+            if (second < 0)
+            {
+                second = 0;
+                m_FinishTrialBtn.interactable = true;
+            }
             m_CountDownSlider.value = (float)second / (float)MainGameMgr.S.HeroTrialMgr.TrialTotalTime;
             m_CountDownNumber.text = CommonMethod.SplicingTime(second);
         }
 
-        private void RefreshPanelInfo()
+        public void RefreshPanelInfo()
         {
             if (TrialDisciple == null)
                 return;
@@ -79,11 +92,11 @@ namespace GameWish.Game
             m_Appellation.text = CommonMethod.GetAppellation(MainGameMgr.S.HeroTrialMgr.TrialClan);
         }
 
+
         public override void OnBecomeHide()
         {
             base.OnBecomeHide();
-            EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
-            EventSystem.S.UnRegister(EventID.OnCountDownRefresh, HandAdListenerEvent);
+   
         }
 
         private void BindAddListenerEvent()
@@ -136,7 +149,8 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-
+            EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnCountDownRefresh, HandAdListenerEvent);
             //CloseDependPanel(EngineUI.MaskPanel);
         }
     }

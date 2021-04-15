@@ -88,13 +88,7 @@ namespace GameWish.Game
 
             m_IsInTrial = true;
 
-            if (m_DbData.state == HeroTrialStateID.Runing)
-            {
-                m_Coroutine = StartCoroutine(CommonMethod.CountDown(() =>
-                {
-                    EventSystem.S.Send(EventID.OnCountDownRefresh,GetLeftTime());
-                }));
-            }
+            StartCountDown();
 
             if (!string.IsNullOrEmpty(m_DbData.trialStartTime))
             {
@@ -127,12 +121,25 @@ namespace GameWish.Game
             m_IsInTrial = false;
         }
 
+        private void StartCountDown()
+        {
+            if (m_DbData.state == HeroTrialStateID.Runing)
+            {
+                m_Coroutine = StartCoroutine(CommonMethod.CountDown(() =>
+                {
+                    EventSystem.S.Send(EventID.OnCountDownRefresh, GetLeftTime());
+                }));
+            }
+        }
+
         public void StartTrial(int characterId)
         {
+         
             ClanType clanType = GetNextClanType(m_DbData.clanType);
             m_TrialStartTime = DateTime.Now;
             m_DbData.OnTrialStart(DateTime.Now, characterId, clanType);
             SetState(m_DbData.state);
+            StartCountDown();
         }
 
         public void FinishTrial()

@@ -82,6 +82,32 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             RegisterEvents();
+            base.OnUIInit();
+
+           
+        }
+
+        private void HandListenerEvent(int key, object[] param)
+        {
+            if ((EventID)key == EventID.OnMainMenuOrDiscipleRedPoint)
+            {
+                List<CharacterItem> characterItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+                foreach (var item in characterItemList)
+                {
+                    if (item.CheckDiscipelPanel())
+                    {
+                        m_DiscipleRedPoint.SetActive(true);
+                        return;
+                    }
+                }
+                m_DiscipleRedPoint.SetActive(false);
+            }
+        }
+
+        protected override void OnOpen()
+        {
+            base.OnOpen();
+            //ClearTacticalFunctionBtn();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
 
@@ -91,7 +117,6 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.UserAccountPanel);
             });
 
-            base.OnUIInit();
             int limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
 
             if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= limit)
@@ -216,7 +241,7 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
 
-            m_HeroTrialBtn.onClick.AddListener(()=> 
+            m_HeroTrialBtn.onClick.AddListener(() =>
             {
                 //string msg = string.Empty;
                 //if (MainGameMgr.S.HeroTrialMgr.IsUnlocked(ref msg))
@@ -238,28 +263,6 @@ namespace GameWish.Game
 
             m_MainTaskUIHandler.Init(this);
             RefreshChallenging();
-        }
-
-        private void HandListenerEvent(int key, object[] param)
-        {
-            if ((EventID)key == EventID.OnMainMenuOrDiscipleRedPoint)
-            {
-                List<CharacterItem> characterItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
-                foreach (var item in characterItemList)
-                {
-                    if (item.CheckDiscipelPanel())
-                    {
-                        m_DiscipleRedPoint.SetActive(true);
-                        return;
-                    }
-                }
-                m_DiscipleRedPoint.SetActive(false);
-            }
-        }
-
-        protected override void OnOpen()
-        {
-            base.OnOpen();
             MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             //GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
@@ -358,6 +361,7 @@ namespace GameWish.Game
                     RefreshPanelInfo();
                     break;
                 case EventID.OnDeleteTaskBtn:
+
                     TacticalFunctionBtn tacticalFunctionBtn = m_CommonTaskList.Where(i => i.TaskID == (int)param[0]).FirstOrDefault();
                     if (tacticalFunctionBtn != null)
                     {
@@ -391,6 +395,14 @@ namespace GameWish.Game
                 case EventID.OnMainMenuChallenging:
                     RefreshChallenging();
                     break;
+            }
+        }
+
+        private void ClearTacticalFunctionBtn()
+        {
+            for (int i = 0; i < m_CommonTaskList.Count; i++)
+            {
+                DestroyImmediate(m_CommonTaskList[i].gameObject);
             }
         }
 
