@@ -18,15 +18,15 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_CountDownNumber;
         [SerializeField]
-        private Button m_FinishTrialBtn;     
+        private Button m_FinishTrialBtn;
         [SerializeField]
-        private Slider m_CountDownSlider;      
+        private Slider m_CountDownSlider;
         [SerializeField]
-        private Image m_CharacterIconBefore;   
+        private Image m_CharacterIconBefore;
         [SerializeField]
-        private Text m_CharacterNameBefore;    
+        private Text m_CharacterNameBefore;
         [SerializeField]
-        private Image m_CharacterIconAfter;   
+        private Image m_CharacterIconAfter;
         [SerializeField]
         private Text m_CharacterNameAfter;
         [SerializeField]
@@ -36,13 +36,11 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            EventSystem.S.Register(EventID.OnRefreshTrialPanel,HandAdListenerEvent);
-            EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
+
 
             GetInfomationForNeed();
             RefreshPanelInfo();
             BindAddListenerEvent();
-
         }
 
         private void GetInfomationForNeed()
@@ -57,7 +55,7 @@ namespace GameWish.Game
                 case (int)EventID.OnRefreshTrialPanel:
                     GetInfomationForNeed();
                     RefreshPanelInfo();
-                    break;  
+                    break;
                 case (int)EventID.OnCountDownRefresh:
                     RefreshProgress((double)param[0]);
                     break;
@@ -119,7 +117,8 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-
+            EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
+            EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
 
             //OpenDependPanel(EngineUI.MaskPanel,-1,null);
         }

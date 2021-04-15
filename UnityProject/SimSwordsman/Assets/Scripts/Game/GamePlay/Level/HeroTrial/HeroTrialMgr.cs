@@ -121,7 +121,8 @@ namespace GameWish.Game
 
             EventSystem.S.Send(EventID.OnExitHeroTrial);
 
-            StopCoroutine(m_Coroutine);
+            if (m_Coroutine!=null)
+                StopCoroutine(m_Coroutine);
 
             m_IsInTrial = false;
         }
