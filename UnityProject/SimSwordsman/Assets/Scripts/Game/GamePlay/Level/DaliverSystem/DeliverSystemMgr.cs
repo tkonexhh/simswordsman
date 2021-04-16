@@ -310,7 +310,10 @@ namespace GameWish.Game
             }
             rewardList.ForEach(x => x.AcceptReward());
 
-            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewardList);
+            if (MainGameMgr.S.BattleFieldMgr.IsBattleing == false) 
+            {
+                UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewardList);
+            }            
         }
         #endregion
 
