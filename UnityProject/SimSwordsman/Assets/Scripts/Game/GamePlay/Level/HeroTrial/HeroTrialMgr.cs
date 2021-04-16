@@ -97,8 +97,6 @@ namespace GameWish.Game
             }
         }
 
-        
-
         public void OnExitHeroTrial()
         {
             UnregisterEvents();
@@ -135,7 +133,6 @@ namespace GameWish.Game
 
         public void StartTrial(int characterId)
         {       
-            m_TrialClanType = GetNextClanType(m_DbData.clanType);
             m_TrialStartTime = DateTime.Now;
             m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
@@ -153,6 +150,9 @@ namespace GameWish.Game
 
             m_DbData.OnTrialFinished();
             SetState(m_DbData.state);
+
+            //Refresh next trial clantype
+            m_TrialClanType = GetNextClanType(m_DbData.clanType);
         }
 
         public void Reset()
