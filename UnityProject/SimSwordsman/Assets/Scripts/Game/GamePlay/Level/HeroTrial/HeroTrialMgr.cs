@@ -252,14 +252,20 @@ namespace GameWish.Game
 
         private ClanType GetNextClanType(ClanType curClanType)
         {
-            int value = (int)curClanType + 1;
-            if (value > (int)ClanType.Xiaoyao)
-            {
-                value = (int)ClanType.Gaibang;
-            }
-            ClanType result = (ClanType)value;
+            if (curClanType == ClanType.None)
+                return ClanType.Gaibang;
 
-            return result;
+            HeroTrialConfig config = TDHeroTrialConfigTable.GetConfig(curClanType);
+
+            int nextId = config.id + 1;
+            if (nextId > 4)
+            {
+                nextId = 1;
+            }
+
+            HeroTrialConfig nextConfig = TDHeroTrialConfigTable.GetConfig(nextId);
+
+            return nextConfig.clanType;
         }
 
         public double GetLeftTime()

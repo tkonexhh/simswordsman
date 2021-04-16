@@ -174,7 +174,7 @@ namespace GameWish.Game
             {
                 case (int)EventID.OnOneRoundEnd:            
                     m_RoundCount++;
-                    if (m_RoundCount > 2) // This enemy should be killed
+                    if (m_RoundCount > 2 || m_HeroTialMgr.GetLeftTime() <= 0) // This enemy should be killed
                     {
                         Log.i("Enemy should be dead");
 

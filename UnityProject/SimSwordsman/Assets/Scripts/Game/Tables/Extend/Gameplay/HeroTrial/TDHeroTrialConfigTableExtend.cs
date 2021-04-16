@@ -4,37 +4,42 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Qarth;
+using System.Linq;
 
 namespace GameWish.Game
 {
     public partial class TDHeroTrialConfigTable
     {
-        public static Dictionary<ClanType, HeroTrialConfig> heroTrialConfigDic = new Dictionary<ClanType, HeroTrialConfig>();
+        public static List<HeroTrialConfig> heroTrialConfigDic = new List<HeroTrialConfig>();
 
         static void CompleteRowAdd(TDHeroTrialConfig tdData)
         {
-            ClanType clan = (ClanType)tdData.id;
-            if (!heroTrialConfigDic.ContainsKey(clan))
+            int id = tdData.id;
             {
                 HeroTrialConfig config = new HeroTrialConfig();
-                config.clanType = clan;
+                config.id = id;
+                config.clanType = EnumUtil.ConvertStringToEnum<ClanType>(tdData.clan);
                 config.name = tdData.nameDes;
                 config.icon = tdData.jobName;
                 config.ordinaryEnemies = ParseEnemy(tdData.ordinaryEnemy);
                 config.eliteEnemies = ParseEnemy(tdData.eliteEnemy);
 
-                heroTrialConfigDic.Add(clan, config);
+                heroTrialConfigDic.Add(config);
             }
         }
 
         public static HeroTrialConfig GetConfig(ClanType clanType)
         {
-            if (heroTrialConfigDic.ContainsKey(clanType))
-            {
-                return heroTrialConfigDic[clanType];
-            }
+            HeroTrialConfig config = heroTrialConfigDic.FirstOrDefault(i => i.clanType == clanType);
 
-            return null;
+            return config;
+        }
+
+        public static HeroTrialConfig GetConfig(int id)
+        {
+            HeroTrialConfig config = heroTrialConfigDic.FirstOrDefault(i => i.id == id);
+
+            return config;
         }
 
 
@@ -56,6 +61,7 @@ namespace GameWish.Game
 
     public class HeroTrialConfig
     {
+        public int id;
         public ClanType clanType;
         public string name;
         public string icon;
