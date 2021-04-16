@@ -37,9 +37,15 @@ namespace GameWish.Game
 		private Slider m_CountDownSlider;
 		[SerializeField]
 		private Button m_DoubleSpeedBtn;
+		[SerializeField]
+		private Image m_DoubleSpeedBtnImg;
 		[Header("StateLock")]
 		[SerializeField]
 		private Text m_StateLock;
+		[SerializeField]
+		private Color m_YellowColor;
+		[SerializeField]
+		private Color m_GrayColor;
 
 		private SingleDeliverDetailData m_SingleDeliverDetailData;
 		private DeliverConfig m_DeliverConfig;
@@ -195,7 +201,6 @@ namespace GameWish.Game
 				m_CountDownItemTest?.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
 				m_CountDownItemTest?.RegisterEndCallBack(DeliverCountDownItemEndCallBack);
 			}
-			
 
 			m_QuickStart.onClick.AddListener(()=> {
 				AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -232,13 +237,35 @@ namespace GameWish.Game
 					}
 				}
 			});
-			m_DoubleSpeedBtn.onClick.AddListener(()=> { 
+			m_DoubleSpeedBtn.onClick.AddListener(()=> 
+			{ 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-				DeliverSystemMgr.S.UpdateDeliverSpeedUpMultiple(m_SingleDeliverDetailData.DeliverID);
-
-
+				AdsManager.S.PlayRewardAD("DeliverSpeedUp", LookDeliverSpeedUpADCallBack);
 			});
+		}
+
+        private void LookDeliverSpeedUpADCallBack(bool obj)
+        {
+			DeliverSystemMgr.S.UpdateDeliverSpeedUpMultiple(m_SingleDeliverDetailData.DeliverID);
+
+			RefreshDoubleSpeedBtnState();
+		}
+
+        private void RefreshDoubleSpeedBtnState() 
+		{
+			if (m_SingleDeliverDetailData != null) 
+			{
+				if (m_SingleDeliverDetailData.IsSpeedUp())
+				{
+					m_DoubleSpeedBtnImg.raycastTarget = false;
+					m_DoubleSpeedBtnImg.color = m_GrayColor;
+				}
+				else {
+					m_DoubleSpeedBtnImg.raycastTarget = true;
+					m_DoubleSpeedBtnImg.color = m_YellowColor;
+				}
+			}
 		}
 
         private void DeliverCountDownItemEndCallBack(int remaintTimeSeconds)
@@ -356,6 +383,7 @@ namespace GameWish.Game
 					m_StateStart.SetActive(false);
 					m_StateStarting.SetActive(true);
 					m_StateLock.gameObject.SetActive(false);
+					RefreshDoubleSpeedBtnState();
 					break;
                 case DeliverState.DidNotGoOut:
 					foreach (var item in m_DeliverDiscipleList)

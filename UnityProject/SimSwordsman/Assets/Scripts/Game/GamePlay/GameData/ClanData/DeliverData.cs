@@ -138,7 +138,6 @@ namespace GameWish.Game
 			TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
 			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
 		}
-
 		public int GetRemainTimeSeconds() 
 		{
 			if (SpeedUpMultiple == 1)
@@ -195,6 +194,10 @@ namespace GameWish.Game
 		public int GetCountDownID() 
 		{
 			return m_CountDownID;
+		}
+		public bool IsSpeedUp() 
+		{
+			return SpeedUpMultiple > 1;
 		}
     }
 	public class DeliverRewadData 
