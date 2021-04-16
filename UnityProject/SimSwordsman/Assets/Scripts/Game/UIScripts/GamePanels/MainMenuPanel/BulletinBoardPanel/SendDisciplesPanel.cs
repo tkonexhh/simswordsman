@@ -330,7 +330,6 @@ namespace GameWish.Game
 
         private void AutoSelectedDisciple()
         {
-            //TODO  ���յ���ս���Ӹߵ�������
             m_SelectedDiscipleDic.Clear();
 
             switch (m_PanelType)
@@ -355,6 +354,12 @@ namespace GameWish.Game
                     {
                         for (int i = 0; i < MaxDiscipleNumber; i++)
                         {
+                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                            {
+                                Debug.LogError(m_AllCharacterList[i].id);
+                                continue;
+                            }
+
                             //判断死没死
                             int id = m_AllCharacterList[i].id;
                             var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
@@ -362,15 +367,20 @@ namespace GameWish.Game
                             {
                                 continue;
                             }
-                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
-                                continue;
-                            m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
+
+                            m_SelectedDiscipleDic.Add(id, m_AllCharacterList[i]);
                         }
                     }
                     else
                     {
                         for (int i = 0; i < m_AllCharacterList.Count; i++)
                         {
+                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                            {
+                                Debug.LogError(m_AllCharacterList[i].id);
+                                continue;
+                            }
+
                             //判断死没死
                             int id = m_AllCharacterList[i].id;
                             var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
@@ -378,8 +388,7 @@ namespace GameWish.Game
                             {
                                 continue;
                             }
-                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
-                                continue;
+
                             m_SelectedDiscipleDic.Add(id, m_AllCharacterList[i]);
                         }
 
