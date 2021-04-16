@@ -37,6 +37,7 @@ namespace GameWish.Game
         [Header("Middle")]
         [SerializeField] private Transform m_UnselectedTrans;
         [SerializeField] private GameObject m_DiscipleItem;
+        [SerializeField] private GameObject m_DiscipleItemTower;
 
         [Header("MiddleDown")]
         [SerializeField] private Transform m_HerbalMedicineItemTra;
@@ -302,8 +303,13 @@ namespace GameWish.Game
                         UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
                         break;
                     case PanelType.Tower:
+                        if (m_SelectedList.Count <= 0)
+                        {
+                            FloatMessage.S.ShowMsg("请先选择弟子！");
+                            return;
+                        }
                         UseHerb();
-                        MainGameMgr.S.TowerSystem.StartLevel();
+                        MainGameMgr.S.TowerSystem.StartLevel(m_SelectedList);
                         break;
                     default:
                         break;
@@ -378,8 +384,13 @@ namespace GameWish.Game
         /// <returns></returns>
         private void CreateDisciple(Transform parent)
         {
-            SendSelectedDisciple discipeItem = Instantiate(m_DiscipleItem, parent).GetComponent<SendSelectedDisciple>();
-            discipeItem.OnInit(m_PanelType, this);
+            GameObject prefab = m_DiscipleItem;
+            if (m_PanelType == PanelType.Tower)
+            {
+                prefab = m_DiscipleItemTower;
+            }
+            SendSelectedDisciple discipeItem = Instantiate(prefab, parent).GetComponent<SendSelectedDisciple>();
+            discipeItem.Init(m_PanelType, this);
             m_ChallengeDiscipleList.Add(discipeItem);
         }
 

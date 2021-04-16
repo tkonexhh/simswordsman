@@ -48,7 +48,7 @@ namespace GameWish.Game
             return m_CharacterDataWrapper.characterList.Count;
         }
         /// <summary>
-        /// »ñÈ¡×°±¸µÄ¼Ó³É
+        /// ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½Ä¼Ó³ï¿½
         /// </summary>
         /// <param name="equipment"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace GameWish.Game
         //}
 
         /// <summary>
-        /// ¸øµÜ×ÓÔö¼Ó×°±¸
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
         /// </summary>
         /// <param name="_character"></param>
         /// <param name="_equipmentItem"></param>
@@ -67,7 +67,7 @@ namespace GameWish.Game
             m_CharacterDataWrapper.AddEquipment(chracterID, characeterEquipment);
         }
         /// <summary>
-        /// ¼ì²éÊÇ·ñÓÐÖØ¸´µÄÃû×Ö
+        /// ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace GameWish.Game
             return m_CharacterDataWrapper.characterList.Any(i => i.name.Equals(name));
         }
         /// <summary>
-        /// »ñÈ¡µ±Ç°×î´óid
+        /// ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½id
         /// </summary>
         /// <returns></returns>
         public int GetMaxCharacterId()
@@ -91,7 +91,7 @@ namespace GameWish.Game
             return 0;
         }
         /// <summary>
-        /// »ñÈ¡µ±Ç°½ÇÉ«Éý¼¶¾­Ñé
+        /// ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="character"></param>
         public int GetExpLevelUpNeed(CharacterItem character)
@@ -101,7 +101,7 @@ namespace GameWish.Game
 
 
         /// <summary>
-        /// Ôö¼ÓµÜ×Ó
+        /// ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="item"></param>
         public void AddCharacter(CharacterItem item)
@@ -150,7 +150,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// µÜ×ÓÑ§Ï°¹¦·ò
+        /// ï¿½ï¿½ï¿½ï¿½Ñ§Ï°ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="id"></param>
         /// <param name="kungfuItem"></param>
@@ -159,7 +159,7 @@ namespace GameWish.Game
             return m_CharacterDataWrapper.LearnKungfu(id, index, kungfuItem);
         }
         /// <summary>
-        /// µÜ×ÓÉý¼¶
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="id"></param>
         /// <param name="level"></param>
@@ -168,7 +168,7 @@ namespace GameWish.Game
             m_CharacterDataWrapper.AddCharacterLevel(id, level);
         }
         /// <summary>
-        /// »ñÈ¡½âËøµÈ¼¶(µÜ×Ó)
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½(ï¿½ï¿½ï¿½ï¿½)
         /// </summary>
         /// <param name="unlockContent"></param>
         /// <param name="index"></param>
@@ -371,7 +371,8 @@ namespace GameWish.Game
             {
                 spawnPos = m_CharacterSpawnPos;
             }
-            else if (initState == CharacterStateID.Deliver) {
+            else if (initState == CharacterStateID.Deliver)
+            {
                 spawnPos = DeliverSystemMgr.S.GoOutSidePos;
             }
             else
@@ -387,21 +388,14 @@ namespace GameWish.Game
             return spawnPos;
         }
 
-        //private void InitPool()
-        //{
-        //    GameObject rewardBubble = CharacterLoader.S.GetCharacterRewardBubble();
-        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_TASK_REWARD_BUBBLE, rewardBubble, 10, 3);
-
-        //    GameObject workProgressBar = CharacterLoader.S.GetCharacterWorkProgressBar();
-        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_PROGRESS_BAR, workProgressBar, 10, 3);
-
-        //    GameObject workTip = CharacterLoader.S.GetCharacterWorkTip();
-        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_TIP, workTip, 10, 3);
-
-        //    GameObject workRewardPop = CharacterLoader.S.GetCharacterWorkRewardPop();
-        //    GameObjectPoolMgr.S.AddPool(Define.CHARACTER_WORK_REWARD_POP, workRewardPop, 20, 5);
-        //}
         #endregion
 
+
+        #region Static Method
+        internal static string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
+        #endregion
     }
 }

@@ -7,128 +7,115 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class ChallengePanelDisciple : MonoBehaviour
-	{
-		[SerializeField]
-		private Button m_ChoosePanelDisciple;
-		[SerializeField]
-		private Text m_Level;
-		[SerializeField]
-		private Image m_DiscipleHead;
-		[SerializeField]
-		private Text m_DiscipleName;
-		[SerializeField]
-		private GameObject m_SelectedImg;
-		[SerializeField]
-		private Image m_DiscipleLevelBg;
-		[SerializeField]
-		private Image m_Line;
-		private AddressableAssetLoader<Sprite> m_Loader;
+    public class ChallengePanelDisciple : MonoBehaviour
+    {
+        [SerializeField] protected Button m_ChoosePanelDisciple;
+        [SerializeField] private Text m_Level;
+        [SerializeField] private Image m_DiscipleHead;
+        [SerializeField] private Text m_DiscipleName;
+        [SerializeField] private GameObject m_SelectedImg;
+        [SerializeField] private Image m_DiscipleLevelBg;
+        [SerializeField] private Image m_Line;
 
-		private CharacterItem m_CharacterItem;
-		private ChallengeChooseDisciple m_ChallengeChooseDisciple;
 
-		private SelectedState m_SelelctedState = SelectedState.NotSelected;
-		private bool IsSelected = false;
+        protected CharacterItem m_CharacterItem;
+        private ChallengeChooseDisciple m_ChallengeChooseDisciple;
 
-        internal void OnInit(CharacterItem characterItem, ChallengeChooseDisciple challengeChoose)
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
+        protected bool IsSelected = false;
+
+        internal void Init(CharacterItem characterItem, ChallengeChooseDisciple challengeChoose)
         {
-			m_CharacterItem = characterItem;
-			m_ChallengeChooseDisciple = challengeChoose;
-			BindAddListenerEvent();
-			m_DiscipleName.text = m_CharacterItem.name;
-			LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
-			RefresPanelInfo();
-		}   
-		public void LoadClanPrefabs(string prefabsName)
-		{
-			m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
-		}
-		private string GetLoadDiscipleName(CharacterItem characterItem)
-		{
-			return "head_"+characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-		}
-		private void RefresPanelInfo()
+            m_CharacterItem = characterItem;
+            m_ChallengeChooseDisciple = challengeChoose;
+            BindAddListenerEvent();
+            m_DiscipleName.text = m_CharacterItem.name;
+            LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
+            OnInit();
+            RefresPanelInfo();
+        }
+
+        void LoadClanPrefabs(string prefabsName)
         {
-			RefreshDiscipleColor();
-			switch (m_SelelctedState)
-			{
-				case SelectedState.Selected:
-					m_SelectedImg.SetActive(true);
-					break;
-				case SelectedState.NotSelected:
-					m_SelectedImg.SetActive(false);
-					m_Level.text = m_CharacterItem.level.ToString();
-					break;
-				default:
-					break;
-			}
-		}
+            m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
+        }
+
+        private void RefresPanelInfo()
+        {
+            RefreshDiscipleColor();
+            switch (m_SelelctedState)
+            {
+                case SelectedState.Selected:
+                    m_SelectedImg.SetActive(true);
+                    break;
+                case SelectedState.NotSelected:
+                    m_SelectedImg.SetActive(false);
+                    m_Level.text = m_CharacterItem.level.ToString();
+                    break;
+                default:
+                    break;
+            }
+
+            OnRefreshPanelInfo();
+        }
 
         private void RefreshDiscipleColor()
         {
-			switch (m_CharacterItem.quality)
-			{
-				case CharacterQuality.Normal:
-					m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Blue");
-					m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Bule");
-					break;
-				case CharacterQuality.Good:
-					m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Yellow");
-					m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Yellow");
-					break;
-				case CharacterQuality.Perfect:
-					m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Red");
-					m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Red");
-					break;
-				default:
-					break;
-			}
-		}
-
-        private void OnDestroy()
-        {
-			if (m_Loader != null)
-			{
-				m_Loader.Release();
-			}
-
-		}
-		private void OnDisable()
-        {
-		}
+            switch (m_CharacterItem.quality)
+            {
+                case CharacterQuality.Normal:
+                    m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Blue");
+                    m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Bule");
+                    break;
+                case CharacterQuality.Good:
+                    m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Yellow");
+                    m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Yellow");
+                    break;
+                case CharacterQuality.Perfect:
+                    m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Red");
+                    m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Red");
+                    break;
+                default:
+                    break;
+            }
+        }
 
         public bool IsHavaSameDisciple(CharacterItem characterItem)
-		{
-			if (characterItem.id == m_CharacterItem.id)
-				return true;
-			return false;
-		}
+        {
+            if (characterItem.id == m_CharacterItem.id)
+                return true;
+            return false;
+        }
 
-		public void SetItemState(bool isHave)
-		{
-			if (isHave)
-			{
-				IsSelected = true;
-				m_SelelctedState = SelectedState.Selected;
-			}
-			else
-			{
-				IsSelected = false;
-				m_SelelctedState = SelectedState.NotSelected;
-			}
-			RefresPanelInfo();
-		}
+        public void SetItemState(bool isHave)
+        {
+            if (isHave)
+            {
+                IsSelected = true;
+                m_SelelctedState = SelectedState.Selected;
+            }
+            else
+            {
+                IsSelected = false;
+                m_SelelctedState = SelectedState.NotSelected;
+            }
+            RefresPanelInfo();
+        }
 
 
-		private void BindAddListenerEvent()
-		{
-			m_ChoosePanelDisciple.onClick.AddListener(() => {
-				AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+        protected virtual void BindAddListenerEvent()
+        {
+            m_ChoosePanelDisciple.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-				IsSelected = !IsSelected;
+                IsSelected = !IsSelected;
                 EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, IsSelected);
             });
-		}
-	}
+        }
+
+
+        protected virtual void OnInit() { }
+        protected virtual void OnRefreshPanelInfo() { }
+    }
 }

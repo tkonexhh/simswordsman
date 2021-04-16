@@ -29,7 +29,8 @@ namespace GameWish.Game
 
             for (int i = 0; i < enemyIDs.Count; i++)
             {
-                EnemyConfig enemy = new EnemyConfig(enemyIDs[i], 1, 10);
+                //TODO 分配战力值
+                EnemyConfig enemy = new EnemyConfig(enemyIDs[i], 1, 200);
                 enemys.Add(enemy);
             }
             return enemys;

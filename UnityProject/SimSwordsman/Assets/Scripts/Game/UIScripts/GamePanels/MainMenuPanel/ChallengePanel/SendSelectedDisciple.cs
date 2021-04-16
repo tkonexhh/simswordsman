@@ -18,18 +18,20 @@ namespace GameWish.Game
         [SerializeField] private Image m_DiscipleLevelBg;
         [SerializeField] private Image m_Line;
 
-        private CharacterItem m_CharacterItem;
+        protected CharacterItem m_CharacterItem;
         private SendDisciplesPanel m_SendDisciplesPanel;
         private PanelType m_PanelType;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
 
-        public void OnInit(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
+        public void Init(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
         {
             m_SendDisciplesPanel = sendDisciplesPanel;
             m_PanelType = panelType;
             BindAddListenerEvent();
+            OnInit();
             RefreshPanelInfo();
         }
+
         private void RefreshDiscipleColor()
         {
             switch (m_CharacterItem.quality)
@@ -88,6 +90,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            OnRefreshPanelInfo();
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)
@@ -99,7 +102,8 @@ namespace GameWish.Game
             }
             else
             {
-                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+
+                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
             }
             RefreshPanelInfo();
@@ -108,11 +112,9 @@ namespace GameWish.Game
         {
             m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
 
+        protected virtual void OnInit() { }
+        protected virtual void OnRefreshPanelInfo() { }
     }
 
 }

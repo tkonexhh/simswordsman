@@ -18,9 +18,11 @@ namespace GameWish.Game
         [SerializeField] private Image m_StateBg;
         [SerializeField] private Transform m_Cont;
         [SerializeField] private GameObject m_ChallengePanelDisciple;
+        [SerializeField] private GameObject m_ChallengePanelDisciple_Tower;
         [Header("Top")]
         [SerializeField] private Transform m_Bottom;
         [SerializeField] private GameObject m_ChallengeSelectedDisciple;
+        [SerializeField] private GameObject m_ChallengeSelectedDisciple_Tower;
         [SerializeField] private Button m_ConfirmBtn;
         [SerializeField] private Text m_ConfirmText;
 
@@ -341,9 +343,14 @@ namespace GameWish.Game
         /// <param name="characterItem"></param>
         private void CreateDisciple(CharacterItem characterItem)
         {
-            GameObject obj = Instantiate(m_ChallengePanelDisciple, m_Cont);
+            GameObject prefab = m_ChallengePanelDisciple;
+            if (m_PanelType == PanelType.Tower)
+            {
+                prefab = m_ChallengePanelDisciple_Tower;
+            }
+            GameObject obj = Instantiate(prefab, m_Cont);
             ChallengePanelDisciple itemICom = obj.GetComponent<ChallengePanelDisciple>();
-            itemICom.OnInit(characterItem, this);
+            itemICom.Init(characterItem, this);
             m_DiscipleObjDic.Add(characterItem.id, itemICom);
         }
 
@@ -353,9 +360,14 @@ namespace GameWish.Game
         /// </summary>
         private void CreateSelectedDisciple()
         {
-            GameObject obj = Instantiate(m_ChallengeSelectedDisciple, m_Bottom);
+            GameObject prefab = m_ChallengeSelectedDisciple;
+            if (m_PanelType == PanelType.Tower)
+            {
+                prefab = m_ChallengeSelectedDisciple_Tower;
+            }
+            GameObject obj = Instantiate(prefab, m_Bottom);
             ChallengeSelectedDisciple itemICom = obj.GetComponent<ChallengeSelectedDisciple>();
-            itemICom.OnInit(this);
+            itemICom.Init(this);
             m_SelectedDiscipleObjList.Add(itemICom);
         }
     }

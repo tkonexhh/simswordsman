@@ -32,7 +32,7 @@ namespace GameWish.Game
             MainGameMgr.S.BattleFieldMgr.onBattleExit -= OnBattleExit;
         }
 
-        public void StartLevel()
+        public void StartLevel(List<CharacterController> owerCharacter)
         {
             m_IsTowerBattle = true;
 
@@ -54,16 +54,9 @@ namespace GameWish.Game
                 levelConfig.SetEnemyFormDB();
             }
 
-            List<CharacterController> owrCharacter = new List<CharacterController>();
-            for (int i = 0; i < 5; i++)
-            {
-                var character = MainGameMgr.S.CharacterMgr.GetCharacterController(i);
-                if (character != null)
-                    owrCharacter.Add(character);
-            }
 
             //随机敌人
-            EventSystem.S.Send(EventID.OnEnterBattle, levelConfig.enemiesList, owrCharacter);
+            EventSystem.S.Send(EventID.OnEnterBattle, levelConfig.enemiesList, owerCharacter);
             UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, PanelType.Tower, levelConfig);
         }
 
