@@ -110,16 +110,16 @@ namespace GameWish.Game
                     {
                         var charactX = towerData.GetTowerCharacterByID(x.id);
                         var charactY = towerData.GetTowerCharacterByID(x.id);
-                        if (charactX == null && charactY == null)
-                        {
-                            return 0;
-                        }
 
                         if (charactX == null || charactY == null)
                         {
                             var hpX = charactX?.hpRate;
+                            if (!hpX.HasValue)
+                                hpX = 1;
                             var hpY = charactY?.hpRate;
-                            return hpX > hpY ? 1 : 0;
+                            if (!hpY.HasValue)
+                                hpY = 1;
+                            return hpX >= hpY ? -1 : 1;
 
                         }
 
