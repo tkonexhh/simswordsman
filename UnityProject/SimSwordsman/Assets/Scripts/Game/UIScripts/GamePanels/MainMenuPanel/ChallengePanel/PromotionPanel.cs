@@ -197,6 +197,7 @@ namespace GameWish.Game
                     break;
                 case UpgradePanelType.HeroTrial:
                     SetDifferetState(UpgradePanelType.HeroTrial);
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_HeroTrial");
                     HeroTrial heroTrial = promotionModel.ToSubType<HeroTrial>();
                     m_NameValue.text = m_CharacterItem.name;
                     m_Appellation.text = CommonMethod.GetAppellation(heroTrial.GetClanType());

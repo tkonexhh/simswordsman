@@ -223,7 +223,10 @@ namespace GameWish.Game
                 {
                     PromotionBase promotionModel = m_Panels.Dequeue();
                     UIMgr.S.OpenTopPanel(UIID.PromotionPanel, null, promotionModel);
-                    CurShowPanelIsOver = true;
+                    if (m_Panels.Count>0)
+                        CurShowPanelIsOver = true;
+                    else
+                        CurShowPanelIsOver = false;
                 }
             }
         }

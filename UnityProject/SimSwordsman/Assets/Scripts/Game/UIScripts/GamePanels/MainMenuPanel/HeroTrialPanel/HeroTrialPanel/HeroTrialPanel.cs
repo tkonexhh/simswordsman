@@ -66,6 +66,7 @@ namespace GameWish.Game
             base.OnUIInit();
             EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
             EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
+            EventSystem.S.Register(EventID.OnEnableFinishBtn, HandAdListenerEvent);
           
         }
 
@@ -86,6 +87,9 @@ namespace GameWish.Game
                     break;
                 case (int)EventID.OnCountDownRefresh:
                     RefreshProgress((double)param[0]);
+                    break;   
+                case (int)EventID.OnEnableFinishBtn:
+                    m_TrialComplete = true;
                     break;
             }
         }
@@ -94,7 +98,6 @@ namespace GameWish.Game
         {
             if (second<=0)
             {
-                m_TrialComplete = true;
                 second = 0;
             }
             m_CountDownSlider.value = (float)second / (float)MainGameMgr.S.HeroTrialMgr.TrialTotalTime;
@@ -189,6 +192,10 @@ namespace GameWish.Game
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
 
+                float atk = m_TrialDisciple.atkValue;
+                m_TrialDisciple.CalculateForceValue();
+                PanelPool.S.AddPromotion(new HeroTrial(m_TrialDisciple.id, m_ClanType, atk));
+                PanelPool.S.DisplayPanel();
                 HideSelfWithAnim();
             });
         }
@@ -283,6 +290,7 @@ namespace GameWish.Game
             base.OnClose();
             EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
             EventSystem.S.UnRegister(EventID.OnCountDownRefresh, HandAdListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnEnableFinishBtn, HandAdListenerEvent);
             //CloseDependPanel(EngineUI.MaskPanel);
         }
     }
