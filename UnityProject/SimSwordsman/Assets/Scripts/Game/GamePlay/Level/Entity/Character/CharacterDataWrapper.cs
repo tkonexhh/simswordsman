@@ -283,7 +283,7 @@ namespace GameWish.Game
 
         public bool IsHero()
         {
-            return m_ItemDbData.isHero;
+            return m_ItemDbData.quality == CharacterQuality.Hero;
         }
 
         public CollectedObjType GetCollectObjType()
@@ -316,9 +316,9 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().ClearCharacterTaskDBData(id, task);
         }
 
-        public void SetIsHero(bool isHero)
+        public void SetIsHero()
         {
-            GameDataMgr.S.GetClanData().SetIsHero(id, isHero);
+            GameDataMgr.S.GetClanData().SetIsHero(id);
         }
         /// <summary>
         /// 获取没有任何加成的武力值

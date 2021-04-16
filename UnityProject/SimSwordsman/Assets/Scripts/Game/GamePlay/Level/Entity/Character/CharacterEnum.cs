@@ -19,7 +19,10 @@ namespace GameWish.Game
         /// 天才级
         /// </summary>
         Perfect = 3,
-        //Excellent = 4,
+        /// <summary>
+        /// 英雄级
+        /// </summary>
+        Hero = 4,
     }
 
     public enum UnlockContent

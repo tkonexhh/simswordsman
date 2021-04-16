@@ -5,21 +5,108 @@ using System;
 
 namespace GameWish.Game
 {
-   
+
     public class HeroTrialPanel : AbstractAnimPanel
-	{
+    {
         [SerializeField]
         private Button m_SelectCharacterBtn;
         [SerializeField]
-        private Button m_FinishBtn;
-        [SerializeField]
         private Button m_CloseBtn;
+        [SerializeField]
+        private Button m_RuleBtn;
 
+        [SerializeField]
+        private Text m_CountDownNumber;
+        [SerializeField]
+        private Button m_FinishTrialBtn;
+        [SerializeField]
+        private Slider m_CountDownSlider;
+        [SerializeField]
+        private Image m_CharacterIconBefore;
+        [SerializeField]
+        private Text m_CharacterNameBefore;
+        [SerializeField]
+        private Image m_CharacterIconAfter;
+        [SerializeField]
+        private Text m_CharacterNameAfter;
+        [SerializeField]
+        private Text m_Appellation;
+
+        private CharacterItem TrialDisciple;
         protected override void OnUIInit()
-	    {
+        {
             base.OnUIInit();
 
-            m_CloseBtn.onClick.AddListener(()=> 
+            if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Finished)
+            {
+                m_FinishTrialBtn.interactable = true;
+            }
+            else
+            {
+                m_FinishTrialBtn.interactable = false;
+            }
+
+            GetInfomationForNeed();
+            RefreshPanelInfo();
+            BindAddListenerEvent();
+        }
+
+        private void GetInfomationForNeed()
+        {
+            TrialDisciple = MainGameMgr.S.CharacterMgr.GetCharacterItem(MainGameMgr.S.HeroTrialMgr.TrialDiscipleID);
+        }
+
+        private void HandAdListenerEvent(int key, object[] param)
+        {
+            switch (key)
+            {
+                case (int)EventID.OnRefreshTrialPanel:
+                    GetInfomationForNeed();
+                    RefreshPanelInfo();
+                    break;
+                case (int)EventID.OnCountDownRefresh:
+                    RefreshProgress((double)param[0]);
+                    break;
+            }
+        }
+
+        private void RefreshProgress(double second)
+        {
+            if (second < 0)
+            {
+                second = 0;
+                m_FinishTrialBtn.interactable = true;
+            }
+            m_CountDownSlider.value = (float)second / (float)MainGameMgr.S.HeroTrialMgr.TrialTotalTime;
+            m_CountDownNumber.text = CommonMethod.SplicingTime(second);
+        }
+
+        public void RefreshPanelInfo()
+        {
+            if (TrialDisciple == null)
+                return;
+            m_CharacterIconBefore.sprite = CommonMethod.GetDiscipleSprite(TrialDisciple);
+            m_CharacterNameBefore.text = TrialDisciple.name;
+            m_CharacterIconAfter.sprite = CommonMethod.GetDiscipleSprite(TrialDisciple);
+            m_CharacterNameAfter.text = TrialDisciple.name;
+            m_Appellation.text = CommonMethod.GetAppellation(MainGameMgr.S.HeroTrialMgr.TrialClan);
+        }
+
+
+        public override void OnBecomeHide()
+        {
+            base.OnBecomeHide();
+   
+        }
+
+        private void BindAddListenerEvent()
+        {
+            m_RuleBtn.onClick.AddListener(() =>
+            {
+                UIMgr.S.OpenPanel(UIID.IntroductionRulesPanel);
+            });
+
+            m_CloseBtn.onClick.AddListener(() =>
             {
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
 
@@ -28,10 +115,10 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple,PanelType.HeroTrial);
+                UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, PanelType.HeroTrial);
             });
 
-            m_FinishBtn.onClick.AddListener(() =>
+            m_FinishTrialBtn.onClick.AddListener(() =>
             {
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
@@ -43,7 +130,8 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-
+            EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
+            EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
 
             //OpenDependPanel(EngineUI.MaskPanel,-1,null);
         }
@@ -61,7 +149,8 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-
+            EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnCountDownRefresh, HandAdListenerEvent);
             //CloseDependPanel(EngineUI.MaskPanel);
         }
     }
