@@ -115,12 +115,13 @@ namespace GameWish.Game
                             return 0;
                         }
 
-                        // if (charactX == null || charactY == null)
-                        // {
-                        //     bool? isDeadX = charactX?.IsDead();
-                        //     bool? isDeadY = charactY?.IsDead();
-                        //     return isDeadX > isDeadY;
-                        // }
+                        if (charactX == null || charactY == null)
+                        {
+                            var hpX = charactX?.hpRate;
+                            var hpY = charactY?.hpRate;
+                            return hpX > hpY ? 1 : 0;
+
+                        }
 
                         return 0;
                     });
