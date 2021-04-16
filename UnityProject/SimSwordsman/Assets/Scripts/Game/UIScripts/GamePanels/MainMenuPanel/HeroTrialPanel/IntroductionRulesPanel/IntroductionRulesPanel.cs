@@ -1,4 +1,5 @@
 using Qarth;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,12 @@ namespace GameWish.Game
 		private Button m_CloseBtn;
         [SerializeField]
 		private Button m_BlackBtn;
+        [SerializeField]
+		private Transform m_TitleTra; 
+        [SerializeField]
+		private GameObject m_ImgFontPre;
 
+        string[] title = new string[] {" ‘", "¡∂", "πÊ", "‘Ú" };
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -25,6 +31,16 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
+            foreach (var item in title)
+            {
+                CreateTitle(item);
+            }
+        }
+
+        private void CreateTitle(string item)
+        {
+            ImgFontPre imgFontPre = Instantiate(m_ImgFontPre, m_TitleTra).GetComponent<ImgFontPre>();
+            imgFontPre.SetFontCont(item);
         }
 
         protected override void OnPanelHideComplete()

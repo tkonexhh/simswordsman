@@ -36,8 +36,6 @@ namespace GameWish.Game
                 action?.Invoke();
             }
         }
-
-
 		public static Sprite GetDiscipleSprite(CharacterItem characterItem)
 		{
 			return SpriteHandler.S.GetSprite(AtlasDefine.CharacterHeadIconsAtlas, "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId);
@@ -68,5 +66,4 @@ namespace GameWish.Game
             return string.Empty;
         }
     }
-	
 }

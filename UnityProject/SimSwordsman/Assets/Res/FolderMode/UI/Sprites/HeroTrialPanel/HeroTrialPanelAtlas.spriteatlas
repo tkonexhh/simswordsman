@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HeroTrialPanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f4f2ddbd40b364f44919a451afbb5c22, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6f4c36006a9413541a630b0b2b01d5cf, type: 3}
+  - {fileID: 21300000, guid: 5da4da4081be744488d13b8a3b2234b1, type: 3}
+  - {fileID: 21300000, guid: 426e0690d3d29864e914718edd5d5720, type: 3}
+  - {fileID: 21300000, guid: e5f16dd0379933c4c9ddd7b092044e43, type: 3}
+  - {fileID: 21300000, guid: f87faae0c904b27449cd1e5264a2063c, type: 3}
+  - {fileID: 21300000, guid: c3ebd0115df4dae40a7f4d0871f6df26, type: 3}
+  - {fileID: 21300000, guid: 10925b41cb5c1a9428be97673a48b8b2, type: 3}
+  - {fileID: 21300000, guid: ba11bc618f2f4c149b623678ae9f3af8, type: 3}
+  - {fileID: 21300000, guid: ddbae09104de655429f8e6e7cdfa94bd, type: 3}
+  - {fileID: 21300000, guid: 6ea6f4124a70a3a4cab3519c606c9384, type: 3}
+  - {fileID: 21300000, guid: ce2dc7a2dc171ed42ac9da019e2c3cdb, type: 3}
+  - {fileID: 21300000, guid: f1e2acc2c71649047b1888f392c4a75e, type: 3}
+  - {fileID: 21300000, guid: e94495f2db7e4524ca9a21903eb66b3a, type: 3}
+  - {fileID: 21300000, guid: 746927f2b1904ed47bcfab718a29172f, type: 3}
+  - {fileID: 21300000, guid: 0d83a7f2948090f4fb922db8cd78718f, type: 3}
+  - {fileID: 21300000, guid: 96c8d7331a0b2554d806d4199ba6f19e, type: 3}
+  - {fileID: 21300000, guid: a4c4dbd398149584a8d7f9586f720af1, type: 3}
+  - {fileID: 21300000, guid: c0aaaae335fb8cc4f83ea9d302c08f8d, type: 3}
+  - {fileID: 21300000, guid: 3e6df10414cb4854aa3f2e101771949b, type: 3}
+  - {fileID: 21300000, guid: 53d13f543a2532349974eddd7e0bf43f, type: 3}
+  - {fileID: 21300000, guid: 99f96084903a2e94ea4ffad378572e0a, type: 3}
+  - {fileID: 21300000, guid: 949d8e456d79a23499fb9eec6d01dd84, type: 3}
+  - {fileID: 21300000, guid: 9acc3755918e81b45a3194c0b0fa5dca, type: 3}
+  - {fileID: 21300000, guid: e7cc3056dd740034db47a26cca21eb67, type: 3}
+  - {fileID: 21300000, guid: c3d4dee60c46f0f42a0ce583a7dd4c3b, type: 3}
+  - {fileID: 21300000, guid: 547bc8f66c256954dad2e733497d6637, type: 3}
+  - {fileID: 21300000, guid: 82f54017882dc3f48a26f52194edd5cf, type: 3}
+  - {fileID: 21300000, guid: eea79027be37e674ca75e8e4df98906a, type: 3}
+  - {fileID: 21300000, guid: ba0f4277a5f25c449b87e799a6eb509d, type: 3}
+  - {fileID: 21300000, guid: e7665087fc4222240a826e36ff87502f, type: 3}
+  - {fileID: 21300000, guid: 4c43d1a79bf09f746a477fbe13b5e08a, type: 3}
+  - {fileID: 21300000, guid: 9a593fc7555886649b8239a1d7866d00, type: 3}
+  - {fileID: 21300000, guid: e8bf75d74877f93418dab54976cb061b, type: 3}
+  - {fileID: 21300000, guid: 482d5a5821ad131498e7ef6582513c53, type: 3}
+  - {fileID: 21300000, guid: 40168019eac7d994fbc11280f70f214f, type: 3}
+  - {fileID: 21300000, guid: 4d9f0f498fb623b4da407c6645e1afd4, type: 3}
+  - {fileID: 21300000, guid: 32a09859eee867c4f9879e1c759f3e25, type: 3}
+  - {fileID: 21300000, guid: e66f977915d043242a68024d0bbd92b8, type: 3}
+  - {fileID: 21300000, guid: c5331979bfe2b004695bfbaeb1c5e595, type: 3}
+  - {fileID: 21300000, guid: 85c49889e8f78ce4c8582d1134f87a47, type: 3}
+  - {fileID: 21300000, guid: f57f1e0a83947f24b933600eacbf3ee4, type: 3}
+  - {fileID: 21300000, guid: 2e11b45a42e885d49a332ed65bb92940, type: 3}
+  - {fileID: 21300000, guid: fce2867a2f9427a42aa3ef0d4910cb50, type: 3}
+  - {fileID: 21300000, guid: fc21758af07ab90429f845d3f119ea09, type: 3}
+  - {fileID: 21300000, guid: 41b5edaa89ba2aa44835f1e85b38d06c, type: 3}
+  - {fileID: 21300000, guid: 65d17faa4e7e66c4081eee0abe5e62be, type: 3}
+  - {fileID: 21300000, guid: 829ccceac26ce2642b72711107cef886, type: 3}
+  - {fileID: 21300000, guid: 3fd9195bfb7a5f74ca16147e66a4c49f, type: 3}
+  - {fileID: 21300000, guid: fa0252eb0c5075c4281726e2b4dd9c8d, type: 3}
+  - {fileID: 21300000, guid: d839110cd8bf24648b25b9c11e478ced, type: 3}
+  - {fileID: 21300000, guid: 7d9d946caf1e8a34a8673d3e9bc63237, type: 3}
+  - {fileID: 21300000, guid: c8ec94bcf7980c246849ede64030a3db, type: 3}
+  - {fileID: 21300000, guid: 8b1b61dc6de41144b867847f82afb2c5, type: 3}
+  - {fileID: 21300000, guid: 11f7270dae45f0d4fb27514d9147e0ab, type: 3}
+  - {fileID: 21300000, guid: b9b7e72d3076d9d4bba9efb325ea5da5, type: 3}
+  - {fileID: 21300000, guid: beb1a04d7e594204dbc0da8257b9549b, type: 3}
+  - {fileID: 21300000, guid: 913c657d67c53d44c8e5acf94c694561, type: 3}
+  - {fileID: 21300000, guid: bd5db56efff5cf24e929e706e28252bf, type: 3}
+  - {fileID: 21300000, guid: 7154527e71c0ffa46ab0c4b08d360856, type: 3}
+  - {fileID: 21300000, guid: 524b688e10b20c14b853974e235a9647, type: 3}
+  - {fileID: 21300000, guid: f113788e2dde13149a2e2b35931278c3, type: 3}
+  - {fileID: 21300000, guid: 3dacd6df8d19f424781204a4484e1981, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - HeroTrialPanel_Bg15
+  - HeroTrialPanel_Font_Wudang
+  - HeroTrialPanel_YesClan_Wudang
+  - HeroTrialPanel_Font_Mojiao
+  - HeroTrialPanel_NotClan_Huashan
+  - HeroTrialPanel_SelectedDisciple
+  - HeroTrialPanel_Bg12
+  - HeroTrialPanel_NotClan_Wudang
+  - HeroTrialPanel_Big_Emei
+  - HeroTrialPanel_Line_Good
+  - HeroTrialPanel_TitleFont
+  - HeroTrialPanel_YesClan_Gaibang
+  - HeroTrialPanel_TitleBg
+  - HeroTrialPanel_YesClan_Wudu
+  - HeroTrialPanel_Quality_Normal
+  - HeroTrialPanel_Quality_Hero
+  - HeroTrialPanel_Bg14
+  - HeroTrialPanel_Bg11
+  - HeroTrialPanel_YesClan_Xiaoyao
+  - HeroTrialPanel_Font_Xiaoyao
+  - HeroTrialPanel_NotClan_Gaibang
+  - HeroTrialPanel_bg9
+  - HeroTrialPanel_bg4
+  - HeroTrialPanel_Quality_Perfect
+  - HeroTrialPanel_YesClan_Huashan
+  - HeroTrialPanel_Font_Emei
+  - HeroTrialPanel_Questionmark
+  - HeroTrialPanel_Icon2
+  - HeroTrialPanel_Icon1
+  - HeroTrialPanel_Font_Gaibang
+  - HeroTrialPanel_NotClan_Shaolin
+  - HeroTrialPanel_Line_Perfect
+  - "btn \u62F7\u8D1D 7@2x"
+  - HeroTrialPanel_NotClan_Xiaoyao
+  - HeroTrialPanel_bg2
+  - HeroTrialPanel_Big_Huashan
+  - HeroTrialPanel_Big_Xiaoyao
+  - HeroTrialPanel_Big_Mojiao
+  - HeroTrialPanel_YesClan_Mojiao
+  - HeroTrialPanel_NotClan_Emei
+  - HeroTrialPanel_Big_Wudu
+  - HeroTrialPanel_YesClan_Emei
+  - HeroTrialPanel_bg8
+  - HeroTrialPanel_Big_Shaolin
+  - HeroTrialPanel_Font_Shaolin
+  - HeroTrialPanel_Bg13
+  - HeroTrialPanel_Font_Huashan
+  - HeroTrialPanel_Big_Gaibang
+  - HeroTrialPanel_Bg10
+  - HeroTrialPanel_Big_Wudang
+  - HeroTrialPanel_bg7
+  - HeroTrialPanel_Bg6
+  - HeroTrialPanel_Font_Wudu
+  - HeroTrialPanel_bg3
+  - HeroTrialPanel_bg1
+  - HeroTrialPanel_bg5
+  - HeroTrialPanel_Quality_God
+  - HeroTrialPanel_Line_Normal
+  - HeroTrialPanel_NotClan_Mojiao
+  - HeroTrialPanel_Line_Hero
+  - HeroTrialPanel_NotClan_Wudu
+  - HeroTrialPanel_YesClan_Shaolin
+  m_Tag: HeroTrialPanelAtlas
+  m_IsVariant: 0

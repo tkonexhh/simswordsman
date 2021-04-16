@@ -33,6 +33,7 @@ namespace GameWish.Game
 
         public HeroTrialData DbData { get => m_DbData;}
         public int TrialDiscipleID { get => m_DbData.characterId; }
+        public HeroTrialStateID CurState { get => m_CurState; }
         public double TrialTotalTime { get => m_TrialTotalTime; }
         public ClanType TrialClan { get => m_DbData.clanType; }
         public BattleField BattleField { get => m_BattleField; }

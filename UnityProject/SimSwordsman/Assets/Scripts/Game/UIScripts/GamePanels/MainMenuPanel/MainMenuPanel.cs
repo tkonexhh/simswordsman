@@ -249,9 +249,9 @@ namespace GameWish.Game
                 //    FloatMessage.S.ShowMsg(msg);
                 //    return;
                 //}
+                UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
-                UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
 
                 if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle)
                 {
