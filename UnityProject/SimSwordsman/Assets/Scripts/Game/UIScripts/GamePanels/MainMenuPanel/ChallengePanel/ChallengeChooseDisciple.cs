@@ -86,7 +86,7 @@ namespace GameWish.Game
                 case PanelType.HeroTrial:
                     //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect || m_AllDiscipleList[0].level >= 200)
+                        //if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect || m_AllDiscipleList[0].level >= 200)
                             CreateDisciple(m_AllDiscipleList[i]);
                     for (int i = 0; i < HeroTrialDiscipleNumber; i++)
                         CreateSelectedDisciple();
@@ -110,16 +110,16 @@ namespace GameWish.Game
                     {
                         var charactX = towerData.GetTowerCharacterByID(x.id);
                         var charactY = towerData.GetTowerCharacterByID(x.id);
-                        if (charactX == null && charactY == null)
-                        {
-                            return 0;
-                        }
 
                         if (charactX == null || charactY == null)
                         {
                             var hpX = charactX?.hpRate;
+                            if (!hpX.HasValue)
+                                hpX = 1;
                             var hpY = charactY?.hpRate;
-                            return hpX > hpY ? 1 : 0;
+                            if (!hpY.HasValue)
+                                hpY = 1;
+                            return hpX >= hpY ? -1 : 1;
 
                         }
 

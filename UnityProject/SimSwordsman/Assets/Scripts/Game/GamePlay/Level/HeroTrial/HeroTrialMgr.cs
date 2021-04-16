@@ -89,6 +89,8 @@ namespace GameWish.Game
 
             m_IsInTrial = true;
 
+            m_BattleField.ChangeBgSpriteRenderToHeroTrial();
+
             StartCountDown();
 
             if (!string.IsNullOrEmpty(m_DbData.trialStartTime))

@@ -86,6 +86,23 @@ namespace GameWish.Game
             }
         }
 
+        public void ChangeBgSpriteRenderToHeroTrial()
+        {
+            Sprite sr = null;
+
+            string spriteName = "HeroTrialBattleField";
+
+            if (!string.IsNullOrEmpty(spriteName))
+            {
+                sr = SpriteLoader.S.GetSpriteByName(spriteName);
+            }
+
+            if (sr != null)
+            {
+                m_BgSpriteRender.sprite = sr;
+            }
+        }
+
         private string GetBattleBgName(ClanType clanType)
         {
             switch (clanType)
