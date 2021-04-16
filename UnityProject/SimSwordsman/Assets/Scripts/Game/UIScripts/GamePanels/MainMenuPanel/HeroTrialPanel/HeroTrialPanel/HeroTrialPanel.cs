@@ -2,58 +2,78 @@ using Qarth;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 namespace GameWish.Game
 {
 
     public class HeroTrialPanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Button m_SelectCharacterBtn;
+        [Header("Top")]
         [SerializeField]
         private Button m_CloseBtn;
         [SerializeField]
-        private Button m_RuleBtn;
-
+        private Button m_QuestionMarkBtn; 
         [SerializeField]
-        private Text m_CountDownNumber;
+        private Image m_TrialImg;
+
+        [Header("Middle")]
+        [SerializeField]
+        private Button m_SelectCharacterBtn;
         [SerializeField]
         private Button m_FinishTrialBtn;
         [SerializeField]
-        private Slider m_CountDownSlider;
+        private Transform m_TrialClanTra;
         [SerializeField]
-        private Image m_CharacterIconBefore;
-        [SerializeField]
-        private Text m_CharacterNameBefore;
-        [SerializeField]
-        private Image m_CharacterIconAfter;
-        [SerializeField]
-        private Text m_CharacterNameAfter;
-        [SerializeField]
-        private Text m_Appellation;
+        private GameObject m_TrialClanImg;
 
-        private CharacterItem TrialDisciple;
+        [Header("Bottom")]
+
+        [Header("Left")]
+        [SerializeField]
+        private Image m_LeftIcon;   
+        [SerializeField]
+        private Image m_LeftQualityImg;  
+        [SerializeField]
+        private Image m_LeftLine;   
+        [SerializeField]
+        private Text m_LeftName; 
+
+        [Header("Right")]
+        [SerializeField]
+        private Image m_RightIcon;   
+        [SerializeField]
+        private Image m_RightQualityImg;  
+        [SerializeField]
+        private Image m_RightLine;   
+        [SerializeField]
+        private Text m_RightName;
+
+        [Header("Middle")]
+        [SerializeField]
+        private Text m_CountDownNumber;
+        [SerializeField]
+        private Slider m_CountDownSlider;
+
+        private CharacterItem m_TrialDisciple;
+        private ClanType m_ClanType;
+        private HeroTrialStateID m_HeroTrialStateID;
+        private List<TrialClanImg> m_TrialClanImgList = new List<TrialClanImg>();
+
+        private bool m_TrialComplete = false;
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
-            if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Finished)
-            {
-                m_FinishTrialBtn.interactable = true;
-            }
-            else
-            {
-                m_FinishTrialBtn.interactable = false;
-            }
-
-            GetInfomationForNeed();
-            RefreshPanelInfo();
-            BindAddListenerEvent();
+            EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
+            EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
+          
         }
 
         private void GetInfomationForNeed()
         {
-            TrialDisciple = MainGameMgr.S.CharacterMgr.GetCharacterItem(MainGameMgr.S.HeroTrialMgr.TrialDiscipleID);
+            m_TrialDisciple = MainGameMgr.S.CharacterMgr.GetCharacterItem(MainGameMgr.S.HeroTrialMgr.TrialDiscipleID);
+            m_ClanType = MainGameMgr.S.HeroTrialMgr.TrialClan;
+            m_HeroTrialStateID = MainGameMgr.S.HeroTrialMgr.CurState;
         }
 
         private void HandAdListenerEvent(int key, object[] param)
@@ -62,7 +82,7 @@ namespace GameWish.Game
             {
                 case (int)EventID.OnRefreshTrialPanel:
                     GetInfomationForNeed();
-                    RefreshPanelInfo();
+                    RefreshDiscipleInfo();
                     break;
                 case (int)EventID.OnCountDownRefresh:
                     RefreshProgress((double)param[0]);
@@ -72,10 +92,10 @@ namespace GameWish.Game
 
         private void RefreshProgress(double second)
         {
-            if (second < 0)
+            if (second<=0)
             {
+                m_TrialComplete = true;
                 second = 0;
-                m_FinishTrialBtn.interactable = true;
             }
             m_CountDownSlider.value = (float)second / (float)MainGameMgr.S.HeroTrialMgr.TrialTotalTime;
             m_CountDownNumber.text = CommonMethod.SplicingTime(second);
@@ -83,25 +103,66 @@ namespace GameWish.Game
 
         public void RefreshPanelInfo()
         {
-            if (TrialDisciple == null)
-                return;
-            m_CharacterIconBefore.sprite = CommonMethod.GetDiscipleSprite(TrialDisciple);
-            m_CharacterNameBefore.text = TrialDisciple.name;
-            m_CharacterIconAfter.sprite = CommonMethod.GetDiscipleSprite(TrialDisciple);
-            m_CharacterNameAfter.text = TrialDisciple.name;
-            m_Appellation.text = CommonMethod.GetAppellation(MainGameMgr.S.HeroTrialMgr.TrialClan);
+            for (int i = (int)ClanType.Gaibang; i <= (int)ClanType.Xiaoyao; i++)
+            {
+                CreateNotClan(i);
+            }
+
+            SetTrialImgAndYesClan();
+            m_TrialClanImgList.ForEach(i=> {
+                if (i.CurClanType == m_ClanType)
+                    i.SetSelectedClan();
+            });
+
+            double leftTime = MainGameMgr.S.HeroTrialMgr.GetLeftTime();
+            if (leftTime>0)
+            {
+                m_CountDownSlider.value = (float)leftTime / (float)MainGameMgr.S.HeroTrialMgr.TrialTotalTime;
+                m_CountDownNumber.text = CommonMethod.SplicingTime(leftTime);
+            }
         }
 
-
-        public override void OnBecomeHide()
+        private void CreateNotClan(int i)
         {
-            base.OnBecomeHide();
-   
+            TrialClanImg trialClanImg = Instantiate(m_TrialClanImg, m_TrialClanTra).GetComponent<TrialClanImg>();
+            trialClanImg.OnInit(i);
+            m_TrialClanImgList.Add(trialClanImg);
+        }
+
+        private void SetTrialImgAndYesClan()
+        {
+            switch (m_ClanType)
+            {
+                case ClanType.Gaibang:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Gaibang");
+                    break;
+                case ClanType.Shaolin:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Shaolin");
+                    break;
+                case ClanType.Wudang:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Wudang");
+                    break;
+                case ClanType.Emei:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Emei");
+                    break;
+                case ClanType.Huashan:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Huashan");
+                    break;
+                case ClanType.Wudu:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Wudu");
+                    break;
+                case ClanType.Mojiao:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Mojiao");
+                    break;
+                case ClanType.Xiaoyao:
+                    m_TrialImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Font_Xiaoyao");
+                    break;
+            }
         }
 
         private void BindAddListenerEvent()
         {
-            m_RuleBtn.onClick.AddListener(() =>
+            m_QuestionMarkBtn.onClick.AddListener(() =>
             {
                 UIMgr.S.OpenPanel(UIID.IntroductionRulesPanel);
             });
@@ -120,6 +181,11 @@ namespace GameWish.Game
 
             m_FinishTrialBtn.onClick.AddListener(() =>
             {
+                if (!m_TrialComplete)
+                {
+                    FloatMessage.S.ShowMsg(" ‘¡∂Œ¥ÕÍ≥…");
+                    return;
+                }
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
 
@@ -130,12 +196,78 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
-            EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
+            BindAddListenerEvent();
+            GetInfomationForNeed();
+            RefreshPanelInfo();
+            RefreshDiscipleInfo();
+            //if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Finished)
+            //{
+            //    m_FinishTrialBtn.interactable = true;
+            //}
+            //else
+            //{
+            //    m_FinishTrialBtn.interactable = false;
+            //}
 
-            //OpenDependPanel(EngineUI.MaskPanel,-1,null);
+        }
+        //m_LeftIcon;   
+        //ld]
+        // m_LeftQualityImg;  
+        //ld]
+        // m_LeftLine;   
+        //ld]
+        //m_LeftName; 
+        private void RefreshDiscipleInfo()
+        {
+            if (m_TrialDisciple == null)
+                return;
+            m_LeftIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
+            m_RightIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
+            m_LeftName.text = m_TrialDisciple.name;
+            m_RightName.text = m_TrialDisciple.name;
+            m_LeftLine.sprite = GetLine(m_TrialDisciple.quality);
+            m_LeftQualityImg.sprite = GetQualityImg(m_TrialDisciple.quality); 
+            m_RightLine.sprite = GetLine(CharacterQuality.Hero);
+            m_RightQualityImg.sprite = GetQualityImg(CharacterQuality.Hero);
+            if (m_HeroTrialStateID != HeroTrialStateID.Runing)
+                m_SelectCharacterBtn.gameObject.SetActive(true);
+            else
+                m_SelectCharacterBtn.gameObject.SetActive(false);
         }
 
+        private Sprite GetQualityImg(CharacterQuality quality)
+        {
+            switch (quality)
+            {
+                case CharacterQuality.Normal:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Quality_Normal");
+                case CharacterQuality.Good:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Quality_God");
+                case CharacterQuality.Perfect:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Quality_Perfect");
+                case CharacterQuality.Hero:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Quality_Hero");
+
+            }
+            return null;
+        }
+
+        private Sprite GetLine(CharacterQuality quality)
+        {
+            switch (quality)
+            {
+                case CharacterQuality.Normal:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Line_Normal");
+                case CharacterQuality.Good:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Line_Good");
+                case CharacterQuality.Perfect:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Line_Perfect");
+                case CharacterQuality.Hero:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_Line_Hero");
+
+            }
+            return null;
+        }
 
         protected override void OnPanelHideComplete()
         {

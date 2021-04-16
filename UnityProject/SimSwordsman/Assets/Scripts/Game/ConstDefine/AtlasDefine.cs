@@ -17,5 +17,6 @@ namespace GameWish.Game
 		public const string MartialArtsAtlas = "MartialArtsAtlas";
 		public const string CharacterHeadIconsAtlas = "CharacterHeadIconsAtlas";
 		public const string PromotionPanelAtlas = "PromotionPanelAtlas";
+		public const string HeroTrialPanelAtlas = "HeroTrialPanelAtlas";
 	}
 }
