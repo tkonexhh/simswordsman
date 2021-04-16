@@ -320,14 +320,31 @@ namespace GameWish.Game
         {
             UIMgr.S.OpenPanel(UIID.ChallengePanel, m_CurChapterConfigInfo.clanType);
         }
+        private void ChallengePanelCallback(AbstractPanel obj)
+        {
+        }
+
+        private void ReduceHPWithAni(float endValue,Slider hpSlider,float duration = .5f) 
+        {
+            DG.Tweening.DOTween.To(() => hpSlider.value, (x) => 
+            {
+                hpSlider.value = x;
+            }, endValue, duration);
+        }
 
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)
             {
                 case EventID.OnRefreshBattleProgress:
-                    m_LeftBloodStick.value = (float)param[0];
-                    m_RightBloodStick.value = (float)param[1];
+                    //m_LeftBloodStick.value = (float)param[0];
+                    //m_RightBloodStick.value = (float)param[1];
+
+                    float leftBloodEndValue = (float)param[0];
+                    ReduceHPWithAni(leftBloodEndValue, m_LeftBloodStick);
+
+                    float rightBloodEndValue = (float)param[1];
+                    ReduceHPWithAni(rightBloodEndValue, m_RightBloodStick);
                     break;
                 case EventID.OnBattleSuccessed:
                     switch (m_PanelType)
