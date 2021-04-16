@@ -336,45 +336,29 @@ namespace GameWish.Game
             {
 
                 case PanelType.Challenge:
-                    CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
-                    if (m_AllCharacterList.Count >= MaxDiscipleNumber)
                     {
-                        for (int i = 0; i < MaxDiscipleNumber; i++)
-                            m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
-                    }
-                    else
-                    {
+                        CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+                        int minCount = Mathf.Min(m_AllCharacterList.Count, MaxDiscipleNumber);
                         for (int i = 0; i < m_AllCharacterList.Count; i++)
-                            m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
+                        {
+                            if (m_SelectedDiscipleDic.Count < minCount)
+                            {
+                                m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
+                                continue;
+                            }
+
+                            break;
+                        }
                     }
                     break;
                 case PanelType.Tower:
-                    CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
-                    if (m_AllCharacterList.Count >= MaxDiscipleNumber)
                     {
-                        for (int i = 0; i < MaxDiscipleNumber; i++)
-                        {
-                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
-                            {
-                                Debug.LogError(m_AllCharacterList[i].id);
-                                continue;
-                            }
+                        CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+                        int minCount = Mathf.Min(m_AllCharacterList.Count, MaxDiscipleNumber);
 
-                            //判断死没死
-                            int id = m_AllCharacterList[i].id;
-                            var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
-                            if (towerCharacterDB != null && towerCharacterDB.IsDead())
-                            {
-                                continue;
-                            }
-
-                            m_SelectedDiscipleDic.Add(id, m_AllCharacterList[i]);
-                        }
-                    }
-                    else
-                    {
                         for (int i = 0; i < m_AllCharacterList.Count; i++)
                         {
+
                             if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
                             {
                                 Debug.LogError(m_AllCharacterList[i].id);
@@ -389,11 +373,15 @@ namespace GameWish.Game
                                 continue;
                             }
 
-                            m_SelectedDiscipleDic.Add(id, m_AllCharacterList[i]);
+                            if (m_SelectedDiscipleDic.Count < minCount)
+                            {
+                                m_SelectedDiscipleDic.Add(id, m_AllCharacterList[i]);
+                                continue;
+                            }
+
+                            break;
                         }
-
                     }
-
                     break;
                 default:
                     break;
