@@ -36,7 +36,7 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
 
-            m_WeChatShareBtn.onClick.AddListener(()=> 
+            m_WeChatShareBtn.onClick.AddListener(() =>
             {
                 DataAnalysisMgr.S.CustomEvent(DotDefine.Click_WeChatShare_Btn);
                 WeChatShareMgr.S.Share(WeChatTex.PrefectCharacter);
@@ -124,7 +124,7 @@ namespace GameWish.Game
 
             EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
 
-            //Òýµ¼
+            //ï¿½ï¿½ï¿½ï¿½
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
             {
                 GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;

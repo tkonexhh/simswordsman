@@ -23,7 +23,7 @@ namespace GameWish.Game
 
         public override string SpriteName()
         {
-            return "TowerCoin";
+            return "towercoin";
         }
     }
 

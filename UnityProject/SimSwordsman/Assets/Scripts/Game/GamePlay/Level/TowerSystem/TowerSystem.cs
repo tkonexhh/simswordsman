@@ -32,7 +32,7 @@ namespace GameWish.Game
             MainGameMgr.S.BattleFieldMgr.onBattleExit -= OnBattleExit;
         }
 
-        public void StartLevel()
+        public void StartLevel(List<CharacterController> owerCharacter, float basicATK)
         {
             m_IsTowerBattle = true;
 
@@ -42,28 +42,20 @@ namespace GameWish.Game
             int maxLvl = m_TowerData.maxLevel;
             TowerLevelConfig levelConfig = new TowerLevelConfig(maxLvl);
 
-            int enemyPoolID = m_TowerData.GetEnemyPoolIDByIndex(maxLvl - 1);
+            var enemyPool = m_TowerData.GetEnemyPoolIDByIndex(maxLvl - 1);
             if (m_TowerData.enemyCharacterLst.Count == 0)
             {
                 // Debug.LogError("New Enemy");
-                levelConfig.CreateEnemy(enemyPoolID);
+                levelConfig.CreateEnemy(enemyPool.enemyIDLst, basicATK);
             }
             else
             {
                 // Debug.LogError("Load Enemy");
-                levelConfig.SetEnemyFormDB();
-            }
-
-            List<CharacterController> owrCharacter = new List<CharacterController>();
-            for (int i = 0; i < 5; i++)
-            {
-                var character = MainGameMgr.S.CharacterMgr.GetCharacterController(i);
-                if (character != null)
-                    owrCharacter.Add(character);
+                levelConfig.SetEnemyFormDB(basicATK);
             }
 
             //随机敌人
-            EventSystem.S.Send(EventID.OnEnterBattle, levelConfig.enemiesList, owrCharacter);
+            EventSystem.S.Send(EventID.OnEnterBattle, levelConfig.enemiesList, owerCharacter);
             UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, PanelType.Tower, levelConfig);
         }
 
@@ -72,22 +64,6 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().towerData.AddMaxLevel();
             GameDataMgr.S.GetPlayerData().towerData.ClearEnemyDB();
         }
-
-        public void GetLevelReward(int level)
-        {
-            var conf = TDTowerConfigTable.GetData(level);
-            if (conf == null)
-                return;
-
-            int coin = conf.fcoinNum;
-            List<RewardBase> rewards = new List<RewardBase>();
-            rewards.Add(new TowerCoinReward(coin));
-            rewards.ForEach(r => r.AcceptReward());
-            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
-            //得到伏魔币奖励
-            GameDataMgr.S.GetPlayerData().towerData.GetReward(level);
-        }
-
 
         private void HandleBattleCharacterHp(List<CharacterController> owrControllers, List<CharacterController> enemyControllers)
         {
@@ -104,7 +80,7 @@ namespace GameWish.Game
                     if (towerCharacterDB != null)
                     {
                         Debug.LogError(towerCharacterDB.hpRate);
-                        character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
+                        // character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
                     }
                 }
                 else

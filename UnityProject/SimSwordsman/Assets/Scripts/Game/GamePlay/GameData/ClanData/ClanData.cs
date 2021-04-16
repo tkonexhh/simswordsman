@@ -240,9 +240,9 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetIsHero(int id)
+        public void SetIsHero(int id, ClanType clanType)
         {
-            ownedCharacterData.SetCharacterIsHero(id);
+            ownedCharacterData.SetCharacterIsHero(id, clanType);
 
             SetDataDirty();
         }

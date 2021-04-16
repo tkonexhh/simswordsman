@@ -51,9 +51,9 @@ namespace GameWish.Game
             m_Atk = atk;
         }
 
-        public void SetIsHero()
+        public void SetIsHero(ClanType clanType)
         {
-            m_CharacterItem.SetIsHero();
+            m_CharacterItem.SetIsHero(clanType);
         }
 
         public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)

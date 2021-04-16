@@ -286,6 +286,14 @@ namespace GameWish.Game
             return m_ItemDbData.quality == CharacterQuality.Hero;
         }
 
+        public ClanType GetClanType()
+        {
+            if (m_ItemDbData == null)
+                return ClanType.None;
+
+            return m_ItemDbData.trialClanType;
+        }
+
         public CollectedObjType GetCollectObjType()
         {
             return collectedObjType;
@@ -316,9 +324,9 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().ClearCharacterTaskDBData(id, task);
         }
 
-        public void SetIsHero()
+        public void SetIsHero(ClanType clanType)
         {
-            GameDataMgr.S.GetClanData().SetIsHero(id);
+            GameDataMgr.S.GetClanData().SetIsHero(id, clanType);
         }
         /// <summary>
         /// 获取没有任何加成的武力值

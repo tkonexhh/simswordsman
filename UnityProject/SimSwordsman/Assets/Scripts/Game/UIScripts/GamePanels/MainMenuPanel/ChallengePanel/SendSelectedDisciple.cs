@@ -7,37 +7,31 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class SendSelectedDisciple : MonoBehaviour
-	{
-        [SerializeField]
-        private Button m_Btn;
-        [SerializeField]
-        private Image m_LevelBg;
-        [SerializeField]
-        private Text m_Level;
-        [SerializeField]
-        private Image m_DiscipleHead;
-        [SerializeField]
-        private Text m_DiscipleName;
-        [SerializeField]
-        private Image m_Plus;
-        [SerializeField]
-        private Image m_DiscipleLevelBg;
-        [SerializeField]
-        private Image m_Line;
-        private GameObject m_SelectedImg;
-        private CharacterItem m_CharacterItem;
+    public class SendSelectedDisciple : MonoBehaviour
+    {
+        [SerializeField] private Button m_Btn;
+        [SerializeField] private Image m_LevelBg;
+        [SerializeField] private Text m_Level;
+        [SerializeField] private Image m_DiscipleHead;
+        [SerializeField] private Text m_DiscipleName;
+        [SerializeField] private Image m_Plus;
+        [SerializeField] private Image m_DiscipleLevelBg;
+        [SerializeField] private Image m_Line;
+
+        protected CharacterItem m_CharacterItem;
         private SendDisciplesPanel m_SendDisciplesPanel;
-        private AddressableAssetLoader<Sprite> m_Loader;
         private PanelType m_PanelType;
-		private SelectedState m_SelelctedState = SelectedState.NotSelected;
-		public void OnInit(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
-		{
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
+
+        public void Init(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
+        {
             m_SendDisciplesPanel = sendDisciplesPanel;
             m_PanelType = panelType;
-			BindAddListenerEvent();
-			RefreshPanelTypeInfo();
-		}
+            BindAddListenerEvent();
+            OnInit();
+            RefreshPanelInfo();
+        }
+
         private void RefreshDiscipleColor()
         {
             switch (m_CharacterItem.quality)
@@ -60,19 +54,21 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            m_Btn.onClick.AddListener(()=> {
+            m_Btn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
                     case PanelType.Challenge:
+                    case PanelType.Tower:
                         EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_PanelType);
                         break;
                     default:
                         break;
                 }
             });
-		}
+        }
         public void RefreshPanelInfo()
         {
             switch (m_SelelctedState)
@@ -94,6 +90,7 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            OnRefreshPanelInfo();
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)
@@ -105,7 +102,8 @@ namespace GameWish.Game
             }
             else
             {
-                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+
+                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
             }
             RefreshPanelInfo();
@@ -114,31 +112,9 @@ namespace GameWish.Game
         {
             m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
-        private void RefreshPanelTypeInfo()
-		{
-            switch (m_PanelType)
-            {
-                case PanelType.Task:
-                    //m_Btn.enabled = false;
-                case PanelType.Challenge:
-                    RefreshPanelInfo();
-                    break;
-                default:
-                    break;
-            }
-        }
-        private void OnDestroy()
-        {
-            m_Loader?.Release();
-        }
-        private void OnDisable()
-        {
-            
-        }
+
+        protected virtual void OnInit() { }
+        protected virtual void OnRefreshPanelInfo() { }
     }
-	
+
 }

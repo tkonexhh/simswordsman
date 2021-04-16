@@ -31,11 +31,13 @@ namespace GameWish.Game
         private CharacterWorkProgressBar m_WorkProgressBar = null;
         private CharacterWorkTip m_WorkTip = null;
 
-        public BoneFollower BoneFollower_Foot => m_BoneFollower_Foot;
-        public GameObject Body => m_Body;
+        public BoneFollower BoneFollower_Foot { get => m_BoneFollower_Foot; set => m_BoneFollower_Foot = value; }
+        public GameObject Body  { get => m_Body; set => m_Body = value; }
+        public GameObject HeadPos { get => m_HeadPos; set => m_HeadPos = value; }
 
         public CharacterWorkProgressBar WorkProgressBar { get => m_WorkProgressBar;}
         public PolyNavAgent NavAgent { get => m_NavAgent;}
+        public GameObject Clean_DragSmoke { get => m_Clean_DragSmoke; set => m_Clean_DragSmoke = value; }
 
         public void Init()
         {
@@ -48,7 +50,12 @@ namespace GameWish.Game
             //m_NavAgent.enabled = false;
             m_NavAgent.OnDestinationReached += OnReach;
 
-            if (m_SpineAnim == null)
+            SetSpineAnim();
+        }
+
+        public void SetSpineAnim(bool reset = false)
+        {
+            if (m_SpineAnim == null || reset)
                 m_SpineAnim = m_Body.GetComponent<SkeletonAnimation>();
 
             m_SpineAnim.Initialize(true);
@@ -301,6 +308,14 @@ namespace GameWish.Game
                 GameObjectPoolMgr.S.Recycle(m_WorkTip.gameObject);
                 m_WorkTip = null;
             }
+        }
+
+        public string GetCurRuningAnimName()
+        {
+            Spine.TrackEntry trackEntry = m_SpineAnim.AnimationState.GetCurrent(0);
+            string name = trackEntry.Animation.Name;
+
+            return name;
         }
         #endregion
 

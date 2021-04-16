@@ -516,7 +516,10 @@ MonoBehaviour:
   m_CountDown: {fileID: 7447359358717426707}
   m_CountDownSlider: {fileID: 7377308626040920628}
   m_DoubleSpeedBtn: {fileID: 8795004188658358479}
+  m_DoubleSpeedBtnImg: {fileID: 2546222900828733241}
   m_StateLock: {fileID: 4441541560492260291}
+  m_YellowColor: {r: 0.69803923, g: 0.49803922, b: 0.29411766, a: 1}
+  m_GrayColor: {r: 0.56078434, g: 0.53333336, b: 0.4745098, a: 1}
 --- !u!1 &1806161737025740952
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,13 +624,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.69803923, g: 0.49803922, b: 0.29411766, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 93951f49c42c13748b9ad5ddaf99663a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0265d3365d61ac4681390404ad95e5f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

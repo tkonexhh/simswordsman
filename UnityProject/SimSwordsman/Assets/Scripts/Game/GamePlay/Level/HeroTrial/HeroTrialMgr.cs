@@ -35,7 +35,7 @@ namespace GameWish.Game
         public int TrialDiscipleID { get => m_DbData.characterId; }
         public HeroTrialStateID CurState { get => m_CurState; }
         public double TrialTotalTime { get => m_TrialTotalTime; }
-        public ClanType TrialClan { get => m_DbData.clanType; }
+        public ClanType TrialClan { get => m_TrialClanType; }
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
 
@@ -97,8 +97,6 @@ namespace GameWish.Game
             }
         }
 
-        
-
         public void OnExitHeroTrial()
         {
             UnregisterEvents();
@@ -134,21 +132,27 @@ namespace GameWish.Game
         }
 
         public void StartTrial(int characterId)
-        {
-         
-            ClanType clanType = GetNextClanType(m_DbData.clanType);
+        {       
             m_TrialStartTime = DateTime.Now;
-            m_DbData.OnTrialStart(DateTime.Now, characterId, clanType);
+            m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
             StartCountDown();
         }
 
         public void FinishTrial()
         {
-            m_FightGroup.OurCharacter.CharacterModel.SetIsHero();
+            m_FightGroup.OurCharacter.CharacterModel.SetIsHero(m_DbData.clanType);
+            CharacterController characterInGame = MainGameMgr.S.CharacterMgr.GetCharacterController(m_FightGroup.OurCharacter.CharacterId);
+            if (characterInGame != null)
+            {
+                characterInGame.ChangeBody(CharacterQuality.Hero, m_DbData.clanType);
+            }
 
             m_DbData.OnTrialFinished();
             SetState(m_DbData.state);
+
+            //Refresh next trial clantype
+            m_TrialClanType = GetNextClanType(m_DbData.clanType);
         }
 
         public void Reset()
@@ -260,7 +264,9 @@ namespace GameWish.Game
         {
             TimeSpan time = DateTime.Now - m_TrialStartTime;
             double leftTime = m_TrialTotalTime - time.TotalSeconds;
-            Log.i("Left time: " + leftTime);
+            if (leftTime < 0)
+                leftTime = 0;
+
             return leftTime;
         }
         #endregion

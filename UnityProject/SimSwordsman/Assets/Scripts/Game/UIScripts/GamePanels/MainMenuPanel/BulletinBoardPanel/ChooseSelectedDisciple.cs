@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class ChooseSelectedDisciple : MonoBehaviour,ItemICom
-	{
+    public class ChooseSelectedDisciple : MonoBehaviour, ItemICom
+    {
         [SerializeField]
         private Button m_ChooseSelectedDisciple;
         [SerializeField]
@@ -18,7 +18,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
-        private GameObject m_SelectedImg;    
+        private GameObject m_SelectedImg;
         [SerializeField]
         private GameObject m_Plus;
         [SerializeField]
@@ -29,7 +29,8 @@ namespace GameWish.Game
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
             RefreshPanelInfo();
-            m_ChooseSelectedDisciple.onClick.AddListener(()=> {
+            m_ChooseSelectedDisciple.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, false);
@@ -77,7 +78,7 @@ namespace GameWish.Game
                 return true;
             else
             {
-                Log.w("当前弟子未选中");
+                Log.w("褰撳墠寮熷瓙鏈�変腑");
                 return false;
             }
         }
@@ -90,17 +91,14 @@ namespace GameWish.Game
                 m_DiscipleHead.sprite = obj;
             });
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
-        public void SetSelectedDisciple(CharacterItem characterItem,bool isSelected)
+
+        public void SetSelectedDisciple(CharacterItem characterItem, bool isSelected)
         {
             m_CharacterItem = characterItem;
             if (isSelected)
             {
                 m_SelelctedState = SelectedState.Selected;
-                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
             }
             else
                 m_SelelctedState = SelectedState.NotSelected;
@@ -114,9 +112,7 @@ namespace GameWish.Game
             }
 
         }
-        private void OnDisable()
-        {
-        }
+
     }
-	
-}	
+
+}
