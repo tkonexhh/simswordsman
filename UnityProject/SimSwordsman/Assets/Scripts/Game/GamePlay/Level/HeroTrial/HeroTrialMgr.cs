@@ -35,7 +35,7 @@ namespace GameWish.Game
         public int TrialDiscipleID { get => m_DbData.characterId; }
         public HeroTrialStateID CurState { get => m_CurState; }
         public double TrialTotalTime { get => m_TrialTotalTime; }
-        public ClanType TrialClan { get => m_DbData.clanType; }
+        public ClanType TrialClan { get => m_TrialClanType; }
         public BattleField BattleField { get => m_BattleField; }
         public FightGroup FightGroup { get => m_FightGroup; set => m_FightGroup = value; }
 
@@ -135,9 +135,9 @@ namespace GameWish.Game
 
         public void StartTrial(int characterId)
         {       
-            ClanType clanType = GetNextClanType(m_DbData.clanType);
+            m_TrialClanType = GetNextClanType(m_DbData.clanType);
             m_TrialStartTime = DateTime.Now;
-            m_DbData.OnTrialStart(DateTime.Now, characterId, clanType);
+            m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
             StartCountDown();
         }
