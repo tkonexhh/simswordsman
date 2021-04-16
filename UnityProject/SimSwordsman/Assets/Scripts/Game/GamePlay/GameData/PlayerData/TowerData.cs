@@ -36,11 +36,26 @@ namespace GameWish.Game
                 if (!m_TowerCharacterMap.ContainsKey(c.id))
                     m_TowerCharacterMap.Add(c.id, c);
             });
+
+            if (enemyPoolLst.Count == 0)
+                InitEnemy();
+
+            if (shopInfoLst.Count == 0)
+                RandomShopData();
+
+            SetDataDirty();
         }
 
         public void ResetDailyData()
         {
             maxLevel = 1;
+            InitEnemy();
+            RandomShopData();
+            SetDataDirty();
+        }
+
+        private void InitEnemy()
+        {
             enemyPoolLst.Clear();
             for (int i = 0; i < TowerDefine.MAXLEVEL; i++)
             {
@@ -58,10 +73,6 @@ namespace GameWish.Game
             }
 
             KnuthDurstenfeldShuffle(enemyPoolLst);
-
-            RandomShopData();
-
-            SetDataDirty();
         }
 
         public TowerLevelEnemyDB GetEnemyPoolIDByIndex(int index)
