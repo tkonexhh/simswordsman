@@ -51,10 +51,10 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-            m_LevelConfigInfo = null;
-            //m_CurChapterConfigInfo = null;
-            m_TowerLevelConfig = null;
-            m_CurTaskInfo = null;
+            //m_LevelConfigInfo = null;
+            ////m_CurChapterConfigInfo = null;
+            //m_TowerLevelConfig = null;
+            //m_CurTaskInfo = null;
 
             CloseDependPanel(EngineUI.MaskPanel);
 
