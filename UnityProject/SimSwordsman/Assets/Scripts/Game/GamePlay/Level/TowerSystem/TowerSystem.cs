@@ -54,6 +54,7 @@ namespace GameWish.Game
                 levelConfig.SetEnemyFormDB(basicATK);
             }
 
+            // Debug.LogError(levelConfig.enemiesList.Count);
             //随机敌人
             EventSystem.S.Send(EventID.OnEnterBattle, levelConfig.enemiesList, owerCharacter);
             UIMgr.S.OpenPanel(UIID.CombatInterfacePanel, PanelType.Tower, levelConfig);
@@ -79,8 +80,8 @@ namespace GameWish.Game
                     var towerCharacterDB = m_TowerData.GetTowerCharacterByID(id);
                     if (towerCharacterDB != null)
                     {
-                        Debug.LogError(towerCharacterDB.hpRate);
-                        // character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
+                        // Debug.LogError(towerCharacterDB.hpRate);
+                        character.CharacterModel.SetHp(character.CharacterModel.GetHp() * towerCharacterDB.hpRate);
                     }
                 }
                 else

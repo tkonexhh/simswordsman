@@ -28,6 +28,8 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshTowerCoin, RefeshFCoin);
             OnRefeshTowerShop(0);
             RefeshFCoin(0);
+
+            m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
         }
 
         private void OnClickADRefesh()
