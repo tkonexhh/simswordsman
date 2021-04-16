@@ -326,6 +326,7 @@ namespace GameWish.Game
 
         public void SetIsHero(ClanType clanType)
         {
+            quality = CharacterQuality.Hero;
             GameDataMgr.S.GetClanData().SetIsHero(id, clanType);
         }
         /// <summary>
@@ -554,6 +555,11 @@ namespace GameWish.Game
                 atkValue *= item.GetKungfuAtkScale();
             }
 
+            if (quality == CharacterQuality.Hero)
+            {
+                atkValue *= 1.25f;
+            }
+
             EventSystem.S.Send(EventID.OnMainMenuChallenging);
             GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }
@@ -569,6 +575,10 @@ namespace GameWish.Game
             foreach (var item in kongfus.Values)
             {
                 atk *= item.GetKungfuAtkScale();
+            }
+            if (quality == CharacterQuality.Hero)
+            {
+                atkValue *= 1.25f;
             }
             return atk;
         }

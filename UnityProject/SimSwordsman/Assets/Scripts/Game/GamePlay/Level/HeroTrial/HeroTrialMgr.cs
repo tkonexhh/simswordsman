@@ -155,6 +155,8 @@ namespace GameWish.Game
 
             //Refresh next trial clantype
             m_TrialClanType = GetNextClanType(m_DbData.clanType);
+
+            EventSystem.S.Send(EventID.OnEnableFinishBtn);
         }
 
         public void Reset()

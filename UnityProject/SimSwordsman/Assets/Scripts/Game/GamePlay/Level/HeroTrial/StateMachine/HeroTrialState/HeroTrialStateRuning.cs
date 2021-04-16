@@ -189,7 +189,6 @@ namespace GameWish.Game
                     break;
 
                 case (int)EventID.OnCharacterInFightGroupDead:
-
                     if (m_HeroTialMgr.GetLeftTime() <= 0)
                     {
                         Log.i("Time over, finish trial");
