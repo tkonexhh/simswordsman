@@ -36,7 +36,7 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             });
 
-            m_WeChatShareBtn.onClick.AddListener(()=> 
+            m_WeChatShareBtn.onClick.AddListener(() =>
             {
                 DataAnalysisMgr.S.CustomEvent(DotDefine.Click_WeChatShare_Btn);
                 WeChatShareMgr.S.Share(WeChatTex.PrefectCharacter);
@@ -51,7 +51,7 @@ namespace GameWish.Game
             m_WeChatShareBtn.gameObject.SetActive(false);
 
             m_DiscipleImg.enabled = true;
-            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
+            m_DiscipleImg.sprite = FindSprite(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
             m_DiscipleImg.SetNativeSize();
 
             m_CurrentClickType = (ClickType)args[1];
@@ -105,10 +105,7 @@ namespace GameWish.Game
             MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
             EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
+
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
@@ -124,7 +121,7 @@ namespace GameWish.Game
 
             EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
 
-            //Òýµ¼
+            //ï¿½ï¿½ï¿½ï¿½
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
             {
                 GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;

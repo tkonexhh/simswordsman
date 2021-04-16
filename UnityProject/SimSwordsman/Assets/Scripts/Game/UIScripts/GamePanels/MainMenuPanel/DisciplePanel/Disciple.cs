@@ -19,7 +19,7 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_DiscipleImg;
         [SerializeField]
-        private Image m_Line;   
+        private Image m_Line;
         [SerializeField]
         private Image m_DiscipleSmallHead;
         [SerializeField]
@@ -29,7 +29,7 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
-        private Transform m_DiscipleState;    
+        private Transform m_DiscipleState;
         [SerializeField]
         private GameObject m_DiscipleRedPoint;
 
@@ -54,12 +54,12 @@ namespace GameWish.Game
 
         public void SetShowLine(int num)
         {
-            if (num==0)
+            if (num == 0)
             {
                 m_LineRightBottom.gameObject.SetActive(true);
                 m_LineBottom.gameObject.SetActive(false);
             }
-            else if(num ==1)
+            else if (num == 1)
             {
                 m_LineRightBottom.gameObject.SetActive(false);
                 m_LineBottom.gameObject.SetActive(true);
@@ -103,16 +103,12 @@ namespace GameWish.Game
                         break;
                 }
             }
-            m_DiscipleImg.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacter));
+            m_DiscipleImg.sprite = m_ParentPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacter));
         }
 
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
 
         /// <summary>
-        /// 获取当前弟子的id
+        /// 锟斤拷取锟斤拷前锟斤拷锟接碉拷id
         /// </summary>
         /// <returns></returns>
         public int GetCurDiscipleId()
@@ -124,12 +120,13 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-           
+
         }
 
         public void SetButtonEvent(Action<object> action)
         {
-            m_DiscipleBtn.onClick.AddListener(() => {
+            m_DiscipleBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 action?.Invoke(m_CurCharacter);
