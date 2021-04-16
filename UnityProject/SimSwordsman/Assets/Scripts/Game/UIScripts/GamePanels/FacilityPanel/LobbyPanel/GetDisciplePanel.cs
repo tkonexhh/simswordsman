@@ -51,7 +51,7 @@ namespace GameWish.Game
             m_WeChatShareBtn.gameObject.SetActive(false);
 
             m_DiscipleImg.enabled = true;
-            m_DiscipleImg.sprite = FindSprite(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
+            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
             m_DiscipleImg.SetNativeSize();
 
             m_CurrentClickType = (ClickType)args[1];
@@ -105,7 +105,10 @@ namespace GameWish.Game
             MainGameMgr.S.CharacterMgr.SpawnCharacterController(m_CharacterItem);
             EventSystem.S.Send(EventID.OnRefreshPanelInfo, m_RecruitType, m_CurrentClickType);
         }
-
+        private string GetLoadDiscipleName(CharacterItem characterItem)
+        {
+            return characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        }
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();

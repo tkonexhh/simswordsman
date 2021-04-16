@@ -8,7 +8,7 @@ namespace GameWish.Game
     public class TowerDefine
     {
         public const int MAXLEVEL = 10;
-        public const int CHARACT_MINLEVEL = 5;//50
+        public const int CHARACT_MINLEVEL = 1;//50
     }
 
 }
