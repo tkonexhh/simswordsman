@@ -9,13 +9,15 @@ namespace GameWish.Game
     public class TowerShopPanel : AbstractPanel
     {
         [SerializeField] private Button m_BtnClose;
+        [SerializeField] private Button m_BtnFullClose;
         [SerializeField] private Button m_BtnADRefesh;
-
+        [SerializeField] private Text m_TxtFcoin;
         [SerializeField] private TowerShopItem[] m_ItemInfos;
 
         protected override void OnUIInit()
         {
-            m_BtnClose.onClick.AddListener(CloseSelfPanel);
+            m_BtnClose.onClick.AddListener(OnClickClose);
+            m_BtnFullClose.onClick.AddListener(OnClickClose);
             m_BtnADRefesh.onClick.AddListener(OnClickADRefesh);
         }
 
@@ -23,8 +25,9 @@ namespace GameWish.Game
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
             RegisterEvent(EventID.OnRefeshTowerShop, OnRefeshTowerShop);
-
+            RegisterEvent(EventID.OnRefeshTowerCoin, RefeshFCoin);
             OnRefeshTowerShop(0);
+            RefeshFCoin(0);
         }
 
         private void OnClickADRefesh()
@@ -37,8 +40,18 @@ namespace GameWish.Game
             var shopInfoLst = GameDataMgr.S.GetPlayerData().towerData.shopInfoLst;
             for (int i = 0; i < m_ItemInfos.Length; i++)
             {
-                m_ItemInfos[i].SetItem(i, TDTowerShopTable.GetShopItemInfoByID(shopInfoLst[i].id));
+                m_ItemInfos[i].SetItem(this, i, TDTowerShopTable.GetShopItemInfoByID(shopInfoLst[i].id));
             }
+        }
+
+        private void RefeshFCoin(int key, params object[] args)
+        {
+            m_TxtFcoin.text = GameDataMgr.S.GetPlayerData().towerData.coin.ToString();
+        }
+
+        private void OnClickClose()
+        {
+            CloseSelfPanel();
         }
     }
 

@@ -39,10 +39,11 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8d3e2e267ff4e4779a09cd9fba4839c1, type: 3}
     - {fileID: 2800000, guid: adbf32e35e9904f1787fbe7d9fc0cf8b, type: 3}
     - {fileID: 2800000, guid: 414a8194b165f43feb561667c7b5bcc6, type: 3}
-    - {fileID: 2800000, guid: a1662dbb8cc8e4666a30a8d867a19bad, type: 3}
     - {fileID: 2800000, guid: e9ab9295da7584610804e807d7d7e509, type: 3}
     - {fileID: 2800000, guid: 01dd39c97dd9d4fc68c95da7e94a2cd3, type: 3}
     - {fileID: 2800000, guid: e3e7eb3e2d051476986922649bc0cfa1, type: 3}
+    - {fileID: 2800000, guid: 1bcb3a732a6604893ba9d66928f9a543, type: 3}
+    - {fileID: 2800000, guid: 1d595886a4da44300b4b600a17efd105, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -50,28 +51,30 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6641bdd26f4c3457c95b4bb261c6d856, type: 3}
   - {fileID: 21300000, guid: 0cac15535ad6b4f89a3571a9f5761360, type: 3}
   - {fileID: 21300000, guid: d7a0c46363bb24eea8e749297ca3a0f4, type: 3}
+  - {fileID: 21300000, guid: 1bcb3a732a6604893ba9d66928f9a543, type: 3}
   - {fileID: 21300000, guid: adbf32e35e9904f1787fbe7d9fc0cf8b, type: 3}
   - {fileID: 21300000, guid: 414a8194b165f43feb561667c7b5bcc6, type: 3}
   - {fileID: 21300000, guid: e9ab9295da7584610804e807d7d7e509, type: 3}
   - {fileID: 21300000, guid: 8d3e2e267ff4e4779a09cd9fba4839c1, type: 3}
+  - {fileID: 21300000, guid: 1d595886a4da44300b4b600a17efd105, type: 3}
   - {fileID: 21300000, guid: 9f96cdd7a1bab40609ab9c5e047b613b, type: 3}
   - {fileID: 21300000, guid: aad00b39beb3c4808bffb03dde0ea17e, type: 3}
   - {fileID: 21300000, guid: 01dd39c97dd9d4fc68c95da7e94a2cd3, type: 3}
-  - {fileID: 21300000, guid: a1662dbb8cc8e4666a30a8d867a19bad, type: 3}
   - {fileID: 21300000, guid: e3e7eb3e2d051476986922649bc0cfa1, type: 3}
   m_PackedSpriteNamesToIndex:
   - tawoer-anniu2
   - tawoer-beijing
   - tawoer-anniu
   - tawoer-denglong
+  - TowerPanel_Locked
   - tawoer-qianbi
   - tawoer-shangcheng
   - tawoer-tading
   - tawoer-lingqu
+  - TowerPanel_TowerBottom
   - tawoer-biaoti
   - tawoer-ceng
   - tawoer-tashen
-  - tawoer-suolian
   - tawoer-touxiang
   m_Tag: TowerPanelAtlas
   m_IsVariant: 0

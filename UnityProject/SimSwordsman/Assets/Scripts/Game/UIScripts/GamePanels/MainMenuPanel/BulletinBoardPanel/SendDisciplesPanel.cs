@@ -309,7 +309,7 @@ namespace GameWish.Game
                             return;
                         }
                         UseHerb();
-                        MainGameMgr.S.TowerSystem.StartLevel(m_SelectedList);
+                        MainGameMgr.S.TowerSystem.StartLevel(m_SelectedList, m_TowerLevelConfig.basicATK);
                         break;
                     default:
                         break;
@@ -350,6 +350,41 @@ namespace GameWish.Game
                     }
                     break;
                 case PanelType.Tower:
+                    CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+                    if (m_AllCharacterList.Count >= MaxDiscipleNumber)
+                    {
+                        for (int i = 0; i < MaxDiscipleNumber; i++)
+                        {
+                            //判断死没死
+                            int id = m_AllCharacterList[i].id;
+                            var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
+                            if (towerCharacterDB != null && towerCharacterDB.IsDead())
+                            {
+                                continue;
+                            }
+                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                                continue;
+                            m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < m_AllCharacterList.Count; i++)
+                        {
+                            //判断死没死
+                            int id = m_AllCharacterList[i].id;
+                            var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
+                            if (towerCharacterDB != null && towerCharacterDB.IsDead())
+                            {
+                                continue;
+                            }
+                            if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                                continue;
+                            m_SelectedDiscipleDic.Add(id, m_AllCharacterList[i]);
+                        }
+
+                    }
+
                     break;
                 default:
                     break;

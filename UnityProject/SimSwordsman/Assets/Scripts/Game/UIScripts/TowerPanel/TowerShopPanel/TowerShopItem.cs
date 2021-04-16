@@ -8,11 +8,13 @@ namespace GameWish.Game
     public class TowerShopItem : MonoBehaviour
     {
         [SerializeField] private Image m_ImgRewardIcon;
-        [SerializeField] private Text m_TxtRewardName;
+        [SerializeField] private Text m_TxtRewardNum;
         [SerializeField] private Text m_TxtCost;
+        [Header("购买")]
         [SerializeField] private Button m_BtnBuy;
-
-        [SerializeField] private Text m_TxtID;
+        [Header("已购买")]
+        [SerializeField] private GameObject m_ObjBuyed;
+        [SerializeField] private GameObject m_ObjBuyedDark;
 
         private TowerShopItemInfo m_ItemInfo;
         private int m_Index;
@@ -22,16 +24,15 @@ namespace GameWish.Game
             m_BtnBuy.onClick.AddListener(OnClickBuy);
         }
 
-        public void SetItem(int index, TowerShopItemInfo itemInfo)
+        public void SetItem(TowerShopPanel panel, int index, TowerShopItemInfo itemInfo)
         {
             m_Index = index;
-            m_TxtID.text = itemInfo.id.ToString();
             m_ItemInfo = itemInfo;
+            m_TxtRewardNum.text = "x" + m_ItemInfo.reward.Count;
             m_ItemInfo.buyed = GameDataMgr.S.GetPlayerData().towerData.GetShopDataByIndex(index).buyed;
-            // m_ImgRewardIcon.sprite=m_ItemInfo.reward.SpriteName
-            m_TxtRewardName.text = m_ItemInfo.reward.RewardName();
+            m_ImgRewardIcon.sprite = panel.FindSprite(m_ItemInfo.reward.SpriteName());
             m_TxtCost.text = m_ItemInfo.price.ToString();
-            m_BtnBuy.gameObject.SetActive(!itemInfo.buyed);
+            RefeshBuyed(itemInfo.buyed);
         }
 
         private void OnClickBuy()
@@ -39,9 +40,16 @@ namespace GameWish.Game
             if (GameDataMgr.S.GetPlayerData().towerData.AddCoin(-m_ItemInfo.price))
             {
                 MainGameMgr.S.TowerSystem.BuyShopItem(m_Index, m_ItemInfo);
-                m_BtnBuy.gameObject.SetActive(false);
+                RefeshBuyed(true);
             }
 
+        }
+
+        private void RefeshBuyed(bool buyed)
+        {
+            m_ObjBuyed.gameObject.SetActive(buyed);
+            m_ObjBuyedDark.gameObject.SetActive(buyed);
+            m_BtnBuy.gameObject.SetActive(!buyed);
         }
     }
 

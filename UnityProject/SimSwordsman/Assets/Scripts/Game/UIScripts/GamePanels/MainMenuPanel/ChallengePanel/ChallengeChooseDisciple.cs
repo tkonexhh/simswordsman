@@ -94,6 +94,38 @@ namespace GameWish.Game
                     m_ConfirmText.text = "出发";
                     break;
                 case PanelType.Tower:
+                    for (int i = m_AllDiscipleList.Count - 1; i >= 0; i--)
+                    {
+                        //移除等级低于要求的弟子
+                        if (m_AllDiscipleList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                        {
+                            m_AllDiscipleList.RemoveAt(i);
+                        }
+                    }
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+
+                    //接下来排序
+                    var towerData = GameDataMgr.S.GetPlayerData().towerData;
+                    m_AllDiscipleList.Sort((x, y) =>
+                    {
+                        var charactX = towerData.GetTowerCharacterByID(x.id);
+                        var charactY = towerData.GetTowerCharacterByID(x.id);
+                        if (charactX == null && charactY == null)
+                        {
+                            return 0;
+                        }
+
+                        // if (charactX == null || charactY == null)
+                        // {
+                        //     bool? isDeadX = charactX?.IsDead();
+                        //     bool? isDeadY = charactY?.IsDead();
+                        //     return isDeadX > isDeadY;
+                        // }
+
+                        return 0;
+                    });
+
+
                     m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         CreateDisciple(m_AllDiscipleList[i]);
@@ -117,6 +149,7 @@ namespace GameWish.Game
         {
             base.OnClose();
             CloseDependPanel(EngineUI.MaskPanel);
+            m_AllDiscipleList.Clear();
         }
 
         private void HandAddListenerEvent(int key, object[] param)
@@ -160,6 +193,11 @@ namespace GameWish.Game
                         }
                         break;
                     case PanelType.Tower:
+                        if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                            return;
+                        }
                         break;
                     default:
                         break;
@@ -290,7 +328,7 @@ namespace GameWish.Game
         }
         private void GetInformationForNeed()
         {
-            m_AllDiscipleList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            m_AllDiscipleList = new List<CharacterItem>(MainGameMgr.S.CharacterMgr.GetAllCharacterList());
         }
 
         private void BindAddListenerEvent()

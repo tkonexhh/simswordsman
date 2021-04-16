@@ -169,14 +169,15 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public List<EnemyConfig> GetEnemys()
+        public List<EnemyConfig> GetEnemys(float baseAtk)
         {
             List<EnemyConfig> enemyConfigs = new List<EnemyConfig>();
-            foreach (var db in enemyCharacterLst)
+            for (int i = 0; i < enemyCharacterLst.Count; i++)
             {
-                EnemyConfig enemy = new EnemyConfig(db.id, 1, 150);
+                EnemyConfig enemy = new EnemyConfig(enemyCharacterLst[i].id, 1, (int)(i == 0 ? baseAtk * 1.5f : baseAtk));
                 enemyConfigs.Add(enemy);
             }
+
             return enemyConfigs;
         }
 
