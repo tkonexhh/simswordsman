@@ -133,8 +133,7 @@ namespace GameWish.Game
         }
 
         public void StartTrial(int characterId)
-        {
-         
+        {       
             ClanType clanType = GetNextClanType(m_DbData.clanType);
             m_TrialStartTime = DateTime.Now;
             m_DbData.OnTrialStart(DateTime.Now, characterId, clanType);
@@ -144,7 +143,12 @@ namespace GameWish.Game
 
         public void FinishTrial()
         {
-            m_FightGroup.OurCharacter.CharacterModel.SetIsHero();
+            m_FightGroup.OurCharacter.CharacterModel.SetIsHero(m_DbData.clanType);
+            CharacterController characterInGame = MainGameMgr.S.CharacterMgr.GetCharacterController(m_FightGroup.OurCharacter.CharacterId);
+            if (characterInGame != null)
+            {
+                characterInGame.ChangeBody(CharacterQuality.Hero, m_DbData.clanType);
+            }
 
             m_DbData.OnTrialFinished();
             SetState(m_DbData.state);
@@ -259,7 +263,9 @@ namespace GameWish.Game
         {
             TimeSpan time = DateTime.Now - m_TrialStartTime;
             double leftTime = m_TrialTotalTime - time.TotalSeconds;
-            Log.i("Left time: " + leftTime);
+            if (leftTime < 0)
+                leftTime = 0;
+
             return leftTime;
         }
         #endregion

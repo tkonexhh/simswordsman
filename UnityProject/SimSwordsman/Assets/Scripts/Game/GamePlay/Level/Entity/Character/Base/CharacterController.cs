@@ -1,4 +1,5 @@
 using Qarth;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -396,6 +397,58 @@ namespace GameWish.Game
             {
                 SpawnCollectedObjWorkReward(collectedObjType, count);
             }, delay);
+        }
+
+        public void ChangeBody( CharacterQuality characterQuality, ClanType clanType)
+        {
+            GameObject go = CharacterLoader.S.GetCharacterGo(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType);
+            if (go == null)
+            {
+                CharacterLoader.S.LoadCharactersync(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType, 1, 1);
+                go = CharacterLoader.S.GetCharacterGo(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType);
+
+                if (go == null)
+                {
+                    Log.e("Load character return null: " + m_CharacterModel.CharacterItem.id + " Quality: " + characterQuality + " clantype: " + clanType);
+                    return;
+                }
+            }
+
+            CharacterView characterView = go.GetComponent<CharacterView>();
+            characterView.enabled = false;
+            PolyNavAgent polyNavAgent = go.GetComponent<PolyNavAgent>();
+            polyNavAgent.enabled = false;
+
+            string animName = m_CharacterView.GetCurRuningAnimName();
+
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.localPosition = Vector3.zero;
+
+            GameObject.Destroy(m_CharacterView.Body.gameObject);
+            GameObject.Destroy(m_CharacterView.HeadPos.gameObject);
+            if(m_CharacterView.BoneFollower_Foot != null)
+                GameObject.Destroy(m_CharacterView.BoneFollower_Foot.gameObject);
+            if (m_CharacterView.Clean_DragSmoke != null)
+                GameObject.Destroy(m_CharacterView.Clean_DragSmoke.gameObject);
+            BoneFollower[] boneFollower = m_CharacterView.transform.GetComponentsInChildren<BoneFollower>();
+            foreach (BoneFollower b in boneFollower)
+            {
+                GameObject.Destroy(b.gameObject);
+            }
+
+            m_CharacterView.Body = go.transform.Find("Body").gameObject;
+            m_CharacterView.HeadPos = go.transform.Find("HeadPos").gameObject;
+            m_CharacterView.BoneFollower_Foot = null; // Set null for now
+            m_CharacterView.Clean_DragSmoke = null; // Set null for now
+
+            m_CharacterView.SetSpineAnim(true);
+            //GameObjectPoolMgr.S.Recycle(m_CharacterView.gameObject);
+
+            //m_CharacterView = characterView;
+            //m_CharacterView.Init();
+            //m_CharacterView.SetController(this);
+            m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
+            m_CharacterView.PlayAnim(animName, true, null);
         }
         #endregion
 

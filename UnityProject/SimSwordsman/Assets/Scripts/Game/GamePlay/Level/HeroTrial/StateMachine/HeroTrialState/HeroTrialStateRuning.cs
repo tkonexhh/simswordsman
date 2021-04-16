@@ -122,7 +122,7 @@ namespace GameWish.Game
 
             CharacterItem characterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(id);
 
-            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
+            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
             if (go != null)
             {
                 go.transform.SetParent(m_HeroTialMgr.BattleField.transform);

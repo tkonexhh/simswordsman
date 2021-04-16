@@ -240,15 +240,15 @@ namespace GameWish.Game
             if (isSpawned)
                 return;
 
-            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
+            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
             if (go != null)
             {
                 OnCharacterLoaded(go, id, initState);
             }
             else
             {
-                CharacterLoader.S.LoadCharactersync(id, characterItem.quality, characterItem.bodyId, null);
-                GameObject obj = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
+                CharacterLoader.S.LoadCharactersync(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
+                GameObject obj = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
                 OnCharacterLoaded(obj, id, initState);
             }
         }
