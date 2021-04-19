@@ -11,6 +11,9 @@ namespace GameWish.Game
         public const int MAXLEVEL = 10;
         public const int CHARACT_MINLEVEL = 1;//50
         public const int MAX_CHARACT_NUM = 20;
+
+
+        public const string SAVEKEY_NEWDAYSHOW = "TowerNewDay";
     }
 
 }

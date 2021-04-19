@@ -59,7 +59,7 @@ namespace GameWish.Game
 
         private void InitLevelConfig()
         {
-            Debug.LogError("InitLevelConfig");
+
             towerLevelConfigs.Clear();
 
             var enemyPoolLst = new List<TowerLevelEnemyDB>();
@@ -105,6 +105,7 @@ namespace GameWish.Game
                 // Debug.LogError(levelConfig.reward);
                 towerLevelConfigs.Add(levelConfig);
             }
+            DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false);
             SetDataDirty();
         }
 

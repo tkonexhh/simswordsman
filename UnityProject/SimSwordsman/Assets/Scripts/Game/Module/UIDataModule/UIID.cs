@@ -84,7 +84,9 @@ namespace GameWish.Game
         TowerRulePanel,
         TowerShopPanel,
         TowerADRefeshPanel,
+        TowerCantRefeshPanel,
         TowerRevivePanel,
+        TowerNewDayPanel,
         #endregion
 
         #region 英雄试炼

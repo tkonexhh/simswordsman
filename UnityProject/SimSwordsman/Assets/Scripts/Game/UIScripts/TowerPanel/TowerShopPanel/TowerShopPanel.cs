@@ -34,13 +34,16 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshTowerCoin, RefeshFCoin);
             OnRefeshTowerShop(0);
             RefeshFCoin(0);
-
-            m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
+            RefeshRemainTime();
+            // m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
         }
 
         private void OnClickADRefesh()
         {
-            UIMgr.S.OpenPanel(UIID.TowerADRefeshPanel);
+            if (GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2)
+                UIMgr.S.OpenPanel(UIID.TowerADRefeshPanel);
+            else
+                UIMgr.S.OpenPanel(UIID.TowerCantRefeshPanel);
         }
 
         private void OnRefeshTowerShop(int key, params object[] args)
