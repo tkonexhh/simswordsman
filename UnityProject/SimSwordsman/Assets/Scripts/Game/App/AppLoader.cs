@@ -10,11 +10,11 @@ namespace GameWish.Game
     {
         private void Awake()
         {
-            bool isKeystoreRight = SecurityVerify.IsCorrect();
-            if (isKeystoreRight == false)
-            {
-                Application.Quit();
-            }
+            //bool isKeystoreRight = SecurityVerify.IsCorrect();
+            //if (isKeystoreRight == false)
+            //{
+            //    Application.Quit();
+            //}
 
             Log.i("Init[{0}]", ApplicationMgr.S.GetType().Name);            
         }

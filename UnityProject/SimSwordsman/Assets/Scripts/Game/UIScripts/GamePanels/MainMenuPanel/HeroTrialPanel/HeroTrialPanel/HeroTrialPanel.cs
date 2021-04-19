@@ -90,7 +90,11 @@ namespace GameWish.Game
                     break;   
                 case (int)EventID.OnEnableFinishBtn:
                     m_TrialComplete = true;
-                    break;
+                    m_FinishTrialBtn.gameObject.SetActive(true);
+                    break;    
+                //case (int)EventID.OnTrialTimeOver:
+                //    m_FinishTrialBtn.gameObject.SetActive(true);
+                //    break;
             }
         }
 
@@ -179,7 +183,7 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, PanelType.HeroTrial);
+                UIMgr.S.OpenPanel(UIID.HeroTrialChooseDisciplePanel, PanelType.HeroTrial);
             });
 
             m_FinishTrialBtn.onClick.AddListener(() =>
@@ -189,6 +193,7 @@ namespace GameWish.Game
                     FloatMessage.S.ShowMsg(" ‘¡∂Œ¥ÕÍ≥…");
                     return;
                 }
+                MainGameMgr.S.HeroTrialMgr.FinishTrial();
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
 
@@ -240,6 +245,11 @@ namespace GameWish.Game
                 m_SelectCharacterBtn.gameObject.SetActive(true);
             else
                 m_SelectCharacterBtn.gameObject.SetActive(false);
+
+            if (m_HeroTrialStateID == HeroTrialStateID.Finished)
+                m_FinishTrialBtn.gameObject.SetActive(true);
+            else
+                m_FinishTrialBtn.gameObject.SetActive(false);
         }
 
         private Sprite GetQualityImg(CharacterQuality quality)
