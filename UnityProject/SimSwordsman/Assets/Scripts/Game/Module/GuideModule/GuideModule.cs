@@ -149,6 +149,11 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_ClickSignBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_ClickSignReceiveBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_FinishedTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_BuildTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickDeliverTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickQuickStartBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickDoubleSpeedUpBtnTrigger));
         }
 
         protected void InitCustomCommand()

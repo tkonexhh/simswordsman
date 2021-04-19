@@ -406,6 +406,11 @@ namespace GameWish.Game
         /// 镖车到达镖局时
         /// </summary>
         OnDeliverCarArrive,
+
+        OnDeliverTrigger_BuildTrigger = 13801,          //镖局建造引导
+        OnDeliverTrigger_ClickDeliverTrigger,           //点击镖局，进入镖局界面
+        OnDeliverTrigger_ClickQuickStartBtnTrigger,     //点击快速出发按钮
+        OnDeliverTrigger_ClickDoubleSpeedUpBtnTrigger,  //点击双倍加速按钮
         #endregion
 
         #region Tower

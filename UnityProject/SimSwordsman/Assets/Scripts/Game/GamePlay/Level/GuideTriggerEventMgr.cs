@@ -393,6 +393,9 @@ namespace GameWish.Game
                     if (GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.PracticeFieldEast).facilityState != FacilityState.Unlocked)
                         EventSystem.S.Send(EventID.OnGuideUnlockPracticeField);
                     break;
+                case FacilityType.Deliver:
+                    EventSystem.S.Send(EventID.OnDeliverTrigger_BuildTrigger);
+                    break;
             }
         }
     }

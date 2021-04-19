@@ -235,6 +235,11 @@ namespace GameWish.Game
 						m_CountDownItemTest.RegisterUpdateCallBack(DeliverCountDownItemUpdateCallBack);
 						m_CountDownItemTest.RegisterEndCallBack(DeliverCountDownItemEndCallBack);
 					}
+
+					if (GuideMgr.S.IsGuideFinish(39) == false && m_SingleDeliverDetailData.DeliverID == 101) 
+					{
+						EventSystem.S.Send(EventID.OnDeliverTrigger_ClickDoubleSpeedUpBtnTrigger);
+					}
 				}
 			});
 			m_DoubleSpeedBtn.onClick.AddListener(()=> 
