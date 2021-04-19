@@ -361,13 +361,20 @@ namespace GameWish.Game
 
                             if (m_AllCharacterList[i].level < TowerDefine.CHARACT_MINLEVEL)
                             {
-                                Debug.LogError(m_AllCharacterList[i].id);
+                                // Debug.LogError(m_AllCharacterList[i].id);
+                                continue;
+                            }
+
+                            int id = m_AllCharacterList[i].id;
+                            var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
+
+                            //判断是否超出数量
+                            if (towerCharacterDB == null && !MainGameMgr.S.TowerSystem.CanAddNewCharacter())
+                            {
                                 continue;
                             }
 
                             //判断死没死
-                            int id = m_AllCharacterList[i].id;
-                            var towerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
                             if (towerCharacterDB != null && towerCharacterDB.IsDead())
                             {
                                 continue;

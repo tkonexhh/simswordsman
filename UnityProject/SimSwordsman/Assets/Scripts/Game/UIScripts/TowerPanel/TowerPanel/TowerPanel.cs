@@ -15,14 +15,12 @@ namespace GameWish.Game
 
         [SerializeField] private IUListView m_ListView;
         [SerializeField] private ScrollRect m_ScrollRect;
+        [SerializeField] private TowerPanelChallengeItem[] m_LevelItems;
 
         //需要两种材质
         private Material m_GreyMat;
 
         public Material greyMat => m_GreyMat;
-        // private Material m_NormalMat;
-
-
 
         protected override void OnUIInit()
         {
@@ -30,8 +28,15 @@ namespace GameWish.Game
             m_BtnShop.onClick.AddListener(OnClickShop);
             m_BtnRule.onClick.AddListener(OnClickRule);
 
-            m_ListView.SetCellRenderer(OnCellRenderer);
+            // m_ListView.SetCellRenderer(OnCellRenderer);
             m_GreyMat = new Material(Shader.Find("XHH/UI/GreyUI"));
+
+            for (int i = 0; i < m_LevelItems.Length; i++)
+            {
+                int level = TowerDefine.MAXLEVEL - i;
+                m_LevelItems[i].Init(this, level);
+                m_LevelItems[i].gameObject.name = "TowerLevelItem" + level;
+            }
         }
 
         protected override void OnOpen()
@@ -57,16 +62,16 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.TowerRulePanel);
         }
 
-        private void OnCellRenderer(Transform root, int index)
-        {
-            int level = TowerDefine.MAXLEVEL - index;
-            root.GetComponent<TowerPanelChallengeItem>().Init(this, level);
-            root.gameObject.name = "TowerLevelItem" + level;
-        }
+        // private void OnCellRenderer(Transform root, int index)
+        // {
+        //     int level = TowerDefine.MAXLEVEL - index;
+        //     root.GetComponent<TowerPanelChallengeItem>().Init(this, level);
+        //     root.gameObject.name = "TowerLevelItem" + level;
+        // }
 
         private void UpdateUI()
         {
-            m_ListView.SetDataCount(TowerDefine.MAXLEVEL);
+            // m_ListView.SetDataCount(TowerDefine.MAXLEVEL);
             m_ScrollRect.verticalNormalizedPosition = 0;
             UpdateCoin();
         }
