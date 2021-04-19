@@ -58,6 +58,11 @@ namespace GameWish.Game
                 //TODO 超过每日20个也不能被选择
 
                 IsSelected = !IsSelected;
+                if (IsSelected && m_TowerCharacterDB == null && !MainGameMgr.S.TowerSystem.CanAddNewCharacter())
+                {
+                    FloatMessage.S.ShowMsg("伏魔塔人数已达到" + TowerDefine.MAX_CHARACT_NUM);
+                    return;
+                }
                 EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, IsSelected);
             });
         }

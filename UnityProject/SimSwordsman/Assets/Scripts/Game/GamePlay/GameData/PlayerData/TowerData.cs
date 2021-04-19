@@ -9,7 +9,7 @@ namespace GameWish.Game
     {
         public int coin;
         public int maxLevel;
-        public List<TowerLevelEnemyDB> enemyPoolLst = new List<TowerLevelEnemyDB>();
+        public List<TowerLevelConfigDB> towerLevelConfigs = new List<TowerLevelConfigDB>();
 
         //自身状态保存
         public List<TowerCharacterDB> towerCharacterLst = new List<TowerCharacterDB>();
@@ -37,9 +37,6 @@ namespace GameWish.Game
                     m_TowerCharacterMap.Add(c.id, c);
             });
 
-            if (enemyPoolLst.Count == 0)
-                InitEnemy();
-
             if (shopInfoLst.Count == 0)
                 RandomShopData();
 
@@ -49,14 +46,23 @@ namespace GameWish.Game
         public void ResetDailyData()
         {
             maxLevel = 1;
-            InitEnemy();
+            InitLevelConfig();
             RandomShopData();
             SetDataDirty();
         }
 
-        private void InitEnemy()
+        public void Init()
         {
-            enemyPoolLst.Clear();
+            if (towerLevelConfigs.Count == 0)
+                InitLevelConfig();
+        }
+
+        private void InitLevelConfig()
+        {
+            Debug.LogError("InitLevelConfig");
+            towerLevelConfigs.Clear();
+
+            var enemyPoolLst = new List<TowerLevelEnemyDB>();
             for (int i = 0; i < TowerDefine.MAXLEVEL; i++)
             {
                 var config = TDTowerEnemyConfigTable.dataList[i];
@@ -71,19 +77,47 @@ namespace GameWish.Game
                 }
                 enemyPoolLst.Add(levelEnemyDB);
             }
-
             KnuthDurstenfeldShuffle(enemyPoolLst);
+
+            Debug.LogError(GameDataMgr.S.GameDataHandler);
+            int lobbyLevel = GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.Lobby).level;
+            Debug.LogError(lobbyLevel);
+            for (int i = 0; i < TowerDefine.MAXLEVEL; i++)
+            {
+                TowerLevelConfigDB levelConfig = new TowerLevelConfigDB();
+                levelConfig.level = i + 1;
+                levelConfig.enemyConfig = enemyPoolLst[i];
+
+                //设置奖励
+                var towerConfig = TDTowerConfigTable.GetData(levelConfig.level);
+                if (towerConfig != null && towerConfig.fcoinNum != 0)
+                {
+                    levelConfig.reward = "TowerCoin|" + towerConfig.fcoinNum;
+                }
+                else
+                {
+                    var rewardConfig = TDTowerRewardConfigTable.GetData(lobbyLevel);
+                    if (rewardConfig != null)
+                    {
+                        levelConfig.reward = rewardConfig.GetRandomRewardStr();
+                    }
+                }
+                Debug.LogError(levelConfig.reward);
+                towerLevelConfigs.Add(levelConfig);
+            }
+            SetDataDirty();
         }
 
-        public TowerLevelEnemyDB GetEnemyPoolIDByIndex(int index)
+        public TowerLevelConfigDB GetLevelConfigByIndex(int index)
         {
-            if (index < 0 && index >= enemyPoolLst.Count)
+            if (index < 0 && index >= towerLevelConfigs.Count)
             {
-                return enemyPoolLst[0];
+                return towerLevelConfigs[0];
             }
 
-            return enemyPoolLst[index];
+            return towerLevelConfigs[index];
         }
+
 
         public bool AddCoin(int delta)
         {
@@ -279,6 +313,12 @@ namespace GameWish.Game
         #endregion
     }
 
+    public class TowerLevelConfigDB
+    {
+        public int level;
+        public TowerLevelEnemyDB enemyConfig;
+        public string reward;
+    }
 
     public class TowerCharacterDB
     {
