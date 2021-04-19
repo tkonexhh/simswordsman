@@ -207,11 +207,15 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                FloatMessage.S.ShowMsg("暂未开放，敬请期待");
-                //TODO 添加解锁等级限制
-                if (PlatformHelper.isTestMode)
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                int needLobbyLevel = TowerDefine.ENTER_LEVEL;
+                if (lobbyLevel >= needLobbyLevel)
                 {
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
                 }
 
             });

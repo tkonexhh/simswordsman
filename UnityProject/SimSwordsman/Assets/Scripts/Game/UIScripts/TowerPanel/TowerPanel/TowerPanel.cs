@@ -14,6 +14,7 @@ namespace GameWish.Game
         [SerializeField] private Text m_TxtCoin;
 
         [SerializeField] private IUListView m_ListView;
+        [SerializeField] private ScrollRect m_ScrollRect;
 
         //需要两种材质
         private Material m_GreyMat;
@@ -58,12 +59,15 @@ namespace GameWish.Game
 
         private void OnCellRenderer(Transform root, int index)
         {
-            root.GetComponent<TowerPanelChallengeItem>().Init(this, TowerDefine.MAXLEVEL - index);
+            int level = TowerDefine.MAXLEVEL - index;
+            root.GetComponent<TowerPanelChallengeItem>().Init(this, level);
+            root.gameObject.name = "TowerLevelItem" + level;
         }
 
         private void UpdateUI()
         {
             m_ListView.SetDataCount(TowerDefine.MAXLEVEL);
+            m_ScrollRect.verticalNormalizedPosition = 0;
             UpdateCoin();
         }
 
