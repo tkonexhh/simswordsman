@@ -14,6 +14,7 @@ namespace GameWish.Game
         [SerializeField, Header("解锁状态")] private GameObject m_ObjUnlock;
         [SerializeField] private Button m_BtnFight;
         [SerializeField] private RewardItemIcon m_RewardItemIcon;
+        [SerializeField] private Text m_TxtRewardNum;
 
         [SerializeField, Header("完成状态")] private GameObject m_ObjComplete;
         [SerializeField, Header("未解锁状态")] private GameObject m_ObjLocked;
@@ -50,7 +51,9 @@ namespace GameWish.Game
             else
             {
                 m_RewardItemIcon.gameObject.SetActive(true);
-                m_RewardItemIcon.SetReward(RewardMgr.S.GetRewardBase(towerLevelConfigDB.reward), panel);
+                var reward = RewardMgr.S.GetRewardBase(towerLevelConfigDB.reward);
+                m_RewardItemIcon.SetReward(reward, panel);
+                m_TxtRewardNum.text = "x" + reward.Count;
             }
 
             m_State = m_Level < maxLvl ? TowerItemState.Complete : (m_Level == maxLvl ? TowerItemState.Unlock : TowerItemState.Locked);

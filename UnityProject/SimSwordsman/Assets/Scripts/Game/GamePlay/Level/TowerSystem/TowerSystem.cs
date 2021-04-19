@@ -149,7 +149,6 @@ namespace GameWish.Game
         #region 处理选择逻辑
         public bool CanAddNewCharacter()
         {
-            Debug.LogError(GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst.Count);
             return GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst.Count < TowerDefine.MAX_CHARACT_NUM;
         }
 

@@ -79,9 +79,9 @@ namespace GameWish.Game
             }
             KnuthDurstenfeldShuffle(enemyPoolLst);
 
-            Debug.LogError(GameDataMgr.S.GameDataHandler);
+            // Debug.LogError(GameDataMgr.S.GameDataHandler);
             int lobbyLevel = GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.Lobby).level;
-            Debug.LogError(lobbyLevel);
+            // Debug.LogError(lobbyLevel);
             for (int i = 0; i < TowerDefine.MAXLEVEL; i++)
             {
                 TowerLevelConfigDB levelConfig = new TowerLevelConfigDB();
@@ -102,7 +102,7 @@ namespace GameWish.Game
                         levelConfig.reward = rewardConfig.GetRandomRewardStr();
                     }
                 }
-                Debug.LogError(levelConfig.reward);
+                // Debug.LogError(levelConfig.reward);
                 towerLevelConfigs.Add(levelConfig);
             }
             SetDataDirty();
