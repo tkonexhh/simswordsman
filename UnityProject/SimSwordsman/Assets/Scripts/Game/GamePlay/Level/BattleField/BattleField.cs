@@ -103,6 +103,11 @@ namespace GameWish.Game
             }
         }
 
+        public void SetSpriteBgLocalPos(Vector3 localPos)
+        {
+            m_BgSpriteRender.transform.localPosition = localPos;
+        }
+
         private string GetBattleBgName(ClanType clanType)
         {
             switch (clanType)

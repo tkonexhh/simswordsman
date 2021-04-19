@@ -174,7 +174,7 @@ namespace GameWish.Game
             {
                 case (int)EventID.OnOneRoundEnd:            
                     m_RoundCount++;
-                    if (m_RoundCount > 2 || m_HeroTialMgr.GetLeftTime() <= 0) // This enemy should be killed
+                    if (m_RoundCount > GetMaxRoundCount() || m_HeroTialMgr.GetLeftTime() <= 0) // This enemy should be killed
                     {
                         Log.i("Enemy should be dead");
 
@@ -214,6 +214,14 @@ namespace GameWish.Game
                     break;
 
             }
+        }
+
+        private int GetMaxRoundCount()
+        {
+            if (m_SpawnOrdinaryEnemy)
+                return UnityEngine.Random.Range(3, 5);
+            else
+                return UnityEngine.Random.Range(4, 7);
         }
 
     }

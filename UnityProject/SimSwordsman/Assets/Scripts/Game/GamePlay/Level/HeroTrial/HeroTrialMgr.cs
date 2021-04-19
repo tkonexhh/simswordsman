@@ -25,7 +25,7 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
-        private double m_TrialTotalTime = 20;
+        private double m_TrialTotalTime = 1 * 60;
 
         private ClanType m_TrialClanType = ClanType.None;
 
@@ -90,6 +90,7 @@ namespace GameWish.Game
             m_IsInTrial = true;
 
             m_BattleField.ChangeBgSpriteRenderToHeroTrial();
+            m_BattleField.SetSpriteBgLocalPos(new Vector3(0, -0.8f, 0));
 
             StartCountDown();
 
@@ -113,6 +114,7 @@ namespace GameWish.Game
             }
 
             m_BattleField.OnBattleEnd();
+            m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
 
             EventSystem.S.Send(EventID.OnExitHeroTrial);
 
