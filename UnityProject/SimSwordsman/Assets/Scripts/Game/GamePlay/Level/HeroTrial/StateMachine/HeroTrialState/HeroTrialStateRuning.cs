@@ -122,7 +122,7 @@ namespace GameWish.Game
 
             CharacterItem characterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(id);
 
-            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId);
+            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
             if (go != null)
             {
                 go.transform.SetParent(m_HeroTialMgr.BattleField.transform);
@@ -174,7 +174,7 @@ namespace GameWish.Game
             {
                 case (int)EventID.OnOneRoundEnd:            
                     m_RoundCount++;
-                    if (m_RoundCount > 2) // This enemy should be killed
+                    if (m_RoundCount > GetMaxRoundCount() || m_HeroTialMgr.GetLeftTime() <= 0) // This enemy should be killed
                     {
                         Log.i("Enemy should be dead");
 
@@ -189,11 +189,11 @@ namespace GameWish.Game
                     break;
 
                 case (int)EventID.OnCharacterInFightGroupDead:
-
                     if (m_HeroTialMgr.GetLeftTime() <= 0)
                     {
-                        Log.i("Time over, finish trial");
-                        m_HeroTialMgr.FinishTrial();
+                        //Log.i("Time over, finish trial");
+                        //m_HeroTialMgr.FinishTrial();
+                        EventSystem.S.Send(EventID.OnTrialTimeOver);
                     }
                     else
                     {
@@ -215,6 +215,14 @@ namespace GameWish.Game
                     break;
 
             }
+        }
+
+        private int GetMaxRoundCount()
+        {
+            if (m_SpawnOrdinaryEnemy)
+                return UnityEngine.Random.Range(3, 5);
+            else
+                return UnityEngine.Random.Range(4, 7);
         }
 
     }

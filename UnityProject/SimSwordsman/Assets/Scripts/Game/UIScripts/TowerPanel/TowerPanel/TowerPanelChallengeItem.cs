@@ -9,31 +9,35 @@ namespace GameWish.Game
     public class TowerPanelChallengeItem : UListItemView
     {
         [SerializeField] private Text m_TxtLevel;
-        [SerializeField] private Text m_TxtEnemyPoolID;
+        [SerializeField] private GameObject m_ObjEnemyIconRoot;
+        [SerializeField] private List<TowerEnemyIcon> m_EnemyIcons;
         [SerializeField, Header("解锁状态")] private GameObject m_ObjUnlock;
         [SerializeField] private Button m_BtnFight;
 
         [SerializeField, Header("完成状态")] private GameObject m_ObjComplete;
-        [SerializeField] private Button m_BtnReward;
         [SerializeField, Header("未解锁状态")] private GameObject m_ObjLocked;
 
+
         private int m_Level;
-        private int m_EnemyPoolID;
+        private TowerPanel m_Panel;
         private TowerItemState m_State;
 
         private void Awake()
         {
             m_BtnFight.onClick.AddListener(OnClickFight);
-            m_BtnReward.onClick.AddListener(OnClickReward);
         }
 
-        public void Init(int level)
+        public void Init(TowerPanel panel, int level)
         {
+            if (m_Panel == null)
+                m_Panel = panel;
             m_Level = level;
-            m_EnemyPoolID = GameDataMgr.S.GetPlayerData().towerData.GetEnemyPoolIDByIndex(m_Level - 1);
-            m_TxtLevel.text = m_Level.ToString();
-            m_TxtEnemyPoolID.text = m_EnemyPoolID.ToString();
-
+            m_TxtLevel.text = "第" + ChineseHelper.NumToChinese(m_Level) + "关";
+            var enemyConfig = GameDataMgr.S.GetPlayerData().towerData.GetEnemyPoolIDByIndex(m_Level - 1);
+            for (int i = 0; i < m_EnemyIcons.Count; i++)
+            {
+                m_EnemyIcons[i].SetEnemy(enemyConfig.enemyIDLst[i]);
+            }
             int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
             m_State = m_Level < maxLvl ? TowerItemState.Complete : (m_Level == maxLvl ? TowerItemState.Unlock : TowerItemState.Locked);
             RefeshUI();
@@ -41,47 +45,57 @@ namespace GameWish.Game
 
         private void RefeshUI()
         {
-            m_BtnReward.gameObject.SetActive(false);
             m_ObjUnlock.SetActive(m_State == TowerItemState.Unlock);
             m_ObjLocked.SetActive(m_State == TowerItemState.Locked);
             m_ObjComplete.SetActive(m_State == TowerItemState.Complete);
-            if (m_State == TowerItemState.Complete)
+            m_ObjEnemyIconRoot.SetActive(m_State != TowerItemState.Locked);
+            if (m_State != TowerItemState.Unlock)
             {
-                //是否奖励关，是否已经领取奖励了
-                if (TDTowerConfigTable.GetData(m_Level).rwardtype.Equals("Fcoin"))
+                for (int i = 0; i < m_EnemyIcons.Count; i++)
                 {
-                    if (!GameDataMgr.S.GetPlayerData().towerData.HasReward(m_Level))
-                    {
-                        m_BtnReward.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-
-                    }
+                    m_EnemyIcons[i].SetGrey(m_State == TowerItemState.Complete, m_Panel.greyMat);
                 }
             }
         }
 
         private void OnClickFight()
         {
-            TowerPanelChallenge arg = new TowerPanelChallenge();
+            TowerPanelChallengeToSelect arg = new TowerPanelChallengeToSelect();
             arg.level = m_Level;
-            arg.enemyPoolID = m_EnemyPoolID;
-            UIMgr.S.OpenPanel(UIID.TowerSelectCharacterPanel, arg);
-        }
-
-        private void OnClickReward()
-        {
-            m_BtnReward.gameObject.SetActive(false);
-            MainGameMgr.S.TowerSystem.GetLevelReward(m_Level);
+            var allCharacter = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            CommonUIMethod.BubbleSortForType(allCharacter, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+            if (allCharacter.Count < 5)
+            {
+                float totalATk = 0;
+                for (int i = 0; i < allCharacter.Count; i++)
+                {
+                    totalATk += allCharacter[i].atkValue;
+                }
+                totalATk /= (float)allCharacter.Count;
+                arg.basicATK = totalATk;
+            }
+            else
+            {
+                float totalATk = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    totalATk += allCharacter[i].atkValue;
+                }
+                totalATk /= 5;
+                arg.basicATK = totalATk;
+            }
+            arg.recommendATK = (long)(arg.basicATK * 5.5f);
+            UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Tower, arg);
+            // UIMgr.S.OpenPanel(UIID.TowerSelectCharacterPanel, arg);
         }
     }
 
 
-    public struct TowerPanelChallenge
+    public struct TowerPanelChallengeToSelect
     {
         public int level;
-        public int enemyPoolID;
+        public long recommendATK;
+        public float basicATK;
     }
 
     public enum TowerItemState

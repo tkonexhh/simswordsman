@@ -42,28 +42,22 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: af190d122c6708a4fba522a8d77b1b00, type: 3}
-    - {fileID: 2800000, guid: 2ce9fe2ad00b9ee4b8a6aa997dc21072, type: 3}
-    - {fileID: 2800000, guid: 0664b00d2cdb2864fbf2318fca193521, type: 3}
-    - {fileID: 2800000, guid: 62c59d4d11a0cad448643914fdb3049c, type: 3}
-    - {fileID: 2800000, guid: e123fbc8328695a4cac603526a16c2ad, type: 3}
-    - {fileID: 2800000, guid: 63775d8c070834b478bdc3f3a6c9811c, type: 3}
-    - {fileID: 2800000, guid: 944c65fe6d5484f44a13ee5beefd2c1b, type: 3}
-    - {fileID: 2800000, guid: 2aacbbad2821a644a8d253505ed21793, type: 3}
-    - {fileID: 2800000, guid: 53dd99d1527f5254ea3fa1b11b3eacc1, type: 3}
-    - {fileID: 2800000, guid: c3a50d6f58809ec4f972df89373c56e1, type: 3}
-    - {fileID: 2800000, guid: d6aa952ae90dbaf479298ce12fa0c30d, type: 3}
-    - {fileID: 2800000, guid: 6c5b26bd5adf7f34caec6f10e426a0bd, type: 3}
+    - {fileID: 102900000, guid: 46bc956f35c88fd43815ad65ec10b3cd, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 53dd99d1527f5254ea3fa1b11b3eacc1, type: 3}
   - {fileID: 21300000, guid: af190d122c6708a4fba522a8d77b1b00, type: 3}
+  - {fileID: 21300000, guid: 47495323337047d409f34f7455270751, type: 3}
+  - {fileID: 21300000, guid: 851ad3a30ba23254ca74b77bbc677577, type: 3}
+  - {fileID: 21300000, guid: 842f18a6a36c7b144826c40c9f31bcaf, type: 3}
   - {fileID: 21300000, guid: e123fbc8328695a4cac603526a16c2ad, type: 3}
   - {fileID: 21300000, guid: d6aa952ae90dbaf479298ce12fa0c30d, type: 3}
   - {fileID: 21300000, guid: 2ce9fe2ad00b9ee4b8a6aa997dc21072, type: 3}
+  - {fileID: 21300000, guid: 7551050bc1747004da1222f080092896, type: 3}
   - {fileID: 21300000, guid: 63775d8c070834b478bdc3f3a6c9811c, type: 3}
   - {fileID: 21300000, guid: 0664b00d2cdb2864fbf2318fca193521, type: 3}
+  - {fileID: 21300000, guid: 0db8714d31e5c3a48859864624c39377, type: 3}
   - {fileID: 21300000, guid: 62c59d4d11a0cad448643914fdb3049c, type: 3}
   - {fileID: 21300000, guid: 2aacbbad2821a644a8d253505ed21793, type: 3}
   - {fileID: 21300000, guid: 6c5b26bd5adf7f34caec6f10e426a0bd, type: 3}
@@ -72,11 +66,16 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - PromotionPanel_bg2
   - PromotionPanel_ArmorEnhancement
+  - PromotionPanel_HeroTrial
+  - Promotion_Good
+  - Promotion_Normal
   - PromotionPanel_EquipAmrs
   - promotion_characterbg
   - PromotionPanel_BreakthroughMartialArts
+  - Promotion_Perfect
   - PromotionPanel_LearnMartialArts
   - PromotionPanel_DiscipleAscendingSection
+  - Promotion_Hero
   - PromotionPanel_EquipAmror
   - PromotionPanel_bg1
   - promotionpanel_levelbg

@@ -283,7 +283,15 @@ namespace GameWish.Game
 
         public bool IsHero()
         {
-            return m_ItemDbData.isHero;
+            return m_ItemDbData.quality == CharacterQuality.Hero;
+        }
+
+        public ClanType GetClanType()
+        {
+            if (m_ItemDbData == null)
+                return ClanType.None;
+
+            return m_ItemDbData.trialClanType;
         }
 
         public CollectedObjType GetCollectObjType()
@@ -316,9 +324,10 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().ClearCharacterTaskDBData(id, task);
         }
 
-        public void SetIsHero(bool isHero)
+        public void SetIsHero(ClanType clanType)
         {
-            GameDataMgr.S.GetClanData().SetIsHero(id, isHero);
+            quality = CharacterQuality.Hero;
+            GameDataMgr.S.GetClanData().SetIsHero(id, clanType);
         }
         /// <summary>
         /// 获取没有任何加成的武力值
@@ -546,6 +555,11 @@ namespace GameWish.Game
                 atkValue *= item.GetKungfuAtkScale();
             }
 
+            if (quality == CharacterQuality.Hero)
+            {
+                atkValue *= 1.25f;
+            }
+
             EventSystem.S.Send(EventID.OnMainMenuChallenging);
             GameDataMgr.S.GetClanData().SetAtkValue(id, atkValue);
         }
@@ -561,6 +575,10 @@ namespace GameWish.Game
             foreach (var item in kongfus.Values)
             {
                 atk *= item.GetKungfuAtkScale();
+            }
+            if (quality == CharacterQuality.Hero)
+            {
+                atkValue *= 1.25f;
             }
             return atk;
         }

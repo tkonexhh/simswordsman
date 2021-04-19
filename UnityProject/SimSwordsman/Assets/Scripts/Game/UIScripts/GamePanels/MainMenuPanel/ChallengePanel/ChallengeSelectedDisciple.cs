@@ -7,30 +7,36 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class ChallengeSelectedDisciple : MonoBehaviour
-	{
-        [SerializeField]
-        private Button m_ChooseSelectedDisciple;
-        [SerializeField]
-        private Text m_Level;
-        [SerializeField]
-        private Image m_DiscipleHead;
-        [SerializeField]
-        private Text m_DiscipleName;
-        [SerializeField]
-        private GameObject m_SelectedImg;
-        [SerializeField]
-        private GameObject m_Plus;
-        [SerializeField]
-        private GameObject m_LevelBg;
-        [SerializeField]
-        private Image m_DiscipleLevelBg;
-        [SerializeField]
-        private Image m_Line;
-        private CharacterItem m_CharacterItem;
+    public class ChallengeSelectedDisciple : MonoBehaviour
+    {
+        [SerializeField] private Button m_ChooseSelectedDisciple;
+        [SerializeField] private Text m_Level;
+        [SerializeField] private Image m_DiscipleHead;
+        [SerializeField] private Text m_DiscipleName;
+        [SerializeField] private GameObject m_SelectedImg;
+        [SerializeField] private GameObject m_Plus;
+        [SerializeField] private GameObject m_LevelBg;
+        [SerializeField] private Image m_DiscipleLevelBg;
+        [SerializeField] private Image m_Line;
+
+        protected CharacterItem m_CharacterItem;
         private ChallengeChooseDisciple m_ChallengeChooseDisciple;
-        private AddressableAssetLoader<Sprite> m_Loader;
+
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
+
+        internal void Init(ChallengeChooseDisciple challengeChooseDisciple)
+        {
+            m_ChallengeChooseDisciple = challengeChooseDisciple;
+
+            m_ChooseSelectedDisciple.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, false);
+            });
+
+            OnInit();
+            RefreshPanelInfo();
+        }
 
         public void RefreshPanelInfo()
         {
@@ -58,15 +64,15 @@ namespace GameWish.Game
                 default:
                     break;
             }
+
+            OnRefreshPanelInfo();
         }
-        public void LoadClanPrefabs(string prefabsName)
+
+        void LoadClanPrefabs(string prefabsName)
         {
             m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
+
         private void RefreshDiscipleColor()
         {
             switch (m_CharacterItem.quality)
@@ -87,24 +93,14 @@ namespace GameWish.Game
                     break;
             }
         }
-        public void OnInit(ChallengeChooseDisciple challengeChooseDisciple)
-        {
-            m_ChallengeChooseDisciple = challengeChooseDisciple;
-            RefreshPanelInfo();
 
-            m_ChooseSelectedDisciple.onClick.AddListener(() => {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, false);
-            });
-        }
         public bool IsHavaSame(CharacterItem characterItem)
         {
             if (m_CharacterItem != null && m_CharacterItem.id == characterItem.id)
                 return true;
             else
             {
-                Log.w("当前弟子未选中");
+                Log.w("褰撳墠寮熷瓙鏈�変腑");
                 return false;
             }
         }
@@ -115,7 +111,7 @@ namespace GameWish.Game
 
             if (isSelected)
             {
-                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
             }
             else
@@ -123,15 +119,13 @@ namespace GameWish.Game
             RefreshPanelInfo();
         }
 
-        private void OnDestroy()
-        {
-            if (m_Loader != null)
-                m_Loader.Release();
-        }
         public SelectedState GetSelelctedState()
         {
             return m_SelelctedState;
         }
+
+        protected virtual void OnInit() { }
+        protected virtual void OnRefreshPanelInfo() { }
     }
-	
+
 }

@@ -28,7 +28,7 @@ namespace GameWish.Game
         public void OnTrialStart(DateTime trialStartDay, int characterId, ClanType clanType)
         {
             state = HeroTrialStateID.Runing;
-            this.trialStartTime = trialStartDay.ToLongTimeString();
+            this.trialStartTime = trialStartDay.ToString();
             this.characterId = characterId;
             this.clanType = clanType;
 

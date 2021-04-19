@@ -421,7 +421,10 @@ namespace GameWish.Game
         #region HeroTrial
         OnEnterHeroTrial,
         OnExitHeroTrial,
-
+        OnRefreshTrialPanel,
+        OnCountDownRefresh,
+        OnEnableFinishBtn,
+        OnTrialTimeOver,
         #endregion
 
     }

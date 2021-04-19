@@ -38,16 +38,13 @@ namespace GameWish.Game
             m_SelelctedState = SelectedState.Selected;
             RefreshInfo();
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
+
         public void RefreshInfo()
         {
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
-                    m_HeadImg.sprite = m_TacticalFunctionPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem));
+                    m_HeadImg.sprite = m_TacticalFunctionPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacterItem));
                     m_Level.text = m_CurCharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     m_Plus.SetActive(false);

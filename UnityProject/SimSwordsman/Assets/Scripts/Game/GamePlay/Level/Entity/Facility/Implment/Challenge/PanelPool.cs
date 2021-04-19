@@ -36,6 +36,10 @@ namespace GameWish.Game
         /// Œ‰π¶Õª∆∆
         /// </summary>
         BreakthroughMartialArts,
+        /// <summary>
+        /// ”¢–€ ‘¡∂
+        /// </summary>
+        HeroTrial,
     }
 
 
@@ -67,6 +71,7 @@ namespace GameWish.Game
         {
             return m_PreAtk;
         }
+
     }
 
     public class DiscipleRiseStage : PromotionBase
@@ -162,6 +167,18 @@ namespace GameWish.Game
         }
     }
 
+    public class HeroTrial : PromotionBase
+    {
+        private ClanType m_ClanType;
+        public HeroTrial(int ChaID, ClanType clanType, float preAtk) : base(UpgradePanelType.HeroTrial, ChaID, preAtk)
+        {
+            m_ClanType = clanType;
+        }
+        public ClanType GetClanType()
+        {
+            return m_ClanType;
+        }
+    }
 
     public class PanelPool : TSingleton<PanelPool>
     {
@@ -206,7 +223,10 @@ namespace GameWish.Game
                 {
                     PromotionBase promotionModel = m_Panels.Dequeue();
                     UIMgr.S.OpenTopPanel(UIID.PromotionPanel, null, promotionModel);
-                    CurShowPanelIsOver = true;
+                    if (m_Panels.Count>0)
+                        CurShowPanelIsOver = true;
+                    else
+                        CurShowPanelIsOver = false;
                 }
             }
         }

@@ -20,15 +20,18 @@ namespace GameWish.Game
                 stageInfoDic[quality].AddCharacterStageInfo(tdData);
         }
 
-        public static CharacterStageInfoItem GetStageInfo(CharacterQuality quality, int stage)
-        {
-            if (stageInfoDic.ContainsKey(quality))
-                return stageInfoDic[quality].GetCharacterStageInfoItem(stage);
-            return null;
-        }
+        //public static CharacterStageInfoItem GetStageInfo(CharacterQuality quality, int stage)
+        //{
+        //    if (stageInfoDic.ContainsKey(quality))
+        //        return stageInfoDic[quality].GetCharacterStageInfoItem(stage);
+        //    return null;
+        //}
 
         public static int GetStage(CharacterQuality quality, int level)
         {
+            if (quality == CharacterQuality.Hero)
+                quality = CharacterQuality.Perfect;
+
             if (stageInfoDic.ContainsKey(quality))
             {
                 foreach (var item in stageInfoDic[quality].GetCharacterStageInfoItems().Values)
@@ -44,6 +47,9 @@ namespace GameWish.Game
 
         public static float GetAtk(CharacterQuality quality, int stage, int level)
         {
+            if (quality == CharacterQuality.Hero)
+                quality = CharacterQuality.Perfect;
+
             if (stageInfoDic.ContainsKey(quality))
             {
                 CharacterStageInfoItem characterStageInfoItem = stageInfoDic[quality].GetCharacterStageInfoItem(stage);
@@ -58,9 +64,13 @@ namespace GameWish.Game
 
         public static int GetExpLevelUpNeed(CharacterItem character)
         {
-            if (stageInfoDic.ContainsKey(character.quality))
+            CharacterQuality characterQuality = character.quality;
+            if (characterQuality == CharacterQuality.Hero)
+                characterQuality = CharacterQuality.Perfect;
+
+            if (stageInfoDic.ContainsKey(characterQuality))
             {
-                CharacterStageInfoItem characterStageInfoItem = stageInfoDic[character.quality].GetCharacterStageInfoItem(character.stage);
+                CharacterStageInfoItem characterStageInfoItem = stageInfoDic[characterQuality].GetCharacterStageInfoItem(character.stage);
                 if (characterStageInfoItem != null)
                 {
                     int exp = characterStageInfoItem.StartExp + (character.level - characterStageInfoItem.FromLevel) * characterStageInfoItem.GrowExp;
@@ -69,13 +79,16 @@ namespace GameWish.Game
             }
             else
             {
-                return -1;
+                return 1;
             }
-            return -1;
+            return 1;
         }
 
         public static UnlockContentConfigInfo GetUnlockForStage(CharacterQuality characterQuality, int stage)
         {
+            if (characterQuality == CharacterQuality.Hero)
+                characterQuality = CharacterQuality.Perfect;
+
             if (stageInfoDic.ContainsKey(characterQuality))
             {
                 foreach (var item in stageInfoDic[characterQuality].GetCharacterStageInfoItems().Values)
@@ -85,12 +98,12 @@ namespace GameWish.Game
             return null;
         }
 
-        public static CharacterStageInfoItem GetUnlockContent(CharacterQuality characterQuality, int level)
-        {
-            if (stageInfoDic.ContainsKey(characterQuality))
-                return stageInfoDic[characterQuality].GetUnlockContent(level);
-            return null;
-        }
+        //public static CharacterStageInfoItem GetUnlockContent(CharacterQuality characterQuality, int level)
+        //{
+        //    if (stageInfoDic.ContainsKey(characterQuality))
+        //        return stageInfoDic[characterQuality].GetUnlockContent(level);
+        //    return null;
+        //}
 
         public static int GetUnlockConfigInfo(UnlockContent unlockContent, int index = 0)
         {

@@ -20,6 +20,7 @@ namespace GameWish.Game
         Wudu            = 6,
         Mojiao          = 7,
         Xiaoyao         = 8,
+        Xiemo,
         Beast           = 96,
         Shanzei         = 97,
         Cike            = 98,

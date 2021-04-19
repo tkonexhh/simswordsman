@@ -193,12 +193,12 @@ namespace GameWish.Game
             }
         }
 
-        public void SetCharacterIsHero(int id, bool isHero)
+        public void SetCharacterIsHero(int id, ClanType clanType)
         {
             CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
             if (characterItemDb != null)
             {
-                characterItemDb.SetIsHero(isHero);
+                characterItemDb.SetIsHero(clanType);
             }
         }
     }
@@ -224,7 +224,7 @@ namespace GameWish.Game
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
         public int m_DeliverID = -1;
-        public bool isHero = false;
+        public ClanType trialClanType = ClanType.None;
 
         public void SetAtkValue(float _atkValue)
         {
@@ -317,9 +317,10 @@ namespace GameWish.Game
             return kongfuDatas.Find(x => x.IsStudyKungFu()) != null;
         }
 
-        public void SetIsHero(bool isHero)
+        public void SetIsHero(ClanType clanType)
         {
-            this.isHero = isHero;
+            quality = CharacterQuality.Hero;
+            trialClanType = clanType;
         }
     }
 

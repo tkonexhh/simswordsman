@@ -15,6 +15,12 @@ namespace GameWish.Game
 
         [SerializeField] private IUListView m_ListView;
 
+        //需要两种材质
+        private Material m_GreyMat;
+
+        public Material greyMat => m_GreyMat;
+        // private Material m_NormalMat;
+
 
 
         protected override void OnUIInit()
@@ -24,6 +30,7 @@ namespace GameWish.Game
             m_BtnRule.onClick.AddListener(OnClickRule);
 
             m_ListView.SetCellRenderer(OnCellRenderer);
+            m_GreyMat = new Material(Shader.Find("XHH/UI/GreyUI"));
         }
 
         protected override void OnOpen()
@@ -51,7 +58,7 @@ namespace GameWish.Game
 
         private void OnCellRenderer(Transform root, int index)
         {
-            root.GetComponent<TowerPanelChallengeItem>().Init(TowerDefine.MAXLEVEL - index);
+            root.GetComponent<TowerPanelChallengeItem>().Init(this, TowerDefine.MAXLEVEL - index);
         }
 
         private void UpdateUI()

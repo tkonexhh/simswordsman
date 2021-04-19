@@ -89,8 +89,11 @@ namespace GameWish.Game
 						UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, PanelType.Deliver, m_SingleDeliverDetailData);
 					break;
 				case (int)EventID.OnDeliverCarArrive:
-                    if ((int)args[0] == m_SingleDeliverDetailData.DeliverID)
+					if ((int)args[0] == m_SingleDeliverDetailData.DeliverID)
+					{
+						m_CountDownItemTest = CountDowntMgr.S.GetCountDownItemByID(m_SingleDeliverDetailData.GetCountDownID());
 						RefreshPanelInfo();
+					}
 					break;
 				case (int)EventID.OnSelectedConfirmEvent:
 					if ((int)args[1] == m_SingleDeliverDetailData.DeliverID)
