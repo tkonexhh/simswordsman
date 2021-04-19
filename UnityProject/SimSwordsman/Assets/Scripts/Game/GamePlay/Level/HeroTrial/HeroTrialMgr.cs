@@ -101,6 +101,11 @@ namespace GameWish.Game
 
             if (GetLeftTime() <= 0)
             {
+                if (m_DbData.state != HeroTrialStateID.Finished)
+                {
+                    OnTrialTimeOver();
+                }
+
                 EventSystem.S.Send(EventID.OnTrialTimeOver);
             }
         }
@@ -157,13 +162,16 @@ namespace GameWish.Game
                 characterInGame.ChangeBody(CharacterQuality.Hero, m_DbData.clanType);
             }
 
-            m_DbData.OnTrialFinished();
-            SetState(m_DbData.state);
-
             //Refresh next trial clantype
             m_TrialClanType = GetNextClanType(m_DbData.clanType);
 
             EventSystem.S.Send(EventID.OnEnableFinishBtn);
+        }
+
+        public void OnTrialTimeOver()
+        {
+            m_DbData.OnTrialTimeOver();
+            SetState(m_DbData.state);
         }
 
         public void Reset()

@@ -193,6 +193,7 @@ namespace GameWish.Game
                     {
                         //Log.i("Time over, finish trial");
                         //m_HeroTialMgr.FinishTrial();
+                        m_HeroTialMgr.OnTrialTimeOver();
                         EventSystem.S.Send(EventID.OnTrialTimeOver);
                     }
                     else
