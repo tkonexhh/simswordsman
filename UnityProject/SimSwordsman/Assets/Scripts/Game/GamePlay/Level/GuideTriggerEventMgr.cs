@@ -154,6 +154,21 @@ namespace GameWish.Game
             if (facilityType == FacilityType.Lobby)
             {
                 CheckIsStartChallengeSystemGuide();
+                CheckIsStartTowerSystemGuide();
+            }
+        }
+        /// <summary>
+        /// 是否开始伏魔塔引导
+        /// </summary>
+        private void CheckIsStartTowerSystemGuide() 
+        {
+            if (GuideMgr.S.IsGuideFinish(40)) 
+            {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            if (facilityLevel >= 3) {
+                EventSystem.S.Send(EventID.OnTowerTrigger_IntroduceTrigger);
             }
         }
         /// <summary>

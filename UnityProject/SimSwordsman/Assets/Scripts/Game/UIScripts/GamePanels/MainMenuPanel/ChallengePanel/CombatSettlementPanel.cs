@@ -123,14 +123,31 @@ namespace GameWish.Game
                                 UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList, m_LevelConfigInfo.level);
                             }
                         }
-                        else {
+                        else
+                        {
                             UIMgr.S.OpenPanel(UIID.RewardPanel, RewardPanelCallback, m_RewardList);
                         }
                         return;
                     }
                 }
+                else {
+                    CheckIsStartTowerShopGuide();
+                }
                 CloseEvent();
             });
+        }
+
+        /// <summary>
+        /// 检测是否开始伏魔塔商店引导
+        /// </summary>
+        private void CheckIsStartTowerShopGuide() 
+        {
+            if (GuideMgr.S.IsGuideFinish(41)) 
+            {
+                return;
+            }
+
+            EventSystem.S.Send(EventID.OnTowerTrigger_FightFinishedClickShopBtnTrigger);
         }
 
         private void RewardPanelCallback(AbstractPanel obj)
@@ -199,6 +216,8 @@ namespace GameWish.Game
                             }
                         }
                     }
+
+                    CheckIsStartTowerShopGuide();
                     break;
             }
         }

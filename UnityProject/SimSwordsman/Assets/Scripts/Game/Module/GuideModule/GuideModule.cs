@@ -154,6 +154,15 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickDeliverTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickQuickStartBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickDoubleSpeedUpBtnTrigger));
+
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_IntroduceTrigger)); 
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickTowerBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_IntroduceTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickChallengeBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickAKeyChoiceBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickStartFightBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_FightFinishedClickShopBtnTrigger));
         }
 
         protected void InitCustomCommand()
