@@ -81,8 +81,6 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
-            RegisterEvents();
-
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
 
             m_SettingBtn.onClick.AddListener(() =>
@@ -253,6 +251,9 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             base.OnOpen();
+
+            RegisterEvents();
+
             MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             //GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
