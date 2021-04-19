@@ -98,6 +98,11 @@ namespace GameWish.Game
             {
                 m_TrialStartTime = m_DbData.GetStartTime();
             }
+
+            if (GetLeftTime() <= 0)
+            {
+                EventSystem.S.Send(EventID.OnTrialTimeOver);
+            }
         }
 
         public void OnExitHeroTrial()

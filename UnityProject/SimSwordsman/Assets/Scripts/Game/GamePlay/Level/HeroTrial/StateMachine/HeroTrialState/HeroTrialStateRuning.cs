@@ -191,8 +191,9 @@ namespace GameWish.Game
                 case (int)EventID.OnCharacterInFightGroupDead:
                     if (m_HeroTialMgr.GetLeftTime() <= 0)
                     {
-                        Log.i("Time over, finish trial");
-                        m_HeroTialMgr.FinishTrial();
+                        //Log.i("Time over, finish trial");
+                        //m_HeroTialMgr.FinishTrial();
+                        EventSystem.S.Send(EventID.OnTrialTimeOver);
                     }
                     else
                     {
