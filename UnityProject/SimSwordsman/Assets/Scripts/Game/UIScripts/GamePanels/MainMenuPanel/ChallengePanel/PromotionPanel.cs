@@ -60,7 +60,10 @@ namespace GameWish.Game
         private Image m_CharacterImage;
         [SerializeField]
         private Button m_ExitBtn;
-
+        [SerializeField]
+        private GameObject m_DiscipleHeadPortrait;
+        [SerializeField]
+        private Transform m_CharacterBg;
         private int TimerID;
 
         private const float ExitShowTime = 0.5f;
@@ -129,6 +132,7 @@ namespace GameWish.Game
             PromotionBase promotionModel = (PromotionBase)args[0];
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
             //m_CharacterName.text = m_CharacterItem.name;
+            SetDiscipleHeadPortrait();
             switch (promotionModel.GetEventID())
             {
                 case UpgradePanelType.WeaponEnhancement:
@@ -225,6 +229,12 @@ namespace GameWish.Game
             }, ExitShowTime);
         }
 
+        private void SetDiscipleHeadPortrait()
+        {
+            //DiscipleHeadPortrait discipleHeadPortrait = Instantiate(m_DiscipleHeadPortrait, m_CharacterBg).GetComponent<DiscipleHeadPortrait>();
+            //discipleHeadPortrait.SetHeadPortrait(m_CharacterItem, UserPanel.PromotionPanel);
+        }
+
         private Sprite GetQualitySprite()
         {
             switch (m_CharacterItem.quality)
@@ -261,6 +271,7 @@ namespace GameWish.Game
                     break;
                 case UpgradePanelType.HeroTrial:
                     m_NameObj.SetActive(true);
+                    m_Quality.gameObject.SetActive(true);
                     break;
                 default:
                     break;

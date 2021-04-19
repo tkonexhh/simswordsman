@@ -263,7 +263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5733242821107290014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2610,6 +2610,9 @@ MonoBehaviour:
   m_Skill: {fileID: 5051990236053864803}
   m_CharacterImage: {fileID: 7579227146903871863}
   m_ExitBtn: {fileID: 5444600042721043023}
+  m_DiscipleHeadPortrait: {fileID: 6176709644696110663, guid: ac5a9c7a0ef403e42acbfbe3d7f3a8dc,
+    type: 3}
+  m_CharacterBg: {fileID: 8205883248173821470}
 --- !u!1 &8194112655242420171
 GameObject:
   m_ObjectHideFlags: 0

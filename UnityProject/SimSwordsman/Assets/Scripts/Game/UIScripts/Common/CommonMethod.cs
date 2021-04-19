@@ -1,3 +1,4 @@
+using Qarth;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -65,5 +66,21 @@ namespace GameWish.Game
             }
             return string.Empty;
         }
+
+        public static Sprite GetDiscipleHeadPortrait(LoadDiscipleHeadPortrait discipleHeadPortrait,CharacterItem characterItem)
+        {
+            switch (discipleHeadPortrait)
+            {
+                case LoadDiscipleHeadPortrait.Head:
+                    //return SpriteHandler.S.GetSprite(AtlasDefine.DisicipleHeadIconsAtlas, "Head_"+ characterItem.quality+"_"+ characterItem.headId);
+                    return SpriteHandler.S.GetSprite(AtlasDefine.DisicipleHeadIconsAtlas, "head_good_2");
+                case LoadDiscipleHeadPortrait.Body:
+                    //return SpriteHandler.S.GetSprite(AtlasDefine.DisicipleHeadIconsAtlas, "Body_" + characterItem.quality + "_" + characterItem.bodyId);
+                    return SpriteHandler.S.GetSprite(AtlasDefine.DisicipleHeadIconsAtlas, "body_good_2");
+            }
+            Log.e("Œ¥’“µΩ¿‡–Õ = "+ discipleHeadPortrait);
+            return null;
+        }
+
     }
 }

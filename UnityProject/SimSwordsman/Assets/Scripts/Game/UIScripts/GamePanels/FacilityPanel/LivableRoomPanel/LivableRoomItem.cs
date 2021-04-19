@@ -121,7 +121,7 @@ namespace GameWish.Game
                 switch (m_LivableRoomState)
                 {
                     case LivableRoomState.ReadyBuilt:
-                        if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_NextCostItems))
+                        if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, m_CurCostItems))
                             return;
 
                         m_LivableRoomState = LivableRoomState.Upgrade;
@@ -212,9 +212,9 @@ namespace GameWish.Game
             m_CurLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(m_CurFacilityType/*, m_SubID*/);
             int maxLevel = MainGameMgr.S.FacilityMgr.GetFacilityMaxLevel(m_CurFacilityType);
             m_CurLivableRoomLevelInfo = (LivableRoomLevelInfo)MainGameMgr.S.FacilityMgr.GetFacilityLevelInfo(m_CurFacilityType, m_CurLevel);
+            m_CurCostItems = m_CurLivableRoomLevelInfo.GetUpgradeResCosts();
             m_FacilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
             FacilityState facilityState = GameDataMgr.S.GetClanData().GetFacilityData(m_CurFacilityType/*, m_SubID*/).facilityState;
-
             if (facilityState == FacilityState.ReadyToUnlock || facilityState == FacilityState.Locked)
                 m_LivableRoomState = LivableRoomState.ReadyBuilt;
             else
