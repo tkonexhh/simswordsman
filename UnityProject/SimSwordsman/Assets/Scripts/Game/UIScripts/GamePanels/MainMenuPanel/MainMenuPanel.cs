@@ -81,10 +81,7 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
-            RegisterEvents();
-            base.OnUIInit();
-
-           
+            base.OnUIInit();           
         }
 
         private void HandListenerEvent(int key, object[] param)
@@ -108,6 +105,8 @@ namespace GameWish.Game
         {
             base.OnOpen();
             //ClearTacticalFunctionBtn();
+
+            RegisterEvents();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
 
