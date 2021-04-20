@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 509914522
+CRC: 3424068659
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 948610d8c8a410dbf2994405fc2a3e8e
+    Hash: d2bd154a23103fc68d3ea80783db8141
   TypeTreeHash:
     serializedVersion: 2
-    Hash: df5918b618ed6d965f5b3f9f647944d0
+    Hash: a27b43e3162b1cfcf0d2b6fdea0ff59a
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -39,14 +39,17 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 224
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldEast.png
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/Root.prefab
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldWest.png
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/l-4.png
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldSpritesData.asset
+- Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldAtlas.spriteatlas
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/setting.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/enmeyheadicons.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/setting.bundle

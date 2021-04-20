@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3933954307
+CRC: 960227096
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5eb9343347f63e116a91d5d07069d499
+    Hash: d10130feba04134cc6231878219e012f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -17,6 +17,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Font4.png
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Bg5.png
@@ -26,6 +28,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Bg2.png
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Bg3.png
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Bg1.png
+- Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlementAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlementSpritesData.asset
 - Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Font3.png
 Dependencies: []

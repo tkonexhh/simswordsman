@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3472209505
+CRC: 2794532201
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 24d0b37fa135e8b7d93cf13c7a463f6c
+    Hash: 41d6b418e45c04687fb0dc9ed52b9fd0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c7bf741d650821874e63235c2fdd55e5
+    Hash: 6ddbaebc8ea26ecd782c420c13085c52
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -18,6 +18,10 @@ ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 48
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -36,6 +40,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: abb5c4702c7d6e344b9832a97ae1264d, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: ca8bd8f059ee747bfaf6e0fc17d869fd, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 54b1a21244a55894894cba5af37defa0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e764e926030b04aa6b6369d8221a66aa, type: 3}
@@ -47,6 +53,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: cc9560c722538f444923db9e5ab86f53, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 523a2d88b684e8e4d8989e71522c6e50, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 387f128a0bbcad04ab6cbee6553a68e8, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: b4ca7baa174ee6c4d9b1a8db8c04c4f1, type: 3}
 - Class: 114
@@ -81,6 +89,7 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Panels/Common/Handle.prefab
+- Assets/Res/FolderMode/UI/Panels/Common/ImgFontPre.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/AdDisplayer.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/UITipsPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/ColorFadeTransition.prefab
@@ -93,6 +102,8 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/Common/MaskWithAlphaZeroPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/Common/Tip.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/animation.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/storypanel.bundle

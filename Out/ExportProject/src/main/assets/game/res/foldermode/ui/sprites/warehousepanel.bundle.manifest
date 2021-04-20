@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1926624468
+CRC: 1152121979
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: dfc080951be9a8ec358c7a5c4fbbf7cd
+    Hash: e5495e2b91485e9e226e14c1d96c1b50
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -17,11 +17,14 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/WareHousePanel/warehouse_item_bg.png
 - Assets/Res/FolderMode/UI/Sprites/WareHousePanel/NotUnlockWarehouse.png
 - Assets/Res/FolderMode/UI/Sprites/WareHousePanel/WareHouse_title.png
 - Assets/Res/FolderMode/UI/Sprites/WareHousePanel/warehouse_desc_bg.png
 - Assets/Res/FolderMode/UI/Sprites/WareHousePanel/WareHousePanelSpritesData.asset
+- Assets/Res/FolderMode/UI/Sprites/WareHousePanel/WareHousePanelAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/WareHousePanel/warehouse_item_level_bg.png
 Dependencies: []

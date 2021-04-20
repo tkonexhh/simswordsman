@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3225866394
+CRC: 3953782407
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9d6799e6c4fae88fb38c6fced1528275
+    Hash: 48702841db9032977c6280643fa89010
   TypeTreeHash:
     serializedVersion: 2
     Hash: 270f25423afd840f1831696af0a2df6c
@@ -26,7 +26,9 @@ ClassTypes:
 - Class: 199
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Hit__Left.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_ZZR_Right.prefab
+- Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Hit__Right.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_ZZR_Left.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_ZDR_Right.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_ZDR_Left.prefab
@@ -34,9 +36,12 @@ Assets:
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiswRing_4x4_M.mat
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/swRing_4x4_512_cprsd2_T.png
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Hit_ZZR_Left.prefab
+- Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Right.prefab
+- Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Left.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/xianglongshibazhang.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/general.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/taizuchangquan.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/dagoubangfa.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/xianglongshibazhang.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/general.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/ruyijianfa.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/taizuchangquan.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/dagoubangfa.bundle

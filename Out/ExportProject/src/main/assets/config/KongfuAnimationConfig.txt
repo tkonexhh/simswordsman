@@ -21,7 +21,7 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	SETime	AttackSound
 2007	shierlutantui	0.4;0.6;0.5	0.8;1.4;2;2.1			Hit_Light_Left|Hit_Light_Right		
 2008	kaibeishou	0.5;0.5;0.5;1	0.6;1.2;1.7;2.5			Hit_Light_Left|Hit_Light_Right		
 3001	rulaishenzhang	2	0.8		RuLaiShenZhang_Muzzle_Left|RuLaiShenZhang_Muzzle_Right	RuLaiShenZhang_bullet_Left|RuLaiShenZhang_bullet_Right	2.74	
-3002	xianglongzhang	2	2		XiangLongShiBaZhang_Muzzle	XiangLongShiBaZhang_Hit_Left|XiangLongShiBaZhang_Hit_Right	3.05	
+3002	xianglongzhang	2	2.4500000000000002		XiangLongShiBaZhang	XiangLongShiBaZhang_Hit	3.95	
 3003	liumaishenjian	2;2;2;2;2;2;2	1		LiuMaiShenJian_Muzzle	LiuMaiShenJian_BulletHit_Left|LiuMaiShenJian_BulletHit_Right	1.8	
 3004	dugujiujian	1;1;0	1;1.69;2.65	DuGuJiuJian_DragSmoke	DuGuJiuJian_Left|DuGuJiuJian_Right	Hit_Light_Left|Hit_Light_Right	3	
 3005	lingboweibu					Hit_Light_Left|Hit_Light_Right		
@@ -33,32 +33,32 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	SETime	AttackSound
 4002	diaoyugunfa	2.1;2.2	0.39;1.56		DiaoYuGunFa_Left|DiaoYuGunFa_Right	DiaoYuGunFa_Hit_Left|DiaoYuGunFa_Hit_Right	3	
 4003	luohanfumoquan	1;1	0.7;1.15		LuoHanFuMoQuan_Left|LuoHanFuMoQuan_Right		2.2000000000000002	
 4004	qianshouzhang	1;1;1;1;1;1;1	1			QianShouZhang_Hit_Right|QianShouZhang_Hit_Left	1.4	
-4005	taijijianfa	0.8;2	0					
-4006	taijiquan	0.8;0.6;0.6;1.1	0					
+4005	taijijianfa	0.8;2	0.53;1.08		TaiJiJianFa_Left|TaiJiJianFa_Right	TaiJiJianFa_Hit__Left|TaiJiJianFa_Hit__Right	1.3	
+4006	taijiquan	0.8;0.6;0.6;1.1	0.37;1.35		TaiJiQuan_Left|TaiJiQuan_Right		1.3	
 4007	qingnianshennvjian	2	2.1800000000000002		QingLianJianFa_Left|QingLianJianFa_Right	QingLianJianFa_Hit_Left|QingLianJianFa_Hit_Right	2.91	
 4008	baimangbian	2	2.5		BaiMangBian_Left|BaiMangBian_Right	BaiMangBian_Hit_Left|BaiMangBian_Hit_Right	1.1499999999999999	
 4009	huashanjian	1;1.2;1;-1;4	0.46;1.15;2.04;3.17		HuaShanJian_Left|HuaShanJian_Right	HuaShanJian_Hit_Left|HuaShanJian_Hit_Right	4.2	
-4010	bianfa	1.5;1.5;2	0					
-4011	qianzhuwandushou	0.8;0.6;1.1;1.4	0					
+4010	bianfa	1.5;1.5;2	0.75;1.17;1.69		WuDuBianFa_Left|WuDuBianFa_Right		1.7	
+4011	qianzhuwandushou	0.8;0.6;1.1;1.4	0.23;0.65;0.85;1.55		QianZhuWanDuShou_Left|QianZhuWanDuShou_Right		1.8	
 4012	modao	1.5;2;2.1;2.6	1;1.4;1.6;2.8	MoJiaoDaoFa1_DragSmoke	MoJiaoDaoFa1_Left|MoJiaoDaoFa1_Right		2.17	
 4013	modaoyishan	1.2;1.7;2.3;2.5	0.8;1.12;1.6;1.9	MoJiaoDaoFa2_DragSmoke	MoJiaoDaoFa2_Left|MoJiaoDaoFa2_Right		1.44	
 4014	bodongquan	2	1.25		BoDongQuan_Left|BoDongQuan_Right	BoDongQuan_Hit_Left|BoDongQuan_Hit_Right	2.33	
 4015	yeluoxinghejian	2	2.6		YeLuoXingHeJian_Right|YeLuoXingHeJian_Left	YeLuoXingHeJian_Hit_Left|YeLuoXingHeJian_Hit_Right	3.69	
-4016	shanzei_attack_1	1	0					
-4017	shanzei_attack_2	0.7	0					
-4018	shanzeiBoss_attack_1	0.9	0					
-4019	shanzeiBoss_attack_2	1.6;2.5;2.5	0					
+4016	shanzei_attack_1	1	0.4		ShanZeiAttack1_Left|ShanZeiAttack1_Right		0.35	
+4017	shanzei_attack_2	0.7	0.54		ShanZeiAttack1_Left|ShanZeiAttack2_Right		0.4	
+4018	shanzeiBoss_attack_1	0.9	0.42		ShanZeiBossAttack1_Left|ShanZeiBossAttack1_Right		0.4	
+4019	shanzeiBoss_attack_2	1.6;2.5;2.5	0.43;1.07;1.3		ShanZeiBossAttack1_Left|ShanZeiBossAttack2_Right		1.25	
 4020	bear_attack	1	0.4			Hit_Light_Left|Hit_Light_Right		
 4021	boar_attack	0.8	0.4			Hit_Light_Left|Hit_Light_Right		
 4022	deer_attack	1	0.4			Hit_Light_Left|Hit_Light_Right		
 4023	snake_attack	0.5	0.4			Hit_Light_Left|Hit_Light_Right		
 4024	wolf_attack	1	0.4			Hit_Light_Left|Hit_Light_Right		
-4025	cike_attack_1	0.5;1.1;1	0					
-4026	cike_attack_2	1;1.5	0					
+4025	cike_attack_1	0.5;1.1;1	0.6;0.9		CiKeAttack1		1.1000000000000001	
+4026	cike_attack_2	1;1.5	0.25;0.75		CiKeAttack2_Left|CiKeAttack2_Right		1.3	
 4027	yujianshu_huashan	2	0.7		YuJianShu_Muzzle_Left|YuJianShu_Muzzle_Right	YuJianShu_Hit_Left|YuJianShu_Hit_Right	3.3	
 4028	wk_attack_1	2	0.37		YiDaoQie_Left|YiDaoQie_Right		0.9	
 4029	wk_attack_2	1.1;1.7;1.8	0.31;0.74		LangRenDaoFa_Left|LangRenDaoFa_Right		0.81	
-5001	xianglongzhang_qiaofeng	2	1.55		XiangLongShiBaZhang_Muzzle	XiangLongShiBaZhang_Hit_Left|XiangLongShiBaZhang_Hit_Right	3.05	
+5001	xianglongzhang_qiaofeng	2	2.4500000000000002		XiangLongShiBaZhang	XiangLongShiBaZhang_Hit	3.95	
 5002	qinlonggong	2	1.3	QinLongGong_GroundRingSmokeGE		QinLongGong_Left|QinLongGong_Right	1.03	
 5003	rulaishenzhang_fangzhang	2	0.6		RuLaiShenZhang_Muzzle_Left_xkfs|RuLaiShenZhang_Muzzle_Right_xkfs	RuLaiShenZhang_bullet_Left|RuLaiShenZhang_bullet_Right	2.46	
 5004	chanzhanggong	1.1;1.1;1.1;1.1	0.72		ChanZhangGong_Bullet_Left|ChanZhangGong_Bullet_Right	ChanZhangGong_Hit_Left|ChanZhangGong_Hit_Right	1.4	
@@ -78,14 +78,14 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	SETime	AttackSound
 5018	qiankunyizhi							
 5019	pugong	2	0.6;0.95;1.2			RuYiJianFa_Hit_Left|RuYiJianFa_Hit_Right	1.5	
 5020	skill	2	0.65		MieJueJianFa_Left|MieJueJianFa_Left	MieJueJianFa_Hit_Left|MieJueJianFa_Hit_Right	1.58	
-5021	xiuliqiankun							
-5022	qingliannvshenjian_dubi							
-5023	yujianshu_qiubujun							
+5021	xiuliqiankun	2	0.72;0.92;1.12;1.32;1.9;2.68		XiuLiQianKun_Left|XiuLiQianKun_Right		4.0999999999999996	
+5022	qingliannvshenjian_dubi	2	0.85;2.08		QingLianJianFa_DuBi_Left|QingLianJianFa_DuBi_Right	QingLianJianFa_DuBi_Hit_Left|QingLianJianFa_DuBi_Hit_Right	3.9	
+5023	yujianshu_qiubujun	2	1.18		YuJianShu_QBJ_Left|YuJianShu_QBJ_Right	YuJianShu_QBJ_Hit_Left|YuJianShu_QBJ_Hit_Right	2.2999999999999998	
 5024	wanjianguizong							
-5025	zixiazhang							
-5026	ziqidonglai							
-5027	dizangyin							
-5028	yanluotie							
+5025	zixiazhang	2	1.5		ZiXiaZhang	ZiXiaZhang_Hit_Left|ZiXiaZhang_Hit_Right	2.7	
+5026	ziqidonglai	2	0.5;0.9;1.3;1.7		ZiQiDongLai	ZiQiDongLai_Hit_Left|ZiQiDongLai_Hit_Right	2.42	
+5027	dizangyin	2						
+5028	yanluotie	2						
 5029	qianzhuwandushou_hongyao							
 5030	tianluozhuwang							
 5031	jiaozhu1							
@@ -94,8 +94,8 @@ Id	AnimationName	AtkRange	AtkDelay	FootSE	CastSE	HitSE	SETime	AttackSound
 5034	huoquan							
 5035	jianwu							
 5036	huanyingjianwu							
-5037	shenguangpuzhao							
-5038	shenxiaoleifa							
+5037	shenguangpuzhao	2	1.4		ShenGuangPuZhao	ShenGuangPuZhao_Hit_Left|ShenGuangPuZhao_Hit_Right	3.25	
+5038	shenxiaoleifa	2	1.4		ShenXiaoLeiFa	ShenXiaoLeiFa_Hit_Left|ShenXiaoLeiFa_Hit_Right	3.5	
 5039	xiantong1							
 5040	xiantong2							
 5041	xuannv1							

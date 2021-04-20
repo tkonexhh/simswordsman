@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2535655083
+CRC: 3215932213
 Hashes:
   AssetFileHash:
     serializedVersion: 2
     Hash: 91a689805969b5835654d2ec53bccae5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b3141c9e0b11f581f00251f764376941
+    Hash: 073bccd47317771db957b4d8fa14b597
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -49,6 +49,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Item/Well/jing_SkeletonData.asset
 - Assets/Res/FolderMode/Item/Well/jing_Atlas.asset
@@ -58,4 +60,4 @@ Assets:
 - Assets/Res/FolderMode/Item/Well/jing_json.json
 - Assets/Res/FolderMode/Item/Well/WellPrefab.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle

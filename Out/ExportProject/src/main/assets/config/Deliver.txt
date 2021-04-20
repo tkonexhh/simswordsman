@@ -1,7 +1,7 @@
-﻿ID	普通奖励池	稀有奖励池	押镖时长，分钟
-int	string	string	int
-Level	NormalReward	RareReward	Duration
-101	Item|1001|250;Item|1002|250;Coin|500;Food|30	Kongfu|2005|1;Kongfu|2006|1;Kongfu|2007|1	600
-102	Item|1003|250;Item|1004|250;Coin|500;Food|30	Arms|201|1;Arms|202|1;Arms|203|1	720
-103	Item|1003|250;Item|1004|250;Coin|500;Food|30	Kongfu|2005|1;Kongfu|2006|1;Kongfu|2007|1	720
-104	Item|1003|350;Item|1004|350;Coin|500;Food|30	Arms|201|1;Arms|202|1;Arms|203|1	1080
+﻿ID	车队名字	普通奖励池	稀有奖励池	押镖时长，分钟
+int	string	string	string	int
+Level	Name	NormalReward	RareReward	Duration
+101	青龙车队	Item|1001|250;Item|1002|250;Coin|500;Food|20	Medicine|101|2;Item|1008|1	480
+102	白虎车队	Item|1003|250;Item|1004|250;Coin|600;Food|30	Medicine|102|2;Item|1007|1	480
+103	朱雀车队	Item|1003|350;Item|1004|350;Coin|800;Food|40	Medicine|103|2;Item|3102|1	720
+104	玄武车队	Item|1003|450;Item|1004|450;Coin|1000;Food|50	Medicine|104|2;Item|3101|1	720

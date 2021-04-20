@@ -1,7 +1,7 @@
 ﻿ID	类型	解锁等级	获取物品id	稀有物品概率	稀有物品Id	生产时间，秒	存储最大数量	生成气泡最小数量
 int	string	int	int	int	int	int	int	int
 Id	Type	LobbyLevelRequired	ItemId	SpecialRate	SpecialItemId	ProductTime	MaxStore	CollectMin
-1	LotusRoot	2	1010	0	0	180	20	1
-2	Leaf	3	1013	0	0	180	20	1
-3	Honey	4	1016	3000	1021	300	10	1
-4	Lotus	5	1017	0	0	300	10	1
+1	LotusRoot	2	1010	0	0	300	10	1
+2	Leaf	3	1013	0	0	300	10	1
+3	Honey	4	1016	3000	1021	600	5	1
+4	Lotus	5	1017	0	0	600	5	1

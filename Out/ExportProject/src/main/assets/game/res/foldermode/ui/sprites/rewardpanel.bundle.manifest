@@ -1,25 +1,34 @@
 ManifestFileVersion: 0
-CRC: 3806272923
+CRC: 1555787242
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4dbb7f5229eddfaca0a30684dd2736eb
+    Hash: 60daf8b5c24ae91f0996986c0e9e0c53
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c90fc19e2679e5295d10bd00f33cb4c3
+    Hash: c4d5dee85f6c263eb0adbea350984ae1
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_equip_senior.png
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/RewardPanelAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_getBg3.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/RewardPanel_DoubleGetRewardBtnImg.png
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_equip_god.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_right.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_title.png
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_kungfu_god.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_Bg3.png
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_equip_ordinary.png
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_kungfu_ordinary.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_left.png
+- Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_kungfu_senior.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_Bg1.png
 - Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_Bg2.png
 Dependencies: []

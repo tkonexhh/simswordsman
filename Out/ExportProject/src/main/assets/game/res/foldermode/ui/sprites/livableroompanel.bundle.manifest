@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1857885244
+CRC: 1578177031
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0f99ac0b07f0bc2e240b494db25af21e
+    Hash: d1548a0ba9e6261a279cc7117f7efc97
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -17,6 +17,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_Bg1.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_Bg4.png
@@ -24,6 +26,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgBtn3.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_EastName.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/livable_room_level_bg.png
+- Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanelAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_WeatName.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgFont1.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_Bg3.png
@@ -31,4 +34,4 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgBtn2.png
 - Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_BgBtn1.png
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle

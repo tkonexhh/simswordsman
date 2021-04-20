@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1241217040
+CRC: 3989202385
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: dfeac879058dd116e47c03f8e61e1a40
+    Hash: 2721176475285b0da721308875c88d73
   TypeTreeHash:
     serializedVersion: 2
     Hash: c4d5dee85f6c263eb0adbea350984ae1
@@ -29,8 +29,9 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Challenge.png
 - Assets/Sprites/WorkingBubble/bubble_coin.png
+- Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Challenging.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_m-13.png
-- Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMunu_BulletinBoard.png
+- Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_BulletinBoard.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Disiciple.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Head.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_d-3.png
@@ -38,4 +39,5 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuVisitors.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/btn@2x.png
 - Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_MythicalAnimals.png
-Dependencies: []
+Dependencies:
+- E:/UnityProject/SimSwordsMan3/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu/maintask.bundle
