@@ -171,6 +171,8 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickChoiceDiscipleTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickEnterTrialBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickTrialFinishedTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger));
         }
 
         protected void InitCustomCommand()

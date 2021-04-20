@@ -36,6 +36,16 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnExitBattle, OnExitBattleCallBack);
 
             EventSystem.S.Register(EventID.OnCloseAllUIPanel, OnCloseAllUIPanelCallBack);
+
+            EventSystem.S.Register(EventID.OnTrialTimeOver, OnTrialTimeOverCallBack);
+        }
+
+        private void OnTrialTimeOverCallBack(int key, object[] param)
+        {
+            if (GuideMgr.S.IsGuideFinish(43) == false) 
+            {
+                EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger);
+            }            
         }
 
         private void OnCloseAllUIPanelCallBack(int key, object[] param)
@@ -155,6 +165,8 @@ namespace GameWish.Game
             {
                 CheckIsStartChallengeSystemGuide();
                 CheckIsStartTowerSystemGuide();
+
+                CheckIsStartHeroTrialSystemGuide();
             }
         }
         /// <summary>
@@ -168,8 +180,9 @@ namespace GameWish.Game
             int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
             var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
             var characterData = characterList.Find(x => x.level >= 200);
-            if (characterData != null) { 
-            //EventSystem.S.Send(EventID)
+            if (characterData != null && facilityLevel >= 5) 
+            {
+                EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_IntroduceTrigger);
             }
         }
         /// <summary>
@@ -215,6 +228,8 @@ namespace GameWish.Game
                 CheckIsStartGuideKungFuTrigger();
 
                 CheckIsStartGuideArmorTrigger();
+
+                CheckIsStartHeroTrialSystemGuide();
             }
         }
 

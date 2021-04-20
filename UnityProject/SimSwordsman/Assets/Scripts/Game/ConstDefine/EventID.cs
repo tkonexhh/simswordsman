@@ -434,13 +434,16 @@ namespace GameWish.Game
         OnEnableFinishBtn,
         OnTrialTimeOver,
 
-        OnHeroTrialSystemTrigger_IntroduceTrigger,          //试炼系统介绍引导
-        OnHeroTrialSystemTrigger_ClickTrialBtnTrigger,      //点击试炼按钮
-        OnHeroTrialSystemTrigger_IntroduceTrigger2,         //试炼系统介绍引导2
-        OnHeroTrialSystemTrigger_ClickStartBtnTrigger,      //试炼系统_点击前往按钮
-        OnHeroTrialSystemTrigger_ClickChoiceDiscipleTrigger,//试炼系统，选择弟子按钮
-        OnHeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger,  //试炼系统，选择弟子
-        OnHeroTrialSystemTrigger_ClickEnterTrialBtnTrigger, //试炼系统，点击进入试炼按钮
+        OnHeroTrialSystemTrigger_IntroduceTrigger,              //试炼系统介绍引导
+        OnHeroTrialSystemTrigger_ClickTrialBtnTrigger,          //点击试炼按钮
+        OnHeroTrialSystemTrigger_IntroduceTrigger2,             //试炼系统介绍引导2
+        OnHeroTrialSystemTrigger_ClickStartBtnTrigger,          //试炼系统_点击前往按钮
+        OnHeroTrialSystemTrigger_ClickChoiceDiscipleTrigger,    //试炼系统，选择弟子按钮
+        OnHeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger,      //试炼系统，选择弟子
+        OnHeroTrialSystemTrigger_ClickEnterTrialBtnTrigger,     //试炼系统，点击进入试炼按钮
+
+        OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger,     //试炼系统，点击完成试炼
+        OnHeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger,  //试炼系统，弟子突破成功
         #endregion
 
     }
