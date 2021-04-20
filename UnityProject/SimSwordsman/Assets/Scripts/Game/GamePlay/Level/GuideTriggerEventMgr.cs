@@ -156,10 +156,6 @@ namespace GameWish.Game
 
         private void OnUpgradeFacilityCallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuideFinish(29))
-            {
-                return;
-            }
             FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(param[0].ToString());
             if (facilityType == FacilityType.Lobby)
             {
