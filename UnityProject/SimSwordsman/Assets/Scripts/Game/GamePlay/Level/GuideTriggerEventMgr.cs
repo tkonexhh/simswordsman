@@ -36,6 +36,16 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnExitBattle, OnExitBattleCallBack);
 
             EventSystem.S.Register(EventID.OnCloseAllUIPanel, OnCloseAllUIPanelCallBack);
+
+            EventSystem.S.Register(EventID.OnTrialTimeOver, OnTrialTimeOverCallBack);
+        }
+
+        private void OnTrialTimeOverCallBack(int key, object[] param)
+        {
+            if (GuideMgr.S.IsGuideFinish(43) == false) 
+            {
+                EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger);
+            }            
         }
 
         private void OnCloseAllUIPanelCallBack(int key, object[] param)
@@ -86,6 +96,9 @@ namespace GameWish.Game
 
             UIMgr.S.ClosePanelAsUIID(UIID.DeliverPanel);
 
+            UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialChooseDisciplePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialTipPanel);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)
@@ -146,14 +159,43 @@ namespace GameWish.Game
 
         private void OnUpgradeFacilityCallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuideFinish(29))
-            {
-                return;
-            }
             FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(param[0].ToString());
             if (facilityType == FacilityType.Lobby)
             {
                 CheckIsStartChallengeSystemGuide();
+                CheckIsStartTowerSystemGuide();
+
+                CheckIsStartHeroTrialSystemGuide();
+            }
+        }
+        /// <summary>
+        /// 是否开始试炼系统引导
+        /// </summary>
+        private void CheckIsStartHeroTrialSystemGuide() 
+        {
+            if (GuideMgr.S.IsGuideFinish(42)) {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
+            var characterData = characterList.Find(x => x.level >= 200);
+            if (characterData != null && facilityLevel >= 5) 
+            {
+                EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_IntroduceTrigger);
+            }
+        }
+        /// <summary>
+        /// 是否开始伏魔塔引导
+        /// </summary>
+        private void CheckIsStartTowerSystemGuide() 
+        {
+            if (GuideMgr.S.IsGuideFinish(40)) 
+            {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            if (facilityLevel >= 3) {
+                EventSystem.S.Send(EventID.OnTowerTrigger_IntroduceTrigger);
             }
         }
         /// <summary>
@@ -185,6 +227,8 @@ namespace GameWish.Game
                 CheckIsStartGuideKungFuTrigger();
 
                 CheckIsStartGuideArmorTrigger();
+
+                CheckIsStartHeroTrialSystemGuide();
             }
         }
 
@@ -406,6 +450,9 @@ namespace GameWish.Game
                 case FacilityType.PracticeFieldWest:
                     if (GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.PracticeFieldEast).facilityState != FacilityState.Unlocked)
                         EventSystem.S.Send(EventID.OnGuideUnlockPracticeField);
+                    break;
+                case FacilityType.Deliver:
+                    EventSystem.S.Send(EventID.OnDeliverTrigger_BuildTrigger);
                     break;
             }
         }
