@@ -28,6 +28,11 @@ namespace GameWish.Game
             }
         }
 
+        public static List<HeroTrialConfig> GetHeroTrialConfigList()
+        {
+            return heroTrialConfigDic;  
+        }
+
         public static HeroTrialConfig GetConfig(ClanType clanType)
         {
             HeroTrialConfig config = heroTrialConfigDic.FirstOrDefault(i => i.clanType == clanType);

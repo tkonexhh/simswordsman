@@ -15,7 +15,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ExpCont;
         [SerializeField]
-        private Image m_DisciplePhoto;
+        private Transform m_DiscipleTra;
         [SerializeField]
         private Slider m_ExpProportion;
 
@@ -54,7 +54,14 @@ namespace GameWish.Game
             m_ParentPanel = (CombatSettlementPanel)obj[3];
             m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
-            m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
+
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurCharacterItem), m_DiscipleTra).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+            discipleHeadPortrait.transform.localPosition = new Vector3(-132, -8, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.2f, 0.2f, 1);
+
+            //m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {

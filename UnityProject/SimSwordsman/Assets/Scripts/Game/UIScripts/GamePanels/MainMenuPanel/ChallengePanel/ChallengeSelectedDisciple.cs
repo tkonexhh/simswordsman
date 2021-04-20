@@ -79,7 +79,6 @@ namespace GameWish.Game
                 m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
                 discipleHeadPortrait.transform.localPosition = new Vector3(47.6f, -27.6f, 0);
                 discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
-                Debug.LogError("###"+ discipleHeadPortrait.transform.localPosition);
             }
             //m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
         }

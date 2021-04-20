@@ -26,6 +26,7 @@ namespace GameWish.Game
         [SerializeField] private Button m_ConfirmBtn;
         [SerializeField] private Text m_ConfirmText;
 
+        private CommonTaskItemInfo m_CommonTaskItemInfo = null;
 
         private LevelConfigInfo m_LevelConfigInfo = null;
         private TowerPanelChallengeToSelect m_TowerLevelConfig;
@@ -61,6 +62,17 @@ namespace GameWish.Game
             m_PanelType = (PanelType)args[0];
             switch (m_PanelType)
             {
+                case PanelType.Task:
+                    m_CommonTaskItemInfo = args[1] as CommonTaskItemInfo;
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
+                            CreateDisciple(m_AllDiscipleList[i]);
+
+                    for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+                        CreateSelectedDisciple();
+                    RefreshFixedInfo(PanelType.Task);
+                    break;
                 case PanelType.Deliver:
                     m_SingleDeliverDetailData = args[1] as SingleDeliverDetailData;
                     CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
@@ -125,14 +137,11 @@ namespace GameWish.Game
 
                         return 0;
                     });
-
-
                     m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         CreateDisciple(m_AllDiscipleList[i]);
                     for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
                         CreateSelectedDisciple();
-
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -247,6 +256,8 @@ namespace GameWish.Game
             }
             switch (m_PanelType)
             {
+                case PanelType.Task:
+                    break;
                 case PanelType.Challenge:
                 case PanelType.Tower:
                     RefreshDisicipleSkill();
@@ -324,7 +335,7 @@ namespace GameWish.Game
             else
             {
                 m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
-                // m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
+                m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
             }
         }
         private void GetInformationForNeed()
@@ -345,6 +356,13 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 switch (m_PanelType)
                 {
+                    case PanelType.Task:
+                        if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
+                        {
+                            FloatMessage.S.ShowMsg("人数不足" + m_CommonTaskItemInfo.GetCharacterAmount() + "人，请选满");
+                            return;
+                        }
+                        break;
                     case PanelType.Challenge:
                         if (m_SelectedDiscipleDic.Count != ChallengeSelectedDiscipleNumber)
                         {

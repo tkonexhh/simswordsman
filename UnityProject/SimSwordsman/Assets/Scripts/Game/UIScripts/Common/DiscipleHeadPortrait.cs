@@ -34,7 +34,7 @@ namespace GameWish.Game
 					case CharacterQuality.Good:
 					case CharacterQuality.Perfect:
 						iconName = "Head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId +
-							"_0_" + characterItem.headId;
+							"_0_" + characterItem.headId;	
 						break;
 					case CharacterQuality.Hero:
 						iconName = "Head_hero_" + characterItem.bodyId +
@@ -44,11 +44,17 @@ namespace GameWish.Game
 						break;
 				}
 			}
-		
-            if (!GameObjectPoolMgr.S.group.HasPool(iconName))
-                GameObjectPoolMgr.S.AddPool(iconName, (GameObject)m_ResLoader.LoadSync(iconName), 10, 2);
-            return GameObjectPoolMgr.S.Allocate(iconName);
-
+            try
+            {
+				if (!GameObjectPoolMgr.S.group.HasPool(iconName))
+					GameObjectPoolMgr.S.AddPool(iconName, (GameObject)m_ResLoader.LoadSync(iconName), 10, 2);
+				return GameObjectPoolMgr.S.Allocate(iconName);
+			}
+            catch (System.Exception)
+            {
+				Log.e("Î´ÕÒµ½×ÊÔ´,Name = " + iconName);
+				return (GameObject)m_ResLoader.LoadSync("Head_good_1_0_4");
+			}
             //return (GameObject)m_ResLoader.LoadSync("Head_good_1_0_4");
         }
 	}
