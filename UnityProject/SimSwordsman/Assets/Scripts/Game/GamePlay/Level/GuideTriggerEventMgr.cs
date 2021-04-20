@@ -158,6 +158,21 @@ namespace GameWish.Game
             }
         }
         /// <summary>
+        /// 是否开始试炼系统引导
+        /// </summary>
+        private void CheckIsStartHeroTrialSystemGuide() 
+        {
+            if (GuideMgr.S.IsGuideFinish(42)) {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
+            var characterData = characterList.Find(x => x.level >= 200);
+            if (characterData != null) { 
+            //EventSystem.S.Send(EventID)
+            }
+        }
+        /// <summary>
         /// 是否开始伏魔塔引导
         /// </summary>
         private void CheckIsStartTowerSystemGuide() 
