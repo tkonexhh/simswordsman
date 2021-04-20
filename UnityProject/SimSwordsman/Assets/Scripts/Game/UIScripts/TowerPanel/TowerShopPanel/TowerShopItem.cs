@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Qarth;
 
 namespace GameWish.Game
 {
@@ -31,6 +32,7 @@ namespace GameWish.Game
             m_ItemInfo = itemInfo;
             m_TxtRewardNum.text = "x" + m_ItemInfo.reward.Count;
             m_ItemInfo.buyed = GameDataMgr.S.GetPlayerData().towerData.GetShopDataByIndex(index).buyed;
+            // Debug.LogError(m_ItemInfo.reward.SpriteName());
             m_ImgRewardIcon.SetReward(m_ItemInfo.reward, panel);
             m_TxtCost.text = m_ItemInfo.price.ToString();
             RefeshQuality(itemInfo.quality);
@@ -61,6 +63,10 @@ namespace GameWish.Game
             {
                 MainGameMgr.S.TowerSystem.BuyShopItem(m_Index, m_ItemInfo);
                 RefeshBuyed(true);
+            }
+            else
+            {
+                FloatMessage.S.ShowMsg("伏魔币不足，再去收集一些吧");
             }
 
         }

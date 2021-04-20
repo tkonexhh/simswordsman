@@ -101,6 +101,12 @@ namespace GameWish.Game
                 totalATk /= 5;
                 arg.basicATK = totalATk;
             }
+
+            var towerConfig = TDTowerConfigTable.GetData(arg.level);
+            if (towerConfig != null)
+            {
+                arg.basicATK *= towerConfig.atkNum;
+            }
             arg.recommendATK = (long)(arg.basicATK * 5.5f);
             UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Tower, arg);
             // UIMgr.S.OpenPanel(UIID.TowerSelectCharacterPanel, arg);
