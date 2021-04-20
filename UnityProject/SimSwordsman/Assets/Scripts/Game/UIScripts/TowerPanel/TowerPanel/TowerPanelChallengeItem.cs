@@ -42,8 +42,6 @@ namespace GameWish.Game
             for (int i = 0; i < m_EnemyIcons.Count; i++)
             {
                 var sp = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + icons[i]);
-                Debug.LogError("enemy_icon_" + icons[i]);
-                Debug.LogError(sp.name);
                 //TODO 直接从表里取头像
                 m_EnemyIcons[i].SetEnemy(sp);
                 // m_EnemyIcons[i].SetEnemy(SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_qiubujun"));
