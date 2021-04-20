@@ -192,6 +192,9 @@ namespace GameWish.Game
                 case CharacterQuality.Perfect:
                     m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg17");
                     break;
+                case CharacterQuality.Hero:
+                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg22");
+                    break;
                 default:
                     break;
             }

@@ -32,6 +32,10 @@ namespace GameWish.Game
         private Toggle m_GeniusTog;
         [SerializeField]
         private Text m_GeniusValue;
+        [SerializeField]
+        private Toggle m_HeroTog;
+        [SerializeField]
+        private Text m_HeroValue;
 
         [Header("Right")]
         [SerializeField]
@@ -140,6 +144,7 @@ namespace GameWish.Game
             m_CivilianValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_NORMAL);
             m_EliteValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_GOOD);
             m_GeniusValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_PREFECT);
+            m_HeroValue.text = "гЂал";
         }
 
         private void GetInformationForNeed()
@@ -199,6 +204,13 @@ namespace GameWish.Game
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel, "Genius");
 
                 SwitchDisciple(CharacterQuality.Perfect);
+            });
+            m_HeroTog.onValueChanged.AddListener((e) => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel, "Hero");
+
+                SwitchDisciple(CharacterQuality.Hero);
             });
         }
 
