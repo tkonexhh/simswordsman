@@ -31,7 +31,7 @@ namespace GameWish.Game
 
         public Vector3 GoOutSidePos = new Vector3(-11f, -5f);
 
-        private Vector2 m_DeliverCarOriginPos = new Vector3(0, -3.6f, 0);
+        private Vector2 m_DeliverCarOriginPos = new Vector3(0.8f, -4.2f, 0);
         /// <summary>
         /// 镖车回来时的间隔时间，若同时回来，则间隔一段时间分别回来
         /// </summary>

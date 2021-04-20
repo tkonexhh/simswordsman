@@ -188,7 +188,7 @@ namespace GameWish.Game
 			if (isIdle) 
 			{
 				m_SpineAnim.transform.localScale = new Vector3(-1, 1, 1); 
-				SpineHelper.PlayAnim(m_SpineAnim, "positive_idle", true, null);
+				SpineHelper.PlayAnim(m_SpineAnim, "negative_idle", true, null);
 				return;
 			}
 			float valueDown = Vector2.Angle(new Vector2(1, 1), MoveDir);
