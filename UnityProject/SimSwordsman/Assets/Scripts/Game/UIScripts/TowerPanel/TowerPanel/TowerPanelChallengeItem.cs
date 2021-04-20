@@ -13,6 +13,8 @@ namespace GameWish.Game
         [SerializeField] private List<TowerEnemyIcon> m_EnemyIcons;
         [SerializeField, Header("解锁状态")] private GameObject m_ObjUnlock;
         [SerializeField] private Button m_BtnFight;
+        [SerializeField] private RewardItemIcon m_RewardItemIcon;
+        [SerializeField] private Text m_TxtRewardNum;
 
         [SerializeField, Header("完成状态")] private GameObject m_ObjComplete;
         [SerializeField, Header("未解锁状态")] private GameObject m_ObjLocked;
@@ -33,12 +35,27 @@ namespace GameWish.Game
                 m_Panel = panel;
             m_Level = level;
             m_TxtLevel.text = "第" + ChineseHelper.NumToChinese(m_Level) + "关";
-            var enemyConfig = GameDataMgr.S.GetPlayerData().towerData.GetEnemyPoolIDByIndex(m_Level - 1);
+            var towerLevelConfigDB = GameDataMgr.S.GetPlayerData().towerData.GetLevelConfigByIndex(m_Level - 1);
+            var enemyConfig = towerLevelConfigDB.enemyConfig;
+            // var tableEnemyConfig = TDTowerEnemyConfigTable.GetData(enemyConfig.id);
             for (int i = 0; i < m_EnemyIcons.Count; i++)
             {
+                //TODO 直接从表里取头像
                 m_EnemyIcons[i].SetEnemy(enemyConfig.enemyIDLst[i]);
             }
             int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
+            if (string.IsNullOrEmpty(towerLevelConfigDB.reward))
+            {
+                m_RewardItemIcon.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_RewardItemIcon.gameObject.SetActive(true);
+                var reward = RewardMgr.S.GetRewardBase(towerLevelConfigDB.reward);
+                m_RewardItemIcon.SetReward(reward, panel);
+                m_TxtRewardNum.text = "x" + reward.Count;
+            }
+
             m_State = m_Level < maxLvl ? TowerItemState.Complete : (m_Level == maxLvl ? TowerItemState.Unlock : TowerItemState.Locked);
             RefeshUI();
         }

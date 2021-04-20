@@ -7,9 +7,10 @@ namespace GameWish.Game
 {
     public class TowerShopItem : MonoBehaviour
     {
-        [SerializeField] private Image m_ImgRewardIcon;
+        [SerializeField] private RewardItemIcon m_ImgRewardIcon;
         [SerializeField] private Text m_TxtRewardNum;
         [SerializeField] private Text m_TxtCost;
+        [SerializeField] private Image m_ImgQuality;
         [Header("购买")]
         [SerializeField] private Button m_BtnBuy;
         [Header("已购买")]
@@ -30,9 +31,28 @@ namespace GameWish.Game
             m_ItemInfo = itemInfo;
             m_TxtRewardNum.text = "x" + m_ItemInfo.reward.Count;
             m_ItemInfo.buyed = GameDataMgr.S.GetPlayerData().towerData.GetShopDataByIndex(index).buyed;
-            m_ImgRewardIcon.sprite = panel.FindSprite(m_ItemInfo.reward.SpriteName());
+            m_ImgRewardIcon.SetReward(m_ItemInfo.reward, panel);
             m_TxtCost.text = m_ItemInfo.price.ToString();
+            RefeshQuality(itemInfo.quality);
             RefeshBuyed(itemInfo.buyed);
+        }
+
+        private void RefeshQuality(TowerShopItemQuality quality)
+        {
+            string icon = "";
+            switch (quality)
+            {
+                case TowerShopItemQuality.Normal:
+                    icon = "rewardpanel_equip_ordinary";
+                    break;
+                case TowerShopItemQuality.Good:
+                    icon = "rewardpanel_kungfu_senior";
+                    break;
+                case TowerShopItemQuality.Perfect:
+                    icon = "rewardpanel_kungfu_god";
+                    break;
+            }
+            m_ImgQuality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, icon);
         }
 
         private void OnClickBuy()

@@ -81,12 +81,14 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 9a6e2a2b1a88d0d4c9f0e4ec74f2af92, type: 3}
     - {fileID: 2800000, guid: fb945c1a386f14c4ca5eca6ef5d424fe, type: 3}
     - {fileID: 2800000, guid: 53ac518632be3c24f8f63d45aec5ac4b, type: 3}
+    - {fileID: 2800000, guid: 6fe7ba027adf24191a04bb9391703203, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 90bd344103829da4d8646805f932af13, type: 3}
   - {fileID: 21300000, guid: b4a8216174e85e5449c58ddf7cb5804f, type: 3}
   - {fileID: 21300000, guid: ab8f4a919e16fe24eaced8a22461c804, type: 3}
+  - {fileID: 21300000, guid: 6fe7ba027adf24191a04bb9391703203, type: 3}
   - {fileID: 21300000, guid: dbe94f02c02e3d342a9762f47eff845c, type: 3}
   - {fileID: 21300000, guid: 751065d29e7832740a30cda8f4e45e07, type: 3}
   - {fileID: 21300000, guid: a7381fe21c5d9414e8d77dc671f8b007, type: 3}
@@ -127,9 +129,10 @@ SpriteAtlas:
   - fishbearspaw
   - revivalmaru
   - SilverOrderImg
+  - towercoin
   - cyanrock
   - silverolder
-  - iron
+  - blackiron
   - GoldOrderImg
   - bearspaw
   - antler
@@ -140,7 +143,7 @@ SpriteAtlas:
   - wisteria
   - poisonfang
   - lingzhi
-  - blackiron
+  - iron
   - agate
   - dragondcales
   - lotus

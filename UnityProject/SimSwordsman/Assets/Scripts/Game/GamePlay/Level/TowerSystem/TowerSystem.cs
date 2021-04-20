@@ -42,7 +42,7 @@ namespace GameWish.Game
             int maxLvl = m_TowerData.maxLevel;
             TowerLevelConfig levelConfig = new TowerLevelConfig(maxLvl);
 
-            var enemyPool = m_TowerData.GetEnemyPoolIDByIndex(maxLvl - 1);
+            var enemyPool = m_TowerData.GetLevelConfigByIndex(maxLvl - 1).enemyConfig;
             if (m_TowerData.enemyCharacterLst.Count == 0)
             {
                 // Debug.LogError("New Enemy");
@@ -144,6 +144,14 @@ namespace GameWish.Game
             itemInfo.reward.AcceptReward();
             GameDataMgr.S.GetPlayerData().towerData.BuyShopData(index);
         }
+        #endregion
+
+        #region 处理选择逻辑
+        public bool CanAddNewCharacter()
+        {
+            return GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst.Count < TowerDefine.MAX_CHARACT_NUM;
+        }
+
         #endregion
     }
 

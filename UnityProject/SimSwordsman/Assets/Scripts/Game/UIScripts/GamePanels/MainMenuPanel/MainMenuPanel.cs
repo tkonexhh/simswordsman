@@ -83,8 +83,8 @@ namespace GameWish.Game
         {
             RegisterEvents();
             base.OnUIInit();
+            m_MainTaskUIHandler.Init(this);
 
-           
         }
 
         private void HandListenerEvent(int key, object[] param)
@@ -208,11 +208,15 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                FloatMessage.S.ShowMsg("暂未开放，敬请期待");
-                //TODO 添加解锁等级限制
-                if (PlatformHelper.isTestMode)
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                int needLobbyLevel = TowerDefine.ENTER_LEVEL;
+                if (lobbyLevel >= needLobbyLevel)
                 {
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
                 }
 
             });
@@ -253,7 +257,7 @@ namespace GameWish.Game
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
 
-                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle)
+                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle && MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady())
                 {
                     UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
                 }
@@ -261,7 +265,7 @@ namespace GameWish.Game
                 MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
 
-            m_MainTaskUIHandler.Init(this);
+
             RefreshChallenging();
             MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);

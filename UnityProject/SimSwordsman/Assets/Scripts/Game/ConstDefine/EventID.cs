@@ -419,6 +419,7 @@ namespace GameWish.Game
         OnRefreshTrialPanel,
         OnCountDownRefresh,
         OnEnableFinishBtn,
+        OnTrialTimeOver,
         #endregion
 
     }

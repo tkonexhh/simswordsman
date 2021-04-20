@@ -28,14 +28,14 @@ namespace GameWish.Game
         public void OnTrialStart(DateTime trialStartDay, int characterId, ClanType clanType)
         {
             state = HeroTrialStateID.Runing;
-            this.trialStartTime = trialStartDay.ToLongTimeString();
+            this.trialStartTime = trialStartDay.ToString();
             this.characterId = characterId;
             this.clanType = clanType;
 
             GameDataMgr.S.GetClanData().SetDataDirty();
         }
 
-        public void OnTrialFinished()
+        public void OnTrialTimeOver()
         {
             state = HeroTrialStateID.Finished;
 
@@ -45,7 +45,7 @@ namespace GameWish.Game
         public void Reset()
         {
             state = HeroTrialStateID.Idle;
-            trialStartTime = string.Empty;
+            //trialStartTime = string.Empty;
             characterId = -1;
             clanType = ClanType.None;
 

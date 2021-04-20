@@ -48,7 +48,7 @@ namespace GameWish.Game
             m_EnemyInitPos = m_HeroTialMgr.BattleField.GetEnemyCharacterPos();
 
             // Spawn Characters
-            m_OurCharacter = SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
+            m_OurCharacter = m_HeroTialMgr.SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
             m_OurCharacter.CharacterModel.SetHp(m_OurCharacter.CharacterModel.GetBaseAtkValue());
 
             int enemyId = GetEnemyId();
@@ -116,31 +116,10 @@ namespace GameWish.Game
             return enemy;
         }
 
-        private CharacterController SpawnOurCharacter(int id)
-        {
-            CharacterController controller = null;
-
-            CharacterItem characterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(id);
-
-            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
-            if (go != null)
-            {
-                go.transform.SetParent(m_HeroTialMgr.BattleField.transform);
-                CharacterView characterView = go.GetComponent<CharacterView>();
-                controller = new CharacterController(id, characterView, CharacterStateID.Battle);
-                controller.OnEnterBattleField(m_OurInitPos);
-            }
-            else
-            {
-                Log.e("SpawnCharacterController return null");
-            }
-
-            return controller;
-        }
 
         private int GetEnemyId()
         {
-            HeroTrialConfig config = TDHeroTrialConfigTable.GetConfig(m_HeroTialMgr.DbData.clanType);
+            HeroTrialConfig config = TDHeroTrialConfigTable.GetConfig(m_HeroTialMgr.TrialClan);
             int[] enemyIds;
             if (m_SpawnOrdinaryEnemy)
             {
@@ -174,7 +153,7 @@ namespace GameWish.Game
             {
                 case (int)EventID.OnOneRoundEnd:            
                     m_RoundCount++;
-                    if (m_RoundCount > 2 || m_HeroTialMgr.GetLeftTime() <= 0) // This enemy should be killed
+                    if (m_RoundCount > GetMaxRoundCount() || m_HeroTialMgr.GetLeftTime() <= 0) // This enemy should be killed
                     {
                         Log.i("Enemy should be dead");
 
@@ -191,8 +170,10 @@ namespace GameWish.Game
                 case (int)EventID.OnCharacterInFightGroupDead:
                     if (m_HeroTialMgr.GetLeftTime() <= 0)
                     {
-                        Log.i("Time over, finish trial");
-                        m_HeroTialMgr.FinishTrial();
+                        //Log.i("Time over, finish trial");
+                        //m_HeroTialMgr.FinishTrial();
+                        m_HeroTialMgr.OnTrialTimeOver();
+                        EventSystem.S.Send(EventID.OnTrialTimeOver);
                     }
                     else
                     {
@@ -214,6 +195,14 @@ namespace GameWish.Game
                     break;
 
             }
+        }
+
+        private int GetMaxRoundCount()
+        {
+            if (m_SpawnOrdinaryEnemy)
+                return UnityEngine.Random.Range(3, 5);
+            else
+                return UnityEngine.Random.Range(4, 7);
         }
 
     }

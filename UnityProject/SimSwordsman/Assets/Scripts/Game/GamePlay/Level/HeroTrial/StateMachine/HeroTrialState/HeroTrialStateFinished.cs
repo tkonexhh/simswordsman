@@ -21,6 +21,11 @@ namespace GameWish.Game
         {
             m_HeroTialMgr = handler.GetHeroTrialMgr();
 
+            if (m_HeroTialMgr.FightGroup == null && m_HeroTialMgr.DbData.characterId != -1)
+            {
+                var ourCharacter = m_HeroTialMgr.SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
+                m_HeroTialMgr.FightGroup = new FightGroup(1, ourCharacter, null);
+            }
         }
 
         public override void Exit(IHeroTrialStateHander handler)

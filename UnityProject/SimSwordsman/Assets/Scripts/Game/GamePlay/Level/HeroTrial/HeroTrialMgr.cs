@@ -25,7 +25,7 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
-        private double m_TrialTotalTime = 20;
+        private double m_TrialTotalTime = 0.3 * 60;
 
         private ClanType m_TrialClanType = ClanType.None;
 
@@ -81,8 +81,6 @@ namespace GameWish.Game
         #region Public Set
         public void OnEnterHeroTrial()
         {
-            SetState(m_DbData.state);
-
             RegisterEvents();
 
             EventSystem.S.Send(EventID.OnEnterHeroTrial);
@@ -90,12 +88,25 @@ namespace GameWish.Game
             m_IsInTrial = true;
 
             m_BattleField.ChangeBgSpriteRenderToHeroTrial();
+            m_BattleField.SetSpriteBgLocalPos(new Vector3(0, -0.8f, 0));
+            m_BattleField.CalculateBattleArea(-1f);
 
             StartCountDown();
 
             if (!string.IsNullOrEmpty(m_DbData.trialStartTime))
             {
                 m_TrialStartTime = m_DbData.GetStartTime();
+            }
+
+            if (m_DbData.state == HeroTrialStateID.Runing && GetLeftTime() <= 0)
+            {
+                OnTrialTimeOver();
+
+                EventSystem.S.Send(EventID.OnTrialTimeOver);
+            }
+            else
+            {
+                SetState(m_DbData.state);
             }
         }
 
@@ -107,12 +118,18 @@ namespace GameWish.Game
 
             if (m_FightGroup != null)
             {
-                GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
-                GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
+                if(m_FightGroup.OurCharacter != null)
+                    GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
+                if (m_FightGroup.EnemyCharacter != null)
+                    GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
                 m_FightGroup = null;
             }
 
             m_BattleField.OnBattleEnd();
+            m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
+            m_BattleField.CalculateBattleArea();
+            var lastChapter = MainGameMgr.S.ChapterMgr.GetLatestChapter();
+            m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
 
             EventSystem.S.Send(EventID.OnExitHeroTrial);
 
@@ -134,7 +151,10 @@ namespace GameWish.Game
         }
 
         public void StartTrial(int characterId)
-        {       
+        {
+            if (m_TrialClanType == ClanType.None)
+                m_TrialClanType = GetNextClanType(ClanType.None);
+
             m_TrialStartTime = DateTime.Now;
             m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
@@ -150,19 +170,44 @@ namespace GameWish.Game
                 characterInGame.ChangeBody(CharacterQuality.Hero, m_DbData.clanType);
             }
 
-            m_DbData.OnTrialFinished();
-            SetState(m_DbData.state);
-
             //Refresh next trial clantype
             m_TrialClanType = GetNextClanType(m_DbData.clanType);
 
-            EventSystem.S.Send(EventID.OnEnableFinishBtn);
+            //EventSystem.S.Send(EventID.OnEnableFinishBtn);
+        }
+
+        public void OnTrialTimeOver()
+        {
+            m_DbData.OnTrialTimeOver();
+            SetState(m_DbData.state);
         }
 
         public void Reset()
         {
             m_DbData.Reset();
             SetState(m_DbData.state);
+        }
+
+        public CharacterController SpawnOurCharacter(int id)
+        {
+            CharacterController controller = null;
+
+            CharacterItem characterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(id);
+
+            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
+            if (go != null)
+            {
+                go.transform.SetParent(m_BattleField.transform);
+                CharacterView characterView = go.GetComponent<CharacterView>();
+                controller = new CharacterController(id, characterView, CharacterStateID.Battle);
+                controller.OnEnterBattleField(m_BattleField.GetOurCharacterPos());
+            }
+            else
+            {
+                Log.e("SpawnCharacterController return null");
+            }
+
+            return controller;
         }
         #endregion
 
@@ -219,13 +264,13 @@ namespace GameWish.Game
             }
         }
 
-        private bool CheckIsTrialReady()
+        public bool CheckIsTrialReady()
         {
             if (m_DbData.state == HeroTrialStateID.Runing || m_DbData.state == HeroTrialStateID.Finished)
                 return false;
 
             DateTime trialStartDay = GameDataMgr.S.GetClanData().heroTrialData.GetStartTime();
-            if (trialStartDay.Day != DateTime.Today.DayOfYear)
+            if (trialStartDay.DayOfYear != DateTime.Today.DayOfYear)
             {
                 return true;
             }

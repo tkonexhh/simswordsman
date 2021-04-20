@@ -145,6 +145,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
             UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
             UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerCantRefeshPanel, null, "GamePanels/TowerPanel/TowerCantRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerNewDayPanel, null, "GamePanels/TowerPanel/TowerNewDayPanel");
             UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel");
 
             //英雄试炼
