@@ -265,9 +265,9 @@ namespace GameWish.Game
                     m_CurPeopleCount.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTBUILD);
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
                     m_CurPeopleValue.text = Define.COMMON_DEFAULT_STR;
-                    m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
-                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
-                    RefreshResInfo(m_CurLivableRoomLevelInfo, costItemList);
+                    SetUpgradeConditions();
+
+                         RefreshResInfo(m_CurLivableRoomLevelInfo, costItemList);
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILD);
 
                     if (!CommonUIMethod.CheackIsBuild(m_CurLivableRoomLevelInfo, costItemList, false))
@@ -299,8 +299,9 @@ namespace GameWish.Game
                     m_NextPeopleValue.text = CommonUIMethod.GetStrForColor("#AD7834", CommonUIMethod.GetPeople(m_CurLivableRoomLevelInfo.GetNextCapacity()));
                     m_UpperMiddle.SetActive(true);
                     m_FullScale.text = Define.COMMON_DEFAULT_STR;
-                    m_UpgradeConditions.text = "升级需要讲武堂达到" + Define.SPACE
-                        + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.GetNeedLobbyLevel()));
+                    SetUpgradeConditions();
+                    //m_UpgradeConditions.text = "升级需要讲武堂达到" + Define.SPACE
+                    //    + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_NextLivableRoomLevelInfo.GetNeedLobbyLevel()));
                     RefreshResInfo(m_NextLivableRoomLevelInfo, GetCostItem(m_NextLivableRoomLevelInfo));
                     m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
                     m_UpgradeBtnImg.sprite= FindSprite("LivableRoomPanel_BgBtn2");
@@ -324,6 +325,24 @@ namespace GameWish.Game
                     break;
             }
 
+        }
+
+        private void SetUpgradeConditions()
+        {
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            if (lobbyLevel<m_CurLivableRoomLevelInfo.GetNeedLobbyLevel())
+            {
+                //不够升级
+                m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
+                + CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
+
+            }
+            else
+            {
+                m_UpgradeConditions.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_BUILDINFODESC) + Define.SPACE
+               + CommonUIMethod.GetStrForColor("#4C6AA5", CommonUIMethod.GetGrade(m_CurLivableRoomLevelInfo.GetNeedLobbyLevel()));
+
+            }
         }
 
         private void RefreshResInfo(LivableRoomLevelInfo livableRoomLevel, List<CostItem> costItems)

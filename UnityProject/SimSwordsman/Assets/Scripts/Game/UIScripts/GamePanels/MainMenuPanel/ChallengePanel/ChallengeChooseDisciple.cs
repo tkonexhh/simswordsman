@@ -98,8 +98,16 @@ namespace GameWish.Game
                 case PanelType.HeroTrial:
                     //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        //if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect || m_AllDiscipleList[0].level >= 200)
+                    {
+                        if (PlatformHelper.isTestMode)
                             CreateDisciple(m_AllDiscipleList[i]);
+                        else
+                        {
+                            if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect || m_AllDiscipleList[0].level >= 200)
+                                CreateDisciple(m_AllDiscipleList[i]);
+                        }
+                    }
+                      
                     for (int i = 0; i < HeroTrialDiscipleNumber; i++)
                         CreateSelectedDisciple();
                     RefreshFixedInfo(PanelType.HeroTrial);
