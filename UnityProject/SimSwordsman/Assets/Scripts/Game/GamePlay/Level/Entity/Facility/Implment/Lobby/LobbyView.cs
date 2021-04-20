@@ -17,6 +17,10 @@ namespace GameWish.Game
 
         public void SetLobbyChallenging(bool active)
         {
+            //银牌招募引导未完成时，不做其他操作
+            if (GuideMgr.S.IsGuideFinish(6) == false) {
+                return;
+            }
             if (m_Controller.GetState() == FacilityState.Unlocked)
                 m_LobbyChallenging.SetActive(active);
         }
