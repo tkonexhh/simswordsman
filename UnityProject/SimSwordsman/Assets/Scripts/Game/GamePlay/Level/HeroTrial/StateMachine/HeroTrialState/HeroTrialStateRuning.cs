@@ -119,7 +119,7 @@ namespace GameWish.Game
 
         private int GetEnemyId()
         {
-            HeroTrialConfig config = TDHeroTrialConfigTable.GetConfig(m_HeroTialMgr.DbData.clanType);
+            HeroTrialConfig config = TDHeroTrialConfigTable.GetConfig(m_HeroTialMgr.TrialClan);
             int[] enemyIds;
             if (m_SpawnOrdinaryEnemy)
             {

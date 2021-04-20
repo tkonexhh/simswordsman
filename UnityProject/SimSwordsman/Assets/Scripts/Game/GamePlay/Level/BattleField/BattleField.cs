@@ -24,6 +24,8 @@ namespace GameWish.Game
 
         private Vector2 m_BattleAreaRightTop = new Vector2(44, 1.5f);
         private Vector2 m_BattleAreaLeftBottom = new Vector2(38, -1.1f);
+        private Vector2 m_InitBattleAreaRightTop = new Vector2(44, 1.5f);
+        private Vector2 m_InitBattleAreaLeftBottom = new Vector2(38, -1.1f);
 
         public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop; }
         public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom; }
@@ -46,7 +48,7 @@ namespace GameWish.Game
 
         public void CalculateBattleArea(float deltaY = 0)
         {
-            Vector2 center = new Vector2((m_BattleAreaRightTop.x + m_BattleAreaLeftBottom.x) / 2, (m_BattleAreaRightTop.y + m_BattleAreaLeftBottom.y) / 2);
+            Vector2 center = new Vector2((m_InitBattleAreaRightTop.x + m_InitBattleAreaLeftBottom.x) / 2, (m_InitBattleAreaRightTop.y + m_InitBattleAreaLeftBottom.y) / 2);
             float height = MainGameMgr.S.MainCamera.battleProperty.size;
             float width = Camera.main.aspect * height;
             m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_BattleAreaRightTop.y + deltaY);

@@ -149,7 +149,10 @@ namespace GameWish.Game
         }
 
         public void StartTrial(int characterId)
-        {       
+        {
+            if (m_TrialClanType == ClanType.None)
+                m_TrialClanType = GetNextClanType(ClanType.None);
+
             m_TrialStartTime = DateTime.Now;
             m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
