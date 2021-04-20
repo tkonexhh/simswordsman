@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 509914522
+CRC: 3424068659
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 948610d8c8a410dbf2994405fc2a3e8e
+    Hash: a0a9fec15469e57ff13dc00269029124
   TypeTreeHash:
     serializedVersion: 2
-    Hash: df5918b618ed6d965f5b3f9f647944d0
+    Hash: 129f0f742225710baa05aa2ef59884df
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -18,13 +18,13 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 2eebb047a7cbfef4380c3f34763a5060, type: 3}
 - Class: 114
@@ -39,12 +39,15 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 224
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldEast.png
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/Root.prefab
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldWest.png
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/l-4.png
 - Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldSpritesData.asset
+- Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldAtlas.spriteatlas
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle

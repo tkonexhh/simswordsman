@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3757606849
+CRC: 752069519
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b998a167f50beb65e3406d586029347d
+    Hash: 9464d8faad564be87ee4edb24466a742
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -17,10 +17,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/Popup/conditions_bg.png
 - Assets/Res/FolderMode/UI/Sprites/Popup/TitleSpritesData.asset
 - Assets/Res/FolderMode/UI/Sprites/Popup/constructionpanel_icon_bg.png
+- Assets/Res/FolderMode/UI/Sprites/Popup/PopupAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/Popup/constructionpanel_bg.png
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/practicefield.bundle

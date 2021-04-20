@@ -19,31 +19,73 @@ Id	Name	Clan	KongfuName	AnimationName	PrefabName
 304	武当弟子徐希真|武当弟子任希武|武当弟子罗希宝|武当弟子沈希剑|武当弟子方希峰	Wudang	太极剑法;太极拳	taijijianfa;taijiquan	Wudang1
 305	武当弟子石希灵|武当弟子邵希平|武当弟子王希静|武当弟子郭希明|武当弟子卢希英	Wudang	太极剑法;太极拳	taijijianfa;taijiquan	Wudang2
 306	武当弟子龚微海|武当弟子严微鑫|武当弟子夏微正|武当弟子林微光|武当弟子陶微东	Wudang	太极剑法;太极拳	taijijianfa;taijiquan	Wudang3
-401	绝绝师太	Emei	如意剑法;灭绝剑法	pugong;skill	Juejueshitai
-402	独臂女冠	Emei	青莲女神剑;白蟒鞭	qingnianshennvjian;baimangbian	Emei2
-403	峨眉弟子清虚|峨眉弟子清照|峨眉弟子清迦|峨眉弟子清慧|峨眉弟子清净	Emei	青莲女神剑;白蟒鞭	qingnianshennvjian;baimangbian	Emei3
-501	丘不君	Huashan	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
-502	山不羊	Huashan	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
+401	绝绝师太	Emei	如意剑法	pugong	Juejueshitai
+402	独臂女冠	Emei	青莲女神剑;袖里乾坤	qingliannvshenjian_dubi;xiuliqiankun	Dubinvguan
+403	峨眉弟子清虚|峨眉弟子清照|峨眉弟子清迦|峨眉弟子清慧|峨眉弟子清净	Emei	青莲女神剑;白蟒鞭	qingnianshennvjian;baimangbian	Emei1
+404	峨眉弟子清虚|峨眉弟子清照|峨眉弟子清迦|峨眉弟子清慧|峨眉弟子清净	Emei	青莲女神剑;白蟒鞭	qingnianshennvjian;baimangbian	Emei2
+405	峨眉弟子清虚|峨眉弟子清照|峨眉弟子清迦|峨眉弟子清慧|峨眉弟子清净	Emei	青莲女神剑;白蟒鞭	qingnianshennvjian;baimangbian	Emei3
+501	丘不君	Huashan	御剑术;万剑归宗	yujianshu_qiubujun;wanjianguizong	Qiubujun
+502	山不羊	Huashan	紫霞掌;紫气东来	zixiazhang;ziqidonglai	Shanbuyang
 503	华山弟子于大通|华山弟子曹大有|华山弟子陈大冲|华山弟子曾大莲|华山弟子姚大诚	Huashan	华山剑法;御剑术	huashanjian;yujianshu_huashan	Huashan1
 504	华山弟子田光崇|华山弟子应光和|华山弟子谢光德|华山弟子佘光正|华山弟子黄光仁	Huashan	华山剑法;御剑术	huashanjian;yujianshu_huashan	Huashan2
 505	华山弟子宋光养|华山弟子马光贤|华山弟子孔光纯|华山弟子叶光敬|华山弟子乔光升	Huashan	华山剑法;御剑术	huashanjian;yujianshu_huashan	Huashan3
-601	五毒圣君	Wudu	五毒神鞭;千蛛万毒手	bianfa;qianzhuwandushou	Wudu1
+601	五毒圣君	Wudu	地藏引;阎罗帖	dizangyin;yanluotie	Wudushenjun
 602	红药	Wudu	五毒神鞭;千蛛万毒手	bianfa;qianzhuwandushou	Wudu1
 603	五毒弟子彩凤|五毒弟子珊瑚|五毒弟子孔雀|五毒弟子珍珠|五毒弟子琥珀	Wudu	五毒神鞭;千蛛万毒手	bianfa;qianzhuwandushou	Wudu1
 604	五毒弟子罗刹|五毒弟子夜叉|五毒弟子修罗|五毒弟子迦楼|五毒弟子摩侯	Wudu	五毒神鞭;千蛛万毒手	bianfa;qianzhuwandushou	Wudu2
 605	五毒弟子蝎心|五毒弟子蟾鸣|五毒弟子蛇影|五毒弟子千足|五毒弟子牵丝	Wudu	五毒神鞭;千蛛万毒手	bianfa;qianzhuwandushou	Wudu3
 701	明教主	Mojiao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
-702	日轮法王	Mojiao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
-703	月轮法王	Mojiao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
+702	日轮法王	Mojiao	金乌刀;旭日拳	jinwudao;huoquan	RiLunFaWang
+703	月轮法王	Mojiao	桂蟾刀;月华弄影	jianwu;huanyingjianwu	YueLunFaWang_Prefab
 704	魔教弟子风怜|魔教弟子宝音|魔教弟子诺敏|魔教弟子托娅|魔教弟子莎娜	Mojiao	魔刀;寂灭斩	modao;modaoyishan	Mojiao1
 705	魔教弟子哲别|魔教弟子牧仁|魔教弟子伯颜|魔教弟子那钦|魔教弟子托雷	Mojiao	魔刀;寂灭斩	modao;modaoyishan	Mojiao2
 706	魔教弟子华黎|魔教弟子博术|魔教弟子赤罕|魔教弟子呼兰|魔教弟子速温	Mojiao	魔刀;寂灭斩	modao;modaoyishan	Mojiao3
-801	逍遥子	Xiaoyao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
+801	逍遥子	Xiaoyao	神光普照;神霄雷法	shenguangpuzhao;shenxiaoleifa	XiaoyaoziPrefab
 802	仙童	Xiaoyao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
 803	玄女	Xiaoyao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
-804	逍遥弟子高轩辕|逍遥弟子齐惊鸿|逍遥弟子祝游龙|逍遥弟子柏玄鹤|逍遥弟子苏白夔	Xiaoyao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
-805	逍遥弟子叶星河|逍遥弟子欧阳春秋|逍遥弟子姜青衣|逍遥弟子韦幻真|逍遥弟子赵翠羽	Xiaoyao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
-806	逍遥弟子朱厌|逍遥弟子帝江|逍遥弟子白泽|逍遥弟子毕方|逍遥弟子穷奇	Xiaoyao	罗汉伏魔拳;千手如来掌	luohanfumoquan;qianshouzhang	Shaolin1
+804	逍遥弟子高轩辕|逍遥弟子齐惊鸿|逍遥弟子祝游龙|逍遥弟子柏玄鹤|逍遥弟子苏白夔	Xiaoyao	夜落星河剑;御寇拳	yeluoxinghejian;bodongquan	Xiaoyao1
+805	逍遥弟子叶星河|逍遥弟子欧阳春秋|逍遥弟子姜青衣|逍遥弟子韦幻真|逍遥弟子赵翠羽	Xiaoyao	夜落星河剑;御寇拳	yeluoxinghejian;bodongquan	Xiaoyao2
+806	逍遥弟子朱厌|逍遥弟子帝江|逍遥弟子白泽|逍遥弟子毕方|逍遥弟子穷奇	Xiaoyao	夜落星河剑;御寇拳	yeluoxinghejian;bodongquan	Xiaoyao3
+9501	血刀老祖	Xiemo			
+9502	血刀喽啰1	Xiemo			
+9503	血刀喽啰2	Xiemo			
+9504	血刀喽啰3	Xiemo			
+9505	东方教主	Xiemo			
+9506	葵花喽啰1	Xiemo			
+9507	葵花喽啰2	Xiemo			
+9508	葵花喽啰3	Xiemo			
+9509	丁冬夏	Xiemo			
+9510	星宿喽啰1	Xiemo			
+9511	星宿喽啰2	Xiemo			
+9512	星宿喽啰3	Xiemo			
+9513	龙象上师	Xiemo			
+9514	龙象喽啰1	Xiemo			
+9515	龙象喽啰2	Xiemo			
+9516	龙象喽啰3	Xiemo			
+9517	白骨夫人	Xiemo			
+9518	白骨喽啰1	Xiemo			
+9519	白骨喽啰2	Xiemo			
+9520	白骨喽啰3	Xiemo			
+9521	僵尸将军	Xiemo			
+9522	僵尸喽啰1	Xiemo			
+9523	僵尸喽啰2	Xiemo			
+9524	僵尸喽啰3	Xiemo			
+9525	马贼大当家	Xiemo			
+9526	马贼喽啰1	Xiemo			
+9527	马贼喽啰2	Xiemo			
+9528	马贼喽啰3	Xiemo			
+9529	猿公	Xiemo			
+9530	猿猴喽啰1	Xiemo			
+9531	猿猴喽啰2	Xiemo			
+9532	猿猴喽啰3	Xiemo			
+9533	南蛮王	Xiemo			
+9534	南蛮喽啰1	Xiemo			
+9535	南蛮喽啰2	Xiemo			
+9536	南蛮喽啰3	Xiemo			
+9537	浪人首领	Xiemo			
+9538	倭寇喽啰1	Xiemo			
+9539	倭寇喽啰2	Xiemo			
+9540	倭寇喽啰3	Xiemo			
 9601	熊	Beast	熊攻击	bear_attack	BearPrefab
 9602	野猪	Beast	野猪攻击	pig_attack	BoarPrefab
 9603	鹿	Beast	鹿攻击	deer_attack	DeerPrefab

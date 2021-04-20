@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2467014738
+CRC: 582024770
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d85f3cdc0b7248528de27ace2c05792b
+    Hash: ff735757cec951b6113a71aaaaa511b2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -16,6 +16,8 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/Challenge_Smallgaibang.png
@@ -39,6 +41,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/ChallengePanel_Gaibang.png
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/Challenge_Bigshaolin.png
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/Challenge_Smallxiaoyao.png
+- Assets/Res/FolderMode/UI/Sprites/ChallengePanel/ChallengePanelAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/Challenge_Smallwudang.png
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/ChallengePanel_BgFont1.png
 - Assets/Res/FolderMode/UI/Sprites/ChallengePanel/Challenge_Bigwudu.png

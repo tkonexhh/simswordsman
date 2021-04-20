@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3867418928
+CRC: 2633404922
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8850e055ff5c5350f06d35026b319baa
+    Hash: 3cab4c4d060e1aee224503d74f8dfefb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -17,8 +17,11 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanelSpritesData.asset
+- Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_WeChatShareBtn.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Arc1.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Title.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg1.png
@@ -26,6 +29,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bar1.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg2.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Line3.png
+- Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanelAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Line2.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_CloseBtn.png
 - Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg4.png

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 405068587
+CRC: 558358368
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 648d08dc6c5c9363e49c129961910151
+    Hash: 40abe10a1919c35989dae3e3cf65f2f1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 76ece3f24bd7b9ce411e576822a7b424
+    Hash: 4836d67ad78c5771ea380240c660bedb
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,17 +15,23 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
-- Class: 48
+- Class: 23
   Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 450ff2b2d5255404d951a9a58a5f33cc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 146d7a5b52e24b545a7018ae3e4dd043, type: 3}
 - Class: 115
   Script: {instanceID: 0}
-- Class: 212
-  Script: {instanceID: 0}
-- Class: 213
+- Class: 210
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Deliver/DeliverCar/DeliverCar.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/deliver/spine/car.bundle

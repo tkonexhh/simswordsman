@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1442160286
+CRC: 3714528417
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 057015aa03a3858d19f1a6c6efed57ba
+    Hash: b8009a49f821638120051e1651655ce4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 31a8e35008e8aab720d0136425be6fad
@@ -17,7 +17,9 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Animation/Mainment_MainTask_AnimCtrl.controller
+- Assets/Res/FolderMode/UI/Animation/WorldUIPanel_HandTips_Loop.anim
 - Assets/Res/FolderMode/UI/Animation/Mainment_MainTask_Hide.anim
 - Assets/Res/FolderMode/UI/Animation/AdBGFloat.anim
+- Assets/Res/FolderMode/UI/Animation/WorldUIPanel_HandTips.controller
 - Assets/Res/FolderMode/UI/Animation/Mainment_MainTask_Show.anim
 Dependencies: []

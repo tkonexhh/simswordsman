@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3365605637
+CRC: 3349904940
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fcf508f1bd6d008ca7bc8914f5eb9d96
+    Hash: e081661478101dd0c7c2911d56ec6b0f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 84750b51de36d5ac5a77dae291665526
@@ -21,20 +21,26 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/BgFont1.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg_arrow.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/level_bg2.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/unlock_bg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/BulletinBoardPanel_Bg11.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Plus3.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_bg_small.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg_slice.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/CloseBtn.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/icon_bg1.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/scrollbar1.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Icon1.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Herb.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_line2.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonAtlas.spriteatlas
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Icon3.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/fontbackgroundcircle.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Ellipse.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Mark.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/Lock3.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/button_normal_blue.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/button_normal_red.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Line3.png
@@ -43,6 +49,7 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_title_bg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/bg_middle.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Bg5.png
+- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Challenging.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/effect_txt_bg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Bg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonSpritesData.asset
@@ -62,7 +69,6 @@ Assets:
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/scrollbar.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/effect_bg.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/unlock_textbg.png
-- Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonPanelCommon.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/Advertise.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_bg_large.png
 - Assets/Res/FolderMode/UI/Sprites/PanelCommon/item_bg_middle.png

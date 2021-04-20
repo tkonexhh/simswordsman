@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3363367695
+CRC: 4096485611
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b6dbae88718796260280f5c834e7e37a
+    Hash: 991688c43e8feaa8f004be4675b0a2a4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 64510a3cd72920554ca1c94caa554491
@@ -25,12 +25,14 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/FistSheet2White_M.mat
+- Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_Right.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_ZZR_Left.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_ZDR_Right.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/BulletTrail2White_T.png
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/BulletTrail2White_M.mat
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_ZZR_Right.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/FistSheet2White_T.png
+- Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_Left.prefab
 - Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_ZDR_Left.prefab
 Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle

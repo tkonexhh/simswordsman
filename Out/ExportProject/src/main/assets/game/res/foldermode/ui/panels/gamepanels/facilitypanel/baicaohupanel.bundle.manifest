@@ -1,17 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1805141081
+CRC: 1720534826
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 487608c6ef723ad946dd77b6e5f7e2a9
+    Hash: 326ca2ae5733ceb02afed85d3e071611
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 31ae6377cac35e9af2700349476b2ce4
+    Hash: ab69bf46859793b7ed12c840749f54a2
 HashAppended: 0
 ClassTypes:
 - Class: 1
-  Script: {instanceID: 0}
-- Class: 28
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -26,11 +24,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6299ebe51a6787847b93bb84a34423c6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3989c817ca7aa48c48efd7556a2c4fce, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
@@ -64,4 +64,4 @@ Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/kitchenpanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/baicaohupanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/common/commonpanel.bundle

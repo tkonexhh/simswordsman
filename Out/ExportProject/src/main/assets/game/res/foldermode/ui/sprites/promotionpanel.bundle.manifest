@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 134043565
+CRC: 2173129537
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c02d510f1d4c30d06efbc9afc11c90e5
+    Hash: a0f10dd167a22691ca55c6f1d537d128
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c03bbcd67ef17a7b0a7f07982d0b6939
+    Hash: 84750b51de36d5ac5a77dae291665526
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -17,15 +17,23 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_bg2.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_ArmorEnhancement.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_HeroTrial.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Good.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanelSpritesData.asset
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Normal.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_EquipAmrs.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotion_characterbg.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_BreakthroughMartialArts.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Perfect.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanelAtlas.spriteatlas
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_LearnMartialArts.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_DiscipleAscendingSection.png
+- Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Hero.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_EquipAmror.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_bg1.png
 - Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotionpanel_levelbg.png

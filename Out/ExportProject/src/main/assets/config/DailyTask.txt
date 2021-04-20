@@ -1,8 +1,8 @@
 ﻿任务ID	讲武堂等级	任务icon	任务标题	任务描述	任务类型	数量参数	奖励
 int	int	string	string	string	string	int	string
 TaskID	HomeLevel	IconRes	TaskTitle	TaskDescription	Type	TaskCount	Reward
-101	1	dt_food	再来一碗	补充3次食物。	Daily_Food	2	Item|2002|1
-102	1	dt_gift	礼尚往来	接受任意3位访客的礼物。	Daily_Visitor	2	Item|2002|1
+101	1	dt_food	再来一碗	补充3次食物。	Daily_Food	3	Item|2002|1
+102	1	dt_gift	礼尚往来	接受任意3位访客的礼物。	Daily_Visitor	3	Item|2002|1
 103	1	dt_summon	招兵买马	招募3次弟子。	Daily_Recruit	3	Food|10
 104	1	dt_work	劳动模范	派遣弟子完成任意5次工作。	Daily_Job	5	Food|10
 105	1	dt_practice	勤学苦练	派遣弟子在练功场完成3次练功。	Daily_Practice	3	Food|10

@@ -73,3 +73,23 @@ Id	GuideID	Trigger	Command	CommonParam	RequireStepId	KeyFrame
 13102	31	ClickTaskDetailsTrigger1	DialogWithCircleMaskCommand:#0,StoryPanel_Text_40;MyDelayCommand:0.4;	EntityRoot/Character_normal_1/WorkProgressBar	0	1
 13201	32	FoodNotEnoughTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_68;MyDelayCommand:0.4;		0	
 13202	32	FoodNotEnoughTrigger_ClickFoodBtnBrigger	NormalTipsCommand:StoryPanel_Text_69,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.4;	UINodeFinder:MainMenuPanel,Baozi/CreateBaoziBtn	0	1
+13801	38	DeliverTrigger_BuildTrigger	DialogCommand:StoryPanel_Text_83;MyDelayCommand:0.2;		0	
+13802	38	DeliverTrigger_ClickDeliverTrigger	GuideClickWorldCommand:#0,38|-8,StoryPanel_Text_84;MyDelayCommand:0.4;	EntityRoot/SimSection/Facility/DeliverView	0	
+13803	38	DeliverTrigger_ClickQuickStartBtnTrigger	NormalTipsCommand:StoryPanel_Text_85,38|-8;GuideButtonCommand:#0,0;MyDelayCommand:0.3;	UINodeFinder:DeliverPanel,Scroll View/Viewport/Down/DeliverItem(Clone)/GameObject (1)/StateStart/Btn_	0	1
+13901	39	DeliverTrigger_ClickDoubleSpeedUpBtnTrigger	NormalTipsCommand:StoryPanel_Text_86,38|-8;GuideButtonCommand:#0,0;MyDelayCommand:0.3;	UINodeFinder:DeliverPanel,Scroll View/Viewport/Down/DeliverItem(Clone)/GameObject (1)/StateStarting/Btn_	0	
+14001	40	TowerTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_87,StoryPanel_Text_88;MyDelayCommand:0.2;		0	
+14002	40	TowerTrigger_ClickTowerBtnTrigger	NormalTipsCommand:StoryPanel_Text_89,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:MainMenuPanel,MenuList/VoldemortTowerBtn	0	
+14003	40	TowerTrigger_IntroduceTrigger2	DialogCommand:StoryPanel_Text_90,StoryPanel_Text_91;MyDelayCommand:0.2;		0	
+14004	40	TowerTrigger_ClickChallengeBtnTrigger	NormalTipsCommand:StoryPanel_Text_95,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:TowerPanel,Main/Scroll View/Viewport/Content/TowerLevelItem1/Root_Unlock/Btn_Fight	0	
+14005	40	TowerTrigger_ClickAKeyChoiceBtnTrigger	NormalTipsCommand:StoryPanel_Text_92,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Down/AutoSelectedBtn	0	
+14006	40	TowerTrigger_ClickStartFightBtnTrigger	NormalTipsCommand:StoryPanel_Text_93,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:SendDisciplesPanel,Bg/Down/AcceptBtn	0	1
+14101	41	TowerTrigger_FightFinishedClickShopBtnTrigger	NormalTipsCommand:StoryPanel_Text_94,132|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:TowerPanel,Btn_Shop	0	
+14201	42	HeroTrialSystemTrigger_IntroduceTrigger	DialogCommand:StoryPanel_Text_96;MyDelayCommand:0.2;		0	
+14202	42	HeroTrialSystemTrigger_ClickTrialBtnTrigger	NormalTipsCommand:StoryPanel_Text_97,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:MainMenuPanel,MenuList/HeroTrialBtn	0	
+14203	42	HeroTrialSystemTrigger_IntroduceTrigger2	DialogCommand:StoryPanel_Text_98;MyDelayCommand:0.2;		0	
+14204	42	HeroTrialSystemTrigger_ClickStartBtnTrigger	NormalTipsCommand:StoryPanel_Text_99,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:HeroTrialTipPanel,Bg/Btn_Goto	0	
+14205	42	HeroTrialSystemTrigger_ClickChoiceDiscipleTrigger	NormalTipsCommand:StoryPanel_Text_100,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:HeroTrialPanel,Middle/Btn_SelectCharacter	0	
+14206	42	HeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger	NormalTipsCommand:StoryPanel_Text_100,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:HeroTrialChooseDisciplePanel,Bottom/Scroll View/Viewport/Cont/ChallengePanelDisciple(Clone)	0	
+14207	42	HeroTrialSystemTrigger_ClickEnterTrialBtnTrigger	NormalTipsCommand:StoryPanel_Text_101,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:HeroTrialChooseDisciplePanel,ConfirmBtn	0	1
+14301	43	HeroTrialSystemTrigger_ClickTrialFinishedTrigger	NormalTipsCommand:StoryPanel_Text_102,38|-8;GuideButtonCommand:#0,1;MyDelayCommand:0.3;	UINodeFinder:HeroTrialPanel,Middle/Btn_Finish	0	
+14302	43	HeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger	DialogCommand:StoryPanel_Text_103;MyDelayCommand:0.2;		0	

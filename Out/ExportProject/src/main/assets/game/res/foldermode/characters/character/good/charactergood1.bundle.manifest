@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1849362679
+CRC: 3360432941
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c8e032ae47ec01856365711549e1854a
+    Hash: 1148ec39055d6b2318a4daab2464f104
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1872cadf8767773b8317cd530674d663
+    Hash: 85efae81d24aacdf9edfc603292409f7
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -37,16 +37,24 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
   Script: {instanceID: 0}
 - Class: 210
   Script: {instanceID: 0}
 Assets:
-- Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1_Atlas.asset
 - Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1_json.json
+- Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1_Atlas.asset
 - Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1_SkeletonData.asset
 - Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1_Material.mat
 - Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/Character_good_1.prefab
 - Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1.atlas.txt
 - Assets/Res/FolderMode/Characters/Character/Good/CharacterGood1/good_1.png
-Dependencies: []
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/characters/commonprefabs.bundle

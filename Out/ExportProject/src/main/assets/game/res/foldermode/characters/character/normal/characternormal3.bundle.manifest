@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 527004929
+CRC: 197487991
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 91c046fdb5dd53925d22ce82b236d01e
+    Hash: 909edcfb416fa5bb1f61d5891d16568c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1872cadf8767773b8317cd530674d663
+    Hash: 85efae81d24aacdf9edfc603292409f7
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -37,16 +37,24 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
   Script: {instanceID: 0}
 - Class: 210
   Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3.atlas.txt
 - Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3_Material.mat
+- Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3_json.json
 - Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/Character_normal_3.prefab
 - Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3_SkeletonData.asset
 - Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3.png
 - Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3_Atlas.asset
-- Assets/Res/FolderMode/Characters/Character/Normal/CharacterNormal3/normal_3_json.json
-Dependencies: []
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/saodi.bundle
