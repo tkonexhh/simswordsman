@@ -35,7 +35,7 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().SetDataDirty();
         }
 
-        public void OnTrialFinished()
+        public void OnTrialTimeOver()
         {
             state = HeroTrialStateID.Finished;
 
@@ -45,7 +45,7 @@ namespace GameWish.Game
         public void Reset()
         {
             state = HeroTrialStateID.Idle;
-            trialStartTime = string.Empty;
+            //trialStartTime = string.Empty;
             characterId = -1;
             clanType = ClanType.None;
 

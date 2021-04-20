@@ -22,6 +22,12 @@ namespace GameWish.Game
 
         private bool m_IsInited = false;
 
+        private Vector2 m_BattleAreaRightTop = new Vector2(44, 1.5f);
+        private Vector2 m_BattleAreaLeftBottom = new Vector2(38, -1.1f);
+
+        public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop; }
+        public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom; }
+
         public void Init()
         {
             if (m_IsInited)
@@ -36,6 +42,15 @@ namespace GameWish.Game
 
             m_OurSlotsBackup.AddRange(m_OurCurSlots);
             m_EnemySlotsBackup.AddRange(m_EnemyCurSlots);
+        }
+
+        public void CalculateBattleArea(float deltaY = 0)
+        {
+            Vector2 center = new Vector2((m_BattleAreaRightTop.x + m_BattleAreaLeftBottom.x) / 2, (m_BattleAreaRightTop.y + m_BattleAreaLeftBottom.y) / 2);
+            float height = MainGameMgr.S.MainCamera.battleProperty.size;
+            float width = Camera.main.aspect * height;
+            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_BattleAreaRightTop.y + deltaY);
+            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_BattleAreaLeftBottom.y + deltaY);
         }
 
         public Vector3 GetOurCharacterPos()

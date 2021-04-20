@@ -256,7 +256,7 @@ namespace GameWish.Game
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
 
-                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle)
+                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle && MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady())
                 {
                     UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
                 }

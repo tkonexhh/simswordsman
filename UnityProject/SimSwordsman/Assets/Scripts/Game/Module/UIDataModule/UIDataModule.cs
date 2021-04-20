@@ -151,6 +151,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");
             UIDataTable.AddPanelData(UIID.HeroTrialTipPanel, null, "GamePanels/HeroTrialPanels/HeroTrialTipPanel/HeroTrialTipPanel");
             UIDataTable.AddPanelData(UIID.IntroductionRulesPanel, null, "GamePanels/HeroTrialPanels/IntroductionRulesPanel/IntroductionRulesPanel");
+            UIDataTable.AddPanelData(UIID.HeroTrialChooseDisciplePanel, null, "GamePanels/HeroTrialPanels/HeroTrialChooseDisciplePanel");
 
             RealNameMgr.S.RegisterPanels();
         }

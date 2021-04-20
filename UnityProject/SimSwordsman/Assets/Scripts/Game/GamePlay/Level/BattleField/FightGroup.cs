@@ -31,11 +31,11 @@ namespace GameWish.Game
             m_OurCharacter = ourCharacter;
             m_EnemyCharacter = enemyCharacter;
 
-            ourCharacter.SetFightGroup(this);
-            ourCharacter.SetFightTarget(m_EnemyCharacter);
+            ourCharacter?.SetFightGroup(this);
+            ourCharacter?.SetFightTarget(m_EnemyCharacter);
 
-            enemyCharacter.SetFightGroup(this);
-            enemyCharacter.SetFightTarget(m_OurCharacter);
+            enemyCharacter?.SetFightGroup(this);
+            enemyCharacter?.SetFightTarget(m_OurCharacter);
 
             RegisterEvents();
             ParpareEffectPool();
@@ -60,20 +60,26 @@ namespace GameWish.Game
 
         private void ParpareEffectPool()
         {
-            var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
-            ourkongfus.Add(KungfuType.Attack);
-            foreach (var kongfu in ourkongfus)
+            if (m_OurCharacter != null)
             {
-                var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
-                AddKongfuToPool(config);
+                var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
+                ourkongfus.Add(KungfuType.Attack);
+                foreach (var kongfu in ourkongfus)
+                {
+                    var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
+                    AddKongfuToPool(config);
+                }
             }
 
-            var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
-            var enemykongfus = enemyConfig.animNameList;
-            foreach (var kongfu in enemykongfus)
+            if (m_EnemyCharacter != null)
             {
-                var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
-                AddKongfuToPool(config);
+                var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
+                var enemykongfus = enemyConfig.animNameList;
+                foreach (var kongfu in enemykongfus)
+                {
+                    var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
+                    AddKongfuToPool(config);
+                }
             }
         }
 
@@ -190,15 +196,15 @@ namespace GameWish.Game
 
             float x1 = Random.Range(m_OurCharacter.GetPosition().x - maxDeltaX, m_OurCharacter.GetPosition().x + maxDeltaX);
             float y = Random.Range(m_OurCharacter.GetPosition().y - maxDeltaY, m_OurCharacter.GetPosition().y + maxDeltaY);
-            x1 = Mathf.Clamp(x1, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
-            y = Mathf.Clamp(y, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.y);
+            x1 = Mathf.Clamp(x1, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaRightTop.x);
+            y = Mathf.Clamp(y, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaRightTop.y);
 
             float x2 = Random.Range(0, 100) > 50 ? x1 + attackRange : x1 - attackRange;
-            if (x2 < MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x)
+            if (x2 < MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaLeftBottom.x)
             {
                 x2 = x1 + attackRange;
             }
-            if (x2 > MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x)
+            if (x2 > MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaRightTop.x)
             {
                 x2 = x1 - attackRange;
             }
