@@ -45,12 +45,12 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshTowerCoin, (i, e) => { UpdateCoin(); });
             UpdateUI();
 
-            if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
-            {
-                DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
-                DataRecord.S.Save();
-                UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
-            }
+            // if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
+            // {
+            //     DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
+            //     DataRecord.S.Save();
+            //     UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
+            // }
         }
 
         protected override void OnClose()
