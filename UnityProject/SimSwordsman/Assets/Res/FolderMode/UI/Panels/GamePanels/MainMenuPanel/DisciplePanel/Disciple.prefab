@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3784630406235996261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -418,7 +418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 34, y: -52.7}
+  m_AnchoredPosition: {x: 21.1, y: -52.7}
   m_SizeDelta: {x: 37, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7546543196671875030
@@ -982,6 +982,7 @@ MonoBehaviour:
   m_LineRightBottom: {fileID: 2816111387864578765}
   m_DiscipleBtn: {fileID: 8166962920289389508}
   m_DiscipleState: {fileID: 9121917340361798788}
+  m_LineTra: {fileID: 1743352171128102020}
   m_DiscipleRedPoint: {fileID: 5471585619689390976}
 --- !u!1 &8611254020803008275
 GameObject:

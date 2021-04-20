@@ -18,7 +18,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_BlackBtn;
         [SerializeField]
-        private GameObject m_NewSkillHeroUnlock;
+        private GameObject m_NewSkillHeroUnlock;  
+        [SerializeField]
+        private Transform m_Bg;
         [SerializeField]
         private Button m_WeChatShareBtn;
 
@@ -50,9 +52,12 @@ namespace GameWish.Game
 
             m_WeChatShareBtn.gameObject.SetActive(false);
 
-            m_DiscipleImg.enabled = true;
-            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
-            m_DiscipleImg.SetNativeSize();
+            Transform transform = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_Bg).transform;
+            transform.localPosition = new Vector3(0, 136, 0);
+            transform.localScale = new Vector3(0.65f, 0.65f, 1);
+            //m_DiscipleImg.enabled = true;
+            //m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
+            //m_DiscipleImg.SetNativeSize();
 
             m_CurrentClickType = (ClickType)args[1];
             m_RecruitType = (RecruitType)args[2];

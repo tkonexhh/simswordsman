@@ -29,7 +29,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_DiscipleBtn;
         [SerializeField]
-        private Transform m_DiscipleState;
+        private Transform m_DiscipleState;  
+        [SerializeField]
+        private Transform m_LineTra;
         [SerializeField]
         private GameObject m_DiscipleRedPoint;
 
@@ -103,7 +105,12 @@ namespace GameWish.Game
                         break;
                 }
             }
-            m_DiscipleImg.sprite = m_ParentPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacter));
+
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurCharacter), m_LineTra).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            discipleHeadPortrait.transform.localPosition = new Vector3(0, 87, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            //m_DiscipleImg.sprite = m_ParentPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacter));
         }
 
 

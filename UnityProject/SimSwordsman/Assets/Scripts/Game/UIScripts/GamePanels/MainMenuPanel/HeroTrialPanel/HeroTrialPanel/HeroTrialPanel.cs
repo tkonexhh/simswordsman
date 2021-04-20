@@ -30,22 +30,26 @@ namespace GameWish.Game
         [Header("Bottom")]
 
         [Header("Left")]
-        [SerializeField]
-        private Image m_LeftIcon;   
+        //[SerializeField]
+        //private Image m_LeftIcon;   
         [SerializeField]
         private Image m_LeftQualityImg;  
         [SerializeField]
         private Image m_LeftLine;   
         [SerializeField]
-        private Text m_LeftName; 
+        private Text m_LeftName;
+        [SerializeField]
+        private Transform m_LeftBg;
 
         [Header("Right")]
-        [SerializeField]
-        private Image m_RightIcon;   
+        //[SerializeField]
+        //private Image m_RightIcon;   
         [SerializeField]
         private Image m_RightQualityImg;  
         [SerializeField]
-        private Image m_RightLine;   
+        private Image m_RightLine;     
+        [SerializeField]
+        private Transform m_RightBg;   
         [SerializeField]
         private Text m_RightName;
 
@@ -240,8 +244,20 @@ namespace GameWish.Game
         {
             if (m_TrialDisciple == null)
                 return;
-            m_LeftIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
-            m_RightIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
+
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_TrialDisciple), m_LeftBg).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+            discipleHeadPortrait.transform.localPosition = new Vector3(5f, 3f, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+
+            DiscipleHeadPortrait discipleHeadPortrait1 = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_TrialDisciple), m_RightBg).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait1.OnInit(true);
+            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+            discipleHeadPortrait1.transform.localPosition = new Vector3(5f, 3f, 0);
+            discipleHeadPortrait1.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+            //m_LeftIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
+            //m_RightIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
             m_LeftName.text = m_TrialDisciple.name;
             m_RightName.text = m_TrialDisciple.name;
             m_LeftLine.sprite = GetLine(m_TrialDisciple.quality);

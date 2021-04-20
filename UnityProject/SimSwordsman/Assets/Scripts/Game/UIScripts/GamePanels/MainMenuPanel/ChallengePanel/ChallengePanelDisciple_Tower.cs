@@ -21,6 +21,8 @@ namespace GameWish.Game
                 int id = this.m_CharacterItem.id;
                 m_TowerCharacterDB = GameDataMgr.S.GetPlayerData().towerData.GetTowerCharacterByID(id);
             }
+
+            m_ObjDead.transform.SetAsLastSibling();
         }
 
         protected override void OnRefreshPanelInfo()

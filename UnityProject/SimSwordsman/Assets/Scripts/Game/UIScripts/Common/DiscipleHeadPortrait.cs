@@ -7,52 +7,51 @@ using Qarth;
 
 namespace GameWish.Game
 {
-	public enum LoadDiscipleHeadPortrait
-	{
-		Head,
-		Body,
-	}
-
-	public enum UserPanel
-	{
-		PromotionPanel,
-	}
-
-	public class DiscipleHeadPosAndScale
-	{
-		public UserPanel UserPanel;
-		public Vector2 Pos;
-		public Vector2 Scale;
-		/// <summary>
-		/// 身体和头的差值
-		/// </summary>
-		public float BodyHeadInterpolation;
-
-		public DiscipleHeadPosAndScale() { }
-
-		public void AddPosAndScale(UserPanel userPanel,float bodyHeadInterpolation, Vector2 pos, Vector2 scale)
-		{
-			UserPanel = userPanel;
-			Pos = pos;
-			Scale = scale;
-			BodyHeadInterpolation = bodyHeadInterpolation;
-		}
-    }
 
 	public class DiscipleHeadPortraitMgr : TSingleton<DiscipleHeadPortraitMgr>
 	{
-		public List<DiscipleHeadPosAndScale> DiscipleHeadPos = new List<DiscipleHeadPosAndScale>();
-
+		private ResLoader m_ResLoader;
 		public override void OnSingletonInit()
         {
             base.OnSingletonInit();
-			DiscipleHeadPosAndScale siscipleHeadPosAndScale = new DiscipleHeadPosAndScale();
-			siscipleHeadPosAndScale.AddPosAndScale(UserPanel.PromotionPanel,-137, new Vector2(-9, 105), new Vector2(0.6f, 0.6f));
-
-			DiscipleHeadPos.Add(siscipleHeadPosAndScale);
+			m_ResLoader = ResLoader.Allocate("DiscipleHeadPortraitMgr", null);
 		}
+
+		public GameObject GetDiscipleHeadPortrait(CharacterItem characterItem)
+		{
+			string iconName = string.Empty;
+
+			//给试炼默认弟子图片使用
+			if (characterItem==null)
+            {
+				iconName = "Head_good_1_0_4";
+			}
+            else
+			{
+				switch (characterItem.quality)
+				{
+					case CharacterQuality.Normal:
+					case CharacterQuality.Good:
+					case CharacterQuality.Perfect:
+						iconName = "Head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId +
+							"_0_" + characterItem.headId;
+						break;
+					case CharacterQuality.Hero:
+						iconName = "Head_hero_" + characterItem.bodyId +
+					"_" + ((int)characterItem.heroClanType) + "_" + characterItem.headId;
+						break;
+					default:
+						break;
+				}
+			}
 		
-    }
+            if (!GameObjectPoolMgr.S.group.HasPool(iconName))
+                GameObjectPoolMgr.S.AddPool(iconName, (GameObject)m_ResLoader.LoadSync(iconName), 10, 2);
+            return GameObjectPoolMgr.S.Allocate(iconName);
+
+            //return (GameObject)m_ResLoader.LoadSync("Head_good_1_0_4");
+        }
+	}
 
 	public class DiscipleHeadPortrait : MonoBehaviour
 	{
@@ -60,7 +59,8 @@ namespace GameWish.Game
 		private Image m_Head;
 		[SerializeField]
 		private Image m_Body;
-			 
+		[SerializeField]
+		private Mask m_Mask;
 		private CharacterItem m_CharacterItem;
 		void Start()
         {
@@ -73,14 +73,12 @@ namespace GameWish.Game
 	        
 	    }
 
-		public void SetHeadPortrait(CharacterItem characterItem, UserPanel userPanel)
+		public void OnInit(bool head)
 		{
-			m_CharacterItem = characterItem;
-			m_Head.sprite = CommonMethod.GetDiscipleHeadPortrait( LoadDiscipleHeadPortrait.Head, characterItem);
-			m_Body.sprite = CommonMethod.GetDiscipleHeadPortrait(LoadDiscipleHeadPortrait.Body, characterItem);
-			DiscipleHeadPosAndScale discipleHeadPosAndScale = DiscipleHeadPortraitMgr.S.DiscipleHeadPos.Where(i => i.UserPanel == userPanel).FirstOrDefault();
-			transform.localPosition = discipleHeadPosAndScale.Pos;
-			transform.localScale = discipleHeadPosAndScale.Scale;
+            if (head)
+            {
+				m_Mask.enabled = true;
+			}
 		}
 	}
 	

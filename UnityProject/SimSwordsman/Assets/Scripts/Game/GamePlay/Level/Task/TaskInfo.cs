@@ -36,6 +36,7 @@ namespace GameWish.Game
             taskHandlerMap.Add("Main_BuildLibrary", (value) => { return new TaskHandler_BuildLibrary(value.Value); });
             taskHandlerMap.Add("Main_BuildForgeHouse", (value) => { return new TaskHandler_BuildForgeHouse(value.Value); });
             taskHandlerMap.Add("Main_BuildBaicaohu", (value) => { return new TaskHandler_BuildBaicaohu(value.Value); });
+            taskHandlerMap.Add("Main_BuildDeliver", (value) => { return new TaskHandler_BuildDeliver(value.Value); });
             //Daily
             taskHandlerMap.Add("Daily_Food", (value) => { return new TaskHandler_DailyFood(); });
             taskHandlerMap.Add("Daily_Visitor", (value) => { return new TaskHandler_DailyVisitor(); });

@@ -44,6 +44,11 @@ namespace GameWish.Game
             RefeshTask();
         }
 
+        public void OnOpen()
+        {
+
+        }
+
         private void OnDestroy()
         {
             EventSystem.S.UnRegister(EventID.OnRefeshMainTask, Refesh);
@@ -71,7 +76,10 @@ namespace GameWish.Game
             m_ImgTaskStatus.sprite = SpriteHandler.S.GetSprite("MainMenuAtlas", isComplete ? "MainTask_tip2" : "MainTask_tip1");
             m_ImgTaskStatus.SetNativeSize();
             if (isComplete)
+            {
                 DataAnalysisMgr.S.CustomEvent(DotDefine.m_task_finish, task.id.ToString());
+                m_AnimCtrl.Play(m_AnimHash_Show);
+            }
             m_ObjUncomplete.SetActive(!isComplete);
             m_ObjCompleted.SetActive(isComplete);
             m_TxtTaskTitle.text = task.taskSubTitle;

@@ -17,8 +17,7 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Btn;
         [SerializeField]
-        private GameObject m_Plus;
-
+        private GameObject m_Plus;      
 
         private CharacterItem m_CurCharacterItem;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
@@ -44,11 +43,16 @@ namespace GameWish.Game
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
-                    m_HeadImg.sprite = m_TacticalFunctionPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacterItem));
+                    //m_HeadImg.sprite = m_TacticalFunctionPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacterItem));
+                    DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurCharacterItem), transform).GetComponent<DiscipleHeadPortrait>();
+                    discipleHeadPortrait.OnInit(true);
+                    discipleHeadPortrait.transform.localPosition = new Vector3 (0,2,0);
+                    discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+
                     m_Level.text = m_CurCharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     m_Plus.SetActive(false);
-                    m_HeadImg.gameObject.SetActive(true);
+                    //m_HeadImg.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     break;
                 case SelectedState.NotSelected:

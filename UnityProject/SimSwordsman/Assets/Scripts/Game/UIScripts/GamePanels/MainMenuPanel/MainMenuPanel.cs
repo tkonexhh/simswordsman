@@ -81,7 +81,9 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
-            base.OnUIInit();           
+            //RegisterEvents();
+            base.OnUIInit();
+            m_MainTaskUIHandler.Init(this);
         }
 
         private void HandListenerEvent(int key, object[] param)
@@ -264,7 +266,7 @@ namespace GameWish.Game
                 MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
 
-            m_MainTaskUIHandler.Init(this);
+
             RefreshChallenging();
             MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
