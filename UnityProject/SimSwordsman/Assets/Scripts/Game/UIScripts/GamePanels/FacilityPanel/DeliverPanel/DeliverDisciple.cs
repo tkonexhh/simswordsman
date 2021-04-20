@@ -25,8 +25,8 @@ namespace GameWish.Game
         private Image m_Qulity;
         [SerializeField]
         private GameObject m_UnLock;
-        [SerializeField]
-        private Image m_Head;
+
+        private GameObject m_DiscipleHeadObj;
 
         private CharacterItem m_CharacterItem;
         private SingleDeliverDetailData m_SingleDeliverDetailData;
@@ -94,13 +94,23 @@ namespace GameWish.Game
                 case DeliverDiscipleState.Free:
                     m_Plus.SetActive(true);
                     m_UnLock.SetActive(false);
-                    m_Head.gameObject.SetActive(false);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.gameObject.SetActive(false);
                     m_Qulity.gameObject.SetActive(false);
                     break;
                 case DeliverDiscipleState.Someone:
-                    m_Head.sprite = SpriteHandler.S.GetSprite(AtlasDefine.CharacterHeadIconsAtlas,GetDiscipelHeadName());
+                    if (m_DiscipleHeadObj == null)
+                    {
+                        DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), transform).GetComponent<DiscipleHeadPortrait>();
+                        discipleHeadPortrait.OnInit(true);
+                        m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+                        discipleHeadPortrait.transform.localPosition = new Vector3(8.8f, 0.4f, 0);
+                        discipleHeadPortrait.transform.localScale = new Vector3(0.35f, 0.35f, 1);
+                    }
+                    //m_Head.sprite = SpriteHandler.S.GetSprite(AtlasDefine.CharacterHeadIconsAtlas,GetDiscipelHeadName());
                     SetQualitySprite();
-                    m_Head.gameObject.SetActive(true);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.gameObject.SetActive(true);
                     m_Qulity.gameObject.SetActive(true);
                     m_Plus.SetActive(false);
                     m_UnLock.SetActive(false);

@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8932796554999897807
 RectTransform:
   m_ObjectHideFlags: 0
@@ -675,7 +675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1566707849087540893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1157,13 +1157,13 @@ MonoBehaviour:
   m_TrialClanTra: {fileID: 4419558408448633394}
   m_TrialClanImg: {fileID: 7821846663667290462, guid: f837340f2cf0ddf4bbecaa8a0c05efeb,
     type: 3}
-  m_LeftIcon: {fileID: 4728652370712760029}
   m_LeftQualityImg: {fileID: 2960845531338012651}
   m_LeftLine: {fileID: 7486272153557155142}
   m_LeftName: {fileID: 8241706553136528557}
-  m_RightIcon: {fileID: 7752634069569671493}
+  m_LeftBg: {fileID: 8167388401813764315}
   m_RightQualityImg: {fileID: 1583835089167941449}
   m_RightLine: {fileID: 2726125114462625705}
+  m_RightBg: {fileID: 9051073473833672864}
   m_RightName: {fileID: 6470774207625297867}
   m_CountDownNumber: {fileID: 6917092589495453103}
   m_CountDownSlider: {fileID: 4064958363146568463}
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 6835435678002568597}
   - component: {fileID: 2456150991373398825}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: Img_LeftBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1802,7 +1802,7 @@ GameObject:
   - component: {fileID: 6341850502356416382}
   - component: {fileID: 5247947547793852903}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: Img_RightBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
