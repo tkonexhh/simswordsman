@@ -46,6 +46,7 @@ namespace GameWish.Game
         public void ResetDailyData()
         {
             maxLevel = 1;
+            towerCharacterLst.Clear();
             InitLevelConfig();
             RandomShopData();
             SetDataDirty();
