@@ -173,6 +173,10 @@ namespace GameWish.Game
         /// </summary>
         private void CheckIsStartHeroTrialSystemGuide() 
         {
+            bool isOpen = PlayerPrefs.GetInt(Define.IsOpenHeroTrialPanel, 0) == 1 ? true : false;
+            
+            if (isOpen) return;
+
             if (GuideMgr.S.IsGuideFinish(42)) {
                 return;
             }
@@ -189,6 +193,10 @@ namespace GameWish.Game
         /// </summary>
         private void CheckIsStartTowerSystemGuide() 
         {
+            bool isOpen = PlayerPrefs.GetInt(Define.IsOpenTowerPanel, 0) == 1 ? true : false;
+            
+            if (isOpen) return;
+
             if (GuideMgr.S.IsGuideFinish(40)) 
             {
                 return;

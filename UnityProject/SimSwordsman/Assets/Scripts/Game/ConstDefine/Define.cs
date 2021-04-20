@@ -305,5 +305,10 @@ namespace GameWish.Game
         #region 广告相关
         public const string DoubleGetBossRewardADName = "DoubleReward";
         #endregion
+
+        #region  引导相关
+        public const string IsOpenTowerPanel = "m_IsOpenTowerPanel";
+        public const string IsOpenHeroTrialPanel = "m_IsOpenHeroTrialPanel";
+        #endregion
     }
 }

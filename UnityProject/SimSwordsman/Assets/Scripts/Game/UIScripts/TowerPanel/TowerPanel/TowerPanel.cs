@@ -37,6 +37,8 @@ namespace GameWish.Game
                 m_LevelItems[i].Init(this, level);
                 m_LevelItems[i].gameObject.name = "TowerLevelItem" + level;
             }
+
+            PlayerPrefs.SetInt(Define.IsOpenTowerPanel, 1);
         }
 
         protected override void OnOpen()

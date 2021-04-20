@@ -71,7 +71,8 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
             EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
             EventSystem.S.Register(EventID.OnTrialTimeOver, HandAdListenerEvent);
-          
+
+            PlayerPrefs.SetInt(Define.IsOpenHeroTrialPanel, 1);
         }
 
         private void GetInfomationForNeed()
