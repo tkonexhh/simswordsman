@@ -83,7 +83,7 @@ namespace GameWish.Game
         {
             RegisterEvents();
             base.OnUIInit();
-
+            m_MainTaskUIHandler.Init(this);
 
         }
 
@@ -265,7 +265,7 @@ namespace GameWish.Game
                 MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
 
-            m_MainTaskUIHandler.Init(this);
+
             RefreshChallenging();
             MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);

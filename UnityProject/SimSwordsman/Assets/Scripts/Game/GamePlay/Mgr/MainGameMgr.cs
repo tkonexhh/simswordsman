@@ -18,6 +18,7 @@ namespace GameWish.Game
         private MainCamera m_MainCamera = null;
         private BattleFieldMgr m_BattleFieldMgr = null;
         private RawMatCollectSystem m_RawMatCollectSystem = null;
+        private CollectItemSystem m_CollectItemSystem = null;
         private HeroTrialMgr m_HeroTrialMgr = null;
         private TaskMgr m_TaskMgr = null;
         private TowerSystem m_TowerSystem = null;
@@ -33,6 +34,7 @@ namespace GameWish.Game
         public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr; }
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
         public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
+        public CollectItemSystem CollectItemSystem { get => m_CollectItemSystem; }
         public TaskMgr TaskMgr { get => m_TaskMgr; }
 
         public HeroTrialMgr HeroTrialMgr { get => m_HeroTrialMgr; }
@@ -70,6 +72,9 @@ namespace GameWish.Game
 
             m_RawMatCollectSystem = gameObject.AddComponent<RawMatCollectSystem>();
             m_RawMatCollectSystem.OnInit();
+
+            m_CollectItemSystem = gameObject.AddComponent<CollectItemSystem>();
+            m_CollectItemSystem.OnInit();
 
             m_TaskMgr = gameObject.AddComponent<TaskMgr>();
             m_TaskMgr.OnInit();
