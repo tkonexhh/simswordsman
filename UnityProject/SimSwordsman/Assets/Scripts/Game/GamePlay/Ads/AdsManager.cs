@@ -64,8 +64,11 @@ namespace GameWish.Game
         public void PlayInterAD(string tag, Action<bool> LookInterADCallBackMethod)
         {
             LookInterADCallBackMethod += UpdateLookADCount;
-
+#if UNITY_ANDROID && !UNITY_EDITOR
             CustomExtensions.PlayAd(tag, LookInterADCallBackMethod, null, "Inter0", "MainInter");
+#elif UNITY_IOS || UNITY_IPHONE
+            CustomExtensions.PlayAd(tag, LookInterADCallBackMethod, "Inter0", "MainInter");
+#endif
         }
     }
 }
