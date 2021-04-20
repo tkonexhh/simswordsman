@@ -37,11 +37,16 @@ namespace GameWish.Game
             m_TxtLevel.text = "第" + ChineseHelper.NumToChinese(m_Level) + "关";
             var towerLevelConfigDB = GameDataMgr.S.GetPlayerData().towerData.GetLevelConfigByIndex(m_Level - 1);
             var enemyConfig = towerLevelConfigDB.enemyConfig;
-            // var tableEnemyConfig = TDTowerEnemyConfigTable.GetData(enemyConfig.id);
+            var tableEnemyConfig = TDTowerEnemyConfigTable.GetData(enemyConfig.id).enemyHeadIcon;
+            var icons = Helper.String2ListString(tableEnemyConfig, ";");
             for (int i = 0; i < m_EnemyIcons.Count; i++)
             {
+                var sp = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + icons[i]);
+                Debug.LogError("enemy_icon_" + icons[i]);
+                Debug.LogError(sp.name);
                 //TODO 直接从表里取头像
-                m_EnemyIcons[i].SetEnemy(enemyConfig.enemyIDLst[i]);
+                m_EnemyIcons[i].SetEnemy(sp);
+                // m_EnemyIcons[i].SetEnemy(SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_qiubujun"));
             }
             int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
             if (string.IsNullOrEmpty(towerLevelConfigDB.reward))

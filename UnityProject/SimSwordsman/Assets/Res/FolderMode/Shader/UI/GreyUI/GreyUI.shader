@@ -2,7 +2,7 @@
 {
     Properties
     {
-        [PerRendererData] _MainTex ("Texture", 2D) = "white" { }
+        [PerRendererData]_MainTex ("Texture", 2D) = "white" { }
         [Toggle]_IsGrey ("Is Grey", float) = 1
         
         //MASK SUPPORT ADD
