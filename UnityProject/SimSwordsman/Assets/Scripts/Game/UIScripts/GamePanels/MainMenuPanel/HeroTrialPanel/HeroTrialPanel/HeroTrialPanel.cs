@@ -229,8 +229,6 @@ namespace GameWish.Game
 
         private void RefreshDiscipleInfo()
         {
-            if (m_TrialDisciple == null)
-                return;
 
             DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_TrialDisciple), m_LeftBg).GetComponent<DiscipleHeadPortrait>();
             discipleHeadPortrait.OnInit(true);
@@ -243,6 +241,9 @@ namespace GameWish.Game
             //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
             discipleHeadPortrait1.transform.localPosition = new Vector3(5f, 3f, 0);
             discipleHeadPortrait1.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+            if (m_TrialDisciple == null)
+                return;
+       
             //m_LeftIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
             //m_RightIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
             m_LeftName.text = m_TrialDisciple.name;
