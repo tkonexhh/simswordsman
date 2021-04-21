@@ -103,7 +103,7 @@ namespace GameWish.Game
                             CreateDisciple(m_AllDiscipleList[i]);
                         else
                         {
-                            if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect || m_AllDiscipleList[0].level >= 200)
+                            if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect && m_AllDiscipleList[0].level >= 200)
                                 CreateDisciple(m_AllDiscipleList[i]);
                         }
                     }
