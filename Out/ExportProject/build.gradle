@@ -44,6 +44,8 @@ allprojects {
 
         maven { url "https://dl.bintray.com/sunjiangrong/maven"}
 
+        maven { url "https://bitbucket.org/maven-gametools/gametools/raw/release"}
+
         // google()
         jcenter()
 
@@ -234,7 +236,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // share aar
-    implementation 'com.we.modoo:modoosdk:1.0.6'
+    implementation 'com.we.modoo:modoosdk:1.0.9'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.8'
 
     implementation "com.coala.statisticscore:rangerssdk:5.2.0.0"
