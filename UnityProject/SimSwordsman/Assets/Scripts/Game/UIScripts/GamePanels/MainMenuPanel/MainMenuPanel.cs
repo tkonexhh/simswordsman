@@ -429,6 +429,7 @@ namespace GameWish.Game
                 if (chapterDbItem != null)
                 {
                     LevelConfigInfo levelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(chapterDbItem.chapter, chapterDbItem.level);
+                    Debug.LogError("推荐功力 = "+ levelConfigInfo.recommendAtkValue);
                     if (allAtkValue >= levelConfigInfo.recommendAtkValue*1.5f)
                         m_Challenging.SetActive(true);
                     else

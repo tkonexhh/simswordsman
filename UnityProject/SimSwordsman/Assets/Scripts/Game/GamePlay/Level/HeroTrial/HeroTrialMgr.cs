@@ -220,7 +220,7 @@ namespace GameWish.Game
             bool isLobbyLevelEnough = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= 5;
             if (isLobbyLevelEnough == false)
             {
-                msg = "需要讲武堂等级达到5级";
+                msg = "讲武堂5级后解锁";
                 return false;
             }
 
