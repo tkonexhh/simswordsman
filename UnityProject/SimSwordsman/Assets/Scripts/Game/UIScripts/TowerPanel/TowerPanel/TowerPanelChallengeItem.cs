@@ -73,7 +73,7 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < m_EnemyIcons.Count; i++)
                 {
-                    m_EnemyIcons[i].SetGrey(m_State == TowerItemState.Complete, m_Panel.greyMat);
+                    m_EnemyIcons[i].SetGrey(m_State == TowerItemState.Unlock, m_Panel.greyMat);
                 }
             }
         }
