@@ -139,6 +139,22 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.MaskWithAlphaZeroPanel, null, "Common/MaskWithAlphaZeroPanel", true, 1);
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/MainMenuPanel/TaskPanel/DailyTaskPanel");
 
+            UIDataTable.AddPanelData(UIID.DeliverPanel, null, "GamePanels/FacilityPanel/DeliverPanel/DeliverPanel");
+            //伏魔塔
+            UIDataTable.AddPanelData(UIID.TowerPanel, null, "GamePanels/TowerPanel/TowerPanel");
+            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
+            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
+            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerCantRefeshPanel, null, "GamePanels/TowerPanel/TowerCantRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerNewDayPanel, null, "GamePanels/TowerPanel/TowerNewDayPanel");
+            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel");
+
+            //英雄试炼
+            UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");
+            UIDataTable.AddPanelData(UIID.HeroTrialTipPanel, null, "GamePanels/HeroTrialPanels/HeroTrialTipPanel/HeroTrialTipPanel");
+            UIDataTable.AddPanelData(UIID.IntroductionRulesPanel, null, "GamePanels/HeroTrialPanels/IntroductionRulesPanel/IntroductionRulesPanel");
+            UIDataTable.AddPanelData(UIID.HeroTrialChooseDisciplePanel, null, "GamePanels/HeroTrialPanels/HeroTrialChooseDisciplePanel");
+
             RealNameMgr.S.RegisterPanels();
         }
     }

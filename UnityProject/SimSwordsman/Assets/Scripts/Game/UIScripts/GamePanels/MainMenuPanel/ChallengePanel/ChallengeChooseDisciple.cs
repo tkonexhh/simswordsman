@@ -1,4 +1,5 @@
 using Qarth;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,45 +7,30 @@ using UnityEngine.UI;
 namespace GameWish.Game
 {
     public class ChallengeChooseDisciple : AbstractAnimPanel
-	{
-        [SerializeField]
-        private Button m_CloseBtn;
-
+    {
+        [SerializeField] private Button m_CloseBtn;
         [Header("Bottom")]
-        [SerializeField]
-        private Text m_ChoiceDiscipleTitle;
-        [SerializeField]
-        private Text m_RecommendedSkillsTitle;
-        [SerializeField]
-        private Text m_RecommendedSkillsValue;
-        [SerializeField]
-        private Text m_SelectedDiscipleSkillTitle;
-        [SerializeField]
-        private Text m_SelectedDiscipleSkillValue;
-        [SerializeField]
-        private Text m_State;
-        [SerializeField]
-        private Image m_StateBg;
-        [SerializeField]
-        private Transform m_Cont;
-        [SerializeField]
-        private GameObject m_ChallengePanelDisciple;
+        [SerializeField] private Text m_RecommendedSkillsTitle;
+        [SerializeField] private Text m_RecommendedSkillsValue;
+        [SerializeField] private Text m_SelectedDiscipleSkillTitle;
+        [SerializeField] private Text m_SelectedDiscipleSkillValue;
+        [SerializeField] private Text m_State;
+        [SerializeField] private Image m_StateBg;
+        [SerializeField] private Transform m_Cont;
+        [SerializeField] private GameObject m_ChallengePanelDisciple;
+        [SerializeField] private GameObject m_ChallengePanelDisciple_Tower;
         [Header("Top")]
-        [SerializeField]
-        private Transform m_Bottom;
-        [SerializeField]
-        private GameObject m_ChallengeSelectedDisciple;
-        [SerializeField]
-        private Button m_ConfirmBtn;
-        [SerializeField]
-        private Text m_ConfirmText;
+        [SerializeField] private Transform m_Bottom;
+        [SerializeField] private GameObject m_ChallengeSelectedDisciple;
+        [SerializeField] private GameObject m_ChallengeSelectedDisciple_Tower;
+        [SerializeField] private Button m_ConfirmBtn;
+        [SerializeField] private Text m_ConfirmText;
 
-        private const int Rows = 5;
-        private const float DiscipleHeight = 156f;
-        private const float BtnHeight = 38f;
+        private CommonTaskItemInfo m_CommonTaskItemInfo = null;
 
         private LevelConfigInfo m_LevelConfigInfo = null;
-        private CommonTaskItemInfo m_CommonTaskItemInfo = null;
+        private TowerPanelChallengeToSelect m_TowerLevelConfig;
+
         private PanelType m_PanelType;
         private const int ChallengeSelectedDiscipleNumber = 5;
 
@@ -52,33 +38,136 @@ namespace GameWish.Game
         private Dictionary<int, CharacterItem> m_SelectedDiscipleDic = new Dictionary<int, CharacterItem>();
         private List<ChallengeSelectedDisciple> m_SelectedDiscipleObjList = new List<ChallengeSelectedDisciple>();
         private Dictionary<int, ChallengePanelDisciple> m_DiscipleObjDic = new Dictionary<int, ChallengePanelDisciple>();
+
+        private const int DeliverDiscipleNumber = 4;
+        private SingleDeliverDetailData m_SingleDeliverDetailData;
+
+        private const int HeroTrialDiscipleNumber = 1;
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
-            EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
-            AudioMgr.S.PlaySound(Define.INTERFACE);
             BindAddListenerEvent();
-
-            GetInformationForNeed();
         }
 
-        private void CalculateContainerHeight()
+        protected override void OnPanelOpen(params object[] args)
         {
-            int rows = m_DiscipleObjDic.Count / Rows;
-            if ((m_DiscipleObjDic.Count % Rows) != 0)
-                rows += 1;
+            base.OnPanelOpen(args);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
-            float height = DiscipleHeight * rows;
-            m_Cont.rectTransform().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + BtnHeight);
+            RegisterEvent(EventID.OnSelectedEvent, HandAddListenerEvent);
+
+            AudioMgr.S.PlaySound(Define.INTERFACE);
+            GetInformationForNeed();
+            m_PanelType = (PanelType)args[0];
+            switch (m_PanelType)
+            {
+                case PanelType.Task:
+                    m_CommonTaskItemInfo = args[1] as CommonTaskItemInfo;
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
+                            CreateDisciple(m_AllDiscipleList[i]);
+
+                    for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+                        CreateSelectedDisciple();
+                    RefreshFixedInfo(PanelType.Task);
+                    break;
+                case PanelType.Deliver:
+                    m_SingleDeliverDetailData = args[1] as SingleDeliverDetailData;
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        if (m_AllDiscipleList[i].IsFreeState())
+                            CreateDisciple(m_AllDiscipleList[i]);
+                    for (int i = 0; i < DeliverDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+                    RefreshFixedInfo(PanelType.Deliver);
+                    m_ConfirmText.text = "Âá∫Âèë";
+                    break;
+                case PanelType.Challenge:
+                    m_LevelConfigInfo = args[1] as LevelConfigInfo;
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        CreateDisciple(m_AllDiscipleList[i]);
+
+                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+
+                    RefreshDisicipleSkill();
+                    break;
+                case PanelType.HeroTrial:
+                    //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                    {
+                        if (PlatformHelper.isTestMode)
+                            CreateDisciple(m_AllDiscipleList[i]);
+                        else
+                        {
+                            if (m_AllDiscipleList[0].quality == CharacterQuality.Perfect && m_AllDiscipleList[0].level >= 200)
+                                CreateDisciple(m_AllDiscipleList[i]);
+                        }
+                    }
+                      
+                    for (int i = 0; i < HeroTrialDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+                    RefreshFixedInfo(PanelType.HeroTrial);
+                    m_ConfirmText.text = "Âá∫Âèë";
+                    break;
+                case PanelType.Tower:
+                    for (int i = m_AllDiscipleList.Count - 1; i >= 0; i--)
+                    {
+                        //ÁßªÈô§Á≠âÁ∫ß‰Ωé‰∫éË¶ÅÊ±ÇÁöÑÂºüÂ≠ê
+                        if (m_AllDiscipleList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                        {
+                            m_AllDiscipleList.RemoveAt(i);
+                        }
+                    }
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+
+                    //Êé•‰∏ãÊù•ÊéíÂ∫è
+                    var towerData = GameDataMgr.S.GetPlayerData().towerData;
+                    m_AllDiscipleList.Sort((x, y) =>
+                    {
+                        var charactX = towerData.GetTowerCharacterByID(x.id);
+                        var charactY = towerData.GetTowerCharacterByID(x.id);
+
+                        if (charactX == null || charactY == null)
+                        {
+                            var hpX = charactX?.hpRate;
+                            if (!hpX.HasValue)
+                                hpX = 1;
+                            var hpY = charactY?.hpRate;
+                            if (!hpY.HasValue)
+                                hpY = 1;
+                            return hpX >= hpY ? -1 : 1;
+
+                        }
+
+                        return 0;
+                    });
+                    m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        CreateDisciple(m_AllDiscipleList[i]);
+                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+                    RefreshDisicipleSkill();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected override void OnPanelHideComplete()
+        {
+            base.OnPanelHideComplete();
+            CloseSelfPanel();
         }
 
         protected override void OnClose()
         {
             base.OnClose();
-
             CloseDependPanel(EngineUI.MaskPanel);
-
-            EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
+            m_AllDiscipleList.Clear();
         }
 
         private void HandAddListenerEvent(int key, object[] param)
@@ -95,24 +184,41 @@ namespace GameWish.Game
 
         private void HandSelectedDiscipleEvent(CharacterItem characterItem, bool seleted)
         {
-            //—°÷–
+            //ÈÄâ‰∏≠
             if (seleted)
             {
-                if (m_PanelType == PanelType.Challenge)
+                switch (m_PanelType)
                 {
-                    if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
-                    {
-                        FloatMessage.S.ShowMsg("—°‘Ò»À ˝“—¬˙£¨«Î÷ÿ–¬—°‘Ò");
-                        return;
-                    }
-                }
-                else
-                {
-                    if (m_SelectedDiscipleDic.Count >= m_CommonTaskItemInfo.GetCharacterAmount())
-                    {
-                        FloatMessage.S.ShowMsg("—°‘Ò»À ˝“—¬˙£¨«Î÷ÿ–¬—°‘Ò");
-                        return;
-                    }
+                    case PanelType.Challenge:
+                        if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("ÈÄâÊã©‰∫∫Êï∞Â∑≤Êª°ÔºåËØ∑ÈáçÊñ∞ÈÄâÊã©");
+                            return;
+                        }
+                        break;
+                    case PanelType.Deliver:
+                        if (m_SelectedDiscipleDic.Count >= DeliverDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("ÈÄâÊã©‰∫∫Êï∞Â∑≤Êª°ÔºåËØ∑ÈáçÊñ∞ÈÄâÊã©");
+                            return;
+                        }
+                        break;
+                    case PanelType.HeroTrial:
+                        if (m_SelectedDiscipleDic.Count >= HeroTrialDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("ÈÄâÊã©‰∫∫Êï∞Â∑≤Êª°ÔºåËØ∑ÈáçÊñ∞ÈÄâÊã©");
+                            return;
+                        }
+                        break;
+                    case PanelType.Tower:
+                        if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("ÈÄâÊã©‰∫∫Êï∞Â∑≤Êª°ÔºåËØ∑ÈáçÊñ∞ÈÄâÊã©");
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
                 }
 
                 if (!m_SelectedDiscipleDic.ContainsKey(characterItem.id))
@@ -134,7 +240,7 @@ namespace GameWish.Game
                         item.SetItemState(true);
                 }
             }
-            //—°÷–»°œ˚
+            //ÈÄâ‰∏≠ÂèñÊ∂à
             else
             {
                 if (m_SelectedDiscipleDic.ContainsKey(characterItem.id))
@@ -161,6 +267,7 @@ namespace GameWish.Game
                 case PanelType.Task:
                     break;
                 case PanelType.Challenge:
+                case PanelType.Tower:
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -175,21 +282,43 @@ namespace GameWish.Game
             m_SelectedDiscipleSkillValue.text = CommonUIMethod.GetStrForColor("#A35953", CommonUIMethod.GetTenThousandOrMillion((long)atkValue));
 
             int selected = (int)atkValue;
-            long recommended = m_LevelConfigInfo.recommendAtkValue;
-            float result = selected / recommended;
-            if (result < 0.75)
-                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
-            else if (result > 1.1f) 
+            long recommended = 0;
+            if (m_PanelType == PanelType.Challenge)
+            {
+                recommended = m_LevelConfigInfo.recommendAtkValue;
+            }
+            else if (m_PanelType == PanelType.Tower)
+            {
+                recommended = m_TowerLevelConfig.recommendATK;
+            }
+            m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", CommonUIMethod.GetTenThousandOrMillion(recommended));
+
+            try
+            {
+                float result = selected / recommended;
+                if (result < 0.75)
+                    m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_DANGER);
+                else if (result > 1.1f)
+                    m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
+                else
+                    m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
+            }
+            catch (DivideByZeroException)
+            {
                 m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_RELAXED);
-            else
-                m_State.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_AUTIOUS);
+            }
+
+
         }
         public void AddDiscipleDicDic(Dictionary<int, CharacterItem> keyValuePairs)
         {
-            foreach (var item in keyValuePairs.Values)
-                EventSystem.S.Send(EventID.OnSelectedEvent, item, true);
+            if (keyValuePairs != null)
+            {
+                foreach (var item in keyValuePairs.Values)
+                    EventSystem.S.Send(EventID.OnSelectedEvent, item, true);
 
-            RefreshPanelInfo();
+                RefreshPanelInfo();
+            }
         }
         private void RefreshPanelInfo()
         {
@@ -199,117 +328,111 @@ namespace GameWish.Game
                     m_DiscipleObjDic[item.id].SetItemState(true);
             }
         }
-        protected override void OnPanelOpen(params object[] args)
-        {
-            base.OnPanelOpen(args);
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
-            m_LevelConfigInfo = args[0] as LevelConfigInfo;
-            m_PanelType = (PanelType)args[1];
-            m_CommonTaskItemInfo = args[2] as CommonTaskItemInfo;
-            switch (m_PanelType)
-            {
-                case PanelType.Task:
-                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
-                            CreateDisciple(m_AllDiscipleList[i]);
 
-                    for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
-                        CreateSelectedDisciple();
-                    RefreshFixedInfo();
-                    break;
-                case PanelType.Challenge:
-                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        CreateDisciple(m_AllDiscipleList[i]);
-
-                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
-                        CreateSelectedDisciple();
-                    m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue));
-                    RefreshDisicipleSkill();
-                    break;
-                default:
-                    break;
-            }
-
-            //CalculateContainerHeight();
-        }
-        private void RefreshFixedInfo()
+        private void RefreshFixedInfo(PanelType panelType)
         {
             m_SelectedDiscipleSkillTitle.gameObject.SetActive(false);
             m_SelectedDiscipleSkillValue.gameObject.SetActive(false);
             m_StateBg.gameObject.SetActive(false);
             m_State.gameObject.SetActive(false);
-            m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
-            m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
-            //m_SelectedDiscipleSkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_SELECTEDDISCIPLEYSKILLS);
-            //m_RecommendedSkillsValue.text = 
+            if (panelType == PanelType.Deliver || panelType == PanelType.HeroTrial)
+            {
+                m_RecommendedSkillsTitle.gameObject.SetActive(false);
+                m_RecommendedSkillsValue.gameObject.SetActive(false);
+            }
+            else
+            {
+                m_RecommendedSkillsTitle.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NEEDLEVEL);
+                m_RecommendedSkillsValue.text = CommonUIMethod.GetGrade(m_CommonTaskItemInfo.characterLevelRequired);
+            }
         }
         private void GetInformationForNeed()
         {
-            m_AllDiscipleList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            m_AllDiscipleList = new List<CharacterItem>(MainGameMgr.S.CharacterMgr.GetAllCharacterList());
         }
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(()=> {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
 
-            m_ConfirmBtn.onClick.AddListener(()=> {
+            m_ConfirmBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
                         if (m_SelectedDiscipleDic.Count != m_CommonTaskItemInfo.GetCharacterAmount())
                         {
-                            FloatMessage.S.ShowMsg("»À ˝≤ª◊„"+ m_CommonTaskItemInfo.GetCharacterAmount() + "»À£¨«Î—°¬˙");
+                            FloatMessage.S.ShowMsg("‰∫∫Êï∞‰∏çË∂≥" + m_CommonTaskItemInfo.GetCharacterAmount() + "‰∫∫ÔºåËØ∑ÈÄâÊª°");
                             return;
                         }
                         break;
                     case PanelType.Challenge:
                         if (m_SelectedDiscipleDic.Count != ChallengeSelectedDiscipleNumber)
                         {
-                            FloatMessage.S.ShowMsg("»À ˝≤ª◊„5»À£¨«Î—°¬˙");
+                            FloatMessage.S.ShowMsg("‰∫∫Êï∞‰∏çË∂≥5‰∫∫ÔºåËØ∑ÈÄâÊª°");
                             return;
                         }
+                        break;
+                    case PanelType.Deliver:
+                        if (m_SelectedDiscipleDic.Count != DeliverDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("‰∫∫Êï∞‰∏çË∂≥4‰∫∫ÔºåËØ∑ÈÄâÊª°");
+                            return;
+                        }
+                        break;
+                    case PanelType.HeroTrial:
+                        if (m_SelectedDiscipleDic.Count != HeroTrialDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("‰∫∫Êï∞‰∏çË∂≥1‰∫∫ÔºåËØ∑ÈÄâÊª°");
+                            return;
+                        }
+                        break;
+                    case PanelType.Tower:
                         break;
                     default:
                         break;
                 }
-               
-                EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic);
+
+                EventSystem.S.Send(EventID.OnSelectedConfirmEvent, m_SelectedDiscipleDic, m_SingleDeliverDetailData?.DeliverID);
                 HideSelfWithAnim();
             });
         }
         /// <summary>
-        /// ¥¥Ω®À˘”–µ‹◊”
+        /// ÂàõÂª∫ÊâÄÊúâÂºüÂ≠ê
         /// </summary>
         /// <param name="characterItem"></param>
         private void CreateDisciple(CharacterItem characterItem)
         {
-            GameObject obj = Instantiate(m_ChallengePanelDisciple, m_Cont);
+            GameObject prefab = m_ChallengePanelDisciple;
+            if (m_PanelType == PanelType.Tower)
+            {
+                prefab = m_ChallengePanelDisciple_Tower;
+            }
+            GameObject obj = Instantiate(prefab, m_Cont);
             ChallengePanelDisciple itemICom = obj.GetComponent<ChallengePanelDisciple>();
-            itemICom.OnInit(characterItem,this);
+            itemICom.Init(characterItem, this);
             m_DiscipleObjDic.Add(characterItem.id, itemICom);
         }
 
-        protected override void OnPanelHideComplete()
-        {
-            base.OnPanelHideComplete();
-
-            CloseSelfPanel();
-        }
 
         /// <summary>
-        /// ¥¥Ω®“——°‘Òµƒµ‹◊”
+        /// ÂàõÂª∫Â∑≤ÈÄâÊã©ÁöÑÂºüÂ≠ê
         /// </summary>
         private void CreateSelectedDisciple()
         {
-            GameObject obj = Instantiate(m_ChallengeSelectedDisciple, m_Bottom);
+            GameObject prefab = m_ChallengeSelectedDisciple;
+            if (m_PanelType == PanelType.Tower)
+            {
+                prefab = m_ChallengeSelectedDisciple_Tower;
+            }
+            GameObject obj = Instantiate(prefab, m_Bottom);
             ChallengeSelectedDisciple itemICom = obj.GetComponent<ChallengeSelectedDisciple>();
-            itemICom.OnInit(this);
+            itemICom.Init(this);
             m_SelectedDiscipleObjList.Add(itemICom);
         }
     }

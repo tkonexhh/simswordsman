@@ -18,7 +18,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_BlackBtn;
         [SerializeField]
-        private GameObject m_NewSkillHeroUnlock;
+        private GameObject m_NewSkillHeroUnlock;  
+        [SerializeField]
+        private Transform m_Bg;
+        [SerializeField]
+        private Button m_WeChatShareBtn;
 
         private CharacterItem m_CharacterItem;
         private ClickType m_CurrentClickType = ClickType.None;
@@ -33,6 +37,12 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
+
+            m_WeChatShareBtn.onClick.AddListener(() =>
+            {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.Click_WeChatShare_Btn);
+                WeChatShareMgr.S.Share(WeChatTex.PrefectCharacter);
+            });
         }
         protected override void OnPanelOpen(params object[] args)
         {
@@ -40,9 +50,14 @@ namespace GameWish.Game
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_CharacterItem = args[0] as CharacterItem;
 
-            m_DiscipleImg.enabled = true;
-            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
-            m_DiscipleImg.SetNativeSize();
+            m_WeChatShareBtn.gameObject.SetActive(false);
+
+            Transform transform = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_Bg).transform;
+            transform.localPosition = new Vector3(0, 136, 0);
+            transform.localScale = new Vector3(0.65f, 0.65f, 1);
+            //m_DiscipleImg.enabled = true;
+            //m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CharacterItem));
+            //m_DiscipleImg.SetNativeSize();
 
             m_CurrentClickType = (ClickType)args[1];
             m_RecruitType = (RecruitType)args[2];
@@ -56,6 +71,10 @@ namespace GameWish.Game
                     break;
                 case CharacterQuality.Perfect:
                     m_DiscipleGrade.sprite = FindSprite("LobbyPanel_Grade_Genius");
+
+                    m_WeChatShareBtn.gameObject.SetActive(true);
+
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.Open_WeChatShare_Panel);
                     break;
                 default:
                     break;
@@ -110,7 +129,7 @@ namespace GameWish.Game
 
             EventSystem.S.Send(EventID.OnAddCharacterPanelClosed);
 
-            //Òýµ¼
+            //ï¿½ï¿½ï¿½ï¿½
             if (m_RecruitType == RecruitType.GoldMedal && !GameDataMgr.S.GetPlayerData().firstGoldRecruit)
             {
                 GameDataMgr.S.GetPlayerData().firstGoldRecruit = true;

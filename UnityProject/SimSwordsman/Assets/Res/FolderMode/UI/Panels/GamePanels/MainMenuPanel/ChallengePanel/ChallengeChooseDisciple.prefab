@@ -813,7 +813,6 @@ MonoBehaviour:
   m_CustomVisibleFlag: 1
   m_SortingOrder: -1
   m_CloseBtn: {fileID: 1587067935836713414}
-  m_ChoiceDiscipleTitle: {fileID: 3667707527193455451}
   m_RecommendedSkillsTitle: {fileID: 6209688081967903286}
   m_RecommendedSkillsValue: {fileID: 6484826056986157576}
   m_SelectedDiscipleSkillTitle: {fileID: 3519845963924622480}
@@ -823,8 +822,12 @@ MonoBehaviour:
   m_Cont: {fileID: 8949956754879898166}
   m_ChallengePanelDisciple: {fileID: 3117397499557727897, guid: e7cb7bd9cede53a4ca7b0641b4c19ff6,
     type: 3}
+  m_ChallengePanelDisciple_Tower: {fileID: 8048942119057877530, guid: d68ece8f2ba494a69bb1feb26896a846,
+    type: 3}
   m_Bottom: {fileID: 4442274555142388776}
   m_ChallengeSelectedDisciple: {fileID: 4029760560916600502, guid: b4fafa3df0adc464c82cb0d46e6bb460,
+    type: 3}
+  m_ChallengeSelectedDisciple_Tower: {fileID: 3284855536228656380, guid: f406e50e0890b420ba0970512f8bceb5,
     type: 3}
   m_ConfirmBtn: {fileID: 1686446528370178031}
   m_ConfirmText: {fileID: 6130663063767927682}
@@ -946,8 +949,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6389698921379488717}
   m_HandleRect: {fileID: 481024193911915098}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1973,7 +1976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

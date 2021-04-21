@@ -14,7 +14,9 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
-        private Image m_DiscipleHead;
+        private Image m_LevelBg;
+        //[SerializeField]
+        //private Image m_DiscipleHead;
         [SerializeField]
         private Image m_State;
         [SerializeField]
@@ -27,7 +29,7 @@ namespace GameWish.Game
         private Image m_Line;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private CharacterItem m_CharacterItem;
-        private AddressableAssetLoader<Sprite> m_Loader;
+
         private ChooseDisciplePanel m_ChooseDisciplePanel;
         private bool isSelected = false;
         public void OnInit(CharacterItem characterItem, ChooseDisciplePanel chooseDisciplePanel)
@@ -47,17 +49,18 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
-            m_DiscipleHead.sprite = m_ChooseDisciplePanel.FindSprite(GetLoadDiscipleName(m_CharacterItem));
+
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+            discipleHeadPortrait.transform.localPosition = new Vector3(45.9f, -29, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+
+
+            //m_DiscipleHead.sprite = m_ChooseDisciplePanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
-        private void OnDestroy()
-        {
-            m_Loader?.Release();
-        }
+
         private void RefreshPanelInfo()
         {
             m_Level.text = m_CharacterItem.level.ToString();

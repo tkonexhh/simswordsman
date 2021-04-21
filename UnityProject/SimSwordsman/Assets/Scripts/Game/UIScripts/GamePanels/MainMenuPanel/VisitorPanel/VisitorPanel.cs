@@ -21,6 +21,7 @@ namespace GameWish.Game
         private Text m_RewardName;
         [SerializeField]
         private Text m_RewardNum;
+        [SerializeField] private Text m_TxtCurNum;
 
         [SerializeField]
         private Button m_AcceptBtn;
@@ -60,6 +61,8 @@ namespace GameWish.Game
                 m_RewardIcon.SetNativeSize();
                 m_RewardName.text = m_visitor.Reward.RewardName();
                 m_RewardNum.text = m_visitor.Reward.Count.ToString();
+                long targetNum = RewardMgr.S.GetOwnRewardCount(m_visitor.Reward);
+                m_TxtCurNum.text = CommonUIMethod.GetTenThousandOrMillion(targetNum);
                 m_Character.sprite = FindSprite(tb.roleRes);
                 m_Character.SetNativeSize();
             }
@@ -73,7 +76,6 @@ namespace GameWish.Game
             GameDataMgr.S.GetPlayerData().recordData.AddVisitor();
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, new List<RewardBase>() { m_visitor.Reward });
             VisitorSystem.S.Disappear(m_visitor);
-            GameDataMgr.S.GetPlayerData().SetNoBroadcastTimes(1);
 
             HideSelfWithAnim();
         }

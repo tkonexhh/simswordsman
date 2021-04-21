@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GameWish.Game
 {
-    public class PlayerData : DataDirtyHandler, IResetHandler, IDailyResetData
+    public class PlayerData : IDataClass, IResetHandler, IDailyResetData
     {
         public bool messagePush;
 
@@ -22,6 +22,7 @@ namespace GameWish.Game
         public RecruitData recruitData = new RecruitData();
         public RecordData recordData = new RecordData();
         public TaskData taskData = new TaskData();
+        public TowerData towerData = new TowerData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
         public bool IsLookADInLastChallengeBossLevel = true;
         public bool LastChallengeIsBossLevel = false;
@@ -64,7 +65,7 @@ namespace GameWish.Game
         /// <summary>
         /// 是否是新用户啊
         /// </summary>
-        public  bool IsNewUser;
+        public bool IsNewUser;
         /// <summary>
         /// 免播广告次数
         /// </summary>
@@ -89,25 +90,27 @@ namespace GameWish.Game
         #endregion
 
         #region 挑战 广告相关
-        public void UpdateIsLookADInLastChallengeBossLevel(bool value) 
+        public void UpdateIsLookADInLastChallengeBossLevel(bool value)
         {
             IsLookADInLastChallengeBossLevel = value;
             SetDataDirty();
         }
-        public void UpdateLastChallengeIsBossLevel(bool value) {
+        public void UpdateLastChallengeIsBossLevel(bool value)
+        {
             LastChallengeIsBossLevel = value;
             SetDataDirty();
         }
-        public bool CurrentChallengeLevelIsPlayInterAD() 
+        public bool CurrentChallengeLevelIsPlayInterAD()
         {
-            if (LastChallengeIsBossLevel && IsLookADInLastChallengeBossLevel == false) {
+            if (IsLookADInLastChallengeBossLevel == false)
+            {
                 return true;
             }
             return false;
         }
         #endregion
 
-        public void SetDefaultValue()
+        public override void InitWithEmptyData()
         {
             messagePush = true;
             m_CoinNum = Define.DEFAULT_COIN_NUM;
@@ -130,13 +133,21 @@ namespace GameWish.Game
             NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
             FoodRefreshTimesToday = 10;
             FoodRefreshCount = 0;
+            towerData.InitWithEmptyData();
             SetDataDirty();
+        }
+
+        public override void OnDataLoadFinish()
+        {
+            towerData.SetDirtyRecorder(m_Recorder);
+            towerData.OnDataLoadFinish();
         }
 
         public void ResetDailyData()
         {
             recordData.ResetDailyData();
             taskData.ResetDailyData();
+            towerData.ResetDailyData();
             SetDataDirty();
         }
 
@@ -170,7 +181,7 @@ namespace GameWish.Game
         public bool GetIsNewUser()
         {
             return IsNewUser;
-        } 
+        }
         public void SetRefreshInterTimes(int count)
         {
             RefreshInterTimes = count;
@@ -182,7 +193,7 @@ namespace GameWish.Game
         }
         public string GetNoBroadcastTimesTime()
         {
-            if (NoBroadcastTimesTime==null)
+            if (NoBroadcastTimesTime == null)
                 NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00"; ;
             return NoBroadcastTimesTime;
         }
@@ -196,13 +207,13 @@ namespace GameWish.Game
         }
         public void SetBattleTimes()
         {
-             BattleTimes++;
+            BattleTimes++;
         }
         public int GetNoBroadcastTimes()
         {
             return NoBroadcastTimes;
         }
-        public void SetNoBroadcastTimes(int delta=1)
+        public void SetNoBroadcastTimes(int delta = 1)
         {
             NoBroadcastTimes += delta;
             if (NoBroadcastTimes < 0)
@@ -210,7 +221,7 @@ namespace GameWish.Game
         }
         public void SetBattleTimes(int delta = 1)
         {
-            BattleTimes+=delta;
+            BattleTimes += delta;
             if (BattleTimes < 0)
                 BattleTimes = 0;
         }
@@ -412,15 +423,17 @@ namespace GameWish.Game
         }
 
         #region 招募相关
-        public DateTime GetRecruitLastClickTime(RecruitType rt) 
+        public DateTime GetRecruitLastClickTime(RecruitType rt)
         {
             return recruitData.GetLastRecruitDateTime(rt);
         }
-        public void UpdateRecruitLastClickTime(RecruitType rt) {
+        public void UpdateRecruitLastClickTime(RecruitType rt)
+        {
             recruitData.UpdateLastLookADRecruitDateTime(rt);
             SetDataDirty();
         }
-        public bool IsCanLookADRecruit(RecruitType rt,int intervalTimeHours) {
+        public bool IsCanLookADRecruit(RecruitType rt, int intervalTimeHours)
+        {
             return recruitData.IsCanLookADRecruit(rt, intervalTimeHours);
         }
         #endregion
@@ -432,7 +445,7 @@ namespace GameWish.Game
 
         public int GetFoodNum()
         {
-            if (foodNum<0)
+            if (foodNum < 0)
                 foodNum = 0;
             return foodNum;
         }
@@ -713,63 +726,68 @@ namespace GameWish.Game
             silverMedalGood = recruitModel.silverMedalGood;
             silverMedalPerfect = recruitModel.silverMedalPerfect;
         }
-        public bool IsCanLookADRecruit(RecruitType rt, int intervalTimeHours) 
+        public bool IsCanLookADRecruit(RecruitType rt, int intervalTimeHours)
         {
             if (rt == RecruitType.GoldMedal)
             {
-                if (IsRecodeGoldRecruitDate == false) 
+                if (IsRecodeGoldRecruitDate == false)
                 {
                     return true;
-                }else if (GoldRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now)
+                }
+                else if (GoldRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now)
                 {
                     return true;
                 }
             }
-            else {
+            else
+            {
                 if (IsRecodeSilverRecruitDate == false)
                 {
                     return true;
                 }
-                else if (SilverRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now) {
+                else if (SilverRecruitDateTime.AddHours(intervalTimeHours) <= DateTime.Now)
+                {
                     return true;
                 }
             }
 
             return false;
         }
-        public DateTime GetLastRecruitDateTime(RecruitType rt) 
+        public DateTime GetLastRecruitDateTime(RecruitType rt)
         {
             if (rt == RecruitType.GoldMedal)
             {
-                if (IsRecodeGoldRecruitDate == false) 
+                if (IsRecodeGoldRecruitDate == false)
                 {
                     GoldRecruitDateTime = DateTime.Now;
                     IsRecodeGoldRecruitDate = true;
-                }                
+                }
                 return GoldRecruitDateTime;
             }
-            else {
-                if (IsRecodeSilverRecruitDate == false) 
+            else
+            {
+                if (IsRecodeSilverRecruitDate == false)
                 {
                     SilverRecruitDateTime = DateTime.Now;
                     IsRecodeSilverRecruitDate = true;
                 }
-                
+
                 return SilverRecruitDateTime;
             }
         }
-        public void UpdateLastLookADRecruitDateTime(RecruitType rt) 
+        public void UpdateLastLookADRecruitDateTime(RecruitType rt)
         {
             if (rt == RecruitType.GoldMedal)
             {
                 GoldRecruitDateTime = DateTime.Now;
                 IsRecodeGoldRecruitDate = true;
             }
-            else {
+            else
+            {
                 SilverRecruitDateTime = DateTime.Now;
                 IsRecodeSilverRecruitDate = true;
             }
-        }       
+        }
     }
 
     [Serializable]

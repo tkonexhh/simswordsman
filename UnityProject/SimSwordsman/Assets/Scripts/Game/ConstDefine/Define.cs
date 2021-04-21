@@ -123,7 +123,7 @@ namespace GameWish.Game
         public const int FACILITY_MAX_BULLETInBOARD = 10;
         public const int FACILITY_MAX_WAREHOUSE = 5;
         public const int FACILITY_MAX_BAICAOHU = 4;
-        public const int FACILITY_MAX_PATROLROOM = 6;
+        public const int FACILITY_MAX_DELIVER = 4;
         public const int FACILITY_MAX_KITCHEN = 5;
         public const int FACILITY_MAX_FORGEHOUSE = 6;
         public const int FACILITY_MAX_TOTALCOUNT = 10;
@@ -304,6 +304,11 @@ namespace GameWish.Game
 
         #region 广告相关
         public const string DoubleGetBossRewardADName = "DoubleReward";
+        #endregion
+
+        #region  引导相关
+        public const string IsOpenTowerPanel = "m_IsOpenTowerPanel";
+        public const string IsOpenHeroTrialPanel = "m_IsOpenHeroTrialPanel";
         #endregion
     }
 }

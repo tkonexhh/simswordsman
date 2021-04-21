@@ -18,6 +18,8 @@ namespace GameWish.Game
         public List<BaiCaoWuData> BaiCaoWuDataList = new List<BaiCaoWuData>();
         public List<ForgeHouseItemData> ForgeHouseItemDataList = new List<ForgeHouseItemData>();
         public List<CollectSystemItemData> CollectSystemItemDataList = new List<CollectSystemItemData>();
+        public DeliverData DeliverData = new DeliverData();
+        public HeroTrialData heroTrialData = new HeroTrialData();
 
         public void SetDefaultValue()
         {
@@ -217,6 +219,8 @@ namespace GameWish.Game
         public void AddCharacterKongfuExp(int id, CharacterKongfuData kongfuType, int deltaExp)
         {
             ownedCharacterData.AddKonfuExp(id, kongfuType, deltaExp);
+
+            SetDataDirty();
         }
 
         public List<CharacterItemDbData> GetAllCharacterList()
@@ -232,6 +236,15 @@ namespace GameWish.Game
         public void AddCharacterKongfuLevel(int id, CharacterKongfuData kongfuType, int deltaLevel)
         {
             ownedCharacterData.AddCharacterKongfuLevel(id, kongfuType, deltaLevel);
+
+            SetDataDirty();
+        }
+
+        public void SetIsHero(int id, ClanType clanType)
+        {
+            ownedCharacterData.SetCharacterIsHero(id, clanType);
+
+            SetDataDirty();
         }
         #endregion
 
@@ -680,5 +693,55 @@ namespace GameWish.Game
             return 0;
         }
         #endregion
+
+
+        #region daliver system
+        public void RemoveDeliverDataByID(int DeliverID) 
+        {
+            DeliverData.RemoveDeliverData(DeliverID);
+            SetDataDirty();
+        }
+        public SingleDeliverDetailData AddDeliverData(int DeliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+        {
+            SingleDeliverDetailData data = DeliverData.AddDeliverData(DeliverID, state, rewardDataList, characterIDList);
+
+            SetDataDirty();
+
+            return data;
+        }
+        public List<SingleDeliverDetailData> GetAllDaliverData() 
+        {
+            return DeliverData.DaliverDetailDataList;
+        }
+        public void SetSpeedUpMultipleByDeliverID(int deliverID,int speedUpMultiple = 2) 
+        {
+            SingleDeliverDetailData data = GetAllDaliverData().Find(x => x.DeliverID == deliverID);
+            if (data != null)
+            {
+                data.UpdateSpeedUpMultiple(speedUpMultiple);
+                data.UpdateSpeedUpMultipleStartTime();
+                data.UpdateCountDownSpeedUpMultiple();
+                SetDataDirty();
+            }
+        }
+        public bool IsGoOutSide(int deliverID) 
+        {
+            return DeliverData.IsGoOutSide(deliverID);
+        }
+        public SingleDeliverDetailData GetDeliverDataByDeliverID(int deliverID) 
+        {
+            return DeliverData.GetDeliverDataByID(deliverID);
+        }
+        #endregion
+
+        //#region HeroTrial
+        //public void OnHeroTrialStart(int day, int characterId)
+        //{
+        //    heroTrialData.OnTrialStart(day, characterId);
+
+        //    SetDataDirty();
+        //}
+        //#endregion
+
     }
 }

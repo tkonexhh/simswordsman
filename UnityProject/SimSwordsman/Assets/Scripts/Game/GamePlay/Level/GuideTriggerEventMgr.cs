@@ -36,6 +36,16 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnExitBattle, OnExitBattleCallBack);
 
             EventSystem.S.Register(EventID.OnCloseAllUIPanel, OnCloseAllUIPanelCallBack);
+
+            EventSystem.S.Register(EventID.OnTrialTimeOver, OnTrialTimeOverCallBack);
+        }
+
+        private void OnTrialTimeOverCallBack(int key, object[] param)
+        {
+            if (GuideMgr.S.IsGuideFinish(43) == false) 
+            {
+                EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger);
+            }            
         }
 
         private void OnCloseAllUIPanelCallBack(int key, object[] param)
@@ -77,6 +87,18 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.LogPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.DailyTaskPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.TacticalFunctionPanel);
+
+            UIMgr.S.ClosePanelAsUIID(UIID.TowerPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.TowerRulePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.TowerShopPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.TowerADRefeshPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.TowerRevivePanel);
+
+            UIMgr.S.ClosePanelAsUIID(UIID.DeliverPanel);
+
+            UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialChooseDisciplePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialTipPanel);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)
@@ -96,8 +118,9 @@ namespace GameWish.Game
         private void OnGuidClickTaskDetailsTrigger1CallBack(int key, object[] param)
         {
             EventSystem.S.Send(EventID.InGuideProgress, true);
-            
-            if (m_FollowCamera != null) {
+
+            if (m_FollowCamera != null)
+            {
                 m_FollowCamera.TweenOrthoSize(10);
                 m_FollowCamera.DestorySelf();
             }
@@ -109,7 +132,7 @@ namespace GameWish.Game
 
         private void OnFinishedClickWuWoodBubbleTrigger1CallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuideFinish(31) == false && m_IsFixedCamera == false) 
+            if (GuideMgr.S.IsGuideFinish(31) == false && m_IsFixedCamera == false)
             {
                 m_IsFixedCamera = true;
                 EventSystem.S.Send(EventID.OnLimitCameraTouchMove, true);
@@ -120,13 +143,13 @@ namespace GameWish.Game
                 m_FollowCamera = MainGameMgr.S.MainCamera.gameObject.AddComponent<FixedFollowCamera>();
                 m_FollowCamera.TweenOrthoSize(10);
 
-                //Òıµ¼¹Ì¶¨Ä³¸öÈËÊÓ½Ç
+                //ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ó½ï¿½
                 Transform target = GameplayMgr.S.transform.Find("EntityRoot/Character_normal_1");
                 if (target != null)
                 {
                     m_FollowCamera.SetTarget(target);
                 }
-            }            
+            }
         }
 
         private void OnAddCharacterPanelClosedCallBack(int key, object[] param)
@@ -136,26 +159,65 @@ namespace GameWish.Game
 
         private void OnUpgradeFacilityCallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuideFinish(29)) {
-                return;
-            }
             FacilityType facilityType = EnumUtil.ConvertStringToEnum<FacilityType>(param[0].ToString());
-            if (facilityType == FacilityType.Lobby) {
+            if (facilityType == FacilityType.Lobby)
+            {
                 CheckIsStartChallengeSystemGuide();
+                CheckIsStartTowerSystemGuide();
+
+                CheckIsStartHeroTrialSystemGuide();
             }
         }
         /// <summary>
-        /// ¼ì²âÊÇ·ñ¿ªÊ¼ÌôÕ½ÏµÍ³Òıµ¼
+        /// æ˜¯å¦å¼€å§‹è¯•ç‚¼ç³»ç»Ÿå¼•å¯¼
         /// </summary>
-        private void CheckIsStartChallengeSystemGuide() 
+        private void CheckIsStartHeroTrialSystemGuide() 
+        {
+            bool isOpen = PlayerPrefs.GetInt(Define.IsOpenHeroTrialPanel, 0) == 1 ? true : false;
+            
+            if (isOpen) return;
+
+            if (GuideMgr.S.IsGuideFinish(42)) {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
+            var characterData = characterList.Find(x => x.level >= 200);
+            if (characterData != null && facilityLevel >= 5) 
+            {
+                EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_IntroduceTrigger);
+            }
+        }
+        /// <summary>
+        /// æ˜¯å¦å¼€å§‹ä¼é­”å¡”å¼•å¯¼
+        /// </summary>
+        private void CheckIsStartTowerSystemGuide() 
+        {
+            bool isOpen = PlayerPrefs.GetInt(Define.IsOpenTowerPanel, 0) == 1 ? true : false;
+            
+            if (isOpen) return;
+
+            if (GuideMgr.S.IsGuideFinish(40)) 
+            {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            if (facilityLevel >= 3) {
+                EventSystem.S.Send(EventID.OnTowerTrigger_IntroduceTrigger);
+            }
+        }
+        /// <summary>
+        /// ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ê¼ï¿½ï¿½Õ½ÏµÍ³ï¿½ï¿½ï¿½ï¿½
+        /// </summary>
+        private void CheckIsStartChallengeSystemGuide()
         {
             if (GuideMgr.S.IsGuideFinish(29))
             {
                 return;
             }
             int isOpenChallengePanel = PlayerPrefs.GetInt(Define.Is_Enter_Challenge_Panel, -1);
-            //-1  ±íÊ¾Î´´ò¿ªÌôÕ½Ãæ°å
-            if (isOpenChallengePanel == -1) 
+            //-1  ï¿½ï¿½Ê¾Î´ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½
+            if (isOpenChallengePanel == -1)
             {
                 int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
                 int characterCount = GameDataMgr.S.GetClanData().GetOwnedCharacterData().GetCharacterCount();
@@ -163,7 +225,7 @@ namespace GameWish.Game
                 {
                     EventSystem.S.Send(EventID.OnChallengeSystemTrigger_IntroduceTrigger);
                 }
-            }            
+            }
         }
 
         private void OnCharacterUpLevelCallBack(int key, object[] param)
@@ -173,41 +235,45 @@ namespace GameWish.Game
                 CheckIsStartGuideKungFuTrigger();
 
                 CheckIsStartGuideArmorTrigger();
+
+                CheckIsStartHeroTrialSystemGuide();
             }
         }
 
         private void OnGetKungFuCallBack(int key, object[] param)
         {
-            if (m_IsInBattleing == false) 
+            if (m_IsInBattleing == false)
             {
                 CheckIsStartGuideKungFuTrigger();
-            }             
+            }
         }
 
         private void OnAddArmsCallBack(int key, object[] param)
         {
-            if (m_IsInBattleing == false) {
+            if (m_IsInBattleing == false)
+            {
                 CheckIsStartGuideArmorTrigger();
-            }            
+            }
         }
-        private void CheckIsStartGuideArmorTrigger() 
+        private void CheckIsStartGuideArmorTrigger()
         {
-            //×°±¸ÎäÆ÷Òıµ¼
-            if (GuideMgr.S.IsGuideFinish(28)) {
+            //×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (GuideMgr.S.IsGuideFinish(28))
+            {
                 return;
             }
 
             bool isHaveDiscipleLevelGreate30 = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsHaveCharacterLevelGreaterNumber(30);
-            
-            if (isHaveDiscipleLevelGreate30) 
-            {                
+
+            if (isHaveDiscipleLevelGreate30)
+            {
                 bool isHaveArms = GameDataMgr.S.GetClanData().inventoryData.IsHaveFreeArms();
-                
-                if (isHaveArms) 
+
+                if (isHaveArms)
                 {
                     bool isEquipArms = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsEquipmentArms();
-                    //Èç¹ûÓÃ»§Ã»×°±¸¹ıÎäÆ÷£¬²ÅÒıµ¼
-                    if (isEquipArms == false) 
+                    //ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ã»×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    if (isEquipArms == false)
                     {
                         Timer.S.Post2Really((x) =>
                         {
@@ -219,32 +285,33 @@ namespace GameWish.Game
 
                             EventSystem.S.Send(EventID.OnArmsTrigger_IntroduceTrigger);
                         }, .3f, 1);
-                    }                    
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// ¼ì²âÊÇ·ñ¿ÉÒÔ¿ªÊ¼¹¦·òµÄÒıµ¼
+        /// ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
-        private void CheckIsStartGuideKungFuTrigger() 
+        private void CheckIsStartGuideKungFuTrigger()
         {
-            //Íê³ÉÎä¹¦Ñ§Ï°£¬Ôòreturn
-            if (GuideMgr.S.IsGuideFinish(27)) 
+            //ï¿½ï¿½ï¿½ï¿½ä¹¦Ñ§Ï°ï¿½ï¿½ï¿½ï¿½return
+            if (GuideMgr.S.IsGuideFinish(27))
             {
                 return;
             }
-            
+
             bool isHaveDiscipleLevelGreate10 = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsHaveCharacterLevelGreaterNumber(10);
 
             if (isHaveDiscipleLevelGreate10)
             {
                 bool isHaveKungFu = GameDataMgr.S.GetClanData().inventoryData.IsHaveFreeKungFu();
 
-                if (isHaveKungFu) 
+                if (isHaveKungFu)
                 {
                     bool isStudyKungFu = GameDataMgr.S.GetClanData().GetOwnedCharacterData().IsStudyKungFu();
-                    if (isStudyKungFu == false) {
+                    if (isStudyKungFu == false)
+                    {
                         Timer.S.Post2Really((x) =>
                         {
                             if (MainGameMgr.S.IsMainMenuPanelOpen == false)
@@ -255,8 +322,8 @@ namespace GameWish.Game
 
                             EventSystem.S.Send(EventID.OnKungFuTrigger_IntroduceTrigger);
                         }, .3f, 1);
-                    }                                
-                }                
+                    }
+                }
             }
         }
 
@@ -264,7 +331,7 @@ namespace GameWish.Game
         {
             int id = (int)param[0];
 
-            if (id == 9001) 
+            if (id == 9001)
             {
                 if (GuideMgr.S.IsGuideFinish(37) == false)
                 {
@@ -331,11 +398,11 @@ namespace GameWish.Game
         {
             if (!GuideMgr.S.IsGuideFinish(36))
                 return;
-            //µÚ20²½½áÊø²»³öÏÖ½¨Ôì²Ö¿âµÄÒıµ¼
+            //ï¿½ï¿½20ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (GuideMgr.S.IsGuideFinish(20))
                 return;
-            //ÔÚÕ½¶·ÖĞ²»ÏÔÊ¾Òıµ¼
-            if (m_IsInBattleing) 
+            //ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+            if (m_IsInBattleing)
             {
                 return;
             }
@@ -354,7 +421,7 @@ namespace GameWish.Game
             //Timer.S.Post2Really(x => 
             //{
             UIMgr.S.ClosePanelAsUIID(UIID.LobbyPanel);
-                EventSystem.S.Send(EventID.OnGuideDialog4);
+            EventSystem.S.Send(EventID.OnGuideDialog4);
             //}, 1f);
         }
 
@@ -369,7 +436,7 @@ namespace GameWish.Game
 
         private void UnlockFacility(int key, object[] param)
         {
-            //µÚ20²½½áÊø²ÅÄÜ³öÏÖ½¨Ôì²Ö¿âµÄÒıµ¼
+            //ï¿½ï¿½20ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½ï¿½Ö½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (!GuideMgr.S.IsGuideFinish(20))
                 return;
             FacilityType type = (FacilityType)param[0];
@@ -392,8 +459,11 @@ namespace GameWish.Game
                     if (GameDataMgr.S.GetClanData().GetFacilityData(FacilityType.PracticeFieldEast).facilityState != FacilityState.Unlocked)
                         EventSystem.S.Send(EventID.OnGuideUnlockPracticeField);
                     break;
+                case FacilityType.Deliver:
+                    EventSystem.S.Send(EventID.OnDeliverTrigger_BuildTrigger);
+                    break;
             }
         }
     }
-	
+
 }

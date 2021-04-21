@@ -49,9 +49,13 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_ChallengeBtn;
         [SerializeField]
+        private GameObject m_Challenging;
+        [SerializeField]
         private Button m_VoldemortTowerBtn;
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
+        [SerializeField]
+        private Button m_HeroTrialBtn;
 
         [Header("战斗任务")]
         [SerializeField]
@@ -77,6 +81,33 @@ namespace GameWish.Game
 
         protected override void OnUIInit()
         {
+            //RegisterEvents();
+            base.OnUIInit();
+            m_MainTaskUIHandler.Init(this);
+        }
+
+        private void HandListenerEvent(int key, object[] param)
+        {
+            if ((EventID)key == EventID.OnMainMenuOrDiscipleRedPoint)
+            {
+                List<CharacterItem> characterItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+                foreach (var item in characterItemList)
+                {
+                    if (item.CheckDiscipelPanel())
+                    {
+                        m_DiscipleRedPoint.SetActive(true);
+                        return;
+                    }
+                }
+                m_DiscipleRedPoint.SetActive(false);
+            }
+        }
+
+        protected override void OnOpen()
+        {
+            base.OnOpen();
+            //ClearTacticalFunctionBtn();
+
             RegisterEvents();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
@@ -87,7 +118,6 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.UserAccountPanel);
             });
 
-            base.OnUIInit();
             int limit = TDFacilityKitchenTable.GetData(MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen)).foodLimit;
 
             if (GameDataMgr.S.GetPlayerData().GetFoodNum() >= limit)
@@ -179,7 +209,17 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                FloatMessage.S.ShowMsg("暂未开放，敬请期待");
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                int needLobbyLevel = TowerDefine.ENTER_LEVEL;
+                if (lobbyLevel >= needLobbyLevel)
+                {
+                    UIMgr.S.OpenPanel(UIID.TowerPanel);
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
+                }
+
             });
             m_CreateCoinBtn.onClick.AddListener(() =>
             {
@@ -206,29 +246,32 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.VisitorPanel, 1);
             });
 
-            m_MainTaskUIHandler.Init(this);
-        }
-
-        private void HandListenerEvent(int key, object[] param)
-        {
-            if ((EventID)key == EventID.OnMainMenuOrDiscipleRedPoint)
+            m_HeroTrialBtn.onClick.AddListener(() =>
             {
-                List<CharacterItem> characterItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
-                foreach (var item in characterItemList)
+                string msg = string.Empty;
+                if (!PlatformHelper.isTestMode)
                 {
-                    if (item.CheckDiscipelPanel())
+                    if (!MainGameMgr.S.HeroTrialMgr.IsUnlocked(ref msg))
                     {
-                        m_DiscipleRedPoint.SetActive(true);
+                        FloatMessage.S.ShowMsg(msg);
                         return;
                     }
                 }
-                m_DiscipleRedPoint.SetActive(false);
-            }
-        }
+              
+                UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
 
-        protected override void OnOpen()
-        {
-            base.OnOpen();
+                UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
+
+                if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Idle && MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady())
+                {
+                    UIMgr.S.OpenPanel(UIID.HeroTrialTipPanel);
+                }
+
+                MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
+            });
+
+
+            RefreshChallenging();
             MainGameMgr.S.IsMainMenuPanelOpen = true;
             //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             //GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(5000);
@@ -301,6 +344,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.Register(EventID.OnMainMenuChallenging, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -315,6 +359,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnDeleteTaskBtn, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnMainMenuChallenging, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -325,6 +370,7 @@ namespace GameWish.Game
                     RefreshPanelInfo();
                     break;
                 case EventID.OnDeleteTaskBtn:
+
                     TacticalFunctionBtn tacticalFunctionBtn = m_CommonTaskList.Where(i => i.TaskID == (int)param[0]).FirstOrDefault();
                     if (tacticalFunctionBtn != null)
                     {
@@ -355,9 +401,42 @@ namespace GameWish.Game
                 case EventID.OnRefeshDailyTaskPanel:
                     m_ObjBulletinBoardRed.SetActive(false);
                     break;
+                case EventID.OnMainMenuChallenging:
+                    RefreshChallenging();
+                    break;
             }
         }
 
+        private void ClearTacticalFunctionBtn()
+        {
+            for (int i = 0; i < m_CommonTaskList.Count; i++)
+            {
+                DestroyImmediate(m_CommonTaskList[i].gameObject);
+            }
+        }
+
+        private void RefreshChallenging()
+        {
+            List<CharacterItem> characterItems = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            if (characterItems.Count >= 5)
+            {
+                CommonUIMethod.BubbleSortForType(characterItems, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+                float allAtkValue = 0;
+                for (int i = 0; i < 5; i++)
+                    allAtkValue += characterItems[i].atkValue;
+
+                ChapterDbItem chapterDbItem = MainGameMgr.S.ChapterMgr.GetLatestChapter();
+                if (chapterDbItem != null)
+                {
+                    LevelConfigInfo levelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(chapterDbItem.chapter, chapterDbItem.level);
+                    //Debug.LogError("推荐功力 = "+ levelConfigInfo.recommendAtkValue);
+                    if (allAtkValue >= levelConfigInfo.recommendAtkValue*1.5f)
+                        m_Challenging.SetActive(true);
+                    else
+                        m_Challenging.SetActive(false);
+                }
+            }
+        }
 
         private void ChangeClanName(int key, object[] param)
         {

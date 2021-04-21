@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MartialArtsAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 8ec7f626774e73f4e885e48e654e0f1b, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b56658104536bb74b9c22efe9d77c712, type: 3}
+  - {fileID: 21300000, guid: e9d7f7a0733044142b2a46692dadd241, type: 3}
+  - {fileID: 21300000, guid: 989f3dd0a2a7ade47abc0cd885e17766, type: 3}
+  - {fileID: 21300000, guid: 4a8c4e412b28a284e9546b51efd431e1, type: 3}
+  - {fileID: 21300000, guid: c0145061b4282a6419e35f2a10478264, type: 3}
+  - {fileID: 21300000, guid: d1601882214ff60498082b8abb82d4a2, type: 3}
+  - {fileID: 21300000, guid: e8fb5d0344761564488960e02e25c549, type: 3}
+  - {fileID: 21300000, guid: b8f1cab49d7edc74398bd0e5d43f3dda, type: 3}
+  - {fileID: 21300000, guid: 870c1305f1889504782eb69f87961d4a, type: 3}
+  - {fileID: 21300000, guid: 00459d25c77cb5f42b47bcaff0bd6509, type: 3}
+  - {fileID: 21300000, guid: 9c6390d5fea37f740a740bd80ef73020, type: 3}
+  - {fileID: 21300000, guid: 06b4bce6e2afee344a29da9ebe8cc8e6, type: 3}
+  - {fileID: 21300000, guid: 7cf063b794e80f348b55d4770caaa186, type: 3}
+  - {fileID: 21300000, guid: b43cdab8e907c22458568d152bc19b31, type: 3}
+  - {fileID: 21300000, guid: 95f8996978596f947afc98b2b3d35a86, type: 3}
+  - {fileID: 21300000, guid: 25e03c8968f16554ba4aa9d2146e6dc7, type: 3}
+  - {fileID: 21300000, guid: 29234ad91e856f94c9c07a07f01de7cb, type: 3}
+  - {fileID: 21300000, guid: a24f9fe9d8e8f18438ed099a46fcf7ae, type: 3}
+  - {fileID: 21300000, guid: 69edb21a47932284781a00de35918799, type: 3}
+  - {fileID: 21300000, guid: b822befac72da89488b8f4497d8964cf, type: 3}
+  - {fileID: 21300000, guid: 1945810bf3abe5746b91a809ddc70e6e, type: 3}
+  - {fileID: 21300000, guid: a22f7d4b4b7d53d41a097cd09ef637ae, type: 3}
+  - {fileID: 21300000, guid: 9cfc309bf4b6882418e05cba6f4d4952, type: 3}
+  - {fileID: 21300000, guid: 96ee715cbdc12e14c98f5b057fbba3a5, type: 3}
+  - {fileID: 21300000, guid: 135a9f1dbb4a81d43995a3a4e13d4fdc, type: 3}
+  - {fileID: 21300000, guid: 18b6862d179c78b428b493ec0f149732, type: 3}
+  - {fileID: 21300000, guid: d2e72f4d09391474fb306880c3163832, type: 3}
+  - {fileID: 21300000, guid: 6f4bdb5d05e09b44cac5a19a93693a70, type: 3}
+  - {fileID: 21300000, guid: c6ef882e3f7353242b66131c1efdf6ec, type: 3}
+  - {fileID: 21300000, guid: 0330357e1b978c74c8dd55368fd3afb3, type: 3}
+  - {fileID: 21300000, guid: 6b30b9de73406ea4d9edaa52c22ec8e0, type: 3}
+  - {fileID: 21300000, guid: d3107a6f63f1c044b9727b8b749fb6ee, type: 3}
+  - {fileID: 21300000, guid: ff69739fcfe259841a1bfb9727052dce, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ShiErLuTanTui
+  - FengShenTui
+  - TianCanJiao
+  - SaoYeTui
+  - TianShanZheMeiShou
+  - KaiBeiShou
+  - TanZhiShenGong
+  - YanHuiJianFa
+  - Introduction
+  - QingMangZhi
+  - YuJianShu
+  - WuLangGun
+  - SuiYuQuan
+  - PaoDingJieNiu
+  - BaHuangLiuHe
+  - LianHuaZhang
+  - LiuMaiShenJian
+  - KuiHuaShou
+  - LuanPiJian
+  - ZuiQuan
+  - Excellent
+  - NotStudy
+  - LieYanDao
+  - YiJinJing
+  - WuYingJiao
+  - RuLaiZhang
+  - FeiYunDu
+  - LinBoWeiBu
+  - Lock1
+  - DuGuJiuJian
+  - Advanced
+  - TaiZuChangQuan
+  - XiangLongZhang
+  m_Tag: MartialArtsAtlas
+  m_IsVariant: 0

@@ -12,6 +12,7 @@ namespace GameWish.Game
         protected int m_Id = 0;
         protected int m_Level = 1;
         protected double m_Hp = 0;
+        protected double m_MaxHp = 0;
         protected double m_Atk = 1;
         protected float m_MoveSpeed = 1.5f;//�����ƶ��ٶ�
         private CharacterItem m_CharacterItem = null;
@@ -50,6 +51,11 @@ namespace GameWish.Game
             m_Atk = atk;
         }
 
+        public void SetIsHero(ClanType clanType)
+        {
+            m_CharacterItem.SetIsHero(clanType);
+        }
+
         public void SetDataState(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
         {
             m_CharacterItem?.SetCharacterStateData(stateId, targetFacilityType, startTime, index);
@@ -73,11 +79,20 @@ namespace GameWish.Game
             m_CharacterItem?.AddCharacterExp(deltaExp);
         }
 
+        public void SetMaxHp(double hp)
+        {
+            m_MaxHp = hp;
+        }
+
+        public double GetMaxHp()
+        {
+            return m_MaxHp;
+        }
+
         public void SetHp(double hp)
         {
             m_Hp = hp;
         }
-
         public double GetHp()
         {
             return m_Hp;
@@ -93,21 +108,22 @@ namespace GameWish.Game
 
             if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
             {
-                float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
-                if (armorAtkEnhanceRatio == 0) // ��ʱ��ô����������Ż��Ӵ浵�н��
-                {
-                    armorAtkEnhanceRatio = 1;
-                }
+                //float armorAtkEnhanceRatio = m_CharacterItem.GetArmorAtkEnhanceRatio();
+                //if (armorAtkEnhanceRatio == 0) // ��ʱ��ô����������Ż��Ӵ浵�н��
+                //{
+                //    armorAtkEnhanceRatio = 1;
+                //}
 
-                float armsAtkEnhanceRatio = m_CharacterItem.GetArmsAtkEnhanceRatio();
-                if (armsAtkEnhanceRatio == 0)
-                {
-                    armsAtkEnhanceRatio = 1;
-                }
+                //float armsAtkEnhanceRatio = m_CharacterItem.GetArmsAtkEnhanceRatio();
+                //if (armsAtkEnhanceRatio == 0)
+                //{
+                //    armsAtkEnhanceRatio = 1;
+                //}
 
-                Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
-                float value = m_CharacterItem.atkValue * armorAtkEnhanceRatio * armorAtkEnhanceRatio;
-                return value;
+                //Log.i("Character: " + m_Id + " armor atk ratio: " + armorAtkEnhanceRatio + " arms atk ratio: " + armorAtkEnhanceRatio);
+                //float value = m_CharacterItem.atkValue * armorAtkEnhanceRatio * armorAtkEnhanceRatio;
+                //return value;
+                return m_CharacterItem.atkValue;
             }
             else
                 return 0;
@@ -133,6 +149,15 @@ namespace GameWish.Game
             if (m_CharacterItem == null)
                 return FacilityType.None;
             return m_CharacterItem.GetTargetFacilityType();
+        }
+        public void SetDeliverID(int deliverID) {
+            m_CharacterItem.SetDeliverID(deliverID);
+        }
+        public int GetDeliverID() {
+            if (m_CharacterItem == null) {
+                return -1;
+            }
+            return m_CharacterItem.GetDeliverID();
         }
 
         public int GetTargetFacilityIndex()
@@ -181,7 +206,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ĳһ���򹦷��Ȩ�ر������Ӿ���?
+        /// ĳһ���򹦷��Ȩ�ر������Ӿ���?
         /// </summary>
         /// <returns></returns>
         public void DistributionKungfuExp(int expValue)
@@ -199,8 +224,8 @@ namespace GameWish.Game
                 KungfuWeightConfig config = TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
                 if (config != null && config.Weight != 0)
                 {
-                    int ratio = config.Weight / allWeight;
-                    m_CharacterItem.AddKongfuExp(item, ratio * expValue);
+                    float ratio = ((float)config.Weight / allWeight)+1;
+                    m_CharacterItem.AddKongfuExp(item, (int)ratio * expValue);
                 }
             }
         }

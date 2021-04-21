@@ -31,6 +31,15 @@ namespace GameWish.Game
 
             if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(appName))
             {
+#if UNITY_IOS || UNTIY_IPHONE
+                CustomExtensions.FetchRemoteConfParams(
+                    appName,
+                    "RandomBattleAdInterval",
+                    OnRemoteValueFetched,
+                    channel,
+                    url,
+                    m_Headers);
+#elif UNITY_ANDROID
                 CustomExtensions.FetchRemoteConfParams(
                     appName,
                     "RandomBattleAdInterval",
@@ -39,6 +48,8 @@ namespace GameWish.Game
                     channel,
                     url,
                     m_Headers);
+#endif
+
             }
         }
 

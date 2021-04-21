@@ -16,13 +16,13 @@ namespace GameWish.Game
         //public List<CharacterController> otherEnemyCharacterList = new List<CharacterController>();
         private int m_ArriveCount = 0;
         private int m_AtkEndCount = 0;
-        private bool m_EnemyAttack = false;
+        private bool m_EnemyAttack = true;
         private int m_AtkEventIndex = 0;
 
         private List<float> m_OurHitBackDistance = new List<float>();
         private List<float> m_EnemyHitBackDistance = new List<float>();
 
-        public CharacterController OurCharacter { get => m_OurCharacter; }
+        public CharacterController OurCharacter { get => m_OurCharacter;}
         public CharacterController EnemyCharacter { get => m_EnemyCharacter; }
         public Dictionary<string, KongfuAnimConfig> m_KongfuAnimMap = new Dictionary<string, KongfuAnimConfig>();
         public FightGroup(int id, CharacterController ourCharacter, CharacterController enemyCharacter)
@@ -31,11 +31,11 @@ namespace GameWish.Game
             m_OurCharacter = ourCharacter;
             m_EnemyCharacter = enemyCharacter;
 
-            ourCharacter.SetFightGroup(this);
-            ourCharacter.SetFightTarget(m_EnemyCharacter);
+            ourCharacter?.SetFightGroup(this);
+            ourCharacter?.SetFightTarget(m_EnemyCharacter);
 
-            enemyCharacter.SetFightGroup(this);
-            enemyCharacter.SetFightTarget(m_OurCharacter);
+            enemyCharacter?.SetFightGroup(this);
+            enemyCharacter?.SetFightTarget(m_OurCharacter);
 
             RegisterEvents();
             ParpareEffectPool();
@@ -50,22 +50,36 @@ namespace GameWish.Game
             // ReleaseEffectPool();
         }
 
+        public void ChangeEnemyCharacter(CharacterController enemy)
+        {
+            m_EnemyCharacter.FightGroup = null;
+            m_EnemyCharacter = enemy;
+            m_EnemyCharacter.SetFightGroup(this);
+            m_EnemyCharacter.SetFightTarget(m_OurCharacter);
+        }
+
         private void ParpareEffectPool()
         {
-            var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
-            ourkongfus.Add(KungfuType.Attack);
-            foreach (var kongfu in ourkongfus)
+            if (m_OurCharacter != null)
             {
-                var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
-                AddKongfuToPool(config);
+                var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
+                ourkongfus.Add(KungfuType.Attack);
+                foreach (var kongfu in ourkongfus)
+                {
+                    var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
+                    AddKongfuToPool(config);
+                }
             }
 
-            var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
-            var enemykongfus = enemyConfig.animNameList;
-            foreach (var kongfu in enemykongfus)
+            if (m_EnemyCharacter != null)
             {
-                var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
-                AddKongfuToPool(config);
+                var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
+                var enemykongfus = enemyConfig.animNameList;
+                foreach (var kongfu in enemykongfus)
+                {
+                    var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
+                    AddKongfuToPool(config);
+                }
             }
         }
 
@@ -103,13 +117,13 @@ namespace GameWish.Game
             m_AtkEventIndex = 0;
 
             // Who will attack
-            if (m_OurCharacter.WillBeDead())
-            {
-                m_EnemyAttack = true;
-            }
-            else if (m_EnemyCharacter.WillBeDead())
+            if (m_EnemyCharacter.WillBeDead())
             {
                 m_EnemyAttack = false;
+            }
+            else if(m_OurCharacter.WillBeDead())
+            {
+                m_EnemyAttack = true;
             }
             else
             {
@@ -141,7 +155,7 @@ namespace GameWish.Game
                 atkRangeList = GetAtkRangeList(atkAnimName);
                 m_OurHitBackDistance = atkRangeList;
             }
-            Log.i("Test--------------, atk anim name is: " + atkAnimName);
+            //Log.i("Test--------------, atk anim name is: " + atkAnimName);
             if (string.IsNullOrEmpty(atkAnimName))
             {
                 Log.e("Atk anim name is empty: " + atkAnimName);
@@ -182,15 +196,15 @@ namespace GameWish.Game
 
             float x1 = Random.Range(m_OurCharacter.GetPosition().x - maxDeltaX, m_OurCharacter.GetPosition().x + maxDeltaX);
             float y = Random.Range(m_OurCharacter.GetPosition().y - maxDeltaY, m_OurCharacter.GetPosition().y + maxDeltaY);
-            x1 = Mathf.Clamp(x1, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x);
-            y = Mathf.Clamp(y, MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.y);
+            x1 = Mathf.Clamp(x1, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaLeftBottom.x, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaRightTop.x);
+            y = Mathf.Clamp(y, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaLeftBottom.y, MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaRightTop.y);
 
             float x2 = Random.Range(0, 100) > 50 ? x1 + attackRange : x1 - attackRange;
-            if (x2 < MainGameMgr.S.BattleFieldMgr.BattleAreaLeftBottom.x)
+            if (x2 < MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaLeftBottom.x)
             {
                 x2 = x1 + attackRange;
             }
-            if (x2 > MainGameMgr.S.BattleFieldMgr.BattleAreaRightTop.x)
+            if (x2 > MainGameMgr.S.BattleFieldMgr.BattleField.BattleAreaRightTop.x)
             {
                 x2 = x1 - attackRange;
             }
@@ -245,12 +259,16 @@ namespace GameWish.Game
                 if (m_EnemyCharacter.IsDead() || m_OurCharacter.IsDead())
                 {
                     //Debug.LogError("someone is dead");
-                    MainGameMgr.S.BattleFieldMgr.OnFightGroupCharacterDead(this);
+                    //MainGameMgr.S.BattleFieldMgr.OnFightGroupCharacterDead(this);
+                    EventSystem.S.Send(EventID.OnCharacterInFightGroupDead, this);
                 }
                 else
                 {
                     NextRound();
                 }
+
+                EventSystem.S.Send(EventID.OnOneRoundEnd);
+
             }
         }
 

@@ -139,10 +139,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     m_RewardIcon.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     m_RewardIcon.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     m_RewardIcon.sprite = FindSprite("Excellent");
                     break;
                 default:

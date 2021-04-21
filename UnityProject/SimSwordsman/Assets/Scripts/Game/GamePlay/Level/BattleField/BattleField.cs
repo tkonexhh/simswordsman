@@ -20,8 +20,23 @@ namespace GameWish.Game
 
         private ResLoader m_ResLoader;
 
+        private bool m_IsInited = false;
+
+        private Vector2 m_BattleAreaRightTop = new Vector2(44, 1.5f);
+        private Vector2 m_BattleAreaLeftBottom = new Vector2(38, -1.1f);
+        private Vector2 m_InitBattleAreaRightTop = new Vector2(44, 1.5f);
+        private Vector2 m_InitBattleAreaLeftBottom = new Vector2(38, -1.1f);
+
+        public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop; }
+        public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom; }
+
         public void Init()
         {
+            if (m_IsInited)
+                return;
+
+            m_IsInited = true;
+
             m_ResLoader = ResLoader.Allocate("BattleField");
 
             m_OurCurSlots = new List<Transform>(ourSlots);
@@ -29,6 +44,15 @@ namespace GameWish.Game
 
             m_OurSlotsBackup.AddRange(m_OurCurSlots);
             m_EnemySlotsBackup.AddRange(m_EnemyCurSlots);
+        }
+
+        public void CalculateBattleArea(float deltaY = 0)
+        {
+            Vector2 center = new Vector2((m_InitBattleAreaRightTop.x + m_InitBattleAreaLeftBottom.x) / 2, (m_InitBattleAreaRightTop.y + m_InitBattleAreaLeftBottom.y) / 2);
+            float height = MainGameMgr.S.MainCamera.battleProperty.size;
+            float width = Camera.main.aspect * height;
+            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_InitBattleAreaRightTop.y + deltaY);
+            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_InitBattleAreaLeftBottom.y + deltaY);
         }
 
         public Vector3 GetOurCharacterPos()
@@ -77,6 +101,28 @@ namespace GameWish.Game
             {
                 m_BgSpriteRender.sprite = sr;
             }
+        }
+
+        public void ChangeBgSpriteRenderToHeroTrial()
+        {
+            Sprite sr = null;
+
+            string spriteName = "HeroTrialBattleField";
+
+            if (!string.IsNullOrEmpty(spriteName))
+            {
+                sr = SpriteLoader.S.GetSpriteByName(spriteName);
+            }
+
+            if (sr != null)
+            {
+                m_BgSpriteRender.sprite = sr;
+            }
+        }
+
+        public void SetSpriteBgLocalPos(Vector3 localPos)
+        {
+            m_BgSpriteRender.transform.localPosition = localPos;
         }
 
         private string GetBattleBgName(ClanType clanType)

@@ -372,7 +372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7863385815274005621
 RectTransform:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DiscipleName: {fileID: 7863385814638787398}
   m_ExpCont: {fileID: 7863385815766395806}
-  m_DisciplePhoto: {fileID: 7863385815274005620}
+  m_DiscipleTra: {fileID: 7863385814638787399}
   m_ExpProportion: {fileID: 7863385815143088397}
 --- !u!1 &7863385815388557115
 GameObject:

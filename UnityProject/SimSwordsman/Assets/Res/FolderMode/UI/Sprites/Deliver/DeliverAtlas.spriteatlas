@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DeliverAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: afaf92e6a4a92a644a4788478d57820b, type: 3}
+    - {fileID: 2800000, guid: 8008a040d372af24eb617e379925b553, type: 3}
+    - {fileID: 2800000, guid: c0fa24b4a40c87344aa0924511470722, type: 3}
+    - {fileID: 2800000, guid: 09de6319cce1ae74fac263112c3dc3da, type: 3}
+    - {fileID: 2800000, guid: 11e9217425e901543a5720eb63f5ac53, type: 3}
+    - {fileID: 2800000, guid: b1af5291954dfc44684d68d95b68d248, type: 3}
+    - {fileID: 2800000, guid: b2df9ad720fc87144ac5ee7c062b3fea, type: 3}
+    - {fileID: 2800000, guid: 93951f49c42c13748b9ad5ddaf99663a, type: 3}
+    - {fileID: 2800000, guid: 1e3508d4779c2614092a0b9b5b02eca2, type: 3}
+    - {fileID: 2800000, guid: 8502b788273053a42897f5c1f77fc67c, type: 3}
+    - {fileID: 2800000, guid: 96aeb98f3dfe9b84c952c7fcfa0ab6fd, type: 3}
+    - {fileID: 2800000, guid: d0265d3365d61ac4681390404ad95e5f, type: 3}
+    - {fileID: 2800000, guid: ae176b33455c5df45ba12183762f19f2, type: 3}
+    - {fileID: 2800000, guid: 4f4d5bdf34ddf134a860b67683ee7f63, type: 3}
+    - {fileID: 2800000, guid: 99d97f31aa52b2d4f9f638c8d8fe88e2, type: 3}
+    - {fileID: 2800000, guid: 2d4445c4be59b4e4badb20e7f8c70f46, type: 3}
+    - {fileID: 2800000, guid: 982bd955e22d37844bb96298b376afc4, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8008a040d372af24eb617e379925b553, type: 3}
+  - {fileID: 21300000, guid: 99d97f31aa52b2d4f9f638c8d8fe88e2, type: 3}
+  - {fileID: 21300000, guid: b1af5291954dfc44684d68d95b68d248, type: 3}
+  - {fileID: 21300000, guid: ae176b33455c5df45ba12183762f19f2, type: 3}
+  - {fileID: 21300000, guid: d0265d3365d61ac4681390404ad95e5f, type: 3}
+  - {fileID: 21300000, guid: 11e9217425e901543a5720eb63f5ac53, type: 3}
+  - {fileID: 21300000, guid: c0fa24b4a40c87344aa0924511470722, type: 3}
+  - {fileID: 21300000, guid: 2d4445c4be59b4e4badb20e7f8c70f46, type: 3}
+  - {fileID: 21300000, guid: 1e3508d4779c2614092a0b9b5b02eca2, type: 3}
+  - {fileID: 21300000, guid: 982bd955e22d37844bb96298b376afc4, type: 3}
+  - {fileID: 21300000, guid: afaf92e6a4a92a644a4788478d57820b, type: 3}
+  - {fileID: 21300000, guid: b2df9ad720fc87144ac5ee7c062b3fea, type: 3}
+  - {fileID: 21300000, guid: 8502b788273053a42897f5c1f77fc67c, type: 3}
+  - {fileID: 21300000, guid: 09de6319cce1ae74fac263112c3dc3da, type: 3}
+  - {fileID: 21300000, guid: 93951f49c42c13748b9ad5ddaf99663a, type: 3}
+  - {fileID: 21300000, guid: 96aeb98f3dfe9b84c952c7fcfa0ab6fd, type: 3}
+  - {fileID: 21300000, guid: 4f4d5bdf34ddf134a860b67683ee7f63, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Deliver_bg1
+  - Deliver_elite
+  - Deliver_bg5
+  - Deliver_civilian
+  - Deliver_Btn
+  - Deliver_bg4
+  - Deliver_bg2
+  - Deliver_god
+  - Deliver_bg8
+  - Deliver_line1
+  - deliver_title
+  - Deliver_bg6
+  - Deliver_bg9
+  - Deliver_bg3
+  - Deliver_bg7
+  - Deliver_bg10
+  - Deliver_definephoto
+  m_Tag: DeliverAtlas
+  m_IsVariant: 0

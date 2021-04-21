@@ -11,6 +11,7 @@ namespace GameWish.Game
         public virtual int count => 0;
         public virtual string taskTitle => "";
         public virtual string taskSubTitle => "";
+        public virtual Transform targetTransform => null;
     }
 
     public class TaskLevelHandler : TaskHandler
@@ -73,6 +74,32 @@ namespace GameWish.Game
                     return "拥有{0}间" + m_Level + "级屋舍";
             }
         }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                for (int i = (int)FacilityType.LivableRoomEast1; i <= (int)FacilityType.LivableRoomWest4; i++)
+                {
+                    if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked((FacilityType)i))
+                    {
+                        var controller = MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i);
+                        return controller.view.transform;
+                    }
+                    else
+                    {
+                        int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel((FacilityType)i);
+                        if (level < m_Level)//指向第一个小于目标等级的
+                        {
+                            var controller = MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i);
+                            return controller.view.transform;
+                        }
+                    }
+                }
+
+                return null;
+            }
+        }
     }
 
     public class TaskHandler_OwnStudents : TaskHandler
@@ -89,6 +116,15 @@ namespace GameWish.Game
 
         public override int count => MainGameMgr.S.CharacterMgr.GetCharacterCount();
         public override string taskSubTitle => "拥有{0}名弟子";
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Lobby).view.transform;
+            }
+        }
+
 
     }
 
@@ -148,6 +184,31 @@ namespace GameWish.Game
                     return "拥有{0}间" + m_Level + "级练功场";
             }
         }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                for (int i = (int)FacilityType.PracticeFieldEast; i <= (int)FacilityType.PracticeFieldWest; i++)
+                {
+                    if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked((FacilityType)i))
+                    {
+                        return MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i).view.transform;
+                    }
+                    else
+                    {
+                        int level = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel((FacilityType)i);
+                        if (level < m_Level)
+                        {
+                            return MainGameMgr.S.FacilityMgr.GetFacilityController((FacilityType)i).view.transform;
+                        }
+                    }
+                }
+                return null;
+            }
+        }
+
+
     }
 
     public class TaskHandler_BuildLobby : TaskHandler
@@ -170,6 +231,14 @@ namespace GameWish.Game
         public override int count => MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
 
         public override string taskSubTitle => "讲武堂升至{0}级";
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Lobby).view.transform;
+            }
+        }
     }
 
     public class TaskHandler_Chanllenge : TaskLevelHandler
@@ -203,6 +272,15 @@ namespace GameWish.Game
                 int chapter = m_Level / 100;
                 int count = m_Level - chapter * 100;
                 return "完成挑战" + chapter + "-" + count;
+            }
+        }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                UIMgr.S.OpenPanel(UIID.ChallengePanel);
+                return null;
             }
         }
     }
@@ -248,6 +326,14 @@ namespace GameWish.Game
                     return "建造藏升至{0}级";
             }
         }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.KongfuLibrary).view.transform;
+            }
+        }
     }
 
     public class TaskHandler_BuildForgeHouse : TaskLevelHandler
@@ -291,6 +377,14 @@ namespace GameWish.Game
                     return "锻造屋升至{0}级";
             }
         }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.ForgeHouse).view.transform;
+            }
+        }
     }
 
     public class TaskHandler_BuildBaicaohu : TaskLevelHandler
@@ -331,6 +425,65 @@ namespace GameWish.Game
                     return "建造百草屋";
                 else
                     return "百草屋升至{0}级";
+            }
+        }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Baicaohu).view.transform;
+            }
+        }
+    }
+
+
+    public class TaskHandler_BuildDeliver : TaskLevelHandler
+    {
+        public TaskHandler_BuildDeliver(int level) : base(level)
+        {
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
+        }
+
+        private void HandleEvent(int key, params object[] args)
+        {
+            if (args == null || args.Length <= 0)
+                return;
+            FacilityType facilityType = (FacilityType)args[0];
+            if (facilityType == FacilityType.Deliver)
+            {
+                EventSystem.S.Send(EventID.OnRefeshMainTask);
+            }
+        }
+
+        public override int count
+        {
+            get
+            {
+                if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Deliver))
+                    return 0;
+
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Deliver);
+            }
+        }
+
+        public override string taskSubTitle
+        {
+            get
+            {
+                if (m_Level <= 1)
+                    return "建造镖局";
+                else
+                    return "镖局升至{0}级";
+            }
+        }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Deliver).view.transform;
             }
         }
     }

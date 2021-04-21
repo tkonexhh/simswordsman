@@ -1,4 +1,5 @@
 using Qarth;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,6 @@ namespace GameWish.Game
         private SimGameTask m_CurTask = null;
 
         private CharacterStateMachine m_StateMachine;
-
         public CharacterModel CharacterModel { get => m_CharacterModel; }
         public CharacterView CharacterView { get => m_CharacterView; }
         public int CharacterId { get => m_CharacterId; }
@@ -89,6 +89,10 @@ namespace GameWish.Game
         #endregion
 
         #region Public Get
+        public int GetDeliverID()
+        {
+            return m_CharacterModel.GetDeliverID();
+        }
         public Vector2 GetPosition()
         {
             return m_CharacterView.transform.position;
@@ -165,15 +169,26 @@ namespace GameWish.Game
         {
             m_CharacterView.MoveTo(pos, callback);
         }
-
+        public void FollowDeliver(Vector2 deliverPos)
+        {
+            m_CharacterView.FollowDeliver(deliverPos);
+        }
         public void RunTo(Vector2 pos, System.Action callback)
         {
             m_CharacterView.RunTo(pos, callback);
         }
-
+        public void StopNavAgent()
+        {
+            m_CharacterView.StopNavAgent();
+        }
         public void Move(Vector2 deltaPos)
         {
             m_CharacterView.Move(deltaPos);
+        }
+
+        public void SetPosition(Vector3 targetPos)
+        {
+            m_CharacterView.SetPosition(targetPos);
         }
 
         public void FaceTo(float x)
@@ -223,34 +238,32 @@ namespace GameWish.Game
                 //}
             }
         }
-
+        public void SetDeliverID(int deliverID)
+        {
+            m_CharacterModel.SetDeliverID(deliverID);
+        }
         public void SetFightTarget(CharacterController target)
         {
             m_FightTarget = target;
         }
-
         public void SetFightGroup(FightGroup fightGroup)
         {
             m_FightGroup = fightGroup;
         }
-
         public void OnDamaged(double damage)
         {
             m_CharacterModel.AddHp(-damage);
         }
-
         private double m_CachedDamage = 0;
         public void CacheDamage(double damage)
         {
             m_CachedDamage += damage;
         }
-
         public void TriggerCachedDamage()
         {
             OnDamaged(m_CachedDamage);
             m_CachedDamage = 0;
         }
-
         public void OnEnterBattleField(Vector3 pos)
         {
             m_CharacterView.OnEnterBattleField(pos, m_CharacterCamp);
@@ -384,6 +397,58 @@ namespace GameWish.Game
             {
                 SpawnCollectedObjWorkReward(collectedObjType, count);
             }, delay);
+        }
+
+        public void ChangeBody( CharacterQuality characterQuality, ClanType clanType)
+        {
+            GameObject go = CharacterLoader.S.GetCharacterGo(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType);
+            if (go == null)
+            {
+                CharacterLoader.S.LoadCharactersync(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType, 1, 1);
+                go = CharacterLoader.S.GetCharacterGo(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType);
+
+                if (go == null)
+                {
+                    Log.e("Load character return null: " + m_CharacterModel.CharacterItem.id + " Quality: " + characterQuality + " clantype: " + clanType);
+                    return;
+                }
+            }
+
+            CharacterView characterView = go.GetComponent<CharacterView>();
+            characterView.enabled = false;
+            PolyNavAgent polyNavAgent = go.GetComponent<PolyNavAgent>();
+            polyNavAgent.enabled = false;
+
+            string animName = m_CharacterView.GetCurRuningAnimName();
+
+            go.transform.SetParent(m_CharacterView.transform);
+            go.transform.localPosition = Vector3.zero;
+
+            GameObject.Destroy(m_CharacterView.Body.gameObject);
+            GameObject.Destroy(m_CharacterView.HeadPos.gameObject);
+            if(m_CharacterView.BoneFollower_Foot != null)
+                GameObject.Destroy(m_CharacterView.BoneFollower_Foot.gameObject);
+            if (m_CharacterView.Clean_DragSmoke != null)
+                GameObject.Destroy(m_CharacterView.Clean_DragSmoke.gameObject);
+            BoneFollower[] boneFollower = m_CharacterView.transform.GetComponentsInChildren<BoneFollower>();
+            foreach (BoneFollower b in boneFollower)
+            {
+                GameObject.Destroy(b.gameObject);
+            }
+
+            m_CharacterView.Body = go.transform.Find("Body").gameObject;
+            m_CharacterView.HeadPos = go.transform.Find("HeadPos").gameObject;
+            m_CharacterView.BoneFollower_Foot = null; // Set null for now
+            m_CharacterView.Clean_DragSmoke = null; // Set null for now
+
+            m_CharacterView.SetSpineAnim(true);
+            //GameObjectPoolMgr.S.Recycle(m_CharacterView.gameObject);
+
+            //m_CharacterView = characterView;
+            //m_CharacterView.Init();
+            //m_CharacterView.SetController(this);
+            m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
+            m_CharacterView.PlayAnim(animName, true, null);
         }
         #endregion
 

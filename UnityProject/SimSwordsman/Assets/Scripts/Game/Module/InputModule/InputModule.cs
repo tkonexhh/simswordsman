@@ -60,7 +60,8 @@ namespace GameWish.Game
 
         private void OnClickF3()
         {
-            UIMgr.S.OpenPanel(UIID.DailyTaskPanel);
+            GameDataMgr.S.GetPlayerData().towerData.ResetDailyData();
+            GameDataMgr.S.Save();
         }
 
         private void OnClickF4()

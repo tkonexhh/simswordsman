@@ -14,7 +14,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_DiscipleName;
         [SerializeField]
-        private Image m_DiscipleHead;
+        private Image m_LevelBg;
         [SerializeField]
         private Image m_State;
         [SerializeField]
@@ -25,7 +25,6 @@ namespace GameWish.Game
         private Image m_DiscipleLevelBg;
         [SerializeField]
         private Image m_Line;
-        private AddressableAssetLoader<Sprite> m_Loader;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private CharacterItem m_CharacterItem;
         private KungfuChooseDisciplePanel m_KungfuChooseDisciplePanel;
@@ -45,33 +44,17 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
-            m_DiscipleHead.sprite = m_KungfuChooseDisciplePanel.FindSprite(GetLoadDiscipleName(m_CharacterItem));
+
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+            discipleHeadPortrait.transform.localPosition = new Vector3(45.9f, -29, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+
+            //m_DiscipleHead.sprite = m_KungfuChooseDisciplePanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
         }
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            m_Loader = new AddressableAssetLoader<Sprite>();
-            m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            {
-                //Debug.Log(obj);
-                m_DiscipleHead.sprite = obj;
-            });
-        }
-        private void OnDestroy()
-        {
-            if (m_Loader != null)
-            {
-                m_Loader.Release();
-            }
 
-        }
-        private void OnDisable()
-        {
-        }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
         private void RefreshPanelInfo()
         {
             m_Level.text = m_CharacterItem.level.ToString();

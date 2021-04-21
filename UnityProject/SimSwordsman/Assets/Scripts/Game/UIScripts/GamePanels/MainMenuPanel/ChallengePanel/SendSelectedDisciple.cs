@@ -7,37 +7,30 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class SendSelectedDisciple : MonoBehaviour
-	{
-        [SerializeField]
-        private Button m_Btn;
-        [SerializeField]
-        private Image m_LevelBg;
-        [SerializeField]
-        private Text m_Level;
-        [SerializeField]
-        private Image m_DiscipleHead;
-        [SerializeField]
-        private Text m_DiscipleName;
-        [SerializeField]
-        private Image m_Plus;
-        [SerializeField]
-        private Image m_DiscipleLevelBg;
-        [SerializeField]
-        private Image m_Line;
-        private GameObject m_SelectedImg;
-        private CharacterItem m_CharacterItem;
+    public class SendSelectedDisciple : MonoBehaviour
+    {
+        [SerializeField] private Button m_Btn;
+        [SerializeField] private Image m_LevelBg;
+        [SerializeField] private Text m_Level;
+        [SerializeField] private Text m_DiscipleName;
+        [SerializeField] private Image m_Plus;
+        [SerializeField] private Image m_DiscipleLevelBg;
+        [SerializeField] private Image m_Line;
+
+        protected CharacterItem m_CharacterItem;
         private SendDisciplesPanel m_SendDisciplesPanel;
-        private AddressableAssetLoader<Sprite> m_Loader;
         private PanelType m_PanelType;
-		private SelectedState m_SelelctedState = SelectedState.NotSelected;
-		public void OnInit(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
-		{
+        private SelectedState m_SelelctedState = SelectedState.NotSelected;
+        private GameObject m_DiscipleHeadObj;
+        public void Init(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
+        {
             m_SendDisciplesPanel = sendDisciplesPanel;
             m_PanelType = panelType;
-			BindAddListenerEvent();
-			RefreshPanelTypeInfo();
-		}
+            BindAddListenerEvent();
+            OnInit();
+            RefreshPanelInfo();
+        }
+
         private void RefreshDiscipleColor()
         {
             switch (m_CharacterItem.quality)
@@ -60,26 +53,29 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            m_Btn.onClick.AddListener(()=> {
+            m_Btn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 switch (m_PanelType)
                 {
                     case PanelType.Task:
                     case PanelType.Challenge:
+                    case PanelType.Tower:
                         EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_PanelType);
                         break;
                     default:
                         break;
                 }
             });
-		}
+        }
         public void RefreshPanelInfo()
         {
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
-                    m_DiscipleHead.gameObject.SetActive(true);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
                     m_Level.text = m_CharacterItem.level.ToString();
@@ -88,12 +84,14 @@ namespace GameWish.Game
                 case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_Plus.gameObject.SetActive(true);
-                    m_DiscipleHead.gameObject.SetActive(false);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.SetActive(false);
                     m_LevelBg.gameObject.SetActive(false);
                     break;
                 default:
                     break;
             }
+            OnRefreshPanelInfo();
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)
@@ -105,40 +103,27 @@ namespace GameWish.Game
             }
             else
             {
-                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
+
+                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
             }
             RefreshPanelInfo();
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
-        }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
-        private void RefreshPanelTypeInfo()
-		{
-            switch (m_PanelType)
+            if (m_DiscipleHeadObj==null)
             {
-                case PanelType.Task:
-                    //m_Btn.enabled = false;
-                case PanelType.Challenge:
-                    RefreshPanelInfo();
-                    break;
-                default:
-                    break;
+                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
+                discipleHeadPortrait.OnInit(true);
+                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+                discipleHeadPortrait.transform.localPosition = new Vector3(45.9f, -29, 0);
+                discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
             }
+            //m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
         }
-        private void OnDestroy()
-        {
-            m_Loader?.Release();
-        }
-        private void OnDisable()
-        {
-            
-        }
+
+        protected virtual void OnInit() { }
+        protected virtual void OnRefreshPanelInfo() { }
     }
-	
+
 }

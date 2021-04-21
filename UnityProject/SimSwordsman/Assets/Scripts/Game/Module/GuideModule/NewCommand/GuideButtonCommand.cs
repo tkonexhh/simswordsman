@@ -119,7 +119,7 @@ namespace GameWish.Game
             }
             else //非點擊則不為最上層
             {
-                UIMgr.S.OpenPanel(UIID.MyGuidePanel, targetNode, guideStep.stepID, GuideMethod.NoMessage);
+                UIMgr.S.OpenPanel(UIID.MyGuidePanel, targetNode, guideStep.stepID/*, GuideMethod.NoMessage*/);
             }
         }
 

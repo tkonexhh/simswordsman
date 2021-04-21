@@ -28,7 +28,7 @@ namespace GameWish.Game
         private CharacterItem m_CharacterItem;
         private SimGameTask m_CurTaskInfo;
         private CommonTaskItemInfo m_CommonTaskItemInfo;
-        private AddressableAssetLoader<Sprite> m_Loader;
+
         private BulletinBoardPanel m_BulletinBoardPanel;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         public void OnInit<T>(T t, Action action = null, params object[] obj)
@@ -36,23 +36,21 @@ namespace GameWish.Game
             m_CurTaskInfo = t as SimGameTask;
             m_BulletinBoardPanel = (BulletinBoardPanel)obj[0];
             m_CommonTaskItemInfo = m_CurTaskInfo.CommonTaskItemInfo;
-            m_Btn.onClick.AddListener(() => {
+            m_Btn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_enter, m_CurTaskInfo.TaskId.ToString());
                 EventSystem.S.Send(EventID.OnBulletinSendDiscipleDicEvent, m_CurTaskInfo);
             });
         }
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
-        }
+
         public void RefreshPanelInfo()
         {
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
-                    m_DiscipleHead.sprite = m_BulletinBoardPanel.FindSprite(GetLoadDiscipleName(m_CharacterItem));
+                    m_DiscipleHead.sprite = m_BulletinBoardPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
                     m_DiscipleHead.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
@@ -91,30 +89,9 @@ namespace GameWish.Game
             }
         }
 
-        public void LoadClanPrefabs(string prefabsName)
-        {
-            //m_DiscipleHead.sprite = obj;
-            //m_Loader = new AddressableAssetLoader<Sprite>();
-            //m_Loader.LoadAssetAsync(prefabsName, (obj) =>
-            //{
-            //    //Debug.Log(obj);
-            //    m_DiscipleHead.sprite = obj;
-            //});
-        }
         public void SetBtnClick(bool IsClick)
         {
             m_Btn.enabled = IsClick;
-        }
-        private void OnDestroy()
-        {
-            if (m_Loader != null)
-            {
-                m_Loader.Release();
-            }
-
-        }
-        private void OnDisable()
-        {
         }
 
         public void RefreshSelectedDisciple(CharacterItem characterItem)
@@ -124,7 +101,6 @@ namespace GameWish.Game
                 m_SelelctedState = SelectedState.NotSelected;
             else
             {
-                LoadClanPrefabs(GetLoadDiscipleName(m_CharacterItem));
                 m_SelelctedState = SelectedState.Selected;
             }
             RefreshPanelInfo();
@@ -132,5 +108,5 @@ namespace GameWish.Game
         public void SetButtonEvent(Action<object> action)
         {
         }
-	}
+    }
 }

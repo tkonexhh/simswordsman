@@ -20,6 +20,7 @@ namespace GameWish.Game
         private string m_WorkName;   
         private string m_WorkTalk;   
         private string m_Reward;   
+        private EInt m_SpeRewardRate = 0;   
         private string m_SpeReward;   
         private EInt m_WorkTime = 0;   
         private EInt m_WorkInterval = 0;   
@@ -68,6 +69,11 @@ namespace GameWish.Game
         /// 工作奖励
         /// </summary>
         public  string  reward {get { return m_Reward; } }
+       
+        /// <summary>
+        /// 特殊奖励概率，基数10000
+        /// </summary>
+        public  int  speRewardRate {get { return m_SpeRewardRate; } }
        
         /// <summary>
         /// 特殊奖励
@@ -139,21 +145,24 @@ namespace GameWish.Game
                     m_Reward = dataR.ReadString();
                     break;
                 case 8:
-                    m_SpeReward = dataR.ReadString();
+                    m_SpeRewardRate = dataR.ReadInt();
                     break;
                 case 9:
-                    m_WorkTime = dataR.ReadInt();
+                    m_SpeReward = dataR.ReadString();
                     break;
                 case 10:
-                    m_WorkInterval = dataR.ReadInt();
+                    m_WorkTime = dataR.ReadInt();
                     break;
                 case 11:
-                    m_WaitingTime = dataR.ReadInt();
+                    m_WorkInterval = dataR.ReadInt();
                     break;
                 case 12:
-                    m_StoreAmount = dataR.ReadInt();
+                    m_WaitingTime = dataR.ReadInt();
                     break;
                 case 13:
+                    m_StoreAmount = dataR.ReadInt();
+                    break;
+                case 14:
                     m_MeanWhileWorkman = dataR.ReadInt();
                     break;
                 default:
@@ -166,7 +175,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(14);
+          Dictionary<string, int> ret = new Dictionary<string, int>(15);
           
           ret.Add("WorkID", 0);
           ret.Add("HomeLevel", 1);
@@ -176,12 +185,13 @@ namespace GameWish.Game
           ret.Add("WorkName", 5);
           ret.Add("WorkTalk", 6);
           ret.Add("Reward", 7);
-          ret.Add("SpeReward", 8);
-          ret.Add("WorkTime", 9);
-          ret.Add("WorkInterval", 10);
-          ret.Add("WaitingTime", 11);
-          ret.Add("StoreAmount", 12);
-          ret.Add("MeanWhileWorkman", 13);
+          ret.Add("SpeRewardRate", 8);
+          ret.Add("SpeReward", 9);
+          ret.Add("WorkTime", 10);
+          ret.Add("WorkInterval", 11);
+          ret.Add("WaitingTime", 12);
+          ret.Add("StoreAmount", 13);
+          ret.Add("MeanWhileWorkman", 14);
           return ret;
         }
     } 

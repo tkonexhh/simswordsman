@@ -116,6 +116,12 @@ namespace GameWish.Game
         OnMainMenuOrDiscipleRedPoint,
         #endregion
 
+        #region Deliver
+        /// <summary>
+        /// 打开选择弟子界面
+        /// </summary>
+        OnOpenChallengChoosePanel,
+        #endregion
 
         //KungfuLibrary
         /// <summary>
@@ -136,6 +142,8 @@ namespace GameWish.Game
         OnBattleAtkStart,
         OnBattleAtkEnd,
         OnBattleAtkEvent,
+        OnOneRoundEnd,
+        OnCharacterInFightGroupDead,
         /// <summary>
         /// 战斗描述刷新
         /// </summary>
@@ -201,7 +209,10 @@ namespace GameWish.Game
         /// 获取到功夫秘籍
         /// </summary>
         OnGetKungFu,
-
+        /// <summary>
+        /// 主菜单可挑战信息显示
+        /// </summary>
+        OnMainMenuChallenging,
         /// <summary>
         /// 收起公告榜其他面板
         /// </summary>
@@ -231,8 +242,6 @@ namespace GameWish.Game
         OnDiscipleButtonOnClick,
         OnDeleteTaskBtn,
         #endregion
-
-
         #region 新手引导
         OnGuideDialog1 = 10101,
         OnGuideTakeName = 10201,
@@ -368,11 +377,8 @@ namespace GameWish.Game
 
         #endregion
 
-
         OnAddArmor,//获取新装备护甲
         OnAddArms,//获取信装备武器
-
-
         #region 定点计时
         OnFixedPointRefreshEvent,
         #endregion
@@ -382,6 +388,63 @@ namespace GameWish.Game
         OnRefeshMainTask,
         OnRefeshDailyTask,
         OnMainMenuDailyTaskRedPoint,
-    }
 
+        #region deliver system
+        /// <summary>
+        /// 角色到达镖车集合点
+        /// </summary>
+        OnCharacterReachDeliverCarGatherPoint,
+        /// <summary>
+        /// 镖车开始向外出发
+        /// </summary>
+        OnDeliverCarStartGoOut,
+        /// <summary>
+        /// 镖车开始回来
+        /// </summary>
+        OnDeliverCarStartComeBack,
+        /// <summary>
+        /// 镖车到达镖局时
+        /// </summary>
+        OnDeliverCarArrive,
+
+        OnDeliverTrigger_BuildTrigger = 13801,          //镖局建造引导
+        OnDeliverTrigger_ClickDeliverTrigger,           //点击镖局，进入镖局界面
+        OnDeliverTrigger_ClickQuickStartBtnTrigger,     //点击快速出发按钮
+        OnDeliverTrigger_ClickDoubleSpeedUpBtnTrigger,  //点击双倍加速按钮
+        #endregion
+
+        #region Tower
+        OnRefeshTowerCoin,
+        OnRefeshTowerShop,
+
+        OnTowerTrigger_IntroduceTrigger = 14001,        //伏魔塔系统介绍引导
+        OnTowerTrigger_ClickTowerBtnTrigger,            //点击伏魔塔按钮
+        OnTowerTrigger_IntroduceTrigger2,               //伏魔塔讲解
+        OnTowerTrigger_ClickChallengeBtnTrigger,        //伏魔塔点击挑战按钮
+        OnTowerTrigger_ClickAKeyChoiceBtnTrigger,       //伏魔塔点击一键选择弟子
+        OnTowerTrigger_ClickStartFightBtnTrigger,       //伏魔塔 点击开始战斗按钮
+        OnTowerTrigger_FightFinishedClickShopBtnTrigger,//伏魔塔_战斗结束_点击商店按钮
+        #endregion
+
+        #region HeroTrial
+        OnEnterHeroTrial,
+        OnExitHeroTrial,
+        OnRefreshTrialPanel,
+        OnCountDownRefresh,
+        OnEnableFinishBtn,
+        OnTrialTimeOver,
+
+        OnHeroTrialSystemTrigger_IntroduceTrigger,              //试炼系统介绍引导
+        OnHeroTrialSystemTrigger_ClickTrialBtnTrigger,          //点击试炼按钮
+        OnHeroTrialSystemTrigger_IntroduceTrigger2,             //试炼系统介绍引导2
+        OnHeroTrialSystemTrigger_ClickStartBtnTrigger,          //试炼系统_点击前往按钮
+        OnHeroTrialSystemTrigger_ClickChoiceDiscipleTrigger,    //试炼系统，选择弟子按钮
+        OnHeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger,      //试炼系统，选择弟子
+        OnHeroTrialSystemTrigger_ClickEnterTrialBtnTrigger,     //试炼系统，点击进入试炼按钮
+
+        OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger,     //试炼系统，点击完成试炼
+        OnHeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger,  //试炼系统，弟子突破成功
+        #endregion
+
+    }
 }

@@ -192,6 +192,15 @@ namespace GameWish.Game
                 characterItemDb.SetCollectObjType(collectedObjType);
             }
         }
+
+        public void SetCharacterIsHero(int id, ClanType clanType)
+        {
+            CharacterItemDbData characterItemDb = characterList.Where(i => i.id == id).FirstOrDefault();
+            if (characterItemDb != null)
+            {
+                characterItemDb.SetIsHero(clanType);
+            }
+        }
     }
 
     [Serializable]
@@ -214,6 +223,8 @@ namespace GameWish.Game
         public int headId = 1; // Which head used
         public CollectedObjType collectedObjType = CollectedObjType.None;
 
+        public int m_DeliverID = -1;
+        public ClanType trialClanType = ClanType.None;
 
         public void SetAtkValue(float _atkValue)
         {
@@ -223,12 +234,18 @@ namespace GameWish.Game
         {
 
         }
-        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id)
+        public void SetCharacterStateDBData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int id,bool isFindPathToTargetPos = true)
         {
             characterStateId = stateId;
             this.facilityData.targetFacility = targetFacilityType;
             this.facilityData.startTime = startTime;
             this.facilityData.id = id;
+        }
+        public void SetDeliverID(int deliverID) {
+            m_DeliverID = deliverID;
+        }
+        public int GetDeliverID() {
+            return m_DeliverID;
         }
         public CharacterItemDbData(CharacterItem item)
         {
@@ -298,6 +315,12 @@ namespace GameWish.Game
         public bool IsStudyKungFu() 
         {
             return kongfuDatas.Find(x => x.IsStudyKungFu()) != null;
+        }
+
+        public void SetIsHero(ClanType clanType)
+        {
+            quality = CharacterQuality.Hero;
+            trialClanType = clanType;
         }
     }
 

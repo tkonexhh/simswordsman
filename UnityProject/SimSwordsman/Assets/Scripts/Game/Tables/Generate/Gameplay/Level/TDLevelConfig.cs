@@ -15,6 +15,7 @@ namespace GameWish.Game
         private EInt m_Level = 0;   
         private EInt m_Chapter = 0;   
         private string m_Type;   
+        private EInt m_Skippable = 0;   
         private string m_EnemyHeadIcon;   
         private string m_Enemies;   
         private string m_Desc;   
@@ -38,6 +39,11 @@ namespace GameWish.Game
         /// 关卡类型
         /// </summary>
         public  string  type {get { return m_Type; } }
+       
+        /// <summary>
+        /// 是否可跳过
+        /// </summary>
+        public  int  skippable {get { return m_Skippable; } }
        
         /// <summary>
         /// 敌人头像
@@ -94,21 +100,24 @@ namespace GameWish.Game
                     m_Type = dataR.ReadString();
                     break;
                 case 3:
-                    m_EnemyHeadIcon = dataR.ReadString();
+                    m_Skippable = dataR.ReadInt();
                     break;
                 case 4:
-                    m_Enemies = dataR.ReadString();
+                    m_EnemyHeadIcon = dataR.ReadString();
                     break;
                 case 5:
-                    m_Desc = dataR.ReadString();
+                    m_Enemies = dataR.ReadString();
                     break;
                 case 6:
-                    m_Reward = dataR.ReadString();
+                    m_Desc = dataR.ReadString();
                     break;
                 case 7:
-                    m_RecommendAtkValue = dataR.ReadString();
+                    m_Reward = dataR.ReadString();
                     break;
                 case 8:
+                    m_RecommendAtkValue = dataR.ReadString();
+                    break;
+                case 9:
                     m_BattleName = dataR.ReadString();
                     break;
                 default:
@@ -121,17 +130,18 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(9);
+          Dictionary<string, int> ret = new Dictionary<string, int>(10);
           
           ret.Add("Level", 0);
           ret.Add("Chapter", 1);
           ret.Add("Type", 2);
-          ret.Add("EnemyHeadIcon", 3);
-          ret.Add("Enemies", 4);
-          ret.Add("Desc", 5);
-          ret.Add("Reward", 6);
-          ret.Add("RecommendAtkValue", 7);
-          ret.Add("BattleName", 8);
+          ret.Add("Skippable", 3);
+          ret.Add("EnemyHeadIcon", 4);
+          ret.Add("Enemies", 5);
+          ret.Add("Desc", 6);
+          ret.Add("Reward", 7);
+          ret.Add("RecommendAtkValue", 8);
+          ret.Add("BattleName", 9);
           return ret;
         }
     } 

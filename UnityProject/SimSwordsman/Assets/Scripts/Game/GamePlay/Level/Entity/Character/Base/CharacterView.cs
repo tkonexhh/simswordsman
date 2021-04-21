@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Qarth;
+using static Sdkbox.IAP;
 
 namespace GameWish.Game
 {
@@ -11,10 +12,12 @@ namespace GameWish.Game
         //For debug
         public string state;
         public string battleState;
+        public int deliverID;
 
         [SerializeField] private GameObject m_Body = null;
         [SerializeField] private GameObject m_HeadPos = null;
-        [SerializeField] private BoneFollower m_BoneFollower_Foot;
+        [SerializeField] private BoneFollower m_BoneFollower_Foot; 
+        [SerializeField] private GameObject m_Clean_DragSmoke;
 
         private CharacterController m_Controller = null;
         private SkeletonAnimation m_SpineAnim;
@@ -28,11 +31,13 @@ namespace GameWish.Game
         private CharacterWorkProgressBar m_WorkProgressBar = null;
         private CharacterWorkTip m_WorkTip = null;
 
-        public BoneFollower BoneFollower_Foot => m_BoneFollower_Foot;
-        public GameObject Body => m_Body;
+        public BoneFollower BoneFollower_Foot { get => m_BoneFollower_Foot; set => m_BoneFollower_Foot = value; }
+        public GameObject Body  { get => m_Body; set => m_Body = value; }
+        public GameObject HeadPos { get => m_HeadPos; set => m_HeadPos = value; }
 
         public CharacterWorkProgressBar WorkProgressBar { get => m_WorkProgressBar;}
         public PolyNavAgent NavAgent { get => m_NavAgent;}
+        public GameObject Clean_DragSmoke { get => m_Clean_DragSmoke; set => m_Clean_DragSmoke = value; }
 
         public void Init()
         {
@@ -45,7 +50,12 @@ namespace GameWish.Game
             //m_NavAgent.enabled = false;
             m_NavAgent.OnDestinationReached += OnReach;
 
-            if (m_SpineAnim == null)
+            SetSpineAnim();
+        }
+
+        public void SetSpineAnim(bool reset = false)
+        {
+            if (m_SpineAnim == null || reset)
                 m_SpineAnim = m_Body.GetComponent<SkeletonAnimation>();
 
             m_SpineAnim.Initialize(true);
@@ -58,6 +68,11 @@ namespace GameWish.Game
             {
                 Log.e("Spine state is null: " + transform.name);
             }
+        }
+
+        public void SetSweepingSmoke(bool play)
+        {
+            m_Clean_DragSmoke?.SetActive(play);
         }
 
         public void SetSkin(int headId)
@@ -97,6 +112,7 @@ namespace GameWish.Game
 #if UNITY_EDITOR
             state = m_Controller.CurState.ToString();
             battleState = ((CharacterStateBattle)(m_Controller.GetState(CharacterStateID.Battle))).CurState.ToString();
+            deliverID = m_Controller.GetDeliverID();
 #endif
         }
 
@@ -159,7 +175,11 @@ namespace GameWish.Game
             m_OnReachDestinationCallback = callback;
 
             m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
-            m_NavAgent.SetDestination(targetPos);
+            m_NavAgent.SetDestination(targetPos);            
+        }
+
+        public void StopNavAgent() {
+            m_NavAgent.Stop();
         }
 
         public void RunTo(Vector2 targetPos, System.Action callback)
@@ -171,6 +191,14 @@ namespace GameWish.Game
             m_OnReachDestinationCallback = callback;
 
             m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed * 1.5f;
+            m_NavAgent.SetDestination(targetPos);
+        }
+
+        public void FollowDeliver(Vector2 targetPos) 
+        {
+            m_IsMoving = true;
+
+            m_NavAgent.maxSpeed = m_Controller.CharacterModel.MoveSpeed;
             m_NavAgent.SetDestination(targetPos);
         }
 
@@ -281,6 +309,14 @@ namespace GameWish.Game
                 m_WorkTip = null;
             }
         }
+
+        public string GetCurRuningAnimName()
+        {
+            Spine.TrackEntry trackEntry = m_SpineAnim.AnimationState.GetCurrent(0);
+            string name = trackEntry.Animation.Name;
+
+            return name;
+        }
         #endregion
 
         #region Private
@@ -292,6 +328,7 @@ namespace GameWish.Game
             if (m_OnReachDestinationCallback != null)
             {
                 m_OnReachDestinationCallback.Invoke();
+                m_OnReachDestinationCallback = null;
             }
         }
 

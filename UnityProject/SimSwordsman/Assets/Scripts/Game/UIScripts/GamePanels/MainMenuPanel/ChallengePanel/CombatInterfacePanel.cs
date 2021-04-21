@@ -44,6 +44,11 @@ namespace GameWish.Game
         private PanelType m_PanelType;
         private SimGameTask m_CurTaskInfo = null;
 
+        //TODO ÈáçÊûÑ ÁõÆÂâç‰∏ÄÁßçÁ±ªÂûãÊ∑ªÂä†Â∞ÜÊù•ÈúÄË¶ÅÂæàÂ§öÊó†ÂÖ≥ÂèòÈáè
+
+        //Tower
+        private TowerLevelConfig m_TowerLevelConfig = null;
+
 
         protected override void OnUIInit()
         {
@@ -68,7 +73,7 @@ namespace GameWish.Game
 
         }
 
-        public IEnumerator BattleTextCounDown(int second)
+        private IEnumerator BattleTextCounDown(int second)
         {
             while (second >= 0)
             {
@@ -84,7 +89,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¥¥Ω®Œƒ±æ
+        /// ÔøΩÔøΩÔøΩÔøΩÔøΩƒ±ÔøΩ
         /// </summary>
         /// <param name="battleTexts"></param>
         private void CreateBattleText(List<BattleTextConfig> battleTexts, int type = 0)
@@ -105,7 +110,7 @@ namespace GameWish.Game
             }
             else
             {
-                if (type == 1)//Œ“∑Ω §¿˚
+                if (type == 1)//ÔøΩ“∑ÔøΩ §ÔøΩÔøΩ
                 {
                     string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, GameDataMgr.S.GetClanData().GetClanName());
                     switch (m_PanelType)
@@ -116,12 +121,14 @@ namespace GameWish.Game
                         case PanelType.Challenge:
                             battleText = ReplaceStr(battleText, 1, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
                             break;
+                        case PanelType.Tower:
+                            break;
                         default:
                             break;
                     }
                     CreateBattleText(battleText);
                 }
-                else//µ–»À §¿˚
+                else//ÔøΩÔøΩÔøΩÔøΩ §ÔøΩÔøΩ
                 {
                     string battleText = string.Empty;
                     switch (m_PanelType)
@@ -135,6 +142,9 @@ namespace GameWish.Game
                             battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
                             battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
                             CreateBattleText(battleText);
+                            break;
+                        case PanelType.Tower:
+
                             break;
                         default:
                             break;
@@ -169,59 +179,15 @@ namespace GameWish.Game
 
         private void CreateBattleText(string cont)
         {
-            //StartCoroutine(OnUpdateScroll());
             //m_ScrollRect.normalizedPosition = new Vector2(0, 0);
-            //º«¬º
+            //ÔøΩÔøΩ¬º
             m_ScrollRect.DoScrollVertical(0, 0.6f);
 
             Transform matchRecordItem = Instantiate(m_MatchRecordItem, m_MatchRecordTra).transform;
             matchRecordItem.GetComponent<Text>().text = cont;
         }
-        IEnumerator OnUpdateScroll()
-        {
-            yield return new WaitForEndOfFrame();
-            m_ScrollRect.normalizedPosition = new Vector2(0, 0);
 
-            int randomSecond = UnityEngine.Random.Range(1, 3);
-            m_Coroutine = StartCoroutine(BattleTextCounDown(randomSecond));
-        }
 
-        public IEnumerator BattleCountdown(int second)
-        {
-            while (second >= 0)
-            {
-                if (second <= 5)
-                {
-                    //TODO
-                }
-
-                m_CombatTime.text = SplicingTime(second);
-                yield return new WaitForSeconds(1);
-                second--;
-                if (second == 0)
-                    EventSystem.S.Send(EventID.OnBattleFailed);
-            }
-        }
-        public string SplicingTime(int seconds)
-        {
-            TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(seconds));
-            string str = "";
-
-            if (ts.Hours > 0)
-            {
-                str = ts.Hours.ToString("00") + ":" + ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes > 0)
-            {
-                str = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
-            }
-            if (ts.Hours == 0 && ts.Minutes == 0)
-            {
-                str = "00:" + ts.Seconds.ToString("00");
-            }
-
-            return str;
-        }
 
         private void RefreshCurPanelInfo()
         {
@@ -236,6 +202,10 @@ namespace GameWish.Game
                     m_RightSchoolNameValue.text = CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType);
                     m_MatchNameValue.text = m_LevelConfigInfo.battleName;
                     MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRender(m_CurChapterConfigInfo.clanType);
+                    break;
+                case PanelType.Tower:
+                    m_RightSchoolNameValue.text = "‰ºèÈ≠îÂ°î";
+                    m_MatchNameValue.text = "‰ºèÈ≠îÂ°î" + m_TowerLevelConfig.level;
                     break;
                 default:
                     break;
@@ -283,6 +253,10 @@ namespace GameWish.Game
                     DataAnalysisMgr.S.CustomEvent(DotDefine.level_quit, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                     OpenParentChallenge();
                     break;
+                case PanelType.Tower:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.TowerPanel);
+                    break;
                 default:
                     break;
             }
@@ -302,13 +276,16 @@ namespace GameWish.Game
                     m_LevelConfigInfo = (LevelConfigInfo)args[2];
                     m_EnemyCharacterList = m_LevelConfigInfo.enemiesList;
                     break;
+                case PanelType.Tower:
+                    m_TowerLevelConfig = (TowerLevelConfig)args[1];
+                    m_EnemyCharacterList = m_TowerLevelConfig.enemiesList;
+                    break;
                 default:
                     break;
             }
 
             GetInformationForNeed();
             RefreshCurPanelInfo();
-            //StartCoroutine(BattleCountdown(30));
 
             StartBattleText();
         }
@@ -335,28 +312,39 @@ namespace GameWish.Game
             base.OnPanelHideComplete();
             CloseSelfPanel();
         }
-        private void Update()
-        {
 
-        }
         /// <summary>
-        /// ¥Úø™÷Æ«∞—°‘ÒµƒΩÁ√Ê
+        /// ÔøΩÔøΩ÷Æ«∞—°ÔøΩÔøΩƒΩÔøΩÔøΩÔøΩ
         /// </summary>
         private void OpenParentChallenge()
         {
             UIMgr.S.OpenPanel(UIID.ChallengePanel, m_CurChapterConfigInfo.clanType);
         }
-
         private void ChallengePanelCallback(AbstractPanel obj)
         {
         }
+
+        private void ReduceHPWithAni(float endValue,Slider hpSlider,float duration = .5f) 
+        {
+            DG.Tweening.DOTween.To(() => hpSlider.value, (x) => 
+            {
+                hpSlider.value = x;
+            }, endValue, duration);
+        }
+
         private void HandleAddListenerEvent(int key, object[] param)
         {
             switch ((EventID)key)
             {
                 case EventID.OnRefreshBattleProgress:
-                    m_LeftBloodStick.value = (float)param[0];
-                    m_RightBloodStick.value = (float)param[1];
+                    //m_LeftBloodStick.value = (float)param[0];
+                    //m_RightBloodStick.value = (float)param[1];
+
+                    float leftBloodEndValue = (float)param[0];
+                    ReduceHPWithAni(leftBloodEndValue, m_LeftBloodStick);
+
+                    float rightBloodEndValue = (float)param[1];
+                    ReduceHPWithAni(rightBloodEndValue, m_RightBloodStick);
                     break;
                 case EventID.OnBattleSuccessed:
                     switch (m_PanelType)
@@ -370,6 +358,10 @@ namespace GameWish.Game
                             DataAnalysisMgr.S.CustomEvent(DotDefine.level_end_win, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                             MainGameMgr.S.ChapterMgr.PassCheckpoint(m_CurChapterConfigInfo.chapterId, m_LevelConfigInfo.level);
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, true);
+                            EventSystem.S.Send(EventID.OnMainMenuChallenging);
+                            break;
+                        case PanelType.Tower:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, true);
                             break;
                         default:
                             break;
@@ -387,6 +379,10 @@ namespace GameWish.Game
                         case PanelType.Challenge:
                             DataAnalysisMgr.S.CustomEvent(DotDefine.level_end_fail, m_LevelConfigInfo.chapterId.ToString() + ";" + m_LevelConfigInfo.level.ToString());
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_CurChapterConfigInfo, m_LevelConfigInfo, false);
+                            EventSystem.S.Send(EventID.OnMainMenuChallenging);
+                            break;
+                        case PanelType.Tower:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, false);
                             break;
                         default:
                             break;

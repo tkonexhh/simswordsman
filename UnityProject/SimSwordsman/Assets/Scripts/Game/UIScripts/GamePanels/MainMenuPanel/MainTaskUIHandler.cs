@@ -18,6 +18,7 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnShow;
 
         [SerializeField, Header("Uncomplete")] private GameObject m_ObjUncomplete;
+        [SerializeField] private Button m_BtnUncomplete;
         [SerializeField, Header("Completed")] private GameObject m_ObjCompleted;
         [SerializeField] private Button m_BtnReward;
 
@@ -35,11 +36,17 @@ namespace GameWish.Game
             m_AnimHash_Show = Animator.StringToHash(ANIMNAME_SHOW);
             m_AnimHash_Hide = Animator.StringToHash(ANIMNAME_Hide);
             m_BtnReward.onClick.AddListener(OnClickReward);
+            m_BtnUncomplete.onClick.AddListener(OnClickUncomplete);
             m_BtnHide.onClick.AddListener(OnClickHide);
             m_BtnShow.onClick.AddListener(OnClickShow);
             EventSystem.S.Register(EventID.OnRefeshMainTask, Refesh);
             m_AnimCtrl.Play(m_AnimHash_Hide);
             RefeshTask();
+        }
+
+        public void OnOpen()
+        {
+
         }
 
         private void OnDestroy()
@@ -66,8 +73,13 @@ namespace GameWish.Game
 
             m_TxtRewardNum.text = reward.Count.ToString();
             bool isComplete = task.IsComplete();
-            m_ImgTaskStatus.sprite = SpriteHandler.S.GetSprite("MainTaskAtlas", isComplete ? "MainTask_tip2" : "MainTask_tip1");
+            m_ImgTaskStatus.sprite = SpriteHandler.S.GetSprite("MainMenuAtlas", isComplete ? "MainTask_tip2" : "MainTask_tip1");
             m_ImgTaskStatus.SetNativeSize();
+            if (isComplete)
+            {
+                DataAnalysisMgr.S.CustomEvent(DotDefine.m_task_finish, task.id.ToString());
+                m_AnimCtrl.Play(m_AnimHash_Show);
+            }
             m_ObjUncomplete.SetActive(!isComplete);
             m_ObjCompleted.SetActive(isComplete);
             m_TxtTaskTitle.text = task.taskSubTitle;
@@ -81,10 +93,10 @@ namespace GameWish.Game
                     case KungfuQuality.Normal:
                         m_ImgRewardIcon.sprite = m_Panel.FindSprite("Introduction");
                         break;
-                    case KungfuQuality.Super:
+                    case KungfuQuality.Master:
                         m_ImgRewardIcon.sprite = m_Panel.FindSprite("Advanced");
                         break;
-                    case KungfuQuality.Master:
+                    case KungfuQuality.Super:
                         m_ImgRewardIcon.sprite = m_Panel.FindSprite("Excellent");
                         break;
                     default:
@@ -123,7 +135,18 @@ namespace GameWish.Game
 
         private void OnClickReward()
         {
+            var task = MainGameMgr.S.TaskMgr.mainTaskController.curTask;
+            DataAnalysisMgr.S.CustomEvent(DotDefine.m_task_receive, task.id.ToString());
             MainGameMgr.S.TaskMgr.mainTaskController.FinishCurTask();
+        }
+
+        private void OnClickUncomplete()
+        {
+            var task = MainGameMgr.S.TaskMgr.mainTaskController.curTask;
+            if (task == null)
+                return;
+
+            task.FocusTask();
         }
 
         #region  Anim Event

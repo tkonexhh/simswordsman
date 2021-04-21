@@ -18,8 +18,10 @@ namespace GameWish.Game
         private MainCamera m_MainCamera = null;
         private BattleFieldMgr m_BattleFieldMgr = null;
         private RawMatCollectSystem m_RawMatCollectSystem = null;
-        //private MedicinalPowderMgr m_MedicinalPowderMgr = null;
+        private CollectItemSystem m_CollectItemSystem = null;
+        private HeroTrialMgr m_HeroTrialMgr = null;
         private TaskMgr m_TaskMgr = null;
+        private TowerSystem m_TowerSystem = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
@@ -32,7 +34,13 @@ namespace GameWish.Game
         public BattleFieldMgr BattleFieldMgr { get => m_BattleFieldMgr; }
         //public MedicinalPowderMgr MedicinalPowderMgr { get => m_MedicinalPowderMgr; }
         public RawMatCollectSystem RawMatCollectSystem { get => m_RawMatCollectSystem; }
+        public CollectItemSystem CollectItemSystem { get => m_CollectItemSystem; }
         public TaskMgr TaskMgr { get => m_TaskMgr; }
+
+        public HeroTrialMgr HeroTrialMgr { get => m_HeroTrialMgr; }
+
+        public TowerSystem TowerSystem { get => m_TowerSystem; }
+
 
         public bool IsMainMenuPanelOpen = false;
 
@@ -53,9 +61,6 @@ namespace GameWish.Game
             m_InventoryMgr = gameObject.AddComponent<InventoryMgr>();
             m_InventoryMgr.OnInit();
 
-            // m_MainTaskMgr = gameObject.AddComponent<MainTaskMgr>(); // ��ʱû��
-            //m_MainTaskMgr.OnInit();
-
             m_CommonTaskMgr = gameObject.AddComponent<CommonTaskMgr>();
             m_CommonTaskMgr.OnInit();
 
@@ -68,9 +73,14 @@ namespace GameWish.Game
             m_RawMatCollectSystem = gameObject.AddComponent<RawMatCollectSystem>();
             m_RawMatCollectSystem.OnInit();
 
+            m_CollectItemSystem = gameObject.AddComponent<CollectItemSystem>();
+            m_CollectItemSystem.OnInit();
+
             m_TaskMgr = gameObject.AddComponent<TaskMgr>();
             m_TaskMgr.OnInit();
 
+            m_HeroTrialMgr = gameObject.AddComponent<HeroTrialMgr>();
+            m_HeroTrialMgr.OnInit();
             //m_MedicinalPowderMgr = gameObject.AddComponent<MedicinalPowderMgr>();
             //m_MedicinalPowderMgr.OnInit();
 
@@ -79,6 +89,9 @@ namespace GameWish.Game
 
             m_BattleFieldMgr = gameObject.AddComponent<BattleFieldMgr>();
             m_BattleFieldMgr.OnInit();
+
+            m_TowerSystem = gameObject.AddComponent<TowerSystem>();//必须要在BattleFieldMgr之后初始化
+            m_TowerSystem.OnInit();
 
             m_CharacterMgr.InitData();
 
@@ -112,6 +125,8 @@ namespace GameWish.Game
             CharacterMgr?.OnUpdate();
             m_RawMatCollectSystem?.OnUpdate();
             m_CommonTaskMgr?.OnUpdate();
+            m_MainCamera?.OnUpdate();
+            m_HeroTrialMgr?.OnUpdate();
             //if (Input.GetKeyDown(KeyCode.T))
             //{
             //    GameDataMgr.S.GetMainTaskData().SetTaskFinished(1);
@@ -121,7 +136,7 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
-
+            m_TowerSystem.OnDestroyed();
         }
         #endregion
     }

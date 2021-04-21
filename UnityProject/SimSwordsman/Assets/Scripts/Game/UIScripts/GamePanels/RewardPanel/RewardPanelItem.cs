@@ -21,6 +21,8 @@ namespace GameWish.Game
         private GameObject m_CountBg;
         [SerializeField]
         private GameObject m_LootSingle;
+        [SerializeField]
+        private Image m_Quality;
         [SerializeField] private SortingGroup m_EffectSortGroup;
         [SerializeField] private SortingGroup m_IconSortGroup;
         //[SerializeField]
@@ -43,23 +45,47 @@ namespace GameWish.Game
                 {
                     case KungfuQuality.Normal:
                         m_Icon.sprite = rewardPanel.FindSprite("Introduction");
-                        break;
-                    case KungfuQuality.Super:
-                        m_Icon.sprite = rewardPanel.FindSprite("Advanced");
+                        m_Quality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_ordinary");
                         break;
                     case KungfuQuality.Master:
+                        m_Icon.sprite = rewardPanel.FindSprite("Advanced");
+                        m_Quality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_senior");
+                        break;
+                    case KungfuQuality.Super:
                         m_Icon.sprite = rewardPanel.FindSprite("Excellent");
+                        m_Quality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_god");
                         break;
                     default:
                         break;
                 }
                 m_KungfuName.sprite = rewardPanel.FindSprite(reward.SpriteName());
                 m_KungfuName.gameObject.SetActive(true);
+                m_Quality.gameObject.SetActive(true);
             }
             else
                 m_Icon.sprite = rewardPanel.FindSprite(reward.SpriteName());
+            #region 装备品质
+            if (reward.RewardItem == RewardItemType.Armor || reward.RewardItem == RewardItemType.Arms)
+            {
+                Equipment equipment = TDEquipmentConfigTable.GetEquipmentInfo((int)reward.KeyID);
+                switch (equipment.Quality)
+                {
+                    case EquipQuailty.Primary:
+                        m_Quality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_equip_ordinary");
+                        break;
+                    case EquipQuailty.Intermediate:
+                        m_Quality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_senior");
+                        break;
+                    case EquipQuailty.Senior:
+                        m_Quality.sprite = SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_god");
+                        break;
+                    default:
+                        break;
+                }
+                m_Quality.gameObject.SetActive(true);
+            }
+            #endregion
 
-            // gameObject.AddMissingComponent<SortingGroup>().sortingOrder = m_SortOrder + 10 - 1;
 
             m_RewardName.text = reward.RewardName();
             m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", "X" + reward.Count);

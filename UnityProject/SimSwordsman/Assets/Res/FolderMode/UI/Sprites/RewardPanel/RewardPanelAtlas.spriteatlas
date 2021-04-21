@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RewardPanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: df327ef31756e9c499d6324212a5f83e, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ca120d408928ef04a88535b6cb115d5a, type: 3}
+  - {fileID: 21300000, guid: b80dd5934268bae40afb7b101e3f9dc0, type: 3}
+  - {fileID: 21300000, guid: e4c9ca54aa6dad445b2fbcd4e238c03d, type: 3}
+  - {fileID: 21300000, guid: 43c3d8c68b273984498c99555568f152, type: 3}
+  - {fileID: 21300000, guid: 9a9176a7fc9c7314da07a89fc43717a5, type: 3}
+  - {fileID: 21300000, guid: d29fa78921cf35b40a86c7eee7d24364, type: 3}
+  - {fileID: 21300000, guid: ff0b0e1a4f583f14fbc30fd514f3eb77, type: 3}
+  - {fileID: 21300000, guid: 8bc6929a9ee260e4991dbead8661985c, type: 3}
+  - {fileID: 21300000, guid: 894304ea0606a784498e529c840a8b0c, type: 3}
+  - {fileID: 21300000, guid: c6994c5ca95d7924abb45b60a3002592, type: 3}
+  - {fileID: 21300000, guid: 789b333ea4c906541bf031b2449bceea, type: 3}
+  - {fileID: 21300000, guid: 1dbfde3e992d8a24f89f8146f89e889c, type: 3}
+  - {fileID: 21300000, guid: e241375e1b7e89044b6b0c4aa8aaf109, type: 3}
+  - {fileID: 21300000, guid: a8f086efd3c14ee43a2ab8d6a13e35cd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - rewardpanel_equip_senior
+  - rewardpanel_getBg3
+  - RewardPanel_DoubleGetRewardBtnImg
+  - rewardpanel_equip_god
+  - rewardpanel_right
+  - rewardpanel_title
+  - rewardpanel_kungfu_god
+  - rewardpanel_Bg3
+  - rewardpanel_equip_ordinary
+  - rewardpanel_kungfu_ordinary
+  - rewardpanel_left
+  - rewardpanel_kungfu_senior
+  - rewardpanel_Bg1
+  - rewardpanel_Bg2
+  m_Tag: RewardPanelAtlas
+  m_IsVariant: 0

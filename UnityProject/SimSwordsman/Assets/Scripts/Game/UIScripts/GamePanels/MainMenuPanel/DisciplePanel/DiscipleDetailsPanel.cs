@@ -44,7 +44,9 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_GradeImg;
         [SerializeField]
-        private Image m_DiscipleImg;
+        private Image m_DiscipleImg;  
+        [SerializeField]
+        private Transform m_Top;
 
         [Header("UpperMiddle")]
         [SerializeField]
@@ -189,6 +191,9 @@ namespace GameWish.Game
                     break;
                 case CharacterQuality.Perfect:
                     m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg17");
+                    break;
+                case CharacterQuality.Hero:
+                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg22");
                     break;
                 default:
                     break;
@@ -550,7 +555,11 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
             RefershIntensifyImg();
-            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
+            //m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurDisciple), m_Top).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            discipleHeadPortrait.transform.localPosition = new Vector3(135, -1, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.7f, 0.7f, 1);
 
             DataAnalysisMgr.S.CustomEvent(DotDefine.students_detail, m_CurDisciple.quality.ToString()+";"+ m_CurDisciple.level.ToString());
         }
@@ -613,10 +622,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     sprites.Add(FindSprite("Introduction"));
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     sprites.Add(FindSprite("Advanced"));
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     sprites.Add(FindSprite("Excellent"));
                     break;
                 default:

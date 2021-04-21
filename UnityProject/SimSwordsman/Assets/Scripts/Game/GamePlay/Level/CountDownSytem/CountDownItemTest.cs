@@ -15,6 +15,7 @@ namespace GameWish.Game
         public int tempTime = 0;
         private int m_TimerID = -1;
         private bool m_IsCache = false;
+        private int m_SpeedUpMultiply = 1;
         private CountDownCallBackWrap OnUpdateCallBackWrap = null;
         private CountDownCallBackWrap OnEndCallBackWrap = null;
         public CountDownItemTest() { }
@@ -46,24 +47,33 @@ namespace GameWish.Game
 
             m_TimerID = Timer.S.Post2Really((x) =>
             {
-                tempTime += 1;
+                tempTime += 1 * m_SpeedUpMultiply;
 
                 if (tempTime >= TotalSecondsTime)
                 {
                     if (this.OnEndCallBackWrap != null)
                     {
-                        this.OnEndCallBackWrap.Fire();
+                        this.OnEndCallBackWrap.Fire(0);
                     }
-
+                    SetSpeedUpMultiply(1);
                     CountDowntMgr.S.StopCountDownItemTest(CountDownIndex);
                 }
                 else
                 {
-                    if (OnUpdateCallBackWrap != null) {
-                        OnUpdateCallBackWrap.Fire();
+                    if (OnUpdateCallBackWrap != null)
+                    {
+                        OnUpdateCallBackWrap.Fire((int)(TotalSecondsTime - tempTime));
                     }
                 }
             }, 1, -1);
+        }
+        /// <summary>
+        /// 设置加速倍数
+        /// </summary>
+        /// <param name="speedUpMultiple"></param>
+        public void SetSpeedUpMultiply(int speedUpMultiple) 
+        {
+            this.m_SpeedUpMultiply = speedUpMultiple;
         }
         public int GetCountDownID()
         {

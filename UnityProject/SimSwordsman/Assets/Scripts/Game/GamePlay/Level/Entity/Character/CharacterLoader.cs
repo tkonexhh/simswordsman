@@ -30,7 +30,7 @@ namespace GameWish.Game
             //{
             foreach (var item in m_CharacterList)
             {
-                LoadCharactersync(item.id, item.quality, item.bodyId, null);
+                LoadCharactersync(item.id, item.quality, item.bodyId, item.trialClanType);
             }
             //}
 
@@ -42,14 +42,14 @@ namespace GameWish.Game
             SendAssetLoadedMsg();
         }
 
-        public GameObject GetCharacterGo(int id, CharacterQuality characterQuality, int bodyId)
+        public GameObject GetCharacterGo(int id, CharacterQuality characterQuality, int bodyId, ClanType clanType)
         {
             //if (m_CharacterLoaderDic.ContainsKey(id))
             //{
             //    return GameObject.Instantiate(m_CharacterLoaderDic[id].GetResult());
             //    //return m_CharacterGoDic[id];
             //}
-            string prefabName = GetPrefabName(characterQuality, bodyId);
+            string prefabName = GetPrefabName(characterQuality, bodyId, clanType);
 
             GameObject go = GameObjectPoolMgr.S.Allocate(prefabName);
             if (go != null)
@@ -58,13 +58,14 @@ namespace GameWish.Game
             return go;
         }
 
-        public void LoadCharactersync(int id, CharacterQuality characterQuality, int bodyId, Action<GameObject> onLoadDone)
+
+        public void LoadCharactersync(int id, CharacterQuality characterQuality, int bodyId, ClanType clanType, int maxCount = 5, int initCount = 2)
         {
-            string prefabName = GetPrefabName(characterQuality, bodyId);
+            string prefabName = GetPrefabName(characterQuality, bodyId, clanType);
 
             GameObject obj = m_CharacterLoader.LoadSync(prefabName) as GameObject;
 
-            GameObjectPoolMgr.S.AddPool(prefabName, obj, 5, 2);
+            GameObjectPoolMgr.S.AddPool(prefabName, obj, maxCount, initCount);
 
             //GameObject go = GetCharacterGo(id, characterQuality, bodyId);
 
@@ -91,9 +92,12 @@ namespace GameWish.Game
         //    }
         //}
 
-        private string GetPrefabName(CharacterQuality characterQuality, int bodyId)
+        public static string GetPrefabName(CharacterQuality characterQuality, int bodyId, ClanType clanType)
         {
-            return "Character_" + characterQuality.ToString().ToLower() + "_" + bodyId; //TODO：优化获取方式？
+            if (characterQuality != CharacterQuality.Hero)
+                return "Character_" + characterQuality.ToString().ToLower() + "_" + bodyId; //TODO：优化获取方式？
+            else
+                return "Character_" + characterQuality.ToString() + "_" + clanType.ToString() + "_" + bodyId;
         }
 
         private void LoadCharacterRewardBubbleAsync()

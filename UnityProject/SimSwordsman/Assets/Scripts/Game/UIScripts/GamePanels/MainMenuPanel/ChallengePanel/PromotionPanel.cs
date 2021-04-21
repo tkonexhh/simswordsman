@@ -1,4 +1,5 @@
 using Qarth;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,16 @@ namespace GameWish.Game
         [SerializeField]
         private Text KungfuName;
 
+        [Header("Status Four")]
+        [SerializeField]
+        private GameObject m_NameObj;  
+        [SerializeField]
+        private Text m_NameValue;    
+        [SerializeField]
+        private Text m_Appellation;  
+        [SerializeField]
+        private Image m_Quality;
+
         [SerializeField]
         private Text m_KongfuName;
         [SerializeField]
@@ -49,7 +60,10 @@ namespace GameWish.Game
         private Image m_CharacterImage;
         [SerializeField]
         private Button m_ExitBtn;
-
+        [SerializeField]
+        private GameObject m_DiscipleHeadPortrait;
+        [SerializeField]
+        private Transform m_CharacterBg;
         private int TimerID;
 
         private const float ExitShowTime = 0.5f;
@@ -80,10 +94,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     image.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     image.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     image.sprite = FindSprite("Excellent");
                     break;
                 default:
@@ -99,10 +113,10 @@ namespace GameWish.Game
                 case KungfuQuality.Normal:
                     image.sprite = FindSprite("Introduction");
                     break;
-                case KungfuQuality.Super:
+                case KungfuQuality.Master:
                     image.sprite = FindSprite("Advanced");
                     break;
-                case KungfuQuality.Master:
+                case KungfuQuality.Super:
                     image.sprite = FindSprite("Excellent");
                     break;
                 default:
@@ -111,19 +125,6 @@ namespace GameWish.Game
             kungfuName.sprite = FindSprite(TDKongfuConfigTable.GetIconName(item.kongfuType));
         }
 
-        //[SerializeField]
-        //private GameObject m_InfoPar;
-        //[SerializeField]
-        //private Text m_InfoParName;
-        //[SerializeField]
-        //private Image m_InfoParIcon;
-        //[SerializeField]
-        //private Image m_KungfuNameImg;
-        //[SerializeField]
-        //private Text m_KungfuName;
-        //[SerializeField]
-        //private Text m_Paragraph;
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
@@ -131,6 +132,7 @@ namespace GameWish.Game
             PromotionBase promotionModel = (PromotionBase)args[0];
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(promotionModel.GetCharacterItem());
             //m_CharacterName.text = m_CharacterItem.name;
+            SetDiscipleHeadPortrait();
             switch (promotionModel.GetEventID())
             {
                 case UpgradePanelType.WeaponEnhancement:
@@ -197,10 +199,20 @@ namespace GameWish.Game
                     m_KungfuName.text = CommonUIMethod.GetStrForColor("#4C6AA5", GetKungfuName(kungfu.kongfuType));
                     m_Paragraph.text = "ÉýÖÁ" + CommonUIMethod.GetPart(kungfu.level);
                     break;
+                case UpgradePanelType.HeroTrial:
+                    SetDifferetState(UpgradePanelType.HeroTrial);
+                    m_PromotionTitleImg.sprite = FindSprite("PromotionPanel_HeroTrial");
+                    HeroTrial heroTrial = promotionModel.ToSubType<HeroTrial>();
+                    m_NameValue.text = m_CharacterItem.name;
+                    m_Appellation.text = CommonMethod.GetAppellation(heroTrial.GetClanType());
+                    m_Quality.sprite = GetQualitySprite();
+                    break;
                 default:
                     break;
             }
+            //CommonUIMethod.GetTenThousandOrMillionNumber((long)m_CharacterItem.atkValue)
             CommonUIMethod.TextFlipUpEffect(m_Skill, promotionModel.GetPreAtk(), m_CharacterItem.atkValue);
+
             CharacterQuality quality = m_CharacterItem.quality;
             int headId = m_CharacterItem.headId;
             int bodyId = m_CharacterItem.bodyId;
@@ -215,6 +227,29 @@ namespace GameWish.Game
                     m_ExitBtn.gameObject.SetActive(true);
                 }
             }, ExitShowTime);
+        }
+
+        private void SetDiscipleHeadPortrait()
+        {
+            Transform transform = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_CharacterBg).transform;
+            transform.localPosition = new Vector3(0, 136, 0);
+            transform.localScale = new Vector3(0.8f, 0.8f, 1);
+        }
+
+        private Sprite GetQualitySprite()
+        {
+            switch (m_CharacterItem.quality)
+            {
+                case CharacterQuality.Normal:
+                    return  SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Normal");
+                case CharacterQuality.Good:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Good");
+                case CharacterQuality.Perfect:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Perfect");
+                case CharacterQuality.Hero:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "Promotion_Hero");
+            }
+            return null;
         }
 
         private void SetDifferetState(UpgradePanelType showState)
@@ -234,6 +269,10 @@ namespace GameWish.Game
                 case UpgradePanelType.ArmorEnhancement:
                 case UpgradePanelType.BreakthroughMartialArts:
                     m_InfoPar.SetActive(true);
+                    break;
+                case UpgradePanelType.HeroTrial:
+                    m_NameObj.SetActive(true);
+                    m_Quality.gameObject.SetActive(true);
                     break;
                 default:
                     break;
