@@ -25,8 +25,8 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
+        //private double m_TrialTotalTime = 0.3 * 60;
         private double m_TrialTotalTime = 10*60*60;
-
 
         private ClanType m_TrialClanType = ClanType.None;
 
@@ -220,7 +220,7 @@ namespace GameWish.Game
             bool isLobbyLevelEnough = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= 5;
             if (isLobbyLevelEnough == false)
             {
-                msg = "讲武堂5级后解锁";
+                msg = "需要讲武堂等级达到5级";
                 return false;
             }
 
