@@ -11,6 +11,7 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnClose;
         [SerializeField] private Button m_BtnAD;
         [SerializeField] private Button m_BtnFree;
+        [SerializeField] private Text m_TxtTip;
 
         protected override void OnUIInit()
         {
@@ -24,6 +25,7 @@ namespace GameWish.Game
             OpenDependPanel(EngineUI.MaskPanel, -1);
 
             int count = GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount;
+            m_TxtTip.text = count < 1 ? "点击免费可以免费刷新一次商店" : "点击观看广告可以免费刷新一次商店";
             m_BtnFree.gameObject.SetActive(count < 1);
             m_BtnAD.gameObject.SetActive(!m_BtnFree.gameObject.activeSelf);
         }
