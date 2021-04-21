@@ -116,7 +116,8 @@ namespace GameWish.Game
                             QRCodeHelper.GenNestedQRCodeTexture(pic, shareText, QRCodeHelper.QRCodeNestPosEnum.RightBottom, 20, 20) :
                             QRCodeHelper.GenQRCodeTexture(shareText);
 
-                        WeShareUtils.SharePicByWXSession(code, true);
+                        //WeShareUtils.SharePicByWXSession(code, true);
+                        WeShareUtils.SharePicBytesByWXSession(code);
 
                         //DataAnalysisMgr.S.CustomEvent(Define.ShareBtnClick, "1");
                     }
