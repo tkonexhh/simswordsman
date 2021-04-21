@@ -126,9 +126,12 @@ namespace GameWish.Game
                 if (IsClean(anim))
                 {
                     m_Controller.CharacterView.SetSweepingSmoke(true);
-                    AudioManager.S.PlaySweepSound(m_Controller.GetPosition());
                 }
             });
+
+            if (IsClean(anim)) {
+                AudioManager.S.PlaySweepSound(m_Controller.GetPosition());
+            }
 
             m_Controller.SpawnWorkProgressBar();
 
