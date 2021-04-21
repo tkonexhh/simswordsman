@@ -124,7 +124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.7037579}
   m_AnchorMax: {x: 0.5, y: 0.7037579}
-  m_AnchoredPosition: {x: -9, y: -41.235657}
+  m_AnchoredPosition: {x: -13.7, y: -48.6}
   m_SizeDelta: {x: 189, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2891670746483986880
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6cfd96b37ee40b64189d154ed6e5da3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 642e132892c7c2949b84ff24e7914b8f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 2613920579286290733}
   - component: {fileID: 9207182268896903057}
   m_Layer: 5
-  m_Name: Head_hero_3_8_5
+  m_Name: Head_hero_4_8_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5dd1d6c5095be364e9f263ed66986220, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7d12843b4a08a6448dee93e593e7361, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

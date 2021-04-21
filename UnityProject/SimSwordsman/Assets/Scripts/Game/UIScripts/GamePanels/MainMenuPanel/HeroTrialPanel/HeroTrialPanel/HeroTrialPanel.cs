@@ -64,6 +64,8 @@ namespace GameWish.Game
         private HeroTrialStateID m_HeroTrialStateID;
         private List<TrialClanImg> m_TrialClanImgList = new List<TrialClanImg>();
 
+        private List<GameObject> m_HeadList = new List<GameObject>();
+
         private bool m_TrialComplete = false;
         protected override void OnUIInit()
         {
@@ -230,21 +232,22 @@ namespace GameWish.Game
 
         private void RefreshDiscipleInfo()
         {
+            if (m_HeadList.Count>=0)
+            {
+                for (int i = 0; i < m_HeadList.Count; i++)
+                {
+                    DestroyImmediate(m_HeadList[i]);
+                }
+                m_HeadList.Clear();
+            }
 
-            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_TrialDisciple), m_LeftBg).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait.OnInit(true);
-            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-            discipleHeadPortrait.transform.localPosition = new Vector3(5f, 3f, 0);
-            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+            m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_LeftBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+            //DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1));
+            m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
 
-            DiscipleHeadPortrait discipleHeadPortrait1 = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_TrialDisciple), m_RightBg).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait1.OnInit(true);
-            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-            discipleHeadPortrait1.transform.localPosition = new Vector3(5f, 3f, 0);
-            discipleHeadPortrait1.transform.localScale = new Vector3(0.4f, 0.4f, 1);
             if (m_TrialDisciple == null)
                 return;
-       
+
             //m_LeftIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
             //m_RightIcon.sprite = CommonMethod.GetDiscipleSprite(m_TrialDisciple);
             m_LeftName.text = m_TrialDisciple.name;

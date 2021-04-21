@@ -116,7 +116,9 @@ namespace GameWish.Game
             CommonUIMethod.BubbleSortForType(m_CharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
             if (m_CharacterList != null)
                 foreach (var item in m_CharacterList)
+                {
                     CreateDisciple(m_DiscipleContList, item);
+                }
 
             RefreshDiscipleLine();
         }

@@ -54,13 +54,7 @@ namespace GameWish.Game
             m_ParentPanel = (CombatSettlementPanel)obj[3];
             m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
-
-            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurCharacterItem), m_DiscipleTra).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait.OnInit(true);
-            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-            discipleHeadPortrait.transform.localPosition = new Vector3(-132, -8, 0);
-            discipleHeadPortrait.transform.localScale = new Vector3(0.2f, 0.2f, 1);
-
+             DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, m_DiscipleTra, new Vector3(-132, -8, 0), new Vector3(0.2f, 0.2f, 1));
             //m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
@@ -89,37 +83,43 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_DiscipleName.text = m_CurCharacterItem.name;
-            //m_ExpProportion.value = ((float)m_CurCharacterItem.lastExp / m_CharacterController.GetExpLevelUpNeed());
+            if (m_IsSuccess)
+            {
+                int deltaLevle = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
+                float start = ((float)m_CurCharacterItem.lastExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
+                float ratio = ((float)m_CurCharacterItem.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
+                if (deltaLevle == 0)
+                {
+                    StartCoroutine(ExperienceGrowthBar(start, ratio));
+                }
+                else if (deltaLevle == 1)
+                {
 
-            int deltaLevle = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
-            float start = ((float)m_CurCharacterItem.lastExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
-            float ratio = ((float)m_CurCharacterItem.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
-            if (deltaLevle == 0)
-            {
-                StartCoroutine(ExperienceGrowthBar(start, ratio));
-            }
-            else if (deltaLevle == 1)
-            {
-       
-                StartCoroutine(ExperienceGrowthBar(start, 1, () =>
-                {
-                    StartCoroutine(ExperienceGrowthBar(0,ratio));
-                }));
-            }
-            else if (deltaLevle > 1)
-            {
-         
-                StartCoroutine(ExperienceGrowthBar(start, 1, () =>
-                {
-                    for (int i = 0; i < deltaLevle - 1; i++)
+                    StartCoroutine(ExperienceGrowthBar(start, 1, () =>
                     {
-                        StartCoroutine(ExperienceGrowthBar(0,1, () =>
+                        StartCoroutine(ExperienceGrowthBar(0, ratio));
+                    }));
+                }
+                else if (deltaLevle > 1)
+                {
+
+                    StartCoroutine(ExperienceGrowthBar(start, 1, () =>
+                    {
+                        for (int i = 0; i < deltaLevle - 1; i++)
                         {
-                            StartCoroutine(ExperienceGrowthBar(0,ratio));
-                        }));
-                    }
-                }));
+                            StartCoroutine(ExperienceGrowthBar(0, 1, () =>
+                            {
+                                StartCoroutine(ExperienceGrowthBar(0, ratio));
+                            }));
+                        }
+                    }));
+                }
             }
+            else
+            {
+                m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+            }
+
 
             if (!m_IsSuccess)
             {
