@@ -75,6 +75,18 @@ namespace GameWish.Game
         {
             PlayFacilityBuildOrUpgradSound();
         }
+        private IEnumerator PlaySoundWithCountIE(string soundName,Vector3 worldPos,float intervalTime, int playCount = 2) 
+        {
+            for (int i = 0; i < playCount; i++)
+            {
+                AudioMgr.S.PlaySound3D(soundName, worldPos);
+                yield return new WaitForSeconds(intervalTime);
+            }
+        }
+        private void PlaySoundWithCount(string soundName, Vector3 worldPos, float intervalTime, int playCount = 2) 
+        {
+            MainGameMgr.S.StartCoroutine(PlaySoundWithCountIE(soundName, worldPos, intervalTime, playCount));
+        }
         #endregion
 
         #region public
@@ -130,21 +142,24 @@ namespace GameWish.Game
         /// </summary>
         public void PlayForgeSound(Vector3 pos) 
         {
-            AudioMgr.S.PlaySound3D(Define.SOUND_FORGE, pos);
+            //AudioMgr.S.PlaySound3D(Define.SOUND_FORGE, pos);
+            PlaySoundWithCount(Define.SOUND_FORGE, pos, 0.8f);
         }
         /// <summary>
         /// 播放干活  扫地音效
         /// </summary>
         public void PlaySweepSound(Vector3 characterPos) 
-        {        
-            AudioMgr.S.PlaySound3D(Define.SOUND_COLLECT, characterPos);
+        {
+            //AudioMgr.S.PlaySound3D(Define.SOUND_COLLECT, characterPos);
+            PlaySoundWithCount(Define.SOUND_COLLECT, characterPos, 0.6f);
         }
         /// <summary>
         /// 播放干活  捣药音效
         /// </summary>
         public void PlayPoundSound(Vector3 pos) 
         {
-            AudioMgr.S.PlaySound3D(Define.SOUND_POUND, pos);
+            //AudioMgr.S.PlaySound3D(Define.SOUND_POUND, pos);
+            PlaySoundWithCount(Define.SOUND_POUND, pos, 2.4f);
         }
         public void PlayCollectWuwoodOrRockSound(CollectedObjType objType,Vector3 pos) 
         {
@@ -152,12 +167,14 @@ namespace GameWish.Game
             {
                 case CollectedObjType.WuWood:
                 case CollectedObjType.SilverWood:
-                    AudioMgr.S.PlaySound3D(Define.SOUND_LUMBER, pos);
+                    //AudioMgr.S.PlaySound3D(Define.SOUND_LUMBER, pos);
+                    PlaySoundWithCount(Define.SOUND_LUMBER, pos, 0.667f);
                     break;
                 case CollectedObjType.CloudRock:
                 case CollectedObjType.QingRock:
                 case CollectedObjType.Iron:
-                    AudioMgr.S.PlaySound3D(Define.SOUND_MINE, pos);
+                    //AudioMgr.S.PlaySound3D(Define.SOUND_MINE, pos);
+                    PlaySoundWithCount(Define.SOUND_MINE, pos, 0.667f);
                     break;
             }
         }
