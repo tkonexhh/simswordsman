@@ -47,6 +47,7 @@ namespace GameWish.Game
                 // m_EnemyIcons[i].SetEnemy(SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_qiubujun"));
             }
             int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
+            // Debug.LogError(towerLevelConfigDB.reward);
             if (string.IsNullOrEmpty(towerLevelConfigDB.reward))
             {
                 m_RewardItemIcon.gameObject.SetActive(false);
@@ -69,7 +70,7 @@ namespace GameWish.Game
             m_ObjLocked.SetActive(m_State == TowerItemState.Locked);
             m_ObjComplete.SetActive(m_State == TowerItemState.Complete);
             m_ObjEnemyIconRoot.SetActive(m_State != TowerItemState.Locked);
-            if (m_State != TowerItemState.Unlock)
+            //if (m_State == TowerItemState.Complete)
             {
                 for (int i = 0; i < m_EnemyIcons.Count; i++)
                 {

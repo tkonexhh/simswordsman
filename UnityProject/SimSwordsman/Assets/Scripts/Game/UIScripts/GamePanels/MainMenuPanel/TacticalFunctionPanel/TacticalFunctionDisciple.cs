@@ -43,12 +43,7 @@ namespace GameWish.Game
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
-                    //m_HeadImg.sprite = m_TacticalFunctionPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacterItem));
-                    DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurCharacterItem), transform).GetComponent<DiscipleHeadPortrait>();
-                    discipleHeadPortrait.OnInit(true);
-                    discipleHeadPortrait.transform.localPosition = new Vector3 (0,2,0);
-                    discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
-
+                    DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.4f, 0.4f, 1));
                     m_Level.text = m_CurCharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     m_Plus.SetActive(false);

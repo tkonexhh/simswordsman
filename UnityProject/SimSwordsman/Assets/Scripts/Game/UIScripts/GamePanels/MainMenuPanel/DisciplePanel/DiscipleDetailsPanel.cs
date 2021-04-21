@@ -555,12 +555,7 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
             RefershIntensifyImg();
-            //m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
-            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurDisciple), m_Top).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait.OnInit(true);
-            discipleHeadPortrait.transform.localPosition = new Vector3(135, -1, 0);
-            discipleHeadPortrait.transform.localScale = new Vector3(0.7f, 0.7f, 1);
-
+            DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurDisciple, m_Top, new Vector3(135, -1, 0), new Vector3(0.7f, 0.7f, 1));
             DataAnalysisMgr.S.CustomEvent(DotDefine.students_detail, m_CurDisciple.quality.ToString()+";"+ m_CurDisciple.level.ToString());
         }
 

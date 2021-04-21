@@ -6,7 +6,7 @@ filter: Linear,Linear
 repeat: none
 p_1_bi
   rotate: true
-  xy: 222, 69
+  xy: 102, 84
   size: 34, 25
   orig: 34, 25
   offset: 0, 0
@@ -41,14 +41,14 @@ p_1_chan
   index: -1
 p_1_cz
   rotate: true
-  xy: 210, 22
+  xy: 210, 19
   size: 45, 32
   orig: 45, 33
   offset: 0, 0
   index: -1
 p_1_dao
-  rotate: false
-  xy: 116, 4
+  rotate: true
+  xy: 222, 66
   size: 38, 30
   orig: 40, 35
   offset: 2, 2
@@ -201,8 +201,8 @@ p_1_tou_4
   offset: 16, 14
   index: -1
 p_1_tou_5
-  rotate: true
-  xy: 251, 62
+  rotate: false
+  xy: 254, 60
   size: 44, 46
   orig: 73, 69
   offset: 15, 15
@@ -230,28 +230,28 @@ p_1_yaogq
   index: -1
 p_1_ys_lm
   rotate: false
-  xy: 265, 25
+  xy: 277, 44
   size: 14, 14
   orig: 16, 16
   offset: 1, 1
   index: -1
 p_1_yss_lm
-  rotate: true
-  xy: 95, 24
-  size: 18, 19
+  rotate: false
+  xy: 230, 106
+  size: 22, 24
   orig: 22, 25
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 p_1_ysx_lm
-  rotate: true
-  xy: 95, 5
+  rotate: false
+  xy: 95, 7
   size: 17, 18
   orig: 19, 23
   offset: 1, 1
   index: -1
 p_1_ysx_yf
   rotate: false
-  xy: 260, 41
+  xy: 262, 39
   size: 13, 19
   orig: 15, 21
   offset: 1, 1
@@ -271,15 +271,15 @@ p_1_yt_yf
   offset: 1, 1
   index: -1
 p_1_yts_lm
-  rotate: true
-  xy: 98, 64
+  rotate: false
+  xy: 124, 10
   size: 18, 24
   orig: 20, 25
   offset: 1, 1
   index: -1
 p_1_yts_yf
-  rotate: true
-  xy: 98, 44
+  rotate: false
+  xy: 144, 11
   size: 18, 23
   orig: 20, 25
   offset: 1, 1
@@ -293,14 +293,14 @@ p_1_yts_yf_y
   index: -1
 p_1_ytx_lm
   rotate: false
-  xy: 248, 6
+  xy: 249, 3
   size: 14, 16
   orig: 16, 17
   offset: 1, 1
   index: -1
 p_1_ytx_yf
   rotate: true
-  xy: 244, 24
+  xy: 228, 3
   size: 14, 19
   orig: 16, 21
   offset: 1, 1
@@ -327,15 +327,15 @@ p_1_zss_yf
   offset: 1, 1
   index: -1
 p_1_zsx_lm
-  rotate: true
-  xy: 206, 4
+  rotate: false
+  xy: 244, 39
   size: 16, 19
   orig: 18, 21
   offset: 1, 1
   index: -1
 p_1_zsx_yf
   rotate: true
-  xy: 227, 4
+  xy: 244, 21
   size: 16, 19
   orig: 18, 21
   offset: 1, 1
@@ -355,36 +355,36 @@ p_1_zt_yf
   offset: 1, 1
   index: -1
 p_1_zts_lm
-  rotate: false
-  xy: 21, 51
+  rotate: true
+  xy: 98, 27
   size: 19, 24
   orig: 21, 26
   offset: 1, 1
   index: -1
 p_1_zts_yf
   rotate: false
-  xy: 230, 105
+  xy: 21, 50
   size: 19, 25
   orig: 21, 27
   offset: 1, 1
   index: -1
 p_1_zts_yf_z
   rotate: false
-  xy: 102, 84
+  xy: 98, 48
   size: 24, 34
   orig: 24, 34
   offset: 0, 0
   index: -1
 p_1_ztx_lm
-  rotate: false
-  xy: 264, 7
+  rotate: true
+  xy: 265, 23
   size: 14, 15
   orig: 17, 16
   offset: 2, 1
   index: -1
 p_1_ztx_yf
-  rotate: false
-  xy: 244, 40
+  rotate: true
+  xy: 206, 3
   size: 14, 20
   orig: 16, 22
   offset: 1, 1
