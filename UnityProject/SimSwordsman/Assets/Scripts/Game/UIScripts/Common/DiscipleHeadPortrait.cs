@@ -8,13 +8,24 @@ using Qarth;
 namespace GameWish.Game
 {
 
-	public class DiscipleHeadPortraitMgr : TSingleton<DiscipleHeadPortraitMgr>
+	public class DiscipleHeadPortraitMgr : TMonoSingleton<DiscipleHeadPortraitMgr>
 	{
 		private ResLoader m_ResLoader;
 		public override void OnSingletonInit()
         {
             base.OnSingletonInit();
 			m_ResLoader = ResLoader.Allocate("DiscipleHeadPortraitMgr", null);
+		}
+
+		public GameObject CreateDiscipleHeadIcon(CharacterItem characterItem,Transform parent,Vector3 pos,Vector3 scall,bool isFirst = true)
+		{
+			DiscipleHeadPortrait discipleHeadPortrait = Instantiate(GetDiscipleHeadPortrait(characterItem), parent).GetComponent<DiscipleHeadPortrait>();
+			discipleHeadPortrait.OnInit(true);
+            if (isFirst)
+				discipleHeadPortrait.transform.SetSiblingIndex(0);
+			discipleHeadPortrait.transform.localPosition = pos;
+			discipleHeadPortrait.transform.localScale = scall;
+			return discipleHeadPortrait.gameObject;
 		}
 
 		public GameObject GetDiscipleHeadPortrait(CharacterItem characterItem)

@@ -105,12 +105,7 @@ namespace GameWish.Game
                         break;
                 }
             }
-
-            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurCharacter), m_LineTra).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait.OnInit(true);
-            discipleHeadPortrait.transform.localPosition = new Vector3(0, 87, 0);
-            discipleHeadPortrait.transform.localScale = new Vector3(0.6f, 0.6f, 1);
-            //m_DiscipleImg.sprite = m_ParentPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CurCharacter));
+            DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacter, m_LineTra, new Vector3(0, 87, 0), new Vector3(0.6f, 0.6f, 1));
         }
 
 

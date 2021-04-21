@@ -175,11 +175,7 @@ namespace GameWish.Game
         {
             if (m_DiscipleHeadObj == null)
             {
-                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(characterItem), transform).GetComponent<DiscipleHeadPortrait>();
-                discipleHeadPortrait.OnInit(true);
-                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-                discipleHeadPortrait.transform.localPosition = new Vector3(5f, 5f, 0);
-                discipleHeadPortrait.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+                m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(characterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.6f, 0.6f, 1),false);
             }
             //m_DiscipleHead.sprite = m_PracticeFieldPanel.FindSprite(prefabsName);
         }

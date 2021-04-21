@@ -30,17 +30,14 @@ namespace GameWish.Game
             m_ChallengeChooseDisciple = challengeChoose;
             BindAddListenerEvent();
             m_DiscipleName.text = m_CharacterItem.name;
-            LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
+            LoadClanPrefabs();
             OnInit();
             RefresPanelInfo();
         }
 
-        void LoadClanPrefabs(string prefabsName)
+        void LoadClanPrefabs()
         {
-            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), transform).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait.OnInit(true);
-            discipleHeadPortrait.transform.localPosition = new Vector3(0, 20, 0);
-            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+            DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, transform, new Vector3(0, 20, 0), new Vector3(0.4f, 0.4f, 1));
         }
 
         private void RefresPanelInfo()
