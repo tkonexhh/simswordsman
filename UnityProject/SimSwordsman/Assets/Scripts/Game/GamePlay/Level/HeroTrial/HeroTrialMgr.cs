@@ -45,6 +45,11 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
+            if (PlatformHelper.isTestMode)
+            {
+                m_TrialTotalTime = 20;
+            }
+
             m_DbData = GameDataMgr.S.GetClanData().heroTrialData;
             m_TrialClanType = m_DbData.clanType;
 
