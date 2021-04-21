@@ -47,7 +47,7 @@ namespace GameWish.Game
         {
             maxLevel = 1;
             towerCharacterLst.Clear();
-            InitLevelConfig();
+            // InitLevelConfig();
             RandomShopData();
             SetDataDirty();
         }
