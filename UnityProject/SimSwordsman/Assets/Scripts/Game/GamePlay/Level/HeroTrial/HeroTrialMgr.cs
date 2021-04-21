@@ -25,8 +25,8 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
-        //private double m_TrialTotalTime = 0.3 * 60;
         private double m_TrialTotalTime = 10*60*60;
+
 
         private ClanType m_TrialClanType = ClanType.None;
 
