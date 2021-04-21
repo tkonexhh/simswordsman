@@ -85,6 +85,12 @@ namespace GameWish.Game
             m_DiscipleName.text = m_CurCharacterItem.name;
             if (m_IsSuccess)
             {
+                if (m_PanelType == PanelType.Tower)
+                {
+                    m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+                    m_ExpCont.text = Define.PLUS + "0";
+                    return;
+                }
                 int deltaLevle = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
                 float start = ((float)m_CurCharacterItem.lastExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
                 float ratio = ((float)m_CurCharacterItem.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
@@ -138,8 +144,8 @@ namespace GameWish.Game
                     m_ExpCont.text = Define.PLUS + expChallenge;
                     break;
                 case PanelType.Tower:
-                    int exp = (int)FoodBuffSystem.S.Exp(m_TowerLevelConfig.rewardExp);
-                    m_ExpCont.text = Define.PLUS + exp;
+                    //int exp = (int)FoodBuffSystem.S.Exp(m_TowerLevelConfig.rewardExp);
+                    m_ExpCont.text = Define.PLUS + "0";
                     break;
                 default:
                     break;
