@@ -42,7 +42,7 @@ namespace GameWish.Game
                 {
                     tempStruct.name = "铜钱";
                     tempStruct.need = GetNeedCoinDesc();
-                    tempStruct.desc = "弟子干活可以获得";
+                    tempStruct.desc = "工作战斗均可获得铜钱";
 
                 }
                 tempStruct.parentPanel = animPanel;
