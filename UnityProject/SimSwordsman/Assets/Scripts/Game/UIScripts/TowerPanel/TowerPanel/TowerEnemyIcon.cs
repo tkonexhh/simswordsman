@@ -9,12 +9,11 @@ namespace GameWish.Game
     {
         [SerializeField] private Image m_ImgBg;
         [SerializeField] private Image m_ImgEnemyIcon;
-        [SerializeField] private Text m_TxtID;
 
 
-        public void SetEnemy(int id)
+        public void SetEnemy(Sprite icon)
         {
-            m_TxtID.text = id.ToString();
+            m_ImgEnemyIcon.sprite = icon;
         }
 
         public void SetGrey(bool isGrey, Material greyMat)

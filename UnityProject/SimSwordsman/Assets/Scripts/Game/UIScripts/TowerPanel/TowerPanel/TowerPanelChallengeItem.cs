@@ -37,11 +37,14 @@ namespace GameWish.Game
             m_TxtLevel.text = "第" + ChineseHelper.NumToChinese(m_Level) + "关";
             var towerLevelConfigDB = GameDataMgr.S.GetPlayerData().towerData.GetLevelConfigByIndex(m_Level - 1);
             var enemyConfig = towerLevelConfigDB.enemyConfig;
-            // var tableEnemyConfig = TDTowerEnemyConfigTable.GetData(enemyConfig.id);
+            var tableEnemyConfig = TDTowerEnemyConfigTable.GetData(enemyConfig.id).enemyHeadIcon;
+            var icons = Helper.String2ListString(tableEnemyConfig, ";");
             for (int i = 0; i < m_EnemyIcons.Count; i++)
             {
+                var sp = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + icons[i]);
                 //TODO 直接从表里取头像
-                m_EnemyIcons[i].SetEnemy(enemyConfig.enemyIDLst[i]);
+                m_EnemyIcons[i].SetEnemy(sp);
+                // m_EnemyIcons[i].SetEnemy(SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_qiubujun"));
             }
             int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
             if (string.IsNullOrEmpty(towerLevelConfigDB.reward))
@@ -100,6 +103,12 @@ namespace GameWish.Game
                 }
                 totalATk /= 5;
                 arg.basicATK = totalATk;
+            }
+
+            var towerConfig = TDTowerConfigTable.GetData(arg.level);
+            if (towerConfig != null)
+            {
+                arg.basicATK *= towerConfig.atkNum;
             }
             arg.recommendATK = (long)(arg.basicATK * 5.5f);
             UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Tower, arg);
