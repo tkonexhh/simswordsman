@@ -43,7 +43,7 @@ namespace GameWish.Game
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
-                    DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.6f, 0.6f, 1));
+                    DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.4f, 0.4f, 1));
                     m_Level.text = m_CurCharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     m_Plus.SetActive(false);
