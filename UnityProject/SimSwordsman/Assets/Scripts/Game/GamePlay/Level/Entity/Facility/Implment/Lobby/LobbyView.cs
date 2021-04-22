@@ -14,19 +14,7 @@ namespace GameWish.Game
         private bool GuideIsOver = false;
         public override FacilityController GenerateContoller()
         {
-            EventSystem.S.Register(EventID.OnSilverGuideOver, HandleAddlistenerEvent);
             return new LobbyController( FacilityType.Lobby, this);
-        }
-
-        private void HandleAddlistenerEvent(int key, params object[] param)
-        {
-            switch (key)
-            {
-                case (int)EventID.OnSilverGuideOver:
-                    GuideIsOver = true;
-                    break;
-            
-            }
         }
 
         public void SetLobbyChallenging(bool active)
@@ -35,12 +23,8 @@ namespace GameWish.Game
             {
                 return;
             }
-            //银牌引导结束
-            if (GuideIsOver)
-            {
-                if (m_Controller.GetState() == FacilityState.Unlocked)
-                    m_LobbyChallenging.SetActive(active);
-            }
+            if (m_Controller.GetState() == FacilityState.Unlocked)
+                m_LobbyChallenging.SetActive(active);
         }
 
         public override void SetViewByState(bool isFile = false)

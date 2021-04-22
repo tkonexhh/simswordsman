@@ -300,7 +300,6 @@ namespace GameWish.Game
                     {
                         itemData.quality = CharacterQuality.Normal;
                         itemData.bodyId = 1;
-                        EventSystem.S.Send(EventID.OnSilverGuideOver);
                     }
                     UIMgr.S.OpenPanel(UIID.GetDisciplePanel, itemData, ClickType.Free, type);
                     break;
