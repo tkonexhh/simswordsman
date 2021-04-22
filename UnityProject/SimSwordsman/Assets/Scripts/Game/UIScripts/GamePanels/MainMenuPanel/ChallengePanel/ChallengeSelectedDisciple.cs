@@ -70,7 +70,7 @@ namespace GameWish.Game
             OnRefreshPanelInfo();
         }
 
-        void LoadClanPrefabs(string prefabsName)
+        void LoadClanPrefabs()
         {
             if (m_DiscipleHeadObj==null)
             {
@@ -117,11 +117,18 @@ namespace GameWish.Game
 
             if (isSelected)
             {
-                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
+                LoadClanPrefabs();
                 m_SelelctedState = SelectedState.Selected;
             }
             else
+            {
+                if (m_DiscipleHeadObj!=null)
+                {
+                    DestroyImmediate(m_DiscipleHeadObj.gameObject);
+                    m_DiscipleHeadObj = null;
+                }
                 m_SelelctedState = SelectedState.NotSelected;
+            }
             RefreshPanelInfo();
         }
 

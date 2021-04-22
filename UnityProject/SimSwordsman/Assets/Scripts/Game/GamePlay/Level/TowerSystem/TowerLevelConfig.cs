@@ -10,7 +10,7 @@ namespace GameWish.Game
         public int level;
 
         public List<EnemyConfig> enemiesList = new List<EnemyConfig>();
-        public int rewardExp = 100;
+        public int rewardExp = 0;
 
         public TowerLevelConfig(int level)
         {
