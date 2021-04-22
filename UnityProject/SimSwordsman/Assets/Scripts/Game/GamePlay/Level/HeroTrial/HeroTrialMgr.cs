@@ -89,6 +89,7 @@ namespace GameWish.Game
 
             m_BattleField.ChangeBgSpriteRenderToHeroTrial();
             m_BattleField.SetSpriteBgLocalPos(new Vector3(0, -0.8f, 0));
+            m_BattleField.CalculateBattleArea(-1f);
 
             StartCountDown();
 
@@ -126,6 +127,7 @@ namespace GameWish.Game
 
             m_BattleField.OnBattleEnd();
             m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
+            m_BattleField.CalculateBattleArea();
 
             EventSystem.S.Send(EventID.OnExitHeroTrial);
 

@@ -34,15 +34,13 @@ namespace GameWish.Game
         private bool m_IsBattleBegin = false;
         private bool m_IsBattleEnd = false;
 
-        private Vector2 m_BattleAreaRightTop = new Vector2(44, 1.5f);
-        private Vector2 m_BattleAreaLeftBottom = new Vector2(38, -1.1f);
+        //private Vector2 m_BattleAreaRightTop = new Vector2(44, 1.5f);
+        //private Vector2 m_BattleAreaLeftBottom = new Vector2(38, -1.1f);
 
         private int m_FightGroupId = 1;
 
         private List<HerbType> m_SelectedHerbList = new List<HerbType>();
 
-        public Vector2 BattleAreaRightTop { get => m_BattleAreaRightTop; }
-        public Vector2 BattleAreaLeftBottom { get => m_BattleAreaLeftBottom; }
         public List<CharacterController> OurCharacterList { get => m_OurCharacterList; }
         public List<CharacterController> EnemyCharacterList { get => m_EnemyCharacterList; }
         public BattleField BattleField { get { return m_BattleField; } }
@@ -64,14 +62,9 @@ namespace GameWish.Game
         {
             m_BattleField = FindObjectOfType<BattleField>();
             m_BattleField.Init();
+            m_BattleField.CalculateBattleArea();
 
             RegisterEvents();
-
-            Vector2 center = new Vector2((m_BattleAreaRightTop.x + m_BattleAreaLeftBottom.x) / 2, (m_BattleAreaRightTop.y + m_BattleAreaLeftBottom.y) / 2);
-            float height = MainGameMgr.S.MainCamera.battleProperty.size;
-            float width = Camera.main.aspect * height;
-            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_BattleAreaRightTop.y);
-            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_BattleAreaLeftBottom.y);
         }
 
         public void OnUpdate()
