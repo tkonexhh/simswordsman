@@ -108,6 +108,7 @@ namespace GameWish.Game
         /// 可招募的时候惊叹号
         /// </summary>
         OnSendRecruitable,
+        OnSilverGuideOver,
         #endregion
 
         #region 弟子红点相关
