@@ -15,7 +15,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_ExpCont;
         [SerializeField]
-        private Image m_DisciplePhoto;
+        private Transform m_DiscipleTra;
         [SerializeField]
         private Slider m_ExpProportion;
 
@@ -54,7 +54,8 @@ namespace GameWish.Game
             m_ParentPanel = (CombatSettlementPanel)obj[3];
             m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
-            m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
+             DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, m_DiscipleTra, new Vector3(-132, -8, 0), new Vector3(0.2f, 0.2f, 1));
+            //m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
         {
@@ -82,37 +83,49 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_DiscipleName.text = m_CurCharacterItem.name;
-            //m_ExpProportion.value = ((float)m_CurCharacterItem.lastExp / m_CharacterController.GetExpLevelUpNeed());
+            if (m_IsSuccess)
+            {
+                if (m_PanelType == PanelType.Tower)
+                {
+                    m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+                    m_ExpCont.text = Define.PLUS + "0";
+                    return;
+                }
+                int deltaLevle = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
+                float start = ((float)m_CurCharacterItem.lastExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
+                float ratio = ((float)m_CurCharacterItem.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
+                if (deltaLevle == 0)
+                {
+                    StartCoroutine(ExperienceGrowthBar(start, ratio));
+                }
+                else if (deltaLevle == 1)
+                {
 
-            int deltaLevle = m_CurCharacterItem.level - m_CurCharacterItem.lastLevel;
-            float start = ((float)m_CurCharacterItem.lastExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
-            float ratio = ((float)m_CurCharacterItem.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurCharacterItem));
-            if (deltaLevle == 0)
-            {
-                StartCoroutine(ExperienceGrowthBar(start, ratio));
-            }
-            else if (deltaLevle == 1)
-            {
-       
-                StartCoroutine(ExperienceGrowthBar(start, 1, () =>
-                {
-                    StartCoroutine(ExperienceGrowthBar(0,ratio));
-                }));
-            }
-            else if (deltaLevle > 1)
-            {
-         
-                StartCoroutine(ExperienceGrowthBar(start, 1, () =>
-                {
-                    for (int i = 0; i < deltaLevle - 1; i++)
+                    StartCoroutine(ExperienceGrowthBar(start, 1, () =>
                     {
-                        StartCoroutine(ExperienceGrowthBar(0,1, () =>
+                        StartCoroutine(ExperienceGrowthBar(0, ratio));
+                    }));
+                }
+                else if (deltaLevle > 1)
+                {
+
+                    StartCoroutine(ExperienceGrowthBar(start, 1, () =>
+                    {
+                        for (int i = 0; i < deltaLevle - 1; i++)
                         {
-                            StartCoroutine(ExperienceGrowthBar(0,ratio));
-                        }));
-                    }
-                }));
+                            StartCoroutine(ExperienceGrowthBar(0, 1, () =>
+                            {
+                                StartCoroutine(ExperienceGrowthBar(0, ratio));
+                            }));
+                        }
+                    }));
+                }
             }
+            else
+            {
+                m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+            }
+
 
             if (!m_IsSuccess)
             {
@@ -131,8 +144,8 @@ namespace GameWish.Game
                     m_ExpCont.text = Define.PLUS + expChallenge;
                     break;
                 case PanelType.Tower:
-                    int exp = (int)FoodBuffSystem.S.Exp(m_TowerLevelConfig.rewardExp);
-                    m_ExpCont.text = Define.PLUS + exp;
+                    //int exp = (int)FoodBuffSystem.S.Exp(m_TowerLevelConfig.rewardExp);
+                    m_ExpCont.text = Define.PLUS + "0";
                     break;
                 default:
                     break;

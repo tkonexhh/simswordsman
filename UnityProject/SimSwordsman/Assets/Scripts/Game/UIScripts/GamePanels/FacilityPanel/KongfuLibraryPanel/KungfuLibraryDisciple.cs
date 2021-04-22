@@ -44,13 +44,7 @@ namespace GameWish.Game
                 RefreshPanelInfo();
                 EventSystem.S.Send(EventID.OnSelectedEvent, isSelected, m_CharacterItem, m_Pos);
             });
-
-            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
-            discipleHeadPortrait.OnInit(true);
-            //m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-            discipleHeadPortrait.transform.localPosition = new Vector3(45.9f, -29, 0);
-            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
-
+             DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, m_LevelBg.transform, new Vector3(45.9f, -29, 0), new Vector3(0.4f, 0.4f, 1));
             //m_DiscipleHead.sprite = m_KungfuChooseDisciplePanel.FindSprite(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
             RefreshPanelInfo();
         }

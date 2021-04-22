@@ -25,7 +25,8 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateInterval = 1;
         private float m_LeftTimeUpdateTime = 0;
 
-        private double m_TrialTotalTime = 0.3 * 60;
+        //private double m_TrialTotalTime = 0.3 * 60;
+        private double m_TrialTotalTime = 10 * 60 * 60;
 
         private ClanType m_TrialClanType = ClanType.None;
 
@@ -44,6 +45,11 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
+            if (PlatformHelper.isTestMode)
+            {
+                m_TrialTotalTime = 20;
+            }
+
             m_DbData = GameDataMgr.S.GetClanData().heroTrialData;
             m_TrialClanType = m_DbData.clanType;
 
@@ -52,9 +58,9 @@ namespace GameWish.Game
 
             m_StateMachine = new HeroTrialStateMachine(this);
 
-            if (CheckIsTrialReady() && m_TrialClanType == ClanType.None)
+            if (CheckIsTrialReady() /*&& m_TrialClanType == ClanType.None*/)
             {
-                m_TrialClanType = GetNextClanType(ClanType.None);
+                m_TrialClanType = GetNextClanType(m_TrialClanType);
             }
         }
 
@@ -115,9 +121,7 @@ namespace GameWish.Game
             try
             {
                 UnregisterEvents();
-
                 SetState(HeroTrialStateID.None);
-
                 if (m_FightGroup != null)
                 {
                     if (m_FightGroup.OurCharacter != null)
@@ -131,13 +135,10 @@ namespace GameWish.Game
                 m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
                 m_BattleField.CalculateBattleArea();
                 var lastChapter = MainGameMgr.S.ChapterMgr.GetLatestChapter();
-                m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
-
+                //m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
                 EventSystem.S.Send(EventID.OnExitHeroTrial);
-
                 if (m_Coroutine != null)
                     StopCoroutine(m_Coroutine);
-
                 m_IsInTrial = false;
             }
             catch (Exception e)
@@ -224,7 +225,7 @@ namespace GameWish.Game
             bool isLobbyLevelEnough = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby) >= 5;
             if (isLobbyLevelEnough == false)
             {
-                msg = "需要讲武堂等级达到5级";
+                msg = "讲武堂等级达到5级后解锁";
                 return false;
             }
 

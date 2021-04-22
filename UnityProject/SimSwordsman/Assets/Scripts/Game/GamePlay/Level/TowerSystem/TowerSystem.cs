@@ -32,6 +32,11 @@ namespace GameWish.Game
             MainGameMgr.S.BattleFieldMgr.onBattleExit -= OnBattleExit;
         }
 
+        public void EnterTower()
+        {
+            GameDataMgr.S.GetPlayerData().towerData.Init();
+        }
+
         public void StartLevel(List<CharacterController> owerCharacter, float basicATK)
         {
             m_IsTowerBattle = true;

@@ -245,7 +245,7 @@ namespace GameWish.Game
         public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
         public int bodyId;
         public int headId;
-        public ClanType heroClanType = ClanType.Mojiao;
+        public ClanType heroClanType = ClanType.None;
         public CollectedObjType collectedObjType;
 
         #region ¹¦ÄÜ×Ö¶Î
@@ -327,6 +327,7 @@ namespace GameWish.Game
 
         public void SetIsHero(ClanType clanType)
         {
+            heroClanType = clanType;
             quality = CharacterQuality.Hero;
             GameDataMgr.S.GetClanData().SetIsHero(id, clanType);
         }
@@ -355,6 +356,7 @@ namespace GameWish.Game
             quality = itemDbData.quality;
             bodyId = itemDbData.bodyId;
             headId = itemDbData.headId;
+            heroClanType = itemDbData.trialClanType;
             collectedObjType = itemDbData.collectedObjType;
 
             this.characterStateId = itemDbData.characterStateId;

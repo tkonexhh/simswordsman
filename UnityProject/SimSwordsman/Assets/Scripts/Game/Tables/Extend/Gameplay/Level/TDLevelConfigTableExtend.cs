@@ -146,8 +146,14 @@ namespace GameWish.Game
         /// <returns></returns>
         public LevelConfigInfo GetLevelConfigInfo(int index)
         {
-            if (m_AllCheckpoint.Count>0)
-                return m_AllCheckpoint.FirstOrDefault().Value;
+            if (m_AllCheckpoint.Count > 0)
+            {
+                if (index==0)
+                {
+                    return m_AllCheckpoint.FirstOrDefault().Value;
+                }
+                return m_AllCheckpoint[index];
+            }
             return null;
         }
 

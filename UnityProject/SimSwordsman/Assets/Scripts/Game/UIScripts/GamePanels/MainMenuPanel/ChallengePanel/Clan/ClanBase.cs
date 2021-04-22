@@ -105,11 +105,11 @@ namespace GameWish.Game
                         m_Buttons[i].SetEnabled(false);
                         m_Buttons[i].RefreshBtnInfo(ChallengeBtnState.Lock, i, m_CurChapterConfigInfo, levelConfigInfo[i]);
                     }
-
                     if (PlatformHelper.isTestMode)
                     {
-                        m_Buttons[i].enabled = true;
+                        m_Buttons[i].StartTestMode();
                     }
+
                 }
             }
         }

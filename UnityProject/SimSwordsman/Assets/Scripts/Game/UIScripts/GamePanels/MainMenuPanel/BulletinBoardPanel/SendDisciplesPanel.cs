@@ -388,6 +388,11 @@ namespace GameWish.Game
 
                             break;
                         }
+
+                        if (m_SelectedDiscipleDic.Count == 0)
+                        {
+                            FloatMessage.S.ShowMsg("当前无可用弟子");
+                        }
                     }
                     break;
                 default:

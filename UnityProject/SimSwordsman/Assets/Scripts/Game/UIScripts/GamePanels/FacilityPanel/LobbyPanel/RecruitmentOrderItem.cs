@@ -300,6 +300,7 @@ namespace GameWish.Game
                     {
                         itemData.quality = CharacterQuality.Normal;
                         itemData.bodyId = 1;
+                        EventSystem.S.Send(EventID.OnSilverGuideOver);
                     }
                     UIMgr.S.OpenPanel(UIID.GetDisciplePanel, itemData, ClickType.Free, type);
                     break;
@@ -403,7 +404,6 @@ namespace GameWish.Game
             }
             RefreshFreeRecruit();
         }
-
         private void InitFixedInfo()
         {
             m_Icon.sprite = m_CurSprite;
@@ -441,17 +441,15 @@ namespace GameWish.Game
             }
             return "";
         }
-
-
-        public void SetButtonEvent(Action<object> action)
-        {
-        }
-
-
         private void OnDisable()
         {
             EventSystem.S.UnRegister(EventID.OnRefreshPanelInfo, HandlingListeningEvents);
             EventSystem.S.UnRegister(EventID.OnRefreshRecruitmentOrder, HandlingListeningEvents);
+        }
+
+        public void SetButtonEvent(Action<object> action)
+        {
+            throw new NotImplementedException();
         }
     }
 

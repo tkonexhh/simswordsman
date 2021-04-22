@@ -30,7 +30,7 @@ namespace GameWish.Game
 
             // m_ListView.SetCellRenderer(OnCellRenderer);
             m_GreyMat = new Material(Shader.Find("XHH/UI/GreyUI"));
-
+            MainGameMgr.S.TowerSystem.EnterTower();
             for (int i = 0; i < m_LevelItems.Length; i++)
             {
                 int level = TowerDefine.MAXLEVEL - i;
@@ -47,12 +47,12 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshTowerCoin, (i, e) => { UpdateCoin(); });
             UpdateUI();
 
-            if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
-            {
-                DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
-                DataRecord.S.Save();
-                UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
-            }
+            // if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
+            // {
+            //     DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
+            //     DataRecord.S.Save();
+            //     UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
+            // }
         }
 
         protected override void OnClose()

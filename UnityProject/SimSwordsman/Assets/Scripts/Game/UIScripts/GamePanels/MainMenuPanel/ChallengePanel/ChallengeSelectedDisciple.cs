@@ -70,16 +70,11 @@ namespace GameWish.Game
             OnRefreshPanelInfo();
         }
 
-        void LoadClanPrefabs(string prefabsName)
+        void LoadClanPrefabs()
         {
             if (m_DiscipleHeadObj==null)
             {
-                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
-                discipleHeadPortrait.OnInit(true);
-                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-                discipleHeadPortrait.transform.localPosition = new Vector3(47.6f, -27.6f, 0);
-                discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
-                Debug.LogError("###"+ discipleHeadPortrait.transform.localPosition);
+                m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, m_LevelBg.transform, new Vector3(47.6f, -27.6f, 0), new Vector3(0.4f, 0.4f, 1));
             }
             //m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
         }
@@ -122,11 +117,18 @@ namespace GameWish.Game
 
             if (isSelected)
             {
-                LoadClanPrefabs(CharacterMgr.GetLoadDiscipleName(m_CharacterItem));
+                LoadClanPrefabs();
                 m_SelelctedState = SelectedState.Selected;
             }
             else
+            {
+                if (m_DiscipleHeadObj!=null)
+                {
+                    DestroyImmediate(m_DiscipleHeadObj.gameObject);
+                    m_DiscipleHeadObj = null;
+                }
                 m_SelelctedState = SelectedState.NotSelected;
+            }
             RefreshPanelInfo();
         }
 

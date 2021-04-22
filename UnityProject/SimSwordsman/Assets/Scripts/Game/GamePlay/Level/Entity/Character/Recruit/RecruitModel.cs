@@ -309,12 +309,12 @@ namespace GameWish.Game
 
         private int GetBodyMaxId()
         {
-            return 4;
+            return 5;
         }
 
         private int GetHeadMaxId()
         {
-            return 4;
+            return 6;
         }
     }
 }

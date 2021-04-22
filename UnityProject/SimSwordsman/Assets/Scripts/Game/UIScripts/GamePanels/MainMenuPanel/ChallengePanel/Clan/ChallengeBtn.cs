@@ -1,3 +1,4 @@
+using Qarth;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class ChallengeBtn : MonoBehaviour
-	{
+    public class ChallengeBtn : MonoBehaviour
+    {
         [SerializeField]
         private BtnFunc m_NormalState = null;
         [SerializeField]
@@ -14,8 +15,18 @@ namespace GameWish.Game
 
         private BtnFunc m_BtnFunc = null;
 
+        public void StartTestMode()
+        {
+            if (PlatformHelper.isTestMode)
+            {
+                SetEnabled(true);
+            }
+        }
+
         public void Init(bool isBossLevel)
         {
+
+
             bool isBoss = isBossLevel;
 
             if (isBoss)
@@ -42,5 +53,5 @@ namespace GameWish.Game
             m_BtnFunc.GetComponent<Button>().enabled = enable;
         }
     }
-	
+
 }

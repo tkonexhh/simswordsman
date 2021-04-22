@@ -101,11 +101,7 @@ namespace GameWish.Game
                 case DeliverDiscipleState.Someone:
                     if (m_DiscipleHeadObj == null)
                     {
-                        DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), transform).GetComponent<DiscipleHeadPortrait>();
-                        discipleHeadPortrait.OnInit(true);
-                        m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
-                        discipleHeadPortrait.transform.localPosition = new Vector3(8.8f, 0.4f, 0);
-                        discipleHeadPortrait.transform.localScale = new Vector3(0.35f, 0.35f, 1);
+                        m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, transform, new Vector3(8.8f, 0.4f, 0), new Vector3(0.35f, 0.35f, 1));
                     }
                     //m_Head.sprite = SpriteHandler.S.GetSprite(AtlasDefine.CharacterHeadIconsAtlas,GetDiscipelHeadName());
                     SetQualitySprite();

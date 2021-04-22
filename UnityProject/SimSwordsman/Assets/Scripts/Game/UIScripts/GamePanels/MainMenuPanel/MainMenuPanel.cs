@@ -248,12 +248,16 @@ namespace GameWish.Game
 
             m_HeroTrialBtn.onClick.AddListener(() =>
             {
-                //string msg = string.Empty;
-                //if (MainGameMgr.S.HeroTrialMgr.IsUnlocked(ref msg))
-                //{
-                //    FloatMessage.S.ShowMsg(msg);
-                //    return;
-                //}
+                string msg = string.Empty;
+                if (!PlatformHelper.isTestMode)
+                {
+                    if (!MainGameMgr.S.HeroTrialMgr.IsUnlocked(ref msg))
+                    {
+                        FloatMessage.S.ShowMsg(msg);
+                        return;
+                    }
+                }
+              
                 UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
@@ -425,7 +429,8 @@ namespace GameWish.Game
                 if (chapterDbItem != null)
                 {
                     LevelConfigInfo levelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(chapterDbItem.chapter, chapterDbItem.level);
-                    if (allAtkValue >= levelConfigInfo.recommendAtkValue)
+                    //Debug.LogError("推荐功力 = "+ levelConfigInfo.recommendAtkValue);
+                    if (allAtkValue >= levelConfigInfo.recommendAtkValue*1.5f)
                         m_Challenging.SetActive(true);
                     else
                         m_Challenging.SetActive(false);

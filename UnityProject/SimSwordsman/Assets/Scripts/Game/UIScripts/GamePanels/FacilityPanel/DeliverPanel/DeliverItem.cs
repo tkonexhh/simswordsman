@@ -187,9 +187,9 @@ namespace GameWish.Game
 					if (normalList[i].IsFreeState())
 						characterItems.Add(normalList[i]);
 
-				surplus = surplus - characterItems.Count;
 			}
-			if ((int)quality <= 3)
+			surplus = surplus - characterItems.Count;
+			if ((int)quality <= 4)
 			{
 				QuickStartAddDisciple(quality + 1, surplus, characterItems);
 			}
