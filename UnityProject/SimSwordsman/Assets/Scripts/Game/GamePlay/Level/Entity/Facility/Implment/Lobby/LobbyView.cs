@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Qarth;
+using System;
 
 namespace GameWish.Game
 {
@@ -10,19 +11,36 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_LobbyChallenging;
 
+        private bool GuideIsOver = false;
         public override FacilityController GenerateContoller()
         {
+            EventSystem.S.Register(EventID.OnSilverGuideOver, HandleAddlistenerEvent);
             return new LobbyController( FacilityType.Lobby, this);
+        }
+
+        private void HandleAddlistenerEvent(int key, params object[] param)
+        {
+            switch (key)
+            {
+                case (int)EventID.OnSilverGuideOver:
+                    GuideIsOver = true;
+                    break;
+            
+            }
         }
 
         public void SetLobbyChallenging(bool active)
         {
-            //银牌招募引导未完成时，不做其他操作
-            if (GuideMgr.S.IsGuideFinish(6) == false) {
+            if (GuideMgr.S.IsGuideFinish(6) == false)
+            {
                 return;
             }
-            if (m_Controller.GetState() == FacilityState.Unlocked)
-                m_LobbyChallenging.SetActive(active);
+            //银牌引导结束
+            if (GuideIsOver)
+            {
+                if (m_Controller.GetState() == FacilityState.Unlocked)
+                    m_LobbyChallenging.SetActive(active);
+            }
         }
 
         public override void SetViewByState(bool isFile = false)

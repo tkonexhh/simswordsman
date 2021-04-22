@@ -153,6 +153,15 @@ namespace GameWish.Game
 
         public void Init()
         {
+            #region 检测食物刷新
+            int house = CommonUIMethod.GetDeltaTime(FoodRefreshRecordingTime);
+            int count = house / 24;
+            if (count > FoodRefreshCount)
+            {
+                ResetFoodRefreshTimesToday();
+                SetFoodRefreshCount(count);
+            }
+            #endregion
             m_CoinNum = long.Parse(coinNumStr);
         }
         public RecruitData GetRecruitData()
@@ -239,7 +248,6 @@ namespace GameWish.Game
         }
         #endregion
 
-
         #region work system
         public bool IsUnlockWorkSystem()
         {
@@ -251,8 +259,6 @@ namespace GameWish.Game
             SetDataDirty();
         }
         #endregion
-
-
 
         #region 角色章节任务相关
         public void AddNewCheckpoint(int chapterId)
