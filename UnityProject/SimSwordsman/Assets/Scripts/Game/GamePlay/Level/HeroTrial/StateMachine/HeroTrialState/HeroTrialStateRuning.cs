@@ -48,7 +48,7 @@ namespace GameWish.Game
             m_EnemyInitPos = m_HeroTialMgr.BattleField.GetEnemyCharacterPos();
 
             // Spawn Characters
-            m_OurCharacter = SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
+            m_OurCharacter = m_HeroTialMgr.SpawnOurCharacter(m_HeroTialMgr.DbData.characterId);
             m_OurCharacter.CharacterModel.SetHp(m_OurCharacter.CharacterModel.GetBaseAtkValue());
 
             int enemyId = GetEnemyId();
@@ -116,27 +116,6 @@ namespace GameWish.Game
             return enemy;
         }
 
-        private CharacterController SpawnOurCharacter(int id)
-        {
-            CharacterController controller = null;
-
-            CharacterItem characterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(id);
-
-            GameObject go = CharacterLoader.S.GetCharacterGo(id, characterItem.quality, characterItem.bodyId, characterItem.GetClanType());
-            if (go != null)
-            {
-                go.transform.SetParent(m_HeroTialMgr.BattleField.transform);
-                CharacterView characterView = go.GetComponent<CharacterView>();
-                controller = new CharacterController(id, characterView, CharacterStateID.Battle);
-                controller.OnEnterBattleField(m_OurInitPos);
-            }
-            else
-            {
-                Log.e("SpawnCharacterController return null");
-            }
-
-            return controller;
-        }
 
         private int GetEnemyId()
         {

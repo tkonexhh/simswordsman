@@ -45,7 +45,7 @@ namespace GameWish.Game
         public void Reset()
         {
             state = HeroTrialStateID.Idle;
-            trialStartTime = string.Empty;
+            //trialStartTime = string.Empty;
             characterId = -1;
             clanType = ClanType.None;
 

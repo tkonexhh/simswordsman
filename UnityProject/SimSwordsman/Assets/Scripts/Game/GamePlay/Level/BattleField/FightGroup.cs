@@ -31,11 +31,11 @@ namespace GameWish.Game
             m_OurCharacter = ourCharacter;
             m_EnemyCharacter = enemyCharacter;
 
-            ourCharacter.SetFightGroup(this);
-            ourCharacter.SetFightTarget(m_EnemyCharacter);
+            ourCharacter?.SetFightGroup(this);
+            ourCharacter?.SetFightTarget(m_EnemyCharacter);
 
-            enemyCharacter.SetFightGroup(this);
-            enemyCharacter.SetFightTarget(m_OurCharacter);
+            enemyCharacter?.SetFightGroup(this);
+            enemyCharacter?.SetFightTarget(m_OurCharacter);
 
             RegisterEvents();
             ParpareEffectPool();
@@ -60,20 +60,26 @@ namespace GameWish.Game
 
         private void ParpareEffectPool()
         {
-            var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
-            ourkongfus.Add(KungfuType.Attack);
-            foreach (var kongfu in ourkongfus)
+            if (m_OurCharacter != null)
             {
-                var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
-                AddKongfuToPool(config);
+                var ourkongfus = m_OurCharacter.CharacterModel.GetKongfuTypeList();
+                ourkongfus.Add(KungfuType.Attack);
+                foreach (var kongfu in ourkongfus)
+                {
+                    var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
+                    AddKongfuToPool(config);
+                }
             }
 
-            var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
-            var enemykongfus = enemyConfig.animNameList;
-            foreach (var kongfu in enemykongfus)
+            if (m_EnemyCharacter != null)
             {
-                var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
-                AddKongfuToPool(config);
+                var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
+                var enemykongfus = enemyConfig.animNameList;
+                foreach (var kongfu in enemykongfus)
+                {
+                    var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
+                    AddKongfuToPool(config);
+                }
             }
         }
 

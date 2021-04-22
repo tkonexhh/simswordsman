@@ -66,7 +66,7 @@ namespace GameWish.Game
             base.OnUIInit();
             EventSystem.S.Register(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
             EventSystem.S.Register(EventID.OnCountDownRefresh, HandAdListenerEvent);
-            EventSystem.S.Register(EventID.OnEnableFinishBtn, HandAdListenerEvent);
+            EventSystem.S.Register(EventID.OnTrialTimeOver, HandAdListenerEvent);
           
         }
 
@@ -91,10 +91,10 @@ namespace GameWish.Game
                 case (int)EventID.OnEnableFinishBtn:
                     m_TrialComplete = true;
                     m_FinishTrialBtn.gameObject.SetActive(true);
-                    break;    
-                //case (int)EventID.OnTrialTimeOver:
-                //    m_FinishTrialBtn.gameObject.SetActive(true);
-                //    break;
+                    break;
+                case (int)EventID.OnTrialTimeOver:
+                    m_FinishTrialBtn.gameObject.SetActive(true);
+                    break;
             }
         }
 
@@ -183,16 +183,23 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
+                bool isTrialReady = MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady();
+                if (!isTrialReady)
+                {
+                    FloatMessage.S.ShowMsg("今日次数已用完");
+                    return;
+                }
+
                 UIMgr.S.OpenPanel(UIID.HeroTrialChooseDisciplePanel, PanelType.HeroTrial);
             });
 
             m_FinishTrialBtn.onClick.AddListener(() =>
             {
-                if (!m_TrialComplete)
-                {
-                    FloatMessage.S.ShowMsg("试炼未完成");
-                    return;
-                }
+                //if (!m_TrialComplete)
+                //{
+                //    FloatMessage.S.ShowMsg("试炼未完成");
+                //    return;
+                //}
                 MainGameMgr.S.HeroTrialMgr.FinishTrial();
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
@@ -241,7 +248,7 @@ namespace GameWish.Game
             m_LeftQualityImg.sprite = GetQualityImg(m_TrialDisciple.quality); 
             m_RightLine.sprite = GetLine(CharacterQuality.Hero);
             m_RightQualityImg.sprite = GetQualityImg(CharacterQuality.Hero);
-            if (m_HeroTrialStateID != HeroTrialStateID.Runing)
+            if (m_HeroTrialStateID == HeroTrialStateID.Idle)
                 m_SelectCharacterBtn.gameObject.SetActive(true);
             else
                 m_SelectCharacterBtn.gameObject.SetActive(false);
@@ -300,7 +307,7 @@ namespace GameWish.Game
             base.OnClose();
             EventSystem.S.UnRegister(EventID.OnRefreshTrialPanel, HandAdListenerEvent);
             EventSystem.S.UnRegister(EventID.OnCountDownRefresh, HandAdListenerEvent);
-            EventSystem.S.UnRegister(EventID.OnEnableFinishBtn, HandAdListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnTrialTimeOver, HandAdListenerEvent);
             //CloseDependPanel(EngineUI.MaskPanel);
         }
     }
