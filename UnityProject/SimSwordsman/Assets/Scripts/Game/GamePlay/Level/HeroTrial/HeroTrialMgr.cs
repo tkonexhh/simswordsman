@@ -115,9 +115,7 @@ namespace GameWish.Game
             try
             {
                 UnregisterEvents();
-
                 SetState(HeroTrialStateID.None);
-
                 if (m_FightGroup != null)
                 {
                     if (m_FightGroup.OurCharacter != null)
@@ -131,13 +129,10 @@ namespace GameWish.Game
                 m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
                 m_BattleField.CalculateBattleArea();
                 var lastChapter = MainGameMgr.S.ChapterMgr.GetLatestChapter();
-                m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
-
+                //m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
                 EventSystem.S.Send(EventID.OnExitHeroTrial);
-
                 if (m_Coroutine != null)
                     StopCoroutine(m_Coroutine);
-
                 m_IsInTrial = false;
             }
             catch (Exception e)
