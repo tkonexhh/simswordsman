@@ -20,5 +20,6 @@ namespace GameWish.Game
         public const string HeroTrialPanelAtlas = "HeroTrialPanelAtlas";
         public const string DisicipleHeadIconsAtlas = "DisicipleHeadIconsAtlas";
         public const string EnmeyHeadIconsAtlas = "EnmeyHeadIconsAtlas";
+        public const string DiscipleDetailsPanelAtlas = "DiscipleDetailsPanelAtlas";
     }
 }

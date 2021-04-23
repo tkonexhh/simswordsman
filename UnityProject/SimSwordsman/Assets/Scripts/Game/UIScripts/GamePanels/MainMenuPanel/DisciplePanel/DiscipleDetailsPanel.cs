@@ -7,13 +7,6 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-    public enum EquipBtnState
-    {
-        None,
-        Lock,
-        UnLock,
-    }
-
     public class DiscipleDetailsPanel : AbstractAnimPanel
     {
         [SerializeField]
@@ -26,40 +19,21 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_ImgFontPre;   
         [SerializeField]
-        private GameObject m_Post;
+        private Image m_Post;
         [Header("Top Left Level")]
         [SerializeField]
         private Text m_LevelValue;
-        //[SerializeField]
-        //private Text m_DiscipleNameValue;    
         [SerializeField]
         private Slider m_ExpSlider;
-        //[SerializeField]
-        //private Text m_LevelTitle;
         [Header("Top Left Atk")]
-        //[SerializeField]
-        //private Text m_SkillTitle;
         [SerializeField]
         private Text m_SkillValue;
-
         [Header("Top Left Rank")]
-        //[SerializeField]
-        //private Text m_RankTitle;
         [SerializeField]
         private Text m_RankValue;
-        //[SerializeField]
-        //private Text m_EntryTimeTitle;
-        //[SerializeField]
-        //private Text m_EntryTimeValue;
-        //[SerializeField]
-        //private Image m_StateBg;
-        //[SerializeField]
-        //private Text m_StateValue;
         [Header("Top Right")]
         [SerializeField]
         private Transform m_HeadTra;
-        [SerializeField]
-        private GameObject m_Head;
         [SerializeField]
         private Image m_GradeImg;
         [SerializeField]
@@ -76,93 +50,10 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_EquipItem;
 
-
-
-        //[SerializeField]
-        //private Image m_DiscipleImg;  
-        //[SerializeField]
-        //private Transform m_Top;
-
-        //[Header("UpperMiddle")]
-        //[SerializeField]
-        //private Text m_KungfuTitle;
-
-
-        //[Header("LeftLowerMiddle")]
-        //[SerializeField]
-        //private Text m_ArmorTitle;
-        //[SerializeField]
-        //private Text m_ArmorNameValue;
-        //[SerializeField]
-        //private Text m_ArmorClassValue;
-        //[SerializeField]
-        //private Text m_ArmorSkillValue;
-        //[SerializeField]
-        //private Image m_ArmorImg;
-        //[SerializeField]
-        //private Image m_ArmorLock;
-        //[SerializeField]
-        //private Image m_ArmorPlus;
-        //[SerializeField]
-        //private Button m_ArmorBtn;
-        //[SerializeField]
-        //private Image m_IntensifyArmorImg;
-        //[SerializeField]
-        //private Button m_IntensifyArmorBtn;
-        //[SerializeField]
-        //private Text m_IntensifyArmorValue;
-        //[SerializeField]
-        //private GameObject m_ArmorRedPoint;
-
-        //[Header("RightLowerMiddle")]
-        //[SerializeField]
-        //private Text m_ArmsTitle;
-        //[SerializeField]
-        //private Text m_ArmsNameValue;
-        //[SerializeField]
-        //private Text m_ArmsClassValue;
-        //[SerializeField]
-        //private Text m_ArmsSkillValue;
-        //[SerializeField]
-        //private Image m_ArmsImg;
-        //[SerializeField]
-        //private Image m_ArmsLock;
-        //[SerializeField]
-        //private Image m_ArmsPlus;
-        //[SerializeField]
-        //private Button m_ArmsBtn;
-        //[SerializeField]
-        //private Image m_IntensifyArmsImg;
-        //[SerializeField]
-        //private Button m_IntensifyArmsBtn;
-        //[SerializeField]
-        //private Text m_IntensifyArmsValue;
-        //[SerializeField]
-        //private GameObject m_ArmsRedPoint;
-
-        //[Header("Bottom")]
-        //[SerializeField]
-        ////private Button m_PracticeValueBtn;
-        ////[SerializeField]
-        ////private Text m_PracticeValue;
-        ////[SerializeField]
-        ////private Button m_WorkValueBtn;
-        ////[SerializeField]
-        ////private Text m_WorkValue;
-        ////[SerializeField]
-        //private Button m_EjectValueBtn;
-        //[SerializeField]
-        //private Text m_EjectValue;
- 
         private CharacterItem m_CurDisciple = null;
         private CharacterController m_CurCharacterController = null;
         private Dictionary<int, CharacterKongfuData> m_Kongfus = null;
         private Dictionary<int, GameObject> m_KongfusGameObject = new Dictionary<int, GameObject>();
-
-        private EquipBtnState m_ArmorState = EquipBtnState.None;
-        private EquipBtnState m_ArmsState = EquipBtnState.None;
-        //private EquipmentItem m_CurArmor = null;
-        //private EquipmentItem m_CurArms = null;
 
         #region 测试使用 
         [SerializeField]
@@ -176,55 +67,32 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
             EventSystem.S.Register(EventID.OnSelectedKungfuSuccess, HandleAddListenerEvevt);
 
-            InitPanelTitleInfo();
-
-            BindAddListenerEvent();
-        }
-
-        /// <summary>
-        /// 初始化面板的固定信息
-        /// </summary>
-        private void InitPanelTitleInfo()
-        {
-            //m_LevelTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_LEVEL);
-            //m_SkillTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL);
-            //m_EntryTimeTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_ENTRYTIME);
-            //m_RankTitle.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_RANK);
-            //m_KungfuTitle.text = CommonUIMethod.GetStringForTableKey(Define.KUNGFU_TITLE);
-            //m_ArmorTitle.text = CommonUIMethod.GetStringForTableKey(Define.ARMOR_TITLE);
-            //m_ArmsTitle.text = CommonUIMethod.GetStringForTableKey(Define.ARMS_TITLE);
-            //m_PracticeValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_PRACTICE);
-            //m_WorkValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_WORK);
-            //m_EjectValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_EJECT);
-
-          
-        }
-
-        private string GetLoadDiscipleName(CharacterItem characterItem)
-        {
-            return "head_" + characterItem.quality.ToString().ToLower() + "_" + characterItem.bodyId + "_" + characterItem.headId;
+        
         }
 
         private void RefreshPanelInfo()
         {
-            //m_DiscipleNameValue.text = m_CurDisciple.name;
             m_LevelValue.text = CommonUIMethod.GetGrade(m_CurDisciple.level);
             m_SkillValue.text = CommonUIMethod.GetTenThousandOrMillion((long)m_CurDisciple.atkValue);
-            //m_EntryTimeValue.text = GetEntryTime(m_CurDisciple.GetEntryTime());
             m_RankValue.text = CommonUIMethod.GetPart(m_CurDisciple.stage);
+
+            Transform transform = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurDisciple), m_HeadTra).transform;
+            transform.localPosition = new Vector3(-1.5f, 70f, 0);
+            transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            m_ExpSlider.value = (float)m_CurDisciple.curExp / TDCharacterStageConfigTable.GetExpLevelUpNeed(m_CurDisciple);
             switch (m_CurDisciple.quality)
             {
                 case CharacterQuality.Normal:
-                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg18");
+                    m_GradeImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_God");
                     break;
                 case CharacterQuality.Good:
-                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg19");
+                    m_GradeImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Normal");
                     break;
                 case CharacterQuality.Perfect:
-                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg17");
+                    m_GradeImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Perfect");
                     break;
                 case CharacterQuality.Hero:
-                    m_GradeImg.sprite = FindSprite("DiscipleDetails_Bg22");
+                    m_GradeImg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Hero");
                     break;
                 default:
                     break;
@@ -255,8 +123,10 @@ namespace GameWish.Game
 
         private void RefershIntensifyImg()
         {
-            RefershIntensifyArmorImg();
-            RefershIntensifyArmsImg();
+            CharacterArms characterArms = m_CurDisciple.characeterEquipmentData.CharacterArms;
+            CreateEquip(characterArms, PropType.Arms);
+            CharacterArmor characterArmor = m_CurDisciple.characeterEquipmentData.CharacterArmor;
+            CreateEquip(characterArmor, PropType.Armor);
         }
         private void RefershIntensifyArmsImg()
         {
@@ -389,14 +259,20 @@ namespace GameWish.Game
         private void CreateKungfu(int index, KungfuLockState kungfuLockState, Sprite sprite, int UnLockLevel = -1, CharacterKongfu characterKongfu = null)
         {
             GameObject obj = Instantiate(m_KungfuItem, m_KungfuTra);
-            ItemICom itemICom = obj.GetComponent<ItemICom>();
+            KungfuPanelItem itemICom = obj.GetComponent<KungfuPanelItem>();
             if (!m_KongfusGameObject.ContainsKey(index))
                 m_KongfusGameObject.Add(index, obj);
+            itemICom.OnInit(kungfuLockState,characterKongfu, m_CurDisciple,  UnLockLevel, index);
+        }
 
+        private void CreateEquip(CharaceterEquipment characeterEquipment, PropType prop)
+        {
+            GameObject obj = Instantiate(m_EquipItem, m_EquipTra);
+            EquipmentItem itemICom = obj.GetComponent<EquipmentItem>();
+            //if (!m_KongfusGameObject.ContainsKey(index))
+            //    m_KongfusGameObject.Add(index, obj);
+            itemICom.OnInit(characeterEquipment,m_CurDisciple, prop);
 
-            List<Sprite> sprites = GetSprite(characterKongfu);
-            sprites.Add(sprite);
-            itemICom.OnInit(characterKongfu, null, kungfuLockState, sprites, UnLockLevel, m_CurDisciple, index);
         }
 
         private string GetEntryTime(int day)
@@ -506,16 +382,16 @@ namespace GameWish.Game
 
             //    DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, characterArmor.ArmorID.ToString() + ";" + characterArmor.Class.ToString());
             //});
-            //m_EjectValueBtn.onClick.AddListener(() =>
-            //{
-            //    AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-            //    UIMgr.S.OpenPanel(UIID.LogPanel,LogCallBack, "逐出师门", "确定要将该弟子逐出师门吗？", "确定", "再想想");
-            //});
             m_CloseBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
+            });
+            m_EjectBtn.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "逐出师门", "确定要将该弟子逐出师门吗？", "确定", "再想想");
             });
             m_BlackBtn.onClick.AddListener(() =>
             {
@@ -584,10 +460,60 @@ namespace GameWish.Game
             m_CurDisciple = (CharacterItem)args[0];
 
             GetInformationForNeed();
+
+            BindAddListenerEvent();
+
+            RefreshDiscipleName();
+
             RefreshPanelInfo();
             RefershIntensifyImg();
             //DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurDisciple, m_Top, new Vector3(135, -1, 0), new Vector3(0.7f, 0.7f, 1));
             DataAnalysisMgr.S.CustomEvent(DotDefine.students_detail, m_CurDisciple.quality.ToString()+";"+ m_CurDisciple.level.ToString());
+        }
+
+        private void RefreshDiscipleName()
+        {
+            string discipleName = m_CurDisciple.name;
+            for (int i = 0; i < discipleName.Length; i++)
+            {
+                ImgFontPre imgFontPre = Instantiate(m_ImgFontPre, m_NameTra).GetComponent<ImgFontPre>();
+                imgFontPre.transform.SetSiblingIndex(i);
+                imgFontPre.SetFontCont(discipleName[i].ToString());
+            }
+            if (m_CurDisciple.quality == CharacterQuality.Hero)
+            {
+                switch (m_CurDisciple.heroClanType)
+                {
+                    case ClanType.Gaibang:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post2");
+                        break;
+                    case ClanType.Shaolin:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post1");
+                        break;
+                    case ClanType.Wudang:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post8");
+                        break;
+                    case ClanType.Emei:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post3");
+                        break;
+                    case ClanType.Huashan:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post5");
+                        break;
+                    case ClanType.Wudu:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post6");
+                        break;
+                    case ClanType.Mojiao:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post7");
+                        break;
+                    case ClanType.Xiaoyao:
+                        m_Post.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Post4");
+                        break;
+                }
+            }
+            else
+            {
+                m_Post.gameObject.SetActive(false);
+            }
         }
 
         private void GetInformationForNeed()
@@ -601,10 +527,7 @@ namespace GameWish.Game
             switch ((EventID)key)
             {
                 case EventID.OnSelectedEquipSuccess:
-                    RefreshArmsInfo();
-                    RefreshArmorInfo();
                     RefreshSkillValue();
-                    RefershIntensifyImg();
                     EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
                     break;
                 case EventID.OnRefreshDisciple:

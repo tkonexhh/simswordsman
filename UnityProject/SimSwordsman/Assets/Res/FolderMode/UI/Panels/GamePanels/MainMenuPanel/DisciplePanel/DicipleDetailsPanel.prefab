@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 303, y: -621}
+  m_AnchoredPosition: {x: 303, y: -656}
   m_SizeDelta: {x: 88.68, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7889421856268264493
@@ -602,7 +602,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1064243548445936619}
   m_HandleRect: {fileID: 0}
@@ -1113,20 +1113,19 @@ MonoBehaviour:
   m_SortingOrder: -1
   m_BlackBtn: {fileID: 3666744498399475488}
   m_CloseBtn: {fileID: 8624254677812268143}
-  m_NameTra: {fileID: 8959569866815530924}
+  m_NameTra: {fileID: 2497037220193112719}
   m_ImgFontPre: {fileID: 8481717589376841817, guid: a4cea071fa7ac184fb1a937955c82720,
     type: 3}
-  m_Post: {fileID: 3257481855053366465}
+  m_Post: {fileID: 6481531090011972592}
   m_LevelValue: {fileID: 949073075462773808}
   m_ExpSlider: {fileID: 482973360336817914}
   m_SkillValue: {fileID: 7457490137558870191}
   m_RankValue: {fileID: 468464912767198494}
   m_HeadTra: {fileID: 2669780724842962530}
-  m_Head: {fileID: 8877283028080948, guid: 612dc404207fca643a096c51dca3fd75, type: 3}
   m_GradeImg: {fileID: 7909887877259568667}
   m_EjectBtn: {fileID: 8222790494756752745}
   m_KungfuTra: {fileID: 4321464701359230573}
-  m_KungfuItem: {fileID: 8224265671726830720, guid: 57a108397c80d5b4086d330165d5bc45,
+  m_KungfuItem: {fileID: 8877283028080948, guid: 612dc404207fca643a096c51dca3fd75,
     type: 3}
   m_EquipTra: {fileID: 2692289337264156239}
   m_EquipItem: {fileID: 8877283028080948, guid: 9d59cd76140240d46bf2a7adcdab13e3,
@@ -1296,7 +1295,7 @@ GameObject:
   - component: {fileID: 9028293029201908296}
   - component: {fileID: 6872869019378098610}
   m_Layer: 0
-  m_Name: Img_NameTra
+  m_Name: Img_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1370,7 @@ GameObject:
   - component: {fileID: 7482573086780923689}
   - component: {fileID: 3634431376085902809}
   m_Layer: 5
-  m_Name: Left
+  m_Name: Lef_NameTra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

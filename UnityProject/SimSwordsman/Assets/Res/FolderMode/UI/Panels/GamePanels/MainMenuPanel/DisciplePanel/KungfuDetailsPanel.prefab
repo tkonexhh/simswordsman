@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7945553273041701781}
   - component: {fileID: 7162093661254237546}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: KungQuality
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8813206840037613220}
   - component: {fileID: 3973124998516942347}
   m_Layer: 0
-  m_Name: Txt_ (1)
+  m_Name: CurAddition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 4040879831084140231}
   - component: {fileID: 7536668436352367122}
   m_Layer: 0
-  m_Name: Txt_ (1)
+  m_Name: KungOrder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 2900691560307241510}
   - component: {fileID: 3628464792541814426}
   m_Layer: 0
-  m_Name: Img_
+  m_Name: KungfuName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -722,7 +722,6 @@ RectTransform:
   m_Children:
   - {fileID: 8684230321446696318}
   - {fileID: 3444798831795113224}
-  - {fileID: 4540937707971239265}
   m_Father: {fileID: 4112267867224696812}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1081,7 +1080,7 @@ GameObject:
   - component: {fileID: 5218587186365671441}
   - component: {fileID: 5218587186365671442}
   - component: {fileID: 5218587186365671443}
-  - component: {fileID: -2127018244707058901}
+  - component: {fileID: 8353734273250553635}
   m_Layer: 5
   m_Name: KungfuDetailsPanel
   m_TagString: Untagged
@@ -1464,7 +1463,7 @@ MonoBehaviour:
   loopAnimationsPresetCategoryName: Uncategorized
   loopAnimationsPresetName: DefaultPreset
   loadLoopAnimationsPresetAtRuntime: 0
---- !u!114 &-2127018244707058901
+--- !u!114 &8353734273250553635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1473,18 +1472,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 5218587186365671534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13033009302878f449ce9c1ba4fcd79c, type: 3}
+  m_Script: {fileID: 11500000, guid: 19b00429b626e9f4d9f2e6b514d86820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotLearnBg: {fileID: 0}
-  m_SelectBg: {fileID: 0}
-  m_LearnBg: {fileID: 0}
-  m_KungfuName: {fileID: 0}
-  m_KungfuBtn: {fileID: 0}
-  m_ClassValue: {fileID: 0}
-  m_KungfuAddition: {fileID: 0}
-  m_RestrictionsValue: {fileID: 0}
-  m_KungfuRedPoint: {fileID: 0}
+  m_ParentPage: {fileID: 0}
+  m_SpritesData: []
+  m_PanelEventLogType: 0
+  m_HideMask: 0
+  m_CustomVisibleFlag: 1
+  m_SortingOrder: -1
+  m_BlackBtn: {fileID: 3268093171233748893}
+  m_CloseBtn: {fileID: 1134970533202655167}
+  m_TopTra: {fileID: 6687707774300126049}
+  m_ImgFontPre: {fileID: 8481717589376841817, guid: a4cea071fa7ac184fb1a937955c82720,
+    type: 3}
+  m_BriefIntroduction: {fileID: 1572956016305856402}
+  m_KungfuBg: {fileID: 4657916147209586527}
+  m_KungfuName: {fileID: 3628464792541814426}
+  m_KungfuQuality: {fileID: 7162093661254237546}
+  m_KungfuOrder: {fileID: 7536668436352367122}
+  m_KungfuExpSlider: {fileID: 6323695140061568849}
+  m_CurAddition: {fileID: 3973124998516942347}
+  m_NextAddition: {fileID: 1609092014523620524}
+  m_ResetLearnBtn: {fileID: 2636339144036859215}
 --- !u!1 &5218587187057298994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1585,7 @@ GameObject:
   - component: {fileID: 7154265173042449385}
   - component: {fileID: 4657916147209586527}
   m_Layer: 5
-  m_Name: ItemIcon
+  m_Name: KungfuBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,80 +1639,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: fe24d16191edf4146a94c863231d21f1, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!1 &5446301665873460677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4540937707971239265}
-  - component: {fileID: 3751146698920721437}
-  - component: {fileID: 4838179967718047835}
-  m_Layer: 5
-  m_Name: KungfuName
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &4540937707971239265
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5446301665873460677}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333108469308835035}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -68, y: 4}
-  m_SizeDelta: {x: 38, y: 106}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3751146698920721437
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5446301665873460677}
-  m_CullTransparentMesh: 0
---- !u!114 &4838179967718047835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5446301665873460677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f4bdb5d05e09b44cac5a19a93693a70, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1842,7 +1778,7 @@ GameObject:
   - component: {fileID: 6538063165786535710}
   - component: {fileID: 2636339144036859215}
   m_Layer: 5
-  m_Name: SellBtn
+  m_Name: ResetBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2003,7 +1939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6455418574269783144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2239,7 +2175,7 @@ GameObject:
   - component: {fileID: 4469369981983796929}
   - component: {fileID: 1609092014523620524}
   m_Layer: 0
-  m_Name: Txt_ (1)
+  m_Name: NextAddition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

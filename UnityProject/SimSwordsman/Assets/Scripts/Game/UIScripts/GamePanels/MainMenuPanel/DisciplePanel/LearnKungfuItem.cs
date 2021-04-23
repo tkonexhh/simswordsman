@@ -49,7 +49,7 @@ namespace GameWish.Game
 
         private Sprite GetSprite(string name)
         {
-           return  m_Sprites.Where(i => i.name.Equals(name)).FirstOrDefault();
+           return SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, name);
         }
 
         private void RefreshPanelInfo()

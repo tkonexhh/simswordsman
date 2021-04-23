@@ -175,6 +175,7 @@ namespace GameWish.Game
         {
             NoBroadcastTimes = 0;
             PlayInterADTimes = 0;
+            BattleTimes = 0;
         }
 
         public bool isPlayMaxTimes()

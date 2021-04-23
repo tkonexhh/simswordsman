@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8381064417950608183}
   - component: {fileID: 808358575297056260}
   - component: {fileID: 8985326986141082691}
-  - component: {fileID: 3277823997414010334}
+  - component: {fileID: 6077234598022664216}
   m_Layer: 5
   m_Name: EquipmentItem
   m_TagString: Untagged
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3277823997414010334
+--- !u!114 &6077234598022664216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,18 +132,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8877283028080948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13033009302878f449ce9c1ba4fcd79c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cf8bd9402ddb3a4ab8a437b9175e584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotLearnBg: {fileID: 8642850637592823663}
   m_SelectBg: {fileID: 0}
   m_LearnBg: {fileID: 5777476706710190327}
-  m_KungfuName: {fileID: 110559932895171432}
+  m_EquipName: {fileID: 110559932895171432}
   m_KungfuBtn: {fileID: 8985326986141082691}
   m_ClassValue: {fileID: 2112632966437566316}
-  m_KungfuAddition: {fileID: 6059090703370083082}
+  m_Addition: {fileID: 6059090703370083082}
   m_RestrictionsValue: {fileID: 8919379265315527528}
-  m_KungfuRedPoint: {fileID: 337836162408348383}
+  m_RedPoint: {fileID: 337836162408348383}
 --- !u!1 &337836162408348383
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 1712864315116821091}
   - component: {fileID: 6059090703370083082}
   m_Layer: 5
-  m_Name: KungfuAddition
+  m_Name: Addition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 5090561407543790903}
   - component: {fileID: 110559932895171432}
   m_Layer: 5
-  m_Name: SecretBookNameValue
+  m_Name: EquipName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
