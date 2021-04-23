@@ -245,6 +245,7 @@ namespace GameWish.Game
         public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
         public int bodyId;
         public int headId;
+        public ClanType heroClanType = ClanType.Mojiao;
         public CollectedObjType collectedObjType;
 
         #region ¹¦ÄÜ×Ö¶Î

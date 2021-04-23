@@ -296,12 +296,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2351708311180836120}
-  m_RootOrder: 0
+  m_Father: {fileID: 8194112655242420170}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5.4994326, y: -351.83273}
+  m_AnchoredPosition: {x: -19.499432, y: -818.83276}
   m_SizeDelta: {x: 220, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6957336735673561048
@@ -633,7 +633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2351708311180836120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -644,8 +644,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6238721110138660210}
+  m_Children: []
   m_Father: {fileID: 8194112655242420170}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -721,7 +720,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8194112655242420170}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -810,7 +809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4384950014446855308
@@ -1191,6 +1190,7 @@ MonoBehaviour:
   m_CharacterName: {fileID: 4460418761802716608}
   m_BlackBtn: {fileID: 1686610352894051147}
   m_NewSkillHeroUnlock: {fileID: 8624812160403387796}
+  m_Bg: {fileID: 8194112655242420170}
   m_WeChatShareBtn: {fileID: 3855404568996059131}
 --- !u!1 &8194112655242420171
 GameObject:
@@ -1223,6 +1223,7 @@ RectTransform:
   - {fileID: 8205883248173821470}
   - {fileID: 8624812160403387799}
   - {fileID: 2351708311180836120}
+  - {fileID: 6238721110138660210}
   - {fileID: 7084916310497852077}
   m_Father: {fileID: 8194112654477666950}
   m_RootOrder: 1

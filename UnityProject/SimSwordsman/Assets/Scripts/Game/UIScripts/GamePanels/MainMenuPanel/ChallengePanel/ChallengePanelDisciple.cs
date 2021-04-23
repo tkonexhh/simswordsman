@@ -37,7 +37,10 @@ namespace GameWish.Game
 
         void LoadClanPrefabs(string prefabsName)
         {
-            m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), transform).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            discipleHeadPortrait.transform.localPosition = new Vector3(0, 20, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
         }
 
         private void RefresPanelInfo()

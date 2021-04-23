@@ -44,7 +44,9 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_GradeImg;
         [SerializeField]
-        private Image m_DiscipleImg;
+        private Image m_DiscipleImg;  
+        [SerializeField]
+        private Transform m_Top;
 
         [Header("UpperMiddle")]
         [SerializeField]
@@ -550,7 +552,11 @@ namespace GameWish.Game
             GetInformationForNeed();
             RefreshPanelInfo();
             RefershIntensifyImg();
-            m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
+            //m_DiscipleImg.sprite = FindSprite(GetLoadDiscipleName(m_CurDisciple));
+            DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CurDisciple), m_Top).GetComponent<DiscipleHeadPortrait>();
+            discipleHeadPortrait.OnInit(true);
+            discipleHeadPortrait.transform.localPosition = new Vector3(135, -1, 0);
+            discipleHeadPortrait.transform.localScale = new Vector3(0.7f, 0.7f, 1);
 
             DataAnalysisMgr.S.CustomEvent(DotDefine.students_detail, m_CurDisciple.quality.ToString()+";"+ m_CurDisciple.level.ToString());
         }

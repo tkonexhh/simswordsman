@@ -11,7 +11,6 @@ namespace GameWish.Game
     {
         [SerializeField] private Button m_ChooseSelectedDisciple;
         [SerializeField] private Text m_Level;
-        [SerializeField] private Image m_DiscipleHead;
         [SerializeField] private Text m_DiscipleName;
         [SerializeField] private GameObject m_SelectedImg;
         [SerializeField] private GameObject m_Plus;
@@ -19,6 +18,7 @@ namespace GameWish.Game
         [SerializeField] private Image m_DiscipleLevelBg;
         [SerializeField] private Image m_Line;
 
+        private GameObject m_DiscipleHeadObj;
         protected CharacterItem m_CharacterItem;
         private ChallengeChooseDisciple m_ChallengeChooseDisciple;
 
@@ -44,7 +44,8 @@ namespace GameWish.Game
             {
                 case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
-                    m_DiscipleHead.gameObject.SetActive(true);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.gameObject.SetActive(true); 
                     m_LevelBg.gameObject.SetActive(true);
                     m_ChooseSelectedDisciple.enabled = true;
                     m_SelectedImg.gameObject.SetActive(true);
@@ -55,7 +56,8 @@ namespace GameWish.Game
                 case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_Plus.gameObject.SetActive(true);
-                    m_DiscipleHead.gameObject.SetActive(false);
+                    if (m_DiscipleHeadObj!=null)
+                        m_DiscipleHeadObj.SetActive(false);
                     m_LevelBg.gameObject.SetActive(false);
                     m_SelectedImg.gameObject.SetActive(false);
                     m_ChooseSelectedDisciple.enabled = false;
@@ -70,7 +72,16 @@ namespace GameWish.Game
 
         void LoadClanPrefabs(string prefabsName)
         {
-            m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
+            if (m_DiscipleHeadObj==null)
+            {
+                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
+                discipleHeadPortrait.OnInit(true);
+                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+                discipleHeadPortrait.transform.localPosition = new Vector3(47.6f, -27.6f, 0);
+                discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+                Debug.LogError("###"+ discipleHeadPortrait.transform.localPosition);
+            }
+            //m_DiscipleHead.sprite = m_ChallengeChooseDisciple.FindSprite(prefabsName);
         }
 
         private void RefreshDiscipleColor()

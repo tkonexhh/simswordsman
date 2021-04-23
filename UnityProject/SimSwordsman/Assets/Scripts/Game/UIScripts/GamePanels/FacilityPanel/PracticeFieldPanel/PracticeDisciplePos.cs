@@ -18,8 +18,8 @@ namespace GameWish.Game
         private Text m_CurPractice;
         [SerializeField]
         private Image m_PracticeImg;
-        [SerializeField]
-        private Image m_DiscipleHead;
+        //[SerializeField]
+        //private Image m_DiscipleHead;
         [SerializeField]
         private Text m_ArrangeDisciple;
         [SerializeField]
@@ -32,6 +32,7 @@ namespace GameWish.Game
 
         private CDBaseSlot m_Slot = null;
         private int m_Index;
+        private GameObject m_DiscipleHeadObj;
 
         public void Init(int index, FacilityType type, PracticeFieldPanel panel)
         {
@@ -132,7 +133,9 @@ namespace GameWish.Game
         private void UILocked()
         {
             m_PracticeBtn.enabled = false;
-            m_DiscipleHead.gameObject.SetActive(false);
+            if (m_DiscipleHeadObj != null)
+                m_DiscipleHeadObj.SetActive(false);
+            //m_DiscipleHead.gameObject.SetActive(false);
             m_State.text = "练功场" + TDFacilityPracticeFieldTable.GetSeatNeedLevel(m_Index + 1) + "级后解锁";
             m_PracticeImg.sprite = m_PracticeFieldPanel.FindSprite("Lock2");
             m_Time.enabled = false;
@@ -143,7 +146,9 @@ namespace GameWish.Game
         private void UIFree()
         {
             m_PracticeBtn.enabled = true;
-            m_DiscipleHead.gameObject.SetActive(false);
+            //m_DiscipleHead.gameObject.SetActive(false);
+            if (m_DiscipleHeadObj != null)
+                m_DiscipleHeadObj.SetActive(false);
             m_CurPractice.text = Define.COMMON_DEFAULT_STR;
             m_Time.enabled = false;
             //m_PracticeImg.sprite = ""
@@ -154,19 +159,29 @@ namespace GameWish.Game
         private void UIDuring(CharacterItem characterItem)
         {
             m_Time.enabled = true;
-            m_DiscipleHead.gameObject.SetActive(true);
+            if (m_DiscipleHeadObj != null)
+                m_DiscipleHeadObj.SetActive(true);
+            //m_DiscipleHead.gameObject.SetActive(true);
             m_PracticeBtn.enabled = false;
             m_State.text = Define.COMMON_DEFAULT_STR;
             m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
             m_CurPractice.text = "当前训练:" + characterItem.name;
             m_Time.text = GameExtensions.SplicingTime(GetDuration());
             CreateCountDown();
-            LoadClanPrefabs(GetLoadDiscipleName(characterItem));
+            LoadClanPrefabs(characterItem);
         }
 
-        private void LoadClanPrefabs(string prefabsName)
+        private void LoadClanPrefabs(CharacterItem characterItem)
         {
-            m_DiscipleHead.sprite = m_PracticeFieldPanel.FindSprite(prefabsName);
+            if (m_DiscipleHeadObj == null)
+            {
+                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(characterItem), transform).GetComponent<DiscipleHeadPortrait>();
+                discipleHeadPortrait.OnInit(true);
+                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+                discipleHeadPortrait.transform.localPosition = new Vector3(5f, 5f, 0);
+                discipleHeadPortrait.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            }
+            //m_DiscipleHead.sprite = m_PracticeFieldPanel.FindSprite(prefabsName);
         }
 
         private void CreateCountDown()

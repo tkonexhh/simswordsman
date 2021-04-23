@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2368444632593838229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -365,7 +365,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ChooseSelectedDisciple: {fileID: 232856468543996823}
   m_Level: {fileID: 6652331827361813592}
-  m_DiscipleHead: {fileID: 6249859708997457866}
   m_DiscipleName: {fileID: 6748361361865420258}
   m_SelectedImg: {fileID: 2895001494309278741}
   m_Plus: {fileID: 7239561080558588515}

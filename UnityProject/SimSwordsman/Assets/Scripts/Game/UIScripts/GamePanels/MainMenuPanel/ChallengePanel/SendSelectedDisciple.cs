@@ -12,7 +12,6 @@ namespace GameWish.Game
         [SerializeField] private Button m_Btn;
         [SerializeField] private Image m_LevelBg;
         [SerializeField] private Text m_Level;
-        [SerializeField] private Image m_DiscipleHead;
         [SerializeField] private Text m_DiscipleName;
         [SerializeField] private Image m_Plus;
         [SerializeField] private Image m_DiscipleLevelBg;
@@ -22,7 +21,7 @@ namespace GameWish.Game
         private SendDisciplesPanel m_SendDisciplesPanel;
         private PanelType m_PanelType;
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
-
+        private GameObject m_DiscipleHeadObj;
         public void Init(PanelType panelType, SendDisciplesPanel sendDisciplesPanel)
         {
             m_SendDisciplesPanel = sendDisciplesPanel;
@@ -75,7 +74,8 @@ namespace GameWish.Game
             {
                 case SelectedState.Selected:
                     m_DiscipleName.text = m_CharacterItem.name;
-                    m_DiscipleHead.gameObject.SetActive(true);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.gameObject.SetActive(true);
                     m_LevelBg.gameObject.SetActive(true);
                     m_Plus.gameObject.SetActive(false);
                     m_Level.text = m_CharacterItem.level.ToString();
@@ -84,7 +84,8 @@ namespace GameWish.Game
                 case SelectedState.NotSelected:
                     m_DiscipleName.text = CommonUIMethod.GetStringForTableKey(Define.BULLETINBOARD_NOTARRANGED);
                     m_Plus.gameObject.SetActive(true);
-                    m_DiscipleHead.gameObject.SetActive(false);
+                    if (m_DiscipleHeadObj != null)
+                        m_DiscipleHeadObj.SetActive(false);
                     m_LevelBg.gameObject.SetActive(false);
                     break;
                 default:
@@ -110,7 +111,15 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
+            if (m_DiscipleHeadObj==null)
+            {
+                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_LevelBg.transform).GetComponent<DiscipleHeadPortrait>();
+                discipleHeadPortrait.OnInit(true);
+                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+                discipleHeadPortrait.transform.localPosition = new Vector3(45.9f, -29, 0);
+                discipleHeadPortrait.transform.localScale = new Vector3(0.4f, 0.4f, 1);
+            }
+            //m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
         }
 
         protected virtual void OnInit() { }

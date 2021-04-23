@@ -15,11 +15,12 @@ namespace GameWish.Game
         [SerializeField] private Text m_ArrangeDisciple;
         [SerializeField] private Text m_Free;
         [SerializeField] private Image m_DiscipleImg;
-        [SerializeField] private Image m_DiscipleHead;
+        //[SerializeField] private Image m_DiscipleHead;
         [SerializeField] private Image m_Lock;
         [SerializeField] private Image m_Plus;
         [SerializeField] private Button m_CopyScripturesBtn;
 
+        private GameObject m_DiscipleHeadObj;
         private int m_CountDown = 0;
         private int m_Index;
 
@@ -121,7 +122,8 @@ namespace GameWish.Game
             m_CurCopyScriptures.text = Define.COMMON_DEFAULT_STR;
             m_Free.text = "抄经位" + TDFacilityKongfuLibraryTable.GetSeatNeedLevel(m_Index + 1) + "级后解锁";
             m_Time.gameObject.SetActive(false);
-            m_DiscipleHead.gameObject.SetActive(false);
+            if (m_DiscipleHeadObj != null)
+                m_DiscipleHeadObj.SetActive(false);
         }
 
         private void UIFree()
@@ -133,21 +135,32 @@ namespace GameWish.Game
             m_Free.gameObject.SetActive(false);
             m_Plus.gameObject.SetActive(true);
             m_Lock.gameObject.SetActive(false);
-            m_DiscipleHead.gameObject.SetActive(false);
+            if (m_DiscipleHeadObj != null)
+                m_DiscipleHeadObj.SetActive(false);
         }
 
         private void UIDuring(CharacterItem characterItem)
         {
             m_Plus.gameObject.SetActive(false);
             m_Lock.gameObject.SetActive(false);
-            m_DiscipleHead.gameObject.SetActive(true);
+            if (m_DiscipleHeadObj!=null)
+                m_DiscipleHeadObj.SetActive(true);
             m_CurCopyScriptures.text = "当前抄经:" + characterItem.name;
             m_Time.gameObject.SetActive(true);
             m_Time.text = GameExtensions.SplicingTime(GetDuration());
             m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
             m_Free.text = Define.COMMON_DEFAULT_STR;
             CreateCountDown();
-            m_DiscipleHead.sprite = m_KongfuLibraryPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(characterItem));
+            if (m_DiscipleHeadObj==null)
+            {
+                DiscipleHeadPortrait discipleHeadPortrait = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(characterItem), transform).GetComponent<DiscipleHeadPortrait>();
+                discipleHeadPortrait.OnInit(true);
+                m_DiscipleHeadObj = discipleHeadPortrait.gameObject;
+                discipleHeadPortrait.transform.localPosition = new Vector3(-1.9f, -0.7f, 0);
+                discipleHeadPortrait.transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            }
+
+            //m_DiscipleHead.sprite = m_KongfuLibraryPanel.FindSprite(CharacterMgr.GetLoadDiscipleName(characterItem));
             m_CopyScripturesBtn.enabled = false;
         }
 

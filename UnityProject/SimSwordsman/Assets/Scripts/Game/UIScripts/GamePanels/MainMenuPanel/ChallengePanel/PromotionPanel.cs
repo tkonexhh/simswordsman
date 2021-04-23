@@ -231,8 +231,9 @@ namespace GameWish.Game
 
         private void SetDiscipleHeadPortrait()
         {
-            //DiscipleHeadPortrait discipleHeadPortrait = Instantiate(m_DiscipleHeadPortrait, m_CharacterBg).GetComponent<DiscipleHeadPortrait>();
-            //discipleHeadPortrait.SetHeadPortrait(m_CharacterItem, UserPanel.PromotionPanel);
+            Transform transform = Instantiate(DiscipleHeadPortraitMgr.S.GetDiscipleHeadPortrait(m_CharacterItem), m_CharacterBg).transform;
+            transform.localPosition = new Vector3(0, 136, 0);
+            transform.localScale = new Vector3(0.8f, 0.8f, 1);
         }
 
         private Sprite GetQualitySprite()

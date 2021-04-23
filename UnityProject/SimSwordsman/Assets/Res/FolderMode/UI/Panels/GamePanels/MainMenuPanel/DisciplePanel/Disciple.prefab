@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3784630406235996261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -982,6 +982,7 @@ MonoBehaviour:
   m_LineRightBottom: {fileID: 2816111387864578765}
   m_DiscipleBtn: {fileID: 8166962920289389508}
   m_DiscipleState: {fileID: 9121917340361798788}
+  m_LineTra: {fileID: 1743352171128102020}
   m_DiscipleRedPoint: {fileID: 5471585619689390976}
 --- !u!1 &8611254020803008275
 GameObject:
