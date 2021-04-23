@@ -376,7 +376,9 @@ namespace GameWish.Game
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                    PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 200000));
+                    //PanelPool.S.AddPromotion(new WugongBreakthrough(0, new CharacterKongfuDBData(1, KungfuLockState.Learned, KungfuType.DuGuJiuJian, 10, 1), 200000));
+                    //PanelPool.S.DisplayPanel();
+                    PanelPool.S.AddPromotion(new DiscipleRiseStage(0, 5, 200000));
                     PanelPool.S.DisplayPanel();
                 }
                 if (Input.GetKeyDown(KeyCode.A))

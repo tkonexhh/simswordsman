@@ -114,11 +114,12 @@ namespace GameWish.Game
 
         public void RefreshPanelInfo()
         {
-            for (int i = (int)ClanType.Gaibang; i <= (int)ClanType.Xiaoyao; i++)
+            List<HeroTrialConfig>  heroTrialConfigs =  TDHeroTrialConfigTable.GetHeroTrialConfigList();
+            foreach (var item in heroTrialConfigs)
             {
-                CreateNotClan(i);
+                CreateNotClan(item.clanType);
             }
-
+          
             SetTrialImgAndYesClan();
             m_TrialClanImgList.ForEach(i=> {
                 if (i.CurClanType == m_ClanType)
@@ -133,7 +134,7 @@ namespace GameWish.Game
             }
         }
 
-        private void CreateNotClan(int i)
+        private void CreateNotClan(ClanType i)
         {
             TrialClanImg trialClanImg = Instantiate(m_TrialClanImg, m_TrialClanTra).GetComponent<TrialClanImg>();
             trialClanImg.OnInit(i);
@@ -223,23 +224,9 @@ namespace GameWish.Game
             GetInfomationForNeed();
             RefreshPanelInfo();
             RefreshDiscipleInfo();
-            //if (MainGameMgr.S.HeroTrialMgr.DbData.state == HeroTrialStateID.Finished)
-            //{
-            //    m_FinishTrialBtn.interactable = true;
-            //}
-            //else
-            //{
-            //    m_FinishTrialBtn.interactable = false;
-            //}
 
         }
-        //m_LeftIcon;   
-        //ld]
-        // m_LeftQualityImg;  
-        //ld]
-        // m_LeftLine;   
-        //ld]
-        //m_LeftName; 
+
         private void RefreshDiscipleInfo()
         {
             if (m_TrialDisciple == null)

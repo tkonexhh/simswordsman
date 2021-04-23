@@ -16,9 +16,9 @@ namespace GameWish.Game
         {
             get => m_ClanType;
         }
-    public void OnInit(int clanType)
+    public void OnInit(ClanType clanType)
     {
-        m_ClanType = (ClanType)clanType;
+        m_ClanType = clanType;
         RefreshClanImg();
     }
 
