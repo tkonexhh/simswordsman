@@ -17,7 +17,7 @@ namespace GameWish.Game
 
         private int m_TimerHandTips = -1;
 
-        private bool m_IsBattle = false;
+        // private bool m_IsBattle = false;
 
         protected override void OnUIInit()
         {
@@ -28,16 +28,16 @@ namespace GameWish.Game
             GameObjectPoolMgr.S.AddPool("HandTips", m_HandTips.gameObject, -1, 2);
         }
 
-        protected override void OnOpen()
-        {
-            RegisterEvent(EventID.OnEnterBattle, HandleEvent);
-            RegisterEvent(EventID.OnExitBattle, HandleEvent);
-        }
+        // protected override void OnOpen()
+        // {
+        //     // RegisterEvent(EventID.OnEnterBattle, HandleEvent);
+        //     // RegisterEvent(EventID.OnExitBattle, HandleEvent);
+        // }
 
 
         public void ShowWorkText(Transform character, string talk)
         {
-            if (m_IsBattle) return;
+            // if (m_IsBattle) return;
 
             var workTalkGo = GameObjectPoolMgr.S.Allocate("WalkTalk");
             workTalkGo.transform.SetParent(transform);
@@ -89,18 +89,18 @@ namespace GameWish.Game
                 }, 2.0f);
         }
 
-        private void HandleEvent(int key, params object[] args)
-        {
-            switch (key)
-            {
-                case (int)EventID.OnEnterBattle:
-                    m_IsBattle = true;
-                    break;
-                case (int)EventID.OnExitBattle:
-                    m_IsBattle = false;
-                    break;
-            }
-        }
+        // private void HandleEvent(int key, params object[] args)
+        // {
+        //     switch (key)
+        //     {
+        //         case (int)EventID.OnEnterBattle:
+        //             m_IsBattle = true;
+        //             break;
+        //         case (int)EventID.OnExitBattle:
+        //             m_IsBattle = false;
+        //             break;
+        //     }
+        // }
 
     }
 }

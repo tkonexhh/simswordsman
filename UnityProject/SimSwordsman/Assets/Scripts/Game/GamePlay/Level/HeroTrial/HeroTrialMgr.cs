@@ -114,6 +114,8 @@ namespace GameWish.Game
             {
                 SetState(m_DbData.state);
             }
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Trial_enter, (int)m_TrialClanType);
         }
 
         public void OnExitHeroTrial()
@@ -167,6 +169,8 @@ namespace GameWish.Game
             m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
             StartCountDown();
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Trial_begin, (int)m_TrialClanType);
         }
 
         public void FinishTrial()
@@ -177,6 +181,8 @@ namespace GameWish.Game
             {
                 characterInGame.ChangeBody(CharacterQuality.Hero, m_DbData.clanType);
             }
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Trial_finish, (int)m_TrialClanType);
 
             //Refresh next trial clantype
             m_TrialClanType = GetNextClanType(m_DbData.clanType);

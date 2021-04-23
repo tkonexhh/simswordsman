@@ -62,7 +62,7 @@ namespace GameWish.Game
                 IsSelected = !IsSelected;
                 if (IsSelected && m_TowerCharacterDB == null && !MainGameMgr.S.TowerSystem.CanAddNewCharacter())
                 {
-                    FloatMessage.S.ShowMsg("伏魔塔人数已达到" + TowerDefine.MAX_CHARACT_NUM);
+                    FloatMessage.S.ShowMsg("伏魔塔人数已达到" + (TowerDefine.MAX_CHARACT_NUM + 1));
                     return;
                 }
                 EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, IsSelected);
