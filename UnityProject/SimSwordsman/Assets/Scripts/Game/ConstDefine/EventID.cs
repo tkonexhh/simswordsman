@@ -406,11 +406,24 @@ namespace GameWish.Game
         /// 镖车到达镖局时
         /// </summary>
         OnDeliverCarArrive,
+
+        OnDeliverTrigger_BuildTrigger = 13801,          //镖局建造引导
+        OnDeliverTrigger_ClickDeliverTrigger,           //点击镖局，进入镖局界面
+        OnDeliverTrigger_ClickQuickStartBtnTrigger,     //点击快速出发按钮
+        OnDeliverTrigger_ClickDoubleSpeedUpBtnTrigger,  //点击双倍加速按钮
         #endregion
 
         #region Tower
         OnRefeshTowerCoin,
         OnRefeshTowerShop,
+
+        OnTowerTrigger_IntroduceTrigger = 14001,        //伏魔塔系统介绍引导
+        OnTowerTrigger_ClickTowerBtnTrigger,            //点击伏魔塔按钮
+        OnTowerTrigger_IntroduceTrigger2,               //伏魔塔讲解
+        OnTowerTrigger_ClickChallengeBtnTrigger,        //伏魔塔点击挑战按钮
+        OnTowerTrigger_ClickAKeyChoiceBtnTrigger,       //伏魔塔点击一键选择弟子
+        OnTowerTrigger_ClickStartFightBtnTrigger,       //伏魔塔 点击开始战斗按钮
+        OnTowerTrigger_FightFinishedClickShopBtnTrigger,//伏魔塔_战斗结束_点击商店按钮
         #endregion
 
         #region HeroTrial
@@ -420,6 +433,17 @@ namespace GameWish.Game
         OnCountDownRefresh,
         OnEnableFinishBtn,
         OnTrialTimeOver,
+
+        OnHeroTrialSystemTrigger_IntroduceTrigger,              //试炼系统介绍引导
+        OnHeroTrialSystemTrigger_ClickTrialBtnTrigger,          //点击试炼按钮
+        OnHeroTrialSystemTrigger_IntroduceTrigger2,             //试炼系统介绍引导2
+        OnHeroTrialSystemTrigger_ClickStartBtnTrigger,          //试炼系统_点击前往按钮
+        OnHeroTrialSystemTrigger_ClickChoiceDiscipleTrigger,    //试炼系统，选择弟子按钮
+        OnHeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger,      //试炼系统，选择弟子
+        OnHeroTrialSystemTrigger_ClickEnterTrialBtnTrigger,     //试炼系统，点击进入试炼按钮
+
+        OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger,     //试炼系统，点击完成试炼
+        OnHeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger,  //试炼系统，弟子突破成功
         #endregion
 
     }

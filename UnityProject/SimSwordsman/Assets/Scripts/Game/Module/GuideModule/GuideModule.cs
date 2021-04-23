@@ -149,6 +149,30 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_ClickSignBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_ClickSignReceiveBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(SignInSystem_FinishedTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_BuildTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickDeliverTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickQuickStartBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(DeliverTrigger_ClickDoubleSpeedUpBtnTrigger));
+
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_IntroduceTrigger)); 
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickTowerBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_IntroduceTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickChallengeBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickAKeyChoiceBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_ClickStartFightBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(TowerTrigger_FightFinishedClickShopBtnTrigger));
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickTrialBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_IntroduceTrigger2));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickStartBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickChoiceDiscipleTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ChoiceDiscipleBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickEnterTrialBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickTrialFinishedTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger));
         }
 
         protected void InitCustomCommand()
