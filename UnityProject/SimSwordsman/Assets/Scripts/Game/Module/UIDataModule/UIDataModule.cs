@@ -139,6 +139,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.MaskWithAlphaZeroPanel, null, "Common/MaskWithAlphaZeroPanel", true, 1);
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/MainMenuPanel/TaskPanel/DailyTaskPanel");
 
+            UIDataTable.AddPanelData(UIID.IOSPrivacePanel, null, "GamePanels/IOSPrivacePanel/IOSPrivacePanel");
+
             UIDataTable.AddPanelData(UIID.DeliverPanel, null, "GamePanels/FacilityPanel/DeliverPanel/DeliverPanel");
             //伏魔塔
             UIDataTable.AddPanelData(UIID.TowerPanel, null, "GamePanels/TowerPanel/TowerPanel");

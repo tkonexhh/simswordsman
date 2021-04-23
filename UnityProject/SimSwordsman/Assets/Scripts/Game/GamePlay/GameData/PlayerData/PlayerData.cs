@@ -48,6 +48,9 @@ namespace GameWish.Game
         /// </summary>
         public DateTime m_LookADClickSilverRecruitDate;
 
+        //是否同意隐私政策
+        public bool IsAgreePrivace;
+
         #region 食物倒计时
         public string FoodCoundDownTime = string.Empty;
         /// <summary>
@@ -115,6 +118,8 @@ namespace GameWish.Game
             messagePush = true;
             m_CoinNum = Define.DEFAULT_COIN_NUM;
             coinNumStr = m_CoinNum.ToString();
+
+            IsAgreePrivace = false;
 
             foodNum = Define.DEFAULT_FOOD_NUM;
 
@@ -443,6 +448,21 @@ namespace GameWish.Game
             return recruitData.IsCanLookADRecruit(rt, intervalTimeHours);
         }
         #endregion
+
+        //隐私协议
+        public bool GetIsAgreePrivace()
+        {
+            return IsAgreePrivace;
+        }
+
+        public void SetIsAgreePrivace()
+        {
+            if (!IsAgreePrivace)
+            {
+                IsAgreePrivace = true;
+            }
+            SetDataDirty();
+        }
 
         public long GetCoinNum()
         {

@@ -79,6 +79,8 @@ namespace GameWish.Game
         MaskWithAlphaZeroPanel,
         DailyTaskPanel,//每日任务
 
+        IOSPrivacePanel,//苹果隐私协议
+
         #region 伏魔塔
         TowerPanel,
         TowerRulePanel,
