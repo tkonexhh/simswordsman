@@ -12,38 +12,38 @@ namespace GameWish.Game
         Daily
     }
 
-	public enum SimGameTaskType
-	{
+    public enum SimGameTaskType
+    {
         None,
-	    Collect,
+        Collect,
         Battle,
         Progress,
-	}
+    }
 
     public enum CollectedObjType
     {
         None,
-        Fish, // Óã
-        Chicken, // ¼¦
-        Bear, // ĞÜ
-        Boar, // Ò°Öí
-        Snake, // Éß
-        Deer, // Â¹
-        WuWood, // ÎÚÄ¾
-        SilverWood, // ÒøÄ¾
-        QingRock, // ÇàÑÒ
-        CloudRock, // ÔÆÑÒ
-        Vine, // ×ÏÌÙ
-        Iron, // ºÚÌú
-        Ganoderma, // ÁéÖ¥
-        Well, // ¾®Ë®
+        Fish, // é±¼
+        Chicken, // é¸¡
+        Bear, // ç†Š
+        Boar, // é‡çŒª
+        Snake, // è›‡
+        Deer, // é¹¿
+        WuWood, // ä¹Œæœ¨
+        SilverWood, // é“¶æœ¨
+        QingRock, // é’å²©
+        CloudRock, // äº‘å²©
+        Vine, // ç´«è—¤
+        Iron, // é»‘é“
+        Ganoderma, // çµèŠ
+        Well, // äº•æ°´
         Wolf,
 
-        ///ÓÃÓÚItemµÄÌáÊ¾
-        RoyalJelly,//·äÍõ½¬
-        LotusRoot,//Á«Åº
-        Lotus,//Á«»¨
-        LotusLeaf,//ºÉÒ¶
+        ///ç”¨äºItemçš„æç¤º
+        RoyalJelly,//èœ‚ç‹æµ†
+        LotusRoot,//è²è—•
+        Lotus,//è²èŠ±
+        LotusLeaf,//è·å¶
 
     }
 }

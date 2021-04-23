@@ -27,35 +27,39 @@ namespace GameWish.Game
         {
             m_ResBtn.onClick.AddListener(() =>
             {
+                UpgradeResItemToUITipsPanel tempStruct = new UpgradeResItemToUITipsPanel();
+                tempStruct.pos = m_ResImg.transform.position;
                 if (costItem != null)
                 {
                     PropConfigInfo propConfigInfo = TDItemConfigTable.GetPropConfigInfo(costItem.itemId);
+                    tempStruct.itemID = costItem.itemId;
+                    tempStruct.name = propConfigInfo.name;
+                    tempStruct.need = GetNeedDesc();
+                    tempStruct.desc = propConfigInfo.unlockDesc.desc;
 
-                    UIMgr.S.OpenDependPanel(animPanel.panelID, UIID.UITipsPanel, null, m_ResImg.transform.position, propConfigInfo.name, GetNeedDesc(), propConfigInfo.unlockDesc.desc);
                 }
                 if (facilityLevelInfo != null)
                 {
-                    UIMgr.S.OpenDependPanel(animPanel.panelID, UIID.UITipsPanel, null, m_ResImg.transform.position, "Õ≠«Æ", GetNeedCoinDesc(), "µ‹◊”∏…ªÓø…“‘ªÒµ√");
+                    tempStruct.name = "ÈìúÈí±";
+                    tempStruct.need = GetNeedCoinDesc();
+                    tempStruct.desc = "ÂºüÂ≠êÂπ≤Ê¥ªÂèØ‰ª•Ëé∑Âæó";
+
                 }
+                tempStruct.parentPanel = animPanel;
+                UIMgr.S.OpenDependPanel(animPanel.panelID, UIID.UITipsPanel, null, tempStruct);
             });
         }
 
-        private object GetNeedCoinDesc()
+        private string GetNeedCoinDesc()
         {
             long coinNum = GameDataMgr.S.GetPlayerData().GetCoinNum();
-            return "µ±«∞:" + CommonUIMethod.GetTenThousandOrMillion(coinNum) + "–Ë“™:" + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
+            return "ÂΩìÂâç:" + CommonUIMethod.GetTenThousandOrMillion(coinNum) + "ÈúÄË¶Å:" + CommonUIMethod.GetTenThousandOrMillion(facilityLevelInfo.upgradeCoinCost);
         }
 
         private string GetNeedDesc()
         {
             int number = MainGameMgr.S.InventoryMgr.GetCurrentCountByItemType((RawMaterial)costItem.itemId);
-            return "µ±«∞:" + CommonUIMethod.GetTenThousandOrMillion(number) + "–Ë“™:" + CommonUIMethod.GetTenThousandOrMillion(costItem.value);
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
+            return "ÂΩìÂâç:" + CommonUIMethod.GetTenThousandOrMillion(number) + "ÈúÄË¶Å:" + CommonUIMethod.GetTenThousandOrMillion(costItem.value);
 
         }
 
@@ -89,6 +93,17 @@ namespace GameWish.Game
             m_ResImg.sprite = sprite;
 
         }
+    }
+
+
+    public struct UpgradeResItemToUITipsPanel
+    {
+        public Vector3 pos;
+        public string name;
+        public string need;
+        public string desc;
+        public int itemID;
+        public AbstractPanel parentPanel;
     }
 
 }
