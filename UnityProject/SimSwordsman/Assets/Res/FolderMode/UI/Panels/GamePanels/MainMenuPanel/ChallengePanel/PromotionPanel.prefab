@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 5464646507092314702}
   - component: {fileID: 7985562553855617328}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2605,6 +2605,7 @@ MonoBehaviour:
   m_NameValue: {fileID: 5139919051020819010}
   m_Appellation: {fileID: 5892026386854170304}
   m_Quality: {fileID: 8609448998981983537}
+  m_Arrow: {fileID: 7985562553855617328}
   m_KongfuName: {fileID: 8816070541225142254}
   m_Level: {fileID: 5586690938191576422}
   m_Skill: {fileID: 5051990236053864803}

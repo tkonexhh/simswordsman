@@ -35,8 +35,12 @@ namespace GameWish.Game
         private Text m_NextAddition;        
         [SerializeField]
         private Button m_ResetLearnBtn;
+        [SerializeField]
+        private GameObject m_Two;
 
         private CharacterKongfu m_CharacterKongfu = null;
+        private CharacterItem m_CurDisciple = null;
+        private int m_CurIndex;
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -47,6 +51,8 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             m_CharacterKongfu = args[0] as CharacterKongfu;
+            m_CurDisciple = args[1] as CharacterItem;
+            m_CurIndex = (int)args[2];
 
             m_BlackBtn.onClick.AddListener(()=> { 
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -54,6 +60,12 @@ namespace GameWish.Game
             });
             m_CloseBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                HideSelfWithAnim();
+            });
+            m_ResetLearnBtn.onClick.AddListener(() => {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                UIMgr.S.OpenPanel(UIID.LearnKungfuPanel, m_CurDisciple, m_CurIndex);
                 HideSelfWithAnim();
             });
 
@@ -69,7 +81,14 @@ namespace GameWish.Game
             m_BriefIntroduction.text = m_CharacterKongfu.desc;
             m_KungfuBg.sprite = CommonMethod.GetKungfuBg(m_CharacterKongfu.GetKongfuType());
             m_KungfuName.sprite = CommonMethod.GetKungName(m_CharacterKongfu.GetKongfuType());
-            //m_KungfuQuality.sprite
+            m_KungfuQuality.sprite = CommonMethod.GetKungfuQualitySprite(m_CharacterKongfu.GetKongfuType());
+            m_KungfuOrder.text = "µÚ" + CommonUIMethod.GetTextNumber(m_CharacterKongfu.dbData.level) + "½×";
+            m_KungfuExpSlider.value = (float)m_CharacterKongfu.dbData.curExp / TDKongfuConfigTable.GetKungfuUpgradeInfo(m_CharacterKongfu.dbData);
+            m_CurAddition.text = (m_CharacterKongfu.atkScale * 100).ToString() + Define.PERCENT;
+            if (m_CharacterKongfu.dbData.level == 9)
+                m_Two.SetActive(false);
+            else
+                m_NextAddition.text = (TDKongfuConfigTable.GetAddition(m_CharacterKongfu.dbData.kongfuType, m_CharacterKongfu.dbData.level + 1) * 100).ToString() + Define.PERCENT;
         }
 
         private void CreateKungfuName(string font)
@@ -82,7 +101,7 @@ namespace GameWish.Game
         {
             base.OnPanelHideComplete();
             CloseDependPanel(EngineUI.MaskPanel);
+            CloseSelfPanel();
         }
     }
-	
 }

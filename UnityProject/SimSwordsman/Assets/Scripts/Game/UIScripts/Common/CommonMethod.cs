@@ -95,19 +95,38 @@ namespace GameWish.Game
             return SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, GetIconName(kungfuType));
         }
 
-        //public static Sprite GetKungfuQualitySprite(KungfuType kungfuType)
-        //{
-        //    switch (GetKungfuQuality(kungfuType))
-        //    {
-        //        case KungfuQuality.Normal:
-        //            return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, GetIconName(kungfuType));
-        //        case KungfuQuality.Super:
-        //            break;
-        //        case KungfuQuality.Master:
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
+        public static Sprite GetKungfuQualitySprite(KungfuType kungfuType)
+        {
+            switch (GetKungfuQuality(kungfuType))
+            {
+                case KungfuQuality.Normal:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_ordinary");
+                case KungfuQuality.Super:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_senior");
+                case KungfuQuality.Master:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_god");
+            }
+            Log.e("未找到功夫品质 = " + kungfuType);
+            return null;
+        }
+        public static Sprite GetKungfuQualitySprite(int equipID)
+        {
+            switch (GetEquipQuality(equipID))
+            {
+                case EquipQuailty.Primary:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_ordinary");
+                case EquipQuailty.Intermediate:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_senior");
+                case EquipQuailty.Senior:
+                    return SpriteHandler.S.GetSprite(AtlasDefine.RewardPanelAtlas, "rewardpanel_kungfu_god");
+            }
+            Log.e("未找到功夫品质 = " + equipID);
+            return null;
+        }
+
+        private static EquipQuailty GetEquipQuality(int equipID)
+        {
+            return TDEquipmentConfigTable.GetEquipmentInfo(equipID).Quality;
+        }
     }
 }

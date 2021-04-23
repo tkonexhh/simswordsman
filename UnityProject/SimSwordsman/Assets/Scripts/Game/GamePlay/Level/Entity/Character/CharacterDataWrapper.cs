@@ -460,19 +460,23 @@ namespace GameWish.Game
             {
                 if (index == item.Index)
                 {
-                    if (item.KungfuLockState == KungfuLockState.Learned)
-                    {
-                        if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
-                            break;
-                    }
-                    if (item.KungfuLockState == KungfuLockState.NotLearning)
-                    {
-                        item.CharacterKongfu = new CharacterKongfu(kungfuItem);
-                        item.KungfuLockState = KungfuLockState.Learned;
-                        GameDataMgr.S.GetClanData().AddKungfu(id, item);
-                        CalculateForceValue();
-                        break;
-                    }
+                    item.CharacterKongfu = new CharacterKongfu(kungfuItem);
+                    item.KungfuLockState = KungfuLockState.Learned;
+                    GameDataMgr.S.GetClanData().AddKungfu(id, item);
+                    CalculateForceValue();
+                    //if (item.KungfuLockState == KungfuLockState.Learned)
+                    //{
+                    //    if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
+                    //        break;
+                    //}
+                    //if (item.KungfuLockState == KungfuLockState.NotLearning)
+                    //{
+                    //    item.CharacterKongfu = new CharacterKongfu(kungfuItem);
+                    //    item.KungfuLockState = KungfuLockState.Learned;
+                    //    GameDataMgr.S.GetClanData().AddKungfu(id, item);
+                    //    CalculateForceValue();
+                    //    break;
+                    //}
                 }
             }
             return true;
@@ -816,7 +820,9 @@ namespace GameWish.Game
         public abstract bool IsHaveEquip();
         public abstract string GetIconName();
 
-        public abstract int  GetSubID(); 
+        public abstract int  GetSubID();
+
+        public abstract void UpGradeClass(int characterID);
     }
 
     public class CharacterArms : CharaceterEquipment
@@ -840,7 +846,7 @@ namespace GameWish.Game
                 RefreshInfo();
             }
         }
-        public void UpGradeClass(int characterID)
+        public override void UpGradeClass(int characterID)
         {
             Class = Mathf.Min(MaxLevel, Class + 1);
             RefreshInfo();
@@ -918,7 +924,7 @@ namespace GameWish.Game
             }
         }
 
-        public void UpGradeClass(int characterID)
+        public override void UpGradeClass(int characterID)
         {
             Class = Mathf.Min(MaxLevel, Class + 1);
             RefreshInfo();

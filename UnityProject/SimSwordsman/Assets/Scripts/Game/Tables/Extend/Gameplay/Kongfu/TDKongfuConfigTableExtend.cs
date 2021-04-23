@@ -62,7 +62,6 @@ namespace GameWish.Game
         /// <returns></returns>
         public static int GetKungfuUpgradeInfo(CharacterKongfuDBData characterKongfu)
         {
-
             if (m_KungfuConfigDic.ContainsKey(characterKongfu.kongfuType))
                 return m_KungfuConfigDic[characterKongfu.kongfuType].GetKungfuUpgradeInfo(characterKongfu);
             return 0;
