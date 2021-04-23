@@ -112,31 +112,38 @@ namespace GameWish.Game
 
         public void OnExitHeroTrial()
         {
-            UnregisterEvents();
-
-            SetState(HeroTrialStateID.None);
-
-            if (m_FightGroup != null)
+            try
             {
-                if(m_FightGroup.OurCharacter != null)
-                    GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
-                if (m_FightGroup.EnemyCharacter != null)
-                    GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
-                m_FightGroup = null;
+                UnregisterEvents();
+
+                SetState(HeroTrialStateID.None);
+
+                if (m_FightGroup != null)
+                {
+                    if (m_FightGroup.OurCharacter != null)
+                        GameObject.Destroy(m_FightGroup.OurCharacter.CharacterView.gameObject);
+                    if (m_FightGroup.EnemyCharacter != null)
+                        GameObject.Destroy(m_FightGroup.EnemyCharacter.CharacterView.gameObject);
+                    m_FightGroup = null;
+                }
+
+                m_BattleField.OnBattleEnd();
+                m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
+                m_BattleField.CalculateBattleArea();
+                var lastChapter = MainGameMgr.S.ChapterMgr.GetLatestChapter();
+                m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
+
+                EventSystem.S.Send(EventID.OnExitHeroTrial);
+
+                if (m_Coroutine != null)
+                    StopCoroutine(m_Coroutine);
+
+                m_IsInTrial = false;
             }
-
-            m_BattleField.OnBattleEnd();
-            m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
-            m_BattleField.CalculateBattleArea();
-            var lastChapter = MainGameMgr.S.ChapterMgr.GetLatestChapter();
-            m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
-
-            EventSystem.S.Send(EventID.OnExitHeroTrial);
-
-            if (m_Coroutine!=null)
-                StopCoroutine(m_Coroutine);
-
-            m_IsInTrial = false;
+            catch (Exception e)
+            {
+                Log.e("Error when exit herotrial: " + e.Message + " " + e.StackTrace);
+            }
         }
 
         private void StartCountDown()
