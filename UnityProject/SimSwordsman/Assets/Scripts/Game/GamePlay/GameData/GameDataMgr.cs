@@ -25,6 +25,7 @@ namespace GameWish.Game
         {
             m_GameDataHandler = new GameDataHandler();
             m_GameDataHandler.GetPlayerInfodata().Init();
+            m_GameDataHandler.GetPlayerInfodata().towerData.Init();
         }
 
         public void Reset()

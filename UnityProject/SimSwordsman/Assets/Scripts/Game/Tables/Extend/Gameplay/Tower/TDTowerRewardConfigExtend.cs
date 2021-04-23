@@ -15,6 +15,11 @@ namespace GameWish.Game
             m_RewardLst = Helper.String2ListString(reward, ";");
         }
 
+        public string GetRandomRewardStr()
+        {
+            return m_RewardLst[RandomHelper.Range(0, m_RewardLst.Count)]; ;
+        }
+
         public RewardBase GetRandomReward()
         {
             var rewardStr = m_RewardLst[RandomHelper.Range(0, m_RewardLst.Count)];

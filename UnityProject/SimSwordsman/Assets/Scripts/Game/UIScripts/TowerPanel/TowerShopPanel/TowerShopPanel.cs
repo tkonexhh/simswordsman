@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,12 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnFullClose;
         [SerializeField] private Button m_BtnADRefesh;
         [SerializeField] private Text m_TxtFcoin;
+        [SerializeField] private Text m_TxtRefeshTime;
         [SerializeField] private TowerShopItem[] m_ItemInfos;
+
+
+        private float m_Timer = 0;
+        private float m_RefeshTime = 1;
 
         protected override void OnUIInit()
         {
@@ -28,13 +34,16 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshTowerCoin, RefeshFCoin);
             OnRefeshTowerShop(0);
             RefeshFCoin(0);
-
-            m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
+            RefeshRemainTime();
+            // m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
         }
 
         private void OnClickADRefesh()
         {
-            UIMgr.S.OpenPanel(UIID.TowerADRefeshPanel);
+            if (GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2)
+                UIMgr.S.OpenPanel(UIID.TowerADRefeshPanel);
+            else
+                UIMgr.S.OpenPanel(UIID.TowerCantRefeshPanel);
         }
 
         private void OnRefeshTowerShop(int key, params object[] args)
@@ -49,6 +58,25 @@ namespace GameWish.Game
         private void RefeshFCoin(int key, params object[] args)
         {
             m_TxtFcoin.text = GameDataMgr.S.GetPlayerData().towerData.coin.ToString();
+        }
+
+        private void Update()
+        {
+            m_Timer += Time.deltaTime;
+            if (m_Timer >= m_RefeshTime)
+            {
+                m_Timer = 0;
+                RefeshRemainTime();
+            }
+
+        }
+
+        private void RefeshRemainTime()
+        {
+            var nowTime = DateTime.Now;
+            var tomorrowTime = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day).AddDays(1);
+            var timeDelta = tomorrowTime - nowTime;
+            m_TxtRefeshTime.text = DateFormatHelper.FormatRemainTimeOnlySymbol((long)timeDelta.TotalSeconds);
         }
 
         private void OnClickClose()
