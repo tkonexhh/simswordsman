@@ -134,7 +134,6 @@ namespace GameWish.Game
             }
             else
             {
-
                 foreach (var item in m_ItemBaseList)
                     CreateWearableLearningItem(item);
             }
