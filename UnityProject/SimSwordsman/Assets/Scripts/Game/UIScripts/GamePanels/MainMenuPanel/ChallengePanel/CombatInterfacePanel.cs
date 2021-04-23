@@ -244,6 +244,13 @@ namespace GameWish.Game
 
             m_Speed1Btn.onClick.AddListener(() =>
             {
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+                if (lobbyLevel < 3)
+                {
+                    FloatMessage.S.ShowMsg("讲武堂3级后，可加速战斗!");
+                    return;
+                }
+
                 SetTimeScale(2);
             });
 
