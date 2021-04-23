@@ -96,7 +96,10 @@ namespace GameWish.Game
             GetInformationForNeed();
 
             if (m_ItemBaseList.Count == 0)
+            {
                 m_NotStudy.SetActive(true);
+                m_ArrangeBtn.gameObject.SetActive(false);
+            }
 
             for (int i = 0; i < m_ItemBaseList.Count; i++)
             {
@@ -119,11 +122,6 @@ namespace GameWish.Game
 
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                if (m_ItemBaseList.Count == 0)
-                {
-                    return;
-                }
 
                 float oldCharacterAtkValue = m_CharacterItem.atkValue;
 

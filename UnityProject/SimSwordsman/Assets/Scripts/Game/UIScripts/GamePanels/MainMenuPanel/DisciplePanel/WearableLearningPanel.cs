@@ -128,7 +128,9 @@ namespace GameWish.Game
                         m_NotAvailable.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Bg37");
                         break;
                 }
+
                 m_NotAvailable.gameObject.SetActive(true);
+                m_ArrangeBtn.gameObject.SetActive(false);
             }
             else
             {
@@ -146,11 +148,6 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
-                if (m_ItemBaseList.Count == 0)
-                {
-                    return;
-                }
 
                 switch (m_SelectedItemBase.PropType)
                 {
