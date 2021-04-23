@@ -11,6 +11,11 @@ namespace GameWish.Game
     {
         [SerializeField] private Button m_BtnClose;
         [SerializeField] private Button m_BtnAD;
+        [SerializeField] private Text m_TxtAtk;
+        [SerializeField] private Text m_TxtCount;
+        [SerializeField] private ChallengePanelDisciple m_Disciple;
+
+        private int m_ID = -1;
 
         protected override void OnUIInit()
         {
@@ -22,6 +27,32 @@ namespace GameWish.Game
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
             DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_revive_happen);
+            m_TxtCount.text = string.Format("剩余复活次数:{0}", Mathf.Max(0, TowerDefine.REVIVE_COUNT - GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount));
+
+            //复活一名战斗力最高的已经死亡的角色
+            var lst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
+            m_ID = -1;
+            double maxAtk = -1;
+            for (int i = 0; i < lst.Count; i++)
+            {
+                if (lst[i].IsDead() && !lst[i].revive)
+                {
+                    double atk = MainGameMgr.S.CharacterMgr.GetCharacterController(lst[i].id).CharacterModel.GetAtk();
+                    if (atk >= maxAtk)
+                    {
+                        maxAtk = atk;
+                        m_ID = lst[i].id;
+                    }
+                }
+            }
+
+            if (m_ID != -1)
+            {
+                var controller = MainGameMgr.S.CharacterMgr.GetCharacterController(m_ID);
+                m_Disciple.Init(controller.CharacterModel.CharacterItem, this);
+                m_TxtAtk.text = string.Format("功力: <color=#405787>{0}</color>", CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.GetAtk()));
+            }
+
         }
 
         private void OnClickAD()
@@ -29,26 +60,12 @@ namespace GameWish.Game
             AdsManager.S.PlayRewardAD("TowerRevive", (b) =>
             {
                 CloseSelfPanel();
-                //复活一名战斗力最高的已经死亡的角色
-                var lst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
-                int id = -1;
-                double maxAtk = -1;
-                for (int i = 0; i < lst.Count; i++)
-                {
-                    if (lst[i].IsDead() && !lst[i].revive)
-                    {
-                        double atk = MainGameMgr.S.CharacterMgr.GetCharacterController(lst[i].id).CharacterModel.GetAtk();
-                        if (atk >= maxAtk)
-                        {
-                            maxAtk = atk;
-                            id = lst[i].id;
-                        }
-                    }
-                }
 
-                if (id != -1)
+
+                if (m_ID != -1)
                 {
-                    GameDataMgr.S.GetPlayerData().towerData.ReviveTowerCharacter(id);
+                    GameDataMgr.S.GetPlayerData().recordData.AddTowerRevive();
+                    GameDataMgr.S.GetPlayerData().towerData.ReviveTowerCharacter(m_ID);
                     DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_revive_comfirm);
                 }
             });

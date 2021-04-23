@@ -74,8 +74,8 @@ namespace GameWish.Game
         {
             base.OnOpen();
 
-            m_Speed1Btn.gameObject.SetActive(false);
-            m_Speed2Btn.gameObject.SetActive(true);
+            m_Speed1Btn.gameObject.SetActive(true);
+            m_Speed2Btn.gameObject.SetActive(false);
         }
 
         private void StartBattleText()
@@ -244,12 +244,19 @@ namespace GameWish.Game
 
             m_Speed1Btn.onClick.AddListener(() =>
             {
-                SetTimeScale(1);
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+                if (lobbyLevel < 3)
+                {
+                    FloatMessage.S.ShowMsg("讲武堂3级后，可加速战斗!");
+                    return;
+                }
+
+                SetTimeScale(2);
             });
 
             m_Speed2Btn.onClick.AddListener(() =>
             {
-                SetTimeScale(2);
+                SetTimeScale(1);
             });
 
             //m_Speed4Btn.onClick.AddListener(() =>
@@ -452,13 +459,13 @@ namespace GameWish.Game
             m_CurTimeScale = timeScale;
             Time.timeScale = timeScale;
 
-            if (timeScale == 2)
+            if (timeScale == 1)
             {
                 m_Speed1Btn.gameObject.SetActive(true);
                 m_Speed2Btn.gameObject.SetActive(false);
             }
 
-            if (timeScale == 1)
+            if (timeScale == 2)
             {
                 m_Speed1Btn.gameObject.SetActive(false);
                 m_Speed2Btn.gameObject.SetActive(true);
