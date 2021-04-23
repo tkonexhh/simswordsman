@@ -11,7 +11,9 @@ namespace GameWish.Game
     public class WearableLearningPanel : AbstractAnimPanel
     {
         [SerializeField]
-        private Text m_Title;
+        private Text m_Title;     
+        [SerializeField]
+        private Image m_NotAvailable;
         [SerializeField]
         private Button m_ClsoeBtn;
         [SerializeField]
@@ -65,13 +67,13 @@ namespace GameWish.Game
             IsSelected = isSelected;
             ItemBase selected = itemBase;
             m_Pos = transform;
-            m_ArrangeBtn.gameObject.SetActive(true);
+            //m_ArrangeBtn.gameObject.SetActive(true);
             if (m_SelectedItemBase != null && m_SelectedItemBase.GetSortId() == selected.GetSortId())
             {
                 if (!IsSelected)
                 {
                     m_SelectedItemBase = null;
-                    m_ArrangeBtn.gameObject.SetActive(false);
+                    //m_ArrangeBtn.gameObject.SetActive(false);
                     return;
                 }
             }
@@ -81,8 +83,8 @@ namespace GameWish.Game
         }
         private void Update()
         {
-            if (IsSelected)
-                m_ArrangeBtn.transform.position = m_Pos.position;
+            //if (IsSelected)
+            //    m_ArrangeBtn.transform.position = m_Pos.position;
         }
         private void GeInformationForNeed()
         {
@@ -106,7 +108,6 @@ namespace GameWish.Game
             m_CurPropType = (PropType)args[0];
             m_CurDisciple = (CharacterItem)args[1];
             GeInformationForNeed();
-
             switch (m_CurPropType)
             {
                 case PropType.Arms:
@@ -116,9 +117,26 @@ namespace GameWish.Game
                     m_Title.text = "Ñ¡Ôñ×°±¸";
                     break;
             }
+            if (m_ItemBaseList.Count==0)
+            {
+                switch (m_CurPropType)
+                {
+                    case PropType.Arms:
+                        m_NotAvailable.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Bg36");
+                        break;
+                    case PropType.Armor:
+                        m_NotAvailable.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Bg37");
+                        break;
+                }
+                m_NotAvailable.gameObject.SetActive(true);
+            }
+            else
+            {
 
-            foreach (var item in m_ItemBaseList)
-                CreateWearableLearningItem(item);
+                foreach (var item in m_ItemBaseList)
+                    CreateWearableLearningItem(item);
+            }
+
 
             CalculateContainerHeight();
         }
@@ -128,6 +146,11 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+
+                if (m_ItemBaseList.Count == 0)
+                {
+                    return;
+                }
 
                 switch (m_SelectedItemBase.PropType)
                 {
@@ -162,7 +185,6 @@ namespace GameWish.Game
 
         private void CreateWearableLearningItem(ItemBase itemBase)
         {
-            
             WearableLearningItem itemICom = Instantiate(m_WearableLearningItem, m_WearableLearningTra).GetComponent<WearableLearningItem>();
             itemICom.OnInit(itemBase, null, m_CurDisciple, FindSprite(GetEquipName(itemBase.GetSubName())));
 

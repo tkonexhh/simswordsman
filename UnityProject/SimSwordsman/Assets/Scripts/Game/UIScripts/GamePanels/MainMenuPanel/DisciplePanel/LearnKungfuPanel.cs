@@ -62,13 +62,12 @@ namespace GameWish.Game
             IsSelected = isSelected;
             ItemBase selected = itemBase;
             m_Pos = transform;
-            m_ArrangeBtn.gameObject.SetActive(true);
             if (m_SelectedItemBase != null && m_SelectedItemBase.GetSortId() == selected.GetSortId())
             {
                 if (!IsSelected)
                 {
                     m_SelectedItemBase = null;
-                    m_ArrangeBtn.gameObject.SetActive(false);
+                    //m_ArrangeBtn.gameObject.SetActive(false);
                     return;
                 }
             }
@@ -121,6 +120,11 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                if (m_ItemBaseList.Count == 0)
+                {
+                    return;
+                }
+
                 float oldCharacterAtkValue = m_CharacterItem.atkValue;
 
                 bool learn = MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));
@@ -138,13 +142,14 @@ namespace GameWish.Game
                     DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
 
                     UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
+
                 }
             });
         }
         private void Update()
         {
-            if (IsSelected)
-                m_ArrangeBtn.transform.position = m_Pos.position;
+            //if (IsSelected)
+            //    m_ArrangeBtn.transform.position = m_Pos.position;
         }
 
         protected override void OnPanelHideComplete()

@@ -33,13 +33,15 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_EquipName;
         [SerializeField]
-        private Button m_KungfuBtn;
+        private Button m_EquipBtn;
         [SerializeField]
         private Text m_ClassValue;
         [SerializeField]
         private Text m_Addition;
         [SerializeField]
         private Text m_RestrictionsValue;
+        [SerializeField]
+        private Button m_ReplaceBtn;
         [SerializeField]
         private GameObject m_RedPoint;
 
@@ -55,14 +57,21 @@ namespace GameWish.Game
             m_CharaceterEquipment = characeterEquipment;
             m_CurDisciple = disciple;
             m_PropType = prop;
-   
+
+            CheckEquipRedPoint();
+
             RefreshEquipInfo();
 
-            m_KungfuBtn.onClick.AddListener(()=>{
+            m_ReplaceBtn.onClick.AddListener(() => {
+                UIMgr.S.OpenPanel(UIID.WearableLearningPanel, m_PropType, m_CurDisciple);
+            });
+
+            m_EquipBtn.onClick.AddListener(()=>{
 
                 switch (m_EquipState)
                 {
                     case EquipState.Learned:
+                        UIMgr.S.OpenPanel(UIID.EquipDetailsPanel, m_CharaceterEquipment, m_CurDisciple, m_PropType);
                         break;
                     case EquipState.NotLearning:
                         UIMgr.S.OpenPanel(UIID.WearableLearningPanel, m_PropType, m_CurDisciple);
@@ -75,13 +84,31 @@ namespace GameWish.Game
                 }
             });
         }
+
+        private void CheckEquipRedPoint()
+        {
+            switch (m_PropType)
+            {
+                case PropType.Arms:
+                    m_RedPoint.SetActive(m_CurDisciple.CheckArms());
+                    break;
+                case PropType.Armor:
+                    m_RedPoint.SetActive(m_CurDisciple.CheckArmor());
+                    break;
+            }
+        }
         private void HandleAddListenerEvevt(int key, object[] param)
         {
             switch ((EventID)key)
             {
                 case EventID.OnSelectedEquipSuccess:
                     RefreshEquipInfo();
+                    CheckEquipRedPoint();
                     EventSystem.S.Send(EventID.OnMainMenuOrDiscipleRedPoint);
+                    break;
+                case EventID.OnEquipRedPoint:
+                    if ((int)param[0] == m_CurDisciple.id && m_PropType == ((PropType)param[1]))
+                        m_RedPoint.SetActive((bool)param[2]);
                     break;
                 default:
                     break;
@@ -119,7 +146,7 @@ namespace GameWish.Game
                     //        m_Upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume(m_CharaceterEquipment.GetSubID(), m_CharaceterEquipment.Class + 1);
                     //        break;
                     //}
-
+                    m_ReplaceBtn.gameObject.SetActive(true);
                     //当前有装备
                     m_EquipName.text = m_CharaceterEquipment.Name;
                     m_ClassValue.text = CommonUIMethod.GetClass(m_CharaceterEquipment.Class);
@@ -127,7 +154,7 @@ namespace GameWish.Game
                         CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(m_CharaceterEquipment.AtkAddition));
                     m_Addition.text = Define.COMMON_DEFAULT_STR;
                     m_LearnBg.sprite  = SpriteHandler.S.GetSprite(AtlasDefine.EquipmentAtlas, m_CharaceterEquipment.GetIconName());
-                    m_NotLearnBg.gameObject.SetActive(false);
+                    m_NotLearnBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Bg34");
                     m_LearnBg.gameObject.SetActive(true);
                     m_EquipState = EquipState.Learned;
                 }

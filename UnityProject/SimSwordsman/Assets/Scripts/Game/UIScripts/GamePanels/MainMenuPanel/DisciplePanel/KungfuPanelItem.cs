@@ -65,7 +65,7 @@ namespace GameWish.Game
                 switch (m_KungfuLockState)
                 {
                     case KungfuLockState.Learned:
-                        UIMgr.S.OpenPanel(UIID.KungfuDetailsPanel, m_CharacterKongfu);
+                        UIMgr.S.OpenPanel(UIID.KungfuDetailsPanel, m_CharacterKongfu, m_CurDisciple, m_CurIndex);
                         break;
                     case KungfuLockState.NotLearning:
                         UIMgr.S.OpenPanel(UIID.LearnKungfuPanel, m_CurDisciple, m_CurIndex);
@@ -126,7 +126,8 @@ namespace GameWish.Game
                     m_KungfuAddition.text = Define.COMMON_DEFAULT_STR;
                     m_LearnBg.gameObject.SetActive(true);
                     m_SelectBg.gameObject.SetActive(true);
-                    m_NotLearnBg.gameObject.SetActive(false);
+                    m_NotLearnBg.gameObject.SetActive(true);
+                    m_NotLearnBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Bg34");
                     m_SelectBg.sprite = CommonMethod.GetKungfuBg(m_CharacterKongfu.GetKongfuType());
                     m_LearnBg.sprite = CommonMethod.GetKungName(m_CharacterKongfu.GetKongfuType());
 

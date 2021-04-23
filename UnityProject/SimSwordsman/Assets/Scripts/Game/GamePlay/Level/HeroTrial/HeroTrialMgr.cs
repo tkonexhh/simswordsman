@@ -229,18 +229,18 @@ namespace GameWish.Game
                 return false;
             }
 
-            bool anyPerfectCharacterReach200Level = false;
-            List<CharacterItem> talentCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Where(i => i.quality == CharacterQuality.Perfect).ToList();
-            if (talentCharacterList != null && talentCharacterList.Count > 0)
-            {
-                anyPerfectCharacterReach200Level = talentCharacterList.Any(i => i.level >= 200);
-            }
+            //bool anyPerfectCharacterReach200Level = false;
+            //List<CharacterItem> talentCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Where(i => i.quality == CharacterQuality.Perfect).ToList();
+            //if (talentCharacterList != null && talentCharacterList.Count > 0)
+            //{
+            //    anyPerfectCharacterReach200Level = talentCharacterList.Any(i => i.level >= 200);
+            //}
 
-            if (anyPerfectCharacterReach200Level == false)
-            {
-                msg = "需要至少一个天才级弟子且等级达到200级";
-                return false;
-            }
+            //if (anyPerfectCharacterReach200Level == false)
+            //{
+            //    msg = "需要至少一个天才级弟子且等级达到200级";
+            //    return false;
+            //}
 
             return true;
         }
