@@ -437,6 +437,57 @@ namespace GameWish.Game
         }
     }
 
+
+    public class TaskHandler_BuildDeliver : TaskLevelHandler
+    {
+        public TaskHandler_BuildDeliver(int level) : base(level)
+        {
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
+        }
+
+        private void HandleEvent(int key, params object[] args)
+        {
+            if (args == null || args.Length <= 0)
+                return;
+            FacilityType facilityType = (FacilityType)args[0];
+            if (facilityType == FacilityType.Deliver)
+            {
+                EventSystem.S.Send(EventID.OnRefeshMainTask);
+            }
+        }
+
+        public override int count
+        {
+            get
+            {
+                if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Deliver))
+                    return 0;
+
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Deliver);
+            }
+        }
+
+        public override string taskSubTitle
+        {
+            get
+            {
+                if (m_Level <= 1)
+                    return "建造镖局";
+                else
+                    return "镖局升至{0}级";
+            }
+        }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Deliver).view.transform;
+            }
+        }
+    }
+
     ////////////////////
     public class TaskHandler_DailyFood : TaskHandler
     {

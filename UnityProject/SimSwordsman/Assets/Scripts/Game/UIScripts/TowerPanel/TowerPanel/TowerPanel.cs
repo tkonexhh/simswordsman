@@ -48,6 +48,7 @@ namespace GameWish.Game
             if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
             {
                 DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
+                DataRecord.S.Save();
                 UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
             }
         }
