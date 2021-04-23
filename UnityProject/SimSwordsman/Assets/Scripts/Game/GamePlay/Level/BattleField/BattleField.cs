@@ -51,8 +51,8 @@ namespace GameWish.Game
             Vector2 center = new Vector2((m_InitBattleAreaRightTop.x + m_InitBattleAreaLeftBottom.x) / 2, (m_InitBattleAreaRightTop.y + m_InitBattleAreaLeftBottom.y) / 2);
             float height = MainGameMgr.S.MainCamera.battleProperty.size;
             float width = Camera.main.aspect * height;
-            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_BattleAreaRightTop.y + deltaY);
-            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_BattleAreaLeftBottom.y + deltaY);
+            m_BattleAreaRightTop = new Vector2(center.x + width - 0.5f, m_InitBattleAreaRightTop.y + deltaY);
+            m_BattleAreaLeftBottom = new Vector2(center.x - width + 0.5f, m_InitBattleAreaLeftBottom.y + deltaY);
         }
 
         public Vector3 GetOurCharacterPos()
