@@ -21,6 +21,7 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_revive_happen);
         }
 
         private void OnClickAD()
@@ -46,8 +47,10 @@ namespace GameWish.Game
                 }
 
                 if (id != -1)
+                {
                     GameDataMgr.S.GetPlayerData().towerData.ReviveTowerCharacter(id);
-
+                    DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_revive_comfirm);
+                }
             });
         }
     }
