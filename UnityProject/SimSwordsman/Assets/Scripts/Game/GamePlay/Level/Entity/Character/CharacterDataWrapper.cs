@@ -661,30 +661,33 @@ namespace GameWish.Game
             }
         }
 
-        private bool CheckEquipStrengthenRedPoint()
+        private bool CheckEquipStrengthenRedPoint(bool isSendEvetn = true)
         {
-            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms);
+            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor, isSendEvetn) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms, isSendEvetn);
         }
 
-        private bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment)
+        public bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment, bool isSendEvent)
         {
             UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume(characeterEquipment.GetSubID(), characeterEquipment.Class + 1);
 
             if (upgrade == null)
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, id, characeterEquipment.PropType, false);
                 return false;
             }
 
             bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
             if (isHave)
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, true);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, characeterEquipment.PropType, true);
                 return true;
             }
             else
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, characeterEquipment.PropType, false);
                 return false;
             }
         }
