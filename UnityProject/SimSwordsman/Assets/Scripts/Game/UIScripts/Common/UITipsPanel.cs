@@ -45,6 +45,8 @@ namespace GameWish.Game
             // Debug.LogError(itemID);
             m_JumpToRes = JumpToResFactory.Create(itemID);
             m_BtnJump.gameObject.SetActive(m_JumpToRes != null);
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Tap_item_detail, itemID);
         }
 
         protected override void OnPanelHideComplete()
@@ -57,6 +59,8 @@ namespace GameWish.Game
         {
             if (m_JumpToRes == null)
                 return;
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Tap_item_detail, m_InfoStruct.itemID);
 
             m_InfoStruct.parentPanel.CloseSelfPanel();
 
