@@ -128,6 +128,8 @@ namespace GameWish.Game
             m_BattleField.OnBattleEnd();
             m_BattleField.SetSpriteBgLocalPos(new Vector3(0, 0, 0));
             m_BattleField.CalculateBattleArea();
+            var lastChapter = MainGameMgr.S.ChapterMgr.GetLatestChapter();
+            m_BattleField.ChangeBgSpriteRender((ClanType)lastChapter.chapter);
 
             EventSystem.S.Send(EventID.OnExitHeroTrial);
 
