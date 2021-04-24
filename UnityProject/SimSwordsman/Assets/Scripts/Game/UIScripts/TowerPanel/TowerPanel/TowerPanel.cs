@@ -13,7 +13,6 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnRule;
         [SerializeField] private Text m_TxtCoin;
 
-        [SerializeField] private IUListView m_ListView;
         [SerializeField] private ScrollRect m_ScrollRect;
         [SerializeField] private TowerPanelChallengeItem[] m_LevelItems;
 
@@ -47,12 +46,13 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshTowerCoin, (i, e) => { UpdateCoin(); });
             UpdateUI();
 
-            // if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
-            // {
-            //     DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
-            //     DataRecord.S.Save();
-            //     UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
-            // }
+            if (!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false))
+            {
+                DataRecord.S.SetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, true);
+                DataRecord.S.Save();
+                // UIMgr.S.OpenPanel(UIID.TowerNewDayPanel);
+            }
+
         }
 
         protected override void OnClose()
@@ -71,19 +71,23 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.TowerRulePanel);
         }
 
-        // private void OnCellRenderer(Transform root, int index)
-        // {
-        //     int level = TowerDefine.MAXLEVEL - index;
-        //     root.GetComponent<TowerPanelChallengeItem>().Init(this, level);
-        //     root.gameObject.name = "TowerLevelItem" + level;
-        // }
-
         private void UpdateUI()
         {
-            // m_ListView.SetDataCount(TowerDefine.MAXLEVEL);
-            m_ScrollRect.verticalNormalizedPosition = 0;
+            int nowLevel = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
+            try
+            {
+                var target = m_LevelItems[nowLevel - 1].rectTransform();
+                float cellHeight = target.rect.height;
+                m_ScrollRect.content.anchoredPosition = new Vector2(0, cellHeight * (Mathf.Abs(TowerDefine.MAXLEVEL - nowLevel - 2)));
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                m_ScrollRect.verticalNormalizedPosition = 0;
+            }
+
             UpdateCoin();
         }
+
 
         private void UpdateCoin()
         {
