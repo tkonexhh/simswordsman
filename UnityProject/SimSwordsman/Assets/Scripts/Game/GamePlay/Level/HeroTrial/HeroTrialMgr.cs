@@ -26,7 +26,7 @@ namespace GameWish.Game
         private float m_LeftTimeUpdateTime = 0;
 
         //private double m_TrialTotalTime = 0.3 * 60;
-        private double m_TrialTotalTime = 10*60*60;
+        private double m_TrialTotalTime = 10 * 60 * 60;
 
         private ClanType m_TrialClanType = ClanType.None;
 
@@ -58,9 +58,9 @@ namespace GameWish.Game
 
             m_StateMachine = new HeroTrialStateMachine(this);
 
-            if (CheckIsTrialReady() && m_TrialClanType == ClanType.None)
+            if (CheckIsTrialReady() /*&& m_TrialClanType == ClanType.None*/)
             {
-                m_TrialClanType = GetNextClanType(ClanType.None);
+                m_TrialClanType = GetNextClanType(m_TrialClanType);
             }
         }
 
