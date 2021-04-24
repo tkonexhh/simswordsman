@@ -102,7 +102,6 @@ namespace GameWish.Game
 
         public void PlayAttackEffect(Transform transform)
         {
-            // Debug.LogError("PlayAttackEffect");
             m_AnimStrategy.PlayAttackEffect(transform);
         }
 
@@ -113,7 +112,6 @@ namespace GameWish.Game
 
         public void PlayAttackSound()
         {
-
             List<string> soundNameList = Helper.String2ListString(soundName, "|");
 
             if (soundNameList != null && soundNameList.Count > 0)
@@ -278,8 +276,6 @@ namespace GameWish.Game
                 com.StartCD();
 
                 effectGo.AddMissingComponent<CustomShaderFinder>();
-                {
-                }
             }
         }
     }
