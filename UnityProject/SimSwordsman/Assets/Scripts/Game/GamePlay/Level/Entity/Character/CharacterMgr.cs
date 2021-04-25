@@ -24,8 +24,6 @@ namespace GameWish.Game
         #region IMgr
         public void OnInit()
         {
-            RegisterEvents();
-
             //InitPool();
         }
 
@@ -36,7 +34,7 @@ namespace GameWish.Game
 
         public void OnDestroyed()
         {
-            UnregisterEvents();
+
         }
 
         #endregion
@@ -81,6 +79,7 @@ namespace GameWish.Game
         /// <returns></returns>
         public int GetMaxCharacterId()
         {
+            //FIXME 修改弟子的ID改为历史ID
             m_CharacterDataWrapper.characterList.Sort();
             CharacterItem item = m_CharacterDataWrapper.characterList.LastOrDefault();
             if (item != null)
@@ -275,37 +274,7 @@ namespace GameWish.Game
             Vector3 spawnPos = GetSpawnPos(controller.CurState);
             obj.transform.position = spawnPos;
         }
-        //private void LoadCharacterSync(CharacterItem characterItem, Action onLoadDone)
-        //{
-        //    int id = characterItem.id;
-        //    CharacterStateID initState = characterItem.characterStateId;
-        //    string prefabName = GetPrefabName(id);
 
-        //    AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-        //    loader.InstantiateAsync(prefabName, (obj) => 
-        //    {
-        //        CharacterView characterView = obj.GetComponent<CharacterView>();
-        //        CharacterController controller = new CharacterController(id, characterView, initState);
-        //        m_CharacterControllerList.Add(controller);
-        //        m_CharacterLoaderDic.Add(controller, loader);
-
-        //        if (initState == CharacterStateID.None)
-        //        {
-        //            controller.SetState(CharacterStateID.EnterClan);
-        //        }
-
-        //        Vector3 spawnPos = GetSpawnPos(controller.CurState);
-        //        obj.transform.position = spawnPos;
-        //    });
-        //}
-        /// <summary>
-        /// Disciple recruit
-        /// </summary>
-        /// <param name="recruitType">Recreit type</param>
-        public void RecruitCharacter(int recruitType)
-        {
-
-        }
 
         public static int GetMaxLevel(CharacterQuality quality)
         {
@@ -339,23 +308,6 @@ namespace GameWish.Game
             }
         }
 
-        private void RegisterEvents()
-        {
-            //EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
-        }
-
-        private void UnregisterEvents()
-        {
-            //EventSystem.S.UnRegister(EventID.OnStartUnlockFacility, HandleEvent);
-        }
-
-        private void HandleEvent(int key, params object[] param)
-        {
-            switch (key)
-            {
-
-            }
-        }
 
         private bool IsCharacterOwned(int id)
         {
