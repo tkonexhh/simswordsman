@@ -92,13 +92,13 @@ namespace GameWish.Game
             switch (GetKungfuQuality(item.KungfuType))
             {
                 case KungfuQuality.Normal:
-                    image.sprite = FindSprite("Introduction");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Introduction");
                     break;
                 case KungfuQuality.Master:
-                    image.sprite = FindSprite("Advanced");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Advanced");
                     break;
                 case KungfuQuality.Super:
-                    image.sprite = FindSprite("Excellent");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Excellent");
                     break;
                 default:
                     break;
@@ -111,13 +111,13 @@ namespace GameWish.Game
             switch (GetKungfuQuality(item.kongfuType))
             {
                 case KungfuQuality.Normal:
-                    image.sprite = FindSprite("Introduction");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Introduction");
                     break;
                 case KungfuQuality.Master:
-                    image.sprite = FindSprite("Advanced");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Advanced");
                     break;
                 case KungfuQuality.Super:
-                    image.sprite = FindSprite("Excellent");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Excellent");
                     break;
                 default:
                     break;
