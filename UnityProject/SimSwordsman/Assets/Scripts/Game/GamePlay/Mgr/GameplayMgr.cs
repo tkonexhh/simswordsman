@@ -197,7 +197,7 @@ namespace GameWish.Game
 
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
-                    UIMgr.S.OpenPanel(UIID.WorldUIPanel);
+                    // UIMgr.S.OpenPanel(UIID.WorldUIPanel);
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallback);
 
                     MusicMgr.S.PlayMenuMusic();
@@ -325,7 +325,7 @@ namespace GameWish.Game
                     for (int i = (int)KungfuType.SuiYuQuan; i < (int)KungfuType.KaiBeiShou; i++)
                     {
                         MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
-                    }  
+                    }
                     for (int i = (int)KungfuType.RuLaiShenZhang; i < (int)KungfuType.YiJinJing; i++)
                     {
                         MainGameMgr.S.InventoryMgr.AddItem(new KungfuItem((KungfuType)i), 2);
@@ -340,7 +340,7 @@ namespace GameWish.Game
 
                     //GameDataMgr.S.GetPlayerData().AddFoodNum(1);
                 }
-                if (Input.GetKeyDown(KeyCode.C)) 
+                if (Input.GetKeyDown(KeyCode.C))
                 {
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(2);
                 }

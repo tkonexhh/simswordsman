@@ -30,6 +30,13 @@ namespace GameWish.Game
         private Slider m_RightBloodStick;
         [SerializeField]
         private GameObject m_MatchRecordItem;
+        [SerializeField]
+        private Button m_Speed1Btn;
+        [SerializeField]
+        private Button m_Speed2Btn;
+        //[SerializeField]
+        //private Button m_Speed4Btn;
+        private int m_CurTimeScale = 1;
 
         private List<BattleTextConfig> m_BattleText = null;
         private List<BattleTextConfig> m_TalkText = null;
@@ -61,6 +68,14 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnBattleSecondEvent, HandleAddListenerEvent);
             //m_ScrollRect.
+        }
+
+        protected override void OnOpen()
+        {
+            base.OnOpen();
+
+            m_Speed1Btn.gameObject.SetActive(true);
+            m_Speed2Btn.gameObject.SetActive(false);
         }
 
         private void StartBattleText()
@@ -226,6 +241,28 @@ namespace GameWish.Game
 
                 Time.timeScale = 0;
             });
+
+            m_Speed1Btn.onClick.AddListener(() =>
+            {
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+                if (lobbyLevel < 3)
+                {
+                    FloatMessage.S.ShowMsg("讲武堂3级后，可加速战斗!");
+                    return;
+                }
+
+                SetTimeScale(2);
+            });
+
+            m_Speed2Btn.onClick.AddListener(() =>
+            {
+                SetTimeScale(1);
+            });
+
+            //m_Speed4Btn.onClick.AddListener(() =>
+            //{
+            //    Time.timeScale = 4;
+            //});
         }
         private void LogPanelCallback(AbstractPanel obj)
         {
@@ -293,6 +330,9 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
+
+            Time.timeScale = 1;
+
             EventSystem.S.UnRegister(EventID.OnRefreshBattleProgress, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleSuccessed, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleFailed, HandleAddListenerEvent);
@@ -347,6 +387,7 @@ namespace GameWish.Game
                     ReduceHPWithAni(rightBloodEndValue, m_RightBloodStick);
                     break;
                 case EventID.OnBattleSuccessed:
+                    SetTimeScale(1);
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
@@ -369,6 +410,7 @@ namespace GameWish.Game
                     CreateBattleOverText(true);
                     break;
                 case EventID.OnBattleFailed:
+                    SetTimeScale(1);
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
@@ -410,6 +452,24 @@ namespace GameWish.Game
                 CreateBattleText(m_EndText, 1);
             else
                 CreateBattleText(m_EndText, 2);
+        }
+
+        private void SetTimeScale(int timeScale)
+        {
+            m_CurTimeScale = timeScale;
+            Time.timeScale = timeScale;
+
+            if (timeScale == 1)
+            {
+                m_Speed1Btn.gameObject.SetActive(true);
+                m_Speed2Btn.gameObject.SetActive(false);
+            }
+
+            if (timeScale == 2)
+            {
+                m_Speed1Btn.gameObject.SetActive(false);
+                m_Speed2Btn.gameObject.SetActive(true);
+            }
         }
     }
 }

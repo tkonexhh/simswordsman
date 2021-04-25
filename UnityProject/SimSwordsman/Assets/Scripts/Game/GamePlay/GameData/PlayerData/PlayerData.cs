@@ -39,14 +39,14 @@ namespace GameWish.Game
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
 
-        /// <summary>
-        /// 点击金牌招募的时间
-        /// </summary>
-        public DateTime m_LookADClickGoldRecruitDate;
-        /// <summary>
-        /// 点击银牌招募的时间
-        /// </summary>
-        public DateTime m_LookADClickSilverRecruitDate;
+        // /// <summary>
+        // /// 点击金牌招募的时间
+        // /// </summary>
+        // public DateTime m_LookADClickGoldRecruitDate;
+        // /// <summary>
+        // /// 点击银牌招募的时间
+        // /// </summary>
+        // public DateTime m_LookADClickSilverRecruitDate;
 
         //是否同意隐私政策
         public bool IsAgreePrivace;
@@ -180,6 +180,7 @@ namespace GameWish.Game
         {
             NoBroadcastTimes = 0;
             PlayInterADTimes = 0;
+            BattleTimes = 0;
         }
 
         public bool isPlayMaxTimes()

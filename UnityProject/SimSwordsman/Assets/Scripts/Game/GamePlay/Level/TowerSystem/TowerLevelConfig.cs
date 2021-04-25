@@ -29,7 +29,6 @@ namespace GameWish.Game
 
             for (int i = 0; i < enemyIDs.Count; i++)
             {
-                //TODO 分配战力值
                 EnemyConfig enemy = new EnemyConfig(enemyIDs[i], 1, (int)(i == 0 ? basicATK * 1.5f : basicATK));
                 enemys.Add(enemy);
             }

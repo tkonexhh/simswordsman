@@ -108,7 +108,7 @@ namespace GameWish.Game
         {
             base.OnOpen();
             //ClearTacticalFunctionBtn();
-
+            OpenDependPanel(UIID.WorldUIPanel, -1);
             RegisterEvents();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
@@ -221,7 +221,8 @@ namespace GameWish.Game
                     FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
                 }
             });
-            m_ObjTowerRed.SetActive(!DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false));
+            bool showTowerRed = !DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false) && MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() >= TowerDefine.ENTER_LEVEL;
+            m_ObjTowerRed.SetActive(showTowerRed);
             m_CreateCoinBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -281,7 +282,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-
+            CloseDependPanel(UIID.WorldUIPanel);
             UnregisterEvents();
 
             MainGameMgr.S.IsMainMenuPanelOpen = false;
@@ -346,6 +347,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuChallenging, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -361,6 +363,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuChallenging, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnStartUpgradeFacility, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -404,6 +407,19 @@ namespace GameWish.Game
                     break;
                 case EventID.OnMainMenuChallenging:
                     RefreshChallenging();
+                    break;
+                case EventID.OnStartUpgradeFacility:
+                    if (param == null || param.Length <= 0)
+                        return;
+                    FacilityType facilityType = (FacilityType)param[0];
+                    if (facilityType == FacilityType.Lobby)
+                    {
+                        int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                        if (lobbyLevel == TowerDefine.ENTER_LEVEL)
+                        {
+                            m_ObjTowerRed.SetActive(true);
+                        }
+                    }
                     break;
             }
         }
