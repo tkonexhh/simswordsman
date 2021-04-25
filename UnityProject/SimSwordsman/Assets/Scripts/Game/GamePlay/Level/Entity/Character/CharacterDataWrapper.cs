@@ -353,7 +353,7 @@ namespace GameWish.Game
             level = itemDbData.level;
             quality = itemDbData.quality;
             stage = TDCharacterStageConfigTable.GetStage(quality, level);
-            Debug.LogError(level + "Init Stage:" + stage);
+            // Debug.LogError(level + "Init Stage:" + stage);
             // stage = itemDbData.stage;
             curExp = itemDbData.curExp;
             bodyId = itemDbData.bodyId;
@@ -407,7 +407,6 @@ namespace GameWish.Game
                 // Debug.LogError("LevelUp:" + priviewStage + "-" + stage);
                 if (priviewStage != this.stage)
                 {
-                    Debug.LogError("Up Stage");
                     // GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
                     int delte = stage - priviewStage;
 
