@@ -199,7 +199,6 @@ namespace GameWish.Game
                             // if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().recordData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
                             if (GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount < TowerDefine.REVIVE_COUNT)
                             {
-                                //TODO 在判断是否可以有被复活的角色
                                 var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
                                 bool canRevive = false;
                                 for (int i = 0; i < characterLst.Count; i++)
@@ -212,7 +211,6 @@ namespace GameWish.Game
                                 }
                                 if (canRevive)
                                 {
-                                    GameDataMgr.S.GetPlayerData().recordData.AddTowerRevive();
                                     // GameDataMgr.S.GetPlayerData().towerData.LevelRevived(MainGameMgr.S.TowerSystem.maxLevel);
                                     UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
                                 }
