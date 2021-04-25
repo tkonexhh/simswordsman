@@ -179,7 +179,8 @@ namespace GameWish.Game
                     m_ChallengeProgress.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS) + (GetCurProgress() * 100).ToString("f2") + Define.PERCENT;
                     break;
                 case ChallengeType.Passed:
-                    m_CompletedValue.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS_OVER);
+                    //m_CompletedValue.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS_OVER);
+                    m_CompletedValue.gameObject.SetActive(false);
                     m_ChallengePhoto.sprite = m_ChallengePanel.FindSprite("Challenge_Big" + m_CurChapterConfigInfo.clanType.ToString().ToLower());
                     m_CompletedImg.gameObject.SetActive(true);
                     m_ChallengeBtn.gameObject.SetActive(false);
