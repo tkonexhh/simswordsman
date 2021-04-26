@@ -15,6 +15,28 @@ namespace GameWish.Game
         public int workExp;
         public int maxDailyTask;
         public int PracticeLevelMax;
+        public UpgradePreconditions upgradePreconditions;
+
     }
-	
+
+    public class UpgradePreconditions
+    {
+        public int DiscipleNumber;
+        public int DiscipleLevel;
+
+        public UpgradePreconditions(string str)
+        {
+            string[] strs = str.Split('|');
+            if (strs.Length>=2)
+            {
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    DiscipleNumber = int.Parse(strs[0]);
+                    DiscipleLevel = int.Parse(strs[1]);
+                }
+            }
+        }
+    }
+
+
 }

@@ -111,7 +111,22 @@ namespace GameWish.Game
 
             m_DbData.RemoveCharacter(id);
         }
-
+        /// <summary>
+        /// 获取某一限定等级(>=)弟子的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetLomitLevelDiscipleNumber(int level)
+        {
+            int number = 0;
+            characterList.ForEach(i =>
+            {
+                if (level <= i.level)
+                {
+                    number++;
+                }
+            });
+            return number;
+        }
         public CharacterItem GetCharacterItem(int id)
         {
             CharacterItem item = characterList.FirstOrDefault(i => i.id == id);
