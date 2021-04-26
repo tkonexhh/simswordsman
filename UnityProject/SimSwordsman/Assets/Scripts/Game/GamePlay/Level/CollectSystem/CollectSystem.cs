@@ -15,7 +15,8 @@ namespace GameWish.Game
 
         private int GetLobbyFacilityCurLevel
         {
-            get {
+            get
+            {
                 return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
             }
         }
@@ -33,7 +34,7 @@ namespace GameWish.Game
         /// </summary>
         private void CheckCollectSystemGuideIsFinished()
         {
-            if (PlayerPrefs.GetInt(Define.IsClickCollectSytemBubble, -1) < 0) 
+            if (PlayerPrefs.GetInt(Define.IsClickCollectSytemBubble, -1) < 0)
             {
                 if (GuideMgr.S.IsGuideFinish(26) == false)
                 {
@@ -50,7 +51,7 @@ namespace GameWish.Game
                         }
                     }, m_TempCollectConfigDataTable.productTime, -1);
                 }
-            }                        
+            }
         }
 
         private void OnCollectItemTypeCountChangedCallBack()
@@ -60,7 +61,8 @@ namespace GameWish.Game
             for (int i = 0; i < dataList.Count; i++)
             {
                 m_TempCollectItemData = dataList[i];
-                if (m_TempCollectItemData != null && m_TempCollectItemData.IsCanShowBubbleIcon()) {
+                if (m_TempCollectItemData != null && m_TempCollectItemData.IsCanShowBubbleIcon())
+                {
                     typeCount++;
                 }
             }
@@ -69,7 +71,8 @@ namespace GameWish.Game
             {
                 EventSystem.S.Send(EventID.OnChangeCollectLotusState2);
             }
-            else {
+            else
+            {
                 EventSystem.S.Send(EventID.OnChangeCollectLotusState1);
             }
         }
@@ -79,7 +82,7 @@ namespace GameWish.Game
             {
                 m_TempCollectConfigDataTable = TDCollectConfigTable.dataList[i];
 
-                if (m_TempCollectConfigDataTable.lobbyLevelRequired <= GetLobbyFacilityCurLevel) 
+                if (m_TempCollectConfigDataTable.lobbyLevelRequired <= GetLobbyFacilityCurLevel)
                 {
                     m_TempCollectItemData = GameDataMgr.S.GetClanData().GetCollectItemData(m_TempCollectConfigDataTable.id);
 
@@ -94,21 +97,22 @@ namespace GameWish.Game
                             StartCountDown(m_TempCollectConfigDataTable.id, m_TempCollectItemData.GetRemainTimeWhenBubbleShow());
                         }
                     }
-                    else {
+                    else
+                    {
                         m_TempCollectItemData = GameDataMgr.S.GetClanData().AddOrUpdateCollectSystemItemData(m_TempCollectConfigDataTable.id, DateTime.Now);
                         StartCountDown(m_TempCollectItemData.ID, m_TempCollectItemData.GetRemainTimeWhenBubbleShow());
                     }
-                }                
+                }
             }
         }
-        private void StartCountDown(int collectID,int remaintTime) 
+        private void StartCountDown(int collectID, int remaintTime)
         {
             CountDowntMgr.S.SpawnCountDownItemTest(remaintTime, null, (remainTime) =>
             {
                 EventSystem.S.Send(EventID.OnCollectCountChange, collectID);
 
                 //EventSystem.S.Send(EventID.OnGuideUnlockCollectSystem);
-                
+
                 OnCollectItemTypeCountChangedCallBack();
             });
         }
@@ -118,7 +122,7 @@ namespace GameWish.Game
             if (facilityType2 == FacilityType.Lobby)
             {
                 List<TDCollectConfig> configDataList = TDCollectConfigTable.dataList.FindAll(x => x.lobbyLevelRequired == GetLobbyFacilityCurLevel);
-                if (configDataList != null && configDataList.Count > 0) 
+                if (configDataList != null && configDataList.Count > 0)
                 {
                     for (int i = 0; i < configDataList.Count; i++)
                     {
@@ -128,11 +132,12 @@ namespace GameWish.Game
                     }
                 }
             }
-        }       
+        }
         public void Collect(int id)
         {
             var tb = TDCollectConfigTable.dataList.Find(x => x.id == id);
-            if (tb == null) {
+            if (tb == null)
+            {
                 Debug.LogError("collect配置表中未找到数据，id：" + id);
                 return;
             }
@@ -149,7 +154,7 @@ namespace GameWish.Game
                 int specialItemCount = 0;
                 for (int i = 0; i < count; i++)
                 {
-                    if (RandomHelper.Range(0,10000) <= tb.specialRate)
+                    if (RandomHelper.Range(0, 10000) <= tb.specialRate)
                         specialItemCount++;
                 }
                 if (specialItemCount > 0)
@@ -165,9 +170,9 @@ namespace GameWish.Game
 
             //弹出奖励UI反馈
             UIMgr.S.OpenTopPanel(UIID.RewardPanel, null, rewards);
-            
+
             m_TempCollectItemData = GameDataMgr.S.GetClanData().RemoveCollectSystemItemData(id);
-            if (m_TempCollectItemData != null) 
+            if (m_TempCollectItemData != null)
             {
                 StartCountDown(m_TempCollectItemData.ID, m_TempCollectItemData.GetRemainTimeWhenBubbleShow());
             }
