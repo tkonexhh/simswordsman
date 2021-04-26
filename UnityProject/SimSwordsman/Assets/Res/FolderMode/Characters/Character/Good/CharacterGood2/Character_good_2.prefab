@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 3845809598577782915}
   - component: {fileID: 1875119245}
   - component: {fileID: 7696235984069948748}
-  - component: {fileID: 7036753607345804724}
   - component: {fileID: 2262465953943642772}
   m_Layer: 0
   m_Name: Character_good_2
@@ -81,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 
   battleState: 
+  deliverID: 0
   m_Body: {fileID: 3845809599068655259}
   m_HeadPos: {fileID: 3401843464571450978}
   m_BoneFollower_Foot: {fileID: 0}
@@ -113,17 +113,6 @@ MonoBehaviour:
   restrict: 1
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!210 &7036753607345804724
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845809598577782914}
-  m_Enabled: 1
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 5
 --- !u!114 &2262465953943642772
 MonoBehaviour:
   m_ObjectHideFlags: 0
