@@ -264,11 +264,6 @@ namespace GameWish.Game
                 return;
             }
 
-            if (obj.GetComponent<SortingGroup>() != null)
-            {
-                Destroy(obj.GetComponent<SortingGroup>());
-            }
-
             CharacterController controller = new CharacterController(id, characterView, initState);
             m_CharacterControllerList.Add(controller);
 
