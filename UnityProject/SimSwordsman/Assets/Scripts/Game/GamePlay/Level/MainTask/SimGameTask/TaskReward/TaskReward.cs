@@ -5,15 +5,20 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class TaskReward
-	{
+    public class TaskReward
+    {
         public TaskRewardType rewardType;
         public int id;
         public int weight = 0;
         public int count1 = -1;
         public int count2 = -1;
 
-       
+        public TaskReward(TaskRewardType rewardType,int id,int count1)
+        {
+            this.rewardType = rewardType;
+            this.id = id;
+            this.count1 = count1;
+        }
 
         public TaskReward(string reward,bool isHavaWeight = false)
         {

@@ -128,5 +128,18 @@ namespace GameWish.Game
         {
             return TDEquipmentConfigTable.GetEquipmentInfo(equipID).Quality;
         }
+
+        public static bool CheckEnoughDiscipleLevel(LobbyLevelInfo lobbyLevelInfo)
+        {
+            int discipleLevel = MainGameMgr.S.CharacterMgr.GetLomitLevelDiscipleNumber(lobbyLevelInfo.upgradePreconditions.DiscipleLevel);
+            if (discipleLevel >= lobbyLevelInfo.upgradePreconditions.DiscipleNumber)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

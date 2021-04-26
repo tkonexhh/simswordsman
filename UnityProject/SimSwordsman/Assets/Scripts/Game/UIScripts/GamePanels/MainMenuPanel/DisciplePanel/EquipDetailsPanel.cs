@@ -101,15 +101,6 @@ namespace GameWish.Game
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip_up, m_CharaceterEquipment.GetSubID() + ";" + m_CharaceterEquipment.Class.ToString());
 
-                //switch (m_PropType)
-                //{
-                //    case PropType.Arms:
-                //        m_CharaceterEquipment = m_CurDisciple.characeterEquipmentData.CharacterArms;
-                //        break;
-                //    case PropType.Armor:
-                //        m_CharaceterEquipment = m_CurDisciple.characeterEquipmentData.CharacterArmor;
-                //        break;
-                //}
                 RefreshPanelInfo();
             });
             RefreshPanelInfo();
