@@ -57,7 +57,6 @@ namespace GameWish.Game
                 {
                     return;
                 }
-                //TODO 超过每日20个也不能被选择
 
                 IsSelected = !IsSelected;
                 if (IsSelected && m_TowerCharacterDB == null && !MainGameMgr.S.TowerSystem.CanAddNewCharacter())
