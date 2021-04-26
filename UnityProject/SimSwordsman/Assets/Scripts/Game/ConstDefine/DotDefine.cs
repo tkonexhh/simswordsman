@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class DotDefine 
-	{
-		public const string c_task_generate = "c_task_generate";
-		public const string c_task_check = "c_task_check";
-		public const string c_task_enter = "c_task_enter";
-		public const string c_task_refuse = "c_task_refuse";
-		public const string c_task_finish = "c_task_finish";
+    public class DotDefine
+    {
+        public const string c_task_generate = "c_task_generate";
+        public const string c_task_check = "c_task_check";
+        public const string c_task_enter = "c_task_enter";
+        public const string c_task_refuse = "c_task_refuse";
+        public const string c_task_finish = "c_task_finish";
         public const string d_task_finish = "d_task_finish";
         public const string d_task_receive = "d_task_receive";
         public const string collect = "collect";
@@ -55,5 +55,21 @@ namespace GameWish.Game
 		public const string level_double_reward = "level_double_reward";
 		public const string Open_WeChatShare_Panel = "w_open_share";
 		public const string Click_WeChatShare_Btn = "w_start_share";
-	}
+        public const string Tap_item_detail = "tap_item_detail";
+        public const string Tap_item_goto = "tap_item_goto";
+        public const string F_deliver = "f_deliver";
+        public const string Trial_enter = "trial_enter";
+        public const string Trial_begin = "trial_begin";
+        public const string Trial_finish = "trial_finish";
+
+        //Tower
+        public const string Tower_Enter = "tower_enter";//进入
+        public const string Tower_Battle_Enter = "tower_battle_enter";
+        public const string Tower_Battle_Win = "tower_battle_win";
+        public const string Tower_Battle_Fail = "tower_battle_fail";
+        public const string Tower_revive_happen = "tower_revive_happen";
+        public const string Tower_revive_comfirm = "tower_revive_confirm";
+        public const string Tower_Shop_Open = "tower_shop_open";
+        public const string Tower_Shop_Buy = "tower_shop_buy";
+    }
 }

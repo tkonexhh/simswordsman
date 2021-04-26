@@ -108,12 +108,12 @@ namespace GameWish.Game
         /// 可招募的时候惊叹号
         /// </summary>
         OnSendRecruitable,
-        OnSilverGuideOver,
         #endregion
 
         #region 弟子红点相关
         OnSubPanelRedPoint,
         OnKungfuRedPoint,
+        OnEquipRedPoint,
         OnMainMenuOrDiscipleRedPoint,
         #endregion
 
@@ -174,6 +174,10 @@ namespace GameWish.Game
         /// 弟子减少事件
         /// </summary>
         OnDiscipleReduce,
+        /// <summary>
+        /// 刷新弟子装备信息
+        /// </summary>
+        OnRefreshEquipInfo,
         /// <summary>
         /// 弟子升段事件
         /// </summary>
@@ -417,6 +421,7 @@ namespace GameWish.Game
         #region Tower
         OnRefeshTowerCoin,
         OnRefeshTowerShop,
+        OnTowerBattleOver,
 
         OnTowerTrigger_IntroduceTrigger = 14001,        //伏魔塔系统介绍引导
         OnTowerTrigger_ClickTowerBtnTrigger,            //点击伏魔塔按钮

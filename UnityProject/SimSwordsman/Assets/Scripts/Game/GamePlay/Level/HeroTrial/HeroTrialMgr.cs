@@ -114,6 +114,8 @@ namespace GameWish.Game
             {
                 SetState(m_DbData.state);
             }
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Trial_enter, (int)m_TrialClanType);
         }
 
         public void OnExitHeroTrial()
@@ -167,6 +169,8 @@ namespace GameWish.Game
             m_DbData.OnTrialStart(DateTime.Now, characterId, m_TrialClanType);
             SetState(m_DbData.state);
             StartCountDown();
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Trial_begin, (int)m_TrialClanType);
         }
 
         public void FinishTrial()
@@ -177,6 +181,8 @@ namespace GameWish.Game
             {
                 characterInGame.ChangeBody(CharacterQuality.Hero, m_DbData.clanType);
             }
+
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Trial_finish, (int)m_TrialClanType);
 
             //Refresh next trial clantype
             m_TrialClanType = GetNextClanType(m_DbData.clanType);
@@ -229,18 +235,18 @@ namespace GameWish.Game
                 return false;
             }
 
-            bool anyPerfectCharacterReach200Level = false;
-            List<CharacterItem> talentCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Where(i => i.quality == CharacterQuality.Perfect).ToList();
-            if (talentCharacterList != null && talentCharacterList.Count > 0)
-            {
-                anyPerfectCharacterReach200Level = talentCharacterList.Any(i => i.level >= 200);
-            }
+            //bool anyPerfectCharacterReach200Level = false;
+            //List<CharacterItem> talentCharacterList = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Where(i => i.quality == CharacterQuality.Perfect).ToList();
+            //if (talentCharacterList != null && talentCharacterList.Count > 0)
+            //{
+            //    anyPerfectCharacterReach200Level = talentCharacterList.Any(i => i.level >= 200);
+            //}
 
-            if (anyPerfectCharacterReach200Level == false)
-            {
-                msg = "需要至少一个天才级弟子且等级达到200级";
-                return false;
-            }
+            //if (anyPerfectCharacterReach200Level == false)
+            //{
+            //    msg = "需要至少一个天才级弟子且等级达到200级";
+            //    return false;
+            //}
 
             return true;
         }

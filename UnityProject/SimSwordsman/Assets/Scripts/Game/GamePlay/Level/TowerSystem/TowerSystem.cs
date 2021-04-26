@@ -34,13 +34,14 @@ namespace GameWish.Game
 
         public void EnterTower()
         {
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Enter);
             GameDataMgr.S.GetPlayerData().towerData.Init();
         }
 
         public void StartLevel(List<CharacterController> owerCharacter, float basicATK)
         {
             m_IsTowerBattle = true;
-
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Battle_Enter);
             UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.TowerPanel);
 
@@ -148,6 +149,7 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
             itemInfo.reward.AcceptReward();
             GameDataMgr.S.GetPlayerData().towerData.BuyShopData(index);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Shop_Buy, itemInfo.id);
         }
         #endregion
 

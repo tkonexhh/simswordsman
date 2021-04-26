@@ -25,6 +25,11 @@ namespace GameWish.Game
         {
             return "towercoin";
         }
+
+        public override string RewardTips()
+        {
+            return "可以用来在伏魔商店中购买道具";
+        }
     }
 
 }

@@ -51,6 +51,8 @@ namespace GameWish.Game
         private Image m_Quality;
 
         [SerializeField]
+        private Image m_Arrow;
+        [SerializeField]
         private Text m_KongfuName;
         [SerializeField]
         private Text m_Level;
@@ -92,13 +94,13 @@ namespace GameWish.Game
             switch (GetKungfuQuality(item.KungfuType))
             {
                 case KungfuQuality.Normal:
-                    image.sprite = FindSprite("Introduction");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Introduction");
                     break;
                 case KungfuQuality.Master:
-                    image.sprite = FindSprite("Advanced");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Advanced");
                     break;
                 case KungfuQuality.Super:
-                    image.sprite = FindSprite("Excellent");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Excellent");
                     break;
                 default:
                     break;
@@ -111,13 +113,13 @@ namespace GameWish.Game
             switch (GetKungfuQuality(item.kongfuType))
             {
                 case KungfuQuality.Normal:
-                    image.sprite = FindSprite("Introduction");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Introduction");
                     break;
                 case KungfuQuality.Master:
-                    image.sprite = FindSprite("Advanced");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Advanced");
                     break;
                 case KungfuQuality.Super:
-                    image.sprite = FindSprite("Excellent");
+                    image.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Excellent");
                     break;
                 default:
                     break;
@@ -210,6 +212,10 @@ namespace GameWish.Game
                 default:
                     break;
             }
+            if (promotionModel.GetPreAtk() <= m_CharacterItem.atkValue)
+                m_Arrow.sprite = SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "PromotionPanel_icon1");
+            else
+                m_Arrow.sprite = SpriteHandler.S.GetSprite(AtlasDefine.PromotionPanelAtlas, "PromotionPanel_icon2");
             //CommonUIMethod.GetTenThousandOrMillionNumber((long)m_CharacterItem.atkValue)
             CommonUIMethod.TextFlipUpEffect(m_Skill, promotionModel.GetPreAtk(), m_CharacterItem.atkValue);
 

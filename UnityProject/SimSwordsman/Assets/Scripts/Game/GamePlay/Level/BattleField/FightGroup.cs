@@ -22,7 +22,7 @@ namespace GameWish.Game
         private List<float> m_OurHitBackDistance = new List<float>();
         private List<float> m_EnemyHitBackDistance = new List<float>();
 
-        public CharacterController OurCharacter { get => m_OurCharacter;}
+        public CharacterController OurCharacter { get => m_OurCharacter; }
         public CharacterController EnemyCharacter { get => m_EnemyCharacter; }
         public Dictionary<string, KongfuAnimConfig> m_KongfuAnimMap = new Dictionary<string, KongfuAnimConfig>();
         public FightGroup(int id, CharacterController ourCharacter, CharacterController enemyCharacter)
@@ -100,7 +100,7 @@ namespace GameWish.Game
         {
             if (kongfu == null)
                 return;
-            if (m_KongfuAnimMap.ContainsKey(kongfu.animName))//ÒÑ¾­Ìí¼Ó¹ýÁË
+            if (m_KongfuAnimMap.ContainsKey(kongfu.animName))//ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½
                 return;
 
             kongfu.ParpareEffectPool();
@@ -121,7 +121,7 @@ namespace GameWish.Game
             {
                 m_EnemyAttack = false;
             }
-            else if(m_OurCharacter.WillBeDead())
+            else if (m_OurCharacter.WillBeDead())
             {
                 m_EnemyAttack = true;
             }
@@ -307,18 +307,20 @@ namespace GameWish.Game
                         string skillname = (string)param[1];
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
-                        // Debug.LogError(skillname + "--" + animConfig);
-                        animConfig?.PlayAttackEffect(controller.CharacterView.Body.transform);
-                        animConfig?.PlayFootEffect(controller.CharacterView.BoneFollower_Foot);
-                        animConfig?.PlayAttackSound();
 
                         CharacterController targetHurtController = null;
                         if (controller == m_OurCharacter)
                         {
+                            animConfig?.PlayAttackEffect(controller.CharacterView.Body.transform);
+                            animConfig?.PlayFootEffect(controller.CharacterView.BoneFollower_Foot);
+                            animConfig?.PlayAttackSound();
                             targetHurtController = m_EnemyCharacter;
                         }
                         else if (controller == m_EnemyCharacter)
                         {
+                            animConfig?.PlayAttackEffect(controller.CharacterView.Body.transform);
+                            animConfig?.PlayFootEffect(controller.CharacterView.BoneFollower_Foot);
+                            animConfig?.PlayAttackSound();
                             targetHurtController = m_OurCharacter;
                         }
                         if (targetHurtController != null)
@@ -329,7 +331,7 @@ namespace GameWish.Game
 
                     }
                     break;
-                case (int)EventID.OnBattleAtkEnd://Õ½¶·¶¯»­½áÊø
+                case (int)EventID.OnBattleAtkEnd://Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
                         CharacterController controller = (CharacterController)param[0];
                         if (IsCharacterInGroup(controller))
@@ -339,14 +341,14 @@ namespace GameWish.Game
                     }
                     break;
 
-                case (int)EventID.OnBattleAtkEvent://Õ½¶·ÉËº¦ÊÂ¼þ
+                case (int)EventID.OnBattleAtkEvent://Õ½ï¿½ï¿½ï¿½Ëºï¿½ï¿½Â¼ï¿½
                     {
                         CharacterController controller = (CharacterController)param[0];
                         string skillname = (string)param[1];
 
                         KongfuAnimConfig animConfig;
                         m_KongfuAnimMap.TryGetValue(skillname, out animConfig);
-                        //TODO ¸ÄÎª¶Á±í»ñÈ¡Ó²Ö±Ê±¼ä
+                        //TODO ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ó²Ö±Ê±ï¿½ï¿½
                         float hurtTime = animConfig == null ? 0.1f : animConfig.hitDelayTime;
                         if (controller == m_OurCharacter && m_EnemyCharacter.IsDead() == false)
                         {

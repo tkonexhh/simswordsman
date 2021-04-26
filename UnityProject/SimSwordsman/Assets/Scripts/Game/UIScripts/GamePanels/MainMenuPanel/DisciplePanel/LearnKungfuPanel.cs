@@ -62,13 +62,12 @@ namespace GameWish.Game
             IsSelected = isSelected;
             ItemBase selected = itemBase;
             m_Pos = transform;
-            m_ArrangeBtn.gameObject.SetActive(true);
             if (m_SelectedItemBase != null && m_SelectedItemBase.GetSortId() == selected.GetSortId())
             {
                 if (!IsSelected)
                 {
                     m_SelectedItemBase = null;
-                    m_ArrangeBtn.gameObject.SetActive(false);
+                    //m_ArrangeBtn.gameObject.SetActive(false);
                     return;
                 }
             }
@@ -97,7 +96,10 @@ namespace GameWish.Game
             GetInformationForNeed();
 
             if (m_ItemBaseList.Count == 0)
+            {
                 m_NotStudy.SetActive(true);
+                m_ArrangeBtn.gameObject.SetActive(false);
+            }
 
             for (int i = 0; i < m_ItemBaseList.Count; i++)
             {
@@ -138,13 +140,14 @@ namespace GameWish.Game
                     DataAnalysisMgr.S.CustomEvent(DotDefine.students_learn, m_CurIndex.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
 
                     UIMgr.S.ClosePanelAsUIID(UIID.LearnKungfuPanel);
+
                 }
             });
         }
         private void Update()
         {
-            if (IsSelected)
-                m_ArrangeBtn.transform.position = m_Pos.position;
+            //if (IsSelected)
+            //    m_ArrangeBtn.transform.position = m_Pos.position;
         }
 
         protected override void OnPanelHideComplete()
