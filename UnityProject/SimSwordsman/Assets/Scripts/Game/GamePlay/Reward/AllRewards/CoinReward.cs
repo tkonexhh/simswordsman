@@ -25,5 +25,10 @@ namespace GameWish.Game
         {
             return "Coin";
         }
+
+        public override string RewardTips()
+        {
+            return "";
+        }
     }
 }

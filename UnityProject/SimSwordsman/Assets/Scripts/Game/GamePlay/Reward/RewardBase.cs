@@ -35,6 +35,7 @@ namespace GameWish.Game
         public abstract void AcceptReward(int bonus = 1);
 
         public abstract string RewardName();
+        public abstract string RewardTips();
 
         public override string ToString()
         {

@@ -15,16 +15,20 @@ namespace GameWish.Game
         [SerializeField] private Text m_TxtFcoin;
         [SerializeField] private Text m_TxtRefeshTime;
         [SerializeField] private TowerShopItem[] m_ItemInfos;
+        [SerializeField] private TowerShopItemTips m_ItemTips;
 
 
         private float m_Timer = 0;
         private float m_RefeshTime = 1;
+
+        private int m_TipsTimerID = 0;
 
         protected override void OnUIInit()
         {
             m_BtnClose.onClick.AddListener(OnClickClose);
             m_BtnFullClose.onClick.AddListener(OnClickClose);
             m_BtnADRefesh.onClick.AddListener(OnClickADRefesh);
+            m_ItemTips.Init(this);
         }
 
         protected override void OnOpen()
@@ -37,6 +41,15 @@ namespace GameWish.Game
             RefeshRemainTime();
             DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Shop_Open);
             // m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
+        }
+
+        protected override void OnClose()
+        {
+            CloseDependPanel(EngineUI.MaskPanel);
+            if (m_TipsTimerID != 0)
+            {
+                Timer.S.Cancel(m_TipsTimerID);
+            }
         }
 
         private void OnClickADRefesh()
@@ -83,6 +96,20 @@ namespace GameWish.Game
         private void OnClickClose()
         {
             CloseSelfPanel();
+        }
+
+
+        public void ShowItemTips(TowerShopItem shopItem)
+        {
+            m_ItemTips.transform.localPosition = shopItem.transform.localPosition + new Vector3(0, 100, 0);
+            m_ItemTips.gameObject.SetActive(true);
+            m_ItemTips.SetItem(shopItem.itemInfo);
+            Timer.S.Cancel(m_TipsTimerID);
+            m_TipsTimerID = Timer.S.Post2Really(i =>
+                {
+                    m_ItemTips.gameObject.SetActive(false);
+                    m_TipsTimerID = 0;
+                }, 2);
         }
     }
 

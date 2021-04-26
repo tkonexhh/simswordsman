@@ -8,6 +8,8 @@ namespace GameWish.Game
 {
     public class TowerPanelChallengeItem : UListItemView
     {
+        [SerializeField] private GameObject m_ObjLvlBg;
+        [SerializeField] private GameObject m_ObjLvlBg_Boss;
         [SerializeField] private Text m_TxtLevel;
         [SerializeField] private GameObject m_ObjEnemyIconRoot;
         [SerializeField] private List<TowerEnemyIcon> m_EnemyIcons;
@@ -43,10 +45,10 @@ namespace GameWish.Game
             {
                 var sp = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + icons[i]);
                 m_EnemyIcons[i].SetEnemy(sp);
-                // m_EnemyIcons[i].SetEnemy(SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_qiubujun"));
             }
             int maxLvl = GameDataMgr.S.GetPlayerData().towerData.maxLevel;
             // Debug.LogError(towerLevelConfigDB.reward);
+            bool isBossLvl = false;
             if (string.IsNullOrEmpty(towerLevelConfigDB.reward))
             {
                 m_RewardItemIcon.gameObject.SetActive(false);
@@ -57,13 +59,14 @@ namespace GameWish.Game
                 var reward = RewardMgr.S.GetRewardBase(towerLevelConfigDB.reward);
                 m_RewardItemIcon.SetReward(reward, panel);
                 m_TxtRewardNum.text = "x" + reward.Count;
+                isBossLvl = reward is TowerCoinReward;
             }
 
             m_State = m_Level < maxLvl ? TowerItemState.Complete : (m_Level == maxLvl ? TowerItemState.Unlock : TowerItemState.Locked);
-            RefeshUI();
+            RefeshUI(isBossLvl);
         }
 
-        private void RefeshUI()
+        private void RefeshUI(bool isBoss)
         {
             m_ObjUnlock.SetActive(m_State == TowerItemState.Unlock);
             m_ObjLocked.SetActive(m_State == TowerItemState.Locked);
@@ -76,6 +79,9 @@ namespace GameWish.Game
                     m_EnemyIcons[i].SetGrey(m_State == TowerItemState.Complete, m_Panel.greyMat);
                 }
             }
+
+            m_ObjLvlBg.SetActive(!isBoss);
+            m_ObjLvlBg_Boss.SetActive(isBoss);
         }
 
         private void OnClickFight()

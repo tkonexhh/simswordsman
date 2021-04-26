@@ -12,6 +12,7 @@ namespace GameWish.Game
         [SerializeField] private Text m_TxtRewardNum;
         [SerializeField] private Text m_TxtCost;
         [SerializeField] private Image m_ImgQuality;
+        [SerializeField] private Button m_BtnImgBg;
         [Header("购买")]
         [SerializeField] private Button m_BtnBuy;
         [Header("已购买")]
@@ -20,16 +21,22 @@ namespace GameWish.Game
 
         private TowerShopItemInfo m_ItemInfo;
         private int m_Index;
+        private TowerShopPanel m_Panel;
+
+
+        public TowerShopItemInfo itemInfo => m_ItemInfo;
 
         private void Awake()
         {
             m_BtnBuy.onClick.AddListener(OnClickBuy);
+            m_BtnImgBg.onClick.AddListener(OnClickImgBg);
         }
 
         public void SetItem(TowerShopPanel panel, int index, TowerShopItemInfo itemInfo)
         {
             m_Index = index;
             m_ItemInfo = itemInfo;
+            m_Panel = panel;
             m_TxtRewardNum.text = "x" + m_ItemInfo.reward.Count;
             m_ItemInfo.buyed = GameDataMgr.S.GetPlayerData().towerData.GetShopDataByIndex(index).buyed;
             // Debug.LogError(m_ItemInfo.reward.SpriteName());
@@ -76,6 +83,11 @@ namespace GameWish.Game
             m_ObjBuyed.gameObject.SetActive(buyed);
             m_ObjBuyedDark.gameObject.SetActive(buyed);
             m_BtnBuy.gameObject.SetActive(!buyed);
+        }
+
+        private void OnClickImgBg()
+        {
+            m_Panel.ShowItemTips(this);
         }
     }
 

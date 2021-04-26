@@ -129,6 +129,7 @@ namespace GFrame.Editor
             text.supportRichText = false;
             if (ProjectDefaultConfig.S != null)
             {
+                text.rectTransform().sizeDelta = ProjectDefaultConfig.textConfig.defaultTextRect;
                 text.font = ProjectDefaultConfig.textConfig.defaultTextFont;
                 text.color = ProjectDefaultConfig.textConfig.defaultTextColor;
             }
