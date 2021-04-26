@@ -4,6 +4,7 @@ using UnityEngine;
 using Spine.Unity;
 using Qarth;
 using static Sdkbox.IAP;
+using UnityEngine.Rendering;
 
 namespace GameWish.Game
 {
@@ -45,6 +46,10 @@ namespace GameWish.Game
 
             if (m_Body == null)
                 m_Body = m_SpineAnim.gameObject;
+
+            SortingGroup sortingGroup = m_Body.AddComponent<SortingGroup>();
+            sortingGroup.sortingLayerName = "Facility";
+            sortingGroup.sortingOrder = 5;
 
             m_NavAgent = GetComponentInChildren<PolyNavAgent>();
             //m_NavAgent.enabled = false;

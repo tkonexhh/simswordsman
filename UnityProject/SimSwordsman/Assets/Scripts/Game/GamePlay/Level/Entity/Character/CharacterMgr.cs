@@ -5,6 +5,7 @@ using UnityEngine;
 using Qarth;
 using System.Linq;
 using System;
+using UnityEngine.Rendering;
 
 namespace GameWish.Game
 {
@@ -261,6 +262,11 @@ namespace GameWish.Game
             {
                 Log.e("Characterview is null, id: " + id + " obj name: " + obj.name);
                 return;
+            }
+
+            if (obj.GetComponent<SortingGroup>() != null)
+            {
+                Destroy(obj.GetComponent<SortingGroup>());
             }
 
             CharacterController controller = new CharacterController(id, characterView, initState);

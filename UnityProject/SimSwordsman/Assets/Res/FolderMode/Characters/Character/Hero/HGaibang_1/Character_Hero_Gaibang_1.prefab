@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 3845809598577782915}
   - component: {fileID: 1875119245}
   - component: {fileID: 7696235984069948748}
-  - component: {fileID: 7036753607345804724}
   - component: {fileID: 4294954712268266262}
   m_Layer: 0
   m_Name: Character_Hero_Gaibang_1
@@ -114,17 +113,6 @@ MonoBehaviour:
   restrict: 1
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!210 &7036753607345804724
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845809598577782914}
-  m_Enabled: 1
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 5
 --- !u!114 &4294954712268266262
 MonoBehaviour:
   m_ObjectHideFlags: 0
