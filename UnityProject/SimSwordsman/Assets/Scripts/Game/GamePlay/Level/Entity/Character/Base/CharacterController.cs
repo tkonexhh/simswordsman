@@ -300,7 +300,7 @@ namespace GameWish.Game
             }
 
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnTaskRewardBubble();
-            go.transform.SetParent(m_CharacterView.Body.transform);
+            go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetTaskRewardBubblePos();
             go.GetComponent<CharacterTaskRewardBubble>().SetController(this);
         }
@@ -315,7 +315,7 @@ namespace GameWish.Game
             }
 
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
-            go.transform.SetParent(m_CharacterView.Body.transform);
+            go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkTip workTip = go.GetComponent<CharacterWorkTip>();
             workTip.OnGotoCollectObj(collectedObjType);
@@ -331,7 +331,7 @@ namespace GameWish.Game
             }
 
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkTip();
-            go.transform.SetParent(m_CharacterView.Body.transform);
+            go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkTip workTip = go.GetComponent<CharacterWorkTip>();
             workTip.OnGotoFacilityWork(facilityType);
@@ -346,7 +346,7 @@ namespace GameWish.Game
         public void SpawnWorkProgressBar()
         {
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkProgressBar();
-            go.transform.SetParent(m_CharacterView.Body.transform);
+            go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkProgressBar progress = go.GetComponent<CharacterWorkProgressBar>();
             m_CharacterView.SetProgressBar(progress);
@@ -376,7 +376,7 @@ namespace GameWish.Game
         public void SpawnFacilityWorkRewardPop(FacilityType facilityType, int count)
         {
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkRewardPop();
-            go.transform.SetParent(m_CharacterView.Body.transform);
+            go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkRewardPop workRewardPop = go.GetComponent<CharacterWorkRewardPop>();
             workRewardPop.OnGetFacilityWorkReward(facilityType, (int)FoodBuffSystem.S.Coin(count));
@@ -385,7 +385,7 @@ namespace GameWish.Game
         public void SpawnCollectedObjWorkReward(RawMaterial collectedObjType, int count)
         {
             GameObject go = MainGameMgr.S.CharacterMgr.SpawnWorkRewardPop();
-            go.transform.SetParent(m_CharacterView.Body.transform);
+            go.transform.SetParent(m_CharacterView.transform);
             go.transform.position = m_CharacterView.GetHeadPos();
             CharacterWorkRewardPop workRewardPop = go.GetComponent<CharacterWorkRewardPop>();
             workRewardPop.OnGetCollectObjWorkReward(collectedObjType, count);
