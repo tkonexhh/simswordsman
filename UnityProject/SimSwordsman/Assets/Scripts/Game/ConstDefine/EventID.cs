@@ -421,6 +421,7 @@ namespace GameWish.Game
         #region Tower
         OnRefeshTowerCoin,
         OnRefeshTowerShop,
+        OnTowerBattleOver,
 
         OnTowerTrigger_IntroduceTrigger = 14001,        //伏魔塔系统介绍引导
         OnTowerTrigger_ClickTowerBtnTrigger,            //点击伏魔塔按钮

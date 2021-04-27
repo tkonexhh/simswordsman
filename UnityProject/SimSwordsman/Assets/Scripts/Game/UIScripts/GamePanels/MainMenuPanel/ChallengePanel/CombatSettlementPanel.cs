@@ -218,6 +218,12 @@ namespace GameWish.Game
                         }
                     }
 
+                    TowerBattleOverToGuide tempStruct = new TowerBattleOverToGuide();
+                    tempStruct.isSuccess = m_IsSuccess;
+                    tempStruct.level = m_TowerLevelConfig.level;
+                    tempStruct.remain = TowerDefine.MAX_CHARACT_NUM - GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst.Count;
+                    EventSystem.S.Send(EventID.OnTowerBattleOver, tempStruct);
+
                     CheckIsStartTowerShopGuide();
                     break;
             }
@@ -368,5 +374,13 @@ namespace GameWish.Game
             //else
             //    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
         }
+    }
+
+
+    public class TowerBattleOverToGuide
+    {
+        public bool isSuccess;
+        public int level;
+        public int remain;
     }
 }
