@@ -91,13 +91,13 @@ namespace GameWish.Game
             switch (m_PropType)
             {
                 case PropType.Arms:
-                    m_RedPoint.SetActive(m_CurDisciple.CheckArms());
+                    m_RedPoint.SetActive(m_CurDisciple.CheckArms() || m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
                     break;
                 case PropType.Armor:
-                    m_RedPoint.SetActive(m_CurDisciple.CheckArmor());
+                    m_RedPoint.SetActive(m_CurDisciple.CheckArmor() || m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
                     break;
             }
-            m_RedPoint.SetActive(m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
+            //m_RedPoint.SetActive(m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
         }
         private void HandleAddListenerEvevt(int key, object[] param)
         {
