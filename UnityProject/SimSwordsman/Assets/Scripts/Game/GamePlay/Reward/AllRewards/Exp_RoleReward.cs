@@ -30,5 +30,10 @@ namespace GameWish.Game
         {
             return "";
         }
+
+        public override string RewardTips()
+        {
+            return "";
+        }
     }
 }

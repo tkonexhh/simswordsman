@@ -135,6 +135,14 @@ namespace GameWish.Game
         {
             return m_CharacterControllerList.Where(i => i.CharacterModel.GetCurTaskId() == taskId).ToList();
         }
+        /// <summary>
+        /// 获取某一限定等级(>=)弟子的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetLomitLevelDiscipleNumber(int level)
+        {
+            return m_CharacterDataWrapper.GetLomitLevelDiscipleNumber(level);
+        }
 
         public CharacterItem GetCharacterItem(int id)
         {
@@ -262,11 +270,6 @@ namespace GameWish.Game
             {
                 Log.e("Characterview is null, id: " + id + " obj name: " + obj.name);
                 return;
-            }
-
-            if (obj.GetComponent<SortingGroup>() != null)
-            {
-                Destroy(obj.GetComponent<SortingGroup>());
             }
 
             CharacterController controller = new CharacterController(id, characterView, initState);

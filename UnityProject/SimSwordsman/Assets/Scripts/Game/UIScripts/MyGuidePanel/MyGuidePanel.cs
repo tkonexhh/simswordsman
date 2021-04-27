@@ -20,10 +20,10 @@ namespace GameWish.Game
 
         [SerializeField]
         private RectTransform m_TargetRect;
-        
+
         [SerializeField]
         private Transform m_Hand;
-     
+
         [SerializeField]
         private GameObject m_GuideTips1;
         [SerializeField]
@@ -38,15 +38,15 @@ namespace GameWish.Game
         private int m_GuidestepId = -1;
 
         bool canClick = false;
-        
+
         protected override void OnOpen()
         {
-            base.OnOpen();           
+            base.OnOpen();
         }
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            if(args.Length > 0)
+            if (args.Length > 0)
             {
                 m_TargetRect = args[0] as RectTransform;
                 m_Hand.transform.position = m_TargetRect.position;
@@ -69,7 +69,7 @@ namespace GameWish.Game
                     else
                     {
                         button.onClick.RemoveAllListeners();
-                        button.onClick.AddListener(() => 
+                        button.onClick.AddListener(() =>
                         {
                             if (canClick)
                                 action?.Invoke();
@@ -83,16 +83,31 @@ namespace GameWish.Game
                 }
             }
             //是否有黑色遮罩
-            if(m_GuestMethod == GuideMethod.NoBlack)
+            if (m_GuestMethod == GuideMethod.NoBlack)
             {
                 m_CircleShaderControl.InitAsNoBlack(m_TargetRect);
             }
             else
             {
-                m_CircleShaderControl.Init(m_TargetRect);
+                // m_CircleShaderControl.Init(m_TargetRect);
+
+                bool isRectMask = false;
+                if (args.Length >= 5)
+                {
+                    isRectMask = (bool)args[4];
+
+                }
+                if (isRectMask)
+                {
+                    m_CircleShaderControl.InitWithRectMask(m_TargetRect);
+                }
+                else
+                {
+                    m_CircleShaderControl.Init(m_TargetRect);
+                }
             }
 
-            if(m_GuestMethod == GuideMethod.NoMessage)
+            if (m_GuestMethod == GuideMethod.NoMessage)
             {
                 m_GuideTips1.gameObject.SetActive(false);
             }
@@ -100,7 +115,7 @@ namespace GameWish.Game
             {
                 m_GuideTips1.gameObject.SetActive(true);
             }
-            
+
             EventSystem.S.Send(EventID.OnGuidePanelOpen, m_GuidestepId);
         }
         protected override void OnClose()
@@ -108,7 +123,7 @@ namespace GameWish.Game
             m_CircleShaderControl.EndGuide();
             base.OnClose();
         }
-        
+
         public void LocateMyGuideTips(string GuideTips, Vector3 guideTipsPosition, bool isFlip)
         {
             if (!isFlip)

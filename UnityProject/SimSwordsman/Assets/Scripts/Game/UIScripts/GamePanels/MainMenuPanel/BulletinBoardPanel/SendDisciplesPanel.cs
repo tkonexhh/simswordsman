@@ -101,6 +101,29 @@ namespace GameWish.Game
                     break;
             }
             InitPanelInfo();
+
+            AutoFillDisciples();
+        }
+
+        private void AutoFillDisciples()
+        {
+            if (m_PanelType != PanelType.Challenge)
+                return;
+            m_SelectedDiscipleDic.Clear();
+
+            CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+            int minCount = Mathf.Min(m_AllCharacterList.Count, MaxDiscipleNumber);
+            for (int i = 0; i < m_AllCharacterList.Count; i++)
+            {
+                if (m_SelectedDiscipleDic.Count < minCount)
+                {
+                    m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
+                    continue;
+                }
+                break;
+            }
+            HandConfirmBtnEvent();
+            RefeshATK();
         }
 
         protected override void OnPanelHideComplete()
@@ -334,7 +357,6 @@ namespace GameWish.Game
 
             switch (m_PanelType)
             {
-
                 case PanelType.Challenge:
                     {
                         CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
@@ -346,7 +368,6 @@ namespace GameWish.Game
                                 m_SelectedDiscipleDic.Add(m_AllCharacterList[i].id, m_AllCharacterList[i]);
                                 continue;
                             }
-
                             break;
                         }
                     }

@@ -34,6 +34,7 @@ namespace Qarth
     {
         [SerializeField] private Font m_DefaultTextFont;
         [SerializeField] private Color m_DefaultTextColor = Color.white;
+        [SerializeField] private Vector2 m_DefaultTextRect = new Vector2(100, 50);
         [SerializeField] private int m_DefaultTextSize = 14;
 
 
@@ -54,6 +55,7 @@ namespace Qarth
         }
 
         public Color defaultTextColor => m_DefaultTextColor;
+        public Vector2 defaultTextRect => m_DefaultTextRect;
         public int defaultTextSize => m_DefaultTextSize;
     }
 

@@ -31,6 +31,11 @@ namespace GameWish.Game
                 return TDEquipmentConfigTable.GetData(m_KeyID.Value).iconName;
             throw new NullReferenceException("m_KeyID");
         }
+
+        public override string RewardTips()
+        {
+            return "";
+        }
     }
 
 }

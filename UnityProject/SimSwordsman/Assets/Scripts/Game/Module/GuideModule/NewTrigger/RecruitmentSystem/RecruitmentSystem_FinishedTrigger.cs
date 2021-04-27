@@ -44,7 +44,10 @@ namespace GameWish.Game
             m_Listener = null;
             EventSystem.S.UnRegister(EventID.OnRecruitmentSystem_FinishedTrigger, OnEventListener);
 
-            EventSystem.S.Send(EventID.OnGuideDialog8);
+            Timer.S.Post2Really((x)=> 
+            {
+                EventSystem.S.Send(EventID.OnGuideDialog8);
+            },.2f,1);
         }
     }
 }

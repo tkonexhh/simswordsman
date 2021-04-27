@@ -9,12 +9,12 @@ namespace GameWish.Game
     {
         private IUINodeFinder m_Finder; //按钮节点 
         private int m_NeedClickTime = 1; //按钮点击次数
-        
+
         private bool m_IsNotForce = false;
 
         private Button m_GuideBtn;
         private int m_ClickTime = 0;
-
+        private bool m_IsRectMask = false;
         public override void SetParam(object[] pv)
         {
             if (pv.Length == 0)
@@ -26,15 +26,19 @@ namespace GameWish.Game
             {
                 m_Finder = pv[0] as IUINodeFinder;
 
-                if(pv.Length > 1)
+                if (pv.Length > 1)
                 {
                     m_NeedClickTime = Helper.String2Int((string)pv[1]);
                 }
 
-                if(pv.Length > 2)
+                if (pv.Length > 2)
                 {
-                    m_IsNotForce = true;
-                }           
+                    m_IsNotForce = Helper.String2Bool((string)pv[2]);
+                }
+                if (pv.Length > 3)
+                {
+                    m_IsRectMask = Helper.String2Bool((string)pv[3]);
+                }
             }
             catch (Exception e)
             {
@@ -44,7 +48,7 @@ namespace GameWish.Game
 
         protected override void OnStart()
         {
-             EventSystem.S.Register(EventID.GuideDelayStart, StartCommand);
+            EventSystem.S.Register(EventID.GuideDelayStart, StartCommand);
             Debug.Log("gui commond 开始");
 
             AppLoopMgr.S.onUpdate += Update;
@@ -75,7 +79,7 @@ namespace GameWish.Game
                     else
                     {
                         m_GuideBtn.onClick.RemoveListener(OnGuideBtnClickTimes);
-                    }     
+                    }
                 }
             }
             UIMgr.S.ClosePanelAsUIID(UIID.MyGuidePanel);
@@ -115,7 +119,7 @@ namespace GameWish.Game
             Action action = FinishStep;
             if (m_NeedClickTime != 0)
             {
-                UIMgr.S.OpenTopPanel(UIID.MyGuidePanel, null, targetNode, guideStep.stepID, m_IsNotForce, action);
+                UIMgr.S.OpenTopPanel(UIID.MyGuidePanel, null, targetNode, guideStep.stepID, m_IsNotForce, action, m_IsRectMask);
             }
             else //非點擊則不為最上層
             {

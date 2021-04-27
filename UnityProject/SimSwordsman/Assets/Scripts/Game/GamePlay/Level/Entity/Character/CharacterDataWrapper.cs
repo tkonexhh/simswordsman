@@ -111,7 +111,22 @@ namespace GameWish.Game
 
             m_DbData.RemoveCharacter(id);
         }
-
+        /// <summary>
+        /// 获取某一限定等级(>=)弟子的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetLomitLevelDiscipleNumber(int level)
+        {
+            int number = 0;
+            characterList.ForEach(i =>
+            {
+                if (level <= i.level)
+                {
+                    number++;
+                }
+            });
+            return number;
+        }
         public CharacterItem GetCharacterItem(int id)
         {
             CharacterItem item = characterList.FirstOrDefault(i => i.id == id);
@@ -666,30 +681,33 @@ namespace GameWish.Game
             }
         }
 
-        private bool CheckEquipStrengthenRedPoint()
+        private bool CheckEquipStrengthenRedPoint(bool isSendEvetn = true)
         {
-            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms);
+            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor, isSendEvetn) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms, isSendEvetn);
         }
 
-        private bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment)
+        public bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment, bool isSendEvent)
         {
             UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume(characeterEquipment.GetSubID(), characeterEquipment.Class + 1);
 
             if (upgrade == null)
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, id, characeterEquipment.PropType, false);
                 return false;
             }
 
             bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
             if (isHave)
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, true);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, characeterEquipment.PropType, true);
                 return true;
             }
             else
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, characeterEquipment.PropType, false);
                 return false;
             }
         }
