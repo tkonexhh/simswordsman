@@ -57,7 +57,7 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_RedPoint;
 
-    
+
 
         [Header("Buttom")]
         [SerializeField]
@@ -68,8 +68,8 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_UpgradeResItemTra;
         [SerializeField]
-        private GameObject m_UpgradeResItem; 
-    
+        private GameObject m_UpgradeResItem;
+
 
         private int m_CurLevel = 1;
         private const int NextFontSize = 20;
@@ -78,6 +78,7 @@ namespace GameWish.Game
         private List<string> m_UnlockContent = null;
         private FacilityLevelInfo m_NextFacilityLevelInfo = null;
         private FacilityConfigInfo m_CurFacilityConfigInfo = null;
+        private LobbyLevelInfo m_LobbyLevelInfo = null;
 
         private RecruitDiscipleMgr m_RecruitDiscipleMgr = null;
         private FacilityMgr m_FacilityMgr = null;
@@ -87,7 +88,6 @@ namespace GameWish.Game
         private void InitFixedInfo()
         {
             m_BriefIntroduction.text = m_CurFacilityConfigInfo.desc;
-            m_UpgradeTitle.text = "升级所需资源:";
             m_UpgradeBtnValue.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_UPGRADE);
         }
         protected override void OnUIInit()
@@ -131,7 +131,8 @@ namespace GameWish.Game
         private void CreateRecruitmentOrder(RecruitType Medal, Sprite sprite)
         {
             RecruitmentOrderItem item = Instantiate(m_RecruitmentOrderItem, m_Bottom).GetComponent<RecruitmentOrderItem>();
-            if (item != null) {
+            if (item != null)
+            {
                 m_RecruitmentItemList.Add(item);
                 item.OnInit(this, null, Medal, sprite);
             }
@@ -152,15 +153,27 @@ namespace GameWish.Game
         /// </summary>
         public void RefreshPanelInfo()
         {
-            if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo,m_CostItems,false))
+            if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems, false) && CommonMethod.CheckEnoughDiscipleLevel(m_LobbyLevelInfo))
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
             m_LvellValue.text = CommonUIMethod.GetGrade(m_CurLevel);
             m_LobbyImg.sprite = FindSprite("Lobby" + m_CurLevel);
+            if (m_LobbyLevelInfo != null)
+                m_UpgradeTitle.text = "需要拥有" + CheckFontColor() + m_LobbyLevelInfo.upgradePreconditions.DiscipleLevel + "级弟子";
+            else
+                m_UpgradeTitle.text = string.Empty;
 
             RefreshResInfo();
             SetNextLobbyStr();
+        }
+
+        private string CheckFontColor()
+        {
+            if (CommonMethod.CheckEnoughDiscipleLevel(m_LobbyLevelInfo))
+                return CommonUIMethod.GetStrForColor(ColorDefine.BULE, m_LobbyLevelInfo.upgradePreconditions.DiscipleNumber + "名");
+            else
+                return CommonUIMethod.GetStrForColor(ColorDefine.RED, m_LobbyLevelInfo.upgradePreconditions.DiscipleNumber + "名");
         }
         private void SetNextLobbyStr()
         {
@@ -206,6 +219,17 @@ namespace GameWish.Game
             AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
             if (!CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems))
                 return;
+            if (!PlatformHelper.isTestMode)
+            {
+                if (!CheckDiscipleCondition())
+                {
+                    FloatMessage.S.ShowMsg("需要拥有" + m_LobbyLevelInfo.upgradePreconditions.DiscipleNumber + "名" + m_LobbyLevelInfo.upgradePreconditions.DiscipleLevel + "级弟子");
+                    return;
+                }
+            }
+         
+            CheckDiscipleCondition();
+
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)
             {
@@ -219,7 +243,12 @@ namespace GameWish.Game
                 HideSelfWithAnim();
             }
         }
-     
+
+        private bool CheckDiscipleCondition()
+        {
+            return CommonMethod.CheckEnoughDiscipleLevel(m_LobbyLevelInfo);
+        }
+
         /// <summary>
         /// 刷新等级信息
         /// </summary>
@@ -237,6 +266,7 @@ namespace GameWish.Game
             {
                 m_NextFacilityLevelInfo = m_FacilityMgr.GetFacilityLevelInfo(FacilityType.Lobby, m_CurLevel + 1);
                 m_CostItems = m_NextFacilityLevelInfo?.GetUpgradeResCosts();
+                m_LobbyLevelInfo = (LobbyLevelInfo)m_NextFacilityLevelInfo;
                 m_UnlockContent = MainGameMgr.S.FacilityMgr.GetUnlockContent(m_CurLevel + 1);
             }
         }

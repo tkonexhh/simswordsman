@@ -28,6 +28,7 @@ namespace GameWish.Game
 
             lobbyLevelInfo.AnalysisUnlockContent(tdData.unlockContent);
             lobbyLevelInfo.PracticeLevelMax = tdData.practiceLevelMax;
+            lobbyLevelInfo.upgradePreconditions = new UpgradePreconditions(tdData.upgradePreconditions);
             if (!facilityLevelInfoDic.ContainsKey(tdData.level))
             {
                 facilityLevelInfoDic.Add(tdData.level, lobbyLevelInfo);

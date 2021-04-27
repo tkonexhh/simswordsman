@@ -22,9 +22,13 @@ namespace GameWish.Game
         [SerializeField]
         private Image m_ChallengePhoto;
         [SerializeField]
-        private Image m_RewardIcon;
+        private Transform m_RewardTra;
         [SerializeField]
-        private Image m_KungName;
+        private GameObject m_Reward;
+        //[SerializeField]
+        //private Image m_RewardIcon;
+        //[SerializeField]
+        //private Image m_KungName;
 
         [SerializeField]
         private Button m_ChallengeBtn;
@@ -92,64 +96,47 @@ namespace GameWish.Game
             m_ChallengeTitle.text = CommonUIMethod.GetChallengeTitle(m_CurChapterConfigInfo, m_LevelConfigInfo.level);
             m_ChallengeCont.text = m_LevelConfigInfo.desc;
 
-            m_ChallengeRecommendAtkValue.text = m_LevelConfigInfo.recommendAtkValue.ToString();
-
-            foreach (var item in m_LevelConfigInfo.levelRewardList)
+            for (int i = 0; i < m_LevelConfigInfo.levelRewardList.Count; i++)
             {
-                switch (item.RewardItem)
+                switch (m_LevelConfigInfo.levelRewardList[i].RewardItem)
                 {
                     case RewardItemType.Item:
-                        m_RewardIcon.sprite = FindSprite(TDItemConfigTable.GetIconName((int)item.KeyID));
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Item, m_LevelConfigInfo.levelRewardList[i],false);
                         break;
                     case RewardItemType.Armor:
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Armor, m_LevelConfigInfo.levelRewardList[i], false);
+                        break;
                     case RewardItemType.Arms:
-                        m_RewardIcon.sprite = FindSprite(TDEquipmentConfigTable.GetIconName((int)item.KeyID));
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Arms, m_LevelConfigInfo.levelRewardList[i], false);
                         break;
                     case RewardItemType.Kongfu:
-                        SetKungfuSprite(item);
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Kongfu, m_LevelConfigInfo.levelRewardList[i], false);
                         break;
                     case RewardItemType.Medicine:
-                        m_RewardIcon.sprite = FindSprite(TDHerbConfigTable.GetHerbIconNameById((int)item.KeyID));
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Medicine, m_LevelConfigInfo.levelRewardList[i], false);
                         break;
                     case RewardItemType.Food:
-                        m_RewardIcon.sprite = FindSprite("Baozi");
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Food, m_LevelConfigInfo.levelRewardList[i], false);
+                        break;
+                    case RewardItemType.TowerCoin:
+                        break;
+                    case RewardItemType.Exp_Kongfu:
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(RewardItemType.Exp_Kongfu, m_LevelConfigInfo.levelRewardList[i].Count);
+                        break;
+                    case RewardItemType.Exp_Role:
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(RewardItemType.Exp_Role, m_LevelConfigInfo.levelRewardList[i].Count);
                         break;
                     case RewardItemType.Coin:
-                        m_RewardIcon.sprite = FindSprite("Coin");
-                        break;
-
-                    case RewardItemType.Exp_Role:
-                    case RewardItemType.Exp_Kongfu:
+                        Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(TaskRewardType.Coin, m_LevelConfigInfo.levelRewardList[i], false);
                         break;
                     default:
                         break;
                 }
             }
-            m_ChallengeRewardValue.text = m_LevelConfigInfo.levelRewardList[0].Count.ToString();
+
+            m_ChallengeRecommendAtkValue.text = CommonUIMethod.GetTenThousandOrMillion(m_LevelConfigInfo.recommendAtkValue);
         }
-        private KungfuQuality GetKungfuQuality(KungfuType kungfuType)
-        {
-            return TDKongfuConfigTable.GetKungfuConfigInfo(kungfuType).KungfuQuality;
-        }
-        private void SetKungfuSprite(RewardBase item)
-        {
-            m_KungName.gameObject.SetActive(true);
-            switch (GetKungfuQuality((KungfuType)item.KeyID))
-            {
-                case KungfuQuality.Normal:
-                    m_RewardIcon.sprite = FindSprite("Introduction");
-                    break;
-                case KungfuQuality.Master:
-                    m_RewardIcon.sprite = FindSprite("Advanced");
-                    break;
-                case KungfuQuality.Super:
-                    m_RewardIcon.sprite = FindSprite("Excellent");
-                    break;
-                default:
-                    break;
-            }
-            m_KungName.sprite = FindSprite(TDKongfuConfigTable.GetIconName((KungfuType)item.KeyID));
-        }
+
 
         protected override void OnPanelHideComplete()
         {

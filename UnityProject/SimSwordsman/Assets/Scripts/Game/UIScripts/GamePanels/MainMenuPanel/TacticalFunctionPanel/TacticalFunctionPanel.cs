@@ -61,7 +61,6 @@ namespace GameWish.Game
             GetInformationForNeed();
 
             BindAddListenerEvent();
-
         }
 
 
@@ -176,9 +175,9 @@ namespace GameWish.Game
 
         private void RewardItem()
         {
-            Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(this, m_SimGameTask.GetTaskReward());
-            Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(this, RewardItemType.Exp_Kongfu, m_CommonTaskItemInfo.kongfuReward);
-            Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(this, RewardItemType.Exp_Role, m_CommonTaskItemInfo.expReward);
+            Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(m_SimGameTask.GetTaskReward());
+            Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(RewardItemType.Exp_Kongfu, m_CommonTaskItemInfo.kongfuReward);
+            Instantiate(m_Reward, m_RewardTra).GetComponent<TacticalReward>().RefreshRewardInfo(RewardItemType.Exp_Role, m_CommonTaskItemInfo.expReward);
         }
 
         private void CreateFontPrefabs(string font)

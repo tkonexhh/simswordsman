@@ -96,6 +96,7 @@ namespace GameWish.Game
                     m_RedPoint.SetActive(m_CurDisciple.CheckArmor());
                     break;
             }
+            m_RedPoint.SetActive(m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
         }
         private void HandleAddListenerEvevt(int key, object[] param)
         {

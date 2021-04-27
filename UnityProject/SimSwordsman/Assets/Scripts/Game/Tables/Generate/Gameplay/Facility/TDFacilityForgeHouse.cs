@@ -10,8 +10,6 @@ namespace GameWish.Game
 {
     public partial class TDFacilityForgeHouse
     {
-        
-       
         private EInt m_Level = 0;   
         private string m_UpgradeRes;   
         private EInt m_UpgradeCost = 0;   

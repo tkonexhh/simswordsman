@@ -136,7 +136,7 @@ namespace GameWish.Game
                 UpGradeRedPoint = false;
             else
             {
-                if (CheackIsBuild(facilityLevelInfo, costItems))
+                if (CheckIsBuild(facilityLevelInfo, costItems) && CheckEnoughDiscipleLevel(facilityLevelInfo))
                 {
                     UpGradeRedPoint = true;
                 }
@@ -148,6 +148,17 @@ namespace GameWish.Game
 
             SubRedPoint = CheckSubFunc();
             RefreshRedPoint();
+        }
+
+        private bool CheckEnoughDiscipleLevel(FacilityLevelInfo facilityLevelInfo)
+        {
+            if (m_FacilityType == FacilityType.Lobby)
+            {
+                LobbyLevelInfo lobbyLevelInfo =(LobbyLevelInfo)facilityLevelInfo;
+                return CommonMethod.CheckEnoughDiscipleLevel(lobbyLevelInfo);
+            }
+            else
+                return true;
         }
 
         private void RefreshRedPoint()
@@ -177,7 +188,7 @@ namespace GameWish.Game
             return SubRedPoint;
         }
 
-        private bool CheackIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
+        private bool CheckIsBuild(FacilityLevelInfo facilityLevelInfo, List<CostItem> costItems)
         {
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
             if (facilityLevelInfo.GetUpgradeCondition() > lobbyLevel)

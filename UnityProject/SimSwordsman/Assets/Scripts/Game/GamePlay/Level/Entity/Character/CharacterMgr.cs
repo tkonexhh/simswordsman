@@ -5,6 +5,7 @@ using UnityEngine;
 using Qarth;
 using System.Linq;
 using System;
+using UnityEngine.Rendering;
 
 namespace GameWish.Game
 {
@@ -133,6 +134,14 @@ namespace GameWish.Game
         public List<CharacterController> GetAllCharacterInTask(int taskId)
         {
             return m_CharacterControllerList.Where(i => i.CharacterModel.GetCurTaskId() == taskId).ToList();
+        }
+        /// <summary>
+        /// 获取某一限定等级(>=)弟子的数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetLomitLevelDiscipleNumber(int level)
+        {
+            return m_CharacterDataWrapper.GetLomitLevelDiscipleNumber(level);
         }
 
         public CharacterItem GetCharacterItem(int id)
