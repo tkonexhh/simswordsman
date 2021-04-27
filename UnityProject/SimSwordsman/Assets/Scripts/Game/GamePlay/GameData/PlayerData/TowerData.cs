@@ -21,7 +21,7 @@ namespace GameWish.Game
         public List<TowerShopItemDB> shopInfoLst = new List<TowerShopItemDB>();
 
         //已经复活的关卡保存
-        public List<int> revivedLvlLst = new List<int>();
+        //public List<int> revivedLvlLst = new List<int>();
 
         public override void InitWithEmptyData()
         {
@@ -298,22 +298,22 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void LevelRevived(int level)
-        {
-            if (revivedLvlLst.Contains(level))
-            {
-                Log.w("Already Cointains Tower Revive Level");
-                return;
-            }
+        // public void LevelRevived(int level)
+        // {
+        //     if (revivedLvlLst.Contains(level))
+        //     {
+        //         Log.w("Already Cointains Tower Revive Level");
+        //         return;
+        //     }
 
-            revivedLvlLst.Add(level);
-            SetDataDirty();
-        }
+        //     revivedLvlLst.Add(level);
+        //     SetDataDirty();
+        // }
 
-        public bool HasLevelRevived(int level)
-        {
-            return revivedLvlLst.Contains(level);
-        }
+        // public bool HasLevelRevived(int level)
+        // {
+        //     return revivedLvlLst.Contains(level);
+        // }
         #endregion
     }
 

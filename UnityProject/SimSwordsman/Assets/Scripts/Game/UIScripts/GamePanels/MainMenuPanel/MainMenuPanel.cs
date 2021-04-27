@@ -52,6 +52,7 @@ namespace GameWish.Game
         private GameObject m_Challenging;
         [SerializeField]
         private Button m_VoldemortTowerBtn;
+        [SerializeField] private GameObject m_ObjTowerRed;
         [SerializeField]
         private Button m_MythicalAnimalsBtn;
         [SerializeField]
@@ -107,7 +108,7 @@ namespace GameWish.Game
         {
             base.OnOpen();
             //ClearTacticalFunctionBtn();
-
+            OpenDependPanel(UIID.WorldUIPanel, -1);
             RegisterEvents();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
@@ -208,7 +209,7 @@ namespace GameWish.Game
             m_VoldemortTowerBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
+                m_ObjTowerRed.SetActive(false);
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
                 int needLobbyLevel = TowerDefine.ENTER_LEVEL;
                 if (lobbyLevel >= needLobbyLevel)
@@ -219,8 +220,9 @@ namespace GameWish.Game
                 {
                     FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
                 }
-
             });
+            bool showTowerRed = !DataRecord.S.GetBool(TowerDefine.SAVEKEY_NEWDAYSHOW, false) && MainGameMgr.S.FacilityMgr.GetLobbyCurLevel() >= TowerDefine.ENTER_LEVEL;
+            m_ObjTowerRed.SetActive(showTowerRed);
             m_CreateCoinBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
@@ -257,7 +259,7 @@ namespace GameWish.Game
                         return;
                     }
                 }
-              
+
                 UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialPanel);
@@ -280,7 +282,7 @@ namespace GameWish.Game
         protected override void OnClose()
         {
             base.OnClose();
-
+            CloseDependPanel(UIID.WorldUIPanel);
             UnregisterEvents();
 
             MainGameMgr.S.IsMainMenuPanelOpen = false;
@@ -345,6 +347,7 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.Register(EventID.OnRefeshDailyTaskPanel, HandleEvent);
             EventSystem.S.Register(EventID.OnMainMenuChallenging, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
         }
 
         private void UnregisterEvents()
@@ -360,6 +363,7 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnMainMenuDailyTaskRedPoint, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnRefeshDailyTaskPanel, HandleEvent);
             EventSystem.S.UnRegister(EventID.OnMainMenuChallenging, HandleEvent);
+            EventSystem.S.UnRegister(EventID.OnStartUpgradeFacility, HandleEvent);
         }
 
         private void HandleEvent(int key, params object[] param)
@@ -404,6 +408,19 @@ namespace GameWish.Game
                 case EventID.OnMainMenuChallenging:
                     RefreshChallenging();
                     break;
+                case EventID.OnStartUpgradeFacility:
+                    if (param == null || param.Length <= 0)
+                        return;
+                    FacilityType facilityType = (FacilityType)param[0];
+                    if (facilityType == FacilityType.Lobby)
+                    {
+                        int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                        if (lobbyLevel == TowerDefine.ENTER_LEVEL)
+                        {
+                            m_ObjTowerRed.SetActive(true);
+                        }
+                    }
+                    break;
             }
         }
 
@@ -430,7 +447,7 @@ namespace GameWish.Game
                 {
                     LevelConfigInfo levelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(chapterDbItem.chapter, chapterDbItem.level);
                     //Debug.LogError("推荐功力 = "+ levelConfigInfo.recommendAtkValue);
-                    if (allAtkValue >= levelConfigInfo.recommendAtkValue*1.5f)
+                    if (allAtkValue >= levelConfigInfo.recommendAtkValue * 1.5f)
                         m_Challenging.SetActive(true);
                     else
                         m_Challenging.SetActive(false);

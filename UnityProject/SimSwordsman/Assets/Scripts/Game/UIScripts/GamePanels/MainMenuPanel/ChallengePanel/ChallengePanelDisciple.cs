@@ -19,15 +19,15 @@ namespace GameWish.Game
 
 
         protected CharacterItem m_CharacterItem;
-        private ChallengeChooseDisciple m_ChallengeChooseDisciple;
+        private AbstractPanel m_Panel;
 
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         protected bool IsSelected = false;
 
-        internal void Init(CharacterItem characterItem, ChallengeChooseDisciple challengeChoose)
+        internal void Init(CharacterItem characterItem, AbstractPanel panel)
         {
             m_CharacterItem = characterItem;
-            m_ChallengeChooseDisciple = challengeChoose;
+            m_Panel = panel;
             BindAddListenerEvent();
             m_DiscipleName.text = m_CharacterItem.name;
             LoadClanPrefabs();
@@ -64,16 +64,16 @@ namespace GameWish.Game
             switch (m_CharacterItem.quality)
             {
                 case CharacterQuality.Normal:
-                    m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Blue");
-                    m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Bule");
+                    m_DiscipleLevelBg.sprite = m_Panel.FindSprite("Disciple_FontBg_Blue");
+                    m_Line.sprite = m_Panel.FindSprite("Disciple_Line_Bule");
                     break;
                 case CharacterQuality.Good:
-                    m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Yellow");
-                    m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Yellow");
+                    m_DiscipleLevelBg.sprite = m_Panel.FindSprite("Disciple_FontBg_Yellow");
+                    m_Line.sprite = m_Panel.FindSprite("Disciple_Line_Yellow");
                     break;
                 case CharacterQuality.Perfect:
-                    m_DiscipleLevelBg.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_FontBg_Red");
-                    m_Line.sprite = m_ChallengeChooseDisciple.FindSprite("Disciple_Line_Red");
+                    m_DiscipleLevelBg.sprite = m_Panel.FindSprite("Disciple_FontBg_Red");
+                    m_Line.sprite = m_Panel.FindSprite("Disciple_Line_Red");
                     break;
                 default:
                     break;

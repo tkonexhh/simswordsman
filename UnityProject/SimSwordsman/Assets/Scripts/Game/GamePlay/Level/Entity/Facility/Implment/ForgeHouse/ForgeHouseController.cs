@@ -7,9 +7,9 @@ namespace GameWish.Game
 {
     public class ForgeHouseController : FacilityController
     {
+
         public ForgeHouseController(FacilityType facilityType/*, int subId*/, FacilityView view) : base(facilityType/*, subId*/, view)
         {
-
         }
 
         protected override bool CheckSubFunc()
@@ -23,7 +23,7 @@ namespace GameWish.Game
                 if (item.level <= level)
                 {
                     var list = TDEquipmentConfigTable.MakeNeedItemIDsDic[item.EquipID];
-                    if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list,false))
+                    if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list, false))
                     {
                         return true;
                     }

@@ -189,12 +189,12 @@ namespace GameWish.Game
             SetDataDirty();
         }
 
-        public void SetCharacterStage(CharacterItemDbData item, int stage)
-        {
-            ownedCharacterData.SetStage(item, stage);
+        // public void SetCharacterStage(CharacterItemDbData item, int stage)
+        // {
+        //     ownedCharacterData.SetStage(item, stage);
 
-            SetDataDirty();
-        }
+        //     SetDataDirty();
+        // }
 
         public void SetCharacterCollectedObjType(int id, CollectedObjType collectedObjType)
         {
@@ -650,7 +650,7 @@ namespace GameWish.Game
         #endregion
 
         #region collect System
-        public CollectSystemItemData AddOrUpdateCollectSystemItemData(int collectItemID, DateTime startTime) 
+        public CollectSystemItemData AddOrUpdateCollectSystemItemData(int collectItemID, DateTime startTime)
         {
             CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
 
@@ -659,7 +659,8 @@ namespace GameWish.Game
                 data = new CollectSystemItemData(collectItemID, startTime);
                 CollectSystemItemDataList.Add(data);
             }
-            else {
+            else
+            {
                 data.StartTime = startTime;
             }
 
@@ -667,16 +668,16 @@ namespace GameWish.Game
 
             return data;
         }
-        public CollectSystemItemData GetCollectItemData(int collectItemID) 
+        public CollectSystemItemData GetCollectItemData(int collectItemID)
         {
             CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
             return data;
         }
-        public CollectSystemItemData RemoveCollectSystemItemData(int collectItemID) 
+        public CollectSystemItemData RemoveCollectSystemItemData(int collectItemID)
         {
             CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
-            
-            if (data != null) 
+
+            if (data != null)
             {
                 data.Clear();
 
@@ -685,9 +686,11 @@ namespace GameWish.Game
 
             return data;
         }
-        public int GetCollectItemDataRewardCount(int collectItemID) {
+        public int GetCollectItemDataRewardCount(int collectItemID)
+        {
             CollectSystemItemData data = CollectSystemItemDataList.Find(x => x.ID == collectItemID);
-            if (data != null) {
+            if (data != null)
+            {
                 return data.GetRewardCount();
             }
             return 0;
@@ -696,12 +699,12 @@ namespace GameWish.Game
 
 
         #region daliver system
-        public void RemoveDeliverDataByID(int DeliverID) 
+        public void RemoveDeliverDataByID(int DeliverID)
         {
             DeliverData.RemoveDeliverData(DeliverID);
             SetDataDirty();
         }
-        public SingleDeliverDetailData AddDeliverData(int DeliverID, DeliverState state, List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
+        public SingleDeliverDetailData AddDeliverData(int DeliverID, DeliverState state, List<DeliverRewadData> rewardDataList, List<int> characterIDList)
         {
             SingleDeliverDetailData data = DeliverData.AddDeliverData(DeliverID, state, rewardDataList, characterIDList);
 
@@ -709,11 +712,11 @@ namespace GameWish.Game
 
             return data;
         }
-        public List<SingleDeliverDetailData> GetAllDaliverData() 
+        public List<SingleDeliverDetailData> GetAllDaliverData()
         {
             return DeliverData.DaliverDetailDataList;
         }
-        public void SetSpeedUpMultipleByDeliverID(int deliverID,int speedUpMultiple = 2) 
+        public void SetSpeedUpMultipleByDeliverID(int deliverID, int speedUpMultiple = 2)
         {
             SingleDeliverDetailData data = GetAllDaliverData().Find(x => x.DeliverID == deliverID);
             if (data != null)
@@ -724,11 +727,11 @@ namespace GameWish.Game
                 SetDataDirty();
             }
         }
-        public bool IsGoOutSide(int deliverID) 
+        public bool IsGoOutSide(int deliverID)
         {
             return DeliverData.IsGoOutSide(deliverID);
         }
-        public SingleDeliverDetailData GetDeliverDataByDeliverID(int deliverID) 
+        public SingleDeliverDetailData GetDeliverDataByDeliverID(int deliverID)
         {
             return DeliverData.GetDeliverDataByID(deliverID);
         }

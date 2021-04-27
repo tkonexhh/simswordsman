@@ -51,7 +51,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: b95a9ce90a2b64e2f9c814713f369a00, type: 3}
     - {fileID: 2800000, guid: ddbae09104de655429f8e6e7cdfa94bd, type: 3}
     - {fileID: 2800000, guid: 3fd9195bfb7a5f74ca16147e66a4c49f, type: 3}
-    - {fileID: 2800000, guid: 4d9f0f498fb623b4da407c6645e1afd4, type: 3}
+    - {fileID: 2800000, guid: 3e6df10414cb4854aa3f2e101771949b, type: 3}
     - {fileID: 2800000, guid: e66f977915d043242a68024d0bbd92b8, type: 3}
     - {fileID: 2800000, guid: fc21758af07ab90429f845d3f119ea09, type: 3}
     - {fileID: 2800000, guid: d839110cd8bf24648b25b9c11e478ced, type: 3}
@@ -96,7 +96,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 3dacd6df8d19f424781204a4484e1981, type: 3}
     - {fileID: 2800000, guid: 426e0690d3d29864e914718edd5d5720, type: 3}
     - {fileID: 2800000, guid: 746927f2b1904ed47bcfab718a29172f, type: 3}
-    - {fileID: 2800000, guid: 3e6df10414cb4854aa3f2e101771949b, type: 3}
+    - {fileID: 2800000, guid: bea0d55c93aaffc45b9f59a2afcee0b1, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -136,7 +136,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e8bf75d74877f93418dab54976cb061b, type: 3}
   - {fileID: 21300000, guid: 482d5a5821ad131498e7ef6582513c53, type: 3}
   - {fileID: 21300000, guid: 40168019eac7d994fbc11280f70f214f, type: 3}
-  - {fileID: 21300000, guid: 4d9f0f498fb623b4da407c6645e1afd4, type: 3}
   - {fileID: 21300000, guid: 32a09859eee867c4f9879e1c759f3e25, type: 3}
   - {fileID: 21300000, guid: e66f977915d043242a68024d0bbd92b8, type: 3}
   - {fileID: 21300000, guid: c5331979bfe2b004695bfbaeb1c5e595, type: 3}
@@ -152,6 +151,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3fd9195bfb7a5f74ca16147e66a4c49f, type: 3}
   - {fileID: 21300000, guid: fa0252eb0c5075c4281726e2b4dd9c8d, type: 3}
   - {fileID: 21300000, guid: d839110cd8bf24648b25b9c11e478ced, type: 3}
+  - {fileID: 21300000, guid: bea0d55c93aaffc45b9f59a2afcee0b1, type: 3}
   - {fileID: 21300000, guid: c8ec94bcf7980c246849ede64030a3db, type: 3}
   - {fileID: 21300000, guid: 8b1b61dc6de41144b867847f82afb2c5, type: 3}
   - {fileID: 21300000, guid: 11f7270dae45f0d4fb27514d9147e0ab, type: 3}
@@ -200,7 +200,6 @@ SpriteAtlas:
   - HeroTrialPanel_bg16
   - HeroTrialPanel_NotClan_Xiaoyao
   - HeroTrialPanel_bg2
-  - HeroTrialPanel_Big_Huashan
   - HeroTrialPanel_Big_Xiaoyao
   - HeroTrialPanel_Big_Mojiao
   - HeroTrialPanel_YesClan_Mojiao
@@ -216,6 +215,7 @@ SpriteAtlas:
   - HeroTrialPanel_Big_Gaibang
   - HeroTrialPanel_Bg10
   - HeroTrialPanel_Big_Wudang
+  - HeroTrialPanel_NoDiciple
   - HeroTrialPanel_Bg6
   - HeroTrialPanel_Font_Wudu
   - HeroTrialPanel_bg3

@@ -46,6 +46,7 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 72fad0816763d2849b3472ddf43a0f8e, type: 3}
   - {fileID: 21300000, guid: 53dd99d1527f5254ea3fa1b11b3eacc1, type: 3}
   - {fileID: 21300000, guid: af190d122c6708a4fba522a8d77b1b00, type: 3}
   - {fileID: 21300000, guid: 47495323337047d409f34f7455270751, type: 3}
@@ -64,6 +65,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 944c65fe6d5484f44a13ee5beefd2c1b, type: 3}
   - {fileID: 21300000, guid: c3a50d6f58809ec4f972df89373c56e1, type: 3}
   m_PackedSpriteNamesToIndex:
+  - PromotionPanel_icon2
   - PromotionPanel_bg2
   - PromotionPanel_ArmorEnhancement
   - PromotionPanel_HeroTrial

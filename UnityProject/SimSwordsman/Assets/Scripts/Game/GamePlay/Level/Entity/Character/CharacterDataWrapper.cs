@@ -40,7 +40,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¸øµÜ×ÓÔö¼Ó×°±¸
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
         /// </summary>
         /// <param name="_character"></param>
         /// <param name="_equipmentItem"></param>
@@ -56,7 +56,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// »ñÈ¡×°±¸µÄ¼Ó³É
+        /// ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½Ä¼Ó³ï¿½
         /// </summary>
         /// <param name="equipment"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace GameWish.Game
         //}
 
         /// <summary>
-        /// Ôö¼ÓµÜ×Ó
+        /// ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="id"></param>
         /// <param name="quality"></param>
@@ -111,7 +111,22 @@ namespace GameWish.Game
 
             m_DbData.RemoveCharacter(id);
         }
-
+        /// <summary>
+        /// è·å–æŸä¸€é™å®šç­‰çº§(>=)å¼Ÿå­çš„æ•°é‡
+        /// </summary>
+        /// <returns></returns>
+        public int GetLomitLevelDiscipleNumber(int level)
+        {
+            int number = 0;
+            characterList.ForEach(i =>
+            {
+                if (level <= i.level)
+                {
+                    number++;
+                }
+            });
+            return number;
+        }
         public CharacterItem GetCharacterItem(int id)
         {
             CharacterItem item = characterList.FirstOrDefault(i => i.id == id);
@@ -232,15 +247,15 @@ namespace GameWish.Game
         public const int MaxKungfuNumber = 4;
 
         public int id; // ID
-        public int level = 1; // µÈ¼¶
-        public int stage = 1; // ¶ÎÎ»
-        public int curExp = 0; // µ±Ç°¾­Ñé
-        public string startTime; // ÈëÃÅÊ±¼ä
-        public CharacterQuality quality; // Æ·ÖÊ
-        public CharacterStateID characterStateId = CharacterStateID.None; // ĞĞÎª
-        public float atkValue; // ÎäÁ¦Öµ
-        public string name; // Ãû×Ö
-        public string desc; // ÏêÏ¸ĞÅÏ¢
+        public int level = 1; // ï¿½È¼ï¿½
+        public int stage = 1; // ï¿½ï¿½Î»
+        public int curExp = 0; // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+        public string startTime; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+        public CharacterQuality quality; // Æ·ï¿½ï¿½
+        public CharacterStateID characterStateId = CharacterStateID.None; // ï¿½ï¿½Îª
+        public float atkValue; // ï¿½ï¿½ï¿½ï¿½Öµ
+        public string name; // ï¿½ï¿½ï¿½ï¿½
+        public string desc; // ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
         public CharaceterEquipmentData characeterEquipmentData = new CharaceterEquipmentData();
         public Dictionary<int, CharacterKongfuData> kongfus = new Dictionary<int, CharacterKongfuData>();
         public int bodyId;
@@ -248,7 +263,7 @@ namespace GameWish.Game
         public ClanType heroClanType = ClanType.None;
         public CollectedObjType collectedObjType;
 
-        #region ¹¦ÄÜ×Ö¶Î
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
         public int lastExp = 1;
         public int lastLevel = 1;
         #endregion
@@ -307,7 +322,7 @@ namespace GameWish.Game
         #endregion
 
         /// <summary>
-        /// ÉèÖÃÈËÎïµÄ×´Ì¬
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
         /// </summary>
         /// <param name="stateId"></param>
         public void SetCharacterStateData(CharacterStateID stateId, FacilityType targetFacilityType, string startTime, int index)
@@ -332,7 +347,7 @@ namespace GameWish.Game
             GameDataMgr.S.GetClanData().SetIsHero(id, clanType);
         }
         /// <summary>
-        /// »ñÈ¡Ã»ÓĞÈÎºÎ¼Ó³ÉµÄÎäÁ¦Öµ
+        /// ï¿½ï¿½È¡Ã»ï¿½ï¿½ï¿½ÎºÎ¼Ó³Éµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
         /// </summary>
         /// <returns></returns>
         private float BasicsAtkValue()
@@ -351,9 +366,11 @@ namespace GameWish.Game
             id = itemDbData.id;
             name = itemDbData.name;
             level = itemDbData.level;
-            stage = itemDbData.stage;
-            curExp = itemDbData.curExp;
             quality = itemDbData.quality;
+            stage = TDCharacterStageConfigTable.GetStage(quality, level);
+            // Debug.LogError(level + "Init Stage:" + stage);
+            // stage = itemDbData.stage;
+            curExp = itemDbData.curExp;
             bodyId = itemDbData.bodyId;
             headId = itemDbData.headId;
             heroClanType = itemDbData.trialClanType;
@@ -402,14 +419,17 @@ namespace GameWish.Game
 
                 int priviewStage = stage;
                 this.stage = TDCharacterStageConfigTable.GetStage(quality, level);
+                // Debug.LogError("LevelUp:" + priviewStage + "-" + stage);
                 if (priviewStage != this.stage)
                 {
-                    GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
+                    // GameDataMgr.S.GetClanData().SetCharacterStage(m_ItemDbData, stage);
                     int delte = stage - priviewStage;
 
                     for (int i = 1; i <= delte; i++)
                     {
                         UnlockContentConfigInfo unlockContentConfigInfo = TDCharacterStageConfigTable.GetUnlockForStage(quality, priviewStage + i);
+                        if (unlockContentConfigInfo == null)
+                            break;
                         switch (unlockContentConfigInfo.UnlockContent)
                         {
                             case UnlockContent.None:
@@ -452,7 +472,7 @@ namespace GameWish.Game
         {
             if (ChecklearnedKungfu(kungfuItem))
             {
-                FloatMessage.S.ShowMsg("¸Ã¹¦·òÒÑÑ§Ï°");
+                FloatMessage.S.ShowMsg("è¯¥åŠŸå¤«å·²å­¦ä¹ ");
                 return false;
             }
 
@@ -460,19 +480,23 @@ namespace GameWish.Game
             {
                 if (index == item.Index)
                 {
-                    if (item.KungfuLockState == KungfuLockState.Learned)
-                    {
-                        if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
-                            break;
-                    }
-                    if (item.KungfuLockState == KungfuLockState.NotLearning)
-                    {
-                        item.CharacterKongfu = new CharacterKongfu(kungfuItem);
-                        item.KungfuLockState = KungfuLockState.Learned;
-                        GameDataMgr.S.GetClanData().AddKungfu(id, item);
-                        CalculateForceValue();
-                        break;
-                    }
+                    item.CharacterKongfu = new CharacterKongfu(kungfuItem);
+                    item.KungfuLockState = KungfuLockState.Learned;
+                    GameDataMgr.S.GetClanData().AddKungfu(id, item);
+                    CalculateForceValue();
+                    //if (item.KungfuLockState == KungfuLockState.Learned)
+                    //{
+                    //    if (item.CharacterKongfu.IsHaveKungfu(kungfuItem))
+                    //        break;
+                    //}
+                    //if (item.KungfuLockState == KungfuLockState.NotLearning)
+                    //{
+                    //    item.CharacterKongfu = new CharacterKongfu(kungfuItem);
+                    //    item.KungfuLockState = KungfuLockState.Learned;
+                    //    GameDataMgr.S.GetClanData().AddKungfu(id, item);
+                    //    CalculateForceValue();
+                    //    break;
+                    //}
                 }
             }
             return true;
@@ -491,7 +515,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ôö¼Ó¾­Ñé
+        /// ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="deltaExp"></param>
         public void AddCharacterExp(int deltaExp)
@@ -531,7 +555,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ôö¼Ó×°±¸
+        /// ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
         /// </summary>
         /// <param name="equipmentItem"></param>
         public void AddEquipmentItem(CharaceterEquipment characeterEquipment)
@@ -540,9 +564,9 @@ namespace GameWish.Game
             CalculateForceValue();
         }
 
-        #region ¼ÆËã¹¦Á¦
+        #region ï¿½ï¿½ï¿½ã¹¦ï¿½ï¿½
         /// <summary>
-        /// ¼ÆËãÎäÁ¦Öµ
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
         /// </summary>
         public void CalculateForceValue()
         {
@@ -588,7 +612,7 @@ namespace GameWish.Game
 
         #endregion
 
-        #region µÜ×ÓÃæ°åºìµãÏà¹Ø
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         public bool CheckDiscipelPanel()
         {
@@ -608,7 +632,7 @@ namespace GameWish.Game
         }
         public bool CheckArms()
         {
-            if (CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock,PropType.Arms))
+            if (CheckEquip(characeterEquipmentData.CharacterArms, characeterEquipmentData.IsArmsUnlock, PropType.Arms))
             {
                 return true;
             }
@@ -622,12 +646,12 @@ namespace GameWish.Game
             {
                 if (item.KungfuLockState == KungfuLockState.NotLearning && CheckIsHavaItem(PropType.Kungfu))
                 {
-                    EventSystem.S.Send(EventID.OnKungfuRedPoint,id, item.Index,true);
+                    EventSystem.S.Send(EventID.OnKungfuRedPoint, id, item.Index, true);
                     isHava = true;
                 }
                 else
                 {
-                    EventSystem.S.Send(EventID.OnKungfuRedPoint,id, item.Index, false);
+                    EventSystem.S.Send(EventID.OnKungfuRedPoint, id, item.Index, false);
                 }
             }
             return isHava;
@@ -657,30 +681,33 @@ namespace GameWish.Game
             }
         }
 
-        private bool CheckEquipStrengthenRedPoint()
+        private bool CheckEquipStrengthenRedPoint(bool isSendEvetn = true)
         {
-            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms);
+            return CheckEquipStrengthen(characeterEquipmentData.CharacterArmor, isSendEvetn) || CheckEquipStrengthen(characeterEquipmentData.CharacterArms, isSendEvetn);
         }
 
-        private bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment)
+        public bool CheckEquipStrengthen(CharaceterEquipment characeterEquipment, bool isSendEvent)
         {
             UpgradeCondition upgrade = TDEquipmentConfigTable.GetEquipUpGradeConsume(characeterEquipment.GetSubID(), characeterEquipment.Class + 1);
 
             if (upgrade == null)
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, id, characeterEquipment.PropType, false);
                 return false;
             }
 
             bool isHave = MainGameMgr.S.InventoryMgr.CheckItemInInventory((RawMaterial)upgrade.PropID, upgrade.Number);
             if (isHave)
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, true);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, characeterEquipment.PropType, true);
                 return true;
             }
             else
             {
-                EventSystem.S.Send(EventID.OnSubPanelRedPoint, false);
+                if (isSendEvent)
+                    EventSystem.S.Send(EventID.OnEquipRedPoint, characeterEquipment.PropType, false);
                 return false;
             }
         }
@@ -704,11 +731,12 @@ namespace GameWish.Game
         {
             return m_ItemDbData.taskId;
         }
-        public void SetDeliverID(int deliverID) 
+        public void SetDeliverID(int deliverID)
         {
-            m_ItemDbData.SetDeliverID(deliverID);            
+            m_ItemDbData.SetDeliverID(deliverID);
         }
-        public int GetDeliverID() {
+        public int GetDeliverID()
+        {
             return m_ItemDbData.m_DeliverID;
         }
 
@@ -816,7 +844,9 @@ namespace GameWish.Game
         public abstract bool IsHaveEquip();
         public abstract string GetIconName();
 
-        public abstract int  GetSubID(); 
+        public abstract int GetSubID();
+
+        public abstract void UpGradeClass(int characterID);
     }
 
     public class CharacterArms : CharaceterEquipment
@@ -840,7 +870,7 @@ namespace GameWish.Game
                 RefreshInfo();
             }
         }
-        public void UpGradeClass(int characterID)
+        public override void UpGradeClass(int characterID)
         {
             Class = Mathf.Min(MaxLevel, Class + 1);
             RefreshInfo();
@@ -918,7 +948,7 @@ namespace GameWish.Game
             }
         }
 
-        public void UpGradeClass(int characterID)
+        public override void UpGradeClass(int characterID)
         {
             Class = Mathf.Min(MaxLevel, Class + 1);
             RefreshInfo();

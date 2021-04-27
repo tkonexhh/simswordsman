@@ -47,7 +47,7 @@ namespace GameWish.Game
             state = HeroTrialStateID.Idle;
             //trialStartTime = string.Empty;
             characterId = -1;
-            clanType = ClanType.None;
+            //clanType = ClanType.None;
 
             GameDataMgr.S.GetClanData().SetDataDirty();
         }

@@ -30,6 +30,17 @@ namespace GameWish.Game
         private Slider m_RightBloodStick;
         [SerializeField]
         private GameObject m_MatchRecordItem;
+        [SerializeField]
+        private Button m_Speed1Btn;
+        [SerializeField]
+        private Button m_Speed2Btn;  
+        [SerializeField]
+        private Transform m_Top;
+        [SerializeField]
+        private Transform m_Bottom;    
+        //[SerializeField]
+        //private Button m_Speed4Btn;
+        private int m_CurTimeScale = 1;
 
         private List<BattleTextConfig> m_BattleText = null;
         private List<BattleTextConfig> m_TalkText = null;
@@ -61,6 +72,14 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnKongfuLibraryUpgrade, HandleAddListenerEvent);
             EventSystem.S.Register(EventID.OnBattleSecondEvent, HandleAddListenerEvent);
             //m_ScrollRect.
+        }
+
+        protected override void OnOpen()
+        {
+            base.OnOpen();
+
+            m_Speed1Btn.gameObject.SetActive(true);
+            m_Speed2Btn.gameObject.SetActive(false);
         }
 
         private void StartBattleText()
@@ -226,6 +245,28 @@ namespace GameWish.Game
 
                 Time.timeScale = 0;
             });
+
+            m_Speed1Btn.onClick.AddListener(() =>
+            {
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Lobby);
+                if (lobbyLevel < 3)
+                {
+                    FloatMessage.S.ShowMsg("讲武堂3级后，可加速战斗!");
+                    return;
+                }
+
+                SetTimeScale(2);
+            });
+
+            m_Speed2Btn.onClick.AddListener(() =>
+            {
+                SetTimeScale(1);
+            });
+
+            //m_Speed4Btn.onClick.AddListener(() =>
+            //{
+            //    Time.timeScale = 4;
+            //});
         }
         private void LogPanelCallback(AbstractPanel obj)
         {
@@ -286,13 +327,35 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshCurPanelInfo();
+            //注意
+            //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector2(39.99f, 4.0351f));
+            //Debug.LogError("##21" + screenPoint);
 
+            //// 再将屏幕坐标转换成UGUI坐标
+            //Vector2 localPoint;
+            //Canvas canvas = GameObject.FindGameObjectWithTag("Target").GetComponent<Canvas>() ;
+            //Debug.LogError("##21" + canvas.name);
+
+            //if (RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform, screenPoint, Camera.main, out localPoint))
+            //{
+            //    Debug.LogError("##1" + localPoint);
+
+            //}
+            //Vector2 vector2;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform.parent.transform, new Vector2(39.99f, 4.0351f),Camera.main,out vector2);
+
+            //Debug.LogError("##1"+ vector2);
+            m_Top.localPosition = new Vector3(0, 333);
+            m_Bottom.localPosition = new Vector3(0, -277);
             StartBattleText();
         }
 
         protected override void OnClose()
         {
             base.OnClose();
+
+            Time.timeScale = 1;
+
             EventSystem.S.UnRegister(EventID.OnRefreshBattleProgress, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleSuccessed, HandleAddListenerEvent);
             EventSystem.S.UnRegister(EventID.OnBattleFailed, HandleAddListenerEvent);
@@ -347,6 +410,7 @@ namespace GameWish.Game
                     ReduceHPWithAni(rightBloodEndValue, m_RightBloodStick);
                     break;
                 case EventID.OnBattleSuccessed:
+                    SetTimeScale(1);
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
@@ -369,6 +433,7 @@ namespace GameWish.Game
                     CreateBattleOverText(true);
                     break;
                 case EventID.OnBattleFailed:
+                    SetTimeScale(1);
                     switch (m_PanelType)
                     {
                         case PanelType.Task:
@@ -397,7 +462,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
-                    break;
+                    break; 
                 default:
                     break;
             }
@@ -410,6 +475,24 @@ namespace GameWish.Game
                 CreateBattleText(m_EndText, 1);
             else
                 CreateBattleText(m_EndText, 2);
+        }
+
+        private void SetTimeScale(int timeScale)
+        {
+            m_CurTimeScale = timeScale;
+            Time.timeScale = timeScale;
+
+            if (timeScale == 1)
+            {
+                m_Speed1Btn.gameObject.SetActive(true);
+                m_Speed2Btn.gameObject.SetActive(false);
+            }
+
+            if (timeScale == 2)
+            {
+                m_Speed1Btn.gameObject.SetActive(false);
+                m_Speed2Btn.gameObject.SetActive(true);
+            }
         }
     }
 }

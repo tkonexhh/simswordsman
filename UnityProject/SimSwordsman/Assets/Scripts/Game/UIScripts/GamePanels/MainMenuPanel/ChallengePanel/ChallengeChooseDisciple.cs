@@ -25,6 +25,7 @@ namespace GameWish.Game
         [SerializeField] private GameObject m_ChallengeSelectedDisciple_Tower;
         [SerializeField] private Button m_ConfirmBtn;
         [SerializeField] private Text m_ConfirmText;
+        [SerializeField] private Image m_NoDisciple;
 
         private CommonTaskItemInfo m_CommonTaskItemInfo = null;
 
@@ -96,7 +97,9 @@ namespace GameWish.Game
                     RefreshDisicipleSkill();
                     break;
                 case PanelType.HeroTrial:
+                 
                     //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                     {
                         if (PlatformHelper.isTestMode)
@@ -107,7 +110,11 @@ namespace GameWish.Game
                                 CreateDisciple(m_AllDiscipleList[i]);
                         }
                     }
-                      
+                    if (m_DiscipleObjDic.Count == 0)
+                    {
+                        m_NoDisciple.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_NoDiciple");
+                        m_NoDisciple.gameObject.SetActive(true);
+                    }
                     for (int i = 0; i < HeroTrialDiscipleNumber; i++)
                         CreateSelectedDisciple();
                     RefreshFixedInfo(PanelType.HeroTrial);
