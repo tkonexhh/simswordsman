@@ -126,7 +126,7 @@ namespace Qarth
             {
                 //FIXME!!! TestMode True/False
                 //return true;
-                //return false;
+                return false;
                 return isEditor;
             }
         }

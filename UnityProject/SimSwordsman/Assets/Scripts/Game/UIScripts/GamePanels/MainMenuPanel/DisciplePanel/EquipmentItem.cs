@@ -58,15 +58,16 @@ namespace GameWish.Game
             m_CurDisciple = disciple;
             m_PropType = prop;
 
+            RefreshEquipInfo();
             CheckEquipRedPoint();
 
-            RefreshEquipInfo();
-
-            m_ReplaceBtn.onClick.AddListener(() => {
+            m_ReplaceBtn.onClick.AddListener(() =>
+            {
                 UIMgr.S.OpenPanel(UIID.WearableLearningPanel, m_PropType, m_CurDisciple);
             });
 
-            m_EquipBtn.onClick.AddListener(()=>{
+            m_EquipBtn.onClick.AddListener(() =>
+            {
 
                 switch (m_EquipState)
                 {
@@ -90,13 +91,13 @@ namespace GameWish.Game
             switch (m_PropType)
             {
                 case PropType.Arms:
-                    m_RedPoint.SetActive(!m_CurDisciple.CheckArms());
+                    m_RedPoint.SetActive(m_CurDisciple.CheckArms());
                     break;
                 case PropType.Armor:
-                    m_RedPoint.SetActive(!m_CurDisciple.CheckArmor());
+                    m_RedPoint.SetActive(m_CurDisciple.CheckArmor());
                     break;
             }
-            m_RedPoint.SetActive(!m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
+            m_RedPoint.SetActive(m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
         }
         private void HandleAddListenerEvevt(int key, object[] param)
         {
@@ -154,7 +155,7 @@ namespace GameWish.Game
                     m_RestrictionsValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_TITLE_SKILL) +
                         CommonUIMethod.GetStrForColor("#8C343C", CommonUIMethod.GetStringForTableKey(Define.PLUS) + CommonUIMethod.GetBonus(m_CharaceterEquipment.AtkAddition));
                     m_Addition.text = Define.COMMON_DEFAULT_STR;
-                    m_LearnBg.sprite  = SpriteHandler.S.GetSprite(AtlasDefine.EquipmentAtlas, m_CharaceterEquipment.GetIconName());
+                    m_LearnBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EquipmentAtlas, m_CharaceterEquipment.GetIconName());
                     m_NotLearnBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Bg34");
                     m_LearnBg.gameObject.SetActive(true);
                     m_EquipState = EquipState.Learned;
@@ -166,7 +167,7 @@ namespace GameWish.Game
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                     m_Addition.text = "¿É×°±¸";
                     m_RestrictionsValue.text = Define.COMMON_DEFAULT_STR;
-                    m_NotLearnBg.sprite= SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Plus");
+                    m_NotLearnBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Plus");
                     m_NotLearnBg.gameObject.SetActive(true);
                     m_LearnBg.gameObject.SetActive(false);
                     m_EquipState = EquipState.NotLearning;
@@ -189,7 +190,7 @@ namespace GameWish.Game
                 m_EquipName.text = CommonUIMethod.GetStringForTableKey(Define.COMMON_NOTUNLOCKED);
                 m_ClassValue.text = Define.COMMON_DEFAULT_STR;
                 m_RestrictionsValue.text = Define.COMMON_DEFAULT_STR;
-                m_Addition.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED); 
+                m_Addition.text = CommonUIMethod.GetStrForColor("#8C343C", unlockLevel.ToString()) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNIT_GRADE) + CommonUIMethod.GetStringForTableKey(Define.COMMON_UNLOCKED);
                 m_NotLearnBg.sprite = SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Lock");
                 m_NotLearnBg.gameObject.SetActive(true);
                 m_LearnBg.gameObject.SetActive(false);
@@ -200,7 +201,7 @@ namespace GameWish.Game
 
         private void HandAddlistenerEvent(int key, object[] param)
         {
-          
+
         }
 
     }
