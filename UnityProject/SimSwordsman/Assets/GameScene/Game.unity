@@ -3684,6 +3684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cf7c5f8014d824e987f02ed97ea2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UpPoint: {fileID: 0}
+  m_DownPoint: {fileID: 0}
 --- !u!1 &918464019
 GameObject:
   m_ObjectHideFlags: 0
@@ -8765,6 +8767,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelRoot: {fileID: 1950002118}
   m_ObjMaskBg: {fileID: 0}
+  m_TopMask: {fileID: 0}
+  m_BottomMask: {fileID: 0}
 --- !u!1 &1975336029
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,13 +90,13 @@ namespace GameWish.Game
             switch (m_PropType)
             {
                 case PropType.Arms:
-                    m_RedPoint.SetActive(m_CurDisciple.CheckArms());
+                    m_RedPoint.SetActive(!m_CurDisciple.CheckArms());
                     break;
                 case PropType.Armor:
-                    m_RedPoint.SetActive(m_CurDisciple.CheckArmor());
+                    m_RedPoint.SetActive(!m_CurDisciple.CheckArmor());
                     break;
             }
-            m_RedPoint.SetActive(m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
+            m_RedPoint.SetActive(!m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
         }
         private void HandleAddListenerEvevt(int key, object[] param)
         {
@@ -164,7 +164,7 @@ namespace GameWish.Game
                     //当前没有装备
                     m_EquipName.text = "未装备";
                     m_ClassValue.text = Define.COMMON_DEFAULT_STR;
-                    m_Addition.text = Define.COMMON_DEFAULT_STR;
+                    m_Addition.text = "可装备";
                     m_RestrictionsValue.text = Define.COMMON_DEFAULT_STR;
                     m_NotLearnBg.sprite= SpriteHandler.S.GetSprite(AtlasDefine.DiscipleDetailsPanelAtlas, "DiscipleDetails_Plus");
                     m_NotLearnBg.gameObject.SetActive(true);

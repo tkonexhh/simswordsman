@@ -149,6 +149,20 @@ namespace GameWish.Game
 
             m_VillaBtn.onClick.AddListener(() =>
             {
+                if (PlatformHelper.isPlanMode)
+                {
+                    GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
+                    for (int i = (int)RawMaterial.QingRock; i < (int)RawMaterial.SnakeTeeth; i++)
+                    {
+                        MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)i), 5000);
+                    }
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)2002), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3001), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3002), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
+                    MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                }
                 if (PlatformHelper.isTestMode)
                 {
                     GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
