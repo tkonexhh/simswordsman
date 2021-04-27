@@ -308,6 +308,7 @@ namespace GameWish.Game
                         m_TowerLevelConfig.PrepareReward();
                         MainGameMgr.S.TowerSystem.PassLevel();
                     }
+                    DataAnalysisMgr.S.CustomEvent(m_IsSuccess ? DotDefine.Tower_Battle_Win : DotDefine.Tower_Battle_Fail);
                     break;
                 default:
                     break;
