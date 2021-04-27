@@ -1,33 +1,61 @@
 ManifestFileVersion: 0
-CRC: 4061943883
+CRC: 3463485752
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 968976e88b2a916df26db4a28759f4c7
+    Hash: 1b9460296a881460935f01b21992c235
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9166cbb11327b580a49ae01351dd44ba
+    Hash: b5d928c0f27f5923594b292df5a8d2fb
 HashAppended: 0
 ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 33
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
 - Class: 49
   Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+- Class: 210
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
 Assets:
 - Assets/Res/FolderMode/Item/Flag/qizhi.atlas.txt
+- Assets/Res/FolderMode/Item/Flag/qizhi_json.json
 - Assets/Res/FolderMode/Item/Flag/qizhi_SkeletonData.asset
+- Assets/Res/FolderMode/Item/Flag/Tiejiangpu.prefab
+- Assets/Res/FolderMode/Item/Flag/Biaoju.prefab
 - Assets/Res/FolderMode/Item/Flag/qizhi_Material.mat
 - Assets/Res/FolderMode/Item/Flag/qizhi.png
 - Assets/Res/FolderMode/Item/Flag/qizhi_Atlas.asset
-- Assets/Res/FolderMode/Item/Flag/qizhi_json.json
+- Assets/Res/FolderMode/Item/Flag/Jiiuguan.prefab
+- Assets/Res/FolderMode/Item/Flag/LIangongchang.prefab
 Dependencies: []

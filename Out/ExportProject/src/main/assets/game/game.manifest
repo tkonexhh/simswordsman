@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3807229276
+CRC: 3954565954
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -134,15 +134,18 @@ AssetBundleManifest:
       Name: res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle
       Dependencies:
         Dependency_0: res/foldermode/font.bundle
-        Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
-        Dependency_2: res/foldermode/ui/sprites/equipment.bundle
-        Dependency_3: res/foldermode/ui/sprites/martialarts.bundle
-        Dependency_4: res/foldermode/ui/sprites/disciplepanel.bundle
-        Dependency_5: res/foldermode/ui/sprites/discipledetailspanel.bundle
-        Dependency_6: res/foldermode/ui/sprites/bulletinboardpanel.bundle
-        Dependency_7: res/foldermode/ui/sprites/itemicon.bundle
-        Dependency_8: res/foldermode/ui/sprites/disciple.bundle
-        Dependency_9: res/foldermode/ui/sprites/characterheadicons.bundle
+        Dependency_1: res/foldermode/ui/panels/common.bundle
+        Dependency_2: res/foldermode/ui/sprites/panelcommon.bundle
+        Dependency_3: res/foldermode/ui/sprites/equipment.bundle
+        Dependency_4: res/foldermode/ui/sprites/martialarts.bundle
+        Dependency_5: res/foldermode/ui/sprites/disciplepanel.bundle
+        Dependency_6: res/foldermode/ui/sprites/discipledetailspanel.bundle
+        Dependency_7: res/foldermode/ui/sprites/bulletinboardpanel.bundle
+        Dependency_8: res/foldermode/ui/sprites/itemicon.bundle
+        Dependency_9: res/foldermode/ui/sprites/itemdetails.bundle
+        Dependency_10: res/foldermode/ui/sprites/disciple.bundle
+        Dependency_11: res/foldermode/ui/sprites/rewardpanel.bundle
+        Dependency_12: res/foldermode/ui/sprites/characterheadicons.bundle
     Info_35:
       Name: res/foldermode/ui/sprites/warehousepanel.bundle
       Dependencies: {}
@@ -168,8 +171,10 @@ AssetBundleManifest:
         Dependency_16: res/foldermode/ui/sprites/characterwholebodyicons.bundle
         Dependency_17: res/foldermode/ui/sprites/enmeyheadicons.bundle
         Dependency_18: res/foldermode/effects/levelsuccessandfailedeffect/prefab.bundle
-        Dependency_19: res/foldermode/ui/sprites/towerpanel/towerselect.bundle
-        Dependency_20: res/foldermode/ui/panels/gamepanels/common.bundle
+        Dependency_19: res/foldermode/ui/panels/gamepanels/mainmenupanel/tacticalfunctionpanel.bundle
+        Dependency_20: res/foldermode/ui/sprites/herotrialpanel.bundle
+        Dependency_21: res/foldermode/ui/sprites/towerpanel/towerselect.bundle
+        Dependency_22: res/foldermode/ui/panels/gamepanels/common.bundle
     Info_37:
       Name: res/foldermode/ui/sprites/identifychallengespanel.bundle
       Dependencies: {}
@@ -1013,13 +1018,17 @@ AssetBundleManifest:
         Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
         Dependency_2: res/foldermode/ui/sprites/equipment.bundle
         Dependency_3: res/foldermode/ui/sprites/martialarts.bundle
-        Dependency_4: res/foldermode/ui/sprites/itemicon.bundle
-        Dependency_5: res/foldermode/ui/sprites/rewardpanel.bundle
-        Dependency_6: res/foldermode/ui/sprites/herotrialpanel.bundle
-        Dependency_7: res/foldermode/ui/sprites/towerpanel/towershop.bundle
-        Dependency_8: res/foldermode/ui/sprites/towerpanel/towerrevive.bundle
-        Dependency_9: res/foldermode/shader/ui/greyui.bundle
-        Dependency_10: res/foldermode/ui/sprites/towerpanel.bundle
+        Dependency_4: res/foldermode/ui/sprites/bulletinboardpanel.bundle
+        Dependency_5: res/foldermode/ui/sprites/itemicon.bundle
+        Dependency_6: res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+        Dependency_7: res/foldermode/ui/sprites/disciple.bundle
+        Dependency_8: res/foldermode/ui/sprites/rewardpanel.bundle
+        Dependency_9: res/foldermode/ui/sprites/characterheadicons.bundle
+        Dependency_10: res/foldermode/ui/sprites/herotrialpanel.bundle
+        Dependency_11: res/foldermode/ui/sprites/towerpanel/towershop.bundle
+        Dependency_12: res/foldermode/ui/sprites/towerpanel/towerrevive.bundle
+        Dependency_13: res/foldermode/shader/ui/greyui.bundle
+        Dependency_14: res/foldermode/ui/sprites/towerpanel.bundle
     Info_218:
       Name: res/foldermode/effects/prefab/skills/jianwu.bundle
       Dependencies:
@@ -1435,3 +1444,6 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: res/foldermode/effects/battleeffects/general.bundle
         Dependency_1: res/foldermode/characters/commonprefabs.bundle
+    Info_298:
+      Name: res/foldermode/enemy/wudu/wuduhongyao.bundle
+      Dependencies: {}

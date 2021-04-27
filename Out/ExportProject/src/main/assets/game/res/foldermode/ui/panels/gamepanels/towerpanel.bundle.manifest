@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 284807157
+CRC: 2535936482
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3a913581c817c048f0cd48fdb9d3c2d1
+    Hash: ced09042ac651feeee0bb8229fa76b63
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 683bd8f4dd59511154f77145397dbd61
+    Hash: 24d0ff9449c4f79ae264be8b31af5838
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -16,9 +16,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
@@ -27,8 +29,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 0b2fe711bf0a448068d16073f41e2417, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: b3e36c61c88934760944e440323f332b, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: aec35b3371b4b4e4bab54bd986fc2f58, type: 3}
 - Class: 114
@@ -41,6 +41,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 3989c817ca7aa48c48efd7556a2c4fce, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d97d91678f909442a9e337a49fc5e5ee, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8ab196e8673b4644f8b9f012a52a749d, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
 - Class: 114
@@ -57,6 +59,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 9edf4fbcd0ff74e4da2833cff7f16d79, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8af68cfd2329743f8bdec1b704a0af57, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2f32327f8693246d08552a885513cb26, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6573708f1ba9b43218bcfdddba4e3b8b, type: 3}
 - Class: 115
@@ -87,8 +91,12 @@ Dependencies:
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/herotrialpanel.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/towerpanel/towershop.bundle
 - D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/towerpanel/towerrevive.bundle

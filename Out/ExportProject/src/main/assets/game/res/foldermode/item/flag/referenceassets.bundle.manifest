@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 3514576480
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4b3f5062929c3ee222959b2e30ee8d90
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e4edff071eda2db7752ded21c0e3fa67
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 6e3e95a05e4c9774397eeeb7bdee8ccb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/FolderMode/Item/Flag/ReferenceAssets/jiuguanqi.asset
+- Assets/Res/FolderMode/Item/Flag/ReferenceAssets/wuguanqi.asset
+- Assets/Res/FolderMode/Item/Flag/ReferenceAssets/tiejiangqi.asset
+- Assets/Res/FolderMode/Item/Flag/ReferenceAssets/biaoqi.asset
+Dependencies:
+- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/item/flag.bundle
