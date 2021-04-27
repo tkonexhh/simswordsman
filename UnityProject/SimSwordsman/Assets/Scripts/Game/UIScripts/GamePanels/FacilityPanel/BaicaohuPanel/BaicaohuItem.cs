@@ -1,9 +1,8 @@
+ï»¿using Qarth;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Qarth;
 
 namespace GameWish.Game
 {
@@ -55,7 +54,7 @@ namespace GameWish.Game
         [HideInInspector]
         public int ID;
         [HideInInspector]
-        public int UnlockLevel;//½âËøµÈ¼¶ 
+        public int UnlockLevel;//è§£é”ç­‰çº§ 
 
         private List<UpgradeResItem> m_UpgradeResItemList = new List<UpgradeResItem>();
 
@@ -65,7 +64,7 @@ namespace GameWish.Game
 
         private BaiCaoWuData m_BaiCaoWuData = null;
 
-        private CountDownItemTest m_CountDownItem = null;
+        private CountDown m_CountDownItem = null;
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
         {
@@ -164,11 +163,11 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            //ÒôĞ§
+            //éŸ³æ•ˆ
             m_MakeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                //ÅĞ¶Ï²ÄÁÏ
+                //åˆ¤æ–­ææ–™
                 var list = TDHerbConfigTable.MakeNeedItemIDsDic[ID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
@@ -202,7 +201,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 0Î´½âËø 1 ÕıÔÚ³´ÖÆ 2 Î´³´ÖÆ
+        /// 0æœªè§£é” 1 æ­£åœ¨ç‚’åˆ¶ 2 æœªç‚’åˆ¶
         /// </summary>
         /// <param name="status"></param>
         void SetState(int status)
@@ -212,8 +211,8 @@ namespace GameWish.Game
                 case 0:
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
-                    //½âËøÌõ¼ş
-                    m_LockConditionTxt.text = string.Format("°Ù²İÎİÉıÖÁ <color=#9C4B45>{0}</color>¼¶ ºó½âËø", UnlockLevel);
+                    //è§£é”æ¡ä»¶
+                    m_LockConditionTxt.text = string.Format("ç™¾è‰å±‹å‡è‡³ <color=#9C4B45>{0}</color>çº§ åè§£é”", UnlockLevel);
                     break;
                 case 1:
                     UnLock.SetActive(true);
@@ -221,7 +220,7 @@ namespace GameWish.Game
 
                     m_MakingTra.gameObject.SetActive(true);
                     m_DontMakeTra.gameObject.SetActive(false);
-                    //ÉèÖÃ²ÄÁÏ
+                    //è®¾ç½®ææ–™
                     SetMakeNeedRes(TDHerbConfigTable.MakeNeedItemIDsDic[ID]);
                     break;
                 case 2:
@@ -230,7 +229,7 @@ namespace GameWish.Game
 
                     m_MakingTra.gameObject.SetActive(false);
                     m_DontMakeTra.gameObject.SetActive(true);
-                    //ÉèÖÃ²ÄÁÏ
+                    //è®¾ç½®ææ–™
                     SetMakeNeedRes(TDHerbConfigTable.MakeNeedItemIDsDic[ID]);
                     break;
                 default:
@@ -243,7 +242,7 @@ namespace GameWish.Game
             for (int i = 0; i < m_UpgradeResItemList.Count; i++)
                 DestroyImmediate(m_UpgradeResItemList[i].gameObject);
             m_UpgradeResItemList.Clear();
-            CommonUIMethod.RefreshUpgradeResInfo(infos, m_UpgradeResItemTra, m_UpgradeResItem,null, m_UpgradeResItemList);
+            CommonUIMethod.RefreshUpgradeResInfo(infos, m_UpgradeResItemTra, m_UpgradeResItem, null, m_UpgradeResItemList);
         }
     }
 }

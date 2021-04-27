@@ -1,12 +1,10 @@
-using Qarth;
+锘縰sing Qarth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class CountDownItemTest : ICacheAble
+    public class CountDown : ICacheAble
     {
         public int CountDownIndex;
         public DateTime StartTime;
@@ -18,7 +16,7 @@ namespace GameWish.Game
         private int m_SpeedUpMultiply = 1;
         private CountDownCallBackWrap OnUpdateCallBackWrap = null;
         private CountDownCallBackWrap OnEndCallBackWrap = null;
-        public CountDownItemTest() { }
+        public CountDown() { }
         public void Init(int countDownIndex, int totalTime, OnCountDownCallBackDel UpdateCallBack = null, OnCountDownCallBackDel EndCallBack = null)
         {
             CountDownIndex = countDownIndex;
@@ -29,7 +27,8 @@ namespace GameWish.Game
             {
                 OnUpdateCallBackWrap = new CountDownCallBackWrap();
             }
-            else {
+            else
+            {
                 OnUpdateCallBackWrap.Clear();
             }
             OnUpdateCallBackWrap.Add(UpdateCallBack);
@@ -38,7 +37,8 @@ namespace GameWish.Game
             {
                 OnEndCallBackWrap = new CountDownCallBackWrap();
             }
-            else {
+            else
+            {
                 OnEndCallBackWrap.Clear();
             }
             OnEndCallBackWrap.Add(EndCallBack);
@@ -68,10 +68,10 @@ namespace GameWish.Game
             }, 1, -1);
         }
         /// <summary>
-        /// 设置加速倍数
+        /// 璁剧疆鍔犻�熷�嶆暟
         /// </summary>
         /// <param name="speedUpMultiple"></param>
-        public void SetSpeedUpMultiply(int speedUpMultiple) 
+        public void SetSpeedUpMultiply(int speedUpMultiple)
         {
             this.m_SpeedUpMultiply = speedUpMultiple;
         }
@@ -81,20 +81,22 @@ namespace GameWish.Game
         }
         public void Stop()
         {
-            ObjectPool<CountDownItemTest>.S.Recycle(this);
+            ObjectPool<CountDown>.S.Recycle(this);
         }
-        public bool RegisterUpdateCallBack(OnCountDownCallBackDel callback) 
+        public bool RegisterUpdateCallBack(OnCountDownCallBackDel callback)
         {
-            if (OnUpdateCallBackWrap == null) {
+            if (OnUpdateCallBackWrap == null)
+            {
                 OnUpdateCallBackWrap = new CountDownCallBackWrap();
             }
-            if (OnUpdateCallBackWrap.Add(callback)) {
+            if (OnUpdateCallBackWrap.Add(callback))
+            {
                 return true;
             }
-            Debug.LogError("已经注册了该方法");
+            Debug.LogError("宸茬粡娉ㄥ唽浜嗚鏂规硶");
             return false;
         }
-        public bool RegisterEndCallBack(OnCountDownCallBackDel callback) 
+        public bool RegisterEndCallBack(OnCountDownCallBackDel callback)
         {
             if (OnEndCallBackWrap == null)
             {
@@ -104,18 +106,20 @@ namespace GameWish.Game
             {
                 return true;
             }
-            Debug.LogError("已经注册了该方法");
+            Debug.LogError("宸茬粡娉ㄥ唽浜嗚鏂规硶");
             return false;
         }
-        public void UnRegisterUpdateCallBack(OnCountDownCallBackDel callback) 
+        public void UnRegisterUpdateCallBack(OnCountDownCallBackDel callback)
         {
-            if (OnUpdateCallBackWrap != null) 
+            if (OnUpdateCallBackWrap != null)
             {
                 OnUpdateCallBackWrap.Remove(callback);
             }
         }
-        public void UnRegisterEndCallBack(OnCountDownCallBackDel callback) {
-            if (OnEndCallBackWrap != null) {
+        public void UnRegisterEndCallBack(OnCountDownCallBackDel callback)
+        {
+            if (OnEndCallBackWrap != null)
+            {
                 OnEndCallBackWrap.Remove(callback);
             }
         }
