@@ -33,7 +33,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Speed1Btn;
         [SerializeField]
-        private Button m_Speed2Btn;
+        private Button m_Speed2Btn;  
+        [SerializeField]
+        private Transform m_Top;
+        [SerializeField]
+        private Transform m_Bottom;    
         //[SerializeField]
         //private Button m_Speed4Btn;
         private int m_CurTimeScale = 1;
@@ -323,7 +327,26 @@ namespace GameWish.Game
 
             GetInformationForNeed();
             RefreshCurPanelInfo();
+            //注意
+            //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector2(39.99f, 4.0351f));
+            //Debug.LogError("##21" + screenPoint);
 
+            //// 再将屏幕坐标转换成UGUI坐标
+            //Vector2 localPoint;
+            //Canvas canvas = GameObject.FindGameObjectWithTag("Target").GetComponent<Canvas>() ;
+            //Debug.LogError("##21" + canvas.name);
+
+            //if (RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform, screenPoint, Camera.main, out localPoint))
+            //{
+            //    Debug.LogError("##1" + localPoint);
+
+            //}
+            //Vector2 vector2;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform.parent.transform, new Vector2(39.99f, 4.0351f),Camera.main,out vector2);
+
+            //Debug.LogError("##1"+ vector2);
+            m_Top.localPosition = new Vector3(0, 333);
+            m_Bottom.localPosition = new Vector3(0, -277);
             StartBattleText();
         }
 
@@ -439,7 +462,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
-                    break;
+                    break; 
                 default:
                     break;
             }
