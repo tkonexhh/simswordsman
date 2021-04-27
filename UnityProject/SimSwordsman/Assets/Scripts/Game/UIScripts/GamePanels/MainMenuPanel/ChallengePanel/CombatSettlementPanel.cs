@@ -192,30 +192,25 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
                     if (m_IsSuccess)
                     {
-                        //是否是revive关卡
-                        // var towerConf = TDTowerConfigTable.GetData(MainGameMgr.S.TowerSystem.maxLevel);
-                        // if (towerConf != null)
+                        // if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().recordData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
+                        if (GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount < TowerDefine.REVIVE_COUNT)
                         {
-                            // if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().recordData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
-                            if (GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount < TowerDefine.REVIVE_COUNT)
+                            var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
+                            bool canRevive = false;
+                            for (int i = 0; i < characterLst.Count; i++)
                             {
-                                var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
-                                bool canRevive = false;
-                                for (int i = 0; i < characterLst.Count; i++)
+                                if (characterLst[i].IsDead() && characterLst[i].revive == false)
                                 {
-                                    if (characterLst[i].IsDead() && characterLst[i].revive == false)
-                                    {
-                                        canRevive = true;
-                                        break;
-                                    }
-                                }
-                                if (canRevive)
-                                {
-                                    // GameDataMgr.S.GetPlayerData().towerData.LevelRevived(MainGameMgr.S.TowerSystem.maxLevel);
-                                    UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
+                                    canRevive = true;
+                                    break;
                                 }
                             }
+                            if (canRevive)
+                            {
+                                UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
+                            }
                         }
+
                     }
 
                     TowerBattleOverToGuide tempStruct = new TowerBattleOverToGuide();
@@ -225,6 +220,11 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnTowerBattleOver, tempStruct);
 
                     CheckIsStartTowerShopGuide();
+                    break;
+
+                case PanelType.Arena:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
                     break;
             }
         }
@@ -313,6 +313,13 @@ namespace GameWish.Game
                         MainGameMgr.S.TowerSystem.PassLevel();
                     }
                     DataAnalysisMgr.S.CustomEvent(m_IsSuccess ? DotDefine.Tower_Battle_Win : DotDefine.Tower_Battle_Fail);
+                    break;
+                case PanelType.Arena:
+                    m_IsSuccess = (bool)args[1];
+                    if (m_IsSuccess)
+                    {
+                        //TODO  过关交换顺序
+                    }
                     break;
                 default:
                     break;

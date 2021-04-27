@@ -57,6 +57,7 @@ namespace GameWish.Game
         private Button m_MythicalAnimalsBtn;
         [SerializeField]
         private Button m_HeroTrialBtn;
+        [SerializeField] private Button m_BtnArena;
 
         [Header("战斗任务")]
         [SerializeField]
@@ -270,6 +271,11 @@ namespace GameWish.Game
                 }
 
                 MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
+            });
+
+            m_BtnArena.onClick.AddListener(() =>
+            {
+                UIMgr.S.OpenPanel(UIID.ArenaPanel);
             });
 
 

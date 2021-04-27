@@ -294,6 +294,10 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
                     break;
+                case PanelType.Arena:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
+                    break;
                 default:
                     break;
             }
@@ -316,6 +320,9 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     m_TowerLevelConfig = (TowerLevelConfig)args[1];
                     m_EnemyCharacterList = m_TowerLevelConfig.enemiesList;
+                    break;
+                case PanelType.Arena:
+                    m_EnemyCharacterList = (List<EnemyConfig>)args[1];
                     break;
                 default:
                     break;
@@ -364,9 +371,9 @@ namespace GameWish.Game
         {
         }
 
-        private void ReduceHPWithAni(float endValue,Slider hpSlider,float duration = .5f) 
+        private void ReduceHPWithAni(float endValue, Slider hpSlider, float duration = .5f)
         {
-            DG.Tweening.DOTween.To(() => hpSlider.value, (x) => 
+            DG.Tweening.DOTween.To(() => hpSlider.value, (x) =>
             {
                 hpSlider.value = x;
             }, endValue, duration);
@@ -404,6 +411,9 @@ namespace GameWish.Game
                         case PanelType.Tower:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, true);
                             break;
+                        case PanelType.Arena:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, true);
+                            break;
                         default:
                             break;
                     }
@@ -425,6 +435,9 @@ namespace GameWish.Game
                             break;
                         case PanelType.Tower:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, false);
+                            break;
+                        case PanelType.Arena:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, false);
                             break;
                         default:
                             break;

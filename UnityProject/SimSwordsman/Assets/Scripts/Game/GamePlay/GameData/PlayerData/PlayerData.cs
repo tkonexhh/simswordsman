@@ -23,6 +23,7 @@ namespace GameWish.Game
         public RecordData recordData = new RecordData();
         public TaskData taskData = new TaskData();
         public TowerData towerData = new TowerData();
+        public ArenaData arenaData = new ArenaData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
         public bool IsLookADInLastChallengeBossLevel = true;
         public bool LastChallengeIsBossLevel = false;
@@ -134,13 +135,16 @@ namespace GameWish.Game
             FoodRefreshTimesToday = 10;
             FoodRefreshCount = 0;
             towerData.InitWithEmptyData();
+            arenaData.InitWithEmptyData();
             SetDataDirty();
         }
 
         public override void OnDataLoadFinish()
         {
             towerData.SetDirtyRecorder(m_Recorder);
+            arenaData.SetDirtyRecorder(m_Recorder);
             towerData.OnDataLoadFinish();
+            arenaData.OnDataLoadFinish();
         }
 
         public void ResetDailyData()
