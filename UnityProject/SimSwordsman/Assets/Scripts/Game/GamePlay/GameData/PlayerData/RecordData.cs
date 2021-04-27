@@ -19,6 +19,7 @@ namespace GameWish.Game
         public RecordItemData forge = new RecordItemData();
         public RecordItemData medicine = new RecordItemData();
         public RecordItemData towerShopRefesh = new RecordItemData();
+        public RecordItemData towerRevive = new RecordItemData();
 
         public override void InitWithEmptyData()
         {
@@ -127,6 +128,12 @@ namespace GameWish.Game
         public void AddTowerShopRefesh()
         {
             towerShopRefesh.AddCount();
+            SetDataDirty();
+        }
+
+        public void AddTowerRevive()
+        {
+            towerRevive.AddCount();
             SetDataDirty();
         }
     }
