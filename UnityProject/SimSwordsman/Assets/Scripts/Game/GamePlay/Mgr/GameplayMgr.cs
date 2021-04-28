@@ -276,6 +276,8 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Seven), 1);
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Nine), 1);
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.RuanWeiJia, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.MingGuangKai, Step.Eight), 1);
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Four), 1);
                     MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Seven), 1);
