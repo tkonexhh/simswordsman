@@ -35,10 +35,12 @@ namespace GameWish.Game
                 m_Controller = (CharacterController)handler.GetCharacterController();
 
             //SetState(BattleStateID.Idle);
+            m_Controller.CharacterView.RemoveTouch();
         }
 
         public override void Exit(ICharacterStateHander handler)
         {
+            m_Controller.CharacterView.AddTouch();
         }
 
         public override void Execute(ICharacterStateHander handler, float dt)

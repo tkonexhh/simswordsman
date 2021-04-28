@@ -5,10 +5,11 @@ using Spine.Unity;
 using Qarth;
 using static Sdkbox.IAP;
 using UnityEngine.Rendering;
+using HedgehogTeam.EasyTouch;
 
 namespace GameWish.Game
 {
-    public class CharacterView : MonoBehaviour, IEntityView
+    public class CharacterView : MonoBehaviour, IEntityView,IInputObserver
     {
         //For debug
         public string state;
@@ -29,6 +30,8 @@ namespace GameWish.Game
         private Vector3 m_SimPos;
         private Vector3 m_DeltaPos = Vector3.zero;
 
+        private BoxCollider2D m_Collider2D;
+
         private CharacterWorkProgressBar m_WorkProgressBar = null;
         private CharacterWorkTip m_WorkTip = null;
 
@@ -40,9 +43,13 @@ namespace GameWish.Game
         public PolyNavAgent NavAgent { get => m_NavAgent;}
         public GameObject Clean_DragSmoke { get => m_Clean_DragSmoke; set => m_Clean_DragSmoke = value; }
 
+        public BoxCollider2D CharCollider2D { get => gameObject.GetComponent<BoxCollider2D>() != null ? gameObject.GetComponent<BoxCollider2D>() : null;  }
+
         public void Init()
         {
             m_SpineAnim = GetComponentInChildren<SkeletonAnimation>();
+
+            AddTouch();
 
             if (m_Body == null)
                 m_Body = m_SpineAnim.gameObject;
@@ -325,6 +332,21 @@ namespace GameWish.Game
 
             return name;
         }
+
+        public void AddTouch()
+        {
+            if (CharCollider2D == null) return;
+            CharCollider2D.enabled = true;
+            InputMgr.S.AddTouchObserver(this);
+        }
+
+        public void RemoveTouch()
+        {
+            if (CharCollider2D == null) return;
+            CharCollider2D.enabled = false;
+            InputMgr.S.RemoveTouchObserver(this);
+        }
+
         #endregion
 
         #region Private
@@ -344,7 +366,63 @@ namespace GameWish.Game
         {
             m_Body.transform.localScale = new Vector3(dir, 1, 1);
         }
+
         #endregion
+
+        #region Input
+
+        public bool On_TouchStart(Gesture gesture)
+        {
+            if (gesture.IsOverUIElement()|| CharCollider2D == null)
+                return false;
+
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(gesture.position), Vector2.zero, 1000, 1 << LayerMask.NameToLayer("Bubble"));
+            if (hit.collider != null && hit.collider == CharCollider2D)
+            {
+                //显示对话气泡
+                WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, TDTalkTable.GetRangeWords(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()));
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool On_Drag(Gesture gesture, bool isTouchStartFromUI)
+        {
+            return false;
+        }
+
+        public bool On_LongTap(Gesture gesture)
+        {
+            return false;
+        }
+
+        public bool On_Swipe(Gesture gesture)
+        {
+            return false;
+        }
+
+        public bool On_TouchDown(Gesture gesture)
+        {
+            return false;
+        }
+
+        public bool On_TouchUp(Gesture gesture)
+        {
+            return false;
+        }
+
+        public bool BlockInput()
+        {
+            return true;
+        }
+
+        public int GetSortingLayer()
+        {
+            return 1;
+        }
+        #endregion
+
     }
 
 }
