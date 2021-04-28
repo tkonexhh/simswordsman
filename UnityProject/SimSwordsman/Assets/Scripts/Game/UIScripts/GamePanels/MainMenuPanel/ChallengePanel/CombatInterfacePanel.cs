@@ -60,6 +60,7 @@ namespace GameWish.Game
         //Tower
         private TowerLevelConfig m_TowerLevelConfig = null;
 
+        private static bool isSpeedUp = false;
 
         protected override void OnUIInit()
         {
@@ -78,8 +79,14 @@ namespace GameWish.Game
         {
             base.OnOpen();
 
-            m_Speed1Btn.gameObject.SetActive(true);
-            m_Speed2Btn.gameObject.SetActive(false);
+            if (isSpeedUp)
+            {
+                SetTimeScale(2);
+            }
+            else
+            {
+                SetTimeScale(1);
+            }
         }
 
         private void StartBattleText()
@@ -255,12 +262,12 @@ namespace GameWish.Game
                     return;
                 }
 
-                SetTimeScale(2);
+                SetTimeScale(2, true);
             });
 
             m_Speed2Btn.onClick.AddListener(() =>
             {
-                SetTimeScale(1);
+                SetTimeScale(1, true);
             });
 
             //m_Speed4Btn.onClick.AddListener(() =>
@@ -477,7 +484,7 @@ namespace GameWish.Game
                 CreateBattleText(m_EndText, 2);
         }
 
-        private void SetTimeScale(int timeScale)
+        private void SetTimeScale(int timeScale, bool setSpeedUp = false)
         {
             m_CurTimeScale = timeScale;
             Time.timeScale = timeScale;
@@ -486,12 +493,18 @@ namespace GameWish.Game
             {
                 m_Speed1Btn.gameObject.SetActive(true);
                 m_Speed2Btn.gameObject.SetActive(false);
+
+                if(setSpeedUp)
+                    isSpeedUp = false;
             }
 
             if (timeScale == 2)
             {
                 m_Speed1Btn.gameObject.SetActive(false);
                 m_Speed2Btn.gameObject.SetActive(true);
+
+                if (setSpeedUp)
+                    isSpeedUp = true;
             }
         }
     }
