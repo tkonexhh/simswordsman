@@ -111,10 +111,10 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            if (m_DiscipleHeadObj==null)
-            {
-                m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, m_LevelBg.transform, new Vector3(45.9f, -29, 0), new Vector3(0.4f, 0.4f, 1));
-            }
+            if (m_DiscipleHeadObj != null)
+                DestroyImmediate(m_DiscipleHeadObj);
+            m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, m_LevelBg.transform, new Vector3(45.9f, -29, 0), new Vector3(0.4f, 0.4f, 1));
+
             //m_DiscipleHead.sprite = m_SendDisciplesPanel.FindSprite(prefabsName);
         }
 

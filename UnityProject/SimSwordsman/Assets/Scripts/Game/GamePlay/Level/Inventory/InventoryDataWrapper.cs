@@ -143,7 +143,7 @@ namespace GameWish.Game
                 List<ItemBase> tempEquip = new List<ItemBase>();
                 foreach (var item in m_WarehouseItems)
                     if (item.PropType == equipType)
-                        tempEquip.Add((ItemBase)item);
+                        tempEquip.Add(item);
                 return tempEquip;
             }
             return null;

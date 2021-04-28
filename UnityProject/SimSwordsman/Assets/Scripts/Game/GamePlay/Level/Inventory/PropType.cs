@@ -99,21 +99,26 @@ namespace GameWish.Game
     {
         None = 0,
         ZiTenJia = 501,  //×ÏÌÙ¼×
+        BuJia = 502,  
         YinYeJia = 601,        //ÒøÒ¶¼×
-        RuanWeiJia = 701,      //Èíâ¬¼×
+        BingChanSiJia = 602,        
+        HuPiJia = 602,      
+        RuanWeiJia = 701,      
         MingGuangKai = 702,
+        LongLinJia = 702,
+        XuanTieKaiJia = 702,
     }
 
     public enum ArmsType
     {
         None = 0,
         ShaZhuDao = 101,//É±Öíµ¶
+        JinGuBang = 102,
         DaHuanDao = 201,      //´ó»·µ¶
         HongYingQiang = 202,
-        JinGuBang = 203,
-        MengGuBaoDao = 204,
-        XueDiZi = 205,
-        XueDao = 206,
+        MengGuBaoDao = 203,
+        XueDiZi = 204,
+        XueDao = 205,
         TuLongDao = 301,      //ÍÀÁúµ¶
         YanYueDao = 302,      //ÙÈÔÂµ¶
         DaGouBang = 303,
