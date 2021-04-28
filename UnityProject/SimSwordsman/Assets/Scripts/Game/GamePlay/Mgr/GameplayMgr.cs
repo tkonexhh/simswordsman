@@ -96,7 +96,7 @@ namespace GameWish.Game
             AdsManager.S.Init();
 
             bool isPlaySplash = PlayerPrefs.GetInt(Define.IsPlaySplashScreen, -1) > 0 ? true : false;
-            if (isPlaySplash)
+            if (/*isPlaySplash*/true)
             {
                 m_IsLoadingBarFinished = true;
             }
