@@ -357,7 +357,7 @@ namespace GameWish.Game
                             return;
                         }
                         UseHerb();
-                        MainGameMgr.S.ArenaSystem.StartLevel(m_SelectedList, m_PlayerDataHerb);
+                        MainGameMgr.S.ArenaSystem.StartLevel(m_SelectedList, m_PlayerDataHerb, m_ArenaLevelConfig);
 
                         break;
                     default:

@@ -50,7 +50,7 @@ namespace GameWish.Game
             if (m_Data == null) return;
 
             ArenaCellToSend arg = new ArenaCellToSend();
-            arg.index = m_Index;
+            arg.index = m_Data.level;
             arg.recommendAtk = 100;
             arg.enemyData = m_Data;
             UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Arena, arg);

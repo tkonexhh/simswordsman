@@ -31,6 +31,7 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private TowerLevelConfig m_TowerLevelConfig = null;
+        private ArenaLevelConfig m_ArenaLevelConfig = null;
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
@@ -315,10 +316,13 @@ namespace GameWish.Game
                     DataAnalysisMgr.S.CustomEvent(m_IsSuccess ? DotDefine.Tower_Battle_Win : DotDefine.Tower_Battle_Fail);
                     break;
                 case PanelType.Arena:
-                    m_IsSuccess = (bool)args[1];
+                    m_ArenaLevelConfig = (ArenaLevelConfig)args[1];
+                    m_IsSuccess = (bool)args[2];
+
                     if (m_IsSuccess)
                     {
-                        //TODO  过关交换顺序
+                        //TODO  过关交换顺序 给奖励
+                        MainGameMgr.S.ArenaSystem.PassLevel(m_ArenaLevelConfig.level);
                     }
                     break;
                 default:
@@ -362,6 +366,10 @@ namespace GameWish.Game
                     ItemICom towerRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
                     towerRewardItemICom.OnInit(item, null, m_PanelType, m_TowerLevelConfig, m_IsSuccess, this);
                     break;
+                // case PanelType.Arena:
+                //     ItemICom arenaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                //     arenaRewardItemICom.OnInit(item, null, m_PanelType, m_ArenaLevelConfig, m_IsSuccess, this);
+                //     break;
                 default:
                     break;
             }

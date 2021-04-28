@@ -121,7 +121,7 @@ namespace GameWish.Game
 
     public class CharacterEnemyConfig : EnemyConfig
     {
-        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(1000, 1, atk)
+        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(101, 1, atk)
         {
 
         }

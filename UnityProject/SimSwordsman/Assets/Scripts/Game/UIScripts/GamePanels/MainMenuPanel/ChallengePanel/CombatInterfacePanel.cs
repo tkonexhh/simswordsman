@@ -55,6 +55,7 @@ namespace GameWish.Game
 
         //Tower
         private TowerLevelConfig m_TowerLevelConfig = null;
+        private ArenaLevelConfig m_ArenaLevelConfig = null;
 
 
         protected override void OnUIInit()
@@ -222,6 +223,10 @@ namespace GameWish.Game
                     m_RightSchoolNameValue.text = "伏魔塔";
                     m_MatchNameValue.text = "伏魔塔" + m_TowerLevelConfig.level;
                     break;
+                case PanelType.Arena:
+                    m_RightSchoolNameValue.text = "竞技场";
+                    m_MatchNameValue.text = "竞技场" + m_ArenaLevelConfig.level;
+                    break;
                 default:
                     break;
             }
@@ -322,7 +327,8 @@ namespace GameWish.Game
                     m_EnemyCharacterList = m_TowerLevelConfig.enemiesList;
                     break;
                 case PanelType.Arena:
-                    m_EnemyCharacterList = (List<EnemyConfig>)args[1];
+                    m_ArenaLevelConfig = (ArenaLevelConfig)args[1];
+                    m_EnemyCharacterList = m_ArenaLevelConfig.enemyConfigs;
                     break;
                 default:
                     break;
@@ -412,7 +418,7 @@ namespace GameWish.Game
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, true);
                             break;
                         case PanelType.Arena:
-                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, true);
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_ArenaLevelConfig, true);
                             break;
                         default:
                             break;
@@ -437,7 +443,7 @@ namespace GameWish.Game
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, false);
                             break;
                         case PanelType.Arena:
-                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, false);
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_ArenaLevelConfig, false);
                             break;
                         default:
                             break;

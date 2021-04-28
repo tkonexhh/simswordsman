@@ -33,7 +33,6 @@ namespace GameWish.Game
                 InitEnemy();
             }
             nowLevel = ArenaDefine.EnemyCount + 1;
-            nowLevel = 20;
         }
 
         public bool AddCoin(int delta)
@@ -47,6 +46,12 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnRefeshArenaCoin);
             SetDataDirty();
             return true;
+        }
+
+        public void SetNowLevel(int level)
+        {
+            nowLevel = level;
+            SetDataDirty();
         }
 
 
