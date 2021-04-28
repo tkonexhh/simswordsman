@@ -1,6 +1,6 @@
 
 snake.png
-size: 101,136
+size: 100,136
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -20,9 +20,9 @@ wb
   index: -1
 地影
   rotate: true
-  xy: 80, 50
-  size: 34, 15
-  orig: 34, 15
+  xy: 81, 102
+  size: 32, 12
+  orig: 32, 12
   offset: 0, 0
   index: -1
 头
@@ -34,7 +34,7 @@ wb
   index: -1
 尾巴
   rotate: false
-  xy: 81, 113
+  xy: 80, 63
   size: 18, 21
   orig: 19, 21
   offset: 0, 0
