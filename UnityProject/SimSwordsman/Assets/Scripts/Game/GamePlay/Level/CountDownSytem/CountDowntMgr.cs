@@ -1,7 +1,5 @@
-using Qarth;
-using System.Collections;
+﻿using Qarth;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 namespace GameWish.Game
@@ -10,11 +8,11 @@ namespace GameWish.Game
     {
         private int m_CountDownIndex = 0;
 
-        private List<CountDownItemTest> m_CountDownList = new List<CountDownItemTest>();
+        private List<CountDown> m_CountDownList = new List<CountDown>();
 
-        public CountDownItemTest SpawnCountDownItemTest(int totalTime, OnCountDownCallBackDel UpdateCallBack = null, OnCountDownCallBackDel EndCallBack = null)
+        public CountDown SpawnCountDownItemTest(int totalTime, OnCountDownCallBackDel UpdateCallBack = null, OnCountDownCallBackDel EndCallBack = null)
         {
-            CountDownItemTest item = ObjectPool<CountDownItemTest>.S.Allocate();
+            CountDown item = ObjectPool<CountDown>.S.Allocate();
 
             item.Init(m_CountDownIndex++, totalTime, UpdateCallBack, EndCallBack);
 
@@ -25,7 +23,7 @@ namespace GameWish.Game
 
         public void StopCountDownItemTest(int countDownIndex)
         {
-            CountDownItemTest item = m_CountDownList.Find(x => x.CountDownIndex == countDownIndex);
+            CountDown item = m_CountDownList.Find(x => x.CountDownIndex == countDownIndex);
 
             if (item != null)
             {
@@ -34,9 +32,9 @@ namespace GameWish.Game
             }
         }
 
-        public CountDownItemTest GetCountDownItemByID(int countDownID)
+        public CountDown GetCountDownItemByID(int countDownID)
         {
-            CountDownItemTest item = m_CountDownList.Find(x => x.CountDownIndex == countDownID);
+            CountDown item = m_CountDownList.Find(x => x.CountDownIndex == countDownID);
             return item;
         }
     }

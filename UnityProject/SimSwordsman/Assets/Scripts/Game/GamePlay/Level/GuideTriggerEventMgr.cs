@@ -38,6 +38,30 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnCloseAllUIPanel, OnCloseAllUIPanelCallBack);
 
             EventSystem.S.Register(EventID.OnTrialTimeOver, OnTrialTimeOverCallBack);
+
+            EventSystem.S.Register(EventID.OnTowerBattleOver, OnTowerBattleOverCallBack);
+        }
+
+        private void OnTowerBattleOverCallBack(int key, object[] param)
+        {
+            bool isShowed = PlayerPrefs.GetInt(Define.IsShowTowerSuccessOrFaildTrigger, -1) > 0 ? true : false;
+
+            if (isShowed) return;
+
+            TowerBattleOverToGuide towerBattleData = (TowerBattleOverToGuide)param[0];
+            if (towerBattleData != null) 
+            {
+                if (towerBattleData.isSuccess && towerBattleData.level == TowerDefine.MAXLEVEL)
+                {
+                    PlayerPrefs.SetInt(Define.IsShowTowerSuccessOrFaildTrigger, 1);
+                    EventSystem.S.Send(EventID.OnTowerTrigger_SuccessTrigger);
+                }
+                else if (towerBattleData.isSuccess == false && towerBattleData.remain < 5)
+                {
+                    PlayerPrefs.SetInt(Define.IsShowTowerSuccessOrFaildTrigger, 1);
+                    EventSystem.S.Send(EventID.OnTowerTrigger_FaildTrigger);
+                }
+            }
         }
 
         private void OnTrialTimeOverCallBack(int key, object[] param)

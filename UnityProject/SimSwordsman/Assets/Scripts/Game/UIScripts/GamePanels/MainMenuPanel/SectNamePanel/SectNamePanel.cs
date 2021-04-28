@@ -1,19 +1,19 @@
-using Qarth;
+ï»¿using Qarth;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 namespace GameWish.Game
 {
-   
+
     public class SectNamePanel : AbstractAnimPanel
-	{
-	    [SerializeField]
-	    private InputField m_ClanName; 
-		[SerializeField]
-		private Button m_RandomBtn;
-		[SerializeField]
-		private Button m_AcceptBtn;
+    {
+        [SerializeField]
+        private InputField m_ClanName;
+        [SerializeField]
+        private Button m_RandomBtn;
+        [SerializeField]
+        private Button m_AcceptBtn;
 
         [SerializeField]
         private Button m_CloseBtn;
@@ -21,10 +21,10 @@ namespace GameWish.Game
         Action m_CloseAction;
 
         protected override void OnUIInit()
-	    {
+        {
             base.OnUIInit();
-           
-			BindAddListenerEvent();
+
+            BindAddListenerEvent();
         }
 
         protected override void OnPanelOpen(params object[] args)
@@ -42,11 +42,11 @@ namespace GameWish.Game
                 m_CloseBtn.gameObject.SetActive(true);
                 m_ClanName.text = GameDataMgr.S.GetGameData().clanData.GetClanName();
             }
-            OpenDependPanel(EngineUI.MaskPanel,-1,null);
+            OpenDependPanel(EngineUI.MaskPanel, -1, null);
         }
 
         /// <summary>
-        /// ¼ì²âÃô¸Ğ´Ê»ã
+        /// æ£€æµ‹æ•æ„Ÿè¯æ±‡
         /// </summary>
         bool IllegalCheckName(string value)
         {
@@ -66,27 +66,32 @@ namespace GameWish.Game
 
             m_ClanName.text = s1 + s2;
         }
-        
+
         private void BindAddListenerEvent()
         {
-            m_RandomBtn.onClick.AddListener(()=> {
+            m_RandomBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 RandomName();
             });
-            m_AcceptBtn.onClick.AddListener(()=> 
+            m_AcceptBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                if (IllegalCheckName(m_ClanName.text))
+                if (string.IsNullOrEmpty(m_ClanName.text))
                 {
-                    FloatMessage.S.ShowMsg("Ãû³Æ²»ºÏ·¨");
-                    //UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "ÌáÊ¾", "Ãû³Æ²»ºÏ·¨£¡");
+                    FloatMessage.S.ShowMsg("åç§°ä¸èƒ½ä¸ºç©º");
                 }
-                else if(m_ClanName.text.Length > 8)
+                else if (IllegalCheckName(m_ClanName.text))
                 {
-                    FloatMessage.S.ShowMsg("³¬¹ı×ÖÊıÏŞÖÆ");
-                    //UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "ÌáÊ¾", "³¬¹ı×ÖÊıÏŞÖÆ£¡");
+                    FloatMessage.S.ShowMsg("åç§°ä¸åˆæ³•");
+                    //UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "æç¤º", "åç§°ä¸åˆæ³•ï¼");
+                }
+                else if (m_ClanName.text.Length > 8)
+                {
+                    FloatMessage.S.ShowMsg("è¶…è¿‡å­—æ•°é™åˆ¶");
+                    //UIMgr.S.OpenTopPanel(UIID.LogPanel, null, "æç¤º", "è¶…è¿‡å­—æ•°é™åˆ¶ï¼");
                 }
                 else
                 {
