@@ -10,6 +10,11 @@ namespace GameWish.Game
 {
     public class MainCamera : MonoBehaviour, IMgr, IInputObserver
     {
+        [SerializeField]
+        private Transform m_UpPoint; 
+        [SerializeField]
+        private Transform m_DownPoint;
+
         private TouchInputController m_TouchInput;
         private MobileTouchCamera m_MobileTouchCamera;
         private Camera m_Camera;
@@ -33,16 +38,18 @@ namespace GameWish.Game
             m_MobileTouchCamera = GetComponent<MobileTouchCamera>();
             m_Camera = GetComponent<Camera>();
 
-            m_BattleProperty = new CameraProperty(new Vector3(41, 0.4f, -10), InitBattleSize());
+            m_BattleProperty = new CameraProperty(new Vector3(41.05f, 0.4f, -10), InitBattleSize());
             m_SimProperty = new CameraProperty(new Vector3(6, 2.2f, -10), 10);
 
             RegisterEvents();
 
         }
-
         private float InitBattleSize()
         {
-            return 6.0f;
+            float weightHeightRatio = (float)Camera.main.pixelWidth / Camera.main.pixelHeight;
+            float size = (7.50f / weightHeightRatio) / 2;
+
+            return size;
         }
 
         public void OnUpdate()

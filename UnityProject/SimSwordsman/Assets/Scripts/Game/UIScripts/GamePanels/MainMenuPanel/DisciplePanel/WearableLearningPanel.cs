@@ -48,8 +48,6 @@ namespace GameWish.Game
                 case EventID.OnSelectedEquipEvent:
                     RefreshEquipInfo((bool)param[0], (ItemBase)param[1], (Transform)param[2]);
                     break;
-                default:
-                    break;
             }
         }
         private void CalculateContainerHeight()
@@ -88,6 +86,8 @@ namespace GameWish.Game
         }
         private void GeInformationForNeed()
         {
+            if (m_ItemBaseList!=null)
+                m_ItemBaseList.Clear();
             m_ItemBaseList = MainGameMgr.S.InventoryMgr.GetAllEquipmentForType(m_CurPropType);
         }
 
@@ -147,7 +147,8 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-
+                if (m_SelectedItemBase==null)
+                    return;
                 switch (m_SelectedItemBase.PropType)
                 {
                     case PropType.Arms:
