@@ -1,11 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Qarth;
-
-namespace GameWish.Game
+﻿namespace GameWish.Game
 {
     public class Define
     {
@@ -309,6 +302,9 @@ namespace GameWish.Game
         #region  引导相关
         public const string IsOpenTowerPanel = "m_IsOpenTowerPanel";
         public const string IsOpenHeroTrialPanel = "m_IsOpenHeroTrialPanel";
+        public const string IsShowTowerSuccessOrFaildTrigger = "IsShowTowerSuccessOrFaildTrigger";
         #endregion
+
+        public const string IsPlaySplashScreen = "m_IsPlaySplashScreen";
     }
 }

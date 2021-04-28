@@ -262,7 +262,7 @@ namespace GameWish.Game
                     return 0;
                 int index = Mathf.Max(0, dataLst.Count - 1);
                 var chapterData = dataLst[index];
-                return chapterData.level;
+                return chapterData.number;
             }
         }
         public override string taskSubTitle

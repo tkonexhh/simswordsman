@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Spine;
 using Spine.Unity;
 
 namespace GameWish.Game
@@ -20,6 +18,17 @@ namespace GameWish.Game
         {
             Spine.Animation anim = spine.Skeleton.Data.FindAnimation(animationName);
             return anim != null;
+        }
+
+        public static TrackEntry PlayAnim(SkeletonGraphic spine, string name, bool loop, System.Action endCallBack = null)
+        {
+            Spine.TrackEntry trackEntry = spine.AnimationState.SetAnimation(0, name, loop);
+            trackEntry.Complete += (Spine.TrackEntry entry) =>
+            {
+                endCallBack?.Invoke();
+            };
+
+            return trackEntry;
         }
     }
 }

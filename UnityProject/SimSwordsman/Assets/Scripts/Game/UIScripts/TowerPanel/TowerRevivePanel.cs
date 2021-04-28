@@ -50,7 +50,7 @@ namespace GameWish.Game
             {
                 var controller = MainGameMgr.S.CharacterMgr.GetCharacterController(m_ID);
                 m_Disciple.Init(controller.CharacterModel.CharacterItem, this);
-                m_TxtAtk.text = string.Format("功力: <color=#405787>{0}</color>", CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.GetAtk()));
+                m_TxtAtk.text = string.Format("功力: <color=#405787>{0}</color>", CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.CharacterItem.atkValue));
             }
 
         }

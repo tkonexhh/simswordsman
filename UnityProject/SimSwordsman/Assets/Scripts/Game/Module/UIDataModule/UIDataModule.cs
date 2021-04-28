@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using Qarth;
+﻿using Qarth;
 
 namespace GameWish.Game
 {
@@ -158,6 +156,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.HeroTrialTipPanel, null, "GamePanels/HeroTrialPanels/HeroTrialTipPanel/HeroTrialTipPanel");
             UIDataTable.AddPanelData(UIID.IntroductionRulesPanel, null, "GamePanels/HeroTrialPanels/IntroductionRulesPanel/IntroductionRulesPanel");
             UIDataTable.AddPanelData(UIID.HeroTrialChooseDisciplePanel, null, "GamePanels/HeroTrialPanels/HeroTrialChooseDisciplePanel");
+
+            UIDataTable.AddPanelData(UIID.SplashScreenPanel, null, "GamePanels/SplashScreenPanel/SplashScreenPanel");
 
             RealNameMgr.S.RegisterPanels();
         }

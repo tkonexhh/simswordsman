@@ -1,9 +1,8 @@
+ï»¿using Qarth;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Qarth;
 
 namespace GameWish.Game
 {
@@ -46,14 +45,14 @@ namespace GameWish.Game
         [HideInInspector]
         public int m_ForgeHouseID;
         [HideInInspector]
-        public int UnlockLevel;//½âËøµÈ¼¶
+        public int UnlockLevel;//è§£é”ç­‰çº§
 
         AbstractAnimPanel m_panel;
 
         string m_StringID = "ForgeHousePanel";
 
         private ForgeHouseItemData m_ForgeHouseItemData = null;
-        private CountDownItemTest m_CountDownItem = null;
+        private CountDown m_CountDownItem = null;
         private List<UpgradeResItem> m_UpgradeResItemList = new List<UpgradeResItem>();
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
@@ -98,7 +97,7 @@ namespace GameWish.Game
                 m_DescTxt.text = tb.desc;
                 var equ = TDEquipmentConfigTable.m_EquipDic[m_ForgeHouseID];
                 float num = 100 * (equ.GetAtkBonusForClassID(1) - 1);
-                m_EffecTxt.text = string.Format("¹¦Á¦+<color=#8C343C>{0}%</color>", (int)num);
+                m_EffecTxt.text = string.Format("åŠŸåŠ›+<color=#8C343C>{0}%</color>", (int)num);
 
                 m_ForgeHouseItemData = GameDataMgr.S.GetClanData().GetForgeHouseItemData(m_ForgeHouseID);
                 if (m_ForgeHouseItemData == null)
@@ -155,7 +154,7 @@ namespace GameWish.Game
         }
         private void BindAddListenerEvent()
         {
-            //ÒôĞ§
+            //éŸ³æ•ˆ
             foreach (var item in transform.GetComponentsInChildren<Button>(true))
             {
                 item.onClick.AddListener(() => AudioMgr.S.PlaySound(Define.SOUND_UI_BTN));
@@ -164,7 +163,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                //ÅĞ¶Ï²ÄÁÏ
+                //åˆ¤æ–­ææ–™
                 var list = TDEquipmentConfigTable.MakeNeedItemIDsDic[m_ForgeHouseID];
                 if (MainGameMgr.S.InventoryMgr.HaveEnoughItem(list))
                 {
@@ -209,7 +208,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// 0Î´½âËø 1 ÕıÔÚÖÆ×÷ 2 Î´ÖÆ×÷
+        /// 0æœªè§£é” 1 æ­£åœ¨åˆ¶ä½œ 2 æœªåˆ¶ä½œ
         /// </summary>
         /// <param name="status"></param>
         void SetState(int status)
@@ -219,8 +218,8 @@ namespace GameWish.Game
                 case 0:
                     UnLock.SetActive(false);
                     Lock.SetActive(true);
-                    //½âËøÌõ¼ş
-                    m_LockConditionTxt.text = string.Format("¶ÍÔì·¿ÉıÖÁ <color=#9C4B45>{0}</color>¼¶ ºó½âËø", UnlockLevel);
+                    //è§£é”æ¡ä»¶
+                    m_LockConditionTxt.text = string.Format("é”»é€ æˆ¿å‡è‡³ <color=#9C4B45>{0}</color>çº§ åè§£é”", UnlockLevel);
                     break;
                 case 1:
                     UnLock.SetActive(true);
@@ -228,7 +227,7 @@ namespace GameWish.Game
 
                     m_MakingTra.gameObject.SetActive(true);
                     m_DontMakeTra.gameObject.SetActive(false);
-                    //ÉèÖÃ²ÄÁÏ
+                    //è®¾ç½®ææ–™
                     SetMakeNeedRes(TDEquipmentConfigTable.MakeNeedItemIDsDic[m_ForgeHouseID]);
                     break;
                 case 2:
@@ -236,7 +235,7 @@ namespace GameWish.Game
                     Lock.SetActive(false);
                     m_MakingTra.gameObject.SetActive(false);
                     m_DontMakeTra.gameObject.SetActive(true);
-                    //ÉèÖÃ²ÄÁÏ
+                    //è®¾ç½®ææ–™
                     SetMakeNeedRes(TDEquipmentConfigTable.MakeNeedItemIDsDic[m_ForgeHouseID]);
                     break;
                 default:

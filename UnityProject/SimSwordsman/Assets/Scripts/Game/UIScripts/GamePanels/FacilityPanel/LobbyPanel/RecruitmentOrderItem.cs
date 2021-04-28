@@ -1,6 +1,5 @@
-using Qarth;
+ï»¿using Qarth;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -46,7 +45,7 @@ namespace GameWish.Game
         private Dictionary<RecruitType, ClickType> m_RecruitDic = new Dictionary<RecruitType, ClickType>();
         private int m_Hours;
         private int m_CountDownTimeHours;
-        private CountDownItemTest m_CountDownItem = null;
+        private CountDown m_CountDownItem = null;
         private StringBuilder m_TempStringBuild = new StringBuilder();
 
         public void OnInit<T>(T t, Action action = null, params object[] obj)
@@ -154,7 +153,7 @@ namespace GameWish.Game
 
 
         /// <summary>
-        /// ¼ì²âÕĞÄ¼Êı¾İ
+        /// æ£€æµ‹æ‹›å‹Ÿæ•°æ®
         /// </summary>
         /// <param name="lobbyTime"></param>
         private void RefreshFreeRecruit()
@@ -173,9 +172,9 @@ namespace GameWish.Game
             RefreshPanelInfo();
         }
 
-        private void UpdateADCoolingTime() 
+        private void UpdateADCoolingTime()
         {
-            if (m_CountDownItem != null) 
+            if (m_CountDownItem != null)
             {
                 CountDowntMgr.S.StopCountDownItemTest(m_CountDownItem.GetCountDownID());
             }
@@ -184,7 +183,7 @@ namespace GameWish.Game
 
             if (isCanLookADRecruit)
             {
-                m_RecruitValue.text = string.Format("½ñÈÕ´ÎÊı:1/1");
+                m_RecruitValue.text = string.Format("ä»Šæ—¥æ¬¡æ•°:1/1");
                 m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
             }
             else
@@ -199,8 +198,9 @@ namespace GameWish.Game
                 m_CountDownItem = CountDowntMgr.S.SpawnCountDownItemTest((int)ts.TotalSeconds, (remainTime) =>
                 {
                     UpdateRecruitValueText(ts, endTime);
-                }, (remainTime) => {
-                    m_RecruitValue.text = string.Format("½ñÈÕ´ÎÊı:1/1");
+                }, (remainTime) =>
+                {
+                    m_RecruitValue.text = string.Format("ä»Šæ—¥æ¬¡æ•°:1/1");
                     m_RecruitDic[m_CurRecruitType] = ClickType.LookAdvertisement;
                     m_CountDownItem = null;
                 });
@@ -209,7 +209,7 @@ namespace GameWish.Game
             m_RecruitValue.fontSize = 20;
         }
 
-        private void UpdateRecruitValueText(TimeSpan ts, DateTime endTime) 
+        private void UpdateRecruitValueText(TimeSpan ts, DateTime endTime)
         {
             ts = endTime - DateTime.Now;
             m_TempStringBuild.Clear();
@@ -218,19 +218,19 @@ namespace GameWish.Game
             m_TempStringBuild.Append(ts.Minutes.ToString("00"));
             m_TempStringBuild.Append(":");
             m_TempStringBuild.Append(ts.Seconds.ToString("00"));
-            m_RecruitValue.text = string.Format("ÏÂ´ÎÃâ·Ñ {0}", m_TempStringBuild.ToString());
+            m_RecruitValue.text = string.Format("ä¸‹æ¬¡å…è´¹ {0}", m_TempStringBuild.ToString());
         }
 
-        public void OnClose() 
+        public void OnClose()
         {
-            if (m_CountDownItem != null) 
+            if (m_CountDownItem != null)
             {
                 CountDowntMgr.S.StopCountDownItemTest(m_CountDownItem.GetCountDownID());
-            }            
+            }
         }
 
         /// <summary>
-        /// »ñÈ¡µ±Ç°Ê±¼äµ½Ä¿±êÊ±¼äµÄÊ±¼äÊı
+        /// è·å–å½“å‰æ—¶é—´åˆ°ç›®æ ‡æ—¶é—´çš„æ—¶é—´æ•°
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
@@ -261,7 +261,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ÅĞ¶ÏÕĞÄ¼ÈËÊıÊÇ·ñÒÑÂú
+        /// åˆ¤æ–­æ‹›å‹Ÿäººæ•°æ˜¯å¦å·²æ»¡
         /// </summary>
         /// <returns></returns>
         private bool JudgeRecruitNumberOfPelpleFull()
@@ -282,14 +282,14 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÕĞÄ¼µã»÷ÊÂ¼ş
+        /// æ‹›å‹Ÿç‚¹å‡»äº‹ä»¶
         /// </summary>
         private void OnClickRecruitBtn(RecruitType type)
         {
             AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
             if (JudgeRecruitNumberOfPelpleFull())
             {
-                FloatMessage.S.ShowMsg("µ±Ç°ÎİÉá²»×ã£¬ÇëÉı¼¶»ò½¨ÔìĞÂµÄÎİÉá");
+                FloatMessage.S.ShowMsg("å½“å‰å±‹èˆä¸è¶³ï¼Œè¯·å‡çº§æˆ–å»ºé€ æ–°çš„å±‹èˆ");
                 return;
             }
             switch (m_RecruitDic[type])
@@ -307,7 +307,7 @@ namespace GameWish.Game
                     GetRandomDisciples(type);
                     int curRecruitCount = GetRecruitCount();
                     if (curRecruitCount <= 0)
-                        FloatMessage.S.ShowMsg("ÕĞÄ¼´ÎÊıÓÃ¾¡");
+                        FloatMessage.S.ShowMsg("æ‹›å‹Ÿæ¬¡æ•°ç”¨å°½");
                     else
                         UIMgr.S.OpenPanel(UIID.GetDisciplePanel, GetRandomDisciples(type), ClickType.RecruitmentOrder, type);
                     break;
@@ -316,7 +316,7 @@ namespace GameWish.Game
                     if (isCanLookADRecruit)
                         AdsManager.S.PlayRewardAD("SummonStudent", LookADSuccessCallBack);
                     else
-                        FloatMessage.S.ShowMsg("ÕĞÄ¼´ÎÊıÓÃ¾¡");
+                        FloatMessage.S.ShowMsg("æ‹›å‹Ÿæ¬¡æ•°ç”¨å°½");
                     break;
                 default:
                     break;
@@ -361,7 +361,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÊÂ¼ş¼àÌı»Øµ÷
+        /// äº‹ä»¶ç›‘å¬å›è°ƒ
         /// </summary>
         /// <param name="key"></param>
         /// <param name="param"></param>

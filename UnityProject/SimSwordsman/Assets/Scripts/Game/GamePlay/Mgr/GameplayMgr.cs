@@ -93,8 +93,6 @@ namespace GameWish.Game
 
             RemoteConfigMgr.S.StartChecker(null);
 
-            m_IsLoadingBarFinished = true;
-
             SendSplitChannelData();
 
             WeChatShareMgr.S.Init();
@@ -102,6 +100,21 @@ namespace GameWish.Game
             RandomBattleAdIntervalRemoteMgr.S.Init();
 
             AdsManager.S.Init();
+
+            bool isPlaySplash = PlayerPrefs.GetInt(Define.IsPlaySplashScreen, -1) > 0 ? true : false;
+            if (isPlaySplash)
+            {
+                m_IsLoadingBarFinished = true;
+            }
+            else
+            {
+                Action action = delegate
+                {
+                    m_IsLoadingBarFinished = true;
+                };
+                UIMgr.S.OpenTopPanel(UIID.SplashScreenPanel, null, action);
+                PlayerPrefs.SetInt(Define.IsPlaySplashScreen, 1);
+            }
 
             yield return null;
         }
@@ -197,6 +210,7 @@ namespace GameWish.Game
 
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
+                    UIMgr.S.ClosePanelAsUIID(UIID.SplashScreenPanel);
                     // UIMgr.S.OpenPanel(UIID.WorldUIPanel);
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallback);
 
@@ -272,26 +286,31 @@ namespace GameWish.Game
                 }
                 if (Input.GetKeyDown(KeyCode.H))
                 {
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Four), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Seven), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Nine), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Four), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Seven), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Nine), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Four), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Seven), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Nine), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Four), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Seven), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Nine), 1);
-                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.Eight), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.ZiTenJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.BuJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.BingChanSiJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.HuPiJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.RuanWeiJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.MingGuangKai, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.LongLinJia, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.XuanTieKaiJia, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
+
+
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.ShaZhuDao, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaHuanDao, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.HongYingQiang, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.JinGuBang, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XueDiZi, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XueDao, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.TuLongDao, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.YanYueDao, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.JinSheJian, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XuanTieBiShou, Step.One), 1);
+                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.YiTianJian, Step.One), 1);
                 }
                 if (Input.GetKeyDown(KeyCode.Y))
                 {

@@ -1,27 +1,26 @@
+ï»¿using Qarth;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Qarth;
 using System.Linq;
-using System;
+using UnityEngine;
 
 namespace GameWish.Game
 {
-    public class DeliverSystemMgr : TSingleton<DeliverSystemMgr>,IAssetPreloader
+    public class DeliverSystemMgr : TSingleton<DeliverSystemMgr>, IAssetPreloader
     {
-        #region ×Ö¶Î
+        #region å­—æ®µ
         private ResLoader m_DeliverCarLoader = null;
 
         private const string DeliverCarPrefabName = "DeliverCar";
 
         private List<SingleDeliverDetailData> m_DaliverDetailDataList = null;
         /// <summary>
-        /// ïÚ³µÂ·¾¶
+        /// é•–è½¦è·¯å¾„
         /// </summary>
         private DeliverPath m_DeliverPath;
         public DeliverPath DeliverPath
         {
-            get 
+            get
             {
                 return m_DeliverPath;
             }
@@ -33,7 +32,7 @@ namespace GameWish.Game
 
         private Vector2 m_DeliverCarOriginPos = new Vector3(0.8f, -4.2f, 0);
         /// <summary>
-        /// ïÚ³µ»ØÀ´Ê±µÄ¼ä¸ôÊ±¼ä£¬ÈôÍ¬Ê±»ØÀ´£¬Ôò¼ä¸ôÒ»¶ÎÊ±¼ä·Ö±ğ»ØÀ´
+        /// é•–è½¦å›æ¥æ—¶çš„é—´éš”æ—¶é—´ï¼Œè‹¥åŒæ—¶å›æ¥ï¼Œåˆ™é—´éš”ä¸€æ®µæ—¶é—´åˆ†åˆ«å›æ¥
         /// </summary>
         private float m_DeliverCarComeBackIntervalTime = 5.0f;
 
@@ -51,7 +50,7 @@ namespace GameWish.Game
                 deliverConfigs.AddRange(TDDeliverTable.GetDeliverConfigList());
                 for (int i = 0; i < deliverConfigs.Count; i++)
                 {
-                    if (i< m_DaliverDetailDataList.Count)
+                    if (i < m_DaliverDetailDataList.Count)
                     {
                         if (m_DaliverDetailDataList[i].DeliverID == deliverConfigs[i].level)
                             continue;
@@ -64,7 +63,7 @@ namespace GameWish.Game
 
             m_DeliverPath = GameObject.FindObjectOfType<DeliverPath>();
 
-            //¼ì²âÑºïÚÈÎÎñ
+            //æ£€æµ‹æŠ¼é•–ä»»åŠ¡
             List<SingleDeliverDetailData> dataList = GameDataMgr.S.GetClanData().GetAllDaliverData();
             var tmpDataList = dataList.Where(x => x.DaliverState == DeliverState.HasBeenGoOut).ToList();
             if (tmpDataList != null && tmpDataList.Count > 0)
@@ -76,7 +75,7 @@ namespace GameWish.Game
 
                     if (deliverData.DaliverState == DeliverState.HasBeenGoOut)
                     {
-                        CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(deliverData.GetRemainTimeSeconds(), null, (remainTime) =>
+                        CountDown countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(deliverData.GetRemainTimeSeconds(), null, (remainTime) =>
                         {
                             DeliverCar car = SpawnDeliverCar();
                             car.Init(deliverData.DeliverID, deliverData.CharacterIDList, GoOutSidePos);
@@ -86,7 +85,7 @@ namespace GameWish.Game
                             m_DeliverCarComeBackQueue.Enqueue(car);
                         });
                         deliverData.SetCountDownID(countDownItem.GetCountDownID());
-                        countDownItem.SetSpeedUpMultiply(deliverData.SpeedUpMultiple);                   
+                        countDownItem.SetSpeedUpMultiply(deliverData.SpeedUpMultiple);
                     }
                 }
             }
@@ -121,9 +120,9 @@ namespace GameWish.Game
             return car;
         }
         /// <summary>
-        /// Ìí¼ÓïÚ³µµ½»º´æÁĞ±íÖĞ
+        /// æ·»åŠ é•–è½¦åˆ°ç¼“å­˜åˆ—è¡¨ä¸­
         /// </summary>
-        /// <param name="deliverCar">ïÚ³µ</param>
+        /// <param name="deliverCar">é•–è½¦</param>
         public void AddDeliverCarToList(DeliverCar deliverCar)
         {
             DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverCar.DeliverID);
@@ -133,7 +132,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// »º´æÁĞ±íÖĞÒÆ³ıïÚ³µ
+        /// ç¼“å­˜åˆ—è¡¨ä¸­ç§»é™¤é•–è½¦
         /// </summary>
         /// <param name="deliverID"></param>
         public void RemoveDeliverCar(int deliverID)
@@ -145,9 +144,9 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ¿ªÊ¼ÑºïÚ
+        /// å¼€å§‹æŠ¼é•–
         /// </summary>
-        /// <param name="deliverID">ïÚÎïid</param>
+        /// <param name="deliverID">é•–ç‰©id</param>
         public void StartDeliver(int deliverID)
         {
             //SingleDeliverDetailData data = GameDataMgr.S.GetClanData().AddDeliverData(deliverID, DeliverState.HasBeenSetOut, rewardDataList, characterIDList);
@@ -165,7 +164,7 @@ namespace GameWish.Game
 
                 SetCharacterStateDeliver(data.CharacterIDList, data.DeliverID);
 
-                CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
+                CountDown countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTimeSeconds(), null, (remainTime) =>
                 {
                     //car.StartMoveComeBack();
 
@@ -174,42 +173,43 @@ namespace GameWish.Game
 
                 data.SetCountDownID(countDownItem.GetCountDownID());
             }
-            else {
-                Debug.LogError("ïÚÎïÊı¾İÎªnull»òÕßÒÑ¾­³ö·¢ £º" + (data == null ? "null" : data.DaliverState.ToString()));
+            else
+            {
+                Debug.LogError("é•–ç‰©æ•°æ®ä¸ºnullæˆ–è€…å·²ç»å‡ºå‘ ï¼š" + (data == null ? "null" : data.DaliverState.ToString()));
             }
         }
         /// <summary>
-        /// Í¨¹ıïÚÎïID»ñÈ¡ïÚ³µÎïÌå
+        /// é€šè¿‡é•–ç‰©IDè·å–é•–è½¦ç‰©ä½“
         /// </summary>
-        /// <param name="deliverID">ïÚÎïid</param>
+        /// <param name="deliverID">é•–ç‰©id</param>
         /// <returns></returns>
         public DeliverCar GetDeliverCarByDeliverID(int deliverID)
         {
             DeliverCar car = m_AllDeliverCarList.Find(x => x.DeliverID == deliverID);
             return car;
         }
-        public void UpdateDeliverSpeedUpMultiple(int deliverID,int speedUpMultiple = 2)
+        public void UpdateDeliverSpeedUpMultiple(int deliverID, int speedUpMultiple = 2)
         {
             GameDataMgr.S.GetClanData().SetSpeedUpMultipleByDeliverID(deliverID, speedUpMultiple);
         }
-        public void AddDeliverCarGoOut(DeliverCar car) 
+        public void AddDeliverCarGoOut(DeliverCar car)
         {
-            if (m_DeliverCarGoOutQueue.Contains(car) == false) 
+            if (m_DeliverCarGoOutQueue.Contains(car) == false)
             {
                 m_DeliverCarGoOutQueue.Enqueue(car);
-            }            
+            }
         }
         #endregion
 
         #region private
         /// <summary>
-        /// ïÚ³µ¼ä¸ô»ØÀ´
+        /// é•–è½¦é—´éš”å›æ¥
         /// </summary>
-        /// <param name="dataList">ïÚ³µÊı¾İ</param>
+        /// <param name="dataList">é•–è½¦æ•°æ®</param>
         /// <returns></returns>
         private IEnumerator DeliverCarWaitIntervalTimeComeBack()
         {
-            while (true) 
+            while (true)
             {
                 if (m_DeliverCarComeBackQueue.Count > 0)
                 {
@@ -220,7 +220,8 @@ namespace GameWish.Game
                     }
                     yield return new WaitForSeconds(m_DeliverCarComeBackIntervalTime);
                 }
-                else {
+                else
+                {
                     yield return null;
                 }
 
@@ -240,19 +241,19 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ïÚ³µµ½´ïºó
+        /// é•–è½¦åˆ°è¾¾å
         /// </summary>
         /// <param name="key"></param>
         /// <param name="param"></param>
         private void OnDeliverCarArriveCallBack(int key, object[] param)
         {
-            if (param != null && param.Length > 0) 
+            if (param != null && param.Length > 0)
             {
                 int deliverID = int.Parse(param[0].ToString());
 
                 SingleDeliverDetailData data = GameDataMgr.S.GetClanData().GetDeliverDataByDeliverID(deliverID);
 
-                if (data != null) 
+                if (data != null)
                 {
                     GetDeliverReward(data);
 
@@ -261,30 +262,30 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// ½«½ÇÉ«ÉèÖÃÎªÑºïÚ×´Ì¬
+        /// å°†è§’è‰²è®¾ç½®ä¸ºæŠ¼é•–çŠ¶æ€
         /// </summary>
-        /// <param name="characterIDList">½ÇÉ«IDÁĞ±í</param>
-        /// <param name="deliverID">ïÚÎïID</param>
-        private void SetCharacterStateDeliver(List<int> characterIDList,int deliverID) 
+        /// <param name="characterIDList">è§’è‰²IDåˆ—è¡¨</param>
+        /// <param name="deliverID">é•–ç‰©ID</param>
+        private void SetCharacterStateDeliver(List<int> characterIDList, int deliverID)
         {
-            if (characterIDList != null) 
+            if (characterIDList != null)
             {
                 for (int i = 0; i < characterIDList.Count; i++)
                 {
                     int characterID = characterIDList[i];
                     CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterID);
-                    if (characterController != null) 
+                    if (characterController != null)
                     {
                         characterController.SetDeliverID(deliverID);
-                        characterController.SetState(CharacterStateID.Deliver, FacilityType.Deliver, string.Empty, -1);                        
+                        characterController.SetState(CharacterStateID.Deliver, FacilityType.Deliver, string.Empty, -1);
                     }
                 }
             }
         }
         /// <summary>
-        /// »ñÈ¡ÑºïÚµÄ½±Àø
+        /// è·å–æŠ¼é•–çš„å¥–åŠ±
         /// </summary>
-        /// <param name="data">ïÚÎïµÄÊı¾İÀà</param>
+        /// <param name="data">é•–ç‰©çš„æ•°æ®ç±»</param>
         private void GetDeliverReward(SingleDeliverDetailData data)
         {
             //GameDataMgr.S.GetClanData().RemoveDeliverDataByID(data.DeliverID);
@@ -310,10 +311,10 @@ namespace GameWish.Game
             }
             rewardList.ForEach(x => x.AcceptReward());
 
-            if (MainGameMgr.S.BattleFieldMgr.IsBattleing == false) 
+            if (MainGameMgr.S.BattleFieldMgr.IsBattleing == false)
             {
                 UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewardList);
-            }            
+            }
         }
         #endregion
 

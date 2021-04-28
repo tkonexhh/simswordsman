@@ -224,6 +224,13 @@ namespace GameWish.Game
                             return;
                         }
                         break;
+                    case PanelType.Task:
+                        if (m_SelectedDiscipleDic.Count >= m_CommonTaskItemInfo.characterAmount)
+                        {
+                            FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
+                            return;
+                        }
+                        break;
                     default:
                         break;
                 }

@@ -430,6 +430,8 @@ namespace GameWish.Game
         OnTowerTrigger_ClickAKeyChoiceBtnTrigger,       //伏魔塔点击一键选择弟子
         OnTowerTrigger_ClickStartFightBtnTrigger,       //伏魔塔 点击开始战斗按钮
         OnTowerTrigger_FightFinishedClickShopBtnTrigger,//伏魔塔_战斗结束_点击商店按钮
+        OnTowerTrigger_SuccessTrigger,                  //伏魔塔挑战成功引导
+        OnTowerTrigger_FaildTrigger,                    //伏魔塔挑战失败引导
         #endregion
 
         #region HeroTrial

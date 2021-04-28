@@ -831,7 +831,6 @@ namespace GameWish.Game
     public abstract class CharaceterEquipment
     {
         public const int MaxLevel = 9;
-
         public PropType PropType { set; get; }
         public string Name { set; get; }
         public string Desc { set; get; }
