@@ -31,7 +31,7 @@ namespace GameWish.Game
             m_TxtName.text = data.name;
             m_TxtATK.text = data.atk.ToString();
             int nowLevel = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
-            bool canFight = index < nowLevel && index + ArenaDefine.ChallengeCount >= nowLevel;
+            bool canFight = index < nowLevel && index + ArenaDefine.ChallengeRange >= nowLevel;
             m_BtnFight.gameObject.SetActive(canFight);
             m_ImgBg.color = Color.white;
         }
@@ -50,6 +50,11 @@ namespace GameWish.Game
         private void OnClickFight()
         {
             if (m_Data == null) return;
+            if (GameDataMgr.S.GetPlayerData().arenaData.adAddChallengeCount <= 0)
+            {
+                FloatMessage.S.ShowMsg("挑战次数不足");
+                return;
+            }
 
             ArenaCellToSend arg = new ArenaCellToSend();
             arg.index = m_Data.level;

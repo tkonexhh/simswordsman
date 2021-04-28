@@ -13,6 +13,8 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnClose;
         [SerializeField] private Button m_BtnShop;
         [SerializeField] private Text m_TxtCoin;
+        [SerializeField] private Button m_BtnAddCount;
+        [SerializeField] private Text m_TxtCount;
 
 
         [SerializeField] private IUListView m_ListView;
@@ -22,6 +24,7 @@ namespace GameWish.Game
         {
             m_BtnClose.onClick.AddListener(CloseSelfPanel);
             m_BtnShop.onClick.AddListener(OnClickShop);
+            m_BtnAddCount.onClick.AddListener(OnClickAddCount);
             m_ListView.SetCellRenderer(OnCellRenderer);
             MainGameMgr.S.ArenaSystem.Enter();
         }
@@ -30,9 +33,11 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             RegisterEvent(EventID.OnRefeshArenaCoin, (t, e) => { UpdateCoin(); });
+            RegisterEvent(EventID.OnRefeshArenaChallengeCount, (t, e) => { UpdateCount(); });
 
             m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
             UpdateCoin();
+            UpdateCount();
         }
 
 
@@ -41,9 +46,19 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.ArenaShopPanel);
         }
 
+        private void OnClickAddCount()
+        {
+            UIMgr.S.OpenPanel(UIID.ArenaAddCountPanel);
+        }
+
         private void UpdateCoin()
         {
             m_TxtCoin.text = GameDataMgr.S.GetPlayerData().arenaData.coin.ToString();
+        }
+
+        private void UpdateCount()
+        {
+            m_TxtCount.text = GameDataMgr.S.GetPlayerData().arenaData.challengeCount.ToString();
         }
 
 

@@ -11,7 +11,10 @@ namespace GameWish.Game
         public const int EnemyCount = 24;
         public const int StartTime = 8 * 3600;
         public const int EndTime = 22 * 3600;
-        public const int ChallengeCount = 2;
+        public const int ChallengeRange = 2;
+        public const int Max_ChallengeCount = 5;
+        public const int Max_ADChallengeCount = 3;
+        public const int AD_ChallengeCount = 3;
     }
 
 }

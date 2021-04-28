@@ -56,16 +56,7 @@ namespace GameWish.Game
             m_Btn.onClick.AddListener(() =>
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                switch (m_PanelType)
-                {
-                    case PanelType.Task:
-                    case PanelType.Challenge:
-                    case PanelType.Tower:
-                        EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_PanelType);
-                        break;
-                    default:
-                        break;
-                }
+                EventSystem.S.Send(EventID.OnSendDiscipleDicEvent, m_PanelType);
             });
         }
         public void RefreshPanelInfo()
@@ -111,7 +102,7 @@ namespace GameWish.Game
         }
         public void LoadClanPrefabs(string prefabsName)
         {
-            if (m_DiscipleHeadObj==null)
+            if (m_DiscipleHeadObj == null)
             {
                 m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CharacterItem, m_LevelBg.transform, new Vector3(45.9f, -29, 0), new Vector3(0.4f, 0.4f, 1));
             }

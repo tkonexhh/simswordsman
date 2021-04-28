@@ -10,6 +10,8 @@ namespace GameWish.Game
     {
         public int coin;//擂台币
         public int nowLevel = 0;
+        public int challengeCount = ArenaDefine.Max_ChallengeCount;
+        public int adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
 
         public List<ArenaEnemyDB> enemyLst = new List<ArenaEnemyDB>();
 
@@ -39,6 +41,8 @@ namespace GameWish.Game
         {
             nowLevel = ArenaDefine.EnemyCount + 1;
             InitEnemy();
+            adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
+            challengeCount = ArenaDefine.Max_ChallengeCount;
         }
 
         public bool AddCoin(int delta)
@@ -58,6 +62,24 @@ namespace GameWish.Game
         {
             Debug.LogError(level);
             nowLevel = level;
+            SetDataDirty();
+        }
+
+        public bool AddChallengeCount(int delta)
+        {
+            if (challengeCount + coin < 0)
+            {
+                return false;
+            }
+            challengeCount += delta;
+            EventSystem.S.Send(EventID.OnRefeshArenaChallengeCount);
+            SetDataDirty();
+            return true;
+        }
+
+        public void ReduceADChallengeCount()
+        {
+            adAddChallengeCount--;
             SetDataDirty();
         }
 

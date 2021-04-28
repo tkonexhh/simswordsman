@@ -103,6 +103,7 @@ namespace GameWish.Game
         ArenaPanel,
         ArenaShopPanel,
         ArenaRulePanel,
+        ArenaAddCountPanel,
         #endregion
     }
 }

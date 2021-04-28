@@ -222,6 +222,7 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     m_RightSchoolNameValue.text = "伏魔塔";
                     m_MatchNameValue.text = "伏魔塔" + m_TowerLevelConfig.level;
+                    MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRenderToTower();
                     break;
                 case PanelType.Arena:
                     m_RightSchoolNameValue.text = "竞技场";
