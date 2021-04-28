@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1048148734
+CRC: 3185712465
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 87be2e433c04ef81eb4635e95a082981
+    Hash: f8bb3e2b1c04b7ceb4c4ef42f97b8bad
   TypeTreeHash:
     serializedVersion: 2
     Hash: 42db959b8ac2565b7693d949e1b1f74b
@@ -42,10 +42,10 @@ ClassTypes:
 - Class: 210
   Script: {instanceID: 0}
 Assets:
+- Assets/Res/FolderMode/Enemy/Animal/Deer/deer_json.json
 - Assets/Res/FolderMode/Enemy/Animal/Deer/deer.png
 - Assets/Res/FolderMode/Enemy/Animal/Deer/deer.atlas.txt
 - Assets/Res/FolderMode/Enemy/Animal/Deer/deer_Atlas.asset
-- Assets/Res/FolderMode/Enemy/Animal/Deer/deer_json.json
 - Assets/Res/FolderMode/Enemy/Animal/Deer/DeerPrefab.prefab
 - Assets/Res/FolderMode/Enemy/Animal/Deer/deer_SkeletonData.asset
 - Assets/Res/FolderMode/Enemy/Animal/Deer/deer_Material.mat

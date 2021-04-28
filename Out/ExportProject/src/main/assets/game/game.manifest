@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3954565954
+CRC: 382039096
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -1447,3 +1447,24 @@ AssetBundleManifest:
     Info_298:
       Name: res/foldermode/enemy/wudu/wuduhongyao.bundle
       Dependencies: {}
+    Info_299:
+      Name: res/foldermode/splashscreenspine.bundle
+      Dependencies: {}
+    Info_300:
+      Name: res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/font.bundle
+        Dependency_1: res/foldermode/ui/sprites/martialarts.bundle
+        Dependency_2: res/foldermode/ui/sprites/rewardpanel.bundle
+        Dependency_3: res/foldermode/ui/panels/gamepanels/towerpanel.bundle
+        Dependency_4: res/foldermode/ui/sprites/towerpanel/towershop.bundle
+        Dependency_5: res/foldermode/ui/sprites/towerpanel.bundle
+    Info_301:
+      Name: res/foldermode/ui/panels/gamepanels/arenapanels/arenarestpanel.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/font.bundle
+    Info_302:
+      Name: res/foldermode/ui/panels/gamepanels/splashscreenpanel.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/font.bundle
+        Dependency_1: res/foldermode/splashscreenspine.bundle
