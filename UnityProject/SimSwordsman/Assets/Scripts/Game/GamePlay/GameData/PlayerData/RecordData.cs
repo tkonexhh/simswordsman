@@ -44,6 +44,8 @@ namespace GameWish.Game
             chanllenge.ResetDailyCount();
             forge.ResetDailyCount();
             medicine.ResetDailyCount();
+            towerShopRefesh.ResetDailyCount();
+            towerRevive.ResetDailyCount();
             SetDataDirty();
         }
 
