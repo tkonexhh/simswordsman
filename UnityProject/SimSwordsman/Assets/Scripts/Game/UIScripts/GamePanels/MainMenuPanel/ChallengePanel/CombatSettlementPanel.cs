@@ -321,6 +321,7 @@ namespace GameWish.Game
 
                     if (m_IsSuccess)
                     {
+                        m_ArenaLevelConfig.PrepareReward();
                         //TODO  过关交换顺序 给奖励
                         MainGameMgr.S.ArenaSystem.PassLevel(m_ArenaLevelConfig.level);
                     }
@@ -336,20 +337,9 @@ namespace GameWish.Game
 
         private void RefreshFont()
         {
-            if (m_IsSuccess)
-            {
-                Instantiate(m_SuccessEffect, m_EffectParent).transform.localPosition = Vector3.zero;
-
-                //m_Font1.sprite = FindSprite("CombatSettlement_Font1");
-                //m_Font2.sprite = FindSprite("CombatSettlement_Font2");
-            }
-            else
-            {
-                Instantiate(m_FailEffect, m_EffectParent).transform.localPosition = Vector3.zero;
-                //m_Font1.sprite = FindSprite("CombatSettlement_Font3");
-                //m_Font2.sprite = FindSprite("CombatSettlement_Font4");
-            }
+            Instantiate(m_IsSuccess ? m_SuccessEffect : m_FailEffect, m_EffectParent).transform.localPosition = Vector3.zero;
         }
+
         private void CreateRewardIInfoItem(CharacterController item)
         {
             switch (m_PanelType)
@@ -366,10 +356,10 @@ namespace GameWish.Game
                     ItemICom towerRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
                     towerRewardItemICom.OnInit(item, null, m_PanelType, m_TowerLevelConfig, m_IsSuccess, this);
                     break;
-                // case PanelType.Arena:
-                //     ItemICom arenaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
-                //     arenaRewardItemICom.OnInit(item, null, m_PanelType, m_ArenaLevelConfig, m_IsSuccess, this);
-                //     break;
+                case PanelType.Arena:
+                    ItemICom arenaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                    arenaRewardItemICom.OnInit(item, null, m_PanelType, m_ArenaLevelConfig, m_IsSuccess, this);
+                    break;
                 default:
                     break;
             }

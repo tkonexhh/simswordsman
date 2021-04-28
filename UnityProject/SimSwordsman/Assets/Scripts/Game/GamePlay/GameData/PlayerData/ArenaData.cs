@@ -32,7 +32,13 @@ namespace GameWish.Game
             {
                 InitEnemy();
             }
+
+        }
+
+        private void Reset()
+        {
             nowLevel = ArenaDefine.EnemyCount + 1;
+            InitEnemy();
         }
 
         public bool AddCoin(int delta)
@@ -50,6 +56,7 @@ namespace GameWish.Game
 
         public void SetNowLevel(int level)
         {
+            Debug.LogError(level);
             nowLevel = level;
             SetDataDirty();
         }
@@ -60,15 +67,7 @@ namespace GameWish.Game
         {
             enemyLst.Clear();
 
-            var allCharacter = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
-            CommonUIMethod.BubbleSortForType(allCharacter, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
-            long totalAtk = 0;
-            int count = Mathf.Min(5, allCharacter.Count);
-            for (int i = 0; i < count; i++)
-            {
-                totalAtk += (long)allCharacter[i].atkValue;
-            }
-
+            long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
 
             Debug.LogError(totalAtk);
 

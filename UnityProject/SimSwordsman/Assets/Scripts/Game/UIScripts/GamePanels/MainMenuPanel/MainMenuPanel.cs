@@ -275,7 +275,17 @@ namespace GameWish.Game
 
             m_BtnArena.onClick.AddListener(() =>
             {
-                UIMgr.S.OpenPanel(UIID.ArenaPanel);
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                int needLobbyLevel = ArenaDefine.ENTER_LEVEL;
+                if (lobbyLevel >= needLobbyLevel)
+                {
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
+                }
             });
 
 

@@ -69,6 +69,12 @@ namespace GameWish.Game
         public int level;
 
         public List<EnemyConfig> enemyConfigs = new List<EnemyConfig>();
-    }
 
+        public void PrepareReward()
+        {
+            List<RewardBase> rewardLst = new List<RewardBase>() { new ArenaCoinReward(20) };
+            rewardLst.ForEach(r => r.AcceptReward());
+            EventSystem.S.Send(EventID.OnReciveRewardList, rewardLst);
+        }
+    }
 }

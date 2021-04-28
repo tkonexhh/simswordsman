@@ -41,7 +41,9 @@ namespace GameWish.Game
             m_Data = null;
             m_TxtLevel.text = level.ToString();
             m_TxtName.text = GameDataMgr.S.GetClanData().clanName;
-            m_TxtATK.text = 1000.ToString();
+
+            long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
+            m_TxtATK.text = totalAtk.ToString();
             m_ImgBg.color = Color.grey;
         }
 
