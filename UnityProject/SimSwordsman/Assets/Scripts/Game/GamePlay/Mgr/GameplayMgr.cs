@@ -87,8 +87,6 @@ namespace GameWish.Game
 
             RemoteConfigMgr.S.StartChecker(null);
 
-            m_IsLoadingBarFinished = true;
-
             SendSplitChannelData();
 
             WeChatShareMgr.S.Init();
@@ -96,6 +94,21 @@ namespace GameWish.Game
             RandomBattleAdIntervalRemoteMgr.S.Init();
 
             AdsManager.S.Init();
+
+            bool isPlaySplash = PlayerPrefs.GetInt(Define.IsPlaySplashScreen, -1) > 0 ? true : false;
+            if (isPlaySplash)
+            {
+                m_IsLoadingBarFinished = true;
+            }
+            else
+            {
+                Action action = delegate
+                {
+                    m_IsLoadingBarFinished = true;
+                };
+                UIMgr.S.OpenTopPanel(UIID.SplashScreenPanel, null, action);
+                PlayerPrefs.SetInt(Define.IsPlaySplashScreen, 1);
+            }
 
             yield return null;
         }
@@ -191,6 +204,7 @@ namespace GameWish.Game
 
                     CheckMedalRefresh();
                     UIMgr.S.ClosePanelAsUIID(UIID.LogoPanel);
+                    UIMgr.S.ClosePanelAsUIID(UIID.SplashScreenPanel);
                     // UIMgr.S.OpenPanel(UIID.WorldUIPanel);
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel, MainMenuPanelCallback);
 
