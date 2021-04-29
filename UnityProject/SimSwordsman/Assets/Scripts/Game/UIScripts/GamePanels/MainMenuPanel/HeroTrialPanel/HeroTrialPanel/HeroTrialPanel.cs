@@ -235,10 +235,12 @@ namespace GameWish.Game
                 }
                 m_HeadList.Clear();
             }
-
-            m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_LeftBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
-            //DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1));
-            m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+            if (m_TrialDisciple!=null)
+            {
+                m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_LeftBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+                //DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1));
+                m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+            }
 
             if (m_TrialDisciple == null)
                 return;
