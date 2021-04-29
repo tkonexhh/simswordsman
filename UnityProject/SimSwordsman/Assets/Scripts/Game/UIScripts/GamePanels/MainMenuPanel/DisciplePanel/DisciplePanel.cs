@@ -11,35 +11,22 @@ namespace GameWish.Game
     {
         [Header("Top")]
         [SerializeField]
-        private Button m_BlackBtn;
-        [SerializeField]
         private Button m_CloseBtn;
-
-        [Header("Left")]
         [SerializeField]
-        private Toggle m_AllTog;
-        [SerializeField]
-        private Text m_AllValue;
+        private Toggle AllTog;
         [SerializeField]
         private Toggle m_CivilianTog;
         [SerializeField]
-        private Text m_CivilianValue;
-        [SerializeField]
         private Toggle m_EliteTog;
-        [SerializeField]
-        private Text m_EliteValue;
         [SerializeField]
         private Toggle m_GeniusTog;
         [SerializeField]
-        private Text m_GeniusValue;
-        [SerializeField]
         private Toggle m_HeroTog;
-        [SerializeField]
-        private Text m_HeroValue;
+
 
         [Header("Right")]
         [SerializeField]
-        private Transform m_DiscipleContList;
+        private Transform m_DiscipleTra;
         [SerializeField]
         private GameObject m_DiscipleItem;
 
@@ -114,11 +101,11 @@ namespace GameWish.Game
         {
             RefreshFixedInfo();
             CommonUIMethod.BubbleSortForType(m_CharacterList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-            if (m_CharacterList != null)
-                foreach (var item in m_CharacterList)
-                {
-                    CreateDisciple(m_DiscipleContList, item);
-                }
+            //if (m_CharacterList != null)
+            //    foreach (var item in m_CharacterList)
+            //    {
+            //        CreateDisciple(m_DiscipleContList, item);
+            //    }
 
             RefreshDiscipleLine();
         }
@@ -142,11 +129,11 @@ namespace GameWish.Game
 
         private void RefreshFixedInfo()
         {
-            m_AllValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_ALL);
-            m_CivilianValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_NORMAL);
-            m_EliteValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_GOOD);
-            m_GeniusValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_PREFECT);
-            m_HeroValue.text = "гЂал";
+            //m_AllValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_ALL);
+            //m_CivilianValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_NORMAL);
+            //m_EliteValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_GOOD);
+            //m_GeniusValue.text = CommonUIMethod.GetStringForTableKey(Define.DISCIPLE_BTNVALUE_PREFECT);
+            //m_HeroValue.text = "гЂал";
         }
 
         private void GetInformationForNeed()
@@ -172,20 +159,20 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-            m_BlackBtn.onClick.AddListener(() => {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
-                HideSelfWithAnim();
-            });
-            m_AllTog.onValueChanged.AddListener((e)=> {
-                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+            //m_BlackBtn.onClick.AddListener(() => {
+            //    AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+            //    HideSelfWithAnim();
+            //});
+            //m_AllTog.onValueChanged.AddListener((e)=> {
+            //    AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel,"All");
+            //    DataAnalysisMgr.S.CustomEvent(DotDefine.students_switchlabel,"All");
 
-                foreach (var item in m_DiscipleDic.Values)
-                    item.SetActive(true);
+            //    foreach (var item in m_DiscipleDic.Values)
+            //        item.SetActive(true);
 
-                RefreshDiscipleLine();
-            });
+            //    RefreshDiscipleLine();
+            //});
             m_CivilianTog.onValueChanged.AddListener((e) => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
