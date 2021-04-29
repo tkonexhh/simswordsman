@@ -24,10 +24,15 @@ namespace GameWish.Game
 
         public override string RewardName()
         {
-            return "¹¦·ò¾­Ñé";
+            return "åŠŸå¤«ç»éªŒ";
         }
 
         public override string SpriteName()
+        {
+            return "";
+        }
+
+        public override string RewardTips()
         {
             return "";
         }

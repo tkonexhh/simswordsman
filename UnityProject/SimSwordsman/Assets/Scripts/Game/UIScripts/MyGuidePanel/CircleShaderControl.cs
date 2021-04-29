@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Net.Mail;
+using UnityEngine;
 
 using UnityEngine.UI;
 using DG.Tweening;
@@ -101,10 +102,8 @@ namespace GameWish.Game
                 GameObject.Destroy(m_Material);
             }
         }
-
-        public void Init(RectTransform target)
+        public void InitWithRectMask(RectTransform target)
         {
-            //Debug.LogError("Init");
             m_Target = target;
 
             m_IsNeedBlackMask = true;
@@ -114,11 +113,10 @@ namespace GameWish.Game
             //获取高亮区域的四个顶点的界面坐标,中心为(0,0)
             m_Target.GetWorldCorners(m_Corners);
 
-            //计算最终高亮显示区域的半径
-            m_Radius = Vector2.Distance(WorldToCanvasPos(canvas, m_Corners[0]), WorldToCanvasPos(canvas, m_Corners[2])) / 2f;
+            float rectHeight = Vector2.Distance(WorldToCanvasPos(canvas, m_Corners[0]), WorldToCanvasPos(canvas, m_Corners[1])) * 0.5f;
+            float rectWidth = Vector2.Distance(WorldToCanvasPos(canvas, m_Corners[0]), WorldToCanvasPos(canvas, m_Corners[3])) * 0.5f;
 
-
-            if(m_Target.gameObject.name == "BtnBg")
+            if (m_Target.gameObject.name == "BtnBg")
             {
                 m_Radius = 250f;
             }
@@ -153,6 +151,63 @@ namespace GameWish.Game
             m_CurrentRadius = 2000;
             m_IsGuide = true;
 
+            m_Material.SetFloat("_MaskMode", 1.0f);
+            m_Material.SetVector("_Center", centerMat);
+            m_Material.SetVector("_rectSize", new Vector4(rectWidth, rectHeight, 0, 0));
+
+            ShowGuideAnimation();
+        }
+        public void Init(RectTransform target)
+        {
+            //Debug.LogError("Init");
+            m_Target = target;
+
+            m_IsNeedBlackMask = true;
+            //获取画布
+            Canvas canvas = GameObject.Find("UIRoot").GetComponent<UIRoot>().rootCanvas;
+
+            //获取高亮区域的四个顶点的界面坐标,中心为(0,0)
+            m_Target.GetWorldCorners(m_Corners);
+
+            //计算最终高亮显示区域的半径
+            m_Radius = Vector2.Distance(WorldToCanvasPos(canvas, m_Corners[0]), WorldToCanvasPos(canvas, m_Corners[2])) / 2f;
+
+            if (m_Target.gameObject.name == "BtnBg")
+            {
+                m_Radius = 250f;
+            }
+
+            //计算高亮显示区域的圆心
+            float x = m_Corners[0].x + ((m_Corners[3].x - m_Corners[0].x) / 2f);
+
+            float y = m_Corners[0].y + ((m_Corners[1].y - m_Corners[0].y) / 2f);
+
+            Vector3 centerWorld = new Vector3(x, y, 0);
+
+            Vector2 center = WorldToCanvasPos(canvas, centerWorld);
+
+            //设置遮罩材料中的圆心变量
+            Vector4 centerMat = new Vector4(center.x, center.y, 0, 0);
+
+            //计算当前高亮显示区域的半径
+            RectTransform canRectTransform = canvas.transform as RectTransform;
+
+            if (canRectTransform != null)
+            {
+                //获取画布区域的四个顶点
+                canRectTransform.GetWorldCorners(m_Corners);
+
+                //将画布顶点距离高亮区域中心最远的距离作为当前高亮区域半径的初始值
+                foreach (Vector3 corner in m_Corners)
+                {
+                    //_currentRadius = Mathf.Max(Vector3.Distance(WorldToCanvasPos(canvas, corner), center),
+                    //    _currentRadius);
+                }
+            }
+            m_CurrentRadius = 2000;
+            m_IsGuide = true;
+
+            m_Material.SetFloat("_MaskMode", 0.0f);
             m_Material.SetFloat("_Slider", m_CurrentRadius);
             m_Material.SetVector("_Center", centerMat);
             m_Material.SetFloat("_UseSecondCircle", 0);
@@ -211,7 +266,7 @@ namespace GameWish.Game
 
             return centerMat;
         }
-        private float GetCurrentRadius(Canvas canvas,Vector2 center)
+        private float GetCurrentRadius(Canvas canvas, Vector2 center)
         {
             RectTransform canRectTransform = canvas.transform as RectTransform;
 

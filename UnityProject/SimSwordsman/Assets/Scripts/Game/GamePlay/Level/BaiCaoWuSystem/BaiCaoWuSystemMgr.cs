@@ -18,7 +18,7 @@ namespace GameWish.Game
                 {
                     BaiCaoWuData data = dataList[i];
 
-                    CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(),
+                    CountDown countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(),
                     (remainTime) => {
                         GameDataMgr.S.GetClanData().UpdateBaiCaoWuData(data.HerbID, 1);
                     },
@@ -49,7 +49,7 @@ namespace GameWish.Game
         {
             BaiCaoWuData data = GameDataMgr.S.GetClanData().AddBaiCaoWuData(herbID);
 
-            CountDownItemTest countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(), (remainTime) =>
+            CountDown countDownItem = CountDowntMgr.S.SpawnCountDownItemTest(data.GetRemainTime(), (remainTime) =>
             {
                 GameDataMgr.S.GetClanData().UpdateBaiCaoWuData(data.HerbID, 1);
             }, (remainTime) =>

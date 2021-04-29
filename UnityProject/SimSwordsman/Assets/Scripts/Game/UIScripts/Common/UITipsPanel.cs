@@ -29,7 +29,7 @@ namespace GameWish.Game
         {
             base.OnPanelOpen(args);
             m_InfoStruct = (UpgradeResItemToUITipsPanel)args[0];
-            m_ImgBg.transform.position = m_InfoStruct.pos + new Vector3(0.5f, 0.8f, 0);
+            m_ImgBg.transform.position = m_InfoStruct.pos + new Vector3(0.8f, 0.8f, 0);
             m_TipName.text = m_InfoStruct.name;
             m_Need.text = m_InfoStruct.need;
             m_Desc.text = m_InfoStruct.desc;

@@ -23,6 +23,7 @@ namespace GameWish.Game
         private SelectedState m_SelelctedState = SelectedState.NotSelected;
         private TacticalFunctionPanel m_TacticalFunctionPanel;
 
+        private GameObject m_HeadObj = null;
         #region Public
 
         public void OnInit(TacticalFunctionPanel tacticalFunctionPanel)
@@ -43,7 +44,9 @@ namespace GameWish.Game
             switch (m_SelelctedState)
             {
                 case SelectedState.Selected:
-                    DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.4f, 0.4f, 1));
+                    if (m_HeadObj != null)
+                        DestroyImmediate(m_HeadObj);
+                    m_HeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.4f, 0.4f, 1));
                     m_Level.text = m_CurCharacterItem.level.ToString();
                     RefreshDiscipleColor();
                     m_Plus.SetActive(false);

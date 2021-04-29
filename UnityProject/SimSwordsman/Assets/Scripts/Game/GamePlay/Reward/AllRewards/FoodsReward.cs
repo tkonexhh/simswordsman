@@ -21,13 +21,18 @@ namespace GameWish.Game
 
         public override string RewardName()
         {
-            return "Ê³Îï";
+            return "é£Ÿç‰©";
             //return m_Info.Name;
         }
 
         public override string SpriteName()
         {
             return "Baozi";
+        }
+
+        public override string RewardTips()
+        {
+            return "";
         }
     }
 }

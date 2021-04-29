@@ -65,6 +65,7 @@ namespace GameWish.Game
         public string workName;
         public List<string> workTalk;        
         public List<TaskReward> itemRewards = new List<TaskReward>();
+        public List<float> rewardRatio = new List<float>();
         private int m_SpecialRate = 1000;
         public bool IsHaveSpecialReward
         {
@@ -98,6 +99,7 @@ namespace GameWish.Game
             ParseSpecialReward(tdData.speReward);           
             ParseItemTipsDesc(unlockDesc, tdData.unlockDesc);
             ParseItemTipsDesc(functionDesc,tdData.functionDesc);
+            ParseRatio(tdData.rewardRatio);
             this.workTime = tdData.workTime;
             this.workInterval = tdData.workInterval;
             this.waitingTime = tdData.waitingTime;
@@ -114,6 +116,21 @@ namespace GameWish.Game
             }
             else
                 Log.w("cont.Length is error : " + cont);
+        }
+
+        private void ParseRatio(string rewardRatio)
+        {
+            string[] cont = rewardRatio.Split('|');
+            if (cont.Length != 8)
+            {
+                Log.w("rewardRatio.Length is not right : " + cont);
+            }
+
+            for (int i = 0; i < cont.Length; i++)
+            {
+                float value = float.Parse(cont[i]);
+                this.rewardRatio.Add(value);
+            }
         }
 
         private void ParseReward(string reward)
@@ -148,6 +165,13 @@ namespace GameWish.Game
         public string RandomTalk()
         {
             return this.workTalk[RandomHelper.Range(0, this.workTalk.Count)];
+        }
+
+        public float GetRatio(int lobbyLevel)
+        {
+            int index = lobbyLevel - 1;
+            index = Mathf.Clamp(index, 0, rewardRatio.Count - 1);
+            return rewardRatio[index];
         }
     }
 }

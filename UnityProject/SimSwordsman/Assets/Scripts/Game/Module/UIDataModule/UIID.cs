@@ -97,5 +97,11 @@ namespace GameWish.Game
         IntroductionRulesPanel,
         HeroTrialChooseDisciplePanel,
         #endregion
+
+        #region 竞技场
+        ArenaShopPanel,
+        #endregion
+
+        SplashScreenPanel,
     }
 }

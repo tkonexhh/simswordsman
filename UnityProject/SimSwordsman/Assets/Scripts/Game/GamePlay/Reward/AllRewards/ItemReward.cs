@@ -37,5 +37,14 @@ namespace GameWish.Game
 
             throw new NullReferenceException("m_KeyID");
         }
+
+        public override string RewardTips()
+        {
+            if (m_KeyID.HasValue)
+            {
+                return TDItemConfigTable.GetData(m_KeyID.Value).desc;
+            }
+            return "";
+        }
     }
 }

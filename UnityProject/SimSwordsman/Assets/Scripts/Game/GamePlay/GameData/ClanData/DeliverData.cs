@@ -1,242 +1,244 @@
-using Qarth;
+ï»¿using Qarth;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace GameWish.Game
 {
-	[System.Serializable]
-	public class DeliverData
-	{
-		public List<SingleDeliverDetailData> DaliverDetailDataList = new List<SingleDeliverDetailData>();
-		public void RemoveDeliverData(int DeliverID) 
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
+    [System.Serializable]
+    public class DeliverData
+    {
+        public List<SingleDeliverDetailData> DaliverDetailDataList = new List<SingleDeliverDetailData>();
+        public void RemoveDeliverData(int DeliverID)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
 
-			if (data != null) 
-			{
-				DaliverDetailDataList.Remove(data);
-			}
-		}
+            if (data != null)
+            {
+                DaliverDetailDataList.Remove(data);
+            }
+        }
 
-		public List<SingleDeliverDetailData> GetSingleDeliverDetailDataList()
-		{
-			return DaliverDetailDataList;
-		}
+        public List<SingleDeliverDetailData> GetSingleDeliverDetailDataList()
+        {
+            return DaliverDetailDataList;
+        }
 
-		public SingleDeliverDetailData GetSingleDeliverDetailData(int DeliverID)
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
-			if (data != null)
-			{
-				return data;
-			}
+        public SingleDeliverDetailData GetSingleDeliverDetailData(int DeliverID)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
+            if (data != null)
+            {
+                return data;
+            }
             else
             {
-				Log.e("³µ¶ÓIDÎ´ÕÒµ½£¬ID = " + DeliverID);
-				return null;
+                Log.e("è½¦é˜ŸIDæœªæ‰¾åˆ°ï¼ŒID = " + DeliverID);
+                return null;
             }
-		}
+        }
 
-		public void AddDeliverDisciple(int DeliverID, List<int> characterIDList)
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
-            if (data!=null)
-				data.CharacterIDList = characterIDList;
-		}
-		public List<int> GetDeliverDisciple(int DeliverID)
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
-			if (data != null)
-				return data.CharacterIDList;
-			return null;
-		}
+        public void AddDeliverDisciple(int DeliverID, List<int> characterIDList)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
+            if (data != null)
+                data.CharacterIDList = characterIDList;
+        }
+        public List<int> GetDeliverDisciple(int DeliverID)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == DeliverID);
+            if (data != null)
+                return data.CharacterIDList;
+            return null;
+        }
 
-		public bool IsGoOutSide(int deliverID) 
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
-			if (data != null && data.DaliverState == DeliverState.HasBeenGoOut) 
-			{
-				return true;
-			}
-			return false;
-		}
-		public SingleDeliverDetailData AddDeliverData(int deliverID,DeliverState state,List<DeliverRewadData> rewardDataList,List<int> characterIDList) 
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
+        public bool IsGoOutSide(int deliverID)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
+            if (data != null && data.DaliverState == DeliverState.HasBeenGoOut)
+            {
+                return true;
+            }
+            return false;
+        }
+        public SingleDeliverDetailData AddDeliverData(int deliverID, DeliverState state, List<DeliverRewadData> rewardDataList, List<int> characterIDList)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
 
-			if (data != null) 
-			{
-				Debug.LogError("ÒÑ¾­ÓĞÏàÍ¬ïÚÎïID³ö·¢ÁË£º" + deliverID);
-				return null;
-			}
+            if (data != null)
+            {
+                Debug.LogError("å·²ç»æœ‰ç›¸åŒé•–ç‰©IDå‡ºå‘äº†ï¼š" + deliverID);
+                return null;
+            }
 
-			data = new SingleDeliverDetailData(deliverID, state, rewardDataList, characterIDList);
+            data = new SingleDeliverDetailData(deliverID, state, rewardDataList, characterIDList);
 
-			DaliverDetailDataList.Add(data);			
+            DaliverDetailDataList.Add(data);
 
-			return data;
-		}
-		public SingleDeliverDetailData GetDeliverDataByID(int deliverID) 
-		{
-			SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
-			return data;
-		}
+            return data;
+        }
+        public SingleDeliverDetailData GetDeliverDataByID(int deliverID)
+        {
+            SingleDeliverDetailData data = DaliverDetailDataList.Find(x => x.DeliverID == deliverID);
+            return data;
+        }
 
-		public void ResetData(int deliverID)
+        public void ResetData(int deliverID)
         {
 
 
         }
     }
-	public class SingleDeliverDetailData
-	{
-		public int DeliverID;
-		public DeliverState DaliverState;
-		public List<DeliverRewadData> RewadDataList;
-		public List<int> CharacterIDList;
-		public DateTime StartTimeWithReally;
-		/// <summary>
-		/// ¼ÓËÙºó½áÊøÊ±¼ä
-		/// </summary>
-		public DateTime StartTimeWithScal;	
+    public class SingleDeliverDetailData
+    {
+        public int DeliverID;
+        public DeliverState DaliverState;
+        public List<DeliverRewadData> RewadDataList;
+        public List<int> CharacterIDList;
+        public DateTime StartTimeWithReally;
         /// <summary>
-        /// Êµ¼Ê½áÊøÊ±¼ä
+        /// åŠ é€Ÿåç»“æŸæ—¶é—´
+        /// </summary>
+        public DateTime StartTimeWithScal;
+        /// <summary>
+        /// å®é™…ç»“æŸæ—¶é—´
         /// </summary>
         public DateTime EndTimeWithReally;
-		/// <summary>
-		/// ×ÜÊ±³¤
-		/// </summary>
-		public int TotalTimeSeconds = 1;
-		/// <summary>
-		/// ¼ÓËÙ±¶Êı
-		/// </summary>
-		public int SpeedUpMultiple = 1;
+        /// <summary>
+        /// æ€»æ—¶é•¿
+        /// </summary>
+        public int TotalTimeSeconds = 1;
+        /// <summary>
+        /// åŠ é€Ÿå€æ•°
+        /// </summary>
+        public int SpeedUpMultiple = 1;
 
-		private int m_CountDownID = -1;
+        private int m_CountDownID = -1;
 
-		public SingleDeliverDetailData() { }
+        public SingleDeliverDetailData() { }
 
-		public SingleDeliverDetailData(int deliverID,DeliverState state,List<DeliverRewadData> rewatdDataList,List<int> characterList) 
-		{
-			this.DeliverID = deliverID;
-			this.DaliverState = state;
-			this.RewadDataList = rewatdDataList;
-			this.CharacterIDList = characterList;
-		}
+        public SingleDeliverDetailData(int deliverID, DeliverState state, List<DeliverRewadData> rewatdDataList, List<int> characterList)
+        {
+            this.DeliverID = deliverID;
+            this.DaliverState = state;
+            this.RewadDataList = rewatdDataList;
+            this.CharacterIDList = characterList;
+        }
 
-		public void UpdateStartTime() 
-		{
-			TDDeliver data = TDDeliverTable.GetData(DeliverID);
-			StartTimeWithReally = DateTime.Now;
+        public void UpdateStartTime()
+        {
+            TDDeliver data = TDDeliverTable.GetData(DeliverID);
+            StartTimeWithReally = DateTime.Now;
             EndTimeWithReally = StartTimeWithReally.AddMinutes(data.duration);
             //EndTimeWithReally = StartTimeWithReally.AddSeconds(50);
             StartTimeWithScal = StartTimeWithReally;
 
-			TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
-			//Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
-		}
-		public int GetRemainTimeSeconds() 
-		{
-			if (SpeedUpMultiple == 1)
-			{
-				return (int)(EndTimeWithReally - DateTime.Now).TotalSeconds;
-			}
-			else {
-				double passTime = (StartTimeWithScal - StartTimeWithReally).TotalSeconds;
-				double totalTime = (EndTimeWithReally - StartTimeWithReally).TotalSeconds;
-				double speedUpMultipleTime = (DateTime.Now - StartTimeWithScal).TotalSeconds;
+            TotalTimeSeconds = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+            //Debug.LogError("start time:" + StartTimeWithReally + "     endTime really:" + EndTimeWithReally);
+        }
+        public int GetRemainTimeSeconds()
+        {
+            if (SpeedUpMultiple == 1)
+            {
+                return (int)(EndTimeWithReally - DateTime.Now).TotalSeconds;
+            }
+            else
+            {
+                double passTime = (StartTimeWithScal - StartTimeWithReally).TotalSeconds;
+                double totalTime = (EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+                double speedUpMultipleTime = (DateTime.Now - StartTimeWithScal).TotalSeconds;
 
-				return (int)(totalTime - passTime - speedUpMultipleTime * SpeedUpMultiple);
-			}
-		}
-		public void ResetData()
-		{
-			this.SpeedUpMultiple = 1;
-			DaliverState = DeliverState.DidNotGoOut;
-			CharacterIDList?.Clear();
-			RewadDataList = DeliverSystemMgr.S.GetRandomReward(TDDeliverTable.GetDeliverConfig(DeliverID));
-		}
-		public void UpdateSpeedUpMultiple(int speedUpMultiple) 
-		{
-			this.SpeedUpMultiple = speedUpMultiple;
-		}
-		public int GetTotalTimeSeconds() {
-			return TotalTimeSeconds;
-		}
-		public void UpdateSpeedUpMultipleStartTime() 
-		{
-			StartTimeWithScal = DateTime.Now;
+                return (int)(totalTime - passTime - speedUpMultipleTime * SpeedUpMultiple);
+            }
+        }
+        public void ResetData()
+        {
+            this.SpeedUpMultiple = 1;
+            DaliverState = DeliverState.DidNotGoOut;
+            CharacterIDList?.Clear();
+            RewadDataList = DeliverSystemMgr.S.GetRandomReward(TDDeliverTable.GetDeliverConfig(DeliverID));
+        }
+        public void UpdateSpeedUpMultiple(int speedUpMultiple)
+        {
+            this.SpeedUpMultiple = speedUpMultiple;
+        }
+        public int GetTotalTimeSeconds()
+        {
+            return TotalTimeSeconds;
+        }
+        public void UpdateSpeedUpMultipleStartTime()
+        {
+            StartTimeWithScal = DateTime.Now;
 
-			//int passTime = (int)(StartTimeWithScal - StartTimeWithReally).TotalSeconds;
-			//int totalTime = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
-			//DateTime endTime = DateTime.Now.AddSeconds((totalTime - passTime) * .5f);
-			//Debug.LogError("start time scal:" + StartTimeWithScal + "     endTime:" + endTime);
-		}
-		public void UpdateCountDownSpeedUpMultiple() 
-		{
-			if (m_CountDownID != -1) 
-			{
-				CountDownItemTest item = CountDowntMgr.S.GetCountDownItemByID(m_CountDownID);
+            //int passTime = (int)(StartTimeWithScal - StartTimeWithReally).TotalSeconds;
+            //int totalTime = (int)(EndTimeWithReally - StartTimeWithReally).TotalSeconds;
+            //DateTime endTime = DateTime.Now.AddSeconds((totalTime - passTime) * .5f);
+            //Debug.LogError("start time scal:" + StartTimeWithScal + "     endTime:" + endTime);
+        }
+        public void UpdateCountDownSpeedUpMultiple()
+        {
+            if (m_CountDownID != -1)
+            {
+                CountDown item = CountDowntMgr.S.GetCountDownItemByID(m_CountDownID);
 
-				if (item != null) 
-				{
-					item.SetSpeedUpMultiply(this.SpeedUpMultiple);
-				}
-			}
-		}
-		public void SetCountDownID(int countDownID) 
-		{
-			this.m_CountDownID = countDownID;
-		}
-		public int GetCountDownID() 
-		{
-			return m_CountDownID;
-		}
-		public bool IsSpeedUp() 
-		{
-			return SpeedUpMultiple > 1;
-		}
+                if (item != null)
+                {
+                    item.SetSpeedUpMultiply(this.SpeedUpMultiple);
+                }
+            }
+        }
+        public void SetCountDownID(int countDownID)
+        {
+            this.m_CountDownID = countDownID;
+        }
+        public int GetCountDownID()
+        {
+            return m_CountDownID;
+        }
+        public bool IsSpeedUp()
+        {
+            return SpeedUpMultiple > 1;
+        }
     }
-	public class DeliverRewadData 
-	{
-		public RewardItemType RewardType;
-		public int RewardID;
-		public int RewardCount;
+    public class DeliverRewadData
+    {
+        public RewardItemType RewardType;
+        public int RewardID;
+        public int RewardCount;
 
         public DeliverRewadData() { }
 
         public DeliverRewadData(RewardBase rewardBase)
         {
-			RewardType = rewardBase.RewardItem;
-            if (rewardBase.KeyID==null)
-				RewardID = 0;
+            RewardType = rewardBase.RewardItem;
+            if (rewardBase.KeyID == null)
+                RewardID = 0;
             else
-				RewardID = (int)rewardBase.KeyID;
-			RewardCount = rewardBase.Count;
-		}
+                RewardID = (int)rewardBase.KeyID;
+            RewardCount = rewardBase.Count;
+        }
 
-        public DeliverRewadData(RewardItemType rewardType,int rewardID,int rewardCount) {
-			this.RewardType = rewardType;
-			this.RewardID = rewardID;
-			this.RewardCount = rewardCount;
-		}
-	}
-	public enum DeliverState 
-	{
-		/// <summary>
-		/// Î´½âËø
-		/// </summary>
-		Unlock,         
-		/// <summary>
-		/// ÒÑ³ö·¢
-		/// </summary>
-		HasBeenGoOut,  
-		/// <summary>
-		/// Î´³ö·¢
-		/// </summary>
-		DidNotGoOut,	
-	}
+        public DeliverRewadData(RewardItemType rewardType, int rewardID, int rewardCount)
+        {
+            this.RewardType = rewardType;
+            this.RewardID = rewardID;
+            this.RewardCount = rewardCount;
+        }
+    }
+    public enum DeliverState
+    {
+        /// <summary>
+        /// æœªè§£é”
+        /// </summary>
+        Unlock,
+        /// <summary>
+        /// å·²å‡ºå‘
+        /// </summary>
+        HasBeenGoOut,
+        /// <summary>
+        /// æœªå‡ºå‘
+        /// </summary>
+        DidNotGoOut,
+    }
 }

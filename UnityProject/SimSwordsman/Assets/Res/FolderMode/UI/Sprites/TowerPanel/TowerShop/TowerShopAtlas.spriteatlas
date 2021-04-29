@@ -47,6 +47,7 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 77e6d80066c8d462586fca0d0da3da0b, type: 3}
+  - {fileID: 21300000, guid: 8c5e9a71dfc2a4d13906816b79937e7d, type: 3}
   - {fileID: 21300000, guid: efc0bc629e15840b99b92d9096e3be2b, type: 3}
   - {fileID: 21300000, guid: 129ff0a54e25940b9bab9ec2dd6df4df, type: 3}
   - {fileID: 21300000, guid: 4666430649c1249c58d999d9428f2a7d, type: 3}
@@ -61,6 +62,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa44510ee6d3b4f6bb51f5ee2f829e09, type: 3}
   m_PackedSpriteNamesToIndex:
   - TowerShop_ItemBg_dark
+  - TowerShop_ItemTipBg
   - TowerShop_Close
   - TowerShop_Line
   - TowerShop_Refesh

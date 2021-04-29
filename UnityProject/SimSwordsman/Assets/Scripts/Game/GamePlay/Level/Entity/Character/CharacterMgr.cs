@@ -5,6 +5,7 @@ using UnityEngine;
 using Qarth;
 using System.Linq;
 using System;
+using UnityEngine.Rendering;
 
 namespace GameWish.Game
 {

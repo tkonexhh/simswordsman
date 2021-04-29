@@ -219,6 +219,11 @@ namespace GameWish.Game
             AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
             if (!CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems))
                 return;
+            //if (!CheckDiscipleCondition())
+            //{
+            //    FloatMessage.S.ShowMsg("需要拥有" + m_LobbyLevelInfo.upgradePreconditions.DiscipleNumber + "名" + m_LobbyLevelInfo.upgradePreconditions.DiscipleLevel + "级弟子");
+            //    return;
+            //}
             if (!PlatformHelper.isTestMode)
             {
                 if (!CheckDiscipleCondition())
@@ -227,8 +232,8 @@ namespace GameWish.Game
                     return;
                 }
             }
-         
-            CheckDiscipleCondition();
+
+            //CheckDiscipleCondition();
 
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)

@@ -10,7 +10,7 @@ namespace GameWish.Game
     {
         private void Awake()
         {
-            if (!PlatformHelper.isTestMode)
+            if (!PlatformHelper.isPlanMode)
             {
                 bool isKeystoreRight = SecurityVerify.IsCorrect();
                 if (isKeystoreRight == false)
