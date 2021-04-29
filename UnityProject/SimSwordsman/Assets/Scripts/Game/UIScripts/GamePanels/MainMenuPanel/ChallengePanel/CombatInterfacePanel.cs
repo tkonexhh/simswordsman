@@ -59,6 +59,7 @@ namespace GameWish.Game
 
         //Tower
         private TowerLevelConfig m_TowerLevelConfig = null;
+        private ArenaLevelConfig m_ArenaLevelConfig = null;
 
         private static bool isSpeedUp = false;
 
@@ -232,6 +233,11 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     m_RightSchoolNameValue.text = "伏魔塔";
                     m_MatchNameValue.text = "伏魔塔" + m_TowerLevelConfig.level;
+                    MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRenderToTower();
+                    break;
+                case PanelType.Arena:
+                    m_RightSchoolNameValue.text = "竞技场";
+                    m_MatchNameValue.text = "竞技场" + m_ArenaLevelConfig.level;
                     break;
                 default:
                     break;
@@ -305,6 +311,10 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
                     break;
+                case PanelType.Arena:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
+                    break;
                 default:
                     break;
             }
@@ -327,6 +337,10 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     m_TowerLevelConfig = (TowerLevelConfig)args[1];
                     m_EnemyCharacterList = m_TowerLevelConfig.enemiesList;
+                    break;
+                case PanelType.Arena:
+                    m_ArenaLevelConfig = (ArenaLevelConfig)args[1];
+                    m_EnemyCharacterList = m_ArenaLevelConfig.enemyConfigs;
                     break;
                 default:
                     break;
@@ -394,9 +408,9 @@ namespace GameWish.Game
         {
         }
 
-        private void ReduceHPWithAni(float endValue,Slider hpSlider,float duration = .5f) 
+        private void ReduceHPWithAni(float endValue, Slider hpSlider, float duration = .5f)
         {
-            DG.Tweening.DOTween.To(() => hpSlider.value, (x) => 
+            DG.Tweening.DOTween.To(() => hpSlider.value, (x) =>
             {
                 hpSlider.value = x;
             }, endValue, duration);
@@ -434,6 +448,9 @@ namespace GameWish.Game
                         case PanelType.Tower:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, true);
                             break;
+                        case PanelType.Arena:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_ArenaLevelConfig, true);
+                            break;
                         default:
                             break;
                     }
@@ -455,6 +472,9 @@ namespace GameWish.Game
                             break;
                         case PanelType.Tower:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, false);
+                            break;
+                        case PanelType.Arena:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_ArenaLevelConfig, false);
                             break;
                         default:
                             break;

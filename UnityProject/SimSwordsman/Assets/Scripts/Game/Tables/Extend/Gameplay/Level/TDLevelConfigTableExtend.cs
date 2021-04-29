@@ -20,7 +20,7 @@ namespace GameWish.Game
                 m_AllChapter.Add(tdData.chapter, new ChapterInfo(tdData));
         }
         /// <summary>
-        /// »ñÈ¡¾ßÌåÄ³¹Ø¿¨µÄËùÓÐµÐÈËÐÅÏ¢
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä³ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>dd
         public static List<EnemyConfig> GetCheckpointAllEnemies(int chapterId, int levelId)
         {
@@ -30,7 +30,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡Ä³¸ö¹Ø¿¨µÄÐÅÏ¢
+        /// ï¿½ï¿½È¡Ä³ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <param name="chapterId"></param>
         /// <param name="levelId"></param>
@@ -43,7 +43,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡Ä³Ò»ÕÂ½ÚµÄµÚÒ»¸ö¹Ø¿¨
+        /// ï¿½ï¿½È¡Ä³Ò»ï¿½Â½ÚµÄµï¿½Ò»ï¿½ï¿½ï¿½Ø¿ï¿½
         /// </summary>
         /// <param name="chapterID"></param>
         /// <returns></returns>
@@ -93,7 +93,7 @@ namespace GameWish.Game
         public int Number { set; get; }
         public long Atk { set; get; }
 
-        public EnemyConfig(int id,int number,int skill)
+        public EnemyConfig(int id, int number, int skill)
         {
             ConfigId = id;
             Number = number;
@@ -119,6 +119,14 @@ namespace GameWish.Game
         }
     }
 
+    public class CharacterEnemyConfig : EnemyConfig
+    {
+        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(101, 1, atk)
+        {
+
+        }
+    }
+
     public class ChapterInfo
     {
         private Dictionary<int, LevelConfigInfo> m_AllCheckpoint = new Dictionary<int, LevelConfigInfo>();
@@ -126,7 +134,7 @@ namespace GameWish.Game
         public ChapterInfo(TDLevelConfig tDLevelConfig)
         {
             if (!m_AllCheckpoint.ContainsKey(tDLevelConfig.level))
-                m_AllCheckpoint.Add(tDLevelConfig.level,new LevelConfigInfo(tDLevelConfig));
+                m_AllCheckpoint.Add(tDLevelConfig.level, new LevelConfigInfo(tDLevelConfig));
         }
 
         public Dictionary<int, LevelConfigInfo> GetAllLevelConfigInfo()
@@ -140,7 +148,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// »ñÈ¡Ò»¸ö¹Ø¿¨µÄÐÅÏ¢
+        /// ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <param name="levelId"></param>
         /// <returns></returns>
@@ -148,7 +156,7 @@ namespace GameWish.Game
         {
             if (m_AllCheckpoint.Count > 0)
             {
-                if (index==0)
+                if (index == 0)
                 {
                     return m_AllCheckpoint.FirstOrDefault().Value;
                 }
@@ -158,7 +166,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// Ìí¼Ó¹Ø¿¨ÐÅÏ¢
+        /// ï¿½ï¿½ï¿½Ó¹Ø¿ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <param name="tDLevelConfig"></param>
         public void AddLevelConfig(TDLevelConfig tDLevelConfig)
