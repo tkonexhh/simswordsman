@@ -111,6 +111,7 @@ namespace GameWish.Game
             //ClearTacticalFunctionBtn();
             OpenDependPanel(UIID.WorldUIPanel, -1);
             RegisterEvents();
+            m_MainTaskUIHandler.OnOpen();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
 
@@ -314,6 +315,7 @@ namespace GameWish.Game
             base.OnClose();
             CloseDependPanel(UIID.WorldUIPanel);
             UnregisterEvents();
+            m_MainTaskUIHandler.OnClose();
 
             MainGameMgr.S.IsMainMenuPanelOpen = false;
         }
