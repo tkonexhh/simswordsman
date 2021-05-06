@@ -97,9 +97,9 @@ namespace GameWish.Game
                     RefreshDisicipleSkill();
                     break;
                 case PanelType.HeroTrial:
-                 
+
                     //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-                
+
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                     {
                         if (PlatformHelper.isTestMode)
@@ -136,7 +136,7 @@ namespace GameWish.Game
                     m_AllDiscipleList.Sort((x, y) =>
                     {
                         var charactX = towerData.GetTowerCharacterByID(x.id);
-                        var charactY = towerData.GetTowerCharacterByID(x.id);
+                        var charactY = towerData.GetTowerCharacterByID(y.id);
 
                         if (charactX == null || charactY == null)
                         {
