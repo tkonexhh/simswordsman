@@ -149,8 +149,14 @@ namespace GameWish.Game
                             return hpX >= hpY ? -1 : 1;
 
                         }
+                        else
+                        {
+                            var hpX = charactX?.hpRate;
+                            var hpY = charactY?.hpRate;
+                            return hpX >= hpY ? -1 : 1;
+                        }
 
-                        return 0;
+                        // return 0;
                     });
                     m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
