@@ -186,7 +186,7 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport_upgrade:1.4.2'
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
 
-    implementation ("com.taurusx.ads:core:2.0.8") {
+    implementation ("com.taurusx.ads:core:2.0.9") {
         exclude group: 'android.support'
         transitive = true
         exclude module: 'miit_mdid'
