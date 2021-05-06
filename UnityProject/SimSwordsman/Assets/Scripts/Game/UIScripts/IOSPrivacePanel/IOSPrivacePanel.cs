@@ -33,7 +33,7 @@ namespace GameWish.Game
 
         private void OnClickAgree()
         {
-            GameDataMgr.S.GetPlayerData().SetIsAgreePrivace();
+            //GameDataMgr.S.GetPlayerData().SetIsAgreePrivace();
             CloseSelfPanel();
         }
 
