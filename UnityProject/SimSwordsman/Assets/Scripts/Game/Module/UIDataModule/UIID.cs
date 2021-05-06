@@ -100,10 +100,14 @@ namespace GameWish.Game
         HeroTrialChooseDisciplePanel,
         #endregion
 
-        #region 竞技场
-        ArenaShopPanel,
-        #endregion
-
         SplashScreenPanel,
+
+        #region 竞技场
+        ArenaPanel,
+        ArenaShopPanel,
+        ArenaRulePanel,
+        ArenaAddCountPanel,
+        ArenaRankRewardPanel,
+        #endregion
     }
 }

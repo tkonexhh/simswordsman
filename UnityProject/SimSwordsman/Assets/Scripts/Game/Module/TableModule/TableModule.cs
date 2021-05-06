@@ -104,7 +104,11 @@ namespace GameWish.Game
                 TDHeroTrialConfigTable.metaData,
 
                 TDTalkTable.metaData,
-
+                //Arena
+                TDArenaConfigTable.metaData,
+                TDArenaEnemyConfigTable.metaData,
+                TDArenaEnemyNameTable.metaData,
+                TDArenaShopTable.metaData,
             };
         }
     }

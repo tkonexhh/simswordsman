@@ -57,6 +57,7 @@ namespace GameWish.Game
         private Button m_MythicalAnimalsBtn;
         [SerializeField]
         private Button m_HeroTrialBtn;
+        [SerializeField] private Button m_BtnArena;
 
         [Header("战斗任务")]
         [SerializeField]
@@ -110,6 +111,7 @@ namespace GameWish.Game
             //ClearTacticalFunctionBtn();
             OpenDependPanel(UIID.WorldUIPanel, -1);
             RegisterEvents();
+            m_MainTaskUIHandler.OnOpen();
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
 
@@ -286,6 +288,21 @@ namespace GameWish.Game
                 MainGameMgr.S.HeroTrialMgr.OnEnterHeroTrial();
             });
 
+            m_BtnArena.onClick.AddListener(() =>
+            {
+                AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                int needLobbyLevel = ArenaDefine.ENTER_LEVEL;
+                if (lobbyLevel >= needLobbyLevel)
+                {
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("讲武堂" + needLobbyLevel + "级后可解锁");
+                }
+            });
+
 
             RefreshChallenging();
             MainGameMgr.S.IsMainMenuPanelOpen = true;
@@ -298,6 +315,7 @@ namespace GameWish.Game
             base.OnClose();
             CloseDependPanel(UIID.WorldUIPanel);
             UnregisterEvents();
+            m_MainTaskUIHandler.OnClose();
 
             MainGameMgr.S.IsMainMenuPanelOpen = false;
         }

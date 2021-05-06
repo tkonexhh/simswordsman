@@ -23,6 +23,7 @@ namespace GameWish.Game
         public RecordData recordData = new RecordData();
         public TaskData taskData = new TaskData();
         public TowerData towerData = new TowerData();
+        public ArenaData arenaData = new ArenaData();
         public List<ChapterDbItem> chapterDataList = new List<ChapterDbItem>();
         public bool IsLookADInLastChallengeBossLevel = true;
         public bool LastChallengeIsBossLevel = false;
@@ -38,18 +39,6 @@ namespace GameWish.Game
 
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
-
-        // /// <summary>
-        // /// 点击金牌招募的时间
-        // /// </summary>
-        // public DateTime m_LookADClickGoldRecruitDate;
-        // /// <summary>
-        // /// 点击银牌招募的时间
-        // /// </summary>
-        // public DateTime m_LookADClickSilverRecruitDate;
-
-        //是否同意隐私政策
-        public bool IsAgreePrivace;
 
         #region 食物倒计时
         public string FoodCoundDownTime = string.Empty;
@@ -119,8 +108,6 @@ namespace GameWish.Game
             m_CoinNum = Define.DEFAULT_COIN_NUM;
             coinNumStr = m_CoinNum.ToString();
 
-            IsAgreePrivace = false;
-
             foodNum = Define.DEFAULT_FOOD_NUM;
 
             lastPlayTime = "0";
@@ -139,13 +126,16 @@ namespace GameWish.Game
             FoodRefreshTimesToday = 10;
             FoodRefreshCount = 0;
             towerData.InitWithEmptyData();
+            arenaData.InitWithEmptyData();
             SetDataDirty();
         }
 
         public override void OnDataLoadFinish()
         {
             towerData.SetDirtyRecorder(m_Recorder);
+            arenaData.SetDirtyRecorder(m_Recorder);
             towerData.OnDataLoadFinish();
+            arenaData.OnDataLoadFinish();
         }
 
         public void ResetDailyData()
@@ -449,21 +439,6 @@ namespace GameWish.Game
             return recruitData.IsCanLookADRecruit(rt, intervalTimeHours);
         }
         #endregion
-
-        //隐私协议
-        public bool GetIsAgreePrivace()
-        {
-            return IsAgreePrivace;
-        }
-
-        public void SetIsAgreePrivace()
-        {
-            if (!IsAgreePrivace)
-            {
-                IsAgreePrivace = true;
-            }
-            SetDataDirty();
-        }
 
         public long GetCoinNum()
         {

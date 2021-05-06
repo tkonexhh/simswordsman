@@ -31,6 +31,7 @@ namespace GameWish.Game
         private LevelConfigInfo m_LevelConfigInfo = null;
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private TowerLevelConfig m_TowerLevelConfig = null;
+        private ArenaLevelConfig m_ArenaLevelConfig = null;
         private List<CharacterController> m_SelectedDiscipleList = null;
         private List<HerbType> m_SeletedHerb = null;
         private PanelType m_PanelType;
@@ -192,30 +193,25 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
                     if (m_IsSuccess)
                     {
-                        //是否是revive关卡
-                        // var towerConf = TDTowerConfigTable.GetData(MainGameMgr.S.TowerSystem.maxLevel);
-                        // if (towerConf != null)
+                        // if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().recordData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
+                        if (GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount < TowerDefine.REVIVE_COUNT)
                         {
-                            // if (towerConf.CanRevive() && !GameDataMgr.S.GetPlayerData().recordData.HasLevelRevived(MainGameMgr.S.TowerSystem.maxLevel))
-                            if (GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount < TowerDefine.REVIVE_COUNT)
+                            var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
+                            bool canRevive = false;
+                            for (int i = 0; i < characterLst.Count; i++)
                             {
-                                var characterLst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
-                                bool canRevive = false;
-                                for (int i = 0; i < characterLst.Count; i++)
+                                if (characterLst[i].IsDead() && characterLst[i].revive == false)
                                 {
-                                    if (characterLst[i].IsDead() && characterLst[i].revive == false)
-                                    {
-                                        canRevive = true;
-                                        break;
-                                    }
-                                }
-                                if (canRevive)
-                                {
-                                    // GameDataMgr.S.GetPlayerData().towerData.LevelRevived(MainGameMgr.S.TowerSystem.maxLevel);
-                                    UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
+                                    canRevive = true;
+                                    break;
                                 }
                             }
+                            if (canRevive)
+                            {
+                                UIMgr.S.OpenPanel(UIID.TowerRevivePanel);
+                            }
                         }
+
                     }
 
                     TowerBattleOverToGuide tempStruct = new TowerBattleOverToGuide();
@@ -225,6 +221,11 @@ namespace GameWish.Game
                     EventSystem.S.Send(EventID.OnTowerBattleOver, tempStruct);
 
                     CheckIsStartTowerShopGuide();
+                    break;
+
+                case PanelType.Arena:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
                     break;
             }
         }
@@ -314,6 +315,17 @@ namespace GameWish.Game
                     }
                     DataAnalysisMgr.S.CustomEvent(m_IsSuccess ? DotDefine.Tower_Battle_Win : DotDefine.Tower_Battle_Fail);
                     break;
+                case PanelType.Arena:
+                    m_ArenaLevelConfig = (ArenaLevelConfig)args[1];
+                    m_IsSuccess = (bool)args[2];
+
+                    if (m_IsSuccess)
+                    {
+                        m_ArenaLevelConfig.PrepareReward();
+                        //TODO  过关交换顺序 给奖励
+                        MainGameMgr.S.ArenaSystem.PassLevel(m_ArenaLevelConfig.level);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -325,20 +337,9 @@ namespace GameWish.Game
 
         private void RefreshFont()
         {
-            if (m_IsSuccess)
-            {
-                Instantiate(m_SuccessEffect, m_EffectParent).transform.localPosition = Vector3.zero;
-
-                //m_Font1.sprite = FindSprite("CombatSettlement_Font1");
-                //m_Font2.sprite = FindSprite("CombatSettlement_Font2");
-            }
-            else
-            {
-                Instantiate(m_FailEffect, m_EffectParent).transform.localPosition = Vector3.zero;
-                //m_Font1.sprite = FindSprite("CombatSettlement_Font3");
-                //m_Font2.sprite = FindSprite("CombatSettlement_Font4");
-            }
+            Instantiate(m_IsSuccess ? m_SuccessEffect : m_FailEffect, m_EffectParent).transform.localPosition = Vector3.zero;
         }
+
         private void CreateRewardIInfoItem(CharacterController item)
         {
             switch (m_PanelType)
@@ -354,6 +355,10 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     ItemICom towerRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
                     towerRewardItemICom.OnInit(item, null, m_PanelType, m_TowerLevelConfig, m_IsSuccess, this);
+                    break;
+                case PanelType.Arena:
+                    ItemICom arenaRewardItemICom = Instantiate(m_RewardinfoItem, m_RewardContainer).GetComponent<ItemICom>();
+                    arenaRewardItemICom.OnInit(item, null, m_PanelType, m_ArenaLevelConfig, m_IsSuccess, this);
                     break;
                 default:
                     break;

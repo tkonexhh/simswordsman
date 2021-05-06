@@ -159,6 +159,13 @@ namespace GameWish.Game
 
             UIDataTable.AddPanelData(UIID.SplashScreenPanel, null, "GamePanels/SplashScreenPanel/SplashScreenPanel");
 
+            //竞技场
+            UIDataTable.AddPanelData(UIID.ArenaPanel, null, "GamePanels/ArenaPanel/ArenaPanel");
+            UIDataTable.AddPanelData(UIID.ArenaShopPanel, null, "GamePanels/ArenaPanel/ArenaShopPanel");
+            UIDataTable.AddPanelData(UIID.ArenaRulePanel, null, "GamePanels/ArenaPanel/ArenaRulePanel");
+            UIDataTable.AddPanelData(UIID.ArenaAddCountPanel, null, "GamePanels/ArenaPanel/ArenaAddCountPanel");
+            UIDataTable.AddPanelData(UIID.ArenaRankRewardPanel, null, "GamePanels/ArenaPanel/ArenaRankRewardPanel");
+
             RealNameMgr.S.RegisterPanels();
         }
     }
