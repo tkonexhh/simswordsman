@@ -1,12 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Qarth;
-using DG.Tweening;
-
-namespace GameWish.Game
+﻿namespace GameWish.Game
 {
     public class StateBattleDead : BattleState
     {
@@ -27,7 +19,10 @@ namespace GameWish.Game
 
             m_Controller.CharacterView.PlayDeadAnim();
 
-            AudioManager.S.PlayCharacterDeadSound(m_Controller.CharacterModel.IsWoman(),m_Controller.GetPosition());
+            if (m_Controller.IsOurCharacterCamp())
+            {
+                AudioManager.S.PlayCharacterDeadSound(m_Controller.CharacterModel.IsWoman(), m_Controller.GetPosition());
+            }
         }
 
         public override void Exit(IBattleStateHander handler)
