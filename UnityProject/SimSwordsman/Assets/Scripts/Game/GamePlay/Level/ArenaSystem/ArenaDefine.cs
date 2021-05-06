@@ -15,6 +15,8 @@ namespace GameWish.Game
         public const int Max_ChallengeCount = 5;
         public const int Max_ADChallengeCount = 3;
         public const int AD_ChallengeCount = 3;
+
+        public const int ArenaEnemyID = 1000;
     }
 
 }

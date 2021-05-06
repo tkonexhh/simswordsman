@@ -737,6 +737,8 @@ namespace GameWish.Game
         }
         public int GetDeliverID()
         {
+            if (m_ItemDbData == null)
+                return -1;
             return m_ItemDbData.m_DeliverID;
         }
 

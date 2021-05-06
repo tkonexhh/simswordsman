@@ -33,11 +33,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Speed1Btn;
         [SerializeField]
-        private Button m_Speed2Btn;  
+        private Button m_Speed2Btn;
         [SerializeField]
         private Transform m_Top;
         [SerializeField]
-        private Transform m_Bottom;    
+        private Transform m_Bottom;
         //[SerializeField]
         //private Button m_Speed4Btn;
         private int m_CurTimeScale = 1;
@@ -187,7 +187,10 @@ namespace GameWish.Game
 
         private string GetEnemyName(EnemyConfig enemyConfig)
         {
-            return MainGameMgr.S.BattleFieldMgr.GetEnemyInfo(enemyConfig.ConfigId).GetNameForRandom();
+            if (enemyConfig is CharacterEnemyConfig)
+                return "敌人";
+            else
+                return MainGameMgr.S.BattleFieldMgr.GetEnemyInfo(enemyConfig.ConfigId).GetNameForRandom();
         }
 
         private string GetDiscipleName(CharacterController characterController)
@@ -489,7 +492,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
-                    break; 
+                    break;
                 default:
                     break;
             }
@@ -514,7 +517,7 @@ namespace GameWish.Game
                 m_Speed1Btn.gameObject.SetActive(true);
                 m_Speed2Btn.gameObject.SetActive(false);
 
-                if(setSpeedUp)
+                if (setSpeedUp)
                     isSpeedUp = false;
             }
 

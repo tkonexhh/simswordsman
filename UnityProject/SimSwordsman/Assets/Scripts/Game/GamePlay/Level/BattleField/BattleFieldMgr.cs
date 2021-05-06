@@ -228,7 +228,16 @@ namespace GameWish.Game
 
             enemies.ForEach(i =>
             {
-                SpawnEnemyCharacter(i.ConfigId, i.Number, i.Atk);
+                if (i.ConfigId == ArenaDefine.ArenaEnemyID)
+                {
+                    var characterEnemyConfig = i as CharacterEnemyConfig;
+                    SpawnEnemyCharacter(characterEnemyConfig.Quality, characterEnemyConfig.HeadID, characterEnemyConfig.BodyID, i.Atk);
+                }
+                else
+                {
+                    SpawnEnemyCharacter(i.ConfigId, i.Number, i.Atk);
+                }
+
             });
             MusicMgr.S.PlayBattleMusic();
 
@@ -333,6 +342,31 @@ namespace GameWish.Game
             return controller;
         }
 
+        private void SpawnEnemyCharacter(CharacterQuality quality, int headID, int bodyID, long atk)
+        {
+            CharacterItem characterItem = new CharacterItem(quality, "竞技场", "竞技场弟子", bodyID, headID);
+            SpawnCharacterEnemyController(characterItem, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) =>
+            {
+
+                m_EnemyCharacterList.Add(controller);
+
+                float debuff = m_SelectedHerbList.Any(j => j == HerbType.JinZhenQingCheGao) ? TDHerbConfigTable.GetEffectParam((int)HerbType.JinZhenQingCheGao) : 0;
+
+                controller.CharacterModel.SetHp(atk * (1 - debuff));
+                controller.CharacterModel.SetMaxHp(atk * (1 - debuff));
+                controller.CharacterModel.SetAtk(atk * (1 - debuff));
+
+                m_TotalEnemyAtk += controller.CharacterModel.GetAtk();
+                m_TotalEnemyHp += controller.CharacterModel.GetHp();
+                m_LoadedEnemyCount++;
+
+                if (m_LoadedEnemyCount >= m_AllEnemyCount)
+                {
+                    OnAllEnemyLoaded();
+                }
+            });
+        }
+
         private void SpawnEnemyCharacter(int id, int count, long atk)
         {
             //TODO  添加弟子敌人
@@ -394,8 +428,6 @@ namespace GameWish.Game
 
         private void SpawnEnemyController(int id, Vector3 pos, CharacterCamp camp, System.Action<CharacterController> onCharacterLoaded)
         {
-            //GameObject prefab = Resources.Load("Prefabs/Enemy/Enemy1") as GameObject;
-            //GameObject obj = GameObject.Instantiate(prefab);
             EnemyLoader.S.LoadEnemySync(id, (obj) =>
             {
                 obj.name = "Character_" + camp;
@@ -409,6 +441,25 @@ namespace GameWish.Game
 
             });
         }
+
+        private void SpawnCharacterEnemyController(CharacterItem characterItem, Vector3 pos, CharacterCamp camp, System.Action<CharacterController> onCharacterLoaded)
+        {
+            string prefabName = CharacterLoader.GetPrefabName(characterItem.quality, characterItem.bodyId, ClanType.None);
+            EnemyLoader.S.LoadEnemySync(prefabName, (obj) =>
+            {
+                obj.name = "Character_" + camp;
+                obj.transform.parent = m_BattleField.transform;
+
+                CharacterView characterView = obj.GetComponent<CharacterView>();
+                CharacterController controller = new CharacterController(ArenaDefine.ArenaEnemyID, characterView, CharacterStateID.Battle, CharacterCamp.EnemyCamp);
+                controller.CharacterModel.SetCharacterItem(characterItem);//强制设置CharacterItem
+                controller.OnEnterBattleField(pos);
+
+                onCharacterLoaded?.Invoke(controller);
+
+            });
+        }
+
         private void ApplyDamage()
         {
             int ourLivingCharacterCount = m_OurCharacterList.Where(i => i.IsDead() == false).ToList().Count;

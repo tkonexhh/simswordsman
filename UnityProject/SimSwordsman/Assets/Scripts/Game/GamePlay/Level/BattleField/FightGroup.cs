@@ -73,12 +73,25 @@ namespace GameWish.Game
 
             if (m_EnemyCharacter != null)
             {
-                var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
-                var enemykongfus = enemyConfig.animNameList;
-                foreach (var kongfu in enemykongfus)
+                if (m_EnemyCharacter.CharacterModel.Id == ArenaDefine.ArenaEnemyID)
                 {
-                    var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
-                    AddKongfuToPool(config);
+                    var kongfus = m_EnemyCharacter.CharacterModel.GetKongfuTypeList();
+                    foreach (var kongfu in kongfus)
+                    {
+                        var config = TDKongfuAnimationConfigTable.GetAnimConfig((int)kongfu);
+                        AddKongfuToPool(config);
+                    }
+                }
+                else
+                {
+                    var enemyConfig = TDEnemyConfigTable.GetEnemyInfo(m_EnemyCharacter.CharacterModel.Id);
+                    var enemykongfus = enemyConfig.animNameList;
+                    foreach (var kongfu in enemykongfus)
+                    {
+                        var config = TDKongfuAnimationConfigTable.GetAnimConfig(kongfu);
+                        AddKongfuToPool(config);
+                    }
+
                 }
             }
         }
