@@ -37,6 +37,8 @@ namespace GameWish.Game
             if (workConfigItem==null)
             {
                 PropConfigInfo propConfigInfo = TDItemConfigTable.GetPropConfigInfo(GetRawMaterial());
+                if (propConfigInfo==null)
+                    return;
                 if (propConfigInfo.unlockHomeLevel <= lobbyLevel)//½âËø
                 {
                     WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.functionDesc.name, propConfigInfo.functionDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName()));
@@ -93,8 +95,8 @@ namespace GameWish.Game
                 case CollectedObjType.Chicken:
                     return TDItemConfigTable.GetIconName((int)RawMaterial.Chicken);
             }
-            Log.w("Type is not find "+ m_ItemTipsType);
-            return "";
+            Log.e("Type is not find "+ m_ItemTipsType.ToString());
+            return TDItemConfigTable.GetIconName((int)RawMaterial.WuWood);
         }
         private int GetRawMaterial()
         {
@@ -123,8 +125,8 @@ namespace GameWish.Game
                 case CollectedObjType.LotusLeaf:
                     return (int)RawMaterial.LotusLeaf;
             }
-            Log.w("Type is not find " + m_ItemTipsType);
-            return 1007;
+            Log.e("Type is not find " + m_ItemTipsType.ToString());
+            return 1016;
         }
 
         public bool On_Drag(Gesture gesture, bool isTouchStartFromUI)
