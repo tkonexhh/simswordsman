@@ -97,9 +97,9 @@ namespace GameWish.Game
                     RefreshDisicipleSkill();
                     break;
                 case PanelType.HeroTrial:
-                 
+
                     //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-                
+
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                     {
                         if (PlatformHelper.isTestMode)
@@ -133,25 +133,37 @@ namespace GameWish.Game
 
                     //接下来排序
                     var towerData = GameDataMgr.S.GetPlayerData().towerData;
-                    m_AllDiscipleList.Sort((x, y) =>
+                    try
                     {
-                        var charactX = towerData.GetTowerCharacterByID(x.id);
-                        var charactY = towerData.GetTowerCharacterByID(x.id);
-
-                        if (charactX == null || charactY == null)
+                        m_AllDiscipleList.Sort((x, y) =>
                         {
-                            var hpX = charactX?.hpRate;
-                            if (!hpX.HasValue)
-                                hpX = 1;
-                            var hpY = charactY?.hpRate;
-                            if (!hpY.HasValue)
-                                hpY = 1;
-                            return hpX >= hpY ? -1 : 1;
+                            var charactX = towerData.GetTowerCharacterByID(x.id);
+                            var charactY = towerData.GetTowerCharacterByID(y.id);
 
-                        }
+                            if (charactX == null || charactY == null)
+                            {
+                                var hpX = charactX?.hpRate;
+                                if (!hpX.HasValue)
+                                    hpX = 1;
+                                var hpY = charactY?.hpRate;
+                                if (!hpY.HasValue)
+                                    hpY = 1;
+                                return hpX >= hpY ? -1 : 1;
 
-                        return 0;
-                    });
+                            }
+                            else
+                            {
+                                var hpX = charactX?.hpRate;
+                                var hpY = charactY?.hpRate;
+                                return hpX >= hpY ? -1 : 1;
+                            }
+
+                            // return 0;
+                        });
+                    }
+                    catch (Exception e) { }
+
+
                     m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
                     for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         CreateDisciple(m_AllDiscipleList[i]);
