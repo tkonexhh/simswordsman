@@ -99,6 +99,18 @@ namespace GameWish.Game
             UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level);
 
         }
+
+        #region 处理商店相关
+        public void BuyShopItem(int index, ArenaShopItemInfo itemInfo)
+        {
+            List<RewardBase> rewards = new List<RewardBase>();
+            rewards.Add(itemInfo.reward);
+            UIMgr.S.OpenPanel(UIID.RewardPanel, null, rewards);
+            itemInfo.reward.AcceptReward();
+            GameDataMgr.S.GetPlayerData().arenaData.BuyShopData(index);
+            //DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Shop_Buy, itemInfo.id);
+        }
+        #endregion
     }
 
     public class ArenaLevelConfig

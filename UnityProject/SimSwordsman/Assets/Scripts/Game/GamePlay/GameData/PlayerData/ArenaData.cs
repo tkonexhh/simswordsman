@@ -28,6 +28,8 @@ namespace GameWish.Game
 
         public override void OnDataLoadFinish()
         {
+            if (shopInfoLst.Count == 0)
+                RandomShopData();
         }
 
         public void Init()
@@ -82,6 +84,8 @@ namespace GameWish.Game
             challengeCount = ArenaDefine.Max_ChallengeCount;
             getRewarded = false;
             hasReward = false;
+
+            RandomShopData();
         }
 
         public bool AddCoin(int delta)
