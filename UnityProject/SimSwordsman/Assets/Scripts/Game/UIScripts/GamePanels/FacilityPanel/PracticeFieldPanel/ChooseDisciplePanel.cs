@@ -9,14 +9,10 @@ namespace GameWish.Game
 {
     public class ChooseDisciplePanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Button m_CloseBtn;
-        [SerializeField]
-        private Transform m_SelectedList;
-        [SerializeField]
-        private GameObject m_Disciple;
-        [SerializeField]
-        private Button m_ArrangeBtn;
+        [SerializeField] private Button m_CloseBtn;
+        [SerializeField] private Transform m_SelectedList;
+        [SerializeField] private GameObject m_Disciple;
+        [SerializeField] private Button m_ArrangeBtn;
         private FacilityType m_CurFacilityType;
         private List<CharacterItem> m_CharacterItem = null;
         private CharacterItem m_SelectedDisciple = null;
@@ -24,7 +20,6 @@ namespace GameWish.Game
         private List<PracticeDisciple> m_PracticeDisciple = new List<PracticeDisciple>();
         private Transform m_Pos;
         private bool IsSelected = false;
-
 
         private const int Rows = 5;
         private const float DiscipleHeight = 156f;
@@ -34,10 +29,11 @@ namespace GameWish.Game
         {
             base.OnUIInit();
 
-            EventSystem.S.Register(EventID.OnSelectedEvent, HandAddListenerEvent);
-
+            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
             m_ArrangeBtn.onClick.AddListener(() =>
             {
+                if (m_SelectedDisciple == null)
+                    return;
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 m_PracticeFieldInfo.SelectCharacterItem(m_SelectedDisciple, m_CurFacilityType);
                 EventSystem.S.Send(EventID.OnRefreshPracticeUnlock, m_PracticeFieldInfo);
@@ -51,13 +47,13 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
+            RegisterEvent(EventID.OnSelectedEvent, HandAddListenerEvent);
+
             AudioMgr.S.PlaySound(Define.INTERFACE);
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_PracticeFieldInfo = (PracticeField)args[0];
             m_CurFacilityType = (FacilityType)args[1];
             GetInformationForNeed();
-
-            BindAddListenerEvent();
 
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
             int maxLevel = TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
@@ -70,15 +66,18 @@ namespace GameWish.Game
             CalculateContainerHeight();
         }
 
+        protected override void OnPanelHideComplete()
+        {
+            base.OnPanelHideComplete();
+            CloseSelfPanel();
+        }
+
         protected override void OnClose()
         {
             base.OnClose();
-
             CloseDependPanel(EngineUI.MaskPanel);
-
-            EventSystem.S.UnRegister(EventID.OnSelectedEvent, HandAddListenerEvent);
-
         }
+
         private void CalculateContainerHeight()
         {
             int rows = m_PracticeDisciple.Count / Rows;
@@ -115,28 +114,20 @@ namespace GameWish.Game
                     break;
             }
         }
+
         private void Update()
         {
             if (IsSelected)
                 m_ArrangeBtn.transform.position = m_Pos.position;
         }
 
-
         private void GetInformationForNeed()
         {
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
         }
 
-        private void BindAddListenerEvent()
-        {
-            m_CloseBtn.onClick.AddListener(HideSelfWithAnim);
-        }
 
-        protected override void OnPanelHideComplete()
-        {
-            base.OnPanelHideComplete();
-            CloseSelfPanel();
-        }
+
 
         private void CreateDisciple(CharacterItem characterItem)
         {

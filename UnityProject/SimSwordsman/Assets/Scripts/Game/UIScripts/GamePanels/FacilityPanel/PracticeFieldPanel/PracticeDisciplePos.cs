@@ -40,7 +40,7 @@ namespace GameWish.Game
             BindAddListenEvent();
             m_CurFacilityType = type;
             m_PracticeFieldPanel = panel;
-            m_PracticePos.text = "Á·¹¦Î»:" + (index + 1);
+            m_PracticePos.text = "ç»ƒåŠŸä½:" + (index + 1);
             PracticeFieldController controller = (PracticeFieldController)MainGameMgr.S.FacilityMgr.GetFacilityController(m_CurFacilityType);
             m_Slot = controller.GetSlotByIndex(index);
             RefreshPracticeFieldState();
@@ -60,7 +60,7 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.ChooseDisciplePanel, m_Slot, m_CurFacilityType);
                 else
                 {
-                    FloatMessage.S.ShowMsg("ÔİÊ±Ã»ÓĞ¿ÕÏĞµÄµÜ×Ó£¬µÈ»á¶ùÔÙÊÔÊÔ°É");
+                    FloatMessage.S.ShowMsg("æš‚æ—¶æ²¡æœ‰ç©ºé—²çš„å¼Ÿå­ï¼Œç­‰ä¼šå„¿å†è¯•è¯•å§");
                 }
             });
         }
@@ -107,7 +107,7 @@ namespace GameWish.Game
                 return;
             }
 
-            //¿´¿´ÓĞÃ»ÓĞÈËÔÚÕâ¸öindexÉÏreading
+            //çœ‹çœ‹æœ‰æ²¡æœ‰äººåœ¨è¿™ä¸ªindexä¸Šreading
             var allCharacter = MainGameMgr.S.CharacterMgr.CharacterControllerList;
             CharacterItem characterModel = null;
             for (int i = 0; i < allCharacter.Count; i++)
@@ -136,7 +136,7 @@ namespace GameWish.Game
             if (m_DiscipleHeadObj != null)
                 m_DiscipleHeadObj.SetActive(false);
             //m_DiscipleHead.gameObject.SetActive(false);
-            m_State.text = "Á·¹¦³¡" + TDFacilityPracticeFieldTable.GetSeatNeedLevel(m_Index + 1) + "¼¶ºó½âËø";
+            m_State.text = "ç»ƒåŠŸåœº" + TDFacilityPracticeFieldTable.GetSeatNeedLevel(m_Index + 1) + "çº§åè§£é”";
             m_PracticeImg.sprite = m_PracticeFieldPanel.FindSprite("Lock2");
             m_Time.enabled = false;
             m_CurPractice.text = Define.COMMON_DEFAULT_STR;
@@ -152,8 +152,8 @@ namespace GameWish.Game
             m_CurPractice.text = Define.COMMON_DEFAULT_STR;
             m_Time.enabled = false;
             //m_PracticeImg.sprite = ""
-            m_ArrangeDisciple.text = "°²ÅÅµÜ×Ó";
-            m_State.text = "¿ÕÏĞ";
+            m_ArrangeDisciple.text = "å®‰æ’å¼Ÿå­";
+            m_State.text = "ç©ºé—²";
         }
 
         private void UIDuring(CharacterItem characterItem)
@@ -165,7 +165,7 @@ namespace GameWish.Game
             m_PracticeBtn.enabled = false;
             m_State.text = Define.COMMON_DEFAULT_STR;
             m_ArrangeDisciple.text = Define.COMMON_DEFAULT_STR;
-            m_CurPractice.text = "µ±Ç°ÑµÁ·:" + characterItem.name;
+            m_CurPractice.text = "å½“å‰è®­ç»ƒ:" + characterItem.name;
             m_Time.text = GameExtensions.SplicingTime(GetDuration());
             CreateCountDown();
             LoadClanPrefabs(characterItem);
@@ -175,7 +175,7 @@ namespace GameWish.Game
         {
             if (m_DiscipleHeadObj == null)
             {
-                m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(characterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.6f, 0.6f, 1),false);
+                m_DiscipleHeadObj = DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(characterItem, transform, new Vector3(5f, 5f, 0), new Vector3(0.6f, 0.6f, 1), false);
             }
             //m_DiscipleHead.sprite = m_PracticeFieldPanel.FindSprite(prefabsName);
         }

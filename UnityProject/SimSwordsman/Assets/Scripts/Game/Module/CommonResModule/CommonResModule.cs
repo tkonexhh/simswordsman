@@ -22,8 +22,8 @@ namespace GameWish.Game
         private void HolderCommondAudio()
         {
             //ResHolder.S.AddRes(TDConstTable.QueryString(ConstType.MUSIC_BG));
-            SoundButton.defaultClickSound = TDConstTable.QueryString(ConstType.SOUND_BUTTONCLICK);
-            
+            SoundButton.defaultClickSound = "Button";//TDConstTable.QueryString(ConstType.SOUND_BUTTONCLICK);
+
             //ResHolder.S.AddRes(TDConstTable.QueryString(ConstType.SOUND_CLICK_RIGHT));
             //ResHolder.S.AddRes(TDConstTable.QueryString(ConstType.SOUND_CLICK_WRONG));
 

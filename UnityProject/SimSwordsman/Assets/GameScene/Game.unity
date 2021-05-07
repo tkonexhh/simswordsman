@@ -3155,6 +3155,47 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1691109937}
     m_Modifications:
+    - target: {fileID: 37704161, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1012
+      objectReference: {fileID: 0}
+    - target: {fileID: 824453424, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 824453427, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1006
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060410560, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233928584, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1018
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572652061, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1020
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609793768, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913124188, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951649338, guid: a77ed063debb75f4aac4c2c69fce43c4, type: 3}
+      propertyPath: m_ItemTipsType
+      value: 1005
+      objectReference: {fileID: 0}
+    - target: {fileID: 163980924869770958, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1005
+      objectReference: {fileID: 0}
     - target: {fileID: 518715379783615997, guid: a77ed063debb75f4aac4c2c69fce43c4,
         type: 3}
       propertyPath: m_Enabled
@@ -3255,6 +3296,31 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1320464540835263813, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1020
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320464540835263815, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320464540835263821, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320464540835263831, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1006
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320464540835264181, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1002
+      objectReference: {fileID: 0}
     - target: {fileID: 1601356568714970409, guid: a77ed063debb75f4aac4c2c69fce43c4,
         type: 3}
       propertyPath: m_Mesh
@@ -3275,10 +3341,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -4.83
       objectReference: {fileID: 0}
+    - target: {fileID: 2289154023508953003, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1018
+      objectReference: {fileID: 0}
     - target: {fileID: 2663016766413636177, guid: a77ed063debb75f4aac4c2c69fce43c4,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891277028343331131, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1003
       objectReference: {fileID: 0}
     - target: {fileID: 3037959190305924396, guid: a77ed063debb75f4aac4c2c69fce43c4,
         type: 3}
@@ -3294,6 +3370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364973103376181000, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1012
       objectReference: {fileID: 0}
     - target: {fileID: 4526070083236751617, guid: a77ed063debb75f4aac4c2c69fce43c4,
         type: 3}
@@ -3344,6 +3425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913253544448124911, guid: a77ed063debb75f4aac4c2c69fce43c4,
+        type: 3}
+      propertyPath: collectedObjType
+      value: 1014
       objectReference: {fileID: 0}
     - target: {fileID: 8473843935143067499, guid: a77ed063debb75f4aac4c2c69fce43c4,
         type: 3}
@@ -8088,7 +8174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd08d5f9c2ec263428677c2ff43b5b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemTipsType: 8
+  m_ItemTipsType: 1004
 --- !u!1 &1775650723
 GameObject:
   m_ObjectHideFlags: 0
@@ -14288,7 +14374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd08d5f9c2ec263428677c2ff43b5b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemTipsType: 19
+  m_ItemTipsType: 1013
 --- !u!60 &2060588948
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16729,7 +16815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd08d5f9c2ec263428677c2ff43b5b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemTipsType: 18
+  m_ItemTipsType: 1017
 --- !u!60 &7150100210748130346
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16802,7 +16888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd08d5f9c2ec263428677c2ff43b5b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemTipsType: 17
+  m_ItemTipsType: 1010
 --- !u!60 &7150100210748130351
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16851,7 +16937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd08d5f9c2ec263428677c2ff43b5b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemTipsType: 16
+  m_ItemTipsType: 1016
 --- !u!1001 &8178777524087738321
 PrefabInstance:
   m_ObjectHideFlags: 0
