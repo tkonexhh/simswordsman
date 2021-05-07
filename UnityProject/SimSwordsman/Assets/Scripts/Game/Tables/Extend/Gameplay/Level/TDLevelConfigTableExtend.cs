@@ -37,6 +37,8 @@ namespace GameWish.Game
         /// <returns></returns>
         public static LevelConfigInfo GetLevelConfigInfo(int chapterId, int levelId)
         {
+            chapterId = Mathf.Clamp(chapterId, 1, Define.MAX_CHAPTER_ID);
+
             if (m_AllChapter.ContainsKey(chapterId))
                 return m_AllChapter[chapterId].GetLevelConfigInfo(levelId);
             return null;
@@ -49,6 +51,8 @@ namespace GameWish.Game
         /// <returns></returns>
         public static LevelConfigInfo GetFirstLevelInfo(int chapterID)
         {
+            chapterID = Mathf.Clamp(chapterID, 1, Define.MAX_CHAPTER_ID);
+
             if (m_AllChapter.ContainsKey(chapterID))
                 return m_AllChapter[chapterID].GetLevelConfigInfo(0);
             return null;
@@ -56,6 +60,8 @@ namespace GameWish.Game
 
         public static int GetChapterNumber(int chapterID)
         {
+            chapterID = Mathf.Clamp(chapterID, 1, Define.MAX_CHAPTER_ID);
+
             if (m_AllChapter.ContainsKey(chapterID))
                 return m_AllChapter[chapterID].GetNumber();
             return 1;
@@ -63,6 +69,8 @@ namespace GameWish.Game
 
         public static Dictionary<int, LevelConfigInfo> GetAllLevelConfigInfo(int chapterID)
         {
+            chapterID = Mathf.Clamp(chapterID, 1, Define.MAX_CHAPTER_ID);
+
             if (m_AllChapter.ContainsKey(chapterID))
                 return m_AllChapter[chapterID].GetAllLevelConfigInfo();
             return null;
