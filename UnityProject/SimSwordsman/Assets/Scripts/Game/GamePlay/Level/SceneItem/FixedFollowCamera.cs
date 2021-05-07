@@ -1,49 +1,51 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 namespace GameWish.Game
 {
-	public class FixedFollowCamera : MonoBehaviour
-	{
-	    // 需要跟随的目标对象
-	    public Transform target;
+    public class FixedFollowCamera : MonoBehaviour
+    {
+        // 需要跟随的目标对象
+        public Transform target;
 
         // 需要锁定的坐标（可以实时生效）
         //public bool freazeX;
         //public bool freazeY;
         //public bool freazeZ;
-	
-	    // 跟随的平滑时间（类似于滞后时间）
-	    public float smoothTime = 0.1f;
-	    private float xVelocity, yVelocity, zVelocity = 0.0F;
-	
-	    // 跟随的偏移量
-	    private Vector3 offset;
-	
-	    // 全局缓存的位置变量
-	    private Vector3 oldPosition;
-	
-	    // 记录初始位置
-	    private Vector3 startPosition;
-	
-	    public static FixedFollowCamera Instance;
+
+        // 跟随的平滑时间（类似于滞后时间）
+        public float smoothTime = 0.1f;
+        private float xVelocity, yVelocity, zVelocity = 0.0F;
+
+        // 跟随的偏移量
+        private Vector3 offset;
+
+        // 全局缓存的位置变量
+        private Vector3 oldPosition;
+
+        // 记录初始位置
+        private Vector3 startPosition;
+
+        public static FixedFollowCamera Instance;
 
         Camera m_Camera;
         private void Awake()
-	    {
-	        Instance = this;
+        {
+            Instance = this;
             m_Camera = GetComponent<Camera>();
         }
-	
-	    //void Start()
-	    //{
-	    //    startPosition = transform.position;
-	    //    offset = transform.position - target.position;
-	    //}
-	
-	    void Update()
-	    {
-	        oldPosition = transform.position;
+
+        //void Start()
+        //{
+        //    startPosition = transform.position;
+        //    offset = transform.position - target.position;
+        //}
+
+        void Update()
+        {
+            if (target == null) return;
+
+            oldPosition = transform.position;
 
             //if (!freazeX)
             //{
@@ -59,15 +61,15 @@ namespace GameWish.Game
             //}
 
             transform.position = oldPosition;
-	    }
-	
-	    /// <summary>
-	    /// 用于重新开始游戏时直接重置相机位置
-	    /// </summary>
-	    public void ResetPosition()
-	    {
-	        transform.position = startPosition;
-	    }
+        }
+
+        /// <summary>
+        /// 用于重新开始游戏时直接重置相机位置
+        /// </summary>
+        public void ResetPosition()
+        {
+            transform.position = startPosition;
+        }
 
         public void SetTarget(Transform tar)
         {
@@ -86,5 +88,5 @@ namespace GameWish.Game
         {
             Destroy(this);
         }
-	}
+    }
 }
