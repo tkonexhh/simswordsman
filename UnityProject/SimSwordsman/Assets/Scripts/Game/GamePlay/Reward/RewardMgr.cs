@@ -16,6 +16,7 @@ namespace GameWish.Game
         Food,//ʳ��
         Coin,//ͭǮ
         TowerCoin,//伏魔币
+        ArenaCoin,//擂台币
         Exp_Role,//���Ӿ���
         Exp_Kongfu,//������
     }
@@ -45,6 +46,8 @@ namespace GameWish.Game
                     return new Exp_KongfuRweard(id, count);
                 case RewardItemType.TowerCoin:
                     return new TowerCoinReward(count);
+                case RewardItemType.ArenaCoin:
+                    return new ArenaCoinReward(count);
                 default:
 
                     return null;
@@ -84,6 +87,7 @@ namespace GameWish.Game
                 case RewardItemType.Food:
                 case RewardItemType.Coin:
                 case RewardItemType.TowerCoin:
+                case RewardItemType.ArenaCoin:
                     return CreateReward(rewardItemType, 0, int.Parse(sp[1]));
                 case RewardItemType.Exp_Role:
                 case RewardItemType.Exp_Kongfu:

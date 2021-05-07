@@ -42,29 +42,6 @@ namespace GameWish.Game
 
         public void PrepareReward()
         {
-            //判断是什么奖励
-            // var towerConf = TDTowerConfigTable.GetData(level);
-            // if (towerConf == null)
-            //     return;
-
-            // if (towerConf.rwardtype.Equals("Fcoin"))
-            // {
-            //     List<RewardBase> rewardLst = new List<RewardBase>() { new TowerCoinReward(towerConf.fcoinNum) };
-            //     rewardLst.ForEach(r => r.AcceptReward());
-            //     EventSystem.S.Send(EventID.OnReciveRewardList, rewardLst);
-            // }
-            // else
-            // {
-            //     int lobbyLvl = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
-            //     var conf = TDTowerRewardConfigTable.GetData(lobbyLvl);
-            //     if (conf == null)
-            //         return;
-
-            //     var reward = conf.GetRandomReward();
-            //     List<RewardBase> rewardLst = new List<RewardBase>() { reward };
-            //     rewardLst.ForEach(r => r.AcceptReward());
-            //     EventSystem.S.Send(EventID.OnReciveRewardList, rewardLst);
-            // }
 
             //从初始数据里面取出数据
             var levelConfigDB = GameDataMgr.S.GetPlayerData().towerData.GetLevelConfigByIndex(level - 1);
