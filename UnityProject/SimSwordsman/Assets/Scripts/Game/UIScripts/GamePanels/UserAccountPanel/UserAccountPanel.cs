@@ -25,6 +25,8 @@ namespace GameWish.Game
         private Button m_LogOutBtn;
         [SerializeField]
         private Button m_PrivateBtn;
+        [SerializeField]
+        private Button m_SelectedHeadBtn;
 
         [SerializeField]
         private Button m_MusicBtn;
@@ -59,6 +61,9 @@ namespace GameWish.Game
 
             m_MusicBtn.onClick.AddListener(() => { UpdateMusic(!isMuiscOn); });
             m_SoundBtn.onClick.AddListener(() => { UpdateSound(!isSoundOn); });
+            m_SelectedHeadBtn.onClick.AddListener(() => {
+                UIMgr.S.OpenPanel(UIID.SelectedHeadPanel);
+            });
             RefreshMessageBtn(GameDataMgr.S.GetPlayerData().GetMessagePush());
         }
 
