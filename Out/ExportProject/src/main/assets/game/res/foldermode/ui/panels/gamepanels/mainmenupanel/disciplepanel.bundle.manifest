@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2666497265
+CRC: 2202620600
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ce453028f61fb81fcd9b12e77807b261
+    Hash: d5fcd8794a1ef53a81090f21efbdcc79
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ecccf294232faf84bf26f01ad296d2ba
+    Hash: 03c2363f9ec1159eea9dccecd4557368
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -66,11 +66,17 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: f564821fcd8478d43ae3a37c326904ac, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 47e2ee2fea258ec4bb171fe05a452f78, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2e94bbc1fa446794daaff5eba91d40b9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 791bce4940d2fb74fab816477ca33edd, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -86,8 +92,8 @@ ClassTypes:
 - Class: 225
   Script: {instanceID: 0}
 Assets:
-- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DisciplePanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/EquipDetailsPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/KungfuBelongingsItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/Disciple.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/KungfuPanelItem.prefab
@@ -96,18 +102,20 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuPanel.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/KungfuDetailsPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/EquipBelongingsItem.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DicipleDetailsPanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DisciplePanel.prefab
+- Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DiscipleItem.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/common.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciplepanel.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/discipledetailspanel.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemdetails.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciple.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/common.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciplepanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/discipledetailspanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/bulletinboardpanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemdetails.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/characterheadicons.bundle

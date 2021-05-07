@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1336911620
+CRC: 1552739088
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b73124c686c38d87b5cce60df8bcd00f
+    Hash: e4853191595fcbf3a28a781248a433d4
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e3a83ee5b6ea7768dbc5ca508fbe02ed
+    Hash: 4b753c430b9c3d74aaff63b442f55d77
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -30,6 +30,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 3989c817ca7aa48c48efd7556a2c4fce, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: d36f33ea9cd601f4b8cb7a9f409ec6c0, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: b485ddfde54bd0e4c9dba48004a0560e, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: a3cd42ce7f926974693d49ba8c269b51, type: 3}
@@ -52,9 +54,12 @@ Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaRewardItemIcon.prefab
 - Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaShopItem.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/towerpanel.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/towerpanel/towershop.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/towerpanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/equipment.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/martialarts.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/itemicon.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/towerpanel.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/towerpanel/towershop.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/ui/sprites/towerpanel.bundle

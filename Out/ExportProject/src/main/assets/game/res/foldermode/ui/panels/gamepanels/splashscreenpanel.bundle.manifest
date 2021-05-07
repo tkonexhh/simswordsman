@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3698546863
+CRC: 500691316
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6978945a4bf047eeefc90b919448cdd9
+    Hash: d8281ffbfb7df5b56d5f0293adf2d48a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 49fd74b83a6af857b96bec54156a71a7
@@ -52,5 +52,7 @@ ClassTypes:
 Assets:
 - Assets/Res/FolderMode/UI/Panels/GamePanels/SplashScreenPanel/SplashScreenPanel.prefab
 Dependencies:
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
-- D:/BitBucket/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/splashscreenspine.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/font.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/splashscreenspine/second.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/splashscreenspine/first.bundle
+- D:/PackageVersion/UnityProject/SimSwordsman/Assets/StreamingAssets/game/res/foldermode/splashscreenspine/third.bundle

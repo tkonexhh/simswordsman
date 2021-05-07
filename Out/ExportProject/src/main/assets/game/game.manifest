@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 677635823
+CRC: 968485041
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -143,9 +143,8 @@ AssetBundleManifest:
         Dependency_7: res/foldermode/ui/sprites/bulletinboardpanel.bundle
         Dependency_8: res/foldermode/ui/sprites/itemicon.bundle
         Dependency_9: res/foldermode/ui/sprites/itemdetails.bundle
-        Dependency_10: res/foldermode/ui/sprites/disciple.bundle
-        Dependency_11: res/foldermode/ui/sprites/rewardpanel.bundle
-        Dependency_12: res/foldermode/ui/sprites/characterheadicons.bundle
+        Dependency_10: res/foldermode/ui/sprites/rewardpanel.bundle
+        Dependency_11: res/foldermode/ui/sprites/characterheadicons.bundle
     Info_35:
       Name: res/foldermode/ui/sprites/warehousepanel.bundle
       Dependencies: {}
@@ -1448,23 +1447,41 @@ AssetBundleManifest:
       Name: res/foldermode/enemy/wudu/wuduhongyao.bundle
       Dependencies: {}
     Info_299:
-      Name: res/foldermode/splashscreenspine.bundle
-      Dependencies: {}
-    Info_300:
       Name: res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel.bundle
       Dependencies:
         Dependency_0: res/foldermode/font.bundle
-        Dependency_1: res/foldermode/ui/sprites/martialarts.bundle
-        Dependency_2: res/foldermode/ui/sprites/rewardpanel.bundle
-        Dependency_3: res/foldermode/ui/panels/gamepanels/towerpanel.bundle
-        Dependency_4: res/foldermode/ui/sprites/towerpanel/towershop.bundle
-        Dependency_5: res/foldermode/ui/sprites/towerpanel.bundle
-    Info_301:
+        Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
+        Dependency_2: res/foldermode/ui/sprites/equipment.bundle
+        Dependency_3: res/foldermode/ui/sprites/martialarts.bundle
+        Dependency_4: res/foldermode/ui/sprites/itemicon.bundle
+        Dependency_5: res/foldermode/ui/sprites/rewardpanel.bundle
+        Dependency_6: res/foldermode/ui/panels/gamepanels/towerpanel.bundle
+        Dependency_7: res/foldermode/ui/sprites/towerpanel/towershop.bundle
+        Dependency_8: res/foldermode/ui/sprites/towerpanel.bundle
+    Info_300:
       Name: res/foldermode/ui/panels/gamepanels/arenapanels/arenarestpanel.bundle
       Dependencies:
         Dependency_0: res/foldermode/font.bundle
-    Info_302:
+    Info_301:
       Name: res/foldermode/ui/panels/gamepanels/splashscreenpanel.bundle
       Dependencies:
         Dependency_0: res/foldermode/font.bundle
-        Dependency_1: res/foldermode/splashscreenspine.bundle
+        Dependency_1: res/foldermode/splashscreenspine/second.bundle
+        Dependency_2: res/foldermode/splashscreenspine/first.bundle
+        Dependency_3: res/foldermode/splashscreenspine/third.bundle
+    Info_302:
+      Name: res/foldermode/splashscreenspine/second.bundle
+      Dependencies: {}
+    Info_303:
+      Name: res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel/arenapanel.bundle
+      Dependencies:
+        Dependency_0: res/foldermode/font.bundle
+        Dependency_1: res/foldermode/ui/sprites/panelcommon.bundle
+        Dependency_2: res/foldermode/ui/sprites/towerpanel/towerrevive.bundle
+        Dependency_3: res/foldermode/ui/sprites/towerpanel.bundle
+    Info_304:
+      Name: res/foldermode/splashscreenspine/first.bundle
+      Dependencies: {}
+    Info_305:
+      Name: res/foldermode/splashscreenspine/third.bundle
+      Dependencies: {}
