@@ -42,48 +42,92 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: dc287ce22086d0b42be194c55a6ff884, type: 3}
-    - {fileID: 2800000, guid: 6f99a316788d18e44992c0d42b0d8e92, type: 3}
-    - {fileID: 2800000, guid: 3be5daa4b4dcad9468e5f380332a6fc9, type: 3}
-    - {fileID: 2800000, guid: f4e4ad162e0ab9f4da32257895396157, type: 3}
-    - {fileID: 2800000, guid: 2d6401fb0ead6b3439246964b9f2a96e, type: 3}
-    - {fileID: 2800000, guid: c548a7794c44cb3469984b06e412293b, type: 3}
-    - {fileID: 2800000, guid: 0aa43d1e7810f5f4dbe7d53d1289ec37, type: 3}
-    - {fileID: 2800000, guid: 094a9798f377666438246bbfe83122dd, type: 3}
-    - {fileID: 2800000, guid: 3c7c63c53a8cc104d81d034f6882bff8, type: 3}
-    - {fileID: 2800000, guid: 7059133cd2958ed4fa5153dc5817f463, type: 3}
-    - {fileID: 2800000, guid: 14d5e94853a97da479139f452b7b9e57, type: 3}
-    - {fileID: 2800000, guid: 92ea112631977f34b9057d36dc60f2f7, type: 3}
-    - {fileID: 2800000, guid: 9602f8a3e319e30409b44582f4de90b3, type: 3}
+    - {fileID: 102900000, guid: 8409c1755ae1e1c47bed2e7140168129, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: f5d733c082958e642a89c6d9765a9b85, type: 3}
+  - {fileID: 21300000, guid: 8bb3959134da41c42995b3b2162b0c79, type: 3}
+  - {fileID: 21300000, guid: 8a155fd1553d70c479cd649d4734bff9, type: 3}
+  - {fileID: 21300000, guid: 06f3520255039b549b8a5df6fb0c87bf, type: 3}
   - {fileID: 21300000, guid: dc287ce22086d0b42be194c55a6ff884, type: 3}
+  - {fileID: 21300000, guid: c068e203cc4ea8b4ab6738561212ae98, type: 3}
   - {fileID: 21300000, guid: 9602f8a3e319e30409b44582f4de90b3, type: 3}
+  - {fileID: 21300000, guid: 1e3483e3376736145842bba6f74801db, type: 3}
+  - {fileID: 21300000, guid: 24a489f374ea46b43b0a9a91c4f21636, type: 3}
+  - {fileID: 21300000, guid: 69d262540878a664aa04fa60e9e6160d, type: 3}
+  - {fileID: 21300000, guid: 256e61642f1782f4c90f56275d377aa8, type: 3}
+  - {fileID: 21300000, guid: 24008864bed177442a870ffdf93930ae, type: 3}
   - {fileID: 21300000, guid: 3be5daa4b4dcad9468e5f380332a6fc9, type: 3}
+  - {fileID: 21300000, guid: 354c6715229a0de4b979c99e534e6b8c, type: 3}
   - {fileID: 21300000, guid: 3c7c63c53a8cc104d81d034f6882bff8, type: 3}
   - {fileID: 21300000, guid: 6f99a316788d18e44992c0d42b0d8e92, type: 3}
   - {fileID: 21300000, guid: f4e4ad162e0ab9f4da32257895396157, type: 3}
   - {fileID: 21300000, guid: 92ea112631977f34b9057d36dc60f2f7, type: 3}
+  - {fileID: 21300000, guid: 8a645846f5bcf6540b050dcc59df2184, type: 3}
+  - {fileID: 21300000, guid: 2c6255082d004d54788d88f469b083a5, type: 3}
   - {fileID: 21300000, guid: 14d5e94853a97da479139f452b7b9e57, type: 3}
   - {fileID: 21300000, guid: 094a9798f377666438246bbfe83122dd, type: 3}
+  - {fileID: 21300000, guid: 94fe25c8307aa664b9a3075e15ab9ea8, type: 3}
   - {fileID: 21300000, guid: c548a7794c44cb3469984b06e412293b, type: 3}
+  - {fileID: 21300000, guid: f7be280a37ce2d142a52fd0ed0b04cf3, type: 3}
+  - {fileID: 21300000, guid: 113efeaa6fcf66d4cbb70b792e05733d, type: 3}
+  - {fileID: 21300000, guid: 2fc1483b301da534c8a38cbb3b3b51cc, type: 3}
   - {fileID: 21300000, guid: 2d6401fb0ead6b3439246964b9f2a96e, type: 3}
+  - {fileID: 21300000, guid: ec61e30c977945d48a500e76f1c2d65b, type: 3}
+  - {fileID: 21300000, guid: bbfdda2c0b989334bbdfb242869cef3d, type: 3}
   - {fileID: 21300000, guid: 7059133cd2958ed4fa5153dc5817f463, type: 3}
+  - {fileID: 21300000, guid: 1e7c36ace4e23bb458f7f3c63119ebd2, type: 3}
+  - {fileID: 21300000, guid: c434acac16bef8e49b08f94b3259b868, type: 3}
+  - {fileID: 21300000, guid: b1f61aec3dad4724ea419a5bc6f27394, type: 3}
+  - {fileID: 21300000, guid: 689129fc62d35a84a817177f2de325b9, type: 3}
+  - {fileID: 21300000, guid: 4e9035ad808740149ac933a696c70c53, type: 3}
   - {fileID: 21300000, guid: 0aa43d1e7810f5f4dbe7d53d1289ec37, type: 3}
+  - {fileID: 21300000, guid: 97f8115e0dc23cf4696e72cd3290ed0a, type: 3}
+  - {fileID: 21300000, guid: 146b4bbe812478d4f95edf52a4adb7ff, type: 3}
+  - {fileID: 21300000, guid: 03006daf2a127344bb3de1283651dd82, type: 3}
+  - {fileID: 21300000, guid: 94eec0bffeac2bf4dad7e5968aa89786, type: 3}
   m_PackedSpriteNamesToIndex:
+  - DisciplePanel_Bg25
+  - DisciplePanel_WeChatShareBtn
+  - DisciplePanel_Bg8
+  - DisciplePanel_Bg27
   - DisciplePanel_Arc1
+  - DisciplePanel_Bg22
   - DisciplePanel_Title
+  - DisciplePanel_Bg18
+  - DisciplePanel_Bg23
+  - DisciplePanel_Hero
+  - DisciplePanel_Bg9
+  - DisciplePanel_Bg10
   - DisciplePanel_Bg1
+  - DisciplePanel_Bg24
   - DisciplePanel_Icon
   - DisciplePanel_Bar1
   - DisciplePanel_Bg2
   - DisciplePanel_Line3
+  - DisciplePanel_Bg7
+  - DisciplePanel_Bg15
   - DisciplePanel_Line2
   - DisciplePanel_CloseBtn
+  - DisciplePanel_Bg28
   - DisciplePanel_Bg4
+  - DisciplePanel_Bg6
+  - DisciplePanel_Bg17
+  - DisciplePanel_Bg13
   - DisciplePanel_Bg3
+  - DisciplePanel_Bg21
+  - DisciplePanel_Bg14
   - DisciplePanel_Line1
+  - DisciplePanel_Bg19
+  - DisciplePanel_Perfect
+  - DisciplePanel_Bg12
+  - DisciplePanel_Bg11
+  - DisciplePanel_Bg16
   - DisciplePanel_Bg5
+  - DisciplePanel_Normal
+  - DisciplePanel_Bg26
+  - DisciplePanel_Bg20
+  - DisciplePanel_Good
   m_Tag: DisciplePanelAtlas
   m_IsVariant: 0

@@ -14,7 +14,7 @@ namespace GameWish.Game
         {
             if (!m_KungfuConfigDic.ContainsKey((KungfuType)tdData.id))
             {
-                m_KungfuConfigDic.Add((KungfuType)tdData.id, new KungfuConfigInfo(tdData)); ;
+                m_KungfuConfigDic.Add((KungfuType)tdData.id, new KungfuConfigInfo(tdData)); 
             }
         }
 

@@ -191,23 +191,18 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
-                //bool isTrialReady = MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady();
-                //if (!isTrialReady)
-                //{
-                //    FloatMessage.S.ShowMsg("今日次数已用完");
-                //    return;
-                //}
+                bool isTrialReady = MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady();
+                if (!isTrialReady)
+                {
+                    FloatMessage.S.ShowMsg("今日次数已用完");
+                    return;
+                }
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialChooseDisciplePanel, PanelType.HeroTrial);
             });
 
             m_FinishTrialBtn.onClick.AddListener(() =>
             {
-                if (!m_TrialComplete)
-                {
-                    FloatMessage.S.ShowMsg("试炼未完成");
-                    return;
-                }
                 MainGameMgr.S.HeroTrialMgr.FinishTrial();
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();
@@ -240,10 +235,12 @@ namespace GameWish.Game
                 }
                 m_HeadList.Clear();
             }
-
-            m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_LeftBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
-            //DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1));
-            m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+            if (m_TrialDisciple!=null)
+            {
+                m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_LeftBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+                //DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1));
+                m_HeadList.Add(DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_TrialDisciple, m_RightBg, new Vector3(5f, 3f, 0), new Vector3(0.4f, 0.4f, 1)));
+            }
 
             if (m_TrialDisciple == null)
                 return;

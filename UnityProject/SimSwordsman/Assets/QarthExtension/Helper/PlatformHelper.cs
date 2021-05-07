@@ -119,14 +119,13 @@ namespace Qarth
                 //return false;
                 return true;
             }
-        }
+        }  
 
         public static bool isTestMode
         {
             get
             {
                 //FIXME!!! TestMode True/False
-                //return true;
                 //return false;
                 return isEditor;
             }

@@ -138,7 +138,7 @@ namespace GameWish.Game
 
                     MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
 
-                    EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex);
+                    EventSystem.S.Send(EventID.OnSelectedKungfuSuccess, m_CurIndex, m_CharacterItem.id);
 
                     m_CharacterItem.CheckKungfuRedPoint();
 
