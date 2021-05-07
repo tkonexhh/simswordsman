@@ -17,7 +17,6 @@ namespace GameWish.Game
         [SerializeField] private ArenaShopItem[] m_ItemInfos;
         [SerializeField] private ArenaShopItemTips m_ItemTips;
 
-
         private float m_Timer = 0;
         private float m_RefeshTime = 1;
 
@@ -65,7 +64,7 @@ namespace GameWish.Game
             var shopInfoLst = GameDataMgr.S.GetPlayerData().towerData.shopInfoLst;
             for (int i = 0; i < m_ItemInfos.Length; i++)
             {
-                m_ItemInfos[i].SetItem(this, i, TDTowerShopTable.GetShopItemInfoByID(shopInfoLst[i].id));
+                m_ItemInfos[i].SetItem(this, i, TDArenaShopTable.GetShopItemInfoByID(shopInfoLst[i].id));
             }
         }
 

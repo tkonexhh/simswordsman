@@ -66,8 +66,6 @@ namespace GameWish.Game
             EventSystem.S.Register(EventID.OnRefreshDisciple, HandleAddListenerEvevt);
             EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
             EventSystem.S.Register(EventID.OnSelectedKungfuSuccess, HandleAddListenerEvevt);
-
-        
         }
 
         private void RefreshPanelInfo()
@@ -447,6 +445,7 @@ namespace GameWish.Game
                 MainGameMgr.S.CommonTaskMgr.TaskRemoveCharacter(m_CurDisciple.id);
                 MainGameMgr.S.CharacterMgr.RemoveCharacter(m_CurDisciple.id);
                 EventSystem.S.Send(EventID.OnRefreshMainMenuPanel);
+                EventSystem.S.Send(EventID.OnRefreshDisciple, m_CurDisciple.id);
                 HideSelfWithAnim();
             }
             else

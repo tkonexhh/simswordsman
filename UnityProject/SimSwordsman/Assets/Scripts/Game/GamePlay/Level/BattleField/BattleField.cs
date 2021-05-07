@@ -83,31 +83,29 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// �ı䱳��ͼƬ
+        /// �ı䱳��ͼƬ
         /// </summary>
         /// <param name="clanType"></param>
         public void ChangeBgSpriteRender(ClanType clanType)
         {
-            Sprite sr = null;
-
-            string spriteName = GetBattleBgName(clanType);
-
-            if (!string.IsNullOrEmpty(spriteName))
-            {
-                sr = SpriteLoader.S.GetSpriteByName(spriteName);
-            }
-
-            if (sr != null)
-            {
-                m_BgSpriteRender.sprite = sr;
-            }
+            ChangeBGSpriteRender(GetBattleBgName(clanType));
         }
 
         public void ChangeBgSpriteRenderToHeroTrial()
         {
+            ChangeBGSpriteRender("HeroTrialBattleField");
+        }
+
+        public void ChangeBgSpriteRenderToTower()
+        {
+            ChangeBGSpriteRender("BattleField_tower");
+        }
+
+        private void ChangeBGSpriteRender(string name)
+        {
             Sprite sr = null;
 
-            string spriteName = "HeroTrialBattleField";
+            string spriteName = name;
 
             if (!string.IsNullOrEmpty(spriteName))
             {

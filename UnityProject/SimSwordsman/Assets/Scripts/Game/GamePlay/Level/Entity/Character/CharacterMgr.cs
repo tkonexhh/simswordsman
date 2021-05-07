@@ -349,6 +349,23 @@ namespace GameWish.Game
             return spawnPos;
         }
 
+        /// <summary>
+        /// 获取战力最高的前5个弟子的功力总和
+        /// </summary>
+        /// <returns></returns>
+        public long GetCharacterATK()
+        {
+            long totalAtk = 0;
+            var allCharacter = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
+            CommonUIMethod.BubbleSortForType(allCharacter, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
+            int count = Mathf.Min(5, allCharacter.Count);
+            for (int i = 0; i < count; i++)
+            {
+                totalAtk += (long)allCharacter[i].atkValue;
+            }
+            return totalAtk;
+        }
+
         #endregion
 
 

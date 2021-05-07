@@ -23,6 +23,10 @@ namespace GameWish.Game
         /// 英雄试炼
         /// </summary>
         HeroTrial,
+        /// <summary>
+        /// 竞技场
+        /// </summary>
+        Arena,
     }
 
     public class SendDisciplesPanel : AbstractAnimPanel
@@ -58,6 +62,7 @@ namespace GameWish.Game
         private ChapterConfigInfo m_CurChapterConfigInfo = null;
         private LevelConfigInfo m_LevelConfigInfo = null;
         private TowerPanelChallengeToSelect m_TowerLevelConfig;
+        private ArenaCellToSend m_ArenaLevelConfig;
 
         private Dictionary<int, HerbalMedicineItem> m_PlayerDataHerbDic = new Dictionary<int, HerbalMedicineItem>();
 
@@ -97,8 +102,13 @@ namespace GameWish.Game
                     m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
                     RefeshATK();
                     break;
+                case PanelType.Arena:
+                    m_ArenaLevelConfig = (ArenaCellToSend)args[1];
+                    RefeshATK();
+                    break;
                 default:
                     break;
+
             }
             InitPanelInfo();
 
@@ -156,6 +166,10 @@ namespace GameWish.Game
                     else if (type == PanelType.Challenge)
                     {
                         UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, type, m_LevelConfigInfo);
+                    }
+                    else if (type == PanelType.Arena)
+                    {
+                        UIMgr.S.OpenPanel(UIID.ChallengeChooseDisciple, OpenCallback, type, m_ArenaLevelConfig);
                     }
 
                     break;
@@ -222,6 +236,10 @@ namespace GameWish.Game
             {
                 recommended = m_TowerLevelConfig.recommendATK;
             }
+            else if (m_PanelType == PanelType.Arena)
+            {
+                recommended = m_ArenaLevelConfig.enemyData.atk;
+            }
             m_RecommendedSkillsValue.text = CommonUIMethod.GetTenThousandOrMillion(recommended);
 
             try
@@ -261,15 +279,13 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Challenge:
-                    if (m_AllCharacterList != null)
-                        for (int i = 0; i < MaxDiscipleNumber; i++)
-                            CreateDisciple(m_UnselectedTrans);
-                    break;
                 case PanelType.Tower:
+                case PanelType.Arena:
                     if (m_AllCharacterList != null)
                         for (int i = 0; i < MaxDiscipleNumber; i++)
                             CreateDisciple(m_UnselectedTrans);
                     break;
+
                 default:
                     break;
             }
@@ -334,6 +350,16 @@ namespace GameWish.Game
                         UseHerb();
                         MainGameMgr.S.TowerSystem.StartLevel(m_SelectedList, m_TowerLevelConfig.basicATK);
                         break;
+                    case PanelType.Arena:
+                        if (m_SelectedList.Count != MaxDiscipleNumber)
+                        {
+                            FloatMessage.S.ShowMsg("请选择满弟子 !");
+                            return;
+                        }
+                        UseHerb();
+                        MainGameMgr.S.ArenaSystem.StartLevel(m_SelectedList, m_PlayerDataHerb, m_ArenaLevelConfig);
+
+                        break;
                     default:
                         break;
                 }
@@ -358,6 +384,7 @@ namespace GameWish.Game
             switch (m_PanelType)
             {
                 case PanelType.Challenge:
+                case PanelType.Arena:
                     {
                         CommonUIMethod.BubbleSortForType(m_AllCharacterList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
                         int minCount = Mathf.Min(m_AllCharacterList.Count, MaxDiscipleNumber);
