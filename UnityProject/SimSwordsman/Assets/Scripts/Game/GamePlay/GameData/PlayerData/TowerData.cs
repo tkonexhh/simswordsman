@@ -49,6 +49,7 @@ namespace GameWish.Game
             towerLevelConfigs.Clear();
             towerCharacterLst.Clear();
             m_TowerCharacterMap.Clear();
+            enemyCharacterLst.Clear();
             // InitLevelConfig();
             RandomShopData();
             SetDataDirty();

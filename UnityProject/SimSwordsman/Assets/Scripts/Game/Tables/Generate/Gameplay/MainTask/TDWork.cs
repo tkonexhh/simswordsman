@@ -20,6 +20,7 @@ namespace GameWish.Game
         private string m_WorkName;   
         private string m_WorkTalk;   
         private string m_Reward;   
+        private string m_RewardRatio;   
         private EInt m_SpeRewardRate = 0;   
         private string m_SpeReward;   
         private EInt m_WorkTime = 0;   
@@ -69,6 +70,11 @@ namespace GameWish.Game
         /// 工作奖励
         /// </summary>
         public  string  reward {get { return m_Reward; } }
+       
+        /// <summary>
+        /// 奖励系数随讲武堂
+        /// </summary>
+        public  string  rewardRatio {get { return m_RewardRatio; } }
        
         /// <summary>
         /// 特殊奖励概率，基数10000
@@ -145,24 +151,27 @@ namespace GameWish.Game
                     m_Reward = dataR.ReadString();
                     break;
                 case 8:
-                    m_SpeRewardRate = dataR.ReadInt();
+                    m_RewardRatio = dataR.ReadString();
                     break;
                 case 9:
-                    m_SpeReward = dataR.ReadString();
+                    m_SpeRewardRate = dataR.ReadInt();
                     break;
                 case 10:
-                    m_WorkTime = dataR.ReadInt();
+                    m_SpeReward = dataR.ReadString();
                     break;
                 case 11:
-                    m_WorkInterval = dataR.ReadInt();
+                    m_WorkTime = dataR.ReadInt();
                     break;
                 case 12:
-                    m_WaitingTime = dataR.ReadInt();
+                    m_WorkInterval = dataR.ReadInt();
                     break;
                 case 13:
-                    m_StoreAmount = dataR.ReadInt();
+                    m_WaitingTime = dataR.ReadInt();
                     break;
                 case 14:
+                    m_StoreAmount = dataR.ReadInt();
+                    break;
+                case 15:
                     m_MeanWhileWorkman = dataR.ReadInt();
                     break;
                 default:
@@ -175,7 +184,7 @@ namespace GameWish.Game
         
         public static Dictionary<string, int> GetFieldHeadIndex()
         {
-          Dictionary<string, int> ret = new Dictionary<string, int>(15);
+          Dictionary<string, int> ret = new Dictionary<string, int>(16);
           
           ret.Add("WorkID", 0);
           ret.Add("HomeLevel", 1);
@@ -185,13 +194,14 @@ namespace GameWish.Game
           ret.Add("WorkName", 5);
           ret.Add("WorkTalk", 6);
           ret.Add("Reward", 7);
-          ret.Add("SpeRewardRate", 8);
-          ret.Add("SpeReward", 9);
-          ret.Add("WorkTime", 10);
-          ret.Add("WorkInterval", 11);
-          ret.Add("WaitingTime", 12);
-          ret.Add("StoreAmount", 13);
-          ret.Add("MeanWhileWorkman", 14);
+          ret.Add("RewardRatio", 8);
+          ret.Add("SpeRewardRate", 9);
+          ret.Add("SpeReward", 10);
+          ret.Add("WorkTime", 11);
+          ret.Add("WorkInterval", 12);
+          ret.Add("WaitingTime", 13);
+          ret.Add("StoreAmount", 14);
+          ret.Add("MeanWhileWorkman", 15);
           return ret;
         }
     } 

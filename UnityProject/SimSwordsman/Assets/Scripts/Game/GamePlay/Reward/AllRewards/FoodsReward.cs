@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         public override string RewardName()
         {
-            return "ʳ食物";
+            return "食物";
             //return m_Info.Name;
         }
 

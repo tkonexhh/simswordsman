@@ -31,8 +31,8 @@ namespace GameWish.Game
             {
                 for (int i = 0; i < strs.Length; i++)
                 {
-                    DiscipleNumber = int.Parse(strs[0]);
-                    DiscipleLevel = int.Parse(strs[1]);
+                    DiscipleNumber = int.Parse(strs[1]);
+                    DiscipleLevel = int.Parse(strs[0]);
                 }
             }
         }

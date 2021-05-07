@@ -191,23 +191,23 @@ namespace GameWish.Game
 
             m_SelectCharacterBtn.onClick.AddListener(() =>
             {
-                bool isTrialReady = MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady();
-                if (!isTrialReady)
-                {
-                    FloatMessage.S.ShowMsg("今日次数已用完");
-                    return;
-                }
+                //bool isTrialReady = MainGameMgr.S.HeroTrialMgr.CheckIsTrialReady();
+                //if (!isTrialReady)
+                //{
+                //    FloatMessage.S.ShowMsg("今日次数已用完");
+                //    return;
+                //}
 
                 UIMgr.S.OpenPanel(UIID.HeroTrialChooseDisciplePanel, PanelType.HeroTrial);
             });
 
             m_FinishTrialBtn.onClick.AddListener(() =>
             {
-                //if (!m_TrialComplete)
-                //{
-                //    FloatMessage.S.ShowMsg("试炼未完成");
-                //    return;
-                //}
+                if (!m_TrialComplete)
+                {
+                    FloatMessage.S.ShowMsg("试炼未完成");
+                    return;
+                }
                 MainGameMgr.S.HeroTrialMgr.FinishTrial();
                 MainGameMgr.S.HeroTrialMgr.Reset();
                 MainGameMgr.S.HeroTrialMgr.OnExitHeroTrial();

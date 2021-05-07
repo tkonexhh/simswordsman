@@ -123,6 +123,11 @@ namespace GameWish.Game
             m_ArrangeBtn.onClick.AddListener(()=> {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
+                if (m_SelectedItemBase==null)
+                {
+                    return;
+                }
+
                 float oldCharacterAtkValue = m_CharacterItem.atkValue;
 
                 bool learn = MainGameMgr.S.CharacterMgr.LearnKungfu(m_CharacterItem.id, m_CurIndex, new KungfuItem((KungfuType)m_SelectedItemBase.GetSubName()));

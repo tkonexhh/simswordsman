@@ -33,7 +33,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Speed1Btn;
         [SerializeField]
-        private Button m_Speed2Btn;
+        private Button m_Speed2Btn;  
+        [SerializeField]
+        private Transform m_Top;
+        [SerializeField]
+        private Transform m_Bottom;    
         //[SerializeField]
         //private Button m_Speed4Btn;
         private int m_CurTimeScale = 1;
@@ -55,7 +59,9 @@ namespace GameWish.Game
 
         //Tower
         private TowerLevelConfig m_TowerLevelConfig = null;
+        private ArenaLevelConfig m_ArenaLevelConfig = null;
 
+        private static bool isSpeedUp = false;
 
         protected override void OnUIInit()
         {
@@ -74,8 +80,14 @@ namespace GameWish.Game
         {
             base.OnOpen();
 
-            m_Speed1Btn.gameObject.SetActive(true);
-            m_Speed2Btn.gameObject.SetActive(false);
+            if (isSpeedUp)
+            {
+                SetTimeScale(2);
+            }
+            else
+            {
+                SetTimeScale(1);
+            }
         }
 
         private void StartBattleText()
@@ -221,6 +233,11 @@ namespace GameWish.Game
                 case PanelType.Tower:
                     m_RightSchoolNameValue.text = "伏魔塔";
                     m_MatchNameValue.text = "伏魔塔" + m_TowerLevelConfig.level;
+                    MainGameMgr.S.BattleFieldMgr.BattleField.ChangeBgSpriteRenderToTower();
+                    break;
+                case PanelType.Arena:
+                    m_RightSchoolNameValue.text = "竞技场";
+                    m_MatchNameValue.text = "竞技场" + m_ArenaLevelConfig.level;
                     break;
                 default:
                     break;
@@ -251,12 +268,12 @@ namespace GameWish.Game
                     return;
                 }
 
-                SetTimeScale(2);
+                SetTimeScale(2, true);
             });
 
             m_Speed2Btn.onClick.AddListener(() =>
             {
-                SetTimeScale(1);
+                SetTimeScale(1, true);
             });
 
             //m_Speed4Btn.onClick.AddListener(() =>
@@ -294,6 +311,10 @@ namespace GameWish.Game
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
                     break;
+                case PanelType.Arena:
+                    UIMgr.S.OpenPanel(UIID.MainMenuPanel);
+                    UIMgr.S.OpenPanel(UIID.ArenaPanel);
+                    break;
                 default:
                     break;
             }
@@ -317,13 +338,36 @@ namespace GameWish.Game
                     m_TowerLevelConfig = (TowerLevelConfig)args[1];
                     m_EnemyCharacterList = m_TowerLevelConfig.enemiesList;
                     break;
+                case PanelType.Arena:
+                    m_ArenaLevelConfig = (ArenaLevelConfig)args[1];
+                    m_EnemyCharacterList = m_ArenaLevelConfig.enemyConfigs;
+                    break;
                 default:
                     break;
             }
 
             GetInformationForNeed();
             RefreshCurPanelInfo();
+            //注意
+            //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector2(39.99f, 4.0351f));
+            //Debug.LogError("##21" + screenPoint);
 
+            //// 再将屏幕坐标转换成UGUI坐标
+            //Vector2 localPoint;
+            //Canvas canvas = GameObject.FindGameObjectWithTag("Target").GetComponent<Canvas>() ;
+            //Debug.LogError("##21" + canvas.name);
+
+            //if (RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform, screenPoint, Camera.main, out localPoint))
+            //{
+            //    Debug.LogError("##1" + localPoint);
+
+            //}
+            //Vector2 vector2;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform.parent.transform, new Vector2(39.99f, 4.0351f),Camera.main,out vector2);
+
+            //Debug.LogError("##1"+ vector2);
+            m_Top.localPosition = new Vector3(0, 333);
+            m_Bottom.localPosition = new Vector3(0, -277);
             StartBattleText();
         }
 
@@ -364,9 +408,9 @@ namespace GameWish.Game
         {
         }
 
-        private void ReduceHPWithAni(float endValue,Slider hpSlider,float duration = .5f) 
+        private void ReduceHPWithAni(float endValue, Slider hpSlider, float duration = .5f)
         {
-            DG.Tweening.DOTween.To(() => hpSlider.value, (x) => 
+            DG.Tweening.DOTween.To(() => hpSlider.value, (x) =>
             {
                 hpSlider.value = x;
             }, endValue, duration);
@@ -404,6 +448,9 @@ namespace GameWish.Game
                         case PanelType.Tower:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, true);
                             break;
+                        case PanelType.Arena:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_ArenaLevelConfig, true);
+                            break;
                         default:
                             break;
                     }
@@ -426,6 +473,9 @@ namespace GameWish.Game
                         case PanelType.Tower:
                             UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_TowerLevelConfig, false);
                             break;
+                        case PanelType.Arena:
+                            UIMgr.S.OpenPanel(UIID.CombatSettlementPanel, m_PanelType, m_ArenaLevelConfig, false);
+                            break;
                         default:
                             break;
                     }
@@ -439,7 +489,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
-                    break;
+                    break; 
                 default:
                     break;
             }
@@ -454,7 +504,7 @@ namespace GameWish.Game
                 CreateBattleText(m_EndText, 2);
         }
 
-        private void SetTimeScale(int timeScale)
+        private void SetTimeScale(int timeScale, bool setSpeedUp = false)
         {
             m_CurTimeScale = timeScale;
             Time.timeScale = timeScale;
@@ -463,12 +513,18 @@ namespace GameWish.Game
             {
                 m_Speed1Btn.gameObject.SetActive(true);
                 m_Speed2Btn.gameObject.SetActive(false);
+
+                if(setSpeedUp)
+                    isSpeedUp = false;
             }
 
             if (timeScale == 2)
             {
                 m_Speed1Btn.gameObject.SetActive(false);
                 m_Speed2Btn.gameObject.SetActive(true);
+
+                if (setSpeedUp)
+                    isSpeedUp = true;
             }
         }
     }

@@ -39,17 +39,17 @@ namespace GameWish.Game
             m_BtnUncomplete.onClick.AddListener(OnClickUncomplete);
             m_BtnHide.onClick.AddListener(OnClickHide);
             m_BtnShow.onClick.AddListener(OnClickShow);
-            EventSystem.S.Register(EventID.OnRefeshMainTask, Refesh);
+
             m_AnimCtrl.Play(m_AnimHash_Hide);
             RefeshTask();
         }
 
         public void OnOpen()
         {
-
+            EventSystem.S.Register(EventID.OnRefeshMainTask, Refesh);
         }
 
-        private void OnDestroy()
+        public void OnClose()
         {
             EventSystem.S.UnRegister(EventID.OnRefeshMainTask, Refesh);
         }

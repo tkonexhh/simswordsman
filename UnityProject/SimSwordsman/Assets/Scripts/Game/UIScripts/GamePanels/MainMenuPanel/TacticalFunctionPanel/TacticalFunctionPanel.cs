@@ -62,9 +62,6 @@ namespace GameWish.Game
 
             BindAddListenerEvent();
         }
-
-
-
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);

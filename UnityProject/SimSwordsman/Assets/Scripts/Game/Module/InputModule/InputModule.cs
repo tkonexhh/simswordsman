@@ -66,7 +66,8 @@ namespace GameWish.Game
 
         private void OnClickF4()
         {
-            EventSystem.S.Send(EventID.OnStartUpgradeFacility, FacilityType.Lobby, 1, 1);
+            var controller = MainGameMgr.S.CharacterMgr.GetCharacterController(1);
+            Debug.LogError(CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.CharacterItem.atkValue));
         }
 
         private void OnSceneLoadResult(string sceneName, bool result)

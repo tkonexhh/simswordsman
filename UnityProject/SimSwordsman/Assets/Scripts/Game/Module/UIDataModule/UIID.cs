@@ -99,5 +99,13 @@ namespace GameWish.Game
         #endregion
 
         SplashScreenPanel,
+
+        #region 竞技场
+        ArenaPanel,
+        ArenaShopPanel,
+        ArenaRulePanel,
+        ArenaAddCountPanel,
+        ArenaRankRewardPanel,
+        #endregion
     }
 }

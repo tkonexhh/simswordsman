@@ -22,6 +22,7 @@ namespace GameWish.Game
         private HeroTrialMgr m_HeroTrialMgr = null;
         private TaskMgr m_TaskMgr = null;
         private TowerSystem m_TowerSystem = null;
+        private ArenaSystem m_ArenaSystem = null;
 
         public FacilityMgr FacilityMgr { get => m_FacilityMgr; }
         public CharacterMgr CharacterMgr { get => m_CharacterMgr; }
@@ -40,6 +41,7 @@ namespace GameWish.Game
         public HeroTrialMgr HeroTrialMgr { get => m_HeroTrialMgr; }
 
         public TowerSystem TowerSystem { get => m_TowerSystem; }
+        public ArenaSystem ArenaSystem { get => m_ArenaSystem; }
 
 
         public bool IsMainMenuPanelOpen = false;
@@ -92,6 +94,9 @@ namespace GameWish.Game
 
             m_TowerSystem = gameObject.AddComponent<TowerSystem>();//必须要在BattleFieldMgr之后初始化
             m_TowerSystem.OnInit();
+
+            m_ArenaSystem = gameObject.AddComponent<ArenaSystem>();
+            m_ArenaSystem.OnInit();
 
             m_CharacterMgr.InitData();
 

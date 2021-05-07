@@ -263,11 +263,13 @@ namespace GameWish.Game
         {
             GameDataMgr.S.GetPlayerData().recordData.AddJob();
             WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
+            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+            float rewardRatio = workConfigItem.GetRatio(lobbyLevel);
             // Item reward
             for (int i = 0; i < workConfigItem.itemRewards.Count; i++)
             {
                 int itemId = workConfigItem.itemRewards[i].id;
-                int count = workConfigItem.itemRewards[i].GetRewardValue();
+                int count = (int)(workConfigItem.itemRewards[i].GetRewardValue() * rewardRatio);
                 MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)itemId), count);
 
                 m_Controller.SpawnCollectedObjWorkReward((RawMaterial)itemId, count);

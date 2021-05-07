@@ -97,10 +97,13 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 426e0690d3d29864e914718edd5d5720, type: 3}
     - {fileID: 2800000, guid: 746927f2b1904ed47bcfab718a29172f, type: 3}
     - {fileID: 2800000, guid: bea0d55c93aaffc45b9f59a2afcee0b1, type: 3}
+    - {fileID: 2800000, guid: 4398d8e1c3f4a584b9f5c261192fa209, type: 3}
+    - {fileID: 2800000, guid: 04c2103043fdf7f429379b4dc16e66fe, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 6f4c36006a9413541a630b0b2b01d5cf, type: 3}
+  - {fileID: 21300000, guid: 04c2103043fdf7f429379b4dc16e66fe, type: 3}
   - {fileID: 21300000, guid: 5da4da4081be744488d13b8a3b2234b1, type: 3}
   - {fileID: 21300000, guid: 426e0690d3d29864e914718edd5d5720, type: 3}
   - {fileID: 21300000, guid: e5f16dd0379933c4c9ddd7b092044e43, type: 3}
@@ -109,6 +112,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 10925b41cb5c1a9428be97673a48b8b2, type: 3}
   - {fileID: 21300000, guid: ba11bc618f2f4c149b623678ae9f3af8, type: 3}
   - {fileID: 21300000, guid: ddbae09104de655429f8e6e7cdfa94bd, type: 3}
+  - {fileID: 21300000, guid: 4398d8e1c3f4a584b9f5c261192fa209, type: 3}
   - {fileID: 21300000, guid: 6ea6f4124a70a3a4cab3519c606c9384, type: 3}
   - {fileID: 21300000, guid: ce2dc7a2dc171ed42ac9da019e2c3cdb, type: 3}
   - {fileID: 21300000, guid: f1e2acc2c71649047b1888f392c4a75e, type: 3}
@@ -165,6 +169,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3dacd6df8d19f424781204a4484e1981, type: 3}
   m_PackedSpriteNamesToIndex:
   - HeroTrialPanel_Bg15
+  - HeroTrialPanel_Bg19
   - HeroTrialPanel_Font_Wudang
   - HeroTrialPanel_YesClan_Wudang
   - HeroTrialPanel_Font_Mojiao
@@ -173,6 +178,7 @@ SpriteAtlas:
   - HeroTrialPanel_Bg12
   - HeroTrialPanel_NotClan_Wudang
   - HeroTrialPanel_Big_Emei
+  - HeroTrialPanel_Bg18
   - HeroTrialPanel_Line_Good
   - HeroTrialPanel_TitleFont
   - HeroTrialPanel_YesClan_Gaibang

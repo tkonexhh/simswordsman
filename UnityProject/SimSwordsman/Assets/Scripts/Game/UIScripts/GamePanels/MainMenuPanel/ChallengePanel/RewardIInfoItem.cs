@@ -22,7 +22,7 @@ namespace GameWish.Game
         private bool m_IsSuccess;
 
         private LevelConfigInfo m_LevelConfigInfo = null;
-        private TowerLevelConfig m_TowerLevelConfig = null;
+        // private TowerLevelConfig m_TowerLevelConfig = null;
         private CharacterItem m_CurCharacterItem = null;
         private CharacterController m_CharacterController = null;
         private PanelType m_PanelType;
@@ -44,7 +44,8 @@ namespace GameWish.Game
                     m_CharacterController = t as CharacterController;
                     break;
                 case PanelType.Tower:
-                    m_TowerLevelConfig = (TowerLevelConfig)obj[1];
+                case PanelType.Arena:
+                    // m_TowerLevelConfig = (TowerLevelConfig)obj[1];
                     m_CharacterController = t as CharacterController;
                     break;
                 default:
@@ -54,7 +55,7 @@ namespace GameWish.Game
             m_ParentPanel = (CombatSettlementPanel)obj[3];
             m_CurCharacterItem = MainGameMgr.S.CharacterMgr.GetCharacterItem(m_CharacterController.CharacterId);
             RefreshPanelInfo();
-             DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, m_DiscipleTra, new Vector3(-132, -8, 0), new Vector3(0.2f, 0.2f, 1));
+            DiscipleHeadPortraitMgr.S.CreateDiscipleHeadIcon(m_CurCharacterItem, m_DiscipleTra, new Vector3(-132, -8, 0), new Vector3(0.2f, 0.2f, 1));
             //m_DisciplePhoto.sprite = m_ParentPanel.FindSprite(GetLoadDiscipleName(m_CurCharacterItem)); ;
         }
         private string GetLoadDiscipleName(CharacterItem characterItem)
@@ -144,9 +145,11 @@ namespace GameWish.Game
                     m_ExpCont.text = Define.PLUS + expChallenge;
                     break;
                 case PanelType.Tower:
+                case PanelType.Arena:
                     //int exp = (int)FoodBuffSystem.S.Exp(m_TowerLevelConfig.rewardExp);
                     m_ExpCont.text = Define.PLUS + "0";
                     break;
+
                 default:
                     break;
             }
