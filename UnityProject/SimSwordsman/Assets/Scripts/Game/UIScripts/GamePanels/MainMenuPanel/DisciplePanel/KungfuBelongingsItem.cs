@@ -54,7 +54,7 @@ namespace GameWish.Game
             }
         }
 
-        private void RefreshPanelInro()
+        public void RefreshPanelInro()
         {
             switch (m_CharacterKongfuData.KungfuLockState)
             {
@@ -63,6 +63,7 @@ namespace GameWish.Game
                     m_KungfuName.sprite = CommonMethod.GetKungName(m_CharacterKongfuData.GetKungfuType());
                     m_ItemIcon.gameObject.SetActive(true);
                     m_KungfuName.gameObject.SetActive(true);
+                    m_RedPoint.SetActive(false);
                     break;
                 case KungfuLockState.NotLearning:
                     m_Plus.SetActive(true);

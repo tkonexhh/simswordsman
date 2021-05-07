@@ -61,6 +61,8 @@ namespace GameWish.Game
 
         private void OnDestroy()
         {
+            EventSystem.S.UnRegister(EventID.OnSelectedKungfuSuccess, HandAddListenerEvent);
+            EventSystem.S.UnRegister(EventID.OnSelectedEquipSuccess, HandAddListenerEvent);
             m_Loader.ReleaseAllRes();
         }
 
@@ -235,6 +237,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
+            EventSystem.S.Register(EventID.OnSelectedKungfuSuccess,HandAddListenerEvent);
+            EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandAddListenerEvent);
             m_DiscipleBtn.onClick.AddListener(() => {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
@@ -242,7 +246,35 @@ namespace GameWish.Game
             });
         }
 
-   
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            switch ((EventID)key)
+            {
+                case EventID.OnSelectedKungfuSuccess:
+                    if (m_CharacterItem != null && (int)param[1] == m_CharacterItem.id)
+                    {
+                        foreach (var item in m_AllKungfuBelongingsItem)
+                        {
+                            item.RefreshPanelInro();
+                        }
+                    }
+                    break;
+                case EventID.OnSelectedEquipSuccess:
+                    if (m_CharacterItem != null && (int)param[0] == m_CharacterItem.id)
+                    {
+                        switch ((PropType)param[1])
+                        {
+                            case PropType.Arms:
+                                m_ArmsBelongingsItem.RefreshPanelInfo();
+                                break;
+                            case PropType.Armor:
+                                m_ArmorBelongingsItem.RefreshPanelInfo();
+                                break;
+                        }
+                    }
+                    break;
+            }
+        }
 
         public void DestroySelf()
         {

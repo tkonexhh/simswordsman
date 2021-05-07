@@ -55,14 +55,14 @@ namespace GameWish.Game
 		private void OnDestroy()
 		{
 		}
-		private void RefreshPanelInfo()
+		public void RefreshPanelInfo()
         {
             if (m_IsUnlock)
             {
 				//解锁
 				
 
-				if (m_CharaceterEquipment.IsHaveEquip())
+				if (!m_CharaceterEquipment.IsHaveEquip())
 				{
 					//未装备
 					m_Plus.SetActive(true);
@@ -71,6 +71,8 @@ namespace GameWish.Game
                 {
 					//装备
 					m_ItemIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EquipmentAtlas, m_CharaceterEquipment.GetIconName());
+					m_ItemIcon.gameObject.SetActive(true);
+					m_RedPoint.SetActive(false);
 				}
 			}
             else

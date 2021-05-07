@@ -165,7 +165,7 @@ namespace GameWish.Game
                         break;
                 }
                 MainGameMgr.S.InventoryMgr.RemoveItem(m_SelectedItemBase);
-                EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
+                EventSystem.S.Send(EventID.OnSelectedEquipSuccess, m_CurDisciple.id, m_CurPropType);
 
                 DataAnalysisMgr.S.CustomEvent(DotDefine.students_equip, m_SelectedItemBase.PropType.ToString() + ";" + m_SelectedItemBase.GetSubName().ToString());
 
