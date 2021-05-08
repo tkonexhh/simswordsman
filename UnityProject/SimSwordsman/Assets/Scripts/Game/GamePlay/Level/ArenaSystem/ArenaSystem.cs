@@ -80,6 +80,20 @@ namespace GameWish.Game
             return false;
         }
 
+        public DateTime GetNextEnterTime()
+        {
+            var now = DateTime.Now;
+            if (now.Hour < ArenaDefine.StartTime)
+            {
+                return new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.StartTime);
+            }
+            else// if(now.Hour>ArenaDefine.EndTime)
+            {
+                return new DateTime(now.Year, now.Month, now.Day).AddHours(24 + ArenaDefine.StartTime);
+            }
+            // return DateTime.Now;
+        }
+
 
 
         #endregion 

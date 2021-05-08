@@ -17,7 +17,14 @@ namespace GameWish.Game
         [SerializeField] private Text m_TxtCount;
         [SerializeField] private IUListView m_ListView;
 
+        [Header("Close")]
+        [SerializeField] private GameObject m_ArenaCloseBg;
         [SerializeField] private ArenaClose m_ArenaClose;
+
+        [Header("My")]
+        [SerializeField] private Text m_TxtMyRank;
+        [SerializeField] private Text m_TxtMyName;
+        [SerializeField] private Text m_TxtATK;
 
 
         protected override void OnUIInit()
@@ -38,10 +45,17 @@ namespace GameWish.Game
             m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
             UpdateCoin();
             UpdateCount();
+            UpdateMy();
 
-            m_ArenaClose.gameObject.SetActive(!MainGameMgr.S.ArenaSystem.IsWithinTime());
+            EnableArenaClose(!MainGameMgr.S.ArenaSystem.IsWithinTime());
             MainGameMgr.S.ArenaSystem.ShowRankReward();
 
+        }
+
+        private void EnableArenaClose(bool enable)
+        {
+            m_ArenaClose.gameObject.SetActive(enable);
+            m_ArenaCloseBg.SetActive(enable);
         }
 
 
@@ -62,7 +76,14 @@ namespace GameWish.Game
 
         private void UpdateCount()
         {
-            m_TxtCount.text = GameDataMgr.S.GetPlayerData().arenaData.challengeCount.ToString();
+            m_TxtCount.text = string.Format("挑战次数: <color=#405788>{0}</color>", GameDataMgr.S.GetPlayerData().arenaData.challengeCount.ToString());
+        }
+
+        private void UpdateMy()
+        {
+            m_TxtMyRank.text = GameDataMgr.S.GetPlayerData().arenaData.nowLevel.ToString();
+            m_TxtMyName.text = GameDataMgr.S.GetClanData().clanName;
+            m_TxtATK.text = MainGameMgr.S.CharacterMgr.GetCharacterATK().ToString();
         }
 
 

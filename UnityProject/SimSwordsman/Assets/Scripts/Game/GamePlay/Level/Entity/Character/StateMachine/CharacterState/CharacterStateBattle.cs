@@ -86,7 +86,7 @@ namespace GameWish.Game
 
         public void SetNextAtkAnimName()
         {
-            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp || m_Controller.CharacterId.Equals(ArenaDefine.ArenaEnemyID))
             {
                 List<KungfuType> kongfuList = m_Controller.CharacterModel.GetKongfuTypeList();
                 if (kongfuList.Count == 0) // Not any kongfu learned
@@ -103,6 +103,11 @@ namespace GameWish.Game
             else
             {
                 EnemyInfo enemyInfo = TDEnemyConfigTable.GetEnemyInfo(m_Controller.CharacterId);
+                if (enemyInfo == null)
+                {
+                    Log.e("Enemy anim list empty");
+                    return;
+                }
                 List<string> animNameList = enemyInfo.animNameList;
                 if (animNameList.Count > 0)
                 {

@@ -9,6 +9,7 @@ namespace GameWish.Game
     public class ArenaPanelCellItem : IUListItemView
     {
         [SerializeField] private Image m_ImgBg;
+        [SerializeField] private Image m_ImgLevelBg;
         [SerializeField] private Text m_TxtLevel;
         [SerializeField] private Image m_ImgHeadIcon;
         [SerializeField] private Text m_TxtName;
@@ -28,6 +29,7 @@ namespace GameWish.Game
             m_Index = index;
             m_Data = data;
             m_TxtLevel.text = index.ToString();
+            UpdateLevelBg(index);
             m_TxtName.text = data.name;
             m_TxtATK.text = data.atk.ToString();
             int nowLevel = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
@@ -40,11 +42,19 @@ namespace GameWish.Game
         {
             m_Data = null;
             m_TxtLevel.text = level.ToString();
+            UpdateLevelBg(level);
             m_TxtName.text = GameDataMgr.S.GetClanData().clanName;
 
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
             m_TxtATK.text = totalAtk.ToString();
             m_ImgBg.color = Color.grey;
+        }
+
+        private void UpdateLevelBg(int level)
+        {
+            string spName = "jingjichang_qizi" + Mathf.Min(4, level);
+            if (m_ImgLevelBg.sprite.name != spName)
+                m_ImgLevelBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", spName);
         }
 
         private void OnClickFight()

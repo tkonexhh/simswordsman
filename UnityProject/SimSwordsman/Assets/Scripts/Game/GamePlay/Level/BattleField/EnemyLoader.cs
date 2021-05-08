@@ -8,14 +8,17 @@ namespace GameWish.Game
 {
     public class EnemyLoader : TSingleton<EnemyLoader>
     {
-        private List<AddressableGameObjectLoader> m_EnemyLoaderList = new List<AddressableGameObjectLoader>();
         private ResLoader m_EnemyLoader = null;
         private List<GameObject> m_EnemyObjList = new List<GameObject>();
 
         public void LoadEnemySync(int id, Action<GameObject> onLoadDone)
         {
             string prefabName = GetPrefabName(id);
+            LoadEnemySync(prefabName, onLoadDone);
+        }
 
+        public void LoadEnemySync(string prefabName, Action<GameObject> onLoadDone)
+        {
             if (m_EnemyLoader == null)
             {
                 m_EnemyLoader = ResLoader.Allocate("EnemyLoader");
@@ -25,23 +28,11 @@ namespace GameWish.Game
             GameObject enemy = GameObject.Instantiate(go);
             m_EnemyObjList.Add(enemy);
             onLoadDone.Invoke(enemy);
-            //AddressableGameObjectLoader loader = new AddressableGameObjectLoader();
-            //loader.InstantiateAsync(prefabName, (obj) =>
-            //{
-            //    m_EnemyLoaderList.Add(loader);
-
-            //    onLoadDone?.Invoke(obj);
-            //});
         }
 
         public void ReleaseAll()
         {
-            //m_EnemyLoaderList.ForEach(i => 
-            //{
-            //    i.Release();
-            //});
 
-            //m_EnemyLoaderList.Clear();
             m_EnemyLoader.ReleaseAllRes();
 
             m_EnemyObjList.ForEach(i =>
