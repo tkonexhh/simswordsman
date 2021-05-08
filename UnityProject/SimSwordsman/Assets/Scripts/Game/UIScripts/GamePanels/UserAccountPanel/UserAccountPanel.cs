@@ -12,6 +12,8 @@ namespace GameWish.Game
     public class UserAccountPanel : AbstractAnimPanel
     {
         [SerializeField]
+        private Image m_HeadPhoto;
+        [SerializeField]
         private Text m_SecNameText;
         [SerializeField]
         private Text m_LobbyLevelText;
@@ -52,6 +54,7 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
+            EventSystem.S.Register(EventID.OnRefreshSettingHeadPhoto, HandAddListenerEvent);
 
             m_CloseBtn.onClick.AddListener(OnCloseBtnClickCallBack);
             m_LogOutBtn.onClick.AddListener(OnLogOutBtnClickCallBack);
@@ -65,6 +68,13 @@ namespace GameWish.Game
                 UIMgr.S.OpenPanel(UIID.SelectedHeadPanel);
             });
             RefreshMessageBtn(GameDataMgr.S.GetPlayerData().GetMessagePush());
+        }
+        private void HandAddListenerEvent(int key, object[] param)
+        {
+            if ((EventID)key == EventID.OnRefreshSettingHeadPhoto)
+            {
+                m_HeadPhoto.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + GameDataMgr.S.GetPlayerData().headPhoto);
+            }
         }
 
         private void OnMessageBtnClickCallBack()
@@ -103,10 +113,17 @@ namespace GameWish.Game
 
             OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
+
+
             UpdateMusic(AudioMgr.S.isMusicEnable);
             UpdateSound(AudioMgr.S.isSoundEnable);
 
             UpdateUseAccountInfo();
+
+            if (!string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().headPhoto))
+            {
+                m_HeadPhoto.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + GameDataMgr.S.GetPlayerData().headPhoto);
+            }
         }
         protected override void OnPanelHideComplete()
         {
@@ -119,6 +136,7 @@ namespace GameWish.Game
         {
             base.OnClose();
             CloseDependPanel(EngineUI.MaskPanel);
+            EventSystem.S.UnRegister(EventID.OnRefreshSettingHeadPhoto, HandAddListenerEvent);
         }
 
         private void UpdateUseAccountInfo()

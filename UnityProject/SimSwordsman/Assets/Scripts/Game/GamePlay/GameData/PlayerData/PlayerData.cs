@@ -16,6 +16,7 @@ namespace GameWish.Game
 
         public string firstPlayTime;
         public string lastPlayTime;
+        public string headPhoto;
 
         public bool isGuideStart;
 
@@ -112,7 +113,7 @@ namespace GameWish.Game
 
             lastPlayTime = "0";
             firstPlayTime = string.Empty;
-
+            headPhoto = string.Empty;
             isGuideStart = false;
 
             IsNewUser = true;

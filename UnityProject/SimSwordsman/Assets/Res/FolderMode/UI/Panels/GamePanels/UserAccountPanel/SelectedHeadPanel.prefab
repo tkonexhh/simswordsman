@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37600002, y: 0.32774964}
   m_AnchorMax: {x: 0.628, y: 0.372}
-  m_AnchoredPosition: {x: -1.0999985, y: 1.199997}
+  m_AnchoredPosition: {x: -1.1000061, y: 1.2000122}
   m_SizeDelta: {x: -4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &338954653
@@ -606,7 +606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -105}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4466071897687768158
@@ -686,6 +686,9 @@ GameObject:
   - component: {fileID: 4466071897722088557}
   - component: {fileID: 4466071897722088558}
   - component: {fileID: 4466071897722088559}
+  - component: {fileID: 888124302}
+  - component: {fileID: 888124301}
+  - component: {fileID: 888124300}
   m_Layer: 5
   m_Name: SelectedHeadList
   m_TagString: Untagged
@@ -709,8 +712,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -12.022329, y: 293.98395}
-  m_SizeDelta: {x: 620.2, y: 7}
+  m_AnchoredPosition: {x: -12.022329, y: 293.98016}
+  m_SizeDelta: {x: 620.2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4466071897722088558
 MonoBehaviour:
@@ -727,7 +730,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 28
     m_Right: 0
-    m_Top: 26
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
@@ -743,13 +746,63 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4466071897722088556}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!222 &888124302
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466071897722088556}
+  m_CullTransparentMesh: 0
+--- !u!114 &888124301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466071897722088556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8352941, g: 0.8117647, b: 0.7294118, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &888124300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466071897722088556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &4466071897925620926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,7 +1463,7 @@ MonoBehaviour:
   m_CloseBtn: {fileID: 4466071897687768156}
   m_ArrangeBtn: {fileID: 7451977781687187861}
   m_SelectedList: {fileID: 4466071897722088557}
-  m_Head: {fileID: 2682012325270781707, guid: c86d812abe4684b46be6dd7ea7edc13c, type: 3}
+  m_Head: {fileID: 2470847141359373090, guid: c86d812abe4684b46be6dd7ea7edc13c, type: 3}
 --- !u!1 &4466071899415894576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,8 +1582,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4466071898059621064}
   m_HandleRect: {fileID: 4466071898059621079}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999909
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
