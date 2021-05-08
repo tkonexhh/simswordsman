@@ -14,9 +14,9 @@ namespace GameWish.Game
         public WorldUI_HandTips m_HandTips;
         public ItemTips m_ItemTips;
 
-
         private int m_TimerHandTips = -1;
 
+        private int ItemTipsSorting;
         // private bool m_IsBattle = false;
 
         protected override void OnUIInit()
@@ -26,6 +26,9 @@ namespace GameWish.Game
             GameObjectPoolMgr.S.AddPool("WalkTalk", m_WalkTalk.gameObject, -1, 5);
             GameObjectPoolMgr.S.AddPool("ItemTips", m_ItemTips.gameObject, -1, 5);
             GameObjectPoolMgr.S.AddPool("HandTips", m_HandTips.gameObject, -1, 2);
+
+            Canvas canvas = m_ItemTips.GetComponent<Canvas>();
+            ItemTipsSorting = canvas.sortingOrder;
         }
 
         // protected override void OnOpen()
@@ -60,12 +63,17 @@ namespace GameWish.Game
             itemTipsGo.transform.localPosition = Vector3.zero;
             itemTipsGo.transform.localScale = Vector3.one;
 
+            Canvas canvas = itemTipsGo.GetComponent<Canvas>();
+            ItemTipsSorting++;
+            canvas.sortingOrder = ItemTipsSorting;
+
             ItemTips itemTips = itemTipsGo.GetComponent<ItemTips>();
             itemTips.followTransform = character;
             itemTips.SetText(name, cont, icom);
             Timer.S.Post2Scale(i =>
             {
                 GameObjectPoolMgr.S.Recycle(itemTipsGo);
+                ItemTipsSorting--;
             }, 3.0f);
         }
 
