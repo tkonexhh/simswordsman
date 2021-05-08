@@ -12,6 +12,9 @@ namespace GameWish.Game
         public int nowLevel = 0;
         public int challengeCount = ArenaDefine.Max_ChallengeCount;
         public int adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
+        public bool getRewarded = false;//是否领取过排行奖励
+        public bool hasReward = false;//是否需要发放奖励
+        public string lastRefeshTime;
 
         public List<ArenaEnemyDB> enemyLst = new List<ArenaEnemyDB>();
 
@@ -29,20 +32,56 @@ namespace GameWish.Game
 
         public void Init()
         {
-            enemyLst.Clear();
-            if (enemyLst.Count == 0)
+            //判读是否需要重置数据
+            if (string.IsNullOrEmpty(lastRefeshTime))//首次进入
             {
-                InitEnemy();
+                Reset();
             }
+            else
+            {
+                //判断是否间隔1天
+                DateTime lastRefesh;
+                DateTime now = DateTime.Now;
+                DateTime.TryParse(lastRefeshTime, out lastRefesh);
 
+
+                int offsetDays = (now - lastRefesh).Days;//TODO
+                // Debug.LogError("AAAA:" + offsetDays + ":" + lastRefesh + ":" + now);
+                if (offsetDays >= 1)
+                {
+                    Reset();
+                }
+                else
+                {
+                    int lastLevel = nowLevel;
+                    //如果当前的时间是刷新时间的十点以后
+                    //并且间隔没有超过2天
+                    //并且当前排名>24
+                    Debug.LogError("Last:" + lastLevel);
+                    if (now >= new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.EndTime)
+                        && now <= new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddHours(ArenaDefine.StartTime)
+                        // && offsetDays == 1
+                        && lastLevel <= ArenaDefine.EnemyCount)
+                    {
+                        // Debug.LogError("HasReward");
+                        hasReward = true;
+                    }
+                }
+
+
+            }
         }
 
         private void Reset()
         {
+            lastRefeshTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
+            // Debug.LogError(lastRefeshTime);
             nowLevel = ArenaDefine.EnemyCount + 1;
             InitEnemy();
             adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
             challengeCount = ArenaDefine.Max_ChallengeCount;
+            getRewarded = false;
+            hasReward = false;
         }
 
         public bool AddCoin(int delta)
@@ -159,6 +198,11 @@ namespace GameWish.Game
         }
         #endregion
 
+        public void SetRankRewarded()
+        {
+            getRewarded = true;
+            hasReward = false;
+        }
 
     }
 

@@ -15,9 +15,9 @@ namespace GameWish.Game
         [SerializeField] private Text m_TxtCoin;
         [SerializeField] private Button m_BtnAddCount;
         [SerializeField] private Text m_TxtCount;
-
-
         [SerializeField] private IUListView m_ListView;
+
+        [SerializeField] private ArenaClose m_ArenaClose;
 
 
         protected override void OnUIInit()
@@ -38,6 +38,10 @@ namespace GameWish.Game
             m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
             UpdateCoin();
             UpdateCount();
+
+            m_ArenaClose.gameObject.SetActive(!MainGameMgr.S.ArenaSystem.IsWithinTime());
+            MainGameMgr.S.ArenaSystem.ShowRankReward();
+
         }
 
 

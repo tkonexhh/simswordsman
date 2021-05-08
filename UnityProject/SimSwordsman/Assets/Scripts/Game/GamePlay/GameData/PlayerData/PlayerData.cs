@@ -40,15 +40,6 @@ namespace GameWish.Game
         public bool UnlockVisitor;
         public bool UnlockWorkSystem;
 
-        // /// <summary>
-        // /// 点击金牌招募的时间
-        // /// </summary>
-        // public DateTime m_LookADClickGoldRecruitDate;
-        // /// <summary>
-        // /// 点击银牌招募的时间
-        // /// </summary>
-        // public DateTime m_LookADClickSilverRecruitDate;
-
         #region 食物倒计时
         public string FoodCoundDownTime = string.Empty;
         /// <summary>

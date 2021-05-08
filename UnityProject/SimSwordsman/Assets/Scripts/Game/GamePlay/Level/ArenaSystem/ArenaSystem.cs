@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +62,41 @@ namespace GameWish.Game
                 return;
 
             m_ArenaData.SetNowLevel(level);
+
+        }
+
+        #region 时间相关
+        public bool IsWithinTime()
+        {
+            var now = DateTime.Now;
+            DateTime _data = new DateTime(now.Year, now.Month, now.Day);
+            DateTime startTime = _data.AddHours(ArenaDefine.StartTime);
+            DateTime endTime = _data.AddHours(ArenaDefine.EndTime);
+            if (now >= startTime && now <= endTime)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        #endregion 
+
+        public void ShowRankReward()
+        {
+            //首先不能再活动期间弹
+            // if (IsWithinTime()) return;
+
+            //是否发放奖励
+            if (!m_ArenaData.hasReward) return;
+            //是否领取过奖励了
+            if (m_ArenaData.getRewarded) return;
+
+            m_ArenaData.SetRankRewarded();
+            int level = m_ArenaData.nowLevel;
+            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level);
 
         }
     }
