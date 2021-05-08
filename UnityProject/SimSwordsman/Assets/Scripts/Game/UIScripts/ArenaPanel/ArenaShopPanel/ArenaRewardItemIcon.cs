@@ -22,27 +22,46 @@ namespace GameWish.Game
             {
                 KungfuQuality kungfuQuality = TDKongfuConfigTable.GetKungfuConfigInfo((KungfuType)reward.KeyID).KungfuQuality;
 
+                Sprite sprite = null;
                 switch (kungfuQuality)
                 {
                     case KungfuQuality.Normal:
-                        m_ImgRewardIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Introduction");
+                        sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Introduction");
                         break;
                     case KungfuQuality.Master:
-                        m_ImgRewardIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Advanced");
+                        sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Advanced");
                         break;
                     case KungfuQuality.Super:
-                        m_ImgRewardIcon.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Excellent");
+                        sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, "Excellent");
                         break;
                     default:
                         break;
                 }
+
+                if (sprite != null)
+                {
+                    m_ImgRewardIcon.sprite = sprite;
+                }
+                else
+                {
+                    Log.e("Sprite not found: " + kungfuQuality.ToString());
+                }
+
                 m_ImgKungfuName.sprite = SpriteHandler.S.GetSprite(AtlasDefine.MartialArtsAtlas, reward.SpriteName());
                 m_ImgKungfuName.SetNativeSize();
                 m_ImgKungfuName.gameObject.SetActive(true);
             }
             else
             {
-                m_ImgRewardIcon.sprite = panel.FindSprite(reward.SpriteName());
+                Sprite sprite = panel.FindSprite(reward.SpriteName());
+                if (sprite != null)
+                {
+                    m_ImgRewardIcon.sprite = sprite;
+                }
+                else
+                {
+                    Log.e("Sprite not found: " + reward.SpriteName());
+                }
                 m_ImgKungfuName.gameObject.SetActive(false);
             }
 
