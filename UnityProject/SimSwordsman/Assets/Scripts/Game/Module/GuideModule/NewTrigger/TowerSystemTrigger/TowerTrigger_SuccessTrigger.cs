@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Qarth;
+﻿using Qarth;
 using System;
 
 namespace GameWish.Game
@@ -25,10 +22,6 @@ namespace GameWish.Game
         }
         void OnEventListener(int key, object[] param)
         {
-            bool isShow = PlayerPrefs.GetInt(Define.IsShowTowerSuccessOrFaildTrigger, -1) > 0 ? true : false;
-
-            if (isShow) return;
-
             EventSystem.S.Send(EventID.OnShowMaskWithAlphaZeroPanel);
 
             m_CanStart = true;

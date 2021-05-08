@@ -1,7 +1,5 @@
 using Qarth;
 using Spine.Unity;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -97,7 +95,10 @@ namespace GameWish.Game
         {
             return m_CharacterView.transform.position;
         }
-
+        public bool IsOurCharacterCamp()
+        {
+            return m_CharacterCamp == CharacterCamp.OurCamp;
+        }
         public bool IsDead()
         {
             return m_CharacterModel.GetHp() <= 0;
@@ -399,7 +400,7 @@ namespace GameWish.Game
             }, delay);
         }
 
-        public void ChangeBody( CharacterQuality characterQuality, ClanType clanType)
+        public void ChangeBody(CharacterQuality characterQuality, ClanType clanType)
         {
             GameObject go = CharacterLoader.S.GetCharacterGo(m_CharacterModel.CharacterItem.id, characterQuality, m_CharacterModel.CharacterItem.bodyId, clanType);
             if (go == null)
@@ -426,7 +427,7 @@ namespace GameWish.Game
 
             GameObject.Destroy(m_CharacterView.Body.gameObject);
             GameObject.Destroy(m_CharacterView.HeadPos.gameObject);
-            if(m_CharacterView.BoneFollower_Foot != null)
+            if (m_CharacterView.BoneFollower_Foot != null)
                 GameObject.Destroy(m_CharacterView.BoneFollower_Foot.gameObject);
             if (m_CharacterView.Clean_DragSmoke != null)
                 GameObject.Destroy(m_CharacterView.Clean_DragSmoke.gameObject);

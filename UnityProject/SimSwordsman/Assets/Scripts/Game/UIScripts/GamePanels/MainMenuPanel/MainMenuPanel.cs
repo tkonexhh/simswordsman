@@ -164,6 +164,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                    GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
                 }
                 if (PlatformHelper.isTestMode)
                 {
@@ -178,6 +179,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                    GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(500000);
                 }
             });
             m_BulletinBoardBtn.onClick.AddListener(() =>

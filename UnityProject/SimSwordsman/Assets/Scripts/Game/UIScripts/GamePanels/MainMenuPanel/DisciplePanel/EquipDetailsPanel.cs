@@ -94,7 +94,7 @@ namespace GameWish.Game
                 m_CharaceterEquipment.UpGradeClass(m_CurDisciple.id);
                 m_CurDisciple.CalculateForceValue();
                 EventSystem.S.Send(EventID.OnRefreshEquipInfo, m_PropType);
-                EventSystem.S.Send(EventID.OnSelectedEquipSuccess);
+                EventSystem.S.Send(EventID.OnSelectedEquipSuccess, m_CurDisciple.id, m_PropType);
                 RefershIntensifyImg();
 
                 PanelPool.S.DisplayPanel();
