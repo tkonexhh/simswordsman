@@ -17,24 +17,24 @@ MonoBehaviour:
     m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 00000000000000006100000000000000
-    m_importFrom: ProjectSettings/GraphicsSettings.asset
+  - m_assetDatabaseId: b87e6f2213102f14b87d68dc8dcb805d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DisciplePanel.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 3b44cc4a6d2027244a38416b63be1ff1
-    m_importFrom: Assets/Editor/com.unity.mobile.notifications/NotificationSettings.asset
+  - m_assetDatabaseId: 218f4646ad2894d979ac09825133decd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: d5efd314f03804474875dbe2a3402d97
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainTask/MainTaskAtlas.spriteatlas
+  - m_assetDatabaseId: 8bdc72795ef1648e68dad5243be4d7ed
+    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetProcessEventRecord.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4e1608886bd024637ad9b3dd4856e1b6
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuAtlas.spriteatlas
+  - m_assetDatabaseId: 5eebd74a9c1247b448925f323c220dc5
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/FacilityPanel/WarehousePanel/WarehouseItem.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 6aa8ef8c82b49fb40a3807dc811fa3a6
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonPanelCommon.spriteatlas
+  - m_assetDatabaseId: 2b2147dd3fdb73e43808debb6cba6e49
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/KungfuDetailsPanel.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 69fcb8fadc1bcd14694878409d1978f6
@@ -173,6 +173,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BaicaohuPanel/baicaohu_title.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 399c28e37be0e4356a78af3fad8af940
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BaicaohuPanel/BaicaohuPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 574e763cde893cd41a478a98bb2619fd
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BaicaohuPanel/herbitem_progressbar.png
     m_exportTo: 
@@ -233,6 +237,14 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleFieldSpritesData.asset
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 36dea4947e2a6f647ae34d32384d7297
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/HeroTrialBattleField.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7d9d946caf1e8a34a8673d3e9bc63237
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/HeroTrialBattleField1.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: c54a20a97710cca45979c675d79ef3c2
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_Bg1.png
     m_exportTo: 
@@ -287,6 +299,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: af64c2d670a519645add92cf1205f12d
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanel_NoMission.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 622470bf045eaf942bd96a57e0f76ffc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BulletinBoardPanel/BulletinBoardPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1f681bcd48c1a0646ae71944fcd4ba1f
@@ -359,6 +375,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 6ba7daea9e9ab2243a18b6bc88080d34
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ChallengeBattlePanel/ChallengeBattle_Over.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cdcbe145bba3445c090c80b6165975d4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ChallengeBattlePanel/ChallengeBattlePanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: ec62c204c93f20c4a816ce6d175f8e61
@@ -465,8 +485,16 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ChallengePanel/ChallengePanel_Over2.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 49a1807d21673417c9bc40e900f426b2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ChallengePanel/ChallengePanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 0b6e81f2a9ee5bc4b8166a2689b5e3a3
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ChallengePanel/ChallengePanelSpritesData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 131c2f1bcdeac4b91b0996f3bb505b1c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CharacterHeadIcons/CharacterHeadIconsAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 95dde2f735f8ca94d8c200358c220801
@@ -711,6 +739,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 9483f0e2a19d2d94bb0f4515f2d9b7da
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/CharacterHeadIcons/head_perfect_4_5.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 736a18d5ee17243b688cf944161d7638
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CharacterWholeBodyIcons/CharacterWholeBodyIconsAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: ce88ee1d1ee1c7646bc2ae93e926902b
@@ -965,6 +997,18 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterface_BgTop.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 9811da62319f75f48955d0aa6ef48fcc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterface_btn_speed_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dd63427b024375f4a9e85cce3ac6ca90
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterface_btn_speed_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d95f82988e725ec4ea308faab6fd115c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterface_btn_speed_4.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 1292e7f28fa668c4cb501f8bc305e6fa
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterface_Zd-1.png
     m_exportTo: 
@@ -1007,6 +1051,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 15e8eb2d299897d4597e278250c42d19
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterface_Zd-11.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 10d33f6330ee2448984bfd841a5643a4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatInterface/CombatInterfaceAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: efef6d65f00788844b1b531eb4103632
@@ -1065,6 +1113,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlement_Font4.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 37fa421b9c91f403798c8ed0fb532f0a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlementAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: fe8dbf2bfb8a79e4199ab5524fdda7a2
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/CombatSettlement/CombatSettlementSpritesData.asset
     m_exportTo: 
@@ -1091,6 +1143,130 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 13d562b08b93e4f0eb1252523d98cde4
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/DailyTaskItemBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d6a8f7d3faffc4c408b3d54463afca2d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/DailyTaskPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 551920eda5d5d4bbb96e40085ecddae6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_battle.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 48e82193659fe41c2807f43df34d9a98
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_book.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f836d0a21ed2418899c94b2f8cae4f5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_collect.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 76391e3a7c96a464e8f4a106c4b2460d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_food.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bc9c8ddbc129a4380b0957fcf9ce5fc9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_forge.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2af7b9e77d33948fc810f40f448a5e29
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_gift.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4a931e49496a543f2b5a5cb701f4dbc7
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_medicine.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 40df9d347504e48bea62ae89d3fc2036
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_practice.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4d82918ba8b1d410790c3272b2034c77
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_recipe.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f953571ed42a444ba86b99cf435383b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_summon.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fc226a3f02c9d4f299ef68a78cee73cc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DailyTaskPanel/dt_work.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8008a040d372af24eb617e379925b553
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c0fa24b4a40c87344aa0924511470722
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 09de6319cce1ae74fac263112c3dc3da
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 11e9217425e901543a5720eb63f5ac53
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b1af5291954dfc44684d68d95b68d248
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg5.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b2df9ad720fc87144ac5ee7c062b3fea
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg6.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93951f49c42c13748b9ad5ddaf99663a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg7.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1e3508d4779c2614092a0b9b5b02eca2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg8.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8502b788273053a42897f5c1f77fc67c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg9.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 96aeb98f3dfe9b84c952c7fcfa0ab6fd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_bg10.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d0265d3365d61ac4681390404ad95e5f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_Btn.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ae176b33455c5df45ba12183762f19f2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_civilian.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4f4d5bdf34ddf134a860b67683ee7f63
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_definephoto.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 99d97f31aa52b2d4f9f638c8d8fe88e2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_elite.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2d4445c4be59b4e4badb20e7f8c70f46
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_god.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 982bd955e22d37844bb96298b376afc4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/Deliver_line1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: afaf92e6a4a92a644a4788478d57820b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/deliver_title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2e20569243a1b8c47b807ef953272c02
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/DeliverAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3c396d39b4f914948bd4463a0624499f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Deliver/DeliverSpritesData.asset
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: b4787fe226523e240a77731ad4f8a783
@@ -1141,11 +1317,15 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Disciple/Disciple_SmallHead_Yellow.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 2fa13d94b879f44d299688a487fc503a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Disciple/DiscipleAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 4091c3f104e5acb459140950f06fb514
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Disciple/DiscipleSpritesData.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: d157f795453f83d47a5bef0466c883d3
+  - m_assetDatabaseId: 89106b2cf730b6149bfa73efd7a47b40
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg1.png
     m_exportTo: 
     m_variantName: 
@@ -1177,20 +1357,76 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg16.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0b99d8bf8473d5845a565276eee7aa6f
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg17.png
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1c8858eb43214e04e8c02750c0079c5c
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg18.png
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fc2e28b5a0db4a548a8b0fdc5dde2ec2
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg19.png
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 0464a10e8ec4e8648be003bf051f27e3
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg20.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 08ee509f47e060843804bef24da301bd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg21.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 12a13b432e8b9b04bbfe4f8d91a2b76e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg22.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c89e00ddedceb0d4aa5a27f7a662d20d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg23.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6d9bc5a51393be64cb91ad63ed61ecf3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg24.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ba0f2a8d705588541a7e279b384d9b12
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg25.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: face9381e17bb38459c9b5d91eab9cc2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg26.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 54e2bddf2eef29d4aa4211c5e713e7b3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg27.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a3acc840e11e5f446823281af3b9b0d1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg28.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cf149e5d6332e2144b67e3137c526adb
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg29.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93a7345e24b01ac4f8da1735849a7679
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg30.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f6b8c2a2aaaf0424ca85c05abcca25be
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg31.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0163392d4a954a340ad11691ce491c0d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg32.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 94b935366b9658144b56b2ff0b6823a8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg33.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4957dd01d417a744ea7c57ae11719b96
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg34.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 97331cfb81c4d9542a3f8d822e5907e1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg35.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 01025b92bf094bf4588beb0b3bb8c420
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg36.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2fb3ac97455107142aa33dc20a8b5893
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Bg37.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 38fe5af79c3471c4cab2b7ed58bf3baa
@@ -1221,10 +1457,6 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_BgFont7.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0ceedfb00b31fec49b876a1b687bfb08
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Border.png
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 14b4f02830f93b246abbbfde31e80099
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_CloseBtn.png
     m_exportTo: 
@@ -1233,12 +1465,108 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_DividingLine.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 0ad11642fc4b7fa4b878eb5ce74be916
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_God.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 039d43ef25ef7564b9f2d07551d7864b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Hero.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 931359a4efd17a24fa659d048c39f119
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5894f48ec2dcb2c4bab229045a88dd04
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 044ec7f561c73a147ba229cd8ccc1cbc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8b6adf2c63beb5b4f929723e74fe19a9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: df61dee504c353244a603f556dd82ad1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon5.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0bd017dafb575004c99254515da40760
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon6.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7551b4910c5249a4588b2a6f25a629b4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Icon7.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 3d4d17af30fe2b34f9e8eddb9c7c9c14
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_KungFuIcon.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 49c35a9c7a26e9c4ea21b7a7f35a6c07
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Line1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3d64f6dab1b12d34e857eeca8f0d5922
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Line2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2151524983056ab45ae216d090c7e622
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Lock.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: be048fca0a24be1449eb69e0460a700a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Normal.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cfcb9e947b3f21c4a91fb36506473b3a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Perfect.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 114ac1b7a6eb8184a89b91a68d4e01cb
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Plus.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a964b2358e8bb5c4a8bf238ed1b9ce49
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 47c5ecb2e6d5129489e461800bdac386
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2773936487ac5a5439c49839e65627cd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2d50f267a7197a04f9132dc00b67ca87
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6a5521f192bb25547a3c4bb53198f687
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post5.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5373bda96eb82704fb5a9153d4efb9c4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post6.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 28c04c0c9e1e77e4395788244e4e37f6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post7.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8866a897a85c6894da6adc5252bc780e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Post8.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 794617943286d4e43aac3c54406d66c4
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetails_Top.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d50eb7c579ca1584da57693307d0d86d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DiscipleDetailsPanel/DiscipleDetailsPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 4a6bd15c64c74a7408709d06730b2d1b
@@ -1297,8 +1625,280 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Title.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 8bb3959134da41c42995b3b2162b0c79
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_WeChatShareBtn.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 2e642e707f643f8498ab7385008955d1
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanelSpritesData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1759f7bbfef722847a6cf06e20f1d39a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_good_0_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 45672e17a0b111c4fa368e92ff539a89
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_good_0_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f32fc55c9bf792458fd5d5363619194
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_good_0_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0bdd82e8a5b409144bdf096ec8fa7769
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_good_0_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3e1a96859f857d4449302ff6731eecf1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_1_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f70396303c0f6d944bc27347e6a9184d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_1_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7bc266bbad7938c4c8e938fb9b73f440
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_1_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4dab8b3d29f1f6c4d91ff829951fbfd6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_1_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8251c60dfab8d18479fbef89d22349fe
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_2_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3682f50402a3e21419a555c3777ca6ac
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_2_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ca87fa24eed847746a0ec61d48b4e3fc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_2_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e7196c0f924f993499446788cb14b404
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_2_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: de65f38e5164be1479c2feab2f1e77ef
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_3_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c5f0e021be1e8694f89096bf97abe2d4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_3_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 22f32091030fc244e83fcffae6f0fa62
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_3_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1805a3998dfc3f54e8ad49525faf990f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_3_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ff459df93c34d2c4f8e48196be58014a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_4_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 86c334d9f072fae4cbb8965c2eda671c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_4_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6108cb5e8231ee848abcd34e193c7e85
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_4_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 87643eac139661e4eb0e3f9bdd4197d8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_4_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e3718dcbdd518a445829d69017ef8df5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_5_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2dadd215dc9506a4f932597606833451
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_5_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0e24d7a0801c11547a4ab327009c7f1f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_5_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 362f98183a79854479556e5ab4c95258
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_5_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 64d6b323c506f83408991a17c07f0c89
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_6_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 57896451e6eb2c74bb0929ae3d3c1612
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_6_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c927f2b7322f8954caaf076bfddaf021
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_6_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dbbdf9f0565684d41a2e0bedc01236a3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_6_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1a969bc34377e054fa07d2d954cf1d3a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_7_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1495ce00ab4ac29419e2cfe28241898e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_7_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e9792b158dc83040990845fb60a2210
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_7_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b5dc75718a57b324daaaeeaf5edfe0c7
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_7_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7fb698f67ff23f24db478953340e04a6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_8_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7c7808e102b56bc408d58825881a03ff
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_8_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5dd1d6c5095be364e9f263ed66986220
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_8_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f7d12843b4a08a6448dee93e593e7361
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_Hero_8_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8f45799fbf1bb8e42af7b5f0bcc91829
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_normal_0_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aac89c907e1210041aaaa0e174350f27
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_normal_0_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce7a123f1545b4b41a934748c60a923d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_normal_0_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4b437471e7c6b34409c3645767e90241
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_normal_0_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b239f26b9bd444548828c2d6aacbf376
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_perfect_0_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d00237d79fd7f2b46b5d355a112f0d08
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_perfect_0_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a840faef82c7364bb2f14441dfc1eb0
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_perfect_0_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d291340876c19e049a342d3b4311d356
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Body_perfect_0_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 181f3776550794740ac6d1ecbc513581
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/DisicipleHeadIconsAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8c87d59b5ad2f3d4ebf83952fb55849f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_1_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 23c060aeec04f594281ae4acf4243d53
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_1_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 10249c795555c0e48816966029064a09
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_1_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e222b8a7b3daf64419f7e61b219bd2ee
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_1_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ec0ecd40fabf6424eb79c559ac648a89
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_2_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c0caf5acc0fab2b4689d890227a38eb5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_2_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8d782750e84b79a44989279a7db5f788
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_2_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5f91f4b16ac2f4b49831bb74409463cd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_2_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1d43109bc4fdf16488e17546ad580c10
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_3_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 82e53fc15b6e5d74b9220c61fa3a4328
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_3_1_0.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 92490f1dd39a6794db88a21715eaf647
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_3_1_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 279e1b7dddc8ece44be24b00abdc73a8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_3_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 45c1633cfd3fffb49ae5ce331025a0b8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_3_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 53d1040cdb4ab2d4fbd274e35906037d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_3_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7b9cb80aa8fdd9949861cfa5f03ad807
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_4_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 784a3abc822dde54f907b9f61d6cd1d8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_4_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 45f1beadb681cda4b97ddad989bba778
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_4_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f972302706ce0bf409904c3cd545d706
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_4_4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f7ceb5421e1d1d64c884ee40d0986b6d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_5_1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2d2dd068ad1dcb2439bbe2d617c362bd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_5_2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6cfd96b37ee40b64189d154ed6e5da3c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_5_3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 642e132892c7c2949b84ff24e7914b8f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisicipleHeadIcons/Head_5_4.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 00bb006b040e9c349b2a49c686f4d635
@@ -1322,7 +1922,15 @@ MonoBehaviour:
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: ec225ec7fc8e8e04d84ca3c7902a917b
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/enemy_icon_emei.png
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/enemy_icon_emei1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c7747779b4b494da6aca6cafa73c8f71
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/enemy_icon_emei2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: adc6c143999bc4b13949228197804f3b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/enemy_icon_emei3.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: c044043e55b9ff746843e8551823b9b6
@@ -1525,8 +2133,20 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/enemy_icon_zhangzhenren.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 1643bd537700a4706a62422c95bd90a4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/EnmeyHeadIconsAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: b6b2e79a6285ce94687905b634872cc6
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/EnmeyHeadIcons/EnmeyHeadIconsSpritesData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: de445d2af9ad6ac4db90ca7e747db63d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/bingchansijia.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bdde2e0a6697e87489634190c1d1b4ad
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/bujia.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 9887b60de8419054aa3b38dc49dbc8a6
@@ -1549,6 +2169,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/EquipLock.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 097e6207660cc420690f822e0a24b644
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/EquipmentAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 3c09f25b174352b4bbdbf141ac1789d1
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/EquipmentSpritesData.asset
     m_exportTo: 
@@ -1557,12 +2181,20 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/hongyingqiang.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: b800ac80fa4711440b190a989c558a1d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/hupijia.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 4bb4686e10951df4ba93a76fafefd4e4
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/jingubang.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: fa8e20470e1dca746afbbb833ef56fa0
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/jinshejian.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a9bae865c1908d74a88d0a2ffcee7ab1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/longlinjia.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 9fe04511d51a2524f8675bd2f6548490
@@ -1591,6 +2223,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 4893ea6c27d90f54ca019efcb9ae19e9
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/xuantiebishou.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a8e73f9b3f5212749bbac0318316ae84
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Equipment/xuantiekaijia.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1751ae77d4d74dd4e8b648677d680e17
@@ -1631,6 +2267,26 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 8fa9d238d6bfe074d8557b012575e78c
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/FacilityIcon/Baicaohu4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 18e7873cbf13fd74eb38d3957e662af3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/FacilityIcon/Deliver1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 96ed7aa65825982468a3e84bd08d79c1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/FacilityIcon/Deliver2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f5d158c44fdb1c140960a672a905ef77
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/FacilityIcon/Deliver3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3efcb5e4eb649b348984ba9e63343399
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/FacilityIcon/Deliver4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 07558a83880184657abd20fd9af8dd92
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/FacilityIcon/FacilityIconAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: ccf3145b60724a147be0541917e0b72b
@@ -1845,12 +2501,288 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ForgeHousePanel/forgehouseItem_titletext_lockbg.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 98d89dac4af1340c3ad105c7cb1f890b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ForgeHousePanel/ForgeHousePanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b9b7e72d3076d9d4bba9efb325ea5da5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 40168019eac7d994fbc11280f70f214f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 11f7270dae45f0d4fb27514d9147e0ab
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9acc3755918e81b45a3194c0b0fa5dca
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: beb1a04d7e594204dbc0da8257b9549b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg5.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c8ec94bcf7980c246849ede64030a3db
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg6.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fce2867a2f9427a42aa3ef0d4910cb50
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg8.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 949d8e456d79a23499fb9eec6d01dd84
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg9.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fa0252eb0c5075c4281726e2b4dd9c8d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg10.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c0aaaae335fb8cc4f83ea9d302c08f8d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg11.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 10925b41cb5c1a9428be97673a48b8b2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg12.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 65d17faa4e7e66c4081eee0abe5e62be
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg13.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a4c4dbd398149584a8d7f9586f720af1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg14.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f4c36006a9413541a630b0b2b01d5cf
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg15.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e8bf75d74877f93418dab54976cb061b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg16.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e3ff199700c1c9b45ac1953600349efd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg17.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4398d8e1c3f4a584b9f5c261192fa209
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg18.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04c2103043fdf7f429379b4dc16e66fe
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Bg19.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b95a9ce90a2b64e2f9c814713f369a00
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_bg51.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ddbae09104de655429f8e6e7cdfa94bd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Emei.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3fd9195bfb7a5f74ca16147e66a4c49f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Gaibang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4d9f0f498fb623b4da407c6645e1afd4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Huashan.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e66f977915d043242a68024d0bbd92b8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Mojiao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fc21758af07ab90429f845d3f119ea09
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Shaolin.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d839110cd8bf24648b25b9c11e478ced
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Wudang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f57f1e0a83947f24b933600eacbf3ee4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Wudu.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 32a09859eee867c4f9879e1c759f3e25
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Big_Xiaoyao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 547bc8f66c256954dad2e733497d6637
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Emei.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e7665087fc4222240a826e36ff87502f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Gaibang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 829ccceac26ce2642b72711107cef886
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Huashan.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e5f16dd0379933c4c9ddd7b092044e43
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Mojiao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 41b5edaa89ba2aa44835f1e85b38d06c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Shaolin.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5da4da4081be744488d13b8a3b2234b1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Wudang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8b1b61dc6de41144b867847f82afb2c5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Wudu.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 53d13f543a2532349974eddd7e0bf43f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Font_Xiaoyao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ba0f4277a5f25c449b87e799a6eb509d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Icon1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eea79027be37e674ca75e8e4df98906a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Icon2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6ea6f4124a70a3a4cab3519c606c9384
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Line_Good.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 524b688e10b20c14b853974e235a9647
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Line_Hero.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bd5db56efff5cf24e929e706e28252bf
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Line_Normal.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9a593fc7555886649b8239a1d7866d00
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Line_Perfect.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bea0d55c93aaffc45b9f59a2afcee0b1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NoDiciple.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85c49889e8f78ce4c8582d1134f87a47
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Emei.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 99f96084903a2e94ea4ffad378572e0a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Gaibang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f87faae0c904b27449cd1e5264a2063c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Huashan.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7154527e71c0ffa46ab0c4b08d360856
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Mojiao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4c43d1a79bf09f746a477fbe13b5e08a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Shaolin.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ba11bc618f2f4c149b623678ae9f3af8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Wudang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f113788e2dde13149a2e2b35931278c3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Wudu.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 482d5a5821ad131498e7ef6582513c53
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_NotClan_Xiaoyao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 913c657d67c53d44c8e5acf94c694561
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Quality_God.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 96c8d7331a0b2554d806d4199ba6f19e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Quality_Hero.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0d83a7f2948090f4fb922db8cd78718f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Quality_Normal.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e7cc3056dd740034db47a26cca21eb67
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Quality_Perfect.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 82f54017882dc3f48a26f52194edd5cf
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_Questionmark.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c3ebd0115df4dae40a7f4d0871f6df26
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_SelectedDisciple.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e94495f2db7e4524ca9a21903eb66b3a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_TitleBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce2dc7a2dc171ed42ac9da019e2c3cdb
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_TitleFont.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2e11b45a42e885d49a332ed65bb92940
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Emei.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f1e2acc2c71649047b1888f392c4a75e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Gaibang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c3d4dee60c46f0f42a0ce583a7dd4c3b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Huashan.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c5331979bfe2b004695bfbaeb1c5e595
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Mojiao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3dacd6df8d19f424781204a4484e1981
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Shaolin.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 426e0690d3d29864e914718edd5d5720
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Wudang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 746927f2b1904ed47bcfab718a29172f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Wudu.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3e6df10414cb4854aa3f2e101771949b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanel_YesClan_Xiaoyao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f4cc7081ccc5c54f967d23ceedea8fd
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/HeroTrialPanel/HeroTrialPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: d7851a914d2bf7347959b8faa8e1cd74
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Icon/IconArms.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 75d62757f6bc5f74c82b1dd54f46a291
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Icon/IconArmsBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9faf5136342b64bbc8e9cff9d6b2ce94
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Icon/IconAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: b66df29dc67a78c4b9bcdd7454891016
@@ -1893,6 +2825,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/IdentifyChallengesPanel/challenge_line.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 9f77fb2344ebdd8499ae25c4b85992b2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/IdentifyChallengesPanel/challenge_point.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 96b6dd8afa866da4fb4f6c50ac42cbfe
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/IdentifyChallengesPanel/challenge_side1.png
     m_exportTo: 
@@ -1907,6 +2843,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 25cd0f893c4d8ca4a8358d2752f8c9ba
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/IdentifyChallengesPanel/challenge_title_bg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f85a51a3952a5418380c8b528533827d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/IdentifyChallengesPanel/IdentifyChallengesPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1aec16a938de4264b84145217e6e6822
@@ -1935,6 +2875,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 56c4d7ef56b8a8a4f9e34c287f70b03a
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemDetails/ItemDetails_Icon2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 25b0da09301b24937a46bb0ae3eeae2b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemDetails/ItemDetailsAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 37ea06a8990438e45bb8b0d459566a65
@@ -2005,8 +2949,8 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemIcon/iron.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 7c2a099b5b48f264bbf613ce0e60170b
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemIcon/ItemIconItemIcon.spriteatlas
+  - m_assetDatabaseId: 5964a78cf858642aeb33e5409001485e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemIcon/ItemIconAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 872a043633cf4d04f905dc00b258b631
@@ -2093,6 +3037,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemIcon/sobermaru.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 6fe7ba027adf24191a04bb9391703203
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemIcon/towercoin.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 9a6e2a2b1a88d0d4c9f0e4ec74f2af92
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/ItemIcon/toxicmaru.png
     m_exportTo: 
@@ -2123,6 +3071,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 31384d9934763af4fa2396aa51b710cd
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/KitchenPanel/kitchen_title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d47f80d24e77f44258e848bad06f21ec
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/KitchenPanel/KitchenPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1acda1ed807f81b4993cd3c34e3cf09c
@@ -2173,6 +3125,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/KongfuLibraryChooseDisciplePanel/choose_select_btn.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: af97940a8637f47b58a2ebd128747dd7
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/KongfuLibraryChooseDisciplePanel/KongfuLibraryChooseDisciplePanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: e283ab124a725464bb0261c4944a2e69
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/KongfuLibraryPanel/icon_test.png
     m_exportTo: 
@@ -2183,6 +3139,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: d3ee256ba53882b47b4701c66aef6bf8
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/KongfuLibraryPanel/kongfulibrary_title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 11c44ee446cc24ee8a689a3a6e7ca134
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/KongfuLibraryPanel/KongfuLibraryPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: f9a59107e2272e649bbd37bc47ed7048
@@ -2233,6 +3193,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanel_WeatName.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 2c5efe4b4442c42b3ad2ada05abd1215
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: ae2c051f7df775b4b941a6ba2e0ce167
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/LivableRoomPanel/LivableRoomSpritesData.asset
     m_exportTo: 
@@ -2247,6 +3211,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 6019e1bab3c02ee4b90f05640d987086
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/LobbyPanel/LobbyPanel_Bg8.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 285dabb6025df7a4f917f077c1f3adba
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/LobbyPanel/LobbyPanel_Bg9.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1e05f9c1315f48f42a111b358f62806e
@@ -2317,6 +3285,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/LobbyPanel/LobbyPanel_upgrade_btn_bg.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 64081a9f6010c43f2814e38979bb45b8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/LobbyPanel/LobbyPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 06c9861d98e3db8479eb3c82faed7748
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/LobbyPanel/LobbyPanelSpritesData.asset
     m_exportTo: 
@@ -2326,7 +3298,7 @@ MonoBehaviour:
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: e054927f7a3bd4e0d850f8c930fb5cbf
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Log/LogLog.spriteatlas
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Log/LogAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 59e2b753c20137143a129029878823fa
@@ -2369,8 +3341,16 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Bg02.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 66c86d9bc36553b4ea505e67843448ca
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_BulletinBoard.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 68c46de9240f15846bc75692ab165489
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Challenge.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 072bf23ba372b7a409eb769d96a7dafc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Challenging.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 2f073fdc3805d5846bfcca2ff50bc2f7
@@ -2425,12 +3405,12 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenu_Warehouse.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 8c75b00e9528fd24fbe1ac898044e0ea
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuVisitors.png
+  - m_assetDatabaseId: 4e1608886bd024637ad9b3dd4856e1b6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 66c86d9bc36553b4ea505e67843448ca
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMunu_BulletinBoard.png
+  - m_assetDatabaseId: 8c75b00e9528fd24fbe1ac898044e0ea
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainMenuVisitors.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: b12382182e435485e915a49b35cc9b8f
@@ -2465,7 +3445,7 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MainMenu/MainTask/MainTask_tip2.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 6b30b9de73406ea4d9edaa52c22ec8e0
+  - m_assetDatabaseId: a1b5549cb96d0f546aa40bc7fd4ba728
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/Advanced.png
     m_exportTo: 
     m_variantName: 
@@ -2477,7 +3457,7 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/DuGuJiuJian.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 1945810bf3abe5746b91a809ddc70e6e
+  - m_assetDatabaseId: fe24d16191edf4146a94c863231d21f1
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/Excellent.png
     m_exportTo: 
     m_variantName: 
@@ -2489,7 +3469,7 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/FengShenTui.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 870c1305f1889504782eb69f87961d4a
+  - m_assetDatabaseId: 4073faf15089d8744a94f41506995e2c
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/Introduction.png
     m_exportTo: 
     m_variantName: 
@@ -2523,6 +3503,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 69edb21a47932284781a00de35918799
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/LuanPiJian.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e36d4a55dccd8a9498e002cd261a0952
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/MartialArtsAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 97a7544b7f15a2d47becf55042e4a66a
@@ -2590,7 +3574,7 @@ MonoBehaviour:
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 96ee715cbdc12e14c98f5b057fbba3a5
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/YiJinJIng.png
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/MartialArts/YiJinJing.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 9c6390d5fea37f740a740bd80ef73020
@@ -2603,6 +3587,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 704d663d45fbb7a4a8ad48ceaaa81af3
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/Advertise.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d00f2e5cd63204e75b3051c1969faebe
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/Advertise_Blue.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: c17435e865b1b4f4685552878cfa9f2f
@@ -2629,7 +3617,7 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/BulletinBoardPanel_Bg11.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 742987051de70a7418fa50543632aaa1
+  - m_assetDatabaseId: 610ea8c096274f14e8899784c895df49
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/button_normal_blue.png
     m_exportTo: 
     m_variantName: 
@@ -2667,6 +3655,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: ce460ff3811270949ab94c547765b744
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/Ellipse.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d8a222b39a4ad60438642a3dbcbeedeb
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/fontbackgroundcircle.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: bd4d32f2852faf24e95eb112a7753464
@@ -2725,6 +3717,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/Lock2.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: dbd1a4f48a341664fad78d7bc7d06fc0
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/Lock3.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 596725975fb255547b1c3a64bc571aee
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Bg.png
     m_exportTo: 
@@ -2753,6 +3749,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Bg12.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: e3e5098637552ac4385409a2c5fd8942
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Challenging.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: ff1ed0ed513050e4b89d59ce3df74fee
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_GreenHook.png
     m_exportTo: 
@@ -2765,8 +3765,20 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Icon2.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: f9456c9373129924985efcff90099591
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_Icon3.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 9f4ab5d4c4c15ee43a36d33774518253
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 60bcc570727da40f69e3da8af21ba86a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg_arrow.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c21b8351f89484654be2699dcd0aea9a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_ItemTipsBg_slice.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: bb9ea689674606d4ea244bb68043d57b
@@ -2785,6 +3797,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommon_RoleExp.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: b7288d53f339f764f9fe9885a434ff4c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 47950af7b0a2cb94183e314277407b66
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/PanelCommonSpritesData.asset
     m_exportTo: 
@@ -2795,10 +3811,6 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 6aa216293cfbc114eb6dedde9ae3b3ca
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/redpoint.png
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 47ce87c9a1dcf804592a5542b4dda3d0
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PanelCommon/roap.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: ecc79f8bee3be45478a70fa61e19a90d
@@ -2833,12 +3845,20 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Popup/constructionpanel_icon_bg.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 0d52cb799efea4fd4919281e20ff7968
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Popup/PopupAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: ddf25c68303f5d746a794ef845ad62eb
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Popup/TitleSpritesData.asset
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 7285fb9c956085c468a301ee5a017c9e
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PracticeField/l-4.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9befbf4d3098e478bb13f4fa1f309b43
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PracticeField/PracticeFieldAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: c94378d34a3f35e408b8f75d8b6973b3
@@ -2859,6 +3879,22 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: d6aa952ae90dbaf479298ce12fa0c30d
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/promotion_characterbg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 851ad3a30ba23254ca74b77bbc677577
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Good.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0db8714d31e5c3a48859864624c39377
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Hero.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 842f18a6a36c7b144826c40c9f31bcaf
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Normal.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7551050bc1747004da1222f080092896
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/Promotion_Perfect.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: af190d122c6708a4fba522a8d77b1b00
@@ -2889,8 +3925,16 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_EquipAmrs.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 47495323337047d409f34f7455270751
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_HeroTrial.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: c3a50d6f58809ec4f972df89373c56e1
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_icon1.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 72fad0816763d2849b3472ddf43a0f8e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_icon2.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 63775d8c070834b478bdc3f3a6c9811c
@@ -2903,6 +3947,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 944c65fe6d5484f44a13ee5beefd2c1b
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanel_WeaponEnhancement.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4354d78c6119f445688368780f153c8e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/PromotionPanel/PromotionPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 8f5946a48ae012d48ae5ff2cb2e70cf9
@@ -2925,8 +3973,32 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/RewardPanel_DoubleGetRewardBtnImg.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 43c3d8c68b273984498c99555568f152
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_equip_god.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 894304ea0606a784498e529c840a8b0c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_equip_ordinary.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ca120d408928ef04a88535b6cb115d5a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_equip_senior.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: b80dd5934268bae40afb7b101e3f9dc0
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_getBg3.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ff0b0e1a4f583f14fbc30fd514f3eb77
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_kungfu_god.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c6994c5ca95d7924abb45b60a3002592
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_kungfu_ordinary.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1dbfde3e992d8a24f89f8146f89e889c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_kungfu_senior.png
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 789b333ea4c906541bf031b2449bceea
@@ -2939,6 +4011,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: d29fa78921cf35b40a86c7eee7d24364
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/rewardpanel_title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5f11d1c289735114381cf8590f4c38db
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/RewardPanel/RewardPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 8d18c2e2105ff0c439815b7842b0ce14
@@ -2959,6 +4035,38 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: d849541ea9ca94de1801d0586ef7e24f
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectNamePanel/SectNamePanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5a53e5771ef350641b2ef0c06e9247f9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Emei.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5e351eb51d3c19e4ca0aeaca07ba554f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Gaibang.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 83f112983e68eb34baf462350bc53949
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Huashan.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ccd785eca3cf8ec479e1058f336c11dc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Mojiao.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 87131884259aa5744a7b63825de983de
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Shaolin.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dd6751c8731f3a84ca634a3da2713947
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Wudang.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 22a559a4f23bf6549aa38fee2cd071dc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Wudu.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e5e18c2ad78e80d4f8b6647d7cfa3d8f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SectsBackground/Xiaoyao.jpg
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: e78d9b9299507004e9461c755cacb49e
@@ -2994,11 +4102,15 @@ MonoBehaviour:
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 789a126aa6520ab4788e63370f924bc5
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanelSendDisciplePanel.spriteatlas
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 84e2581b7316152459dfefe17af91027
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/SendDisciplePanel/SendDisciplePanelSpritesData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52855313436894b1b95dd9c906f151c7
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Setting/SettingAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: a98abbb11a772e748af786f33397111e
@@ -3035,10 +4147,6 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: dff8bb399b666024a8f960eab1466561
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/Setting/SettingPanel_SoundOn.png
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b9b539dc9d30c0a4493d465d94d0670d
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/Setting/SettingSpritesData.asset
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 48f8ee907bb844e1a87f83cc9fa2c613
@@ -3083,6 +4191,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 8a441c10c16fade41b920d36f0ddb233
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/StoryPanel/guide_tips.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: efb20a9addcfb485c87b6ee17d20943d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/StoryPanel/StoryPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 49083dbb14b877e458dae64a7b35efe8
@@ -3141,52 +4253,193 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/TacticalFunctionPanel/TacticalFunctionPanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 551920eda5d5d4bbb96e40085ecddae6
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_battle.png
+  - m_assetDatabaseId: 0cac15535ad6b4f89a3571a9f5761360
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-anniu.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 48e82193659fe41c2807f43df34d9a98
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_book.png
+  - m_assetDatabaseId: dfa47d50366f64873a0fe4cc450420df
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-anniu2.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 6f836d0a21ed2418899c94b2f8cae4f5
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_collect.png
+  - m_assetDatabaseId: 6641bdd26f4c3457c95b4bb261c6d856
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-beijing.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 76391e3a7c96a464e8f4a106c4b2460d
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_food.png
+  - m_assetDatabaseId: 9f96cdd7a1bab40609ab9c5e047b613b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-biaoti.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: bc9c8ddbc129a4380b0957fcf9ce5fc9
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_forge.png
+  - m_assetDatabaseId: e5625d77e387543fd8556c92983aaa95
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-ceng-boss.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 2af7b9e77d33948fc810f40f448a5e29
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_gift.png
+  - m_assetDatabaseId: aad00b39beb3c4808bffb03dde0ea17e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-ceng.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4a931e49496a543f2b5a5cb701f4dbc7
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_medicine.png
+  - m_assetDatabaseId: d7a0c46363bb24eea8e749297ca3a0f4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-denglong.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 40df9d347504e48bea62ae89d3fc2036
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_practice.png
+  - m_assetDatabaseId: 8d3e2e267ff4e4779a09cd9fba4839c1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-lingqu.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4d82918ba8b1d410790c3272b2034c77
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_recipe.png
+  - m_assetDatabaseId: adbf32e35e9904f1787fbe7d9fc0cf8b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-qianbi.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 1f953571ed42a444ba86b99cf435383b
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_summon.png
+  - m_assetDatabaseId: 414a8194b165f43feb561667c7b5bcc6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-shangcheng.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: fc226a3f02c9d4f299ef68a78cee73cc
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/dt_work.png
+  - m_assetDatabaseId: e9ab9295da7584610804e807d7d7e509
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-tading.png
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: eb0470a894a534ae384929ca9d4a8261
-    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TaskIcon/TaskIconAtlas.spriteatlas
+  - m_assetDatabaseId: 01dd39c97dd9d4fc68c95da7e94a2cd3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-tashen.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e3e7eb3e2d051476986922649bc0cfa1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tawoer-touxiang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: be7d19e65a97243ec8045b4a5ff8f122
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/Tower_Bg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 33ecbde3b88f64482809c056930f62fc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tower_rewardItemBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ea761f151bafc4afeb9427b88e73ba62
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/tower_rule.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1bcb3a732a6604893ba9d66928f9a543
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerPanel_Locked.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: eda2b595ced7046f8bbe404dae394dd8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerPanel_RewardNumBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1d595886a4da44300b4b600a17efd105
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerPanel_TowerBottom.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: adec12d98597b46f988be6244508c0f1
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8e204cc56224944a0950a4c422004a00
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/tawoer-biaoti
+      2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 27e39f2c35d994ce4806a41f4c1cbf6e
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/tawoer-biaoti_ad.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7021ea7f323194ab197c386c4cd6c922
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/tawoer-di.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cd4cc43bc1afe45809486813e4fc6fac
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/tawoer-fangqi.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d4a9de1b181594809ad543e3bcaaf1d9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/tawoer-fuhuo.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5ca8ed8e46beb44ceb4989635d438851
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/Tower_TitleTip.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 436e684969add4fc9a60a5da6efed4a9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/Tower_TitleTip2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2344b9eaa57864c899c513b1130d8026
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/TowerReviveAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 545dd52dd66e648798a7280003cd2574
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerRevive/TowerRule_Title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 951dfa13c863e43e9995763eabf51036
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerSelect/tawoer-xuetiao.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 708eee0883cab4b7788d5e7fddb975c8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerSelect/tawoer-xuetiao2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce1f54a70671141ee9857f39366ce17f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerSelect/tawoer-zhenwang.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6744113990e5d404bab2477baab441a6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_Bg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a250ef9dfa6a6494ab2401be3dc40a44
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_BtnBuy.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0d0305d69409a46c3af1f68556624dd4
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_BtnBuyed.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: efc0bc629e15840b99b92d9096e3be2b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_Close.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 125809285e14c4ba1a929dce3a70f7b6
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_CoinBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d7914f4aff25a42e38f6f1e9b699df90
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_CoinBg2.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3ea6e93a6a9da4b47b6243ece191ea19
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_FCoin.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7f834f568c3da45a48957eeb3caaaad2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_ItemBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 77e6d80066c8d462586fca0d0da3da0b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_ItemBg_dark.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8c5e9a71dfc2a4d13906816b79937e7d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_ItemTipBg.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 129ff0a54e25940b9bab9ec2dd6df4df
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_Line.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4666430649c1249c58d999d9428f2a7d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_Refesh.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1c82f969701344ffdae0d5ead6e22457
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_Role.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aa44510ee6d3b4f6bb51f5ee2f829e09
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShop_Title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f8e77f8673e264ec3807e1ae83a38d2f
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/TowerPanel/TowerShop/TowerShopAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 5c8dc583f4f5a3f4796390279f241e0c
@@ -3217,6 +4470,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/VisitorPanel/visitorpanel_bg.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 630756fa8a25f46a68e5b9fcd47fb135
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/VisitorPanel/VisitorPanelAtlas.spriteatlas
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 0748fed183001964badfb61ec807e813
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/VisitorPanel/VisitorPanelSpritesData.asset
     m_exportTo: 
@@ -3243,6 +4500,10 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 21db0b64cc49b0d4188200631ba12670
     m_importFrom: Assets/Res/FolderMode/UI/Sprites/WareHousePanel/WareHouse_title.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7f8b6c4856e6d4bdeb2c8947b97880a5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/WareHousePanel/WareHousePanelAtlas.spriteatlas
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 44a1ada7f8abd2a4db52d05eeb2e4b06
@@ -4606,6 +5867,26 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/GE/Eff_fish_02.prefab
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 9a06c07ff3e604e42b14755e3bb12a9a
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/BaGua0_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 225ee10500953e842ab2e3d7306346a7
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/BaGua0White256_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fb10f3e48a2f744409c2f355040cc734
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/BladeQuad_Mesh.FBX
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f5b6b7d5b76a6b84b864daba4904a3a4
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/CFXM2_T_Decal_ShatteredGround3_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93e5fd41ed7f0b641b56525ee4992c09
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/D_Ray_03_T.png
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: c908cd1c4af64534fa82a7f91fc127d6
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/Eff_ci_00001_M.mat
     m_exportTo: 
@@ -4690,6 +5971,10 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/No Name_M.mat
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 7296949fe03b045909f574459393e49a
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/Ray_03_M.mat
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 8aaf2dc0d24af7e498228d94ccc341c0
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/SwordGE_M.mat
     m_exportTo: 
@@ -4698,12 +5983,32 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/swRing_4x4_512_cprsd_T.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 539bdfbfd91534d4288050562b53b512
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/Trail55_BLUR2_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 21a6665a2fd40954e8bbc2ba9836caa1
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/Trail55bcg_Cartoon3D_Blur_M.mat
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 1bca502111d18e340838d34fe8c96010
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/YinYang_M.mat
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 98724f3669912b640a166d4ef3ef7f1b
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/General/YinYang_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d2acbbd346dc1da4ca5c8906acec31fe
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/CiKeAttack1/CiKeAttack1.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1a58c03c8078c8d44872feda015fa514
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/CiKeAttack2/CiKeAttack2_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: adc240aa71ad6214ea885ff512ca7957
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/CiKeAttack2/CiKeAttack2_Right.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: bb41811ff577f1c448191ac38e550ed1
@@ -4744,6 +6049,66 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 11bbaa549ac836f41b6b16bc05998a5b
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/DiaoYuGunFa/DiaoYuGunFa_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b6071b0c181679c42be64a7cc9957778
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/BladeBlendSheet_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 32b88a5eccc71834ba2c019584436d58
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/BladeSheet1_256_M.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d06efe312e9336b449afce63250d97aa
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/FX_BladeQuad1_Mesh.FBX
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9a6f1debbd28da64ebe97352a969d168
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/HalfTrail_Mesh.fbx
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ffb93e31092e14a47a4b7ecc0b3ef6d4
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/HuanYingJIanWu_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 47f341ec6a5608146b9e10057dda84b9
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/HuanYingJIanWu_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: af1e6e52a00618a4e88aec68732ef946
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/Trail62_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 55a8c8ce11ac63846a45895bca99ddce
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/Trail62For_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 47638d990f8e97c419463c6f0a11a9a3
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/HuanYingJianWu/TwoSides22_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9f383b802545bff40a5639b09dee9d6c
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/JianWu/CylinderFromCenter2_Cartoon3D_Mesh.fbx
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e535306ab7c05d54294264b1d2c16fd5
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/JianWu/Gradient11_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e0c9a41cdcd99545abf11451fe65a18
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/JianWu/JianWu_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c3046da85ac12f34db054e5c95e12980
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/JianWu/JianWu_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e793730e1790ae2408948cf883bcac1a
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/JianWu/Noise51_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 253697e4c104e18448b4e6aa05e6007e
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/JianWu/TwoSides19_Cartoon3D_M.mat
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 5af046a7a53067f4a9fe083950256e05
@@ -4826,6 +6191,43 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/MieJueJianFa/yitianjian_half.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: de4a6245f965da34ab2aac48a8612529
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QianZhuWanDuShou/CFX2_Blood
+      AB 1_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b8ea69db688e40e4bbbe10b618ae0283
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QianZhuWanDuShou/CFX2_T_Blood_ABPNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f75774662c4f624abccc1990d86eedd
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QianZhuWanDuShou/circle_mat2_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a837185f45a9b6042b18c748a6b255ad
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QianZhuWanDuShou/QianZhuWanDuShou_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04b841b5e79096f43a4084ae3ea5586c
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QianZhuWanDuShou/QianZhuWanDuShou_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 184e7b1e4de77bd4b9fc60a996cdd95c
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QingLianJianFa/QingLianJianFa_DuBi_Hit_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bbb21133a1b813c438daf6104c20e3fd
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QingLianJianFa/QingLianJianFa_DuBi_Hit_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0dbbcb2555ee5b74e9aaa54950ed53d5
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QingLianJianFa/QingLianJianFa_DuBi_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 34642f2f4453ca74a97ab1381b8ccdcf
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/QingLianJianFa/QingLianJianFa_DuBi_Right.prefab
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: c87bd2e4fe541804b9078417fcf5ddb3
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/RuYiJianFa/RuYiJianFa_Hit_Left.prefab
     m_exportTo: 
@@ -4842,8 +6244,141 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/RuYiJianFa/Slash15_M.mat
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 642e6b4093f113d48897f45c70969358
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/SaoDi/Clean_DragSmoke.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c7ee6b3e5c22e394f9713a9504664556
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiAttack1/ShanZeiAttack1_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f6b67477762f2804aa50a644900d7a3d
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiAttack1/ShanZeiAttack1_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 042af0f313dfd424fa32999250fa1346
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiAttack2/ShanZeiAttack2_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9749d093461bed6469d8ee57fe30b6bb
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiAttack2/ShanZeiAttack2_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 56fcdbaba148b8041ad930b28bce514a
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiBossAttack1/ShanZeiBossAttack1_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c8e19c7e0a6ecad4e8090846b21a43f9
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiBossAttack1/ShanZeiBossAttack1_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5be82ae3d46804140b8937301e6e9bf6
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiBossAttack2/ShanZeiBossAttack2_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: af645f329fd1ec6488c2eb55717286cd
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShanZeiBossAttack2/ShanZeiBossAttack2_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 717757fc346d2e840b7f2f0d323b7af4
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/D_Dust_01AJPEG_T.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 68e17d14c64a29541a2cb93db30aa6a0
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/Dust_01A
+      1_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d63774db53e2fee4b84a72da1c9f1096
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/lightray2_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 13e1cb3a963437b438ae4006df197c96
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/lightray2PNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f5af2f1ae6ec7a346b154141476b7719
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/M_Hit_06JPEG_T.jpg
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 898a8c8a5fd684c4c8ad2ca63c0a61ef
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/M_Hit_08_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 288fdabead9a23f4eb138d971f68fda2
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/ShenGuangPuZhao.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 073b2505e97c55846a66ca5dec74518b
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/ShenGuangPuZhao_Hit_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fde01e246733cfe499c1e690ecbe719a
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenGuangPuZhao/ShenGuangPuZhao_Hit_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c32371d028848f246aa4e0b0939c3ede
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/Broken_Decal_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b9acd3aaa2bebce4a83de9f6e6f582a1
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/Broken_Decal_T.PNG
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5360864ed995f70419e8bea1cd303583
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/ChargingSheet3Brighter_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8abd76c41afac484aa2f18c0e21da8d6
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/ChargingSheet_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1cd9b7080d908af42bbbb8a98ab29af2
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/M_2D_Hit_05PNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e5407aa93653cf94fb00c5a8add47efe
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/M_2D_Hit_061_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 845e7ccbbd06efa4d9e9f00f594b25ff
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/M_2D_Thunder_01PNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: de9a43a18d811b74198e55d00b4c5d3e
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/M_2D_Thunder_02_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c39a72cb01a8b0f4b8dff7418765ea89
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/M_Ray_05PNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e6d578c6e89c37d4f97c1982dfd81414
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/M_Ray_07_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5827849ff69ba9f468ca049d8a175056
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/ShenXiaoLeiFa.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e53f6fd8ac12fb845bc4c15b4bafa3ff
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/ShenXiaoLeiFa_Hit_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 68abb08c745997849a5ef6c98b215e11
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ShenXiaoLeiFa/ShenXiaoLeiFa_Hit_Right.prefab
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 9f8e042aa4ada8f4ab551aa5017ccc57
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/swRing_4x4_512_cprsd2_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8169c350032bc6a4995ea1e4855d2abd
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Hit__Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c5b1a971f52a6834d83636a9baf22273
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Hit__Right.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 534006bb2aa37ea44b46b69ec5e68f20
@@ -4852,6 +6387,14 @@ MonoBehaviour:
     m_variantName: 
   - m_assetDatabaseId: 448a84d54818ba94b965e67192adfb66
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Hit_ZZR_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2c5ec3bfc32af07408d4298ef7be929c
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 95a0c27e8e3bd4c4ca7687367fd3cb7d
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiJianFa/TaiJiJianFa_Right.prefab
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: cd262df39562a924bbd605a8eb0e2098
@@ -4890,6 +6433,14 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/FistSheet2White_T.png
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 9be3aedece9cd3d4abee5cf5a0a0ca4c
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9bde93266e332de4aa301fbd161f01ef
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_Right.prefab
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 9345382f08e94584ab73c04690e59aeb
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiJiQuan/TaiJiQuan_ZDR_Left.prefab
     m_exportTo: 
@@ -4922,6 +6473,148 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/TaiZuChangQuan/TaiZuChangQuan_Right.prefab
     m_exportTo: 
     m_variantName: 
+  - m_assetDatabaseId: 8b5436bf325e1b94ea7f1929d8317a24
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/WuDuBianFa/claws_trail_d_sheet_GreenV_Single_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e8997e00e07964e4394c4670ae86883b
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/WuDuBianFa/claws_trail_d_sheet_GreenV_Single_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 854b107c6852705458b1fcd2a802aac8
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/WuDuBianFa/WuDuBianFa_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 59d54bff6d34a0742a5db307e24b0d09
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/WuDuBianFa/WuDuBianFa_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6c7cfb25226144d4eb9cb1ebf438d611
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/tx_dragon/tx_dragon.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9a18a84a778516048be9764f691e2e6a
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/tx_dragon/tx_dragon.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e9e4685cb070bc4eb362835d3c0bef0
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/tx_dragon/tx_dragon_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 47eeb2b4f89324341b189de828c91d17
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/tx_dragon/tx_dragon_JSON.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 02f91785319df4eb19b4497c5e91333f
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/tx_dragon/tx_dragon_JSON_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a646f92a2e29ea544a80631d3defbf43
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/tx_dragon/tx_dragon_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3a39ae6a9f012c54b9aa33317f8f03c6
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/XiangLongShiBaZhang.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 080a81ccd44abef4a8e6374da704b08d
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiangLongShiBaZhang/XiangLongShiBaZhang_Hit.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 83fbfdc4518e68243a72c60f0860e4e9
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiuLiQianKun/BaGua1024White_Cprsd_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2c5116f0333993c418cd9c9e9e3cdebd
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiuLiQianKun/BaGua_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6d4ed4145e032a543ab71a79df3c92d1
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiuLiQianKun/BaGuaEnd256White_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f57fcb6f449253141ab34027d2b758c3
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiuLiQianKun/BaGuaEnd_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f337736057992b64aa2d55a9376e0349
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiuLiQianKun/XiuLiQianKun_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9f69112a05f06244ca956366992727ee
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/XiuLiQianKun/XiuLiQianKun_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7a47aeda80afa0943a001a27c39018da
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/Jian_QBJ_AB_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3f0f059bd1646ea4eacc8aae22db28f1
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/Jian_QBJ_ADD_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f3f936ab56e4da941909951aaf22c466
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/Jian_QBJ_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8478e50ce3082094b9ad8bec462ccc51
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/YuJianShu_QBJ_Hit_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c5ad886cba541b34cb1f05461cc3a1a2
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/YuJianShu_QBJ_Hit_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c3fa1faff67f5094d92396bb507cdc3d
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/YuJianShu_QBJ_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 59edaf559283539408ded1ef664d3aa5
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/YuJianShu/YuJianShu_QBJ_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b84aa919c49ac494eac6bfc0c791a24c
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/CFXM3_HollowCircle
+      ADD_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cec52caea64bcb049858f7bb75aa8308
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/CFXM3_T_HollowCircle_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0b468c3060f172146b99a4f17613f519
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/CFXM_Ripple_AB
+      Soft_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ff16300fb59ba024582a2e41176f458f
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/CFXM_T_Ripple2_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4653a0a357f304048843168593eb6045
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/ZiQiDongLai.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6da12bf3877c3d646bb6424342d92836
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/ZiQiDongLai_Hit_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c339118ba980fc64884552e7674ac7fa
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiQiDongLai/ZiQiDongLai_Hit_Right.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 596d75625d9ff834f830bbb8e88777ec
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiXiaZhang/ZiXiaZhang.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e64716942d43c51489994b9ff97f656f
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiXiaZhang/ZiXiaZhang_Hit_Left.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fe55dd6ba721fe746ba85872f7c12173
+    m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZiXiaZhang/ZiXiaZhang_Hit_Right.prefab
+    m_exportTo: 
+    m_variantName: 
   - m_assetDatabaseId: 81b27339f3508f547a0f34241ca6d09e
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZuiHuJi/CFXM2_ShatteredGround1_M.mat
     m_exportTo: 
@@ -4934,540 +6627,1160 @@ MonoBehaviour:
     m_importFrom: Assets/Res/FolderMode/Effects/Prefab/Skills/ZuiHuJi/ZuiHuJi.prefab
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 5b4bec404bf240644a6b20e8f198b504
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin1.bundle
+  - m_assetDatabaseId: 3b44cc4a6d2027244a38416b63be1ff1
+    m_importFrom: Assets/Editor/com.unity.mobile.notifications/NotificationSettings.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: ddbf8960d8409b64ab4c512194c44c3f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 99dbe59077ee9e94fb5dfab940261e26
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood4.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: af7365c01a22be6498bc8afe65a2ef0e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/boar.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f0a0c5c009b2af544be5180868f919a2
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6ce7acd05659d0f46b14ab23a1f97167
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8f80dff0f012d5447b74505572229585
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 22bbf301e49909f4d9d1fcab90ab9576
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4a4ee601d6fed8a47a039bcd8d7686d0
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5f2ae41104cc4fb408de48ed1c63097e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/qiaofeng.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c3b8e3212e0c7354ea9ce659c8b3fc95
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zangdaoren.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0ea2dd21dd275c4428799c80b8dce9c9
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3f887f21819c37f4a8d4d5b2d8d947e8
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a4a159911a4458744ba50b811b44b127
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1d6301e12b5a6cf438797a16c5ae81c5
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7053c3f1c3c01fd4b9007b01b19f2de7
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ab236872f17df3047898d8482a6eebc8
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/xuankong.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: df505082ad2162d44924cd418932be50
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 49efa28295027c64bac1beeeb799b479
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 13177fc24bc7d4a4abb683bd5d9ebd62
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzeiboss.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 97dc95d2678877942bb0b9fb09ac914b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ae2230f2d60c94a429e519b3773f4f5a
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyaozi.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0449fff2a0b769a40ad2200c879bd6d1
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d841a403feddcb94f8d705f2200db7bb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/suhuazi.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9426164300551a74b8fe40a56e3de1a3
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 37981453021e71a449e4ccd0f696fdd5
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/juejueshitai.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f511ef53bb4105f4ba429cbe5fbfc370
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/snake.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 39d3f3732ad227044b5ecb307b16abeb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a9796873bd51fce44bf1e79844432e2e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 43f34d7379a660649a00bad313b77b73
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 24ed29936b9097a489d91ce94e700f17
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9461d0a3611f3d24a8caf3e035a6aff0
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 94a48ea399ea2eb498e45358412d692f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang3.bundle
+  - m_assetDatabaseId: 3ba60ce2047cd5f43b346c1e04e4eaf8
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/warehousepanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 1f9939c3a68990349a26160eecc68c37
     m_importFrom: Assets/StreamingAssets/game/game.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: b21469d36143956459a807d996b6d2de
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/common.bundle
+  - m_assetDatabaseId: 3da71814ce6f3d34f9dfc7c507db6765
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: f5c382e3923fe9a44bba78c2d64399cd
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/yuelunfawang.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 31f934e378bdb3c4a92a66d4c274c449
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: dfcaf1f3d084cd24f8bd7370224650fd
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f9e124f3c4f0536439127cebd787e0e4
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9e435724643ae764ca95076fd4559dad
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: da26217426f7a084ebbbec8d05772a0b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8db17b94ea0477d4fa0ace11cc188a1b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3c8379b4048a30f4da188ee39fe3c2ec
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 047f32c4b7c41ed4ba1f7df01d2f3775
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal4.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 57976cf41d3394d4e9dd21139c2642e9
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e15f8615ca7c0564ea8701c81e10a05f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4579fe756a390f2499bd34348ecd601a
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zhangzhenren.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 810f2295cbada764fab6dea90cd7eac8
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/bear.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 510256b5327ae8347b476a4d5af97899
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7e346db5c77d6b14dba3c43c87d768bf
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e5aa0606d66bf9541b4c6b244fdf02fe
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood4.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ef38d216972f48b4781c99a365640f97
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6f0355368fc344a46ba648daab748f7c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/saodiseng.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9a53fc56e67ee6049b57cc77a00b826f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d2f419768ebc44545a67477b5a3ee154
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zangdaoren.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8a24809626bf0df48943b45f15f756c3
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyaozi.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 275cbea669d0e254daf11eac7eff8869
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: fdc8fa47a6646d549a060fd74b58a508
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6e2905577f472974c901d2fc89f86e6c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/zhangzhenren.bundle
+  - m_assetDatabaseId: a319f405897e9bc43a2f71d7b08f4f0f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/disciplepanel.bundle
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: bc7b73775eac8d34f960c13b9b773c23
     m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0f00afb75fd35b444ba0de3df3571289
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei2.bundle.manifest
+  - m_assetDatabaseId: 562874883ecbb6647bf09c3ade0f43ba
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciplepanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 99491238f0d4a4a4da8d12b96b475afb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal2.bundle
+  - m_assetDatabaseId: 553ff04cc50926e468293631a3b99ff7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/facilitypanel/warehousepanel.bundle
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 0f3af448bf7c9cf4eb597fb58132fcef
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel/rewardpanel.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 64860668f43134f40a3845391cce02af
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f44879788fb1311418d36afff11c9229
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzei1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e4cfa6989da098f4db614cb8c9013e30
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/rewardpanel.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 15ff3219333185f4584b0d2af4463245
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f14ea859e2e52cf46b957f6cdd95e9ae
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 50934959a3a756342aa5ae2777cbe61c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/common.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 288dc479e1493f5478733bd5925107b8
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a3545a99ec6fd2946a05ae5a2a0bf1a9
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 306375c9bab461949a3716dc4c897d01
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/cike/cike1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7443f7c99140e89419bf7aa1963588b5
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/yuelunfawang.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c073f2d9a9d901a42af73ecb0087f9b7
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 35e493d95a6c4244a829a0d63a508007
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shanzei/shanzeiboss.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c091880a14687be44a8d2ac2ed7fbb6e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: b83fff1a38fbe3c46a34bcf9fbdd3103
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d224732aafe26184598100c05bb6ebbf
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: f77aa82adf81d074dadc6f7772c8c08a
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 96e6924aca6319143af7d2a0a544bef6
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/wolf.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6bc5455aa09a4e54eb5e345ffb0a3e07
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/bear.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6a8d62cae381668478d78ee3bf2c9e51
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect4.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 94365aca695fbf943be39a6ef5d18630
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 17479cfa7e034eb4c81152dff36cd318
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 5699503b452d0dd4082a0e772f9b7867
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal4.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e459db4ba3f603e4aa117d4b9718070b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/saodiseng.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9b9efd6bf25af6c4b95906c7a73a20d8
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/boar.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3c988e8bbce8b9c4bb88f489469753bb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ded7c3ab90a03e242927630723f2c56e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 4ef6dcbb11d4abd4b8556f812c617a08
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: aae885fbcaa400449a67fa6aed9a90b0
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/qiaofeng.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3c4195fb27aa1374792970831c1c8902
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudu/wudu3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8b85041cded45ea419f1d17972940959
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/commonpanel/rewardpanel.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 642dc71c8ef73814d93f5d6b7d03d1ce
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 61b0b34caf8987a409a59d2e0dcbebc2
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6372dc5c8c4bc2a4f93ecc022a5e39d4
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/huotouseng.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 6534b68c0995ed349b38a4971d53028b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 8529fc9cef198be49a291a2b7d29faa9
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/panelcommon.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d2893bac31adbc94f8c8c9724b73cd62
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 373213bc77a644045b85c5f8b5080ec3
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: c406a21d48020a845890e17d224d2743
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ea6d071d6cb14a8499b17319f346c826
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/emei1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: efe12a2d2b20c044eb3f42b2a7908950
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1335984d69f360f48bf1b05baa463a56
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou1.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: cd74b07d02ccb0d4aa637c84577f2f2e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: a9d4318dc7d7a184b8e4e61c2a27ddd8
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/deer.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 889a00cde7e9e3844bf949a61f085b6b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/snake.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0c49bfcd77dd5ee43a870867c80b7d6c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect4.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 958c3add71a568947815598bebfef09d
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ec414d0ec60a8d1428d9b4e87b9c3fbe
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: dcc0f91e34e40274e84cb885d930054f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/suhuazi.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 55d6fc1e16d60cc45b767c2548eb45ac
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/emei/juejueshitai.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: d5c2c55e966e83343a63df82e76c7a2f
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/deer.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 17bae5aeb4e04e0478e3a22766375a58
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/xuankong.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 9150e01f9af750a4c98ff38260a98397
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: e8eb021f55334554dbf033d0a2d522f7
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/normal/characternormal2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3b45141f48071ef47aa7718f7d2b65bc
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ecc2812f57883084c8c4db7027da1900
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/gaibang/gaibang3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7dd7023ff9495a843b6fa0adb66e9739
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/shaolin2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ebb22f3f7b22d5d4cbae9e19afb22aeb
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wokou/wokou3.bundle.manifest
+  - m_assetDatabaseId: f69fb7fd7b3c81c4d97d5ab02b13c2a1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/disciplepanel.bundle.manifest
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 33ee716fefe364b4db9e0475663659df
     m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 8c6ace6fe04752f4abb1d7aca5202862
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/huashan/huashan3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0246c98f67d1db4498c8dfd9f2452d6e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect3.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: ddfa409fea6dec342bd23918ad5ba75d
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/good/charactergood2.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 22d620af6c9afe74ab6fae5750b9723b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/cike/cike1.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7782c0aff5d8e83428eb26238fb42bc6
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/shaolin/huotouseng.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 7be614af23a6a384c90f315ca8bccbcf
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/animal/wolf.bundle
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 0f38d2bf380773543a1bb2950ac91d97
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/wudang/wudang2.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 1f9ff1df4028e4d4e8f01a09a988a26c
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/mojiao/mojiao3.bundle.manifest
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 428b89ef7e6803649841e3e4923a0c2b
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/enemy/xiaoyao/xiaoyao2.bundle
-    m_exportTo: 
-    m_variantName: 
   - m_assetDatabaseId: 3f89ddef334a5e043ab2625baf50533a
     m_importFrom: Assets/StreamingAssets/game/game
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: cb6037ff88ff62043a29db0a2ac5392e
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/characters/character/perfect/characterperfect3.bundle.manifest
+  - m_assetDatabaseId: 8eeb8c80e907d8244a4790528e14487c
+    m_importFrom: Assets/StreamingAssets/config/Work.txt
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4442cead6e6c12d42bf6ccfa164ce844
-    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/mainmenu/maintask.bundle.manifest
+  - m_assetDatabaseId: c976116100a223346b1ab6d89b6be392
+    m_importFrom: Assets/StreamingAssets/config/LevelConfig.txt
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 4e65768f53db37f4fbeab8211505cd65
-    m_importFrom: Assets/StreamingAssets/config/ItemConfig.txt
+  - m_assetDatabaseId: a4df6912e191ed74fa0483ee3ae5d14d
+    m_importFrom: Assets/StreamingAssets/config/ArenaShop.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9dc28595037598241a54cdeb9c0e3962
+    m_importFrom: Assets/StreamingAssets/config/TowerShop.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bd4fa8b555852aa47aaf398bdf0080be
+    m_importFrom: Assets/StreamingAssets/config/FacilityKitchen.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 53c9b497541ee3946a39dbbbca2d1060
+    m_importFrom: Assets/StreamingAssets/config/FacilityLivableRoom.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 33dd2708c7035bd43b87fb71144aa5c4
+    m_importFrom: Assets/StreamingAssets/config/VisitorRewardConfig.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7ce5d788c468fe446b40fc7144723ed4
+    m_importFrom: Assets/StreamingAssets/config/FacilityLobby.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 92f729a92667d764096153645be54ade
+    m_importFrom: Assets/StreamingAssets/config/FacilityWarehouse.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cd14297a5f132704fbc5ff2ff6b92db8
+    m_importFrom: Assets/StreamingAssets/config/HeroTrialConfig.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6944feeb20c3c9c41996fc1b2f28dd61
+    m_importFrom: Assets/StreamingAssets/config/FacilityForgeHouse.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3f1e40fb6441af143a81b77fc665ba10
+    m_importFrom: Assets/StreamingAssets/config/KongfuConfig.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 37a3fc3d5b740a844baaa11070927c66
+    m_importFrom: Assets/StreamingAssets/config/MainTask.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f69da47d17b6f04438cdce1d104ab493
+    m_importFrom: Assets/StreamingAssets/config/FacilityDeliver.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 27e21b9e76feb8c499b5e6500e7de4cb
+    m_importFrom: Assets/StreamingAssets/config/FacilityPracticeField.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c8a1d18f0c8c7834c882861b7f2ba8d6
+    m_importFrom: Assets/StreamingAssets/config/FacilityKongfuLibrary.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a14a6a9fc3da2504dbcc3eba07b9bd19
+    m_importFrom: Assets/StreamingAssets/config/FacilityBaicaohu.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 90e712b60e8218442b7d0ea8814c79a8
+    m_importFrom: Assets/SDKAdapter/LeBian
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 675edf977fe15c44c82b7ae569446caa
+    m_importFrom: Assets/SDKAdapter/DataAnalysis/RamAnalysisScripts/DataAnalysisDefine.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b28ee67ae61ce3140b4262848af1b56c
+    m_importFrom: Assets/SDKAdapter/LeBian/LeBianSDKConfig.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4a30cbcb9bb3e0b41823e663504d8534
+    m_importFrom: Assets/SDKAdapter/SDKConfig.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d4b21fbcd2bbdae4fa6d11a2f41e1028
+    m_importFrom: Assets/SDKAdapter/LeBian/LeBianSDKMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 127beaccd12a2ee4796d3adc3e56ee56
+    m_importFrom: Assets/SDKAdapter/SDKMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 47af255fbf980564ebf255c9f3fbc67a
+    m_importFrom: Assets/Resources/Config/SDKConfig.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43f98080b50969d4e9712ef76bb440a9
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Honey.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 908d07809ea841b4699e01fabcaad514
+    m_importFrom: Assets/3rdAssets/DoozyUI/Resources/DUI/Prefabs/OrientationManager.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 52eb2ea0dffb8dd41b7caa0a7483564d
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Lotus.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e264c091bad2ab641a90aeacdd3c5a8d
+    m_importFrom: Assets/Prefabs/SceneItem/TaskPos.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 69fb1d91341148b448519d2336fbed75
+    m_importFrom: Assets/Prefabs/SceneItem/Navagation.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9da3bd911027f0f458b87433cb64736c
+    m_importFrom: Assets/Prefabs/Facility/BulletinBoardView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9f7bab82afe46a340a4e3e64a0024ce5
+    m_importFrom: Assets/Prefabs/SceneItem/CollectItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 746baea24a9224ddd99bd02d48a85f8e
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_002.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b28e4613afd4f4e64ba619e8f093a169
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_003.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2cc1584384435c54084b3407590f940f
+    m_importFrom: Assets/Prefabs/Facility/LobbyView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c727fdb3c5032e5429f7b390c69aabfb
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkProgressBar/WorkProgressBar.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f0b850c3f82eb49eb974cd092438fede
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_003.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 58debe549182d284fbca1a1e4487518b
+    m_importFrom: Assets/Sprites/Plants/Ganoderma.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4f9d63e48840e7f4ca74e6e7f51b599f
+    m_importFrom: Assets/Prefabs/SceneItem/BattleSection.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b1eeb5b5d3121bf48a7d7a8ffda19126
+    m_importFrom: Assets/Sprites/Plants/Vine.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 72ceedf5372ac494582df60e52d758df
+    m_importFrom: Assets/SDKAdapter/SDKBOX/iap/IAP.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cedc6e1995c3ec145bc818667aeeb05b
+    m_importFrom: Assets/Prefabs/Facility/BaicaohuView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f6e98f198ca06c04f988cc04e40c441f
+    m_importFrom: Assets/Prefabs/Facility/KongfuLibraryView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fdab36992426e6242a3ad78d98aa2c33
+    m_importFrom: Assets/Sprites/Plants/WuWood.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4a0acc9a317ee4b6191c57e81b0ddfb7
+    m_importFrom: Assets/SDKAdapter/DataAnalysis/Appsflyer/AppsflyerScripts/AppsFlyerObject.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6429f24b52e8d4f15acb6493183da777
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_001.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b2eedf4b5f7df9846af6982730659aea
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/Leaf.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 81663f9bf432e4ad78e02e0d3e773ccf
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/stone_002.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1522efab9623e354c9f952b7d757a0a8
+    m_importFrom: Assets/Res/FolderMode/Characters/WorkTip/WorkTip.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1f4dc7eb38adcca4aa0ddbf1f1097e13
+    m_importFrom: Assets/Prefabs/Facility/LivableRoomView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8172621da7f794acaa089827358009d7
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/column_001.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 01584f5d67457484e9181d3999db9be3
+    m_importFrom: Assets/Prefabs/SceneItem/WorkingBubbles.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 939c379d1bf1ef346ad68602d4a1913b
+    m_importFrom: Assets/Sprites/Plants/CloudRock.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b12c0faddf4c570458407a63f135a370
+    m_importFrom: Assets/Prefabs/SceneItem/RandomWayPoints.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5b1de0bd037dd5845ad42a7599bb7c63
+    m_importFrom: Assets/Prefabs/Facility/WarehouseView.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5ec556bd55135ff48b3df02a1103f10c
+    m_importFrom: Assets/Res/FolderMode/Characters/CharacterTaskRewardBubble/CharacterTaskRewardBubble.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0ebb53dd553cc054ebd3d96f91511119
+    m_importFrom: Assets/Prefabs/SceneItem/ClickCollectableItem/LotusRoot.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d098514e183b48d4f9f09d3f375b3325
+    m_importFrom: Assets/Sprites/Plants/Fishing.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5032809e9eca52e45bbb3d9513feb3ec
+    m_importFrom: Assets/Sprites/Plants/Iron.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cac886ce70b6c344ca96a815553d684e
+    m_importFrom: Assets/Sprites/Plants/SilverWood.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a247c63f8294fe24c95a91b4d29b7938
+    m_importFrom: Assets/Sprites/Plants/QingRock.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 74ea11cfbe16ed5409faca72692f9ab4
+    m_importFrom: Assets/Resources/IAP.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4d30f7ff9bc4c445980e8162e01e945f
+    m_importFrom: Assets/3rdAssets/Mobile_touch_camera/gfx/prefabs/tree_001.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 00000000000000006100000000000000
+    m_importFrom: ProjectSettings/GraphicsSettings.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 84160226526858e44a6c0e0d1449fe76
+    m_importFrom: Assets/Scripts/Game/Tables/Extend/Gameplay/Level/TDLevelConfigTableExtend.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 307185ec93cc76740bf3af9bb61cdfdb
+    m_importFrom: Assets/Scripts/Game/ConstDefine/Define.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a5047d58cd6819f4e96ce8d6e4571892
+    m_importFrom: Assets/Res/FolderMode/Deliver/Spine/Car/carriage_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2d6f59aed144fb044b564fd4d14962c3
+    m_importFrom: Assets/Res/FolderMode/Deliver/Spine/Car/carriage_json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f3de95f01e9014ac59ab2a696ab95da5
+    m_importFrom: Assets/Qarth/Scripts/Engine/Tools/CustomExtensions.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 445baf5ea3f034f93b690a62dadc3c0e
+    m_importFrom: Assets/QarthExtension/Helper/PlatformHelper.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 16e09f8e45a225f409b655f802409af7
+    m_importFrom: Assets/Scripts/Game/GamePlay/SystemPackage/AssetLoadSystem/AssetPreloaderMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 361b33b3ba3d9f3499f2976c29b34727
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/deliver/spine/car.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3ba19a8ce95c6304f81d43cc74c26c17
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/deliver/spine/car.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 16a6c820542b6934ca92a27f773174a3
+    m_importFrom: Assets/Scripts/Game/ConstDefine/EventID.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 33017560bfd1a234d8af51c3e6596d5b
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b2823970e07c044b6954c6f7a73691b2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaPanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 150832b0723370d4987b3572cb20c9f4
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/MainMenuPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ea53b8b08136b5746b0c6d1d937612b5
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d89d7d2195d47467a9769719547409ad
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaClose.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3bf68d21226f54675afe746c027cf15c
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaAddCountPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7321f2918ed8542c2b154be13406073b
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/ArenaSystem
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ebbc9d912fbe3f347aa39a5198b8ecce
+    m_importFrom: Assets/Scripts/Game/GamePlay/GameData/PlayerData/PlayerData.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4e692db17a47bee4a8604f2d550411a5
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2e94bbc1fa446794daaff5eba91d40b9
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/EquipBelongingsItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 591381e13d8abcc4e9cc89a52b30a1da
+    m_importFrom: Assets/Scripts/Game/Module/GuideModule/NewTrigger/TowerSystemTrigger/TowerTrigger_FaildTrigger.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 445f5e73cccd7ed43864f73b89a03c74
+    m_importFrom: Assets/Scripts/Game/UIScripts/Common/CommonMethod.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0233ca93f4730f94e84c6d4432dd9fb8
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/Base/CharacterController.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04deeae3b2787ff4db9da93af7b08d7d
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/DiscipleDetailsPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aef6cf948d1b3cd4a84118f9a6f3bd56
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/ExclamatoryMark
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d5c8e4f4ba064494b86fcdcfaf608c78
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaRankRewardPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d71fa75c13f55a4fb1e1a9dfe8be4e1
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/CharacterDataWrapper.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0df42f7523eee064d8360b7fcd5d7ba0
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/RewardIInfoItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 36c341d52901ac94f9b330bf1408c8da
+    m_importFrom: Assets/Scripts/Game/GamePlay/Reward/RewardMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4e7c4ad576872e64b88266a033cd7e5f
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/LearnKungfuPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: df0e2096446e9b24aa36a735e6d06a4a
+    m_importFrom: Assets/Scripts/Game/Module/InputModule/InputModule.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 14b5e3a683392f844b1cb14dd5878c0f
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaShopPanel/ArenaShopPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7bf797d614b09704a830a9174af262a8
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/CombatSettlementPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 59641407f18481c45bd0f97bc996bf69
+    m_importFrom: Assets/Scripts/Game/GamePlay/Mgr/MainGameMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a940ce3728b6cb8478db8a7500338183
+    m_importFrom: Assets/Scripts/Game/GamePlay/Mgr/GameplayMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93496377bc41c9943a78e198315ef57e
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/CombatInterfacePanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ca9a5e87f45766b4fac3a8b432ec680d
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/DisciplePanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1fcfa3f76e32e4c48889deec9ca3ae6b
+    m_importFrom: Assets/Scripts/Game/Module/GuideModule/NewTrigger/TowerSystemTrigger/TowerTrigger_SuccessTrigger.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2c7661a8091bde94ca10cca0e17f08e5
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Chapter/LevelReward
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d28677198a8002f418199760c5993f53
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/BattleField/BattleField.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 17aa2a1972379a54f98093297f3e696c
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/BattleField/BattleFieldMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 081fad1941f94284696b4af0cd0d217b
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/WearableLearningPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 791bce4940d2fb74fab816477ca33edd
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/KungfuBelongingsItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f700433a78eb34c4aaf46521b90db0ca
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/SceneItem/FixedFollowCamera.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1ea2bf7a586124b86b0ea99381b331f9
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 931b668a78c4b47abbe74c5fa2c3c765
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43b182abc57867041a373c2f1f44d93a
+    m_importFrom: Assets/Scripts/Game/Module/UIDataModule/UIID.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 90ca16abcf13a3143a69e6da6d3b28af
+    m_importFrom: Assets/Scripts/Game/Tables/Extend/Gameplay/Arena/TDArenaShopTableExtend.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 08d88bcb96a0a4350920718bc2054019
+    m_importFrom: Assets/Scripts/Game/GamePlay/GameData/PlayerData/ArenaData.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a10b1f0c59e95714e8ecfca55e7528ac
+    m_importFrom: Assets/Scripts/Game/Module/TableModule/TableModule.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 375c8d9dbc8064abea37e37537c8cee5
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaPanelCellItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a13fe4dd742f84b73b92fb5f761eed10
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/TowerSystem/TowerLevelConfig.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9f7a55dd4222dc24c89c44f0e3358f48
+    m_importFrom: Assets/Scripts/Game/Tables/Extend/Gameplay/Arena/TDArenaEnemyNameTableExtend.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 975c9fdd1505441578bd7c1bfbf39bd8
+    m_importFrom: Assets/Scripts/Game/GamePlay/Reward/AllRewards/ArenaCoinReward.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8ffcf7edf0143ff49858d7798b606fd7
+    m_importFrom: Assets/Scripts/Game/Tables/Generate/Gameplay/Character/Battle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b485ddfde54bd0e4c9dba48004a0560e
+    m_importFrom: Assets/Scripts/Game/UIScripts/ArenaPanel/ArenaShopPanel/ArenaShopItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4520432e0104aa3459a00e1e3b4632dd
+    m_importFrom: Assets/Scripts/Game/ConstDefine/AtlasDefine.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f9aa557e48351c044a183f2fc53e9039
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/BulletinBoardPanel/SendDisciplesPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5c9011dea1ed4fd40babdac82505beb3
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/CharacterMgr.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 76d88cfe996651344bde56e2a57059d7
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/StateMachine/CharacterState/StateBattle/SubState/StateBattleDead.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f564821fcd8478d43ae3a37c326904ac
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/DiscipleItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 41cf7c5f8014d824e987f02ed97ea2f0
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/SceneItem/MainCamera.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aa9263af843f90f40af0e3923bdf51b7
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/SendSelectedDisciple.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a9f493bf5aebd2144b190348b75a43a3
+    m_importFrom: Assets/Scripts/Game/Module/UIDataModule/UIDataModule.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ec9798bf118494a05a62a9236fbe3a84
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/ArenaSystem/ArenaSystem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 71ea82ff16e1c4655a6c2871ec4c72ac
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/ArenaSystem/ArenaDefine.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f62ea050a6b92374db4c17a72840aa8e
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-12-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 42d702b09d6f2994286e98caf4b9da55
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-03_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f5d733c082958e642a89c6d9765a9b85
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg25.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 279536d0214d3a34aa0a58507a42fac4
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-10.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 51d4661116980fb4eb1212b319b7af07
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-04-json_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a43d59718657bb542aa3661fc86f7dea
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-14_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cc68c181384d5a64aa19d0c8b555b5ae
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-04_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a155fd1553d70c479cd649d4734bff9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg8.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 421d98e1a39464146a7cd9d8bbc385ae
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-12.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 05b76ce191a0b094899d28226f0debcf
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-06.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 06f3520255039b549b8a5df6fb0c87bf
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg27.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d9f39d2239da4cb4cb26a2b1593fb8ef
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-05.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 121d5932f0369f24098d58d15ad8e6f6
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-02.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85488062e321ed641aa8cfc61e5486f5
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-14_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 88961c6269b2c99459d8e447e154df71
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-05-json_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9ce6d1828687331438c93460df179375
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-01.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 46fb4f82f3c287a4f82f369951bf71ce
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/KungfuBelongingsItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 741e65a2e550b584ba7f89c1efe2938b
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaShopPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 75070ac2fcb6a894dad43c4ba5164143
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-05_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 68e8bfd2f1e41e64692db501a0f2e6a0
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-14_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ff60d8e236b714c4aa14eb8b4a768778
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-06_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c5b130033a8d7a44cbc2fef7ea11b1d7
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-09.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c068e203cc4ea8b4ab6738561212ae98
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg22.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 012e5d13d0555114db9e54fc0599dcb9
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-08.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b7c35e33b18e7054baa756fd31877a7f
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-08_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5097d043775f2444c9aaf49b65dc8ca8
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-10_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3c218673b36bf4c4eb34205c7560be38
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-15-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 306ef6831cc57e248942a1ca1010e94d
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-11.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8c66d293824934648bc5c49a95507b40
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-01_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 25565493523be1f4588cc7e90d886867
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-13_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 87a5c593d5a39af469ea63eac04deb97
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-12.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 01fb33b3e67427d4da792283c8b5a7cf
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-14.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 384a6ac3d8f347f48b55319c00341154
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-07.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 27c2dbd37f401754f8652255df45175e
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-13_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1e3483e3376736145842bba6f74801db
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg18.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ae961be339514b9449eba9b5f69399dc
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-10.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 24a489f374ea46b43b0a9a91c4f21636
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg23.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fe7eb6340902a254abfe14c7c1a3a58b
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-11_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 69d262540878a664aa04fa60e9e6160d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Hero.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 256e61642f1782f4c90f56275d377aa8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg9.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 24008864bed177442a870ffdf93930ae
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg10.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5012e074c5227364cbabe811dcefb6e2
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-08_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 17dc5374d24676c47b22e184e734b0df
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-03.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 96d33674472551b40b21fb09b27837b0
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-09.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3fad3e94e8f764e14873bb63ba0413ba
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaPanel/ArenaAddCountPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c86572a4093caec439add1b7a85fb495
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-04-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7be801b43827a404b9d2564d1b1e8394
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-11_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d714c4b4a9f81444bb886ee6cfcd49cd
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-05.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce60bc05f5cdc0c458107a5cb9243318
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-13.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 354c6715229a0de4b979c99e534e6b8c
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg24.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c24ce815d8fb905448b4787ce92dabf8
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-06.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f0a25f3535def6549bbcfbdbbd10c20f
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-10_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 06528fe5d6df3f9409e636719908e42b
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-07_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2b7331060bb5c442ca045522a62aa66e
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaPanel/ArenaRankRewardPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce23dd062b478fb4e9405bc012c5d476
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-07_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f31821625602de4fa10c94f97d098ab
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-09_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 896a262641c94834e96c9d0082fbb0dd
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-02-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a645846f5bcf6540b050dcc59df2184
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg7.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a53b4fa63cfaa9146b54ee5393e3c8b0
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-02_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8e9a55c6843ffff4aa26bbc7169361d8
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-04.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0beb45170d7896045af4acb5a0cac4f2
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-07_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 080c3837cd198bd42bd91df7f74d28ab
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-02_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c7142f3744074ce4793fef10e5a1c13c
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-08.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ecf73757aedb5f5419853c1bd316fced
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-11-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bd478177d8061f247873a0f916313e99
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-01_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 91e8bc97d3215d54db589feaca012390
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-12_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8b0ccea7ac47f494ab672419bc455cac
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/BattleField/BattleField_tower.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: aa298dc7d90699a43a487b16afd39f06
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-06_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 09f889f7102acc041b814619523628b2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/MainMenuPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2c6255082d004d54788d88f469b083a5
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg15.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 669da80811492074db35d8ae1b246afb
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-08_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 94a1ee18200ad6c43a01701b9b07e0d3
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-04_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7cdf2a289a508414a9ffe82344060cc8
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-07-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 457a5e3899a64fa438235f16e791550d
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-02.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8707bc782c38140088491ff522899edd
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaPanel/ArenaPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 94fe25c8307aa664b9a3075e15ab9ea8
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg28.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04fd31d8a3854d1469078b656f93bad4
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-10-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a9254cf8bcc52b44eb5a3fed83121136
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-11_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 30db5d1921cf50e4db0f47ef373742fb
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-02-json_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0128c1299522b0c4cac40d11f068b5a6
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-03_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3924f7893dc74e44685fd07466673297
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-13-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d1612b994ca3800429ed3d6e90ce29da
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/SplashScreenPanel/SplashScreenPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5449040a984eca947bc16439dc9b32ed
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-14-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f7be280a37ce2d142a52fd0ed0b04cf3
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg6.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a5fd5a0a7f9d6654d85c9036bbb46ccc
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-01-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5587e94a7825dcb44a504bbfe5901b70
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-01-json_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 9d4c099a4dbd4264b904976521059d5d
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/ArenaPanels/ArenaShopPanel/ArenaShopItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dcf6f8aa280dfdc459e3a2dea9d000f2
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-11.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 113efeaa6fcf66d4cbb70b792e05733d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg17.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6e350cfaf326a3244bcfa74e41a79b1c
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-08-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d042b40b2d913424781994faaaedc600
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-09_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5c4bc72b741a1e74fa35c33edde38ede
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-10_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6fc6d73be72460442a6d019d90e86a39
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-15.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2fc1483b301da534c8a38cbb3b3b51cc
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg13.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 048b2f4b12579524d87442b2a528f18d
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-06-json_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 46b0e6cbd045eea4490053cf26e2cfc9
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-15_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ec61e30c977945d48a500e76f1c2d65b
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg21.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bbfdda2c0b989334bbdfb242869cef3d
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg14.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8e14f54c396b7904c9319bf7071089a6
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-15_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 356dd84ccbb260f4db146872e5213632
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-14.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1e7c36ace4e23bb458f7f3c63119ebd2
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg19.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c0757aac7a9b57640b6ed2430b63cc8d
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-03.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: abf93caccb055b948a4ed28982b555eb
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-15_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c434acac16bef8e49b08f94b3259b868
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Perfect.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b1f61aec3dad4724ea419a5bc6f27394
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg12.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 51b7dfecb7663894785c98cd6474ce3a
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-05_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 689129fc62d35a84a817177f2de325b9
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg11.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3d854f0dce9a4044fb653683697158be
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-12_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 68b0515d6913dd044b06ac2952af6d6c
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-15.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6f0a369d05dbb9344bd04fc4e9ad1667
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-07.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4e9035ad808740149ac933a696c70c53
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg16.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 18227badfff56ed4fb27bf29fcf890fd
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-06-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 95d407bd6a34ba441adbbde324f68b82
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-03-json_SkeletonData.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 741f682ed2276bb47af81ec6fd33df82
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-03-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 97f8115e0dc23cf4696e72cd3290ed0a
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Normal.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c3774d7ef95d1e64190fc677dcc9ff83
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-01.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e604128e8fd40e048be63b343e246bc6
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-04.atlas.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 85e923aedb00e3348b80f230773f5a4d
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-12_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 146b4bbe812478d4f95edf52a4adb7ff
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg26.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6187cbee24067a74db88c959cea452bf
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-13.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 10812d2fc99683446b91df91d32d0605
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-09_Material.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 10a1f15f4591ed744a6800f247e259b0
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Third/ch-13_Atlas.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e4863e7f38c740f4aaec6b34e4271222
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/EquipBelongingsItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 03006daf2a127344bb3de1283651dd82
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Bg20.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 94eec0bffeac2bf4dad7e5968aa89786
+    m_importFrom: Assets/Res/FolderMode/UI/Sprites/DisciplePanel/DisciplePanel_Good.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f03f19df3acb7bd499fddba781a03ccf
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/Second/ch-09-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cc2013efd75d8e347ac5cdfa70974098
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/DisciplePanel/DiscipleItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 768adaff738a8be4ba5c8fe558feeead
+    m_importFrom: Assets/Res/FolderMode/SplashScreenSpine/First/ch-05-json.json
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 91c0f191954c2ee4cb13afcf515a2195
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 70cf2de1dfd1f1148abce6cb96202109
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 11f456d242d4db64384917f22f3fd2bb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5225ce94c58f6d341839f5fad48b216d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/battlefield.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 734ab346e95461e4aa453273cc422e3f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/splashscreenpanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 03a274b60e6b11d4c87f4c6c4f6c0ac5
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/sprites/battlefield.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 20c7ad070b5c89b46a36c9f9b978ac3a
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine/third.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1280e4677d72c824fa681d9dedf8b74e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine/second.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 6d1a55673d0743247a7ec26ee412c8d0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine/first.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ce60de87d14f6384384dac3f13c6cef6
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine/third.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: fe1768388d0103f439cb2a6f83e486ec
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine/second.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c091880a14687be44a8d2ac2ed7fbb6e
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d224732aafe26184598100c05bb6ebbf
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 43f45d2a9a5d6c145b1af144f727ab42
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/splashscreenpanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 04c4fc6a2d5a055418086e4d8cb23cc7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0492588a3cf0d2149ab7c29bf49d954d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/splashscreenspine/first.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e999783ba001b87488186f1d228f9074
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel/arenapanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c29f9f8dbbfea1e44a04ada2262e69cd
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/arenapanels/arenashoppanel/arenapanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 7f69a9c558864e54c84b7913cfd5b6eb
+    m_importFrom: Assets/StreamingAssets/config/guide_step.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: e8fc031b909a694479972a9f6f72f184
+    m_importFrom: Assets/StreamingAssets/config/ArenaEnemyConfig.txt
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 53d56fc3ff60b674c9e796d731308a07
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/DisciplePanel/EquipDetailsPanel.cs
     m_exportTo: 
     m_variantName: 
   m_version: 2
