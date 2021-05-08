@@ -188,7 +188,7 @@ namespace GameWish.Game
                 shopItemDB.buyed = false;
                 shopInfoLst.Add(shopItemDB);
             }
-            EventSystem.S.Send(EventID.OnRefeshTowerShop);
+            EventSystem.S.Send(EventID.OnRefeshArenaShop);
             SetDataDirty();
         }
 

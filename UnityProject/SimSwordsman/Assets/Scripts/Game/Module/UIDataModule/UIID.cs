@@ -106,6 +106,7 @@ namespace GameWish.Game
         ArenaRulePanel,
         ArenaAddCountPanel,
         ArenaRankRewardPanel,
+        ArenaADRefeshPanel,
         #endregion
     }
 }
