@@ -166,6 +166,8 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.ArenaAddCountPanel, null, "GamePanels/ArenaPanel/ArenaAddCountPanel");
             UIDataTable.AddPanelData(UIID.ArenaRankRewardPanel, null, "GamePanels/ArenaPanel/ArenaRankRewardPanel");
 
+            UIDataTable.AddPanelData(UIID.ChallengeTalkPanel, null, "GamePanels/MainMenuPanel/ChallengePanel/ChallengeTalkPanel/ChallengeTalkPanel");
+
             RealNameMgr.S.RegisterPanels();
         }
     }
