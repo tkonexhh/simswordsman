@@ -83,7 +83,7 @@ namespace GameWish.Game
         {
             m_TxtMyRank.text = GameDataMgr.S.GetPlayerData().arenaData.nowLevel.ToString();
             m_TxtMyName.text = GameDataMgr.S.GetClanData().clanName;
-            m_TxtATK.text = MainGameMgr.S.CharacterMgr.GetCharacterATK().ToString();
+            m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(MainGameMgr.S.CharacterMgr.GetCharacterATK());
         }
 
 
