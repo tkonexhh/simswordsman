@@ -103,6 +103,7 @@ namespace GameWish.Game
                 //Trial
                 TDHeroTrialConfigTable.metaData,
 
+                TDTalkTable.metaData,
                 //Arena
                 TDArenaConfigTable.metaData,
                 TDArenaEnemyConfigTable.metaData,

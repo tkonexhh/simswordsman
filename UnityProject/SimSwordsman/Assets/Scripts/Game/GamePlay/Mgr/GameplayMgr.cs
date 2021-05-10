@@ -79,6 +79,12 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
 
             AudioManager.S.OnInit();
+#if UNITY_IOS
+            if (!GameDataMgr.S.GetPlayerData().GetIsAgreePrivace())
+            {
+                UIMgr.S.OpenTopPanel(UIID.IOSPrivacePanel, null);
+            }
+#endif
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {

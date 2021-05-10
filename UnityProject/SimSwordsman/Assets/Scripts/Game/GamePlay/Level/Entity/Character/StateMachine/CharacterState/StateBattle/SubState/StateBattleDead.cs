@@ -19,10 +19,12 @@
 
             m_Controller.CharacterView.PlayDeadAnim();
 
-            if (m_Controller.IsOurCharacterCamp())
-            {
-                AudioManager.S.PlayCharacterDeadSound(m_Controller.CharacterModel.IsWoman(), m_Controller.GetPosition());
-            }
+            //if (m_Controller.IsOurCharacterCamp())
+            //{
+            //    AudioManager.S.PlayCharacterDeadSound(m_Controller.CharacterModel.IsWoman(), m_Controller.GetPosition());
+            //}
+
+            AudioManager.S.PlayCharacterDeadSound(m_Controller);
         }
 
         public override void Exit(IBattleStateHander handler)

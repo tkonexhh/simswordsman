@@ -97,6 +97,9 @@
         public const string CHARACTER_WORK_REWARD_POP = "PopRewardCanvas";
         //public const string CHARACTER_POP_REWARD_CANVAS = "PopRewardCanvas";
 
+        public const int ENEMY_PIG_ID = 9602;
+        public const int ENEMY_WOLF_ID = 9605;
+
         // Animation
         public const string ANIM_MOVE = "move";
         public const string ANIM_ATTACK = "attack";
@@ -280,6 +283,9 @@
         public const string SOUND_WELL = "Well";
         public const string SOUND_WOLF = "Wolf";
         public const string SOUND_FACILITY_BUILD_UPGRAD = "FacilityBuildAndUpgradSound";
+        public const string SOUND_WOIF_DEATH = "Wolfdeath";
+        public const string SOUND_PIG_DEATH = "Pigdeath";
+
 
         #region layer name
         public const string Bubble = "Bubble";

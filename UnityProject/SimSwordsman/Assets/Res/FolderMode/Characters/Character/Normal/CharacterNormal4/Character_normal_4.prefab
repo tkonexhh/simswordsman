@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1348733041140731626}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HeadPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 1875119245}
   - component: {fileID: 7696235984069948748}
   - component: {fileID: 5107490444715041092}
-  m_Layer: 0
+  - component: {fileID: 4925653845506038605}
+  m_Layer: 12
   m_Name: Character_normal_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +127,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NeedBindAgain: 1
+--- !u!61 &4925653845506038605
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845809598577782914}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.55}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.55, y: 1.18}
+  m_EdgeRadius: 0
 --- !u!1 &3845809599068655259
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +165,7 @@ GameObject:
   - component: {fileID: 3845809599068655255}
   - component: {fileID: 3845809599068655254}
   - component: {fileID: 3845809599068655257}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599198769663239081}
   - component: {fileID: 949772833064642560}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BoneFollower_p_4_ys3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,8 +293,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4310011457229549896}
-  m_LocalRotation: {x: -0, y: -0, z: -0.79084986, w: 0.6120103}
-  m_LocalPosition: {x: -0.19115181, y: 0.46057314, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7013448, w: 0.7128222}
+  m_LocalPosition: {x: -0.21685663, y: 0.45369107, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2756058994301227442}
@@ -305,6 +332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Clean_DragSmoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877515203979032658, guid: 642e6b4093f113d48897f45c70969358,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1877515203979032659, guid: 642e6b4093f113d48897f45c70969358,
         type: 3}

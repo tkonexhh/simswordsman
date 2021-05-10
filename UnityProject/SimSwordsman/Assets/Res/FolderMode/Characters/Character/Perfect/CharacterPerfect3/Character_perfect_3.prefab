@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1875119245}
   - component: {fileID: 7696235984069948748}
   - component: {fileID: -1496781184605551682}
-  m_Layer: 0
+  - component: {fileID: 4200882885099172572}
+  m_Layer: 12
   m_Name: Character_perfect_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +97,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NeedBindAgain: 1
+--- !u!61 &4200882885099172572
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845809598577782914}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.55}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.55, y: 1.18}
+  m_EdgeRadius: 0
 --- !u!1 &3845809599068655259
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +135,7 @@ GameObject:
   - component: {fileID: 3845809599068655255}
   - component: {fileID: 3845809599068655254}
   - component: {fileID: 3845809599068655257}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805941744170088067}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HeadPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,15 +281,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoneFollower
       objectReference: {fileID: 0}
+    - target: {fileID: 975035456901413765, guid: ef8a0c51c073fcd418375b2385097221,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3468695998385535311, guid: ef8a0c51c073fcd418375b2385097221,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.11633799
+      value: -0.169038
       objectReference: {fileID: 0}
     - target: {fileID: 3468695998385535311, guid: ef8a0c51c073fcd418375b2385097221,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.438204
+      value: 0.43824077
       objectReference: {fileID: 0}
     - target: {fileID: 3468695998385535311, guid: ef8a0c51c073fcd418375b2385097221,
         type: 3}
@@ -282,12 +314,12 @@ PrefabInstance:
     - target: {fileID: 3468695998385535311, guid: ef8a0c51c073fcd418375b2385097221,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.8943105
+      value: -0.8603419
       objectReference: {fileID: 0}
     - target: {fileID: 3468695998385535311, guid: ef8a0c51c073fcd418375b2385097221,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.44744694
+      value: 0.5097174
       objectReference: {fileID: 0}
     - target: {fileID: 3468695998385535311, guid: ef8a0c51c073fcd418375b2385097221,
         type: 3}
@@ -318,6 +350,11 @@ PrefabInstance:
         type: 3}
       propertyPath: boneName
       value: p_2_ys3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5724831168140034032, guid: ef8a0c51c073fcd418375b2385097221,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef8a0c51c073fcd418375b2385097221, type: 3}

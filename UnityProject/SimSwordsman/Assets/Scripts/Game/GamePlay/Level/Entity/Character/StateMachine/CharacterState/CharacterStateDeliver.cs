@@ -56,6 +56,8 @@ namespace GameWish.Game
 
                 m_IsDeliverStart = true;
             }
+
+            m_Controller.CharacterView.RemoveTouch();
         }
 
         private void OnDeliverStartGoOutCallBack(int key, object[] param)
@@ -121,6 +123,8 @@ namespace GameWish.Game
         {
             Qarth.EventSystem.S.UnRegister(EventID.OnDeliverCarStartGoOut, OnDeliverStartGoOutCallBack);
             Qarth.EventSystem.S.UnRegister(EventID.OnDeliverCarStartComeBack, OnDeliverStartComeBackCallBack);
+
+            m_Controller.CharacterView.AddTouch();
         }
     }
 }
