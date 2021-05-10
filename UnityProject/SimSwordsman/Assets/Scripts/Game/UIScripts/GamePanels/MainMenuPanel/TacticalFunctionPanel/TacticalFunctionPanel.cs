@@ -124,28 +124,73 @@ namespace GameWish.Game
             m_CharacterAllItemList = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
             CommonUIMethod.BubbleSortForType(m_CharacterAllItemList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
         }
-        private void AutoSelectedAndAddTo()
+
+        public void QuickStartAddDisciple(CharacterQuality quality, Dictionary<int, CharacterItem> characterItems, int surplus)
         {
-            List<CharacterItem> allCharacterList = new List<CharacterItem>();
-            foreach (var item in m_CharacterAllItemList)
-                if (item.level >= m_CommonTaskItemInfo.characterLevelRequired)
-                    allCharacterList.Add(item);
-            if (allCharacterList.Count <= m_CommonTaskItemInfo.GetCharacterAmount())
+            if (characterItems.Count == m_CommonTaskItemInfo.GetCharacterAmount())
+                return;
+
+            List<CharacterItem> normalList = MainGameMgr.S.CharacterMgr.GetCharacterForQuality(quality);
+            CommonUIMethod.BubbleSortForType(normalList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+            if (normalList.Count >= surplus)
             {
-                for (int i = 0; i < allCharacterList.Count; i++)
+                int number = 0;
+                for (int i = 0; i < normalList.Count; i++)
                 {
-                    m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
-                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+                    if (number == surplus)
+                        break;
+                    if (normalList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && normalList[i].IsFreeState())
+                    {
+                        number++;
+                        characterItems.Add(normalList[i].id, normalList[i]);
+                    }
                 }
             }
             else
             {
-                for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
-                {
-                    m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
-                    m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
-                }
+                for (int i = 0; i < normalList.Count; i++)
+                    if (normalList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && normalList[i].IsFreeState())
+                    {
+                        characterItems.Add(normalList[i].id, normalList[i]);
+                    }
             }
+            surplus = surplus - characterItems.Count;
+            if ((int)quality > 0)
+            {
+                QuickStartAddDisciple(quality - 1, characterItems, surplus);
+            }
+        }
+
+        private void AutoSelectedAndAddTo()
+        {
+            QuickStartAddDisciple(CharacterQuality.Hero, m_SelectedDiscipleDic, m_CommonTaskItemInfo.GetCharacterAmount());
+
+            List<CharacterItem> allCharacterList = new List<CharacterItem>();
+            allCharacterList.AddRange(m_SelectedDiscipleDic.Values);
+            for (int i = 0; i < allCharacterList.Count; i++)
+                m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
+            #region ÔÝÁô
+            //List<CharacterItem> allCharacterList = new List<CharacterItem>();
+            //foreach (var item in m_CharacterAllItemList)
+            //    if (item.level >= m_CommonTaskItemInfo.characterLevelRequired)
+            //        allCharacterList.Add(item);
+            //if (allCharacterList.Count <= m_CommonTaskItemInfo.GetCharacterAmount())
+            //{
+            //    for (int i = 0; i < allCharacterList.Count; i++)
+            //    {
+            //        m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
+            //        m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+            //    }
+            //}
+            //else
+            //{
+            //    for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+            //    {
+            //        m_SelectedDiscipleDic.Add(allCharacterList[i].id, allCharacterList[i]);
+            //        m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
+            //    }
+            //}
+            #endregion
         }
         private List<CharacterController> Transformation(Dictionary<int, CharacterItem> m_SelectedDiscipleDic)
         {

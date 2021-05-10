@@ -57,15 +57,52 @@ namespace GameWish.Game
 
             int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
             int maxLevel = TDFacilityLobbyTable.GetPracticeLevelMax(lobbyLevel);
-            CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
-            for (int i = 0; i < m_CharacterItem.Count; i++)
+
+            //CommonUIMethod.BubbleSortForType(m_CharacterItem, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+            List<CharacterItem> characterItems = new List<CharacterItem>();
+            QuickStartAddDisciple(CharacterQuality.Hero, characterItems, m_CharacterItem.Count, maxLevel);
+            for (int i = 0; i < characterItems.Count; i++)
             {
-                if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level < maxLevel)
-                    CreateDisciple(m_CharacterItem[i]);
+                CreateDisciple(characterItems[i]);
+                //if (m_CharacterItem[i].IsFreeState() && m_CharacterItem[i].level < maxLevel)
             }
             CalculateContainerHeight();
         }
+        public void QuickStartAddDisciple(CharacterQuality quality, List<CharacterItem> characterItems, int surplus,int maxLevel)
+        {
+            if (characterItems.Count == m_CharacterItem.Count)
+                return;
 
+            List<CharacterItem> normalList = MainGameMgr.S.CharacterMgr.GetCharacterForQuality(quality);
+            CommonUIMethod.BubbleSortForType(normalList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+            if (normalList.Count >= surplus)
+            {
+                int number = 0;
+                for (int i = 0; i < normalList.Count; i++)
+                {
+                    if (number == surplus)
+                        break;
+                    if ( normalList[i].IsFreeState() && normalList[i].level < maxLevel)
+                    {
+                        number++;
+                        characterItems.Add( normalList[i]);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < normalList.Count; i++)
+                    if ( normalList[i].IsFreeState() && normalList[i].level < maxLevel)
+                    {
+                        characterItems.Add(normalList[i]);
+                    }
+            }
+            surplus = surplus - characterItems.Count;
+            if ((int)quality > 0)
+            {
+                QuickStartAddDisciple(quality - 1, characterItems, surplus, maxLevel);
+            }
+        }
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
@@ -117,8 +154,8 @@ namespace GameWish.Game
 
         private void Update()
         {
-            if (IsSelected)
-                m_ArrangeBtn.transform.position = m_Pos.position;
+            //if (IsSelected)
+            //    m_ArrangeBtn.transform.position = m_Pos.position;
         }
 
         private void GetInformationForNeed()

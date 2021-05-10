@@ -114,8 +114,8 @@ namespace GameWish.Game
 
         private void Update()
         {
-            if (IsSelected)
-                m_ArrangeBtn.transform.position = m_Pos.position + new Vector3(0, 0.05f, 0);
+            //if (IsSelected)
+            //    m_ArrangeBtn.transform.position = m_Pos.position + new Vector3(0, 0.05f, 0);
         }
 
 

@@ -42,35 +42,43 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 5841f8d67bbf02b41b0c6471e91969b7, type: 3}
-    - {fileID: 2800000, guid: 5ebb37f3a9e69d44b93ca7a6dce71abe, type: 3}
-    - {fileID: 2800000, guid: 758fac1307705c24f8989e30664ead03, type: 3}
-    - {fileID: 2800000, guid: d836f05b06270e442a29b27722ee8c39, type: 3}
-    - {fileID: 2800000, guid: a6a72a590fbdb2348997318adc3395db, type: 3}
-    - {fileID: 2800000, guid: 1f7b1ddff2d082241831386113402789, type: 3}
-    - {fileID: 2800000, guid: dff8bb399b666024a8f960eab1466561, type: 3}
-    - {fileID: 2800000, guid: a98abbb11a772e748af786f33397111e, type: 3}
-    - {fileID: 2800000, guid: f534cdff2b342fb45943fbd9450fd60b, type: 3}
+    - {fileID: 102900000, guid: 1cc3c66df74fe4a44a92fb40cbc6ac11, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 8fbe91106bcf8d64793f455cfebfde58, type: 3}
+  - {fileID: 21300000, guid: 7108f151f56cef94f8969af4a55180c5, type: 3}
   - {fileID: 21300000, guid: a98abbb11a772e748af786f33397111e, type: 3}
   - {fileID: 21300000, guid: 758fac1307705c24f8989e30664ead03, type: 3}
   - {fileID: 21300000, guid: 5ebb37f3a9e69d44b93ca7a6dce71abe, type: 3}
+  - {fileID: 21300000, guid: a67678b546bd32c45a69158b5c084037, type: 3}
   - {fileID: 21300000, guid: 5841f8d67bbf02b41b0c6471e91969b7, type: 3}
+  - {fileID: 21300000, guid: c89c5ed688eb4024bb13a7c68d0a36e2, type: 3}
+  - {fileID: 21300000, guid: ba5aaef73eb558449b4463f1c3220933, type: 3}
+  - {fileID: 21300000, guid: 195df868837248d41a5c7195bbbb14c4, type: 3}
   - {fileID: 21300000, guid: dff8bb399b666024a8f960eab1466561, type: 3}
   - {fileID: 21300000, guid: a6a72a590fbdb2348997318adc3395db, type: 3}
+  - {fileID: 21300000, guid: 04dc24e9286f4e74dba82fcb870122f5, type: 3}
   - {fileID: 21300000, guid: d836f05b06270e442a29b27722ee8c39, type: 3}
+  - {fileID: 21300000, guid: 1d0202bb039bdda4fa12a8d1cbd38efd, type: 3}
   - {fileID: 21300000, guid: 1f7b1ddff2d082241831386113402789, type: 3}
   - {fileID: 21300000, guid: f534cdff2b342fb45943fbd9450fd60b, type: 3}
   m_PackedSpriteNamesToIndex:
-  - SettingPanel_bg
+  - SettingPanel_SelectedHead
+  - SettingPanel_bg4
+  - SettingPanel_bg1
   - SettingPanel_MessagOn
   - SettingPanel_MessagOff
+  - SettingPanel_bg5
   - SettingPanel_HeadIconBg
+  - SettingPanel_bg7
+  - SettingPanel_bg2
+  - SettingPanel_bg6
   - SettingPanel_SoundOn
   - SettingPanel_MusicOn
+  - SettingPanel_bg3
   - SettingPanel_MusicClose
+  - SettingPanel_lock
   - SettingPanel_SoundClose
   - SettingPanel_icon1
   m_Tag: SettingAtlas

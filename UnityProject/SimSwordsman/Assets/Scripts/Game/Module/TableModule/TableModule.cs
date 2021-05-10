@@ -100,6 +100,9 @@ namespace GameWish.Game
                 TDTowerRewardConfigTable.metaData,
                 TDTowerShopTable.metaData,
 
+                //头像
+                TDAvatarTable.metaData,
+
                 //Trial
                 TDHeroTrialConfigTable.metaData,
 

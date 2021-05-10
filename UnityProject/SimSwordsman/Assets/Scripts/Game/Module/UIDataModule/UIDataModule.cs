@@ -135,6 +135,7 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.VisitorPanel, null, "GamePanels/VisitorPanel/VisitorPanel");
 
             UIDataTable.AddPanelData(UIID.UserAccountPanel, null, "GamePanels/UserAccountPanel/UserAccountPanel");
+            UIDataTable.AddPanelData(UIID.SelectedHeadPanel, null, "GamePanels/UserAccountPanel/SelectedHeadPanel");
 
             UIDataTable.AddPanelData(UIID.MaskWithAlphaZeroPanel, null, "Common/MaskWithAlphaZeroPanel", true, 1);
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/MainMenuPanel/TaskPanel/DailyTaskPanel");
