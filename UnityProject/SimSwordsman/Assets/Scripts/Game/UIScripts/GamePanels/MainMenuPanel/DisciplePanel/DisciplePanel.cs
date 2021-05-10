@@ -21,13 +21,23 @@ namespace GameWish.Game
         [SerializeField]
         private Toggle m_AllTog;
         [SerializeField]
+        private Image m_AllTogImg;
+        [SerializeField]
         private Toggle m_NormalTog;
+        [SerializeField]
+        private Image m_NormalTogImg;
         [SerializeField]
         private Toggle m_GoodTog;
         [SerializeField]
+        private Image m_GoodTogImg;
+        [SerializeField]
         private Toggle m_PerfectTog;
         [SerializeField]
+        private Image m_PerfectTogImg;
+        [SerializeField]
         private Toggle m_HeroTog;
+        [SerializeField]
+        private Image m_HeroTogImg;
 
 
         [Header("Right")]
@@ -255,6 +265,11 @@ namespace GameWish.Game
                     item.gameObject.SetActive(true);
 
                 RefreshDiscipleBgColor();
+                m_AllTogImg.gameObject.SetActive(true);
+                m_NormalTogImg.gameObject.SetActive(false);
+                m_GoodTogImg.gameObject.SetActive(false);
+                m_PerfectTogImg.gameObject.SetActive(false);
+                m_HeroTogImg.gameObject.SetActive(false);
             });
             m_NormalTog.onValueChanged.AddListener((e) =>
             {
@@ -310,6 +325,37 @@ namespace GameWish.Game
                 //else
                 //    //item.gameObject.SetActive(false);
             }
+            //m_AllTogImg
+            switch (characterQuality)
+            {
+                case CharacterQuality.Normal:
+                    m_NormalTogImg.gameObject.SetActive(true);
+                    m_GoodTogImg.gameObject.SetActive(false);
+                    m_PerfectTogImg.gameObject.SetActive(false);
+                    m_HeroTogImg.gameObject.SetActive(false);
+                    break;
+                case CharacterQuality.Good:
+                    m_NormalTogImg.gameObject.SetActive(false);
+                    m_GoodTogImg.gameObject.SetActive(true);
+                    m_PerfectTogImg.gameObject.SetActive(false);
+                    m_HeroTogImg.gameObject.SetActive(false);
+                    break;
+                case CharacterQuality.Perfect:
+                    m_NormalTogImg.gameObject.SetActive(false);
+                    m_GoodTogImg.gameObject.SetActive(false);
+                    m_PerfectTogImg.gameObject.SetActive(true);
+                    m_HeroTogImg.gameObject.SetActive(false);
+                    break;
+                case CharacterQuality.Hero:
+                    m_NormalTogImg.gameObject.SetActive(false);
+                    m_GoodTogImg.gameObject.SetActive(false);
+                    m_PerfectTogImg.gameObject.SetActive(false);
+                    m_HeroTogImg.gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+            m_AllTogImg.gameObject.SetActive(false);
             RefreshDiscipleBgColor();
         }
 
