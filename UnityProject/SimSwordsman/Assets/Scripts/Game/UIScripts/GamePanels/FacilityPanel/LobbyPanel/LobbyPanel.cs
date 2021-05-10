@@ -233,7 +233,7 @@ namespace GameWish.Game
                 }
             }
 
-            CheckDiscipleCondition();
+            //CheckDiscipleCondition();
 
             bool isReduceSuccess = GameDataMgr.S.GetPlayerData().ReduceCoinNum(m_NextFacilityLevelInfo.upgradeCoinCost);
             if (isReduceSuccess)

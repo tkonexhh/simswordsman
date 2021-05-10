@@ -25,7 +25,8 @@
         
         _Slider ("Slider", Range(0, 1500)) = 1500
         _AlphaSlider ("AlphaSlider", Range(0, 1)) = 0
-        [KeywordEnum(ROUND, RECTANGLE, NULL)] _MaskMode ("Mask mode", Float) = 0
+        //[KeywordEnum(ROUND, RECTANGLE, NULL)] _MaskMode ("Mask mode", Float) = 0
+        _MaskMode ("Mask mode", Float) = 0
         _rectSize ("矩形尺寸", vector) = (0, 0, 0, 0)
     }
     
@@ -81,7 +82,7 @@
             
             #pragma multi_compile __ UNITY_UI_ALPHACLIP
             
-            #pragma multi_compile _MASKMODE_ROUND _MASKMODE_RECTANGLE _MASKMODE_NULL
+            //#pragma multi_compile _MASKMODE_ROUND _MASKMODE_RECTANGLE _MASKMODE_NULL
             
             struct appdata_t
             {
@@ -120,7 +121,7 @@
             float _Slider;
             float _AlphaSlider;
             float2 _rectSize;
-            float _MaskMode;
+            uniform float _MaskMode;
             
             v2f vert(appdata_t v)
             {
@@ -145,26 +146,27 @@
             
             fixed4 frag(v2f IN): SV_Target
             {
-                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+                half4 finallColor = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
                 
                 #ifdef UNITY_UI_CLIP_RECT
-                    color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
+                    finallColor.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif
                 #ifdef UNITY_UI_ALPHACLIP
-                    clip(color.a - 0.1);
+                    clip(finallColor.a - 0.1);
                 #endif
                 
-                
-                #ifdef _MASKMODE_ROUND
+                if(_MaskMode<1.0)
+                {
                     if (distance(IN.worldPosition.xy, _Center.xy) - _Slider >= _Slider * _AlphaSlider)
-                        color.a *= 1;
+                        finallColor.a *= 1;
                     else if (distance(IN.worldPosition.xy, _Center.xy) - _Slider <= 0)
-                    color.a *= 0;
+                    finallColor.a *= 0;
                     else
-                    color.a *= lerp(0, 1, (distance(IN.worldPosition.xy, _Center.xy) - _Slider) / (_Slider * _AlphaSlider));
+                    finallColor.a *= lerp(0, 1, (distance(IN.worldPosition.xy, _Center.xy) - _Slider) / (_Slider * _AlphaSlider));
                     
-                    color.rgb *= color.a;
-                #elif _MASKMODE_RECTANGLE
+                    finallColor.rgb *= finallColor.a;
+                }else
+                {
                     // 计算片元世界坐标和目标中心位置的距离
                     half disX = distance(IN.worldPosition.x, _Center.x);
                     half disY = distance(IN.worldPosition.y, _Center.y);
@@ -180,10 +182,37 @@
                     int insideY = step(disY, _rectSize.y);
                     half alphaX = (1 - insideX) + insideX * (disX - (_rectSize.x));
                     half alphaY = (1 - insideY) + insideY * (disY - (_rectSize.y));
-                    color.a *= max(alphaX, alphaY);
-                #endif
+                    finallColor.a *= max(alphaX, alphaY);
+                }
+                //#ifdef _MASKMODE_ROUND
+                //    if (distance(IN.worldPosition.xy, _Center.xy) - _Slider >= _Slider * _AlphaSlider)
+                //        finallColor.a *= 1;
+                //    else if (distance(IN.worldPosition.xy, _Center.xy) - _Slider <= 0)
+                //    finallColor.a *= 0;
+                //    else
+                //    finallColor.a *= lerp(0, 1, (distance(IN.worldPosition.xy, _Center.xy) - _Slider) / (_Slider * _AlphaSlider));
+                    
+                //    finallColor.rgb *= finallColor.a;
+                //#elif _MASKMODE_RECTANGLE
+                //    // 计算片元世界坐标和目标中心位置的距离
+                //    half disX = distance(IN.worldPosition.x, _Center.x);
+                //    half disY = distance(IN.worldPosition.y, _Center.y);
+                //    // x决定像素点应该去掉返回1，不去掉返回0
+                //    int clipX = step(disX, _rectSize.x);
+                //    int clipY = step(disY, _rectSize.y);
+                    
+                //    clip(disX - (_rectSize.x) * clipY);
+                //    clip(disY - (_rectSize.y) * clipX);
+                    
+                //    // x在范围内返回1，不在范围内返回0
+                //    int insideX = step(disX, _rectSize.x);
+                //    int insideY = step(disY, _rectSize.y);
+                //    half alphaX = (1 - insideX) + insideX * (disX - (_rectSize.x));
+                //    half alphaY = (1 - insideY) + insideY * (disY - (_rectSize.y));
+                //    finallColor.a *= max(alphaX, alphaY);
+                //#endif
                 
-                return color;
+                return finallColor;
             }
             
             ENDCG

@@ -639,19 +639,21 @@ namespace GameWish.Game
             return false;
         }
 
-        public bool CheckKungfuRedPoint()
+        public bool CheckKungfuRedPoint(bool isSendEvent = true)
         {
             bool isHava = false;
             foreach (var item in kongfus.Values)
             {
                 if (item.KungfuLockState == KungfuLockState.NotLearning && CheckIsHavaItem(PropType.Kungfu))
                 {
-                    EventSystem.S.Send(EventID.OnKungfuRedPoint, id, item.Index, true);
+                    if (isSendEvent)
+                        EventSystem.S.Send(EventID.OnKungfuRedPoint, id, item.Index, true);
                     isHava = true;
                 }
                 else
                 {
-                    EventSystem.S.Send(EventID.OnKungfuRedPoint, id, item.Index, false);
+                    if (isSendEvent)
+                        EventSystem.S.Send(EventID.OnKungfuRedPoint, id, item.Index, false);
                 }
             }
             return isHava;

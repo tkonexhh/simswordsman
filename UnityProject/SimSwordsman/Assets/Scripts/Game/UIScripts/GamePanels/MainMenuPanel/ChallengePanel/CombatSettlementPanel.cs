@@ -1,6 +1,4 @@
 using Qarth;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -217,7 +215,9 @@ namespace GameWish.Game
                     TowerBattleOverToGuide tempStruct = new TowerBattleOverToGuide();
                     tempStruct.isSuccess = m_IsSuccess;
                     tempStruct.level = m_TowerLevelConfig.level;
-                    tempStruct.remain = TowerDefine.MAX_CHARACT_NUM - GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst.Count;
+                    int characterNum = MainGameMgr.S.CharacterMgr.GetAllCharacterList().Count;
+                    int towerNum = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst.Count;
+                    tempStruct.remain = Mathf.Min(characterNum - towerNum, TowerDefine.MAX_CHARACT_NUM - towerNum);
                     EventSystem.S.Send(EventID.OnTowerBattleOver, tempStruct);
 
                     CheckIsStartTowerShopGuide();

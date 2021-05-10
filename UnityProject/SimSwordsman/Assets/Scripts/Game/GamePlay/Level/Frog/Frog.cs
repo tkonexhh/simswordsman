@@ -120,7 +120,7 @@ namespace GameWish.Game
 
         private void MoveToTarget()
         {
-            SpineHelper.PlayAnim(m_SkeletonAnimation, "move", true, AnimEnd);
+            SpineHelper.PlayAnim(m_SkeletonAnimation, "move", true, AnimationEnd);
             if (m_Target.position.x - transform.position.x < 0)
                 transform.localScale = new Vector3(1, 1, 1);
             else
@@ -128,8 +128,14 @@ namespace GameWish.Game
             //transform.DOMove(m_Target.position.normalized/**0.5f*/, 25f, false).SetEase(Ease.Linear);
         }
 
-        private void AnimEnd()
+        private void AnimationEnd()
         {
+            if (m_Target == null)
+            {
+                Log.e("Target is null");
+                RandomAnimation();
+                return;
+            }
             if (Vector2.Distance(m_Target.position, transform.position) < m_CheckRang)
             {
                 RandomAnimation();

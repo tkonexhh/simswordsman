@@ -21,7 +21,7 @@ namespace GameWish.Game
 
         public static WorkConfigItem GetWorkConfigItem(CollectedObjType collectedObjType)
         {
-            WorkConfigItem workConfigItem = workList.FirstOrDefault(i => i.collectedObjType == collectedObjType);
+            WorkConfigItem workConfigItem = workList.Where(i => i.collectedObjType == collectedObjType).FirstOrDefault();
             return workConfigItem;
         }
     }
