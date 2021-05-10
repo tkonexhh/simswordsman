@@ -10,8 +10,8 @@ namespace GameWish.Game
     {
         [SerializeField] private Button m_BtnClose;
         [SerializeField] private Button m_BtnAD;
-        [SerializeField] private Text m_TxtTip;
-        [SerializeField] private Text m_TxtTip2;
+        [SerializeField] private Text m_TxtNowCount;
+        [SerializeField] private Text m_TxtTipCount;
 
         private ArenaData m_ArenaData;
         protected override void OnUIInit()
@@ -26,8 +26,8 @@ namespace GameWish.Game
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
 
-
-            m_TxtTip2.text = string.Format("今日次数:{0}/{1}", m_ArenaData.adAddChallengeCount, ArenaDefine.Max_ADChallengeCount);
+            m_TxtNowCount.text = m_ArenaData.challengeCount.ToString();
+            m_TxtTipCount.text = string.Format("今日次数:{0}/{1}", m_ArenaData.adAddChallengeCount, ArenaDefine.Max_ADChallengeCount);
         }
 
 

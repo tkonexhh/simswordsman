@@ -7,28 +7,18 @@ namespace GameWish.Game
 {
     public class VisitorPanel : AbstractAnimPanel
     {
-        [SerializeField]
-        private Text m_Title;
-        [SerializeField]
-        private Image m_Character;
-        [SerializeField]
-        private Text m_Desc;
-        [SerializeField]
-        private Image[] m_TitleBgs;
-        [SerializeField]
-        private Image m_RewardIcon;
-        [SerializeField]
-        private Text m_RewardName;
-        [SerializeField]
-        private Text m_RewardNum;
+
+        [SerializeField] private Image m_Character;
+        [SerializeField] private Text m_Desc;
+        [SerializeField] private ImgFontPre[] m_TitleBgs;
+        [SerializeField] private Image m_RewardIcon;
+        [SerializeField] private Text m_RewardName;
+        [SerializeField] private Text m_RewardNum;
         [SerializeField] private Text m_TxtCurNum;
 
-        [SerializeField]
-        private Button m_AcceptBtn;
-        [SerializeField]
-        private Button m_NotAcceptBtn;
-        [SerializeField]
-        private Button m_CloseBtn;
+        [SerializeField] private Button m_AcceptBtn;
+        [SerializeField] private Button m_NotAcceptBtn;
+        [SerializeField] private Button m_CloseBtn;
 
         Visitor m_visitor;
 
@@ -48,11 +38,14 @@ namespace GameWish.Game
                 VisitorSystem.S.ShowInPanel(m_visitor);
 
                 TDVisitorConfig tb = TDVisitorConfigTable.GetData(m_visitor.VisitorCfgID);
-                m_Title.text = tb.name;
+
                 for (int i = 0; i < m_TitleBgs.Length; i++)
                 {
                     if (i < tb.name.Length)
+                    {
                         m_TitleBgs[i].gameObject.SetActive(true);
+                        m_TitleBgs[i].SetFontCont(tb.name[i].ToString());
+                    }
                     else
                         m_TitleBgs[i].gameObject.SetActive(false);
                 }

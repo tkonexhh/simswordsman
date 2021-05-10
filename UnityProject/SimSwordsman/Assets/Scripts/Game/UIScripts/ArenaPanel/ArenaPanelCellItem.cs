@@ -31,7 +31,7 @@ namespace GameWish.Game
             m_TxtLevel.text = index.ToString();
             UpdateLevelBg(index);
             m_TxtName.text = data.name;
-            m_TxtATK.text = data.atk.ToString();
+            m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(data.atk);
             int nowLevel = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
             bool canFight = index < nowLevel && index + ArenaDefine.ChallengeRange >= nowLevel;
             m_BtnFight.gameObject.SetActive(canFight);
@@ -44,9 +44,8 @@ namespace GameWish.Game
             m_TxtLevel.text = level.ToString();
             UpdateLevelBg(level);
             m_TxtName.text = GameDataMgr.S.GetClanData().clanName;
-
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
-            m_TxtATK.text = totalAtk.ToString();
+            m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(totalAtk);
             m_ImgBg.color = Color.grey;
         }
 
