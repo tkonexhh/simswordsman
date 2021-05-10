@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_Content: {fileID: 6442003178687913275}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -2541,14 +2541,19 @@ MonoBehaviour:
   m_CloseBtn: {fileID: 8847099793843355993}
   m_AllTog: {fileID: 3338724913177686375}
   m_AllTogImg: {fileID: 8857971589307434225}
+  m_AllTogTxt: {fileID: 786513488262158278}
   m_NormalTog: {fileID: 7224107049828772415}
   m_NormalTogImg: {fileID: 1644415469210532841}
+  m_NormalTogTxt: {fileID: 5503798129369573140}
   m_GoodTog: {fileID: 5337235783030465673}
   m_GoodTogImg: {fileID: 6832202282041439050}
+  m_GoodTogTxt: {fileID: 5081913571828067829}
   m_PerfectTog: {fileID: 5923012288411025350}
   m_PerfectTogImg: {fileID: 1304306459468592932}
+  m_PerfectTogTxt: {fileID: 7896223109457015221}
   m_HeroTog: {fileID: 791367454560176020}
   m_HeroTogImg: {fileID: 8001760648022306842}
+  m_HeroTogTxt: {fileID: 1350773523425836074}
   m_DiscipleTra: {fileID: 6442003178687913275}
   m_DiscipleItem: {fileID: 8570897796453570210, guid: cc2013efd75d8e347ac5cdfa70974098,
     type: 3}
