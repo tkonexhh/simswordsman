@@ -110,7 +110,8 @@ namespace GameWish.Game
 
             m_ArenaData.SetRankRewarded();
             int level = m_ArenaData.nowLevel;
-            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level);
+            int reward = TDArenaConfigTable.GetRewardByRank(level);
+            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level, reward);
 
         }
 

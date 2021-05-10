@@ -142,12 +142,12 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.DeliverPanel, null, "GamePanels/FacilityPanel/DeliverPanel/DeliverPanel");
             //伏魔塔
             UIDataTable.AddPanelData(UIID.TowerPanel, null, "GamePanels/TowerPanel/TowerPanel");
-            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
-            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
-            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
-            UIDataTable.AddPanelData(UIID.TowerCantRefeshPanel, null, "GamePanels/TowerPanel/TowerCantRefeshPanel");
-            UIDataTable.AddPanelData(UIID.TowerNewDayPanel, null, "GamePanels/TowerPanel/TowerNewDayPanel");
-            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel");
+            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel/TowerRulePanel");
+            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel/TowerShopPanel");
+            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel/TowerADRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerCantRefeshPanel, null, "GamePanels/TowerPanel/TowerCantRefeshPanel/TowerCantRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerNewDayPanel, null, "GamePanels/TowerPanel/TowerNewDayPanel/TowerNewDayPanel");
+            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel/TowerRevivePanel");
 
             //英雄试炼
             UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");

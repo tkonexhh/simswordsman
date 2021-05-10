@@ -11,7 +11,8 @@ namespace GameWish.Game
         [SerializeField] private Image m_ImgBg;
         [SerializeField] private Image m_ImgLevelBg;
         [SerializeField] private Text m_TxtLevel;
-        [SerializeField] private Image m_ImgHeadIcon;
+        [SerializeField] private Image m_ImgHeadBg;
+        [SerializeField] private Image m_ImgNameBg;
         [SerializeField] private Text m_TxtName;
         [SerializeField] private Text m_TxtATK;
         [SerializeField] private Button m_BtnFight;
@@ -35,7 +36,9 @@ namespace GameWish.Game
             int nowLevel = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
             bool canFight = index < nowLevel && index + ArenaDefine.ChallengeRange >= nowLevel;
             m_BtnFight.gameObject.SetActive(canFight);
-            m_ImgBg.color = Color.white;
+            m_ImgBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG");
+            m_ImgHeadBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG_renwuPicBG");
+            m_ImgNameBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG_titleBG");
         }
 
         public void SetSelf(int level)
@@ -46,7 +49,9 @@ namespace GameWish.Game
             m_TxtName.text = GameDataMgr.S.GetClanData().clanName;
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
             m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(totalAtk);
-            m_ImgBg.color = Color.grey;
+            m_ImgBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBGMy");
+            m_ImgHeadBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG_renwuPicBGMy");
+            m_ImgNameBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG_titleBGMy");
         }
 
         private void UpdateLevelBg(int level)
@@ -54,6 +59,15 @@ namespace GameWish.Game
             string spName = "jingjichang_qizi" + Mathf.Min(4, level);
             if (m_ImgLevelBg.sprite.name != spName)
                 m_ImgLevelBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", spName);
+
+            if (level >= 4)
+            {
+                m_TxtLevel.transform.localPosition = new Vector3(0, -7.5f, 0);
+            }
+            else
+            {
+                m_TxtLevel.transform.localPosition = new Vector3(0, -1.5f, 0);
+            }
         }
 
         private void OnClickFight()
@@ -71,6 +85,8 @@ namespace GameWish.Game
             arg.enemyData = m_Data;
             UIMgr.S.OpenPanel(UIID.SendDisciplesPanel, PanelType.Arena, arg);
         }
+
+
     }
 
     public class ArenaCellToSend
