@@ -150,6 +150,20 @@ android {
             resValue "string", "wx_app_id", "wx66807448a080c796"
             manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.best_sect".toLowerCase()]
         }
+		
+		ylhsdk {
+            dimension "channel"
+            versionCode 13
+            versionName "1.4.8"
+            applicationId "ratel.best.sect"
+            resValue "string", "aid", "218425"
+            resValue "string", "appName", "best_sect"
+            resValue "string", "toutiao_channel", "\"bytedance\""
+            resValue "string", "rangers_app_id", "\"218425\""
+            resValue "string", "rangers_channel_id", "\"bytedance\""
+            resValue "string", "wx_app_id", "wx67bea7de0764f123"
+            manifestPlaceholders = [af_channelid: "bytedance",APPLOG_SCHEME: "rangersapplog.best_sect".toLowerCase()]
+        }
     }
 
     applicationVariants.all { variant ->
@@ -185,6 +199,8 @@ dependencies {
 
     implementation 'com.tencent.bugly:crashreport_upgrade:1.4.2'
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
+	
+	implementation(name: 'GDTActionSDK.min.1.7.1', ext:'aar')
 
     implementation ("com.taurusx.ads:core:2.0.8") {
         exclude group: 'android.support'
@@ -280,6 +296,13 @@ dependencies {
     mobrainzhanneisdkImplementation "com.android.support:appcompat-v7:26.1.0"
     mobrainzhanneisdkImplementation "com.android.support:recyclerview-v7:26.1.0"
     mobrainzhanneisdkImplementation "com.google.code.gson:gson:2.8.6"
+	
+	
+	    // ylh - 优量汇
+    ylhsdkImplementation "com.taurusx.ads:mobrain_adapter_gdt:4.332.1202.0"
+    ylhsdkImplementation "com.taurusx.ads:mediation_gdt:4.332.1202.0"
+    ylhsdkImplementation "com.qq.e.union:union:4.332.1202"
+	
 }
 
 
