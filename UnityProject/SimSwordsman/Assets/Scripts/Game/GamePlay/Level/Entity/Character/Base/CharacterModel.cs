@@ -240,6 +240,9 @@ namespace GameWish.Game
 
         public bool IsIdle()
         {
+            if (m_CharacterItem == null)
+                return false;
+
             return m_CharacterItem.IsFreeState();
         }
 

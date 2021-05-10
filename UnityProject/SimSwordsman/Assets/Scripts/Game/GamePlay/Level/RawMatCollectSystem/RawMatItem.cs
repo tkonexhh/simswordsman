@@ -187,8 +187,18 @@ namespace GameWish.Game
 
         public CharacterController SelectIdleCharacterToCollectRes(bool manual)
         {
-            CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CharacterModel.IsIdle());
-            return character;
+            try
+            {
+                Debug.Assert(MainGameMgr.S.CharacterMgr.CharacterControllerList != null, "CharacterControllerList is null");
+                CharacterController character = MainGameMgr.S.CharacterMgr.CharacterControllerList.FirstOrDefault(i => i.CharacterModel != null && i.CharacterModel.IsIdle());
+                return character;
+            }
+            catch (Exception e)
+            {
+                Log.e("SelectIdleCharacterToCollectRes error: " + e.Message + " " + e.StackTrace);
+            }
+
+            return null;
         }
 
         public void OnCharacterSelected(CharacterController character, bool manual)
