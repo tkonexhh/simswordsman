@@ -21,14 +21,33 @@ namespace GameWish.Game
         [SerializeField]
         private Toggle m_AllTog;
         [SerializeField]
+        private Image m_AllTogImg;
+        [SerializeField]
+        private Text m_AllTogTxt;
+        [SerializeField]
         private Toggle m_NormalTog;
+        [SerializeField]
+        private Image m_NormalTogImg;
+        [SerializeField]
+        private Text m_NormalTogTxt;
         [SerializeField]
         private Toggle m_GoodTog;
         [SerializeField]
+        private Image m_GoodTogImg;
+        [SerializeField]
+        private Text m_GoodTogTxt;
+        [SerializeField]
         private Toggle m_PerfectTog;
         [SerializeField]
+        private Image m_PerfectTogImg;
+        [SerializeField]
+        private Text m_PerfectTogTxt;
+        [SerializeField]
         private Toggle m_HeroTog;
-
+        [SerializeField]
+        private Image m_HeroTogImg;
+        [SerializeField]
+        private Text m_HeroTogTxt;
 
         [Header("Right")]
         [SerializeField]
@@ -255,6 +274,16 @@ namespace GameWish.Game
                     item.gameObject.SetActive(true);
 
                 RefreshDiscipleBgColor();
+                m_AllTogImg.gameObject.SetActive(true);
+                m_NormalTogImg.gameObject.SetActive(false);
+                m_GoodTogImg.gameObject.SetActive(false);
+                m_PerfectTogImg.gameObject.SetActive(false);
+                m_HeroTogImg.gameObject.SetActive(false);
+                m_NormalTogTxt.color = Color.black;
+                m_GoodTogTxt.color = Color.black;
+                m_PerfectTogTxt.color = Color.black;
+                m_HeroTogTxt.color = Color.black;
+                m_AllTogTxt.color = Color.white;
             });
             m_NormalTog.onValueChanged.AddListener((e) =>
             {
@@ -310,6 +339,61 @@ namespace GameWish.Game
                 //else
                 //    //item.gameObject.SetActive(false);
             }
+            //m_AllTogImg
+            switch (characterQuality)
+            {
+                case CharacterQuality.Normal:
+                    m_NormalTogImg.gameObject.SetActive(true);
+                    m_GoodTogImg.gameObject.SetActive(false);
+                    m_PerfectTogImg.gameObject.SetActive(false);
+                    m_HeroTogImg.gameObject.SetActive(false);
+                    m_AllTogImg.gameObject.SetActive(false);
+                    m_NormalTogTxt.color = Color.white;
+                    m_GoodTogTxt.color = Color.black;
+                    m_PerfectTogTxt.color = Color.black;
+                    m_HeroTogTxt.color = Color.black;
+                    m_AllTogTxt.color = Color.black;
+                    break;
+                case CharacterQuality.Good:
+                    m_NormalTogImg.gameObject.SetActive(false);
+                    m_GoodTogImg.gameObject.SetActive(true);
+                    m_PerfectTogImg.gameObject.SetActive(false);
+                    m_HeroTogImg.gameObject.SetActive(false);
+                    m_AllTogImg.gameObject.SetActive(false);
+                    m_NormalTogTxt.color = Color.black;
+                    m_GoodTogTxt.color = Color.white;
+                    m_PerfectTogTxt.color = Color.black;
+                    m_HeroTogTxt.color = Color.black;
+                    m_AllTogTxt.color = Color.black;
+                    break;
+                case CharacterQuality.Perfect:
+                    m_NormalTogImg.gameObject.SetActive(false);
+                    m_GoodTogImg.gameObject.SetActive(false);
+                    m_PerfectTogImg.gameObject.SetActive(true);
+                    m_HeroTogImg.gameObject.SetActive(false);
+                    m_AllTogImg.gameObject.SetActive(false);
+                    m_NormalTogTxt.color = Color.black;
+                    m_GoodTogTxt.color = Color.black;
+                    m_PerfectTogTxt.color = Color.white;
+                    m_HeroTogTxt.color = Color.black;
+                    m_AllTogTxt.color = Color.black;
+                    break;
+                case CharacterQuality.Hero:
+                    m_NormalTogImg.gameObject.SetActive(false);
+                    m_GoodTogImg.gameObject.SetActive(false);
+                    m_AllTogImg.gameObject.SetActive(false);
+                    m_PerfectTogImg.gameObject.SetActive(false);
+                    m_HeroTogImg.gameObject.SetActive(true);
+                    m_NormalTogTxt.color = Color.black;
+                    m_GoodTogTxt.color = Color.black;
+                    m_PerfectTogTxt.color = Color.black;
+                    m_HeroTogTxt.color = Color.white;
+                    m_AllTogTxt.color = Color.black;
+                    break;
+                default:
+                    break;
+            }
+            m_AllTogImg.gameObject.SetActive(false);
             RefreshDiscipleBgColor();
         }
 

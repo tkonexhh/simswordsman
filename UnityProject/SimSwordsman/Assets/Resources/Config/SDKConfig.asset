@@ -60,6 +60,12 @@ MonoBehaviour:
       priority: 1
       enableAF: 1
       afAppKey: DdWbxT9VRELdEsZiAcnGea
+    GDTActionConfig:
+      isEnable: 1
+      isDebugMode: 0
+      priority: 1
+      userActionSetId: 1111818154
+      appSecretKey: '3301486c80d1cacbdc7339d234d7de7f '
   adsConfig:
     isEnable: 1
     interstitialAdCoolingTime: 30
