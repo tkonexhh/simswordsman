@@ -53,6 +53,13 @@ namespace GameWish.Game
             m_Controller.SpawnWorkTipWhenCollectedObj(m_CollectedObjType);
 
             var warkConf = TDWorkTable.GetWorkConfigItem(m_CollectedObjType);
+            if (warkConf == null)//解决因为枚举导致的null问题
+            {
+                m_Controller.CollectObjType = CollectedObjType.None;
+                m_Controller.ReleaseWorkTip();
+                m_Controller.SetState(CharacterStateID.Wander);
+                return;
+            }
             m_CollectTotalTime = warkConf.workTime;
             //显示对话气泡
             WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, warkConf.RandomTalk());
@@ -276,7 +283,7 @@ namespace GameWish.Game
             }
 
             // Special reward
-            if (workConfigItem.IsHaveSpecialReward) 
+            if (workConfigItem.IsHaveSpecialReward)
             {
                 for (int i = 0; i < workConfigItem.specialRewards.Count; i++)
                 {
