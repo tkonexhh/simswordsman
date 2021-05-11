@@ -6,16 +6,16 @@ using UnityEngine;
 namespace GameWish.Game
 {
     /// <summary>
-    /// ÕÐÄ¼ÀàÐÍ
+    /// ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public enum RecruitType
     {
-        GoldMedal,                  //½ðÅÆÕÐÄ¼Áî
-        SilverMedal,                //ÒøÅÆÕÐÄ¼Áî
+        GoldMedal,                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½
+        SilverMedal,                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½
     }
 
     /// <summary>
-    /// ÕÐÄ¼Ä£ÐÍ
+    /// ï¿½ï¿½Ä¼Ä£ï¿½ï¿½
     /// </summary>
     public class RecruitModel
     {
@@ -59,7 +59,7 @@ namespace GameWish.Game
             ResetDefault();
         }
         /// <summary>
-        /// ÉèÖÃÄ¬ÈÏÖµ
+        /// ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµ
         /// </summary>
         private void SetDefaultValue()
         {
@@ -103,7 +103,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÉèÖÃµ±Ç°ÕÐÄ¼Àà±ðÎª²»ÊÇµÚÒ»´Î
+        /// ï¿½ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Çµï¿½Ò»ï¿½ï¿½
         /// </summary>
         public void SetIsFirstRecruit()
         {
@@ -112,7 +112,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ·µ»Øµ±Ç°ÕÐÄ¼ÀàÐÍ
+        /// ï¿½ï¿½ï¿½Øµï¿½Ç°ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public RecruitType GetCurRecruitType()
@@ -120,7 +120,7 @@ namespace GameWish.Game
             return m_RecruitType;
         }
         /// <summary>
-        /// ·µ»ØÊÇ·ñÊÇµÚÒ»´Î
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Çµï¿½Ò»ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public bool GetmIsFirstRecruit()
@@ -128,7 +128,7 @@ namespace GameWish.Game
             return m_isFirstRecruit;
         }
         /// <summary>
-        /// »ñÈ¡µ±Ç°ÀàÐÍÕÐÄ¼´ÎÊý
+        /// ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public int GetCurRecruitCount()
@@ -137,7 +137,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÉèÖÃµ±Ç°ÕÐÄ¼´ÎÊý
+        /// ï¿½ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public void SetCurRecruitCount()
         {
@@ -152,7 +152,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ¼õÉÙÕÐÄ¼ÊýÁ¿ ÒòÎªÕÐÄ¼Áî³öÊÛ
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Îªï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public void ReduceRecruitCount(int count)
         {
@@ -167,16 +167,16 @@ namespace GameWish.Game
 
 
         /// <summary>
-        /// Ôö¼ÓÕÐÄ¼´ÎÊý
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="delta"></param>
         public void IncreaseCurRecruitCount(int delta)
         {
             m_RecruitCount = Mathf.Min(m_RecruitCount + delta, Define.MAX_PROP_COUNT);
-            GameDataMgr.S.GetPlayerData().IncreaseCurRecruitCount(m_RecruitType,delta);
+            GameDataMgr.S.GetPlayerData().IncreaseCurRecruitCount(m_RecruitType, delta);
         }
         /// <summary>
-        /// ÖØÖÃµ±Ç°ÕÐÄ¼´ÎÊý
+        /// ï¿½ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public void ResetCurRecruitCount()
         {
@@ -185,7 +185,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ÒÆ³ýÏàÓ¦ÒÑ±»ÕÐÄ¼µÄµÜ×Ó
+        /// ï¿½Æ³ï¿½ï¿½ï¿½Ó¦ï¿½Ñ±ï¿½ï¿½ï¿½Ä¼ï¿½Äµï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="item"></param>
         public void RemoveCharacterList(CharacterItem item)
@@ -224,7 +224,7 @@ namespace GameWish.Game
             MainGameMgr.S.RecruitDisciplerMgr.RefreshRecruitData();
         }
         /// <summary>
-        /// Ëæ»ú»ñÈ¡µ±Ç°ÈÝÆ÷ÖÐµÄµÜ×Ó
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄµï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public CharacterItem GetCurContCharacter()
@@ -261,7 +261,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ³õÊ¼»¯ Ä¬ÈÏÖµ
+        /// ï¿½ï¿½Ê¼ï¿½ï¿½ Ä¬ï¿½ï¿½Öµ
         /// </summary>
         private void ResetDefault()
         {
@@ -287,7 +287,7 @@ namespace GameWish.Game
         }
 
         /// <summary>
-        /// ´Ó±íÖÐÊý¾Ý»ñÈ¡¸ü¶àµÜ×Ó
+        /// ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="characterQuality"></param>
         /// <returns></returns>
@@ -295,11 +295,12 @@ namespace GameWish.Game
         {
             string desc = TDCharacterConfigTable.GetRandomDesc(characterQuality);
             string name = TDCharacterNameTable.GetRandomName();
-            
+
             if (!MainGameMgr.S.CharacterMgr.CheckForDuplicateNames(name))
             {
-                int bodyId = Random.Range(1, GetBodyMaxId());
-                int headId = Random.Range(1, GetHeadMaxId());
+
+                int bodyId = Random.Range(1, CharacterDefine.Max_Body);
+                int headId = Random.Range(1, CharacterDefine.Max_Head);
                 CharacterItem characterItem = new CharacterItem(characterQuality, desc, name, bodyId, headId);
                 return characterItem;
             }
@@ -307,14 +308,5 @@ namespace GameWish.Game
                 return GetMoreCharacterInfo(characterQuality);
         }
 
-        private int GetBodyMaxId()
-        {
-            return 5;
-        }
-
-        private int GetHeadMaxId()
-        {
-            return 6;
-        }
     }
 }
