@@ -322,7 +322,6 @@ namespace GameWish.Game
                     if (m_IsSuccess)
                     {
                         m_ArenaLevelConfig.PrepareReward();
-                        //TODO  过关交换顺序 给奖励
                         MainGameMgr.S.ArenaSystem.PassLevel(m_ArenaLevelConfig.level);
                     }
                     break;

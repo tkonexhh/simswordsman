@@ -60,7 +60,7 @@ namespace GameWish.Game
         {
             if (m_ArenaData.nowLevel < level)
                 return;
-
+            Debug.LogError("Arena Set PassLevel");
             m_ArenaData.SetNowLevel(level);
 
         }

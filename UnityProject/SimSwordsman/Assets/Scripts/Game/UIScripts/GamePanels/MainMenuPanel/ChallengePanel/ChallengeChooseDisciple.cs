@@ -31,6 +31,7 @@ namespace GameWish.Game
 
         private LevelConfigInfo m_LevelConfigInfo = null;
         private TowerPanelChallengeToSelect m_TowerLevelConfig;
+        private ArenaCellToSend m_ArenaConfig;
 
         private PanelType m_PanelType;
         private const int ChallengeSelectedDiscipleNumber = 5;
@@ -96,6 +97,18 @@ namespace GameWish.Game
 
                     RefreshDisicipleSkill();
                     break;
+                case PanelType.Arena:
+                    m_ArenaConfig = args[1] as ArenaCellToSend;
+                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                        CreateDisciple(m_AllDiscipleList[i]);
+
+                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                        CreateSelectedDisciple();
+
+                    RefreshDisicipleSkill();
+                    break;
+
                 case PanelType.HeroTrial:
 
                     //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
@@ -171,6 +184,7 @@ namespace GameWish.Game
                         CreateSelectedDisciple();
                     RefreshDisicipleSkill();
                     break;
+
                 default:
                     break;
             }
@@ -209,6 +223,7 @@ namespace GameWish.Game
                 switch (m_PanelType)
                 {
                     case PanelType.Challenge:
+                    case PanelType.Arena:
                         if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
                         {
                             FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
@@ -294,6 +309,7 @@ namespace GameWish.Game
                     break;
                 case PanelType.Challenge:
                 case PanelType.Tower:
+                case PanelType.Arena:
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -316,6 +332,10 @@ namespace GameWish.Game
             else if (m_PanelType == PanelType.Tower)
             {
                 recommended = m_TowerLevelConfig.recommendATK;
+            }
+            else if (m_PanelType == PanelType.Arena)
+            {
+                recommended = m_ArenaConfig.recommendAtk;
             }
             m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", CommonUIMethod.GetTenThousandOrMillion(recommended));
 

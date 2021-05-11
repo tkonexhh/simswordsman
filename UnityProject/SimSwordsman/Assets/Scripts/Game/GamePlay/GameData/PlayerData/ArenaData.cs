@@ -43,12 +43,11 @@ namespace GameWish.Game
             else
             {
                 //判断是否间隔1天
-                DateTime lastRefesh;
+                DateTime lastRefesh = DateTime.Now;
                 DateTime now = DateTime.Now;
                 DateTime.TryParse(lastRefeshTime, out lastRefesh);
 
-
-                int offsetDays = (now - lastRefesh).Days;//TODO
+                int offsetDays = (now - lastRefesh).Days;
                 // Debug.LogError("AAAA:" + offsetDays + ":" + lastRefesh + ":" + now);
                 if (offsetDays >= 1)
                 {
@@ -68,6 +67,7 @@ namespace GameWish.Game
                     {
                         // Debug.LogError("HasReward");
                         hasReward = true;
+                        SetDataDirty();
                     }
                 }
             }
@@ -77,6 +77,7 @@ namespace GameWish.Game
 
         private void Reset()
         {
+            Debug.LogError("Reset");
             lastRefeshTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
             // Debug.LogError(lastRefeshTime);
             nowLevel = ArenaDefine.EnemyCount + 1;
@@ -87,6 +88,7 @@ namespace GameWish.Game
             hasReward = false;
 
             RandomShopData();
+            SetDataDirty();
         }
 
         public bool AddCoin(int delta)
@@ -111,7 +113,7 @@ namespace GameWish.Game
 
         public bool AddChallengeCount(int delta)
         {
-            if (challengeCount + coin < 0)
+            if (challengeCount + delta < 0)
             {
                 return false;
             }
