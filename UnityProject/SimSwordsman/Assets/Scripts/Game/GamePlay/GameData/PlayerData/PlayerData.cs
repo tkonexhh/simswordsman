@@ -113,7 +113,7 @@ namespace GameWish.Game
 
             lastPlayTime = "0";
             firstPlayTime = string.Empty;
-            headPhoto = string.Empty;
+            headPhoto = "zhangmen";
             isGuideStart = false;
 
             IsNewUser = true;

@@ -40,6 +40,12 @@ namespace GameWish.Game
             m_Head.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + m_AvatarConfig.headIcon);
             m_BlackHead.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + m_AvatarConfig.headIcon);
 
+            if (GameDataMgr.S.GetPlayerData().headPhoto.Equals(m_AvatarConfig.headIcon))
+            {
+                m_SelelctedState = SelectedState.Selected;
+                RefreshPanelInfo();
+            }
+
             if (m_AvatarConfig.unlockingCondition.mainLevel == 0 && m_AvatarConfig.unlockingCondition.subLevel == 0)
             {
                 isUnlock = true;
@@ -61,6 +67,7 @@ namespace GameWish.Game
                 m_Mask.gameObject.SetActive(true);
                 m_Lock.gameObject.SetActive(true);
             }
+          
         }
 
         private void OnDestroy()
