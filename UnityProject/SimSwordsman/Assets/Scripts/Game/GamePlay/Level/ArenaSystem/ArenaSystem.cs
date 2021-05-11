@@ -80,6 +80,20 @@ namespace GameWish.Game
             return false;
         }
 
+        public DateTime GetNextEnterTime()
+        {
+            var now = DateTime.Now;
+            if (now.Hour < ArenaDefine.StartTime)
+            {
+                return new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.StartTime);
+            }
+            else// if(now.Hour>ArenaDefine.EndTime)
+            {
+                return new DateTime(now.Year, now.Month, now.Day).AddHours(24 + ArenaDefine.StartTime);
+            }
+            // return DateTime.Now;
+        }
+
 
 
         #endregion 
@@ -96,7 +110,8 @@ namespace GameWish.Game
 
             m_ArenaData.SetRankRewarded();
             int level = m_ArenaData.nowLevel;
-            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level);
+            int reward = TDArenaConfigTable.GetRewardByRank(level);
+            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level, reward);
 
         }
 

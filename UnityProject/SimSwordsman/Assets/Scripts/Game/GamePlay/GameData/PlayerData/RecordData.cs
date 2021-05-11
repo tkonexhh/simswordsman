@@ -20,6 +20,7 @@ namespace GameWish.Game
         public RecordItemData medicine = new RecordItemData();
         public RecordItemData towerShopRefesh = new RecordItemData();
         public RecordItemData towerRevive = new RecordItemData();
+        public RecordItemData arenaShopRefesh = new RecordItemData();
 
         public override void InitWithEmptyData()
         {
@@ -46,6 +47,8 @@ namespace GameWish.Game
             medicine.ResetDailyCount();
             towerShopRefesh.ResetDailyCount();
             towerRevive.ResetDailyCount();
+            arenaShopRefesh.ResetDailyCount();
+
             SetDataDirty();
         }
 
@@ -130,6 +133,12 @@ namespace GameWish.Game
         public void AddTowerShopRefesh()
         {
             towerShopRefesh.AddCount();
+            SetDataDirty();
+        }
+
+        public void AddArenaShopRefesh()
+        {
+            arenaShopRefesh.AddCount();
             SetDataDirty();
         }
 

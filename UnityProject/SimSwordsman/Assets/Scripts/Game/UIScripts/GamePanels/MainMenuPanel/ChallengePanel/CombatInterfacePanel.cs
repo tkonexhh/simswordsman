@@ -204,7 +204,10 @@ namespace GameWish.Game
 
         private string GetEnemyName(EnemyConfig enemyConfig)
         {
-            return MainGameMgr.S.BattleFieldMgr.GetEnemyInfo(enemyConfig.ConfigId).GetNameForRandom();
+            if (enemyConfig is CharacterEnemyConfig)
+                return "敌人";
+            else
+                return MainGameMgr.S.BattleFieldMgr.GetEnemyInfo(enemyConfig.ConfigId).GetNameForRandom();
         }
 
         private string GetDiscipleName(CharacterController characterController)

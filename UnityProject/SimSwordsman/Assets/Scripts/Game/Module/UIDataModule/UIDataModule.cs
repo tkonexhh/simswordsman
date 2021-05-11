@@ -140,15 +140,17 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.MaskWithAlphaZeroPanel, null, "Common/MaskWithAlphaZeroPanel", true, 1);
             UIDataTable.AddPanelData(UIID.DailyTaskPanel, null, "GamePanels/MainMenuPanel/TaskPanel/DailyTaskPanel");
 
+            UIDataTable.AddPanelData(UIID.IOSPrivacePanel, null, "GamePanels/IOSPrivacePanel/IOSPrivacePanel");
+
             UIDataTable.AddPanelData(UIID.DeliverPanel, null, "GamePanels/FacilityPanel/DeliverPanel/DeliverPanel");
             //伏魔塔
             UIDataTable.AddPanelData(UIID.TowerPanel, null, "GamePanels/TowerPanel/TowerPanel");
-            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel");
-            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel");
-            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel");
-            UIDataTable.AddPanelData(UIID.TowerCantRefeshPanel, null, "GamePanels/TowerPanel/TowerCantRefeshPanel");
-            UIDataTable.AddPanelData(UIID.TowerNewDayPanel, null, "GamePanels/TowerPanel/TowerNewDayPanel");
-            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel");
+            UIDataTable.AddPanelData(UIID.TowerRulePanel, null, "GamePanels/TowerPanel/TowerRulePanel/TowerRulePanel");
+            UIDataTable.AddPanelData(UIID.TowerShopPanel, null, "GamePanels/TowerPanel/TowerShopPanel/TowerShopPanel");
+            UIDataTable.AddPanelData(UIID.TowerADRefeshPanel, null, "GamePanels/TowerPanel/TowerADRefeshPanel/TowerADRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerCantRefeshPanel, null, "GamePanels/TowerPanel/TowerCantRefeshPanel/TowerCantRefeshPanel");
+            UIDataTable.AddPanelData(UIID.TowerNewDayPanel, null, "GamePanels/TowerPanel/TowerNewDayPanel/TowerNewDayPanel");
+            UIDataTable.AddPanelData(UIID.TowerRevivePanel, null, "GamePanels/TowerPanel/TowerRevivePanel/TowerRevivePanel");
 
             //英雄试炼
             UIDataTable.AddPanelData(UIID.HeroTrialPanel, null, "GamePanels/HeroTrialPanels/HeroTrialPanel/HeroTrialPanel");
@@ -159,11 +161,12 @@ namespace GameWish.Game
             UIDataTable.AddPanelData(UIID.SplashScreenPanel, null, "GamePanels/SplashScreenPanel/SplashScreenPanel");
 
             //竞技场
-            UIDataTable.AddPanelData(UIID.ArenaPanel, null, "GamePanels/ArenaPanel/ArenaPanel");
-            UIDataTable.AddPanelData(UIID.ArenaShopPanel, null, "GamePanels/ArenaPanel/ArenaShopPanel");
-            UIDataTable.AddPanelData(UIID.ArenaRulePanel, null, "GamePanels/ArenaPanel/ArenaRulePanel");
-            UIDataTable.AddPanelData(UIID.ArenaAddCountPanel, null, "GamePanels/ArenaPanel/ArenaAddCountPanel");
-            UIDataTable.AddPanelData(UIID.ArenaRankRewardPanel, null, "GamePanels/ArenaPanel/ArenaRankRewardPanel");
+            UIDataTable.AddPanelData(UIID.ArenaPanel, null, "GamePanels/ArenaPanels/ArenaPanel/ArenaPanel");
+            UIDataTable.AddPanelData(UIID.ArenaShopPanel, null, "GamePanels/ArenaPanels/ArenaShopPanel/ArenaShopPanel");
+            UIDataTable.AddPanelData(UIID.ArenaRulePanel, null, "GamePanels/ArenaPanels/ArenaRulePanel");
+            UIDataTable.AddPanelData(UIID.ArenaAddCountPanel, null, "GamePanels/ArenaPanels/ArenaAddCountPanel/ArenaAddCountPanel");
+            UIDataTable.AddPanelData(UIID.ArenaRankRewardPanel, null, "GamePanels/ArenaPanels/ArenaRankRewardPanel/ArenaRankRewardPanel");
+            UIDataTable.AddPanelData(UIID.ArenaADRefeshPanel, null, "GamePanels/ArenaPanels/ArenaADRefeshPanel/ArenaADRefeshPanel");
 
             RealNameMgr.S.RegisterPanels();
         }

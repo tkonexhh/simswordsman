@@ -129,9 +129,14 @@ namespace GameWish.Game
 
     public class CharacterEnemyConfig : EnemyConfig
     {
-        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(101, 1, atk)
+        public CharacterQuality Quality { private set; get; }
+        public int HeadID { private set; get; }
+        public int BodyID { private set; get; }
+        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(ArenaDefine.ArenaEnemyID, 1, atk)
         {
-
+            this.Quality = quality;
+            this.HeadID = headID;
+            this.BodyID = bodyID;
         }
     }
 

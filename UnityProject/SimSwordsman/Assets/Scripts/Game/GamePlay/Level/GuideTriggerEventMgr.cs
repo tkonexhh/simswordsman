@@ -123,6 +123,9 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialChooseDisciplePanel);
             UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialTipPanel);
+
+            UIMgr.S.ClosePanelAsUIID(UIID.ArenaShopPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ArenaADRefeshPanel);
         }
 
         private void OnExitBattleCallBack(int key, object[] param)

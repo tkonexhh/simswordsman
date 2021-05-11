@@ -462,6 +462,7 @@ namespace GameWish.Game
 
         #region Arena
         OnRefeshArenaCoin,
+        OnRefeshArenaShop,
         OnRefeshArenaChallengeCount,
         #endregion
     }

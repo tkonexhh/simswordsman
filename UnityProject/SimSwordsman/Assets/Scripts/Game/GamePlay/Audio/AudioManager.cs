@@ -105,18 +105,30 @@ namespace GameWish.Game
         /// »ÀŒÔÀ¿Õˆ“Ù–ß
         /// </summary>
         /// <param name="isWoman"></param>
-        public void PlayCharacterDeadSound(bool isWoman,Vector3 characterPos) 
+        public void PlayCharacterDeadSound(CharacterController m_Controller) 
         {
-            if (isWoman)
+            switch (m_Controller.CharacterId)
             {
-                AudioMgr.S.PlaySound3D(Define.SOUND_DEATH_GIRL, characterPos);
+                case Define.ENEMY_WOLF_ID:
+                    AudioMgr.S.PlaySound3D(Define.SOUND_WOIF_DEATH, m_Controller.GetPosition());
+                    return;
+                case Define.ENEMY_PIG_ID:
+                    AudioMgr.S.PlaySound3D(Define.SOUND_PIG_DEATH, m_Controller.GetPosition());
+                    return;
+                default:
+                    break;
+            }
+
+            if (m_Controller.CharacterModel.IsWoman())
+            {
+                AudioMgr.S.PlaySound3D(Define.SOUND_DEATH_GIRL, m_Controller.GetPosition());
             }
             else {
                 int index = Random.Range(1, 3);
                 
                 string soundName = string.Format("Death_{0}", index);
 
-                AudioMgr.S.PlaySound3D(soundName, characterPos);
+                AudioMgr.S.PlaySound3D(soundName, m_Controller.GetPosition());
             }            
         }
         /// <summary>

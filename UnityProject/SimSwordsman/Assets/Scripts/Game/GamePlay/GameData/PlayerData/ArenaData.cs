@@ -59,7 +59,7 @@ namespace GameWish.Game
                     //如果当前的时间是刷新时间的十点以后
                     //并且间隔没有超过2天
                     //并且当前排名>24
-                    Debug.LogError("Last:" + lastLevel);
+                    // Debug.LogError("Last:" + lastLevel);
                     if (now >= new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.EndTime)
                         && now <= new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddHours(ArenaDefine.StartTime)
                         // && offsetDays == 1
@@ -103,7 +103,7 @@ namespace GameWish.Game
 
         public void SetNowLevel(int level)
         {
-            Debug.LogError(level);
+            // Debug.LogError(level);
             nowLevel = level;
             SetDataDirty();
         }
@@ -188,7 +188,7 @@ namespace GameWish.Game
                 shopItemDB.buyed = false;
                 shopInfoLst.Add(shopItemDB);
             }
-            EventSystem.S.Send(EventID.OnRefeshTowerShop);
+            EventSystem.S.Send(EventID.OnRefeshArenaShop);
             SetDataDirty();
         }
 

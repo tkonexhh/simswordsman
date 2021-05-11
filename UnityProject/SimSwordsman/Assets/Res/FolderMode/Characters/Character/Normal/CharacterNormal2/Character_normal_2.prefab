@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8635236383566332524}
   - component: {fileID: 5710894109479895880}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BoneFollower_p_2_ys3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3109133178474208578}
   m_LocalRotation: {x: -0, y: -0, z: -0.9174077, w: 0.39794868}
-  m_LocalPosition: {x: -0.13258873, y: 0.4101701, z: 0}
+  m_LocalPosition: {x: -0.17797719, y: 0.4267018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2440144798729235260}
@@ -64,7 +64,8 @@ GameObject:
   - component: {fileID: 1875119245}
   - component: {fileID: 7696235984069948748}
   - component: {fileID: -5104960325449189543}
-  m_Layer: 0
+  - component: {fileID: -3924437268315293461}
+  m_Layer: 12
   m_Name: Character_normal_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +149,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NeedBindAgain: 1
+--- !u!61 &-3924437268315293461
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845809598577782914}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.55}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.55, y: 1.18}
+  m_EdgeRadius: 0
 --- !u!1 &3845809599068655259
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +187,7 @@ GameObject:
   - component: {fileID: 3845809599068655255}
   - component: {fileID: 3845809599068655254}
   - component: {fileID: 3845809599068655257}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8760095850416414192}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HeadPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,6 +332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Clean_DragSmoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877515203979032658, guid: 642e6b4093f113d48897f45c70969358,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1877515203979032659, guid: 642e6b4093f113d48897f45c70969358,
         type: 3}

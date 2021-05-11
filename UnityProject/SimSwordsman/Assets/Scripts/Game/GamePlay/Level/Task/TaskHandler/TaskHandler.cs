@@ -488,6 +488,56 @@ namespace GameWish.Game
         }
     }
 
+    public class TaskHandler_BuildKitchen : TaskLevelHandler
+    {
+        public TaskHandler_BuildKitchen(int level) : base(level)
+        {
+            EventSystem.S.Register(EventID.OnStartUpgradeFacility, HandleEvent);
+            EventSystem.S.Register(EventID.OnStartUnlockFacility, HandleEvent);
+        }
+
+        private void HandleEvent(int key, params object[] args)
+        {
+            if (args == null || args.Length <= 0)
+                return;
+            FacilityType facilityType = (FacilityType)args[0];
+            if (facilityType == FacilityType.Kitchen)
+            {
+                EventSystem.S.Send(EventID.OnRefeshMainTask);
+            }
+        }
+
+        public override int count
+        {
+            get
+            {
+                if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Kitchen))
+                    return 0;
+
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen);
+            }
+        }
+
+        public override string taskSubTitle
+        {
+            get
+            {
+                if (m_Level <= 1)
+                    return "建造伙房";
+                else
+                    return "伙房升至{0}级";
+            }
+        }
+
+        public override Transform targetTransform
+        {
+            get
+            {
+                return MainGameMgr.S.FacilityMgr.GetFacilityController(FacilityType.Kitchen).view.transform;
+            }
+        }
+    }
+
     ////////////////////
     public class TaskHandler_DailyFood : TaskHandler
     {

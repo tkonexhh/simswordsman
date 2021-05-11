@@ -1,9 +1,7 @@
-﻿using System.Net.Mail;
-using UnityEngine;
-
-using UnityEngine.UI;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Qarth;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameWish.Game
 {
@@ -106,7 +104,7 @@ namespace GameWish.Game
         {
             m_Target = target;
 
-            m_IsNeedBlackMask = true;
+            m_IsNeedBlackMask = false;
             //获取画布
             Canvas canvas = GameObject.Find("UIRoot").GetComponent<UIRoot>().rootCanvas;
 
@@ -151,15 +149,14 @@ namespace GameWish.Game
             m_CurrentRadius = 2000;
             m_IsGuide = true;
 
-            m_Material.SetFloat("_MaskMode", 1.0f);
+            m_Material.SetFloat("_MaskMode", 2.0f);
             m_Material.SetVector("_Center", centerMat);
             m_Material.SetVector("_rectSize", new Vector4(rectWidth, rectHeight, 0, 0));
 
-            ShowGuideAnimation();
+            //ShowGuideAnimation();
         }
         public void Init(RectTransform target)
         {
-            //Debug.LogError("Init");
             m_Target = target;
 
             m_IsNeedBlackMask = true;

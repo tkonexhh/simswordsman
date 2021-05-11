@@ -79,6 +79,12 @@ namespace GameWish.Game
             //GameDataMgr.S.GetPlayerData().SetDataDirty();
 
             AudioManager.S.OnInit();
+#if UNITY_IOS
+            if (!GameDataMgr.S.GetPlayerData().GetIsAgreePrivace())
+            {
+                UIMgr.S.OpenTopPanel(UIID.IOSPrivacePanel, null);
+            }
+#endif
 
             if (string.IsNullOrEmpty(GameDataMgr.S.GetPlayerData().firstPlayTime))
             {
@@ -382,11 +388,12 @@ namespace GameWish.Game
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    EventSystem.S.Send(EventID.OnBattleSuccessed);
+                    //EventSystem.S.Send(EventID.OnBattleSuccessed);
+                    GameDataMgr.S.GetPlayerData().arenaData.AddCoin(1000);
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    EventSystem.S.Send(EventID.OnBattleFailed);
+                    //EventSystem.S.Send(EventID.OnBattleFailed);
                 }
                 if (Input.GetKeyDown(KeyCode.W))
                 {
