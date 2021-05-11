@@ -25,9 +25,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_CloseBtn;
         [SerializeField]
-        private Slider m_LeftBloodStick;
+        private Image m_LeftBloodStickImg;
         [SerializeField]
-        private Slider m_RightBloodStick;
+        private Image m_RightBloodStickImg;
         [SerializeField]
         private GameObject m_MatchRecordItem;
         [SerializeField]
@@ -428,11 +428,11 @@ namespace GameWish.Game
         {
         }
 
-        private void ReduceHPWithAni(float endValue, Slider hpSlider, float duration = .5f)
+        private void ReduceHPWithAni(float endValue, Image hpSlider, float duration = .5f)
         {
-            DG.Tweening.DOTween.To(() => hpSlider.value, (x) =>
+            DG.Tweening.DOTween.To(() => hpSlider.fillAmount, (x) =>
             {
-                hpSlider.value = x;
+                hpSlider.fillAmount = x;
             }, endValue, duration);
         }
 
@@ -445,10 +445,10 @@ namespace GameWish.Game
                     //m_RightBloodStick.value = (float)param[1];
 
                     float leftBloodEndValue = (float)param[0];
-                    ReduceHPWithAni(leftBloodEndValue, m_LeftBloodStick);
+                    ReduceHPWithAni(leftBloodEndValue, m_LeftBloodStickImg);
 
                     float rightBloodEndValue = (float)param[1];
-                    ReduceHPWithAni(rightBloodEndValue, m_RightBloodStick);
+                    ReduceHPWithAni(rightBloodEndValue, m_RightBloodStickImg);
                     break;
                 case EventID.OnBattleSuccessed:
                     SetTimeScale(1);

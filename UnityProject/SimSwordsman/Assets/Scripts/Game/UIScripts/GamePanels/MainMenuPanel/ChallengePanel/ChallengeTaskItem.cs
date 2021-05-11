@@ -31,7 +31,7 @@ namespace GameWish.Game
         private Text m_CompletedValue;
 
         [SerializeField]
-        private Slider m_ChallengeSlide;
+        private Image m_ChallengeSlide;
 
         [SerializeField]
         private Button m_ChallengeBtn;
@@ -175,7 +175,7 @@ namespace GameWish.Game
                     m_ChallengePhoto.sprite = m_ChallengePanel.FindSprite("Challenge_Big" + m_CurChapterConfigInfo.clanType.ToString().ToLower());
                     m_CompletedImg.gameObject.SetActive(false);
                     m_ChallengeBtn.gameObject.SetActive(true);
-                    m_ChallengeSlide.value = GetCurProgress();
+                    m_ChallengeSlide.fillAmount = GetCurProgress();
                     m_ChallengeProgress.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS) + (GetCurProgress() * 100).ToString("f2") + Define.PERCENT;
                     break;
                 case ChallengeType.Passed:

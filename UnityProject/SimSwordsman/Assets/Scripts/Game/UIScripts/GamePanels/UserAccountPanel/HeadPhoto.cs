@@ -27,6 +27,10 @@ namespace GameWish.Game
         private bool isUnlock = false;
         public void OnInit(AvatarConfig avatarConfig)
         {
+            m_Head.gameObject.SetActive(false);
+            m_BlackHead.gameObject.SetActive(false);
+            m_Mask.gameObject.SetActive(false);
+            m_Lock.gameObject.SetActive(false);
             EventSystem.S.Register(EventID.OnRefreshHeadPhoto,HandAddListenerEvent);
 
             BindAddListenerEvent();
@@ -35,6 +39,13 @@ namespace GameWish.Game
 
             m_Head.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + m_AvatarConfig.headIcon);
             m_BlackHead.sprite = SpriteHandler.S.GetSprite(AtlasDefine.EnmeyHeadIconsAtlas, "enemy_icon_" + m_AvatarConfig.headIcon);
+
+            if (m_AvatarConfig.unlockingCondition.mainLevel == 0 && m_AvatarConfig.unlockingCondition.subLevel == 0)
+            {
+                isUnlock = true;
+                m_Head.gameObject.SetActive(true);
+                return;
+            }
 
             int curLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_AvatarConfig.unlockingCondition.mainLevel);
             isUnlock = curLevel >= m_AvatarConfig.unlockingCondition.subLevel ? true : false;

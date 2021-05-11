@@ -34,6 +34,8 @@ namespace GameWish.Game
 
         public void Init(RewardPanel rewardPanel, RewardBase reward)
         {
+            m_Quality.gameObject.SetActive(false);
+            m_KungfuName.gameObject.SetActive(false);
             m_RewardBaseData = reward;
             m_Panel = rewardPanel;
 

@@ -52,7 +52,6 @@ namespace GameWish.Game
                     m_HeadPhotoList.Add(headPhoto);
                 }
             }
-
         }
 
         private void GetInformationForNeed()
