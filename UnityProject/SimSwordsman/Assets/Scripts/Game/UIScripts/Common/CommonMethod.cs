@@ -148,12 +148,13 @@ namespace GameWish.Game
         /// <returns></returns>
         public static bool IsEvenNumber(int i)
         {
-            if (i % 2 == 0)
+            if (i%2==0)
             {
                 return true;
             }
             return false;
         }
+
        
     }
 }
