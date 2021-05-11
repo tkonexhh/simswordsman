@@ -788,7 +788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3859577066071558918
 RectTransform:
   m_ObjectHideFlags: 0
@@ -952,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4726115697830092262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.36862746, g: 0.28627452, b: 0.2627451, a: 1}
+  m_Color: {r: 0.3647059, g: 0.28235295, b: 0.2627451, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1725,7 +1725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.36862746, g: 0.28627452, b: 0.2627451, a: 1}
+  m_Color: {r: 0.3019608, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2236,6 +2236,7 @@ MonoBehaviour:
   m_BtnAddCount: {fileID: 1005378377770859321}
   m_TxtCount: {fileID: 5925832841605917065}
   m_ListView: {fileID: 1036994119900175624}
+  m_ScrollRect: {fileID: 6603242778250602473}
   m_ArenaCloseBg: {fileID: 2407359003709380370}
   m_ArenaClose: {fileID: 2388468458484428793}
   m_TxtMyRank: {fileID: 4998580683433831336}

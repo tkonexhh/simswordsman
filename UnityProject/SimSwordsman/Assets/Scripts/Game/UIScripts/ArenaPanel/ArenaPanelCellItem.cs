@@ -32,7 +32,7 @@ namespace GameWish.Game
             m_TxtLevel.text = index.ToString();
             UpdateLevelBg(index);
             m_TxtName.text = data.name;
-            m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(data.atk);
+            m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(data.atk);
             int nowLevel = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
             bool canFight = index < nowLevel && index + ArenaDefine.ChallengeRange >= nowLevel;
             m_BtnFight.gameObject.SetActive(canFight);
@@ -44,11 +44,12 @@ namespace GameWish.Game
         public void SetSelf(int level)
         {
             m_Data = null;
+
             m_TxtLevel.text = level.ToString();
             UpdateLevelBg(level);
             m_TxtName.text = GameDataMgr.S.GetClanData().clanName;
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
-            m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(totalAtk);
+            m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(totalAtk);
             m_ImgBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBGMy");
             m_ImgHeadBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG_renwuPicBGMy");
             m_ImgNameBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", "jingjichang_liebiaoBG_titleBGMy");
@@ -60,20 +61,13 @@ namespace GameWish.Game
             if (m_ImgLevelBg.sprite.name != spName)
                 m_ImgLevelBg.sprite = SpriteHandler.S.GetSprite("ArenaPanelAtlas", spName);
 
-            if (level >= 4)
-            {
-                m_TxtLevel.transform.localPosition = new Vector3(0, -7.5f, 0);
-            }
-            else
-            {
-                m_TxtLevel.transform.localPosition = new Vector3(0, -1.5f, 0);
-            }
+            m_TxtLevel.gameObject.SetActive(level > 3);
         }
 
         private void OnClickFight()
         {
             if (m_Data == null) return;
-            if (GameDataMgr.S.GetPlayerData().arenaData.adAddChallengeCount <= 0)
+            if (GameDataMgr.S.GetPlayerData().arenaData.challengeCount <= 0)
             {
                 FloatMessage.S.ShowMsg("挑战次数不足");
                 return;

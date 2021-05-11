@@ -16,6 +16,7 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnAddCount;
         [SerializeField] private Text m_TxtCount;
         [SerializeField] private IUListView m_ListView;
+        [SerializeField] private ScrollRect m_ScrollRect;
 
         [Header("Close")]
         [SerializeField] private GameObject m_ArenaCloseBg;
@@ -46,7 +47,7 @@ namespace GameWish.Game
             UpdateCoin();
             UpdateCount();
             UpdateMy();
-
+            UpdateScroll();
             EnableArenaClose(!MainGameMgr.S.ArenaSystem.IsWithinTime());
             MainGameMgr.S.ArenaSystem.ShowRankReward();
 
@@ -58,6 +59,11 @@ namespace GameWish.Game
             m_ArenaCloseBg.SetActive(enable);
         }
 
+        private void UpdateScroll()
+        {
+            int level = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
+            m_ScrollRect.verticalNormalizedPosition = 1.0f - (float)level / (float)(ArenaDefine.EnemyCount + 1);//.DoScrollVertical((float)level / (float)(ArenaDefine.EnemyCount + 1), 0.1f);
+        }
 
         private void OnClickShop()
         {
@@ -83,7 +89,7 @@ namespace GameWish.Game
         {
             m_TxtMyRank.text = GameDataMgr.S.GetPlayerData().arenaData.nowLevel.ToString();
             m_TxtMyName.text = GameDataMgr.S.GetClanData().clanName;
-            m_TxtATK.text = CommonUIMethod.GetTenThousandOrMillion(MainGameMgr.S.CharacterMgr.GetCharacterATK());
+            m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(MainGameMgr.S.CharacterMgr.GetCharacterATK());
         }
 
 
