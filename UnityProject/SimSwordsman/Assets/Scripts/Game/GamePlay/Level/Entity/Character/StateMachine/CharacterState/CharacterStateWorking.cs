@@ -89,7 +89,7 @@ namespace GameWish.Game
 
                     m_FacilityController.ChangeFacilityWorkingState(FacilityWorkingStateEnum.Idle);
 
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish, "Coin");
+                    //DataAnalysisMgr.S.CustomEvent(DotDefine.work_finish, "Coin");
 
                     m_Controller.SetState(CharacterStateID.Wander);
 

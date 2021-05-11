@@ -58,7 +58,7 @@ namespace GameWish.Game
                     BubbleView.SetActive(true);
                     WorkSprite.SetActive(true);
                     RewardSprite.SetActive(false);
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate, "Coin");
+                    //DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate, "Coin");
 
                     EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility, Type,true);
 
@@ -99,7 +99,7 @@ namespace GameWish.Game
                 {
                     BubbleView.SetActive(false);
                     GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
-                    DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, "Coin");
+                    //DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, "Coin");
 
                     EventSystem.S.Send(EventID.OnSendWorkingBubbleFacility,Type,false);
                 }

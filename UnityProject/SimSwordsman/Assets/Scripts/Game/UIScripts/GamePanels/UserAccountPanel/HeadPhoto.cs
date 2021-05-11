@@ -51,7 +51,7 @@ namespace GameWish.Game
                 isUnlock = true;
                 m_Head.gameObject.SetActive(true);
                 return;
-            }
+            }  
 
             int curLevel = MainGameMgr.S.ChapterMgr.GetLevelProgressNumber(m_AvatarConfig.unlockingCondition.mainLevel);
             isUnlock = curLevel >= m_AvatarConfig.unlockingCondition.subLevel ? true : false;
@@ -67,7 +67,6 @@ namespace GameWish.Game
                 m_Mask.gameObject.SetActive(true);
                 m_Lock.gameObject.SetActive(true);
             }
-          
         }
 
         private void OnDestroy()

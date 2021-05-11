@@ -1,12 +1,12 @@
 
 sz_3.png
-size: 137,78
+size: 139,78
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 刀
-  rotate: true
-  xy: 80, 45
+  rotate: false
+  xy: 41, 35
   size: 31, 41
   orig: 31, 41
   offset: 0, 0
@@ -20,14 +20,14 @@ repeat: none
   index: -1
 右大臂
   rotate: true
-  xy: 110, 2
+  xy: 84, 19
   size: 18, 22
   orig: 18, 22
   offset: 0, 0
   index: -1
 右小臂
   rotate: true
-  xy: 110, 22
+  xy: 113, 56
   size: 20, 24
   orig: 20, 24
   offset: 0, 0
@@ -41,42 +41,42 @@ repeat: none
   index: -1
 图层 2
   rotate: false
-  xy: 85, 20
+  xy: 113, 31
   size: 23, 23
   orig: 23, 23
   offset: 0, 0
   index: -1
 图层 3
-  rotate: false
-  xy: 70, 8
+  rotate: true
+  xy: 84, 4
   size: 13, 29
   orig: 13, 29
   offset: 0, 0
   index: -1
 地影
   rotate: true
-  xy: 123, 44
-  size: 32, 12
-  orig: 34, 15
-  offset: 1, 2
+  xy: 48, 3
+  size: 30, 12
+  orig: 32, 12
+  offset: 1, 0
   index: -1
 头
   rotate: false
-  xy: 41, 39
+  xy: 74, 39
   size: 37, 37
   orig: 37, 37
   offset: 0, 0
   index: -1
 左大臂
   rotate: true
-  xy: 85, 5
+  xy: 115, 16
   size: 13, 20
   orig: 13, 20
   offset: 0, 0
   index: -1
 左小臂
   rotate: false
-  xy: 48, 8
+  xy: 62, 4
   size: 20, 29
   orig: 20, 29
   offset: 0, 0

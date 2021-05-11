@@ -181,7 +181,7 @@ namespace GameWish.Game
             else
             {
                 OnCharacterSelected(character, true);
-                DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, collectedObjType.ToString());
+                //DataAnalysisMgr.S.CustomEvent(DotDefine.work_enter, collectedObjType.ToString());
             }
         }
 
@@ -213,7 +213,7 @@ namespace GameWish.Game
 
                 //HideBubble();
 
-                DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
+                //DataAnalysisMgr.S.CustomEvent(DotDefine.work_auto_enter, collectedObjType.ToString());
 
                 GameDataMgr.S.GetPlayerData().ReduceFoodNum(Define.WORK_NEED_FOOD_COUNT);
 
