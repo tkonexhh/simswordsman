@@ -369,7 +369,6 @@ namespace GameWish.Game
 
         private void SpawnEnemyCharacter(int id, int count, long atk)
         {
-            //TODO  添加弟子敌人
             for (int i = 0; i < count; i++)
             {
                 SpawnEnemyController(id, m_BattleField.GetEnemyCharacterPos(), CharacterCamp.EnemyCamp, (controller) =>
