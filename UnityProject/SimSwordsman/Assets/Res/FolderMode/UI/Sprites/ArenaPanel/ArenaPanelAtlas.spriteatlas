@@ -48,8 +48,11 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 6d8cbd0d98db04cfa9de373f9e743023, type: 3}
     - {fileID: 2800000, guid: 6912368f68e044241a9a45d7014ea36f, type: 3}
     - {fileID: 2800000, guid: ddfdf7dcaab4d4805932d4fe337d4645, type: 3}
+    - {fileID: 2800000, guid: 600704fcd5e7d4d9da27197748acca59, type: 3}
     - {fileID: 2800000, guid: bfcba990c2dd840739880cbf09bb16ab, type: 3}
+    - {fileID: 2800000, guid: 8f383028b92544eb7895e40a3e62a862, type: 3}
     - {fileID: 2800000, guid: 23c889a66a9d54dec97706b48e7983ce, type: 3}
+    - {fileID: 2800000, guid: 149729b941e1c447b9234f1d89252af7, type: 3}
     - {fileID: 2800000, guid: 9a5838fc7b27f41aca0f71d31a7e30a5, type: 3}
     - {fileID: 2800000, guid: 3075b4ab9aa174940910d5ffc3bfb3bb, type: 3}
     - {fileID: 2800000, guid: 58befdf238c6b45709f681482ad0bc9e, type: 3}
@@ -58,6 +61,10 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 762ea923c5d1846d9ae3638f16b06139, type: 3}
     - {fileID: 2800000, guid: 06cd612018e3a490eabc424e1bc89cf5, type: 3}
     - {fileID: 2800000, guid: 0cf7273c6805d4eab8d513e64a4c33eb, type: 3}
+    - {fileID: 2800000, guid: fd35829ddc87b496fa022b8473ee5069, type: 3}
+    - {fileID: 2800000, guid: 1446d32c4372f4b22b1409d19976d92b, type: 3}
+    - {fileID: 2800000, guid: 9bc49b7aca83241bd95adcab16b0b72d, type: 3}
+    - {fileID: 2800000, guid: f2f65d2b5cadf488aa5909da5bb047a2, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -69,12 +76,19 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 58befdf238c6b45709f681482ad0bc9e, type: 3}
   - {fileID: 21300000, guid: 762ea923c5d1846d9ae3638f16b06139, type: 3}
   - {fileID: 21300000, guid: 23c889a66a9d54dec97706b48e7983ce, type: 3}
+  - {fileID: 21300000, guid: 8f383028b92544eb7895e40a3e62a862, type: 3}
   - {fileID: 21300000, guid: 4ab475c8530bb444f8f44dfedebd49c4, type: 3}
+  - {fileID: 21300000, guid: 149729b941e1c447b9234f1d89252af7, type: 3}
+  - {fileID: 21300000, guid: 9bc49b7aca83241bd95adcab16b0b72d, type: 3}
+  - {fileID: 21300000, guid: f2f65d2b5cadf488aa5909da5bb047a2, type: 3}
   - {fileID: 21300000, guid: 3075b4ab9aa174940910d5ffc3bfb3bb, type: 3}
+  - {fileID: 21300000, guid: 1446d32c4372f4b22b1409d19976d92b, type: 3}
   - {fileID: 21300000, guid: 0cf7273c6805d4eab8d513e64a4c33eb, type: 3}
   - {fileID: 21300000, guid: ddfdf7dcaab4d4805932d4fe337d4645, type: 3}
+  - {fileID: 21300000, guid: 600704fcd5e7d4d9da27197748acca59, type: 3}
   - {fileID: 21300000, guid: 9a5838fc7b27f41aca0f71d31a7e30a5, type: 3}
   - {fileID: 21300000, guid: 6d8cbd0d98db04cfa9de373f9e743023, type: 3}
+  - {fileID: 21300000, guid: fd35829ddc87b496fa022b8473ee5069, type: 3}
   - {fileID: 21300000, guid: 6912368f68e044241a9a45d7014ea36f, type: 3}
   - {fileID: 21300000, guid: 80ce8d9f29bc94fa28643eb374bba0d8, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -86,12 +100,19 @@ SpriteAtlas:
   - jingjichang_qizi2
   - jingjichang_shangdian_diban
   - jingjichang_liebiaoBG_titleBG
+  - jingjichang_liebiaoBG_renwuPicBGMy
   - jingjichang_qizi4
+  - jingjichang_liebiaoBG_titleBGMy
+  - jingjichang_changjing_shan2
+  - jingjichang_changjing_BG4
   - jingjichang_qizi1
+  - jingjichang_changjing_shan1
   - jingjichang_cardIcon
   - jingjichang_liebiaoBG
+  - jingjichang_liebiaoBGMy
   - jingjichang_myInfo_mingciBG
   - jingjichang_title
+  - jingjichang_changjing_BG1
   - jingjichang_jiaziBG
   - jingjichang_btnBG
   m_Tag: ArenaPanelAtlas

@@ -86,7 +86,7 @@ namespace GameWish.Game
             m_DiscipleName.text = m_CurCharacterItem.name;
             if (m_IsSuccess)
             {
-                if (m_PanelType == PanelType.Tower)
+                if (m_PanelType == PanelType.Tower || m_PanelType == PanelType.Arena)
                 {
                     m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
                     m_ExpCont.text = Define.PLUS + "0";

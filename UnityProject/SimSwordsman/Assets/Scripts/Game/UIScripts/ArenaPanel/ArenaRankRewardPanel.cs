@@ -9,7 +9,7 @@ namespace GameWish.Game
     public class ArenaRankRewardPanel : AbstractPanel
     {
         [SerializeField] private Button m_BtnClose;
-        [SerializeField] private Text m_TxtTitle;
+        [SerializeField] private Text m_TxtRank;
         [SerializeField] private Text m_RewardNum;
 
         protected override void OnUIInit()
@@ -21,8 +21,10 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             int level = (int)args[0];
+            int reward = (int)args[1];
 
-            m_TxtTitle.text = string.Format("恭喜获得竞技场{0}名", level);
+            m_TxtRank.text = level.ToString();
+            m_RewardNum.text = reward.ToString();//
         }
     }
 
