@@ -101,20 +101,28 @@ namespace GameWish.Game
 
         private void RefreshPanelInfo()
         {
-            if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems, false))
-                m_RedPoint.SetActive(true);
-            else
-                m_RedPoint.SetActive(false);
-
-            RefreshFixedInfo();
-            RefreshPanelText();
-
-            // for (int i = 0; i < m_ReadingSlotList.Count; i++)
-            //TODO 改为配置最大值
-            for (int i = 0; i < 4; i++)
+            try
             {
-                CreateCopyScripturesItem(i);
+                if (CommonUIMethod.CheackIsBuild(m_NextFacilityLevelInfo, m_CostItems, false))
+                    m_RedPoint.SetActive(true);
+                else
+                    m_RedPoint.SetActive(false);
+
+                RefreshFixedInfo();
+                RefreshPanelText();
+
+                // for (int i = 0; i < m_ReadingSlotList.Count; i++)
+                //TODO 改为配置最大值
+                for (int i = 0; i < 4; i++)
+                {
+                    CreateCopyScripturesItem(i);
+                }
             }
+            catch (Exception e)
+            {
+                Debug.LogError("e = "+e);
+            }
+            
         }
 
         /// <summary>
@@ -245,10 +253,23 @@ namespace GameWish.Game
 
         private void CreateCopyScripturesItem(int index)
         {
-            GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
-            CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
-            itemICom.Init(index, this);
-            m_KongfuLibrarySoltInfo.Add(index, itemICom);
+            try
+            {
+                if (m_KongfuLibrarySoltInfo.Count > 0)
+                {
+                    Debug.LogError("m_KongfuLibrarySoltInfo = " + m_KongfuLibrarySoltInfo);
+                    m_KongfuLibrarySoltInfo.Clear();
+                }
+                GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
+                CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
+                itemICom.Init(index, this);
+                m_KongfuLibrarySoltInfo.Add(index, itemICom);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("e = " + e);
+            }
+          
         }
 
         protected override void OnClose()

@@ -33,11 +33,11 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_Speed1Btn;
         [SerializeField]
-        private Button m_Speed2Btn;  
+        private Button m_Speed2Btn;
         [SerializeField]
         private Transform m_Top;
         [SerializeField]
-        private Transform m_Bottom;    
+        private Transform m_Bottom;
         //[SerializeField]
         //private Button m_Speed4Btn;
         private int m_CurTimeScale = 1;
@@ -121,63 +121,80 @@ namespace GameWish.Game
         /// <param name="battleTexts"></param>
         private void CreateBattleText(List<BattleTextConfig> battleTexts, int type = 0)
         {
-            int characterListIndex = UnityEngine.Random.Range(0, m_OurCharacterList.Count);
-            int enemyCharacterListIndex = UnityEngine.Random.Range(0, m_EnemyCharacterList.Count);
-            int index = UnityEngine.Random.Range(0, battleTexts.Count);
-            if (type == 0)
+            try
             {
-                int random = UnityEngine.Random.Range(0, 2);
-                if (random == 0)
-                    CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetDiscipleName(m_OurCharacterList[characterListIndex]), GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex])));
+                int characterListIndex = UnityEngine.Random.Range(0, m_OurCharacterList.Count);
+                int enemyCharacterListIndex = UnityEngine.Random.Range(0, m_EnemyCharacterList.Count);
+                int index = UnityEngine.Random.Range(0, battleTexts.Count);
+
+                if (index >= battleTexts.Count)
+                {
+                    Debug.LogError("index = "+ index+ "----battleTexts.Count"+ battleTexts.Count);
+                }
                 else
-                    CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex]), GetDiscipleName(m_OurCharacterList[characterListIndex])));
+                {
+                    if (type == 0)
+                    {
+                        int random = UnityEngine.Random.Range(0, 2);
+                        if (random == 0)
+                            CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetDiscipleName(m_OurCharacterList[characterListIndex]), GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex])));
+                        else
+                            CreateBattleText(string.Format(battleTexts[index].BattleWorlds, GetEnemyName(m_EnemyCharacterList[enemyCharacterListIndex]), GetDiscipleName(m_OurCharacterList[characterListIndex])));
 
-                int randomSecond = UnityEngine.Random.Range(1, 3);
-                m_Coroutine = StartCoroutine(BattleTextCounDown(randomSecond));
+                        int randomSecond = UnityEngine.Random.Range(1, 3);
+                        m_Coroutine = StartCoroutine(BattleTextCounDown(randomSecond));
+                    }
+                    else
+                    {
+                        if (type == 1)//�ҷ�ʤ��
+                        {
+                            string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, GameDataMgr.S.GetClanData().GetClanName());
+                            switch (m_PanelType)
+                            {
+                                case PanelType.Task:
+                                    battleText = ReplaceStr(battleText, 1, m_CurTaskInfo.CommonTaskItemInfo.title);
+                                    break;
+                                case PanelType.Challenge:
+                                    battleText = ReplaceStr(battleText, 1, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                                    break;
+                                case PanelType.Tower:
+                                    break;
+                                default:
+                                    break;
+                            }
+                            CreateBattleText(battleText);
+                        }
+                        else//����ʤ��
+                        {
+                            string battleText = string.Empty;
+                            switch (m_PanelType)
+                            {
+                                case PanelType.Task:
+                                    battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, m_CurTaskInfo.CommonTaskItemInfo.title);
+                                    battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
+                                    CreateBattleText(battleText);
+                                    break;
+                                case PanelType.Challenge:
+                                    battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
+                                    battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
+                                    CreateBattleText(battleText);
+                                    break;
+                                case PanelType.Tower:
+
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
             }
-            else
+            catch (Exception e)
             {
-                if (type == 1)//�ҷ�ʤ��
-                {
-                    string battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, GameDataMgr.S.GetClanData().GetClanName());
-                    switch (m_PanelType)
-                    {
-                        case PanelType.Task:
-                            battleText = ReplaceStr(battleText, 1, m_CurTaskInfo.CommonTaskItemInfo.title);
-                            break;
-                        case PanelType.Challenge:
-                            battleText = ReplaceStr(battleText, 1, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
-                            break;
-                        case PanelType.Tower:
-                            break;
-                        default:
-                            break;
-                    }
-                    CreateBattleText(battleText);
-                }
-                else//����ʤ��
-                {
-                    string battleText = string.Empty;
-                    switch (m_PanelType)
-                    {
-                        case PanelType.Task:
-                            battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, m_CurTaskInfo.CommonTaskItemInfo.title);
-                            battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
-                            CreateBattleText(battleText);
-                            break;
-                        case PanelType.Challenge:
-                            battleText = ReplaceStr(battleTexts[index].BattleWorlds, 0, CommonUIMethod.GetClanName(m_CurChapterConfigInfo.clanType));
-                            battleText = ReplaceStr(battleText, 1, GameDataMgr.S.GetClanData().GetClanName());
-                            CreateBattleText(battleText);
-                            break;
-                        case PanelType.Tower:
-
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                Debug.LogError("e:" + e);
             }
+
+
         }
 
         private string ReplaceStr(string str, int i, string newStr)
@@ -489,7 +506,7 @@ namespace GameWish.Game
                     break;
                 case EventID.OnBattleSecondEvent:
                     m_CombatTime.text = (string)param[0];
-                    break; 
+                    break;
                 default:
                     break;
             }
@@ -514,7 +531,7 @@ namespace GameWish.Game
                 m_Speed1Btn.gameObject.SetActive(true);
                 m_Speed2Btn.gameObject.SetActive(false);
 
-                if(setSpeedUp)
+                if (setSpeedUp)
                     isSpeedUp = false;
             }
 

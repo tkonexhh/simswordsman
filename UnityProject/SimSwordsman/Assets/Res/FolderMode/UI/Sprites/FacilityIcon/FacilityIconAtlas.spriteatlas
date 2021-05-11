@@ -50,6 +50,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 44600e50466f19b499b57ac2ab8949c7, type: 3}
   - {fileID: 21300000, guid: 5b33d642f60d9ae4191ada4b911bb9d7, type: 3}
   - {fileID: 21300000, guid: f9870b824ee76784f8f44cf4b6b9bc42, type: 3}
+  - {fileID: 21300000, guid: a8451ea2f065d4441a84d95ccbc22601, type: 3}
   - {fileID: 21300000, guid: 37afa6f21d53ae043b8a3a5efb9c97b5, type: 3}
   - {fileID: 21300000, guid: fde12e13e25f5954aa86ea83ab0ddfad, type: 3}
   - {fileID: 21300000, guid: 17562033c9499584dbdf670b9149a7c3, type: 3}
@@ -57,8 +58,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 660aeeb3c30fd414599e4f3e8f6e0386, type: 3}
   - {fileID: 21300000, guid: d53c5304d00086545bc4d05afb094853, type: 3}
   - {fileID: 21300000, guid: ebc5aa34911c0884f8bfe34963e34b85, type: 3}
-  - {fileID: 21300000, guid: f5d158c44fdb1c140960a672a905ef77, type: 3}
-  - {fileID: 21300000, guid: 3efcb5e4eb649b348984ba9e63343399, type: 3}
   - {fileID: 21300000, guid: bb103fe48e125ae4db23dec43b66eb64, type: 3}
   - {fileID: 21300000, guid: 8c164455a364a8d40a97921fb43a93af, type: 3}
   - {fileID: 21300000, guid: 87c397a5893ae92439c534cbe58c7cc7, type: 3}
@@ -91,6 +90,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d7c0342c705a2574b9bba254acf408dd, type: 3}
   - {fileID: 21300000, guid: 18e7873cbf13fd74eb38d3957e662af3, type: 3}
   - {fileID: 21300000, guid: 8ff0ccacc32ca244b83b630ebdad0ea8, type: 3}
+  - {fileID: 21300000, guid: c1d5d93dd8de90343bf688c6909fe932, type: 3}
   - {fileID: 21300000, guid: ecb0ca8d36e35514cab207d89b919d3c, type: 3}
   - {fileID: 21300000, guid: 7ef77b8d81fc9f24fba5d84ac75b84fd, type: 3}
   - {fileID: 21300000, guid: 01dc359d404c4b6429893dbf9b4d231b, type: 3}
@@ -106,6 +106,7 @@ SpriteAtlas:
   - PracticeField1
   - LivableRoom6
   - Kitchen3
+  - Deliver1
   - PatrolRoom2
   - Lobby1
   - Warehouse5
@@ -113,30 +114,28 @@ SpriteAtlas:
   - KongfuLibrary5
   - Baicaohu2
   - LivableRoom2
-  - Deliver3
-  - Deliver4
   - ForgeHouse6
   - Warehouse3
   - KongfuLibrary1
   - KongfuLibrary3
   - PracticeField4
-  - Deliver2
+  - Deliver4
   - PatrolRoom3
-  - Lobby7
-  - Baicaohu1
-  - Lobby5
   - Lobby4
+  - Baicaohu1
+  - Lobby3
+  - Lobby6
   - Baicaohu4
   - ForgeHouse4
   - PatrolRoom4
-  - Lobby6
+  - Lobby7
   - Warehouse1
   - Baicaohu3
   - Lobby8
   - PatrolRoom5
   - LivableRoom5
   - LivableRoom4
-  - Lobby2
+  - Lobby5
   - ForgeHouse5
   - KongfuLibrary4
   - PracticeField5
@@ -145,8 +144,9 @@ SpriteAtlas:
   - Warehouse2
   - PatrolRoom6
   - PracticeField2
-  - Deliver1
-  - Lobby3
+  - Deliver3
+  - Lobby2
+  - Deliver2
   - Kitchen2
   - ForgeHouse2
   - Kitchen5
