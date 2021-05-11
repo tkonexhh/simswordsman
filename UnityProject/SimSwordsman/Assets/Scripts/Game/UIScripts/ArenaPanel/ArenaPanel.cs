@@ -23,6 +23,7 @@ namespace GameWish.Game
         [SerializeField] private ArenaClose m_ArenaClose;
 
         [Header("My")]
+        [SerializeField] private Image m_ImgMyHead;
         [SerializeField] private Text m_TxtMyRank;
         [SerializeField] private Text m_TxtMyName;
         [SerializeField] private Text m_TxtATK;
@@ -90,6 +91,12 @@ namespace GameWish.Game
             m_TxtMyRank.text = GameDataMgr.S.GetPlayerData().arenaData.nowLevel.ToString();
             m_TxtMyName.text = GameDataMgr.S.GetClanData().clanName;
             m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(MainGameMgr.S.CharacterMgr.GetCharacterATK());
+            string headStr = GameDataMgr.S.GetPlayerData().headPhoto;
+            // Debug.LogError("Head:" + headStr);
+            if (!string.IsNullOrEmpty(headStr))
+            {
+                m_ImgMyHead.sprite = SpriteHandler.S.GetSprite("EnmeyHeadIconsAtlas", "enemy_icon_" + headStr);
+            }
         }
 
 

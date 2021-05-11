@@ -8,19 +8,19 @@ namespace GameWish.Game
     public enum CharacterQuality
     {
         /// <summary>
-        /// Æ½Ãñ¼¶
+        /// Æ½ï¿½ï¿½
         /// </summary>
         Normal = 1,
         /// <summary>
-        /// ¾«Ó¢¼¶
+        /// ï¿½ï¿½Ó¢ï¿½ï¿½
         /// </summary>
         Good = 2,
         /// <summary>
-        /// Ìì²Å¼¶
+        /// ï¿½ï¿½Å¼ï¿½
         /// </summary>
         Perfect = 3,
         /// <summary>
-        /// Ó¢ÐÛ¼¶
+        /// Ó¢ï¿½Û¼ï¿½
         /// </summary>
         Hero = 4,
     }
@@ -37,5 +37,11 @@ namespace GameWish.Game
     {
         OurCamp,
         EnemyCamp,
+    }
+
+    public class CharacterDefine
+    {
+        public const int Max_Head = 6;
+        public const int Max_Body = 5;
     }
 }

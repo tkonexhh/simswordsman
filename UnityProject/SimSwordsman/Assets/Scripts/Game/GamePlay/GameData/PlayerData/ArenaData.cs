@@ -24,6 +24,7 @@ namespace GameWish.Game
         public override void InitWithEmptyData()
         {
             coin = 0;
+            nowLevel = ArenaDefine.EnemyCount + 1;
         }
 
         public override void OnDataLoadFinish()
@@ -69,9 +70,9 @@ namespace GameWish.Game
                         hasReward = true;
                     }
                 }
-
-
             }
+
+            // Reset();
         }
 
         private void Reset()
@@ -103,7 +104,7 @@ namespace GameWish.Game
 
         public void SetNowLevel(int level)
         {
-            // Debug.LogError(level);
+            Debug.LogError(level);
             nowLevel = level;
             SetDataDirty();
         }
@@ -140,6 +141,7 @@ namespace GameWish.Game
             for (int i = 0; i < ArenaDefine.EnemyCount; i++)
             {
                 ArenaEnemyDB enemyDB = new ArenaEnemyDB();
+                enemyDB.headID = UnityEngine.Random.Range(1, TDAvatarTable.count + 1);
                 enemyDB.level = i + 1;
                 enemyDB.name = enemyNames[i].name;
                 float atkRate = TDArenaEnemyConfigTable.GetData(i + 1).enemyPowerRate;
@@ -147,9 +149,9 @@ namespace GameWish.Game
                 for (int j = 0; j < 5; j++)
                 {
                     ArenaEnemyItemDB enemyItem = new ArenaEnemyItemDB();
-                    enemyItem.quality = CharacterQuality.Good;
-                    enemyItem.headId = 1;
-                    enemyItem.bodyId = 1;
+                    enemyItem.quality = (CharacterQuality)(UnityEngine.Random.Range((int)CharacterQuality.Normal, (int)CharacterQuality.Hero));
+                    enemyItem.bodyId = UnityEngine.Random.Range(1, CharacterDefine.Max_Body);
+                    enemyItem.headId = UnityEngine.Random.Range(1, CharacterDefine.Max_Head);
                     enemyDB.EnemyLst.Add(enemyItem);
                 }
                 enemyLst.Add(enemyDB);
@@ -217,6 +219,7 @@ namespace GameWish.Game
 
     public class ArenaEnemyDB
     {
+        public int headID = 1;
         public int level;
         public string name;
         public long atk;
