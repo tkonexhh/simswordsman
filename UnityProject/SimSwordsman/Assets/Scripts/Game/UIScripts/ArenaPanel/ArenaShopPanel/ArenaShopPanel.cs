@@ -98,7 +98,7 @@ namespace GameWish.Game
         }
 
 
-        public void ShowItemTips(TowerShopItem shopItem)
+        public void ShowItemTips(ArenaShopItem shopItem)
         {
             m_ItemTips.transform.localPosition = shopItem.transform.localPosition + new Vector3(0, 100, 0);
             m_ItemTips.gameObject.SetActive(true);

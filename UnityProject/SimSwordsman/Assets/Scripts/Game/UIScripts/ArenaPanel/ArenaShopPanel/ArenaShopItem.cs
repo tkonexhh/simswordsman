@@ -87,7 +87,7 @@ namespace GameWish.Game
 
         private void OnClickImgBg()
         {
-            //m_Panel.ShowItemTips(this);
+            m_Panel.ShowItemTips(this);
         }
     }
 
