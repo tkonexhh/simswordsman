@@ -35,7 +35,7 @@ namespace GameWish.Game
             m_BtnShop.onClick.AddListener(OnClickShop);
             m_BtnAddCount.onClick.AddListener(OnClickAddCount);
             m_ListView.SetCellRenderer(OnCellRenderer);
-            MainGameMgr.S.ArenaSystem.Enter();
+
         }
 
 
@@ -43,7 +43,7 @@ namespace GameWish.Game
         {
             RegisterEvent(EventID.OnRefeshArenaCoin, (t, e) => { UpdateCoin(); });
             RegisterEvent(EventID.OnRefeshArenaChallengeCount, (t, e) => { UpdateCount(); });
-
+            MainGameMgr.S.ArenaSystem.Enter();
             m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
             UpdateCoin();
             UpdateCount();

@@ -137,6 +137,10 @@ namespace GameWish.Game
             arenaData.SetDirtyRecorder(m_Recorder);
             towerData.OnDataLoadFinish();
             arenaData.OnDataLoadFinish();
+            if (string.IsNullOrEmpty(headPhoto))
+            {
+                headPhoto = "zhangmen";
+            }
         }
 
         public void ResetDailyData()
