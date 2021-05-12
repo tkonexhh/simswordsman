@@ -38,6 +38,7 @@ namespace GameWish.Game
             //判读是否需要重置数据
             if (string.IsNullOrEmpty(lastRefeshTime))//首次进入
             {
+                Debug.LogError("lastRefeshTime is Null Reset");
                 Reset();
             }
             else
@@ -51,6 +52,7 @@ namespace GameWish.Game
                 // Debug.LogError("AAAA:" + offsetDays + ":" + lastRefesh + ":" + now);
                 if (offsetDays >= 1)
                 {
+                    Debug.LogError("Passday Reset");
                     Reset();
                 }
                 else
