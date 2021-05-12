@@ -49,7 +49,7 @@ namespace GameWish.Game
             if (isShowed) return;
 
             TowerBattleOverToGuide towerBattleData = (TowerBattleOverToGuide)param[0];
-            if (towerBattleData != null) 
+            if (towerBattleData != null)
             {
                 if (towerBattleData.isSuccess && towerBattleData.level == TowerDefine.MAXLEVEL)
                 {
@@ -66,10 +66,10 @@ namespace GameWish.Game
 
         private void OnTrialTimeOverCallBack(int key, object[] param)
         {
-            if (GuideMgr.S.IsGuideFinish(43) == false) 
+            if (GuideMgr.S.IsGuideFinish(43) == false)
             {
                 EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_ClickTrialFinishedTrigger);
-            }            
+            }
         }
 
         private void OnCloseAllUIPanelCallBack(int key, object[] param)
@@ -124,7 +124,11 @@ namespace GameWish.Game
             UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.HeroTrialTipPanel);
 
+            UIMgr.S.ClosePanelAsUIID(UIID.ArenaPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.ArenaShopPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ArenaRulePanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ArenaAddCountPanel);
+            UIMgr.S.ClosePanelAsUIID(UIID.ArenaRankRewardPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.ArenaADRefeshPanel);
         }
 
@@ -198,19 +202,20 @@ namespace GameWish.Game
         /// <summary>
         /// 是否开始试炼系统引导
         /// </summary>
-        private void CheckIsStartHeroTrialSystemGuide() 
+        private void CheckIsStartHeroTrialSystemGuide()
         {
             bool isOpen = PlayerPrefs.GetInt(Define.IsOpenHeroTrialPanel, 0) == 1 ? true : false;
-            
+
             if (isOpen) return;
 
-            if (GuideMgr.S.IsGuideFinish(42)) {
+            if (GuideMgr.S.IsGuideFinish(42))
+            {
                 return;
             }
             int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
             var characterList = GameDataMgr.S.GetClanData().GetAllCharacterList();
             var characterData = characterList.Find(x => x.level >= 200);
-            if (characterData != null && facilityLevel >= 5) 
+            if (characterData != null && facilityLevel >= 5)
             {
                 EventSystem.S.Send(EventID.OnHeroTrialSystemTrigger_IntroduceTrigger);
             }
@@ -218,18 +223,19 @@ namespace GameWish.Game
         /// <summary>
         /// 是否开始伏魔塔引导
         /// </summary>
-        private void CheckIsStartTowerSystemGuide() 
+        private void CheckIsStartTowerSystemGuide()
         {
             bool isOpen = PlayerPrefs.GetInt(Define.IsOpenTowerPanel, 0) == 1 ? true : false;
-            
+
             if (isOpen) return;
 
-            if (GuideMgr.S.IsGuideFinish(40)) 
+            if (GuideMgr.S.IsGuideFinish(40))
             {
                 return;
             }
             int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
-            if (facilityLevel >= 3) {
+            if (facilityLevel >= 3)
+            {
                 EventSystem.S.Send(EventID.OnTowerTrigger_IntroduceTrigger);
             }
         }
