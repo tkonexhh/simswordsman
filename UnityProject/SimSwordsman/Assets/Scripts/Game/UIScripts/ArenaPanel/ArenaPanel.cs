@@ -44,12 +44,13 @@ namespace GameWish.Game
             RegisterEvent(EventID.OnRefeshArenaCoin, (t, e) => { UpdateCoin(); });
             RegisterEvent(EventID.OnRefeshArenaChallengeCount, (t, e) => { UpdateCount(); });
             MainGameMgr.S.ArenaSystem.Enter();
-            m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
+            // m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
             UpdateCoin();
             UpdateCount();
             UpdateMy();
-            UpdateScroll();
+
             EnableArenaClose(!MainGameMgr.S.ArenaSystem.IsWithinTime());
+            UpdateScroll();
             MainGameMgr.S.ArenaSystem.ShowRankReward();
 
         }
@@ -58,6 +59,14 @@ namespace GameWish.Game
         {
             m_ArenaClose.gameObject.SetActive(enable);
             m_ArenaCloseBg.SetActive(enable);
+            if (!enable)
+            {
+                m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
+            }
+            else
+            {
+                m_ListView.SetDataCount(0);
+            }
         }
 
         private void UpdateScroll()

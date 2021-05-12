@@ -21,7 +21,7 @@ namespace GameWish.Game
             for (int i = 0; i < m_DataList.Count; i++)
             {
                 var config = m_DataList[i];
-                var ranges = Helper.String2ListInt(config.range);
+                var ranges = Helper.String2ListInt(config.range, "|");
                 ArenaConfigInfo info = new ArenaConfigInfo();
                 info.minLvl = ranges[0];
                 info.maxLvl = ranges[1];
