@@ -35,10 +35,11 @@ namespace GameWish.Game
 
         public void Init()
         {
+            // Debug.LogError("Init:" + lastRefeshTime);
             //判读是否需要重置数据
             if (string.IsNullOrEmpty(lastRefeshTime))//首次进入
             {
-                Debug.LogError("lastRefeshTime is Null Reset");
+                // Debug.LogError("lastRefeshTime is Null Reset");
                 Reset();
             }
             else
@@ -49,10 +50,10 @@ namespace GameWish.Game
                 DateTime.TryParse(lastRefeshTime, out lastRefesh);
 
                 int offsetDays = (now - lastRefesh).Days;
-                // Debug.LogError("AAAA:" + offsetDays + ":" + lastRefesh + ":" + now);
+                // Debug.LogError("AAAA:" + offsetDays + "-----" + lastRefesh + "------" + now);
                 if (offsetDays >= 1)
                 {
-                    Debug.LogError("Passday Reset");
+                    // Debug.LogError("Passday Reset");
                     Reset();
                 }
                 else
@@ -79,9 +80,10 @@ namespace GameWish.Game
 
         private void Reset()
         {
-            Debug.LogError("Reset");
-            lastRefeshTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
-            // Debug.LogError(lastRefeshTime);
+            var now = DateTime.Now;
+            var startTime = new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.StartTime);
+            lastRefeshTime = startTime.ToString();//DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
+            // Debug.LogError("Reset:" + lastRefeshTime);
             nowLevel = ArenaDefine.EnemyCount + 1;
             InitEnemy();
             adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;

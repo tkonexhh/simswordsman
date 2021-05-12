@@ -122,8 +122,10 @@ namespace GameWish.Game
             firstGoldRecruit = false;
             firstSilverRecruit = false;
 
-            FoodRefreshRecordingTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
-            NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00";
+            var now = DateTime.Now;
+            var startTime = new DateTime(now.Year, now.Month, now.Day).AddHours(6);
+            FoodRefreshRecordingTime = startTime.ToString();
+            NoBroadcastTimesTime = startTime.ToString();
             FoodRefreshTimesToday = 10;
             FoodRefreshCount = 0;
             towerData.InitWithEmptyData();
@@ -204,7 +206,11 @@ namespace GameWish.Game
         public string GetNoBroadcastTimesTime()
         {
             if (NoBroadcastTimesTime == null)
-                NoBroadcastTimesTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + "06:00:00"; ;
+            {
+                var now = DateTime.Now;
+                var startTime = new DateTime(now.Year, now.Month, now.Day).AddHours(6);
+                NoBroadcastTimesTime = startTime.ToString();
+            }
             return NoBroadcastTimesTime;
         }
         public void SetIsNewUser()
