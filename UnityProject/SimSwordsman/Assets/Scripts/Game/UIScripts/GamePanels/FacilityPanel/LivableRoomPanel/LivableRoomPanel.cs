@@ -57,27 +57,49 @@ namespace GameWish.Game
                     m_IsLivableRoomEast = false;
                     break;
             }
-            if (m_IsLivableRoomEast)
+        
+            try
             {
-                m_LivableRoomList.Add(FacilityType.LivableRoomEast1);
-                m_LivableRoomList.Add(FacilityType.LivableRoomEast2);
-                m_LivableRoomList.Add(FacilityType.LivableRoomEast3);
-                m_LivableRoomList.Add(FacilityType.LivableRoomEast4);
-            }
-            else
-            {
-                m_LivableRoomList.Add(FacilityType.LivableRoomWest1);
-                m_LivableRoomList.Add(FacilityType.LivableRoomWest2);
-                m_LivableRoomList.Add(FacilityType.LivableRoomWest3);
-                m_LivableRoomList.Add(FacilityType.LivableRoomWest4);
-            }
-            FacilityConfigInfo facilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
-            //m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_DESCRIBLE);
-            m_BriefIntroduction.text = facilityConfigInfo.desc;
+                if (m_LivableRoomList.Count > 0)
+                {
+                    Debug.LogError("m_LivableRoomList = "+ m_LivableRoomList.Count);
+                    m_LivableRoomList.Clear();
+                }
+                if (m_IsLivableRoomEast)
+                {
+                    m_LivableRoomList.Add(FacilityType.LivableRoomEast1);
+                    m_LivableRoomList.Add(FacilityType.LivableRoomEast2);
+                    m_LivableRoomList.Add(FacilityType.LivableRoomEast3);
+                    m_LivableRoomList.Add(FacilityType.LivableRoomEast4);
+                }
+                else
+                {
+                    m_LivableRoomList.Add(FacilityType.LivableRoomWest1);
+                    m_LivableRoomList.Add(FacilityType.LivableRoomWest2);
+                    m_LivableRoomList.Add(FacilityType.LivableRoomWest3);
+                    m_LivableRoomList.Add(FacilityType.LivableRoomWest4);
+                }
+                FacilityConfigInfo facilityConfigInfo = MainGameMgr.S.FacilityMgr.GetFacilityConfigInfo(m_CurFacilityType);
+                //m_BriefIntroduction.text = CommonUIMethod.GetStringForTableKey(Define.FACILITY_LIVABLEROOM_DESCRIBLE);
+                m_BriefIntroduction.text = facilityConfigInfo.desc;
 
-            for (int i = 0; i < m_LivableRoomList.Count; i++)
+                if (m_LivableRoomLevelInfoDic.Count > 0)
+                {
+                    Debug.LogError("m_LivableRoomLevelInfoDic = " + m_LivableRoomLevelInfoDic.Count);
+                    m_LivableRoomLevelInfoDic.Clear();
+                }   
+                  
+                for (int i = 0; i < m_LivableRoomList.Count; i++)
+                {
+                    if (!m_LivableRoomLevelInfoDic.ContainsKey(i))
+                    {
+                        m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(m_LivableRoomList[i]));
+                    }
+                }     
+            }
+            catch (Exception e)
             {
-                m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(m_LivableRoomList[i]));
+                Debug.LogError("e = "+e);
             }
         }
             

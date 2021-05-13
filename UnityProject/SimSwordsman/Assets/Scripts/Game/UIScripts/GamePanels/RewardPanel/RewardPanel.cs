@@ -70,39 +70,52 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-
-            m_RewardsDataList.Clear();
-            m_DoubleRewardBtn.gameObject.SetActive(false);
-
-            m_CurrentChallengeLevel = -1;
-
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
-
-            if (args != null)
+            try
             {
-                m_RewardsDataList = (List<RewardBase>)args[0];
-                InitItems(m_RewardsDataList);
+                m_RewardsDataList.Clear();
+                m_DoubleRewardBtn.gameObject.SetActive(false);
 
-                if (args.Length > 1) 
+                m_CurrentChallengeLevel = -1;
+
+                OpenDependPanel(EngineUI.MaskPanel, -1, null);
+
+                if (args != null)
                 {
-                    m_CurrentChallengeLevel = (int)args[1];
-                    m_IsBossLevel = TDLevelConfigTable.IsBossLevel(m_CurrentChallengeLevel);
-                    m_DoubleRewardBtn.gameObject.SetActive(m_IsBossLevel);
-                }
-            }
+                    m_RewardsDataList = (List<RewardBase>)args[0];
+                    InitItems(m_RewardsDataList);
 
-            if (m_IsBossLevel)
-            {
-                m_CloseBtn.gameObject.SetActive(false);
-                m_CloseBtnTimerID = Timer.S.Post2Really((x) =>
+                    if (args.Length > 1)
+                    {
+                        m_CurrentChallengeLevel = (int)args[1];
+                        m_IsBossLevel = TDLevelConfigTable.IsBossLevel(m_CurrentChallengeLevel);
+                        m_DoubleRewardBtn.gameObject.SetActive(m_IsBossLevel);
+                    }
+                }
+
+                if (m_IsBossLevel)
+                {
+                    m_CloseBtn.gameObject.SetActive(false);
+                    m_CloseBtnTimerID = Timer.S.Post2Really((x) =>
+                    {
+                        m_CloseBtn.gameObject.SetActive(true);
+                        m_CloseBtnTimerID = -1;
+                    }, 1, 1);
+                }
+                else
                 {
                     m_CloseBtn.gameObject.SetActive(true);
-                    m_CloseBtnTimerID = -1;
-                }, 1, 1);
+                }
+                Debug.LogError("---m_DoubleRewardBtn = " + m_DoubleRewardBtn);
+                Debug.LogError("---m_RewardsDataList = " + m_RewardsDataList);
+                Debug.LogError("---args = " + args);
+                Debug.LogError("---m_CloseBtn = " + m_CloseBtn);
             }
-            else {
-                m_CloseBtn.gameObject.SetActive(true);
+            catch (Exception e)
+            {
+                Debug.LogError("---e"+e);
             }
+
+           
         }
 
         void InitItems(List<RewardBase> rewards)
@@ -144,13 +157,14 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 OnBtnCloseEvent?.Invoke();
-                HideSelfWithAnim();
+                CloseSelfPanel();
+                //HideSelfWithAnim();
             });
         }
         protected override void OnPanelHideComplete()
         {
             base.OnPanelHideComplete();
-            CloseSelfPanel();
+            //CloseSelfPanel();
         }
 
         protected override void OnClose()
