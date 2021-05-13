@@ -120,7 +120,15 @@ namespace GameWish.Game
                 return towerLevelConfigs[0];
             }
 
-            return towerLevelConfigs[index];
+            try
+            {
+                return towerLevelConfigs[index];
+            }
+            catch (System.ArgumentOutOfRangeException e)
+            {
+                return towerLevelConfigs[0];
+            }
+
         }
 
 
@@ -140,6 +148,7 @@ namespace GameWish.Game
         public void AddMaxLevel()
         {
             maxLevel++;
+            maxLevel = Mathf.Clamp(maxLevel, 0, TowerDefine.MAXLEVEL);
             SetDataDirty();
         }
 

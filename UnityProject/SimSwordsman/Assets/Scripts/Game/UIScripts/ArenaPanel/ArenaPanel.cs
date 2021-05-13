@@ -52,7 +52,7 @@ namespace GameWish.Game
             EnableArenaClose(!MainGameMgr.S.ArenaSystem.IsWithinTime());
             UpdateScroll();
             MainGameMgr.S.ArenaSystem.ShowRankReward();
-
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Enter);
         }
 
         private void EnableArenaClose(bool enable)

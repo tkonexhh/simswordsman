@@ -324,6 +324,7 @@ namespace GameWish.Game
                         m_ArenaLevelConfig.PrepareReward();
                         MainGameMgr.S.ArenaSystem.PassLevel(m_ArenaLevelConfig.level);
                     }
+                    DataAnalysisMgr.S.CustomEvent(m_IsSuccess ? DotDefine.Arena_Battle_Win : DotDefine.Arena_Battle_Fail);
                     break;
                 default:
                     break;

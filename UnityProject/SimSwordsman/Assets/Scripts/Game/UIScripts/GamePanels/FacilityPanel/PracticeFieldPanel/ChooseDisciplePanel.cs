@@ -68,7 +68,7 @@ namespace GameWish.Game
             }
             CalculateContainerHeight();
         }
-        public void QuickStartAddDisciple(CharacterQuality quality, List<CharacterItem> characterItems, int surplus,int maxLevel)
+        public void QuickStartAddDisciple(CharacterQuality quality, List<CharacterItem> characterItems, int surplus, int maxLevel)
         {
             if (characterItems.Count == m_CharacterItem.Count)
                 return;
@@ -82,17 +82,17 @@ namespace GameWish.Game
                 {
                     if (number == surplus)
                         break;
-                    if ( normalList[i].IsFreeState() && normalList[i].level < maxLevel)
+                    if (normalList[i].IsFreeState() && normalList[i].level < maxLevel)
                     {
                         number++;
-                        characterItems.Add( normalList[i]);
+                        characterItems.Add(normalList[i]);
                     }
                 }
             }
             else
             {
                 for (int i = 0; i < normalList.Count; i++)
-                    if ( normalList[i].IsFreeState() && normalList[i].level < maxLevel)
+                    if (normalList[i].IsFreeState() && normalList[i].level < maxLevel)
                     {
                         characterItems.Add(normalList[i]);
                     }
@@ -152,18 +152,11 @@ namespace GameWish.Game
             }
         }
 
-        private void Update()
-        {
-            //if (IsSelected)
-            //    m_ArrangeBtn.transform.position = m_Pos.position;
-        }
 
         private void GetInformationForNeed()
         {
             m_CharacterItem = MainGameMgr.S.CharacterMgr.GetAllCharacterList();
         }
-
-
 
 
         private void CreateDisciple(CharacterItem characterItem)
