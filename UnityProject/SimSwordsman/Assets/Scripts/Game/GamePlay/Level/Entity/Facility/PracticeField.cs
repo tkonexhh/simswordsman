@@ -16,11 +16,18 @@ namespace GameWish.Game
 
         public void SelectCharacterItem(CharacterItem characterItem, FacilityType targetFacility)
         {
-            CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
-            CharacterItem = characterItem;
-            characterController.SetState(CharacterStateID.Practice, targetFacility, System.DateTime.Now.ToString(), Index);
-            base.slotState = SlotState.Busy;
-            GameDataMgr.S.GetPlayerData().recordData.AddPractice();
+            try
+            {
+                CharacterController characterController = MainGameMgr.S.CharacterMgr.GetCharacterController(characterItem.id);
+                CharacterItem = characterItem;
+                characterController.SetState(CharacterStateID.Practice, targetFacility, System.DateTime.Now.ToString(), Index);
+                base.slotState = SlotState.Busy;
+                GameDataMgr.S.GetPlayerData().recordData.AddPractice();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("PracticeField" + e.ToString());
+            }
         }
 
         protected override void OnCDOver()
