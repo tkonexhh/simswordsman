@@ -38,7 +38,7 @@ namespace GameWish.Game
             OnRefeshArenaShop(0);
             RefeshFCoin(0);
             RefeshRemainTime();
-            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Shop_Open);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Shop_Open);
             // m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
         }
 

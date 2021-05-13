@@ -32,6 +32,7 @@ namespace GameWish.Game
 
         public void StartLevel(List<CharacterController> owerCharacter, List<HerbType> useHerbs, ArenaCellToSend arg)
         {
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Battle_Enter);
             m_ArenaData.AddChallengeCount(-1);
             UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.ArenaPanel);
