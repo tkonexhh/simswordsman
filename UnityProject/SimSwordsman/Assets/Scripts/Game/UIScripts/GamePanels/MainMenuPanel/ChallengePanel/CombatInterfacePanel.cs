@@ -129,9 +129,9 @@ namespace GameWish.Game
 
                 if (index >= battleTexts.Count)
                 {
-                    Debug.LogError("index = "+ index+ "----battleTexts.Count"+ battleTexts.Count);
+                    Debug.LogError("---index = "+ index+ "----battleTexts.Count"+ battleTexts.Count);
                 }
-                else
+                else  
                 {
                     if (type == 0)
                     {

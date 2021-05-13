@@ -32,47 +32,53 @@ namespace GameWish.Game
 
         public void OnClicked()
         {
-            WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_ItemTipsType);
-            int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
-            if (workConfigItem==null)
+            try
             {
-                PropConfigInfo propConfigInfo = TDItemConfigTable.GetPropConfigInfo(GetRawMaterial());
-                if (propConfigInfo==null)
-                    return;
-                if (propConfigInfo.unlockHomeLevel <= lobbyLevel)//解锁
+                WorkConfigItem workConfigItem = TDWorkTable.GetWorkConfigItem(m_ItemTipsType);
+                int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
+                if (workConfigItem == null)
                 {
-                    Sprite propSprite = SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName());
-                    if (propConfigInfo.functionDesc==null || propSprite==null)
+                    PropConfigInfo propConfigInfo = TDItemConfigTable.GetPropConfigInfo(GetRawMaterial());
+                    if (propConfigInfo == null)
+                        return;
+                    if (propConfigInfo.unlockHomeLevel <= lobbyLevel)//解锁
                     {
-                        Debug.LogError("propConfigInfo.functionDesc="+ propConfigInfo.functionDesc+"----"+ "propSprite="+ propSprite);
+                        Sprite propSprite = SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName());
+                        if (propConfigInfo.functionDesc == null || propSprite == null)
+                        {
+                            Debug.LogError("propConfigInfo.functionDesc=" + propConfigInfo.functionDesc + "----" + "propSprite=" + propSprite);
+                            return;
+                        }
+                        WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.functionDesc.name, propConfigInfo.functionDesc.desc, propSprite);
+                    }
+                    else//未解锁
+                    {
+                        WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.lockDesc.name, propConfigInfo.lockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName()));
+                    }
+                }
+                else
+                {
+                    Sprite funcSprite = SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName());
+                    Sprite unlock = SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName());
+                    if (workConfigItem.functionDesc == null || funcSprite == null || unlock == null || workConfigItem.unlockDesc == null)
+                    {
+                        Debug.LogError("workConfigItem.functionDesc=" + workConfigItem.functionDesc + "----" + "workSprite=" + funcSprite + "unlock=" + unlock + "---workConfigItem.unlockDesc=" + workConfigItem.unlockDesc);
                         return;
                     }
-                    WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.functionDesc.name, propConfigInfo.functionDesc.desc, propSprite);
-                }
-                else//未解锁
-                {
-                    WorldUIPanel.S.ShowWorkText(transform, propConfigInfo.lockDesc.name, propConfigInfo.lockDesc.desc, SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName()));
+                    if (workConfigItem.unlockHomeLevel <= lobbyLevel)//解锁
+                    {
+                        WorldUIPanel.S.ShowWorkText(transform, workConfigItem.functionDesc.name, workConfigItem.functionDesc.desc, funcSprite);
+                    }
+                    else//未解锁
+                    {
+                        WorldUIPanel.S.ShowWorkText(transform, workConfigItem.unlockDesc.name, workConfigItem.unlockDesc.desc, unlock);
+                    }
                 }
             }
-            else
+            catch (Exception e)
             {
-                Sprite funcSprite = SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName());
-                Sprite unlock = SpriteHandler.S.GetSprite(AtlasDefine.ItemIconAtlas, GetIconName());
-                if (workConfigItem.functionDesc == null || funcSprite == null|| unlock == null|| workConfigItem.unlockDesc==null)
-                {
-                    Debug.LogError("workConfigItem.functionDesc=" + workConfigItem.functionDesc + "----" + "workSprite=" + funcSprite + "unlock=" + unlock + "---workConfigItem.unlockDesc="+ workConfigItem.unlockDesc);
-                    return;
-                }
-                if (workConfigItem.unlockHomeLevel <= lobbyLevel)//解锁
-                {
-                    WorldUIPanel.S.ShowWorkText(transform, workConfigItem.functionDesc.name, workConfigItem.functionDesc.desc, funcSprite);
-                }
-                else//未解锁
-                {
-                    WorldUIPanel.S.ShowWorkText(transform, workConfigItem.unlockDesc.name, workConfigItem.unlockDesc.desc, unlock);
-                }
+                Debug.LogError("---e = "+e);
             }
-         
         }
 
         private string GetIconName()

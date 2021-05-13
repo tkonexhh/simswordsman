@@ -87,12 +87,15 @@ namespace GameWish.Game
                 {
                     Debug.LogError("m_LivableRoomLevelInfoDic = " + m_LivableRoomLevelInfoDic.Count);
                     m_LivableRoomLevelInfoDic.Clear();
-                }
-
+                }   
+                  
                 for (int i = 0; i < m_LivableRoomList.Count; i++)
                 {
-                    m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(m_LivableRoomList[i]));
-                }
+                    if (!m_LivableRoomLevelInfoDic.ContainsKey(i))
+                    {
+                        m_LivableRoomLevelInfoDic.Add(i, CreateLivableItem(m_LivableRoomList[i]));
+                    }
+                }     
             }
             catch (Exception e)
             {
