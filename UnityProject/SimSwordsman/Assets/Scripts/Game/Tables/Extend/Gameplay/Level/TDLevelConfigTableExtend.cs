@@ -173,7 +173,11 @@ namespace GameWish.Game
                 {
                     return m_AllCheckpoint.FirstOrDefault().Value;
                 }
-                return m_AllCheckpoint[index];
+
+                if (m_AllCheckpoint.ContainsKey(index))
+                    return m_AllCheckpoint[index];
+                else
+                    return null;
             }
             return null;
         }
