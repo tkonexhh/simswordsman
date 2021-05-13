@@ -141,5 +141,20 @@ namespace GameWish.Game
                 return false;
             }
         }
+        /// <summary>
+        /// ÊÇ·ñÊÇË«Êý
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public static bool IsEvenNumber(int i)
+        {
+            if (i%2==0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+       
     }
 }

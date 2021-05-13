@@ -109,19 +109,7 @@ namespace Qarth
                     return "null";
             }
         }
-
-
-        public static bool isTestMode
-        {
-            get
-            {
-                //FIXME!!! TestMode True/False
-                //return true;
-                return false;
-                return isEditor;
-            }
-        }
-
+        //策划测试使用
         public static bool isPlanMode
         {
             get
@@ -129,6 +117,17 @@ namespace Qarth
                 //FIXME!!! TestMode True/False
                 //return true;
                 return false;
+                return true;
+            }
+        }  
+
+        public static bool isTestMode
+        {
+            get
+            {
+                //FIXME!!! TestMode True/False
+                return false;
+                //return true;
                 return isEditor;
             }
         }

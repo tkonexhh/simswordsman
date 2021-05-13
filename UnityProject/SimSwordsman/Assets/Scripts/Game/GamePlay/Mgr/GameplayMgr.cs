@@ -298,19 +298,19 @@ namespace GameWish.Game
                     //MainGameMgr.S.InventoryMgr.AddItem(new ArmorItem(ArmorType.YinYeJia, Step.Eight), 1);
 
 
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.ShaZhuDao, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaHuanDao, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.HongYingQiang, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.JinGuBang, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XueDiZi, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XueDao, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.TuLongDao, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.YanYueDao, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.JinSheJian, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XuanTieBiShou, Step.One), 1);
-                    //MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.YiTianJian, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.ShaZhuDao, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaHuanDao, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.HongYingQiang, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.JinGuBang, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.MengGuBaoDao, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XueDiZi, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XueDao, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.TuLongDao, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.YanYueDao, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.DaGouBang, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.JinSheJian, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.XuanTieBiShou, Step.One), 1);
+                    MainGameMgr.S.InventoryMgr.AddItem(new ArmsItem(ArmsType.YiTianJian, Step.One), 1);
                 }
                 if (Input.GetKeyDown(KeyCode.Y))
                 {

@@ -144,45 +144,56 @@ namespace GameWish.Game
 
         private void RefreshCreateGoods()
         {
-            if (m_FacilityController.GetState() != FacilityState.Unlocked)
+            try
             {
-                m_WarehouseFontBg.gameObject.SetActive(false);
-                m_WarehouseImgae.sprite = FindSprite("NotUnlockWarehouse");
-                m_CurReservesValue.text = "当前储量:" + m_NotUnlockMaxCapacity + "格";
-                m_NextReservesValue.text = "下一级储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
-                m_UpgradeText.text = "建造";
-                m_UpgradeCondition.text = "建造需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
-
-                for (int i = 0; i < m_NotUnlockMaxCapacity; i++)
+                if (m_FacilityController.GetState() != FacilityState.Unlocked)
                 {
-                    m_CurItemList.Add(CreateWarehouseItem());
+                    m_WarehouseFontBg.gameObject.SetActive(false);
+                    m_WarehouseImgae.sprite = FindSprite("NotUnlockWarehouse");
+                    m_CurReservesValue.text = "当前储量:" + m_NotUnlockMaxCapacity + "格";
+                    m_NextReservesValue.text = "下一级储量:" + m_WarehouseCurLevelInfo.GetCurReserves() + "格";
+                    m_UpgradeText.text = "建造";
+                    m_UpgradeCondition.text = "建造需要讲武堂达到" + m_WarehouseNextLevelInfo.upgradeNeedLobbyLevel + "级";
+
+                    for (int i = 0; i < m_NotUnlockMaxCapacity; i++)
+                    {
+                        m_CurItemList.Add(CreateWarehouseItem());
+                    }
                 }
+                else
+                {
+                    int quantityDifference = m_WarehouseCurLevelInfo.GetCurReserves() - m_CurItemList.Count;
+                    for (int i = 0; i < quantityDifference; i++)
+                    {
+                        m_CurItemList.Add(CreateWarehouseItem());
+                    }
+                }
+
+                if (m_InventoryItems != null)
+                {
+                    foreach (var item in m_CurItemList)
+                    {
+                        item.ItemReset();
+                    }
+
+                    for (int i = 0; i < m_InventoryItems.Count; i++)
+                    {
+                        if (m_CurItemList.Count > i)
+                            m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
+                    }
+                }
+
+                //m_CurItemList.Sort();
+                RefeshSort(m_CurItemList);
+                Debug.LogError("---m_FacilityController"+ m_FacilityController);
+                Debug.LogError("---m_WarehouseCurLevelInfo" + m_WarehouseCurLevelInfo);
+                Debug.LogError("---m_WarehouseNextLevelInfo" + m_WarehouseNextLevelInfo);
+                Debug.LogError("---m_InventoryItems" + m_InventoryItems);
             }
-            else
+            catch (Exception e)
             {
-                int quantityDifference = m_WarehouseCurLevelInfo.GetCurReserves() - m_CurItemList.Count;
-                for (int i = 0; i < quantityDifference; i++)
-                {
-                    m_CurItemList.Add(CreateWarehouseItem());
-                }
+                Debug.LogError("e = "+e);
             }
-
-            if (m_InventoryItems != null)
-            {
-                foreach (var item in m_CurItemList)
-                {
-                    item.ItemReset();
-                }
-
-                for (int i = 0; i < m_InventoryItems.Count; i++)
-                {
-                    if (m_CurItemList.Count>i)
-                        m_CurItemList[i].AddItemToWarehouse(m_InventoryItems[i], GetItemSprite(m_InventoryItems[i]));
-                }
-            }
-
-            //m_CurItemList.Sort();
-            RefeshSort(m_CurItemList);
         }
         private Sprite GetItemSprite(ItemBase itemBase)
         {

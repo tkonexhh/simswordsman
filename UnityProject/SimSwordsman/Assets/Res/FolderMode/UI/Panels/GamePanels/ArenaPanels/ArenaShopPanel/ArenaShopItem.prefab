@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b485ddfde54bd0e4c9dba48004a0560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ImgRewardIcon: {fileID: 0}
+  m_ImgRewardIcon: {fileID: 5212338982973252772}
   m_TxtRewardNum: {fileID: 7351248656505288716}
   m_TxtCost: {fileID: 8304569177426177154}
   m_ImgQuality: {fileID: 2523681930784584505}
@@ -1188,6 +1188,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786d6ee854d87f54abab30ebcbaaf257, type: 3}
+--- !u!114 &5212338982973252772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7034834874638869670, guid: 786d6ee854d87f54abab30ebcbaaf257,
+    type: 3}
+  m_PrefabInstance: {fileID: 6199992431515303934}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7053616066e19464c8b3cc0eea70caf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3520218278612222065 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7408596878953070479, guid: 786d6ee854d87f54abab30ebcbaaf257,

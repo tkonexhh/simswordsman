@@ -12,6 +12,9 @@ namespace GameWish.Game
     public class MainMenuPanel : AbstractAnimPanel
     {
         [SerializeField]
+        private Button m_HideBtn;
+
+        [SerializeField]
         private Text m_VillaName;
         [SerializeField]
         private Text m_CoinValue;
@@ -77,6 +80,9 @@ namespace GameWish.Game
         [SerializeField]
         private Button m_SettingBtn;
 
+        public Transform[] tras;
+        private bool isHide = false;
+
         [SerializeField] private MainTaskUIHandler m_MainTaskUIHandler;
 
         private List<TacticalFunctionBtn> m_CommonTaskList = new List<TacticalFunctionBtn>();
@@ -115,9 +121,18 @@ namespace GameWish.Game
 
             MainGameMgr.S.TaskMgr.dailyTaskController.FirstCheck();
 
+            m_HideBtn.onClick.AddListener(() =>
+            {
+                Transform[] children = GetComponentsInChildren<Transform>();
+                foreach (var item in tras)
+                {
+                    item.gameObject.SetActive(isHide);
+                }
+                isHide = !isHide;
+            });
             m_SettingBtn.onClick.AddListener(() =>
             {
-                //UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
+                UIMgr.S.OpenTopPanel(UIID.UserAccountPanel, null);
                 UIMgr.S.OpenPanel(UIID.UserAccountPanel);
             });
 
@@ -164,6 +179,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                    GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(50000);
                 }
                 if (PlatformHelper.isTestMode)
                 {
@@ -178,6 +194,7 @@ namespace GameWish.Game
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3003), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3101), 5000);
                     MainGameMgr.S.InventoryMgr.AddItem(new PropItem((RawMaterial)3102), 5000);
+                    GameDataMgr.S.GetGameData().playerInfoData.AddCoinNum(500000);
                 }
             });
             m_BulletinBoardBtn.onClick.AddListener(() =>

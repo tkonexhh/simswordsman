@@ -31,6 +31,7 @@ namespace GameWish.Game
 
         private LevelConfigInfo m_LevelConfigInfo = null;
         private TowerPanelChallengeToSelect m_TowerLevelConfig;
+        private ArenaCellToSend m_ArenaConfig;
 
         private PanelType m_PanelType;
         private const int ChallengeSelectedDiscipleNumber = 5;
@@ -54,114 +55,145 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
-
-            RegisterEvent(EventID.OnSelectedEvent, HandAddListenerEvent);
-
-            AudioMgr.S.PlaySound(Define.INTERFACE);
-            GetInformationForNeed();
-            m_PanelType = (PanelType)args[0];
-            switch (m_PanelType)
+            try
             {
-                case PanelType.Task:
-                    m_CommonTaskItemInfo = args[1] as CommonTaskItemInfo;
-                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
-                            CreateDisciple(m_AllDiscipleList[i]);
+                OpenDependPanel(EngineUI.MaskPanel, -1, null);
 
-                    for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
-                        CreateSelectedDisciple();
-                    RefreshFixedInfo(PanelType.Task);
-                    break;
-                case PanelType.Deliver:
-                    m_SingleDeliverDetailData = args[1] as SingleDeliverDetailData;
-                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        if (m_AllDiscipleList[i].IsFreeState())
-                            CreateDisciple(m_AllDiscipleList[i]);
-                    for (int i = 0; i < DeliverDiscipleNumber; i++)
-                        CreateSelectedDisciple();
-                    RefreshFixedInfo(PanelType.Deliver);
-                    m_ConfirmText.text = "出发";
-                    break;
-                case PanelType.Challenge:
-                    m_LevelConfigInfo = args[1] as LevelConfigInfo;
-                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        CreateDisciple(m_AllDiscipleList[i]);
+                RegisterEvent(EventID.OnSelectedEvent, HandAddListenerEvent);
 
-                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
-                        CreateSelectedDisciple();
-
-                    RefreshDisicipleSkill();
-                    break;
-                case PanelType.HeroTrial:
-                 
-                    //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
-                
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                    {
-                        if (PlatformHelper.isTestMode)
-                            CreateDisciple(m_AllDiscipleList[i]);
-                        else
-                        {
-                            if (m_AllDiscipleList[i].quality == CharacterQuality.Perfect && m_AllDiscipleList[i].level >= 200)
+                AudioMgr.S.PlaySound(Define.INTERFACE);
+                GetInformationForNeed();
+                m_PanelType = (PanelType)args[0];
+                switch (m_PanelType)
+                {
+                    case PanelType.Task:
+                        m_CommonTaskItemInfo = args[1] as CommonTaskItemInfo;
+                        CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromSmallToBig);
+                        for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                            if (m_AllDiscipleList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
                                 CreateDisciple(m_AllDiscipleList[i]);
-                        }
-                    }
-                    if (m_DiscipleObjDic.Count == 0)
-                    {
-                        m_NoDisciple.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_NoDiciple");
-                        m_NoDisciple.gameObject.SetActive(true);
-                    }
-                    for (int i = 0; i < HeroTrialDiscipleNumber; i++)
-                        CreateSelectedDisciple();
-                    RefreshFixedInfo(PanelType.HeroTrial);
-                    m_ConfirmText.text = "出发";
-                    break;
-                case PanelType.Tower:
-                    for (int i = m_AllDiscipleList.Count - 1; i >= 0; i--)
-                    {
-                        //移除等级低于要求的弟子
-                        if (m_AllDiscipleList[i].level < TowerDefine.CHARACT_MINLEVEL)
+
+                        for (int i = 0; i < m_CommonTaskItemInfo.GetCharacterAmount(); i++)
+                            CreateSelectedDisciple();
+                        RefreshFixedInfo(PanelType.Task);
+                        break;
+                    case PanelType.Deliver:
+                        m_SingleDeliverDetailData = args[1] as SingleDeliverDetailData;
+                        CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                        for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                            if (m_AllDiscipleList[i].IsFreeState())
+                                CreateDisciple(m_AllDiscipleList[i]);
+                        for (int i = 0; i < DeliverDiscipleNumber; i++)
+                            CreateSelectedDisciple();
+                        RefreshFixedInfo(PanelType.Deliver);
+                        m_ConfirmText.text = "出发";
+                        break;
+                    case PanelType.Challenge:
+                        m_LevelConfigInfo = args[1] as LevelConfigInfo;
+                        CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                        for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                            CreateDisciple(m_AllDiscipleList[i]);
+
+                        for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                            CreateSelectedDisciple();
+
+                        RefreshDisicipleSkill();
+                        break;
+                    case PanelType.Arena:
+                        m_ArenaConfig = args[1] as ArenaCellToSend;
+                        CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+                        for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                            CreateDisciple(m_AllDiscipleList[i]);
+
+                        for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                            CreateSelectedDisciple();
+
+                        RefreshDisicipleSkill();
+                        break;
+
+                    case PanelType.HeroTrial:
+
+                        //CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.Level, CommonUIMethod.OrderType.FromBigToSmall);
+
+                        for (int i = 0; i < m_AllDiscipleList.Count; i++)
                         {
-                            m_AllDiscipleList.RemoveAt(i);
+                            if (PlatformHelper.isTestMode)
+                                CreateDisciple(m_AllDiscipleList[i]);
+                            else
+                            {
+                                if (m_AllDiscipleList[i].quality == CharacterQuality.Perfect && m_AllDiscipleList[i].level >= 200)
+                                    CreateDisciple(m_AllDiscipleList[i]);
+                            }
                         }
-                    }
-                    CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
-
-                    //接下来排序
-                    var towerData = GameDataMgr.S.GetPlayerData().towerData;
-                    m_AllDiscipleList.Sort((x, y) =>
-                    {
-                        var charactX = towerData.GetTowerCharacterByID(x.id);
-                        var charactY = towerData.GetTowerCharacterByID(x.id);
-
-                        if (charactX == null || charactY == null)
+                        if (m_DiscipleObjDic.Count == 0)
                         {
-                            var hpX = charactX?.hpRate;
-                            if (!hpX.HasValue)
-                                hpX = 1;
-                            var hpY = charactY?.hpRate;
-                            if (!hpY.HasValue)
-                                hpY = 1;
-                            return hpX >= hpY ? -1 : 1;
-
+                            m_NoDisciple.sprite = SpriteHandler.S.GetSprite(AtlasDefine.HeroTrialPanelAtlas, "HeroTrialPanel_NoDiciple");
+                            m_NoDisciple.gameObject.SetActive(true);
                         }
+                        for (int i = 0; i < HeroTrialDiscipleNumber; i++)
+                            CreateSelectedDisciple();
+                        RefreshFixedInfo(PanelType.HeroTrial);
+                        m_ConfirmText.text = "出发";
+                        break;
+                    case PanelType.Tower:
+                        for (int i = m_AllDiscipleList.Count - 1; i >= 0; i--)
+                        {
+                            //移除等级低于要求的弟子
+                            if (m_AllDiscipleList[i].level < TowerDefine.CHARACT_MINLEVEL)
+                            {
+                                m_AllDiscipleList.RemoveAt(i);
+                            }
+                        }
+                        CommonUIMethod.BubbleSortForType(m_AllDiscipleList, CommonUIMethod.SortType.AtkValue, CommonUIMethod.OrderType.FromBigToSmall);
 
-                        return 0;
-                    });
-                    m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
-                    for (int i = 0; i < m_AllDiscipleList.Count; i++)
-                        CreateDisciple(m_AllDiscipleList[i]);
-                    for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
-                        CreateSelectedDisciple();
-                    RefreshDisicipleSkill();
-                    break;
-                default:
-                    break;
+                        //接下来排序
+                        var towerData = GameDataMgr.S.GetPlayerData().towerData;
+                        try
+                        {
+                            m_AllDiscipleList.Sort((x, y) =>
+                            {
+                                var charactX = towerData.GetTowerCharacterByID(x.id);
+                                var charactY = towerData.GetTowerCharacterByID(y.id);
+
+                                if (charactX == null || charactY == null)
+                                {
+                                    var hpX = charactX?.hpRate;
+                                    if (!hpX.HasValue)
+                                        hpX = 1;
+                                    var hpY = charactY?.hpRate;
+                                    if (!hpY.HasValue)
+                                        hpY = 1;
+                                    return hpX >= hpY ? -1 : 1;
+
+                                }
+                                else
+                                {
+                                    var hpX = charactX?.hpRate;
+                                    var hpY = charactY?.hpRate;
+                                    return hpX >= hpY ? -1 : 1;
+                                }
+
+                                // return 0;
+                            });
+                        }
+                        catch (Exception e) { }
+                        m_TowerLevelConfig = (TowerPanelChallengeToSelect)args[1];
+                        for (int i = 0; i < m_AllDiscipleList.Count; i++)
+                            CreateDisciple(m_AllDiscipleList[i]);
+                        for (int i = 0; i < ChallengeSelectedDiscipleNumber; i++)
+                            CreateSelectedDisciple();
+                        RefreshDisicipleSkill();
+                        break;
+
+                    default:
+                        break;
+                }
             }
+            catch (Exception e)
+            {
+                Debug.LogError("---e"+e);
+            }
+          
         }
 
         protected override void OnPanelHideComplete()
@@ -197,6 +229,7 @@ namespace GameWish.Game
                 switch (m_PanelType)
                 {
                     case PanelType.Challenge:
+                    case PanelType.Arena:
                         if (m_SelectedDiscipleDic.Count >= ChallengeSelectedDiscipleNumber)
                         {
                             FloatMessage.S.ShowMsg("选择人数已满，请重新选择");
@@ -282,6 +315,7 @@ namespace GameWish.Game
                     break;
                 case PanelType.Challenge:
                 case PanelType.Tower:
+                case PanelType.Arena:
                     RefreshDisicipleSkill();
                     break;
                 default:
@@ -304,6 +338,10 @@ namespace GameWish.Game
             else if (m_PanelType == PanelType.Tower)
             {
                 recommended = m_TowerLevelConfig.recommendATK;
+            }
+            else if (m_PanelType == PanelType.Arena)
+            {
+                recommended = m_ArenaConfig.recommendAtk;  
             }
             m_RecommendedSkillsValue.text = CommonUIMethod.GetStrForColor("#405787", CommonUIMethod.GetTenThousandOrMillion(recommended));
 

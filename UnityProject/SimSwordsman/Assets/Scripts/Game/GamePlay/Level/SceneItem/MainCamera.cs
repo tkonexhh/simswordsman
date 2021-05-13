@@ -44,6 +44,7 @@ namespace GameWish.Game
             RegisterEvents();
 
         }
+
         private float InitBattleSize()
         {
             float weightHeightRatio = (float)Camera.main.pixelWidth / Camera.main.pixelHeight;
