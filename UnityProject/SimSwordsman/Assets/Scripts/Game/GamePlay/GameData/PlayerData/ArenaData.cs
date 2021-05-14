@@ -112,7 +112,7 @@ namespace GameWish.Game
 
         public void SetNowLevel(int level)
         {
-            Debug.LogError(level);
+            // Debug.LogError(level);
             nowLevel = level;
             SetDataDirty();
         }
