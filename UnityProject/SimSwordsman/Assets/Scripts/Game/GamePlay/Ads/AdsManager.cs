@@ -8,7 +8,7 @@ namespace GameWish.Game
 {
     public class AdsManager : TSingleton<AdsManager>
     {
-        #region »»‘∆œ‡πÿ
+        #region ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
         private const string m_LookADKey = "m_LookADKey";
         private const string m_KeyBehavior = "w_key_behavior{0}";
         private int GetLookADCount()
@@ -53,7 +53,16 @@ namespace GameWish.Game
             LookADSuccessCallBack += UpdateLookADCount;
             LookADSuccessCallBack += UpdateNoBroadcastTimes;
 
-            CustomExtensions.PlayAd(tag, LookADSuccessCallBack);
+            if (PlatformHelper.isTestMode)
+            {
+                FloatMessage.S.ShowMsg("ÊµãËØïÊ®°Âºè,Áúã‰∫Ü‰∏Ä‰∏™ÂπøÂëä");
+                LookADSuccessCallBack.Invoke(false);
+            }
+            else
+            {
+                CustomExtensions.PlayAd(tag, LookADSuccessCallBack);
+            }
+
         }
 
         private void UpdateNoBroadcastTimes(bool obj)
