@@ -70,10 +70,11 @@ namespace GameWish.Game
             {
                 MainGameMgr.S.ArenaSystem.BuyShopItem(m_Index, m_ItemInfo);
                 RefeshBuyed(true);
+                DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Shop_Buy);
             }
             else
             {
-                FloatMessage.S.ShowMsg("竞技场币不足，再去收集一些吧");
+                FloatMessage.S.ShowMsg("擂台币不足，再去收集一些吧");
             }
 
         }
@@ -87,7 +88,7 @@ namespace GameWish.Game
 
         private void OnClickImgBg()
         {
-            //m_Panel.ShowItemTips(this);
+            m_Panel.ShowItemTips(this);
         }
     }
 

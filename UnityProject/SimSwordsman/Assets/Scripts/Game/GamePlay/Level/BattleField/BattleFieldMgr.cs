@@ -298,10 +298,13 @@ namespace GameWish.Game
             characters.ForEach(i =>
             {
                 CharacterItem characterItem = MainGameMgr.S.CharacterMgr.CharacterDataWrapper.GetCharacterItem(i.CharacterId);
-                CharacterController controller = SpawnCharacterController(characterItem);
-                if (controller != null)
+                if (characterItem != null)
                 {
-                    m_OurCharacterList.Add(controller);
+                    CharacterController controller = SpawnCharacterController(characterItem);
+                    if (controller != null)
+                    {
+                        m_OurCharacterList.Add(controller);
+                    }
                 }
             });
 

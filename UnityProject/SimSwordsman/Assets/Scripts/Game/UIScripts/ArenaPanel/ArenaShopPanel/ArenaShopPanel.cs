@@ -38,7 +38,7 @@ namespace GameWish.Game
             OnRefeshArenaShop(0);
             RefeshFCoin(0);
             RefeshRemainTime();
-            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Shop_Open);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Shop_Open);
             // m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
         }
 
@@ -98,7 +98,7 @@ namespace GameWish.Game
         }
 
 
-        public void ShowItemTips(TowerShopItem shopItem)
+        public void ShowItemTips(ArenaShopItem shopItem)
         {
             m_ItemTips.transform.localPosition = shopItem.transform.localPosition + new Vector3(0, 100, 0);
             m_ItemTips.gameObject.SetActive(true);

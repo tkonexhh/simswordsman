@@ -27,11 +27,11 @@ namespace GameWish.Game
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
             DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_revive_happen);
-            m_TxtCount.text = string.Format("剩余复活次数:{0}", Mathf.Max(0, TowerDefine.REVIVE_COUNT - GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount));
 
             //复活一名战斗力最高的已经死亡的角色
             try
             {
+                m_TxtCount.text = string.Format("剩余复活次数:{0}", Mathf.Max(0, TowerDefine.REVIVE_COUNT - GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount));
                 var lst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
                 m_ID = -1;
                 double maxAtk = -1;
@@ -59,9 +59,9 @@ namespace GameWish.Game
                     m_TxtAtk.text = string.Format("功力: <color=#405787>{0}</color>", CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.CharacterItem.atkValue));
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Debug.LogError("TowerRevivePanel :" + e);
             }
 
         }
@@ -71,7 +71,6 @@ namespace GameWish.Game
             AdsManager.S.PlayRewardAD("TowerRevive", (b) =>
             {
                 CloseSelfPanel();
-
 
                 if (m_ID != -1)
                 {

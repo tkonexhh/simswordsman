@@ -64,16 +64,13 @@ namespace GameWish.Game
         protected override void OnUIInit()
         {
             base.OnUIInit();
-
-            EventSystem.S.Register(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
-
             BindAddListenerEvent();
         }
 
         protected override void OnPanelOpen(params object[] args)
         {
             isOpened = true;
-
+            RegisterEvent(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
             base.OnPanelOpen(args);
             m_CurFacilityType = (FacilityType)args[0];
             GetInformationForNeed();
@@ -84,11 +81,13 @@ namespace GameWish.Game
         private void HandleAddListenEvent(int key, object[] param)
         {
             var slot = ((KungfuLibraySlot)param[0]);
-            GetPracticeDiscipleForID(slot).RefreshPracticeFieldState();
+            var item = GetPracticeDiscipleForID(slot);
+            if (item != null)
+                item.RefreshPracticeFieldState();
         }
 
         /// <summary>
-        /// »ñÈ¡¾ßÌåµÄ¿ÓÎ»
+        /// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Î»
         /// </summary>
         /// <param name="kungfuLibraySlot"></param>
         /// <returns></returns>
@@ -112,7 +111,12 @@ namespace GameWish.Game
                 RefreshPanelText();
 
                 // for (int i = 0; i < m_ReadingSlotList.Count; i++)
-                //TODO ¸ÄÎªÅäÖÃ×î´óÖµ
+                //TODO ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+                if (m_KongfuLibrarySoltInfo.Count > 0)
+                {
+                    Debug.LogError("m_KongfuLibrarySoltInfo = " + m_KongfuLibrarySoltInfo);
+                    m_KongfuLibrarySoltInfo.Clear();
+                }
                 for (int i = 0; i < 4; i++)
                 {
                     CreateCopyScripturesItem(i);
@@ -120,13 +124,13 @@ namespace GameWish.Game
             }
             catch (Exception e)
             {
-                Debug.LogError("e = "+e);
+                Debug.LogError("e = " + e);
             }
-            
+
         }
 
         /// <summary>
-        /// ¶¯Ì¬±ä»¯×ÖÌå±³¾°
+        /// ï¿½ï¿½Ì¬ï¿½ä»¯ï¿½ï¿½ï¿½å±³ï¿½ï¿½
         /// </summary>
         /// <param name="kungfuTypes"></param>
         private void SetNextKungfuStr(List<KungfuType> kungfuTypes)
@@ -192,7 +196,7 @@ namespace GameWish.Game
         }
         private void RefreshResInfo()
         {
-            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_NextFacilityLevelInfo );
+            CommonUIMethod.RefreshUpgradeResInfo(m_CostItems, m_UpgradeResItemTra, m_UpgradeResItem, m_NextFacilityLevelInfo);
         }
 
         private void BindAddListenerEvent()
@@ -255,11 +259,7 @@ namespace GameWish.Game
         {
             try
             {
-                if (m_KongfuLibrarySoltInfo.Count > 0)
-                {
-                    Debug.LogError("m_KongfuLibrarySoltInfo = " + m_KongfuLibrarySoltInfo);
-                    m_KongfuLibrarySoltInfo.Clear();
-                }
+
                 GameObject game = Instantiate(m_CopyScripturesItem, m_MartialArtsContTra);
                 CopyScripturesItem itemICom = game.GetComponent<CopyScripturesItem>();
                 itemICom.Init(index, this);
@@ -269,7 +269,7 @@ namespace GameWish.Game
             {
                 Debug.LogError("e = " + e);
             }
-          
+
         }
 
         protected override void OnClose()
@@ -277,8 +277,6 @@ namespace GameWish.Game
             base.OnClose();
 
             isOpened = false;
-
-            EventSystem.S.UnRegister(EventID.OnRefresKungfuSoltInfo, HandleAddListenEvent);
         }
     }
 

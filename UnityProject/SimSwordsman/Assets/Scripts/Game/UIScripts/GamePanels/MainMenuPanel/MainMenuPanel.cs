@@ -496,10 +496,17 @@ namespace GameWish.Game
                 {
                     LevelConfigInfo levelConfigInfo = MainGameMgr.S.ChapterMgr.GetLevelInfo(chapterDbItem.chapter, chapterDbItem.level);
                     //Debug.LogError("推荐功力 = "+ levelConfigInfo.recommendAtkValue);
-                    if (allAtkValue >= levelConfigInfo.recommendAtkValue * 1.5f)
-                        m_Challenging.SetActive(true);
+                    if (levelConfigInfo != null)
+                    {
+                        if (allAtkValue >= levelConfigInfo.recommendAtkValue * 1.5f)
+                            m_Challenging.SetActive(true);
+                        else
+                            m_Challenging.SetActive(false);
+                    }
                     else
-                        m_Challenging.SetActive(false);
+                    {
+                        Log.e("levelConfigInfo not found: " + chapterDbItem.chapter + " " + chapterDbItem.level);
+                    }
                 }
             }
         }

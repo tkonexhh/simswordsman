@@ -25,6 +25,7 @@ namespace GameWish.Game
 
             m_TxtRank.text = level.ToString();
             m_RewardNum.text = reward.ToString();//
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_RankReward, level);
         }
     }
 
