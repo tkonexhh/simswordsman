@@ -877,6 +877,7 @@ MonoBehaviour:
   m_CompletedImg: {fileID: 366478784130700303}
   m_CompletedValue: {fileID: 6644870526973135023}
   m_ChallengeSlide: {fileID: 3175894343338441521}
+  m_Background: {fileID: 2363031775252318569}
   m_ChallengeBtn: {fileID: 2363031774368128130}
 --- !u!1 &2363031776304126530
 GameObject:
@@ -1051,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8401625473142362786
 RectTransform:
   m_ObjectHideFlags: 0

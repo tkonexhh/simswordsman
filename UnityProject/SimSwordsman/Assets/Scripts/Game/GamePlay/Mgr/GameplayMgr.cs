@@ -393,6 +393,7 @@ namespace GameWish.Game
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    UIMgr.S.ClosePanelAsUIID(UIID.RewardPanel);
                     //EventSystem.S.Send(EventID.OnBattleFailed);
                 }
                 if (Input.GetKeyDown(KeyCode.W))

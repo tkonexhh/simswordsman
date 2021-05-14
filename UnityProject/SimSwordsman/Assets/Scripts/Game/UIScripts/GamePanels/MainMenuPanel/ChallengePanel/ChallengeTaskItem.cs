@@ -31,7 +31,9 @@ namespace GameWish.Game
         private Text m_CompletedValue;
 
         [SerializeField]
-        private Image m_ChallengeSlide;
+        private Image m_ChallengeSlide;   
+        [SerializeField]
+        private Image m_Background;
 
         [SerializeField]
         private Button m_ChallengeBtn;
@@ -166,8 +168,10 @@ namespace GameWish.Game
                     m_CompletedValue.text = "通过" + CommonUIMethod.GetClanName((ClanType)m_CurChapterConfigInfo.unlockPrecondition.chapter)
                         + CommonUIMethod.GetStrForColor("#9C4B45", " 挑战" + m_CurChapterConfigInfo.unlockPrecondition.level) + " 后解锁";
                     m_ChallengePhoto.sprite = m_ChallengePanel.FindSprite("Challenge_Bignotunlock");
+                    m_ChallengeProgress.text = Define.COMMON_DEFAULT_STR;
                     m_ChallengeBtn.gameObject.SetActive(false);
                     m_ChallengeSlide.gameObject.SetActive(false);
+                    m_Background.gameObject.SetActive(false);
                     m_CompletedImg.gameObject.SetActive(false);
                     break;
                 case ChallengeType.Challenge:
@@ -176,14 +180,18 @@ namespace GameWish.Game
                     m_CompletedImg.gameObject.SetActive(false);
                     m_ChallengeBtn.gameObject.SetActive(true);
                     m_ChallengeSlide.fillAmount = GetCurProgress();
+                    m_ChallengeSlide.gameObject.SetActive(true);
+                    m_Background.gameObject.SetActive(true);
                     m_ChallengeProgress.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS) + (GetCurProgress() * 100).ToString("f2") + Define.PERCENT;
                     break;
                 case ChallengeType.Passed:
                     //m_CompletedValue.text = CommonUIMethod.GetStringForTableKey(Define.CHALLENGE_PROGRESS_OVER);
                     m_CompletedValue.gameObject.SetActive(false);
+                    m_ChallengeProgress.text = Define.COMMON_DEFAULT_STR;
                     m_ChallengePhoto.sprite = m_ChallengePanel.FindSprite("Challenge_Big" + m_CurChapterConfigInfo.clanType.ToString().ToLower());
                     m_CompletedImg.gameObject.SetActive(true);
                     m_ChallengeBtn.gameObject.SetActive(false);
+                    m_Background.gameObject.SetActive(false);
                     m_ChallengeSlide.gameObject.SetActive(false);
                     break;
                 default:

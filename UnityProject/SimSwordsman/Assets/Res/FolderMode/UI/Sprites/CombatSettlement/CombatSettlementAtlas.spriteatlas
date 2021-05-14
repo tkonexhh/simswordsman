@@ -42,36 +42,42 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: cce698cab633143478db5f70b8939be0, type: 3}
-    - {fileID: 2800000, guid: 87de6fe695cc6a643ad72130d6f9945d, type: 3}
-    - {fileID: 2800000, guid: d8522f57e05825e46a26650f700f217a, type: 3}
-    - {fileID: 2800000, guid: 3096d4d27f42fcf4c9a0b71f66b00f49, type: 3}
-    - {fileID: 2800000, guid: 452a2db244535e44cb354487dc229c85, type: 3}
-    - {fileID: 2800000, guid: d570298408c49f0438e330f142d48fb6, type: 3}
-    - {fileID: 2800000, guid: c6a726a3299142243a8f3335e7af3e66, type: 3}
-    - {fileID: 2800000, guid: 882e52ee3ec37f24b9ae80518b0a624d, type: 3}
-    - {fileID: 2800000, guid: 7ce346e088abbb740b5f21a109898996, type: 3}
+    - {fileID: 102900000, guid: 32bbd158ea4090642b5f074948275608, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 50d784e00d108c64a8cfdf791b8d6e69, type: 3}
   - {fileID: 21300000, guid: 7ce346e088abbb740b5f21a109898996, type: 3}
   - {fileID: 21300000, guid: 452a2db244535e44cb354487dc229c85, type: 3}
   - {fileID: 21300000, guid: 3096d4d27f42fcf4c9a0b71f66b00f49, type: 3}
+  - {fileID: 21300000, guid: c784b253ea6c1b04399183cc855e92d2, type: 3}
   - {fileID: 21300000, guid: c6a726a3299142243a8f3335e7af3e66, type: 3}
   - {fileID: 21300000, guid: d570298408c49f0438e330f142d48fb6, type: 3}
   - {fileID: 21300000, guid: 87de6fe695cc6a643ad72130d6f9945d, type: 3}
   - {fileID: 21300000, guid: d8522f57e05825e46a26650f700f217a, type: 3}
+  - {fileID: 21300000, guid: fa160fa8e0b666540abe5ab10212c298, type: 3}
   - {fileID: 21300000, guid: cce698cab633143478db5f70b8939be0, type: 3}
+  - {fileID: 21300000, guid: 701e717ce09832348b7f69dc658fc67a, type: 3}
+  - {fileID: 21300000, guid: 68897f7d257552b438e5a7db5cba99b3, type: 3}
+  - {fileID: 21300000, guid: 92afe27e0c4b5d24d8e1c717479248e2, type: 3}
   - {fileID: 21300000, guid: 882e52ee3ec37f24b9ae80518b0a624d, type: 3}
+  - {fileID: 21300000, guid: 14777c8f5b4f2d641afd980d6ab4490f, type: 3}
   m_PackedSpriteNamesToIndex:
+  - CombatSettlement_Bg9
   - CombatSettlement_Font4
   - CombatSettlement_Bg5
   - CombatSettlement_Bg4
+  - CombatSettlement_Bg10
   - CombatSettlement_Font2
   - CombatSettlement_Font1
   - CombatSettlement_Bg2
   - CombatSettlement_Bg3
+  - CombatSettlement_Bg7
   - CombatSettlement_Bg1
+  - CombatSettlement_Bg6
+  - CombatSettlement_Bg8
+  - CombatSettlement_Font16
   - CombatSettlement_Font3
+  - CombatSettlement_Font5
   m_Tag: CombatSettlementAtlas
   m_IsVariant: 0

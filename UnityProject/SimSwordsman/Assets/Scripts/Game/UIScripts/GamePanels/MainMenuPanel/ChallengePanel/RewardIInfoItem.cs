@@ -18,6 +18,10 @@ namespace GameWish.Game
         private Transform m_DiscipleTra;
         [SerializeField]
         private Image m_SliderImg;
+        [SerializeField]
+        private Text m_LastLevel;    
+        [SerializeField]
+        private Text m_NextLevel;
 
         private bool m_IsSuccess;
 
@@ -84,6 +88,8 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_DiscipleName.text = m_CurCharacterItem.name;
+            m_LastLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.lastLevel);
+            m_NextLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.level);
             if (m_IsSuccess)
             {
                 if (m_PanelType == PanelType.Tower || m_PanelType == PanelType.Arena)

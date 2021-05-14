@@ -105,10 +105,14 @@ namespace GameWish.Game
                 {
                     m_CloseBtn.gameObject.SetActive(true);
                 }
-                Debug.LogError("---m_DoubleRewardBtn = " + m_DoubleRewardBtn);
-                Debug.LogError("---m_RewardsDataList = " + m_RewardsDataList);
-                Debug.LogError("---args = " + args);
-                Debug.LogError("---m_CloseBtn = " + m_CloseBtn);
+                if (!PlatformHelper.isTestMode)
+                {
+                    Debug.LogError("---m_DoubleRewardBtn = " + m_DoubleRewardBtn);
+                    Debug.LogError("---m_RewardsDataList = " + m_RewardsDataList);
+                    Debug.LogError("---args = " + args);
+                    Debug.LogError("---m_CloseBtn = " + m_CloseBtn);
+                }
+               
             }
             catch (Exception e)
             {
