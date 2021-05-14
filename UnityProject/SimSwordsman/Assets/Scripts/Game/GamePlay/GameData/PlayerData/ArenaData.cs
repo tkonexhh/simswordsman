@@ -143,7 +143,7 @@ namespace GameWish.Game
 
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
 
-            Debug.LogError(totalAtk);
+            //Debug.LogError(totalAtk);
 
             var enemyNames = TDArenaEnemyNameTable.GetRandomEnemy();
             for (int i = 0; i < ArenaDefine.EnemyCount; i++)
