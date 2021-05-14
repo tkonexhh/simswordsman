@@ -32,11 +32,11 @@ namespace GameWish.Game
 
         private void Awake()
         {
-            m_SkeletonAnimation = gameObject.GetComponent<SkeletonAnimation>();
+            m_SkeletonAnimation = gameObject.GetComponentInChildren<SkeletonAnimation>();
         }
         void Start()
         {
-            gameObject.GetComponent<Transform>().localScale = new Vector3(0.45f, 0.45f, 0.45f);
+            gameObject.GetComponent<Transform>().localScale = new Vector3(1f, 1f, 1f);
 
             RandomAnimation();
         }
@@ -84,9 +84,9 @@ namespace GameWish.Game
             m_Target = m_PointArray[m_TargetIndex];
 
             if (m_Target.position.x - transform.position.x < 0)
-                transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
+                transform.localScale = new Vector3(1f, 1f, 1f);
             else
-                transform.localScale = new Vector3(-0.45f, 0.45f, 0.45f);
+                transform.localScale = new Vector3(-1f, 1f, 1f);
 
             transform.DOMove(m_Target.position, 4f, false)
                 .SetEase(Ease.Linear)
