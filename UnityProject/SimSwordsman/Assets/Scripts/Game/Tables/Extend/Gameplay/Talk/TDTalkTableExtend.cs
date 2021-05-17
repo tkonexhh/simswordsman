@@ -21,6 +21,16 @@ namespace GameWish.Game
             else
             {
                 List<string> talkList = new List<string>();
+                if (tdData.lobbyLevel >= 2)
+                {
+                    for (int i = 0; i < m_TalkDic.Count; i++)
+                    {
+                        foreach (var item in m_TalkDic[i+1])
+                        {
+                            talkList.Add(item);
+                        }
+                    }
+                }
                 talkList.Add(tdData.talkWords);
                 m_TalkDic.Add(tdData.lobbyLevel, talkList);
             }
