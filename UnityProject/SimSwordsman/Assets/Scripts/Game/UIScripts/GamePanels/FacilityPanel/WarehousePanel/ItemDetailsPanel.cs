@@ -22,8 +22,7 @@ namespace GameWish.Game
         private Button m_BlackBtn;
 
         [Header("Top")]
-        [SerializeField]
-        private Image[] m_NameList;
+        [SerializeField] private ImgFontPre[] m_NameList;
         [SerializeField]
         private Button m_CloseBtn;
 
@@ -31,7 +30,7 @@ namespace GameWish.Game
         [SerializeField]
         private Text m_BriefIntroduction;
         [SerializeField]
-        private Image m_ItemIcon;   
+        private Image m_ItemIcon;
         [SerializeField]
         private Image m_KungfuName;
         [SerializeField]
@@ -76,7 +75,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvevnt()
         {
-            m_BlackBtn.onClick.AddListener(() => {
+            m_BlackBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
@@ -93,18 +93,21 @@ namespace GameWish.Game
                     CloseSelfPanel();
                 }
             });
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 HideSelfWithAnim();
             });
-          
-            m_IncreaseBtn.onClick.AddListener(() => {
+
+            m_IncreaseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                //Debug.LogError("µã»÷");
+                //Debug.LogError("ï¿½ï¿½ï¿½");
                 RefreshIncreaseSellNumber();
             });
-            m_ReduceBtn.onClick.AddListener(() => {
+            m_ReduceBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 RefresReduceSellNumber();
@@ -134,14 +137,14 @@ namespace GameWish.Game
 
         private void OnPointerDown(BaseEventData arg0)
         {
-            //Debug.LogError("°´ÏÂ");
-            if (arg0.selectedObject!=null)
+            //Debug.LogError("ï¿½ï¿½ï¿½ï¿½");
+            if (arg0.selectedObject != null)
                 m_StartCount = StartCoroutine(TimingBtn(0.5f, m_BtnState, OnCountBtnEvent, arg0.selectedObject));
         }
-        private IEnumerator TimingBtn(float time, BtnState btnState = BtnState.None, Action<BtnState> action = null,GameObject obj = null)
+        private IEnumerator TimingBtn(float time, BtnState btnState = BtnState.None, Action<BtnState> action = null, GameObject obj = null)
         {
             yield return new WaitForSeconds(time);
-            if (obj!=null)
+            if (obj != null)
             {
                 if (obj.name.Equals("IncreaseBtn"))
                     m_BtnState = BtnState.Increase;
@@ -154,7 +157,7 @@ namespace GameWish.Game
 
         private void OnPointerUp(BaseEventData arg0)
         {
-            //Debug.LogError("ÆðÀ´");
+            //Debug.LogError("ï¿½ï¿½ï¿½ï¿½");
             if (!m_IsStart)
             {
                 StopCoroutine(m_StartCount);
@@ -180,17 +183,19 @@ namespace GameWish.Game
             switch (btnState)
             {
                 case BtnState.Increase:
-                    m_IncreaseCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, (e)=> {
+                    m_IncreaseCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, (e) =>
+                    {
                         RefreshIncreaseSellNumber();
                         OnCountBtnEvent(m_BtnState);
                     }));
                     break;
                 case BtnState.Reduce:
-                    m_ReduceCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, (e) => {
+                    m_ReduceCount = StartCoroutine(TimingBtn(0.2f, BtnState.None, (e) =>
+                    {
                         RefresReduceSellNumber();
                         OnCountBtnEvent(m_BtnState);
                     }));
-                    break;  
+                    break;
                 default:
                     break;
             }
@@ -299,7 +304,7 @@ namespace GameWish.Game
             }
         }
         /// <summary>
-        /// Éú³ÉÎïÆ·Ãû³Æ
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         private void GenerateItemName()
         {
@@ -312,16 +317,17 @@ namespace GameWish.Game
             switch (m_CurInventoryItem.PropType)
             {
                 case PropType.Arms:
-                    strName += CommonUIMethod.GetTextNumber((int)((ArmsItem)m_CurInventoryItem).ClassID) + "½×";
+                    strName += CommonUIMethod.GetTextNumber((int)((ArmsItem)m_CurInventoryItem).ClassID) + "ï¿½ï¿½";
                     break;
                 case PropType.Armor:
-                    strName += CommonUIMethod.GetTextNumber((int)((ArmorItem)m_CurInventoryItem).ClassID) + "½×";
+                    strName += CommonUIMethod.GetTextNumber((int)((ArmorItem)m_CurInventoryItem).ClassID) + "ï¿½ï¿½";
                     break;
             }
-            int maxLength = Mathf.Min(strName.Length,8);
+            int maxLength = Mathf.Min(strName.Length, 8);
             for (int i = 0; i < maxLength; i++)
             {
-                m_NameList[i].GetComponentInChildren<Text>().text = strName[i].ToString();
+                m_NameList[i].SetFontCont(strName[i].ToString());
+                // m_NameList[i].GetComponentInChildren<Text>().text = strName[i].ToString();
                 m_NameList[i].gameObject.SetActive(true);
             }
         }

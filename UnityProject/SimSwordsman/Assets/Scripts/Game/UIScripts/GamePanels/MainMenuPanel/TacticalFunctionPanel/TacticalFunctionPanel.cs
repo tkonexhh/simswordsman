@@ -169,7 +169,7 @@ namespace GameWish.Game
             allCharacterList.AddRange(m_SelectedDiscipleDic.Values);
             for (int i = 0; i < allCharacterList.Count; i++)
                 m_DiscipleList[i].SelectedDisciple(allCharacterList[i]);
-            #region ÔÝÁô
+            #region ï¿½ï¿½ï¿½ï¿½
             //List<CharacterItem> allCharacterList = new List<CharacterItem>();
             //foreach (var item in m_CharacterAllItemList)
             //    if (item.level >= m_CommonTaskItemInfo.characterLevelRequired)
@@ -224,7 +224,7 @@ namespace GameWish.Game
 
         private void CreateFontPrefabs(string font)
         {
-            Instantiate(m_FontPrefabs, m_Upper).GetComponent<FontPrefabs>().SetFontText(font);
+            Instantiate(m_FontPrefabs, m_Upper).GetComponent<ImgFontPre>().SetFontCont(font);
         }
         private void BindAddListenerEvent()
         {
@@ -236,7 +236,7 @@ namespace GameWish.Game
                 //return;
                 if (m_SelectedList.Count < m_CommonTaskItemInfo.GetCharacterAmount())
                 {
-                    FloatMessage.S.ShowMsg("ÇëÑ¡ÔñÂúµÜ×Ó !");
+                    FloatMessage.S.ShowMsg("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ !");
                     return;
                 }
                 m_SimGameTask.ExecuteTask(m_SelectedList);
@@ -256,7 +256,7 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 DataAnalysisMgr.S.CustomEvent(DotDefine.c_task_refuse, m_SimGameTask.TaskId.ToString());
-                //UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "ÌáÊ¾", "ÄúÈ·¶¨Òª·ÅÆúÈÎÎñÂð");
+                //UIMgr.S.OpenPanel(UIID.LogPanel, LogCallBack, "ï¿½ï¿½Ê¾", "ï¿½ï¿½È·ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 RefuseTask();
                 HideSelfWithAnim();
             });
