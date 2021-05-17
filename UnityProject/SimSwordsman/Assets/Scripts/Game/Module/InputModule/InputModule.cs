@@ -34,7 +34,7 @@ namespace GameWish.Game
             //WeGameSdkAdapter.S.ExitGame(null);
             if (PlayerPrefs.GetInt("channel_exit_key", 0) == 1)
             {
-                FloatMessage.S.ShowMsg(TDLanguageTable.Get("Press Again to Quit"));
+                FloatMessage.S.ShowMsg("再按一次退出游戏");
             }
         }
 

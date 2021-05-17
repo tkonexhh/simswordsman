@@ -11,12 +11,11 @@ namespace GameWish.Game
     {
         [SerializeField]
         private Text m_LogCont;
-        [SerializeField]
-        private Image[] m_NameList;
+        [SerializeField] private ImgFontPre[] m_NameList;
 
         [SerializeField]
-        private Button m_BlackBtn; 
-     
+        private Button m_BlackBtn;
+
         [SerializeField]
         private Button m_AcceptBtn;
         [SerializeField]
@@ -54,39 +53,44 @@ namespace GameWish.Game
         {
             foreach (var item in m_NameList)
             {
-                item.GetComponentInChildren<Text>().text = Define.COMMON_DEFAULT_STR;
+                // item.GetComponentInChildren<Text>().text = Define.COMMON_DEFAULT_STR;
                 item.gameObject.SetActive(false);
             }
             string strName = cont.ToString();
             int maxLength = Mathf.Min(strName.Length, 8);
             for (int i = 0; i < maxLength; i++)
             {
-                m_NameList[i].GetComponentInChildren<Text>().text = strName[i].ToString();
+                m_NameList[i].SetFontCont(strName[i].ToString());
+                // m_NameList[i].GetComponentInChildren<Text>().text = strName[i].ToString();
                 m_NameList[i].gameObject.SetActive(true);
             }
         }
 
         private void BindAddListenerEvent()
         {
-            m_RefuseBtn.onClick.AddListener(()=> {
+            m_RefuseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 HideSelfWithAnim();
                 OnRefuseBtnEvent?.Invoke();
             });
-            m_BlackBtn.onClick.AddListener(()=> {
+            m_BlackBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 Time.timeScale = 1;
                 HideSelfWithAnim();
             });
-            m_AcceptBtn.onClick.AddListener(()=> {
+            m_AcceptBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 HideSelfWithAnim();
                 OnSuccessBtnEvent?.Invoke();
             });
 
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
                 HideSelfWithAnim();
