@@ -91,6 +91,14 @@ namespace GameWish.Game
                 m_RedPoint.SetActive(true);
             else
                 m_RedPoint.SetActive(false);
+            if (m_NextFacilityLevelInfo!=null)
+            {
+                m_NextUnlockName.text = TDEquipmentConfigTable.GetEquipmentInfo(((ForgeHouseInfo)m_NextFacilityLevelInfo).EquipID).Name;
+            }
+            else
+            {
+                m_NextUnlockName.text = "нч";
+            }
             m_CurLevelTxt.text = CommonUIMethod.GetGrade(m_CurForgeHouseInfo.level);
             m_ForgeHouseCont.text = TDFacilityConfigTable.GetFacilityConfigInfo(m_CurFacilityType).desc;
             m_FacilityIcon.sprite = FindSprite("ForgeHouse" + m_CurLevel);
