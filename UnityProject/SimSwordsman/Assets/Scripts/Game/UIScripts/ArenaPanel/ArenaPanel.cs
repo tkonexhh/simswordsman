@@ -16,8 +16,17 @@ namespace GameWish.Game
         [SerializeField] private Button m_BtnAddCount;
         [SerializeField] private Text m_TxtCount;
         [SerializeField] private IUListView m_ListView;
+        [SerializeField] private ScrollRect m_ScrollRect;
 
+        [Header("Close")]
+        [SerializeField] private GameObject m_ArenaCloseBg;
         [SerializeField] private ArenaClose m_ArenaClose;
+
+        [Header("My")]
+        [SerializeField] private Image m_ImgMyHead;
+        [SerializeField] private Text m_TxtMyRank;
+        [SerializeField] private Text m_TxtMyName;
+        [SerializeField] private Text m_TxtATK;
 
 
         protected override void OnUIInit()
@@ -26,7 +35,7 @@ namespace GameWish.Game
             m_BtnShop.onClick.AddListener(OnClickShop);
             m_BtnAddCount.onClick.AddListener(OnClickAddCount);
             m_ListView.SetCellRenderer(OnCellRenderer);
-            MainGameMgr.S.ArenaSystem.Enter();
+
         }
 
 
@@ -34,16 +43,37 @@ namespace GameWish.Game
         {
             RegisterEvent(EventID.OnRefeshArenaCoin, (t, e) => { UpdateCoin(); });
             RegisterEvent(EventID.OnRefeshArenaChallengeCount, (t, e) => { UpdateCount(); });
-
-            m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
+            MainGameMgr.S.ArenaSystem.Enter();
+            // m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
             UpdateCoin();
             UpdateCount();
+            UpdateMy();
 
-            m_ArenaClose.gameObject.SetActive(!MainGameMgr.S.ArenaSystem.IsWithinTime());
+            EnableArenaClose(!MainGameMgr.S.ArenaSystem.IsWithinTime());
+            UpdateScroll();
             MainGameMgr.S.ArenaSystem.ShowRankReward();
-
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Enter);
         }
 
+        private void EnableArenaClose(bool enable)
+        {
+            m_ArenaClose.gameObject.SetActive(enable);
+            m_ArenaCloseBg.SetActive(enable);
+            if (!enable)
+            {
+                m_ListView.SetDataCount(GameDataMgr.S.GetPlayerData().arenaData.enemyLst.Count + 1);
+            }
+            else
+            {
+                m_ListView.SetDataCount(0);
+            }
+        }
+
+        private void UpdateScroll()
+        {
+            int level = GameDataMgr.S.GetPlayerData().arenaData.nowLevel;
+            m_ScrollRect.verticalNormalizedPosition = 1.0f - (float)level / (float)(ArenaDefine.EnemyCount + 1);//.DoScrollVertical((float)level / (float)(ArenaDefine.EnemyCount + 1), 0.1f);
+        }
 
         private void OnClickShop()
         {
@@ -62,7 +92,20 @@ namespace GameWish.Game
 
         private void UpdateCount()
         {
-            m_TxtCount.text = GameDataMgr.S.GetPlayerData().arenaData.challengeCount.ToString();
+            m_TxtCount.text = string.Format("挑战次数: <color=#405788>{0}</color>", GameDataMgr.S.GetPlayerData().arenaData.challengeCount.ToString());
+        }
+
+        private void UpdateMy()
+        {
+            m_TxtMyRank.text = GameDataMgr.S.GetPlayerData().arenaData.nowLevel.ToString();
+            m_TxtMyName.text = GameDataMgr.S.GetClanData().clanName;
+            m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(MainGameMgr.S.CharacterMgr.GetCharacterATK());
+            string headStr = GameDataMgr.S.GetPlayerData().headPhoto;
+            // Debug.LogError("Head:" + headStr);
+            if (!string.IsNullOrEmpty(headStr))
+            {
+                m_ImgMyHead.sprite = SpriteHandler.S.GetSprite("EnmeyHeadIconsAtlas", "enemy_icon_" + headStr);
+            }
         }
 
 

@@ -129,9 +129,14 @@ namespace GameWish.Game
 
     public class CharacterEnemyConfig : EnemyConfig
     {
-        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(101, 1, atk)
+        public CharacterQuality Quality { private set; get; }
+        public int HeadID { private set; get; }
+        public int BodyID { private set; get; }
+        public CharacterEnemyConfig(CharacterQuality quality, int headID, int bodyID, int atk) : base(ArenaDefine.ArenaEnemyID, 1, atk)
         {
-
+            this.Quality = quality;
+            this.HeadID = headID;
+            this.BodyID = bodyID;
         }
     }
 
@@ -168,7 +173,11 @@ namespace GameWish.Game
                 {
                     return m_AllCheckpoint.FirstOrDefault().Value;
                 }
-                return m_AllCheckpoint[index];
+
+                if (m_AllCheckpoint.ContainsKey(index))
+                    return m_AllCheckpoint[index];
+                else
+                    return null;
             }
             return null;
         }

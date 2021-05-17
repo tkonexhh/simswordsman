@@ -1,33 +1,33 @@
 
 sl_3.png
-size: 153,77
+size: 148,77
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 右大腿
   rotate: true
-  xy: 86, 4
+  xy: 84, 4
   size: 10, 25
   orig: 10, 25
   offset: 0, 0
   index: -1
 右大臂
-  rotate: true
-  xy: 94, 20
+  rotate: false
+  xy: 122, 22
   size: 18, 29
   orig: 18, 29
   offset: 0, 0
   index: -1
 右小臂
-  rotate: false
-  xy: 94, 40
+  rotate: true
+  xy: 111, 53
   size: 22, 35
   orig: 22, 35
   offset: 0, 0
   index: -1
 右脚
   rotate: false
-  xy: 118, 51
+  xy: 94, 19
   size: 14, 24
   orig: 14, 24
   offset: 0, 0
@@ -35,9 +35,9 @@ repeat: none
 地影
   rotate: false
   xy: 52, 2
-  size: 32, 12
-  orig: 34, 15
-  offset: 1, 2
+  size: 30, 12
+  orig: 32, 12
+  offset: 1, 0
   index: -1
 头
   rotate: false
@@ -47,29 +47,29 @@ repeat: none
   offset: 0, 0
   index: -1
 左大臂
-  rotate: false
-  xy: 125, 28
+  rotate: true
+  xy: 123, 6
   size: 14, 21
   orig: 14, 21
   offset: 0, 0
   index: -1
 左小腿
   rotate: false
-  xy: 134, 51
+  xy: 110, 19
   size: 10, 24
   orig: 10, 24
   offset: 0, 0
   index: -1
 左小臂
-  rotate: true
-  xy: 113, 3
+  rotate: false
+  xy: 94, 45
   size: 15, 30
   orig: 15, 30
   offset: 0, 0
   index: -1
 左脚
   rotate: true
-  xy: 141, 34
+  xy: 111, 2
   size: 15, 10
   orig: 15, 10
   offset: 0, 0

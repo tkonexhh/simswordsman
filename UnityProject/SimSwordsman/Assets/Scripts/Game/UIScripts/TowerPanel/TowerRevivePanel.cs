@@ -27,30 +27,41 @@ namespace GameWish.Game
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
             DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_revive_happen);
-            m_TxtCount.text = string.Format("剩余复活次数:{0}", Mathf.Max(0, TowerDefine.REVIVE_COUNT - GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount));
 
             //复活一名战斗力最高的已经死亡的角色
-            var lst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
-            m_ID = -1;
-            double maxAtk = -1;
-            for (int i = 0; i < lst.Count; i++)
+            try
             {
-                if (lst[i].IsDead() && !lst[i].revive)
+                m_TxtCount.text = string.Format("剩余复活次数:{0}", Mathf.Max(0, TowerDefine.REVIVE_COUNT - GameDataMgr.S.GetPlayerData().recordData.towerRevive.dailyCount));
+                var lst = GameDataMgr.S.GetPlayerData().towerData.towerCharacterLst;
+                m_ID = -1;
+                double maxAtk = -1;
+                for (int i = 0; i < lst.Count; i++)
                 {
-                    double atk = MainGameMgr.S.CharacterMgr.GetCharacterController(lst[i].id).CharacterModel.GetAtk();
-                    if (atk >= maxAtk)
+                    if (lst[i].IsDead() && !lst[i].revive)
                     {
-                        maxAtk = atk;
-                        m_ID = lst[i].id;
+                        var controller = MainGameMgr.S.CharacterMgr.GetCharacterController(lst[i].id);
+                        if (controller != null)
+                        {
+                            double atk = controller.CharacterModel.GetAtk();
+                            if (atk >= maxAtk)
+                            {
+                                maxAtk = atk;
+                                m_ID = lst[i].id;
+                            }
+                        }
                     }
                 }
-            }
 
-            if (m_ID != -1)
+                if (m_ID != -1)
+                {
+                    var controller = MainGameMgr.S.CharacterMgr.GetCharacterController(m_ID);
+                    m_Disciple.Init(controller.CharacterModel.CharacterItem, this);
+                    m_TxtAtk.text = string.Format("功力: <color=#405787>{0}</color>", CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.CharacterItem.atkValue));
+                }
+            }
+            catch (Exception e)
             {
-                var controller = MainGameMgr.S.CharacterMgr.GetCharacterController(m_ID);
-                m_Disciple.Init(controller.CharacterModel.CharacterItem, this);
-                m_TxtAtk.text = string.Format("功力: <color=#405787>{0}</color>", CommonUIMethod.GetTenThousandOrMillion((long)controller.CharacterModel.CharacterItem.atkValue));
+                Debug.LogError("TowerRevivePanel :" + e);
             }
 
         }
@@ -60,7 +71,6 @@ namespace GameWish.Game
             AdsManager.S.PlayRewardAD("TowerRevive", (b) =>
             {
                 CloseSelfPanel();
-
 
                 if (m_ID != -1)
                 {

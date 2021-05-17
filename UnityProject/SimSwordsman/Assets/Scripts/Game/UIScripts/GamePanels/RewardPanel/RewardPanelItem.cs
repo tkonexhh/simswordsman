@@ -34,6 +34,8 @@ namespace GameWish.Game
 
         public void Init(RewardPanel rewardPanel, RewardBase reward)
         {
+            m_Quality.gameObject.SetActive(false);
+            m_KungfuName.gameObject.SetActive(false);
             m_RewardBaseData = reward;
             m_Panel = rewardPanel;
 
@@ -64,7 +66,7 @@ namespace GameWish.Game
             }
             else
                 m_Icon.sprite = rewardPanel.FindSprite(reward.SpriteName());
-            #region 装备品质
+            #region 装锟斤拷品锟斤拷
             if (reward.RewardItem == RewardItemType.Armor || reward.RewardItem == RewardItemType.Arms)
             {
                 Equipment equipment = TDEquipmentConfigTable.GetEquipmentInfo((int)reward.KeyID);
@@ -88,7 +90,7 @@ namespace GameWish.Game
 
 
             m_RewardName.text = reward.RewardName();
-            m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", "X" + reward.Count);
+            m_Count.text = CommonUIMethod.GetStrForColor("#D5C17B", "x" + reward.Count);
             m_EffectSortGroup.sortingOrder = m_Panel.GetComponent<Canvas>().sortingOrder - 1;
             m_IconSortGroup.sortingOrder = m_EffectSortGroup.sortingOrder + 1;
 

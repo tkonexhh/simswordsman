@@ -21,7 +21,7 @@ namespace GameWish.Game
             m_Panel = panel;
         }
 
-        public void SetItem(TowerShopItemInfo itemInfo)
+        public void SetItem(ArenaShopItemInfo itemInfo)
         {
             var reward = itemInfo.reward;
             m_RewardItemIcon.SetReward(reward, m_Panel);

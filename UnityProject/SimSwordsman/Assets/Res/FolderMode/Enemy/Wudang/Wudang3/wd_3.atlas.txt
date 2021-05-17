@@ -13,14 +13,14 @@ repeat: none
   index: -1
 右脚
   rotate: false
-  xy: 188, 3
+  xy: 184, 3
   size: 11, 9
   orig: 13, 11
   offset: 1, 1
   index: -1
 右腿
   rotate: false
-  xy: 188, 14
+  xy: 174, 14
   size: 13, 30
   orig: 13, 30
   offset: 0, 0
@@ -41,10 +41,10 @@ repeat: none
   index: -1
 地影
   rotate: true
-  xy: 174, 12
-  size: 32, 12
-  orig: 34, 15
-  offset: 1, 2
+  xy: 189, 14
+  size: 30, 12
+  orig: 32, 12
+  offset: 1, 0
   index: -1
 头
   rotate: true
@@ -54,7 +54,7 @@ repeat: none
   offset: 1, 1
   index: -1
 左脚
-  rotate: false
+  rotate: true
   xy: 174, 2
   size: 10, 8
   orig: 12, 10

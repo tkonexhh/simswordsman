@@ -23,7 +23,7 @@ namespace GameWish.Game
             m_RawMatItem = handler.GetRawMatItem();
             m_ShowBubbleTime = DateTime.Now;
 
-            DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate, m_RawMatItem.collectedObjType.ToString());
+            //DataAnalysisMgr.S.CustomEvent(DotDefine.work_generate, m_RawMatItem.collectedObjType.ToString());
 
             m_RawMatItem.ShowBubble();
 

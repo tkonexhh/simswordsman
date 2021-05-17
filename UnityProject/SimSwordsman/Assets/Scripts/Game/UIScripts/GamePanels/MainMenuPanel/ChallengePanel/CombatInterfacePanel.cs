@@ -386,9 +386,17 @@ namespace GameWish.Game
             //RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform.parent.transform, new Vector2(39.99f, 4.0351f),Camera.main,out vector2);
 
             //Debug.LogError("##1"+ vector2);
+            //#if UNITY_IOS
+
+            //#endif
             m_Top.localPosition = new Vector3(0, 333);
             m_Bottom.localPosition = new Vector3(0, -277);
+
+#if UNITY_IOS
+            m_Bottom.localPosition = new Vector3(0, -250);
+#endif 
             StartBattleText();
+
         }
 
         protected override void OnClose()

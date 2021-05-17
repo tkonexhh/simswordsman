@@ -454,10 +454,15 @@ namespace GameWish.Game
         OnHeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger,  //试炼系统，弟子突破成功
         #endregion
 
-
+        #region SelectedHeadPhoto
+        OnRefreshHeadPhoto,
+        OnRefreshSettingHeadPhoto,
+        OnConfirmHeadPhoto,
+        #endregion
 
         #region Arena
         OnRefeshArenaCoin,
+        OnRefeshArenaShop,
         OnRefeshArenaChallengeCount,
         #endregion
     }

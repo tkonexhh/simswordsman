@@ -4895,8 +4895,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_RenderMode: 0
   m_SortMode: 1
@@ -9649,8 +9649,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
@@ -14407,8 +14407,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
   m_SortingOrder: 6
   m_RenderMode: 0
   m_SortMode: 0
@@ -14479,7 +14479,6 @@ GameObject:
   - component: {fileID: 6855639584967032778}
   - component: {fileID: 6855639584967032781}
   - component: {fileID: 6855639584967032780}
-  - component: {fileID: 3724202427756276724}
   m_Layer: 0
   m_Name: QingMangZhi_BulletHit_Right
   m_TagString: Untagged
@@ -19224,17 +19223,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!210 &3724202427756276724
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6855639584967032783}
-  m_Enabled: 1
-  m_SortingLayerID: -1363672637
-  m_SortingLayer: 1
-  m_SortingOrder: 20
 --- !u!1 &6855639585315394862
 GameObject:
   m_ObjectHideFlags: 0
@@ -23967,8 +23955,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
   m_SortingOrder: 6
   m_RenderMode: 0
   m_SortMode: 0
@@ -28797,8 +28785,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
@@ -33627,9 +33615,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingLayerID: -1363672637
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0

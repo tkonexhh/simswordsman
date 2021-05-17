@@ -32,6 +32,7 @@ namespace GameWish.Game
 
         public void StartLevel(List<CharacterController> owerCharacter, List<HerbType> useHerbs, ArenaCellToSend arg)
         {
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Battle_Enter);
             m_ArenaData.AddChallengeCount(-1);
             UIMgr.S.ClosePanelAsUIID(UIID.MainMenuPanel);
             UIMgr.S.ClosePanelAsUIID(UIID.ArenaPanel);
@@ -80,6 +81,20 @@ namespace GameWish.Game
             return false;
         }
 
+        public DateTime GetNextEnterTime()
+        {
+            var now = DateTime.Now;
+            if (now.Hour < ArenaDefine.StartTime)
+            {
+                return new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.StartTime);
+            }
+            else// if(now.Hour>ArenaDefine.EndTime)
+            {
+                return new DateTime(now.Year, now.Month, now.Day).AddHours(24 + ArenaDefine.StartTime);
+            }
+            // return DateTime.Now;
+        }
+
 
 
         #endregion 
@@ -96,7 +111,8 @@ namespace GameWish.Game
 
             m_ArenaData.SetRankRewarded();
             int level = m_ArenaData.nowLevel;
-            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level);
+            int reward = TDArenaConfigTable.GetRewardByRank(level);
+            UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level, reward);
 
         }
 

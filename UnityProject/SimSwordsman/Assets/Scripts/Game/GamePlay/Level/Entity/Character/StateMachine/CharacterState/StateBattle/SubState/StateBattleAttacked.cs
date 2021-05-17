@@ -82,7 +82,7 @@ namespace GameWish.Game
 
         private string GetHurtAnimName()
         {
-            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp || m_Controller.CharacterId.Equals(ArenaDefine.ArenaEnemyID))
                 return "hurt_1";
 
             return "hurt";

@@ -66,6 +66,9 @@ namespace GameWish.Game
             m_NavAgent.OnDestinationReached += OnReach;
 
             SetSpineAnim();
+
+            if(m_Clean_DragSmoke != null)
+                SetSweepingSmoke(false);
         }
 
         public void SetSpineAnim(bool reset = false)

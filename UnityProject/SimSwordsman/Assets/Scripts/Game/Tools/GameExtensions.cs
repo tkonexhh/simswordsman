@@ -350,13 +350,13 @@ namespace GameWish.Game
                 bodies[i].angularDrag = dragVal;
         }
 
-        static public List<Transform> GetChildTrsList(this Transform trsRoot)
-        {
-            List<Transform> parts = new List<Transform>();
-            for (int i = 0; i < trsRoot.childCount; i++)
-                parts.Add(trsRoot.GetChild(i));
-            return parts;
-        }
+        // static public List<Transform> GetChildTrsList(this Transform trsRoot)
+        // {
+        //     List<Transform> parts = new List<Transform>();
+        //     for (int i = 0; i < trsRoot.childCount; i++)
+        //         parts.Add(trsRoot.GetChild(i));
+        //     return parts;
+        // }
 
         //获取网格的size
         static public Vector3 GetMeshSize(this GameObject objRoot)

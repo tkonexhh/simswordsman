@@ -33,12 +33,12 @@ namespace GameWish.Game
         protected override void OnOpen()
         {
             OpenDependPanel(EngineUI.MaskPanel, -1);
-            RegisterEvent(EventID.OnRefeshTowerShop, OnRefeshTowerShop);
-            RegisterEvent(EventID.OnRefeshTowerCoin, RefeshFCoin);
-            OnRefeshTowerShop(0);
+            RegisterEvent(EventID.OnRefeshArenaShop, OnRefeshArenaShop);
+            RegisterEvent(EventID.OnRefeshArenaCoin, RefeshFCoin);
+            OnRefeshArenaShop(0);
             RefeshFCoin(0);
             RefeshRemainTime();
-            DataAnalysisMgr.S.CustomEvent(DotDefine.Tower_Shop_Open);
+            DataAnalysisMgr.S.CustomEvent(DotDefine.Arena_Shop_Open);
             // m_BtnADRefesh.gameObject.SetActive(GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2);
         }
 
@@ -53,15 +53,15 @@ namespace GameWish.Game
 
         private void OnClickADRefesh()
         {
-            if (GameDataMgr.S.GetPlayerData().recordData.towerShopRefesh.dailyCount < 2)
-                UIMgr.S.OpenPanel(UIID.TowerADRefeshPanel);
+            if (GameDataMgr.S.GetPlayerData().recordData.arenaShopRefesh.dailyCount < 2)
+                UIMgr.S.OpenPanel(UIID.ArenaADRefeshPanel);
             else
                 UIMgr.S.OpenPanel(UIID.TowerCantRefeshPanel);
         }
 
-        private void OnRefeshTowerShop(int key, params object[] args)
+        private void OnRefeshArenaShop(int key, params object[] args)
         {
-            var shopInfoLst = GameDataMgr.S.GetPlayerData().towerData.shopInfoLst;
+            var shopInfoLst = GameDataMgr.S.GetPlayerData().arenaData.shopInfoLst;
             for (int i = 0; i < m_ItemInfos.Length; i++)
             {
                 m_ItemInfos[i].SetItem(this, i, TDArenaShopTable.GetShopItemInfoByID(shopInfoLst[i].id));
@@ -70,7 +70,7 @@ namespace GameWish.Game
 
         private void RefeshFCoin(int key, params object[] args)
         {
-            m_TxtFcoin.text = GameDataMgr.S.GetPlayerData().towerData.coin.ToString();
+            m_TxtFcoin.text = GameDataMgr.S.GetPlayerData().arenaData.coin.ToString();
         }
 
         private void Update()
@@ -98,7 +98,7 @@ namespace GameWish.Game
         }
 
 
-        public void ShowItemTips(TowerShopItem shopItem)
+        public void ShowItemTips(ArenaShopItem shopItem)
         {
             m_ItemTips.transform.localPosition = shopItem.transform.localPosition + new Vector3(0, 100, 0);
             m_ItemTips.gameObject.SetActive(true);

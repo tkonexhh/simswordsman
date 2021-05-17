@@ -10,9 +10,9 @@ namespace GameWish.Game
     {
 
         /// <summary>
-		/// ֻ���þ��ȷֵ����?
+		/// ֻ���þ��ȷֵ����?
         /// ��ȡScrollView��ӦVerticalNormalizedPosition����HorizontalNormalizedPosition
-        /// ������vertical��horizontalͬʱ��ѡ�����?
+        /// ������vertical��horizontalͬʱ��ѡ�����?
         /// </summary>
         /// <param name="currentChildIndex">�����������е�index</param>
         /// <param name="inverse">�Ƿ����������϶��¡���������Ҫ������</param>
@@ -38,7 +38,7 @@ namespace GameWish.Game
 
             if (scrollRect.vertical && scrollRect.horizontal)
             {
-                Debug.LogError("��ʱ������ScrollView��vertical��horizontalͬʱ��ѡ�����?");
+                Debug.LogError("��ʱ������ScrollView��vertical��horizontalͬʱ��ѡ�����?");
                 return inverse ? 1 : 0;
             }
 
@@ -136,6 +136,24 @@ namespace GameWish.Game
 
             return range;
         }
+
+
+        public static void SetScrollViewNormalizedPosition(this ScrollRect scrollRect, int index, int totalCount)
+        {
+            try
+            {
+                var child = scrollRect.content.GetChildTrsList();
+                Debug.LogError("1" + child);
+                var target = child[index].rectTransform();
+                float cellHeight = target.rect.height;
+                scrollRect.content.anchoredPosition = new Vector2(0, cellHeight * (Mathf.Abs(totalCount - index)));
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                scrollRect.verticalNormalizedPosition = 0;
+            }
+        }
+
 
     }
 

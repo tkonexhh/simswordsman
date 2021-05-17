@@ -211,14 +211,26 @@ namespace GameWish.Game
 
         private void UpdateRecruitValueText(TimeSpan ts, DateTime endTime)
         {
-            ts = endTime - DateTime.Now;
-            m_TempStringBuild.Clear();
-            m_TempStringBuild.Append(((int)ts.TotalHours).ToString("00"));
-            m_TempStringBuild.Append(":");
-            m_TempStringBuild.Append(ts.Minutes.ToString("00"));
-            m_TempStringBuild.Append(":");
-            m_TempStringBuild.Append(ts.Seconds.ToString("00"));
-            m_RecruitValue.text = string.Format("下次免费 {0}", m_TempStringBuild.ToString());
+            try
+            {
+                ts = endTime - DateTime.Now;
+                m_TempStringBuild.Clear();
+                m_TempStringBuild.Append(((int)ts.TotalHours).ToString("00"));
+                m_TempStringBuild.Append(":");
+                m_TempStringBuild.Append(ts.Minutes.ToString("00"));
+                m_TempStringBuild.Append(":");
+                m_TempStringBuild.Append(ts.Seconds.ToString("00"));
+                if (m_TempStringBuild==null || m_RecruitValue==null)
+                {
+                    Debug.LogError("m_TempStringBuild = "+ m_TempStringBuild+ "-----m_RecruitValue = "+ m_RecruitValue);
+                    return;
+                }
+                m_RecruitValue.text = string.Format("下次免费 {0}", m_TempStringBuild.ToString());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("e = "+e);
+            }
         }
 
         public void OnClose()

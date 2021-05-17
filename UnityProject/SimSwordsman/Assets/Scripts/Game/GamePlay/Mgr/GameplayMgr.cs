@@ -102,7 +102,7 @@ namespace GameWish.Game
             AdsManager.S.Init();
 
             bool isPlaySplash = PlayerPrefs.GetInt(Define.IsPlaySplashScreen, -1) > 0 ? true : false;
-            if (/*isPlaySplash*/true)
+            if (isPlaySplash)
             {
                 m_IsLoadingBarFinished = true;
             }
@@ -388,11 +388,13 @@ namespace GameWish.Game
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    EventSystem.S.Send(EventID.OnBattleSuccessed);
+                    //EventSystem.S.Send(EventID.OnBattleSuccessed);
+                    GameDataMgr.S.GetPlayerData().arenaData.AddCoin(1000);
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    EventSystem.S.Send(EventID.OnBattleFailed);
+                    UIMgr.S.ClosePanelAsUIID(UIID.RewardPanel);
+                    //EventSystem.S.Send(EventID.OnBattleFailed);
                 }
                 if (Input.GetKeyDown(KeyCode.W))
                 {

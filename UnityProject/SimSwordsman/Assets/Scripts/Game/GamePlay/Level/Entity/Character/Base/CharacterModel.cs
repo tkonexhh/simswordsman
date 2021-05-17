@@ -34,6 +34,11 @@ namespace GameWish.Game
             //SetHp(GetAtk());
         }
 
+        public void SetCharacterItem(CharacterItem characterItem)
+        {
+            m_CharacterItem = characterItem;
+        }
+
         public void Init()
         {
         }
@@ -150,11 +155,14 @@ namespace GameWish.Game
                 return FacilityType.None;
             return m_CharacterItem.GetTargetFacilityType();
         }
-        public void SetDeliverID(int deliverID) {
+        public void SetDeliverID(int deliverID)
+        {
             m_CharacterItem.SetDeliverID(deliverID);
         }
-        public int GetDeliverID() {
-            if (m_CharacterItem == null) {
+        public int GetDeliverID()
+        {
+            if (m_CharacterItem == null)
+            {
                 return -1;
             }
             return m_CharacterItem.GetDeliverID();
@@ -224,7 +232,7 @@ namespace GameWish.Game
                 KungfuWeightConfig config = TDKongfuStageConfigTable.GetKungfuweight(item.GetKungfuLevel());
                 if (config != null && config.Weight != 0)
                 {
-                    float ratio = ((float)config.Weight / allWeight)+1;
+                    float ratio = ((float)config.Weight / allWeight) + 1;
                     m_CharacterItem.AddKongfuExp(item, (int)ratio * expValue);
                 }
             }

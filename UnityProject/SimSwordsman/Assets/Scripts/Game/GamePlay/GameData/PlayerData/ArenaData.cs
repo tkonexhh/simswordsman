@@ -24,6 +24,7 @@ namespace GameWish.Game
         public override void InitWithEmptyData()
         {
             coin = 0;
+            nowLevel = ArenaDefine.EnemyCount + 1;
         }
 
         public override void OnDataLoadFinish()
@@ -34,23 +35,25 @@ namespace GameWish.Game
 
         public void Init()
         {
+            // Debug.LogError("Init:" + lastRefeshTime);
             //判读是否需要重置数据
             if (string.IsNullOrEmpty(lastRefeshTime))//首次进入
             {
+                // Debug.LogError("lastRefeshTime is Null Reset");
                 Reset();
             }
             else
             {
                 //判断是否间隔1天
-                DateTime lastRefesh;
+                DateTime lastRefesh = DateTime.Now;
                 DateTime now = DateTime.Now;
                 DateTime.TryParse(lastRefeshTime, out lastRefesh);
 
-
-                int offsetDays = (now - lastRefesh).Days;//TODO
-                // Debug.LogError("AAAA:" + offsetDays + ":" + lastRefesh + ":" + now);
+                int offsetDays = (now - lastRefesh).Days;
+                // Debug.LogError("AAAA:" + offsetDays + "-----" + lastRefesh + "------" + now);
                 if (offsetDays >= 1)
                 {
+                    // Debug.LogError("Passday Reset");
                     Reset();
                 }
                 else
@@ -59,25 +62,30 @@ namespace GameWish.Game
                     //如果当前的时间是刷新时间的十点以后
                     //并且间隔没有超过2天
                     //并且当前排名>24
-                    Debug.LogError("Last:" + lastLevel);
                     if (now >= new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.EndTime)
                         && now <= new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddHours(ArenaDefine.StartTime)
                         // && offsetDays == 1
                         && lastLevel <= ArenaDefine.EnemyCount)
                     {
-                        // Debug.LogError("HasReward");
-                        hasReward = true;
+                        if (getRewarded == false)
+                        {
+                            hasReward = true;
+                        }
+
+                        SetDataDirty();
                     }
                 }
-
-
             }
+
+            // Reset();
         }
 
         private void Reset()
         {
-            lastRefeshTime = DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
-            // Debug.LogError(lastRefeshTime);
+            var now = DateTime.Now;
+            var startTime = new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.StartTime);
+            lastRefeshTime = startTime.ToString();//DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
+            // Debug.LogError("Reset:" + lastRefeshTime);
             nowLevel = ArenaDefine.EnemyCount + 1;
             InitEnemy();
             adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
@@ -86,6 +94,7 @@ namespace GameWish.Game
             hasReward = false;
 
             RandomShopData();
+            SetDataDirty();
         }
 
         public bool AddCoin(int delta)
@@ -103,14 +112,14 @@ namespace GameWish.Game
 
         public void SetNowLevel(int level)
         {
-            Debug.LogError(level);
+            // Debug.LogError(level);
             nowLevel = level;
             SetDataDirty();
         }
 
         public bool AddChallengeCount(int delta)
         {
-            if (challengeCount + coin < 0)
+            if (challengeCount + delta < 0)
             {
                 return false;
             }
@@ -134,12 +143,13 @@ namespace GameWish.Game
 
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
 
-            Debug.LogError(totalAtk);
+            //Debug.LogError(totalAtk);
 
             var enemyNames = TDArenaEnemyNameTable.GetRandomEnemy();
             for (int i = 0; i < ArenaDefine.EnemyCount; i++)
             {
                 ArenaEnemyDB enemyDB = new ArenaEnemyDB();
+                enemyDB.headID = UnityEngine.Random.Range(1, TDAvatarTable.count + 1);
                 enemyDB.level = i + 1;
                 enemyDB.name = enemyNames[i].name;
                 float atkRate = TDArenaEnemyConfigTable.GetData(i + 1).enemyPowerRate;
@@ -147,9 +157,9 @@ namespace GameWish.Game
                 for (int j = 0; j < 5; j++)
                 {
                     ArenaEnemyItemDB enemyItem = new ArenaEnemyItemDB();
-                    enemyItem.quality = CharacterQuality.Good;
-                    enemyItem.headId = 1;
-                    enemyItem.bodyId = 1;
+                    enemyItem.quality = (CharacterQuality)(UnityEngine.Random.Range((int)CharacterQuality.Normal, (int)CharacterQuality.Hero));
+                    enemyItem.bodyId = UnityEngine.Random.Range(1, CharacterDefine.Max_Body);
+                    enemyItem.headId = UnityEngine.Random.Range(1, CharacterDefine.Max_Head);
                     enemyDB.EnemyLst.Add(enemyItem);
                 }
                 enemyLst.Add(enemyDB);
@@ -188,7 +198,7 @@ namespace GameWish.Game
                 shopItemDB.buyed = false;
                 shopInfoLst.Add(shopItemDB);
             }
-            EventSystem.S.Send(EventID.OnRefeshTowerShop);
+            EventSystem.S.Send(EventID.OnRefeshArenaShop);
             SetDataDirty();
         }
 
@@ -217,6 +227,7 @@ namespace GameWish.Game
 
     public class ArenaEnemyDB
     {
+        public int headID = 1;
         public int level;
         public string name;
         public long atk;

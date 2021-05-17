@@ -5,6 +5,23 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
+
+    public class FailItemData
+    {
+        public string icon;
+        public string name;
+        public string color;
+        public List<string> conts;
+
+        public FailItemData(string v1, string v2, string v3, List<string> list)
+        {
+            this.icon = v1;
+            this.name = v2;
+            this.color = v3;
+            this.conts = list;
+        }
+    }
+
     public class CombatSettlementPanel : AbstractAnimPanel
     {
         [SerializeField]
@@ -21,9 +38,17 @@ namespace GameWish.Game
         [SerializeField]
         private GameObject m_RewardinfoItem;
         [SerializeField]
+        private Transform m_FailRewardContainer;
+        [SerializeField]
+        private GameObject m_FailRewardinfoItem;
+        [SerializeField]
         private GameObject m_SuccessEffect;
         [SerializeField]
         private GameObject m_FailEffect;
+        [SerializeField]
+        private GameObject m_FailTitle;  
+        [SerializeField]
+        private GameObject m_Line;
 
         private bool m_IsSuccess;
         private LevelConfigInfo m_LevelConfigInfo = null;
@@ -36,6 +61,9 @@ namespace GameWish.Game
         private SimGameTask m_CurTaskInfo = null;
         private List<RewardBase> m_RewardList = new List<RewardBase>();
 
+
+        public List<FailItemData> failItemDatas = new List<FailItemData>() { };
+
         protected override void OnUIInit()
         {
             base.OnUIInit();
@@ -45,6 +73,14 @@ namespace GameWish.Game
             m_SelectedDiscipleList = MainGameMgr.S.BattleFieldMgr.OurCharacterList;
 
             BindAddListenerEvent();
+            m_FailTitle.SetActive(false);
+            m_Line.SetActive(false);
+            m_RewardContainer.gameObject.SetActive(false);
+
+            failItemDatas.Add(new FailItemData ("CombatSettlement_Bg7", "装备", "#8E9FB4",new List<string>() { "锻造屋","挑战关卡"}));
+            failItemDatas.Add(new FailItemData ("CombatSettlement_Bg8", "等级", "#A78279", new List<string>() { "练功场","任务日常","挑战关卡"}));
+            failItemDatas.Add(new FailItemData ("CombatSettlement_Bg9", "秘籍", "#8F89A6", new List<string>() { "藏经阁","挑战关卡"}));
+            failItemDatas.Add(new FailItemData ("CombatSettlement_Bg10", "品质", "#8F89A6", new List<string>() { "英雄试炼"}));
         }
 
         protected override void OnClose()
@@ -55,7 +91,7 @@ namespace GameWish.Game
             //m_TowerLevelConfig = null;
             //m_CurTaskInfo = null;
 
-            CloseDependPanel(EngineUI.MaskPanel);
+            //CloseDependPanel(EngineUI.MaskPanel);
 
             EventSystem.S.UnRegister(EventID.OnReciveRewardList, HandListenerEvent);
             EventSystem.S.UnRegister(EventID.OnChallengeReward, HandListenerEvent);
@@ -276,7 +312,7 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-            OpenDependPanel(EngineUI.MaskPanel, -1, null);
+            //OpenDependPanel(EngineUI.MaskPanel, -1, null);
             m_PanelType = (PanelType)args[0];
 
             switch (m_PanelType)
@@ -322,17 +358,36 @@ namespace GameWish.Game
                     if (m_IsSuccess)
                     {
                         m_ArenaLevelConfig.PrepareReward();
-                        //TODO  过关交换顺序 给奖励
                         MainGameMgr.S.ArenaSystem.PassLevel(m_ArenaLevelConfig.level);
                     }
+                    DataAnalysisMgr.S.CustomEvent(m_IsSuccess ? DotDefine.Arena_Battle_Win : DotDefine.Arena_Battle_Fail);
                     break;
                 default:
                     break;
             }
             RefreshFont();
 
-            foreach (var item in m_SelectedDiscipleList)
-                CreateRewardIInfoItem(item);
+            if (m_IsSuccess)
+            {
+                m_RewardContainer.gameObject.SetActive(true);
+                m_FailRewardContainer.gameObject.SetActive(false);
+
+                //成功
+                foreach (var item in m_SelectedDiscipleList)
+                    CreateRewardIInfoItem(item);
+            }
+            else
+            {
+                m_FailTitle.SetActive(true);
+                m_Line.SetActive(true);
+                m_RewardContainer.gameObject.SetActive(false);
+                //失败
+                foreach (var item in failItemDatas)
+                {
+                    FailRewardIInfoItem failRewardIInfoItem = Instantiate(m_FailRewardinfoItem, m_FailRewardContainer).GetComponent<FailRewardIInfoItem>();
+                    failRewardIInfoItem.OnInit(item);
+                }
+            }
         }
 
         private void RefreshFont()

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5154053361276930114}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.37999964, y: -0.56999993, z: 0}
-  m_LocalScale: {x: 0.17723, y: 0.17723, z: 0.17723}
+  m_LocalScale: {x: -0.17723, y: 0.17723, z: 0.17723}
   m_Children:
   - {fileID: 5154053362338236926}
   m_Father: {fileID: 5154053362018224590}
@@ -1375,7 +1375,7 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -1397,8 +1397,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10794
-        atime2: 65150
+        atime1: 7903
+        atime2: 13493
         atime3: 0
         atime4: 0
         atime5: 0
@@ -6257,7 +6257,7 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -6279,8 +6279,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10794
-        atime2: 65150
+        atime1: 7903
+        atime2: 13493
         atime3: 0
         atime4: 0
         atime5: 0
@@ -19327,7 +19327,7 @@ Transform:
   m_GameObject: {fileID: 5154053361784406229}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.84, y: -0.21, z: 0}
-  m_LocalScale: {x: 0.17723, y: 0.17722999, z: 0.17722999}
+  m_LocalScale: {x: -0.17723, y: 0.17722999, z: 0.17722999}
   m_Children:
   - {fileID: 5154053361327648556}
   m_Father: {fileID: 5154053361383891453}
@@ -20675,7 +20675,7 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -20697,8 +20697,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10794
-        atime2: 65150
+        atime1: 7903
+        atime2: 13493
         atime3: 0
         atime4: 0
         atime5: 0
@@ -25523,7 +25523,7 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -25545,8 +25545,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10794
-        atime2: 65150
+        atime1: 7903
+        atime2: 13493
         atime3: 0
         atime4: 0
         atime5: 0
@@ -39939,7 +39939,7 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -39961,8 +39961,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10794
-        atime2: 65150
+        atime1: 7903
+        atime2: 13493
         atime3: 0
         atime4: 0
         atime5: 0
@@ -43440,7 +43440,7 @@ Transform:
   m_GameObject: {fileID: 5154053362536781027}
   m_LocalRotation: {x: -0.6378784, y: -0.6378784, z: -0.30514118, w: 0.30514118}
   m_LocalPosition: {x: -0, y: -0.17, z: 1.58}
-  m_LocalScale: {x: 0.17722999, y: 0.17722997, z: 0.17723}
+  m_LocalScale: {x: -0.17723, y: 0.17722997, z: 0.17723}
   m_Children:
   - {fileID: 5154053361803672809}
   m_Father: {fileID: 5154053362683058218}
@@ -44788,7 +44788,7 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -44810,8 +44810,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10794
-        atime2: 65150
+        atime1: 7903
+        atime2: 13493
         atime3: 0
         atime4: 0
         atime5: 0

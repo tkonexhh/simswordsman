@@ -17,7 +17,11 @@ namespace GameWish.Game
         [SerializeField]
         private Transform m_DiscipleTra;
         [SerializeField]
-        private Slider m_ExpProportion;
+        private Image m_SliderImg;
+        [SerializeField]
+        private Text m_LastLevel;    
+        [SerializeField]
+        private Text m_NextLevel;
 
         private bool m_IsSuccess;
 
@@ -68,12 +72,12 @@ namespace GameWish.Game
 
         public IEnumerator ExperienceGrowthBar(float start, float targit, Action action = null)
         {
-            m_ExpProportion.value = start;
+            m_SliderImg.fillAmount = start;
             while (true)
             {
                 yield return new WaitForSeconds(0.05f);
-                m_ExpProportion.value += 0.08f;
-                if (m_ExpProportion.value >= targit)
+                m_SliderImg.fillAmount += 0.08f;
+                if (m_SliderImg.fillAmount >= targit)
                 {
                     action?.Invoke();
                     break;
@@ -84,11 +88,13 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_DiscipleName.text = m_CurCharacterItem.name;
+            m_LastLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.lastLevel);
+            m_NextLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.level);
             if (m_IsSuccess)
             {
-                if (m_PanelType == PanelType.Tower)
+                if (m_PanelType == PanelType.Tower || m_PanelType == PanelType.Arena)
                 {
-                    m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+                    m_SliderImg.fillAmount = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
                     m_ExpCont.text = Define.PLUS + "0";
                     return;
                 }
@@ -124,7 +130,7 @@ namespace GameWish.Game
             }
             else
             {
-                m_ExpProportion.value = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
+                m_SliderImg.fillAmount = ((float)m_CurCharacterItem.curExp / m_CharacterController.GetExpLevelUpNeed());
             }
 
 

@@ -13,38 +13,38 @@ repeat: none
   index: -1
 右上臂
   rotate: false
-  xy: 98, 5
+  xy: 84, 4
   size: 15, 19
   orig: 15, 19
   offset: 0, 0
   index: -1
 右下臂
-  rotate: false
-  xy: 42, 16
+  rotate: true
+  xy: 85, 55
   size: 19, 24
   orig: 19, 24
   offset: 0, 0
   index: -1
 右大腿
   rotate: false
-  xy: 85, 55
+  xy: 42, 4
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: -1
 右小腿
-  rotate: false
-  xy: 93, 26
+  rotate: true
+  xy: 42, 28
   size: 12, 27
   orig: 12, 27
   offset: 0, 0
   index: -1
 地影
-  rotate: false
-  xy: 42, 2
-  size: 32, 12
-  orig: 34, 15
-  offset: 1, 2
+  rotate: true
+  xy: 111, 44
+  size: 30, 12
+  orig: 32, 12
+  offset: 1, 0
   index: -1
 头
   rotate: true
@@ -54,29 +54,29 @@ repeat: none
   offset: 0, 0
   index: -1
 左大腿
-  rotate: false
-  xy: 106, 55
+  rotate: true
+  xy: 63, 9
   size: 17, 19
   orig: 17, 19
   offset: 0, 0
   index: -1
 左大臂
   rotate: false
-  xy: 107, 35
+  xy: 101, 2
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 左小腿
-  rotate: true
-  xy: 63, 25
+  rotate: false
+  xy: 85, 25
   size: 15, 28
   orig: 15, 28
   offset: 0, 0
   index: -1
 左小臂
-  rotate: true
-  xy: 76, 2
+  rotate: false
+  xy: 102, 22
   size: 21, 20
   orig: 21, 20
   offset: 0, 0

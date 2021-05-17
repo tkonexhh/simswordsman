@@ -22,5 +22,6 @@ namespace GameWish.Game
         public const string EnmeyHeadIconsAtlas = "EnmeyHeadIconsAtlas";
         public const string DiscipleDetailsPanelAtlas = "DiscipleDetailsPanelAtlas";
         public const string DisciplePanelAtlas = "DisciplePanelAtlas";
+        public const string CombatSettlementAtlas = "CombatSettlementAtlas";
     }
 }

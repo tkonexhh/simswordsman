@@ -78,6 +78,7 @@ namespace GameWish.Game
         VisitorPanel,
         DeliverPanel,
         UserAccountPanel,
+        SelectedHeadPanel,
         MaskWithAlphaZeroPanel,
         DailyTaskPanel,//每日任务
 
@@ -109,6 +110,7 @@ namespace GameWish.Game
         ArenaRulePanel,
         ArenaAddCountPanel,
         ArenaRankRewardPanel,
+        ArenaADRefeshPanel,
         #endregion
     }
 }
