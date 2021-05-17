@@ -129,9 +129,9 @@ namespace GameWish.Game
 
                 if (index >= battleTexts.Count)
                 {
-                    Debug.LogError("---index = "+ index+ "----battleTexts.Count"+ battleTexts.Count);
+                    Debug.LogError("---index = " + index + "----battleTexts.Count" + battleTexts.Count);
                 }
-                else  
+                else
                 {
                     if (type == 0)
                     {
@@ -393,7 +393,10 @@ namespace GameWish.Game
             m_Bottom.localPosition = new Vector3(0, -277);
 
 #if UNITY_IOS
+if (ScreenAdjustMgr.S.GetScreenType() == ScreenType.IPhoneX)
+{
             m_Bottom.localPosition = new Vector3(0, -250);
+}
 #endif 
             StartBattleText();
 

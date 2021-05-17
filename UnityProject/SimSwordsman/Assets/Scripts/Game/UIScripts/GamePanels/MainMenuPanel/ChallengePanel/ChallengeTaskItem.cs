@@ -194,7 +194,7 @@ namespace GameWish.Game
                     m_Background.gameObject.SetActive(false);
                     m_ChallengeSlide.gameObject.SetActive(false);
                     break;  
-                default:
+                default: 
                     break;
             }
 

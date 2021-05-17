@@ -70,7 +70,6 @@ namespace GameWish.Game
             m_Btn.onClick.AddListener(() =>
             {
                 EventSystem.S.Send(EventID.OnDiscipleButtonOnClick, PanelType.Task);
-
             });
         }
 

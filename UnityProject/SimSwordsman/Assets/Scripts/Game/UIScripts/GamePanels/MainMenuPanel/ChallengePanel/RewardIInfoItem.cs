@@ -88,8 +88,16 @@ namespace GameWish.Game
         private void RefreshPanelInfo()
         {
             m_DiscipleName.text = m_CurCharacterItem.name;
-            m_LastLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.lastLevel);
-            m_NextLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.level);
+            if (m_PanelType == PanelType.Tower || m_PanelType == PanelType.Arena)
+            {
+                m_LastLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.level);
+                m_NextLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.level);
+            }
+            else
+            {
+                m_LastLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.lastLevel);
+                m_NextLevel.text = CommonUIMethod.GetGrade(m_CurCharacterItem.level);
+            }
             if (m_IsSuccess)
             {
                 if (m_PanelType == PanelType.Tower || m_PanelType == PanelType.Arena)

@@ -139,7 +139,7 @@ namespace GameWish.Game
                 {
                     if (number == surplus)
                         break;
-                    if (normalList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && normalList[i].IsFreeState())
+                    if (normalList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
                     {
                         number++;
                         characterItems.Add(normalList[i].id, normalList[i]);
@@ -149,7 +149,7 @@ namespace GameWish.Game
             else
             {
                 for (int i = 0; i < normalList.Count; i++)
-                    if (normalList[i].level >= m_CommonTaskItemInfo.characterLevelRequired && normalList[i].IsFreeState())
+                    if (normalList[i].level >= m_CommonTaskItemInfo.characterLevelRequired)
                     {
                         characterItems.Add(normalList[i].id, normalList[i]);
                     }

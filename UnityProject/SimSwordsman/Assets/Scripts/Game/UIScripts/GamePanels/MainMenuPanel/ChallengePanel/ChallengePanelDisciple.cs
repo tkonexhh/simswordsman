@@ -109,8 +109,8 @@ namespace GameWish.Game
             {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
 
-                IsSelected = !IsSelected;
-                EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, IsSelected);
+                //IsSelected = !IsSelected;
+                EventSystem.S.Send(EventID.OnSelectedEvent, m_CharacterItem, !IsSelected);
             });
         }
 
