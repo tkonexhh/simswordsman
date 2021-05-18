@@ -199,10 +199,10 @@ namespace GameWish.Game
         /// </summary>
         /// <param name="trans"></param>
         /// <param name="x"></param>
-        static public void SetLocalY(this Transform trans, float y)
-        {
-            trans.localPosition = new Vector3(trans.localPosition.x, y, trans.localPosition.z);
-        }
+        // static public void SetLocalY(this Transform trans, float y)
+        // {
+        //     trans.localPosition = new Vector3(trans.localPosition.x, y, trans.localPosition.z);
+        // }
         /// <summary>
         /// 设置LocalZ，只改变LocalZ c
         /// </summary>

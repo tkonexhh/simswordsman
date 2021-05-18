@@ -81,7 +81,15 @@ namespace GameWish.Game
             if (m_Data == null) return;
             if (GameDataMgr.S.GetPlayerData().arenaData.challengeCount <= 0)
             {
-                FloatMessage.S.ShowMsg("挑战次数不足");
+                if (GameDataMgr.S.GetPlayerData().arenaData.adAddChallengeCount > 0)
+                {
+                    UIMgr.S.OpenPanel(UIID.ArenaAddCountPanel);
+                }
+                else
+                {
+                    FloatMessage.S.ShowMsg("挑战次数不足");
+                }
+
                 return;
             }
 

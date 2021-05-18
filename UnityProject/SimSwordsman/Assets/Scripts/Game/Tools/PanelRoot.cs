@@ -6,14 +6,10 @@ namespace GameWish.Game
 {
     public class PanelRoot : MonoBehaviour
     {
-        [SerializeField]
-        private Transform m_PanelRoot;
-        [SerializeField]
-        private GameObject m_ObjMaskBg;
-        [SerializeField]
-        private GameObject m_TopMask;
-        [SerializeField]
-        private GameObject m_BottomMask;
+        [SerializeField] private Transform m_PanelRoot;
+        [SerializeField] private GameObject m_ObjMaskBg;
+        [SerializeField] private GameObject m_TopMask;
+        [SerializeField] private GameObject m_BottomMask;
         private void Awake()
         {
             SetCamViewPortRect();
@@ -23,26 +19,42 @@ namespace GameWish.Game
             if (m_ObjMaskBg)
                 m_ObjMaskBg.SetActive(false);
 
-#if UNITY_IOS
-            if (ScreenAdjustMgr.S.GetScreenType() == ScreenType.IPhoneX)
+
+            AppropriateLongScreen();
+            // #if UNITY_IOS
+            //             if (ScreenAdjustMgr.S.GetScreenType() == ScreenType.IPhoneX)
+            //             {
+            //                 m_PanelRoot.rectTransform().offsetMin = new Vector2(0, 30);
+            //                 m_PanelRoot.rectTransform().offsetMax = new Vector2(0, -55);
+            //                 m_TopMask.SetActive(true);
+            //                 m_BottomMask.SetActive(true);
+            //                 if (m_ObjMaskBg != null)
+            //                     m_ObjMaskBg.SetActive(true);
+            //             }
+            //             else
+            //             {
+            //                 m_PanelRoot.rectTransform().offsetMin = Vector2.zero;
+            //                 m_PanelRoot.rectTransform().offsetMax = Vector2.zero;
+            //                 m_TopMask.SetActive(false);
+            //                 m_BottomMask.SetActive(false);
+            //                 if (m_ObjMaskBg != null)
+            //                     m_ObjMaskBg.SetActive(false);
+            //             }
+            // #endif
+        }
+
+        void AppropriateLongScreen()
+        {
+            if (Screen.height * 1.0f / Screen.width > 2)
             {
-                m_PanelRoot.rectTransform().offsetMin = new Vector2(0, 30);
-                m_PanelRoot.rectTransform().offsetMax = new Vector2(0, -55);
-                m_TopMask.SetActive(true);
-                m_BottomMask.SetActive(true);
-                if (m_ObjMaskBg != null)
-                    m_ObjMaskBg.SetActive(true);
+                var rectRoot = UIMgr.S.uiRoot.panelRoot.GetComponent<RectTransform>();
+                var rect = Screen.safeArea;
+                UIMgr.S.panelOffset = -rect.y + 40;
+                rectRoot.offsetMax = new Vector2(rectRoot.offsetMax.x, UIMgr.S.panelOffset);
+                rectRoot.offsetMin = new Vector2(rectRoot.offsetMin.x, 0);
+
+                //下移了 需要上层遮挡
             }
-            else
-            {
-                m_PanelRoot.rectTransform().offsetMin = Vector2.zero;
-                m_PanelRoot.rectTransform().offsetMax = Vector2.zero;
-                m_TopMask.SetActive(false);
-                m_BottomMask.SetActive(false);
-                if (m_ObjMaskBg != null)
-                    m_ObjMaskBg.SetActive(false);
-            }
-#endif
         }
     }
 }
