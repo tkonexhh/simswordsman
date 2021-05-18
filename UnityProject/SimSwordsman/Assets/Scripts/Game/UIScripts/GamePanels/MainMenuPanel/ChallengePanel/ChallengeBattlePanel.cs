@@ -53,7 +53,10 @@ namespace GameWish.Game
             rectTransform.SetSiblingIndex(0);
             //��¼
             rectTransform.localPosition = Vector3.zero;
+
             rectTransform.offsetMax = Vector2.zero;
+
+            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, -UIMgr.S.panelOffset);
             rectTransform.offsetMin = Vector2.zero;
 
             obj.transform.localScale = new Vector3(1.01f, 1.01f, 1);

@@ -28,6 +28,7 @@ namespace GameWish.Game
         public void InitGameplay()
         {
             m_Mono = GetComponent<MonoBehaviour>();
+            EntityRoot.SetLocalY((UIMgr.S.panelOffset / 100.0f));
             StartCoroutine(Init());
         }
 
@@ -100,7 +101,6 @@ namespace GameWish.Game
             RandomBattleAdIntervalRemoteMgr.S.Init();
 
             AdsManager.S.Init();
-
             bool isPlaySplash = PlayerPrefs.GetInt(Define.IsPlaySplashScreen, -1) > 0 ? true : false;
             if (isPlaySplash)
             {

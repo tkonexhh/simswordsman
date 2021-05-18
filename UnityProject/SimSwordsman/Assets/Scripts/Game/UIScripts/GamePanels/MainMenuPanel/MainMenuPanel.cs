@@ -245,7 +245,7 @@ namespace GameWish.Game
                 m_ObjTowerRed.SetActive(false);
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
                 int needLobbyLevel = TowerDefine.ENTER_LEVEL;
-                if (lobbyLevel >= needLobbyLevel)
+                if (lobbyLevel >= needLobbyLevel || PlatformHelper.isTestMode)
                 {
                     UIMgr.S.OpenPanel(UIID.TowerPanel);
                 }
@@ -310,7 +310,7 @@ namespace GameWish.Game
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 int lobbyLevel = MainGameMgr.S.FacilityMgr.GetLobbyCurLevel();
                 int needLobbyLevel = ArenaDefine.ENTER_LEVEL;
-                if (lobbyLevel >= needLobbyLevel)
+                if (lobbyLevel >= needLobbyLevel || PlatformHelper.isTestMode)
                 {
                     UIMgr.S.OpenPanel(UIID.ArenaPanel);
                 }
