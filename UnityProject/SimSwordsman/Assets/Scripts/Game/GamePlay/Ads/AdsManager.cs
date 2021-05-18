@@ -23,7 +23,7 @@ namespace GameWish.Game
 
             if (lookADCount == 3)
             {
-                DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 2));
+                //DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 2));
             }
         }
         #endregion
@@ -43,7 +43,7 @@ namespace GameWish.Game
 
                 if (facilityType == FacilityType.Lobby)
                 {
-                    DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 3));
+                    //DataAnalysisMgr.S.CustomEvent(string.Format(m_KeyBehavior, 3));
                 }
             }
         }

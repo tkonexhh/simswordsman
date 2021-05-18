@@ -266,9 +266,11 @@ namespace GameWish.Game
                         {
                             case PropType.Arms:
                                 m_ArmsBelongingsItem.RefreshPanelInfo();
+                                m_ArmsBelongingsItem.CheckEquipRedPoint();
                                 break;
-                            case PropType.Armor:
+                            case PropType.Armor:  
                                 m_ArmorBelongingsItem.RefreshPanelInfo();
+                                m_ArmorBelongingsItem.CheckEquipRedPoint();
                                 break;
                         }
                     }

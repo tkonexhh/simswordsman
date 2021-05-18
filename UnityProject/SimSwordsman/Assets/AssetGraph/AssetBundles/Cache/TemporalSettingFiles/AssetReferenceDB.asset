@@ -13,16 +13,219 @@ MonoBehaviour:
   m_Name: AssetReferenceDB
   m_EditorClassIdentifier: 
   m_assets:
-  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
-    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
+  - m_assetDatabaseId: 6648e98411dd4884e80cf768d40b8d02
+    m_importFrom: Assets/StreamingAssets/game/res/asset_bindle_config.bin
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 4c152eeb442ba504eae07d2dd8517e0a
+    m_importFrom: Assets/StreamingAssets/game/qarth/asset_bindle_config.bin
     m_exportTo: 
     m_variantName: 
   - m_assetDatabaseId: 3b44cc4a6d2027244a38416b63be1ff1
     m_importFrom: Assets/Editor/com.unity.mobile.notifications/NotificationSettings.asset
     m_exportTo: 
     m_variantName: 
-  - m_assetDatabaseId: 2aa8b01e834a9874e84c0156ceebe357
-    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/SelectedHeadPanel.prefab
+  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
+    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 648511c95e06d8d46b5cdadb959b6636
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeTaskItem.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5556d4272ca37354f9b832ad2012d49f
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/ChallengeTaskItem.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 93496377bc41c9943a78e198315ef57e
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/CombatInterfacePanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8371c910b6db2463391a051e571e2558
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/Light_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d8d17830a995fb74798ea3b6d97e4180
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/XXsphere_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 62edef5189d82934a81ee02f5af15532
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Dust_01BPNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: d47159a19fec5684db8d11c6a5b7b3ef
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Dust_01B
+      1_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: dc341b229ab545a41bb988bd6787016b
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Fragments_02PNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 60d26c253b0a4924c9466c1f13df08a6
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/XXsphere4_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 32693488511168b40a2cef9e5250c5be
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/circles_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8a1856eaa4b434747949681b5e42c2a1
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Fragments_03_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b1800f4bce6b1f94591a4eb76378ac20
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/circle_additive_mat
+      1_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 772af1db94b11b641b8c4476ffa3b925
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Glow_01B
+      PNG_T.png
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 29625b4c0561c0b4eb789d8a3238b4b5
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Smoke_04_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: cc3fe79ccb42f487d94057e76b3e650c
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/M_Glow_01B_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3583cf8da2a49d24886c821bea3c6122
+    m_importFrom: Assets/Res/FolderMode/Effects/BattleEffects/General/MRM_SMtrailBreathAB_M.mat
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b53f3c8027c39aa4e93afd9ae19c58f1
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 99b0dd42615f7974482e7e416dce284f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/qianzhuwandushou.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 87d268d2c1d0a154f9b4524e57d16fbc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/wokoudaofa.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 67cb84f2dfb19d14c942340e17487d5f
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/tianluozhuwang.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 3b1aa3f306005c647b2e1e9ce7d8a4eb
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/bahuangliuhe.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 5db8da64f1f497d43b035febd39b7387
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yanluotie.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 41c5c69499184c042aa29824450349cc
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/huashanjian.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a2ed15950b5166140ad69fe66594f0df
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2b8f35163cff723478de036aef2eb39b
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel/challengepanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 1a00f056244a41d4196fdf048df883b7
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/prefab/skills/qianzhuwandushou.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 2451c2e6f82dc624ca41a6919ff3bfa9
+    m_importFrom: Assets/StreamingAssets/game/game.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: a77d20674735d6a4081a5113074e600d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ca40dfd837f250247b2928e5acef5272
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/dizangyin.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 17ee81f863c7ec649a1fd9540851c816
+    m_importFrom: Assets/StreamingAssets/game/game
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f967e74975f65694ab92b93211de5c08
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/yanluotie.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8e9d8fea540a1a54b9abcf870c7f80a0
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/wokoudaofa.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bf8fe6fa6ee27434094a15d7e10c6cbd
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/dizangyin.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f921eb1c128555f448c7c7f0466d8487
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/huashanjian.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: ec75569c860c2374e988611bc3de6e95
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/general.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 07b7725e5a19a6e4f9b2597c9d0feb1c
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/effects/battleeffects/skills/tianluozhuwang.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f3ddeef67047fe64ab11cd6897e6b676
+    m_importFrom: Assets/Scripts/Game/GamePlay/Level/Entity/Character/Base/CharacterView.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 445baf5ea3f034f93b690a62dadc3c0e
+    m_importFrom: Assets/QarthExtension/Helper/PlatformHelper.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 00000000000000006100000000000000
+    m_importFrom: ProjectSettings/GraphicsSettings.asset
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 0eb58c9a4cb853d48bcd026da0f5c135
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/TacticalFunctionPanel/TacticalFunctionPanel.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: bcfc1a785567e5444a968511347057ab
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/TacticalFunctionPanel/TacticalFunctionDisciple.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 8ab196e8673b4644f8b9f012a52a749d
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/MainMenuPanel/ChallengePanel/ChallengePanelDisciple.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: c742ee180ba7a5349ac8f97d6a9890c3
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/ChallengePanel/ChallengeChooseDisciple.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 09f889f7102acc041b814619523628b2
+    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/MainMenuPanel/MainMenuPanel.prefab
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: 490d97534b15dc74f94248099343f229
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f2a0e8b416471f946ade662b8d0f894d
+    m_importFrom: Assets/StreamingAssets/game/res/foldermode/ui/panels/gamepanels/mainmenupanel.bundle.manifest
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: f3de95f01e9014ac59ab2a696ab95da5
+    m_importFrom: Assets/Qarth/Scripts/Engine/Tools/CustomExtensions.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b3fc910d3e77b86469c91cae184de85e
+    m_importFrom: Assets/Scripts/Game/GamePlay/Ads/AdsManager.cs
+    m_exportTo: 
+    m_variantName: 
+  - m_assetDatabaseId: b4caf36d649f3bc42864e3111343eebb
+    m_importFrom: Assets/Scripts/Game/UIScripts/GamePanels/FacilityPanel/WarehousePanel/WarehousePanel.cs
     m_exportTo: 
     m_variantName: 
   m_version: 2

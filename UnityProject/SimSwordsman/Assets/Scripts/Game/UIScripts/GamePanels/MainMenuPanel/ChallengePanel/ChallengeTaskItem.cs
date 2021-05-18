@@ -193,8 +193,8 @@ namespace GameWish.Game
                     m_ChallengeBtn.gameObject.SetActive(false);
                     m_Background.gameObject.SetActive(false);
                     m_ChallengeSlide.gameObject.SetActive(false);
-                    break;
-                default:
+                    break;  
+                default: 
                     break;
             }
 

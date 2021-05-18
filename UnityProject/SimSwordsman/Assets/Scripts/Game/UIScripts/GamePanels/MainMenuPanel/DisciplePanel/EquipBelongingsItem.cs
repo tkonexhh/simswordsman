@@ -26,9 +26,16 @@ namespace GameWish.Game
 		private BgColorType m_BgColorType;
 		private PropType m_PropType;
 
+		private void OnDestroy()
+		{
+			EventSystem.S.UnRegister(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
+
+		}
 		// Start is called before the first frame update
 		public void OnInit(CharacterItem characterItem, bool isArmorUnlock, CharaceterEquipment characeterEquipment, BgColorType bgColorType, PropType propType)
 		{
+			EventSystem.S.Register(EventID.OnSelectedEquipSuccess, HandleAddListenerEvevt);
+
 			m_CharacterItem = characterItem;
 			m_IsUnlock = isArmorUnlock;
 			m_BgColorType = bgColorType;
@@ -38,8 +45,20 @@ namespace GameWish.Game
 			RefreshBgColor(m_BgColorType);
 			CheckEquipRedPoint();
 		}
+		private void HandleAddListenerEvevt(int key, object[] param)
+		{
+			switch ((EventID)key)
+			{
+				case EventID.OnSelectedEquipSuccess:
+					//RefreshEquipInfo();
+					CheckEquipRedPoint();
+					break;
+				default:
+					break;
+			}
+		}
 
-		private void CheckEquipRedPoint()
+		public void CheckEquipRedPoint()
 		{
 			switch (m_PropType)
 			{
@@ -52,16 +71,11 @@ namespace GameWish.Game
 			}
 			//m_RedPoint.SetActive(m_CurDisciple.CheckEquipStrengthen(m_CharaceterEquipment, false));
 		}
-		private void OnDestroy()
-		{
-		}
 		public void RefreshPanelInfo()
         {
             if (m_IsUnlock)
             {
 				//½âËø
-				
-
 				if (!m_CharaceterEquipment.IsHaveEquip())
 				{
 					//Î´×°±¸

@@ -184,11 +184,15 @@ namespace GameWish.Game
                 }
 
                 //m_CurItemList.Sort();
+                if (!PlatformHelper.isTestMode)
+                {
+                    Debug.LogError("---m_FacilityController" + m_FacilityController);
+                    Debug.LogError("---m_WarehouseCurLevelInfo" + m_WarehouseCurLevelInfo);
+                    Debug.LogError("---m_WarehouseNextLevelInfo" + m_WarehouseNextLevelInfo);
+                    Debug.LogError("---m_InventoryItems" + m_InventoryItems);
+                }
                 RefeshSort(m_CurItemList);
-                Debug.LogError("---m_FacilityController"+ m_FacilityController);
-                Debug.LogError("---m_WarehouseCurLevelInfo" + m_WarehouseCurLevelInfo);
-                Debug.LogError("---m_WarehouseNextLevelInfo" + m_WarehouseNextLevelInfo);
-                Debug.LogError("---m_InventoryItems" + m_InventoryItems);
+            
             }
             catch (Exception e)
             {
