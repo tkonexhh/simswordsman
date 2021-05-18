@@ -90,7 +90,7 @@ namespace GameWish.Game
 
             //GetCom<GuideModule>().StartGuide();
 
-            LeBianSDKMgr.S.CallSetPrivacyChaecked();
+            //LeBianSDKMgr.S.CallSetPrivacyChaecked();
 
             // 实名制调用封装至SDKMgr，调用该方法即可初始化
             SDKMgr.S.RequestRealNameSys("http://remoteconf.freeqingnovel.com", "D415");
