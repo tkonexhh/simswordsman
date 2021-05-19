@@ -53,7 +53,14 @@ namespace GameWish.Game
 
         private void OnDisable()
         {
-            m_ResLoader?.ReleaseRes(m_IconResName);
+            if(!applicationIsQuitting)
+                m_ResLoader?.ReleaseRes(m_IconResName);
+        }
+
+        private static bool applicationIsQuitting = false;
+        private void OnApplicationQuit()
+        {
+            applicationIsQuitting = true;
         }
 
         private void HidelAll()
