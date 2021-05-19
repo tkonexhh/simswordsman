@@ -32,6 +32,7 @@ namespace GameWish.Game
             m_IsExit = false;
 
             Wander();
+            m_Controller.CharacterView.AddTouch();
         }
 
         public override void Exit(ICharacterStateHander handler)

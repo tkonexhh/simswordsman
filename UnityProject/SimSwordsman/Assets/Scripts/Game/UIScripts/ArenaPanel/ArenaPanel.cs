@@ -41,6 +41,7 @@ namespace GameWish.Game
 
         protected override void OnOpen()
         {
+            PlayerPrefs.SetInt(Define.IsOpenArenaPanel, 1);
             RegisterEvent(EventID.OnRefeshArenaCoin, (t, e) => { UpdateCoin(); });
             RegisterEvent(EventID.OnRefeshArenaChallengeCount, (t, e) => { UpdateCount(); });
             MainGameMgr.S.ArenaSystem.Enter();

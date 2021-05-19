@@ -31,6 +31,7 @@ namespace GameWish.Game
             m_Index = index;
             m_Data = data;
             m_TxtLevel.text = index.ToString();
+            this.gameObject.name = "LevelCellItem" + index;
             UpdateLevelBg(index);
             m_TxtName.text = data.name;
             m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(data.atk);

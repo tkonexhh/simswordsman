@@ -25,7 +25,7 @@ namespace GameWish.Game
                 {
                     for (int i = 0; i < m_TalkDic.Count; i++)
                     {
-                        foreach (var item in m_TalkDic[i+1])
+                        foreach (var item in m_TalkDic[i + 1])
                         {
                             talkList.Add(item);
                         }
@@ -39,7 +39,16 @@ namespace GameWish.Game
 
         public static string GetRangeWords(int level)
         {
-           return m_TalkDic[level][RandomHelper.Range(0, m_TalkDic[level].Count)];
+            List<string> talkList;
+            if (m_TalkDic.TryGetValue(level, out talkList))
+            {
+                return talkList[RandomHelper.Range(0, talkList.Count)];
+            }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 }

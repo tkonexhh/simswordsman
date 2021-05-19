@@ -186,6 +186,19 @@ namespace GameWish.Game
             EventSystem.S.Send(EventID.OnTowerTrigger_FightFinishedClickShopBtnTrigger);
         }
 
+        /// <summary>
+        /// 检测是否开始竞技场商店引导
+        /// </summary>
+        private void CheckIsStartArenaShopGuide()
+        {
+            if (GuideMgr.S.IsGuideFinish(51))
+            {
+                return;
+            }
+
+            EventSystem.S.Send(EventID.OnArenaSystemTrigger_FightFinishedClickShopBtnTrigger);
+        }
+
         private void RewardPanelCallback(AbstractPanel obj)
         {
             RewardPanel rewardPanel = obj as RewardPanel;
@@ -262,6 +275,8 @@ namespace GameWish.Game
                 case PanelType.Arena:
                     UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                     UIMgr.S.OpenPanel(UIID.ArenaPanel);
+
+                    CheckIsStartArenaShopGuide();
                     break;
             }
         }

@@ -197,11 +197,15 @@ namespace GameWish.Game
                 CheckIsStartTowerSystemGuide();
 
                 CheckIsStartHeroTrialSystemGuide();
+
+                CheckIsStartArenaSystemGuid();
             }
         }
+
         /// <summary>
         /// 是否开始试炼系统引导
         /// </summary>
+        /// 
         private void CheckIsStartHeroTrialSystemGuide()
         {
             bool isOpen = PlayerPrefs.GetInt(Define.IsOpenHeroTrialPanel, 0) == 1 ? true : false;
@@ -239,6 +243,29 @@ namespace GameWish.Game
                 EventSystem.S.Send(EventID.OnTowerTrigger_IntroduceTrigger);
             }
         }
+
+        /// <summary>
+        /// 是否开始竞技场引导
+        /// </summary>
+        private void CheckIsStartArenaSystemGuid()
+        {
+            bool isOpen = PlayerPrefs.GetInt(Define.IsOpenArenaPanel, 0) == 1 ? true : false;
+
+            if (isOpen) return;
+
+            if (GuideMgr.S.IsGuideFinish(44))
+            {
+                return;
+            }
+            int facilityLevel = GameDataMgr.S.GetClanData().GetFacilityDbData().GetFacilityLevel(FacilityType.Lobby);
+            if (facilityLevel >= 4)
+            {
+                EventSystem.S.Send(EventID.OnArenaSystemTrigger_IntroduceTrigger);
+            }
+
+        }
+
+
         /// <summary>
         /// ����Ƿ�ʼ��սϵͳ����
         /// </summary>

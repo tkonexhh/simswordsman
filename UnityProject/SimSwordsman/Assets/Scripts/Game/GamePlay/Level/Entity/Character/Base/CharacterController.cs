@@ -50,6 +50,11 @@ namespace GameWish.Game
             if (m_CharacterCamp == CharacterCamp.OurCamp)
             {
                 m_CharacterView.SetSkin(m_CharacterModel.GetHeadId());
+                m_CharacterView.SetOurCampCollider2D();
+            }
+            else
+            {
+                m_CharacterView.RemoveTouch();
             }
 
             m_StateMachine = new CharacterStateMachine(this);

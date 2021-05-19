@@ -172,6 +172,14 @@ namespace GameWish.Game
             GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickEnterTrialBtnTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_ClickTrialFinishedTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(HeroTrialSystemTrigger_DiscipleUpgradSuccessTrigger));
+
+
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArenaSystemTrigger_ClickAKeyChoiceBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArenaSystemTrigger_IntroduceTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArenaSystemTrigger_ClickChallengeBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArenaSystemTrigger_ClickArenaBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArenaSystemTrigger_ClickStartFightBtnTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ArenaSystemTrigger_FightFinishedClickShopBtnTrigger));
         }
 
         protected void InitCustomCommand()

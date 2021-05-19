@@ -309,6 +309,7 @@
         public const string IsOpenTowerPanel = "m_IsOpenTowerPanel";
         public const string IsOpenHeroTrialPanel = "m_IsOpenHeroTrialPanel";
         public const string IsShowTowerSuccessOrFaildTrigger = "IsShowTowerSuccessOrFaildTrigger";
+        public const string IsOpenArenaPanel = "m_IsOpenArenaPanel";
         #endregion
 
         public const string IsPlaySplashScreen = "m_IsPlaySplashScreen";
