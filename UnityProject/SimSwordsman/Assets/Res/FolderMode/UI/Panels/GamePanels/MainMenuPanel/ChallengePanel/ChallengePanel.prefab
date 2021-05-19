@@ -532,6 +532,7 @@ MonoBehaviour:
   m_ChallengeTrans: {fileID: 4953368936341296673}
   m_ChallengeTaskItem: {fileID: 2363031776108238721, guid: 648511c95e06d8d46b5cdadb959b6636,
     type: 3}
+  m_SrollView: {fileID: 4953368936960364645}
 --- !u!1 &2575461584853272948
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1196.7091}
+  m_AnchoredPosition: {x: 0, y: 651.49603}
   m_SizeDelta: {x: 750, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4953368936341296672
@@ -1102,7 +1103,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: -17}
+  m_SizeDelta: {x: 0, y: -17}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4953368937147468009
 CanvasRenderer:
