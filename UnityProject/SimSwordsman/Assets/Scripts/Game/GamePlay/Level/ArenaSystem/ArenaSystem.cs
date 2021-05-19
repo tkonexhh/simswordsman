@@ -103,17 +103,18 @@ namespace GameWish.Game
         {
             //首先不能再活动期间弹
             // if (IsWithinTime()) return;
-
+            Debug.LogError(m_ArenaData.hasReward + "---" + m_ArenaData.getRewarded);
             //是否发放奖励
             if (!m_ArenaData.hasReward) return;
             //是否领取过奖励了
             if (m_ArenaData.getRewarded) return;
 
-            m_ArenaData.SetRankRewarded();
-            int level = m_ArenaData.nowLevel;
+
+            Debug.LogError("Last:" + m_ArenaData.lastLevel + ":NowLevel" + m_ArenaData.nowLevel);
+            int level = Mathf.Min(m_ArenaData.lastLevel, m_ArenaData.nowLevel);
             int reward = TDArenaConfigTable.GetRewardByRank(level);
             UIMgr.S.OpenPanel(UIID.ArenaRankRewardPanel, level, reward);
-
+            m_ArenaData.SetRankRewarded();
         }
 
         #region 处理商店相关

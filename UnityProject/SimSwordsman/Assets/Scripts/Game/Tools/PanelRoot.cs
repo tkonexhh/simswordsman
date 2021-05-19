@@ -47,9 +47,13 @@ namespace GameWish.Game
         {
             if (Screen.height * 1.0f / Screen.width > 2)
             {
+
                 var rectRoot = UIMgr.S.uiRoot.panelRoot.GetComponent<RectTransform>();
                 var rect = Screen.safeArea;
-                UIMgr.S.panelOffset = -rect.y + 40;
+                float canvasHeight = UIMgr.S.uiRoot.rootCanvas.rectTransform().rect.height;
+                // Debug.LogError(Screen.height + ":" + rect.height + ":" + canvasHeight);
+                float deltaY = (Screen.height - rect.height) / Screen.height * canvasHeight;
+                UIMgr.S.panelOffset = -deltaY;
                 rectRoot.offsetMax = new Vector2(rectRoot.offsetMax.x, UIMgr.S.panelOffset);
                 rectRoot.offsetMin = new Vector2(rectRoot.offsetMin.x, 0);
 

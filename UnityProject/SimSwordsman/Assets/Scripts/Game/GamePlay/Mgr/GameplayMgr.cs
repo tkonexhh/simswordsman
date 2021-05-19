@@ -28,7 +28,7 @@ namespace GameWish.Game
         public void InitGameplay()
         {
             m_Mono = GetComponent<MonoBehaviour>();
-            EntityRoot.SetLocalY((UIMgr.S.panelOffset / 100.0f));
+            EntityRoot.SetLocalY((UIMgr.S.panelOffset / 100.0f / 2));
             StartCoroutine(Init());
         }
 

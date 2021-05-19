@@ -10,6 +10,7 @@ namespace GameWish.Game
     {
         public int coin;//擂台币
         public int nowLevel = 0;
+        public int lastLevel = ArenaDefine.EnemyCount + 1;
         public int challengeCount = ArenaDefine.Max_ChallengeCount;
         public int adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
         public bool getRewarded = false;//是否领取过排行奖励
@@ -24,7 +25,7 @@ namespace GameWish.Game
         public override void InitWithEmptyData()
         {
             coin = 0;
-            nowLevel = ArenaDefine.EnemyCount + 1;
+            nowLevel = lastLevel = ArenaDefine.EnemyCount + 1;
         }
 
         public override void OnDataLoadFinish()
@@ -51,34 +52,45 @@ namespace GameWish.Game
 
                 int offsetDays = (now - lastRefesh).Days;
                 // Debug.LogError("AAAA:" + offsetDays + "-----" + lastRefesh + "------" + now);
+                //领取时间在上一次的结束到这一次的结束之间
+                DateTime lastEndTime = lastRefesh.AddHours(ArenaDefine.EndTime - ArenaDefine.StartTime);
+                DateTime thisStartTime = lastRefesh.AddDays(1);
+                DateTime thisEndTime = lastEndTime.AddDays(1);
+
                 if (offsetDays >= 1)
                 {
-                    // Debug.LogError("Passday Reset");
+                    Debug.LogError("Passday Reset");
                     Reset();
                 }
-                else
+                else if (now > lastEndTime && now < thisStartTime) //
                 {
-                    int lastLevel = nowLevel;
-                    //如果当前的时间是刷新时间的十点以后
-                    //并且间隔没有超过2天
-                    //并且当前排名>24
-                    if (now >= new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.EndTime)
-                        && now <= new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddHours(ArenaDefine.StartTime)
-                        // && offsetDays == 1
-                        && lastLevel <= ArenaDefine.EnemyCount)
-                    {
-                        if (getRewarded == false)
-                        {
-                            hasReward = true;
-                        }
+                    // lastLevel = nowLevel;
 
-                        SetDataDirty();
+                    if (nowLevel <= ArenaDefine.EnemyCount && getRewarded == true)
+                    {
+                        // lastLevel = ArenaDefine.EnemyCount + 1;
+                        getRewarded = false;
+                        Debug.LogError(1111);
+
                     }
                 }
+
+
+                Debug.LogError("CheckReward1" + getRewarded);
+                if (getRewarded == false && hasReward == false)
+                {
+                    // getRewarded = true;
+                    // lastLevel = nowLevel;
+                    Debug.LogError("CheckReward");
+                    hasReward = true;
+                    SetDataDirty();
+                }
+
             }
 
             // Reset();
         }
+
 
         private void Reset()
         {
@@ -86,11 +98,20 @@ namespace GameWish.Game
             var startTime = new DateTime(now.Year, now.Month, now.Day).AddHours(ArenaDefine.StartTime);
             lastRefeshTime = startTime.ToString();//DateTime.Now.ToString().Substring(0, 9) + ' ' + string.Format("{0:D2}:00:00", ArenaDefine.StartTime);
             // Debug.LogError("Reset:" + lastRefeshTime);
+            lastLevel = nowLevel;
             nowLevel = ArenaDefine.EnemyCount + 1;
             InitEnemy();
             adAddChallengeCount = ArenaDefine.Max_ADChallengeCount;
             challengeCount = ArenaDefine.Max_ChallengeCount;
-            getRewarded = false;
+            if (lastLevel <= ArenaDefine.EnemyCount)
+            {
+                getRewarded = false;
+            }
+            else
+            {
+                getRewarded = true;
+            }
+            // getRewarded = false;
             hasReward = false;
 
             RandomShopData();
@@ -214,6 +235,7 @@ namespace GameWish.Game
 
         public void SetRankRewarded()
         {
+            nowLevel = ArenaDefine.EnemyCount + 1;
             getRewarded = true;
             hasReward = false;
         }
