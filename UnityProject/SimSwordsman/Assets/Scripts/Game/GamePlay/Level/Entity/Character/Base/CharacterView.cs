@@ -43,7 +43,7 @@ namespace GameWish.Game
         public PolyNavAgent NavAgent { get => m_NavAgent;}
         public GameObject Clean_DragSmoke { get => m_Clean_DragSmoke; set => m_Clean_DragSmoke = value; }
 
-        public BoxCollider2D CharCollider2D { get => gameObject.GetComponent<BoxCollider2D>() != null ? gameObject.GetComponent<BoxCollider2D>() : null;  }
+        public BoxCollider2D CharCollider2D { get => gameObject.GetComponent<BoxCollider2D>() != null ? gameObject.GetComponent<BoxCollider2D>() : null; set => m_Collider2D = value; }
 
         public void Init()
         {
@@ -99,6 +99,21 @@ namespace GameWish.Game
             {
                 string skinName = GetSkinName(headId);
                 m_SpineAnim.skeleton.SetSkin(skinName);
+            }
+        }
+
+        public void SetOurCampCollider2D()
+        {
+            if (m_Controller.CharacterCamp == CharacterCamp.OurCamp)
+            {
+                this.gameObject.layer = 12;
+                if (CharCollider2D==null)
+                {
+                    CharCollider2D= this.gameObject.AddComponent<BoxCollider2D>();
+                    CharCollider2D.enabled = false;
+                    CharCollider2D.offset = new Vector2( 0f, 0.55f );
+                    CharCollider2D.size = new Vector2(0.55f, 1.18f);
+                }
             }
         }
 
@@ -345,9 +360,9 @@ namespace GameWish.Game
 
         public void RemoveTouch()
         {
+            InputMgr.S.RemoveTouchObserver(this);
             if (CharCollider2D == null) return;
             CharCollider2D.enabled = false;
-            InputMgr.S.RemoveTouchObserver(this);
         }
 
         #endregion
@@ -383,7 +398,10 @@ namespace GameWish.Game
             if (hit.collider != null && hit.collider == CharCollider2D)
             {
                 //显示对话气泡
-                WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, TDTalkTable.GetRangeWords(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()));
+                if (TDTalkTable.GetRangeWords(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()) !=null )
+                {
+                    WorldUIPanel.S?.ShowWorkText(m_Controller.CharacterView.transform, TDTalkTable.GetRangeWords(MainGameMgr.S.FacilityMgr.GetLobbyCurLevel()));
+                }
                 return true;
             }
 
