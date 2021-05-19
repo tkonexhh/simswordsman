@@ -464,6 +464,14 @@ namespace GameWish.Game
         OnRefeshArenaCoin,
         OnRefeshArenaShop,
         OnRefeshArenaChallengeCount,
+
+
+        OnArenaSystemTrigger_IntroduceTrigger = 15001,             //竞技场系统介绍引导
+        OnArenaSystemTrigger_ClickArenaBtnTrigger,                 //点击竞技场按钮
+        OnArenaSystemTrigger_ClickChallengeBtnTrigger,             //竞技场点击挑战按钮s
+        OnArenaSystemTrigger_ClickAKeyChoiceBtnTrigger,            //竞技场点击一键选择弟子
+        OnArenaSystemTrigger_ClickStartFightBtnTrigger,            //竞技场点击选定开始战斗
+        OnArenaSystemTrigger_FightFinishedClickShopBtnTrigger,     //竞技场_战斗结束_点击商城按钮
         #endregion
     }
 }

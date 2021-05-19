@@ -12,17 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4bc21567f434b598a3c96ba4946372, type: 3}
   m_Name: AssetReferenceDB
   m_EditorClassIdentifier: 
-  m_assets:
-  - m_assetDatabaseId: 7333d220a5a4f4febbb92627a9e9239a
-    m_importFrom: Assets/AssetGraph/AssetBundles/Cache/TemporalSettingFiles/AssetReferenceDB.asset
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 3b44cc4a6d2027244a38416b63be1ff1
-    m_importFrom: Assets/Editor/com.unity.mobile.notifications/NotificationSettings.asset
-    m_exportTo: 
-    m_variantName: 
-  - m_assetDatabaseId: 2aa8b01e834a9874e84c0156ceebe357
-    m_importFrom: Assets/Res/FolderMode/UI/Panels/GamePanels/UserAccountPanel/SelectedHeadPanel.prefab
-    m_exportTo: 
-    m_variantName: 
+  m_assets: []
   m_version: 2

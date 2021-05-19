@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChallengeTalkPanelAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2f3b33026dc83034da194d242cd2f2bb, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4b60d7104dde328499f24aef1835523b, type: 3}
+  - {fileID: 21300000, guid: 333a4912c4535374fbbbe8d43cf8eaeb, type: 3}
+  - {fileID: 21300000, guid: 6c6363145678f1f478f1ee215a15e2b1, type: 3}
+  - {fileID: 21300000, guid: cfa4f6248b452a145984d65ef933fe9f, type: 3}
+  - {fileID: 21300000, guid: 46de1b97db8437c4c9a78d817fd9e07a, type: 3}
+  - {fileID: 21300000, guid: 37db963bbba0fcc41a85a5f87ade3716, type: 3}
+  - {fileID: 21300000, guid: 24aa70dd660dace4a8d5080017270441, type: 3}
+  - {fileID: 21300000, guid: fd81d00e695459c40ad11e1ea7a0a210, type: 3}
+  - {fileID: 21300000, guid: 1c29ef5f71259854d9aa4b44d84699f3, type: 3}
+  - {fileID: 21300000, guid: 160617bf237db5940868b744a7669113, type: 3}
+  - {fileID: 21300000, guid: f730e9cffb17e26489abb3e8d646f073, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Shaolin_Talk_Icon
+  - Mojiao_Talk_Icon
+  - tiaozhan_duihuakuang_arrow@2x
+  - tiaozhan_duihuakuang_nameDiban@2x
+  - Wudu_Talk_Icon
+  - Gaibang_Talk_Icon
+  - Xiaoyao_Talk_Icon
+  - Huashan_Talk_Icon
+  - Wudang_Talk_Icon
+  - Emei_Talk_Iocn
+  - tiaozhan_duihuakuang_diban@2x
+  m_Tag: ChallengeTalkPanelAtlas
+  m_IsVariant: 0

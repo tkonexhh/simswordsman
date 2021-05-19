@@ -389,7 +389,8 @@ namespace GameWish.Game
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     //EventSystem.S.Send(EventID.OnBattleSuccessed);
-                    GameDataMgr.S.GetPlayerData().arenaData.AddCoin(1000);
+                    //GameDataMgr.S.GetPlayerData().arenaData.AddCoin(1000);
+                    EventSystem.S.Send(EventID.OnArenaSystemTrigger_IntroduceTrigger);
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
