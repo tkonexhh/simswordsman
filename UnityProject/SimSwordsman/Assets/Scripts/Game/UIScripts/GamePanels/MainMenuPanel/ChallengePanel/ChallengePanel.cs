@@ -7,19 +7,16 @@ using UnityEngine.UI;
 
 namespace GameWish.Game
 {
-	public class ChallengePanel : AbstractAnimPanel
-	{
-        [SerializeField]
-        private Text m_ChallengeCont;
+    public class ChallengePanel : AbstractAnimPanel
+    {
+        [SerializeField] private Text m_ChallengeCont;
 
-        [SerializeField]
-        private Button m_CloseBtn;
+        [SerializeField] private Button m_CloseBtn;
 
-        [SerializeField]
-        private Transform m_ChallengeTrans;
+        [SerializeField] private Transform m_ChallengeTrans;
 
-        [SerializeField]
-        private GameObject m_ChallengeTaskItem;
+        [SerializeField] private GameObject m_ChallengeTaskItem;
+        [SerializeField] private ScrollRect m_SrollView;
         private List<ChapterConfigInfo> m_CurChapterInfo = null;
         private List<ChallengeTaskItem> m_ChallengeTaskItemList = new List<ChallengeTaskItem>();
         protected override void OnUIInit()
@@ -37,9 +34,10 @@ namespace GameWish.Game
         protected override void OnPanelOpen(params object[] args)
         {
             base.OnPanelOpen(args);
-
+            m_SrollView.verticalNormalizedPosition = 1;
             int isOpened = PlayerPrefs.GetInt(Define.Is_Enter_Challenge_Panel, -1);
-            if (isOpened == -1) {
+            if (isOpened == -1)
+            {
                 PlayerPrefs.SetInt(Define.Is_Enter_Challenge_Panel, 1);
             }
 
@@ -81,7 +79,8 @@ namespace GameWish.Game
 
         private void BindAddListenerEvent()
         {
-            m_CloseBtn.onClick.AddListener(() => {
+            m_CloseBtn.onClick.AddListener(() =>
+            {
                 AudioMgr.S.PlaySound(Define.SOUND_UI_BTN);
                 UIMgr.S.OpenPanel(UIID.MainMenuPanel);
                 HideSelfWithAnim();
@@ -102,13 +101,13 @@ namespace GameWish.Game
             EventSystem.S.UnRegister(EventID.OnCloseParentPanel, HandlingEventListening);
         }
         /// <summary>
-        /// ´´½¨ÌôÕ½ÈÎÎñ
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="configInfo"></param>
         private void CreateChallengeTask(ChapterConfigInfo configInfo)
         {
             ChallengeTaskItem challengeTask = Instantiate(m_ChallengeTaskItem, m_ChallengeTrans).GetComponent<ChallengeTaskItem>();
-            challengeTask.OnInit(configInfo,this);
+            challengeTask.OnInit(configInfo, this);
             m_ChallengeTaskItemList.Add(challengeTask);
         }
     }
