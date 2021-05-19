@@ -55,6 +55,7 @@ namespace GameWish.Game
 
             m_TxtLevel.text = level.ToString();
             UpdateLevelBg(level);
+            m_BtnFight.gameObject.SetActive(false);
             m_TxtName.text = GameDataMgr.S.GetClanData().clanName;
             long totalAtk = MainGameMgr.S.CharacterMgr.GetCharacterATK();
             m_TxtATK.text = "功力:" + CommonUIMethod.GetTenThousandOrMillion(totalAtk);
