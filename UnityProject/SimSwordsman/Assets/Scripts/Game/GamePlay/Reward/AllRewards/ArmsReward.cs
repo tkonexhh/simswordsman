@@ -34,6 +34,11 @@ namespace GameWish.Game
 
         public override string RewardTips()
         {
+            Equipment info = TDEquipmentConfigTable.GetEquipmentInfo(KeyID.Value);
+
+            if (info != null)
+                return info.Desc;
+
             return "";
         }
     }
