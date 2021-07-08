@@ -311,7 +311,7 @@ namespace GameWish.Game
                 if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.KongfuLibrary))
                     return 0;
 
-                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary);
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.KongfuLibrary) >= m_Level ? 1 : 0;
             }
         }
 
@@ -323,7 +323,7 @@ namespace GameWish.Game
                 if (m_Level <= 1)
                     return "建造藏经阁";
                 else
-                    return "建造藏升至{0}级";
+                    return "建造藏经阁升至" + m_Level + "级";
             }
         }
 
@@ -362,7 +362,7 @@ namespace GameWish.Game
                 if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.ForgeHouse))
                     return 0;
 
-                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse);
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.ForgeHouse) >= m_Level ? 1 : 0;
             }
         }
 
@@ -372,9 +372,13 @@ namespace GameWish.Game
             get
             {
                 if (m_Level <= 1)
+                {
                     return "建造锻造屋";
+                }
                 else
-                    return "锻造屋升至{0}级";
+                {
+                    return "锻造屋升至" + m_Level + "级";
+                }
             }
         }
 
@@ -413,7 +417,7 @@ namespace GameWish.Game
                 if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Baicaohu))
                     return 0;
 
-                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu);
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Baicaohu) >= m_Level ? 1 : 0;
             }
         }
 
@@ -424,7 +428,7 @@ namespace GameWish.Game
                 if (m_Level <= 1)
                     return "建造百草屋";
                 else
-                    return "百草屋升至{0}级";
+                    return "百草屋升至" + m_Level + "级";
             }
         }
 
@@ -464,7 +468,7 @@ namespace GameWish.Game
                 if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Deliver))
                     return 0;
 
-                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Deliver);
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Deliver) >= m_Level ? 1 : 0;
             }
         }
 
@@ -475,7 +479,7 @@ namespace GameWish.Game
                 if (m_Level <= 1)
                     return "建造镖局";
                 else
-                    return "镖局升至{0}级";
+                    return "镖局升至" + m_Level + "级";
             }
         }
 
@@ -514,7 +518,7 @@ namespace GameWish.Game
                 if (!MainGameMgr.S.FacilityMgr.IsFacilityUnlocked(FacilityType.Kitchen))
                     return 0;
 
-                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen);
+                return MainGameMgr.S.FacilityMgr.GetFacilityCurLevel(FacilityType.Kitchen) >= m_Level ? 1 : 0;
             }
         }
 
@@ -525,7 +529,7 @@ namespace GameWish.Game
                 if (m_Level <= 1)
                     return "建造伙房";
                 else
-                    return "伙房升至{0}级";
+                    return "伙房升至" + m_Level + "级";
             }
         }
 
